@@ -4889,7 +4889,7 @@ void CTestMenu::testShowPictureDir()
 void CTestMenu::testClistBoxWidget()
 {
 	// our listBox
-	listMenu = new CMenuWidget("ClistBoxWidget(list Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+	listMenu = new CMenuWidget("CMenuWidget(list Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 
 	//
 	loadMoviePlaylist();
@@ -4943,7 +4943,7 @@ void CTestMenu::testClistBoxWidget()
 void CTestMenu::testClistBoxWidget1()
 {
 	// our listBox
-	listMenu = new CMenuWidget("ClistBoxWidget(Menu Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+	listMenu = new CMenuWidget("CMenuWidget(Menu Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 
 	//
 	loadMoviePlaylist();
@@ -6816,13 +6816,13 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("ClistBox(list mode)", true, NULL, this, "listbox6"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox", true, NULL, this, "framebox"));
 	
-	//
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "ClistBoxWidget"));
-	mainMenu->addItem(new CMenuForwarder("ClistBoxWidget(MODE_LISTBOX)", true, NULL, this, "listboxwidget"));
-	mainMenu->addItem(new CMenuForwarder("ClistBoxWidget(MODE_MENU)", true, NULL, this, "listboxwidget1"));
-	mainMenu->addItem(new CMenuForwarder("ClistBoxWidget(MODE_SETUP)", true, NULL, this, "listboxwidget2"));
+	// ClistBox
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CMenuWidget"));
+	mainMenu->addItem(new CMenuForwarder("CMenuWidget(MODE_LISTBOX)", true, NULL, this, "listboxwidget"));
+	mainMenu->addItem(new CMenuForwarder("CMenuWidget(MODE_MENU)", true, NULL, this, "listboxwidget1"));
+	mainMenu->addItem(new CMenuForwarder("CMenuWidget(MODE_SETUP)", true, NULL, this, "listboxwidget2"));
 
-	//
+	// other widget
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "other Widget"));
 	mainMenu->addItem(new CMenuForwarder("CStringInput", true, NULL, this, "stringinput"));
 	mainMenu->addItem(new CMenuForwarder("CStringInputSMS", true, NULL, this, "stringinputsms"));
