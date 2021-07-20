@@ -1542,16 +1542,6 @@ void CMovieInfoWidget::funArt()
 	
 	testFrame->addFrame(textFrame);
 
-	// infoFrame
-	CFrame * infoFrame = new CFrame();
-	infoFrame->setPosition(playBox.iX + 300 + 10, playBox.iY, 300, 60);
-	infoFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
-	infoFrame->setTitle("Movie Details");
-	infoFrame->setIconName(NEUTRINO_ICON_INFO);
-	infoFrame->setActionKey(this, "MovieInfo");
-
-	testFrame->addFrame(infoFrame);
-
 	// play
 	CFrame *playFrame = new CFrame();
 	playFrame->setPosition(&playBox);
@@ -1561,6 +1551,16 @@ void CMovieInfoWidget::funArt()
 	playFrame->setActionKey(this, "playMovie");
 
 	testFrame->addFrame(playFrame);
+
+	// infoFrame
+	CFrame * infoFrame = new CFrame();
+	infoFrame->setPosition(playBox.iX + 300 + 10, playBox.iY, 300, 60);
+	infoFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+	infoFrame->setTitle("Movie Details");
+	infoFrame->setIconName(NEUTRINO_ICON_INFO);
+	infoFrame->setActionKey(this, "MovieInfo");
+
+	testFrame->addFrame(infoFrame, true);
 
 	widget->addItem(testFrame);
 
