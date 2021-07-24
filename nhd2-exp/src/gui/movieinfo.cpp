@@ -1477,7 +1477,7 @@ void CMovieInfoWidget::funArt()
 	textBox.iX = box.iX + 10;
 	textBox.iY = starBox.iY + 10 + 60;
 
-	CFrameBox * testFrame = new CFrameBox(&box);
+	CFrameBox * testFrameBox = new CFrameBox(&box);
 
 	CWidget * widget = new CWidget();
 
@@ -1486,7 +1486,7 @@ void CMovieInfoWidget::funArt()
 	artFrame->setPosition(box.iX + box.iWidth/2, box.iY, box.iWidth/2, box.iHeight);
 	artFrame->setIconName(movieFile.tfile.c_str());
 
-	testFrame->addFrame(artFrame);
+	testFrameBox->addFrame(artFrame);
 
 	// title
 	CFrame *titleFrame = new CFrame(FRAME_TEXT_LINE_NOTSELECTABLE);
@@ -1495,7 +1495,7 @@ void CMovieInfoWidget::funArt()
 	titleFrame->setTitle(movieFile.epgTitle.c_str());
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 
-	testFrame->addFrame(titleFrame);
+	testFrameBox->addFrame(titleFrame);
 
 	// star1
 	CFrame *star1Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
@@ -1503,7 +1503,7 @@ void CMovieInfoWidget::funArt()
 	star1Frame->setIconName(NEUTRINO_ICON_STAR_ON);
 	star1Frame->disablePaintFrame();
 
-	testFrame->addFrame(star1Frame);
+	testFrameBox->addFrame(star1Frame);
 
 	// star2
 	CFrame *star2Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
@@ -1511,7 +1511,7 @@ void CMovieInfoWidget::funArt()
 	star2Frame->setIconName(NEUTRINO_ICON_STAR_ON);
 	star2Frame->disablePaintFrame();
 
-	testFrame->addFrame(star2Frame);
+	testFrameBox->addFrame(star2Frame);
 
 	// star3
 	CFrame *star3Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
@@ -1519,7 +1519,7 @@ void CMovieInfoWidget::funArt()
 	star3Frame->setIconName(NEUTRINO_ICON_STAR_ON);
 	star3Frame->disablePaintFrame();
 
-	testFrame->addFrame(star3Frame);
+	testFrameBox->addFrame(star3Frame);
 
 	// star4
 	CFrame *star4Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
@@ -1527,7 +1527,7 @@ void CMovieInfoWidget::funArt()
 	star4Frame->setIconName(NEUTRINO_ICON_STAR_OFF);
 	star4Frame->disablePaintFrame();
 
-	testFrame->addFrame(star4Frame);
+	testFrameBox->addFrame(star4Frame);
 
 	// text
 	CFrame *textFrame = new CFrame(FRAME_TEXT_NOTSELECTABLE);
@@ -1540,7 +1540,7 @@ void CMovieInfoWidget::funArt()
 	textFrame->setTitle(buffer.c_str());
 	textFrame->disablePaintFrame();
 	
-	testFrame->addFrame(textFrame);
+	testFrameBox->addFrame(textFrame);
 
 	// play
 	CFrame *playFrame = new CFrame();
@@ -1550,7 +1550,7 @@ void CMovieInfoWidget::funArt()
 	playFrame->setIconName(NEUTRINO_ICON_PLAY);
 	playFrame->setActionKey(this, "playMovie");
 
-	testFrame->addFrame(playFrame);
+	testFrameBox->addFrame(playFrame);
 
 	// infoFrame
 	CFrame * infoFrame = new CFrame();
@@ -1560,17 +1560,17 @@ void CMovieInfoWidget::funArt()
 	infoFrame->setIconName(NEUTRINO_ICON_INFO);
 	infoFrame->setActionKey(this, "MovieInfo");
 
-	testFrame->addFrame(infoFrame, true);
+	testFrameBox->addFrame(infoFrame, true);
 
-	widget->addItem(testFrame);
+	widget->addItem(testFrameBox);
 
 	widget->exec(NULL, "");
 
 	delete widget;
 	widget = NULL;
 
-	delete testFrame;
-	testFrame = NULL;
+	delete testFrameBox;
+	testFrameBox = NULL;
 }
 
 int CMovieInfoWidget::exec(CMenuTarget* parent, const std::string& actionKey)

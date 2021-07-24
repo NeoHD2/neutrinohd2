@@ -1647,4 +1647,67 @@ char * setIconName(neutrino_msg_t key)
 	return iconName;
 }
 
+////
+#include <cstring>
+#include <fstream>
+#include <string>
+#include <iostream>
+using namespace std;
+
+std::string readFile(std::string file)
+{
+	std::string ret_s;
+	std::ifstream tmpData(file.c_str(), std::ifstream::binary);
+	if (tmpData.is_open()) {
+		tmpData.seekg(0, tmpData.end);
+		int length = tmpData.tellg();
+		if (length > 0xffff) { /* longer than 64k? better read in chunks! */
+			cerr << __func__ << ": file " << file << " too big (" << length << " bytes)" << endl;
+			return "";
+		}
+		tmpData.seekg(0, tmpData.beg);
+		char* buffer = new char[length+1];
+		if (! buffer) {
+			cerr << __func__ << ": allocating " << (length + 1) << " bytes for buffer failed" << endl;
+			return "";
+		}
+		tmpData.read(buffer, length);
+		tmpData.close();
+		buffer[length] = '\0';
+		ret_s = (string)buffer;
+		delete [] buffer;
+	}
+	else {
+		cerr << "Error read " << file << endl;
+		return "";
+	}
+
+	return ret_s;
+}
+
+bool parseJsonFromFile(std::string& jFile, Json::Value *root, std::string *errMsg)
+{
+	std::string jData = readFile(jFile);
+	bool ret = parseJsonFromString(jData, root, errMsg);
+	jData.clear();
+	return ret;
+}
+
+bool parseJsonFromString(std::string& jData, Json::Value *root, std::string *errMsg)
+{
+	Json::CharReaderBuilder builder;
+	Json::CharReader* reader(builder.newCharReader());
+	std::string errs = "";
+	const char* jData_c = jData.c_str();
+
+	bool ret = reader->parse(jData_c, jData_c + strlen(jData_c), root, &errs);
+	if (!ret || (!errs.empty())) {
+		ret = false;
+		if (errMsg != NULL)
+			*errMsg = errs;
+	}
+	delete reader;
+	return ret;
+}
+
 

@@ -211,7 +211,91 @@ bool cYTFeedParser::supportedFormat(int fmt)
 	return false;
 }
 
+////
+#if 1
+bool cYTFeedParser::decodeVideoInfo(std::string &answer, cYTVideoInfo &vinfo)
+{
+	bool ret = false;
+
+	//FIXME check expire
+	std::vector<std::string> ulist;
+
+	// Extract player_response
+	std::string::size_type player_resp_start = answer.find("player_response=");
+	if (player_resp_start == std::string::npos) {
+		printf("player_response not found\n");
+		return false;
+	}
+
+	player_resp_start = answer.find("=", player_resp_start) + 1;
+	std::string::size_type player_resp_end = answer.find("&", player_resp_start);
+	if (player_resp_end == std::string::npos) {
+		player_resp_end = answer.length();
+	}
+	std::string player_response = answer.substr(player_resp_start, player_resp_end - player_resp_start);
+	::decodeUrl(player_response);
+
+	// Load player_response as json
+	Json::Value root;
+	if (!parseJsonFromString(player_response, &root, NULL)) {
+		printf("Decoding player_response failed\n");
+		return false;
+	}
+
+	const Json::Value streamingData = root["streamingData"];
+	if (!streamingData) {
+		printf("streamingData element not present\n");
+		return false;
+	}
+
+	const Json::Value formats = streamingData["formats"];
+	if (!formats) {
+		printf("formats element not present\n");
+		return false;
+	}
+
+	for (auto it = formats.begin(); it != formats.end(); ++it) {
+		const Json::Value format = *it;
+
+		int id = format["itag"].asInt();
+		std::string quality = format["quality"].asString();
+		std::string url;
+
+		if (!format["url"].empty()) {
+			url = format["url"].asString();
+		} else if (!format["cipher"].empty()) {
+			// FIXME add support for cipher (is it still used or was it replaced by signatureCipher?)
+			printf("cipher unsupported: %s\n", format["cipher"].asCString());
+			continue;
+		} else if (!format["signatureCipher"].empty()) {
+			// FIXME add support for signatureCipher
+			printf("signatureCipher unsupported: %s\n", format["signatureCipher"].asCString());
+			continue;
+		} else {
+			printf("Unable to find url\n");
+			continue;
+		}
+#ifdef DEBUG_PARSER
+		printf("%d: %s - %s\n", id, quality.c_str(), url.c_str());
+#endif
+
+		cYTVideoUrl yurl;
+		if (supportedFormat(id) && !url.empty()) {
+			yurl.quality = quality;
+			yurl.url = url;
+			yurl.type = format["mimeType"].asString();
+			vinfo.formats.insert(yt_urlmap_pair_t(id, yurl));
+			ret = true;
+		}
+	}
+
+	return ret;
+}
+#endif
+////
+
 //FIXME: review this
+#if 0
 bool cYTFeedParser::decodeVideoInfo(std::string &answer, cYTVideoInfo &vinfo)
 {
 	dprintf(DEBUG_NORMAL, "cYTFeedParser::decodeVideoInfo\n");
@@ -222,8 +306,6 @@ bool cYTFeedParser::decodeVideoInfo(std::string &answer, cYTVideoInfo &vinfo)
 
 	if(answer.find("token=") == std::string::npos)
 		return ret;
-
-	printf("\n\ntrue1\n\n");
 	
 	vinfo.formats.clear();
 
@@ -233,7 +315,6 @@ bool cYTFeedParser::decodeVideoInfo(std::string &answer, cYTVideoInfo &vinfo)
 	
 	if (fmt != std::string::npos) 
 	{
-		printf("\n\ntrue2\n\n");
 		fmt = answer.find("=", fmt);
 		::splitString(answer, ",", ulist, fmt + 1);
 		
@@ -284,6 +365,7 @@ bool cYTFeedParser::decodeVideoInfo(std::string &answer, cYTVideoInfo &vinfo)
 	
 	return ret;
 }
+#endif
 
 bool cYTFeedParser::ParseVideoInfo(cYTVideoInfo &vinfo)
 {
@@ -297,10 +379,17 @@ bool cYTFeedParser::ParseVideoInfo(cYTVideoInfo &vinfo)
 
 	for (unsigned i = 0; i < estr.size(); i++) 
 	{
-		std::string vurl = "https://www.youtube.com/get_video_info?video_id=";
+		//std::string vurl = "https://www.youtube.com/get_video_info?video_id=";
+		std::string vurl = "https://www.youtube.com/get_video_info?";
+		vurl += "&html5=1";
+		vurl += "&video_id=";
 		vurl += vinfo.id;
-		vurl += estr[i];
-		vurl += "&ps=default&eurl=&gl=US&hl=en";
+		//vurl += estr[i];
+		vurl += "&eurl=https://youtube.googleapis.com/v/";
+		vurl += vinfo.id;
+		//vurl += "&ps=default&eurl=&gl=US&hl=en";
+		//vurl += "&html5=1&c=TVHTML5&cver=6.20180913";
+		vurl += "&c=TVHTML5&cver=6.20180913";
 		
 		std::string answer;
 		if (!::getUrl(vurl, answer))

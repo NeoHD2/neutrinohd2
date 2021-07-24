@@ -629,6 +629,12 @@ void cPlayback::Close(void)
 bool cPlayback::Start(char *filename)
 {
 	dprintf(DEBUG_NORMAL, "%s:%s - filename=%s\n", FILENAME, __FUNCTION__, filename);
+
+	if (filename == NULL)
+	{
+		playing = false;
+		return false;
+	}
 	
 	//
 	std::string file("");

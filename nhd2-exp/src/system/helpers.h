@@ -40,6 +40,8 @@
 #include <driver/rcinput.h>
 #include <gui/widget/icons.h>
 
+#include <jsoncpp/include/json/json.h>
+
 
 int my_system(const char * cmd);
 int my_system(int argc, const char *arg, ...); /* argc is number of arguments including command */
@@ -180,5 +182,9 @@ class cTimeMs {
 		bool TimedOut(void);
 		uint64_t Elapsed(void);
 };
+
+////
+bool parseJsonFromFile(std::string& jFile, Json::Value *root, std::string *errMsg);
+bool parseJsonFromString(std::string& jData, Json::Value *root, std::string *errMsg);
 
 #endif
