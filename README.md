@@ -3,9 +3,7 @@
   Welcome to neutrinoHD2 software
 </h1>
 
-#<p align="center">
- # <img src="nhd2-exp/doc/resources/mainmenu.png">
-#</p>
+-------
 ![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/mainmenu.png)
 
 <p align="center">
