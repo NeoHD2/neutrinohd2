@@ -5,26 +5,11 @@
 
 -------
 ![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/mainmenu.png)
-
-<p align="center">
-  <img src="nhd2-exp/doc/resources/plugins.png">
-</p>
-
-<p align="center">
-  <img src="nhd2-exp/doc/resources/netzkino.png">
-</p>
-
-<p align="center">
-  <img src="nhd2-exp/doc/resources/tsbrowser.png">
-</p>
-
-<p align="center">
-  <img src="nhd2-exp/doc/resources/tsbrowser_art.png">
-</p>
-
-<p align="center">
-  <img src="nhd2-exp/doc/resources/movietrailer.png">
-</p>
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/plugins.png)
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/netzkino.png)
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/tsbrowser.png)
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/tsbrowser_art.png)
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/movietrailer.png)
 
 neutrinoHD2 GUI software for:
 
