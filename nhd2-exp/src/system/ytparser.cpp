@@ -380,15 +380,17 @@ bool cYTFeedParser::ParseVideoInfo(cYTVideoInfo &vinfo)
 	for (unsigned i = 0; i < estr.size(); i++) 
 	{
 		std::string vurl = "https://www.youtube.com/get_video_info?";
-		vurl += "&html5=1";
+		//vurl += "&html5=1";
 		vurl += "&video_id=";
 		vurl += vinfo.id;
-		vurl += estr[i];
-		vurl += ::encodeUrl("&eurl=https://youtube.googleapis.com/v/");
+		//vurl += estr[i];
+		//vurl += ::encodeUrl("&eurl=https://youtube.googleapis.com/v/");
+		vurl += "&eurl=https://youtube.com/youtubei/v1/player?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8/";
 		vurl += vinfo.id;
-		vurl += "&ps=default";
-		vurl += "&gl=US";
-		vurl += "&hl=en";
+		//vurl += "&ps=default";
+		//vurl += "&gl=US";
+		//vurl += "&hl=en";
+		vurl += "&html5=1";
 		vurl += "&c=TVHTML5&cver=6.20180913";
 		
 		std::string answer;

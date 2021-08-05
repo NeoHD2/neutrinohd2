@@ -1497,37 +1497,28 @@ void CMovieInfoWidget::funArt()
 
 	testFrameBox->addFrame(titleFrame);
 
-	// star1
-	CFrame *star1Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
-	star1Frame->setPosition(&starBox);
-	star1Frame->setIconName(NEUTRINO_ICON_STAR_ON);
-	star1Frame->disablePaintFrame();
+	// vote
+	for (int i = 0; i < 5; i++)
+	{
+		CFrame *starOffFrame = new CFrame(FRAME_ICON_NOTSELECTABLE);
+		starOffFrame->setPosition(starBox.iX + i*25, starBox.iY, starBox.iWidth, starBox.iHeight);
+		starOffFrame->setIconName(NEUTRINO_ICON_STAR_OFF);
+		starOffFrame->disablePaintFrame();
 
-	testFrameBox->addFrame(star1Frame);
+		testFrameBox->addFrame(starOffFrame);
+	}
 
-	// star2
-	CFrame *star2Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
-	star2Frame->setPosition(starBox.iX + 25, starBox.iY, starBox.iWidth, starBox.iHeight);
-	star2Frame->setIconName(NEUTRINO_ICON_STAR_ON);
-	star2Frame->disablePaintFrame();
+	int average = movieFile.vote_average/2 + 1;
 
-	testFrameBox->addFrame(star2Frame);
+	for (int i = 0; i < average; i++)
+	{
+		CFrame *starOnFrame = new CFrame(FRAME_ICON_NOTSELECTABLE);
+		starOnFrame->setPosition(starBox.iX + i*25, starBox.iY, starBox.iWidth, starBox.iHeight);
+		starOnFrame->setIconName(NEUTRINO_ICON_STAR_ON);
+		starOnFrame->disablePaintFrame();
 
-	// star3
-	CFrame *star3Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
-	star3Frame->setPosition(starBox.iX + 2*25, starBox.iY, starBox.iWidth, starBox.iHeight);
-	star3Frame->setIconName(NEUTRINO_ICON_STAR_ON);
-	star3Frame->disablePaintFrame();
-
-	testFrameBox->addFrame(star3Frame);
-
-	// star4
-	CFrame *star4Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
-	star4Frame->setPosition(starBox.iX + 3*25, starBox.iY, starBox.iWidth, starBox.iHeight);
-	star4Frame->setIconName(NEUTRINO_ICON_STAR_OFF);
-	star4Frame->disablePaintFrame();
-
-	testFrameBox->addFrame(star4Frame);
+		testFrameBox->addFrame(starOnFrame);
+	}
 
 	// text
 	CFrame *textFrame = new CFrame(FRAME_TEXT_NOTSELECTABLE);
