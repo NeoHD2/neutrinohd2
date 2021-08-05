@@ -433,6 +433,25 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 		}
 	}
 
+	// vote_average
+	if (movie_info->vote_average == 0)
+	{
+		if (g_settings.enable_tmdb_infos) //grab from tmdb
+		{
+			CTmdb * tmdb = new CTmdb();
+
+			if(tmdb->getMovieInfo(movie_info->epgTitle))
+			{
+				std::vector<tmdbinfo>& minfo_list = tmdb->getMInfos();
+
+				movie_info->vote_average = minfo_list[0].vote_average;
+			}
+
+			delete tmdb;
+			tmdb = NULL;
+		}
+	}
+
 	return (result);
 }
 
