@@ -151,14 +151,17 @@ class CFileHelpers
 		static CFileHelpers* getInstance();
 		bool doCopyFlag;
 
-		bool copyFile(const char *Src, const char *Dst, mode_t mode);
-
 		bool copyDir(const char *Src, const char *Dst, bool backupMode = false);
 		bool createDir(const char *Dir, mode_t mode = 0755);
 		bool removeDir(const char *Dir);
 		bool readDir(const std::string& dirname, CFileList* flist, CFileFilter* fileFilter = NULL, bool skipDirs = true);
 		CFileList readDir(const std::string& dirname, CFileFilter* fileFilter = NULL, bool skipDirs = true);
 		void addRecursiveDir(CFileList * re_filelist, std::string rpath, CFileFilter * fileFilter = NULL);
+
+		//
+		bool copyFile(const char *Src, const char *Dst, mode_t mode);
+		std::string loadFile(CFile & file, int buffer_size);
+		bool saveFile(const CFile& file, const char *text, const int text_size);
 };
 
 //

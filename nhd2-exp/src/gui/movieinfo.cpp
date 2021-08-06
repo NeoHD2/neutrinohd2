@@ -206,6 +206,7 @@ bool CMovieInfo::encodeMovieInfoXml(std::string * extMessage, MI_MOVIE_INFO * mo
 		}
 		*extMessage += "\t\t</" MI_XML_TAG_AUDIOPIDS ">\n";
 	}
+
 	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_VTXTPID, movie_info->epgVTXPID);	//%u
 	/* new tags */
 	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_GENRE_MAJOR, movie_info->genreMajor);
@@ -244,6 +245,9 @@ bool CMovieInfo::encodeMovieInfoXml(std::string * extMessage, MI_MOVIE_INFO * mo
 
 	*extMessage += "\t\t</" MI_XML_TAG_BOOKMARK ">\n";
 	 //
+
+	// vote_average
+	XML_ADD_TAG_UNSIGNED(*extMessage, "vote_average", movie_info->vote_average);
 
 	*extMessage += "\t</" MI_XML_TAG_RECORD ">\n";
 	*extMessage += "</" MI_XML_TAG_NEUTRINO ">\n";

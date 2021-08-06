@@ -90,14 +90,6 @@ BROWSER:
 			{
 				std::string buffer;
 				buffer.clear();
-				
-				char buf[6000];
-
-				int fd = open(file->Name.c_str(), O_RDONLY);
-				int bytes = read(fd, buf, 6000 - 1);
-				close(fd);
-				buf[bytes] = 0;
-				buffer = buf;
 
 				CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 					

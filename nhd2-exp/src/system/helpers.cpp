@@ -1432,6 +1432,62 @@ void CFileHelpers::addRecursiveDir(CFileList * re_filelist, std::string rpath, C
 	dir_count--;
 }
 
+std::string CFileHelpers::loadFile(CFile& file, int buffer_size)
+{
+	std::string buf;
+	buf.clear();
+
+	char buffer[buffer_size];
+
+	dprintf(DEBUG_NORMAL, "CFileHelpers::laodFile: %s\n", file.getFileName().c_str());
+
+	// open file
+	int fd = open(file.Name.c_str(), O_RDONLY);
+	if (fd == -1)		// cannot open file, return!!!!! 
+	{
+		dprintf(DEBUG_NORMAL, "CFileHelpers::laodFile: cannot open (%s)\r\n", file.getFileName().c_str());
+		return std::string(" ");
+	}
+	
+	// read file content to buffer 
+	int bytes = read(fd, buffer, buffer_size - 1);
+	if (bytes <= 0)		// cannot read file into buffer, return!!!! 
+	{
+		dprintf(DEBUG_NORMAL, "CFileHelpers::laodFile: cannot read (%s)\r\n", file.getFileName().c_str());
+		return std::string(" ");
+	}
+
+	close(fd);
+	buffer[bytes] = 0;	// terminate string
+
+	buf = buffer;
+	
+	return buf;
+}
+
+bool CFileHelpers::saveFile(const CFile & file, const char *text, const int text_size)
+{
+	dprintf(DEBUG_NORMAL, "CFileHelpers::saveFile: %s\n", file.getName().c_str());
+
+	bool result = false;
+	int fd;
+
+	if ((fd = open(file.Name.c_str(), O_SYNC | O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) >= 0) 
+	{
+		int nr;
+		nr = write(fd, text, text_size);
+		//fdatasync(fd);
+		close(fd);
+		result = true;
+	} 
+	else 
+	{
+		dprintf(DEBUG_NORMAL, "CFileHelpers::saveFile: cannot open\r\n");
+	}
+
+	return (result);
+}
+
 //
 bool eEnv::initialized = false;
 
