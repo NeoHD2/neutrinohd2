@@ -33,7 +33,6 @@ endif
 
 if ENABLE_LUA
 SUBDIRS += lua \
-	Wunderschön \
 	netzkino_hd \
 	mtv \
 	media_one \
