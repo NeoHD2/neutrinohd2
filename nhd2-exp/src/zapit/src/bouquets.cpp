@@ -735,11 +735,10 @@ typedef struct stat stat_struct;
 #error not using 64 bit file offsets
 #endif
 
-void CBouquetManager::loadWebTVBouquet(void)
+void CBouquetManager::loadWebTVBouquet(const std::string& dirname)
 {
-	dprintf(DEBUG_NORMAL, "CBouquetManager::loadWebTVBouquet:\n");
+	dprintf(DEBUG_NORMAL, "CBouquetManager::loadWebTVBouquet: %s\n", dirname.c_str());
 
-	std::string dirname = CONFIGDIR "/webtv";
 	dirent_struct **namelist;
 	int n;
 
@@ -797,7 +796,7 @@ void CBouquetManager::loadBouquets(bool loadCurrentBouquet)
 	}
 
 	// webTV bouquets
-	loadWebTVBouquet();
+	loadWebTVBouquet(CONFIGDIR "/webtv");
 
 	renumServices();
 }

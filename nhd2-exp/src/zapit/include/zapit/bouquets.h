@@ -127,7 +127,7 @@ class CBouquetManager
 
 		// webtv
 		void parseWebTVBouquet(std::string filename);
-		void loadWebTVBouquet(void);
+		void loadWebTVBouquet(const std::string& dirname);
 };
 
 /*

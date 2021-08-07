@@ -759,7 +759,7 @@ int loadServices(bool only_current)
 	}
 
 	// webtv services
-	loadWebTVServices();
+	loadWebTVServices(CONFIGDIR "/webtv");
 
 do_current:
 	dprintf(DEBUG_DEBUG, "[getservices] loadServices: loading current services\n");
@@ -1232,11 +1232,10 @@ typedef struct stat stat_struct;
 #error not using 64 bit file offsets
 #endif
 
-void loadWebTVServices(void)
+void loadWebTVServices(const std::string& dirname)
 {
-	dprintf(DEBUG_NORMAL, "[getservcices] loadWebTVServices:\n");
+	dprintf(DEBUG_NORMAL, "[getservcices] loadWebTVServices: %s\n", dirname.c_str());
 
-	std::string dirname = CONFIGDIR "/webtv";
 	dirent_struct **namelist;
 	int n;
 
