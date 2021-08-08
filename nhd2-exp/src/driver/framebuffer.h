@@ -153,15 +153,6 @@ class CFrameBuffer
 			uint8_t height_hi;
 			uint8_t transp;
 		} /*__attribute__ ((packed))*/;
-		
-		// icon
-		struct Icon
-		{
-			uint16_t width;
-			uint16_t height;
-			uint8_t transp;
-			fb_pixel_t * data;
-		};
 
 		std::string     iconBasePath;
 		std::string	hintIconBasePath;
@@ -182,10 +173,6 @@ class CFrameBuffer
 		__u16 red[256], green[256], blue[256], trans[256];
 
 		bool active;
-
-		// icon cache map
-		std::map<std::string, Icon> icon_cache;
-		int cache_size;
 		
 		int m_number_of_pages;
 		int m_manual_blit;

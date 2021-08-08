@@ -58,8 +58,6 @@
 #define BACKGROUNDIMAGEWIDTH 	DEFAULT_XRES
 #define BACKGROUNDIMAGEHEIGHT	DEFAULT_YRES
 
-#define ICON_CACHE_SIZE 1024*1024*2 // 2mb
-
 // png/jpg handling
 CFormathandler * fh_root;
 void init_handlers(void);
@@ -102,7 +100,7 @@ CFrameBuffer::CFrameBuffer()
 	fd  = 0;
 	m_manual_blit = -1;
 	
-//FIXME: test
+//FIXME: 
 	memset(red, 0, 256*sizeof(__u16));
 	memset(green, 0, 256*sizeof(__u16));
 	memset(blue, 0, 256*sizeof(__u16));
@@ -223,9 +221,6 @@ void CFrameBuffer::init(const char * const fbDevice)
 	enableManualBlit();
 #endif /*sh*/ 
 #endif /* USE_OPENGL */
-
-	// icons cache
-	cache_size = 0;
 	
 	// set colors
 	paletteSetColor(COL_TRANSPARENT0, 0x010101, 0xFF);
@@ -262,14 +257,6 @@ nolfb:
 CFrameBuffer::~CFrameBuffer()
 {
 	dprintf(DEBUG_NORMAL, "~CFrameBuffer()\n");
-
-	std::map<std::string, Icon>::iterator it;
-
-	for(it = icon_cache.begin(); it != icon_cache.end(); it++) 
-	{
-		free(it->second.data);
-	}
-	icon_cache.clear();
 	
 	if (background) 
 	{
@@ -880,6 +867,9 @@ void CFrameBuffer::getIconSize(const char * const filename, int * width, int * h
 		
 		if (icon_fd == -1)
 		{
+			*width = 0;
+			*height = 0;
+
 			return;
 		}
 		else
@@ -984,73 +974,53 @@ bool CFrameBuffer::paintIconRaw(const std::string & filename, const int x, const
 	int lfd;
 	
 	fb_pixel_t * data;
-	struct Icon tmpIcon;
-	std::map<std::string, Icon>::iterator it;
+	fb_pixel_t * tmp_data;
 	int dsize;
 	int  yy = y;
 
-	/* we cache and check original name */
-	it = icon_cache.find(filename);
-	if(it == icon_cache.end()) 
+	std::string newname = iconBasePath + filename.c_str() + ".raw";
+
+	lfd = open(newname.c_str(), O_RDONLY);
+
+	if (lfd == -1) 
 	{
-		std::string newname = iconBasePath + filename.c_str() + ".raw";
+		dprintf(DEBUG_NORMAL, "paintIcon: error while loading icon: %s\n", newname.c_str());
+		return false;
+	}
+		
+	read(lfd, &header, sizeof(struct rawHeader));
 
-		lfd = open(newname.c_str(), O_RDONLY);
-
-		if (lfd == -1) 
+	width  = (header.width_hi  << 8) | header.width_lo;
+	height = (header.height_hi << 8) | header.height_lo;
+	dsize = width*height*sizeof(fb_pixel_t);
+	tmp_data = (fb_pixel_t*)malloc(dsize);
+	data = tmp_data;
+		
+	unsigned char pixbuf[768];
+	for (int count = 0; count < height; count ++ ) 
+	{
+		read(lfd, &pixbuf[0], width >> 1 );
+		unsigned char *pixpos = &pixbuf[0];
+		for (int count2 = 0; count2 < width >> 1; count2 ++ ) 
 		{
-			dprintf(DEBUG_NORMAL, "paintIcon: error while loading icon: %s\n", newname.c_str());
-			return false;
-		}
-		
-		read(lfd, &header, sizeof(struct rawHeader));
+			unsigned char compressed = *pixpos;
+			unsigned char pix1 = (compressed & 0xf0) >> 4;
+			unsigned char pix2 = (compressed & 0x0f);
+			if (pix1 != header.transp)
+				*data++ = realcolor[pix1 + offset];
+			else
+				*data++ = 0;
+			if (pix2 != header.transp)
+				*data++ = realcolor[pix2 + offset];
+			else
+				*data++ = 0;
 
-		tmpIcon.width = width  = (header.width_hi  << 8) | header.width_lo;
-		tmpIcon.height = height = (header.height_hi << 8) | header.height_lo;
-		
-		dsize = width*height*sizeof(fb_pixel_t);
-		tmpIcon.data = (fb_pixel_t*)malloc(dsize);
-		data = tmpIcon.data;
-		
-		unsigned char pixbuf[768];
-		for (int count = 0; count < height; count ++ ) 
-		{
-			read(lfd, &pixbuf[0], width >> 1 );
-			unsigned char *pixpos = &pixbuf[0];
-			for (int count2 = 0; count2 < width >> 1; count2 ++ ) 
-			{
-				unsigned char compressed = *pixpos;
-				unsigned char pix1 = (compressed & 0xf0) >> 4;
-				unsigned char pix2 = (compressed & 0x0f);
-				if (pix1 != header.transp)
-					*data++ = realcolor[pix1 + offset];
-				else
-					*data++ = 0;
-				if (pix2 != header.transp)
-					*data++ = realcolor[pix2 + offset];
-				else
-					*data++ = 0;
-				pixpos++;
-			}
+			pixpos++;
 		}
+	}
 		
 		close(lfd);
-		
-		/* cache it */
-		data = tmpIcon.data;
-
-		if(cache_size+dsize < ICON_CACHE_SIZE) 
-		{
-			cache_size += dsize;
-			icon_cache.insert(std::pair <std::string, Icon> (filename, tmpIcon));
-		}
-	} 
-	else 
-	{
-		data = it->second.data;
-		width = it->second.width;
-		height = it->second.height;
-	}
+		data = tmp_data;
 	
 	if(!paint)
 		return true;
@@ -1070,58 +1040,32 @@ bool CFrameBuffer::paintIcon(const std::string & filename, const int x, const in
 		return false;
 	
 	fb_pixel_t * data;
-	struct Icon tmpIcon;
-	std::map<std::string, Icon>::iterator it;
-	int dsize;
 	int  yy = y;
 
-	// we cache and check original name
-	it = icon_cache.find(filename);
-	if(it == icon_cache.end()) 
-	{
-		std::string newname = iconBasePath + filename.c_str() + ".png";
+	std::string newname = iconBasePath + filename.c_str() + ".png";
 		
-		if(width == 0 || height == 0)	
+	if(width == 0 || height == 0)	
 			getIconSize(newname.c_str(), &width, &height);
-		data = getImage(newname, width, height);
+	data = getImage(newname, width, height);
 		
-		if(!data) 
-		{
-			dprintf(DEBUG_DEBUG, "paintIcon: error while loading icon: %s\n", newname.c_str());
-			
-			if(width == 0 || height == 0)	
-				getIconSize(filename.c_str(), &width, &height);
-			data = getImage(filename, width, height);
-		}
-
-		if(data) 
-		{
-			// cache it
-			dsize = width*height*sizeof(fb_pixel_t);
-			
-			if(cache_size + dsize < ICON_CACHE_SIZE) 
-			{
-				cache_size += dsize;
-				tmpIcon.width = width;
-				tmpIcon.height = height;
-				tmpIcon.data = data;
-				icon_cache.insert(std::pair <std::string, Icon> (filename, tmpIcon));
-			}
-			
-			// display icon
-			goto _display;
-		}
-		else
-		{
-			dprintf(DEBUG_DEBUG, "paintIcon: error while loading icon: %s\n", filename.c_str());
-			return false;
-		}
-	} 
-	else 
+	if(!data) 
 	{
-		data = it->second.data;
-		width = it->second.width;
-		height = it->second.height;
+		dprintf(DEBUG_DEBUG, "paintIcon: error while loading icon: %s\n", newname.c_str());
+			
+		if(width == 0 || height == 0)	
+			getIconSize(filename.c_str(), &width, &height);
+		data = getImage(filename, width, height);
+	}
+
+	if(data) 
+	{	
+		// display icon
+		goto _display;
+	}
+	else
+	{
+		dprintf(DEBUG_DEBUG, "paintIcon: error while loading icon: %s\n", filename.c_str());
+		return false;
 	}
 	
 _display:

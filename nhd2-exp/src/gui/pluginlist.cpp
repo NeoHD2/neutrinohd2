@@ -93,8 +93,8 @@ void CPluginList::showMenu()
 	dprintf(DEBUG_NORMAL, "CPluginList::showMenu\n");
 
 
-	// itemBox
-	plist = new CMenuWidget(LOCALE_USERMENU_ITEM_PLUGINS, NEUTRINO_ICON_SHELL, MENU_WIDTH, MENU_HEIGHT);
+	// widget
+	plist = new CMenuWidget(LOCALE_USERMENU_ITEM_PLUGINS, NEUTRINO_ICON_SHELL);
 
 	//
 	for(unsigned int count = 0; count < (unsigned int)g_PluginList->getNumberOfPlugins(); count++)
@@ -109,7 +109,7 @@ void CPluginList::showMenu()
 
 		bool enabled = g_PluginList->getType(count) != CPlugins::P_TYPE_DISABLED;
 			
-		item = new ClistBoxItem(g_PluginList->getName(count), enabled, g_PluginList->getDescription(count).c_str(), CPluginsExec::getInstance(), to_string(count).c_str(), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
+		item = new CMenuForwarder(g_PluginList->getName(count), enabled, g_PluginList->getDescription(count).c_str(), CPluginsExec::getInstance(), to_string(count).c_str(), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
 
 		item->set2lines(); 
 

@@ -177,6 +177,9 @@ class CMenuItem
 		virtual int getYPosition(void) const { return y; }
 		virtual int getItemType(){ return itemType;};
 
+		// 
+		virtual void setItemHeight(int height){item_height = height;};
+
 		//
 		virtual void setOption(const char* text){option = text;};
 		virtual void setOptionInfo(const char* text){optionInfo = text;};

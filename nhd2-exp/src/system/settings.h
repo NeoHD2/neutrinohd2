@@ -545,7 +545,7 @@ extern const neutrino_locale_t timing_setting_name[TIMING_SETTING_COUNT];
 #define ITEM_ICON_W		128
 #define ITEM_ICON_H		128
 #define ITEM_ICON_W_MINI	100
-#define ITEM_ICON_H_MINI	40
+#define ITEM_ICON_H_MINI	80
 
 // CHintBox
 #define HINTBOX_MAX_HEIGHT 420
