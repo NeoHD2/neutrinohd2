@@ -1046,6 +1046,7 @@ bool CFrameBuffer::paintIcon(const std::string & filename, const int x, const in
 		
 	if(width == 0 || height == 0)	
 			getIconSize(newname.c_str(), &width, &height);
+
 	data = getImage(newname, width, height);
 		
 	if(!data) 
@@ -1054,6 +1055,7 @@ bool CFrameBuffer::paintIcon(const std::string & filename, const int x, const in
 			
 		if(width == 0 || height == 0)	
 			getIconSize(filename.c_str(), &width, &height);
+
 		data = getImage(filename, width, height);
 	}
 

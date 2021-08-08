@@ -306,7 +306,7 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 	int icon_h = 0;
 
 	// icons 
-	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
+	//frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
 		
 	if (!(iconName.empty()))
 	{
@@ -483,8 +483,9 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 
 	int stringwidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_option, true); // UTF-8
 	// icons 
-	int icon_w, icon_h;
-	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
+	int icon_w = 0;
+	int icon_h = 0;
+	//frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
 
 	int stringstartposName = x + BORDER_LEFT + icon_w + ICON_OFFSET;
 	int stringstartposOption = x + dx - stringwidth - BORDER_RIGHT; //+ offx
@@ -680,7 +681,7 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
 	int icon_h = 0;
 
 	// icons 
-	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
+	//frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
 		
 	if (!(iconName.empty()))
 	{
@@ -700,7 +701,7 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
 		{
 			frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
 			
-			frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y+ ((height - icon_h)/2) );
+			frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + ((height - icon_h)/2) );
 		}
 		else
 			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT, y + height, height, CRCInput::getKeyName(directKey), color, height);
@@ -816,15 +817,13 @@ int CMenuOptionLanguageChooser::paint( bool selected, bool /*AfterPulldown*/)
 	int icon_h = 0;
 
 	// icons 
-	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
+	//frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
 	
 	if (!(iconName.empty()))
 	{
-		int iw, ih;
-
-		frameBuffer->getIconSize(iconName.c_str(), &iw, &ih);
+		frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
 		
-		frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y+ ((height - ih)/2) );
+		frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + ((height - icon_h)/2) );
 	}
 
 	// locale
@@ -1174,8 +1173,10 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 		{
 			if (!iconName.empty())
 			{
-				frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
-				frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + ((height - icon_h)/2, 0, true, icon_w, icon_h) );
+				//frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
+				icon_w = ITEM_ICON_W_MINI/4;
+				icon_h = ITEM_ICON_H_MINI/4;
+				frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + (height - icon_h)/2, 0, true, icon_w, icon_h);
 			}
 			else if (CRCInput::isNumeric(directKey))
 			{
@@ -1187,9 +1188,11 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 		
 				if (!iconName.empty())
 				{
-					frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
+					//frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
+					icon_w = ITEM_ICON_W_MINI/4;
+					icon_h = ITEM_ICON_H_MINI/4;
 			
-					frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + ((height - icon_h)/2), 0, true, icon_w, icon_h);
+					frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + (height - icon_h)/2, 0, true, icon_w, icon_h);
 				}
 				else
 					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT, y + height, height, CRCInput::getKeyName(directKey), color, height);
@@ -1214,13 +1217,13 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 			// local
 			if(l_text != NULL)
 			{
-				/*nameFont*/g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + 3 + /*nameFont*/g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - icon_w - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+				g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + 3 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - icon_w - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 			}
 
 			// option
 			if(option_text != NULL)
 			{
-				/*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - icon_w, option_text, color, 0, true);
+				g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - icon_w, option_text, color, 0, true);
 			}
 		}
 		else
@@ -1228,7 +1231,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 			// local
 			if(l_text != NULL)
 			{
-				/*nameFont*/g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + (height - /*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + /*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - ICON_OFFSET - icon_w, l_text, color, 0, true); // UTF-8
+				g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + /*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - ICON_OFFSET - icon_w, l_text, color, 0, true); // UTF-8
 			}
 
 			// option
@@ -1237,7 +1240,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 				int stringwidth = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getRenderWidth(option_text, true);
 				int stringstartposOption = std::max(x + BORDER_LEFT + icon_w + ICON_OFFSET + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_text, true) + ICON_OFFSET, x + dx - (stringwidth + BORDER_RIGHT)); //+ offx
 
-				/*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(stringstartposOption, y + (height - /*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + /*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - l_text_width - icon_w, option_text, color, 0, true);
+				g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + /*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - l_text_width - icon_w, option_text, color, 0, true);
 			}
 		}
 

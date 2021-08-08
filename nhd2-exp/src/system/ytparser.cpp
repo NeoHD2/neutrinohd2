@@ -254,7 +254,8 @@ bool cYTFeedParser::decodeVideoInfo(std::string &answer, cYTVideoInfo &vinfo)
 		return false;
 	}
 
-	for (auto it = formats.begin(); it != formats.end(); ++it) {
+	for (auto it = formats.begin(); it != formats.end(); ++it) 
+	{
 		const Json::Value format = *it;
 
 		int id = format["itag"].asInt();

@@ -3251,6 +3251,7 @@ bool CMovieBrowser::showMenu()
 	{
 		optionsMenuBrowser.addItem( new CMenuOptionChooser(LOCALE_MOVIEBROWSER_BROWSER_ROW_ITEM, (int*)(&m_settings.browserRowItem[i]), MESSAGEBOX_BROWSER_ROW_ITEM, MESSAGEBOX_BROWSER_ROW_ITEM_COUNT, true ));
 		optionsMenuBrowser.addItem( new CMenuForwarder(LOCALE_MOVIEBROWSER_BROWSER_ROW_WIDTH,    true, browserRowWidthIntInput[i]->getValue(), browserRowWidthIntInput[i]));
+
 		if(i < MB_MAX_ROWS - 1)
 			optionsMenuBrowser.addItem(new CMenuSeparator(EMPTY));
 	}
