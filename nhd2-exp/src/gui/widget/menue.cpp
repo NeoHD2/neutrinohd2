@@ -1046,7 +1046,8 @@ void CMenuWidget::hideItemInfo()
 {
 	if((widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC) && paintFootInfo)
 	{
-		itemsLine.clear(x, y, width + CONNECTLINEBOX_WIDTH, height, cFrameFootInfo.iHeight);
+		if(widgetMode == MODE_LISTBOX)
+			itemsLine.clear(x, y, width + CONNECTLINEBOX_WIDTH, height, cFrameFootInfo.iHeight);
 	}  
 }
 
