@@ -827,7 +827,7 @@ void CTestMenu::testCWidget()
 	testWidget->enableSaveScreen();
 	testWidget->setSelected(selected);
 	testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
-	//testWidget->enablePaintMainFrame();
+	testWidget->enablePaintMainFrame();
 
 	// head
 	headBox.iWidth = frameBuffer->getScreenWidth();
