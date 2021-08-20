@@ -254,7 +254,7 @@ bool cYTFeedParser::decodeVideoInfo(std::string &answer, cYTVideoInfo &vinfo)
 		return false;
 	}
 
-	for (auto it = formats.begin(); it != formats.end(); ++it) 
+	for (Json::Value::iterator it = formats.begin(); it != formats.end(); ++it) 
 	{
 		const Json::Value format = *it;
 
@@ -373,6 +373,7 @@ bool cYTFeedParser::ParseVideoInfo(cYTVideoInfo &vinfo)
 	dprintf(DEBUG_NORMAL, "cYTFeedParser::ParseVideoInfo\n");
 	
 	bool ret = false;
+
 	std::vector<std::string> estr;
 	estr.push_back("&el=embedded");
 	estr.push_back("&el=vevo");
@@ -381,7 +382,6 @@ bool cYTFeedParser::ParseVideoInfo(cYTVideoInfo &vinfo)
 	for (unsigned i = 0; i < estr.size(); i++) 
 	{
 		std::string vurl = "https://www.youtube.com/get_video_info?";
-		//vurl += "&html5=1";
 		vurl += "&video_id=";
 		vurl += vinfo.id;
 		//vurl += estr[i];
@@ -391,8 +391,8 @@ bool cYTFeedParser::ParseVideoInfo(cYTVideoInfo &vinfo)
 		//vurl += "&ps=default";
 		//vurl += "&gl=US";
 		//vurl += "&hl=en";
-		vurl += "&html5=1";
-		vurl += "&c=TVHTML5&cver=6.20180913";
+		//vurl += "&html5=1";
+		//vurl += "&c=TVHTML5&cver=6.20180913";
 		
 		std::string answer;
 		if (!::getUrl(vurl, answer))
