@@ -292,11 +292,7 @@ bool cYTFeedParser::decodeVideoInfo(std::string &answer, cYTVideoInfo &vinfo)
 
 	return ret;
 }
-#endif
-////
-
-//FIXME: review this
-#if 0
+#else
 bool cYTFeedParser::decodeVideoInfo(std::string &answer, cYTVideoInfo &vinfo)
 {
 	dprintf(DEBUG_NORMAL, "cYTFeedParser::decodeVideoInfo\n");
