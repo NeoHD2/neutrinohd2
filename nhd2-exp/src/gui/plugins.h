@@ -53,7 +53,7 @@ typedef enum plugin_type
 	PLUGIN_TYPE_SCRIPT   	= 1,
 	PLUGIN_TYPE_NEUTRINO 	= 2,
 	PLUGIN_TYPE_PYTHON   	= 3,
-	PLUGIN_TYPE_LUA		= 4
+	PLUGIN_TYPE_LUA         = 4
 }
 plugin_type_t;
 

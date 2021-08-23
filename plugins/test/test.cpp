@@ -1473,7 +1473,7 @@ void CTestMenu::testListBoxWidget()
 	rightWidget->enablePaintDate();
 	rightWidget->enablePaintFoot();
 	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	rightWidget->enablePaintFootInfo();
+	rightWidget->enablePaintFootInfo(); //FIXME:
 	rightWidget->enableWidgetChange();
 	rightWidget->addWidget(WIDGET_TYPE_STANDARD);
 	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
