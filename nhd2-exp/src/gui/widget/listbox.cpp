@@ -2708,8 +2708,14 @@ void ClistBox::paintItemInfo(int pos)
 
 void ClistBox::hideItemInfo()
 {
-	if(paintFootInfo)
-		itemsLine.clear(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth + CONNECTLINEBOX_WIDTH, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight);
+	//if(paintFootInfo)
+		//itemsLine.clear(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth + CONNECTLINEBOX_WIDTH, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight);
+
+    if((widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC) && paintFootInfo)
+	{
+		if(widgetMode == MODE_LISTBOX)
+			itemsLine.clear(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth + CONNECTLINEBOX_WIDTH, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight);
+	}  
 }
 
 void ClistBox::saveScreen()
