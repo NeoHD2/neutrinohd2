@@ -523,7 +523,7 @@ void CTextBox::refresh(void)
 
 bool CTextBox::setText(const char * const newText, const char * const _thumbnail, int _tw, int _th, int _tmode)
 {
-	dprintf(DEBUG_INFO, "CTextBox::setText:\r\n");
+	dprintf(DEBUG_DEBUG, "CTextBox::setText:\r\n");
 
 	m_tMode = _tmode;
 
@@ -612,6 +612,8 @@ void CTextBox::paint(void)
 
 void CTextBox::hide(void)
 {
+    dprintf(DEBUG_NORMAL, "CTextBox::hide:\n");
+
 	if (bigFonts) 
 	{
 		bigFonts = false;

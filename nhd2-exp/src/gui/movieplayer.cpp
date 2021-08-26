@@ -454,8 +454,8 @@ void CMoviePlayerGui::PlayFile(void)
 
 	int width = 280;
 	int height = 65;
-        int x = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - width) / 2;
-        int y = frameBuffer->getScreenY() + frameBuffer->getScreenHeight() - height - 20;
+    int x = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - width) / 2;
+    int y = frameBuffer->getScreenY() + frameBuffer->getScreenHeight() - height - 20;
 
 	CBox boxposition(x, y, width, height);	// window position for the hint boxes
 
