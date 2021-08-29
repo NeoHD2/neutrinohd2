@@ -225,7 +225,6 @@ data/fonts/Makefile
 data/icons/Makefile
 data/hint_icons/Makefile
 data/iso-codes/Makefile
-data/inetradio/Makefile
 data/locale/Makefile
 data/config/Makefile
 data/lcd/Makefile
