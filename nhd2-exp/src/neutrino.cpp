@@ -1767,7 +1767,7 @@ void CNeutrinoApp::SetChannelMode(int newmode, int nMode)
 			}
 			else if(nMode == mode_webtv) 
 			{
-				bouquetList = WEBTVbouquetList;
+				bouquetList = WEBTVfavList; //WEBTVbouquetList;
 			}
 			break;
 	}

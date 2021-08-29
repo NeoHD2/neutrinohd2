@@ -517,7 +517,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 {
 	int cnt = 0;	
 
-	dprintf(DEBUG_NORMAL, "CBouquetManager::loadWebTVBouquet: parsing %s\n", filename.c_str());
+	dprintf(DEBUG_NORMAL, "CBouquetManager::parseWebTVBouquet: parsing %s\n", filename.c_str());
 
 	_xmlDocPtr parser = NULL;
 	
