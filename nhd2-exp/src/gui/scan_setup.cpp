@@ -411,7 +411,7 @@ void CScanSetup::showScanService()
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++) 
 		{
 			// satname
-			if(sit->second.type == DVB_S)
+			if(sit->second.system == DVB_S)
 			{
 				satSelect->addOption(sit->second.name.c_str());
 				dprintf(DEBUG_DEBUG, "[neutrino] fe(%d) Adding sat menu for %s position %d\n", feindex, sit->second.name.c_str(), sit->first);
@@ -476,7 +476,7 @@ void CScanSetup::showScanService()
 
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++) 
 		{
-			if(sit->second.type == DVB_C)
+			if(sit->second.system == DVB_C)
 			{
 				satSelect->addOption(sit->second.name.c_str());
 				dprintf(DEBUG_DEBUG, "[neutrino] fe(%d) Adding cable menu for %s position %d\n", feindex, sit->second.name.c_str(), sit->first);
@@ -489,10 +489,23 @@ void CScanSetup::showScanService()
 
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++)
 		{
-			if(sit->second.type == DVB_T)
+			if(sit->second.system == DVB_T)
 			{
 				satSelect->addOption(sit->second.name.c_str());
 				dprintf(DEBUG_DEBUG, "CNeutrinoApp::InitScanSettings fe(%d) Adding terrestrial menu for %s position %d\n", feindex, sit->second.name.c_str(), sit->first);
+			}
+		}
+	}
+    else if ( getFE(feindex)->getInfo()->type == FE_ATSC) 
+	{
+		satSelect = new CMenuOptionStringChooser(LOCALE_TERRESTRIALSETUP_PROVIDER, (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
+
+		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++)
+		{
+			if(sit->second.system == DVB_A)
+			{
+				satSelect->addOption(sit->second.name.c_str());
+				dprintf(DEBUG_DEBUG, "CNeutrinoApp::InitScanSettings fe(%d) Adding atsc menu for %s position %d\n", feindex, sit->second.name.c_str(), sit->first);
 			}
 		}
 	}
@@ -668,6 +681,7 @@ void CScanSetup::showScanService()
 		break;
 		
 		case FE_OFDM:
+        case FE_ATSC:
 		freq_length = 9;
 		break;
 		
@@ -697,6 +711,10 @@ void CScanSetup::showScanService()
 	{
 		mod_pol = new CMenuOptionChooser(LOCALE_EXTRA_MOD, (int *)&scanSettings->TP_const, CABLETERRESTRIALSETUP_SCANTP_MOD, CABLETERRESTRIALSETUP_SCANTP_MOD_COUNT, true, NULL, RC_nokey, "", true);
 	}
+    else if( getFE(feindex)->getInfo()->type == FE_ATSC)
+	{
+		mod_pol = new CMenuOptionChooser(LOCALE_EXTRA_MOD, (int *)&scanSettings->TP_const, CABLETERRESTRIALSETUP_SCANTP_MOD, CABLETERRESTRIALSETUP_SCANTP_MOD_COUNT, true, NULL, RC_nokey, "", true);
+	}
 
 	manualScan->addItem(mod_pol);
 
@@ -708,7 +726,7 @@ void CScanSetup::showScanService()
 	int fec_count = ( getFE(feindex)->getInfo()->type == FE_QPSK) ? SATSETUP_SCANTP_FEC_COUNT : CABLESETUP_SCANTP_FEC_COUNT;
 	CMenuOptionChooser * fec = new CMenuOptionChooser(LOCALE_EXTRA_FEC, (int *)&scanSettings->TP_fec, SATSETUP_SCANTP_FEC, fec_count, true, NULL, RC_nokey, "", true);
 		
-	if( getFE(feindex)->getInfo()->type != FE_OFDM)
+	if( getFE(feindex)->getInfo()->type != FE_OFDM && getFE(feindex)->getInfo()->type != FE_ATSC)
 	{
 		// Rate
 		manualScan->addItem(Rate);
@@ -887,7 +905,7 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 	
 	printf("CTPSelectHandler::exec: fe(%d) %s position(%d)\n", feindex, scanSettings->satNameNoDiseqc, position);
 
-        CMenuWidget * menu = new CMenuWidget(LOCALE_SCANTS_SELECT_TP, NEUTRINO_ICON_SETTINGS);
+    CMenuWidget * menu = new CMenuWidget(LOCALE_SCANTS_SELECT_TP, NEUTRINO_ICON_SETTINGS);
 
 	menu->setMode(MODE_SETUP);
 	menu->enableShrinkMenu();
@@ -928,12 +946,17 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 			{
 				getFE(feindex)->getDelSys(tI->second.feparams.u.ofdm.code_rate_HP, tI->second.feparams.u.ofdm.constellation, f, s, m);
 
-				snprintf(buf, sizeof(buf), "%d %s %s %s ", tI->second.feparams.frequency/1000, f, s, m);
+				snprintf(buf, sizeof(buf), "%d %s %s %s ", tI->second.feparams.frequency/100000, f, s, m);
 			}
 			break;
 				
 			case FE_ATSC:
-				break;
+            {
+				getFE(feindex)->getDelSys(FEC_NONE, tI->second.feparams.u.vsb.modulation, f, s, m);
+
+				snprintf(buf, sizeof(buf), "%d %s %s %s ", tI->second.feparams.frequency/100000, f, s, m);
+			}
+			break;
 		}
 		
 		menu->addItem(new CMenuForwarder(buf), old_selected == i);
@@ -986,7 +1009,14 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 			break;
 
 			case FE_ATSC:
-				break;
+            {
+                //printf("CTPSelectHandler::exec: fe(%d) selected TP: freq %d SR %d fec %d mod %d\n", feindex, tmpI->second.feparams.frequency, tmpI->second.feparams.u.qpsk.symbol_rate, tmpI->second.feparams.u.qam.fec_inner, tmpI->second.feparams.u.qam.modulation);
+					
+				//sprintf( scanSettings->TP_rate, "%d", tmpI->second.feparams.u.qam.symbol_rate);
+				//scanSettings->TP_fec = tmpI->second.feparams.u.qam.fec_inner;
+				scanSettings->TP_mod = tmpI->second.feparams.u.qam.modulation;
+            }
+			break;
 		}	
 	}
 	
@@ -1085,6 +1115,11 @@ bool CScanSettings::loadSettings(const char * const fileName, int index)
 		TP_hierarchy = getConfigValue(index, "TP_hierarchy", 0);
 	}
 
+    if(getFE(index)->getInfo()->type == FE_ATSC)
+	{
+		TP_mod = getConfigValue(index, "TP_mod", 3);
+	}
+
 	return true;
 }
 
@@ -1132,6 +1167,11 @@ bool CScanSettings::saveSettings(const char * const fileName, int index)
 		setConfigValue(index, "TP_trans", TP_trans);
 		setConfigValue(index, "TP_guard", TP_guard);
 		setConfigValue(index, "TP_hierarchy", TP_hierarchy);
+	}
+
+    if(getFE(index)->getInfo()->type == FE_ATSC)
+	{
+		setConfigValue(index, "TP_mod", TP_mod);
 	}
 
 	if(configfile.getModifiedFlag())

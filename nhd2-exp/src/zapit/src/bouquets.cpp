@@ -120,8 +120,8 @@ CZapitChannel * CZapitBouquet::getChannelByChannelID(const t_channel_id channel_
 
 void CZapitBouquet::sortBouquet(void)
 {
-	//sort(tvChannels.begin(), tvChannels.end(), CmpChannelByChName());
-	//sort(radioChannels.begin(), radioChannels.end(), CmpChannelByChName());
+	sort(tvChannels.begin(), tvChannels.end(), CmpChannelByChName()); //FIXME:
+	sort(radioChannels.begin(), radioChannels.end(), CmpChannelByChName()); //FIXME:
 }
 
 void CZapitBouquet::addService(CZapitChannel *newChannel)
@@ -383,7 +383,7 @@ void CBouquetManager::saveBouquets(const CZapitClient::bouquetMode bouquetMode, 
 
 void CBouquetManager::sortBouquets(void)
 {
-	sort(Bouquets.begin(), Bouquets.end(), CmpBouquetByChName());
+	sort(Bouquets.begin(), Bouquets.end(), CmpBouquetByChName()); //FIXME:
 }
 
 void CBouquetManager::parseBouquetsXml(const char *fname, bool bUser)
@@ -869,7 +869,7 @@ void CBouquetManager::makeRemainingChannelsBouquet(void)
 		}
 	}
 
-	//sort(unusedChannels.begin(), unusedChannels.end(), CmpChannelByChName());
+	sort(unusedChannels.begin(), unusedChannels.end(), CmpChannelByChName()); //FIXME:
 
 	for (ZapitChannelList::const_iterator it = unusedChannels.begin(); it != unusedChannels.end(); it++) 
 	{

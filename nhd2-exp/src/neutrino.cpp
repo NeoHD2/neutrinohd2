@@ -1685,8 +1685,6 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d WEBTV bouquets\n", bnum);
 
-	//printf("CNeutrinoApp::channelsInit: TEST: TVchannellist.size:%d Radiochannellist.size:%d WEBTVchannellist.size:%d\n", (int)TVchannelList->getSize(), (int)RADIOchannelList->getSize(), (int)webTVchannelList->getSize());
-
 	//
 	SetChannelMode( g_settings.channel_mode, mode);
 }

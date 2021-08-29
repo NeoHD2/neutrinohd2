@@ -438,7 +438,6 @@ int main (int argc, char** argv)
 		for ( ii = 0, rI = satelliteList.begin(); rI != satelliteList.end(); ii++, rI++)
 		{
 			printf("%lld : %s %d\n", ii, rI->satName, rI->satPosition);
-			//std::cout << (1 << ii) << ": " << rI->satName << std::endl;
 		}
 
 		return 0;

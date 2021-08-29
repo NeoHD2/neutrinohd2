@@ -97,6 +97,9 @@ class CFrontend
 	public:
 		int fenumber;
 		int fe_adapter;
+
+        /* information about the used frontend type */
+		struct dvb_frontend_info info;
 		
 		fe_mode_t mode;
 		
@@ -149,7 +152,7 @@ class CFrontend
 		bool slave;
 		
 		/* information about the used frontend type */
-		struct dvb_frontend_info info;
+		//struct dvb_frontend_info info;
 		
 		/* current 22kHz tone mode */
 		fe_sec_tone_mode_t currentToneMode;

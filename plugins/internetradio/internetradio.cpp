@@ -34,7 +34,7 @@
 const long int GET_PLAYLIST_TIMEOUT = 10;
 
 //
-#define RADIO_STATION_XML_FILE CONFIGDIR "/radio-stations.xml"
+#define RADIO_STATION_XML_FILE PLUGINDIR "/internetradio/radio-stations.xml"
 
 
 //

@@ -35,7 +35,8 @@ typedef struct sat_config {
 	std::string name;
 	int have_channels;
 
-	int type; 	//needed to dont rewrite services.xml by scan
+	//int type; 	//needed to dont rewrite services.xml by scan
+    delivery_system_t system;
 } sat_config_t;
 
 typedef enum diseqc_cmd_order {

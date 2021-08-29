@@ -242,7 +242,7 @@ class CZapitClient : public CBasicClient
 			uint8_t motorPosition;
 			int satDiseqc;
 
-			int type;
+			delivery_system_t system;
 		};
 		typedef std::vector<responseGetSatelliteList> SatelliteList;
 

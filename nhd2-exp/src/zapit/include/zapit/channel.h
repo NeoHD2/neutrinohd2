@@ -146,11 +146,11 @@ class CZapitChannel
 		unsigned char currentSub;
 
 		// read only properties, set by constructor
-		t_service_id			service_id;
+		t_service_id			    service_id;
 		t_transport_stream_id		transport_stream_id;
 		t_original_network_id		original_network_id;
 		t_satellite_position		satellitePosition;
-		freq_id_t			freq;
+		freq_id_t			        freq;
 
 		// read/write properties (write possibility needed by scan)
 		unsigned char serviceType;
@@ -196,11 +196,11 @@ class CZapitChannel
 		~CZapitChannel(void);
 
 		// get methods - read only variables
-		t_service_id		getServiceId(void)         	const { return service_id; }
+		t_service_id		    getServiceId(void)         	const { return service_id; }
 		t_transport_stream_id	getTransportStreamId(void) 	const { return transport_stream_id; }
 		t_original_network_id	getOriginalNetworkId(void) 	const { return original_network_id; }
 		unsigned char        	getServiceType(bool real = false);
-		int 			getVideoType() { return videoType;};
+		int 			        getVideoType() { return videoType;};
 
 		bool			isHD();
 		bool			is3DTV();

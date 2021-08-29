@@ -199,7 +199,7 @@ tallchans allchans;             	// tallchans defined in "bouquets.h"
 tallchans curchans;             	// tallchans defined in "bouquets.h"
 
 // transponder scan
-transponder_list_t transponders;
+transponder_list_t transponders;    // ???
 pthread_t scan_thread;
 extern int found_transponders;		// defined in descriptors.cpp
 extern int processed_transponders;	// defined in scan.cpp
@@ -258,6 +258,11 @@ CFrontend * record_fe = NULL;
 //
 bool retune = false;
 
+bool have_s = false;
+bool have_c = false;
+bool have_t = false;
+bool have_a = false;
+
 void initFrontend()
 {
 	// clear femap
@@ -282,6 +287,23 @@ void initFrontend()
 				femap.insert(std::pair <unsigned short, CFrontend*> (index, fe));
 				
 				live_fe = fe;
+    
+                if (fe->info.type == FE_QPSK)
+                {
+                    have_s = true;
+                }
+                else if (fe->info.type == FE_QAM)
+                {
+                    have_c = true;
+                }
+                else if (fe->info.type == FE_OFDM)
+                {
+                    have_t = true;
+                }
+                else if (fe->info.type == FE_ATSC)
+                {
+                    have_a = true;
+                }
 
 				// check if isusbtuner/vtuner
 				char devicename[256];
@@ -301,8 +323,43 @@ void initFrontend()
 				delete fe;
 		}
 	}
-	
-	FrontendCount = femap.size();
+
+#if defined (ENABLE_FAKE_TUNER)
+    for(j = 0; j < 4; j++)
+	{
+		fe = new CFrontend(j, 0); // adapter_num = 0
+			
+        if (j == 0)
+		{
+            fe->info.type = FE_QPSK;
+		    strcpy(fe->info.name, "Sat Fake Tuner");
+            have_s = true;
+        }
+        else if (j == 1)
+		{
+            fe->info.type = FE_QAM;
+		    strcpy(fe->info.name, "Cable Fake Tuner");
+            have_c = true;
+        }
+        else if(j == 2)
+		{
+            fe->info.type = FE_OFDM;
+		    strcpy(fe->info.name, "Terrestrial Fake Tuner");
+            have_t = true;
+        }
+        else if (j == 3)
+		{
+            fe->info.type = FE_ATSC;
+		    strcpy(fe->info.name, "ATSC Fake Tuner");
+            have_a = true;
+        }
+
+		index++;
+		femap.insert(std::pair <unsigned short, CFrontend*> (index, fe));
+	}
+#endif
+
+    FrontendCount = femap.size();
 	
 	dprintf(DEBUG_INFO, "[zapit] %s found %d frontends\n", __FUNCTION__, femap.size());
 }
@@ -445,7 +502,7 @@ CFrontend * getPreferredFrontend(CZapitChannel * thischannel)
 				thischannel->getTransponderId(), 
 				satellitePosition,
 				sit->second.name.c_str(),
-				sit->second.type);
+				sit->second.system);
 				
 		// skip not connected frontend
 		if( fe->mode == (fe_mode_t)FE_NOTCONNECTED )
@@ -460,7 +517,7 @@ CFrontend * getPreferredFrontend(CZapitChannel * thischannel)
 		// first zap/record/other frontend type
 		else if (sit != satellitePositions.end()) 
 		{
-			if( (sit->second.type == fe->getDeliverySystem()) && (!fe->locked) && ( fe->mode == (fe_mode_t)FE_SINGLE || (fe->mode == (fe_mode_t)FE_LOOP && loopCanTune(fe, thischannel)) ) )
+			if( (sit->second.system == fe->getDeliverySystem()) && (!fe->locked) && ( fe->mode == (fe_mode_t)FE_SINGLE || (fe->mode == (fe_mode_t)FE_LOOP && loopCanTune(fe, thischannel)) ) )
 			{
 				pref_frontend = fe;
 				break;
@@ -498,7 +555,7 @@ CFrontend * getFrontend(CZapitChannel * thischannel)
 		CFrontend * fe = fe_it->second;
 			
 		// skip tuned frontend and have same tid or same type as channel to tune
-		if( (fe->tuned) && (fe->getTsidOnid() == thischannel->getTransponderId() || fe->getDeliverySystem() == sit->second.type) )
+		if( (fe->tuned) && (fe->getTsidOnid() == thischannel->getTransponderId() || fe->getDeliverySystem() == sit->second.system) )
 			continue;
 
 		// close not locked tuner
@@ -523,7 +580,7 @@ CFrontend * getFrontend(CZapitChannel * thischannel)
 				thischannel->getTransponderId(), 
 				satellitePosition,
 				sit->second.name.c_str(),
-				sit->second.type);
+				sit->second.system);
 				
 		// skip not connected frontend
 		if( fe->mode == (fe_mode_t)FE_NOTCONNECTED )
@@ -538,7 +595,7 @@ CFrontend * getFrontend(CZapitChannel * thischannel)
 		// first zap/record/other frontend type
 		else if (sit != satellitePositions.end()) 
 		{
-			if ( (sit->second.type == fe->getDeliverySystem()) && (!fe->locked) && ( fe->mode == (fe_mode_t)FE_SINGLE || (fe->mode == (fe_mode_t)FE_LOOP && loopCanTune(fe, thischannel)) ) )
+			if ( (sit->second.system == fe->getDeliverySystem()) && (!fe->locked) && ( fe->mode == (fe_mode_t)FE_SINGLE || (fe->mode == (fe_mode_t)FE_LOOP && loopCanTune(fe, thischannel)) ) )
 			{
 				free_frontend = fe;
 				break;
@@ -592,7 +649,7 @@ CFrontend * getRecordFrontend(CZapitChannel * thischannel)
 				thischannel->getTransponderId(), 
 				satellitePosition,
 				sit->second.name.c_str(),
-				sit->second.type);
+				sit->second.system);
 				
 		// skip not connected frontend
 		if( fe->mode == (fe_mode_t)FE_NOTCONNECTED )
@@ -613,7 +670,7 @@ CFrontend * getRecordFrontend(CZapitChannel * thischannel)
 			if( (fe->getInfo()->type == live_fe->getInfo()->type) && (fe->fenumber != live_fe->fenumber) )
 				twin = true;
 			
-			if ( (fe->getDeliverySystem() == sit->second.type) && (twin? !fe->tuned : !fe->locked) && ( fe->mode == (fe_mode_t)FE_SINGLE || (fe->mode == (fe_mode_t)FE_LOOP && loopCanTune(fe, thischannel)) ) )
+			if ( (fe->getDeliverySystem() == sit->second.system) && (twin? !fe->tuned : !fe->locked) && ( fe->mode == (fe_mode_t)FE_SINGLE || (fe->mode == (fe_mode_t)FE_LOOP && loopCanTune(fe, thischannel)) ) )
 			{
 				rec_frontend = fe;
 				//break;
@@ -1864,6 +1921,10 @@ void parseScanInputXml(fe_type_t fe_type)
 		case FE_OFDM:
 			scanInputParser = parseXmlFile(TERRESTRIALS_XML);
 			break;
+
+        case FE_ATSC:
+            scanInputParser = parseXmlFile(ATSC_XML);
+            break;
 			
 		default:
 			dprintf(DEBUG_INFO, "[zapit] parseScanInputXml: Unknown type %d\n", fe_type);
@@ -1878,7 +1939,7 @@ void parseScanInputXml(fe_type_t fe_type)
 int start_scan(CZapitMessages::commandStartScan StartScan)
 {
 	// reread scaninputParser
-        if(scanInputParser) 
+    if(scanInputParser) 
 	{
                 delete scanInputParser;
                 scanInputParser = NULL;
@@ -1899,7 +1960,7 @@ int start_scan(CZapitMessages::commandStartScan StartScan)
 	stopPlayBack();
 	
 	// stop pmt update filter
-        pmt_stop_update_filter(&pmt_update_fd);	
+    pmt_stop_update_filter(&pmt_update_fd);	
 
 	found_transponders = 0;
 	found_channels = 0;
@@ -2604,7 +2665,7 @@ bool zapit_parse_command(CBasicMessage::Header &rmsg, int connfd)
 				sat.satPosition = sit->first;
 				sat.motorPosition = sit->second.motor_position;
 
-				sat.type = sit->second.type;
+				sat.system = sit->second.system;
 				
 				CBasicServer::send_data(connfd, &satlength, sizeof(satlength));
 				CBasicServer::send_data(connfd, (char *)&sat, satlength);
@@ -4236,7 +4297,7 @@ void * sdt_thread(void */*arg*/)
 
 			if(live_channel) 
 			{
-				switch(spos_it->second.type)
+				switch(spos_it->second.system)
 				{
 					case DVB_S: /* satellite */
 						sprintf(satstr, "\t<%s name=\"%s\" position=\"%hd\">\n", "sat", spos_it->second.name.c_str(), satellitePosition);
@@ -4355,7 +4416,7 @@ void * sdt_thread(void */*arg*/)
 			{
 				//fprintf(fd, "\t\t</TS>\n");
 				//switch ( live_fe->getInfo()->type)
-				switch(spos_it->second.type)
+				switch(spos_it->second.system)
 				{
 					case DVB_S: /* satellite */
 						fprintf(fd, "\t</sat>\n");
@@ -4618,7 +4679,7 @@ void *event_proc(void *ptr)
 		}
 	}
 
-error:
+//error:
 	return NULL;
 }
 //
