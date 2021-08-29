@@ -235,6 +235,7 @@ void ParseChannels(_xmlNodePtr node, const t_transport_stream_id transport_strea
 		{
 			scnt++;
 			tallchans_iterator cit1 = ret.first;
+            cit1->second.number = scnt;
 			cit1->second.scrambled = scrambled;
 			service_type = cit1->second.getServiceType();
 			cit1->second.polarization = polarisation;
