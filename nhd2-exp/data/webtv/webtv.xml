@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <webtvs>
 <webtv title="Alex TV" urlkey="0" url="rtsp://217.115.145.185:1935/live/mp4:alexlivestream_2" description="Stream" />
-<webtv title="Alex TV" urlkey="0" url="rtsp://217.115.145.185:1935/live/mp4:alexlivestream_2" description="Stream" />
 <webtv title="Baden TV" urlkey="0" url="rtmp://badentv-stream2.siebnich.info/rtplive/vlc.sdp" description="Stream" />
 <webtv title="BLK online TV Burgenlandkreis" urlkey="0" url="rtmp://62.113.210.250/medienasa-live/BLKonline_high" description="Stream" />
 <webtv title="bw family.tv" urlkey="0" url="rtmp://live.bwfamily.tv:1935/rtplive/vlc.sdp" description="Stream" />

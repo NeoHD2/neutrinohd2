@@ -293,7 +293,7 @@ struct CmpChannelByFreq: public binary_function <const CZapitChannel * const, co
 
 void CChannelList::SortAlpha(void)
 {
-	//sort(chanlist.begin(), chanlist.end(), CmpChannelByChName()); //FIXME:
+	sort(chanlist.begin(), chanlist.end(), CmpChannelByChName()); //FIXME:
 }
 
 void CChannelList::SortSat(void)

@@ -202,7 +202,7 @@ int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string& actionK
 				Channels.push_back(&(it->second));
 	}
 
-	//sort(Channels.begin(), Channels.end(), CmpChannelByChName());
+	sort(Channels.begin(), Channels.end(), CmpChannelByChName());
 
 	neutrino_msg_t      msg;
 	neutrino_msg_data_t data;
