@@ -1882,8 +1882,8 @@ int prepare_channels()
 	// load frontend config
 	loadFrontendConfig();
         
-        // load sats/tps
-        loadTransponders();
+    // load sats/tps
+    loadTransponders();
 
 	// load services
 	if (loadServices(false) < 0)

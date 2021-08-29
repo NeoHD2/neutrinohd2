@@ -807,12 +807,16 @@ void CBouquetManager::makeRemainingChannelsBouquet(void)
 	set<t_channel_id> chans_processed;
 	bool tomake = config.getBool("makeRemainingChannelsBouquet", true);
 
+    int scnt = 1;
 	for (tallchans::iterator it = allchans.begin(); it != allchans.end(); it++)
 	{
-		it->second.number = 0;
+		it->second.number = scnt++;
 	}
 
-	int i = 1, j = 1, k = 1;
+	int i = 1;  // tv
+    int j = 1;  // radio
+    int k = 1;  //webtv
+
 	for (vector<CZapitBouquet*>::const_iterator it = Bouquets.begin(); it != Bouquets.end(); it++) 
 	{
 		// tvChannels
@@ -820,8 +824,10 @@ void CBouquetManager::makeRemainingChannelsBouquet(void)
 		{
 			if(tomake) 
 				chans_processed.insert((*jt)->getChannelID());
+
+            (*jt)->number = 0;
 			
-			if(!(*jt)->number) 
+			//if(!(*jt)->number) 
 				(*jt)->number = i++;
 			
 			if(!(*jt)->pname && !(*it)->bUser) 
@@ -833,8 +839,10 @@ void CBouquetManager::makeRemainingChannelsBouquet(void)
 		{
 			if(tomake) 
 				chans_processed.insert((*jt)->getChannelID());
+
+            (*jt)->number = 0;
 			
-			if(!(*jt)->number) 
+			//if(!(*jt)->number) 
 				(*jt)->number = j++;
 
 			if(!(*jt)->pname && !(*it)->bUser) 
@@ -844,7 +852,9 @@ void CBouquetManager::makeRemainingChannelsBouquet(void)
 		// webtvChannels
 		for (vector<CZapitChannel*>::iterator jt = (*it)->webtvChannels.begin(); jt != (*it)->webtvChannels.end(); jt++) 
 		{
-			if(!(*jt)->number) 
+            (*jt)->number = 0;
+
+			//if(!(*jt)->number) 
 				(*jt)->number = k++;
 
 			if(!(*jt)->pname && !(*it)->bUser) 

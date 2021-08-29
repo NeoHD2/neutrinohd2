@@ -85,9 +85,9 @@ extern CBouquetList   * RADIObouquetList;
 extern CBouquetList   * RADIOsatList;
 extern CBouquetList   * RADIOfavList;
 extern CBouquetList   * RADIOallList;
-extern CBouquetList   * webTVbouquetList;
-extern CBouquetList *webTVallList;
-extern CBouquetList *webTVfavList;
+extern CBouquetList   * WEBTVbouquetList;
+extern CBouquetList   * WEBTVallList;
+extern CBouquetList   * WEBTVfavList;
 
 extern t_channel_id rec_channel_id;
 extern t_channel_id live_channel_id;
@@ -283,10 +283,10 @@ struct CmpChannelByFreq: public binary_function <const CZapitChannel * const, co
 
         bool operator() (const CZapitChannel * const c1, const CZapitChannel * const c2)
         {
-		if(c1->getFreqId() == c2->getFreqId())
-			return std::lexicographical_compare(c1->getName().begin(), c1->getName().end(), c2->getName().begin(), c2->getName().end(), comparetolower);
-		else
-			return c1->getFreqId() < c2->getFreqId();
+		    if(c1->getFreqId() == c2->getFreqId())
+			    return std::lexicographical_compare(c1->getName().begin(), c1->getName().end(), c2->getName().begin(), c2->getName().end(), comparetolower);
+		    else
+			    return c1->getFreqId() < c2->getFreqId();
 ;
 	};
 };
@@ -978,9 +978,9 @@ bool CChannelList::adjustToChannelID(const t_channel_id channel_id, bool bToo)
 				}
 				else if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv) 
 				{
-					webTVbouquetList->adjustToChannelID(channel_id);
-					webTVfavList->adjustToChannelID(channel_id);
-					webTVallList->adjustToChannelID(channel_id);
+					WEBTVbouquetList->adjustToChannelID(channel_id);
+					WEBTVfavList->adjustToChannelID(channel_id);
+					WEBTVallList->adjustToChannelID(channel_id);
 				} 
 			}
 			
