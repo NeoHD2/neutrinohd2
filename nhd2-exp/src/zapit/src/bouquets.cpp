@@ -807,21 +807,6 @@ void CBouquetManager::makeRemainingChannelsBouquet(void)
 	set<t_channel_id> chans_processed;
 	bool tomake = config.getBool("makeRemainingChannelsBouquet", true);
 
-    int tvcnt = 1;
-    int radiocnt = 1;
-    int webtvcnt = 1;
-
-	for (tallchans::iterator it = allchans.begin(); it != allchans.end(); it++)
-	{
-		//it->second.number = 0;
-        if(it->second.getServiceType() == ST_DIGITAL_TELEVISION_SERVICE)
-            it->second.number = tvcnt++;
-        else if(it->second.getServiceType() == ST_DIGITAL_RADIO_SOUND_SERVICE)
-            it->second.number = radiocnt++;
-        else if(it->second.getServiceType() == ST_WEBTV)
-            it->second.number = webtvcnt++;
-	}
-
 	int i = 1;  // tv
     int j = 1;  // radio
     int k = 1;  //webtv

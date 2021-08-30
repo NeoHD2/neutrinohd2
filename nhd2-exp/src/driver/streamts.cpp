@@ -59,7 +59,6 @@ static unsigned char writebuf[PACKET_SIZE];
 
 void packet_stdout(int fd, unsigned char * buf, int count, void *)
 {
-
 	unsigned int size;
 	unsigned char * bp;
 	ssize_t written;

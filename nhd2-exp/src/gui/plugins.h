@@ -51,7 +51,7 @@ typedef enum plugin_type
 {
 	PLUGIN_TYPE_DISABLED 	= 0,
 	PLUGIN_TYPE_SCRIPT   	= 1,
-	PLUGIN_TYPE_NEUTRINO 	= 2,
+	PLUGIN_TYPE_LEGACY 	= 2,
 	PLUGIN_TYPE_PYTHON   	= 3,
 	PLUGIN_TYPE_LUA         = 4
 }
@@ -76,7 +76,7 @@ class CPlugins
 		{
 			P_TYPE_DISABLED = 0x1,
 			P_TYPE_SCRIPT   = 0x2,
-			P_TYPE_NEUTRINO = 0x4,
+			P_TYPE_LEGACY = 0x4,
 			P_TYPE_PYTHON   = 0x8,
 			P_TYPE_LUA      = 0x10
 		}

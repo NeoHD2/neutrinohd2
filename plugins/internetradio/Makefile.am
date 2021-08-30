@@ -1,3 +1,4 @@
+
 AM_CPPFLAGS =  \
 	-I$(srcdir) \
 	-I$(top_srcdir)/../nhd2-exp \
@@ -26,11 +27,14 @@ install-exec-local:
 	install .libs/internetradio.so $(DESTDIR)$(PLUGINDIR)/internetradio
 	install -m 0644 internetradio.cfg $(DESTDIR)$(PLUGINDIR)/internetradio
 	install -m 0644 internetradio.png $(DESTDIR)$(PLUGINDIR)/internetradio
+	install -m 0644 radio-stations.xml $(DESTDIR)$(PLUGINDIR)/internetradio
+
 
 uninstall-local:
 	-rm $(DESTDIR)$(PLUGINDIR)/internetradio/internetradio.so
 	-rm $(DESTDIR)$(PLUGINDIR)/internetradio/internetradio.cfg
 	-rm $(DESTDIR)$(PLUGINDIR)/internetradio/internetradio.png
+	-rm $(DESTDIR)$(PLUGINDIR)/internetradio/radio-stations.xml
 	-rmdir $(DESTDIR)$(PLUGINDIR)/internetradio
 
 	

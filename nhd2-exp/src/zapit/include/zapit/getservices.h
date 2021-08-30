@@ -47,6 +47,7 @@ int loadMotorPositions(void);
 void parseWebTVServices(std::string filename);
 void loadWebTVServices(const std::string& dirname);
 
+// transponder
 struct transponder
 {
 	t_transport_stream_id transport_stream_id;
@@ -91,7 +92,7 @@ typedef std::map<transponder_id_t, transponder> transponder_list_t;
 typedef std::map <transponder_id_t, transponder>::iterator stiterator;  // used in scan.cpp
 typedef std::map<transponder_id_t, bool> sdt_tp_t;                    // used in zapit.cpp
 
-extern transponder_list_t scantransponders;
-extern transponder_list_t transponders;
+extern transponder_list_t scantransponders;         // defined in zapit.cpp
+extern transponder_list_t transponders;             // defined in zapit.cpp
 
 #endif /* __getservices_h__ */

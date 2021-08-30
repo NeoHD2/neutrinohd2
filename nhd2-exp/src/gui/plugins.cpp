@@ -136,7 +136,7 @@ void CPlugins::addPlugin(const char * dir)
 				{
 					new_plugin.pluginfile.append(".sh");
 				}
-				else if (new_plugin.type == CPlugins::P_TYPE_NEUTRINO)
+				else if (new_plugin.type == CPlugins::P_TYPE_LEGACY)
 				{
 					new_plugin.pluginfile.append(".so");
 					
@@ -369,7 +369,7 @@ void CPlugins::startPlugin(int number)
 
 		return;
 	}
-	else if (plugin_list[number].type == CPlugins::P_TYPE_NEUTRINO)
+	else if (plugin_list[number].type == CPlugins::P_TYPE_LEGACY)
 	{
 		PluginExec execPlugin;
 		void *handle;
@@ -443,7 +443,7 @@ void CPlugins::removePlugin(int number)
 	dprintf(DEBUG_NORMAL, "CPlugins::removePlugin: %s type:%d\n", plugin_list[number].pluginfile.c_str(), plugin_list[number].type);
 	
 	// unload plugin
-	if (plugin_list[number].type == CPlugins::P_TYPE_NEUTRINO)
+	if (plugin_list[number].type == CPlugins::P_TYPE_LEGACY)
 	{
 		handle = dlopen ( plugin_list[number].pluginfile.c_str(), RTLD_NOW);
 		if (!handle)
@@ -504,8 +504,8 @@ CPlugins::p_type_t CPlugins::getPluginType(int type)
 			return P_TYPE_SCRIPT;
 			break;
 			
-		case PLUGIN_TYPE_NEUTRINO:
-			return P_TYPE_NEUTRINO;
+		case PLUGIN_TYPE_LEGACY:
+			return P_TYPE_LEGACY;
 			break;
 
 		case PLUGIN_TYPE_PYTHON:
