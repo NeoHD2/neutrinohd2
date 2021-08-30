@@ -56,6 +56,23 @@
 
 #include <dirent.h>
 
+// webtv stuff
+#if defined (__USE_FILE_OFFSET64) || defined (_DARWIN_USE_64_BIT_INODE)
+typedef struct dirent64 dirent_struct;
+#define my_alphasort alphasort64
+#define my_scandir scandir64
+typedef struct stat64 stat_struct;
+#define my_stat stat64
+#define my_lstat lstat64
+#else
+typedef struct dirent dirent_struct;
+#define my_alphasort alphasort
+#define my_scandir scandir
+typedef struct stat stat_struct;
+#define my_stat stat
+#define my_lstat lstat
+#error not using 64 bit file offsets
+#endif
 
 extern tallchans allchans;   			//  defined in zapit.cpp
 extern CConfigFile config;   			//  defined in zapit.cpp
@@ -554,6 +571,8 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 		{
 			while(true)
 			{
+				t_channel_id id = 0;
+				
 				char line[1024];
 				if (!fgets(line, 1024, f))
 					break;
@@ -582,7 +601,23 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 
 					if(!url.empty())
 					{
-						t_channel_id id = create_channel_id64(0, 0, 0, 0, 0, url.c_str());
+						//t_channel_id id = create_channel_id64(0, 0, 0, 0, 0, url.c_str());
+						// grab channel id from channellist
+						for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
+						{
+							if(strcasecmp(it->second.getName().c_str(), title.c_str()) == 0)
+								id = it->second.getChannelID();
+						}
+
+						if(id == 0)
+							id = create_channel_id64(0, 0, 0, 0, 0, url.c_str());
+					
+						pair<map<t_channel_id, CZapitChannel>::iterator, bool> ret;
+
+						ret = allchans.insert (std::pair <t_channel_id, CZapitChannel> (id, CZapitChannel(title, id, url, description)));
+
+						ret.first->second.setServiceType(ST_WEBTV);
+						//cnt++;
 
 						CZapitChannel *chan = findChannelByChannelID(id);
 
@@ -639,9 +674,24 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 
 						if (epgid)
 							id = strtoull(epgid, NULL, 16);
+							
+						if(id == 0)
+						{
+							// grab channel id from channellist
+							for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
+							{
+								if(strcasecmp(it->second.getName().c_str(), title) == 0)
+									id = it->second.getChannelID();
+							}
+						}
 
 						if(id == 0)
 							id = create_channel_id64(0, 0, 0, 0, 0, url);
+							
+						pair<map<t_channel_id, CZapitChannel>::iterator, bool> ret;
+						ret = allchans.insert(std::pair <t_channel_id, CZapitChannel> (id, CZapitChannel(title, id, url, description)));
+
+						ret.first->second.setServiceType(ST_WEBTV);
 						
 						CZapitChannel * chan = findChannelByChannelID(id);
 
@@ -676,6 +726,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 		{
 			int duration;
 			std::string description;
+			t_channel_id id = 0;
 
 			infile.getline(cLine, sizeof(cLine));
 					
@@ -693,8 +744,21 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					if (url != NULL) 
 					{
 						description = "stream";
+						
+						// grab channel id from channellist
+						for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
+						{
+							if(strcasecmp(it->second.getName().c_str(), title) == 0)
+								id = it->second.getChannelID();
+						}
 
-						t_channel_id id = create_channel_id64(0, 0, 0, 0, 0, url);
+						if(id == 0)
+							id = create_channel_id64(0, 0, 0, 0, 0, url);
+							
+						pair<map<t_channel_id, CZapitChannel>::iterator, bool> ret;
+						ret = allchans.insert(std::pair <t_channel_id, CZapitChannel> (id, CZapitChannel(title, id, url, description)));
+
+						ret.first->second.setServiceType(ST_WEBTV);
 					
 						CZapitChannel * chan = findChannelByChannelID(id);
 
@@ -717,23 +781,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 
 	dprintf(DEBUG_NORMAL, "CBouquetManager::loadWebTVBouquet: load %d WEBTV Channels (allchans:%d)\n", cnt, (int) allchans.size());
 }
-
-#if defined (__USE_FILE_OFFSET64) || defined (_DARWIN_USE_64_BIT_INODE)
-typedef struct dirent64 dirent_struct;
-#define my_alphasort alphasort64
-#define my_scandir scandir64
-typedef struct stat64 stat_struct;
-#define my_stat stat64
-#define my_lstat lstat64
-#else
-typedef struct dirent dirent_struct;
-#define my_alphasort alphasort
-#define my_scandir scandir
-typedef struct stat stat_struct;
-#define my_stat stat
-#define my_lstat lstat
-#error not using 64 bit file offsets
-#endif
 
 void CBouquetManager::loadWebTVBouquet(const std::string& dirname)
 {
@@ -764,6 +811,15 @@ void CBouquetManager::loadWebTVBouquet(const std::string& dirname)
 	}
 
 	free(namelist);
+	
+	// renum services
+    	int webtvcnt = 1;
+
+	for (tallchans::iterator it = allchans.begin(); it != allchans.end(); it++)
+	{
+		if(it->second.getServiceType() == ST_WEBTV)
+		    it->second.number = webtvcnt++;
+	}
 }
 
 
