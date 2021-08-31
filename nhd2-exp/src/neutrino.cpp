@@ -1489,12 +1489,12 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	RADIOfavList->orgChannelList = RADIOchannelList;
 
 	//
-	WEBTVchannelList = new CChannelList("WebTV");
+	WEBTVchannelList = new CChannelList(g_Locale->getText(LOCALE_CHANNELLIST_HEAD));
 
 	WEBTVbouquetList = new CBouquetList("WebTV");
 	WEBTVbouquetList->orgChannelList = WEBTVchannelList;
 
-	WEBTVfavList = new CBouquetList("WebTV");
+	WEBTVfavList = new CBouquetList(g_Locale->getText(LOCALE_CHANNELLIST_FAVS));
 	WEBTVfavList->orgChannelList = WEBTVchannelList;
 
 	//
@@ -1655,25 +1655,23 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d RADIO bouquets\n", bnum);
 
-	// webtv bouquets
+	// webtv fav/provider bouquets
 	bnum = 0;
 	for (i = 0; i < g_bouquetManager->Bouquets.size(); i++) 
 	{
 		if (g_bouquetManager->Bouquets[i]->bWebTV && !g_bouquetManager->Bouquets[i]->webtvChannels.empty())
 		{
-			CBouquet *ltmp;
-
-			if(g_bouquetManager->Bouquets[i]->bUser) 
-				ltmp = WEBTVfavList->addBouquet(g_bouquetManager->Bouquets[i]);
-			else
-				ltmp = WEBTVbouquetList->addBouquet(g_bouquetManager->Bouquets[i]);
+			CBouquet *ltmp1 = WEBTVfavList->addBouquet(g_bouquetManager->Bouquets[i]);
+			CBouquet *ltmp2 = WEBTVbouquetList->addBouquet(g_bouquetManager->Bouquets[i]);
 
 			ZapitChannelList *channels = &(g_bouquetManager->Bouquets[i]->webtvChannels);
-			ltmp->channelList->setSize(channels->size());
+			ltmp1->channelList->setSize(channels->size());
+			ltmp2->channelList->setSize(channels->size());
 
 			for(int j = 0; j < (int) channels->size(); j++) 
 			{
-				ltmp->channelList->addChannel((*channels)[j]);
+				ltmp1->channelList->addChannel((*channels)[j]);
+				ltmp2->channelList->addChannel((*channels)[j]);
 			}
 
 			bnum++;
@@ -1736,7 +1734,7 @@ void CNeutrinoApp::SetChannelMode(int newmode, int nMode)
 			}
 			else if(nMode == mode_webtv) 
 			{
-				bouquetList = WEBTVallList;
+				bouquetList = WEBTVbouquetList;
 			}
 			break;
 
@@ -1767,7 +1765,7 @@ void CNeutrinoApp::SetChannelMode(int newmode, int nMode)
 			}
 			else if(nMode == mode_webtv) 
 			{
-				bouquetList = WEBTVfavList; //WEBTVbouquetList;
+				bouquetList = WEBTVbouquetList;
 			}
 			break;
 	}
