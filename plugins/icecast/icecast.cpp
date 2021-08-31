@@ -659,11 +659,7 @@ void CIceCast::loadPlaylist(void)
 }
 
 #define HEAD_BUTTONS_COUNT 2
-const struct button_label HeadButtons[HEAD_BUTTONS_COUNT] =
-{
-	{ NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL }
-};
+const struct button_label HeadButtons{ NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL };
 
 #define FOOT_BUTTONS_COUNT 4
 const struct button_label AudioPlayerButtons[FOOT_BUTTONS_COUNT] =
@@ -710,14 +706,14 @@ void CIceCast::showMenu()
 	//ilist->setTimeOut(g_settings.timing[SNeutrinoSettings::TIMING_CHANLIST]);
 	ilist->setSelected(selected);
 
-	ilist->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	ilist->setHeaderButtons(&HeadButtons);
 	ilist->setFooterButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 	
 	ilist->enablePaintFootInfo();
 	ilist->enablePaintDate();
 
 	ilist->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));
-	ilist->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
+	//ilist->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
 	ilist->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
 	ilist->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
 	ilist->addKey(RC_yellow, this, CRCInput::getSpecialKeyName(RC_yellow));
