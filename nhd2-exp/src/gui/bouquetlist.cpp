@@ -421,7 +421,7 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 		{
 			selected = listBox->getSelected();
 
-			if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
+			if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
 			{
 				int ret = doMenu();
 				if(ret) 
@@ -429,15 +429,6 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 					res = -4;
 					loop = false;
 				}
-			}
-			else 
-			{
-				int ret = doMenu();
-				if(ret) 
-				{
-					res = -4;
-					loop = false;
-				} 
 			}
 		}
 		else if ( msg == (neutrino_msg_t) g_settings.key_list_start ) 
@@ -538,7 +529,8 @@ void CBouquetList::paint()
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
 
-	listBox->setHeaderButtons(&HButton, 1);
+	if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
+		listBox->setHeaderButtons(&HButton, 1);
 
 	// foot
 	listBox->enablePaintFoot();
