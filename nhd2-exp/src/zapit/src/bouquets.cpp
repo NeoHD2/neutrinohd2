@@ -961,7 +961,7 @@ void CBouquetManager::renumServices()
 	makeRemainingChannelsBouquet();
 }
 
-CZapitBouquet * CBouquetManager::addBouquet(const std::string & name, bool ub, bool myfav, bool iswebtv)
+CZapitBouquet * CBouquetManager::addBouquet(const std::string& name, bool ub, bool myfav, bool iswebtv)
 {
 	CZapitBouquet * newBouquet = new CZapitBouquet(myfav ? "Favorites" : name);
 	newBouquet->bUser = ub;
@@ -982,7 +982,7 @@ CZapitBouquet * CBouquetManager::addBouquet(const std::string & name, bool ub, b
 	return newBouquet;
 }
 
-CZapitBouquet* CBouquetManager::addBouquetIfNotExist(const std::string &name)
+CZapitBouquet* CBouquetManager::addBouquetIfNotExist(const std::string& name)
 {
 	CZapitBouquet* bouquet = NULL;
 

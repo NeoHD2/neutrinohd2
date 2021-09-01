@@ -90,7 +90,6 @@ class CChannelList
 		~CChannelList();
 		
 		void addChannel(CZapitChannel* chan, int num = 0);
-		void putChannel(CZapitChannel* chan);
 		
 		CZapitChannel * getChannel(int number);
 		CZapitChannel * getChannel(t_channel_id channel_id);

@@ -1560,7 +1560,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	WEBTVallList = new CBouquetList("WebTV");
 	tmp = WEBTVallList->addBouquet("WebTV");
 	*(tmp->channelList) = *WEBTVchannelList;
-	tmp->channelList->SortAlpha();
+	//tmp->channelList->SortAlpha();
 	WEBTVallList->orgChannelList = WEBTVchannelList;
 
 	// sat

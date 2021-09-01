@@ -5009,7 +5009,7 @@ void CTestMenu::testChannellist()
 	{
 		if (it->second.isWebTV) 
 		{
-			webTVchannelList->putChannel(&(it->second));
+			webTVchannelList->addChannel(&(it->second));
 		}
 	}
 

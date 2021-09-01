@@ -168,23 +168,6 @@ void CChannelList::addChannel(CZapitChannel * channel, int num)
 	chanlist.push_back(channel);
 }
 
-void CChannelList::putChannel(CZapitChannel * channel)
-{
-	int num = channel->number - 1;
-	
-	if(num < 0) 
-	{
-		return;
-	}
-	
-	if(num >= (int) chanlist.size()) 
-	{
-		chanlist.resize((unsigned) num + 1);
-	}
-
-	chanlist[num] = channel;
-}
-
 void CChannelList::updateEvents(void)
 {
 	dprintf(DEBUG_NORMAL, "CChannelList::updateEvents\n");

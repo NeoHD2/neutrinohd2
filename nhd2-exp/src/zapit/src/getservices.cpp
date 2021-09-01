@@ -122,7 +122,7 @@ void ParseTransponders(_xmlNodePtr node, t_satellite_position satellitePosition,
 			feparams.u.qpsk.symbol_rate = xmlGetNumericAttribute(node, "sr", 0);
 			polarization = xmlGetNumericAttribute(node, "pol", 0);
 
-            // ???
+            		// ???
 			if(feparams.u.qpsk.symbol_rate < 50000) 
 				feparams.u.qpsk.symbol_rate = feparams.u.qpsk.symbol_rate * 1000;
 			
@@ -235,7 +235,7 @@ void ParseChannels(_xmlNodePtr node, const t_transport_stream_id transport_strea
 		{
 			scnt++;
 			tallchans_iterator cit1 = ret.first;
-            cit1->second.number = scnt;
+            		cit1->second.number = scnt;
 			cit1->second.scrambled = scrambled;
 			service_type = cit1->second.getServiceType();
 			cit1->second.polarization = polarisation;
@@ -264,8 +264,7 @@ void FindTransponder(_xmlNodePtr search)
 	dprintf(DEBUG_NORMAL, "[getservices] FindTransponder:\n");
 
 	t_satellite_position satellitePosition = 0;
-	//uint8_t Source;
-    delivery_system_t system = DVB_S;
+    	delivery_system_t system = DVB_S;
 	newtpid = 0xC000;
 	
 	while (search) 
@@ -335,8 +334,8 @@ void ParseSatTransponders(fe_type_t frontendType, _xmlNodePtr search, t_satellit
 	int xml_fec;
 	FrontendParameters feparams;
 	fake_tid = 0;
-    fake_nid = 0;
-    delivery_system_t fake_system = DVB_S;
+    	fake_nid = 0;
+    	delivery_system_t fake_system = DVB_S;
 
 	_xmlNodePtr tps = search->xmlChildrenNode;
 
@@ -361,7 +360,7 @@ void ParseSatTransponders(fe_type_t frontendType, _xmlNodePtr search, t_satellit
 			feparams.u.qam.fec_inner = (fe_code_rate_t) xmlGetNumericAttribute(tps, "fec_inner", 0);
 			feparams.u.qam.modulation = (fe_modulation_t) xmlGetNumericAttribute(tps, "modulation", 0);
 
-            fake_system = DVB_C;
+            		fake_system = DVB_C;
 		}
 		else if (frontendType == FE_OFDM)	//DVB-T
 		{
@@ -374,9 +373,9 @@ void ParseSatTransponders(fe_type_t frontendType, _xmlNodePtr search, t_satellit
 			feparams.u.ofdm.hierarchy_information = (fe_hierarchy_t) xmlGetNumericAttribute(tps, "hierarchy_information", 0);
 			feparams.inversion = (fe_spectral_inversion_t)xmlGetNumericAttribute(tps, "inversion", 0);
 
-            system = xmlGetNumericAttribute(tps, "system", 0);
+            		system = xmlGetNumericAttribute(tps, "system", 0);
 
-            fake_system = DVB_T;
+            		fake_system = DVB_T;
 		}
 		else if (frontendType == FE_QPSK) 	//DVB-S
 		{
@@ -394,14 +393,14 @@ void ParseSatTransponders(fe_type_t frontendType, _xmlNodePtr search, t_satellit
 
 			feparams.u.qpsk.fec_inner = (fe_code_rate_t)xml_fec;
 
-            fake_system = DVB_S;
+            		fake_system = DVB_S;
 		}
-        else if (frontendType == FE_ATSC)
-        {
-            feparams.u.vsb.modulation = (fe_modulation_t) xmlGetNumericAttribute(tps, "modulation", 0);
+		else if (frontendType == FE_ATSC)
+		{
+		    feparams.u.vsb.modulation = (fe_modulation_t) xmlGetNumericAttribute(tps, "modulation", 0);
 
-            fake_system = DVB_A;
-        }
+		    fake_system = DVB_A;
+		}
 		
 		if (frontendType == FE_QAM) 
 			freq = feparams.frequency/100;
@@ -533,7 +532,7 @@ int loadTransponders()
 	
 	select_transponders.clear();
 	fake_tid = 0;
-    fake_nid = 0;
+    	fake_nid = 0;
 	
 	if(!satcleared)
 		satellitePositions.clear();
@@ -559,7 +558,7 @@ int loadTransponders()
 			{
 				if (!(strcmp(xmlGetName(search), "sat"))) 
 				{
-                    // flags
+                    			// flags
 
 					// position
 					position = xmlGetSignedNumericAttribute(search, "position", 10);
@@ -597,8 +596,8 @@ int loadTransponders()
 				}
 				else if(!(strcmp(xmlGetName(search), "terrestrial"))) 
 				{
-                    // flags
-                    // countrycode
+                    			// flags
+                    			// countrycode
 
 					char * name = xmlGetAttribute(search, "name");
 
@@ -613,9 +612,9 @@ int loadTransponders()
 					// type
 					satellitePositions[position].system = DVB_T;
 				}
-                else if(!(strcmp(xmlGetName(search), "atsc"))) 
+                		else if(!(strcmp(xmlGetName(search), "atsc"))) 
 				{
-                    // flags
+                    			// flags
 
 					char * name = xmlGetAttribute(search, "name");
 
@@ -675,7 +674,7 @@ int loadServices(bool only_current)
 					init_sat(position);
 				}
                 
-                satellitePositions[position].name = name;
+                		satellitePositions[position].name = name;
 			}
 
 			// jump to the next node
@@ -730,7 +729,7 @@ do_current:
 
 	dprintf(DEBUG_NORMAL, "[getservices] loadServices: services loaded (%d)...\n", allchans.size());
 
-    	// renum services
+    	// numerate services
     	int tvcnt = 1;
     	int radiocnt = 1;
 
