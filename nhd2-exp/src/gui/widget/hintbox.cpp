@@ -336,7 +336,7 @@ int CHintBox::exec(int timeout)
 
 		if ((msg == RC_timeout) || (msg == RC_home) || (msg == RC_ok))
 		{
-				res = messages_return::cancel_info;
+			res = messages_return::cancel_info;
 		}
 		else if ((has_scrollbar()) && ((msg == RC_up) || (msg == RC_down)))
 		{
@@ -358,8 +358,12 @@ int CHintBox::exec(int timeout)
 			{
 				dprintf(DEBUG_NORMAL, "CHintBox::exec: message unhandled\n");
 
-				res = messages_return::cancel_info;
-				g_RCInput->postMsg(msg, data);
+				//res = messages_return::cancel_info;
+				//g_RCInput->postMsg(msg, data);
+				if (msg == RC_timeout)
+				{
+					res = messages_return::cancel_info;
+				}
 			}
 		}
 
