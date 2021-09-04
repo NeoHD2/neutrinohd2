@@ -107,9 +107,6 @@ void GLThreadObj::run()
 {
 	setupCtx();
 	setupOSDBuffer();
-
-	//setupDisplayBuffer();
-
 	initDone(); // signal that setup is finished
 
 	// init the good stuff
@@ -395,14 +392,6 @@ void GLThreadObj::bltOSDBuffer()
 	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, mState.width, mState.height, GL_BGRA, GL_UNSIGNED_BYTE, 0);
 
 	glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
-}
-
-void GLThreadObj::setupDisplayBuffer()
-{	
-	// set displayer buffer
-	mDisplayBuffer.resize(5*1024*1024);
-
-	dprintf(DEBUG_NORMAL, "GLThreadObj::setupDisplayBuffer: DisplayBuffer set to %d bytes\n", 5*1024*1024);
 }
 
 void GLThreadObj::bltDisplayBuffer()

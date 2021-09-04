@@ -360,10 +360,6 @@ int CHintBox::exec(int timeout)
 
 				//res = messages_return::cancel_info;
 				//g_RCInput->postMsg(msg, data);
-				if (msg == RC_timeout)
-				{
-					res = messages_return::cancel_info;
-				}
 			}
 		}
 

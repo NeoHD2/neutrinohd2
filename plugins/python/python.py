@@ -99,17 +99,19 @@ class pictureViewer(CFileBrowser):
 		self.Multi_Select = False
 		self.Dirs_Selectable = False
 		self.Filter = fileFilter
+		
+		self._exec(self.PATH)
+
+		self.PATH = self.getCurrentDir()
 
 		player = CPictureViewerGui()
-
-		while self.getExitPressed() is not True:
-			self._exec(self.PATH)
-
-			self.PATH = self.getCurrentDir()
 	
-			if self.getSelectedFile() is not None:
-				player.addToPlaylist(self.getSelectedFile())
-				player._exec(None, "")
+		if self.getSelectedFile() is not None:
+			player.addToPlaylist(self.getSelectedFile())
+			player._exec(None, "")
+			
+		if self.getExitPressed() is not True:
+			self.__init__()
 
 class moviePlayer(CFileBrowser):
 	config = CConfigFile('\t')
@@ -152,16 +154,18 @@ class moviePlayer(CFileBrowser):
 		self.Dirs_Selectable = False
 		self.Filter = fileFilter
 
+		self._exec(self.PATH)
+
+		self.PATH = self.getCurrentDir()
+
 		player = CMoviePlayerGui()
-
-		while self.getExitPressed() is not True:
-			self._exec(self.PATH)
-
-			self.PATH = self.getCurrentDir()
 	
-			if self.getSelectedFile() is not None:
-				player.addToPlaylist(self.getSelectedFile())
-				player._exec(None, "")
+		if self.getSelectedFile() is not None:
+			player.addToPlaylist(self.getSelectedFile())
+			player._exec(None, "")
+			
+		if self.getExitPressed() is not True:
+			self.__init__()
 
 class testMenu(CMenuTarget):
 	selected = 0
