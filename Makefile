@@ -35,7 +35,7 @@
 #
 #
 # build preqs
-# sudo apt-get install autoconf libtool libtool-bin g++ gdb swig flex bison make texinfo subversion intltool dialog wget cmake gperf libavformat-dev libswscale-dev libopenthreads-dev libglew-dev freeglut3-dev libcurl4-gnutls-dev libfreetype6-dev libid3tag0-dev libmad0-dev libogg-dev libpng-dev libgif-dev libjpeg-dev libvorbis-dev libflac-dev libblkid-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libfribidi-dev libass-dev python-dev lua5.2 lua5.2-dev
+# sudo apt-get install autoconf libtool libtool-bin g++ gdb swig flex bison make texinfo subversion intltool dialog wget cmake gperf libavformat-dev libglew-dev freeglut3-dev libcurl4-gnutls-dev libfreetype6-dev libid3tag0-dev libmad0-dev libogg-dev libpng-dev libgif-dev libjpeg-dev libflac-dev libvorbis-dev libopenthreads-dev libblkid-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libfribidi-dev libass-dev python-dev lua5.2 lua5.2-dev
 ################################################################################################################################################################################################################################################################
 SHELL = /bin/bash
 UID := $(shell id -u)
@@ -80,6 +80,7 @@ $(N_SRC)/config.status: | $(N_SRC) $(DEST)
 		$(N_SRC)/configure \
 			--prefix=$(DEST)  \
 			--build=i686-pc-linux-gnu \
+			--enable-silent-rules \
 			--enable-maintainer-mode \
 			--with-boxtype=$(BOXTYPE) \
 			--with-datadir=$(DEST)/share/tuxbox \
@@ -93,7 +94,6 @@ $(N_SRC)/config.status: | $(N_SRC) $(DEST)
 			--enable-python \
 			--enable-lua \
 			--enable-gstreamer
-				
 $(DEST):
 	mkdir $@
 
@@ -125,6 +125,7 @@ $(PLUGINS_SRC)/config.status: $(PLUGINS_SRC) $(DEST)
 		$(PLUGINS_SRC)/configure \
 			--prefix=$(DEST)  \
 			--build=i686-pc-linux-gnu \
+			--enable-silent-rules \
 			--enable-maintainer-mode \
 			--without-debug \
 			--with-boxtype=$(BOXTYPE) \
@@ -133,7 +134,8 @@ $(PLUGINS_SRC)/config.status: $(PLUGINS_SRC) $(DEST)
 			--with-configdir=$(DEST)/var/tuxbox/config \
 			--enable-testing \
 			--enable-python \
-			--enable-lua
+			--enable-lua \
+            --disable-dependency-tracking
 
 plugins-clean:
 	-$(MAKE) -C $(PLUGINS_SRC) clean
