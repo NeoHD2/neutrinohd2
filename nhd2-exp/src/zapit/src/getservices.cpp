@@ -235,7 +235,7 @@ void ParseChannels(_xmlNodePtr node, const t_transport_stream_id transport_strea
 		{
 			scnt++;
 			tallchans_iterator cit1 = ret.first;
-            		cit1->second.number = scnt;
+
 			cit1->second.scrambled = scrambled;
 			service_type = cit1->second.getServiceType();
 			cit1->second.polarization = polarisation;
@@ -538,17 +538,10 @@ int loadTransponders()
 		satellitePositions.clear();
 
 	satcleared = 1;
-
-	//
-	fe_type_t fe_type = FE_QAM;
-
-	// parse sat tp
-	for(int i = 0; i < FrontendCount; i++)
+		
+	if (have_s)
 	{
-		CFrontend * fe = getFE(i);
-		fe_type = fe->getInfo()->type;
-
-		parseScanInputXml(fe_type);
+		parseScanInputXml(FE_QPSK);
 			
 		if ( scanInputParser != NULL ) 
 		{
@@ -576,7 +569,28 @@ int loadTransponders()
 					// type
 					satellitePositions[position].system = DVB_S;
 				}
-				else if(!(strcmp(xmlGetName(search), "cable"))) 
+				
+				// parse sat TP
+				ParseSatTransponders(FE_QPSK, search, position);
+				
+				position++;
+				
+				search = search->xmlNextNode;
+			}
+		}
+	}
+	
+	if (have_c)
+	{
+		parseScanInputXml(FE_QAM);
+			
+		if ( scanInputParser != NULL ) 
+		{
+			_xmlNodePtr search = xmlDocGetRootElement(scanInputParser)->xmlChildrenNode;
+
+			while (search) 
+			{
+				if(!(strcmp(xmlGetName(search), "cable"))) 
 				{
 					//flags ???
 					//satfeed ???
@@ -594,7 +608,28 @@ int loadTransponders()
 					// type
 					satellitePositions[position].system = DVB_C;
 				}
-				else if(!(strcmp(xmlGetName(search), "terrestrial"))) 
+
+				// parse sat TP
+				ParseSatTransponders(FE_QAM, search, position);
+				
+				position++;
+				
+				search = search->xmlNextNode;
+			}
+		}
+	}
+	
+	if (have_t)
+	{
+		parseScanInputXml(FE_OFDM);
+			
+		if ( scanInputParser != NULL ) 
+		{
+			_xmlNodePtr search = xmlDocGetRootElement(scanInputParser)->xmlChildrenNode;
+
+			while (search) 
+			{
+				if(!(strcmp(xmlGetName(search), "terrestrial"))) 
 				{
                     			// flags
                     			// countrycode
@@ -612,7 +647,28 @@ int loadTransponders()
 					// type
 					satellitePositions[position].system = DVB_T;
 				}
-                		else if(!(strcmp(xmlGetName(search), "atsc"))) 
+
+				// parse sat TP
+				ParseSatTransponders(FE_OFDM, search, position);
+				
+				position++;
+				
+				search = search->xmlNextNode;
+			}
+		}
+	}
+	
+	if (have_a)
+	{
+		parseScanInputXml(FE_ATSC);
+			
+		if ( scanInputParser != NULL ) 
+		{
+			_xmlNodePtr search = xmlDocGetRootElement(scanInputParser)->xmlChildrenNode;
+
+			while (search) 
+			{
+				if(!(strcmp(xmlGetName(search), "atsc"))) 
 				{
                     			// flags
 
@@ -631,7 +687,7 @@ int loadTransponders()
 				}
 
 				// parse sat TP
-				ParseSatTransponders(fe_type, search, position);
+				ParseSatTransponders(FE_ATSC, search, position);
 				
 				position++;
 				
@@ -728,18 +784,6 @@ do_current:
 	}
 
 	dprintf(DEBUG_NORMAL, "[getservices] loadServices: services loaded (%d)...\n", allchans.size());
-
-    	// numerate services
-    	int tvcnt = 1;
-    	int radiocnt = 1;
-
-	for (tallchans::iterator it = allchans.begin(); it != allchans.end(); it++)
-	{
-		if(it->second.getServiceType() == ST_DIGITAL_TELEVISION_SERVICE)
-		    it->second.number = tvcnt++;
-		else if(it->second.getServiceType() == ST_DIGITAL_RADIO_SOUND_SERVICE)
-		    it->second.number = radiocnt++;
-	}
 
 	return 0;
 }

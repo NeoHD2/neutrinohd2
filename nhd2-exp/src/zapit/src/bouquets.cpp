@@ -601,7 +601,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 
 					if(!url.empty())
 					{
-						//t_channel_id id = create_channel_id64(0, 0, 0, 0, 0, url.c_str());
 						// grab channel id from channellist
 						for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
 						{
@@ -617,7 +616,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						ret = allchans.insert (std::pair <t_channel_id, CZapitChannel> (id, CZapitChannel(title, id, url, description)));
 
 						ret.first->second.setServiceType(ST_WEBTV);
-						//cnt++;
 
 						CZapitChannel *chan = findChannelByChannelID(id);
 
@@ -864,8 +862,8 @@ void CBouquetManager::makeRemainingChannelsBouquet(void)
 	bool tomake = config.getBool("makeRemainingChannelsBouquet", true);
 
 	int i = 1;  // tv
-    int j = 1;  // radio
-    int k = 1;  //webtv
+    	int j = 1;  // radio
+    	int k = 1;  //webtv
 
 	for (vector<CZapitBouquet*>::const_iterator it = Bouquets.begin(); it != Bouquets.end(); it++) 
 	{
