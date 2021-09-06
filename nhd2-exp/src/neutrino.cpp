@@ -907,6 +907,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	// progressbar color
 	g_settings.progressbar_color = configfile.getInt32("progressbar_color", 0);
+	g_settings.progressbar_gradient = configfile.getInt32("progressbar_gradient", nogradient);
 
 	// gradient
 	g_settings.Head_gradient = configfile.getInt32("Head_gradient", gradientLight2Dark);
@@ -1347,6 +1348,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setString( "audio_step"	, g_settings.audio_step);
 
 	configfile.setInt32("progressbar_color", g_settings.progressbar_color);
+	configfile.setInt32("progressbar_gradient", g_settings.progressbar_gradient);
 
 	configfile.setInt32("Head_gradient", g_settings.Head_gradient);
 	configfile.setInt32("Foot_gradient", g_settings.Foot_gradient);

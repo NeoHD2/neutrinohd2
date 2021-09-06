@@ -67,7 +67,7 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 	xpos = x;
 	ypos = y;
 
-	frameBuffer->paintBoxRel(x, y, width, height, COL_MENUCONTENT_PLUS_2);	//fill passive
+	frameBuffer->paintBoxRel(x, y, width, height, COL_MENUCONTENT_PLUS_2, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);	//fill passive
 	
 	if (pcr != percent) 
 	{
@@ -96,7 +96,7 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 					else
 						rgb = COL_RED + ((unsigned char)(step*i) <<  8); // adding green
 				
-					frameBuffer->paintBoxRel(posx + i, posy, 1, height, rgb);
+					frameBuffer->paintBoxRel(posx + i, posy, 1, height, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
 	
 				//yellow
@@ -109,7 +109,7 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 					else
 						rgb = COL_YELLOW - ((unsigned char)(step*(b++)) << 16); // removing red
 	
-					frameBuffer->paintBoxRel(posx + i, posy, 1, height, rgb);
+					frameBuffer->paintBoxRel(posx + i, posy, 1, height, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
 
 				//green
@@ -122,14 +122,14 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 					else
 						rgb = COL_YELLOW - ((unsigned char) (step*(b++)) << 16); // removing red
 				
-					frameBuffer->paintBoxRel (posx + i, posy, 1, height, rgb);
+					frameBuffer->paintBoxRel (posx + i, posy, 1, height, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
 			}
 			else
 			{
 				for(; (i < maxi); i++) 
 				{
-					frameBuffer->paintBoxRel(posx + i, posy, 1, height, COL_MENUCONTENT_PLUS_7);
+					frameBuffer->paintBoxRel(posx + i, posy, 1, height, COL_MENUCONTENT_PLUS_7, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
 			}
 		}

@@ -216,6 +216,16 @@ const keyval PROGRESSBAR_COLOR_OPTIONS[PROGRESSBAR_COLOR_OPTION_COUNT] =
 	{ 1, NONEXISTANT_LOCALE, "Mono Chrom" }
 };
 
+#define COLOR_GRADIENT_TYPE_OPTION_COUNT 5
+const keyval COLOR_GRADIENT_TYPE_OPTIONS[COLOR_GRADIENT_TYPE_OPTION_COUNT] =
+{
+	{ nogradient, NONEXISTANT_LOCALE, "no gradient" },
+	{ gradientDark2Light, NONEXISTANT_LOCALE, "Dark to Light" },
+	{ gradientLight2Dark, NONEXISTANT_LOCALE, "Light to Dark" },
+	{ gradientDark2Light2Dark, NONEXISTANT_LOCALE, "Dark to Light to Dark" },
+	{ gradientLight2Dark2Light, NONEXISTANT_LOCALE, "Light to Dark to Light" }
+};
+
 extern CRemoteControl * g_RemoteControl;	// defined neutrino.cpp
 
 CGeneralSettings::CGeneralSettings()
@@ -433,6 +443,9 @@ void CGeneralSettings::showMenu()
 
 	// progressbar color
 	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_PROGRESSBAR_COLOR, &g_settings.progressbar_color, PROGRESSBAR_COLOR_OPTIONS, PROGRESSBAR_COLOR_OPTION_COUNT, true));
+	
+	// progressbar_gradient
+	miscSettingsGeneral.addItem(new CMenuOptionChooser("ProgressBar Gradient", &g_settings.progressbar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
 
 	// key
 	miscSettingsGeneral.addItem(new CMenuSeparator(LINE));
