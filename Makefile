@@ -134,8 +134,7 @@ $(PLUGINS_SRC)/config.status: $(PLUGINS_SRC) $(DEST)
 			--with-configdir=$(DEST)/var/tuxbox/config \
 			--enable-testing \
 			--enable-python \
-			--enable-lua \
-            --disable-dependency-tracking
+			--enable-lua
 
 plugins-clean:
 	-$(MAKE) -C $(PLUGINS_SRC) clean
