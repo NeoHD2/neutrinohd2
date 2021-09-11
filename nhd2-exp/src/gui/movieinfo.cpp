@@ -1511,7 +1511,14 @@ void CMovieInfoWidget::funArt()
 	playBox.iWidth = 300;
 	playBox.iHeight = 60;
 	playBox.iX = box.iX + 10;
-	playBox.iY = box.iY + box.iHeight - 10 - 60;
+	playBox.iY = box.iY + box.iHeight - 10 - playBox.iHeight;
+	
+	// infoBox
+	CBox infoBox;
+	infoBox.iWidth = 300;
+	infoBox.iHeight = 60;
+	infoBox.iX = box.iX + 10 + playBox.iWidth + 10;
+	infoBox.iY = box.iY + box.iHeight - 10 - infoBox.iHeight;
 
 	// textBox
 	CBox textBox;
@@ -1519,14 +1526,21 @@ void CMovieInfoWidget::funArt()
 	textBox.iHeight = box.iHeight - playBox.iHeight - starBox.iHeight - titleBox.iHeight - 4*10 - 100;
 	textBox.iX = box.iX + 10;
 	textBox.iY = starBox.iY + 10 + 60;
+	
+	// artBox
+	CBox artBox;
+	artBox.iWidth = box.iWidth/2;
+	artBox.iHeight = box.iHeight;
+	artBox.iX = box.iX + box.iWidth/2;
+	artBox.iY = box.iY;
 
 	CFrameBox * testFrameBox = new CFrameBox(&box);
 
-	CWidget * widget = new CWidget();
+	CWidget * widget = new CWidget(&box);
 
 	// artFrame
 	CFrame * artFrame = new CFrame(FRAME_PICTURE_NOTSELECTABLE);
-	artFrame->setPosition(box.iX + box.iWidth/2, box.iY, box.iWidth/2, box.iHeight);
+	artFrame->setPosition(&artBox);
 	artFrame->setIconName(movieFile.tfile.c_str());
 
 	testFrameBox->addFrame(artFrame);
@@ -1588,7 +1602,7 @@ void CMovieInfoWidget::funArt()
 
 	// infoFrame
 	CFrame * infoFrame = new CFrame();
-	infoFrame->setPosition(playBox.iX + 300 + 10, playBox.iY, 300, 60);
+	infoFrame->setPosition(&infoBox);
 	infoFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 	infoFrame->setTitle("Movie Details");
 	infoFrame->setIconName(NEUTRINO_ICON_INFO);

@@ -6140,9 +6140,6 @@ void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_trans
 {
 	dprintf(DEBUG_NORMAL, "[sectionsd] sectionsd:insertEventsfromHttp: url:%s\n", url.c_str());
 
-	//if(!g_settings.epg_enable_online_epg)
-	//	return;
-
 	std::string answer;
 
 	//
@@ -6155,12 +6152,12 @@ void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_trans
 	char* descriptionextended = NULL;
 
 	answer = "/tmp/epg.xml";
+	
+	if (!::downloadUrl(url, answer))
+		return;
 
 	if(g_settings.epg_serverbox_gui == SNeutrinoSettings::SATIP_SERVERBOX_GUI_NHD2)
 	{
-		if (!::downloadUrl(url, answer))
-			return;
-
 		//NHD2
 		/*
 		<epglist>
@@ -6317,9 +6314,6 @@ void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_trans
 	}
 	else if(g_settings.epg_serverbox_gui == SNeutrinoSettings::SATIP_SERVERBOX_GUI_NMP)
 	{
-		if (!::downloadUrl(url, answer))
-			return;
-
 		//NMP
 		/*
 		-<epglist>
@@ -6496,8 +6490,6 @@ void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_trans
 			</e2event>
 		</e2eventlist>
 		*/
-		if (!::downloadUrl(url, answer))
-			return;
 
 		//
 		_xmlNodePtr event = NULL;
