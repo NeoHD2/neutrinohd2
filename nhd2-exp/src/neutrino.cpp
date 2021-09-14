@@ -692,18 +692,12 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		g_settings.timing[i] = configfile.getInt32(locale_real_names[timing_setting_name[i]], default_timing[i]);
 
 	// screen setup
-#if defined (USE_OPENGL)
-	g_settings.screen_StartX = configfile.getInt32( "screen_StartX", 145 );
-#else
-	g_settings.screen_StartX = configfile.getInt32( "screen_StartX", 35 );
-#endif	
+	g_settings.screen_StartX = configfile.getInt32( "screen_StartX", 35 );	
 	g_settings.screen_StartY = configfile.getInt32( "screen_StartY", 35 );
-#if defined (USE_OPENGL)
-	g_settings.screen_EndX = configfile.getInt32( "screen_EndX", frameBuffer->getScreenWidth(true) - 145 );
-#else
-	g_settings.screen_EndX = configfile.getInt32( "screen_EndX", frameBuffer->getScreenWidth(true) - 35 );
-#endif	
+	g_settings.screen_EndX = configfile.getInt32( "screen_EndX", frameBuffer->getScreenWidth(true) - 35 );	
 	g_settings.screen_EndY = configfile.getInt32( "screen_EndY", frameBuffer->getScreenHeight(true) - 35 );
+	
+	//
 	g_settings.screen_width = configfile.getInt32("screen_width", frameBuffer->getScreenWidth(true) );
 	g_settings.screen_height = configfile.getInt32("screen_height", frameBuffer->getScreenHeight(true) );
 	g_settings.screen_xres = configfile.getInt32("screen_xres", 120);
@@ -959,12 +953,9 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	
 	
 	//set OSD resolution
-#if defined (USE_OPENGL)
-#define DEFAULT_X_OFF 145
-#else
 #define DEFAULT_X_OFF 35
-#endif
 #define DEFAULT_Y_OFF 35
+
 	if((g_settings.screen_width != (int) frameBuffer->getScreenWidth(true)) || (g_settings.screen_height != (int) frameBuffer->getScreenHeight(true))) 
 	{
 		g_settings.screen_StartX = DEFAULT_X_OFF;
