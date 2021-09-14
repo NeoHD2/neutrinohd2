@@ -304,19 +304,33 @@ void CVFD::setlcdparameter(void)
 	setlcdparameter( (mode == MODE_STANDBY) ? g_settings.lcd_setting[SNeutrinoSettings::LCD_STANDBY_BRIGHTNESS] : g_settings.lcd_setting[SNeutrinoSettings::LCD_BRIGHTNESS], last_toggle_state_power);
 }
 
-void CVFD::showServicename(const std::string & name) // UTF-8
+void CVFD::showServicename(const std::string& name, const bool perform_wakeup, int pos) // UTF-8
 {
-	if(!has_lcd || is4digits) 
-		return;
-		
 	dprintf(DEBUG_DEBUG, "CVFD::showServicename: %s\n", name.c_str());
 	
+	if(!has_lcd /*|| is4digits*/) 
+		return;
+		
+	//dprintf(DEBUG_DEBUG, "CVFD::showServicename: %s\n", name.c_str());
+	
 	servicename = name;
+	serviceNum = pos;
 
 	if (mode != MODE_TVRADIO && mode != MODE_WEBTV)
 		return;
 
-	ShowText((char *)name.c_str() );
+	if (is4digits)
+	{
+		char tmp[5];
+						
+		sprintf(tmp, "%04d", pos);
+						
+		ShowText(tmp); // UTF-8
+	}
+	else
+	{
+		ShowText((char *)name.c_str() );
+	}
 
 	wake_up();
 }
@@ -376,19 +390,31 @@ void CVFD::showRCLock(int duration)
 
 void CVFD::showMenuText(const int position, const char * text, const int highlight, const bool utf_encoded)
 {
-	if(!has_lcd || is4digits) 
+	if(!has_lcd) 
 		return;
 
 	if (mode != MODE_MENU_UTF8)
 		return;
 
-	ShowText((char *)text);
+	if (is4digits)
+	{
+		char tmp[5];
+						
+		sprintf(tmp, "%04d", position);
+						
+		ShowText(tmp); // UTF-8
+	}
+	else
+	{
+		ShowText((char *)text);
+	}
+	
 	wake_up();
 }
 
-void CVFD::showAudioTrack(const std::string & artist, const std::string & title, const std::string & album)
+void CVFD::showAudioTrack(const std::string& artist, const std::string& title, const std::string& album, int pos)
 {
-	if(!has_lcd || is4digits) 
+	if(!has_lcd) 
 		return;	
 
 	if (mode != MODE_AUDIO) 
@@ -396,7 +422,19 @@ void CVFD::showAudioTrack(const std::string & artist, const std::string & title,
 
 	dprintf(DEBUG_DEBUG, "CVFD::showAudioTrack: %s\n", title.c_str());
 	
-	ShowText((char *)title.c_str());
+	if (is4digits)
+	{
+		char tmp[5];
+						
+		sprintf(tmp, "%04d", pos);
+						
+		ShowText(tmp); // UTF-8
+	}
+	else
+	{
+		ShowText((char *)title.c_str());
+	}
+	
 	wake_up();
 }
 
@@ -451,7 +489,8 @@ void CVFD::setMode(const MODES m, const char * const title)
 	switch (m) 
 	{
 		case MODE_TVRADIO:	
-			showServicename(servicename);
+			showServicename(servicename, true, serviceNum);
+			
 #if !defined(PLATFORM_SPARK7162)			
 			ShowIcon(VFD_ICON_MP3, false);	        // NOTE: @dbo  //ICON_MP3 and ICON_DOLBY switched in infoviewer 
 #endif			
@@ -514,7 +553,11 @@ void CVFD::setMode(const MODES m, const char * const title)
 			ClearIcons();
 #if defined(PLATFORM_SPARK7162)
 			ShowIcon(VFD_ICON_STANDBY, true);	
-#endif			
+#endif
+			//
+			if (!is4digits)
+				ShowText((char *) "BYE");
+							
 			showclock = true;
 			showTime(true);      	/* "showclock = true;" implies that "showTime();" does a "displayUpdate();" */
 						/* "showTime()" clears the whole lcd in MODE_STANDBY */
@@ -534,7 +577,7 @@ void CVFD::setMode(const MODES m, const char * const title)
 			break;
 			
 		case MODE_WEBTV: 
-			showServicename(servicename);
+			showServicename(servicename, true, serviceNum);
 			ShowIcon(VFD_ICON_TV, false);			
 			showclock = false;
 			break;
@@ -962,6 +1005,7 @@ void CVFD::setFPTime(void)
 #endif
 }
 
+/*
 void CVFD::LCDshowText(int pos)
 {
 	if (is4digits)
@@ -973,3 +1017,6 @@ void CVFD::LCDshowText(int pos)
 		ShowText(tmp); // UTF-8
 	}
 }
+*/
+
+

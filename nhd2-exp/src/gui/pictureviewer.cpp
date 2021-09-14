@@ -305,10 +305,11 @@ void CPictureViewerGui::view(unsigned int index)
 {
 	selected = index;
 	
-	if (CVFD::getInstance()->is4digits)
-		CVFD::getInstance()->LCDshowText(selected + 1);
-	else
-		CVFD::getInstance()->showMenuText(0, playlist[index].Name.c_str());
+#if ENABLE_LCD
+	CVFD::getInstance()->showMenuText(0, playlist[index].Name.c_str());
+#else	
+	CVFD::getInstance()->showMenuText(selected + 1, playlist[index].Name.c_str());
+#endif
 	
 	g_PicViewer->showImage(playlist[index].Filename);
 }

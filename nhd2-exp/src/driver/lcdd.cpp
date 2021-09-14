@@ -504,7 +504,7 @@ void CLCD::showTextScreen(const std::string & big, const std::string & small, co
 	displayUpdate();
 }
 
-void CLCD::showServicename(const std::string name, const bool perform_wakeup)
+void CLCD::showServicename(const std::string name, const bool perform_wakeup, int pos)
 {
 	/*
 	   1 = show servicename
@@ -835,7 +835,7 @@ void CLCD::showMenuText(const int position, const char * text, const int highlig
 	displayUpdate();
 }
 
-void CLCD::showAudioTrack(const std::string & artist, const std::string & title, const std::string & album)
+void CLCD::showAudioTrack(const std::string & artist, const std::string & title, const std::string & album, int pos)
 {
 	if(!has_lcd) 
 		return;

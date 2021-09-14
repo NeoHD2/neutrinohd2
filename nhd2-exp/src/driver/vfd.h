@@ -419,6 +419,7 @@ class CVFD
 		MODES			mode;
 
 		std::string		servicename;
+		int			serviceNum;
 		char			volume;
 		unsigned char		percentOver;
 		bool			muted;
@@ -450,13 +451,13 @@ class CVFD
 		static CVFD * getInstance();
 		void init();
 		void setMode(const MODES m, const char * const title = "");
-		void showServicename(const std::string & name); // UTF-8
+		void showServicename(const std::string& name, const bool perform_wakeup = true, int pos = 0); // UTF-8
 		void showTime(bool force = false);
 		/** blocks for duration seconds */
 		void showRCLock(int duration = 2);
 		
 		void showMenuText(const int position, const char * text, const int highlight = -1, const bool utf_encoded = false);
-		void showAudioTrack(const std::string & artist, const std::string & title, const std::string & album);
+		void showAudioTrack(const std::string& artist, const std::string& title, const std::string& album, int pos);
 		void showAudioPlayMode(AUDIOMODES m=AUDIO_MODE_PLAY);
 	
 		void setBrightness(int);
@@ -482,7 +483,7 @@ class CVFD
 #endif		
 		void ShowIcon(vfd_icon icon, bool show);		
 		void ShowText(const char * str);
-		void LCDshowText(int pos);
+		//void LCDshowText(int pos);
 		
 		void setFan(bool enable);
 		void setFPTime(void);

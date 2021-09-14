@@ -863,10 +863,7 @@ void CAudioPlayerGui::paintLCD()
 			CVFD::getInstance()->showAudioPlayMode(CVFD::AUDIO_MODE_PLAY);
 
 			// audio-track	
-			if (CVFD::getInstance()->is4digits)
-				CVFD::getInstance()->LCDshowText(m_current + 1);
-			else
-				CVFD::getInstance()->showAudioTrack(m_playlist[m_current].MetaData.artist, m_playlist[m_current].MetaData.title, m_playlist[m_current].MetaData.album);			
+			CVFD::getInstance()->showAudioTrack(m_playlist[m_current].MetaData.artist, m_playlist[m_current].MetaData.title, m_playlist[m_current].MetaData.album, m_current + 1);			
 					
 #if ENABLE_LCD
 			if(m_playlist[m_current].FileExtension != CFile::EXTENSION_URL && m_time_total != 0)
@@ -876,26 +873,17 @@ void CAudioPlayerGui::paintLCD()
 			break;
 		case CAudioPlayerGui::PAUSE:
 			CVFD::getInstance()->showAudioPlayMode(CVFD::AUDIO_MODE_PAUSE);
-			if (CVFD::getInstance()->is4digits)
-				CVFD::getInstance()->LCDshowText(m_current + 1);
-			else
-				CVFD::getInstance()->showAudioTrack(m_playlist[m_current].MetaData.artist, m_playlist[m_current].MetaData.title, m_playlist[m_current].MetaData.album);				
+			CVFD::getInstance()->showAudioTrack(m_playlist[m_current].MetaData.artist, m_playlist[m_current].MetaData.title, m_playlist[m_current].MetaData.album, m_current + 1);				
 			break;
 			
 		case CAudioPlayerGui::FF:
 			CVFD::getInstance()->showAudioPlayMode(CVFD::AUDIO_MODE_FF);
-			if (CVFD::getInstance()->is4digits)
-				CVFD::getInstance()->LCDshowText(m_current + 1);
-			else
-				CVFD::getInstance()->showAudioTrack(m_playlist[m_current].MetaData.artist, m_playlist[m_current].MetaData.title, m_playlist[m_current].MetaData.album);				
+			CVFD::getInstance()->showAudioTrack(m_playlist[m_current].MetaData.artist, m_playlist[m_current].MetaData.title, m_playlist[m_current].MetaData.album, m_current + 1);				
 			break;
 			
 		case CAudioPlayerGui::REV:
 			CVFD::getInstance()->showAudioPlayMode(CVFD::AUDIO_MODE_REV);
-			if (CVFD::getInstance()->is4digits)
-				CVFD::getInstance()->LCDshowText(m_current + 1);
-			else
-				CVFD::getInstance()->showAudioTrack(m_playlist[m_current].MetaData.artist, m_playlist[m_current].MetaData.title, m_playlist[m_current].MetaData.album);			
+			CVFD::getInstance()->showAudioTrack(m_playlist[m_current].MetaData.artist, m_playlist[m_current].MetaData.title, m_playlist[m_current].MetaData.album, m_current + 1);			
 			break;
 	}
 

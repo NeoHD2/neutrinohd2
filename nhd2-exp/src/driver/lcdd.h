@@ -186,7 +186,7 @@ class CLCD
 		void setMode(const MODES m, const char * const title = "");
 		MODES getMode() { return mode; };
 
-		void showServicename(const std::string name, const bool perform_wakeup = true); // UTF-8
+		void showServicename(const std::string name, const bool perform_wakeup = true, int pos = 0); // UTF-8
 		void setEPGTitle(const std::string title);
 		void setMovieInfo(const AUDIOMODES playmode, const std::string big, const std::string small, const bool centered = false);
 		void setMovieAudio(const bool is_ac3);
@@ -197,7 +197,7 @@ class CLCD
 		void showVolume(const char vol, const bool perform_update = true);
 		void showPercentOver(const unsigned char perc, const bool perform_update = true, const MODES m = MODE_TVRADIO);
 		void showMenuText(const int position, const char * text, const int highlight = -1, const bool utf_encoded = false);
-		void showAudioTrack(const std::string & artist, const std::string & title, const std::string & album);
+		void showAudioTrack(const std::string & artist, const std::string & title, const std::string & album, int pos = 0);
 		void showAudioPlayMode(AUDIOMODES m=AUDIO_MODE_PLAY);
 		void showAudioProgress(const char perc, bool isMuted);
 		void setBrightness(int);

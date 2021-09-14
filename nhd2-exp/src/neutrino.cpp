@@ -2343,10 +2343,7 @@ void CNeutrinoApp::InitZapper()
 		channelList->adjustToChannelID(live_channel_id);
 
 		// show service name in vfd (250hd has only 4 digit so we show service number)
-		if (CVFD::getInstance()->is4digits)
-			CVFD::getInstance()->LCDshowText(channelList->getActiveChannelNumber());
-		else
-			CVFD::getInstance()->showServicename(channelList->getActiveChannelName());	
+		CVFD::getInstance()->showServicename(channelList->getActiveChannelName(), true, channelList->getActiveChannelNumber());	
 
 		// start epg scanning
 		g_Sectionsd->setPauseScanning(false);
@@ -4329,10 +4326,6 @@ void CNeutrinoApp::ExitRun(int retcode)
 		{
 			// vfd mode shutdown
 			CVFD::getInstance()->setMode(CVFD::MODE_SHUTDOWN);
-		
-			// show good bye in VFD
-			if (!CVFD::getInstance()->is4digits)
-				CVFD::getInstance()->ShowText((char *) "BYE");
 		}
 
 		// stop playback
@@ -5119,9 +5112,6 @@ void CNeutrinoApp::standbyMode( bool bOnOff )
 			videoDecoder->SetInput(STANDBY_OFF);
 #endif		
 				
-		if (CVFD::getInstance()->is4digits)
-			CVFD::getInstance()->LCDshowText(channelList->getActiveChannelNumber());
-		
 		// setmode?radio:tv/iptv
 		mode = mode_unknown;
 
