@@ -546,6 +546,10 @@ void CVFD::setMode(const MODES m, const char * const title)
 			ShowIcon(VFD_ICON_CLOCK, timer_icon);	
 #endif			
 			showclock = false;
+			
+			//
+			ShowText((char *) "BYE");
+			
 			break;
 
 		case MODE_STANDBY:
@@ -554,9 +558,6 @@ void CVFD::setMode(const MODES m, const char * const title)
 #if defined(PLATFORM_SPARK7162)
 			ShowIcon(VFD_ICON_STANDBY, true);	
 #endif
-			//
-			if (!is4digits)
-				ShowText((char *) "BYE");
 							
 			showclock = true;
 			showTime(true);      	/* "showclock = true;" implies that "showTime();" does a "displayUpdate();" */
