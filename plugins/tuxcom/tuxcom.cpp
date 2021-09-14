@@ -2293,11 +2293,13 @@ int DoMove(struct fileentry* pfe, int typ, int checktype)
 //
 void DoViewFile()
 {
+	printf("tuxcom:DoViewFile():\n");
+	
 	char action[4000];
 	FILE* pFile;
 	struct fileentry* pfe = GetSelected(curframe);
 	
-	if (pfe->fentry.st_size >= FILEBUFFER_SIZE)
+	//if (pfe->fentry.st_size >= FILEBUFFER_SIZE)
 	{
 		if (finfo[curframe].zipfile[0] != 0x00)
 		{
@@ -2309,12 +2311,14 @@ void DoViewFile()
 			sprintf(action,"%s%s",finfo[curframe].path, pfe->name);
 			pFile = fopen(action,"r");
 		}
+		
 		if  (pFile != NULL)
 		{
 			ShowFile(pFile, pfe->name);
 			fclose(pFile);
 		}
 	}
+/*
 	else
 	{
 		if (finfo[curframe].zipfile[0] != 0x00)
@@ -2330,6 +2334,7 @@ void DoViewFile()
 			DoEditFile(action, action, NO);
 		}
 	}
+*/
 
 }
 
@@ -3487,6 +3492,8 @@ int FTPcmd(int frame, const char *s1, const char *s2, char *buf)
 void ShowFile(FILE* _pipe, char* szAction)
 {
 	// Code from splugin (with little modifications...)
+	printf("tuxcom:showFile():\n");
+	
 	char *p;
 	char line[256];
 
@@ -3506,7 +3513,7 @@ void ShowFile(FILE* _pipe, char* szAction)
 		if ( p )
 			*p = 0;
 		row++;
-		RenderString(line, 2*BORDERSIZE, 2*BORDERSIZE + FONTHEIGHT_BIG + row*FONTHEIGHT_SMALL -FONT_OFFSET, viewx - 4*BORDERSIZE, TC_LEFT, SMALL, WHITE);
+		RenderString(line, 2*BORDERSIZE, 2*BORDERSIZE + FONTHEIGHT_BIG + row*FONTHEIGHT_SMALL - FONT_OFFSET, viewx - 4*BORDERSIZE, TC_LEFT, SMALL, WHITE);
 
 		if (row > framerows - 2)
 		{
@@ -3519,7 +3526,8 @@ void ShowFile(FILE* _pipe, char* szAction)
 					break;
 			}
 			row = 0;
-			if (rccode == RC_HOME) break;
+			if (rccode == RC_HOME) 
+				break;
 			// Render output window
 			RenderBox(               0, 0                          , viewx     , viewy-MENUSIZE             , FILL, trans_map[curvisibility]);
 			RenderBox(               0, 0                          , BORDERSIZE, viewy-MENUSIZE             , FILL, WHITE);
