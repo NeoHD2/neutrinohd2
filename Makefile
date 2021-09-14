@@ -87,13 +87,12 @@ $(N_SRC)/config.status: | $(N_SRC) $(DEST)
 			--with-plugindir=$(DEST)/var/tuxbox/plugins \
 			--with-configdir=$(DEST)/var/tuxbox/config \
 			--enable-opengl \
+			--enable-gstreamer \
 			--enable-playback \
-			--enable-lcd \
 			--enable-scart \
 			--enable-ci \
 			--enable-python \
-			--enable-lua \
-			--enable-gstreamer
+			--enable-lua
 $(DEST):
 	mkdir $@
 
