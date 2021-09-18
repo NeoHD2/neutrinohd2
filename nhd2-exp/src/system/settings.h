@@ -510,55 +510,55 @@ extern const neutrino_locale_t timing_setting_name[TIMING_SETTING_COUNT];
 
 // lcdd
 #if defined(ENABLE_LCD) && (defined(PLATFORM_DREAMBOX) || defined(PLATFORM_GIGABLUE) || defined(PLATFORM_VUPLUS))
-#define DEFAULT_LCD_BRIGHTNESS			0xFF
+#define DEFAULT_LCD_BRIGHTNESS		0xFF
 #define DEFAULT_LCD_STANDBYBRIGHTNESS		0x7F
 #else
-#define DEFAULT_LCD_BRIGHTNESS			0x07
+#define DEFAULT_LCD_BRIGHTNESS		0x07
 #define DEFAULT_LCD_STANDBYBRIGHTNESS		0x07
 #endif
 #define DEFAULT_LCD_CONTRAST			0x0F
 #define DEFAULT_LCD_POWER			0x01
 #define DEFAULT_LCD_INVERSE			0x00
 #define DEFAULT_LCD_AUTODIMM			0x00
-#define DEFAULT_LCD_SHOW_VOLUME			0x01
-#define DEFAULT_LCD_SCROLL_TEXT			0x00
+#define DEFAULT_LCD_SHOW_VOLUME		0x01
+#define DEFAULT_LCD_SCROLL_TEXT		0x00
 #define DEFAULT_LCD_EPGMODE			0x01	/* 0x1 = name 0x2 = epgtitle 0x4 = separator */
 #define DEFAULT_LCD_EPGALIGN			0x00
 #define DEFAULT_LCD_DUMP_PNG			0x00
 
 // corners (osd)
-#define NO_RADIUS			0
-#define ROUNDED			1
+#define NO_RADIUS				0
+#define ROUNDED				1
 
-#define RADIUS_LARGE    		(g_settings.rounded_corners ? 8 : NO_RADIUS)
-#define RADIUS_MID      		(g_settings.rounded_corners ? 4 : NO_RADIUS)
-#define RADIUS_SMALL    		(g_settings.rounded_corners ? 2 : NO_RADIUS)
+#define RADIUS_LARGE    			(g_settings.rounded_corners ? 8 : NO_RADIUS)
+#define RADIUS_MID      			(g_settings.rounded_corners ? 4 : NO_RADIUS)
+#define RADIUS_SMALL    			(g_settings.rounded_corners ? 2 : NO_RADIUS)
 
-#define BORDER_LEFT			10
-#define BORDER_RIGHT			10
+#define BORDER_LEFT				10
+#define BORDER_RIGHT				10
 #define SCROLLBAR_WIDTH			15
-#define SCROLLBAR_INNER_WIDTH		11
-#define CONNECTLINEBOX_WIDTH    	15
-#define ICON_OFFSET			5	// offset from left border
-#define ICON_TO_ICON_OFFSET		2
+#define SCROLLBAR_INNER_WIDTH			11
+#define CONNECTLINEBOX_WIDTH    		15
+#define ICON_OFFSET				5	// offset from left border
+#define ICON_TO_ICON_OFFSET			2
 
 // CMenuWidget
-#define ITEM_ICON_W		128
-#define ITEM_ICON_H		128
-#define ITEM_ICON_W_MINI	100
-#define ITEM_ICON_H_MINI	80
+#define ITEM_ICON_W				128
+#define ITEM_ICON_H				128
+#define ITEM_ICON_W_MINI			100
+#define ITEM_ICON_H_MINI			80
 
 // CHintBox
-#define HINTBOX_MAX_HEIGHT 420
-#define HINTBOX_MAX_WIDTH  		(g_settings.screen_EndX - g_settings.screen_StartX )
+#define HINTBOX_MAX_HEIGHT 			0.328*DEFAULT_XRES //420
+#define HINTBOX_MAX_WIDTH  			(g_settings.screen_EndX - g_settings.screen_StartX )
 
 // CMessageBox
-#define MESSAGEBOX_MAX_HEIGHT 		420
+#define MESSAGEBOX_MAX_HEIGHT 		0.328*DEFAULT_XRES //420
 #define MESSAGEBOX_MAX_WIDTH  		(g_settings.screen_EndX - g_settings.screen_StartX )
 
 // 
-#define PIC_W 		320
-#define PIC_H		256
+#define PIC_W 					0.25*DEFAULT_XRES  //320
+#define PIC_H					0.355*DEFAULT_YRES //256
 
 // CInfoBox
 #define MAX_WINDOW_WIDTH  			(g_settings.screen_EndX - g_settings.screen_StartX )
@@ -568,15 +568,15 @@ extern const neutrino_locale_t timing_setting_name[TIMING_SETTING_COUNT];
 #define MIN_WINDOW_HEIGHT 			40
 
 // CTextBox
-#define THUMBNAIL_OFFSET	3
-#define BIG_FONT_FAKTOR 	1.5
+#define THUMBNAIL_OFFSET			3
+#define BIG_FONT_FAKTOR 			1.5
 
 // multi widget
-#define INTER_FRAME_SPACE 	5 
+#define INTER_FRAME_SPACE 			5 
 
 // widget
-#define MENU_WIDTH			600
-#define MENU_HEIGHT			600
+#define MENU_WIDTH				0.468*DEFAULT_XRES 	//600
+#define MENU_HEIGHT				0.833*DEFAULT_YRES	//600
 
 // parentallock
 const int PARENTALLOCK_PROMPT_NEVER          = 0;

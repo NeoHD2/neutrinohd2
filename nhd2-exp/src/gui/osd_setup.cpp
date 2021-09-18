@@ -493,8 +493,6 @@ void CLanguageSettings::showMenu()
 	struct dirent **namelist;
 	int n;
 
-	//printf("scanning locale dir now....(perhaps)\n");
-
 	char *path[] = {(char *) DATADIR "/neutrino/locale", (char *) CONFIGDIR "/locale"};
 
 	for(int p = 0; p < 2; p++) 

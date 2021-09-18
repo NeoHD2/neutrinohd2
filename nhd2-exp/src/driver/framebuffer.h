@@ -143,7 +143,7 @@ class CFrameBuffer
 			uint8_t r;
 			uint8_t g;
 			uint8_t b;
-		} /*__attribute__ ((packed))*/;
+		};
 
 		struct rawHeader
 		{
@@ -152,7 +152,7 @@ class CFrameBuffer
 			uint8_t height_lo;
 			uint8_t height_hi;
 			uint8_t transp;
-		} /*__attribute__ ((packed))*/;
+		};
 
 		std::string     iconBasePath;
 		std::string	hintIconBasePath;
@@ -178,7 +178,7 @@ class CFrameBuffer
 		int m_manual_blit;
 		
 #ifdef USE_OPENGL
-		GLThreadObj *mpGLThreadObj; /* the thread object */
+		GLThreadObj *mpGLThreadObj; // the thread object
 #endif		
 
 	public:
