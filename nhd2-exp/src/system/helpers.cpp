@@ -992,6 +992,8 @@ CFileHelpers* CFileHelpers::getInstance()
 
 bool CFileHelpers::copyFile(const char *Src, const char *Dst, mode_t mode)
 {
+	dprintf(DEBUG_NORMAL, "CFileHelpers::copyFile: %s to %s\n", Src, Dst);
+	
 	int FileBufSize = 0xFFFF;
 	int fd1, fd2;
 

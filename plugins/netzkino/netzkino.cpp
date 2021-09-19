@@ -68,8 +68,6 @@ CNKMovies::CNKMovies(int mode, int id, std::string title)
 	catMode = mode;
 	catID = id;
 	caption = title;
-
-	//recordingstatus = 0;
 }
 
 CNKMovies::~CNKMovies()
@@ -299,12 +297,6 @@ void CNKMovies::showMovieInfo(MI_MOVIE_INFO& movie)
 
 void CNKMovies::recordMovie(MI_MOVIE_INFO& movie)
 {
-	std::string infoString = " ";
-
-	m_movieInfo.encodeMovieInfoXml(&infoString, &movie);
-
-	//::start_file_recording(movie.epgTitle.c_str(), infoString.c_str(), movie.file.Name.c_str());
-
 	CProgressWindow * progressWindow = new CProgressWindow();
 	progressWindow->setTitle("NetzKino: downloading...");
 
@@ -318,19 +310,21 @@ void CNKMovies::recordMovie(MI_MOVIE_INFO& movie)
 	target += "." + getFileExt(movie.file.Name);
 
 	httpTool.downloadFile(movie.file.Name.c_str(), target.c_str(), 100);
-}
+	
+	// write .xml
+	movie.file.Name = target;
+	std::string infoString = " ";
 
-void CNKMovies::stopRecord(MI_MOVIE_INFO& movie)
-{
-/*
-	std::string extMessage = " ";
-
-	m_movieInfo.encodeMovieInfoXml(&extMessage, &movie);
-
-	::stop_recording(extMessage.c_str(), true);
-
-	//recordingstatus = 0;
-*/
+	m_movieInfo.encodeMovieInfoXml(&infoString, &movie);
+	m_movieInfo.saveMovieInfo(movie);
+	
+	// write thumbnail
+	string tfile = g_settings.network_nfs_recordingdir;
+	tfile += "/";
+	tfile += movie.epgTitle.c_str();
+	tfile += ".jpg";
+	
+	CFileHelpers::getInstance()->copyFile(movie.tfile.c_str(), tfile.c_str());
 }
 
 int CNKMovies::exec(CMenuTarget* parent, const std::string& actionKey)
@@ -343,7 +337,6 @@ int CNKMovies::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(actionKey == "play")
 	{
 		right_selected = rightWidget->getSelected();
-		//playMovie(m_vMovieInfo[right_selected]);
 
 		CMovieInfoWidget movieInfoWidget;
 		movieInfoWidget.setMovie(m_vMovieInfo[right_selected]);
@@ -363,17 +356,7 @@ int CNKMovies::exec(CMenuTarget* parent, const std::string& actionKey)
 	{
 		right_selected = rightWidget->getSelected();
 
-		//if (recordingstatus == 0)
-			recordMovie(m_vMovieInfo[right_selected]);
-/*
-		else if (recordingstatus == 1)
-		{
-			if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWN_RECODING_QUERY, mbrYes, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)
-			{
-				stopRecord(m_vMovieInfo[right_selected]);
-			}
-		}
-*/
+		recordMovie(m_vMovieInfo[right_selected]);
 
 		return RETURN_REPAINT;
 	}
@@ -415,20 +398,6 @@ int CNKMovies::exec(CMenuTarget* parent, const std::string& actionKey)
 	}
 	else if(actionKey == "exit")
 	{
-/*
-		if (recordingstatus == 1)
-		{
-			if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWN_RECODING_QUERY, mbrYes, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)
-			{
-				stopRecord(m_vMovieInfo[right_selected]);
-
-				return RETURN_EXIT_ALL;
-			}
-			else
-				return RETURN_REPAINT;
-		}
-*/
-
 		return RETURN_EXIT_ALL;
 	}
 

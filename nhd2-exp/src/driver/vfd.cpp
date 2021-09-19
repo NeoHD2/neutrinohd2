@@ -1003,21 +1003,7 @@ void CVFD::setFPTime(void)
 		perror("VFDPWRLED");
 	
 	closeDevice();
+#else	
 #endif
 }
-
-/*
-void CVFD::LCDshowText(int pos)
-{
-	if (is4digits)
-	{
-		char tmp[5];
-						
-		sprintf(tmp, "%04d", pos);
-						
-		ShowText(tmp); // UTF-8
-	}
-}
-*/
-
 

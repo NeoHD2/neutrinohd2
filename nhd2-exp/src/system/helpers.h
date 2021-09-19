@@ -159,7 +159,7 @@ class CFileHelpers
 		void addRecursiveDir(CFileList * re_filelist, std::string rpath, CFileFilter * fileFilter = NULL);
 
 		//
-		bool copyFile(const char *Src, const char *Dst, mode_t mode);
+		bool copyFile(const char *Src, const char *Dst, mode_t mode = 00664);
 		std::string loadFile(CFile & file, int buffer_size);
 		bool saveFile(const CFile& file, const char *text, const int text_size);
 };

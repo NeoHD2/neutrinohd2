@@ -140,3 +140,4 @@ bool CHTTPTool::downloadFile(const std::string &URL, const char * const download
 
 	return res == 0;
 }
+

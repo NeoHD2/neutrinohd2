@@ -85,6 +85,7 @@ CFrameBuffer::CFrameBuffer()
 #endif
 
 	iconBasePath = "";
+	hintIconBasePath = "";
 	available  = 0;
 	cmap.start = 0;
 	cmap.len = 256;
@@ -157,7 +158,7 @@ void CFrameBuffer::init(const char * const fbDevice)
 
 		if(mpGLThreadObj)
 		{ 
-			/* kick off the GL thread for the window */
+			// kick off the GL thread for the window
 			mpGLThreadObj->Start();
 			mpGLThreadObj->waitInit();
 		}
@@ -210,7 +211,7 @@ void CFrameBuffer::init(const char * const fbDevice)
 
 #ifdef __sh__ 
 	//we add 2MB at the end of the buffer, the rest does the blitter 
-	lfb += 1920 * 1080;
+	lfb += 1920*1080;
 
 	if (available / (1024 * 1024) < 12)
 	{
@@ -372,7 +373,7 @@ t_fb_var_screeninfo *CFrameBuffer::getScreenInfo()
 	return &screeninfo;
 }
 
-// borrowed from e2 :-P
+//
 void CFrameBuffer::setFrameBufferMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 {
 	screeninfo.xres_virtual = screeninfo.xres = nxRes;

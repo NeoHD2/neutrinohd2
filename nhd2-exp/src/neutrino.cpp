@@ -331,7 +331,6 @@ CNeutrinoApp::CNeutrinoApp()
 	standby_pressed_at.tv_sec = 0;
 
 	frameBuffer = CFrameBuffer::getInstance();
-	//frameBuffer->setIconBasePath(DATADIR "/neutrino/icons/");
 	SetupFrameBuffer();
 
 	mode = mode_unknown;
