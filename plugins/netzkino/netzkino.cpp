@@ -140,8 +140,8 @@ const struct button_label NKHeadButtons[HEAD_BUTTONS_COUNT] =
 #define FOOT_BUTTONS_COUNT	4
 const struct button_label FootButtons[FOOT_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_GREEN, NONEXISTANT_LOCALE, NULL },
+	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE, "Neu bei Netzkino" },
+	{ NEUTRINO_ICON_BUTTON_GREEN, NONEXISTANT_LOCALE, "HD Kino" },
 	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE, "Focus" },
 	{ NEUTRINO_ICON_BUTTON_BLUE, NONEXISTANT_LOCALE, "Highlight" }
 };
@@ -258,9 +258,11 @@ void CNKMovies::showMenu()
 	mainWidget->addItem(rightWidget);
 	mainWidget->addItem(footersWidget);
 
+	mainWidget->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
+	mainWidget->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
 	mainWidget->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
 	mainWidget->addKey(RC_record, this, CRCInput::getSpecialKeyName(RC_record));
-	mainWidget->addKey(RC_blue, this, "startMenu");
+	mainWidget->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
 	mainWidget->addKey(RC_home, this, "exit");
 
 	mainWidget->exec(NULL, "");
@@ -309,22 +311,27 @@ void CNKMovies::recordMovie(MI_MOVIE_INFO& movie)
 	target += movie.epgTitle.c_str();
 	target += "." + getFileExt(movie.file.Name);
 
-	httpTool.downloadFile(movie.file.Name.c_str(), target.c_str(), 100);
-	
-	// write .xml
-	movie.file.Name = target;
-	std::string infoString = " ";
+	if (httpTool.downloadFile(movie.file.Name.c_str(), target.c_str(), 100))
+	{
+		// write .xml
+		movie.file.Name = target;
+		std::string infoString = " ";
 
-	m_movieInfo.encodeMovieInfoXml(&infoString, &movie);
-	m_movieInfo.saveMovieInfo(movie);
-	
-	// write thumbnail
-	string tfile = g_settings.network_nfs_recordingdir;
-	tfile += "/";
-	tfile += movie.epgTitle.c_str();
-	tfile += ".jpg";
-	
-	CFileHelpers::getInstance()->copyFile(movie.tfile.c_str(), tfile.c_str());
+		m_movieInfo.encodeMovieInfoXml(&infoString, &movie);
+		m_movieInfo.saveMovieInfo(movie);
+		
+		// write thumbnail
+		string tfile = g_settings.network_nfs_recordingdir;
+		tfile += "/";
+		tfile += movie.epgTitle.c_str();
+		tfile += ".jpg";
+		
+		CFileHelpers::getInstance()->copyFile(movie.tfile.c_str(), tfile.c_str());
+	}
+	else
+	{
+		HintBox("Netzkino", "Movie download failed");
+	}
 }
 
 int CNKMovies::exec(CMenuTarget* parent, const std::string& actionKey)
@@ -389,7 +396,21 @@ int CNKMovies::exec(CMenuTarget* parent, const std::string& actionKey)
 	{
 		return RETURN_REPAINT;
 	}
-	else if(actionKey == "startMenu")
+	else if(actionKey == "RC_red")
+	{
+		loadNKTitles(cNKFeedParser::CATEGORY, "Neu bei Netzkino", 81);
+		showMenu();
+
+		return RETURN_EXIT_ALL;
+	}
+	else if(actionKey == "RC_green")
+	{
+		loadNKTitles(cNKFeedParser::CATEGORY, "HD Kino", 61);
+		showMenu();
+
+		return RETURN_EXIT_ALL;
+	}
+	else if(actionKey == "RC_blue")
 	{
 		loadNKTitles(cNKFeedParser::CATEGORY, "Highlights", 8);
 		showMenu();
