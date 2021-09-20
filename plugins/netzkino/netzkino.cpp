@@ -283,15 +283,6 @@ void CNKMovies::showMenu()
 	footersWidget = NULL;
 }
 
-void CNKMovies::playMovie(MI_MOVIE_INFO& movie)
-{
-	if (&movie.file != NULL) 
-	{
-		tmpMoviePlayerGui.addToPlaylist(movie);
-		tmpMoviePlayerGui.exec(NULL, "");
-	}
-}
-
 void CNKMovies::showMovieInfo(MI_MOVIE_INFO& movie)
 {
 	m_movieInfo.showMovieInfo(movie);

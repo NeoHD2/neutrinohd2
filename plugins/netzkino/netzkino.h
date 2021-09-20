@@ -58,7 +58,7 @@ class CNKMovies : public CMenuTarget
 		std::vector<MI_MOVIE_INFO> m_vMovieInfo;
 		CMovieInfo m_movieInfo;
 
-		CMoviePlayerGui tmpMoviePlayerGui;
+		//CMoviePlayerGui tmpMoviePlayerGui;
 
 		//
 		cNKFeedParser nkparser;
@@ -71,15 +71,9 @@ class CNKMovies : public CMenuTarget
 
 		std::string nksearch;
 
-		int recordingstatus;
-
 		void loadNKTitles(int mode, std::string search, int id);
-
-		void playMovie(MI_MOVIE_INFO& movie);
 		void showMovieInfo(MI_MOVIE_INFO& movie);
 		void recordMovie(MI_MOVIE_INFO& movie);
-		void stopRecord(MI_MOVIE_INFO& movie);
-
 		void showMenu();
 
 	public:
