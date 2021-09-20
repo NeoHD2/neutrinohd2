@@ -78,12 +78,13 @@ void CPluginList::hide()
 	plist->hide();	
 }
 
-#define NUM_LIST_BUTTONS 3
+#define NUM_LIST_BUTTONS 4
 struct button_label CPluginListButtons[NUM_LIST_BUTTONS] =
 {
 	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_PLUGINLIST_REMOVE_PLUGIN },
 	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_PLUGINLIST_START_PLUGIN },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_SERVICEMENU_GETPLUGINS }
+	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE },
+	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_SERVICEMENU_GETPLUGINS }
 };
 
 struct button_label CPluginListHeadButtons = {NEUTRINO_ICON_BUTTON_HELP_SMALL, NONEXISTANT_LOCALE, NULL};
@@ -94,7 +95,7 @@ void CPluginList::showMenu()
 
 
 	// widget
-	plist = new CMenuWidget(LOCALE_USERMENU_ITEM_PLUGINS, NEUTRINO_ICON_SHELL);
+	plist = new CMenuWidget(LOCALE_USERMENU_ITEM_PLUGINS, NEUTRINO_ICON_SHELL, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 
 	//
 	for(unsigned int count = 0; count < (unsigned int)g_PluginList->getNumberOfPlugins(); count++)
@@ -130,7 +131,8 @@ void CPluginList::showMenu()
 	//
 	plist->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
 	plist->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
-	plist->addKey(RC_yellow, this, CRCInput::getSpecialKeyName(RC_yellow));
+	//plist->addKey(RC_yellow, this, CRCInput::getSpecialKeyName(RC_yellow));
+	plist->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
 	plist->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
 	plist->addKey(RC_ok, this, CRCInput::getSpecialKeyName(RC_ok));
 
@@ -170,7 +172,7 @@ int CPluginList::exec(CMenuTarget * parent, const std::string& actionKey)
 		selected = plist->getSelected();
 		g_PluginList->startPlugin(plist->getSelected());
 	}
-	else if(actionKey == "RC_yellow")
+	else if(actionKey == "RC_blue")
 	{
 		g_PluginList->loadPlugins();
 		showMenu();
