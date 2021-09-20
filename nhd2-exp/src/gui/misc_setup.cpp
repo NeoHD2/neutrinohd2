@@ -270,6 +270,44 @@ int CGeneralSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 
 		return ret;
 	}
+	else if(actionKey == "select_icons_dir")
+	{
+		CFileBrowser b;
+		b.Dir_Mode = true;
+		
+		if (b.exec(g_settings.icons_dir.c_str())) 
+		{
+			g_settings.icons_dir = b.getSelectedFile()->Name + "/";
+
+			dprintf(DEBUG_NORMAL, "CMiscSettings::exec: new icons dir %s\n", g_settings.icons_dir.c_str());
+
+			CFrameBuffer::getInstance()->setIconBasePath(g_settings.icons_dir);
+			//CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
+		}
+		
+		getString() = g_settings.icons_dir;
+		
+		return ret;
+	}
+	else if(actionKey == "select_hint_icons_dir")
+	{
+		CFileBrowser b;
+		b.Dir_Mode = true;
+		
+		if (b.exec(g_settings.hint_icons_dir.c_str())) 
+		{
+			g_settings.hint_icons_dir = b.getSelectedFile()->Name + "/";
+
+			dprintf(DEBUG_NORMAL, "CMiscSettings::exec: new hint_icons dir %s\n", g_settings.hint_icons_dir.c_str());
+
+			CFrameBuffer::getInstance()->setHintIconBasePath(g_settings.hint_icons_dir);
+			//CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
+		}
+		
+		getString() = g_settings.hint_icons_dir;
+		
+		return ret;
+	}
 	
 	showMenu();
 	
@@ -446,6 +484,12 @@ void CGeneralSettings::showMenu()
 	
 	// progressbar_gradient
 	miscSettingsGeneral.addItem(new CMenuOptionChooser("ProgressBar Gradient", &g_settings.progressbar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
+	
+	// icons dir
+	miscSettingsGeneral.addItem(new CMenuForwarder("Icons Dir", true, g_settings.icons_dir.c_str(), this, "select_icons_dir"));
+
+	// hint icons dir
+	miscSettingsGeneral.addItem(new CMenuForwarder("Hint Icons Dir", true, g_settings.hint_icons_dir.c_str(), this, "select_hint_icons_dir"));
 
 	// key
 	miscSettingsGeneral.addItem(new CMenuSeparator(LINE));
