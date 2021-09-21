@@ -66,8 +66,8 @@ CImageInfo::CImageInfo()
 	width = frameBuffer->getScreenWidth() - 10;
 	height = frameBuffer->getScreenHeight() - 10;
 
-	x = (((g_settings.screen_EndX- g_settings.screen_StartX)-width) / 2) + g_settings.screen_StartX;
-	y = (((g_settings.screen_EndY- g_settings.screen_StartY)-height) / 2) + g_settings.screen_StartY;
+	x = (((g_settings.screen_EndX - g_settings.screen_StartX)-width) / 2) + g_settings.screen_StartX;
+	y = (((g_settings.screen_EndY - g_settings.screen_StartY)-height) / 2) + g_settings.screen_StartY;
 }
 
 CImageInfo::~CImageInfo()
@@ -146,7 +146,7 @@ void CImageInfo::paint()
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8, head_string);
 
 	//
-	frameBuffer->paintBoxRel(0, 0, max_width, max_height, COL_INFOBAR_PLUS_0);
+	frameBuffer->paintBoxRel(10, 10, max_width - 20, max_height - 20, /*COL_INFOBAR_PLUS_0*/COL_MENUCONTENT_PLUS_0);
 	
 	// title
 	g_Font[font_head]->RenderString(xpos, ypos + hheight + 1, width, head_string, COL_MENUHEAD, 0, true);

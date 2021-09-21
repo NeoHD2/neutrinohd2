@@ -65,7 +65,7 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, const char * const Tex
 		begin = strtok(NULL, "\n");
 	}
 	
-	init(g_Locale->getText(Caption), Width, Icon);
+	//init(g_Locale->getText(Caption), Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
@@ -94,24 +94,16 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, const char * const Tex
 	int new_width = 15 + num*ButtonWidth;
 	if(new_width > m_width)
 		m_width = new_width;
-
-	//
-	m_cBoxWindow.setPosition(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1),
-                               CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2),
-                               m_width,
-                               m_height);
-
-	m_cBoxWindow.enableSaveScreen();
-	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	m_cBoxWindow.enableShadow();
+		
+	init(g_Locale->getText(Caption), Width, Icon);
 }
 
 CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
 {
 	m_message = NULL;
 	m_lines = Lines;
-	init(g_Locale->getText(Caption), Width, Icon);
+	
+	//init(g_Locale->getText(Caption), Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
@@ -139,17 +131,8 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, c
 	int new_width = 15 + num*ButtonWidth;
 	if(new_width > m_width)
 		m_width = new_width;
-
-	//
-	m_cBoxWindow.setPosition(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1),
-                               CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2),
-                               m_width,
-                               m_height);
-
-	m_cBoxWindow.enableSaveScreen();
-	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	m_cBoxWindow.enableShadow();
+		
+	init(g_Locale->getText(Caption), Width, Icon);
 }
 
 CMessageBox::CMessageBox(const char* const Caption, const char * const Text, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
@@ -170,7 +153,7 @@ CMessageBox::CMessageBox(const char* const Caption, const char * const Text, con
 		begin = strtok(NULL, "\n");
 	}
 	
-	init(Caption, Width, Icon);
+	//init(Caption, Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
@@ -199,24 +182,16 @@ CMessageBox::CMessageBox(const char* const Caption, const char * const Text, con
 	int new_width = 15 + num*ButtonWidth;
 	if(new_width > m_width)
 		m_width = new_width;
-
-	//
-	m_cBoxWindow.setPosition(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1),
-                               CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2),
-                               m_width,
-                               m_height);
-
-	m_cBoxWindow.enableSaveScreen();
-	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	m_cBoxWindow.enableShadow();
+		
+	init(Caption, Width, Icon);
 }
 
 CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
 {
 	m_message = NULL;
 	m_lines = Lines;
-	init(Caption, Width, Icon);
+	
+	//init(Caption, Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
@@ -244,17 +219,8 @@ CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const i
 	int new_width = 15 + num*ButtonWidth;
 	if(new_width > m_width)
 		m_width = new_width;
-
-	//
-	m_cBoxWindow.setPosition(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1),
-                               CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2),
-                               m_width,
-                               m_height);
-
-	m_cBoxWindow.enableSaveScreen();
-	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	m_cBoxWindow.enableShadow();
+		
+	init(Caption, Width, Icon);
 }
 
 CMessageBox::~CMessageBox(void)
@@ -276,7 +242,7 @@ CMessageBox::~CMessageBox(void)
 		}
 	}
 
-	//hide();
+	hide();
 }
 
 void CMessageBox::init(const char * const Caption, const int Width, const char * const Icon)
@@ -292,7 +258,7 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 
 	int page = 0;
 	int line = 0;
-	int maxWidth = MENU_WIDTH - 50;
+	int maxWidth = MESSAGEBOX_MAX_WIDTH;
 	int maxOverallHeight = 0;
 	m_startEntryOfPage.push_back(0);
 	
@@ -323,6 +289,7 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 		// 10 pixels left and right of every item. determined empirically :-(
 		lineWidth += count * (BORDER_LEFT + BORDER_RIGHT);
 		
+		/*
                 if (lineWidth > maxWidth)
 		{
 			maxWidth = lineWidth;
@@ -330,6 +297,13 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 			if(maxWidth > (MESSAGEBOX_MAX_WIDTH - 20))
 				maxWidth = MESSAGEBOX_MAX_WIDTH - 20;
 		}
+		*/
+		if (lineWidth > m_width)
+			maxWidth = lineWidth;
+		else if (lineWidth > (MESSAGEBOX_MAX_WIDTH - 20))
+			maxWidth = MESSAGEBOX_MAX_WIDTH - 20;
+		else if (lineWidth < m_width)
+			maxWidth = m_width;
 
 		m_height += maxHeight;
 		
@@ -394,45 +368,29 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 
 	if (nw > m_width)
 		m_width = nw;
+		
+	//TEST
+	//
+	m_cBoxWindow.setPosition(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1),
+                               CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2),
+                               m_width,
+                               m_height);
+
+	m_cBoxWindow.enableSaveScreen();
+	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
+	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
+	m_cBoxWindow.enableShadow();
 }
 
 void CMessageBox::paint(void)
 {
 	dprintf(DEBUG_NORMAL, "CMessageBox::paint\n");
 
-/*
-	m_cBoxWindow.setPosition(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1),
-                               CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2),
-                               m_width,
-                               m_height);
-
-	m_cBoxWindow.enableSaveScreen();
-	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	m_cBoxWindow.enableShadow();
-
-	m_cBoxWindow.paint();
-*/
-	m_cBoxWindow.enableSaveScreen();
-
 	refresh();
 }
 
 void CMessageBox::refresh()
 {
-	// reinit
-/*
-	m_cBoxWindow.setPosition(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1),
-                               CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2),
-                               m_width,
-                               m_height);
-
-	m_cBoxWindow.enableSaveScreen();
-	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	m_cBoxWindow.enableShadow();
-*/
-
 	m_cBoxWindow.paint();
 
 	// title
@@ -495,12 +453,6 @@ void CMessageBox::scroll_down(void)
 void CMessageBox::hide(void)
 {
 	dprintf(DEBUG_NORMAL, "CMessageBox::hide:\n");
-
-	// reinit
-	m_cBoxWindow.setPosition(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1),
-                               CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2),
-                               m_width,
-                               m_height);
 
 	m_cBoxWindow.hide();
 

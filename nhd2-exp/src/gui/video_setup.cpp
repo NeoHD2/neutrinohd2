@@ -44,7 +44,7 @@
 #include <video_cs.h>
 
 
-extern cVideo * videoDecoder;		//libcoolstream (video_cs.cpp)
+extern cVideo * videoDecoder;		//libdvbapi (video_cs.cpp)
 
 //Video Settings
 //hdmi color space

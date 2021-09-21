@@ -119,6 +119,8 @@ void CDBoxInfoWidget::showInfo()
 	int i = 0;
 
 	//cpu
+	dboxInfo->addLine(NEUTRINO_ICON_CPU, "CPU:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
+	
 	FILE* fd = fopen("/proc/cpuinfo", "rt");
 
 	if (fd == NULL) 
@@ -221,6 +223,9 @@ void CDBoxInfoWidget::showInfo()
 	
 	int n = scandir("/sys/block", &namelist, my_filter, alphasort);
 	
+	if (n)
+		dboxInfo->addLine(NEUTRINO_ICON_HDD, "HDD devices:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
+	
 	for(int i1 = 0; i1 < n; i1++) 
 	{
 		char str[256];
@@ -295,6 +300,9 @@ void CDBoxInfoWidget::showInfo()
 	}
 	
 	//frontend
+	if (FrontendCount)
+		dboxInfo->addLine(NEUTRINO_ICON_TUNER, "Frontend:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
+	
 	for(int i2 = 0; i2 < FrontendCount; i2++)
 	{
 		CFrontend * fe = getFE(i2);
@@ -307,7 +315,7 @@ void CDBoxInfoWidget::showInfo()
 		dboxInfo->add2Line(tbuf, tbuf1, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENTINACTIVE, false, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENT);
 	}
 
-	dboxInfo->show("Box Info", 700, -1, mbrBack, mbNone);
+	dboxInfo->show("Box Info", 800, -1, mbrBack, mbNone);
 
 	delete dboxInfo;
 	dboxInfo = NULL;	

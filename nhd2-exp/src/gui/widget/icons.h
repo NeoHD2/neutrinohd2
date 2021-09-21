@@ -179,7 +179,8 @@
 #define NEUTRINO_ICON_HDD	 		"hdd"
 #define NEUTRINO_ICON_TUNER	 		"tuner"
 #define NEUTRINO_ICON_STAR_ON			"star-on"
-#define NEUTRINO_ICON_STAR_OFF			"star-off"
+#define NEUTRINO_ICON_STAR_OFF		"star-off"
+#define NEUTRINO_ICON_CPU			"cpu"
 
 
 // design icons
