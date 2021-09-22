@@ -457,7 +457,7 @@ CFontSettings::~CFontSettings()
 
 int CFontSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 {
-	dprintf(DEBUG_NORMAL; "CFontSettings::exec: %s\n", actionKey.c_str());
+	dprintf(DEBUG_NORMAL, "CFontSettings::exec: %s\n", actionKey.c_str());
 	
 	int ret = RETURN_REPAINT;
 	
