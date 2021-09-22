@@ -77,45 +77,7 @@ int COSDSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 		return ret;
 	}
-	else if(actionKey == "select_font")
-	{
-		CFileBrowser fileBrowser;
-		CFileFilter fileFilter;
-		fileFilter.addFilter("ttf");
-		fileBrowser.Filter = &fileFilter;
-		
-		if (fileBrowser.exec(DATADIR "/neutrino/fonts") == true)
-		{
-			strcpy(g_settings.font_file, fileBrowser.getSelectedFile()->Name.c_str());
-			dprintf(DEBUG_NORMAL, "COSDSettings::exec: new font file %s\n", fileBrowser.getSelectedFile()->Name.c_str());
-			
-			CNeutrinoApp::getInstance()->SetupFonts();
-			CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
-		}
-		
-		return ret;
-	}
-	else if(actionKey == "font_scaling")
-	{
-		if(parent)
-			parent->hide();
-		
-		CMenuWidget fontscale(LOCALE_FONTMENU_HEAD, NEUTRINO_ICON_COLORS);
-		fontscale.enableSaveScreen();
-		fontscale.setMode(MODE_SETUP);
-		fontscale.enableShrinkMenu();
 
-		fontscale.addItem(new CMenuOptionNumberChooser(LOCALE_FONTMENU_SCALING_X, &g_settings.screen_xres, true, 50, 200, NULL) );
-		fontscale.addItem(new CMenuOptionNumberChooser(LOCALE_FONTMENU_SCALING_Y, &g_settings.screen_yres, true, 50, 200, NULL) );
-		
-		fontscale.exec(NULL, "");
-		
-		CNeutrinoApp::getInstance()->SetupFonts();
-		CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
-		
-		return ret;
-	}
-	
 	showMenu();
 	
 	return ret;
@@ -151,12 +113,9 @@ void COSDSettings::showMenu(void)
 	// language
 	osdSettings->addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_LANGUAGE, true, NULL, new CLanguageSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_LANGUAGE, LOCALE_HELPTEXT_LANGUAGE));
 	
-	// select font
-	osdSettings->addItem( new CMenuForwarder(LOCALE_EPGPLUS_SELECT_FONT_NAME, true, NULL, this, "select_font", CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_FONT, LOCALE_HELPTEXT_FONT));
+	// font
+	osdSettings->addItem(new CMenuForwarder(LOCALE_EPGPLUS_SELECT_FONT_NAME, true, NULL, new CFontSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_FONT, LOCALE_HELPTEXT_FONT));
 	
-	//font scaling
-	osdSettings->addItem(new CMenuForwarder(LOCALE_FONTMENU_SCALING, true, NULL, this, "font_scaling", CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_FONTSCALING, LOCALE_HELPTEXT_FONTSCALING));
-
 	// osd timing
 	osdSettings->addItem(new CMenuForwarder(LOCALE_TIMING_HEAD, true, NULL, new COSDTimingSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_OSDTIMING, LOCALE_HELPTEXT_OSDTIMING));
 
@@ -404,36 +363,6 @@ int CLanguageSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	return ret;
 }
 
-bool CLanguageSettings::changeNotify(const neutrino_locale_t OptionName, void */*data*/)
-{
-	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_LANGUAGESETUP_SELECT)) 
-	{
-		dprintf(DEBUG_NORMAL, "CLanguageSettings::changeNotify: %s\n", g_settings.language);
-		
-		// setup font first
-		if(strstr(g_settings.language, "arabic"))
-		{
-			// check for nsmbd font
-			if(!access(DATADIR "/neutrino/fonts/arial.ttf", F_OK))
-			{
-				strcpy(g_settings.font_file, DATADIR "/neutrino/fonts/arial.ttf");
-				printf("CLanguageSettings::changeNotify:new font file %s\n", g_settings.font_file);
-				CNeutrinoApp::getInstance()->SetupFonts();
-			}
-			else
-			{
-				HintBox(LOCALE_MESSAGEBOX_INFO, "install a font supporting your language (e.g nmsbd.ttf)");
-			}
-		}
-		
-		g_Locale->loadLocale(g_settings.language);
-
-		return true;
-	}
-	
-	return false;
-}
-
 void CLanguageSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CLanguageSettings::showMenu:\n");
@@ -484,6 +413,129 @@ void CLanguageSettings::showMenu()
 	
 	languageSettings.exec(NULL, "");
 	languageSettings.hide();
+}
+
+bool CLanguageSettings::changeNotify(const neutrino_locale_t OptionName, void */*data*/)
+{
+	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_LANGUAGESETUP_SELECT)) 
+	{
+		dprintf(DEBUG_NORMAL, "CLanguageSettings::changeNotify: %s\n", g_settings.language);
+		
+		// setup font first
+		if(strstr(g_settings.language, "arabic"))
+		{
+			// check for nsmbd font
+			if(!access(DATADIR "/neutrino/fonts/arial.ttf", F_OK))
+			{
+				strcpy(g_settings.font_file, DATADIR "/neutrino/fonts/arial.ttf");
+				printf("CLanguageSettings::changeNotify:new font file %s\n", g_settings.font_file);
+				CNeutrinoApp::getInstance()->SetupFonts();
+			}
+			else
+			{
+				HintBox(LOCALE_MESSAGEBOX_INFO, "install a font supporting your language (e.g nmsbd.ttf)");
+			}
+		}
+		
+		g_Locale->loadLocale(g_settings.language);
+
+		return true;
+	}
+	
+	return false;
+}
+
+
+// CFontSettings
+CFontSettings::CFontSettings()
+{
+}
+
+CFontSettings::~CFontSettings()
+{
+}
+
+int CFontSettings::exec(CMenuTarget* parent, const std::string& actionKey)
+{
+	dprintf(DEBUG_NORMAL; "CFontSettings::exec: %s\n", actionKey.c_str());
+	
+	int ret = RETURN_REPAINT;
+	
+	if (parent)
+		parent->hide();
+		
+	if(actionKey == "savesettings")
+	{
+		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
+		
+		return ret;
+	}
+	else if(actionKey == "select_font")
+	{
+		CFileBrowser fileBrowser;
+		CFileFilter fileFilter;
+		fileFilter.addFilter("ttf");
+		fileBrowser.Filter = &fileFilter;
+		
+		if (fileBrowser.exec(DATADIR "/neutrino/fonts") == true)
+		{
+			strcpy(g_settings.font_file, fileBrowser.getSelectedFile()->Name.c_str());
+			dprintf(DEBUG_NORMAL, "COSDSettings::exec: new font file %s\n", fileBrowser.getSelectedFile()->Name.c_str());
+			
+			CNeutrinoApp::getInstance()->SetupFonts();
+			CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
+		}
+		
+		getString() = g_settings.font_file;
+		
+		return ret;
+	}
+	else if(actionKey == "font_scaling")
+	{
+		CMenuWidget fontscale(LOCALE_FONTMENU_HEAD, NEUTRINO_ICON_COLORS);
+		fontscale.enableSaveScreen();
+		fontscale.setMode(MODE_SETUP);
+		fontscale.enableShrinkMenu();
+
+		fontscale.addItem(new CMenuOptionNumberChooser(LOCALE_FONTMENU_SCALING_X, &g_settings.screen_xres, true, 50, 200, NULL) );
+		fontscale.addItem(new CMenuOptionNumberChooser(LOCALE_FONTMENU_SCALING_Y, &g_settings.screen_yres, true, 50, 200, NULL) );
+		
+		fontscale.exec(NULL, "");
+		
+		CNeutrinoApp::getInstance()->SetupFonts();
+		CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
+		
+		return ret;
+	}
+		
+	showMenu();
+	
+	return ret;
+}
+
+void CFontSettings::showMenu()
+{
+	dprintf(DEBUG_NORMAL, "CFontSettings::showMenu:\n");
+	
+	CMenuWidget fontSettings(LOCALE_EPGPLUS_SELECT_FONT_NAME, NEUTRINO_ICON_COLORS, 700);
+	
+	fontSettings.setMode(MODE_SETUP);
+	fontSettings.enableShrinkMenu();
+	
+	// intros
+	fontSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	fontSettings.addItem(new CMenuSeparator(LINE));
+
+	fontSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	fontSettings.addItem(new CMenuSeparator(LINE));
+	
+	// font name
+	fontSettings.addItem(new CMenuForwarder(LOCALE_EPGPLUS_SELECT_FONT_NAME, true, g_settings.font_file, this, "select_font"));
+	
+	// font scaling
+	fontSettings.addItem(new CMenuForwarder(LOCALE_FONTMENU_SCALING, true, NULL, this, "font_scaling"));
+	
+	fontSettings.exec(NULL, "");
 }
 
 // osd timing settings

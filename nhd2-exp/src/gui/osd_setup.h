@@ -85,6 +85,18 @@ class CLanguageSettings : public CMenuTarget, CChangeObserver
 		int exec(CMenuTarget* parent, const std::string& actionKey);
 };
 
+class CFontSettings : public CMenuTarget
+{
+	private:
+		void showMenu();
+		
+	public:
+		CFontSettings();
+		~CFontSettings();
+		
+		int exec(CMenuTarget* parent, const std::string& actionKey);
+};
+
 // timing setup notifier
 class CTimingSettingsNotifier : public CChangeObserver
 {

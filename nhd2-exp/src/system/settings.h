@@ -505,7 +505,7 @@ struct SNeutrinoSettings
 };
 
 //
-extern const int default_timing     [TIMING_SETTING_COUNT];
+extern const int default_timing[TIMING_SETTING_COUNT];
 extern const neutrino_locale_t timing_setting_name[TIMING_SETTING_COUNT];
 
 // lcdd
