@@ -1,7 +1,7 @@
 /*
 	Neutrino-GUI  -   DBoxII-Project
 
-	$id: osd_setup.cpp 2020.11.01 20:46:30 mohousch $
+	$id: osd_setup.cpp 21.09.21 mohousch $
 	
 	Copyright (C) 2001 Steffen Hehn 'McClean'
 	and some other guys
@@ -605,7 +605,7 @@ bool CTimingSettingsNotifier::changeNotify(const neutrino_locale_t OptionName, v
 	{
 		if (ARE_LOCALES_EQUAL(OptionName, timing_setting_name[i]))
 		{
-			g_settings.timing[i] = 	atoi(g_settings.timing_string[i]);
+			g_settings.timing[i] = atoi(g_settings.timing_string[i]);
 			return true;
 		}
 	}

@@ -1,7 +1,7 @@
 /*
 	Neutrino-GUI  -   DBoxII-Project
 
-	$id: osd_setup.h 2016.01.02 20:44:28 mohousch $
+	$id: osd_setup.h 21.09.21 mohousch $
 	
 	Copyright (C) 2001 Steffen Hehn 'McClean'
 	and some other guys
