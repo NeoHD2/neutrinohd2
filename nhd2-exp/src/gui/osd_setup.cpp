@@ -466,6 +466,7 @@ int CFontSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 	if(actionKey == "savesettings")
 	{
+		CNeutrinoApp::getInstance()->SetupFonts();
 		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
 		
 		return ret;
@@ -487,23 +488,6 @@ int CFontSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		}
 		
 		getString() = g_settings.font_file;
-		
-		return ret;
-	}
-	else if(actionKey == "font_scaling")
-	{
-		CMenuWidget fontscale(LOCALE_FONTMENU_HEAD, NEUTRINO_ICON_COLORS);
-		fontscale.enableSaveScreen();
-		fontscale.setMode(MODE_SETUP);
-		fontscale.enableShrinkMenu();
-
-		fontscale.addItem(new CMenuOptionNumberChooser(LOCALE_FONTMENU_SCALING_X, &g_settings.screen_xres, true, 50, 200, NULL) );
-		fontscale.addItem(new CMenuOptionNumberChooser(LOCALE_FONTMENU_SCALING_Y, &g_settings.screen_yres, true, 50, 200, NULL) );
-		
-		fontscale.exec(NULL, "");
-		
-		CNeutrinoApp::getInstance()->SetupFonts();
-		CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
 		
 		return ret;
 	}
@@ -533,7 +517,10 @@ void CFontSettings::showMenu()
 	fontSettings.addItem(new CMenuForwarder(LOCALE_EPGPLUS_SELECT_FONT_NAME, true, g_settings.font_file, this, "select_font"));
 	
 	// font scaling
-	fontSettings.addItem(new CMenuForwarder(LOCALE_FONTMENU_SCALING, true, NULL, this, "font_scaling"));
+	fontSettings.addItem(new CMenuSeparator(LINE|STRING, g_Locale->getText(LOCALE_FONTMENU_HEAD)));
+	fontSettings.addItem(new CMenuOptionNumberChooser(LOCALE_FONTMENU_SCALING_X, &g_settings.screen_xres, true, 50, 200, NULL) );
+	fontSettings.addItem(new CMenuOptionNumberChooser(LOCALE_FONTMENU_SCALING_Y, &g_settings.screen_yres, true, 50, 200, NULL) );
+		
 	
 	fontSettings.exec(NULL, "");
 }
