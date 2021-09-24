@@ -24,13 +24,14 @@
 
 
 // buttons
-#define NEUTRINO_ICON_BUTTON_BLUE			"blue"
-#define NEUTRINO_ICON_BUTTON_GREEN			"green"
-#define NEUTRINO_ICON_BUTTON_RED			"red"
-#define NEUTRINO_ICON_BUTTON_YELLOW			"yellow"
+#define NEUTRINO_ICON_BUTTON_BLUE			"blau"
+#define NEUTRINO_ICON_BUTTON_GREEN			"gruen"
+#define NEUTRINO_ICON_BUTTON_RED			"rot"
+#define NEUTRINO_ICON_BUTTON_YELLOW			"gelb"
 
-#define NEUTRINO_ICON_BUTTON_SETUP			"setup"
-#define NEUTRINO_ICON_BUTTON_SETUP_SMALL		"setup_small"
+//
+#define NEUTRINO_ICON_BUTTON_SETUP			"menu"
+#define NEUTRINO_ICON_BUTTON_SETUP_SMALL		"menu_small"
 #define NEUTRINO_ICON_BUTTON_HELP			"help"
 #define NEUTRINO_ICON_BUTTON_HELP_SMALL		"help_small"
 #define NEUTRINO_ICON_BUTTON_HOME			"home"
@@ -59,27 +60,30 @@
 #define NEUTRINO_ICON_BUTTON_RIGHT			"right"
 #define NEUTRINO_ICON_BUTTON_LEFT			"left"
 
-#define NEUTRINO_ICON_BUTTON_PLUS			"plus"
-#define NEUTRINO_ICON_BUTTON_MINUS			"minus"
+//#define NEUTRINO_ICON_BUTTON_PLUS			"plus"
+//#define NEUTRINO_ICON_BUTTON_MINUS			"minus"
 
 #define NEUTRINO_ICON_BUTTON_MARK			"mark"
+#define NEUTRINO_ICON_NOT_MOUNTED			"not_mounted"
+#define NEUTRINO_ICON_HIDDEN				"marker_hidden"
+#define NEUTRINO_ICON_MOUNTED				"mounted"
+#define NEUTRINO_ICON_UPDATE_SMALL			"softupdate_small"
+#define NEUTRINO_ICON_VOLUME				"volume"
+#define NEUTRINO_ICON_BUTTON_MUTE_ZAP_ACTIVE 		"mute_zap_green"
+#define NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE 	"mute_zap_gray"
 
-// misc
+#define NEUTRINO_ICON_NUMERIC_PAD			"numericpad"
+
+// headers
 #define NEUTRINO_ICON_AUDIO				"audio"
 #define NEUTRINO_ICON_COLORS				"colors"
 #define NEUTRINO_ICON_EPGINFO				"epginfo"
 #define NEUTRINO_ICON_ERROR				"error"
 #define NEUTRINO_ICON_FEATURES			"features"
-#define NEUTRINO_ICON_FILE				"file"
-#define NEUTRINO_ICON_FOLDER				"folder"
 #define NEUTRINO_ICON_GAMES				"games"
 #define NEUTRINO_ICON_INFO				"info"
 #define NEUTRINO_ICON_KEYBINDING			"keybinding"
 #define NEUTRINO_ICON_LOCK				"lock"
-#define NEUTRINO_ICON_HIDDEN				"hidden"
-#define NEUTRINO_ICON_MOUNTED				"mounted"
-#define NEUTRINO_ICON_MP3				"mp3"
-#define NEUTRINO_ICON_NOT_MOUNTED			"not_mounted"
 #define NEUTRINO_ICON_PROTECTING			"protecting"
 #define NEUTRINO_ICON_RECORDING			"recording"
 #define NEUTRINO_ICON_REC				"rec"
@@ -87,24 +91,23 @@
 #define NEUTRINO_ICON_SHELL				"shell"
 #define NEUTRINO_ICON_TIMER				"timer"
 #define NEUTRINO_ICON_UPDATE				"softupdate"
-#define NEUTRINO_ICON_UPDATE_SMALL			"softupdate_small"
 #define NEUTRINO_ICON_VIDEO				"video"
-#define NEUTRINO_ICON_VOLUMEBODY			"volumebody"
-#define NEUTRINO_ICON_VOLUMESLIDER2			"volumeslider2"
-#define NEUTRINO_ICON_VOLUMESLIDER2ALPHA		"volumeslider2alpha"
-#define NEUTRINO_ICON_VOLUMESLIDER2BLUE		"volumeslider2blue"
-#define NEUTRINO_ICON_VOLUMESLIDER2GREEN		"volumeslider2green"
-#define NEUTRINO_ICON_VOLUMESLIDER2RED		"volumeslider2red"
-#define NEUTRINO_ICON_NUMERIC_PAD			"numericpad"
-#define NEUTRINO_ICON_BORDER_UL			"border_ul"
-#define NEUTRINO_ICON_BORDER_LR			"border_lr"
-#define NEUTRINO_ICON_MAINMENU			"mainmenu"
+#define NEUTRINO_ICON_MAINMENU			"mainmenue"
 #define NEUTRINO_ICON_LANGUAGE			"language"
 #define NEUTRINO_ICON_NETWORK				"network"
 #define NEUTRINO_ICON_LCD				"lcd"
-#define NEUTRINO_ICON_VOLUME				"volume"
-#define NEUTRINO_ICON_BUTTON_MUTE_ZAP_ACTIVE 		"mute_zap_green"
-#define NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE 	"mute_zap_gray"
+
+// screen
+#define NEUTRINO_ICON_BORDER_UL			"border_ul"
+#define NEUTRINO_ICON_BORDER_LR			"border_lr"
+
+// slider
+#define NEUTRINO_ICON_VOLUMEBODY			"slider_body"
+#define NEUTRINO_ICON_VOLUMESLIDER2			"slider_inactive"
+#define NEUTRINO_ICON_VOLUMESLIDER2ALPHA		"slider_alpha"
+#define NEUTRINO_ICON_VOLUMESLIDER2BLUE		"slider_blue"
+#define NEUTRINO_ICON_VOLUMESLIDER2GREEN		"slider_green"
+#define NEUTRINO_ICON_VOLUMESLIDER2RED		"slider_red"
 
 // infoviewer
 #define NEUTRINO_ICON_16_9				"16_9"
@@ -141,14 +144,19 @@
 #define NEUTRINO_ICON_RESOLUTION_UHD2			"res_uhd2"
 
 // channellist
-#define NEUTRINO_ICON_SCRAMBLED			"ca"
+#define NEUTRINO_ICON_SCRAMBLED			"ca2"
 #define NEUTRINO_ICON_HD				"res_hd"
 #define NEUTRINO_ICON_UHD				"res_uhd"
 
 
 // filebrowser
+#define NEUTRINO_ICON_MP3				"mp3"
 #define NEUTRINO_ICON_MOVIE				"movie"
 #define NEUTRINO_ICON_PICTURE				"picture"
+#define NEUTRINO_ICON_FILE				"file"
+#define NEUTRINO_ICON_FOLDER				"folder"
+
+//
 #define NEUTRINO_ICON_PLUGIN				"plugin"
 
 // radiotext
@@ -163,16 +171,18 @@
 // mp
 #define NEUTRINO_ICON_MP				"mp"
 #define NEUTRINO_ICON_PAUSE				"mp_pause"
-#define NEUTRINO_ICON_PAUSE_SMALL			"mp_pause_small"
 #define NEUTRINO_ICON_PLAY 				"mp_play"
-#define NEUTRINO_ICON_PLAY_SMALL 			"mp_play_small"
-#define NEUTRINO_ICON_REW				"mp_rew"
-#define NEUTRINO_ICON_REW_SMALL			"mp_rew_small"
-#define NEUTRINO_ICON_FF 				"mp_ff"
-#define NEUTRINO_ICON_FF_SMALL 			"mp_ff_small"
-#define NEUTRINO_ICON_STOP_SMALL 			"mp_stop_small"
+#define NEUTRINO_ICON_REW				"mp_b-skip"
+#define NEUTRINO_ICON_FF 				"mp_f-skip"
 #define NEUTRINO_ICON_REPEAT_TRACK			"mp_play_repeat_track"
 #define NEUTRINO_ICON_REPEAT_ALL			"mp_play_repeat_all"
+
+//
+#define NEUTRINO_ICON_PLAY_SMALL 			"btn_play"
+#define NEUTRINO_ICON_PAUSE_SMALL			"btn_pause"
+#define NEUTRINO_ICON_FF_SMALL 			"btn_forward"
+#define NEUTRINO_ICON_STOP_SMALL 			"btn_stop"
+#define NEUTRINO_ICON_REW_SMALL			"btn_backward"
 
 // misc
 #define NEUTRINO_ICON_TMDB				"tmdb"
@@ -183,66 +193,72 @@
 #define NEUTRINO_ICON_CPU				"cpu"
 
 
-// design icons
-#define NEUTRINO_ICON_MENUITEM_TV			 	"tv"
-#define NEUTRINO_ICON_MENUITEM_RADIO			 	"radio"
-#define NEUTRINO_ICON_MENUITEM_WEBTV			 	"webtv"
-#define NEUTRINO_ICON_MENUITEM_SCART			 	"scart"
-#define NEUTRINO_ICON_MENUITEM_MEDIAPLAYER		 	"mediaplayer"
-#define NEUTRINO_ICON_MENUITEM_SETTINGS			"settings"
-#define NEUTRINO_ICON_MENUITEM_SERVICE			 "service"
-#define NEUTRINO_ICON_MENUITEM_FEATURES			 "features"
-#define NEUTRINO_ICON_MENUITEM_TIMERLIST		 	"timerlist"
-#define NEUTRINO_ICON_MENUITEM_POWERMENU		 	"powermenu"
-#define NEUTRINO_ICON_MENUITEM_BOXINFO			 "boxinfo"
+// hint icons
+// mainmenu
+#define NEUTRINO_ICON_MENUITEM_TV				"hint_tvmode"
+#define NEUTRINO_ICON_MENUITEM_RADIO			 	"hint_radiomode"
+#define NEUTRINO_ICON_MENUITEM_WEBTV			 	"hint_webtv"
+#define NEUTRINO_ICON_MENUITEM_SCART			 	"hint_avinputmode"
+#define NEUTRINO_ICON_MENUITEM_MEDIAPLAYER		 	"hint_media"
+#define NEUTRINO_ICON_MENUITEM_SETTINGS			"hint_settings"
+#define NEUTRINO_ICON_MENUITEM_SERVICE			"hint_service"
+#define NEUTRINO_ICON_MENUITEM_FEATURES			"hint_plugin"
+#define NEUTRINO_ICON_MENUITEM_TIMERLIST		 	"hint_timers"
+#define NEUTRINO_ICON_MENUITEM_POWERMENU		 	"hint_shutdown"
+#define NEUTRINO_ICON_MENUITEM_BOXINFO			"hint_dboxinfo"
 
-#define NEUTRINO_ICON_MENUITEM_VIDEOSETTINGS		 	"videosettings"
-#define NEUTRINO_ICON_MENUITEM_AUDIOSETTINGS		 	"audiosettings"
-#define NEUTRINO_ICON_MENUITEM_PARENTALLOCKSETTINGS	 	"parentallocksettings"
-#define NEUTRINO_ICON_MENUITEM_NETWORKSETTINGS		 "networksettings"
-#define NEUTRINO_ICON_MENUITEM_RECORDINGSETTINGS	 	"recordingsettings"
-#define NEUTRINO_ICON_MENUITEM_MOVIEPLAYERSETTINGS	 	"movieplayersettings"
-#define NEUTRINO_ICON_MENUITEM_OSDSETTINGS		 	"osdsettings"
-#define NEUTRINO_ICON_MENUITEM_LCDSETTINGS		 	"lcdsettings"
-#define NEUTRINO_ICON_MENUITEM_REMOTECONTROLSETTINGS	 	"remotecontrolsettings"
-#define NEUTRINO_ICON_MENUITEM_AUDIOPLAYERSETTINGS		 "audioplayersettings"
-#define NEUTRINO_ICON_MENUITEM_PICTUREVIEWERSETTINGS		 "pictureviewersettings"
-#define NEUTRINO_ICON_MENUITEM_MISCSETTINGS			 "miscsettings"
-#define NEUTRINO_ICON_MENUITEM_HDDSETTINGS			 "hddsettings"
+// settings
+#define NEUTRINO_ICON_MENUITEM_VIDEOSETTINGS		 	"hint_video"
+#define NEUTRINO_ICON_MENUITEM_AUDIOSETTINGS		 	"hint_audio"
+#define NEUTRINO_ICON_MENUITEM_PARENTALLOCKSETTINGS	 	"hint_protection"
+#define NEUTRINO_ICON_MENUITEM_NETWORKSETTINGS		"hint_network"
+#define NEUTRINO_ICON_MENUITEM_RECORDINGSETTINGS	 	"hint_recording"
+#define NEUTRINO_ICON_MENUITEM_MOVIEPLAYERSETTINGS	 	"hint_mb"
+#define NEUTRINO_ICON_MENUITEM_OSDSETTINGS		 	"hint_osd"
+#define NEUTRINO_ICON_MENUITEM_LCDSETTINGS		 	"hint_vfd"
+#define NEUTRINO_ICON_MENUITEM_REMOTECONTROLSETTINGS	 	"hint_keys"
+#define NEUTRINO_ICON_MENUITEM_AUDIOPLAYERSETTINGS		"hint_aplay"
+#define NEUTRINO_ICON_MENUITEM_PICTUREVIEWERSETTINGS		"hint_picview"
+#define NEUTRINO_ICON_MENUITEM_MISCSETTINGS			"hint_extended"
+#define NEUTRINO_ICON_MENUITEM_HDDSETTINGS			"hint_hdd"
 
-#define NEUTRINO_ICON_MENUITEM_THEMES				 "themes"
-#define NEUTRINO_ICON_MENUITEM_MENUCOLORS			 "menucolors"
-#define NEUTRINO_ICON_MENUITEM_INFOBARCOLORS			 "infobarcolors"
-#define NEUTRINO_ICON_MENUITEM_LANGUAGE			 "language"
-#define NEUTRINO_ICON_MENUITEM_FONT				 "font"
-#define NEUTRINO_ICON_MENUITEM_FONTSCALING			 "fontscaling"
-#define NEUTRINO_ICON_MENUITEM_OSDTIMING			 "osdtiming"
-#define NEUTRINO_ICON_MENUITEM_SCREENSETUP			 "screensetup"
-#define NEUTRINO_ICON_MENUITEM_ALPHASETUP			 "alphasetup"
+// osd
+#define NEUTRINO_ICON_MENUITEM_THEMES				"hint_themes"
+#define NEUTRINO_ICON_MENUITEM_MENUCOLORS			"hint_menucolors"
+#define NEUTRINO_ICON_MENUITEM_INFOBARCOLORS			"hint_infobarcolors"
+#define NEUTRINO_ICON_MENUITEM_LANGUAGE			"hint_language"
+#define NEUTRINO_ICON_MENUITEM_FONT				"hint_font"
+#define NEUTRINO_ICON_MENUITEM_OSDTIMING			"hint_osdtiming"
+#define NEUTRINO_ICON_MENUITEM_SCREENSETUP			"hint_lcd4linux"
+#define NEUTRINO_ICON_MENUITEM_ALPHASETUP			"hint_alphasetup"
 
-#define NEUTRINO_ICON_MENUITEM_GENERALSETTINGS		 "generalsettings"
-#define NEUTRINO_ICON_MENUITEM_CHANNELLISTSETTINGS	 	"channellistsettings"
-#define NEUTRINO_ICON_MENUITEM_EPGSETTINGS		 	"epgsettings"
-#define NEUTRINO_ICON_MENUITEM_FILEBROWSERSETTINGS	 	"filebrowsersettings"
-#define NEUTRINO_ICON_MENUITEM_STARTCHANNELSETTINGS	 	"startchannelsettings"
-#define NEUTRINO_ICON_MENUITEM_PSISETTINGS		 	"psisettings"
+// misc
+#define NEUTRINO_ICON_MENUITEM_GENERALSETTINGS		"hint_settings"
+#define NEUTRINO_ICON_MENUITEM_CHANNELLISTSETTINGS	 	"hint_bedit"
+#define NEUTRINO_ICON_MENUITEM_EPGSETTINGS		 	"hint_streaminfo"
+#define NEUTRINO_ICON_MENUITEM_FILEBROWSERSETTINGS	 	"hint_fileplay"
+#define NEUTRINO_ICON_MENUITEM_STARTCHANNELSETTINGS	 	"hint_personalize"
+#define NEUTRINO_ICON_MENUITEM_PSISETTINGS		 	"hint_psi"
 
-#define NEUTRINO_ICON_MENUITEM_SCANSETTINGS			 "scansettings"
-#define NEUTRINO_ICON_MENUITEM_RELOADCHANNELS			 "reloadchannels"
-#define NEUTRINO_ICON_MENUITEM_BOUQUETSEDITOR			 "bouquetseditor"
-#define NEUTRINO_ICON_MENUITEM_CICAM			 	"cicam"
-#define NEUTRINO_ICON_MENUITEM_IMAGEINFO			 "imageinfo"
-#define NEUTRINO_ICON_MENUITEM_SOFTUPDATE			 "softupdate"
+// service
+#define NEUTRINO_ICON_MENUITEM_SCANSETTINGS			"hint_scan"
+#define NEUTRINO_ICON_MENUITEM_RELOADCHANNELS			"hint_reload"
+#define NEUTRINO_ICON_MENUITEM_BOUQUETSEDITOR			"hint_bedit"
+#define NEUTRINO_ICON_MENUITEM_CICAM				"hint_ci"
+#define NEUTRINO_ICON_MENUITEM_IMAGEINFO			"hint_imageinfo"
+#define NEUTRINO_ICON_MENUITEM_SOFTUPDATE			"hint_swupdate"
 
-#define NEUTRINO_ICON_MENUITEM_SLEEPTIMER			 "sleeptimer"
-#define NEUTRINO_ICON_MENUITEM_RESTART			 "restart"
-#define NEUTRINO_ICON_MENUITEM_STANDBY			 "standby"
-#define NEUTRINO_ICON_MENUITEM_REBOOT			 	"reboot"
-#define NEUTRINO_ICON_MENUITEM_SHUTDOWN		 	"shutdown"
+// powermenu
+#define NEUTRINO_ICON_MENUITEM_SLEEPTIMER			"hint_sleeptimer"
+#define NEUTRINO_ICON_MENUITEM_RESTART			"hint_restart"
+#define NEUTRINO_ICON_MENUITEM_STANDBY			"hint_standby"
+#define NEUTRINO_ICON_MENUITEM_REBOOT			 	"hint_reboot"
+#define NEUTRINO_ICON_MENUITEM_SHUTDOWN		 	"hint_shutdown"
 
-#define NEUTRINO_ICON_MENUITEM_PLUGIN				 "plugin"
-#define NEUTRINO_ICON_MENUITEM_NOPREVIEW			 "nopreview"
-#define NEUTRINO_ICON_MENUITEM_VTXT				 "vtxt"
+// usermenu
+#define NEUTRINO_ICON_MENUITEM_PLUGIN				"hint_plugin"
+#define NEUTRINO_ICON_MENUITEM_NOPREVIEW			"hint_default"
+#define NEUTRINO_ICON_MENUITEM_VTXT				"hint_xmltv"
 
 // misc
 #define DUMMY_ICON						"dummy"

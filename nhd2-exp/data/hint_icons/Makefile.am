@@ -1,76 +1,73 @@
 installdir = $(DATADIR)/neutrino/hint_icons
 
-# main menu
+# mainmenu
 install_DATA = \
-	tv.png \
-	radio.png \
-	webtv.png \
-	scart.png \
-	mediaplayer.png \
-	settings.png \
-	service.png \
-	timerlist.png \
-	features.png \
-	powermenu.png \
-	boxinfo.png
+	hint_tvmode.png \
+	hint_radiomode.png \
+	hint_webtv.png \
+	hint_avinputmode.png \
+	hint_media.png \
+	hint_settings.png \
+	hint_service.png \
+	hint_timers.png \
+	hint_plugin.png \
+	hint_shutdown.png \
+	hint_dboxinfo.png
 
 # settings
 install_DATA += \
-	videosettings.png \
-	audiosettings.png \
-	parentallocksettings.png \
-	networksettings.png \
-	recordingsettings.png \
-	movieplayersettings.png \
-	osdsettings.png \
-	lcdsettings.png \
-	remotecontrolsettings.png \
-	audioplayersettings.png \
-	pictureviewersettings.png \
-	miscsettings.png \
-	hddsettings.png
+	hint_video.png \
+	hint_audio.png \
+	hint_protection.png \
+	hint_network.png \
+	hint_recording.png \
+	hint_mb.png \
+	hint_osd.png \
+	hint_vfd.png \
+	hint_keys.png \
+	hint_aplay.png \
+	hint_picview.png \
+	hint_extended.png \
+	hint_hdd.png
 
 # osd settings
 install_DATA += \
-	themes.png \
-	menucolors.png \
-	infobarcolors.png \
-	language.png \
-	font.png \
-	fontscaling.png \
-	osdtiming.png \
-	screensetup.png \
-	alphasetup.png
+	hint_themes.png \
+	hint_menucolors.png \
+	hint_infobarcolors.png \
+	hint_language.png \
+	hint_font.png \
+	hint_osdtiming.png \
+	hint_lcd4linux.png \
+	hint_alpha.png
 
 # misc settings
 install_DATA += \
-	generalsettings.png \
-	channellistsettings.png \
-	epgsettings.png \
-	filebrowsersettings.png \
-	startchannelsettings.png \
-	psisettings.png
+	hint_streaminfo.png \
+	hint_fileplay.png \
+	hint_personalize.png \
+	hint_psi.png
 
 # service
 install_DATA += \
-	scansettings.png \
-	reloadchannels.png \
-	bouquetseditor.png \
-	cicam.png \
-	imageinfo.png \
-	softupdate.png
+	hint_scan.png \
+	hint_reload.png \
+	hint_bedit.png \
+	hint_ci.png \
+	hint_imageinfo.png \
+	hint_swupdate.png
 
 # power menu
 install_DATA += \
-	sleeptimer.png \
-	restart.png \
-	standby.png \
-	reboot.png \
-	shutdown.png
+	hint_sleeptimer.png \
+	hint_restart.png \
+	hint_standby.png \
+	hint_reboot.png \
+	hint_shutdown.png
 
 # divers
 install_DATA += \
-	nopreview.png plugin.png vtxt.png
+	hint_default.png hint_xmltv.png
 	
 
 

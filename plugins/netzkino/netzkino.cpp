@@ -89,7 +89,7 @@ void CNKMovies::loadNKTitles(int mode, std::string search, int id)
 {
 	dprintf(DEBUG_NORMAL, "CNKMovies::loadNKTitles: (mode:%d) search:%s (id:%d)\n", mode, search.c_str(), id);
 
-	CHintBox loadBox(g_Locale->getCustomText((neutrino_locale_t)LOCALE_NK_NETZKINO), g_Locale->getCustomText((neutrino_locale_t)LOCALE_NK_SCAN_FOR_CATEGORIES));
+	CHintBox loadBox(g_Locale->getCustomText((neutrino_locale_t)LOCALE_NK_NETZKINO), /*g_Locale->getCustomText((neutrino_locale_t)LOCALE_NK_SCAN_FOR_CATEGORIES)*/g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 
 	nkparser.Cleanup();
@@ -206,7 +206,7 @@ void CNKMovies::showMenu()
 	leftWidget = new ClistBox(&leftBox);
 
 	leftWidget->setSelected(left_selected);
-	leftWidget->enableShrinkMenu();
+	//leftWidget->enableShrinkMenu();
 	leftWidget->setOutFocus();
 
 	leftWidget->addItem(new ClistBoxItem("Suche", true, nksearch.c_str(), this, "search"));

@@ -98,7 +98,7 @@ void CServiceSetup::showMenu(void)
 	
 	int shortcutService = 1;
 	
-	CMenuWidget * service = new CMenuWidget(LOCALE_SERVICEMENU_HEAD, NEUTRINO_ICON_SETTINGS);
+	CMenuWidget * service = new CMenuWidget(LOCALE_SERVICEMENU_HEAD, NEUTRINO_ICON_UPDATE);
 
 	service->setMode(MODE_MENU);
 	service->enableShrinkMenu();

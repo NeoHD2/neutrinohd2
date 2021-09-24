@@ -393,9 +393,9 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 					onMenuKeyPressed();
 					break;
 
-				case (RC_standby):
-					onPowerKeyPressed();
-					break;
+				//case (RC_standby):
+				//	onPowerKeyPressed();
+				//	break;
 
 				case (RC_spkr):
 					onMuteKeyPressed();

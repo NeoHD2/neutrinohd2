@@ -46,6 +46,7 @@
 
 #include <gui/widget/messagebox.h>
 #include <gui/widget/colorchooser.h>
+#include <gui/widget/icons.h>
 
 
 #define VALUE_R     0
@@ -55,10 +56,10 @@
 #define ITEMS_COUNT 4
 
 static const char * const iconnames[4] = {
-	"volumeslider2red",
-	"volumeslider2green",
-	"volumeslider2blue",
-	"volumeslider2alpha"
+	NEUTRINO_ICON_VOLUMESLIDER2RED,
+	NEUTRINO_ICON_VOLUMESLIDER2GREEN,
+	NEUTRINO_ICON_VOLUMESLIDER2BLUE,
+	NEUTRINO_ICON_VOLUMESLIDER2ALPHA
 };
 
 static const neutrino_locale_t colorchooser_names[4] =
