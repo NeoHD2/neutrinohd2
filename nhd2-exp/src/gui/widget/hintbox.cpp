@@ -330,13 +330,17 @@ int CHintBox::exec(int timeout)
 
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd( timeout );
 
-	while ( ! ( res & ( messages_return::cancel_info | messages_return::cancel_all ) ) )
+	//while ( ! ( res & ( messages_return::cancel_info | messages_return::cancel_all ) ) )
+	bool loop = true;
+	
+	while (loop)
 	{
 		g_RCInput->getMsgAbsoluteTimeout( &msg, &data, &timeoutEnd );
 
 		if ((msg == RC_timeout) || (msg == RC_home) || (msg == RC_ok))
 		{
-			res = messages_return::cancel_info;
+			//res = messages_return::cancel_info;
+			loop = false;
 		}
 		else if ((has_scrollbar()) && ((msg == RC_up) || (msg == RC_down)))
 		{
@@ -347,9 +351,11 @@ int CHintBox::exec(int timeout)
 		}
 		else if((msg == RC_mode) || (msg == RC_next) || (msg == RC_prev)) 
 		{
-				res = messages_return::cancel_info;
-				g_RCInput->postMsg(msg, data);
+			//res = messages_return::cancel_info;
+			//g_RCInput->postMsg(msg, data);
+			loop = false;
 		}
+		/*
 		else
 		{
 			res = CNeutrinoApp::getInstance()->handleMsg(msg, data);
@@ -361,6 +367,11 @@ int CHintBox::exec(int timeout)
 				res = messages_return::cancel_info;
 				g_RCInput->postMsg(msg, data);
 			}
+		}
+		*/
+		else if (CNeutrinoApp::getInstance()->handleMsg(msg, data) & messages_return::cancel_all)
+		{
+			loop = false;
 		}
 
 		CFrameBuffer::getInstance()->blit();	

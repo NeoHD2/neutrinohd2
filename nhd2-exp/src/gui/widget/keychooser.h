@@ -57,7 +57,7 @@ class CKeyChooser : public CMenuWidget
 	private:
 		CFrameBuffer		*frameBuffer;
 		int*			key;
-		CKeyChooserItem		*keyChooser;
+		CKeyChooserItem	*keyChooser;
 		CKeyChooserItemNoKey	*keyDeleter;
 
 	public:

@@ -75,7 +75,6 @@ class CMessageBox
 {
 	protected:
 		CWindow m_cBoxWindow;
-		//CWindow m_cBodyWindow;
 
 		unsigned int m_currentPage;
 		std::vector<int>m_startEntryOfPage;
@@ -98,6 +97,7 @@ class CMessageBox
 		void refresh();
 
 		void init(const char* const Caption, const int Width, const char * const Icon);
+		void resizeFrame(void);
 
 		bool has_scrollbar(void);
 		void scroll_up(void);

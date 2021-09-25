@@ -65,7 +65,7 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, const char * const Tex
 		begin = strtok(NULL, "\n");
 	}
 	
-	//init(g_Locale->getText(Caption), Width, Icon);
+	init(g_Locale->getText(Caption), Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
@@ -95,7 +95,8 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, const char * const Tex
 	if(new_width > m_width)
 		m_width = new_width;
 		
-	init(g_Locale->getText(Caption), Width, Icon);
+	// resizeFrame
+	resizeFrame();
 }
 
 CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
@@ -103,7 +104,7 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, c
 	m_message = NULL;
 	m_lines = Lines;
 	
-	//init(g_Locale->getText(Caption), Width, Icon);
+	init(g_Locale->getText(Caption), Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
@@ -132,7 +133,8 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, c
 	if(new_width > m_width)
 		m_width = new_width;
 		
-	init(g_Locale->getText(Caption), Width, Icon);
+	// resizeFrame
+	resizeFrame();
 }
 
 CMessageBox::CMessageBox(const char* const Caption, const char * const Text, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
@@ -153,7 +155,7 @@ CMessageBox::CMessageBox(const char* const Caption, const char * const Text, con
 		begin = strtok(NULL, "\n");
 	}
 	
-	//init(Caption, Width, Icon);
+	init(Caption, Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
@@ -183,7 +185,8 @@ CMessageBox::CMessageBox(const char* const Caption, const char * const Text, con
 	if(new_width > m_width)
 		m_width = new_width;
 		
-	init(Caption, Width, Icon);
+	// resizeFrame
+	resizeFrame();
 }
 
 CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
@@ -191,7 +194,7 @@ CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const i
 	m_message = NULL;
 	m_lines = Lines;
 	
-	//init(Caption, Width, Icon);
+	init(Caption, Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
@@ -220,7 +223,8 @@ CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const i
 	if(new_width > m_width)
 		m_width = new_width;
 		
-	init(Caption, Width, Icon);
+	// resizeFrame
+	resizeFrame();
 }
 
 CMessageBox::~CMessageBox(void)
@@ -368,9 +372,10 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 
 	if (nw > m_width)
 		m_width = nw;
-		
-	//TEST
-	//
+}
+
+void CMessageBox::resizeFrame(void)
+{
 	m_cBoxWindow.setPosition(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1),
                                CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2),
                                m_width,
