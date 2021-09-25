@@ -2857,10 +2857,7 @@ void CNeutrinoApp::RealRun(void)
 
 				StopSubtitles();
 
-				//if(mode == mode_webtv)
-				//	g_EpgData->show(channelList->getActiveChannel_ChannelID());
-				//else
-					g_EpgData->show(live_channel_id);
+				g_EpgData->show(live_channel_id);
 
 				StartSubtitles();
 			}
@@ -2871,11 +2868,8 @@ void CNeutrinoApp::RealRun(void)
 					g_InfoViewer->killTitle();
 
 				StopSubtitles();
-				
-				//if(mode == mode_webtv)
-				//	g_EventList->exec(channelList->getActiveChannel_ChannelID(), channelList->getActiveChannelName()); 
-				//else
-					g_EventList->exec(live_channel_id, channelList->getActiveChannelName());
+
+				g_EventList->exec(live_channel_id, channelList->getActiveChannelName());
 
 				StartSubtitles();
 			}

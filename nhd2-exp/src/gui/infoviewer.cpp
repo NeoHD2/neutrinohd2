@@ -565,7 +565,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 		show_Data();
 		showSNR();
 
-		if (msg == RC_sat || msg == RC_favorites || msg == RC_red || msg == RC_green || msg == RC_yellow || msg == RC_blue)
+		if (msg == RC_sat || msg == RC_favorites || msg == RC_red || msg == RC_green || msg == RC_yellow || msg == RC_blue || msg == RC_setup)
 		{
 			g_RCInput->postMsg(msg, 0);
 			res = messages_return::cancel_info;
@@ -675,7 +675,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 		frameBuffer->blit();		
 	}
 
-	if (hideIt)
+	//if (hideIt)
 		killTitle();
 		
 	g_RCInput->killTimer(sec_timer_id);
