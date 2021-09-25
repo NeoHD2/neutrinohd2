@@ -3838,14 +3838,14 @@ void CTestMenu::testClistBox5()
 	listBox->setItemsPerPage(5, 2);
 
 	// head
-	listBox->setTitle("ClistBox(menu)", NEUTRINO_ICON_MOVIE);
+	listBox->setTitle("ClistBox(menu mode)", NEUTRINO_ICON_MOVIE);
 	listBox->enablePaintHead();
 	listBox->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	listBox->enablePaintDate();
 
 	// footer
 	listBox->enablePaintFoot();
-	//listBox->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	listBox->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
 	listBox->enablePaintFootInfo(80);
@@ -3931,10 +3931,10 @@ void CTestMenu::testClistBox5()
 	sec_timer_id = 0;
 }
 
-// ClistBox(list mode)
+// ClistBox(listBox mode)
 void CTestMenu::testClistBox6()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting ClistBox(list mode)\n");
+	dprintf(DEBUG_NORMAL, "\ntesting ClistBox(listBox mode)\n");
 
 	CBox Box;
 	
@@ -3994,7 +3994,7 @@ void CTestMenu::testClistBox6()
 	listBox->setItemsPerPage(5, 2);
 
 	// head
-	listBox->setTitle("ClistBox(list mode)", NEUTRINO_ICON_MOVIE);
+	listBox->setTitle("ClistBox(listBox mode)", NEUTRINO_ICON_MOVIE);
 	listBox->enablePaintHead();
 	listBox->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	listBox->enablePaintDate();
@@ -4885,11 +4885,11 @@ void CTestMenu::testShowPictureDir()
 	}
 }
 
-// ClistBoxWidget
+// CMenuWidget
 void CTestMenu::testClistBoxWidget()
 {
 	// our listBox
-	listMenu = new CMenuWidget("CMenuWidget(list Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+	listMenu = new CMenuWidget("CMenuWidget(listBox Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 
 	//
 	loadMoviePlaylist();
@@ -4928,6 +4928,8 @@ void CTestMenu::testClistBoxWidget()
 
 	// foot
 	listMenu->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	
+	// footInfo
 	listMenu->enablePaintFootInfo(80);
 	listMenu->setFootInfoMode(FOOT_HINT_MODE);
 
@@ -4939,7 +4941,7 @@ void CTestMenu::testClistBoxWidget()
 	listMenu = NULL;
 }
 
-// ClistBoxWidget1
+// CMenuWidget1
 void CTestMenu::testClistBoxWidget1()
 {
 	// our listBox
@@ -4977,11 +4979,11 @@ void CTestMenu::testClistBoxWidget1()
 	listMenu->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 
 	// foot
-	//listMenu->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	listMenu->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// foot info in menu mode are always enabled
-	//listMenu->enablePaintFootInfo();
-	//listMenu->setFootInfoMode(FOOT_INFO_MODE);
+	listMenu->enablePaintFootInfo();
+	listMenu->setFootInfoMode(FOOT_HINT_MODE);
 
 	listMenu->addKey(RC_info, this, "minfo");
 
@@ -6758,7 +6760,7 @@ void CTestMenu::showMenu()
 	mainMenu->setMode(MODE_MENU);
 	mainMenu->enableShrinkMenu(),
 	mainMenu->enableMenuPosition();
-	mainMenu->enablePaintFootInfo();
+	//mainMenu->enablePaintFootInfo();
 	
 	mainMenu->addItem(new CMenuForwarder("CWidget(multi widget)", true, NULL, this, "widget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(single widget)", true, NULL, this, "singleWidget"));
@@ -6813,7 +6815,7 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("ClistBox(extended)", true, NULL, this, "listbox3"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(Frame)", true, NULL, this, "listbox4"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(menu mode)", true, NULL, this, "listbox5"));
-	mainMenu->addItem(new CMenuForwarder("ClistBox(list mode)", true, NULL, this, "listbox6"));
+	mainMenu->addItem(new CMenuForwarder("ClistBox(listBox mode)", true, NULL, this, "listbox6"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox", true, NULL, this, "framebox"));
 	
 	// ClistBox

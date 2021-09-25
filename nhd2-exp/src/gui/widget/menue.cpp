@@ -299,9 +299,9 @@ void CMenuWidget::initFrames()
 		// footInfo height
 		if(paintFootInfo)
 		{
-			if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC) )
+			if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC && widgetMode == MODE_LISTBOX) )
 			{
-				if(widgetMode == MODE_LISTBOX)
+				//if(widgetMode == MODE_LISTBOX)
 				{
 					cFrameFootInfo.iHeight = footInfoHeight;
 					connectLineWidth = CONNECTLINEBOX_WIDTH;
@@ -310,7 +310,10 @@ void CMenuWidget::initFrames()
 		}
 
 		// width
-		width -= connectLineWidth;
+		if (paintFootInfo)
+		{
+			width -= connectLineWidth;
+		}
 
 		// head height
 		icon_head_w = 0;
@@ -399,15 +402,16 @@ void CMenuWidget::initFrames()
 		}
 
 		// re-set FrameFootInfo position
-		if(paintFootInfo && (widgetType == WIDGET_TYPE_STANDARD || (widgetType == WIDGET_TYPE_CLASSIC && widgetMode == MODE_LISTBOX)))
+		if(paintFootInfo && (widgetType == WIDGET_TYPE_STANDARD || (widgetType == WIDGET_TYPE_CLASSIC /*&& widgetMode == MODE_LISTBOX*/)))
 		{
 			cFrameFootInfo.iX = x;
-			cFrameFootInfo.iY = y + height - cFrameFootInfo.iHeight;
-			cFrameFootInfo.iWidth = width;
+			cFrameFootInfo.iY = y + full_height - cFrameFootInfo.iHeight;
+			cFrameFootInfo.iWidth = full_width;
 		}
 
 		// footers
-		footers = new CFooters(x, y + height - fheight, width, fheight);
+		//footers = new CFooters(x, y + height - fheight, width, fheight);
+		footers = new CFooters(x, y + full_height - cFrameFootInfo.iHeight - fheight, full_width, fheight);
 
 		if (fbutton_count)
 		{
@@ -471,7 +475,7 @@ void CMenuWidget::paintHead()
 	else
 	{
 		// paint head
-		frameBuffer->paintBoxRel(x, y, width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
+		frameBuffer->paintBoxRel(x, y, full_width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
 	
 		//paint icon (left)
 		frameBuffer->paintIcon(iconfile, x + BORDER_LEFT, y + (hheight - icon_head_h)/2);
@@ -742,24 +746,68 @@ void CMenuWidget::paintItemInfo(int pos)
 	{
 		if(widgetMode == MODE_MENU)
 		{
-			if(fbutton_count == 0)
+			//TEST
+			if(paintFootInfo)
 			{
 				CMenuItem* item = items[pos];
+	
+				// detailslines box
+				itemsLine.paint(x, y, full_width, full_height - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
-				item->getYPosition();
 
-				// refresh box
-				frameBuffer->paintBoxRel(x, y + full_height - fheight, width, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
+				// HelpText
+				if(textBox)
+				{
+					delete textBox;
+					textBox = NULL;
+				}
+	
+				textBox = new CTextBox(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, full_width - 4, cFrameFootInfo.iHeight - 4);
 
-				// info icon
-				int iw, ih;
-				frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
-				frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + full_height - fheight + (fheight - ih)/2);
+				textBox->disablePaintBackground();
+				textBox->setMode(AUTO_WIDTH);
+				
+				std::string icon;
+				icon.clear();
+				
+				if (item->isPlugin)
+					icon = item->itemIcon;
+				else				
+					icon = g_settings.hint_icons_dir + item->itemIcon.c_str() + ".png";
+				
+				std::string helpText;
+				helpText.clear();
+				helpText = item->itemHelpText.c_str();
+				helpText += "\n";
 
 				// HelpText
 				if(!item->itemHelpText.empty())
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + full_height - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHelpText.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					textBox->setText(helpText.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
+					textBox->paint();
+				}
+			}
+			else 
+			{
+				if(fbutton_count == 0)
+				{
+					CMenuItem* item = items[pos];
+
+					item->getYPosition();
+
+					// refresh box
+					frameBuffer->paintBoxRel(x, y + full_height - fheight, full_width, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
+
+					// info icon
+					int iw, ih;
+					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
+					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + full_height - fheight + (fheight - ih)/2);
+
+					// HelpText
+					if(!item->itemHelpText.empty())
+					{
+						g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + full_height - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHelpText.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					}
 				}
 			}
 		}
@@ -774,7 +822,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					item->getYPosition();
 	
 					// detailslines
-					itemsLine.paint(x, y, width, height, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
+					itemsLine.paint(x, y, full_width, full_height - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
 					// option_info1
 					int l_ow1 = 0;
@@ -825,7 +873,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					item->getYPosition();
 	
 					// detailslines|box
-					itemsLine.paint(x, y, width, height, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
+					itemsLine.paint(x, y, full_width, full_height - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
 					// HelpText
 					if(textBox)
@@ -834,14 +882,14 @@ void CMenuWidget::paintItemInfo(int pos)
 						textBox = NULL;
 					}
 	
-					textBox = new CTextBox(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, width - 4, cFrameFootInfo.iHeight - 4);
+					textBox = new CTextBox(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, full_width - 4, cFrameFootInfo.iHeight - 4);
 
 					textBox->disablePaintBackground();
 					textBox->setMode(AUTO_WIDTH);
 
 					if(!item->itemHelpText.empty())
 					{
-						textBox->setText(item->itemHelpText.c_str());
+						textBox->setText(item->itemHelpText.c_str(), item->itemIcon.c_str(), 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
 						textBox->paint();
 					}
 				}
@@ -859,7 +907,7 @@ void CMenuWidget::paintItemInfo(int pos)
 				item->getYPosition();
 
 				// refresh box
-				frameBuffer->paintBoxRel(x, y + full_height - fheight, width, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
+				frameBuffer->paintBoxRel(x, y + full_height - fheight, full_width, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
 
 				// info icon
 				int iw, ih;
@@ -884,7 +932,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					item->getYPosition();
 	
 					// detailslines
-					itemsLine.paint(x, y, width, height, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
+					itemsLine.paint(x, y, full_width, full_height, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
 					// option_info1
 					int l_ow1 = 0;
@@ -972,7 +1020,7 @@ void CMenuWidget::paintItemInfo(int pos)
 			if(fbutton_count == 0)
 			{
 				// refresh box
-				frameBuffer->paintBoxRel(x, y + full_height - fheight, width, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
+				frameBuffer->paintBoxRel(x, y + full_height - fheight, full_width, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
 
 				// info icon
 				frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
@@ -1046,8 +1094,8 @@ void CMenuWidget::hideItemInfo()
 {
 	if((widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC) && paintFootInfo)
 	{
-		if(widgetMode == MODE_LISTBOX)
-			itemsLine.clear(x, y, width + CONNECTLINEBOX_WIDTH, height, cFrameFootInfo.iHeight);
+		//if(widgetMode == MODE_LISTBOX)
+			itemsLine.clear(x, y, full_width + CONNECTLINEBOX_WIDTH, full_height, cFrameFootInfo.iHeight);
 	}  
 }
 
@@ -1062,7 +1110,7 @@ void CMenuWidget::setFooterButtons(const struct button_label *_fbutton_labels, c
 	}
 
 	fbutton_count = fbutton_labels.size();	
-	fbutton_width = (_fbutton_width == 0)? width : _fbutton_width;
+	fbutton_width = (_fbutton_width == 0)? full_width : _fbutton_width;
 }
 
 void CMenuWidget::setHeaderButtons(const struct button_label* _hbutton_labels, const int _hbutton_count)

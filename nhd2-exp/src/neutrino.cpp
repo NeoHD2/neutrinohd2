@@ -2479,11 +2479,9 @@ int CNeutrinoApp::run(int argc, char **argv)
 		loadLocale_ret = g_Locale->loadLocale(g_settings.language);
 	}
 
-	////TEST
 	// icon path
 	frameBuffer->setIconBasePath(g_settings.icons_dir);
 	frameBuffer->setHintIconBasePath(g_settings.hint_icons_dir);
-	////
 
 	// setup fonts
 	SetupFonts();

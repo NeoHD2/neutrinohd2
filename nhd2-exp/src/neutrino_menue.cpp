@@ -79,6 +79,7 @@ void CNeutrinoApp::mainMenu(void)
 	nMenu->setMode(MODE_MENU);
 	nMenu->enableShrinkMenu();
 	nMenu->enableMenuPosition();
+	nMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	nMenu->enableWidgetChange();
 	nMenu->enablePaintDate();
 	nMenu->enablePaintFootInfo();

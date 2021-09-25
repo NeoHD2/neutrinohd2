@@ -339,7 +339,7 @@ int CHintBox::exec(int timeout)
 
 		if ((msg == RC_timeout) || (msg == RC_home) || (msg == RC_ok))
 		{
-			//res = messages_return::cancel_info;
+			res = messages_return::cancel_info;
 			loop = false;
 		}
 		else if ((has_scrollbar()) && ((msg == RC_up) || (msg == RC_down)))
@@ -351,8 +351,8 @@ int CHintBox::exec(int timeout)
 		}
 		else if((msg == RC_mode) || (msg == RC_next) || (msg == RC_prev)) 
 		{
-			//res = messages_return::cancel_info;
-			//g_RCInput->postMsg(msg, data);
+			res = messages_return::cancel_info;
+			g_RCInput->postMsg(msg, data);
 			loop = false;
 		}
 		/*

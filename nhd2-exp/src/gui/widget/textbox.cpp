@@ -456,7 +456,7 @@ void CTextBox::refreshText(void)
 			if (m_tMode == TOP_LEFT)
 			{
 				if(i <= (th / m_nFontTextHeight))
-					x_start = tw;
+					x_start = tw + 10;
 			}
 		}
 
@@ -530,7 +530,7 @@ bool CTextBox::setText(const char * const newText, const char * const _thumbnail
 	// thumbnail
 	thumbnail = "";
 	
-	if(_thumbnail!= NULL && !access(_thumbnail, F_OK))
+	if(_thumbnail != NULL && !access(_thumbnail, F_OK))
 	{
 		thumbnail = _thumbnail;
 
