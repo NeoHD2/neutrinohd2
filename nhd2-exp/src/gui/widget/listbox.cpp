@@ -975,7 +975,6 @@ CMenuForwarder::CMenuForwarder(const neutrino_locale_t Text, const bool Active, 
 	
 	itemIcon = ItemIcon ? ItemIcon : "";
 	itemHelpText = g_Locale->getText(HelpText);
-	itemHelpText += "\n";
 	itemType = ITEM_TYPE_FORWARDER;
 	itemName = g_Locale->getText(Text);
 
@@ -1001,7 +1000,6 @@ CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const
 	
 	itemIcon = ItemIcon ? ItemIcon : "";
 	itemHelpText = g_Locale->getText(HelpText);
-	itemHelpText += "\n";
 	itemType = ITEM_TYPE_FORWARDER;
 	itemName = Text? Text : "";
 

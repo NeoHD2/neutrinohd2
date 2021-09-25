@@ -774,16 +774,11 @@ void CMenuWidget::paintItemInfo(int pos)
 					icon = item->itemIcon;
 				else				
 					icon = g_settings.hint_icons_dir + item->itemIcon.c_str() + ".png";
-				
-				std::string helpText;
-				helpText.clear();
-				helpText = item->itemHelpText.c_str();
-				helpText += "\n";
 
 				// HelpText
 				if(!item->itemHelpText.empty())
 				{
-					textBox->setText(helpText.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
+					textBox->setText(item->itemHelpText.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
 					textBox->paint();
 				}
 			}

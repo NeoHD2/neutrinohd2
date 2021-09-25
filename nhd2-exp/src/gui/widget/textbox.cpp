@@ -594,6 +594,8 @@ bool CTextBox::setText(const char * const newText, const char * const _thumbnail
 	if (newText != NULL || thumbnail.empty())
 	{
 		m_cText = newText;
+		m_cText += "\n";
+		
 		refreshTextLineArray();
 		
 		result = true;
