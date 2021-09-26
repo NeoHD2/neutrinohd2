@@ -20,8 +20,7 @@
 
 #include <plugin.h>
 
-#include <system/ytparser.h>
-
+#include <system/ytparser.h>	
 
 extern "C" void plugin_exec(void);
 extern "C" void plugin_init(void);

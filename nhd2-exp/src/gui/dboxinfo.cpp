@@ -119,7 +119,7 @@ void CDBoxInfoWidget::showInfo()
 	int i = 0;
 
 	//cpu
-	dboxInfo->addLine(NEUTRINO_ICON_CPU, "CPU:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
+	dboxInfo->addLine(NEUTRINO_ICON_MENUITEM_IMAGEINFO, "CPU:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
 	
 	FILE* fd = fopen("/proc/cpuinfo", "rt");
 
@@ -224,7 +224,7 @@ void CDBoxInfoWidget::showInfo()
 	int n = scandir("/sys/block", &namelist, my_filter, alphasort);
 	
 	if (n)
-		dboxInfo->addLine(NEUTRINO_ICON_HDD, "HDD devices:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
+		dboxInfo->addLine(NEUTRINO_ICON_MENUITEM_HDDSETTINGS, "HDD devices:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
 	
 	for(int i1 = 0; i1 < n; i1++) 
 	{
@@ -301,7 +301,7 @@ void CDBoxInfoWidget::showInfo()
 	
 	//frontend
 	if (FrontendCount)
-		dboxInfo->addLine(NEUTRINO_ICON_TUNER, "Frontend:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
+		dboxInfo->addLine(NEUTRINO_ICON_MENUITEM_SCANSETTINGS, "Frontend:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
 	
 	for(int i2 = 0; i2 < FrontendCount; i2++)
 	{

@@ -12,18 +12,19 @@ install_DATA = \
 	
 # headers
 install_DATA += \
-	mainmenue.png settings.png timer.png \
-	features.png power.png	info.png \
+	mainmenue.png settings.png timer.png features.png power.png info.png \
 	video.png audio.png lock.png network.png recording.png colors.png lcd.png keybinding.png \
-	language.png softupdate.png \
-	games.png error.png shell.png
+	language.png \
+	softupdate.png \
+	games.png shell.png \
+	error.png
 	
 # infoviewer
 install_DATA += \
 	subt.png subt_gray.png \
 	rec.png ats.png \
 	16_9.png 16_9_gray.png \
-	ca.png ca2.png ca2_gray.png \
+	marker_scrambled.png ca2.png ca2_gray.png \
 	dd.png dd_avail.png dd_gray.png \
 	radiotextget.png radiotextoff.png radiotextwait.png \
 	vtxt.png vtxt_gray.png \
@@ -66,8 +67,7 @@ install_DATA += \
 	btn_backward.png btn_play.png btn_pause.png btn_forward.png btn_stop.png
 	
 # movieplayer
-install_DATA += \
-	mp.png \	
+install_DATA += \	
 	mp_play.png mp_pause.png mp_b-skip.png mp_f-skip.png mp_play_repeat_track.png mp_play_repeat_all.png
 
 # webtv
@@ -76,5 +76,5 @@ install_DATA += \
 
 # misc
 install_DATA += \
-	nopreview.jpg tmdb.png hdd.png tuner.png star-on.png star-off.png cpu.png
+	nopreview.jpg tmdb.png star-on.png star-off.png
 

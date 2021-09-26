@@ -289,7 +289,7 @@ void CTVShows::showMenu()
 	else if(plist == "top_rated")
 		caption = "Am besten bewertet";
 
-	mlist = new CMenuWidget(caption.c_str(), NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+	mlist = new CMenuWidget(caption.c_str(), NEUTRINO_ICON_TMDB, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 	
 	
 	// load playlist

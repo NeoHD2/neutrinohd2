@@ -77,7 +77,7 @@
 // headers
 #define NEUTRINO_ICON_AUDIO				"audio"
 #define NEUTRINO_ICON_COLORS				"colors"
-#define NEUTRINO_ICON_EPGINFO				"epginfo"
+//#define NEUTRINO_ICON_EPGINFO				"epginfo"
 #define NEUTRINO_ICON_ERROR				"error"
 #define NEUTRINO_ICON_FEATURES			"features"
 #define NEUTRINO_ICON_GAMES				"games"
@@ -144,7 +144,7 @@
 #define NEUTRINO_ICON_RESOLUTION_UHD2			"res_uhd2"
 
 // channellist
-#define NEUTRINO_ICON_SCRAMBLED			"ca2"
+#define NEUTRINO_ICON_SCRAMBLED			"marker_scrambled"
 #define NEUTRINO_ICON_HD				"res_hd"
 #define NEUTRINO_ICON_UHD				"res_uhd"
 
@@ -169,7 +169,6 @@
 #define NEUTRINO_ICON_WEBTV_SMALL			"webtv_small"
 
 // mp
-#define NEUTRINO_ICON_MP				"mp"
 #define NEUTRINO_ICON_PAUSE				"mp_pause"
 #define NEUTRINO_ICON_PLAY 				"mp_play"
 #define NEUTRINO_ICON_REW				"mp_b-skip"
@@ -186,11 +185,11 @@
 
 // misc
 #define NEUTRINO_ICON_TMDB				"tmdb"
-#define NEUTRINO_ICON_HDD	 			"hdd"
-#define NEUTRINO_ICON_TUNER	 			"tuner"
+//#define NEUTRINO_ICON_HDD	 			"hdd"
+//#define NEUTRINO_ICON_TUNER	 			"tuner"
 #define NEUTRINO_ICON_STAR_ON				"star-on"
 #define NEUTRINO_ICON_STAR_OFF			"star-off"
-#define NEUTRINO_ICON_CPU				"cpu"
+//#define NEUTRINO_ICON_CPU				"cpu"
 
 
 // hint icons

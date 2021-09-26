@@ -1562,22 +1562,6 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	int widthtitle = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(title.c_str(), true); //UTF-8
 	g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 5 + height, widthtitle, (char *)title.c_str(), COL_INFOBAR, 0, true); // UTF-8
 	
-	// mp icon
-	int m_icon_w = 0;
-	int m_icon_h = 0;
-	
-	std::string IconName = DATADIR "/neutrino/icons/" NEUTRINO_ICON_MP ".png";
-	
-	if(!access(IconName.c_str(), F_OK))
-	{
-		frameBuffer->getIconSize(NEUTRINO_ICON_MP, &m_icon_w, &m_icon_h);
-
-		int m_icon_x = cFrameBoxInfo.iX + BORDER_LEFT;
-		int m_icon_y = cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - 30 - TIMESCALE_BAR_HEIGHT - cFrameBoxButton.iHeight - m_icon_h) / 2;
-		
-		frameBuffer->paintIcon(NEUTRINO_ICON_MP, m_icon_x, m_icon_y);
-	}
-	
 	// red (movie info)
 	int icon_w, icon_h;
 	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
@@ -1654,7 +1638,7 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	frameBuffer->getIconSize(icon, &icon_w, &icon_h);
 
 	//
-	int icon_x = cFrameBoxButton.iX + BORDER_LEFT + m_icon_w + ICON_OFFSET;
+	int icon_x = cFrameBoxButton.iX + BORDER_LEFT + ICON_OFFSET;
 	int icon_y = cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - 30 - TIMESCALE_BAR_HEIGHT - cFrameBoxButton.iHeight - icon_h) / 2;
 
 	frameBuffer->paintIcon(icon, icon_x, icon_y);
@@ -1671,8 +1655,8 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 		
 	int speedWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth("-8");
 		
-	int InfoStartX = cFrameBoxInfo.iX + ICON_OFFSET + m_icon_w + BORDER_LEFT + icon_w + ICON_OFFSET + speedWidth + 2*ICON_OFFSET;
-	int InfoWidth = cFrameBoxInfo.iWidth - BORDER_LEFT - BORDER_RIGHT -2*ICON_OFFSET - m_icon_w - icon_w - speedWidth - 2*ICON_OFFSET - 2*BORDER_LEFT;
+	int InfoStartX = cFrameBoxInfo.iX + ICON_OFFSET + BORDER_LEFT + icon_w + ICON_OFFSET + speedWidth + 2*ICON_OFFSET;
+	int InfoWidth = cFrameBoxInfo.iWidth - BORDER_LEFT - BORDER_RIGHT -2*ICON_OFFSET - icon_w - speedWidth - 2*ICON_OFFSET - 2*BORDER_LEFT;
 	
 	// title
 	int TitleHeight = cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight();	//40???

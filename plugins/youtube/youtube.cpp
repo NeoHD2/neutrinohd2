@@ -63,7 +63,7 @@ const char * locale_real_names_yt[] = {
 	"youtube.yt_autoplay"
 };
 
-#define NEUTRINO_ICON_YT			PLUGINDIR "/youtube/youtube.png"
+#define NEUTRINO_ICON_YT				PLUGINDIR "/youtube/youtube.png"
 #define NEUTRINO_ICON_YT_SMALL			PLUGINDIR "/youtube/youtube_small.png"
 
 YTB_SETTINGS m_settings;

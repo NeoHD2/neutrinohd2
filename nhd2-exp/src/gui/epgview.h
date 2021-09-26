@@ -1,7 +1,7 @@
 /*
 	Neutrino-GUI  -   DBoxII-Project
 	
-	$Id: epgview.h 15.01.2019 mohousch Exp $
+	$Id: epgview.h 26.09.2021 mohousch Exp $
 
 	Copyright (C) 2001 Steffen Hehn 'McClean'
 	Homepage: http://dbox.cyberphoria.org/
@@ -52,8 +52,6 @@
 
 #include <sectionsdclient/sectionsdclient.h>
 
-
-#define BIG_FONT_FAKTOR 1.5
 
 class CEpgData
 {
