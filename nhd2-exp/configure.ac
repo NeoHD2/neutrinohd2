@@ -1,4 +1,4 @@
-AC_INIT(neutrinohd2,4.0)
+AC_INIT(neutrinoHD2,3.8)
 AM_INIT_AUTOMAKE([nostdinc])
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])

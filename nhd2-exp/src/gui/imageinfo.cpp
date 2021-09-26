@@ -158,7 +158,7 @@ void CImageInfo::paint()
 	//CConfigFile config('\t');
 	//config.loadConfig("/etc/.version");
 
-	const char * imagename = "neutrinoHD2";
+	const char * imagename = PACKAGE_NAME;
 	//imagename = config.getString("imagename", "neutrinoHD2").c_str();
 	const char * homepage = "http://gitorious.org/open-duckbox-project-sh4";
 	//homepage = config.getString("homepage", "http://gitorious.org/open-duckbox-project-sh4").c_str();
@@ -171,9 +171,9 @@ void CImageInfo::paint()
 	const char * gitrev = GIT;
 	
 	//static CFlashVersionInfo versionInfo(version);
-	const char * releaseCycle = "3.8";
+	const char * releaseCycle = PACKAGE_VERSION;
 	//releaseCycle = versionInfo.getReleaseCycle();
-	const char * imageType = "Snapshot";
+	const char * imageType = "Snapshot"; //FIXME:
 	//imageType = versionInfo.getType();
 
 	// image name

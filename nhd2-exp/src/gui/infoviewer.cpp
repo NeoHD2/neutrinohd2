@@ -548,9 +548,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd (g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR] == 0 ? 0xFFFF : g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR]);
 
 	int res = messages_return::none;
-
-	//bool loop = true;
-	//while (loop)
 	
 	while (!(res & (messages_return::cancel_info | messages_return::cancel_all))) 
 	{
@@ -565,20 +562,16 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 		show_Data();
 		showSNR();
 
-		if (msg == RC_sat || msg == RC_favorites /*|| msg == RC_red || msg == RC_green || msg == RC_yellow || msg == RC_blue || msg == RC_setup*/)
+		if (msg == RC_sat || msg == RC_favorites)
 		{
 			g_RCInput->postMsg(msg, 0);
 			res = messages_return::cancel_info;
-			
-			//loop = false;
 		}
 		else if (msg == RC_info)
 		{
 			g_RCInput->postMsg(NeutrinoMessages::SHOW_EPG, 0);
 				
 			res = messages_return::cancel_info;
-			
-			//loop = false;
 		} 
 		else if ((msg == RC_ok) || (msg == RC_home) || (msg == RC_timeout)) 
 		{
@@ -586,8 +579,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 			// add this here, now OK and EXIT/HOME has effect
 			// and infobar timeout settings work
 			hideIt = true;
-			
-			//loop = false;
 		} 			
 		else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
@@ -608,8 +599,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 			virtual_zap_mode = true;
 			res = messages_return::cancel_all;
 			hideIt = true;
-			
-			//loop = false;
 		} 
 		else if ( !CNeutrinoApp::getInstance()->timeshiftstatus) 
 		{
@@ -625,8 +614,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				g_RCInput->postMsg(msg, data);
 
 				res = messages_return::cancel_info;
-				
-				//loop = false;
 			} 
 			else if (msg == NeutrinoMessages::EVT_TIMESET) 
 			{
@@ -635,8 +622,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				g_RCInput->postMsg (NeutrinoMessages::SHOW_INFOBAR, 0);
 				
 				res = messages_return::cancel_all;
-				
-				//loop = false;
 			} 
 			else 
 			{
@@ -646,7 +631,8 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				}
 					
 				res = neutrino->handleMsg(msg, data);
-					
+				
+				/*	
 				if (res & messages_return::unhandled) 
 				{
 					dprintf(DEBUG_NORMAL, "CInfoViewer::show: message unhandled\n");
@@ -655,14 +641,8 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 					g_RCInput->postMsg(msg, data);
 					res = messages_return::cancel_info; //FIXME:
 				}
+				*/
 			}
-			/*
-			else if (CNeutrinoApp::getInstance()->handleMsg(msg, data) & messages_return::cancel_all)
-			{	
-				loop = false;
-				hideIt = true;
-			}
-			*/
 		}
 				
 		frameBuffer->blit();		

@@ -72,12 +72,12 @@
 #include <system/debug.h>
 
 
-#define gTmpPath 				"/var/tmp/"
-#define gUserAgent 				"neutrino/softupdater 1.0"
+#define gTmpPath 					"/var/tmp/"
+#define gUserAgent 					"neutrino/softupdater 1.0"
 
 #define LIST_OF_UPDATES_LOCAL_FILENAME 		"update.list"
-#define RELEASE_CYCLE                  		"3.8"
-#define RELEASE_TYPE				"Snapshot"
+#define RELEASE_CYCLE                  		PACKAGE_VERSION
+#define RELEASE_TYPE					"Snapshot" // FIXME:
 #define FILEBROWSER_UPDATE_FILTER      		"img"
 
 #define MTD_OF_WHOLE_IMAGE             		0
