@@ -603,10 +603,10 @@ struct button_label FootButtons[NUM_LIST_BUTTONS] =
 	{ NEUTRINO_ICON_BUTTON_SETUP_SMALL, LOCALE_KEYBINDINGMENU_RELOAD, NULL}
 };
 
-struct button_label HeadButtons[2] = 
+struct button_label HeadButtons[3] = 
 {
-	{ NEUTRINO_ICON_BUTTON_HELP_SMALL, NONEXISTANT_LOCALE, NULL },
-	//{ NEUTRINO_ICON_EPGINFO, NONEXISTANT_LOCALE, NULL },
+	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
+	{ NEUTRINO_ICON_BUTTON_EPG, NONEXISTANT_LOCALE, NULL },
 	{ NEUTRINO_ICON_BUTTON_0, NONEXISTANT_LOCALE, NULL }
 };
 
@@ -694,7 +694,7 @@ void EventList::paint(t_channel_id channel_id)
 	listBox->enablePaintHead();
 	listBox->setTitle(name.c_str(), logo.c_str(), true);
 	listBox->enablePaintDate();
-	listBox->setHeaderButtons(HeadButtons, 2);
+	listBox->setHeaderButtons(HeadButtons, 3);
 
 	// foot
 	listBox->enablePaintFoot();

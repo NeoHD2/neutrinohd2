@@ -59,11 +59,12 @@
 #define NEUTRINO_ICON_BUTTON_DOWN_SMALL		"down_small"
 #define NEUTRINO_ICON_BUTTON_RIGHT			"right"
 #define NEUTRINO_ICON_BUTTON_LEFT			"left"
-
+#define NEUTRINO_ICON_BUTTON_EPG			"epg"
 //#define NEUTRINO_ICON_BUTTON_PLUS			"plus"
 //#define NEUTRINO_ICON_BUTTON_MINUS			"minus"
-
 #define NEUTRINO_ICON_BUTTON_MARK			"mark"
+
+//
 #define NEUTRINO_ICON_NOT_MOUNTED			"not_mounted"
 #define NEUTRINO_ICON_HIDDEN				"marker_hidden"
 #define NEUTRINO_ICON_MOUNTED				"mounted"
@@ -157,7 +158,7 @@
 #define NEUTRINO_ICON_FOLDER				"folder"
 
 //
-#define NEUTRINO_ICON_PLUGIN				"plugin"
+//#define NEUTRINO_ICON_PLUGIN				"plugin"
 
 // radiotext
 #define NEUTRINO_ICON_RADIOTEXTOFF			"radiotextoff"

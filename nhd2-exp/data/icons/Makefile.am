@@ -7,6 +7,7 @@ install_DATA = \
 	down.png up.png right.png left.png \
 	menu.png menu_small.png help.png help_small.png home.png \
 	mute.png mute_small.png mute_zap_gray.png mute_zap_green.png \
+	epg.png \
 	softupdate_small.png \
 	mounted.png volume.png mark.png marker_hidden.png not_mounted.png numericpad.png ok.png
 	
