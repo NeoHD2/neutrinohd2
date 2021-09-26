@@ -67,14 +67,14 @@ void CMediaPlayerMenu::showMenu()
 
 	int shortcutMediaPlayer = 1;
 	
-	CMenuWidget * MediaPlayer = new CMenuWidget(LOCALE_MAINMENU_MEDIAPLAYER, NEUTRINO_ICON_MOVIE);
+	CMenuWidget * MediaPlayer = new CMenuWidget(LOCALE_MAINMENU_MEDIAPLAYER, NEUTRINO_ICON_MULTIMEDIA);
 
 	MediaPlayer->setMode(MODE_MENU);
 	MediaPlayer->enableShrinkMenu();
 	MediaPlayer->enableMenuPosition();
 	MediaPlayer->enableWidgetChange();
-	MediaPlayer->enablePaintFootInfo();
 	MediaPlayer->enablePaintDate();
+	MediaPlayer->enablePaintFootInfo();
 
 	MediaPlayer->integratePlugins(CPlugins::I_TYPE_MULTIMEDIA, shortcutMediaPlayer++);
 	

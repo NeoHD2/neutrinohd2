@@ -15,6 +15,7 @@ install_DATA = \
 install_DATA += \
 	mainmenue.png settings.png timer.png features.png power.png info.png \
 	video.png audio.png lock.png network.png recording.png colors.png lcd.png keybinding.png \
+	multimedia.png \
 	language.png \
 	softupdate.png \
 	games.png shell.png \

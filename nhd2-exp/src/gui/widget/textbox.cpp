@@ -127,6 +127,7 @@ void CTextBox::initVar(void)
 	bigFonts = false;
 	painted = false;
 	paintBG = true;
+	enableFrame = false;
 }
 
 void CTextBox::setPosition(const CBox * position)
@@ -430,7 +431,8 @@ void CTextBox::refreshText(void)
 	// paint thumbnail (paint picture only on first page)
 	if(m_nCurrentPage == 0 && !access(thumbnail.c_str(), F_OK) )
 	{
-		CFrameBuffer::getInstance()->paintFrameBox(lx, ly, tw, th, COL_WHITE);
+		if (enableFrame)
+			CFrameBuffer::getInstance()->paintFrameBox(lx, ly, tw, th, COL_WHITE);
 		
 		// picture
 		CFrameBuffer::getInstance()->displayImage(thumbnail.c_str(), lx + THUMBNAIL_OFFSET, ly + THUMBNAIL_OFFSET, tw - THUMBNAIL_OFFSET, th - THUMBNAIL_OFFSET);
@@ -521,11 +523,12 @@ void CTextBox::refresh(void)
 	refreshScroll();	
 }
 
-bool CTextBox::setText(const char * const newText, const char * const _thumbnail, int _tw, int _th, int _tmode)
+bool CTextBox::setText(const char * const newText, const char * const _thumbnail, int _tw, int _th, int _tmode, bool enable_frame)
 {
 	dprintf(DEBUG_DEBUG, "CTextBox::setText:\r\n");
 
 	m_tMode = _tmode;
+	enableFrame = enable_frame;
 
 	// thumbnail
 	thumbnail = "";

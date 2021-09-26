@@ -102,7 +102,7 @@ CColorChooser::CColorChooser(const neutrino_locale_t Name, unsigned char *R, uns
 	int a_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(colorchooser_names[3]));
 
 	cFrameBoxColorPreview.iHeight = cFrameBox.iHeight - cFrameBoxTitle.iHeight - cFrameBoxItem.iHeight;
-	cFrameBoxColorPreview.iWidth = cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - 2*ICON_OFFSET - volumeBodyIcon.iWidth - 2*ICON_OFFSET - a_w;
+	cFrameBoxColorPreview.iWidth = cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - 2*ICON_OFFSET - /*volumeBodyIcon.iWidth*/120 - 2*ICON_OFFSET - a_w;
 	cFrameBoxColorPreview.iX = cFrameBox.iX + cFrameBox.iWidth - BORDER_RIGHT - cFrameBoxColorPreview.iWidth;
 	cFrameBoxColorPreview.iY = cFrameBox.iY + cFrameBoxTitle.iHeight + cFrameBoxItem.iHeight/2;
 
@@ -143,7 +143,7 @@ CColorChooser::CColorChooser(const char * const Name, unsigned char *R, unsigned
 	int a_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(colorchooser_names[3]));
 
 	cFrameBoxColorPreview.iHeight = cFrameBox.iHeight - cFrameBoxTitle.iHeight - cFrameBoxItem.iHeight;
-	cFrameBoxColorPreview.iWidth = cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - 2*ICON_OFFSET - volumeBodyIcon.iWidth - 2*ICON_OFFSET - a_w;
+	cFrameBoxColorPreview.iWidth = cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - 2*ICON_OFFSET - /*volumeBodyIcon.iWidth*/120 - 2*ICON_OFFSET - a_w;
 	cFrameBoxColorPreview.iX = cFrameBox.iX + cFrameBox.iWidth - BORDER_RIGHT - cFrameBoxColorPreview.iWidth;
 	cFrameBoxColorPreview.iY = cFrameBox.iY + cFrameBoxTitle.iHeight + cFrameBoxItem.iHeight/2;
 
@@ -336,7 +336,7 @@ void CColorChooser::paint()
 	int a_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(colorchooser_names[3]));
 
 	cFrameBoxColorPreview.iHeight = cFrameBox.iHeight - cFrameBoxTitle.iHeight - cFrameBoxItem.iHeight;
-	cFrameBoxColorPreview.iWidth = cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - 2*ICON_OFFSET - volumeBodyIcon.iWidth - 2*ICON_OFFSET - a_w;
+	cFrameBoxColorPreview.iWidth = cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - 2*ICON_OFFSET - /*volumeBodyIcon.iWidth*/120 - 2*ICON_OFFSET - a_w;
 	cFrameBoxColorPreview.iX = cFrameBox.iX + cFrameBox.iWidth - BORDER_RIGHT - cFrameBoxColorPreview.iWidth;
 	cFrameBoxColorPreview.iY = cFrameBox.iY + cFrameBoxTitle.iHeight + cFrameBoxItem.iHeight/2;
 
@@ -358,7 +358,7 @@ void CColorChooser::paintSlider(int _x, int _y, unsigned char *spos, const neutr
 	int a_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(colorchooser_names[3]));
 	
 	// volumebox box
-	frameBuffer->paintBoxRel(_x + a_w + 2*ICON_OFFSET, _y, volumeBodyIcon.iWidth, cFrameBoxItem.iHeight, COL_MENUCONTENT_PLUS_0);
+	frameBuffer->paintBoxRel(_x + a_w + 2*ICON_OFFSET, _y, /*volumeBodyIcon.iWidth*/120, cFrameBoxItem.iHeight, COL_MENUCONTENT_PLUS_0);
 
 	// volumebody icon
 	frameBuffer->paintIcon(NEUTRINO_ICON_VOLUMEBODY, _x + a_w + 2*ICON_OFFSET, _y + 2 + cFrameBoxItem.iHeight/ITEMS_COUNT);
@@ -366,6 +366,6 @@ void CColorChooser::paintSlider(int _x, int _y, unsigned char *spos, const neutr
 	// slider icon
 	frameBuffer->paintIcon(selected ? iconname : NEUTRINO_ICON_VOLUMESLIDER2, _x + a_w + 2*ICON_OFFSET + 3 + (*spos), _y + cFrameBoxItem.iHeight/ITEMS_COUNT);
 
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(_x, _y + cFrameBoxItem.iHeight, cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - volumeBodyIcon.iWidth - cFrameBoxColorPreview.iWidth, g_Locale->getText(text), COL_MENUCONTENT, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(_x, _y + cFrameBoxItem.iHeight, cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - /*volumeBodyIcon.iWidth*/120 - cFrameBoxColorPreview.iWidth, g_Locale->getText(text), COL_MENUCONTENT, 0, true); // UTF-8
 }
 

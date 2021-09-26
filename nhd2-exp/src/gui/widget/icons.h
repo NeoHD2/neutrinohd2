@@ -78,7 +78,7 @@
 // headers
 #define NEUTRINO_ICON_AUDIO				"audio"
 #define NEUTRINO_ICON_COLORS				"colors"
-//#define NEUTRINO_ICON_EPGINFO				"epginfo"
+#define NEUTRINO_ICON_MULTIMEDIA			"multimedia"
 #define NEUTRINO_ICON_ERROR				"error"
 #define NEUTRINO_ICON_FEATURES			"features"
 #define NEUTRINO_ICON_GAMES				"games"

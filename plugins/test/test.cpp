@@ -2891,9 +2891,17 @@ void CTestMenu::testCHelpBox()
 
 	helpBox->addSeparator();
 
-	helpBox->addLine(NEUTRINO_ICON_MENUITEM_HDDSETTINGS, "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_YELLOW0, true);
+	std::string HDD_ICON = g_settings.hint_icons_dir;
+	HDD_ICON += NEUTRINO_ICON_MENUITEM_HDDSETTINGS;
+	HDD_ICON += ".png";
+		
+	helpBox->addLine(HDD_ICON.c_str(), "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_YELLOW0, true);
 
-	helpBox->addLine(NEUTRINO_ICON_MENUITEM_SCANSETTINGS, "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_YELLOW0, true);
+	std::string TUNER_ICON = g_settings.hint_icons_dir;
+	TUNER_ICON += NEUTRINO_ICON_MENUITEM_SCANSETTINGS;
+	TUNER_ICON += ".png";
+		
+	helpBox->addLine(TUNER_ICON.c_str(), "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_YELLOW0, true);
 
 	helpBox->show(LOCALE_MESSAGEBOX_INFO, HELPBOX_WIDTH, -1, mbrBack, mbNone);
 	

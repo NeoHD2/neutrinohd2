@@ -113,6 +113,7 @@ class CTextBox : public CWidgetItem
 		bool bigFonts;
 		bool painted;
 		bool paintBG;
+		bool enableFrame;
 
 		CScrollBar scrollBar;
 
@@ -137,7 +138,7 @@ class CTextBox : public CWidgetItem
 		void scrollPageUp(const int pages = 1);
 
 		//				
-		bool setText(const char * const newText, const char * const _thumbnail = NULL, int _tw = 0, int _th = 0, int _tmode = TOP_RIGHT);
+		bool setText(const char * const newText, const char * const _thumbnail = NULL, int _tw = 0, int _th = 0, int _tmode = TOP_RIGHT, bool enable_frame = false);
 		
 		inline bool isPainted(void){return painted;};
 
