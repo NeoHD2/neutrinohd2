@@ -35,15 +35,9 @@
 #include <gui/widget/window.h>
 #include <gui/widget/widget.h>
 
-/*
-enum{
-	FRAMEBOX_MODE_HORIZONTAL = 0,
-	FRAMEBOX_MODE_RANDOM
-};
-*/
 
 enum {
-	FRAME_BOX = 0, // caption, option and left icon
+	FRAME_BOX = 0, // caption, option and left icon | optionInfo and 2lines
 	FRAME_PICTURE,
 	FRAME_PICTURE_NOTSELECTABLE,
 	FRAME_ICON,
@@ -58,7 +52,8 @@ enum {
 	FRAME_HEAD,
 	FRAME_FOOT,
 	FRAME_WINDOW,
-	FRAME_PROGRESSBAR
+	FRAME_PIG,
+	FRAME_PROGRESSBAR,
 };
 
 class CFrame
@@ -121,7 +116,7 @@ class CFrame
 
 		virtual bool isSelectable(void)
 		{
-			if ((mode == FRAME_PICTURE_NOTSELECTABLE) || (mode == FRAME_LINE_HORIZONTAL) || (mode == FRAME_LINE_VERTICAL) || (mode == FRAME_TEXT_NOTSELECTABLE) || (mode == FRAME_TEXT_LINE_NOTSELECTABLE) || (mode == FRAME_ICON_NOTSELECTABLE) || (mode == FRAME_HEAD) || (mode == FRAME_FOOT) || (mode == FRAME_WINDOW)) 
+			if ((mode == FRAME_PICTURE_NOTSELECTABLE) || (mode == FRAME_LINE_HORIZONTAL) || (mode == FRAME_LINE_VERTICAL) || (mode == FRAME_TEXT_NOTSELECTABLE) || (mode == FRAME_TEXT_LINE_NOTSELECTABLE) || (mode == FRAME_ICON_NOTSELECTABLE) || (mode == FRAME_HEAD) || (mode == FRAME_FOOT) || (mode == FRAME_WINDOW) || (mode == FRAME_PIG)) 
 				return false; 
 			else 
 				return true;
@@ -145,6 +140,9 @@ class CFrame
 		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};
 		void setFootGradient(int grad){footGradient = grad;};
 		void setFooterButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1);
+		
+		// get Methods
+		int getMode(void){return mode;};
 };
 
 //// CFrameBox

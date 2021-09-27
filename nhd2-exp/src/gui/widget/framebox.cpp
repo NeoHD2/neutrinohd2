@@ -29,8 +29,11 @@
 #include <system/settings.h>
 #include <system/debug.h>
 
+#include <video_cs.h>
+
 
 extern CPlugins * g_PluginList;    // defined in neutrino.cpp
+extern cVideo * videoDecoder;
 
 // CFrame
 CFrame::CFrame(int m)
@@ -62,7 +65,6 @@ CFrame::CFrame(int m)
 	hbutton_labels.clear();
 
 	// footFrame
-	// foot
 	footColor = COL_MENUFOOT_PLUS_0;
 	footRadius = RADIUS_MID;
 	footCorner = CORNER_BOTTOM;
@@ -400,6 +402,20 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 
 		footers.paint();
 	}
+	else if (mode == FRAME_WINDOW)
+	{
+		window.paint();
+	}
+	else if (mode == FRAME_PIG)
+	{
+		//window.paint();
+		CFrameBuffer::getInstance()->paintBackgroundBoxRel(window.getWindowsPos().iX, window.getWindowsPos().iY, window.getWindowsPos().iWidth, window.getWindowsPos().iHeight);	
+		
+
+		if(videoDecoder)
+			videoDecoder->Pig(window.getWindowsPos().iX, window.getWindowsPos().iY, window.getWindowsPos().iWidth, window.getWindowsPos().iHeight);
+		
+	}
 
 	return 0;
 }
@@ -562,6 +578,20 @@ void CFrameBox::paint()
 void CFrameBox::hide()
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::hide:\n");
+	
+	if (hasItem())
+	{
+		for (int i = 0; i < frames.size(); i++)
+		{
+			if (frames[i]->getMode() == FRAME_PIG)
+			{
+				if(videoDecoder)  
+					videoDecoder->Pig(-1, -1, -1, -1);
+					
+				CFrameBuffer::getInstance()->paintBackgroundBoxRel(frames[i]->window.getWindowsPos().iX, frames[i]->window.getWindowsPos().iY, frames[i]->window.getWindowsPos().iWidth, frames[i]->window.getWindowsPos().iHeight);
+			}
+		}
+	}
 
 	cFrameWindow.hide();
 }

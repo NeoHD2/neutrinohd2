@@ -523,6 +523,9 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 
 	// show current_next epg data
 	getCurrentNextEPG(channel_id, new_chan, _epgpos);
+	
+	//TEST
+	show_Data();
 
 	frameBuffer->blit();
 
@@ -541,125 +544,125 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 
 	if (!_calledFromNumZap) 
 	{
+		bool hideIt = true;
+		virtual_zap_mode = false;
 
-	bool hideIt = true;
-	virtual_zap_mode = false;
+		uint64_t timeoutEnd = CRCInput::calcTimeoutEnd (g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR] == 0 ? 0xFFFF : g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR]);
 
-	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd (g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR] == 0 ? 0xFFFF : g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR]);
-
-	int res = messages_return::none;
-	
-	while (!(res & (messages_return::cancel_info | messages_return::cancel_all))) 
-	{
-		g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd);
-
-		sigscale->reset(); 
-		snrscale->reset(); 
-		timescale->reset();
-
-		//
-		showTitle(_ChanNum, ChannelName, _satellitePosition);
-		show_Data();
-		showSNR();
-
-		if (msg == RC_sat || msg == RC_favorites)
+		int res = messages_return::none;
+		
+		while (!(res & (messages_return::cancel_info | messages_return::cancel_all))) 
 		{
-			g_RCInput->postMsg(msg, 0);
-			res = messages_return::cancel_info;
-		}
-		else if (msg == RC_info)
-		{
-			g_RCInput->postMsg(NeutrinoMessages::SHOW_EPG, 0);
-				
-			res = messages_return::cancel_info;
-		} 
-		else if ((msg == RC_ok) || (msg == RC_home) || (msg == RC_timeout)) 
-		{
-			res = messages_return::cancel_info;
-			// add this here, now OK and EXIT/HOME has effect
-			// and infobar timeout settings work
-			hideIt = true;
-		} 			
-		else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
-		{
-			showRecordIcon(show_dot);
-			show_dot = !show_dot;
-				
-			// radiotext		
-			if ((g_settings.radiotext_enable) && (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio))
-				showRadiotext();			
+			g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd);
 
-			showIcon_16_9();
-				
-			if (showButtonBar) 
-				showIcon_Resolution();
-		} 
-		else if ( g_settings.virtual_zap_mode && ((msg == RC_right) || msg == RC_left) && (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)) 
-		{
-			virtual_zap_mode = true;
-			res = messages_return::cancel_all;
-			hideIt = true;
-		} 
-		else if ( !CNeutrinoApp::getInstance()->timeshiftstatus) 
-		{
-			if ((msg == (neutrino_msg_t) g_settings.key_quickzap_up) || (msg == (neutrino_msg_t) g_settings.key_quickzap_down) || (msg == RC_0) || (msg == NeutrinoMessages::SHOW_INFOBAR)) 
+			sigscale->reset(); 
+			snrscale->reset(); 
+			timescale->reset();
+
+			//
+			//showTitle(_ChanNum, ChannelName, _satellitePosition);
+			//show_Data();
+			//showSNR();
+
+			if (msg == RC_sat || msg == RC_favorites)
 			{
-				hideIt = false;
-				// radiotext					
-				if ((g_settings.radiotext_enable) && (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio))
-					hideIt =  true;
-				else				  
-					hideIt = false;
+				g_RCInput->postMsg(msg, 0);
+				res = messages_return::cancel_info;
+			}
+			else if (msg == RC_info)
+			{
+				g_RCInput->postMsg(NeutrinoMessages::SHOW_EPG, 0);
 					
-				g_RCInput->postMsg(msg, data);
-
 				res = messages_return::cancel_info;
 			} 
-			else if (msg == NeutrinoMessages::EVT_TIMESET) 
+			else if ((msg == RC_ok) || (msg == RC_home) || (msg == RC_timeout)) 
 			{
-				// Handle anyway!
-				neutrino->handleMsg(msg, data);
-				g_RCInput->postMsg (NeutrinoMessages::SHOW_INFOBAR, 0);
-				
-				res = messages_return::cancel_all;
-			} 
-			else 
+				res = messages_return::cancel_info;
+				// add this here, now OK and EXIT/HOME has effect
+				// and infobar timeout settings work
+				hideIt = true;
+			} 			
+			else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 			{
-				if (msg == RC_standby) 
-				{
-					g_RCInput->killTimer(sec_timer_id);
-				}
+				showRecordIcon(show_dot);
+				show_dot = !show_dot;
 					
-				res = neutrino->handleMsg(msg, data);
-				
-				/*	
-				if (res & messages_return::unhandled) 
-				{
-					dprintf(DEBUG_NORMAL, "CInfoViewer::show: message unhandled\n");
+				// radiotext		
+				if ((g_settings.radiotext_enable) && (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio))
+					showRadiotext();			
 
-					// raus hier und im Hauptfenster behandeln...
-					g_RCInput->postMsg(msg, data);
-					res = messages_return::cancel_info; //FIXME:
-				}
+				/*
+				showIcon_16_9();
+					
+				if (showButtonBar) 
+					showIcon_Resolution();
 				*/
+			} 
+			else if ( g_settings.virtual_zap_mode && ((msg == RC_right) || msg == RC_left) && (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)) 
+			{
+				virtual_zap_mode = true;
+				res = messages_return::cancel_all;
+				hideIt = true;
+			} 
+			else if ( !CNeutrinoApp::getInstance()->timeshiftstatus) 
+			{
+				if ((msg == (neutrino_msg_t) g_settings.key_quickzap_up) || (msg == (neutrino_msg_t) g_settings.key_quickzap_down) || (msg == RC_0) || (msg == NeutrinoMessages::SHOW_INFOBAR)) 
+				{
+					hideIt = false;
+					// radiotext					
+					if ((g_settings.radiotext_enable) && (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio))
+						hideIt =  true;
+					else				  
+						hideIt = false;
+						
+					g_RCInput->postMsg(msg, data);
+
+					res = messages_return::cancel_info;
+				} 
+				else if (msg == NeutrinoMessages::EVT_TIMESET) 
+				{
+					// Handle anyway!
+					neutrino->handleMsg(msg, data);
+					g_RCInput->postMsg (NeutrinoMessages::SHOW_INFOBAR, 0);
+					
+					res = messages_return::cancel_all;
+				} 
+				else 
+				{
+					if (msg == RC_standby) 
+					{
+						g_RCInput->killTimer(sec_timer_id);
+					}
+						
+					res = neutrino->handleMsg(msg, data);
+					
+					/*	
+					if (res & messages_return::unhandled) 
+					{
+						dprintf(DEBUG_NORMAL, "CInfoViewer::show: message unhandled\n");
+
+						// raus hier und im Hauptfenster behandeln...
+						g_RCInput->postMsg(msg, data);
+						res = messages_return::cancel_info; //FIXME:
+					}
+					*/
+				}
 			}
+					
+			frameBuffer->blit();		
 		}
-				
-		frameBuffer->blit();		
-	}
 
-	if (hideIt)
-		killTitle();
-		
-	g_RCInput->killTimer(sec_timer_id);
-	sec_timer_id = 0;
+		if (hideIt)
+			killTitle();
+			
+		g_RCInput->killTimer(sec_timer_id);
+		sec_timer_id = 0;
 
-	if (virtual_zap_mode)
-	{
-		CNeutrinoApp::getInstance()->channelList->virtual_zap_mode(msg == RC_right);
-		virtual_zap_mode = false;
-	}
-
+		if (virtual_zap_mode)
+		{
+			CNeutrinoApp::getInstance()->channelList->virtual_zap_mode(msg == RC_right);
+			virtual_zap_mode = false;
+		}
 	}
 }
 

@@ -343,7 +343,7 @@ void CTestMenu::hide()
 //// helpers functions
 void CTestMenu::loadAudioPlaylist()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:loadAudioPlaylist:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:loadAudioPlaylist:\n");
 
 	fileFilter.clear();
 	filelist.clear();
@@ -420,7 +420,7 @@ void CTestMenu::loadAudioPlaylist()
 
 void CTestMenu::openAudioFileBrowser()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:loadAudioFileBrowser:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:loadAudioFileBrowser:\n");
 	
 	CFileBrowser filebrowser((g_settings.filebrowser_denydirectoryleave) ? g_settings.network_nfs_audioplayerdir : "");
 
@@ -510,7 +510,7 @@ void CTestMenu::openAudioFileBrowser()
 
 void CTestMenu::loadMoviePlaylist()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:loadMoviePlaylist:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:loadMoviePlaylist:\n");
 	
 	fileFilter.clear();
 	filelist.clear();
@@ -571,7 +571,7 @@ void CTestMenu::loadMoviePlaylist()
 
 void CTestMenu::openMovieFileBrowser()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:openMovieFileBrowser:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:openMovieFileBrowser:\n");
 	
 	CFileBrowser filebrowser((g_settings.filebrowser_denydirectoryleave) ? g_settings.network_nfs_recordingdir : "");
 
@@ -644,7 +644,7 @@ void CTestMenu::openMovieFileBrowser()
 
 void CTestMenu::loadPicturePlaylist()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:loadPicturePlaylist:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:loadPicturePlaylist:\n");
 	
 	fileFilter.clear();
 	filelist.clear();
@@ -686,7 +686,7 @@ void CTestMenu::loadPicturePlaylist()
 
 void CTestMenu::openPictureFileBrowser()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:loadPictureBrowser:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:loadPictureBrowser:\n");
 	
 	CFileBrowser filebrowser((g_settings.filebrowser_denydirectoryleave) ? g_settings.network_nfs_picturedir : "");
 
@@ -737,7 +737,7 @@ void CTestMenu::openPictureFileBrowser()
 
 void CTestMenu::loadTMDBPlaylist(const char *txt, const char *list, const int seite, bool search)
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:loadTMDBPlaylist:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:loadTMDBPlaylist:\n");
 	
 	thumbnail_dir = "/tmp/nfilm";
 	page = seite;
@@ -820,7 +820,7 @@ void CTestMenu::loadTMDBPlaylist(const char *txt, const char *list, const int se
 ////
 void CTestMenu::testCWidget()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:testCWidget:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:testCWidget:\n");
 	
 	testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
@@ -1016,7 +1016,7 @@ void CTestMenu::testCWidget()
 
 void CTestMenu::testSingleWidget()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:testSingleWidget:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:testSingleWidget:\n");
 	
 	// mainBox
 	CBox box;
@@ -1174,7 +1174,7 @@ void CTestMenu::testSingleWidget()
 
 void CTestMenu::testFireTV()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:testFireTV:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:testFireTV:\n");
 	
 	// mainBox
 	CBox box;
@@ -1248,10 +1248,10 @@ void CTestMenu::testFireTV()
 	// title
 	CFrame * titleFrame = new CFrame(FRAME_TEXT_NOTSELECTABLE);
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
-	int t_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(m_vMovieInfo[0].epgTitle);
+	int t_w = 200; //g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(m_vMovieInfo[0].epgTitle);
 	int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 	titleFrame->setPosition(box.iX + 10, box.iY + 40 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight() + 10, box.iWidth - 20 - pic_w - 20, t_h);
-	titleFrame->setTitle(m_vMovieInfo[0].epgTitle.c_str());
+	titleFrame->setTitle((m_vMovieInfo[0].epgTitle.empty())? "" :m_vMovieInfo[0].epgTitle.c_str());
 	titleFrame->disablePaintFrame();
 
 	frameBox1->addFrame(titleFrame);
@@ -1339,7 +1339,7 @@ void CTestMenu::testFireTV()
 
 void CTestMenu::testListFrameWidget()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:testListFrameWidget:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestTMenu:testListFrameWidget:\n");
 	
 	testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
@@ -1558,7 +1558,7 @@ void CTestMenu::testListBoxWidget()
 
 void CTestMenu::testTextBoxWidget()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:testCtextBoxWidget:\n");
+	dprintf(DEBUG_NORMAL, "\nCTESTMenu:testCTextBoxWidget:\n");
 	
 	testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
@@ -1689,7 +1689,7 @@ void CTestMenu::testWindowWidget()
 // test
 void CTestMenu::test()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting multi Widgets\n");
+	dprintf(DEBUG_NORMAL, "\ntest\n");
 
 	top_selected = 0;
 	left_selected = 0;
@@ -2358,7 +2358,7 @@ REPAINT:
 // CBox
 void CTestMenu::testCBox()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CBox\n");
+	dprintf(DEBUG_NORMAL, "\ntestCBox\n");
 
 	CBox Box;
 	
@@ -2385,7 +2385,7 @@ void CTestMenu::testCBox()
 // CIcon
 void CTestMenu::testCIcon()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CIcon\n");
+	dprintf(DEBUG_NORMAL, "\ntestCIcon\n");
 
 	//CIcon testIcon(NEUTRINO_ICON_BUTTON_RED);
 	CIcon testIcon;
@@ -2411,7 +2411,7 @@ void CTestMenu::testCIcon()
 // CImage
 void CTestMenu::testCImage()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CImage\n");
+	dprintf(DEBUG_NORMAL, "\ntestCImage\n");
 
 	//CImage testImage(PLUGINDIR "/netzkino/netzkino.png");
 	CImage testImage;
@@ -2436,7 +2436,7 @@ void CTestMenu::testCImage()
 // Cwindow
 void CTestMenu::testCWindow()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CWindow\n");
+	dprintf(DEBUG_NORMAL, "\ntestCWindow\n");
 
 	CBox Box;
 	
@@ -2473,7 +2473,7 @@ void CTestMenu::testCWindow()
 // CWindow
 void CTestMenu::testCWindowShadow()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CWindow with shadow\n");
+	dprintf(DEBUG_NORMAL, "\ntestCWindowShadow\n");
 
 	CBox Box;
 	
@@ -2508,7 +2508,7 @@ void CTestMenu::testCWindowShadow()
 // custom Color
 void CTestMenu::testCWindowCustomColor()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CWindow with custom color\n");
+	dprintf(DEBUG_NORMAL, "\ntestCWindowCustomColor\n");
 
 	CBox Box;
 	
@@ -2542,6 +2542,8 @@ void CTestMenu::testCWindowCustomColor()
 
 void CTestMenu::testCHeaders()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCHeaders\n");
+	
 	CBox headBox;
 	headBox.iX = g_settings.screen_StartX + 10;
 	headBox.iY = g_settings.screen_StartY + 10;
@@ -2624,7 +2626,7 @@ void CTestMenu::testCHeaders()
 // CStringInput
 void CTestMenu::testCStringInput()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CStringInput\n");
+	dprintf(DEBUG_NORMAL, "\ntestCStringInput\n");
 
 	std::string value;
 	CStringInput * stringInput = new CStringInput("CStringInput", value.c_str());
@@ -2639,7 +2641,7 @@ void CTestMenu::testCStringInput()
 // CStringInputSMS
 void CTestMenu::testCStringInputSMS()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CStringInputSMS\n");
+	dprintf(DEBUG_NORMAL, "\ntestCStringInputSMS\n");
 
 	std::string value;
 	CStringInputSMS * stringInputSMS = new CStringInputSMS("CStringInputSMS", value.c_str());
@@ -2653,7 +2655,7 @@ void CTestMenu::testCStringInputSMS()
 // CPINInput
 void CTestMenu::testCPINInput()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CPINInput\n");
+	dprintf(DEBUG_NORMAL, "\ntestCPINInput\n");
 
 	std::string value;
 	CPINInput * pinInput = new CPINInput("CPINInput", value.c_str());
@@ -2668,7 +2670,7 @@ void CTestMenu::testCPINInput()
 // CPLPINInput
 void CTestMenu::testCPLPINInput()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CPLPINInput\n");
+	dprintf(DEBUG_NORMAL, "\ntestCPLPINInput\n");
 
 	std::string value;
 	CPLPINInput * pinInput = new CPLPINInput("CPLPINInput", value.c_str());
@@ -2683,7 +2685,7 @@ void CTestMenu::testCPLPINInput()
 // CPINChangeWidget
 void CTestMenu::testCPINChangeWidget()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CPINChangeWidget\n");
+	dprintf(DEBUG_NORMAL, "\ntestCPINChangeWidget\n");
 
 	std::string value;
 	CPINChangeWidget * pinInput = new CPINChangeWidget("CPINChangeWidget", value.c_str());
@@ -2698,7 +2700,7 @@ void CTestMenu::testCPINChangeWidget()
 // CIPInput
 void CTestMenu::testCIPInput()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CIPInput\n");
+	dprintf(DEBUG_NORMAL, "\ntestCIPInput\n");
 
 	std::string value;
 	CIPInput * ipInput = new CIPInput(LOCALE_STREAMINGMENU_SERVER_IP, value);
@@ -2712,7 +2714,7 @@ void CTestMenu::testCIPInput()
 // CMACInput
 void CTestMenu::testCMACInput()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CMACInput\n");
+	dprintf(DEBUG_NORMAL, "\ntestCMACInput\n");
 
 	std::string value;
 	CMACInput * macInput = new CMACInput(LOCALE_RECORDINGMENU_SERVER_MAC, (char *)value.c_str());
@@ -2727,7 +2729,7 @@ void CTestMenu::testCMACInput()
 // CDateInput
 void CTestMenu::testCDateInput()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CDateInput\n");
+	dprintf(DEBUG_NORMAL, "\ntestCDateInput\n");
 
 	time_t value;
 	CDateInput * dateInput = new CDateInput(LOCALE_FILEBROWSER_SORT_DATE, &value);
@@ -2740,7 +2742,7 @@ void CTestMenu::testCDateInput()
 // CTimeInput
 void CTestMenu::testCTimeInput()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CTimeInput\n");
+	dprintf(DEBUG_NORMAL, "\ntestCTimeInput\n");
 
 	std::string value;
 	CTimeInput * timeInput = new CTimeInput(LOCALE_FILEBROWSER_SORT_DATE, (char *)value.c_str());
@@ -2755,7 +2757,7 @@ void CTestMenu::testCTimeInput()
 // CIntInput
 void CTestMenu::testCIntInput()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CIntInput\n");
+	dprintf(DEBUG_NORMAL, "\ntestCIntInput\n");
 
 	int value;
 	CIntInput * intInput = new CIntInput(LOCALE_FILEBROWSER_SORT_DATE, value);
@@ -2769,7 +2771,7 @@ void CTestMenu::testCIntInput()
 // CInfoBox
 void CTestMenu::testCInfoBox()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CInfoBox\n");
+	dprintf(DEBUG_NORMAL, "\ntestCInfoBox\n");
 
 	std::string buffer;
 	
@@ -2802,7 +2804,7 @@ void CTestMenu::testCInfoBox()
 // CMessageBox
 void CTestMenu::testCMessageBox()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CMessageBox\n");
+	dprintf(DEBUG_NORMAL, "\ntestCMessageBox\n");
 
 	CMessageBox * messageBox = new CMessageBox(LOCALE_MESSAGEBOX_INFO, "testing CMessageBox"/*, 600, NEUTRINO_ICON_INFO, mbrYes, mbNone*/);
 	
@@ -2817,7 +2819,7 @@ void CTestMenu::testCMessageBox()
 // MessageBox
 void CTestMenu::testCMessageBoxInfoMsg()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting MessageBox\n");
+	dprintf(DEBUG_NORMAL, "\ntestCMessageBox\n");
 
 	MessageBox(LOCALE_MESSAGEBOX_INFO, "testing CMessageBoxInfoMsg", mbrBack, mbBack, NEUTRINO_ICON_INFO);
 }
@@ -2825,7 +2827,7 @@ void CTestMenu::testCMessageBoxInfoMsg()
 // MessageBox
 void CTestMenu::testCMessageBoxErrorMsg()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting MessageBox\n");
+	dprintf(DEBUG_NORMAL, "\ntestCMessageBox\n");
 
 	MessageBox(LOCALE_MESSAGEBOX_ERROR, "testing CMessageBoxErrorMsg", mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 }
@@ -2833,7 +2835,7 @@ void CTestMenu::testCMessageBoxErrorMsg()
 // CHintBox
 void CTestMenu::testCHintBox()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CHintBox\n");
+	dprintf(DEBUG_NORMAL, "\ntestCHintBox\n");
 
 	CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, "testing CHintBox");
 	
@@ -2846,7 +2848,7 @@ void CTestMenu::testCHintBox()
 // HintBox
 void CTestMenu::testCHintBoxInfo()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting HintBox\n");
+	dprintf(DEBUG_NORMAL, "\ntestCHintBox\n");
 
 	HintBox(LOCALE_MESSAGEBOX_INFO, "testing CHintBoxInfo", HINTBOX_WIDTH, 10, NEUTRINO_ICON_INFO);
 }
@@ -2854,7 +2856,7 @@ void CTestMenu::testCHintBoxInfo()
 // CHelpBox
 void CTestMenu::testCHelpBox()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CHelpBox\n");
+	dprintf(DEBUG_NORMAL, "\ntestCHelpBox\n");
 
 	CHelpBox * helpBox = new CHelpBox();
 	
@@ -2912,7 +2914,7 @@ void CTestMenu::testCHelpBox()
 // CTextBox
 void CTestMenu::testCTextBox()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CTextBox\n");
+	dprintf(DEBUG_NORMAL, "\ntestCTextBox\n");
 
 	CBox Box;
 	
@@ -2974,7 +2976,7 @@ void CTestMenu::testCTextBox()
 // ClistFrame
 void CTestMenu::testCListFrame()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting ClistFrame\n");
+	dprintf(DEBUG_NORMAL, "\ntestClistFrame\n");
 
 	CBox listFrameBox;
 	LF_LINES listFrameLines;
@@ -3147,7 +3149,7 @@ REPEAT:
 // CProgressBar
 void CTestMenu::testCProgressBar()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CProgressBar\n");
+	dprintf(DEBUG_NORMAL, "\ntestCProgressBar\n");
 
 	CProgressBar *timescale = NULL;
 	
@@ -3200,7 +3202,7 @@ void CTestMenu::testCProgressBar()
 // CProgressWindow
 void CTestMenu::testCProgressWindow()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CProgressWindow\n");
+	dprintf(DEBUG_NORMAL, "\ntestCProgressWindow\n");
 
 	CProgressWindow * progress = new CProgressWindow();
 	progress->setTitle("CProgressWindow");
@@ -3243,7 +3245,7 @@ void CTestMenu::testCProgressWindow()
 // CButtons
 void CTestMenu::testCButtons()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CButtons\n");
+	dprintf(DEBUG_NORMAL, "\ntestCButtons\n");
 
 	int icon_w, icon_h;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
@@ -3259,7 +3261,7 @@ void CTestMenu::testCButtons()
 // ClistBox(standard)
 void CTestMenu::testClistBox()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting ClistBox(standard)\n");
+	dprintf(DEBUG_NORMAL, "\ntestClistBox(standard)\n");
 
 	CBox Box;
 	
@@ -3403,7 +3405,7 @@ void CTestMenu::testClistBox()
 // ClistBox(classic)
 void CTestMenu::testClistBox2()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting ClistBox(classic)\n");
+	dprintf(DEBUG_NORMAL, "\ntestClistBox(classic)\n");
 
 	CBox Box;
 	
@@ -3547,7 +3549,7 @@ void CTestMenu::testClistBox2()
 // ClistBox(extended)
 void CTestMenu::testClistBox3()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting ClistBox(extended)\n");
+	dprintf(DEBUG_NORMAL, "\ntestClistBox(extended)\n");
 
 	CBox Box;
 	
@@ -3691,7 +3693,7 @@ void CTestMenu::testClistBox3()
 // ClistBox(frame)
 void CTestMenu::testClistBox4()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting ClistBox(frame)\n");
+	dprintf(DEBUG_NORMAL, "\ntestClistBox(frame)\n");
 
 	CBox Box;
 	
@@ -3833,7 +3835,7 @@ void CTestMenu::testClistBox4()
 // ClistBox(mode menu)
 void CTestMenu::testClistBox5()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting ClistBox(menu mode)\n");
+	dprintf(DEBUG_NORMAL, "\ntestClistBox(menu mode)\n");
 
 	CBox Box;
 	
@@ -3991,7 +3993,7 @@ void CTestMenu::testClistBox5()
 // ClistBox(listBox mode)
 void CTestMenu::testClistBox6()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting ClistBox(listBox mode)\n");
+	dprintf(DEBUG_NORMAL, "\ntestClistBox(listBox mode)\n");
 
 	CBox Box;
 	
@@ -4148,7 +4150,7 @@ void CTestMenu::testClistBox6()
 
 void CTestMenu::testCFrameBox()
 {
-	dprintf(DEBUG_NORMAL, "\ntesting CFrameBox\n");
+	dprintf(DEBUG_NORMAL, "\ntestCFrameBox\n");
 
 	// frameBox
 	CBox topBox;
@@ -4274,6 +4276,8 @@ REPEAT:
 // play Movie Url
 void CTestMenu::testPlayMovieURL()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testPlayMovieURL\n");
+	
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
 		
@@ -4342,6 +4346,8 @@ BROWSER:
 // play audio Url
 void CTestMenu::testPlayAudioURL()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testPlayAudioURL\n");
+	
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
 		
@@ -4398,6 +4404,8 @@ BROWSER:
 // show pic url
 void CTestMenu::testShowPictureURL()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testShowPictureURL\n");
+	
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
 
@@ -4445,6 +4453,8 @@ BROWSER:
 // play movie folder
 void CTestMenu::testPlayMovieFolder()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testPlayMovieFolder\n");
+	
 	CFileBrowser * fileBrowser;
 	
 	fileBrowser = new CFileBrowser();
@@ -4512,6 +4522,8 @@ BROWSER:
 // play audio folder
 void CTestMenu::testPlayAudioFolder()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testPlayAudioFolder\n");
+	
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
 		
@@ -4574,6 +4586,8 @@ BROWSER:
 // show pic folder
 void CTestMenu::testShowPictureFolder()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testShowPictureFolder\n");
+	
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
 
@@ -4625,12 +4639,16 @@ BROWSER:
 // start plugin
 void CTestMenu::testStartPlugin()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testStartPlugin\n");
+	
 	g_PluginList->startPlugin("youtube");
 }
 
 // show actuell epg
 void CTestMenu::testShowActuellEPG()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testShowActuelEPG\n");
+	
 	std::string title = "testShowActuellEPG:";
 	std::string buffer;
 
@@ -4674,6 +4692,8 @@ void CTestMenu::testShowActuellEPG()
 // CChannelSelect
 void CTestMenu::testChannelSelectWidget()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testChannelSelectWidget\n");
+	
 	CSelectChannelWidget * CSelectChannelWidgetHandler = new CSelectChannelWidget();
 
 	std::string mode = "tv";
@@ -4698,7 +4718,9 @@ void CTestMenu::testChannelSelectWidget()
 
 // Bedit
 void CTestMenu::testBEWidget()
-{	
+{
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testBEWidget\n");
+		
 	CBEBouquetWidget* BEWidget = new CBEBouquetWidget();
 
 	BEWidget->exec(NULL, "");
@@ -4710,6 +4732,8 @@ void CTestMenu::testBEWidget()
 // AVSelect
 void CTestMenu::testAVSelectWidget()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testAVSelectWidget\n");
+	
 	CAVPIDSelectWidget * AVSelectHandler = new CAVPIDSelectWidget();
 	AVSelectHandler->exec(NULL, "");
 		
@@ -4720,6 +4744,8 @@ void CTestMenu::testAVSelectWidget()
 // CAudioSelect
 void CTestMenu::testAudioSelectWidget()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testAudioSelectWidget\n");
+	
 	CAudioSelectMenuHandler * ASelectHandler = new CAudioSelectMenuHandler();
 	ASelectHandler->exec(NULL, "");
 	delete ASelectHandler;
@@ -4729,6 +4755,8 @@ void CTestMenu::testAudioSelectWidget()
 // DVBSubSelect
 void CTestMenu::testDVBSubSelectWidget()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testDVBSelectWidget\n");
+	
 	CDVBSubSelectMenuHandler * dvbSubSelectHandler = new CDVBSubSelectMenuHandler();
 	dvbSubSelectHandler->exec(NULL, "");
 	delete dvbSubSelectHandler;
@@ -4737,6 +4765,8 @@ void CTestMenu::testDVBSubSelectWidget()
 
 void CTestMenu::testAlphaSetupWidget()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testAlphaSetup\n");
+	
 	CAlphaSetup * alphaSetup = new CAlphaSetup(LOCALE_COLORMENU_GTX_ALPHA, &g_settings.gtx_alpha);
 	alphaSetup->exec(NULL, "");
 	delete alphaSetup;
@@ -4745,6 +4775,8 @@ void CTestMenu::testAlphaSetupWidget()
 
 void CTestMenu::testPSISetup()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testPSISetup\n");
+	
 	CPSISetup * psiSetup = new CPSISetup(LOCALE_VIDEOMENU_PSISETUP, &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
 	psiSetup->exec(NULL, "");
 	delete psiSetup;
@@ -4753,6 +4785,8 @@ void CTestMenu::testPSISetup()
 
 void CTestMenu::testRCLock()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testRCLock\n");
+	
 	CRCLock * rcLock = new CRCLock();
 	rcLock->exec(NULL, CRCLock::NO_USER_INPUT);
 	delete rcLock;
@@ -4761,6 +4795,8 @@ void CTestMenu::testRCLock()
 
 void CTestMenu::testSleepTimerWidget()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testSleepTimerWidget\n");
+	
 	CSleepTimerWidget * sleepTimerHandler = new CSleepTimerWidget();
 	sleepTimerHandler->exec(NULL, "");
 	delete sleepTimerHandler;
@@ -4769,6 +4805,8 @@ void CTestMenu::testSleepTimerWidget()
 
 void CTestMenu::testMountGUI()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testMountGUI\n");
+	
 	CNFSMountGui * mountGUI = new CNFSMountGui();
 	mountGUI->exec(NULL, "");
 	delete mountGUI;
@@ -4777,6 +4815,8 @@ void CTestMenu::testMountGUI()
 
 void CTestMenu::testUmountGUI()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testUmountGUI\n");
+	
 	CNFSUmountGui * umountGUI = new CNFSUmountGui();
 	umountGUI->exec(NULL, "");
 	delete umountGUI;
@@ -4785,6 +4825,8 @@ void CTestMenu::testUmountGUI()
 
 void CTestMenu::testMountSmallMenu()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testMountSmallMenu\n");
+	
 	CNFSSmallMenu * mountSmallMenu = new CNFSSmallMenu();
 	mountSmallMenu->exec(NULL, "");
 	delete mountSmallMenu;
@@ -4793,6 +4835,8 @@ void CTestMenu::testMountSmallMenu()
 
 void CTestMenu::testVFDController()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testVFDController\n");
+	
 	CVfdControler * vfdControllerHandler = new CVfdControler(LOCALE_LCDMENU_HEAD, NULL);
 	vfdControllerHandler->exec(NULL, "");
 	delete vfdControllerHandler;
@@ -4801,6 +4845,8 @@ void CTestMenu::testVFDController()
 
 void CTestMenu::testColorChooser()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testColorChooser\n");
+	
 	CColorChooser * colorChooserHandler = new CColorChooser(LOCALE_COLORMENU_BACKGROUND, &g_settings.menu_Head_red, &g_settings.menu_Head_green, &g_settings.menu_Head_blue, &g_settings.menu_Head_alpha, CNeutrinoApp::getInstance()->colorSetupNotifier);
 
 	colorChooserHandler->exec(NULL, "");
@@ -4810,6 +4856,8 @@ void CTestMenu::testColorChooser()
 
 void CTestMenu::testKeyChooser()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testKeyChooser\n");
+	
 	CKeyChooserItem * keyChooser = new CKeyChooserItem("testing CKeyChooser", &g_settings.key_screenshot);
 
 	keyChooser->exec(NULL, "");
@@ -4819,6 +4867,8 @@ void CTestMenu::testKeyChooser()
 
 void CTestMenu::testMountChooser()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testMountChooser\n");
+	
 	CMountChooser * mountChooser = new CMountChooser("testing CMountChooser", NEUTRINO_ICON_SETTINGS, NULL, g_settings.network_nfs_moviedir, g_settings.network_nfs_recordingdir);
 
 	mountChooser->exec(NULL, "");
@@ -4828,6 +4878,8 @@ void CTestMenu::testMountChooser()
 
 void CTestMenu::testPluginsList()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testPluginlist\n");
+	
 	CPluginList * pluginList = new CPluginList();
 	pluginList->exec(NULL, "");
 	delete pluginList;
@@ -4836,6 +4888,8 @@ void CTestMenu::testPluginsList()
 
 void CTestMenu::testPlayMovieDir()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testPlayMovieDi\n");
+	
 	filelist.clear();
 	fileFilter.clear();
 	
@@ -4881,6 +4935,8 @@ void CTestMenu::testPlayMovieDir()
 
 void CTestMenu::testPlayAudioDir()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testPlayAudioDir\n");
+	
 	filelist.clear();
 	fileFilter.clear();
 	
@@ -4920,6 +4976,8 @@ void CTestMenu::testPlayAudioDir()
 
 void CTestMenu::testShowPictureDir()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testShowPictureDir\n");
+	
 	filelist.clear();
 	fileFilter.clear();
 
@@ -4945,9 +5003,11 @@ void CTestMenu::testShowPictureDir()
 	}
 }
 
-// CMenuWidget
+// CMenuWidget (listBox mode)
 void CTestMenu::testClistBoxWidget()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCMenuWidget (listBox mode)\n");
+	
 	// our listBox
 	listMenu = new CMenuWidget("CMenuWidget(listBox Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 
@@ -4981,7 +5041,7 @@ void CTestMenu::testClistBoxWidget()
 	listMenu->addWidget(WIDGET_TYPE_FRAME);
 	listMenu->enableWidgetChange();
 	listMenu->setItemsPerPage(6, 2);
-	listMenu->enableShrinkMenu();
+	//listMenu->enableShrinkMenu();
 
 	listMenu->setSelected(selected);
 
@@ -5004,9 +5064,11 @@ void CTestMenu::testClistBoxWidget()
 	listMenu = NULL;
 }
 
-// CMenuWidget1
+// CMenuWidget (menu mode)
 void CTestMenu::testClistBoxWidget1()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCMenuWidget (menu mode)\n");
+	
 	// our listBox
 	listMenu = new CMenuWidget("CMenuWidget(Menu Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 
@@ -5036,7 +5098,7 @@ void CTestMenu::testClistBoxWidget1()
 	listMenu->setMode(MODE_MENU);
 	listMenu->setItemsPerPage(6, 2);
 	listMenu->enableWidgetChange();
-	listMenu->enableShrinkMenu();
+	//listMenu->enableShrinkMenu();
 
 	listMenu->setSelected(selected);
 
@@ -5059,8 +5121,11 @@ void CTestMenu::testClistBoxWidget1()
 	listMenu = NULL;
 }
 
+// CMenuWidget (setup mode)
 void CTestMenu::testClistBoxWidget2()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCMenuWidget (setup mode)\n");
+	
 	CAudioPlayerSettings * audioPlayerSettingsMenu = new CAudioPlayerSettings();
 
 	audioPlayerSettingsMenu->exec(this, "");
@@ -5071,6 +5136,8 @@ void CTestMenu::testClistBoxWidget2()
 // CChannellist
 void CTestMenu::testChannellist()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testChannellist\n");
+	
 	webTVchannelList = new CChannelList("CTestMenu::testWebTVChannellist:");
 
 	for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++) 
@@ -5088,6 +5155,8 @@ void CTestMenu::testChannellist()
 // CBouquetlist
 void CTestMenu::testBouquetlist()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testBouquetlist\n");
+	
 	webTVBouquetList = new CBouquetList("CTestMenu::testWebTVBouquetlist");
 
 	for (int i = 0; i < g_bouquetManager->Bouquets.size(); i++) 
