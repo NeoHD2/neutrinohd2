@@ -454,7 +454,8 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 			
 		// yellow
 		showButton_SubServices();
-			
+		
+		//	
 		showIcon_CA_Status(0);
 		showIcon_16_9();
 		showIcon_VTXT();
@@ -524,10 +525,10 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	// show current_next epg data
 	getCurrentNextEPG(channel_id, new_chan, _epgpos);
 	
-	//TEST
+	// show_data
 	show_Data();
 
-	frameBuffer->blit();
+	//frameBuffer->blit();
 
 #if ENABLE_LCD
 	showLcdPercentOver();
@@ -555,16 +556,16 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 		{
 			g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd);
 
-			sigscale->reset(); 
-			snrscale->reset(); 
-			timescale->reset();
+			//sigscale->reset(); 
+			//snrscale->reset(); 
+			//timescale->reset();
 
 			//
 			//showTitle(_ChanNum, ChannelName, _satellitePosition);
 			//show_Data();
 			//showSNR();
 
-			if (msg == RC_sat || msg == RC_favorites)
+			if ((msg == RC_sat) || (msg == RC_favorites) || (msg == RC_setup) || (msg == RC_red) || (msg == RC_green) || (msg == RC_yellow) || (msg == RC_blue) )
 			{
 				g_RCInput->postMsg(msg, 0);
 				res = messages_return::cancel_info;
@@ -593,9 +594,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 
 				/*
 				showIcon_16_9();
-					
-				if (showButtonBar) 
-					showIcon_Resolution();
+				showIcon_Resolution();
 				*/
 			} 
 			else if ( g_settings.virtual_zap_mode && ((msg == RC_right) || msg == RC_left) && (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)) 
@@ -927,8 +926,6 @@ void CInfoViewer::showIcon_Resolution() const
 			case 2160:
 			case 1980:
 				icon_name_res = NEUTRINO_ICON_RESOLUTION_UHD2;
-				//test
-				//CVFD::getInstance()->ShowIcon(VFD_ICON_HD, true); //FIXME: remove this to remotecontrol
 				break;
 
 			case 1920:
@@ -938,8 +935,6 @@ void CInfoViewer::showIcon_Resolution() const
 			case 1080:
 			case 720:
 				icon_name_res = NEUTRINO_ICON_RESOLUTION_HD2;
-				//test
-				//CVFD::getInstance()->ShowIcon(VFD_ICON_HD, true); //FIXME: remove this to remotecontrol
 				break;
 				
 			case 704:
@@ -951,15 +946,10 @@ void CInfoViewer::showIcon_Resolution() const
 			case 352:
 			case 288:
 				icon_name_res = NEUTRINO_ICON_RESOLUTION_SD2;
-				//test
-				//CVFD::getInstance()->ShowIcon(VFD_ICON_HD, false);
 				break;
 				
 			default:
 				icon_name_res = NEUTRINO_ICON_RESOLUTION_000;
-
-				//testing
-				//CVFD::getInstance()->ShowIcon(VFD_ICON_HD, false);
 				break;	
 		}
 		
@@ -1769,27 +1759,6 @@ void CInfoViewer::showButton_Audio()
 
 	if(is_visible)
 		frameBuffer->paintIcon(dd_icon, BoxEndX - (BORDER_RIGHT + icon_w_subt + ICON_TO_ICON_OFFSET + icon_w_vtxt + ICON_TO_ICON_OFFSET + icon_w_dd), buttonBarStartY + (buttonBarHeight - icon_h_dd)/2 );
-	
-	//testing
-/*
-	if (ac3state == AC3_ACTIVE)
-	{
-		CVFD::getInstance()->ShowIcon(VFD_ICON_DOLBY, true);
-#if defined(PLATFORM_SPARK7162)
-		CVFD::getInstance()->ShowIcon(VFD_ICON_AC3, true);
-		CVFD::getInstance()->ShowIcon(VFD_ICON_MP3, false);//FIXME:@dbo: why???
-#endif
-		//CVFD::getInstance()->ShowIcon(VFD_ICON_MP3, false);//FIXME:@dbo: why???
-	}
-	else
-	{
-		CVFD::getInstance()->ShowIcon(VFD_ICON_DOLBY, false);
-#if defined(PLATFORM_SPARK7162)
-		CVFD::getInstance()->ShowIcon(VFD_ICON_AC3, false);
-		CVFD::getInstance()->ShowIcon(VFD_ICON_MP3, true); //FIXME:@dbo: why???
-#endif
-	}
-*/
 }
 
 void CInfoViewer::killTitle()
@@ -1884,11 +1853,7 @@ void CInfoViewer::showIcon_CA_Status(int notfirst)
 			}
 		
 			frameBuffer->paintIcon( fta ? NEUTRINO_ICON_SCRAMBLED2_GREY : NEUTRINO_ICON_SCRAMBLED2, BoxEndX - (ICON_OFFSET + icon_w_subt + 2 + icon_w_vtxt + 2 + icon_w_dd + 2 + icon_w_aspect + 2 + icon_w_sd + 2 + icon_w_reso + 2 + icon_w_ca), buttonBarStartY + (buttonBarHeight - icon_h_ca)/2 );
-
-			//testing
-#if !defined (PLATFORM_COOLSTREAM)
-			//CVFD::getInstance()->ShowIcon(VFD_ICON_LOCK, !fta);
-#endif			
+			
 			return;
 		}
 	}
