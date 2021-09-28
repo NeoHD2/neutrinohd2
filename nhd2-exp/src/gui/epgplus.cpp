@@ -116,7 +116,7 @@ void EpgPlus::Header::init ()
 
 void EpgPlus::Header::paint()
 {
-	this->frameBuffer->paintBoxRel (this->x, this->y, this->width, this->font->getHeight() + 10, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
+	this->frameBuffer->paintBoxRel(this->x, this->y, this->width, this->font->getHeight() + 10, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
 	
 	// paint time/date
 	int timestr_len = 0;
@@ -134,9 +134,17 @@ void EpgPlus::Header::paint()
 		
 		this->font->RenderString(this->x + this->width - 10 - timestr_len, this->y + this->font->getHeight() + 5, timestr_len + 1, timestr, COL_MENUHEAD, 0, true); // UTF-8
 	}
+	
+	// icon
+	int i_w = 0;
+	int i_h = 0;
+	
+	this->frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_EPG, &i_w, &i_h);
+	
+	this->frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_EPG, this->x + 10, this->y + (this->font->getHeight() + 10 - i_h)/2);
 
 	// title
-	this->font->RenderString (this->x + 10, this->y + this->font->getHeight() + 5, this->width - 20, g_Locale->getText(LOCALE_EPGPLUS_HEAD) , COL_MENUHEAD, 0, true);
+	this->font->RenderString (this->x + 10 + i_w + ICON_OFFSET, this->y + this->font->getHeight() + 5, this->width - 20 - i_w - ICON_OFFSET, g_Locale->getText(LOCALE_EPGPLUS_HEAD) , COL_MENUHEAD, 0, true);
 }
 
 int EpgPlus::Header::getUsedHeight ()
