@@ -528,8 +528,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	// show_data
 	show_Data();
 
-	//frameBuffer->blit();
-
 #if ENABLE_LCD
 	showLcdPercentOver();
 #endif
@@ -565,7 +563,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 			//show_Data();
 			//showSNR();
 
-			if ((msg == RC_sat) || (msg == RC_favorites) || (msg == RC_setup) || (msg == RC_red) || (msg == RC_green) || (msg == RC_yellow) || (msg == RC_blue) )
+			if ((msg == RC_sat) || (msg == RC_favorites) || (msg == RC_setup) || (msg == RC_red) || (msg == RC_green) || (msg == RC_yellow) || (msg == RC_blue) || (msg == RC_ok))
 			{
 				g_RCInput->postMsg(msg, 0);
 				res = messages_return::cancel_info;
@@ -576,7 +574,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 					
 				res = messages_return::cancel_info;
 			} 
-			else if ((msg == RC_ok) || (msg == RC_home) || (msg == RC_timeout)) 
+			else if (/*(msg == RC_ok) ||*/ (msg == RC_home) || (msg == RC_timeout)) 
 			{
 				res = messages_return::cancel_info;
 				// add this here, now OK and EXIT/HOME has effect
