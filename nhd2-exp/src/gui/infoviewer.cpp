@@ -585,9 +585,9 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 			//timescale->reset();
 
 			//
-			showTitle(_ChanNum, ChannelName, _satellitePosition);
-			show_Data();
-			showSNR();
+			//showTitle(_ChanNum, ChannelName, _satellitePosition);
+			//show_Data();
+			//showSNR();
 
 			if ((msg == RC_sat) || (msg == RC_favorites) || (msg == RC_setup) || (msg == RC_red) || (msg == RC_green) || (msg == RC_yellow) || (msg == RC_blue) || (msg == RC_ok) || (msg == RC_text) || (msg == RC_epg) || (msg == RC_record) || (msg == RC_play) || (msg == RC_pause) || (msg == RC_dvbsub) || (msg == RC_mode))
 			{
@@ -622,8 +622,8 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				*/
 				
 				//test
-				//show_Data();
-				//showSNR();
+				show_Data();
+				showSNR();
 			} 
 			else if ( g_settings.virtual_zap_mode && ((msg == RC_right) || msg == RC_left)) 
 			{
