@@ -169,6 +169,32 @@ void CInfoViewer::Init()
 	initDimension();
 
 	channel_id = live_channel_id;
+	
+	// init progressbar
+	sigscale = new CProgressBar(BAR_WIDTH, SIGSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
+	snrscale = new CProgressBar(BAR_WIDTH, SNRSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
+	timescale = new CProgressBar(BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);	//5? see in code
+}
+
+CInfoViewer::~CInfoViewer()
+{
+	if(sigscale)
+	{
+		delete sigscale;
+		sigscale = NULL;
+	}
+		
+	if(snrscale)
+	{
+		delete snrscale;
+		snrscale = NULL;
+	}
+		
+	if(timescale)
+	{
+		delete timescale;
+		timescale = NULL;
+	}
 }
 
 void CInfoViewer::initDimension(void)
@@ -244,8 +270,6 @@ void CInfoViewer::initDimension(void)
 
 	timescale_posx = BoxStartX + BORDER_LEFT;
 	timescale_posy = BoxStartY + SAT_INFOBOX_HEIGHT;
-
-	//channel_id = 0;
 }
 
 void CInfoViewer::start()
@@ -478,9 +502,11 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	runningPercent = 0;
 
 	// init progressbar
+	/*
 	sigscale = new CProgressBar(BAR_WIDTH, SIGSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
 	snrscale = new CProgressBar(BAR_WIDTH, SNRSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
 	timescale = new CProgressBar(BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);	//5? see in code
+	*/
 	
 	sigscale->reset(); 
 	snrscale->reset(); 
@@ -559,9 +585,9 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 			//timescale->reset();
 
 			//
-			//showTitle(_ChanNum, ChannelName, _satellitePosition);
-			//show_Data();
-			//showSNR();
+			showTitle(_ChanNum, ChannelName, _satellitePosition);
+			show_Data();
+			showSNR();
 
 			if ((msg == RC_sat) || (msg == RC_favorites) || (msg == RC_setup) || (msg == RC_red) || (msg == RC_green) || (msg == RC_yellow) || (msg == RC_blue) || (msg == RC_ok) || (msg == RC_text) || (msg == RC_epg) || (msg == RC_record) || (msg == RC_play) || (msg == RC_pause) || (msg == RC_dvbsub) || (msg == RC_mode))
 			{
@@ -596,10 +622,10 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				*/
 				
 				//test
-				show_Data();
-				showSNR();
+				//show_Data();
+				//showSNR();
 			} 
-			else if ( g_settings.virtual_zap_mode && ((msg == RC_right) || msg == RC_left) && (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)) 
+			else if ( g_settings.virtual_zap_mode && ((msg == RC_right) || msg == RC_left)) 
 			{
 				virtual_zap_mode = true;
 				res = messages_return::cancel_all;
@@ -1311,7 +1337,7 @@ int CInfoViewer::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 	else if (msg == NeutrinoMessages::EVT_ZAP_MOTOR) 
 	{
 		chanready = 0;
-		showMotorMoving (data);
+		showMotorMoving(data);
 		return messages_return::handled;
   	} 
 	else if (msg == NeutrinoMessages::EVT_MODECHANGED) 
@@ -1782,6 +1808,7 @@ void CInfoViewer::killTitle()
 
 		frameBuffer->blit();
 
+/*
 		if(sigscale)
 		{
 			delete sigscale;
@@ -1799,6 +1826,7 @@ void CInfoViewer::killTitle()
 			delete timescale;
 			timescale = NULL;
 		}
+*/		
   	}
 }
 

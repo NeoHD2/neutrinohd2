@@ -196,6 +196,7 @@ class CInfoViewer
 #endif		
 
 		CInfoViewer();
+		~CInfoViewer();
 
 		void start();
 

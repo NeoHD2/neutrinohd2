@@ -22,4 +22,3 @@ neutrinoHD2 GUI software for:
 
 - **generic** (linux DVB-API)
 
-- **x86** (PC). 
