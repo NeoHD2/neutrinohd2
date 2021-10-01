@@ -1242,6 +1242,8 @@ void CTestMenu::testFireTV()
 	//frameBox1 = new CFrameBox(box.iX, box.iY + 40 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight() + 10, box.iWidth, 280);
 	//frameBox1->setOutFocus();
 	
+	if (!m_vMovieInfo.empty())
+	{
 	// title
 	CFrame * titleFrame = new CFrame(FRAME_TEXT_LINE_NOTSELECTABLE);
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
@@ -1307,6 +1309,7 @@ void CTestMenu::testFireTV()
 		art1Frame->setTitle(m_vMovieInfo[i].epgTitle.c_str());
 
 		frameBox->addFrame(art1Frame);
+	}
 	}
 
 	testWidget->addItem(frameBox);
