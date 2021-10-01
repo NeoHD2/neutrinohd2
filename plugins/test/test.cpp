@@ -6910,8 +6910,8 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 	else if(actionKey == "fireplay")
 	{
-		if (frameBox3)
-			selected = frameBox3->getSelected() + 1;
+		if (frameBox)
+			selected = frameBox->getSelected() - 6;
 		else
 			selected = 0;
 
