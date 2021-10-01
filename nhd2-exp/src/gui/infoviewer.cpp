@@ -446,6 +446,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 			
 	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(BoxEndX - BORDER_RIGHT - dateWidth, BoxStartY + (SAT_INFOBOX_HEIGHT - dateHeight)/2 + dateHeight, dateWidth, datestr.c_str(), COL_INFOBAR, 0, true); // UTF-8
 
+/*
 	// activ tuner
 	showAktivTuner();
 
@@ -460,6 +461,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 
 	// record icon
 	showRecordIcon(show_dot);
+*/
 		
 	// botton bar
 	frameBuffer->paintBoxRel(buttonBarStartX, buttonBarStartY, BoxWidth, buttonBarHeight, COL_INFOBAR_BUTTONS_BACKGROUND, NO_RADIUS, CORNER_NONE);
@@ -470,6 +472,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 
 	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(BoxStartX + BORDER_LEFT + icon_red_w + ICON_TO_ICON_OFFSET + asize + icon_green_w + ICON_TO_ICON_OFFSET + asize + icon_yellow_w + ICON_TO_ICON_OFFSET + asize + icon_blue_w + ICON_TO_ICON_OFFSET, buttonBarStartY + (buttonBarHeight - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight(), asize - ICON_TO_ICON_OFFSET - icon_blue_w, g_Locale->getText(LOCALE_INFOVIEWER_FEATURES), COL_INFOBAR_BUTTONS, 0, true); // UTF-8
 
+/*
 	// other buttonbar
 	if( showButtonBar )
 	{
@@ -486,6 +489,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 		showIcon_SubT();
 		showIcon_Resolution();
 	}
+*/
 }
 
 //
@@ -545,9 +549,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	//
 	showTitle(_ChanNum, ChannelName, _satellitePosition);
 
-	//
-	showSNR();
-
 	// show current_next epg data
 	getCurrentNextEPG(channel_id, new_chan, _epgpos);
 	
@@ -557,6 +558,41 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 #if ENABLE_LCD
 	showLcdPercentOver();
 #endif
+
+	showSNR();
+	
+	//test
+	// activ tuner
+	showAktivTuner();
+
+	// radiotext	
+	if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio)
+	{
+		if ((g_settings.radiotext_enable) && (!recordModeActive))
+			showRadiotext();
+		else
+			showIcon_RadioText(false);
+	}
+
+	// record icon
+	showRecordIcon(show_dot);
+	
+	// other buttonbar
+	if( showButtonBar )
+	{
+		// green
+		showButton_Audio();
+			
+		// yellow
+		showButton_SubServices();
+		
+		//	
+		showIcon_CA_Status(0);
+		showIcon_16_9();
+		showIcon_VTXT();
+		showIcon_SubT();
+		showIcon_Resolution();
+	}
 
 	// add sec timer
 	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
@@ -629,7 +665,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 			{
 				virtual_zap_mode = true;
 				res = messages_return::cancel_all;
-				hideIt = true;
+				//hideIt = true;
 			} 
 			else if ( !CNeutrinoApp::getInstance()->timeshiftstatus) 
 			{
