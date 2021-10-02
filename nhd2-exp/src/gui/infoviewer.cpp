@@ -614,7 +614,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 			//timescale->reset();
 
 			//
-			showTitle(_ChanNum, ChannelName, _satellitePosition);
+			//showTitle(_ChanNum, ChannelName, _satellitePosition);
 			//show_Data();
 			//showSNR();
 
@@ -654,8 +654,8 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				sigscale->reset(); 
 				snrscale->reset(); 
 				timescale->reset();
-				//showPercent();
-				show_Data();
+				showPercent();
+				//show_Data();
 				showSNR();
 			} 
 			else if ( g_settings.virtual_zap_mode && ((msg == RC_right) || msg == RC_left)) 
