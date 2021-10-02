@@ -2308,8 +2308,6 @@ void CNeutrinoApp::InitZapper()
 	else if (tvmode == CZapitClient::MODE_WEBTV)
 		mode = NeutrinoMessages::mode_webtv;
 
-	//lastChannelMode = tvmode ? g_settings.channel_mode : g_settings.channel_mode_radio;
-
 	lastMode = mode;
 	
 	// init channel
@@ -2336,6 +2334,7 @@ void CNeutrinoApp::InitZapper()
 
 	if(channelList->getSize() && live_channel_id)
 	{
+		// channellist adjust to channeliD
 		channelList->adjustToChannelID(live_channel_id);
 
 		// show service name in vfd (250hd has only 4 digit so we show service number)
@@ -2816,9 +2815,6 @@ void CNeutrinoApp::quickZap(int msg)
 void CNeutrinoApp::showInfo()
 {
 	StopSubtitles();
-	
-	if ( g_InfoViewer->is_visible )
-		g_InfoViewer->killTitle();
 
 	g_InfoViewer->show(channelList->getActiveChannelNumber(), channelList->getActiveChannelName(), channelList->getActiveSatellitePosition(), channelList->getActiveChannel_ChannelID());
 
@@ -3522,7 +3518,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 		if(g_settings.audio_AnalogMode < 0 || g_settings.audio_AnalogMode > 2)
 			g_settings.audio_AnalogMode = 0;
 
-		// kill shift timer
+		// kill shifttimer
 		if(shift_timer) 
 		{
 			g_RCInput->killTimer(shift_timer);
@@ -3636,7 +3632,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 				if(bouquetList->Bouquets.size() && bouquetList->Bouquets[old_b]->channelList->getSize() > 0)
 					nNewChannel = bouquetList->Bouquets[old_b]->channelList->exec();	//with ZAP!
 				else
-					nNewChannel = bouquetList->exec(true, true);
+					nNewChannel = bouquetList->exec(true, true);	//with zap
 			}
 			else if(msg == RC_sat) 
 			{

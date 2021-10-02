@@ -46,7 +46,7 @@
 #include <system/debug.h>
 #include <system/helpers.h>
 
-/*zapit includes*/
+// zapit includes
 #include <bouquets.h>
 
 
@@ -60,6 +60,8 @@ bool sectionsd_getComponentTagsUniqueKey(const event_id_t uniqueKey, CSectionsdC
 bool sectionsd_getLinkageDescriptorsUniqueKey(const event_id_t uniqueKey, CSectionsdClient::LinkageDescriptorList& descriptors);
 bool sectionsd_getNVODTimesServiceKey(const t_channel_id uniqueServiceKey, CSectionsdClient::NVODTimesList& nvod_list);
 void sectionsd_setPrivatePid(unsigned short pid);
+void sectionsd_getCurrentNextServiceKey(t_channel_id uniqueServiceKey, CSectionsdClient::responseGetCurrentNextInfoChannelID& current_next );
+
 
 CSubService::CSubService(const t_original_network_id anoriginal_network_id, const t_service_id aservice_id, const t_transport_stream_id atransport_stream_id, const std::string &asubservice_name)
 {
@@ -201,8 +203,8 @@ int CRemoteControl::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data
 				CNeutrinoApp::getInstance()->channelList->adjustToChannelID(current_channel_id);
 				
 				// update info.				
-				if ( g_InfoViewer->is_visible )
-					g_RCInput->postMsg( NeutrinoMessages::SHOW_INFOBAR, 0 );
+				//if ( g_InfoViewer->is_visible )
+				//	g_RCInput->postMsg( NeutrinoMessages::SHOW_INFOBAR, 0 );
 			}
 
 			if ((!is_video_started) && (g_settings.parentallock_prompt != PARENTALLOCK_PROMPT_NEVER))
@@ -238,7 +240,9 @@ int CRemoteControl::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data
 		if ((*(t_channel_id *)data) != (current_channel_id & 0xFFFFFFFFFFFFULL) && (*(t_channel_id *)data) != (current_sub_channel_id & 0xFFFFFFFFFFFFULL))
 			return messages_return::handled;
 
-		const CSectionsdClient::CurrentNextInfo info_CN = g_InfoViewer->getCurrentNextInfo();
+		//const CSectionsdClient::CurrentNextInfo info_CN = g_InfoViewer->getCurrentNextInfo();
+		CSectionsdClient::CurrentNextInfo info_CN;
+		sectionsd_getCurrentNextServiceKey(current_channel_id&0xFFFFFFFFFFFFULL, info_CN);
 		
 		dprintf(DEBUG_INFO, "CRemoteControl::handleMsg got  EVT_CURRENTEPG, uniqueKey: %llx chid: %llx flags: %x\n", info_CN.current_uniqueKey, current_channel_id, info_CN.flags);
 
@@ -264,7 +268,7 @@ int CRemoteControl::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data
 					has_unresolved_ctags = true;
 					
 					// infobar indicate on epg change
-					g_InfoViewer->showEpgInfo();
+					//g_InfoViewer->showEpgInfo();
 				}
 
 				current_EPGid = info_CN.current_uniqueKey;
@@ -771,7 +775,7 @@ void CRemoteControl::zapTo_ChannelID(const t_channel_id channel_id, const std::s
 		// zap
 		g_Zapit->zapTo_serviceID_NOWAIT(channel_id);
 
-		//
+		// online epg
 		if(g_settings.epg_enable_online_epg)
 		{
 			getEvents(channel_id&0xFFFFFFFFFFFFULL);

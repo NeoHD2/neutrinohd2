@@ -942,6 +942,7 @@ bool CChannelList::adjustToChannelID(const t_channel_id channel_id, bool bToo)
 			lastChList.store(selected, channel_id, false);
 
 			tuned = i;
+			
 			if (bToo && (bouquetList != NULL)) 
 			{
 				//FIXME
@@ -1070,6 +1071,7 @@ void CChannelList::zapTo(int pos, bool /*forceStoreToLastChannels*/)
 			g_InfoViewer->handleMsg(NeutrinoMessages::EVT_RECORDMODE, 0);
 		}
 
+		// show infoBar
 		g_RCInput->postMsg( NeutrinoMessages::SHOW_INFOBAR, 0 );
 	}
 }
@@ -1373,7 +1375,7 @@ void CChannelList::virtual_zap_mode(bool up)
                 }
 
 		epgpos = 0;
-                g_RCInput->getMsg( &msg, &data, 15*10 ); // 15 seconds, not user changable
+		g_RCInput->getMsg( &msg, &data, 15*10 ); // 15 seconds, not user changable
 
                 if ( msg == RC_ok )
                 {
@@ -1603,7 +1605,7 @@ void CChannelList::paint()
 			item->setNumber(chanlist[i]->number);
 			item->setPercent(runningPercent);
 			item->setIcon1(chanlist[i]->isHD() ? NEUTRINO_ICON_HD : chanlist[i]->isUHD()? NEUTRINO_ICON_UHD : "");
-			item->setIcon2(chanlist[i]->scrambled ? NEUTRINO_ICON_SCRAMBLED : "");
+			item->setIcon2((chanlist[i]->scrambled && chanlist[i]->getServiceType() != ST_WEBTV)? NEUTRINO_ICON_SCRAMBLED : "");
 			item->setInfo1(desc.c_str());
 			item->setOptionInfo1(cSeit);
 			item->setInfo2(p_event->text.c_str());

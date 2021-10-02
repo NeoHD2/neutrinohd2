@@ -546,7 +546,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	getCurrentNextEPG(channel_id, new_chan, _epgpos);
 	
 	// show_data
-	show_Data();
+	//show_Data();
 
 #if ENABLE_LCD
 	showLcdPercentOver();
@@ -586,6 +586,9 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 		showIcon_SubT();
 		showIcon_Resolution();
 	}
+	
+	//
+	show_Data();
 
 	// add sec timer
 	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
@@ -683,7 +686,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				{
 					// Handle anyway!
 					neutrino->handleMsg(msg, data);
-					g_RCInput->postMsg (NeutrinoMessages::SHOW_INFOBAR, 0);
+					//g_RCInput->postMsg (NeutrinoMessages::SHOW_INFOBAR, 0);
 					
 					res = messages_return::cancel_all;
 				} 
@@ -794,12 +797,14 @@ void CInfoViewer::getCurrentNextEPG(t_channel_id ChannelID, bool newChan, int EP
 	if (!(info_CurrentNext.flags & (CSectionsdClient::epgflags::has_later | CSectionsdClient::epgflags::has_current | CSectionsdClient::epgflags::not_broadcast))) 
 	{
 		// nicht gefunden / noch nicht geladen
-		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + 2*ChanInfoHeight, BoxEndX - ChanNameX, g_Locale->getText (gotTime ? (showButtonBar ? LOCALE_INFOVIEWER_EPGWAIT : LOCALE_INFOVIEWER_EPGNOTLOAD) : LOCALE_INFOVIEWER_WAITTIME), COL_INFOBAR, 0, true);	// UTF-8
-	} 
+		//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + 2*ChanInfoHeight, BoxEndX - ChanNameX, g_Locale->getText (gotTime ? (showButtonBar ? LOCALE_INFOVIEWER_EPGWAIT : LOCALE_INFOVIEWER_EPGNOTLOAD) : LOCALE_INFOVIEWER_WAITTIME), COL_INFOBAR, 0, true);	// UTF-8
+	}
+/* 
 	else
 	{
 		show_Data();
 	}
+*/	
 }
 
 void CInfoViewer::showSubchan()
@@ -927,7 +932,7 @@ void CInfoViewer::showSubchan()
 	} 
 	else 
 	{
-		g_RCInput->postMsg(NeutrinoMessages::SHOW_INFOBAR, 0);
+		//g_RCInput->postMsg(NeutrinoMessages::SHOW_INFOBAR, 0);
   	}
 }
 
@@ -1228,6 +1233,7 @@ int CInfoViewer::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
  	if ((msg == NeutrinoMessages::EVT_CURRENTNEXT_EPG) || (msg == NeutrinoMessages::EVT_NEXTPROGRAM)) 
 	{
 	  	getEPG(*(t_channel_id *)data, info_CurrentNext);
+	  	
 	  	if ( is_visible )
 			show_Data(true);
 			
@@ -1262,6 +1268,7 @@ int CInfoViewer::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 	  		if ( is_visible && showButtonBar )
 				showButton_Audio();
 		}
+		
 		return messages_return::handled;
   	} 
 	else if (msg == NeutrinoMessages::EVT_ZAP_GOTPIDS) 
@@ -1277,6 +1284,7 @@ int CInfoViewer::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 				showIcon_16_9();
 	  		}
 		}
+		
 		return messages_return::handled;
   	} 
 	else if (msg == NeutrinoMessages::EVT_ZAP_GOT_SUBSERVICES) 
@@ -1286,6 +1294,7 @@ int CInfoViewer::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 	  		if ( is_visible && showButtonBar )
 				showButton_SubServices();
 		}
+		
 		return messages_return::handled;
   	} 
   	else if ((msg == NeutrinoMessages::EVT_ZAP_COMPLETE) || (msg == NeutrinoMessages::EVT_ZAP_ISNVOD))
@@ -1298,6 +1307,7 @@ int CInfoViewer::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 			showIcon_Resolution();
 		
 		channel_id = (*(t_channel_id *)data);
+		
 		return messages_return::handled;
 	}
 	else if (msg == NeutrinoMessages::EVT_ZAP_SUB_COMPLETE) 
@@ -1765,7 +1775,7 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 
 void CInfoViewer::showPercent()
 {
-	timescale->reset();
+	//timescale->reset();
 	
 	timescale->paint(timescale_posx, timescale_posy, runningPercent);
 }
@@ -1932,7 +1942,6 @@ void CInfoViewer::showIcon_CA_Status(int notfirst)
 
 void CInfoViewer::showEpgInfo()   //message on event change
 {
-/*
 	int mode = CNeutrinoApp::getInstance()->getMode();
 	
 	// show epg info only if we in TV- or Radio mode and current event is not the same like before
@@ -1940,9 +1949,8 @@ void CInfoViewer::showEpgInfo()   //message on event change
 	{
 		eventname = info_CurrentNext.current_name;
 		
-		g_RCInput->postMsg(NeutrinoMessages::SHOW_INFOBAR , 0);
+		//g_RCInput->postMsg(NeutrinoMessages::SHOW_INFOBAR , 0);
 	}
-*/
 }
 
 int CInfoViewerHandler::exec(CMenuTarget * parent, const std::string &/*actionkey*/)
