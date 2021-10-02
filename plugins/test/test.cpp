@@ -363,7 +363,10 @@ void CTestMenu::loadAudioPlaylist()
 
 	std::string Path = g_settings.network_nfs_audioplayerdir;
 
-	if(CFileHelpers::getInstance()->readDir(Path, &filelist, &fileFilter))
+	//if(CFileHelpers::getInstance()->readDir(Path, &filelist, &fileFilter))
+	CFileHelpers::getInstance()->addRecursiveDir(&filelist, Path, &fileFilter);
+
+	if(filelist.size() > 0)
 	{		
 		CFileList::iterator files = filelist.begin();
 		for(; files != filelist.end() ; files++)
@@ -3021,7 +3024,7 @@ void CTestMenu::testCListFrame()
 	CListFrame * listFrame = new CListFrame(&listFrameLines, NULL, CListFrame::TITLE | CListFrame::HEADER_LINE | CListFrame::SCROLL, &listFrameBox);
 
 	// title
-	listFrame->setTitle("listFrame (AudioPlayer)", NEUTRINO_ICON_MOVIE);
+	listFrame->setTitle("listFrame (AudioPlayer)", NEUTRINO_ICON_MP3);
 	
 	// fill lineArrays list
 	CHintBox loadBox("listFrame", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
