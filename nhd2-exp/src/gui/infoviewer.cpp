@@ -654,12 +654,12 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				*/
 				
 				//test
-				sigscale->reset(); 
-				snrscale->reset(); 
-				timescale->reset();
-				showPercent();
+				//sigscale->reset(); 
+				//snrscale->reset(); 
+				//timescale->reset();
+				//showPercent();
 				//show_Data();
-				showSNR();
+				//showSNR();
 			} 
 			else if ( g_settings.virtual_zap_mode && ((msg == RC_right) || msg == RC_left)) 
 			{
@@ -1652,7 +1652,8 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 		{
 	  		if ((info_CurrentNext.flags & CSectionsdClient::epgflags::has_current) && (info_CurrentNext.flags & CSectionsdClient::epgflags::has_next) && (showButtonBar) ) 
 			{
-				if ((uint) info_CurrentNext.next_zeit.startzeit < (info_CurrentNext.current_zeit.startzeit + info_CurrentNext.current_zeit.dauer)) {
+				if ((uint) info_CurrentNext.next_zeit.startzeit < (info_CurrentNext.current_zeit.startzeit + info_CurrentNext.current_zeit.dauer)) 
+				{
 		  			is_nvod = true;
 				}
 	  		}

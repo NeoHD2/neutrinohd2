@@ -140,14 +140,14 @@
 #define NEUTRINO_ICON_RESOLUTION_352			"res_352"
 #define NEUTRINO_ICON_RESOLUTION_288			"res_288"
 #define NEUTRINO_ICON_RESOLUTION_000			"res_000"
-#define NEUTRINO_ICON_RESOLUTION_HD2			"res_hd2"
-#define NEUTRINO_ICON_RESOLUTION_SD2			"res_sd2"
-#define NEUTRINO_ICON_RESOLUTION_UHD2			"res_uhd2"
+#define NEUTRINO_ICON_RESOLUTION_HD2			"res_hd"
+#define NEUTRINO_ICON_RESOLUTION_SD2			"res_sd"
+#define NEUTRINO_ICON_RESOLUTION_UHD2			"res_uhd"
 
 // channellist
 #define NEUTRINO_ICON_SCRAMBLED			"marker_scrambled"
-#define NEUTRINO_ICON_HD				"res_hd"
-#define NEUTRINO_ICON_UHD				"res_uhd"
+#define NEUTRINO_ICON_HD				"marker_hd"
+#define NEUTRINO_ICON_UHD				"marker_uhd"
 
 
 // filebrowser
