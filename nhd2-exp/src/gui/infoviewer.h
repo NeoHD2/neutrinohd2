@@ -224,6 +224,7 @@ class CInfoViewer
 		void killRadiotext(); // needed in radiotext
 		void showSubchan(); // needed in CNVODChangeExec
 		void showEpgInfo(); // neede in remotecontrol
+		void showPercent();
 };
 
 class CInfoViewerHandler : public CMenuTarget

@@ -2816,6 +2816,9 @@ void CNeutrinoApp::quickZap(int msg)
 void CNeutrinoApp::showInfo()
 {
 	StopSubtitles();
+	
+	if ( g_InfoViewer->is_visible )
+		g_InfoViewer->killTitle();
 
 	g_InfoViewer->show(channelList->getActiveChannelNumber(), channelList->getActiveChannelName(), channelList->getActiveSatellitePosition(), channelList->getActiveChannel_ChannelID());
 

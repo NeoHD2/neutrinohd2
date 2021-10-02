@@ -495,8 +495,6 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 //
 void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_satellite_position _satellitePosition, const t_channel_id _new_channel_id, const bool _calledFromNumZap, int _epgpos)
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::show:\n");
-
 	//
 	std::string ChannelName = _Channel;
 	show_dot = true;
@@ -504,13 +502,8 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	new_chan = false;
 	showButtonBar = !_calledFromNumZap;
 	runningPercent = 0;
-
-	// init progressbar
-	/*
-	sigscale = new CProgressBar(BAR_WIDTH, SIGSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	snrscale = new CProgressBar(BAR_WIDTH, SNRSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	timescale = new CProgressBar(BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);	//5? see in code
-	*/
+	
+	initDimension();
 	
 	sigscale->reset(); 
 	snrscale->reset(); 
@@ -522,7 +515,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	// channel id
 	channel_id = _new_channel_id;
 
-	dprintf(DEBUG_NORMAL, "CInfoViewer::show: channel:%llx\n", channel_id);
+	dprintf(DEBUG_NORMAL, "\nCInfoViewer::show: channel:%llx\n", channel_id);
 
 	// subchannel
 	if (! _calledFromNumZap && !(g_RemoteControl->subChannels.empty()) && (g_RemoteControl->selected_subchannel > 0))
@@ -559,9 +552,9 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	showLcdPercentOver();
 #endif
 
+	// showSNR
 	showSNR();
 	
-	//test
 	// activ tuner
 	showAktivTuner();
 
@@ -621,7 +614,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 			//timescale->reset();
 
 			//
-			//showTitle(_ChanNum, ChannelName, _satellitePosition);
+			showTitle(_ChanNum, ChannelName, _satellitePosition);
 			//show_Data();
 			//showSNR();
 
@@ -658,6 +651,10 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				*/
 				
 				//test
+				sigscale->reset(); 
+				snrscale->reset(); 
+				timescale->reset();
+				//showPercent();
 				show_Data();
 				showSNR();
 			} 
@@ -750,6 +747,7 @@ void CInfoViewer::getCurrentNextEPG(t_channel_id ChannelID, bool newChan, int EP
 		if (EPGPos != 0) 
 		{
 			info_CurrentNext.flags = 0;
+			
 			if ((EPGPos > 0) && (eli != evtlist.end())) 
 			{
 				++eli; // next epg
@@ -1765,6 +1763,13 @@ void CInfoViewer::show_Data(bool calledFromEvent)
   	}
 }
 
+void CInfoViewer::showPercent()
+{
+	timescale->reset();
+	
+	timescale->paint(timescale_posx, timescale_posy, runningPercent);
+}
+
 void CInfoViewer::showButton_Audio()
 {
   	// green, in case of several APIDs
@@ -1927,6 +1932,7 @@ void CInfoViewer::showIcon_CA_Status(int notfirst)
 
 void CInfoViewer::showEpgInfo()   //message on event change
 {
+/*
 	int mode = CNeutrinoApp::getInstance()->getMode();
 	
 	// show epg info only if we in TV- or Radio mode and current event is not the same like before
@@ -1936,6 +1942,7 @@ void CInfoViewer::showEpgInfo()   //message on event change
 		
 		g_RCInput->postMsg(NeutrinoMessages::SHOW_INFOBAR , 0);
 	}
+*/
 }
 
 int CInfoViewerHandler::exec(CMenuTarget * parent, const std::string &/*actionkey*/)
