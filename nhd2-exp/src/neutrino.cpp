@@ -5030,36 +5030,29 @@ void CNeutrinoApp::standbyMode( bool bOnOff )
 			videoDecoder->SetInput(STANDBY_ON);
 #endif		
 		
-		if(mode == mode_webtv)
+		// zapit standby
+		if(!recordingstatus && !timeshiftstatus)
 		{
-			g_Zapit->stopPlayBack();
-		}
+			g_Zapit->setStandby(true);
+		} 
 		else
 		{
-			// zapit standby
-			if(!recordingstatus && !timeshiftstatus)
-			{
-				g_Zapit->setStandby(true);
-			} 
-			else
-			{
-				//zapit stop playback
-				g_Zapit->stopPlayBack();
-			}
-
-			// stop sectionsd
-			g_Sectionsd->setServiceChanged(0, false);
-			g_Sectionsd->setPauseScanning(true);
-
-			//save epg
-			if(!recordingstatus && !timeshiftstatus)
-			{
-				if(g_settings.epg_save) 
-				{
-					saveEpg();
-				}
-			}			
+			//zapit stop playback
+			g_Zapit->stopPlayBack();
 		}
+
+		// stop sectionsd
+		g_Sectionsd->setServiceChanged(0, false);
+		g_Sectionsd->setPauseScanning(true);
+
+		//save epg
+		if(!recordingstatus && !timeshiftstatus)
+		{
+			if(g_settings.epg_save) 
+			{
+				saveEpg();
+			}
+		}			
 
 		//run script
 		puts("CNeutrinoApp::standbyMode: executing " NEUTRINO_ENTER_STANDBY_SCRIPT ".");
@@ -5099,28 +5092,19 @@ void CNeutrinoApp::standbyMode( bool bOnOff )
 			videoDecoder->SetInput(STANDBY_OFF);
 #endif		
 				
-		// setmode?radio:tv/iptv
+		// setmode?tv/radio/webtv
 		mode = mode_unknown;
 
-		if(lastMode == mode_webtv)
-		{
+		// zapit startplayback
+		g_Zapit->setStandby(false);
+
+		// this is buggy don't respect parentallock
+		if(!recordingstatus && !timeshiftstatus)
 			g_Zapit->startPlayBack();
-			
-			mode = mode_webtv;
-		}
-		else
-		{
-			// zapit startplayback
-			g_Zapit->setStandby(false);
-
-			// this is buggy don't respect parentallock
-			if(!recordingstatus && !timeshiftstatus)
-				g_Zapit->startPlayBack();
 
 
-			g_Sectionsd->setPauseScanning(false);
-			g_Sectionsd->setServiceChanged(live_channel_id&0xFFFFFFFFFFFFULL, true );
-		}
+		g_Sectionsd->setPauseScanning(false);
+		g_Sectionsd->setServiceChanged(live_channel_id&0xFFFFFFFFFFFFULL, true );
 
 		if( lastMode == mode_radio ) 
 		{

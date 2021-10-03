@@ -542,7 +542,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	//
 	showTitle(_ChanNum, ChannelName, _satellitePosition);
 
-	// show current_next epg data
+	// get CN epg
 	getCurrentNextEPG(channel_id, new_chan, _epgpos);
 	
 	// show_data
@@ -1448,6 +1448,8 @@ void CInfoViewer::showButton_SubServices()
 void CInfoViewer::getEPG(const t_channel_id for_channel_id, CSectionsdClient::CurrentNextInfo &info)
 {
 	dprintf(DEBUG_NORMAL, "CInfoViewer::getEPG: channel_id:0x%llx\n", for_channel_id);
+	
+/*
 
 	// to clear the oldinfo for channels without epg, call getEPG() with for_channel_id = 0
 	if (for_channel_id == 0)
@@ -1488,6 +1490,7 @@ void CInfoViewer::getEPG(const t_channel_id for_channel_id, CSectionsdClient::Cu
 		//
 		g_RCInput->postMsg(msg, (const neutrino_msg_data_t)p, false); // data is pointer to allocated memory
 	}
+*/	
 }
 
 void CInfoViewer::showSNR()
