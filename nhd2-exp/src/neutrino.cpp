@@ -952,7 +952,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.ytkey = configfile.getString("ytkey", "");
 	g_settings.weather_api_key = configfile.getString("weather_api_key", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
-	g_settings.enable_tmdb_infos = configfile.getBool("enable_tmdb_infos", true);
+	g_settings.enable_tmdb_infos = configfile.getBool("enable_tmdb_infos", false);
 
 	// icons dir
 	g_settings.icons_dir = configfile.getString("icons_dir", DATADIR "/neutrino/icons/");
