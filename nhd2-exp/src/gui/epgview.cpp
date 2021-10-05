@@ -574,8 +574,11 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 	widthr = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_DATE]->getRenderWidth(epg_date);
 	g_Font[SNeutrinoSettings::FONT_TYPE_EPG_DATE]->RenderString(cFrameBox.iX + cFrameBox.iWidth - 40 - widthr, cFrameBox.iY + cFrameBox.iHeight - cFootBox.iHeight - cFollowScreeningBox.iHeight + (cFollowScreeningBox.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_DATE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_DATE]->getHeight(), widthr, epg_date, COL_MENUHEAD);
 
-	textBox->setText(epgBuffer.c_str());
-	textBox->paint();
+	if(textBox)
+	{
+		textBox->setText(epgBuffer.c_str());
+		textBox->paint();
+	}
 
 	// show Timer Event Buttons
 	showTimerEventBar(true);
@@ -706,12 +709,14 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 
 				case RC_down:
 				case RC_page_down:
-					textBox->scrollPageDown(1);
+					if(textBox)
+						textBox->scrollPageDown(1);
 					break;
 
 				case RC_up:
 				case RC_page_up:
-					textBox->scrollPageUp(1);
+					if(textBox)
+						textBox->scrollPageUp(1);
 					break;
 
 				// 31.05.2002 dirch		record timer
@@ -780,7 +785,8 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 					start();
 					
 					bigFonts = bigFonts? false : true;
-					textBox->setBigFonts(bigFonts);
+					if(textBox)
+						textBox->setBigFonts(bigFonts);
 					
 					show(channel_id, id, &startzeit, false);
 					break;

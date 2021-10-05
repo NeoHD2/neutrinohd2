@@ -327,7 +327,7 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 	hicon = icon;
 
 	bgcolor = COL_MENUHEAD_PLUS_0;
-	radius = NO_RADIUS;
+	radius = RADIUS_MID;
 	corner = CORNER_TOP;
 	gradient = g_settings.Head_gradient;
 
@@ -347,7 +347,7 @@ CHeaders::CHeaders(CBox position, const char * const title, const char * const i
 	hicon = icon;
 
 	bgcolor = COL_MENUHEAD_PLUS_0;
-	radius = NO_RADIUS;
+	radius = RADIUS_MID;
 	corner = CORNER_TOP;
 	gradient = g_settings.Head_gradient;
 
@@ -454,7 +454,7 @@ CFooters::CFooters(int x, int y, int dx, int dy)
 	fcount = 0;
 
 	fbgcolor = COL_MENUFOOT_PLUS_0;
-	fradius = NO_RADIUS;
+	fradius = RADIUS_MID;
 	fcorner = CORNER_BOTTOM;
 	fgradient = g_settings.Foot_gradient;
 
@@ -469,7 +469,7 @@ CFooters::CFooters(CBox position)
 	fcount = 0;
 
 	fbgcolor = COL_MENUFOOT_PLUS_0;
-	fradius = NO_RADIUS;
+	fradius = RADIUS_MID;
 	fcorner = CORNER_BOTTOM;
 	fgradient = g_settings.Foot_gradient;
 
