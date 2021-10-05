@@ -248,7 +248,14 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 
 		if(!iconName.empty())
 		{
-			CFrameBuffer::getInstance()->displayImage(iconName, window.getWindowsPos().iX + 10, window.getWindowsPos().iY + 10, window.getWindowsPos().iWidth - 20, window.getWindowsPos().iHeight - c_h - 20);
+			 if (mode == FRAME_PICTURE)
+			 {
+				CFrameBuffer::getInstance()->displayImage(iconName, window.getWindowsPos().iX + 10, window.getWindowsPos().iY + 10, window.getWindowsPos().iWidth - 20, window.getWindowsPos().iHeight - c_h - 20);
+			}
+			else if (mode == FRAME_PICTURE_NOTSELECTABLE)
+			{
+				CFrameBuffer::getInstance()->displayImage(iconName, window.getWindowsPos().iX, window.getWindowsPos().iY, window.getWindowsPos().iWidth, window.getWindowsPos().iHeight - c_h);
+			}
 		}
 
 		if(!caption.empty())
