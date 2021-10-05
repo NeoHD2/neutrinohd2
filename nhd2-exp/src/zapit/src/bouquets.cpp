@@ -530,6 +530,20 @@ void CBouquetManager::makeBouquetfromCurrentservices(const _xmlNodePtr root)
 	}
 }
 
+////
+std::string ReadMarkerValue(std::string strLine, const char* strMarkerName)
+{
+	if (strLine.find(strMarkerName) != std::string::npos)
+	{
+		strLine = strLine.substr(strLine.find(strMarkerName));
+		strLine = strLine.substr(strLine.find_first_of('"')+1);
+		strLine = strLine.substr(0,strLine.find_first_of('"'));
+		return strLine;
+	}
+
+	return std::string("");
+}
+////
 void CBouquetManager::parseWebTVBouquet(std::string filename)
 {
 	int cnt = 0;	
@@ -547,7 +561,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						
 	if( strcasecmp("tv", extension.c_str()) == 0)
 		iptv = true;
-	else if( strcasecmp("m3u", extension.c_str()) == 0)
+	else if( strcasecmp("m3u8", extension.c_str()) == 0)
 		playlist = true;
 	if( strcasecmp("xml", extension.c_str()) == 0)
 		webtv = true;
@@ -557,7 +571,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 
 	CZapitBouquet *newBouquet = addBouquetIfNotExist(name);
 	newBouquet->bWebTV = true;
-	newBouquet->bUser = true;
+	//newBouquet->bUser = true;
 	
 	if(iptv)
 	{
@@ -716,37 +730,104 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 	{
 		std::ifstream infile;
 		char cLine[1024];
-		char title[1024] = { 0 };
+
+		std::string epg_url = "";
+		std::string description = "";
+		std::string title = "";
+		std::string prefix = "";
+		std::string group = "";
+		std::string epgid = "";
+		std::string alogo = "";
+		std::string script = "";
+		t_channel_id id = 0;
+		CZapitBouquet* pBouquet = NULL;
 				
 		infile.open(filename.c_str(), std::ifstream::in);
 
 		while (infile.good())
 		{
-			int duration;
-			std::string description;
-			t_channel_id id = 0;
-
 			infile.getline(cLine, sizeof(cLine));
 					
 			// remove CR
 			if(cLine[strlen(cLine) - 1] == '\r')
 				cLine[strlen(cLine) - 1] = 0;
-					
-			sscanf(cLine, "#EXTINF:%d,%[^\n]\n", &duration, title);
-					
-			if(strlen(cLine) > 0 && cLine[0] != '#')
+				
+			std::string strLine = cLine;
+			
+			if (strLine.empty())
+				continue;
+
+			if (strLine.find("#EXTM3U") != std::string::npos)
+			{
+				epg_url = "";
+				epg_url = ReadMarkerValue(strLine, "tvg-url=");
+				
+				if (!epg_url.empty())
+				{
+				/*
+					if (epg_url.find_first_of(',') != std::string::npos)
+					{
+						std::vector<std::string> epg_list = ::split(epg_url, ',');
+						for (std::vector<std::string>::iterator it_epg = epg_list.begin(); it_epg != epg_list.end(); it_epg++)
+							CNeutrinoApp::getInstance()->g_settings_xmltv_xml_auto_pushback((*it_epg));
+					}
+					else
+						CNeutrinoApp::getInstance()->g_settings_xmltv_xml_auto_pushback(epg_url);
+				*/
+				}
+			}
+			
+			if (strLine.find("#EXTINF") != std::string::npos)
+			{
+				int iColon = (int)strLine.find_first_of(':');
+				int iComma = (int)strLine.find_first_of(',');
+				title = "";
+				prefix = "";
+				group = "";
+				description = "";
+				alogo = "";
+				script = "";
+				id = 0;
+
+				if (iColon >= 0 && iComma >= 0 && iComma > iColon)
+				{
+					iComma++;
+					iColon++;
+					title = strLine.substr(iComma);
+					std::string strInfoLine = strLine.substr(iColon, --iComma - iColon);
+					description = ReadMarkerValue(strInfoLine, "tvg-name=");
+					prefix = ReadMarkerValue(strInfoLine, "group-prefix=");
+					group = ReadMarkerValue(strInfoLine, "group-title=");
+					//id = ReadMarkerValue(strInfoLine, "tvg-id=");
+					alogo = ReadMarkerValue(strInfoLine, "tvg-logo=");
+					script = ReadMarkerValue(strInfoLine, "tvg-script=");
+				}
+				
+				pBouquet = addBouquetIfNotExist("WEBTV");
+				pBouquet->bWebTV = true;
+				//pBouquet->bUser = true;
+			}		
+			else if(strlen(cLine) > 0 && cLine[0] != '#')
 			{
 				char *url = NULL;
-				if ((url = strstr(cLine, "http://")) || (url = strstr(cLine, "rtmp://")) || (url = strstr(cLine, "rtsp://")) || (url = strstr(cLine, "mmsh://")) ) 
+				if ((url = strstr(cLine, "http://")) || (url = strstr(cLine, "https://")) || (url = strstr(cLine, "rtmp://")) || (url = strstr(cLine, "rtsp://")) || (url = strstr(cLine, "mmsh://")) ) 
 				{
 					if (url != NULL) 
 					{
 						description = "stream";
 						
+						CZapitBouquet* gBouquet = pBouquet;
+						if (!group.empty())
+						{
+							gBouquet = addBouquetIfNotExist(group);
+							gBouquet->bWebTV = true;
+							//gBouquet->bUser = true;		
+						}
+						
 						// grab channel id from channellist
 						for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
 						{
-							if(strcasecmp(it->second.getName().c_str(), title) == 0)
+							if(strcasecmp(it->second.getName().c_str(), title.c_str()) == 0)
 								id = it->second.getChannelID();
 						}
 
@@ -765,7 +846,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 							chan->setName(title);
 							chan->setDescription(description);
 
-							newBouquet->addService(chan);
+							gBouquet->addService(chan);
 
 							cnt++;
 						}
