@@ -43,7 +43,7 @@
 #include <gui/version.h>
 
 
-#define GIT_BUILD "GIT Build:"
+#define GIT_BUILD 	"GIT Build:"
 #define GIT_REV 	"GIT Rev:"
 
 extern cVideo * videoDecoder;

@@ -571,7 +571,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 
 	CZapitBouquet *newBouquet = addBouquetIfNotExist(name);
 	newBouquet->bWebTV = true;
-	//newBouquet->bUser = true;
 	
 	if(iptv)
 	{
@@ -805,7 +804,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 				
 				pBouquet = addBouquetIfNotExist("WEBTV");
 				pBouquet->bWebTV = true;
-				//pBouquet->bUser = true;
 			}		
 			else if(strlen(cLine) > 0 && cLine[0] != '#')
 			{
@@ -820,8 +818,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						if (!group.empty())
 						{
 							gBouquet = addBouquetIfNotExist(group);
-							gBouquet->bWebTV = true;
-							//gBouquet->bUser = true;		
+							gBouquet->bWebTV = true;		
 						}
 						
 						// grab channel id from channellist

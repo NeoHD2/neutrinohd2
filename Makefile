@@ -92,8 +92,7 @@ $(N_SRC)/config.status: | $(N_SRC) $(DEST)
 			--enable-scart \
 			--enable-ci \
 			--enable-python \
-			--enable-lua \
-			--enable-fake_tuner
+			--enable-lua
 $(DEST):
 	mkdir $@
 

@@ -74,12 +74,9 @@ class CInfoBox
 		CFont* m_pcFontText;
 
 		CTextBox *m_pcTextBox;
-
-		bool bigFonts;
-
+		
+		//
 		bool hide(void);
-
-		// functions
 		void initVar(void);
 		void initFramesRel(void);
 		void refreshTitle(void);

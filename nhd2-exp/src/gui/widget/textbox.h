@@ -157,7 +157,7 @@ class CTextBox : public CWidgetItem
 		void paint(void);
 		void hide(void);
 
-		void setBigFonts(bool bigfont = false);
+		void setBigFonts();
 
 		//
 		bool isSelectable(void){return true;}

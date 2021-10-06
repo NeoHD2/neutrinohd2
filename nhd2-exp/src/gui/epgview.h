@@ -82,9 +82,6 @@ class CEpgData
 		std::string epg_start;
 		std::string epg_end;
 		int epg_done;
-		
-		bool bigFonts;
-
 		uint64_t prev_id;
 		time_t prev_zeit;
 		uint64_t next_id;

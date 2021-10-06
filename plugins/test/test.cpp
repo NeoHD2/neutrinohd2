@@ -106,10 +106,6 @@ class CTestMenu : public CMenuTarget
 		CPig *pig;
 		CGrid *grid;
 
-		bool bigFonts;
-
-		//CFrameBox *leftFrame;
-
 		ClistBox *listBox;
 
 		CProgressWindow * progressWindow;
@@ -283,8 +279,6 @@ CTestMenu::CTestMenu()
 	select = -1;
 
 	//
-	bigFonts = false;
-
 	plist = "popular";
 	page = 1;
 	TVShows = "movies";
@@ -2960,8 +2954,7 @@ void CTestMenu::testCTextBox()
 		}
 		else if(msg == RC_info)
 		{
-			bigFonts = bigFonts? false : true;
-			textBox->setBigFonts(bigFonts);
+			textBox->setBigFonts();
 		}
 
 		CFrameBuffer::getInstance()->blit();
@@ -6872,10 +6865,8 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 	else if(actionKey == "txtinfo")
 	{
-		bigFonts = bigFonts? false : true;
-
 		if(textWidget)
-			textWidget->setBigFonts(bigFonts);
+			textWidget->setBigFonts();
 
 		return RETURN_REPAINT;
 	}

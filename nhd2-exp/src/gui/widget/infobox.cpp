@@ -186,8 +186,6 @@ void CInfoBox::initVar(void)
 	m_cBoxFrame.iHeight = MIN_WINDOW_HEIGHT;
 
 	frameBuffer = CFrameBuffer::getInstance();
-
-	bigFonts = false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -329,7 +327,7 @@ void CInfoBox::setBigFonts()
 	// send setBigFonts event to textbox if there is one
 	if(m_pcTextBox != NULL)
 	{
-		m_pcTextBox->setBigFonts(bigFonts);
+		m_pcTextBox->setBigFonts();
 	}
 }
 
@@ -430,8 +428,6 @@ int CInfoBox::exec(int timeout)
 		}
 		else if(msg == RC_info)
 		{
-			bigFonts = bigFonts? false : true;
-
 			setBigFonts();
 		}
 		else if (CNeutrinoApp::getInstance()->handleMsg(msg, data) & messages_return::cancel_all)

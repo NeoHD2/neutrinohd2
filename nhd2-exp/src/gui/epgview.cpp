@@ -137,7 +137,6 @@ void reformatExtendedEvents(std::string strItem, std::string strLabel, bool bUse
 
 CEpgData::CEpgData()
 {
-	bigFonts = false;
 	frameBuffer = CFrameBuffer::getInstance();
 	timescale = new CProgressBar(TIMESCALE_W, TIMESCALE_H);
 
@@ -784,9 +783,8 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 					showTimerEventBar(false);
 					start();
 					
-					bigFonts = bigFonts? false : true;
 					if(textBox)
-						textBox->setBigFonts(bigFonts);
+						textBox->setBigFonts();
 					
 					show(channel_id, id, &startzeit, false);
 					break;
@@ -837,8 +835,12 @@ void CEpgData::hide()
 	
         showTimerEventBar(false);
 
-	delete textBox;
-	textBox = NULL;
+	if (textBox)
+	{
+		textBox->hide();
+		delete textBox;
+		textBox = NULL;
+	}
 
 	epgBuffer.clear();
 }

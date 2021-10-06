@@ -341,7 +341,6 @@ CFlashVersionInfo::CFlashVersionInfo(const std::string & versionString)
 		releaseCycle[3] = 0;
 	}
 	else 
-
 	{
 		releaseCycle[2] = versionString[2];
 		releaseCycle[3] = versionString[3];
