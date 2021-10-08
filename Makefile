@@ -6,36 +6,22 @@
 #  --with-plugindir=PATH   where to find the plugins [PREFIX/var/tuxbox/plugins]
 #  --with-dvbincludes=PATH path for dvb includes [NONE]
 #  --with-driver=PATH      path for driver sources [NONE]
-#  --with-boxtype          valid values: generic,dgs,gigablue,dreambox,xtrend,fulan,kathrein,ipbox,topfield,fortis_hdbox,octagon,atevio,adb_box,whitebox,vip,homecast,vuplus,azbox,technomate,coolstream,hypercube,venton,xp1000,odin,ixuss,iqonios,e3hd,ebox5000
-#  --with-boxmodel         valid for dgs: cuberevo,cuberevo_mini,cuberevo_mini2,cuberevo_mini_fta,cuberevo_250hd,cuberevo_2000hd,cuberevo_9500hd
-#                                valid for gigablue: gbsolo,gb800se,gb800ue,gb800seplus,gb800ueplus,gbquad
-#                                valid for dreambox: dm500, dm500plus, dm600pvr, dm56x0, dm7000, dm7020, dm7025, dm500hd, dm7020hd, dm8000, dm800, dm800se
-#                                valid for xtrend: et4x00,et5x00,et6x00,et9x00
-#                                valid for fulan: spark, spark7162
-#                                valid for kathrein: ufs910, ufs922, ufs912, ufs913, ufc960
-#                                valid for ipbox: ipbox55, ipbox99, ipbox9900
-#                                valid for atevio: atevio700,atevio7000,atevio7500,atevio7600
-#                                valid for octagon: octagon1008
-#                                valid for vuplus: vusolo,vuduo,vuuno,vuultimo
-#                                valid for azbox: azboxhd,azboxme,azboxminime
-#                                valid for technomate: tmtwin,tm2t,tmsingle,tmnano
-#                                valid for venton: ventonhde,ventonhdx,inihde,inihdp
-#                                valid for ixuss: ixusszero,ixussone
-#                                valid for iqonios: iqonios100hd,iqonios300hd,mediabox,optimussos1,optimussos2
+#  --with-boxtype          
 #  --enable-keyboard-no-rc enable keyboard control, disable rc control
 #  --enable-opengl         include opengl framebuffer support for x86
 #  --enable-playback       include enable playback for opengl and satip
-#  --enable-libeplayer3    include libeplayer3 as player engine support
 #  --enable-gstreamer      include gstreamer as player engine support
 #  --enable-lcd            include lcd support
 #  --enable-scart          enable scart output
 #  --enable-ci             enable ci cam
 #  --enable-4digits        include 4 segment lcd support
 #  --enable-functionkeys   include RC functions keys support
+#  --enable-lua
+#  --enable-python
 #
 #
 # build preqs
-# sudo apt-get install autoconf libtool libtool-bin g++ gdb swig flex bison make texinfo subversion intltool dialog wget cmake gperf libavformat-dev libglew-dev freeglut3-dev libcurl4-gnutls-dev libfreetype6-dev libid3tag0-dev libmad0-dev libogg-dev libpng-dev libgif-dev libjpeg-dev libflac-dev libvorbis-dev libopenthreads-dev libblkid-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libfribidi-dev libass-dev python-dev lua5.2 lua5.2-dev
+# sudo apt-get install autoconf libtool libtool-bin g++ gdb swig flex bison make texinfo subversion intltool dialog wget cmake gperf libavformat-dev libglew-dev freeglut3-dev libcurl4-gnutls-dev libfreetype6-dev libid3tag0-dev libmad0-dev libogg-dev libpng-dev libgif-dev libjpeg-dev libflac-dev libvorbis-dev libopenthreads-dev libblkid-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libfribidi-dev libass-dev python-dev lua5.2 lua5.2-dev lua-json lua-expat lua-posix lua-socket lua-soap lua-curl
 ################################################################################################################################################################################################################################################################
 SHELL = /bin/bash
 UID := $(shell id -u)
