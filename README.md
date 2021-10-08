@@ -17,7 +17,7 @@
 * check preqs (debian):
 
 ```bash
-$:~ sudo apt-get install autoconf libtool libtool-bin g++ gdb libavformat-dev libswscale-dev libopenthreads-dev libglew-dev freeglut3-dev libcurl4-gnutls-dev libfreetype6-dev libid3tag0-dev libmad0-dev libogg-dev libpng12-dev libgif-dev libjpeg-dev libvorbis-dev libflac-dev libblkid-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libfribidi-dev libass-dev python-dev lua5.2 lua5.2-dev lua-json lua-expat lua-posix lua-socket lua-soap lua-curl
+$:~ sudo apt-get install autoconf libtool libtool-bin g++ gdb libavformat-dev libswscale-dev libopenthreads-dev libglew-dev freeglut3-dev libcurl4-gnutls-dev libfreetype6-dev libid3tag0-dev libmad0-dev libogg-dev libpng12-dev libgif-dev libjpeg-dev libvorbis-dev libflac-dev libblkid-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libgstreamer-plugins-bad1.0-dev libfribidi-dev libass-dev python-dev lua5.2 lua5.2-dev lua-json lua-expat lua-posix lua-socket lua-soap lua-curl
 ```
 
 ```bash
