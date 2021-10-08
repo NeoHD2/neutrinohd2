@@ -51,7 +51,6 @@ export CFLAGS CXXFLAGS
 
 # first target is default...
 default: neutrino plugins
-	make run
 
 run:
 	gdb -ex run $(DEST)/bin/neutrino
