@@ -5236,11 +5236,11 @@ void stop_daemons()
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::stop_daemons\n");
 
-	// stop nhttpd	
+	// stop nhttpd		
 	dprintf(DEBUG_NORMAL, "stop_daemons: httpd shutdown\n");
 	pthread_cancel(nhttpd_thread);
 	pthread_join(nhttpd_thread, NULL);
-	dprintf(DEBUG_NORMAL, "stop_daemons: httpd shutdown done\n");	
+	dprintf(DEBUG_NORMAL, "stop_daemons: httpd shutdown done\n");		
 
 	// stop streamts	
 	streamts_stop = 1;
