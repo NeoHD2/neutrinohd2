@@ -4349,6 +4349,22 @@ void CNeutrinoApp::ExitRun(int retcode)
 		dprintf(DEBUG_NORMAL, "CNeutrinoApp::ExitRun: entering off state (retcode:%d)\n", retcode);
 			
 		stop_daemons();
+		
+		//
+		char date[30];
+		time_t t = time(NULL);
+		struct tm *lt = localtime(&t);
+		
+		strftime(date, sizeof(date), "%c", lt);
+		printf("current time: %s (%ld)\n", date, t);
+
+		proc_put("/proc/stb/fp/rtc", t);
+
+		struct tm *gt = gmtime(&t);
+		int offset = (lt->tm_hour - gt->tm_hour) * 3600;
+		printf("rtc_offset  : %d\n", offset);
+
+		proc_put("/proc/stb/fp/rtc_offset", offset);
 
 #if defined (PLATFORM_COOLSTREAM)
 		CVFD::getInstance()->Clear();

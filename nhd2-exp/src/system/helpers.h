@@ -191,4 +191,18 @@ class cTimeMs {
 bool parseJsonFromFile(std::string& jFile, Json::Value *root, std::string *errMsg);
 bool parseJsonFromString(std::string& jData, Json::Value *root, std::string *errMsg);
 
+// proc utils
+int proc_put(const char *path, const char *value, const int len);
+int proc_put(const char *path, const char *value);
+int proc_put(const char *path, std::string value);
+int proc_put(const char *path, int value);
+int proc_put(const char *path, unsigned int value);
+int proc_put(const char *path, long value);
+int proc_put(const char *path, unsigned long value);
+int proc_put(const char *path, long long value);
+int proc_put(const char *path, unsigned long long value);
+int proc_put(const char *path, bool state);
+int proc_get(const char *path, char *value, const int len);
+unsigned int proc_get_hex(const char *path);
+
 #endif
