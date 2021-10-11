@@ -2049,7 +2049,7 @@ int startAutoRecord(bool addTimer)
 	else if (addTimer) 
 	{
 		time_t now = time(NULL);
-		CNeutrinoApp::getInstance()->recording_id = g_Timerd->addImmediateRecordTimerEvent(eventinfo.channel_id, now, now+g_settings.record_hours*60*60, eventinfo.epgID, eventinfo.epg_starttime, eventinfo.apids);
+		CNeutrinoApp::getInstance()->recording_id = g_Timerd->addImmediateRecordTimerEvent(eventinfo.channel_id, now, now + g_settings.record_hours*60*60, eventinfo.epgID, eventinfo.epg_starttime, eventinfo.apids);
 	}	
 
 	CVFD::getInstance()->ShowIcon(VFD_ICON_TIMESHIFT, true);
@@ -4351,20 +4351,17 @@ void CNeutrinoApp::ExitRun(int retcode)
 		stop_daemons();
 		
 		//
-		char date[30];
+#if !defined (USE_OPENGL)		
 		time_t t = time(NULL);
-		struct tm *lt = localtime(&t);
 		
-		strftime(date, sizeof(date), "%c", lt);
-		printf("current time: %s (%ld)\n", date, t);
-
 		proc_put("/proc/stb/fp/rtc", t);
 
+		struct tm *lt = localtime(&t);
 		struct tm *gt = gmtime(&t);
 		int offset = (lt->tm_hour - gt->tm_hour) * 3600;
-		printf("rtc_offset  : %d\n", offset);
 
 		proc_put("/proc/stb/fp/rtc_offset", offset);
+#endif		
 
 #if defined (PLATFORM_COOLSTREAM)
 		CVFD::getInstance()->Clear();
@@ -5436,26 +5433,26 @@ bool CNeutrinoApp::getNVODMenu(CMenuWidget * menu)
                         char nvod_s[100];
                         struct  tm *tmZeit;
 
-                        tmZeit= localtime(&e->startzeit);
+                        tmZeit = localtime(&e->startzeit);
                         sprintf(nvod_time_a, "%02d:%02d", tmZeit->tm_hour, tmZeit->tm_min);
 
-                        time_t endtime = e->startzeit+ e->dauer;
-                        tmZeit= localtime(&endtime);
+                        time_t endtime = e->startzeit + e->dauer;
+                        tmZeit = localtime(&endtime);
                         sprintf(nvod_time_e, "%02d:%02d", tmZeit->tm_hour, tmZeit->tm_min);
 
-                        time_t jetzt=time(NULL);
+                        time_t jetzt = time(NULL);
                         if(e->startzeit > jetzt) 
 			{
-                                int mins=(e->startzeit- jetzt)/ 60;
+                                int mins = (e->startzeit - jetzt)/ 60;
                                 sprintf(nvod_time_x, g_Locale->getText(LOCALE_NVOD_STARTING), mins);
                         }
-                        else if( (e->startzeit<= jetzt) && (jetzt < endtime) ) 
+                        else if( (e->startzeit <= jetzt) && (jetzt < endtime) ) 
 			{
-                                int proz=(jetzt- e->startzeit)*100/ e->dauer;
+                                int proz = (jetzt - e->startzeit)*100/ e->dauer;
                                 sprintf(nvod_time_x, g_Locale->getText(LOCALE_NVOD_PERCENTAGE), proz);
                         }
                         else
-                                nvod_time_x[0]= 0;
+                                nvod_time_x[0] = 0;
 
                         sprintf(nvod_s, "%s - %s %s", nvod_time_a, nvod_time_e, nvod_time_x);
                         menu->addItem(new CMenuForwarder(nvod_s, true, NULL, NVODChanger, nvod_id), (count == g_RemoteControl->selected_subchannel));
