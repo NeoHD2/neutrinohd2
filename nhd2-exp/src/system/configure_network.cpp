@@ -123,6 +123,7 @@ void CNetworkConfig::init_vars(void)
 
 	if(access(tmp.c_str(), R_OK) == 0)
 		wireless = 1;
+		
 	if(wireless)
 		readWpaConfig();
 

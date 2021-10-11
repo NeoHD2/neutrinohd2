@@ -195,7 +195,7 @@ void CNetworkSettings::showMenu()
 	//interface
 	int ifcount = scandir("/sys/class/net", &namelist, my_filter, alphasort);
 
-	CMenuOptionStringChooser * ifSelect = new CMenuOptionStringChooser(LOCALE_NETWORKMENU_SELECT_IF, g_settings.ifname, ifcount > 1, NULL, RC_nokey, "", true);
+	CMenuOptionStringChooser * ifSelect = new CMenuOptionStringChooser(LOCALE_NETWORKMENU_SELECT_IF, g_settings.ifname, ifcount > 1, this, RC_nokey, "", true);
 
 	bool found = false;
 

@@ -53,7 +53,10 @@ export CFLAGS CXXFLAGS
 default: neutrino plugins
 
 run:
-	gdb -ex run $(DEST)/bin/neutrino
+	$(DEST)/bin/neutrino
+	
+run-gdb:
+	gdb -ex run $(DEST)/bin/neutrino	
 
 neutrino: $(N_SRC)/config.status
 	-rm -f $(N_SRC)/src/gui/svn_version.h
@@ -68,9 +71,6 @@ $(N_SRC)/config.status: | $(N_SRC) $(DEST)
 			--enable-silent-rules \
 			--enable-maintainer-mode \
 			--with-boxtype=$(BOXTYPE) \
-			--with-datadir=$(DEST)/share/tuxbox \
-			--with-plugindir=$(DEST)/var/tuxbox/plugins \
-			--with-configdir=$(DEST)/var/tuxbox/config \
 			--enable-opengl \
 			--enable-gstreamer \
 			--enable-playback \
@@ -113,9 +113,6 @@ $(PLUGINS_SRC)/config.status: $(PLUGINS_SRC) $(DEST)
 			--enable-maintainer-mode \
 			--without-debug \
 			--with-boxtype=$(BOXTYPE) \
-			--with-datadir=$(DEST)/share/tuxbox \
-			--with-plugindir=$(DEST)/var/tuxbox/plugins \
-			--with-configdir=$(DEST)/var/tuxbox/config \
 			--enable-testing \
 			--enable-python \
 			--enable-lua
