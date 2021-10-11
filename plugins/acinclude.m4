@@ -5,14 +5,6 @@ AM_MAINTAINER_MODE
 AC_GNU_SOURCE
 AC_SYS_LARGEFILE
 
-AC_ARG_WITH(target,
-	[  --with-target=TARGET    target for compilation [[native,cdk]]],
-	[TARGET="$withval"],[TARGET="native"])
-
-AC_ARG_WITH(targetprefix,
-	[  --with-targetprefix=PATH  prefix relative to target root (only applicable in cdk mode)],
-	[targetprefix="$withval"],[targetprefix="NONE"])
-
 AC_ARG_WITH(debug,
 	[  --without-debug         disable debugging code],
 	[DEBUG="$withval"],[DEBUG="yes"])
@@ -22,43 +14,21 @@ if test "$DEBUG" = "yes"; then
 	AC_DEFINE(DEBUG,1,[Enable debug messages])
 fi
 
-AC_MSG_CHECKING(target)
-
-if test "$TARGET" = "native"; then
-	AC_MSG_RESULT(native)
-
-	if test "$CFLAGS" = "" -a "$CXXFLAGS" = ""; then
-		CFLAGS="-Wall -O2 -pipe $DEBUG_CFLAGS"
-		CXXFLAGS="-Wall -O2 -pipe $DEBUG_CFLAGS"
-	fi
-	if test "$prefix" = "NONE"; then
-		prefix=/usr/local
-	fi
-	targetprefix=$prefix
-elif test "$TARGET" = "cdk"; then
-	AC_MSG_RESULT(cdk)
-
-	if test "$CC" = "" -a "$CXX" = ""; then
-		CC=powerpc-tuxbox-linux-gnu-gcc CXX=powerpc-tuxbox-linux-gnu-g++
-	fi
-	if test "$CFLAGS" = "" -a "$CXXFLAGS" = ""; then
-		CFLAGS="-Wall -Os -mcpu=823 -pipe $DEBUG_CFLAGS"
-		CXXFLAGS="-Wall -Os -mcpu=823 -pipe $DEBUG_CFLAGS"
-	fi
-	if test "$prefix" = "NONE"; then
-		AC_MSG_ERROR(invalid prefix, you need to specify one in cdk mode)
-	fi
-	if test "$targetprefix" = "NONE"; then
-		targetprefix=""
-	fi
-	if test "$host_alias" = ""; then
-		cross_compiling=yes
-		host_alias=powerpc-tuxbox-linux-gnu
-	fi
-else
-	AC_MSG_RESULT(none)
-	AC_MSG_ERROR([invalid target $TARGET, choose on from native,cdk]);
+if test "$CFLAGS" = "" -a "$CXXFLAGS" = ""; then
+	CFLAGS="-Wall -O2 -pipe $DEBUG_CFLAGS"
+	CXXFLAGS="-Wall -O2 -pipe $DEBUG_CFLAGS"
 fi
+
+if test "$prefix" = "NONE"; then
+	prefix=/usr/local
+fi
+
+if test "$exec_prefix" = "NONE"; then
+	exec_prefix=$prefix
+fi
+
+# hack datadir
+datadir="\${prefix}/share"
 
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
@@ -71,19 +41,11 @@ check_path () {
 AC_DEFUN([TUXBOX_APPS_DIRECTORY_ONE],[
 AC_ARG_WITH($1,[  $6$7 [[PREFIX$4$5]]],[
 	_$2=$withval
-	if test "$TARGET" = "cdk"; then
-		$2=`eval echo "${targetprefix}$withval"`
-	else
-		$2=$withval
-	fi
+	$2=$withval
 	TARGET_$2=${$2}
 ],[
 	$2="\${$3}$5"
-	if test "$TARGET" = "cdk"; then
-		_$2=`eval echo "${target$3}$5"`
-	else
-		_$2=`eval echo "${$3}$5"`
-	fi
+	_$2=`eval echo "${$3}$5"`
 	TARGET_$2=$_$2
 ])
 
@@ -95,17 +57,6 @@ AC_SUBST(TARGET_$2)
 
 AC_DEFUN([TUXBOX_APPS_DIRECTORY],[
 AC_REQUIRE([TUXBOX_APPS])
-
-if test "$TARGET" = "cdk"; then
-	datadir="\${prefix}/share"
-	sysconfdir="\${prefix}/etc"
-	localstatedir="\${prefix}/var"
-	libdir="\${prefix}/lib"
-	targetdatadir="\${targetprefix}/share"
-	targetsysconfdir="\${targetprefix}/etc"
-	targetlocalstatedir="\${targetprefix}/var"
-	targetlibdir="\${targetprefix}/lib"
-fi
 
 TUXBOX_APPS_DIRECTORY_ONE(configdir,CONFIGDIR,localstatedir,/var,/tuxbox/config,
 	[--with-configdir=PATH   ],[where to find the config files])

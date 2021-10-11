@@ -66,11 +66,14 @@ $(N_SRC)/config.status: | $(N_SRC) $(DEST)
 	$(N_SRC)/autogen.sh
 	set -e; cd $(N_SRC); \
 		$(N_SRC)/configure \
-			--prefix=$(DEST)  \
+			--prefix=$(DEST) \
 			--build=i686-pc-linux-gnu \
 			--enable-silent-rules \
 			--enable-maintainer-mode \
 			--with-boxtype=$(BOXTYPE) \
+			--with-datadir=$(DEST)/share/tuxbox \
+			--with-plugindir=$(DEST)/var/tuxbox/plugins \
+			--with-configdir=$(DEST)/var/tuxbox/config \
 			--enable-opengl \
 			--enable-gstreamer \
 			--enable-playback \
@@ -113,6 +116,9 @@ $(PLUGINS_SRC)/config.status: $(PLUGINS_SRC) $(DEST)
 			--enable-maintainer-mode \
 			--without-debug \
 			--with-boxtype=$(BOXTYPE) \
+			--with-datadir=$(DEST)/share/tuxbox \
+			--with-plugindir=$(DEST)/var/tuxbox/plugins \
+			--with-configdir=$(DEST)/var/tuxbox/config \
 			--enable-testing \
 			--enable-python \
 			--enable-lua
