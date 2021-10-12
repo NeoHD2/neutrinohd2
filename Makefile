@@ -43,7 +43,7 @@ DEST = $(PWD)/$(BOXTYPE)
 
 N_SRC  = $(PWD)/nhd2-exp
 
-CFLAGS = -Wall -O2 -fno-strict-aliasing -O0 -g -ggdb3
+CFLAGS = -Wall -O2 -fno-strict-aliasing -O0
 
 CXXFLAGS = $(CFLAGS)
 

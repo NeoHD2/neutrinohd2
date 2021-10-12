@@ -187,7 +187,7 @@ void CMenuWidget::move(int xoff, int yoff)
 
 CMenuWidget::~CMenuWidget()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget:: del (%s)\n", l_name);
+	dprintf(DEBUG_NORMAL, "CMenuWidget:: del (%s)\n", l_name.c_str());
 
 	items.clear();
 	page_start.clear();
@@ -470,7 +470,7 @@ void CMenuWidget::paintHead()
 		}
 
 		// title
-		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT + icon_head_w + ICON_OFFSET, y + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - icon_head_w - 2*ICON_OFFSET - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET - timestr_len, l_name, COL_MENUHEAD);
+		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT + icon_head_w + ICON_OFFSET, y + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - icon_head_w - 2*ICON_OFFSET - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET - timestr_len, l_name.c_str(), COL_MENUHEAD);
 	}
 	else
 	{
@@ -511,7 +511,7 @@ void CMenuWidget::paintHead()
 		}
 	
 		// head title
-		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT + icon_head_w + 2*ICON_OFFSET, y + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), width - BORDER_RIGHT - BORDER_RIGHT - icon_head_w - 2*ICON_OFFSET - timestr_len - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET, l_name, COL_MENUHEAD, 0, true); // UTF-8
+		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT + icon_head_w + 2*ICON_OFFSET, y + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), width - BORDER_RIGHT - BORDER_RIGHT - icon_head_w - 2*ICON_OFFSET - timestr_len - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET, l_name.c_str(), COL_MENUHEAD, 0, true); // UTF-8
 	}
 }
 
@@ -565,7 +565,7 @@ void CMenuWidget::paintFoot()
 
 void CMenuWidget::paint()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::paint: (%s)\n", l_name);
+	dprintf(DEBUG_NORMAL, "CMenuWidget::paint: (%s)\n", l_name.c_str());
 
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8 );
 
@@ -1168,7 +1168,7 @@ void CMenuWidget::enableSaveScreen()
 
 void CMenuWidget::hide()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::hide: (%s)\n", l_name);
+	dprintf(DEBUG_NORMAL, "CMenuWidget::hide: (%s)\n", l_name.c_str());
 
 	if( savescreen && background)
 		restoreScreen();
@@ -1229,7 +1229,7 @@ void CMenuWidget::integratePlugins(CPlugins::i_type_t integration, const unsigne
 
 int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::exec: (%s)\n", l_name);
+	dprintf(DEBUG_NORMAL, "CMenuWidget::exec: (%s)\n", l_name.c_str());
 
 	int retval = RETURN_REPAINT;
 
@@ -1777,7 +1777,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 					break;
 				//
 				case (RC_setup):
-					dprintf(DEBUG_NORMAL, "CMenuWidget::exec: (%s) changeWidgetType\n", l_name);
+					dprintf(DEBUG_NORMAL, "CMenuWidget::exec: (%s) changeWidgetType\n", l_name.c_str());
 
 					if(widgetMode == MODE_MENU)
 					{
@@ -1855,7 +1855,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 	}
 	while ( msg != RC_timeout );
 
-	dprintf(DEBUG_NORMAL, "CMenuWidget: (%s) retval: (%d) selected:%d\n", l_name, retval, selected);
+	dprintf(DEBUG_NORMAL, "CMenuWidget: (%s) retval: (%d) selected:%d\n", l_name.c_str(), retval, selected);
 	
 	hide();	
 

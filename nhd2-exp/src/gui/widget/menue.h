@@ -66,7 +66,6 @@ class CMenuWidget : public CMenuTarget
 		neutrino_locale_t name;
 		std::vector<CMenuItem*>	items;
 		std::vector<unsigned int> page_start;
-		std::string iconfile;
 
 		int width;
 		int height;
@@ -130,7 +129,8 @@ class CMenuWidget : public CMenuTarget
 		// head
 		int icon_head_w;
 		int icon_head_h;
-		const char * l_name;
+		std::string l_name;
+		std::string iconfile;
 
 		// itemInfo
 		bool paintFootInfo;
@@ -194,7 +194,7 @@ class CMenuWidget : public CMenuTarget
 		//
 		virtual int exec(CMenuTarget * parent, const std::string &actionKey);
 
-		void setTitle(const char* title = "", const char* icon = NULL){nameString = title; if(icon != NULL) iconfile = icon;};
+		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
 
 		void setSelected(unsigned int _new) { if(_new <= items.size()) selected = _new; if (selected < 0) selected = 0;};
 		int getSelected(){return selected;};
@@ -249,7 +249,7 @@ class CMenuWidget : public CMenuTarget
 		virtual CMenuItem *getSelectedItem(void){if (hasItem()) return items[selected];};
 
 		//
-		std::string getName(void){ return l_name;};
+		std::string getName(void){ return l_name.c_str();};
 		std::string getActionKey(){return actionKey;};
 };
 
