@@ -47,10 +47,13 @@
 
 CHelpBox::CHelpBox()
 {
+	dprintf(DEBUG_NORMAL, "Helpbox::\n");
 }
 
 CHelpBox::~CHelpBox()
 {
+	dprintf(DEBUG_NORMAL, "~Helpbox::\n");
+	
   	for (ContentLines::iterator it = m_lines.begin(); it != m_lines.end(); it++)
  	{
  		for (std::vector<Drawable*>::iterator it2 = it->begin(); it2 != it->end(); it2++)

@@ -246,7 +246,7 @@ CMessageBox::~CMessageBox(void)
 		}
 	}
 
-	hide();
+	//hide();
 }
 
 void CMessageBox::init(const char * const Caption, const int Width, const char * const Icon)
@@ -383,7 +383,6 @@ void CMessageBox::resizeFrame(void)
 
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
 	m_cBoxWindow.enableShadow();
 }
 
@@ -396,6 +395,7 @@ void CMessageBox::paint(void)
 
 void CMessageBox::refresh()
 {
+	// mainBox
 	m_cBoxWindow.paint();
 
 	// title
@@ -406,6 +406,7 @@ void CMessageBox::refresh()
 	//Body
 	int yPos  = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_theight + (m_fheight >> 1);
 
+	// text
 	for (ContentLines::iterator it = m_lines.begin() + m_startEntryOfPage[m_currentPage]; it != m_lines.begin() + m_startEntryOfPage[m_currentPage + 1] && it != m_lines.end(); it++)
 	{
 		int xPos = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + BORDER_LEFT;
@@ -474,8 +475,6 @@ void CMessageBox::paintButtons()
 	//
 	uint8_t    color;
 	fb_pixel_t bgcolor;
-
-	//m_window->paintBoxRel(0, m_height - (m_fheight << 1), m_width, (m_fheight << 1), (CFBWindow::color_t)COL_MENUCONTENT_PLUS_0, RADIUS_MID, CORNER_BOTTOM);
 
 	if (showbuttons & mbNone)
 		return;
