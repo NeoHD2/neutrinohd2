@@ -159,7 +159,7 @@ void CImageInfo::paint()
 	//config.loadConfig("/etc/.version");
 
 	const char * imagename = PACKAGE_NAME;
-	//imagename = config.getString("imagename", "neutrinoHD2").c_str();
+	//imagename = config.getString("imagename", "neutrino-HD2").c_str();
 	const char * homepage = "http://gitorious.org/open-duckbox-project-sh4";
 	//homepage = config.getString("homepage", "http://gitorious.org/open-duckbox-project-sh4").c_str();
 	const char * docs = "http://wiki.neutrino-hd.de";

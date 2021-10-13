@@ -127,6 +127,9 @@ void COSDSettings::showMenu(void)
 	//CAlphaSetup * chAlphaSetup = new CAlphaSetup(LOCALE_COLORMENU_GTX_ALPHA, &g_settings.gtx_alpha);
 	//osdSettings->addItem( new CMenuForwarder(LOCALE_COLORMENU_GTX_ALPHA, true, NULL, chAlphaSetup, NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_ALPHASETUP, LOCALE_HELPTEXT_ALPHA_SETUP));
 	
+	// diverses
+	osdSettings->addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_MISC, true, NULL, new COSDDiverses(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS, LOCALE_HELPTEXT_OSDSETTINGS));
+	
 	osdSettings->exec(NULL, "");
 	osdSettings->hide();
 	delete osdSettings;
@@ -514,10 +517,12 @@ static CTimingSettingsNotifier timingsettingsnotifier;
 
 COSDTimingSettings::COSDTimingSettings()
 {
+	dprintf(DEBUG_NORMAL, "COSDTimingSettings\n");
 }
 
 COSDTimingSettings::~COSDTimingSettings()
 {
+	dprintf(DEBUG_NORMAL, "~COSDTimingSettings\n");
 }
 
 int COSDTimingSettings::exec(CMenuTarget* parent, const std::string& actionKey)
@@ -596,5 +601,209 @@ bool CTimingSettingsNotifier::changeNotify(const neutrino_locale_t OptionName, v
 
 	return false;
 }
+
+// diverses
+COSDDiverses::COSDDiverses()
+{
+	dprintf(DEBUG_NORMAL, "COSDDiverses:\n");
+}
+
+COSDDiverses::~COSDDiverses()
+{
+	dprintf(DEBUG_NORMAL, "~COSDDiverses:\n");
+}
+
+int COSDDiverses::exec(CMenuTarget* parent, const std::string& actionKey)
+{
+	dprintf(DEBUG_NORMAL, "COSDDiverses::exec: actionKey: %s\n", actionKey.c_str());
+	
+	int ret = RETURN_REPAINT;
+	
+	if(parent)
+		parent->hide();
+		
+	if(actionKey == "savesettings")
+	{
+		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
+		
+		return ret;
+	}
+	else if(actionKey == "logos_dir") 
+	{
+		if(parent)
+			parent->hide();
+		
+		CFileBrowser b;
+		b.Dir_Mode = true;
+		
+		if (b.exec(g_settings.logos_dir.c_str())) 
+		{
+			g_settings.logos_dir = b.getSelectedFile()->Name;
+
+			dprintf(DEBUG_NORMAL, "CMiscSettings::exec: new logos dir %s\n", b.getSelectedFile()->Name.c_str());
+		}
+
+		getString() = g_settings.logos_dir;
+
+		return ret;
+	}
+	else if(actionKey == "select_icons_dir")
+	{
+		CFileBrowser b;
+		b.Dir_Mode = true;
+		
+		if (b.exec(g_settings.icons_dir.c_str())) 
+		{
+			g_settings.icons_dir = b.getSelectedFile()->Name + "/";
+
+			dprintf(DEBUG_NORMAL, "CMiscSettings::exec: new icons dir %s\n", g_settings.icons_dir.c_str());
+
+			CFrameBuffer::getInstance()->setIconBasePath(g_settings.icons_dir);
+			//CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
+		}
+		
+		getString() = g_settings.icons_dir;
+		
+		return ret;
+	}
+	else if(actionKey == "select_hint_icons_dir")
+	{
+		CFileBrowser b;
+		b.Dir_Mode = true;
+		
+		if (b.exec(g_settings.hint_icons_dir.c_str())) 
+		{
+			g_settings.hint_icons_dir = b.getSelectedFile()->Name + "/";
+
+			dprintf(DEBUG_NORMAL, "CMiscSettings::exec: new hint_icons dir %s\n", g_settings.hint_icons_dir.c_str());
+
+			CFrameBuffer::getInstance()->setHintIconBasePath(g_settings.hint_icons_dir);
+			//CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
+		}
+		
+		getString() = g_settings.hint_icons_dir;
+		
+		return ret;
+	}
+	
+	showMenu();
+	
+	return ret;
+}
+
+#define OPTIONS_OFF0_ON1_OPTION_COUNT 2
+const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
+{
+        { 0, LOCALE_OPTIONS_OFF, NULL },
+        { 1, LOCALE_OPTIONS_ON, NULL }
+};
+
+// progressbar color
+#define PROGRESSBAR_COLOR_OPTION_COUNT 2
+const keyval PROGRESSBAR_COLOR_OPTIONS[PROGRESSBAR_COLOR_OPTION_COUNT] =
+{
+	{ 0, NONEXISTANT_LOCALE, "colored" },
+	{ 1, NONEXISTANT_LOCALE, "Mono Chrom" }
+};
+
+// volumebar position
+#define VOLUMEBAR_DISP_POS_OPTIONS_COUNT 6
+const keyval  VOLUMEBAR_DISP_POS_OPTIONS[VOLUMEBAR_DISP_POS_OPTIONS_COUNT]=
+{
+	{ 0 , LOCALE_SETTINGS_POS_TOP_RIGHT, NULL },
+	{ 1 , LOCALE_SETTINGS_POS_TOP_LEFT, NULL },
+	{ 2 , LOCALE_SETTINGS_POS_BOTTOM_LEFT, NULL },
+	{ 3 , LOCALE_SETTINGS_POS_BOTTOM_RIGHT, NULL },
+	{ 4 , LOCALE_SETTINGS_POS_DEFAULT_CENTER, NULL },
+	{ 5 , LOCALE_SETTINGS_POS_HIGHER_CENTER, NULL }
+};
+
+#define MENU_CORNERSETTINGS_TYPE_OPTION_COUNT 2
+const keyval MENU_CORNERSETTINGS_TYPE_OPTIONS[MENU_CORNERSETTINGS_TYPE_OPTION_COUNT] =
+{
+	{ NO_RADIUS, LOCALE_EXTRA_ROUNDED_CORNERS_OFF, NULL },
+	{ ROUNDED, LOCALE_EXTRA_ROUNDED_CORNERS_ON, NULL }	
+};
+
+#define MENU_POSITION_OPTION_COUNT 3
+const keyval MENU_POSITION_OPTIONS[MENU_POSITION_OPTION_COUNT] =
+{
+	{ SNeutrinoSettings::MENU_POSITION_LEFT, LOCALE_EXTRA_MENU_POSITION_LEFT, NULL },
+	{ SNeutrinoSettings::MENU_POSITION_CENTER, LOCALE_EXTRA_MENU_POSITION_CENTER, NULL },
+	{ SNeutrinoSettings::MENU_POSITION_RIGHT, LOCALE_EXTRA_MENU_POSITION_RIGHT, NULL }
+};
+
+#define INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT 4
+const keyval  INFOBAR_SUBCHAN_DISP_POS_OPTIONS[INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT]=
+{
+	{ 0 , LOCALE_SETTINGS_POS_TOP_RIGHT, NULL },
+	{ 1 , LOCALE_SETTINGS_POS_TOP_LEFT, NULL },
+	{ 2 , LOCALE_SETTINGS_POS_BOTTOM_LEFT, NULL },
+	{ 3 , LOCALE_SETTINGS_POS_BOTTOM_RIGHT, NULL }
+};
+
+void COSDDiverses::showMenu()
+{
+	dprintf(DEBUG_NORMAL, "COSDTimingSettings::showMenu:\n");
+	
+	CMenuWidget osdDiverseSettings(LOCALE_COLORMENU_TIMING, NEUTRINO_ICON_SETTINGS);
+
+	osdDiverseSettings.setMode(MODE_MENU);
+	osdDiverseSettings.enableShrinkMenu();
+	osdDiverseSettings.enableMenuPosition();
+	
+	// intros
+	osdDiverseSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	osdDiverseSettings.addItem(new CMenuSeparator(LINE));
+
+	osdDiverseSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	osdDiverseSettings.addItem(new CMenuSeparator(LINE));
+
+	// menu position
+	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_MENU_POSITION, &g_settings.menu_position, MENU_POSITION_OPTIONS, MENU_POSITION_OPTION_COUNT, true));
+
+	// corners
+	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_ROUNDED_CORNERS, &g_settings.rounded_corners, MENU_CORNERSETTINGS_TYPE_OPTIONS, MENU_CORNERSETTINGS_TYPE_OPTION_COUNT, true));
+
+	// progressbar color
+	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_PROGRESSBAR_COLOR, &g_settings.progressbar_color, PROGRESSBAR_COLOR_OPTIONS, PROGRESSBAR_COLOR_OPTION_COUNT, true));
+	
+	// progressbar_gradient
+	osdDiverseSettings.addItem(new CMenuOptionChooser("ProgressBar Gradient", &g_settings.progressbar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
+	
+	// icons dir
+	osdDiverseSettings.addItem(new CMenuForwarder("Icons Dir", true, g_settings.icons_dir.c_str(), this, "select_icons_dir"));
+
+	// hint icons dir
+	osdDiverseSettings.addItem(new CMenuForwarder("Hint Icons Dir", true, g_settings.hint_icons_dir.c_str(), this, "select_hint_icons_dir"));
+	
+	// logos dir
+	osdDiverseSettings.addItem( new CMenuForwarder(LOCALE_MISCSETTINGS_LOGOSDIR, true, g_settings.logos_dir.c_str(), this, "logos_dir" ) );
+	
+	// epgplus logos
+	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_EPGPLUS_SHOW_LOGOS, &g_settings.epgplus_show_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	
+	// infobar show channelname
+	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW_CHANNELNAME, &g_settings.show_channelname, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	
+	// sig/snr
+	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SAT_DISPLAY, &g_settings.infobar_sat_display, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	
+	// subchan pos
+	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_INFOVIEWER_SUBCHAN_DISP_POS, &g_settings.infobar_subchan_disp_pos, INFOBAR_SUBCHAN_DISP_POS_OPTIONS, INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT, true, NULL, RC_nokey, "", true));
+	
+	// volumebar position
+	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_VOLUME_POS, &g_settings.volume_pos, VOLUMEBAR_DISP_POS_OPTIONS, VOLUMEBAR_DISP_POS_OPTIONS_COUNT, true, NULL, RC_nokey, "", true ));
+
+	// volume bar steps
+	CStringInput * audio_step = new CStringInput(LOCALE_AUDIOMENU_VOLUMEBAR_AUDIOSTEPS,g_settings.audio_step, 2, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, "0123456789 " );
+	CMenuForwarder *as = new CMenuForwarder(LOCALE_AUDIOMENU_VOLUMEBAR_AUDIOSTEPS, true, g_settings.audio_step, audio_step );
+	osdDiverseSettings.addItem(as);
+
+	osdDiverseSettings.exec(NULL, "");
+	osdDiverseSettings.hide();
+}
+
+
 
 

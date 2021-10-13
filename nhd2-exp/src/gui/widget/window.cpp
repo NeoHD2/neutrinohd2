@@ -132,13 +132,14 @@ void CWindow::paint()
 	if(savescreen) 
 		saveScreen();
 
-	// shadow Box
 	if(enableshadow)
+	{
+		// shadow Box
 		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
 
-	// window Box
-	if (enableshadow)
+		// window Box
 		frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, enableshadow? NO_RADIUS : radius, enableshadow? CORNER_NONE : corner, gradient);
+	}
 	else
 		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, enableshadow? NO_RADIUS : radius, enableshadow? CORNER_NONE : corner, gradient);
 }

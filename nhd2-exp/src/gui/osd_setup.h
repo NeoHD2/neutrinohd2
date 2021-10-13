@@ -117,4 +117,17 @@ class COSDTimingSettings : public CMenuTarget
 		int exec(CMenuTarget* parent, const std::string& actionKey);
 };
 
+// diverses
+class COSDDiverses : public CMenuTarget
+{
+	private:
+		void showMenu();
+		
+	public:
+		COSDDiverses();
+		~COSDDiverses();
+		
+		int exec(CMenuTarget* parent, const std::string& actionKey);
+};
+
 #endif //__osd_setup__

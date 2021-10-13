@@ -98,47 +98,11 @@ const keyval MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTIONS[MISCSETTINGS_FILESYSTEM_IS_
 	{ 1, LOCALE_FILESYSTEM_IS_UTF8_OPTION_UTF8, NULL      }
 };
 
-#define INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT 4
-const keyval  INFOBAR_SUBCHAN_DISP_POS_OPTIONS[INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT]=
-{
-	{ 0 , LOCALE_SETTINGS_POS_TOP_RIGHT, NULL },
-	{ 1 , LOCALE_SETTINGS_POS_TOP_LEFT, NULL },
-	{ 2 , LOCALE_SETTINGS_POS_BOTTOM_LEFT, NULL },
-	{ 3 , LOCALE_SETTINGS_POS_BOTTOM_RIGHT, NULL }
-};
-
 #define SECTIONSD_SCAN_OPTIONS_COUNT 2
 const keyval SECTIONSD_SCAN_OPTIONS[SECTIONSD_SCAN_OPTIONS_COUNT] =
 {
 	{ 0, LOCALE_OPTIONS_OFF, NULL },
 	{ 1, LOCALE_OPTIONS_ON, NULL }
-};
-
-// volumebar position
-#define VOLUMEBAR_DISP_POS_OPTIONS_COUNT 6
-const keyval  VOLUMEBAR_DISP_POS_OPTIONS[VOLUMEBAR_DISP_POS_OPTIONS_COUNT]=
-{
-	{ 0 , LOCALE_SETTINGS_POS_TOP_RIGHT, NULL },
-	{ 1 , LOCALE_SETTINGS_POS_TOP_LEFT, NULL },
-	{ 2 , LOCALE_SETTINGS_POS_BOTTOM_LEFT, NULL },
-	{ 3 , LOCALE_SETTINGS_POS_BOTTOM_RIGHT, NULL },
-	{ 4 , LOCALE_SETTINGS_POS_DEFAULT_CENTER, NULL },
-	{ 5 , LOCALE_SETTINGS_POS_HIGHER_CENTER, NULL }
-};
-
-#define MENU_CORNERSETTINGS_TYPE_OPTION_COUNT 2
-const keyval MENU_CORNERSETTINGS_TYPE_OPTIONS[MENU_CORNERSETTINGS_TYPE_OPTION_COUNT] =
-{
-	{ NO_RADIUS, LOCALE_EXTRA_ROUNDED_CORNERS_OFF, NULL },
-	{ ROUNDED, LOCALE_EXTRA_ROUNDED_CORNERS_ON, NULL }	
-};
-
-#define MENU_POSITION_OPTION_COUNT 3
-const keyval MENU_POSITION_OPTIONS[MENU_POSITION_OPTION_COUNT] =
-{
-	{ SNeutrinoSettings::MENU_POSITION_LEFT, LOCALE_EXTRA_MENU_POSITION_LEFT, NULL },
-	{ SNeutrinoSettings::MENU_POSITION_CENTER, LOCALE_EXTRA_MENU_POSITION_CENTER, NULL },
-	{ SNeutrinoSettings::MENU_POSITION_RIGHT, LOCALE_EXTRA_MENU_POSITION_RIGHT, NULL }
 };
 
 CMenuOptionStringChooser * tzSelect;
@@ -208,24 +172,6 @@ void CMiscSettings::showMenu(void)
 }
 
 //// general settings
-// progressbar color
-#define PROGRESSBAR_COLOR_OPTION_COUNT 2
-const keyval PROGRESSBAR_COLOR_OPTIONS[PROGRESSBAR_COLOR_OPTION_COUNT] =
-{
-	{ 0, NONEXISTANT_LOCALE, "colored" },
-	{ 1, NONEXISTANT_LOCALE, "Mono Chrom" }
-};
-
-#define COLOR_GRADIENT_TYPE_OPTION_COUNT 5
-const keyval COLOR_GRADIENT_TYPE_OPTIONS[COLOR_GRADIENT_TYPE_OPTION_COUNT] =
-{
-	{ nogradient, NONEXISTANT_LOCALE, "no gradient" },
-	{ gradientDark2Light, NONEXISTANT_LOCALE, "Dark to Light" },
-	{ gradientLight2Dark, NONEXISTANT_LOCALE, "Light to Dark" },
-	{ gradientDark2Light2Dark, NONEXISTANT_LOCALE, "Dark to Light to Dark" },
-	{ gradientLight2Dark2Light, NONEXISTANT_LOCALE, "Light to Dark to Light" }
-};
-
 extern CRemoteControl * g_RemoteControl;	// defined neutrino.cpp
 
 CGeneralSettings::CGeneralSettings()
@@ -248,63 +194,6 @@ int CGeneralSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(actionKey == "savesettings")
 	{
 		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		
-		return ret;
-	}
-	else if(actionKey == "logos_dir") 
-	{
-		if(parent)
-			parent->hide();
-		
-		CFileBrowser b;
-		b.Dir_Mode = true;
-		
-		if (b.exec(g_settings.logos_dir.c_str())) 
-		{
-			g_settings.logos_dir = b.getSelectedFile()->Name;
-
-			dprintf(DEBUG_NORMAL, "CMiscSettings::exec: new logos dir %s\n", b.getSelectedFile()->Name.c_str());
-		}
-
-		getString() = g_settings.logos_dir;
-
-		return ret;
-	}
-	else if(actionKey == "select_icons_dir")
-	{
-		CFileBrowser b;
-		b.Dir_Mode = true;
-		
-		if (b.exec(g_settings.icons_dir.c_str())) 
-		{
-			g_settings.icons_dir = b.getSelectedFile()->Name + "/";
-
-			dprintf(DEBUG_NORMAL, "CMiscSettings::exec: new icons dir %s\n", g_settings.icons_dir.c_str());
-
-			CFrameBuffer::getInstance()->setIconBasePath(g_settings.icons_dir);
-			//CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
-		}
-		
-		getString() = g_settings.icons_dir;
-		
-		return ret;
-	}
-	else if(actionKey == "select_hint_icons_dir")
-	{
-		CFileBrowser b;
-		b.Dir_Mode = true;
-		
-		if (b.exec(g_settings.hint_icons_dir.c_str())) 
-		{
-			g_settings.hint_icons_dir = b.getSelectedFile()->Name + "/";
-
-			dprintf(DEBUG_NORMAL, "CMiscSettings::exec: new hint_icons dir %s\n", g_settings.hint_icons_dir.c_str());
-
-			CFrameBuffer::getInstance()->setHintIconBasePath(g_settings.hint_icons_dir);
-			//CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
-		}
-		
-		getString() = g_settings.hint_icons_dir;
 		
 		return ret;
 	}
@@ -440,58 +329,11 @@ void CGeneralSettings::showMenu()
 		}	
 		xmlFreeDoc(parser);
 	}
-
-	// sig/snr
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SAT_DISPLAY, &g_settings.infobar_sat_display, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 	
 	// radio text	
 	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_RADIOTEXT, &g_settings.radiotext_enable, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this ));
-	
-	// logos dir
-	miscSettingsGeneral.addItem( new CMenuForwarder(LOCALE_MISCSETTINGS_LOGOSDIR, true, g_settings.logos_dir.c_str(), this, "logos_dir" ) );
-	
-	// epgplus logos
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_EPGPLUS_SHOW_LOGOS, &g_settings.epgplus_show_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
-	
-	// infobar show channelname
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW_CHANNELNAME, &g_settings.show_channelname, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
-	
-	// recording screenshot
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_RECORDING_SCREENSHOT, &g_settings.recording_screenshot, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 
-	// subchan pos
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_INFOVIEWER_SUBCHAN_DISP_POS, &g_settings.infobar_subchan_disp_pos, INFOBAR_SUBCHAN_DISP_POS_OPTIONS, INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT, true, NULL, RC_nokey, "", true));
-	
-	// volumebar position
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_EXTRA_VOLUME_POS, &g_settings.volume_pos, VOLUMEBAR_DISP_POS_OPTIONS, VOLUMEBAR_DISP_POS_OPTIONS_COUNT, true, NULL, RC_nokey, "", true ));
-
-	// volume bar steps
-	CStringInput * audio_step = new CStringInput(LOCALE_AUDIOMENU_VOLUMEBAR_AUDIOSTEPS,g_settings.audio_step, 2, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, "0123456789 " );
-	CMenuForwarder *as = new CMenuForwarder(LOCALE_AUDIOMENU_VOLUMEBAR_AUDIOSTEPS, true, g_settings.audio_step, audio_step );
-	miscSettingsGeneral.addItem(as);
-
-	// osd
-	miscSettingsGeneral.addItem( new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_VIDEOMENU_OSD)));
-
-	// menu position
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_EXTRA_MENU_POSITION, &g_settings.menu_position, MENU_POSITION_OPTIONS, MENU_POSITION_OPTION_COUNT, true));
-
-	// corners
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_EXTRA_ROUNDED_CORNERS, &g_settings.rounded_corners, MENU_CORNERSETTINGS_TYPE_OPTIONS, MENU_CORNERSETTINGS_TYPE_OPTION_COUNT, true));
-
-	// progressbar color
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_PROGRESSBAR_COLOR, &g_settings.progressbar_color, PROGRESSBAR_COLOR_OPTIONS, PROGRESSBAR_COLOR_OPTION_COUNT, true));
-	
-	// progressbar_gradient
-	miscSettingsGeneral.addItem(new CMenuOptionChooser("ProgressBar Gradient", &g_settings.progressbar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
-	
-	// icons dir
-	miscSettingsGeneral.addItem(new CMenuForwarder("Icons Dir", true, g_settings.icons_dir.c_str(), this, "select_icons_dir"));
-
-	// hint icons dir
-	miscSettingsGeneral.addItem(new CMenuForwarder("Hint Icons Dir", true, g_settings.hint_icons_dir.c_str(), this, "select_hint_icons_dir"));
-
-	// key
+	// online key
 	miscSettingsGeneral.addItem(new CMenuSeparator(LINE));
 
 	std::string ytkey = g_settings.ytkey;

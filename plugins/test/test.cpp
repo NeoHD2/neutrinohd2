@@ -4151,15 +4151,14 @@ void CTestMenu::testCFrameBox()
 	topBox.iX = g_settings.screen_StartX + 10;
 	topBox.iY = g_settings.screen_StartY + 10;
 	topBox.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
-	topBox.iHeight = 60;
+	topBox.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20);;
 
 	CFrameBox *topWidget = new CFrameBox(&topBox);
-	//topWidget->setMode();
 
 	CFrame * frame = NULL;
 
 	frame = new CFrame();
-	frame->setPosition(topBox.iX, topBox.iY, topBox.iWidth/4, topBox.iHeight);
+	frame->setPosition(topBox.iX, topBox.iY, topBox.iWidth/4, 60);
 	frame->setTitle("Neu Filme");
 	frame->setIconName(NEUTRINO_ICON_MOVIE);
 	frame->setOption("in allen Kinos");
@@ -4167,28 +4166,25 @@ void CTestMenu::testCFrameBox()
 	topWidget->addFrame(frame);
 	
 	frame = new CFrame();
-	frame->setPosition(topBox.iX + topBox.iWidth/4, topBox.iY, topBox.iWidth/4, topBox.iHeight);
+	frame->setPosition(topBox.iX + topBox.iWidth/4, topBox.iY + (20 + 60), topBox.iWidth/4, 60);
 	frame->setTitle("Im Kino");
 	frame->setActionKey(this, "help");
 	topWidget->addFrame(frame);
 
 	frame = new CFrame();
-	frame->setPosition(topBox.iX + 2*topBox.iWidth/4, topBox.iY, topBox.iWidth/4, topBox.iHeight);
+	frame->setPosition(topBox.iX + 2*topBox.iWidth/4, topBox.iY + 2*(20 + 60), topBox.iWidth/4, 60);
 	frame->setTitle("Am populärsten");
 	frame->setOption("(2019)");
 	frame->setActionKey(this, "help");
 	topWidget->addFrame(frame);
 
 	frame = new CFrame();
-	frame->setPosition(topBox.iX + 3*topBox.iWidth/4, topBox.iY, topBox.iWidth/4, topBox.iHeight);
+	frame->setPosition(topBox.iX + 3*topBox.iWidth/4, topBox.iY + 3*(20 + 60), topBox.iWidth/4, 60);
 	frame->setTitle("Exit");
 	frame->setActionKey(this, "exit");
 	topWidget->addFrame(frame);
 
-	//topWidget->setMode(FRAMEBOX_MODE_HORIZONTAL);
-
 	topWidget->setSelected(selected);
-	//topWidget->setBackgroundColor(COL_RED);
 
 REPEAT:
 	topWidget->paint();
@@ -4228,14 +4224,6 @@ REPEAT:
 		}
 		else if(msg == RC_ok)
 		{
-/*
-			if (topWidget->getSelected() == 3)
-				loop = false;
-			else
-				MessageBox(LOCALE_MESSAGEBOX_INFO, "testing CFrameBox\ncoole Widget ;-)", mbrBack, mbBack, NEUTRINO_ICON_INFO);
-*/
-			//actionKey = items[selected]->getActionKey();
-
 			int rv = topWidget->oKKeyPressed(this);
 
 			//FIXME:review this
@@ -6946,8 +6934,6 @@ const keyval MESSAGEBOX_NO_YES_OPTIONS[MESSAGEBOX_NO_YES_OPTION_COUNT] =
 	{ 1, LOCALE_MESSAGEBOX_YES, NULL }
 };
 
-char * testValue = NULL;
-
 void CTestMenu::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CTestMenu::showMenu:\n");
@@ -6984,16 +6970,9 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuOptionChooser("CMenuOptionChooser:", &selected, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true));
 
 	mainMenu->addItem(new CMenuOptionNumberChooser("CMenuOptionNumberChooser:", &selected, true, 0, 100));
-/*
-	CMenuOptionStringChooser * item = new CMenuOptionStringChooser("CMenuOptionStringChooser:", testValue, true);
-	item->addOption("test");
-	mainMenu->addItem(item);
-	delete item;
-	item = NULL;
-*/
 	
 	//
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "widget Helpers"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "widget Items Helpers"));
 	mainMenu->addItem(new CMenuForwarder("CBox", true, NULL, this, "box"));
 	mainMenu->addItem(new CMenuForwarder("CIcon", true, NULL, this, "icon"));
 	mainMenu->addItem(new CMenuForwarder("CImage", true, NULL, this, "image"));
@@ -7001,7 +6980,7 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CProgressBar", true, NULL, this, "progressbar"));
 	mainMenu->addItem(new CMenuForwarder("CScrollBar", false, NULL, this, "scrollbar"));
 	mainMenu->addItem(new CMenuForwarder("CItems2DetailsLine", false, NULL, this, "detailsline"));
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Widget Components"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Widget Items"));
 	mainMenu->addItem(new CMenuForwarder("CHeaders", true, NULL, this, "headers"));
 	mainMenu->addItem(new CMenuForwarder("CWindow", true, NULL, this, "window"));
 	mainMenu->addItem(new CMenuForwarder("CWindow(with shadow)", true, NULL, this, "windowshadow"));

@@ -4,7 +4,6 @@ install-exec-local:
 installdir = $(CONFIGDIR)/webtv
 
 install_DATA = \
-	webtv.xml \
 	master.m3u8
 
 

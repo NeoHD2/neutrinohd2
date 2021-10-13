@@ -123,7 +123,6 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 	m_cBoxWindow.setPosition(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
 	m_cBoxWindow.enableShadow();
 }
 
@@ -204,7 +203,6 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	m_cBoxWindow.setPosition(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
 	m_cBoxWindow.enableShadow();
 }
 
@@ -220,22 +218,6 @@ void CHintBox::paint(void)
 {
 	dprintf(DEBUG_NORMAL, "CHintBox::paint\n");
 
-	// Box
-/*
-	cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - cFrameBox.iWidth ) >> 1);
-	cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - cFrameBox.iHeight) >> 2);
-	
-	// Box
-	m_cBoxWindow.setPosition(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
-
-	m_cBoxWindow.enableSaveScreen();
-	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	m_cBoxWindow.enableShadow();
-*/
-	//m_cBoxWindow.paint();
-	m_cBoxWindow.enableSaveScreen();
-
 	refresh();
 	
 	CFrameBuffer::getInstance()->blit();
@@ -244,13 +226,6 @@ void CHintBox::paint(void)
 void CHintBox::refresh(void)
 {
 	//body
-/*
-	m_cBodyWindow.setPosition(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
-	m_cBodyWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBodyWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	m_cBoxWindow.enableShadow();
-	m_cBodyWindow.paint();
-*/
 	m_cBoxWindow.paint();
 	
 	// title
@@ -308,8 +283,8 @@ void CHintBox::hide(void)
 	dprintf(DEBUG_NORMAL, "CHintBox::hide:\n");
 
 	// reinit
-	cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - cFrameBox.iWidth ) >> 1);
-	cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - cFrameBox.iHeight) >> 2);
+	//cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - cFrameBox.iWidth ) >> 1);
+	//cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - cFrameBox.iHeight) >> 2);
 
 	m_cBoxWindow.hide();
 
