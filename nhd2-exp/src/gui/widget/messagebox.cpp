@@ -246,7 +246,8 @@ CMessageBox::~CMessageBox(void)
 		}
 	}
 
-	//hide();
+	// hack to hide helpBox FIXME:???
+	hide();
 }
 
 void CMessageBox::init(const char * const Caption, const int Width, const char * const Icon)
@@ -574,8 +575,6 @@ int CMessageBox::exec(int timeout)
 	// paint
 	paint();
 	paintButtons();
-
-	CFrameBuffer::getInstance()->blit();
 
 	if ( timeout == -1 )
 		timeout = g_settings.timing[SNeutrinoSettings::TIMING_EPG];
