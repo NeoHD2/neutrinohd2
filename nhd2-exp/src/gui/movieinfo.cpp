@@ -1529,10 +1529,10 @@ void CMovieInfoWidget::funArt()
 	
 	// artBox
 	CBox artBox;
-	artBox.iWidth = box.iWidth/2;
-	artBox.iHeight = box.iHeight;
-	artBox.iX = box.iX + box.iWidth/2;
-	artBox.iY = box.iY;
+	artBox.iWidth = box.iWidth/2 - 20;
+	artBox.iHeight = box.iHeight - 20;
+	artBox.iX = box.iX + box.iWidth/2 + 10;
+	artBox.iY = box.iY + 10;
 
 	CFrameBox * testFrameBox = new CFrameBox(&box);
 	//testFrameBox->disablePaintFrame();

@@ -38,7 +38,7 @@ extern cVideo * videoDecoder;
 // CFrame
 CFrame::CFrame(int m)
 {
-	captionFont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
+	captionFont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
 	optionFont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
 
 	caption = "";
@@ -239,6 +239,8 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	else if ( (mode == FRAME_PICTURE) || (mode == FRAME_PICTURE_NOTSELECTABLE))
 	{
 		int c_h = 0;
+		int stringStartPosX = 0;
+		int c_w = 0;
 
 		if(!caption.empty())
 			c_h = captionFont->getHeight() + 20;
@@ -260,9 +262,14 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 
 		if(!caption.empty())
 		{
-			int c_w = captionFont->getRenderWidth(caption);
+			c_w = captionFont->getRenderWidth(caption);
+			
+			if (c_w > window.getWindowsPos().iWidth)
+				c_w = window.getWindowsPos().iWidth;
+				
+			stringStartPosX = window.getWindowsPos().iX + (window.getWindowsPos().iWidth >> 1) - (c_w >> 1);
 
-			captionFont->RenderString(window.getWindowsPos().iX + 3, window.getWindowsPos().iY + window.getWindowsPos().iHeight - 5, window.getWindowsPos().iWidth - 6, caption.c_str(), color);
+			captionFont->RenderString(stringStartPosX, window.getWindowsPos().iY + window.getWindowsPos().iHeight - 5, window.getWindowsPos().iWidth - 6, caption.c_str(), color);
 		}
 
 		if (selected)
@@ -277,9 +284,14 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 
 			if(!caption.empty())
 			{
-				int c_w = captionFont->getRenderWidth(caption);
+				c_w = captionFont->getRenderWidth(caption);
+				
+				if (c_w > window.getWindowsPos().iWidth)
+					c_w = window.getWindowsPos().iWidth;
+					
+				stringStartPosX = window.getWindowsPos().iX + (window.getWindowsPos().iWidth >> 1) - (c_w >> 1);
 
-				captionFont->RenderString(window.getWindowsPos().iX + 3, window.getWindowsPos().iY + window.getWindowsPos().iHeight, window.getWindowsPos().iWidth - 6, caption.c_str(), color);
+				captionFont->RenderString(stringStartPosX, window.getWindowsPos().iY + window.getWindowsPos().iHeight, window.getWindowsPos().iWidth - 6, caption.c_str(), color);
 			}
 		}
 	}

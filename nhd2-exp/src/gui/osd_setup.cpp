@@ -748,7 +748,7 @@ void COSDDiverses::showMenu()
 	
 	CMenuWidget osdDiverseSettings(LOCALE_COLORMENU_TIMING, NEUTRINO_ICON_SETTINGS);
 
-	osdDiverseSettings.setMode(MODE_MENU);
+	osdDiverseSettings.setMode(MODE_SETUP);
 	osdDiverseSettings.enableShrinkMenu();
 	osdDiverseSettings.enableMenuPosition();
 	

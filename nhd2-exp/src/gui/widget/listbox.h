@@ -111,8 +111,9 @@ class CChangeObserver
 // CMenuItem
 class CMenuItem
 {
-	protected:
-		int x, y, dx, offx;
+	//protected:
+	public:
+		int x, y, item_width, item_height;
 		
 	public:
 		bool active;
@@ -128,8 +129,6 @@ class CMenuItem
 		std::string itemIcon;
 		std::string info1, option_info1;
 		std::string info2, option_info2;
-
-		//
 		std::string icon1;
 		std::string icon2;
 		int number;
@@ -140,10 +139,6 @@ class CMenuItem
 		int widgetType;
 		int widgetMode;
 		bool isPlugin;
-
-		//
-		int item_height;
-		int item_width;
 
 		//
 		//static CFont* nameFont;
@@ -157,7 +152,7 @@ class CMenuItem
 		CMenuItem();
 		virtual ~CMenuItem(){};
 
-		virtual void init(const int X, const int Y, const int DX, const int OFFX);
+		virtual void init(const int X, const int Y, const int DX, const int DY);
 		virtual int paint(bool selected = false, bool AfterPulldown = false) = 0;
 		virtual int getHeight(void) const = 0;
 		virtual int getWidth(void) const

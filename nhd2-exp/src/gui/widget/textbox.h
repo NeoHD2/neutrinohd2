@@ -142,7 +142,7 @@ class CTextBox : public CWidgetItem
 		
 		inline bool isPainted(void){return painted;};
 
-		//inline CBox getWindowsPos(void){return(m_cFrame);};
+		//
 		inline int getMaxLineWidth(void){return(m_nMaxLineWidth);};
 		inline int getLines(void){return(m_nNrOfLines);};
 		inline int getPages(void){return(m_nNrOfPages);};

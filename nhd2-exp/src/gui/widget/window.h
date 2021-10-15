@@ -34,10 +34,11 @@
 
 
 // window
-class CWindow : public CWidgetItem
+class CWindow /*: public CWidgetItem*/
 {
 	private:
 		CFrameBuffer* frameBuffer;
+		CBox itemBox;
 
 		fb_pixel_t * background;
 
@@ -72,13 +73,16 @@ class CWindow : public CWidgetItem
 
 		void paint();
 		void hide();
+		
+		inline CBox getWindowsPos(void){return (itemBox);};
 };
 
 // pig
-class CPig : public CWidgetItem 
+class CPig /*: public CWidgetItem */
 {
 	private:
 		CFrameBuffer* frameBuffer;
+		CBox itemBox;
 
 	public:
 		CPig(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -89,13 +93,16 @@ class CPig : public CWidgetItem
 
 		void paint();
 		void hide();
+		
+		inline CBox getWindowsPos(void){return (itemBox);};
 };
 
 //
-class CGrid : public CWidgetItem 
+class CGrid /*: public CWidgetItem */
 {
 	private:
 		CFrameBuffer* frameBuffer;
+		CBox itemBox;
 
 		__u32 rgb;
 
@@ -110,6 +117,8 @@ class CGrid : public CWidgetItem
 
 		void paint();
 		void hide();
+		
+		inline CBox getWindowsPos(void){return (itemBox);};
 };
 
 #endif

@@ -134,8 +134,8 @@ class CTestMenu : public CMenuTarget
 		void testListFrameWidget();
 		void testListBoxWidget();
 		void testTextBoxWidget();
-		void testWindowWidget();
-		void testProgressWindowWidget();
+		//void testWindowWidget();
+		//void testProgressWindowWidget();
 
 		// compenents helpers
 		void testCBox();
@@ -1620,6 +1620,7 @@ void CTestMenu::testTextBoxWidget()
 	footersWidget = NULL;
 }
 
+/*
 void CTestMenu::testWindowWidget()
 {
 	dprintf(DEBUG_NORMAL, "\nCTESTMenu:testWindowWidget:\n");
@@ -1679,6 +1680,7 @@ void CTestMenu::testWindowWidget()
 	delete grid;
 	grid = NULL;
 }
+*/
 
 // test
 void CTestMenu::test()
@@ -6845,12 +6847,14 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 		return RETURN_REPAINT;
 	}
+	/*
 	else if(actionKey == "windowwidget")
 	{
 		testWindowWidget();
 
 		return RETURN_REPAINT;
 	}
+	*/
 	else if(actionKey == "txtinfo")
 	{
 		if(textWidget)
@@ -6947,14 +6951,15 @@ void CTestMenu::showMenu()
 	mainMenu->enableMenuPosition();
 	//mainMenu->enablePaintFootInfo();
 	
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(multi widget)", true, NULL, this, "widget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(single widget)", true, NULL, this, "singleWidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(Fire TV)", true, NULL, this, "firetv"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(listFrame)", true, NULL, this, "listframewidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(listBox)", true, NULL, this, "listboxmwidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(textBox)", true, NULL, this, "textboxwidget"));
-	mainMenu->addItem(new CMenuSeparator(LINE));
-	mainMenu->addItem(new CMenuForwarder("CWidget(CWindow)", true, NULL, this, "windowwidget"));
+	//mainMenu->addItem(new CMenuSeparator(LINE));
+	//mainMenu->addItem(new CMenuForwarder("CWidget(CWindow)", true, NULL, this, "windowwidget"));
 	mainMenu->addItem(new CMenuSeparator(LINE) );
 	mainMenu->addItem(new CMenuForwarder("TEST", true, NULL, this, "testing"));
 
@@ -6980,14 +6985,15 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CProgressBar", true, NULL, this, "progressbar"));
 	mainMenu->addItem(new CMenuForwarder("CScrollBar", false, NULL, this, "scrollbar"));
 	mainMenu->addItem(new CMenuForwarder("CItems2DetailsLine", false, NULL, this, "detailsline"));
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Widget Items"));
-	mainMenu->addItem(new CMenuForwarder("CHeaders", true, NULL, this, "headers"));
 	mainMenu->addItem(new CMenuForwarder("CWindow", true, NULL, this, "window"));
 	mainMenu->addItem(new CMenuForwarder("CWindow(with shadow)", true, NULL, this, "windowshadow"));
 	mainMenu->addItem(new CMenuForwarder("CWindow(customColor)", true, NULL, this, "windowcustomcolor"));
+	mainMenu->addItem(new CMenuForwarder("CProgressWindow", true, NULL, this, "progresswindow"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Widget Items"));
+	mainMenu->addItem(new CMenuForwarder("CHeaders", true, NULL, this, "headers"));
 	mainMenu->addItem(new CMenuForwarder("CTextBox", true, NULL, this, "textbox"));
 	mainMenu->addItem(new CMenuForwarder("CListFrame", true, NULL, this, "listframe"));
-	mainMenu->addItem(new CMenuForwarder("CProgressWindow", true, NULL, this, "progresswindow"));
+	//mainMenu->addItem(new CMenuForwarder("CProgressWindow", true, NULL, this, "progresswindow"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(standard)", true, NULL, this, "listbox"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(classic)", true, NULL, this, "listbox2"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(extended)", true, NULL, this, "listbox3"));
@@ -6995,6 +7001,8 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("ClistBox(menu mode)", true, NULL, this, "listbox5"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(listBox mode)", true, NULL, this, "listbox6"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox", true, NULL, this, "framebox"));
+	mainMenu->addItem(new CMenuSeparator(LINE) );
+	mainMenu->addItem(new CMenuForwarder("TEST", true, NULL, this, "testing"));
 	
 	// ClistBox
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CMenuWidget"));

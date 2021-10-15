@@ -78,7 +78,7 @@ void CWindow::init()
 	savescreen = false;
 	background = NULL;
 
-	itemType = WIDGET_ITEM_WINDOW;
+	//itemType = WIDGET_ITEM_WINDOW;
 
 	// sanity check
 	if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight()))
@@ -174,7 +174,7 @@ void CPig::init()
 {
 	frameBuffer = CFrameBuffer::getInstance();
 
-	itemType = WIDGET_ITEM_PIG;
+	//itemType = WIDGET_ITEM_PIG;
 }
 
 void CPig::paint()
@@ -218,7 +218,7 @@ void CGrid::init()
 
 	rgb = 0x505050;
 
-	itemType = WIDGET_ITEM_GRID;
+	//itemType = WIDGET_ITEM_GRID;
 }
 
 void CGrid::paint()

@@ -238,27 +238,27 @@ function testCWidget()
 
 	-- CMessageBox
 	item1 = neutrino.CMenuForwarder("CMessageBox", true, "", null, "msgBox")
-	item1:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item1:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item1:setHelpText("testing CMessageBox")
 	item1:setInfo1("testing CMessageBox")
 
 	-- CHelpBox
 	item2 = neutrino.CMenuForwarder("CHelpBox")
-	item2:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item2:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item2:setHelpText("testing CHelpBox")
 	item2:setInfo1("testing CHelpBox")
 	item2:setActionKey(null, "helpBox")
 
 	-- CHintBox
 	item3 = neutrino.CMenuForwarder("CHintBox")
-	item3:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item3:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item3:setHelpText("testing CHintBox")
 	item3:setInfo1("testing CHintBox")
 	item3:setActionKey(null, "hintBox")
 
 	-- CInfoBox
 	item4 = neutrino.CMenuForwarder("CInfoBox")
-	item4:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item4:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item4:setHelpText("testing CInfoBox")
 	item4:setInfo1("testing CInfoBox")
 	item4:setActionKey(null, "infoBox")
@@ -266,28 +266,28 @@ function testCWidget()
 	-- CStringInput
 	local data = ""
 	item5 = neutrino.CMenuForwarder("CStringInput", false)
-	item5:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item5:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item5:setHelpText("testing CStringInput")
 	item5:setInfo1("testing CStringInput")
 	item5:setActionKey(null, "cStringInput")
 
 	-- CAudioPlayerGui
 	item6 = neutrino.CMenuForwarder("CAudioPlayerGui")
-	item6:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item6:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item6:setHelpText("testing CAudioPlayerGui")
 	item6:setInfo1("testing CAudioPlayerGui")
 	item6:setActionKey(null, "audioPlayer")
 
 	-- CPictureViewerGui
 	item7 = neutrino.CMenuForwarder("CPictureViewerGui")
-	item7:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item7:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item7:setHelpText("testing CPictureViewerGui")
 	item7:setInfo1("testing CPictureViewerGui")
 	item7:setActionKey(null, "pictureViewer")
 
 	-- CMoviePlayerGui
 	item8 = neutrino.CMenuForwarder("CMoviePlayerGui")
-	item8:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item8:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item8:setHelpText("testing CMoviePlayerGui")
 	item8:setInfo1("testing CMoviePlayerGui")
 	item8:setActionKey(null, "moviePlayer")
@@ -338,49 +338,49 @@ function testClistBoxWidget()
 
 	-- CMessageBox
 	item1 = neutrino.CMenuForwarder("CMessageBox", true, "", self, "msgBox")
-	item1:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item1:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item1:setHelpText("testing CMessageBox")
 	item1:setInfo1("testing CMessageBox")
 
 	-- CHelpBox
 	item2 = neutrino.CMenuForwarder("CHelpBox")
-	item2:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item2:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item2:setHelpText("testing CHelpBox")
 	item2:setInfo1("testing CHelpBox")
 
 	-- CHintBox
 	item3 = neutrino.CMenuForwarder("CHintBox")
-	item3:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item3:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item3:setHelpText("testing CHintBox")
 	item3:setInfo1("testing CHintBox")
 
 	-- CInfoBox
 	item4 = neutrino.CMenuForwarder("CInfoBox")
-	item4:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item4:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item4:setHelpText("testing CInfoBox")
 	item4:setInfo1("testing CInfoBox")
 
 	-- CStringInput
 	item5 = neutrino.CMenuForwarder("CStringInput", false)
-	item5:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item5:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item5:setHelpText("testing CStringInput")
 	item5:setInfo1("testing CStringInput")
 
 	-- CAudioPlayerGui
 	item6 = neutrino.CMenuForwarder("CAudioPlayerGui")
-	item6:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item6:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item6:setHelpText("testing CAudioPlayerGui")
 	item6:setInfo1("testing CAudioPlayerGui")
 
 	-- CPictureViewerGui
 	item7 = neutrino.CMenuForwarder("CPictureViewerGui")
-	item7:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item7:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item7:setHelpText("testing CPictureViewerGui")
 	item7:setInfo1("testing CPictureViewerGui")
 
 	-- CMoviePlayerGui
 	item8 = neutrino.CMenuForwarder("CMoviePlayerGui")
-	item8:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item8:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item8:setHelpText("testing CMoviePlayerGui")
 	item8:setInfo1("testing CMoviePlayerGui")
 
@@ -430,49 +430,49 @@ function testClistBox()
 
 	-- CMessageBox
 	item1 = neutrino.CMenuForwarder("CMessageBox", true, "", self, "msgBox")
-	item1:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item1:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item1:setHelpText("testing CMessageBox")
 	item1:setInfo1("testing CMessageBox")
 
 	-- CHelpBox
 	item2 = neutrino.CMenuForwarder("CHelpBox")
-	item2:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item2:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item2:setHelpText("testing CHelpBox")
 	item2:setInfo1("testing CHelpBox")
 
 	-- CHintBox
 	item3 = neutrino.CMenuForwarder("CHintBox")
-	item3:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item3:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item3:setHelpText("testing CHintBox")
 	item3:setInfo1("testing CHintBox")
 
 	-- CInfoBox
 	item4 = neutrino.CMenuForwarder("CInfoBox")
-	item4:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item4:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item4:setHelpText("testing CInfoBox")
 	item4:setInfo1("testing CInfoBox")
 
 	-- CStringInput
 	item5 = neutrino.CMenuForwarder("CStringInput", false)
-	item5:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item5:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item5:setHelpText("testing CStringInput")
 	item5:setInfo1("testing CStringInput")
 
 	-- CAudioPlayerGui
 	item6 = neutrino.CMenuForwarder("CAudioPlayerGui")
-	item6:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item6:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item6:setHelpText("testing CAudioPlayerGui")
 	item6:setInfo1("testing CAudioPlayerGui")
 
 	-- CPictureViewerGui
 	item7 = neutrino.CMenuForwarder("CPictureViewerGui")
-	item7:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item7:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item7:setHelpText("testing CPictureViewerGui")
 	item7:setInfo1("testing CPictureViewerGui")
 
 	-- CMoviePlayerGui
 	item8 = neutrino.CMenuForwarder("CMoviePlayerGui")
-	item8:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/plugin.png")
+	item8:setItemIcon(neutrino.DATADIR .. "/neutrino/icons/features.png")
 	item8:setHelpText("testing CMoviePlayerGui")
 	item8:setInfo1("testing CMoviePlayerGui")
 
@@ -556,6 +556,12 @@ function testCWindow()
 	listbox.iHeight = box.iHeight - headBox.iHeight - footBox.iHeight
 	listbox.iX = box.iX
 	listbox.iY = box.iY + headBox.iHeight
+	
+	local framebox = neutrino.CBox()
+	framebox.iWidth = box.iWidth - listbox.iWidth
+	framebox.iHeight = box.iHeight - headBox.iHeight - footBox.iHeight
+	framebox.iX = box.iX + listbox.iWidth
+	framebox.iY = box.iY + headBox.iHeight
 
 	local textbox = neutrino.CBox()
 	textbox.iWidth = 350
@@ -582,8 +588,8 @@ function testCWindow()
 	frame1Box.iY = box.iY + box.iHeight - 10 - 40 - 60
 
 	-- window
-	window = neutrino.CWindow(box)
-	window:enableCenterPos()
+	--window = neutrino.CWindow(box)
+	--window:enableCenterPos()
 
 	-- head
 	head = neutrino.CHeaders(headBox, "lua sample Window|Widget", neutrino.NEUTRINO_ICON_MOVIE)
@@ -708,8 +714,8 @@ function testCWindow()
 	vframe = neutrino.CFrame(neutrino.FRAME_LINE_VERTICAL)
 	vframe:setPosition(box.iX + listbox.iWidth + 10, box.iY + 50, 5, box.iHeight- 100)
 
-	testFrame = neutrino.CFrameBox()
-	--testFrame:setMode(neutrino.FRAMEBOX_MODE_RANDOM)
+	testFrame = neutrino.CFrameBox(framebox)
+
 	testFrame:addFrame(titleFrame)
 	testFrame:addFrame(iconFrame1)
 	testFrame:addFrame(iconFrame2)
@@ -756,7 +762,7 @@ function testCWindow()
 	
 	m:setSelected(selected)
 
-	m:addItem(window)
+	--m:addItem(window)
 	m:addItem(head)
 	m:addItem(listBox)
 	m:addItem(testFrame)
