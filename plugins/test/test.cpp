@@ -230,9 +230,6 @@ class CTestMenu : public CMenuTarget
 		// channel/bouquet list
 		void testChannellist();
 		void testBouquetlist();
-		
-		//
-		void testSpinner();
 
 	public:
 		CTestMenu();
@@ -1187,11 +1184,9 @@ void CTestMenu::testFireTV()
 	int pic_w = box.iWidth/6;
 
 	testWidget = new CWidget(&box);
-
-	//testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
 	testWidget->enablePaintMainFrame();
 
-	//frameBox = new CFrameBox(box.iX, box.iY, box.iWidth, 40 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight() + 10);
+	// frameBox
 	frameBox = new CFrameBox(&box);
 	frameBox->disablePaintFrame();
 
@@ -1240,9 +1235,6 @@ void CTestMenu::testFireTV()
 	frameBox->addFrame(helpFrame);
 
 	// frameBox1
-	//frameBox1 = new CFrameBox(box.iX, box.iY + 40 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight() + 10, box.iWidth, 280);
-	//frameBox1->setOutFocus();
-	
 	if (!m_vMovieInfo.empty())
 	{
 	// title
@@ -1279,10 +1271,6 @@ void CTestMenu::testFireTV()
 	
 
 	// other
-	//frameBox2 = new CFrameBox(box.iX, box.iY + 40 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight() + 10 + 280, box.iWidth, 10 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight() + 10);
-	//frameBox2->setOutFocus();
-	//frameBox2->disablePaintFrame();
-	
 	CFrame *otherFrame = new CFrame(FRAME_TEXT_LINE_NOTSELECTABLE);
 	otherFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	int o_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("andere Filme:");
@@ -1294,16 +1282,12 @@ void CTestMenu::testFireTV()
 	frameBox->addFrame(otherFrame);
 
 	//
-	//frameBox3 = new CFrameBox();
-	//frameBox3->setPosition(box.iX, box.iY + 40 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight() + 10 + 280 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight() + 10, box.iWidth, box.iHeight - (40 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight() + 10 + 280 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight() + 10));
-	//frameBox3->setOutFocus();
-	//frameBox3->disablePaintFrame();
-
 	CFrame * art1Frame = NULL;
 	for (int i = 1; i < 7; i++)
 	{
 		art1Frame = new CFrame(FRAME_PICTURE);
-		art1Frame->setPosition(box.iX + 10 + (i - 1)*10 + (i - 1)*(pic_w - 20), box.iY + 40 + h_h + 10 + 250 + 10 + o_h + 10, pic_w - 20, box.iHeight - 40 - h_h - 10 - 250 - 10 - 40);
+		//art1Frame->setPosition(box.iX + 10 + (i - 1)*10 + (i - 1)*(pic_w - 20), box.iY + 40 + h_h + 10 + 250 + 10 + o_h + 10, pic_w - 20, box.iHeight - 40 - h_h - 10 - 250 - 10 - 40);
+		art1Frame->setPosition(box.iX + 10 + (i - 1)*((box.iWidth - 20)/6), box.iY + 40 + h_h + 10 + 250 + 10 + o_h + 10, (box.iWidth - 20)/6,box.iHeight - 40 - h_h - 10 - 250 - 10 - 40);
 		art1Frame->setIconName(m_vMovieInfo[i].tfile.c_str());
 		art1Frame->disablePaintFrame();
 		art1Frame->setActionKey(this, "fireplay");
@@ -1314,9 +1298,7 @@ void CTestMenu::testFireTV()
 	}
 
 	testWidget->addItem(frameBox);
-	//testWidget->addItem(frameBox1);
-	//testWidget->addItem(frameBox2);
-	//testWidget->addItem(frameBox3);
+	
 	testWidget->exec(NULL, "");
 
 	delete frameBox;
@@ -5218,58 +5200,7 @@ void CTestMenu::testBouquetlist()
 	webTVBouquetList->exec(true); // with zap
 }
 
-// spinner
-void CTestMenu::testSpinner()
-{
-	dprintf(DEBUG_NORMAL, "\ntestSpinner\n");
-	
-	int radar = 0;
-	uint32_t sec_timer_id = 0;
-	
-PAINT:	
-	std::string filename = PLUGINDIR;
-	filename += "/test/";
-	
-	//sprintf((char *)filename.c_str(), "/home/mohousch/tuxbox/neutrinohd2/generic/var/tuxbox/plugins/test/hourglass%d.png", radar);
-	
-	filename += "hourglass";
-	filename += to_string(radar);
-	filename += ".png";
-		
-	radar = (radar + 1) % 10;
-	CFrameBuffer::getInstance()->paintIcon(filename, 20, 20);
-	
-	// loop
-	neutrino_msg_t msg;
-	neutrino_msg_data_t data;
-	
-	// add sec timer
-	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
-
-	bool loop = true;
-
-	while(loop)
-	{
-		g_RCInput->getMsg_ms(&msg, &data, 10); // 1 sec
-
-		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
-		{
-			goto PAINT;
-		} 
-		else if (msg == RC_home) 
-		{
-			loop = false;
-		}
-
-		CFrameBuffer::getInstance()->blit();
-	}
-	
-	hide();
-
-	g_RCInput->killTimer(sec_timer_id);
-	sec_timer_id = 0;
-}
-
+// exec
 int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::exec: actionKey:%s\n", actionKey.c_str());
@@ -7032,10 +6963,6 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 		return RETURN_REPAINT;
 	}
-	else if (actionKey == "spinner")
-	{
-		testSpinner();
-	}
 
 	showMenu();
 	
@@ -7191,10 +7118,6 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Channellist") );
 	mainMenu->addItem(new CMenuForwarder("CChannelList:", true, NULL, this, "channellist"));
 	mainMenu->addItem(new CMenuForwarder("CBouquetList:", true, NULL, this, "bouquetlist"));
-	
-	// divers
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Divers") );
-	mainMenu->addItem(new CMenuForwarder("Spinner:", true, NULL, this, "spinner"));
 	
 	mainMenu->exec(NULL, "");
 	//mainMenu->hide();
