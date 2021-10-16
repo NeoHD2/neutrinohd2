@@ -358,7 +358,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 	frameBuffer->paintBoxRel(BoxStartX - 1, BoxStartY - 1, BoxWidth + 2, BoxHeight + buttonBarHeight + 2, COL_MENUCONTENT_PLUS_6);
 	
 	// infobarbox
-	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight, COL_INFOBAR_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.infobar_gradient);
+	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight, COL_INFOBAR_PLUS_0/*, NO_RADIUS, CORNER_NONE, g_settings.infobar_gradient*/);
 
 	//time
 	paintTime(BoxEndX, ChanNameY, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]);
@@ -445,23 +445,6 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 	dateHeight = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight();
 			
 	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(BoxEndX - BORDER_RIGHT - dateWidth, BoxStartY + (SAT_INFOBOX_HEIGHT - dateHeight)/2 + dateHeight, dateWidth, datestr.c_str(), COL_INFOBAR, 0, true); // UTF-8
-
-/*
-	// activ tuner
-	showAktivTuner();
-
-	// radiotext	
-	if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio)
-	{
-		if ((g_settings.radiotext_enable) && (!recordModeActive))
-			showRadiotext();
-		else
-			showIcon_RadioText(false);
-	}
-
-	// record icon
-	showRecordIcon(show_dot);
-*/
 		
 	// botton bar
 	frameBuffer->paintBoxRel(buttonBarStartX, buttonBarStartY, BoxWidth, buttonBarHeight, COL_INFOBAR_BUTTONS_BACKGROUND, NO_RADIUS, CORNER_NONE);
@@ -471,25 +454,6 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 	frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_BLUE, BoxStartX + BORDER_LEFT + icon_red_w + ICON_TO_ICON_OFFSET + asize + icon_green_w + ICON_TO_ICON_OFFSET + asize + icon_yellow_w + ICON_TO_ICON_OFFSET + asize, buttonBarStartY + (buttonBarHeight - icon_blue_h)/2);
 
 	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(BoxStartX + BORDER_LEFT + icon_red_w + ICON_TO_ICON_OFFSET + asize + icon_green_w + ICON_TO_ICON_OFFSET + asize + icon_yellow_w + ICON_TO_ICON_OFFSET + asize + icon_blue_w + ICON_TO_ICON_OFFSET, buttonBarStartY + (buttonBarHeight - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight(), asize - ICON_TO_ICON_OFFSET - icon_blue_w, g_Locale->getText(LOCALE_INFOVIEWER_FEATURES), COL_INFOBAR_BUTTONS, 0, true); // UTF-8
-
-/*
-	// other buttonbar
-	if( showButtonBar )
-	{
-		// green
-		showButton_Audio();
-			
-		// yellow
-		showButton_SubServices();
-		
-		//	
-		showIcon_CA_Status(0);
-		showIcon_16_9();
-		showIcon_VTXT();
-		showIcon_SubT();
-		showIcon_Resolution();
-	}
-*/
 }
 
 //

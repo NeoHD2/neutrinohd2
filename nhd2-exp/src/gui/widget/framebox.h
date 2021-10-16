@@ -194,7 +194,6 @@ class CFrameBox : public CWidgetItem
 		virtual void scrollLineUp(const int lines = 1);
 
 		int getSelected(){return selected;};
-		//void setMode(int mode){frameMode = mode;};
 		void disablePaintFrame(void){paintFrame = false;};
 
 		//

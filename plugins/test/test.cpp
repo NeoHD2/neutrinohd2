@@ -136,6 +136,7 @@ class CTestMenu : public CMenuTarget
 		void testTextBoxWidget();
 		//void testWindowWidget();
 		//void testProgressWindowWidget();
+		void testMultiWidget();
 
 		// compenents helpers
 		void testCBox();
@@ -1469,7 +1470,7 @@ void CTestMenu::testListFrameWidget()
 
 void CTestMenu::testListBoxWidget()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:testClistBoxWidget:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:testClistBoxWidget:\n");
 	
 	testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
@@ -1620,67 +1621,120 @@ void CTestMenu::testTextBoxWidget()
 	footersWidget = NULL;
 }
 
-/*
-void CTestMenu::testWindowWidget()
+void CTestMenu::testMultiWidget()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:testWindowWidget:\n");
+	dprintf(DEBUG_NORMAL, "\ntestMultiWidget\n");
+
+	CBox mainBox(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
+
+	CBox headBox;
+	headBox.iX = mainBox.iX;
+	headBox.iY = mainBox.iY;
+	headBox.iWidth = mainBox.iWidth;
+	headBox.iHeight = 40;
+
+	CBox footBox;
+	footBox.iHeight = 40;
+	footBox.iX = mainBox.iX;
+	footBox.iY = mainBox.iY + mainBox.iHeight - footBox.iHeight;
+	footBox.iWidth = mainBox.iWidth;
+
+	headers = new CHeaders(headBox, "multiWidget", NEUTRINO_ICON_MP3);
+
+	headers->enablePaintDate();
+	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	//headers->setColor(COL_DARK_TURQUOISE);
+	//headers->setCorner();
+	//headers->setGradient(nogradient);
+
+	footers = new CFooters(footBox);
+
+	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	//footers->setColor(COL_DARK_TURQUOISE);
+	//footers->setCorner();
+	//footers->setGradient(nogradient);
 	
-	testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
+	////
+	// leftWidget
+	leftBox.iWidth = 200;
+	leftBox.iHeight = mainBox.iHeight - headBox.iHeight - footBox.iHeight;
+	leftBox.iX = mainBox.iX;
+	leftBox.iY = mainBox.iY + headBox.iHeight;
 
-	windowWidget = new CWindow(frameBuffer->getScreenX() + 10, frameBuffer->getScreenY() + 10, frameBuffer->getScreenWidth() - 20, frameBuffer->getScreenHeight() - 20);
+	left_selected = 0;
 
-	windowWidget->setColor(COL_DARK_TURQUOISE);
-	windowWidget->setCorner(RADIUS_MID, CORNER_ALL);
+	leftWidget = new ClistBox(&leftBox);
 
-	headersWidget = new CHeaders(frameBuffer->getScreenX() + 10, frameBuffer->getScreenY() + 10, frameBuffer->getScreenWidth() - 20, 40, "CWidget(CWindow)", NEUTRINO_ICON_MP3);
+	leftWidget->setSelected(left_selected);
+	//leftWidget->enableShrinkMenu();
+	leftWidget->setOutFocus();
 
-	footersWidget = new CFooters(frameBuffer->getScreenX() + 10, frameBuffer->getScreenY() + 10 + frameBuffer->getScreenHeight() - 20 - 40, frameBuffer->getScreenWidth() - 20, 40);
+	ClistBoxItem *item1 = new ClistBoxItem("In den Kinos", true, NULL, this, "movie_in_cinema");
+	ClistBoxItem *item2 = new ClistBoxItem("Am", true, NULL, this, "movie_popular");
+	item2->setOption("populärsten");
+	item2->set2lines();
+	ClistBoxItem *item3 = new ClistBoxItem("Am besten", true, NULL, this, "movie_top_rated");
+	item3->setOption("bewertet");
+	item3->set2lines();
+	ClistBoxItem *item4 = new ClistBoxItem("Neue Filme", true, NULL, this, "movie_new");
+	CMenuSeparator *item5 = new CMenuSeparator();
+	CMenuSeparator *item6 = new CMenuSeparator();
+	CMenuSeparator *item7 = new CMenuSeparator();
+	CMenuSeparator *item8 = new CMenuSeparator();
+	ClistBoxItem *item9 = new ClistBoxItem("Beenden", true, NULL, this, "exit");
 
-	footersWidget->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-
-	//
-	pig = new CPig(frameBuffer->getScreenX() + 10 + frameBuffer->getScreenWidth() - 20 - 400, frameBuffer->getScreenY() + 10 + 40 + 20, 380, 260);
-
-	// grid
-	grid = new CGrid(frameBuffer->getScreenX() + 10, frameBuffer->getScreenY() + 10 + 40, frameBuffer->getScreenWidth() - 20, frameBuffer->getScreenHeight() - 20 - 80);
-
-	headersWidget->enablePaintDate();
-	headersWidget->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	headersWidget->setColor(COL_DARK_TURQUOISE);
-	//headersWidget->setCorner();
-	//headersWidget->setGradient(nogradient);
-
-	footersWidget->setColor(COL_DARK_TURQUOISE);
-	//footersWidget->setCorner();
-	//footersWidget->setGradient(nogradient);
-
-	testWidget->addItem(windowWidget);
-	testWidget->addItem(headersWidget);
-	testWidget->addItem(footersWidget);
-	testWidget->addItem(grid);
-	testWidget->addItem(pig);
-
+	leftWidget->addItem(item1);
+	leftWidget->addItem(new CMenuSeparator(LINE));
+	leftWidget->addItem(item2);
+	leftWidget->addItem(new CMenuSeparator(LINE));
+	leftWidget->addItem(item3);
+	leftWidget->addItem(new CMenuSeparator(LINE));
+	leftWidget->addItem(item4);
+	leftWidget->addItem(new CMenuSeparator(LINE));
+	leftWidget->addItem(item5);
+	leftWidget->addItem(item6);
+	leftWidget->addItem(item7);
+	leftWidget->addItem(item8);
+	leftWidget->addItem(new CMenuSeparator(LINE));
+	leftWidget->addItem(item9);
+	leftWidget->addItem(new CMenuSeparator(LINE));
+	////
+	
+	////
+	// leftWidget
+	rightBox.iWidth = mainBox.iWidth - leftBox.iWidth;
+	leftBox.iHeight = mainBox.iHeight - headBox.iHeight - footBox.iHeight;
+	leftBox.iX = mainBox.iX + leftBox.iWidth;
+	leftBox.iY = mainBox.iY + headBox.iHeight;
+	
+	CFrameBox *testFrameBox = new CFrameBox(&rightBox);
+	////
+	
+	
+	testWidget = new CWidget(&mainBox);
+	
+	testWidget->addItem(headers);
+	testWidget->addItem(footers);
+	testWidget->addItem(leftWidget);
+	//testWidget->addItem(testFrameBox);
+	
 	testWidget->exec(NULL, "");
-
-	delete testWidget;
-	testWidget = NULL;
-
-	delete windowWidget;
-	windowWidget = NULL;
-
+	
 	delete headersWidget;
 	headersWidget = NULL;
 
 	delete footersWidget;
 	footersWidget = NULL;
-
-	delete pig;
-	pig = NULL;
-
-	delete grid;
-	grid = NULL;
+	
+	delete testWidget;
+	testWidget = NULL;
+	
+	delete leftWidget;
+	leftWidget = NULL;
+	
+	delete testFrameBox;
+	testFrameBox = NULL;
 }
-*/
 
 // test
 void CTestMenu::test()
@@ -6847,14 +6901,12 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 		return RETURN_REPAINT;
 	}
-	/*
-	else if(actionKey == "windowwidget")
+	else if(actionKey == "multiwidget")
 	{
-		testWindowWidget();
+		testMultiWidget();
 
 		return RETURN_REPAINT;
 	}
-	*/
 	else if(actionKey == "txtinfo")
 	{
 		if(textWidget)
@@ -6958,10 +7010,7 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CWidget(listFrame)", true, NULL, this, "listframewidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(listBox)", true, NULL, this, "listboxmwidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(textBox)", true, NULL, this, "textboxwidget"));
-	//mainMenu->addItem(new CMenuSeparator(LINE));
-	//mainMenu->addItem(new CMenuForwarder("CWidget(CWindow)", true, NULL, this, "windowwidget"));
-	mainMenu->addItem(new CMenuSeparator(LINE) );
-	mainMenu->addItem(new CMenuForwarder("TEST", true, NULL, this, "testing"));
+	mainMenu->addItem(new CMenuForwarder("CWidget(multiWidget)", true, NULL, this, "multiwidget"));
 
 	//
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "menu CMenuItems"));

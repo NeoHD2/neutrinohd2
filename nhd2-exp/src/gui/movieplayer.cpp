@@ -1669,10 +1669,10 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	// position/duration
 	time_t tDisplayTime = position/1000;
 	time_t dDisplayTime = duration/1000;
-	char cDisplayTime[9];
+	char cDisplayTime[10];
 	char durationTime[11];
-	strftime(cDisplayTime, 9, "%T", gmtime(&tDisplayTime));//FIXME
-	strftime(durationTime, 11, "/%T", gmtime(&dDisplayTime));//FIXME
+	strftime(cDisplayTime, 11, "%T/", gmtime(&tDisplayTime));//FIXME
+	strftime(durationTime, 10, "%T", gmtime(&dDisplayTime));//FIXME
 
 	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight(), t_w/2, cDisplayTime/*play_time*/, COL_INFOBAR);
 

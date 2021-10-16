@@ -122,9 +122,6 @@
 #include <timerdclient/timerdtypes.h>
 #include <timerdclient/timerdclient.h>
 
-// libupnp
-#include <libupnpclient/upnpclient.h>
-
 // deamonc
 #include <daemonc/remotecontrol.h>
 %}
@@ -229,9 +226,6 @@
 //%include <lib/timerdclient/timerdmsg.h>
 %include <lib/timerdclient/timerdtypes.h>
 %include <lib/timerdclient/timerdclient.h>
-
-// libupnp
-//%include <lib/libupnpclient/upnpclient.h>
 
 // deamonc
 %include <src/daemonc/remotecontrol.h>

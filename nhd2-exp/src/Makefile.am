@@ -13,7 +13,6 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)/lib/libnet \
 	-I$(top_srcdir)/lib/libxmltree \
 	-I$(top_srcdir)/lib/libmd5sum \
-	-I$(top_srcdir)/lib/libupnpclient \
 	@FREETYPE_CFLAGS@ \
 	@FRIBIDI_CFLAGS@
 
@@ -84,7 +83,6 @@ neutrino_LDADD = \
 	$(top_builddir)/lib/libdvbsub/libdvbsub.a \
 	$(top_builddir)/lib/libtuxtxt/libtuxtxt.a \
 	$(top_builddir)/lib/jsoncpp/libjsoncpp.a \
-	$(top_builddir)/lib/libupnpclient/libtuxbox-upnpclient.a \
 	@CURL_LIBS@ \
 	@FREETYPE_LIBS@ \
 	@PNG_LIBS@ \
