@@ -1035,7 +1035,7 @@ bool CFrameBuffer::paintIconRaw(const std::string & filename, const int x, const
 }
 
 //
-bool CFrameBuffer::paintIcon(const std::string & filename, const int x, const int y, const int h, bool paint, int width, int height)
+bool CFrameBuffer::paintIcon(const std::string& filename, const int x, const int y, const int h, bool paint, int width, int height)
 {
 	if (!getActive())
 		return false;

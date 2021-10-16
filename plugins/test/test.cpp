@@ -230,6 +230,9 @@ class CTestMenu : public CMenuTarget
 		// channel/bouquet list
 		void testChannellist();
 		void testBouquetlist();
+		
+		//
+		void testSpinner();
 
 	public:
 		CTestMenu();
@@ -5215,6 +5218,58 @@ void CTestMenu::testBouquetlist()
 	webTVBouquetList->exec(true); // with zap
 }
 
+// spinner
+void CTestMenu::testSpinner()
+{
+	dprintf(DEBUG_NORMAL, "\ntestSpinner\n");
+	
+	int radar = 0;
+	uint32_t sec_timer_id = 0;
+	
+PAINT:	
+	std::string filename = PLUGINDIR;
+	filename += "/test/";
+	
+	//sprintf((char *)filename.c_str(), "/home/mohousch/tuxbox/neutrinohd2/generic/var/tuxbox/plugins/test/hourglass%d.png", radar);
+	
+	filename += "hourglass";
+	filename += to_string(radar);
+	filename += ".png";
+		
+	radar = (radar + 1) % 10;
+	CFrameBuffer::getInstance()->paintIcon(filename, 20, 20);
+	
+	// loop
+	neutrino_msg_t msg;
+	neutrino_msg_data_t data;
+	
+	// add sec timer
+	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
+
+	bool loop = true;
+
+	while(loop)
+	{
+		g_RCInput->getMsg_ms(&msg, &data, 10); // 1 sec
+
+		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
+		{
+			goto PAINT;
+		} 
+		else if (msg == RC_home) 
+		{
+			loop = false;
+		}
+
+		CFrameBuffer::getInstance()->blit();
+	}
+	
+	hide();
+
+	g_RCInput->killTimer(sec_timer_id);
+	sec_timer_id = 0;
+}
+
 int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::exec: actionKey:%s\n", actionKey.c_str());
@@ -6977,6 +7032,10 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 		return RETURN_REPAINT;
 	}
+	else if (actionKey == "spinner")
+	{
+		testSpinner();
+	}
 
 	showMenu();
 	
@@ -7132,6 +7191,10 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Channellist") );
 	mainMenu->addItem(new CMenuForwarder("CChannelList:", true, NULL, this, "channellist"));
 	mainMenu->addItem(new CMenuForwarder("CBouquetList:", true, NULL, this, "bouquetlist"));
+	
+	// divers
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Divers") );
+	mainMenu->addItem(new CMenuForwarder("Spinner:", true, NULL, this, "spinner"));
 	
 	mainMenu->exec(NULL, "");
 	//mainMenu->hide();

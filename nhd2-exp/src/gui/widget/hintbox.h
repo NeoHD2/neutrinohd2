@@ -70,6 +70,13 @@ class CHintBox
 		CScrollBar scrollBar;
 		
 		void refresh(void);
+		
+		// hourglass
+		bool paintHG;
+		uint32_t sec_timer_id;
+		int count;
+		void paintHourGlass();
+		void hideHourGlass();
 
 	public:
 		// Text is UTF-8 encoded

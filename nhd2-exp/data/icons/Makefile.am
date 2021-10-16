@@ -81,5 +81,6 @@ install_DATA += \
 
 # misc
 install_DATA += \
-	nopreview.jpg tmdb.png star-on.png star-off.png
+	nopreview.jpg tmdb.png star-on.png star-off.png \
+	hourglass0.png hourglass1.png hourglass2.png hourglass3.png hourglass4.png hourglass5.png hourglass6.png
 

@@ -124,6 +124,11 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
 	m_cBoxWindow.enableShadow();
+	
+	// HG
+	paintHG = false;
+	count = 0;
+	sec_timer_id = 0;
 }
 
 CHintBox::CHintBox(const char * Caption, const char * const Text, const int Width, const char * const Icon)
@@ -204,6 +209,11 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
 	m_cBoxWindow.enableShadow();
+	
+	// HG
+	paintHG = false;
+	count = 0;
+	sec_timer_id = 0;
 }
 
 CHintBox::~CHintBox(void)
@@ -291,14 +301,45 @@ void CHintBox::hide(void)
 	CFrameBuffer::getInstance()->blit();	
 }
 
+void CHintBox::paintHourGlass()
+{
+	dprintf(DEBUG_NORMAL, "\nVHintBox::paintHourGlass:\n");
+	
+	std::string filename = "hourglass";
+	filename += to_string(count);
+	//filename += ".png";
+		
+	count = (count + 1) % 10;
+	
+	hideHourGlass();
+	
+	CFrameBuffer::getInstance()->paintIcon(filename, CFrameBuffer::getInstance()->getScreenX() + 20, CFrameBuffer::getInstance()->getScreenY() + 20);
+}
+
+void CHintBox::hideHourGlass()
+{
+	int ih = 0;
+	int iw = 0;
+	
+	CFrameBuffer::getInstance()->getIconSize("hourglass0", &iw, &ih);
+	
+	CFrameBuffer::getInstance()->paintBackgroundBoxRel(CFrameBuffer::getInstance()->getScreenX() + 20, CFrameBuffer::getInstance()->getScreenY() + 20, 48, 48);
+}
+
 int CHintBox::exec(int timeout)
 {
 	int res = messages_return::none;
 
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
+	
+	// HG
+	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
 
 	paint();
+	
+	//if (paintHG)
+		paintHourGlass();
 
 	if ( timeout == -1 )
 		timeout = g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR];
@@ -307,6 +348,8 @@ int CHintBox::exec(int timeout)
 
 	while ( ! ( res & ( messages_return::cancel_info | messages_return::cancel_all ) ) )
 	{
+		//paintHourGlass();
+		
 		g_RCInput->getMsgAbsoluteTimeout( &msg, &data, &timeoutEnd );
 
 		if ((msg == RC_timeout) || (msg == RC_home) || (msg == RC_ok))
@@ -324,6 +367,10 @@ int CHintBox::exec(int timeout)
 		{
 			res = messages_return::cancel_info;
 			g_RCInput->postMsg(msg, data);
+		}
+		else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
+		{
+			paintHourGlass();
 		}
 		else
 		{
@@ -343,6 +390,10 @@ int CHintBox::exec(int timeout)
 	}
 
 	hide();
+	
+	hideHourGlass();
+	g_RCInput->killTimer(sec_timer_id);
+	sec_timer_id = 0;
 
 	return res;
 }
