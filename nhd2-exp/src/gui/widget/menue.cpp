@@ -771,13 +771,14 @@ void CMenuWidget::paintItemInfo(int pos)
 				textBox->disablePaintBackground();
 				textBox->setMode(AUTO_WIDTH);
 				
+				// itemIcon
 				std::string icon;
 				icon.clear();
 				
 				if (item->isPlugin)
 					icon = item->itemIcon;
 				else				
-					icon = g_settings.hint_icons_dir + item->itemIcon.c_str() + ".png";
+					icon = g_settings.icons_dir + item->itemIcon.c_str() + ".png";
 
 				// HelpText
 				if(!item->itemHelpText.empty())

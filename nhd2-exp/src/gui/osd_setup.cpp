@@ -670,25 +670,6 @@ int COSDDiverses::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 		return ret;
 	}
-	else if(actionKey == "select_hint_icons_dir")
-	{
-		CFileBrowser b;
-		b.Dir_Mode = true;
-		
-		if (b.exec(g_settings.hint_icons_dir.c_str())) 
-		{
-			g_settings.hint_icons_dir = b.getSelectedFile()->Name + "/";
-
-			dprintf(DEBUG_NORMAL, "CMiscSettings::exec: new hint_icons dir %s\n", g_settings.hint_icons_dir.c_str());
-
-			CFrameBuffer::getInstance()->setHintIconBasePath(g_settings.hint_icons_dir);
-			//CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
-		}
-		
-		getString() = g_settings.hint_icons_dir;
-		
-		return ret;
-	}
 	
 	showMenu();
 	
@@ -777,9 +758,6 @@ void COSDDiverses::showMenu()
 	
 	// icons dir
 	osdDiverseSettings.addItem(new CMenuForwarder("Icons Dir", true, g_settings.icons_dir.c_str(), this, "select_icons_dir"));
-
-	// hint icons dir
-	osdDiverseSettings.addItem(new CMenuForwarder("Hint Icons Dir", true, g_settings.hint_icons_dir.c_str(), this, "select_hint_icons_dir"));
 	
 	// logos dir
 	osdDiverseSettings.addItem( new CMenuForwarder(LOCALE_MISCSETTINGS_LOGOSDIR, true, g_settings.logos_dir.c_str(), this, "logos_dir" ) );

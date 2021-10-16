@@ -956,8 +956,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	// icons dir
 	g_settings.icons_dir = configfile.getString("icons_dir", DATADIR "/neutrino/icons/");
-	g_settings.hint_icons_dir = configfile.getString("hint_icons_dir", DATADIR "/neutrino/hint_icons/");
-	
 	
 	//set OSD resolution
 #define DEFAULT_X_OFF 35
@@ -1389,7 +1387,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	// icons dir
 	configfile.setString("icons_dir", g_settings.icons_dir);
-	configfile.setString("hint_icons_dir", g_settings.hint_icons_dir);
 
 	// mode
 	//configfile.setInt32("mode", mode);	
@@ -2480,7 +2477,6 @@ int CNeutrinoApp::run(int argc, char **argv)
 
 	// icon path
 	frameBuffer->setIconBasePath(g_settings.icons_dir);
-	frameBuffer->setHintIconBasePath(g_settings.hint_icons_dir);
 
 	// setup fonts
 	SetupFonts();

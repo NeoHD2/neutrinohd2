@@ -1123,7 +1123,6 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 
 			if(!itemIcon.empty())
 				frameBuffer->paintHintIcon(itemIcon, x, y, item_width, item_height);
-
 		}
 
 		// vfd
@@ -1450,7 +1449,6 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 
 			if(!itemIcon.empty())
 				frameBuffer->paintHintIcon(itemIcon, x /*+ ICON_OFFSET/2*/, y /*+ ICON_OFFSET/2*/, item_width /*- ICON_OFFSET*/, item_height /*- ICON_OFFSET*/);
-
 		}
 
 		// locale ???
@@ -2477,8 +2475,6 @@ void ClistBox::paintItemInfo(int pos)
 			//TEST
 			if(paintFootInfo)
 			{
-			//if (footInfoMode == FOOT_HINT_MODE)
-			//{
 				CMenuItem* item = items[pos];
 	
 				// detailslines box
@@ -2501,7 +2497,6 @@ void ClistBox::paintItemInfo(int pos)
 					textBox->setText(item->itemHelpText.c_str(), !item->itemIcon.empty()? item->itemIcon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
 					textBox->paint();
 				}
-			//}
 			}
 			else
 			{

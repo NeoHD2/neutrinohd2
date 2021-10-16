@@ -85,7 +85,6 @@ CFrameBuffer::CFrameBuffer()
 #endif
 
 	iconBasePath = "";
-	hintIconBasePath = "";
 	available  = 0;
 	cmap.start = 0;
 	cmap.len = 256;
@@ -839,11 +838,6 @@ void CFrameBuffer::setIconBasePath(const std::string & iconPath)
 	iconBasePath = iconPath;
 }
 
-void CFrameBuffer::setHintIconBasePath(const std::string & iconPath)
-{
-	hintIconBasePath = iconPath;
-}
-
 // get icon size
 void CFrameBuffer::getIconSize(const char * const filename, int * width, int * height)
 {
@@ -1093,7 +1087,7 @@ bool CFrameBuffer::paintHintIcon(const std::string &filename, int posx, int posy
 		return displayImage(filename, posx, posy, width, height);
 	else
 	{
-		std::string newname = hintIconBasePath + filename.c_str() + ".png";		
+		std::string newname = iconBasePath + filename.c_str() + ".png";		
 
 		return displayImage(newname, posx, posy, width, height);
 	}
