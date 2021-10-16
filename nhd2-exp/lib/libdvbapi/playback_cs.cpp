@@ -1122,22 +1122,21 @@ bool cPlayback::SetPosition(int64_t position)
 		
 	if(m_gst_playbin)
 	{
-		gint64 pos = 0;
+		gint64 pos = position;
 		GstFormat fmt = GST_FORMAT_TIME;
 
-		//gst_element_query_position(m_gst_playbin, fmt, &pos);
 #if GST_VERSION_MAJOR < 1
 		gst_element_query_duration(m_gst_playbin, &fmt, &pos);
 #else
 		gst_element_query_duration(m_gst_playbin, fmt, &pos);
 #endif
 
-		time_nanoseconds = pos + (position * 1000000.0);
+		//time_nanoseconds = pos + (position * 1000000.0);
+		time_nanoseconds = position * 1000000.0;
 
 		if(time_nanoseconds < 0) 
 			time_nanoseconds = 0;
 		
-		//gst_element_seek(m_gst_playbin, 1.0, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH, GST_SEEK_TYPE_SET, time_nanoseconds, GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE);
 		gst_element_seek(m_gst_playbin, 1.0, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_ACCURATE), GST_SEEK_TYPE_SET, time_nanoseconds, GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE);
 	}
 #else
