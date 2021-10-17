@@ -90,6 +90,8 @@ class CHintBox
 
 		void paint(void);
 		void hide(void);
+		
+		void enablePaintHG(void){paintHG = true;};
 
 		int exec(int timeout = -1);
 };

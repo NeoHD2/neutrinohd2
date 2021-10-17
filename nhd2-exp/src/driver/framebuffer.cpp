@@ -661,6 +661,7 @@ bool CFrameBuffer::calcCorners(int *ofs, int *ofl, int *ofr, const int& dy, cons
 
 	if (ofs != NULL) 
 		*ofs = _ofs;
+		
 	return ret;
 }
 
@@ -1031,6 +1032,8 @@ bool CFrameBuffer::paintIconRaw(const std::string & filename, const int x, const
 //
 bool CFrameBuffer::paintIcon(const std::string& filename, const int x, const int y, const int h, bool paint, int width, int height)
 {
+	dprintf(DEBUG_DEBUG, "CFrameBuffer::paintIcon: %s\n", filename.c_str());
+	
 	if (!getActive())
 		return false;
 	
@@ -1040,18 +1043,20 @@ bool CFrameBuffer::paintIcon(const std::string& filename, const int x, const int
 	std::string newname = iconBasePath + filename.c_str() + ".png";
 		
 	if(width == 0 || height == 0)	
-			getIconSize(newname.c_str(), &width, &height);
+		getIconSize(newname.c_str(), &width, &height);
 
 	data = getImage(newname, width, height);
 		
 	if(!data) 
 	{
-		dprintf(DEBUG_DEBUG, "paintIcon: error while loading icon: %s\n", newname.c_str());
+		dprintf(DEBUG_DEBUG, "CFrameBuffer::paintIcon: %s\n", filename.c_str());
+		
+		newname = filename;
 			
 		if(width == 0 || height == 0)	
-			getIconSize(filename.c_str(), &width, &height);
+			getIconSize(newname.c_str(), &width, &height);
 
-		data = getImage(filename, width, height);
+		data = getImage(newname, width, height);
 	}
 
 	if(data) 
@@ -1078,8 +1083,10 @@ _display:
 }
 
 // paintHintIcon
-bool CFrameBuffer::paintHintIcon(const std::string &filename, int posx, int posy, int width, int height)
+bool CFrameBuffer::paintHintIcon(const std::string& filename, int posx, int posy, int width, int height)
 {
+	dprintf(DEBUG_DEBUG, "CFrameBuffer::paintHintIcon: %s\n", filename.c_str());
+	
 	if (!getActive())
 		return false;
 
@@ -1848,6 +1855,7 @@ void * CFrameBuffer::convertRGB2FB(unsigned char * rgbbuff, unsigned long x, uns
 	return (void *) fbbuff;
 }
 
+// getImage
 fb_pixel_t * CFrameBuffer::getImage(const std::string &name, int width, int height, ScalingMode scaling)
 {
 	int x, y;

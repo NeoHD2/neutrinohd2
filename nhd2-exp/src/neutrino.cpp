@@ -967,6 +967,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		g_settings.screen_StartY = DEFAULT_Y_OFF;
 		g_settings.screen_EndX = frameBuffer->getScreenWidth(true) - DEFAULT_X_OFF;
 		g_settings.screen_EndY = frameBuffer->getScreenHeight(true) - DEFAULT_Y_OFF;
+		
 		g_settings.screen_width = frameBuffer->getScreenWidth(true);
 		g_settings.screen_height = frameBuffer->getScreenHeight(true);
 	}	
