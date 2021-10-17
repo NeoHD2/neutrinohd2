@@ -4,13 +4,15 @@
 </h1>
 
 -------
-![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/mainmenu.png)
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/mainmenu.bmp)
 
-![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/plugins.png)
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/pluginsbrowser.bmp)
 
-![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/movietrailer.png)
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/moviebrowser.bmp)
 
-![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/movieinfowidget.png)
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/movietrailer.bmp)
+
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/movieinfowidget.bmp)
 
 ![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/mainmenu_1.bmp)
 

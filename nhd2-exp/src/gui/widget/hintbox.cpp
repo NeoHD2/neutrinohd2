@@ -120,10 +120,10 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 	cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - cFrameBox.iWidth ) >> 1);
 	cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - cFrameBox.iHeight) >> 2);
 	
-	m_cBoxWindow.setPosition(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
-	m_cBoxWindow.enableSaveScreen();
-	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	m_cBoxWindow.enableShadow();
+	m_cBoxWindow = new CWindow(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
+	m_cBoxWindow->enableSaveScreen();
+	m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
+	m_cBoxWindow->enableShadow();
 	
 	// HG
 	paintHG = true;
@@ -205,10 +205,10 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - cFrameBox.iHeight) >> 2);
 	
 	// Box
-	m_cBoxWindow.setPosition(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
-	m_cBoxWindow.enableSaveScreen();
-	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	m_cBoxWindow.enableShadow();
+	m_cBoxWindow = new CWindow(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
+	m_cBoxWindow->enableSaveScreen();
+	m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
+	m_cBoxWindow->enableShadow();
 	
 	// HG
 	paintHG = true;
@@ -236,7 +236,7 @@ void CHintBox::paint(void)
 void CHintBox::refresh(void)
 {
 	//body
-	m_cBoxWindow.paint();
+	m_cBoxWindow->paint();
 	
 	// title
 	cFrameBoxTitle.iX = cFrameBox.iX + 1;
@@ -296,7 +296,7 @@ void CHintBox::hide(void)
 	//cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - cFrameBox.iWidth ) >> 1);
 	//cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - cFrameBox.iHeight) >> 2);
 
-	m_cBoxWindow.hide();
+	m_cBoxWindow->hide();
 
 	CFrameBuffer::getInstance()->blit();	
 }

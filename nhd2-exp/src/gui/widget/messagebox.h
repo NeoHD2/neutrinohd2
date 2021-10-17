@@ -74,7 +74,7 @@ typedef enum buttons_
 class CMessageBox
 {
 	protected:
-		CWindow m_cBoxWindow;
+		CWindow* m_cBoxWindow;
 
 		unsigned int m_currentPage;
 		std::vector<int>m_startEntryOfPage;

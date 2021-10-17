@@ -56,7 +56,7 @@ class CHintBox
 		CBox cFrameBoxTitle;
 		CBox cFrameBoxItem;
 		
-		CWindow m_cBoxWindow;
+		CWindow* m_cBoxWindow;
 		//CWindow m_cBodyWindow;
 
 		unsigned int entries_per_page;
