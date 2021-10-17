@@ -222,7 +222,6 @@ src/system/Makefile
 data/Makefile
 data/fonts/Makefile
 data/icons/Makefile
-data/hint_icons/Makefile
 data/iso-codes/Makefile
 data/locale/Makefile
 data/config/Makefile

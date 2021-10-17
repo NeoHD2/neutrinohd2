@@ -292,10 +292,6 @@ void CHintBox::hide(void)
 {
 	dprintf(DEBUG_NORMAL, "CHintBox::hide:\n");
 
-	// reinit
-	//cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - cFrameBox.iWidth ) >> 1);
-	//cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - cFrameBox.iHeight) >> 2);
-
 	m_cBoxWindow->hide();
 
 	CFrameBuffer::getInstance()->blit();	
@@ -308,7 +304,7 @@ void CHintBox::paintHourGlass()
 	std::string filename = "hourglass";
 	filename += to_string(count);
 		
-	count = (count + 1) % 10;
+	count = (count + 1) % 7;
 	
 	hideHourGlass();
 	

@@ -86,7 +86,7 @@ install_DATA += \
 	
 # hints
 # mainmenu
-install_DATA = \
+install_DATA += \
 	hint_tvmode.png \
 	hint_radiomode.png \
 	hint_webtv.png \
