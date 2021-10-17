@@ -563,6 +563,8 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 		iptv = true;
 	else if( strcasecmp("m3u8", extension.c_str()) == 0)
 		playlist = true;
+	else if( strcasecmp("m3u", extension.c_str()) == 0)
+		playlist = true;
 	if( strcasecmp("xml", extension.c_str()) == 0)
 		webtv = true;
 
@@ -808,7 +810,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 			else if(strlen(cLine) > 0 && cLine[0] != '#')
 			{
 				char *url = NULL;
-				if ((url = strstr(cLine, "http://")) || (url = strstr(cLine, "https://")) || (url = strstr(cLine, "rtmp://")) || (url = strstr(cLine, "rtsp://")) || (url = strstr(cLine, "mmsh://")) ) 
+				if ((url = strstr(cLine, "http://")) || (url = strstr(cLine, "https://")) || (url = strstr(cLine, "rtmp://")) || (url = strstr(cLine, "rtsp://")) || (url = strstr(cLine, "rtp://")) || (url = strstr(cLine, "mmsh://"))) 
 				{
 					if (url != NULL) 
 					{
