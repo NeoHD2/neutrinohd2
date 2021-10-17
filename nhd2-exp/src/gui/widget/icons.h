@@ -24,10 +24,10 @@
 
 
 // buttons
-#define NEUTRINO_ICON_BUTTON_BLUE			"blau"
-#define NEUTRINO_ICON_BUTTON_GREEN			"gruen"
-#define NEUTRINO_ICON_BUTTON_RED			"rot"
-#define NEUTRINO_ICON_BUTTON_YELLOW			"gelb"
+#define NEUTRINO_ICON_BUTTON_BLUE			"btn_blue"
+#define NEUTRINO_ICON_BUTTON_GREEN			"btn_green"
+#define NEUTRINO_ICON_BUTTON_RED			"btn_red"
+#define NEUTRINO_ICON_BUTTON_YELLOW			"btn_yellow"
 
 //
 #define NEUTRINO_ICON_BUTTON_SETUP			"menu"
@@ -60,9 +60,7 @@
 #define NEUTRINO_ICON_BUTTON_RIGHT			"right"
 #define NEUTRINO_ICON_BUTTON_LEFT			"left"
 #define NEUTRINO_ICON_BUTTON_EPG			"epg"
-//#define NEUTRINO_ICON_BUTTON_PLUS			"plus"
-//#define NEUTRINO_ICON_BUTTON_MINUS			"minus"
-#define NEUTRINO_ICON_BUTTON_MARK			"mark"
+#define NEUTRINO_ICON_BUTTON_MARK			"marker_dialog_ok"
 
 //
 #define NEUTRINO_ICON_NOT_MOUNTED			"not_mounted"

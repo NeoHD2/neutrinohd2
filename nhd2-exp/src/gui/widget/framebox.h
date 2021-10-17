@@ -158,7 +158,6 @@ class CFrameBox : public CWidgetItem
 
 		virtual void paintFrames();
 
-		//int frameMode;
 		bool paintFrame;
 
 		std::string actionKey;

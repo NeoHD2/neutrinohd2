@@ -3,13 +3,13 @@ installdir = $(DATADIR)/neutrino/icons
 # buttons
 install_DATA = \
 	0.png 1.png 2.png 3.png 4.png 5.png 6.png 7.png 8.png 9.png \
-	blau.png gelb.png gruen.png rot.png \
+	btn_blue.png btn_yellow.png btn_green.png btn_red.png \
 	down.png up.png right.png left.png \
 	menu.png menu_small.png help.png help_small.png home.png \
 	mute.png mute_small.png mute_zap_gray.png mute_zap_green.png \
 	epg.png \
 	softupdate_small.png \
-	mounted.png volume.png mark.png marker_hidden.png not_mounted.png numericpad.png ok.png
+	mounted.png volume.png not_mounted.png numericpad.png ok.png
 	
 # headers
 install_DATA += \
@@ -36,7 +36,7 @@ install_DATA += \
 	
 # channellist
 install_DATA += \
-	marker_scrambled.png marker_hd.png marker_uhd.png
+	marker_scrambled.png marker_hd.png marker_uhd.png marker_dialog_ok.png marker_hidden.png
 	
 # filetypes
 install_DATA += \
