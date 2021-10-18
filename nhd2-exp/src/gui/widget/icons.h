@@ -80,7 +80,7 @@
 #define NEUTRINO_ICON_ERROR				"error"
 #define NEUTRINO_ICON_FEATURES			"features"
 #define NEUTRINO_ICON_GAMES				"games"
-#define NEUTRINO_ICON_INFO				"info"
+#define NEUTRINO_ICON_INFO				"information"
 #define NEUTRINO_ICON_KEYBINDING			"keybinding"
 #define NEUTRINO_ICON_LOCK				"lock"
 #define NEUTRINO_ICON_PROTECTING			"protecting"

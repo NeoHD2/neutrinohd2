@@ -14,6 +14,7 @@ install_DATA = \
 	ok.png \
 	softupdate_small.png \
 	volume.png \
+	epg.png \
 	webtv_small.png
 	
 
