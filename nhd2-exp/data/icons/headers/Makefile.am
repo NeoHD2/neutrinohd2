@@ -6,6 +6,7 @@ install_DATA = \
 	error.png \
 	features.png \
 	games.png \
+	information.png \
 	keybinding.png \
 	language.png \
 	lcd.png \
