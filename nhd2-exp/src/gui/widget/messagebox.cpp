@@ -65,15 +65,18 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, const char * const Tex
 		begin = strtok(NULL, "\n");
 	}
 	
+	//
+	showbuttons = ShowButtons;
+	
 	init(g_Locale->getText(Caption), Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
-	m_height += (m_fheight << 1);
+	//m_height += (m_fheight << 1);
 
 	result = Default;
 
-	showbuttons = ShowButtons;
+	//showbuttons = ShowButtons;
 
 	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(g_Locale->getText(LOCALE_MESSAGEBOX_CANCEL), true); // UTF-8
 	int ButtonWidth = 20 + 33 + MaxButtonTextWidth + 5;
@@ -104,15 +107,18 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, c
 	m_message = NULL;
 	m_lines = Lines;
 	
+	//
+	showbuttons = ShowButtons;
+	
 	init(g_Locale->getText(Caption), Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
-	m_height += (m_fheight << 1);
+	//m_height += (m_fheight << 1);
 
 	result = Default;
 
-	showbuttons = ShowButtons;
+	//showbuttons = ShowButtons;
 	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(g_Locale->getText(LOCALE_MESSAGEBOX_CANCEL), true); // UTF-8
 	int ButtonWidth = 20 + 33 + MaxButtonTextWidth + 5;
 	int num = 0;
@@ -155,15 +161,18 @@ CMessageBox::CMessageBox(const char* const Caption, const char * const Text, con
 		begin = strtok(NULL, "\n");
 	}
 	
+	//
+	showbuttons = ShowButtons;
+	
 	init(Caption, Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
-	m_height += (m_fheight << 1);
+	//m_height += (m_fheight << 1);
 
 	result = Default;
 
-	showbuttons = ShowButtons;
+	//showbuttons = ShowButtons;
 
 	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(g_Locale->getText(LOCALE_MESSAGEBOX_CANCEL), true); // UTF-8
 	int ButtonWidth = 20 + 33 + MaxButtonTextWidth + 5;
@@ -194,15 +203,18 @@ CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const i
 	m_message = NULL;
 	m_lines = Lines;
 	
+	//
+	showbuttons = ShowButtons;
+	
 	init(Caption, Width, Icon);
 
 	returnDefaultOnTimeout = false;
 
-	m_height += (m_fheight << 1);
+	//m_height += (m_fheight << 1);
 
 	result = Default;
 
-	showbuttons = ShowButtons;
+	//showbuttons = ShowButtons;
 	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(g_Locale->getText(LOCALE_MESSAGEBOX_CANCEL), true); // UTF-8
 	int ButtonWidth = 20 + 33 + MaxButtonTextWidth + 5;
 	int num = 0;
@@ -255,7 +267,7 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 	m_width = Width;
 	int nw = 0;
 	m_theight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
-	m_fheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
+	m_fheight = (showbuttons & mbNone)? 0 : g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
 	m_height  = m_theight + m_fheight;
 	m_maxEntriesPerPage = 0;
 

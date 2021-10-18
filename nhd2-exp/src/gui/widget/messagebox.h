@@ -83,7 +83,7 @@ class CMessageBox
 
 		int m_width;
 		int m_height;
-
+		int m_iheight;
 		int m_fheight;
 		int m_theight;
 
