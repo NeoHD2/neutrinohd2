@@ -3,11 +3,9 @@ installdir = $(DATADIR)/neutrino/icons
 install_DATA = \
 	audio.png \
 	colors.png \
-	epg.png \
 	error.png \
 	features.png \
 	games.png \
-	info.png \
 	keybinding.png \
 	language.png \
 	lcd.png \
