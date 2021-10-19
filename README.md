@@ -20,7 +20,7 @@
 
 ![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/mainmenu_3.bmp)
 
-## How to build neutrinohd2 for PC (x86) ##
+## How to build neutrino-HD2 for PC (x86) ##
 
 * check preqs (debian):
 
@@ -38,9 +38,6 @@ $:~ cd neutrinohd2
 ```bash
 $:~ make
 ```
-
-
-- optional:
 
 * to run neutrino
 ```bash
