@@ -52,21 +52,26 @@ unsigned int CBaseDec::mSamplerate = 0;
 
 void ShoutcastCallback(void *arg)
 {
+	dprintf(DEBUG_NORMAL, "%s\n", __FUNCTION__);
+	
 	CAudioPlayer::getInstance()->sc_callback(arg);
 }
 
 CBaseDec::RetCode CBaseDec::DecoderBase(CAudiofile* const in)
 {
+	dprintf(DEBUG_NORMAL, "CBaseDec::%s\n", __FUNCTION__);
+	
 	RetCode Status = OK;
 
 	FILE* fp = NULL;
+	
 	if(in->FileExtension == CFile::EXTENSION_URL)
 	{
 		fp = fopen( in->Filename.c_str(), "rc" );
 
 		if ( fp == NULL )
 		{
-			dprintf(DEBUG_DEBUG, "CAudioPlayer::play: Error opening file %s for meta data reading.\n", in->Filename.c_str() );
+			dprintf(DEBUG_DEBUG, "CBaseDec::DecoderBase: Error opening file %s for meta data reading.\n", in->Filename.c_str() );
 
 			Status = INTERNAL_ERR;
 		}
@@ -74,12 +79,12 @@ CBaseDec::RetCode CBaseDec::DecoderBase(CAudiofile* const in)
 		{
 
 			if ( fstatus(fp, ShoutcastCallback) < 0 )
-				fprintf( stderr, "Error adding shoutcast callback: %s\n", err_txt );
+				fprintf( stderr, "CBaseDec::DecoderBase:Error adding shoutcast callback: %s\n", err_txt );
 		}
 
 		if ( fclose( fp ) == EOF )
 		{
-			fprintf( stderr, "Could not close file %s.\n", in->Filename.c_str() );
+			fprintf( stderr, "CBaseDec::DecoderBase:Could not close file %s.\n", in->Filename.c_str() );
 		}
 	}
 
@@ -88,6 +93,8 @@ CBaseDec::RetCode CBaseDec::DecoderBase(CAudiofile* const in)
 
 bool CBaseDec::GetMetaDataBase(CAudiofile* const in, const bool nice)
 {
+	dprintf(DEBUG_NORMAL, "CBaseDec::%s\n", __FUNCTION__);
+	
 	bool Status = true;
 	FILE* fp;
 
@@ -137,6 +144,8 @@ bool CBaseDec::GetMetaDataBase(CAudiofile* const in, const bool nice)
 
 void CBaseDec::Init()
 {
+	dprintf(DEBUG_NORMAL, "CBaseDec::%s\n", __FUNCTION__);
+	
 	mSamplerate = 0;
 }
 

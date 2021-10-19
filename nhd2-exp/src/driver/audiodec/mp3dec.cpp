@@ -359,10 +359,12 @@ void CMP3Dec::CreateInfo(CAudioMetaData * m, int FrameNumber)
 CMP3Dec* CMP3Dec::getInstance()
 {
 	static CMP3Dec *MP3Dec = NULL;
+	
 	if(MP3Dec == NULL)
 	{
 		MP3Dec = new CMP3Dec();
 	}
+	
 	return MP3Dec;
 }
 

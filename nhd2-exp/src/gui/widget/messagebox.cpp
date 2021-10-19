@@ -72,7 +72,7 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, const char * const Tex
 
 	returnDefaultOnTimeout = false;
 
-	//m_height += (m_fheight << 1);
+	m_height += (m_iheight << 1);
 
 	result = Default;
 
@@ -114,7 +114,7 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, c
 
 	returnDefaultOnTimeout = false;
 
-	//m_height += (m_fheight << 1);
+	m_height += (m_iheight << 1);
 
 	result = Default;
 
@@ -168,7 +168,7 @@ CMessageBox::CMessageBox(const char* const Caption, const char * const Text, con
 
 	returnDefaultOnTimeout = false;
 
-	//m_height += (m_fheight << 1);
+	m_height += (m_iheight << 1);
 
 	result = Default;
 
@@ -210,7 +210,7 @@ CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const i
 
 	returnDefaultOnTimeout = false;
 
-	//m_height += (m_fheight << 1);
+	m_height += (m_iheight << 1);
 
 	result = Default;
 
@@ -267,7 +267,8 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 	m_width = Width;
 	int nw = 0;
 	m_theight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
-	m_fheight = (showbuttons & mbNone)? 0 : g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
+	m_fheight = (showbuttons & mbNone)? 0 : g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
+	m_iheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
 	m_height  = m_theight + m_fheight;
 	m_maxEntriesPerPage = 0;
 
@@ -290,7 +291,9 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 		{
 			//
 			if ((*item)->getType() == Drawable::DTYPE_TEXT)
-				m_fheight = (*item)->getHeight();
+				m_iheight = (*item)->getHeight();
+			//m_height += m_iheight;
+			
 			//
 			if ((*item)->getHeight() > maxHeight)
 				maxHeight = (*item)->getHeight();
@@ -326,10 +329,10 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 		
 		if (m_height > MESSAGEBOX_MAX_HEIGHT || pagebreak) 
 		{
-			if (m_height-maxHeight > maxOverallHeight)
+			if (m_height - maxHeight > maxOverallHeight)
 				maxOverallHeight = m_height - maxHeight;
 			
-			m_height = m_theight + m_fheight + maxHeight;
+			m_height = m_theight + m_iheight + m_fheight /*+ maxHeight*/;
 			
 			if (pagebreak)
 				m_startEntryOfPage.push_back(line + 1);
@@ -343,6 +346,7 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 				m_maxEntriesPerPage = m_startEntryOfPage[page] - m_startEntryOfPage[page -1];
 			}
 		}
+		
 		line++;
 	}
 
@@ -416,10 +420,9 @@ void CMessageBox::refresh()
 	headers.setCorner();
 	headers.paint();
 
-	//Body
-	int yPos  = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_theight + (m_fheight >> 1);
+	//TextBody
+	int yPos  = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_theight /*+ (m_fheight >> 1)*/;
 
-	// text
 	for (ContentLines::iterator it = m_lines.begin() + m_startEntryOfPage[m_currentPage]; it != m_lines.begin() + m_startEntryOfPage[m_currentPage + 1] && it != m_lines.end(); it++)
 	{
 		int xPos = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + BORDER_LEFT;
@@ -434,6 +437,7 @@ void CMessageBox::refresh()
 			if ((*d)->getHeight() > maxHeight)
 				maxHeight = (*d)->getHeight();
 		}
+		
 		yPos += maxHeight;
 	}
 

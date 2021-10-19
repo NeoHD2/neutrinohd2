@@ -49,6 +49,8 @@ extern cPlayback *playback;
 
 void CAudioPlayer::stop()
 {
+	dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	state = CBaseDec::STOP_REQ;
 
 	//
@@ -65,6 +67,8 @@ void CAudioPlayer::stop()
 
 void CAudioPlayer::pause()
 {
+	dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	if(state == CBaseDec::PLAY || state == CBaseDec::FF || state == CBaseDec::REV)
 	{
 		state = CBaseDec::PAUSE;
@@ -81,6 +85,8 @@ void CAudioPlayer::pause()
 
 void CAudioPlayer::ff(unsigned int seconds)
 {
+	dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	m_SecondsToSkip = seconds;
 
 	if(state == CBaseDec::PLAY || state == CBaseDec::PAUSE || state == CBaseDec::REV)
@@ -99,6 +105,8 @@ void CAudioPlayer::ff(unsigned int seconds)
 
 void CAudioPlayer::rev(unsigned int seconds)
 {
+	dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	m_SecondsToSkip = seconds;
 
 	if(state == CBaseDec::PLAY || state == CBaseDec::PAUSE || state == CBaseDec::FF)
@@ -129,6 +137,8 @@ CAudioPlayer * CAudioPlayer::getInstance()
 
 void * CAudioPlayer::PlayThread( void * /*arg*/)
 {
+	//dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	//
 	CBaseDec::RetCode Status = CBaseDec::DecoderBase(&getInstance()->m_Audiofile);
 
@@ -188,6 +198,8 @@ void * CAudioPlayer::PlayThread( void * /*arg*/)
 
 bool CAudioPlayer::play(const CAudiofile *file, const bool highPrio)
 {
+	dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	if (state != CBaseDec::STOP)
 		stop();
 
@@ -226,16 +238,22 @@ bool CAudioPlayer::play(const CAudiofile *file, const bool highPrio)
 
 CAudioPlayer::CAudioPlayer()
 {
+	dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	init();
 }
 
 CAudioPlayer::~CAudioPlayer()
 {
+	dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	CFileHelpers::getInstance()->removeDir("/tmp/audioplayer");
 }
 
 void CAudioPlayer::init()
 {
+	dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	CBaseDec::Init();
 	
 	state = CBaseDec::STOP;	
@@ -246,6 +264,8 @@ void CAudioPlayer::init()
 
 void CAudioPlayer::sc_callback(void *arg)
 {
+	dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	bool changed = false;
 	CSTATE *stat = (CSTATE*)arg;
 	
@@ -284,6 +304,8 @@ void CAudioPlayer::sc_callback(void *arg)
 
 void CAudioPlayer::clearFileData()
 {
+	dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	m_Audiofile.clear();
 	m_played_time = 0;
 	m_sc_buffered = 0;
@@ -291,6 +313,8 @@ void CAudioPlayer::clearFileData()
 
 CAudioMetaData CAudioPlayer::getMetaData()
 {
+	dprintf(DEBUG_DEBUG, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	CAudioMetaData m = m_Audiofile.MetaData;
 	m_Audiofile.MetaData.changed = false;
 	
@@ -299,11 +323,15 @@ CAudioMetaData CAudioPlayer::getMetaData()
 
 bool CAudioPlayer::hasMetaDataChanged()
 {
+	dprintf(DEBUG_DEBUG, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	return m_Audiofile.MetaData.changed;
 }
 
 bool CAudioPlayer::readMetaData(CAudiofile* const file, const bool nice)
 {
+	dprintf(DEBUG_NORMAL, "CAudioPlayer::%s\n", __FUNCTION__);
+	
 	return CBaseDec::GetMetaDataBase(file, nice);
 }
 

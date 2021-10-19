@@ -263,7 +263,7 @@ int ConnectToServer(char *hostname, int port)
 	int fd, addr;
 	struct pollfd pfd;
 
-	//dprintf(stderr, "looking up hostname: %s\n", hostname);
+	//fprintf(stderr, "looking up hostname: %s\n", hostname);
 
 	host = gethostbyname(hostname);
 
@@ -275,7 +275,7 @@ int ConnectToServer(char *hostname, int port)
 
 	addr = htonl(*(int *)host->h_addr);
 
-	/*dprintf(stderr, "connecting to %s [%d.%d.%d.%d], port %d\n", host->h_name,
+	/*fprintf(stderr, "connecting to %s [%d.%d.%d.%d], port %d\n", host->h_name,
 			(addr & 0xff000000) >> 24,
 			(addr & 0x00ff0000) >> 16,
 			(addr & 0x0000ff00) >>  8,
@@ -838,8 +838,7 @@ FILE *f_open(const char *filename, const char *acctype)
 	/* now lets see what we have ... */
 	parseURL_url(url);
 
-	/*
-	dprintf(stderr, "URL  to open: %s, access mode %s%s\n",
+	fprintf(stderr, "netfile: URL  to open: %s, access mode %s%s\n",
 		url.url,
 		(url.access_mode == MODE_HTTP)  ? 	"HTTP" :
 		(url.access_mode == MODE_SCAST) ? 	"SHOUTCAST" :
@@ -851,9 +850,8 @@ FILE *f_open(const char *filename, const char *acctype)
 		(url.proto_version == HTTP11)	 ? 	"/1.1" :
 		(url.proto_version == SHOUTCAST) ? 	"/SHOUTCAST" :
 									"") : "" );
-	*/
 
-	//dprintf(stderr, "FILE to open: %s, access mode: %d\n", url.file, url.access_mode);
+	fprintf(stderr, "netfile: FILE to open: %s, access mode: %d\n", url.file, url.access_mode);
 
 	switch(url.access_mode)
 	{
@@ -861,6 +859,7 @@ FILE *f_open(const char *filename, const char *acctype)
 			int follow_url = 1; // used for redirects
 			int redirects = 0;
 			*redirect_url = '\0';
+			
 			while (follow_url)
 			{
 
@@ -878,7 +877,8 @@ FILE *f_open(const char *filename, const char *acctype)
 				{
 					fd = NULL;
 					errno = ENXIO;
-					printf("netfile: could not connect to server %s:%d\n",url.host, url.port);
+					printf("netfile: could not connect to server %s:%d\n", url.host, url.port);
+					
 					return fd;
 				}
 				else
@@ -1698,6 +1698,8 @@ int f_status(FILE *stream, void (*cb)(void*))
 		else
 			strcpy(err_txt, "no cache[].filter_arg hook\n");
 	}
+	
+	fprintf(stderr, "f_status: %s\n", err_txt);
 
 	return rval;
 }
@@ -1934,6 +1936,7 @@ void parseURL_url(URL& url) {
 	char buffer[2048];
 //	printf("parseURL_url: %s\n", url.url);
 	char *ptr = strstr(url.url, "://");
+	
 	if (!ptr)
 	{
 		url.access_mode = MODE_FILE;
