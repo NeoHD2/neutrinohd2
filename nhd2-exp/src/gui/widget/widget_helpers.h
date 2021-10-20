@@ -168,10 +168,6 @@ typedef enum {
 	WIDGET_ITEM_FRAMEBOX,
 	WIDGET_ITEM_LISTFRAME,
 	WIDGET_ITEM_TEXTBOX,
-	//WIDGET_ITEM_WINDOW,
-	//WIDGET_ITEM_PIG,
-	//WIDGET_ITEM_GRID,
-	//WIDGET_ITEM_PROGRESSWINDOW
 }widget_item_t;
 
 class CWidgetItem
@@ -220,7 +216,6 @@ class CWidgetItem
 
 		//
 		virtual std::string getActionKey(void){ return actionKey;};
-		//virtual int getFrameBoxMode(){return 0;};
 };
 
 // CHeaders

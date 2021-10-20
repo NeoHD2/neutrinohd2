@@ -53,6 +53,12 @@ CFrame::CFrame(int m)
 
 	jumpTarget = NULL;
 	actionKey.clear();
+	
+	//
+	//color = COL_MENUCONTENT_PLUS_0;
+	//radius = RADIUS_MID;
+	//corner = CORNER_ALL;
+	//gradient = nogradient;
 
 	// headFrame
 	headColor = COL_MENUHEAD_PLUS_0;
@@ -198,6 +204,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 
 	if (mode == FRAME_BOX)
 	{
+		// icon
 		if(!iconName.empty())
 		{
 			iconOffset = ICON_OFFSET;
@@ -245,6 +252,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 		if(!caption.empty())
 			c_h = captionFont->getHeight() + 20;
 
+		// refresh
 		window.setColor(bgcolor);
 		window.paint();
 
@@ -274,6 +282,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 
 		if (selected)
 		{
+			// refresh
 			window.setColor(bgcolor);
 			window.paint();
 
@@ -358,11 +367,13 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 		if(!caption.empty() && pluginOrigName)
 			c_h = captionFont->getHeight() + 20;
 
+		// icon
 		if(!iconName.empty())
 		{
 			CFrameBuffer::getInstance()->displayImage(iconName, window.getWindowsPos().iX + 2, window.getWindowsPos().iY + 2, window.getWindowsPos().iWidth - 4, window.getWindowsPos().iHeight - 4 - c_h);
 		}
 
+		// caption
 		if(!caption.empty() && pluginOrigName)
 		{
 			int c_w = captionFont->getRenderWidth(caption);
@@ -420,11 +431,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 		}
 
 		footers.paint();
-	}
-	else if (mode == FRAME_WINDOW)
-	{
-		window.paint();
-	}
+	}	
 	else if (mode == FRAME_PIG)
 	{
 		//window.paint();

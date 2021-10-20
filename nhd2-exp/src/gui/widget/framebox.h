@@ -51,9 +51,7 @@ enum {
 	FRAME_LINE_HORIZONTAL,
 	FRAME_HEAD,
 	FRAME_FOOT,
-	FRAME_WINDOW,
-	FRAME_PIG,
-	FRAME_PROGRESSBAR,
+	FRAME_PIG
 };
 
 class CFrame
@@ -72,10 +70,16 @@ class CFrame
 		neutrino_msg_t directKey;
 		neutrino_msg_t msg;
 
-		int mode;
+		int mode;	//frame mode
 		bool shadow;
 		bool paintFrame;
 		bool pluginOrigName;
+		
+		//
+		//fb_pixel_t color;
+		//int radius;
+		//int corner;
+		//int gradient;
 
 		// head
 		fb_pixel_t headColor;
@@ -116,7 +120,7 @@ class CFrame
 
 		virtual bool isSelectable(void)
 		{
-			if ((mode == FRAME_PICTURE_NOTSELECTABLE) || (mode == FRAME_LINE_HORIZONTAL) || (mode == FRAME_LINE_VERTICAL) || (mode == FRAME_TEXT_NOTSELECTABLE) || (mode == FRAME_TEXT_LINE_NOTSELECTABLE) || (mode == FRAME_ICON_NOTSELECTABLE) || (mode == FRAME_HEAD) || (mode == FRAME_FOOT) || (mode == FRAME_WINDOW) || (mode == FRAME_PIG)) 
+			if ((mode == FRAME_PICTURE_NOTSELECTABLE) || (mode == FRAME_LINE_HORIZONTAL) || (mode == FRAME_LINE_VERTICAL) || (mode == FRAME_TEXT_NOTSELECTABLE) || (mode == FRAME_TEXT_LINE_NOTSELECTABLE) || (mode == FRAME_ICON_NOTSELECTABLE) || (mode == FRAME_HEAD) || (mode == FRAME_FOOT) || (mode == FRAME_PIG)) 
 				return false; 
 			else 
 				return true;
@@ -126,6 +130,11 @@ class CFrame
 		virtual void disablePaintFrame(void){paintFrame = false;};
 		virtual void setPosition(int x, int y, int dx, int dy){window.setPosition(x, y, dx, dy);};
 		virtual void setPosition(CBox *position){window.setPosition(position);};
+		
+		//
+		//virtual void setColor(fb_pixel_t col) {color = col;};
+		//virtual void setCorner(int ra, int co){radius = ra; corner = co;};
+		//virtual void setGradient(int grad){gradient = grad;};
 
 		// headFrame
 		void enablePaintDate(void){paintDate = true;};

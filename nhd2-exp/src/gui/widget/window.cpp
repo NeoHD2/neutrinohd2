@@ -37,6 +37,7 @@
 #include <global.h>
 
 #include <gui/widget/window.h>
+#include <system/debug.h>
 
 #include <video_cs.h>
 
@@ -45,6 +46,8 @@ extern cVideo * videoDecoder;
 
 CWindow::CWindow(const int x, const int y, const int dx, const int dy)
 {
+	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	
 	itemBox.iX = x;
 	itemBox.iY = y;
 	itemBox.iWidth = dx;
@@ -57,6 +60,8 @@ CWindow::CWindow(const int x, const int y, const int dx, const int dy)
 
 CWindow::CWindow(CBox* position)
 {
+	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	
 	itemBox = *position;
 
 	centerPos = false;
@@ -66,6 +71,8 @@ CWindow::CWindow(CBox* position)
 
 void CWindow::init()
 {
+	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	
 	frameBuffer = CFrameBuffer::getInstance();
 
 	radius = NO_RADIUS;
@@ -97,25 +104,56 @@ void CWindow::init()
 
 void CWindow::saveScreen()
 {
+	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	
+	if(!savescreen)
+		return;
+
+	if(background)
+	{
+		delete[] background;
+		background = NULL;
+	}
+
 	background = new fb_pixel_t[itemBox.iWidth*itemBox.iHeight];
 	
 	if(background)
+	{
 		frameBuffer->saveScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+	}
 }
 
 void CWindow::restoreScreen()
 {
+	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	
 	if(background) 
 	{
-		frameBuffer->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+		if(savescreen)
+			frameBuffer->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
 	}
 
 	delete[] background;
 	background = NULL;
 }
 
+void CWindow::enableSaveScreen()
+{
+	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	
+	savescreen = true;
+	
+	if(!savescreen && background) 
+	{
+		delete[] background;
+		background = NULL;
+	}
+}
+
 void CWindow::setPosition(const int x, const int y, const int dx, const int dy)
 {
+	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	
 	itemBox.iX = x;
 	itemBox.iY = y;
 	itemBox.iWidth = dx;
@@ -124,11 +162,15 @@ void CWindow::setPosition(const int x, const int y, const int dx, const int dy)
 
 void CWindow::setPosition(CBox* position)
 {
+	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	
 	itemBox = *position;
 }
 
 void CWindow::paint()
 {
+	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	
 	if(savescreen) 
 		saveScreen();
 
@@ -146,6 +188,8 @@ void CWindow::paint()
 
 void CWindow::hide()
 {
+	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	
 	if( savescreen && background)
 		restoreScreen();
 	else

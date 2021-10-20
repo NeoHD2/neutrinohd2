@@ -3765,12 +3765,13 @@ void CTestMenu::testClistBox4()
 
 	// widgettype
 	listBox->setWidgetType(WIDGET_TYPE_FRAME);
-	listBox->setItemsPerPage(6,2);
+	listBox->setItemsPerPage(5,2);
 	listBox->setWidgetMode(MODE_LISTBOX);
 	listBox->enableCenterPos();
 	listBox->enableShrinkMenu();
 
 	// head
+/*	
 	listBox->setTitle("ClistBox(Frame)", NEUTRINO_ICON_MOVIE);
 	listBox->enablePaintHead();
 	listBox->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
@@ -3782,6 +3783,9 @@ void CTestMenu::testClistBox4()
 
 	// footinfo
 	listBox->enablePaintFootInfo(80);
+*/
+
+	listBox->disablePaintFrame();	
 
 	listBox->setSelected(selected);
 	listBox->paint();
@@ -4263,16 +4267,12 @@ REPEAT:
 			switch ( rv ) 
 			{
 				case RETURN_EXIT_ALL:
-					//retval = RETURN_EXIT_ALL; //fall through
 					loop = false;
 				case RETURN_EXIT:
-					//msg = RC_timeout;
 					loop = false;
 					break;
 				case RETURN_REPAINT:
 					hide();
-					//initFrames();
-					//paint();
 					topWidget->paint();
 					break;
 			}
@@ -7020,18 +7020,19 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CHeaders", true, NULL, this, "headers"));
 	mainMenu->addItem(new CMenuForwarder("CTextBox", true, NULL, this, "textbox"));
 	mainMenu->addItem(new CMenuForwarder("CListFrame", true, NULL, this, "listframe"));
-	//mainMenu->addItem(new CMenuForwarder("CProgressWindow", true, NULL, this, "progresswindow"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "ClistBox"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(standard)", true, NULL, this, "listbox"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(classic)", true, NULL, this, "listbox2"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(extended)", true, NULL, this, "listbox3"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(Frame)", true, NULL, this, "listbox4"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(menu mode)", true, NULL, this, "listbox5"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(listBox mode)", true, NULL, this, "listbox6"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CFrameBox"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox", true, NULL, this, "framebox"));
-	mainMenu->addItem(new CMenuSeparator(LINE) );
-	mainMenu->addItem(new CMenuForwarder("TEST", true, NULL, this, "testing"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CFrameBox|ClistBpx"));
+	mainMenu->addItem(new CMenuForwarder("CFrameBox|ClistBox", true, NULL, this, "testing"));
 	
-	// ClistBox
+	// CMenuWidhet
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CMenuWidget"));
 	mainMenu->addItem(new CMenuForwarder("CMenuWidget(MODE_LISTBOX)", true, NULL, this, "listboxwidget"));
 	mainMenu->addItem(new CMenuForwarder("CMenuWidget(MODE_MENU)", true, NULL, this, "listboxwidget1"));

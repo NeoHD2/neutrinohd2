@@ -2336,7 +2336,13 @@ void CNeutrinoApp::InitZapper()
 		channelList->adjustToChannelID(live_channel_id);
 
 		// show service name in vfd (250hd has only 4 digit so we show service number)
-		CVFD::getInstance()->showServicename(channelList->getActiveChannelName(), true, channelList->getActiveChannelNumber());	
+		CVFD::getInstance()->showServicename(channelList->getActiveChannelName(), true, channelList->getActiveChannelNumber());
+		
+		// online epg
+		if(g_settings.epg_enable_online_epg)
+		{
+			g_RemoteControl->getEvents(live_channel_id&0xFFFFFFFFFFFFULL);
+		}	
 
 		// start epg scanning
 		g_Sectionsd->setPauseScanning(false);

@@ -48,8 +48,8 @@ class CWindow /*: public CWidgetItem*/
 		int gradient;
 
 		bool enableshadow;
+		
 		bool savescreen;
-
 		void saveScreen();
 		void restoreScreen();
 
@@ -67,7 +67,7 @@ class CWindow /*: public CWidgetItem*/
 		void setCorner(int ra = NO_RADIUS, int co = CORNER_NONE){radius = ra; corner = co;};
 		void setGradient(int grad){gradient = grad;};
 		void enableShadow(void){enableshadow = true;};
-		void enableSaveScreen(void){savescreen = true;};
+		void enableSaveScreen();
 
 		void enableCenterPos(){centerPos = true; init();};
 

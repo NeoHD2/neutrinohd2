@@ -38,7 +38,6 @@
 
 
 extern CLocaleManager		*g_Locale;
-//extern CFont* g_Font[FONT_TYPE_COUNT];
 
 // item type
 enum 
@@ -144,10 +143,12 @@ class CMenuItem
 		//static CFont* nameFont;
 		//static CFont* optionFont;
 
-		bool nLinesItem; // 2 lines Item (classicWidget)
+		bool nLinesItem; // 2 lines Item 
 
 		CMenuTarget *jumpTarget;
 		std::string actionKey;
+		
+		bool paintFrame;
 
 		CMenuItem();
 		virtual ~CMenuItem(){};
@@ -199,8 +200,8 @@ class CMenuItem
 		virtual void setNumber(int nr){number = nr;};
 		virtual void setPercent(int percent = -1){runningPercent = percent;};
 
-		//virtual void setNameFont(CFont* font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]){nameFont = font;};
-		//virtual void setOptionFont(CFont* font = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]){optionFont = font;};
+		//virtual void setNameFont(CFont* font){nameFont = font;};
+		//virtual void setOptionFont(CFont* font){optionFont = font;};
 
 		virtual void set2lines(void){nLinesItem = true;};
 		virtual void setWidgetType(int type){widgetType = type;};
@@ -561,6 +562,9 @@ class ClistBox : public CWidgetItem
 		CTextBox * textBox;
 
 		std::string actionKey;
+		
+		//
+		bool paintFrame;
 
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -607,6 +611,8 @@ class ClistBox : public CWidgetItem
 
 		void enableCenterPos(){enableCenter = true;};
 		void enableShrinkMenu(){shrinkMenu = true;};
+		
+		void disablePaintFrame(void){paintFrame = false;};
 
 		virtual void scrollLineDown(const int lines = 1);
 		virtual void scrollLineUp(const int lines = 1);

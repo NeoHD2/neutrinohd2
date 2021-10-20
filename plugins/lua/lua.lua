@@ -326,11 +326,11 @@ function testCWidget()
 	return ret
 end
 
--- ClistBoxWidget
-function testClistBoxWidget()
+-- CMenuWidget
+function testCMenuWidget()
 	local ret = neutrino.RETURN_REPAINT
 
-	local listBoxWidget = neutrino.CMenuWidget("ClistBoxWidget")
+	local listBoxWidget = neutrino.CMenuWidget("CMenuBoxWidget")
 	listBoxWidget:setWidgetType(neutrino.WIDGET_TYPE_STANDARD)
 	listBoxWidget:setMode(neutrino.MODE_MENU)
 	listBoxWidget:enablePaintFootInfo()
@@ -411,7 +411,7 @@ function testClistBoxWidget()
 	exec(selected, key, actionKey)
 		
 	if listBoxWidget:getExitPressed() ~= true and ret == neutrino.RETURN_REPAINT then
-		testClistBoxWidget()
+		testCMenuWidget()
 	end
 
 	return ret
@@ -1086,9 +1086,9 @@ function main()
 	item1 = neutrino.CMenuForwarder("testCWidget", true, "", null, "listWidget")
 	item1:setInfo1("lua: testing CWidget")
 
-	item2 = neutrino.CMenuForwarder("testClistBoxWidget")
+	item2 = neutrino.CMenuForwarder("testCMenuWidget")
 	item2:setActionKey(null, "listBoxWidget")
-	item2:setInfo1("lua: testing ClistBoxWidget")
+	item2:setInfo1("lua: testing CMenuWidget")
 
 	item3 = neutrino.CMenuForwarder("testClistBox")
 	item3:setInfo1("lua: testing ClistBox")
@@ -1144,7 +1144,7 @@ function main()
 
 	if selected >= 0 then
 		if selected == 1 then
-			ret = testClistBoxWidget()
+			ret = testCMenuWidget()
 		elseif selected == 2 then
 			ret = testClistBox()
 		elseif selected == 3 then
