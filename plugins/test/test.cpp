@@ -1029,7 +1029,6 @@ void CTestMenu::testSingleWidget()
 	testWidget->enablePaintMainFrame();
 
 	CFrameBox *testFrame = new CFrameBox(&box);
-	//testFrame->setMode(FRAMEBOX_MODE_RANDOM);
 	testFrame->disablePaintFrame();
 
 	CHintBox loadBox("singleWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
@@ -1074,59 +1073,66 @@ void CTestMenu::testSingleWidget()
 	headFrame->setTitle("single Widget");
 	headFrame->enablePaintDate();
 	headFrame->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	headFrame->setActive(false);
 
 	testFrame->addFrame(headFrame);
 
 	// artFrame
-	CFrame * artFrame = new CFrame(FRAME_PICTURE_NOTSELECTABLE);
+	CFrame * artFrame = new CFrame(FRAME_PICTURE);
 	artFrame->setPosition(box.iX + box.iWidth/2, box.iY + 40, box.iWidth/2, box.iHeight - 2*40);
 	artFrame->setIconName(m_vMovieInfo[0].tfile.c_str());
+	artFrame->setActive(false);
 
 	testFrame->addFrame(artFrame);
 
 	// title
-	CFrame *titleFrame = new CFrame(FRAME_TEXT_LINE_NOTSELECTABLE);
+	CFrame *titleFrame = new CFrame(FRAME_TEXT_LINE);
 	titleFrame->setPosition(&titleBox);
 	titleFrame->disablePaintFrame();
 	titleFrame->setTitle(m_vMovieInfo[0].epgTitle.c_str());
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+	titleFrame->setActive(false);
 
 	testFrame->addFrame(titleFrame);
 
 	// star1
-	CFrame *star1Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
+	CFrame *star1Frame = new CFrame(FRAME_ICON);
 	star1Frame->setPosition(&starBox);
 	star1Frame->setIconName(NEUTRINO_ICON_STAR_ON);
 	star1Frame->disablePaintFrame();
+	star1Frame->setActive(false);
 
 	testFrame->addFrame(star1Frame);
 
 	// star2
-	CFrame *star2Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
+	CFrame *star2Frame = new CFrame(FRAME_ICON);
 	star2Frame->setPosition(starBox.iX + 25, starBox.iY, starBox.iWidth, starBox.iHeight);
 	star2Frame->setIconName(NEUTRINO_ICON_STAR_ON);
 	star2Frame->disablePaintFrame();
+	star2Frame->setActive(false);
 
 	testFrame->addFrame(star2Frame);
 
 	// star3
-	CFrame *star3Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
+	CFrame *star3Frame = new CFrame(FRAME_ICON);
 	star3Frame->setPosition(starBox.iX + 2*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 	star3Frame->setIconName(NEUTRINO_ICON_STAR_ON);
 	star3Frame->disablePaintFrame();
+	star3Frame->setActive(false);
 
 	testFrame->addFrame(star3Frame);
 
 	// star4
-	CFrame *star4Frame = new CFrame(FRAME_ICON_NOTSELECTABLE);
+	CFrame *star4Frame = new CFrame(FRAME_ICON);
 	star4Frame->setPosition(starBox.iX + 3*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 	star4Frame->setIconName(NEUTRINO_ICON_STAR_OFF);
 	star4Frame->disablePaintFrame();
+	star4Frame->setActive(false);
 
 	testFrame->addFrame(star4Frame);
 
 	// text
-	CFrame *textFrame = new CFrame(FRAME_TEXT_NOTSELECTABLE);
+	CFrame *textFrame = new CFrame(FRAME_TEXT);
 	textFrame->setPosition(&textBox);
 	std::string buffer;
 	buffer = m_vMovieInfo[0].epgInfo1;
@@ -1135,6 +1141,7 @@ void CTestMenu::testSingleWidget()
 
 	textFrame->setTitle(buffer.c_str());
 	textFrame->disablePaintFrame();
+	textFrame->setActive(false);
 	
 	testFrame->addFrame(textFrame);
 
@@ -1162,6 +1169,7 @@ void CTestMenu::testSingleWidget()
 	CFrame *footFrame = new CFrame(FRAME_FOOT);
 	footFrame->setPosition(box.iX, box.iY + box.iHeight - 40, box.iWidth, 40);
 	footFrame->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	footFrame->setActive(false);
 
 	testFrame->addFrame(footFrame);
 
@@ -1238,18 +1246,19 @@ void CTestMenu::testFireTV()
 	if (!m_vMovieInfo.empty())
 	{
 	// title
-	CFrame * titleFrame = new CFrame(FRAME_TEXT_LINE_NOTSELECTABLE);
+	CFrame * titleFrame = new CFrame(FRAME_TEXT_LINE);
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	int t_w = 200;
 	int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 	titleFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10, box.iWidth - 20 - pic_w - 20, t_h);
 	titleFrame->setTitle((m_vMovieInfo[0].epgTitle.empty())? "" : m_vMovieInfo[0].epgTitle.c_str());
 	titleFrame->disablePaintFrame();
+	titleFrame->setActive(false);
 
 	frameBox->addFrame(titleFrame);
 
 	// text
-	CFrame *textFrame = new CFrame(FRAME_TEXT_NOTSELECTABLE);
+	CFrame *textFrame = new CFrame(FRAME_TEXT);
 	textFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10 + t_h + 10, box.iWidth - 20 - pic_w - 20, 250 - t_h - 10 - 10);
 	std::string buffer;
 	buffer = m_vMovieInfo[0].epgInfo1;
@@ -1257,6 +1266,7 @@ void CTestMenu::testFireTV()
 	buffer += m_vMovieInfo[0].epgInfo2;
 	textFrame->setTitle(buffer.c_str());
 	textFrame->disablePaintFrame();
+	textFrame->setActive(false);
 
 	frameBox->addFrame(textFrame);
 
@@ -1271,13 +1281,14 @@ void CTestMenu::testFireTV()
 	
 
 	// other
-	CFrame *otherFrame = new CFrame(FRAME_TEXT_LINE_NOTSELECTABLE);
+	CFrame *otherFrame = new CFrame(FRAME_TEXT_LINE);
 	otherFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	int o_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("andere Filme:");
 	int o_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 	otherFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10 + 250 + 10, o_w + 10, o_h);
 	otherFrame->setTitle("andere Filme:");
 	otherFrame->disablePaintFrame();
+	otherFrame->setActive(false);
 
 	frameBox->addFrame(otherFrame);
 

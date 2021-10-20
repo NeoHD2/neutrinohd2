@@ -1106,7 +1106,7 @@ function main()
 	
 	item7 = neutrino.CMenuForwarder("movieBrowser", true, "", self, "movieBrowser")
 
-	item8 = neutrino.CMenuForwarder("testCFrameBoxRandom")
+	item8 = neutrino.CMenuForwarder("testCFrameBox(2)")
 	item8:setInfo1("lua: testing CFrameBoxRandom")
 	item8:setActionKey(null, "frameBoxRandom")
 

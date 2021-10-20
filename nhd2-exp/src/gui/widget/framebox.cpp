@@ -79,9 +79,14 @@ CFrame::CFrame(int m)
 	fbutton_labels.clear();
 	//fbutton_width = cFrameBox.iWidth;
 
-	window.setPosition(0, 0, 0, 0);
+	// init
+	window.setPosition(-1, -1, -1, -1);
+	
+	// 
+	active = true;
+	marked = false;
 
-	if ((mode == FRAME_PICTURE_NOTSELECTABLE) || (mode == FRAME_LINE_HORIZONTAL) || (mode == FRAME_LINE_VERTICAL) || (mode == FRAME_TEXT_NOTSELECTABLE) || (mode == FRAME_TEXT_LINE_NOTSELECTABLE)) 
+	if ( (mode == FRAME_LINE_HORIZONTAL) || (mode == FRAME_LINE_VERTICAL) ) 
 	{
 		shadow = false;
 		paintFrame = false;
@@ -92,11 +97,27 @@ void CFrame::setMode(int m)
 {
 	mode = m;
 			
-	if ((mode == FRAME_PICTURE_NOTSELECTABLE) || (mode == FRAME_LINE_HORIZONTAL) || (mode == FRAME_LINE_VERTICAL) || (mode == FRAME_TEXT_NOTSELECTABLE) || (mode == FRAME_TEXT_LINE_NOTSELECTABLE)) 
+	if ( (mode == FRAME_LINE_HORIZONTAL) || (mode == FRAME_LINE_VERTICAL) ) 
 	{
 		shadow = false;
 		paintFrame = false;
 	}
+}
+
+void CFrame::setActive(const bool Active)
+{
+	active = Active;
+	
+	if (window.getWindowsPos().iX != -1)
+		paint();
+}
+
+void CFrame::setMarked(const bool Marked)
+{
+	marked = Marked;
+	
+	if (window.getWindowsPos().iX != -1)
+		paint();
 }
 
 void CFrame::setPlugin(const char * const pluginName)
@@ -176,12 +197,17 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	dprintf(DEBUG_DEBUG, "CFrame::paint:\n");
 
 	uint8_t color = COL_MENUCONTENT;
-	fb_pixel_t bgcolor = COL_MENUCONTENT_PLUS_0;
+	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_2 : COL_MENUCONTENT_PLUS_0;
 
 	if (selected)
 	{
 		color = COL_MENUCONTENTSELECTED;
 		bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+	}
+	else if (!active)
+	{
+		color = COL_MENUCONTENTINACTIVE;
+		bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
 	}
 
 	// paint frameBackground
@@ -243,7 +269,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 			}
 		}
 	}
-	else if ( (mode == FRAME_PICTURE) || (mode == FRAME_PICTURE_NOTSELECTABLE))
+	else if (mode == FRAME_PICTURE)
 	{
 		int c_h = 0;
 		int stringStartPosX = 0;
@@ -258,11 +284,9 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 
 		if(!iconName.empty())
 		{
-			 if (mode == FRAME_PICTURE)
-			 {
-				CFrameBuffer::getInstance()->displayImage(iconName, window.getWindowsPos().iX + 10, window.getWindowsPos().iY + 10, window.getWindowsPos().iWidth - 20, window.getWindowsPos().iHeight - c_h - 20);
-			}
-			else if (mode == FRAME_PICTURE_NOTSELECTABLE)
+			CFrameBuffer::getInstance()->displayImage(iconName, window.getWindowsPos().iX + 10, window.getWindowsPos().iY + 10, window.getWindowsPos().iWidth - 20, window.getWindowsPos().iHeight - c_h - 20);
+			
+			if (!active)
 			{
 				CFrameBuffer::getInstance()->displayImage(iconName, window.getWindowsPos().iX, window.getWindowsPos().iY, window.getWindowsPos().iWidth, window.getWindowsPos().iHeight - c_h);
 			}
@@ -304,11 +328,11 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 			}
 		}
 	}
-	else if ((mode == FRAME_ICON) || (mode == FRAME_ICON_NOTSELECTABLE))
+	else if (mode == FRAME_ICON)
 	{
 		iconOffset = ICON_OFFSET;
 
-		if (mode == FRAME_ICON_NOTSELECTABLE)
+		if (!active)
 			iconOffset = 0;
 
 		// iconName
@@ -337,7 +361,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 			captionFont->RenderString(window.getWindowsPos().iX + iconOffset + iw + iconOffset, window.getWindowsPos().iY + optionFont->getHeight() + (window.getWindowsPos().iHeight - optionFont->getHeight())/2, window.getWindowsPos().iWidth - iconOffset - iw - iconOffset, caption.c_str(), color, 0, true); //
 		}
 	}
-	else if ( (mode == FRAME_TEXT) || (mode == FRAME_TEXT_NOTSELECTABLE))
+	else if (mode == FRAME_TEXT)
 	{
 		CTextBox * textBox = NULL;
 
@@ -389,14 +413,14 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	{
 		CFrameBuffer::getInstance()->paintHLineRel(window.getWindowsPos().iX, window.getWindowsPos().iWidth, window.getWindowsPos().iY, COL_MENUCONTENTDARK_PLUS_0);
 	}
-	else if ( (mode == FRAME_TEXT_LINE) || (mode == FRAME_TEXT_LINE_NOTSELECTABLE))
+	else if (mode == FRAME_TEXT_LINE)
 	{
 		if(!caption.empty())
 		{
 			captionFont->RenderString(window.getWindowsPos().iX + 2, window.getWindowsPos().iY + window.getWindowsPos().iHeight, window.getWindowsPos().iWidth - 4, caption.c_str(), color);
 		}
 	}
-	else if ( mode == FRAME_HEAD)
+	else if (mode == FRAME_HEAD)
 	{
 		CHeaders headers(window.getWindowsPos(), caption.c_str(), iconName.c_str());
 
@@ -477,7 +501,6 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 
 	inFocus = true;
 
-	//frameMode = FRAMEBOX_MODE_HORIZONTAL;
 	itemType = WIDGET_ITEM_FRAMEBOX;
 	paintFrame = true;
 
@@ -499,7 +522,6 @@ CFrameBox::CFrameBox(CBox* position)
 
 	inFocus = true;
 
-	//frameMode = FRAMEBOX_MODE_HORIZONTAL;
 	itemType = WIDGET_ITEM_FRAMEBOX;
 	paintFrame = true;
 
@@ -535,7 +557,7 @@ void CFrameBox::paintFrames()
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::paintFrames:\n");
 
-	//
+	/*
 	int frame_width = itemBox.iWidth;
 	int frame_height = itemBox.iHeight;
 	int frame_x = itemBox.iX;
@@ -543,31 +565,16 @@ void CFrameBox::paintFrames()
 
 	if(frames.size() > 0)
 	{
-/*
-		if(frameMode == FRAMEBOX_MODE_HORIZONTAL)
-		{
-			frame_width = (itemBox.iWidth - 2*ICON_OFFSET)/((int)frames.size());
-			frame_height = itemBox.iHeight - 2*ICON_OFFSET;
-		}
-*/
-
 		frame_x = itemBox.iX + ICON_OFFSET;
 		frame_y = itemBox.iY + ICON_OFFSET;
 	}
+	*/
 
 	for (unsigned int count = 0; count < (unsigned int)frames.size(); count++) 
 	{
 		CFrame *frame = frames[count];
 
 		// init frame
-/*
-		if(frameMode == FRAMEBOX_MODE_HORIZONTAL)
-		{	
-			{
-				frame->window.setPosition(frame_x + count*(frame_width) + ICON_OFFSET, frame_y, frame_width - 2*ICON_OFFSET, frame_height);
-			}
-		}
-*/
 
 		//
 		if((frame->isSelectable()) && (selected == -1)) 

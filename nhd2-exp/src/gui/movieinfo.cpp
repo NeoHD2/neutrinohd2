@@ -1539,28 +1539,31 @@ void CMovieInfoWidget::funArt()
 	CWidget * widget = new CWidget(&box);
 
 	// artFrame
-	CFrame * artFrame = new CFrame(FRAME_PICTURE_NOTSELECTABLE);
+	CFrame * artFrame = new CFrame(FRAME_PICTURE);
 	artFrame->setPosition(&artBox);
 	artFrame->setIconName(movieFile.tfile.c_str());
+	artFrame->setActive(false);
 
 	testFrameBox->addFrame(artFrame);
 
 	// title
-	CFrame *titleFrame = new CFrame(FRAME_TEXT_LINE_NOTSELECTABLE);
+	CFrame *titleFrame = new CFrame(FRAME_TEXT_LINE);
 	titleFrame->setPosition(&titleBox);
 	titleFrame->disablePaintFrame();
 	titleFrame->setTitle(movieFile.epgTitle.c_str());
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+	titleFrame->setActive(false);
 
 	testFrameBox->addFrame(titleFrame);
 
 	// vote
 	for (int i = 0; i < 5; i++)
 	{
-		CFrame *starOffFrame = new CFrame(FRAME_ICON_NOTSELECTABLE);
+		CFrame *starOffFrame = new CFrame(FRAME_ICON);
 		starOffFrame->setPosition(starBox.iX + i*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 		starOffFrame->setIconName(NEUTRINO_ICON_STAR_OFF);
 		starOffFrame->disablePaintFrame();
+		starOffFrame->setActive(false);
 
 		testFrameBox->addFrame(starOffFrame);
 	}
@@ -1569,16 +1572,17 @@ void CMovieInfoWidget::funArt()
 
 	for (int i = 0; i < average; i++)
 	{
-		CFrame *starOnFrame = new CFrame(FRAME_ICON_NOTSELECTABLE);
+		CFrame *starOnFrame = new CFrame(FRAME_ICON);
 		starOnFrame->setPosition(starBox.iX + i*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 		starOnFrame->setIconName(NEUTRINO_ICON_STAR_ON);
 		starOnFrame->disablePaintFrame();
+		starOnFrame->setActive(false);
 
 		testFrameBox->addFrame(starOnFrame);
 	}
 
 	// text
-	CFrame *textFrame = new CFrame(FRAME_TEXT_NOTSELECTABLE);
+	CFrame *textFrame = new CFrame(FRAME_TEXT);
 	textFrame->setPosition(&textBox);
 	std::string buffer;
 	buffer = movieFile.epgInfo1;
@@ -1587,6 +1591,7 @@ void CMovieInfoWidget::funArt()
 
 	textFrame->setTitle(buffer.c_str());
 	textFrame->disablePaintFrame();
+	textFrame->setActive(false);
 	
 	testFrameBox->addFrame(textFrame);
 
