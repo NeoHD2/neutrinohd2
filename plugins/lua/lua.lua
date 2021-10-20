@@ -587,10 +587,6 @@ function testCWindow()
 	frame1Box.iX = box.iX + box.iWidth - 10 - 200 - 10 - 100 - 10 - 350 + 10 + 100
 	frame1Box.iY = box.iY + box.iHeight - 10 - 40 - 60
 
-	-- window
-	--window = neutrino.CWindow(box)
-	--window:enableCenterPos()
-
 	-- head
 	head = neutrino.CHeaders(headBox, "lua sample Window|Widget", neutrino.NEUTRINO_ICON_MOVIE)
 	head:enablePaintDate()
@@ -637,7 +633,7 @@ function testCWindow()
 	foot:setButtons(blue)
 
 	-- frame
-	frame1 = neutrino.CFrame(neutrino.FRAME_BOX)
+	frame1 = neutrino.CFrame()
 	frame1:setPosition(frame1Box)
 	frame1:setTitle("Mediaplayer")
 	frame1:setIconName(neutrino.NEUTRINO_ICON_MOVIE)
@@ -645,7 +641,8 @@ function testCWindow()
 	frame1:setActionKey(null, "frame1")
 
 	-- Icon
-	frame2 = neutrino.CFrame(neutrino.FRAME_ICON)
+	frame2 = neutrino.CFrame()
+	frame2:setMode(neutrino.FRAME_ICON)
 	frame2:setPosition(iconBox)
 	frame2:setTitle("Exit")
 	frame2:setIconName(neutrino.NEUTRINO_ICON_BUTTON_RED)
@@ -662,48 +659,64 @@ function testCWindow()
 
 	local movieInfo = m_movieInfo:loadMovieInfo(mFile)
 
-	frame3 = neutrino.CFrame(neutrino.FRAME_PICTURE)
+	frame3 = neutrino.CFrame()
+	frame3:setMode(neutrino.FRAME_PICTURE)
 	frame3:setPosition(picBox)
 	frame3:setTitle(movieInfo.epgTitle)
 	frame3:setIconName(movieInfo.tfile)
 	frame3:setActionKey(null, "frame3")
 
 	--title
-	titleFrame = neutrino.CFrame(neutrino.FRAME_TEXT_LINE_NOTSELECTABLE)
+	titleFrame = neutrino.CFrame()
+	titleFrame:setMode(neutrino.FRAME_TEXT_LINE)
+	titleFrame:setActive(false)
 	titleFrame:setPosition(textbox.iX, box.iY + headBox.iHeight + 10, 350, 40)
 	titleFrame:setTitle(movieInfo.epgTitle)
+	titleFrame:disablePaintFrame()
+	titleFrame:setActive(false)
 
 	--icon
-	iconFrame1= neutrino.CFrame(neutrino.FRAME_ICON_NOTSELECTABLE)
+	iconFrame1= neutrino.CFrame()
+	iconFrame1:setMode(neutrino.FRAME_ICON)
 	iconFrame1:setPosition(textbox.iX, box.iY + headBox.iHeight + 50, 25, 25)
 	iconFrame1:setIconName(neutrino.NEUTRINO_ICON_STAR_ON)
 	iconFrame1:disablePaintFrame()
+	iconFrame1:setActive(false)
 
-	iconFrame2= neutrino.CFrame(neutrino.FRAME_ICON_NOTSELECTABLE)
+	iconFrame2= neutrino.CFrame()
+	iconFrame2:setMode(neutrino.FRAME_ICON)
 	iconFrame2:setPosition(textbox.iX + 25, box.iY + headBox.iHeight + 50, 25, 25)
 	iconFrame2:setIconName(neutrino.NEUTRINO_ICON_STAR_ON)
 	iconFrame2:disablePaintFrame()
+	iconFrame2:setActive(false)
 
-	iconFrame3= neutrino.CFrame(neutrino.FRAME_ICON_NOTSELECTABLE)
+	iconFrame3= neutrino.CFrame()
+	iconFrame3:setMode(neutrino.FRAME_ICON)
 	iconFrame3:setPosition(textbox.iX + 25 + 25, box.iY + headBox.iHeight + 50, 25, 25)
 	iconFrame3:setIconName(neutrino.NEUTRINO_ICON_STAR_ON)
 	iconFrame3:disablePaintFrame()
+	iconFrame3:setActive(false)
 
-	iconFrame4= neutrino.CFrame(neutrino.FRAME_ICON_NOTSELECTABLE)
+	iconFrame4= neutrino.CFrame()
+	iconFrame4:setMode(neutrino.FRAME_ICON)
 	iconFrame4:setPosition(textbox.iX + 25 +25 + 25, box.iY + headBox.iHeight + 50, 25, 25)
 	iconFrame4:setIconName(neutrino.NEUTRINO_ICON_STAR_OFF)
 	iconFrame4:disablePaintFrame()
+	iconFrame4:setActive(false)
 
 	-- Text
-	frame4 = neutrino.CFrame(neutrino.FRAME_TEXT_NOTSELECTABLE)
+	frame4 = neutrino.CFrame()
+	frame4:setMode(neutrino.FRAME_TEXT)
 	frame4:setPosition(textbox)
 	--frame4:setBackgroundColor(0xFFAAAA)
 	frame4:setTitle(movieInfo.epgInfo1 .. "\n" .. movieInfo.epgInfo2)
 	frame4:setActionKey(null, "frame4")
 	frame4:disablePaintFrame()
+	frame4:setActive(false)
 
 	-- plugin
-	frame5 = neutrino.CFrame(neutrino.FRAME_PLUGIN)
+	frame5 = neutrino.CFrame()
+	frame5:setMode(neutrino.FRAME_PLUGIN)
 	frame5:setPosition(pluginBox)
 	frame5:setTitle("nfilm")
 	frame5:setPlugin("nfilm")
@@ -711,7 +724,8 @@ function testCWindow()
 	--frame5:disableShadow()
 
 	-- vframe
-	vframe = neutrino.CFrame(neutrino.FRAME_LINE_VERTICAL)
+	vframe = neutrino.CFrame()
+	vframe:setMode(neutrino.FRAME_LINE_VERTICAL)
 	vframe:setPosition(box.iX + listbox.iWidth + 10, box.iY + 50, 5, box.iHeight- 100)
 
 	testFrame = neutrino.CFrameBox(framebox)

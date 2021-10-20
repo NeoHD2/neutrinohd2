@@ -1539,7 +1539,8 @@ void CMovieInfoWidget::funArt()
 	CWidget * widget = new CWidget(&box);
 
 	// artFrame
-	CFrame * artFrame = new CFrame(FRAME_PICTURE);
+	CFrame * artFrame = new CFrame();
+	artFrame->setMode(FRAME_PICTURE);
 	artFrame->setPosition(&artBox);
 	artFrame->setIconName(movieFile.tfile.c_str());
 	artFrame->setActive(false);
@@ -1547,7 +1548,8 @@ void CMovieInfoWidget::funArt()
 	testFrameBox->addFrame(artFrame);
 
 	// title
-	CFrame *titleFrame = new CFrame(FRAME_TEXT_LINE);
+	CFrame *titleFrame = new CFrame();
+	titleFrame->setMode(FRAME_TEXT_LINE);
 	titleFrame->setPosition(&titleBox);
 	titleFrame->disablePaintFrame();
 	titleFrame->setTitle(movieFile.epgTitle.c_str());
@@ -1559,7 +1561,8 @@ void CMovieInfoWidget::funArt()
 	// vote
 	for (int i = 0; i < 5; i++)
 	{
-		CFrame *starOffFrame = new CFrame(FRAME_ICON);
+		CFrame *starOffFrame = new CFrame();
+		starOffFrame->setMode(FRAME_ICON);
 		starOffFrame->setPosition(starBox.iX + i*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 		starOffFrame->setIconName(NEUTRINO_ICON_STAR_OFF);
 		starOffFrame->disablePaintFrame();
@@ -1572,7 +1575,8 @@ void CMovieInfoWidget::funArt()
 
 	for (int i = 0; i < average; i++)
 	{
-		CFrame *starOnFrame = new CFrame(FRAME_ICON);
+		CFrame *starOnFrame = new CFrame();
+		starOnFrame->setMode(FRAME_ICON);
 		starOnFrame->setPosition(starBox.iX + i*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 		starOnFrame->setIconName(NEUTRINO_ICON_STAR_ON);
 		starOnFrame->disablePaintFrame();
@@ -1582,7 +1586,8 @@ void CMovieInfoWidget::funArt()
 	}
 
 	// text
-	CFrame *textFrame = new CFrame(FRAME_TEXT);
+	CFrame *textFrame = new CFrame();
+	textFrame->setMode(FRAME_TEXT);
 	textFrame->setPosition(&textBox);
 	std::string buffer;
 	buffer = movieFile.epgInfo1;

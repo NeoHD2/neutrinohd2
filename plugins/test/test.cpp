@@ -1067,7 +1067,8 @@ void CTestMenu::testSingleWidget()
 	textBox.iY = starBox.iY + 20;
 
 	// head
-	CFrame *headFrame = new CFrame(FRAME_HEAD);
+	CFrame *headFrame = new CFrame();
+	headFrame->setMode(FRAME_HEAD);
 	headFrame->setPosition(box.iX, box.iY, box.iWidth, 40);
 	headFrame->setIconName(NEUTRINO_ICON_MOVIE);
 	headFrame->setTitle("single Widget");
@@ -1078,7 +1079,8 @@ void CTestMenu::testSingleWidget()
 	testFrame->addFrame(headFrame);
 
 	// artFrame
-	CFrame * artFrame = new CFrame(FRAME_PICTURE);
+	CFrame * artFrame = new CFrame();
+	artFrame->setMode(FRAME_PICTURE);
 	artFrame->setPosition(box.iX + box.iWidth/2, box.iY + 40, box.iWidth/2, box.iHeight - 2*40);
 	artFrame->setIconName(m_vMovieInfo[0].tfile.c_str());
 	artFrame->setActive(false);
@@ -1086,7 +1088,8 @@ void CTestMenu::testSingleWidget()
 	testFrame->addFrame(artFrame);
 
 	// title
-	CFrame *titleFrame = new CFrame(FRAME_TEXT_LINE);
+	CFrame *titleFrame = new CFrame();
+	titleFrame->setMode(FRAME_TEXT_LINE);
 	titleFrame->setPosition(&titleBox);
 	titleFrame->disablePaintFrame();
 	titleFrame->setTitle(m_vMovieInfo[0].epgTitle.c_str());
@@ -1096,7 +1099,8 @@ void CTestMenu::testSingleWidget()
 	testFrame->addFrame(titleFrame);
 
 	// star1
-	CFrame *star1Frame = new CFrame(FRAME_ICON);
+	CFrame *star1Frame = new CFrame();
+	star1Frame->setMode(FRAME_ICON);
 	star1Frame->setPosition(&starBox);
 	star1Frame->setIconName(NEUTRINO_ICON_STAR_ON);
 	star1Frame->disablePaintFrame();
@@ -1105,7 +1109,8 @@ void CTestMenu::testSingleWidget()
 	testFrame->addFrame(star1Frame);
 
 	// star2
-	CFrame *star2Frame = new CFrame(FRAME_ICON);
+	CFrame *star2Frame = new CFrame();
+	star2Frame->setMode(FRAME_ICON);
 	star2Frame->setPosition(starBox.iX + 25, starBox.iY, starBox.iWidth, starBox.iHeight);
 	star2Frame->setIconName(NEUTRINO_ICON_STAR_ON);
 	star2Frame->disablePaintFrame();
@@ -1114,7 +1119,8 @@ void CTestMenu::testSingleWidget()
 	testFrame->addFrame(star2Frame);
 
 	// star3
-	CFrame *star3Frame = new CFrame(FRAME_ICON);
+	CFrame *star3Frame = new CFrame();
+	star3Frame->setMode(FRAME_ICON);
 	star3Frame->setPosition(starBox.iX + 2*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 	star3Frame->setIconName(NEUTRINO_ICON_STAR_ON);
 	star3Frame->disablePaintFrame();
@@ -1123,7 +1129,8 @@ void CTestMenu::testSingleWidget()
 	testFrame->addFrame(star3Frame);
 
 	// star4
-	CFrame *star4Frame = new CFrame(FRAME_ICON);
+	CFrame *star4Frame = new CFrame();
+	star4Frame->setMode(FRAME_ICON);
 	star4Frame->setPosition(starBox.iX + 3*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 	star4Frame->setIconName(NEUTRINO_ICON_STAR_OFF);
 	star4Frame->disablePaintFrame();
@@ -1132,7 +1139,8 @@ void CTestMenu::testSingleWidget()
 	testFrame->addFrame(star4Frame);
 
 	// text
-	CFrame *textFrame = new CFrame(FRAME_TEXT);
+	CFrame *textFrame = new CFrame();
+	textFrame->setMode(FRAME_TEXT);
 	textFrame->setPosition(&textBox);
 	std::string buffer;
 	buffer = m_vMovieInfo[0].epgInfo1;
@@ -1166,7 +1174,8 @@ void CTestMenu::testSingleWidget()
 	testFrame->addFrame(playFrame);
 
 	// foot
-	CFrame *footFrame = new CFrame(FRAME_FOOT);
+	CFrame *footFrame = new CFrame();
+	footFrame->setMode(FRAME_FOOT);
 	footFrame->setPosition(box.iX, box.iY + box.iHeight - 40, box.iWidth, 40);
 	footFrame->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	footFrame->setActive(false);
@@ -1206,7 +1215,8 @@ void CTestMenu::testFireTV()
 	loadBox.hide();
 
 	// home
-	CFrame *homeFrame = new CFrame(FRAME_TEXT_LINE);
+	CFrame *homeFrame = new CFrame();
+	homeFrame->setMode(FRAME_TEXT_LINE);
 	homeFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	int h_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("Home");
 	int h_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
@@ -1218,7 +1228,8 @@ void CTestMenu::testFireTV()
 	frameBox->addFrame(homeFrame);
 
 	// setup
-	CFrame *setupFrame = new CFrame(FRAME_TEXT_LINE);
+	CFrame *setupFrame = new CFrame();
+	setupFrame->setMode(FRAME_TEXT_LINE);
 	setupFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	int s_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("Setup");
 	int s_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
@@ -1230,7 +1241,8 @@ void CTestMenu::testFireTV()
 	frameBox->addFrame(setupFrame);
 
 	// help
-	CFrame *helpFrame = new CFrame(FRAME_TEXT_LINE);
+	CFrame *helpFrame = new CFrame();
+	helpFrame->setMode(FRAME_TEXT_LINE);
 	int i_w = 0;
 	int i_h = 0;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_INFO, &i_w, &i_h);
@@ -1246,7 +1258,8 @@ void CTestMenu::testFireTV()
 	if (!m_vMovieInfo.empty())
 	{
 	// title
-	CFrame * titleFrame = new CFrame(FRAME_TEXT_LINE);
+	CFrame * titleFrame = new CFrame();
+	titleFrame->setMode(FRAME_TEXT_LINE);
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	int t_w = 200;
 	int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
@@ -1258,7 +1271,8 @@ void CTestMenu::testFireTV()
 	frameBox->addFrame(titleFrame);
 
 	// text
-	CFrame *textFrame = new CFrame(FRAME_TEXT);
+	CFrame *textFrame = new CFrame();
+	textFrame->setMode(FRAME_TEXT);
 	textFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10 + t_h + 10, box.iWidth - 20 - pic_w - 20, 250 - t_h - 10 - 10);
 	std::string buffer;
 	buffer = m_vMovieInfo[0].epgInfo1;
@@ -1271,7 +1285,8 @@ void CTestMenu::testFireTV()
 	frameBox->addFrame(textFrame);
 
 	// pic
-	CFrame * artFrame = new CFrame(FRAME_PICTURE);
+	CFrame * artFrame = new CFrame();
+	artFrame->setMode(FRAME_PICTURE);
 	artFrame->setPosition(box.iX + 10 + box.iWidth - 10 - pic_w - 20, box.iY + 40 + h_h + 10, pic_w - 20, 250);
 	artFrame->setIconName(m_vMovieInfo[0].tfile.c_str());
 	artFrame->disablePaintFrame();
@@ -1281,7 +1296,8 @@ void CTestMenu::testFireTV()
 	
 
 	// other
-	CFrame *otherFrame = new CFrame(FRAME_TEXT_LINE);
+	CFrame *otherFrame = new CFrame();
+	otherFrame->setMode(FRAME_TEXT_LINE);
 	otherFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	int o_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("andere Filme:");
 	int o_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
@@ -1296,7 +1312,8 @@ void CTestMenu::testFireTV()
 	CFrame * art1Frame = NULL;
 	for (int i = 1; i < 7; i++)
 	{
-		art1Frame = new CFrame(FRAME_PICTURE);
+		art1Frame = new CFrame();
+		art1Frame->setMode(FRAME_PICTURE);
 		//art1Frame->setPosition(box.iX + 10 + (i - 1)*10 + (i - 1)*(pic_w - 20), box.iY + 40 + h_h + 10 + 250 + 10 + o_h + 10, pic_w - 20, box.iHeight - 40 - h_h - 10 - 250 - 10 - 40);
 		art1Frame->setPosition(box.iX + 10 + (i - 1)*((box.iWidth - 20)/6), box.iY + 40 + h_h + 10 + 250 + 10 + o_h + 10, (box.iWidth - 20)/6,box.iHeight - 40 - h_h - 10 - 250 - 10 - 40);
 		art1Frame->setIconName(m_vMovieInfo[i].tfile.c_str());

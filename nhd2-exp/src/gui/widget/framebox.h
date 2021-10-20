@@ -39,13 +39,9 @@
 enum {
 	FRAME_BOX = 0, // caption, option and left icon | optionInfo and 2lines
 	FRAME_PICTURE,
-	//FRAME_PICTURE_NOTSELECTABLE,
 	FRAME_ICON,
-	//FRAME_ICON_NOTSELECTABLE,
 	FRAME_TEXT,
-	//FRAME_TEXT_NOTSELECTABLE,
 	FRAME_TEXT_LINE,
-	//FRAME_TEXT_LINE_NOTSELECTABLE,
 	FRAME_PLUGIN,
 	FRAME_LINE_VERTICAL,
 	FRAME_LINE_HORIZONTAL,
@@ -104,10 +100,9 @@ class CFrame
 		button_label_list_t fbutton_labels;
 		
 		//
-		CFrame(int m = FRAME_BOX);
+		CFrame(/*int m = FRAME_BOX*/);
 		virtual ~CFrame(){};
 
-		//virtual void init(const int X, const int Y, const int DX, const int DY);
 		int paint(bool selected = false, bool AfterPulldown = false);
 
 		virtual void setTitle(const char *text){if (text != NULL) caption = text;};
