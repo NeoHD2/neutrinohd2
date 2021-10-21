@@ -36,7 +36,7 @@ extern CPlugins * g_PluginList;    // defined in neutrino.cpp
 extern cVideo * videoDecoder;
 
 // CFrame
-CFrame::CFrame(/*int m*/)
+CFrame::CFrame()
 {
 	captionFont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
 	optionFont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
@@ -84,15 +84,7 @@ CFrame::CFrame(/*int m*/)
 	
 	// 
 	active = true;
-	marked = false;
-
-/*
-	if ( (mode == FRAME_LINE_HORIZONTAL) || (mode == FRAME_LINE_VERTICAL) ) 
-	{
-		shadow = false;
-		paintFrame = false;
-	}
-*/	
+	marked = false;	
 }
 
 void CFrame::setMode(int m)
@@ -422,7 +414,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	{
 		CFrameBuffer::getInstance()->paintHLineRel(window.getWindowsPos().iX, window.getWindowsPos().iWidth, window.getWindowsPos().iY, COL_MENUCONTENTDARK_PLUS_0);
 	}
-	else if (mode == FRAME_TEXT_LINE)
+	else if (mode == FRAME_LABEL)
 	{
 		if(!caption.empty())
 		{

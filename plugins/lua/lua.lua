@@ -668,7 +668,7 @@ function testCWindow()
 
 	--title
 	titleFrame = neutrino.CFrame()
-	titleFrame:setMode(neutrino.FRAME_TEXT_LINE)
+	titleFrame:setMode(neutrino.FRAME_LABEL)
 	titleFrame:setActive(false)
 	titleFrame:setPosition(textbox.iX, box.iY + headBox.iHeight + 10, 350, 40)
 	titleFrame:setTitle(movieInfo.epgTitle)
@@ -776,7 +776,6 @@ function testCWindow()
 	
 	m:setSelected(selected)
 
-	--m:addItem(window)
 	m:addItem(head)
 	m:addItem(listBox)
 	m:addItem(testFrame)
@@ -803,8 +802,7 @@ function testCWindow()
 		pictureViewer()
 	elseif actionKey == "audioPlayer" then
 		print("lua sample: testCWindow(): actionKey: audioPlayer")
-
-		window:hide()
+		
 		audioPlayer()
 	elseif actionKey == "frame1" then
 		print("lua sample: testCWindow(): actionKey: frame1")
@@ -922,11 +920,7 @@ function testCFrameBoxRandom()
 	box.iWidth = fb:getScreenWidth() - 80
 	box.iHeight = fb:getScreenHeight() - 80
 
-	--local window = neutrino.CWindow(box.iX + 40, box.iY + 40, fb:getScreenWidth() - 80, fb:getScreenHeight() - 80)
-	--window:enableCenterPos()
-
 	local frameBox = neutrino.CFrameBox(box)
-	--frameBox:setMode(neutrino.FRAMEBOX_MODE_RANDOM)
 
 	frame1 = neutrino.CFrame()
 	frame1:setPosition(box.iX, box.iY + 2, 350, 60)

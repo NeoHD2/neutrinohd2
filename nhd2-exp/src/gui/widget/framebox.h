@@ -41,7 +41,7 @@ enum {
 	FRAME_PICTURE,
 	FRAME_ICON,
 	FRAME_TEXT,
-	FRAME_TEXT_LINE,
+	FRAME_LABEL,
 	FRAME_PLUGIN,
 	FRAME_LINE_VERTICAL,
 	FRAME_LINE_HORIZONTAL,
@@ -100,7 +100,7 @@ class CFrame
 		button_label_list_t fbutton_labels;
 		
 		//
-		CFrame(/*int m = FRAME_BOX*/);
+		CFrame();
 		virtual ~CFrame(){};
 
 		int paint(bool selected = false, bool AfterPulldown = false);

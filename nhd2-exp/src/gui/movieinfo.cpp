@@ -1549,7 +1549,7 @@ void CMovieInfoWidget::funArt()
 
 	// title
 	CFrame *titleFrame = new CFrame();
-	titleFrame->setMode(FRAME_TEXT_LINE);
+	titleFrame->setMode(FRAME_LABEL);
 	titleFrame->setPosition(&titleBox);
 	titleFrame->disablePaintFrame();
 	titleFrame->setTitle(movieFile.epgTitle.c_str());

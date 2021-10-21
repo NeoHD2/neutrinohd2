@@ -1089,7 +1089,7 @@ void CTestMenu::testSingleWidget()
 
 	// title
 	CFrame *titleFrame = new CFrame();
-	titleFrame->setMode(FRAME_TEXT_LINE);
+	titleFrame->setMode(FRAME_LABEL);
 	titleFrame->setPosition(&titleBox);
 	titleFrame->disablePaintFrame();
 	titleFrame->setTitle(m_vMovieInfo[0].epgTitle.c_str());
@@ -1216,7 +1216,7 @@ void CTestMenu::testFireTV()
 
 	// home
 	CFrame *homeFrame = new CFrame();
-	homeFrame->setMode(FRAME_TEXT_LINE);
+	homeFrame->setMode(FRAME_LABEL);
 	homeFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	int h_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("Home");
 	int h_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
@@ -1229,7 +1229,7 @@ void CTestMenu::testFireTV()
 
 	// setup
 	CFrame *setupFrame = new CFrame();
-	setupFrame->setMode(FRAME_TEXT_LINE);
+	setupFrame->setMode(FRAME_LABEL);
 	setupFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	int s_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("Setup");
 	int s_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
@@ -1242,7 +1242,7 @@ void CTestMenu::testFireTV()
 
 	// help
 	CFrame *helpFrame = new CFrame();
-	helpFrame->setMode(FRAME_TEXT_LINE);
+	helpFrame->setMode(FRAME_LABEL);
 	int i_w = 0;
 	int i_h = 0;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_INFO, &i_w, &i_h);
@@ -1259,7 +1259,7 @@ void CTestMenu::testFireTV()
 	{
 	// title
 	CFrame * titleFrame = new CFrame();
-	titleFrame->setMode(FRAME_TEXT_LINE);
+	titleFrame->setMode(FRAME_LABEL);
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	int t_w = 200;
 	int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
@@ -1297,7 +1297,7 @@ void CTestMenu::testFireTV()
 
 	// other
 	CFrame *otherFrame = new CFrame();
-	otherFrame->setMode(FRAME_TEXT_LINE);
+	otherFrame->setMode(FRAME_LABEL);
 	otherFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	int o_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("andere Filme:");
 	int o_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
