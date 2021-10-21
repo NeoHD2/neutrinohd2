@@ -54,6 +54,7 @@ class CFrame
 {
 	public:
 		CWindow window;
+		
 		std::string iconName;
 		std::string caption;
 		std::string option;
@@ -104,13 +105,17 @@ class CFrame
 		virtual ~CFrame(){};
 
 		int paint(bool selected = false, bool AfterPulldown = false);
-
+		
+		virtual void setMode(int m = FRAME_BOX);
+		int getMode(void){return mode;};
+		
 		virtual void setTitle(const char *text){if (text != NULL) caption = text;};
 		virtual void setIconName(const char *icon){ if (icon != NULL) iconName = icon;};
 		virtual void setOption(const char *text){if (text != NULL) option = text;};
 		virtual void setPlugin(const char * const pluginName);
 		virtual void showPluginName(){pluginOrigName = true;};
-		virtual void setMode(int m = FRAME_BOX);
+
+		//
 		virtual void setActionKey(CMenuTarget *Target, const char *const ActionKey){jumpTarget = Target; actionKey = ActionKey;};
 		virtual void setDirectKey(neutrino_msg_t key){directKey = key;};
 		virtual void setCaptionFont(CFont * font){captionFont = font;};
@@ -150,9 +155,6 @@ class CFrame
 		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};
 		void setFootGradient(int grad){footGradient = grad;};
 		void setFooterButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1);
-		
-		// get Methods
-		int getMode(void){return mode;};
 };
 
 //// CFrameBox

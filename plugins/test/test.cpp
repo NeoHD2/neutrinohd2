@@ -1711,42 +1711,26 @@ void CTestMenu::testMultiWidget()
 	leftWidget->addItem(new CMenuSeparator(LINE));
 	leftWidget->addItem(item9);
 	leftWidget->addItem(new CMenuSeparator(LINE));
-	////
 	
-	////
-	// leftWidget
+	// rightWidget
 	rightBox.iWidth = mainBox.iWidth - leftBox.iWidth;
 	leftBox.iHeight = mainBox.iHeight - headBox.iHeight - footBox.iHeight;
 	leftBox.iX = mainBox.iX + leftBox.iWidth;
 	leftBox.iY = mainBox.iY + headBox.iHeight;
 	
-	CFrameBox *testFrameBox = new CFrameBox(&rightBox);
-	////
-	
+	topWidget = new CFrameBox(&rightBox);
 	
 	testWidget = new CWidget(&mainBox);
 	
 	testWidget->addItem(headers);
 	testWidget->addItem(footers);
 	testWidget->addItem(leftWidget);
-	//testWidget->addItem(testFrameBox);
+	testWidget->addItem(topWidget);
 	
 	testWidget->exec(NULL, "");
 	
-	delete headersWidget;
-	headersWidget = NULL;
-
-	delete footersWidget;
-	footersWidget = NULL;
-	
 	delete testWidget;
 	testWidget = NULL;
-	
-	delete leftWidget;
-	leftWidget = NULL;
-	
-	delete testFrameBox;
-	testFrameBox = NULL;
 }
 
 // test
@@ -4218,7 +4202,7 @@ void CTestMenu::testCFrameBox()
 	topBox.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
 	topBox.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20);;
 
-	CFrameBox *topWidget = new CFrameBox(&topBox);
+	topWidget = new CFrameBox(&topBox);
 
 	CFrame * frame = NULL;
 

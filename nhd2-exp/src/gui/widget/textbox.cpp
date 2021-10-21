@@ -439,7 +439,7 @@ void CTextBox::refreshText(void)
 	}
 	
 	// paint text
-	int y = m_cFrameTextRel.iY + 10;
+	int y = m_cFrameTextRel.iY;
 	int i;
 	int x_start = 0;
 
