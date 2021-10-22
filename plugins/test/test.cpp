@@ -146,6 +146,11 @@ class CTestMenu : public CMenuTarget
 		void testClistBox4();
 		void testClistBox5();
 		void testClistBox6();
+		
+		// CMenuWidget
+		void testClistBoxWidget();
+		void testClistBoxWidget1();
+		void testClistBoxWidget2();
 
 		// widgets
 		void testCStringInput();
@@ -165,11 +170,6 @@ class CTestMenu : public CMenuTarget
 		void testCHintBox();
 		void testCHintBoxInfo();
 		void testCHelpBox();
-
-		// listBoxWidget
-		void testClistBoxWidget();
-		void testClistBoxWidget1();
-		void testClistBoxWidget2();
 
 		// gui widgets
 		void testVFDController();
@@ -3279,8 +3279,6 @@ void CTestMenu::testClistBox()
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 
 	listBox = new ClistBox(&Box);
-
-	item = NULL;
 	
 	CHintBox loadBox("ClistBox", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -3424,8 +3422,6 @@ void CTestMenu::testClistBox2()
 
 	listBox = new ClistBox(&Box);
 
-	item = NULL;
-
 	CHintBox loadBox("ClistBox(classic)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 	loadMoviePlaylist();
@@ -3567,7 +3563,6 @@ void CTestMenu::testClistBox3()
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 
 	listBox = new ClistBox(&Box);
-	item = NULL;
 
 	CHintBox loadBox("ClistBox(extended)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -3711,7 +3706,6 @@ void CTestMenu::testClistBox4()
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 
 	listBox = new ClistBox(&Box);
-	item = NULL;
 
 	CHintBox loadBox("ClistBox(frame)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -3857,7 +3851,6 @@ void CTestMenu::testClistBox5()
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 
 	listBox = new ClistBox(&Box);
-	item = NULL;
 
 	CHintBox loadBox("ClistBox(menu mode)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -4015,8 +4008,6 @@ void CTestMenu::testClistBox6()
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 
 	listBox = new ClistBox(&Box);
-
-	item = NULL;
 
 	CHintBox loadBox("ClistBox(list mode)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();

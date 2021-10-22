@@ -42,6 +42,8 @@
 #include <system/debug.h>
 
 
+static CTextBox * textBox = NULL;
+
 // CMenuItem
 CMenuItem::CMenuItem()
 {

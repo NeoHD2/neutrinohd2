@@ -559,8 +559,6 @@ class ClistBox : public CWidgetItem
 		void saveScreen();
 		void restoreScreen();
 
-		CTextBox * textBox;
-
 		std::string actionKey;
 		
 		//

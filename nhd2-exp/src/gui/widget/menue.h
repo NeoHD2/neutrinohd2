@@ -165,9 +165,7 @@ class CMenuWidget : public CMenuTarget
 		bool MenuPos;
 
 		std::string actionKey;
-
-		CTextBox * textBox;
-		
+			
 	public:
 		CMenuWidget();
 		CMenuWidget(const char * const Name, const std::string& Icon = "", const int mwidth = MENU_WIDTH, const int mheight = MENU_HEIGHT);

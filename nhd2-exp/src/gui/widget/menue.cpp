@@ -58,9 +58,7 @@
 	
 
 extern CPlugins * g_PluginList;    // defined in neutrino.cpp
-
-//
-//static CTextBox * textBox = NULL;
+static CTextBox * textBox = NULL;
 
 /// CMenuWidget
 CMenuWidget::CMenuWidget()
