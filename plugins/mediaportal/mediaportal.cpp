@@ -158,7 +158,7 @@ void CMediaPortal::showMenu(void)
 {
 	mediaPortal = new CMenuWidget("Media Portal", PLUGINDIR "/mediaportal/mp.png");
 
-	mediaPortal->setMode(MODE_LISTBOX);
+	mediaPortal->setWidgetMode(MODE_LISTBOX);
 	mediaPortal->setWidgetType(WIDGET_TYPE_FRAME);
 	mediaPortal->enablePaintFootInfo();
 

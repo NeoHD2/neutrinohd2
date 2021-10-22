@@ -960,7 +960,7 @@ int CEventFinderMenu::showMenu(void)
 	
 	CMenuWidget searchMenu(LOCALE_EVENTFINDER_HEAD, NEUTRINO_ICON_FEATURES);
 
-	searchMenu.setMode(MODE_SETUP);
+	searchMenu.setWidgetMode(MODE_SETUP);
 	searchMenu.enableShrinkMenu();
 
         searchMenu.addItem(mf2, false);

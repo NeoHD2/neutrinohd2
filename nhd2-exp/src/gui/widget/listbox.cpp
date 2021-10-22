@@ -42,6 +42,7 @@
 #include <system/debug.h>
 
 
+extern CPlugins * g_PluginList;    // defined in neutrino.cpp
 static CTextBox * textBox = NULL;
 
 // CMenuItem
@@ -189,7 +190,7 @@ int CMenuOptionChooser::exec(CMenuTarget *parent)
 
 		CMenuWidget *menu = new CMenuWidget(optionNameString.c_str(), NEUTRINO_ICON_SETTINGS);
 
-		menu->setMode(MODE_MENU);
+		menu->setWidgetMode(MODE_MENU);
 		menu->enableShrinkMenu();
 		menu->enableSaveScreen();
 		
@@ -598,7 +599,7 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 		//if(parent) 
 		//	menu->move(20, 0);
 		
-		menu->setMode(MODE_MENU);
+		menu->setWidgetMode(MODE_MENU);
 		menu->enableSaveScreen();
 		
 		for(unsigned int count = 0; count < options.size(); count++) 
@@ -1807,6 +1808,10 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	actionKey = "";
 	
 	paintFrame = true;
+	
+	////
+	timeout = 0;
+	MenuPos = false;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -1884,6 +1889,10 @@ ClistBox::ClistBox(CBox* position)
 	actionKey = "";
 	
 	paintFrame = true;
+	
+	////
+	timeout = 0;
+	MenuPos = false;
 }
 
 ClistBox::~ClistBox()
@@ -1959,6 +1968,15 @@ void ClistBox::initFrames()
 		}
 
 		page_start.push_back(items.size());
+		
+		//
+		if (widgetMode == MODE_MENU)
+		{
+			cFrameBox.iX = g_settings.screen_StartX;
+			cFrameBox.iY = g_settings.screen_StartY;
+			cFrameBox.iWidth = g_settings.screen_EndX - g_settings.screen_StartX;
+			cFrameBox.iHeight = g_settings.screen_EndY - g_settings.screen_StartY;
+		}
 
 		//
 		item_width = cFrameBox.iWidth/itemsPerX;
@@ -2051,6 +2069,28 @@ void ClistBox::initFrames()
 			cFrameBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - cFrameBox.iWidth ) >> 1 );
 			cFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - cFrameBox.iHeight) >> 1 );
 		}
+		
+		////TEST
+		// menu position
+		if(widgetMode == MODE_MENU)
+		{
+			if(g_settings.menu_position == SNeutrinoSettings::MENU_POSITION_CENTER && MenuPos)
+			{
+				cFrameBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - full_width ) >> 1 );
+				cFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
+			}
+			else if(g_settings.menu_position == SNeutrinoSettings::MENU_POSITION_LEFT && MenuPos)
+			{
+				cFrameBox.iX = frameBuffer->getScreenX() + connectLineWidth;
+				cFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
+			}
+			else if(g_settings.menu_position == SNeutrinoSettings::MENU_POSITION_RIGHT && MenuPos)
+			{
+				cFrameBox.iX = frameBuffer->getScreenX() + frameBuffer->getScreenWidth() - full_width - connectLineWidth;
+				cFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
+			}
+		}
+
 	}
 }
 
@@ -2502,36 +2542,46 @@ void ClistBox::paintItemInfo(int pos)
 				textBox = new CTextBox(cFrameBox.iX + 2, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight + 2, cFrameBox.iWidth - 4, cFrameFootInfo.iHeight - 4);
 				textBox->disablePaintBackground();
 				textBox->setMode(AUTO_WIDTH);
+				
+				// itemIcon
+				std::string icon;
+				icon.clear();
+				
+				if (item->isPlugin)
+					icon = item->itemIcon;
+				else				
+					icon = g_settings.icons_dir + item->itemIcon.c_str() + ".png";
 
 				// HelpText
 				if(!item->itemHelpText.empty())
 				{
-					textBox->setText(item->itemHelpText.c_str(), !item->itemIcon.empty()? item->itemIcon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
+					//textBox->setText(item->itemHelpText.c_str(), !item->itemIcon.empty()? item->itemIcon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
+					textBox->setText(item->itemHelpText.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
 					textBox->paint();
 				}
 			}
 			else
 			{
-			if(fbutton_count == 0)
-			{
-				CMenuItem* item = items[pos];
-
-				item->getYPosition();
-
-				// refresh box
-				frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight, cFrameBox.iWidth, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
-
-				// info icon
-				int iw, ih;
-				frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
-				frameBuffer->paintIcon(NEUTRINO_ICON_INFO, cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + (fheight - ih)/2);
-
-				// HelpText
-				if(!item->itemHelpText.empty())
+				if(fbutton_count == 0)
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBox.iX + BORDER_LEFT + iw + ICON_OFFSET, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHelpText.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					CMenuItem* item = items[pos];
+
+					item->getYPosition();
+
+					// refresh box
+					frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight, cFrameBox.iWidth, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
+
+					// info icon
+					int iw, ih;
+					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
+					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + (fheight - ih)/2);
+
+					// HelpText
+					if(!item->itemHelpText.empty())
+					{
+						g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBox.iX + BORDER_LEFT + iw + ICON_OFFSET, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHelpText.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					}
 				}
-			}
 			}
 		}
 	}
@@ -3244,5 +3294,321 @@ void ClistBox::onPageDownKeyPressed()
 
 	scrollPageDown();
 }
+
+////
+void ClistBox::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
+{
+	keyActionMap[key].menue = menue;
+	keyActionMap[key].action = action;
+}
+
+void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned int shortcut, bool enabled)
+{
+	unsigned int number_of_plugins = (unsigned int) g_PluginList->getNumberOfPlugins();
+
+	std::string IconName;
+	unsigned int sc = shortcut;
+
+	for (unsigned int count = 0; count < number_of_plugins; count++)
+	{
+		if ((g_PluginList->getIntegration(count) == integration) && !g_PluginList->isHidden(count))
+		{
+			//
+			IconName = NEUTRINO_ICON_MENUITEM_PLUGIN;
+
+			std::string icon("");
+			icon = g_PluginList->getIcon(count);
+
+			if(!icon.empty())
+			{
+				IconName = PLUGINDIR;
+				IconName += "/";
+				IconName += g_PluginList->getFileName(count);
+				IconName += "/";
+				IconName += g_PluginList->getIcon(count);
+			}
+
+			//
+			neutrino_msg_t dk = (shortcut != RC_nokey) ? CRCInput::convertDigitToKey(sc++) : RC_nokey;
+
+			//FIXME: iconName
+			CMenuForwarder *fw_plugin = new CMenuForwarder(g_PluginList->getName(count), enabled, NULL, CPluginsExec::getInstance(), to_string(count).c_str(), dk, NULL, IconName.c_str());
+
+			fw_plugin->setHelpText(g_PluginList->getDescription(count).c_str());
+			fw_plugin->setWidgetMode(MODE_LISTBOX); //FIXME:
+			fw_plugin->isPlugin = true;
+
+			addItem(fw_plugin);
+		}
+	}
+}
+
+int ClistBox::exec(CMenuTarget* parent, const std::string&)
+{
+	dprintf(DEBUG_NORMAL, "ClistBox::exec:\n");
+
+	int retval = RETURN_REPAINT;
+	
+	if (parent)
+		parent->hide();
+	
+	initFrames();
+	paint();
+	
+	// control loop
+	// add sec timer
+	if(paintDate)
+		sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
+		
+	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
+
+	//control loop
+	do {
+		g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd);
+		
+		int handled = false;
+
+		dprintf(DEBUG_DEBUG, "ClistBox::exec: msg:%s\n", CRCInput::getSpecialKeyName(msg));
+		
+		if ( msg <= RC_MaxRC ) 
+		{
+			timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
+			
+			// keymap
+			std::map<neutrino_msg_t, keyAction>::iterator it = keyActionMap.find(msg);
+			
+			if (it != keyActionMap.end()) 
+			{
+				actionKey = it->second.action;
+
+				if (it->second.menue != NULL)
+				{
+					int rv = it->second.menue->exec(this, it->second.action);
+
+					//FIXME:review this
+					switch ( rv ) 
+					{
+						case RETURN_EXIT_ALL:
+							retval = RETURN_EXIT_ALL; //fall through
+						case RETURN_EXIT:
+							msg = RC_timeout;
+							break;
+						case RETURN_REPAINT:
+							hide();
+							initFrames();
+							paint();
+							break;
+					}
+				}
+				else
+				{
+					selected = -1;
+					handled = true;
+
+					break;
+				}
+
+				frameBuffer->blit();
+				continue;
+			}
+			
+			// direkKey
+			for (unsigned int i = 0; i < items.size(); i++) 
+			{
+				CMenuItem * titem = items[i];
+			
+				if ((titem->directKey != RC_nokey) && (titem->directKey == msg)) 
+				{
+					if (titem->isSelectable()) 
+					{
+						items[selected]->paint(false);
+						selected = i;
+
+						if (selected > (int)page_start[current_page + 1] || selected < (int)page_start[current_page]) 
+						{
+							// different page
+							paintItems();
+						}
+
+						paintItemInfo(selected);
+						pos = selected;
+						msg = RC_ok;
+						actionKey = titem->actionKey;
+					} 
+					else 
+					{
+						// swallow-key...
+						handled = true;
+					}
+					break;
+				}
+			}
+		}
+		
+		if (!handled)
+		{
+			if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
+			{
+				// head
+				if (paintDate)
+					paintHead();
+			} 
+			
+			switch (msg)
+			{
+				//
+				case (RC_up):
+					onUpKeyPressed();
+					break;
+
+				case (RC_down):
+					onDownKeyPressed();
+					break;
+
+				case (RC_right):
+					onRightKeyPressed();
+					break;
+
+				case (RC_left):
+					onLeftKeyPressed();
+					break;
+
+				case (RC_page_up):
+					onPageUpKeyPressed();
+					break;
+
+				case (RC_page_down):
+					onPageDownKeyPressed();
+					break;
+
+				case (RC_home):
+					exit_pressed = true;
+					dprintf(DEBUG_NORMAL, "ClistBox::exec: exit_pressed\n");
+					msg = RC_timeout;
+					selected = -1; 
+					break;
+
+				case (RC_ok):
+					{
+						if (hasItem())
+						{
+							CMenuItem* item = items[selected];
+							item->msg = msg;
+							actionKey = item->actionKey;
+							
+							int rv = item->exec(this);
+							
+							//FIXME:review this
+							switch ( rv ) 
+							{
+								case RETURN_EXIT_ALL:
+									retval = RETURN_EXIT_ALL;
+								case RETURN_EXIT:
+									msg = RC_timeout;
+									break;
+								case RETURN_REPAINT:
+									hide();
+									initFrames();
+									paint();
+									break;
+							}
+						}
+						else
+							msg = RC_timeout;
+					}
+					break;
+					
+				case (RC_setup):
+					dprintf(DEBUG_NORMAL, "ClistBox::exec: (%s) changeWidgetType\n", l_name.c_str());
+
+					if(widgetMode == MODE_MENU)
+					{
+						if(widgetChange)
+						{
+							hide();
+
+							if(widgetType == WIDGET_TYPE_STANDARD)
+								widgetType = WIDGET_TYPE_CLASSIC;
+							else if(widgetType == WIDGET_TYPE_CLASSIC)
+								widgetType = WIDGET_TYPE_EXTENDED;
+							else if(widgetType == WIDGET_TYPE_EXTENDED)
+								widgetType = WIDGET_TYPE_FRAME;	
+							else if(widgetType == WIDGET_TYPE_FRAME)
+								widgetType = WIDGET_TYPE_STANDARD;
+
+							g_settings.menu_design = widgetType;
+
+							initFrames();
+							paintHead();
+							paintFoot();
+							paint();
+						}
+					}
+					else if(widgetMode == MODE_LISTBOX)
+					{
+						if(widgetChange && widget.size())
+						{
+							hide();
+
+							cnt++;
+
+							if(cnt >= (int)widget.size())
+							{
+								cnt = WIDGET_TYPE_STANDARD;
+							}
+					
+							widgetType = widget[cnt];
+
+							initFrames();
+							paintHead();
+							paintFoot();
+							paint();
+						}
+					}
+					break;
+					
+				case (RC_timeout):
+					exit_pressed = true;
+					break;
+
+				default:
+					if ( CNeutrinoApp::getInstance()->handleMsg( msg, data ) & messages_return::cancel_all ) 
+					{
+						retval = RETURN_EXIT_ALL;
+						msg = RC_timeout;
+					}
+			}
+			
+			if ( msg <= RC_MaxRC )
+			{
+				// recalculate timeout for RC-Tasten
+				timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
+			}
+		}
+		
+		frameBuffer->blit();
+	}while ( msg != RC_timeout );	
+	
+	hide();
+	
+	if(paintDate)
+	{
+		//
+		g_RCInput->killTimer(sec_timer_id);
+		sec_timer_id = 0;
+	}
+	
+	// vfd
+	if(!parent)
+	{
+		if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
+			CVFD::getInstance()->setMode(CVFD::MODE_WEBTV);
+		else
+			CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
+	}
+	
+	return retval;
+}
+
 
 

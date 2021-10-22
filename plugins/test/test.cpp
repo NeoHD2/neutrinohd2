@@ -1178,12 +1178,12 @@ void CTestMenu::testFireTV()
 
 	int pic_w = box.iWidth/6;
 
-	testWidget = new CWidget(&box);
-	testWidget->enablePaintMainFrame();
+	//testWidget = new CWidget(&box);
+	//testWidget->enablePaintMainFrame();
 
 	// frameBox
 	frameBoxWidget = new CFrameBox(&box);
-	frameBoxWidget->disablePaintFrame();
+	//frameBoxWidget->disablePaintFrame();
 
 	CHintBox loadBox("FireTV", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -1303,15 +1303,16 @@ void CTestMenu::testFireTV()
 	}
 	}
 
-	testWidget->addItem(frameBoxWidget);
+	//testWidget->addItem(frameBoxWidget);
 	
-	testWidget->exec(NULL, "");
+	//testWidget->exec(NULL, "");
+	frameBoxWidget->exec(NULL, "");
 
 	delete frameBoxWidget;
 	frameBoxWidget = NULL;
 
-	delete testWidget;
-	testWidget = NULL;
+	//delete testWidget;
+	//testWidget = NULL;
 }
 
 void CTestMenu::testListFrameWidget()
@@ -1454,16 +1455,16 @@ void CTestMenu::testListBoxWidget()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu:testClistBoxWidget:\n");
 	
-	testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
+	//testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
-	testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
-	testWidget->enableSaveScreen();
+	//testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
+	//testWidget->enableSaveScreen();
 
 	//
-	rightBox.iWidth = testWidget->getWindowsPos().iWidth;
-	rightBox.iHeight = testWidget->getWindowsPos().iHeight;
-	rightBox.iX = testWidget->getWindowsPos().iX;
-	rightBox.iY = testWidget->getWindowsPos().iY;
+	rightBox.iWidth = frameBuffer->getScreenWidth();
+	rightBox.iHeight = frameBuffer->getScreenHeight();
+	rightBox.iX = frameBuffer->getScreenX();
+	rightBox.iY = frameBuffer->getScreenY();
 
 	rightWidget = new ClistBox(&rightBox);
 
@@ -1519,15 +1520,15 @@ void CTestMenu::testListBoxWidget()
 		rightWidget->addItem(item);
 	}
 
-	testWidget->addKey(RC_info, this, "linfo");
-	testWidget->addKey(RC_setup, this, "lsetup");
+	rightWidget->addKey(RC_info, this, "linfo");
+	rightWidget->addKey(RC_setup, this, "lsetup");
 
-	testWidget->addItem(rightWidget);
+	//testWidget->addItem(rightWidget);
 
-	testWidget->exec(NULL, "");
+	rightWidget->exec(NULL, "");
 
-	delete testWidget;
-	testWidget = NULL;
+	//delete testWidget;
+	//testWidget = NULL;
 
 	delete rightWidget;
 	rightWidget = NULL;
@@ -5020,7 +5021,7 @@ void CTestMenu::testClistBoxWidget()
 		listMenu->addItem(item);
 	}
 
-	listMenu->setMode(MODE_LISTBOX);
+	listMenu->setWidgetMode(MODE_LISTBOX);
 	listMenu->setWidgetType(WIDGET_TYPE_STANDARD);
 	listMenu->addWidget(WIDGET_TYPE_CLASSIC);
 	listMenu->addWidget(WIDGET_TYPE_EXTENDED);
@@ -5081,7 +5082,7 @@ void CTestMenu::testClistBoxWidget1()
 		listMenu->addItem(item);
 	}
 
-	listMenu->setMode(MODE_MENU);
+	listMenu->setWidgetMode(MODE_MENU);
 	listMenu->setItemsPerPage(6, 2);
 	listMenu->enableWidgetChange();
 	//listMenu->enableShrinkMenu();
@@ -6948,7 +6949,7 @@ void CTestMenu::showMenu()
 
 	mainMenu->setTitle("testMenu", NEUTRINO_ICON_BUTTON_SETUP);
 
-	mainMenu->setMode(MODE_MENU);
+	mainMenu->setWidgetMode(MODE_MENU);
 	mainMenu->enableShrinkMenu(),
 	mainMenu->enableMenuPosition();
 	mainMenu->enablePaintFootInfo();

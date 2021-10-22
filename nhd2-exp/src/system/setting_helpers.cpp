@@ -285,7 +285,7 @@ int CUserMenuMenu::exec(CMenuTarget *parent, const std::string &/*actionKey*/)
 
         CMenuWidget menu(local, NEUTRINO_ICON_KEYBINDING);
 
-	menu.setMode(MODE_SETUP);
+	menu.setWidgetMode(MODE_SETUP);
 	menu.enableShrinkMenu();
 	
         //menu.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));

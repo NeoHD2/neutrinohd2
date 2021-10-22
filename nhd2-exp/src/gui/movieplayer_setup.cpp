@@ -88,7 +88,7 @@ void CMoviePlayerSettings::showMenu()
 	
 	CMenuWidget moviePlayerSettings(LOCALE_STREAMINGMENU_HEAD, NEUTRINO_ICON_MOVIE);
 
-	moviePlayerSettings.setMode(MODE_SETUP);
+	moviePlayerSettings.setWidgetMode(MODE_SETUP);
 	moviePlayerSettings.enableShrinkMenu();
 	
 	// intros

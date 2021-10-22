@@ -240,7 +240,7 @@ class CMenuWidget : public CMenuTarget
 
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
 
-		void setMode(int mode){widgetMode = mode;};
+		void setWidgetMode(int mode){widgetMode = mode;};
 		void enableMenuPosition(){MenuPos = true;};
 
 		virtual std::string& getString(void) { if (hasItem())return items[selected]->itemName; };

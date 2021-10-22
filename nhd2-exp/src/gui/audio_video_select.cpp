@@ -175,7 +175,7 @@ void CAVPIDSelectWidget::showAudioDialog(void)
 
 	CMenuWidget * AVPIDSelector = new CMenuWidget(LOCALE_APIDSELECTOR_HEAD, NEUTRINO_ICON_AUDIO);
 
-	AVPIDSelector->setMode(MODE_SETUP);
+	AVPIDSelector->setWidgetMode(MODE_SETUP);
 	AVPIDSelector->enableShrinkMenu();
 	AVPIDSelector->enableSaveScreen();
 	

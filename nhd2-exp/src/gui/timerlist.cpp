@@ -928,7 +928,7 @@ int CTimerList::modifyTimer()
 	CMenuWidget timerSettings(LOCALE_TIMERLIST_MENUMODIFY, NEUTRINO_ICON_SETTINGS);
 	timerSettings.enablePaintDate();
 	timerSettings.enableShrinkMenu();
-	timerSettings.setMode(MODE_SETUP);
+	timerSettings.setWidgetMode(MODE_SETUP);
 	
 	// intros
 	timerSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
@@ -990,7 +990,7 @@ int CTimerList::modifyTimer()
 
 	CMenuWidget timerSettings_apids(LOCALE_TIMERLIST_APIDS, NEUTRINO_ICON_SETTINGS);
 
-	timerSettings_apids.setMode(MODE_SETUP);
+	timerSettings_apids.setWidgetMode(MODE_SETUP);
 	timerSettings_apids.enableShrinkMenu();
 
 	CTimerListApidNotifier apid_notifier(&timer_apids_dflt, &timer_apids_std, &timer_apids_ac3, &timer_apids_alt);
@@ -1035,7 +1035,7 @@ int CTimerList::newTimer()
 	CMenuWidget timerSettings(LOCALE_TIMERLIST_MENUNEW, NEUTRINO_ICON_SETTINGS);
 	timerSettings.enablePaintDate();
 	timerSettings.enableShrinkMenu();
-	timerSettings.setMode(MODE_SETUP);
+	timerSettings.setWidgetMode(MODE_SETUP);
 	
 	// intros
 	timerSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));

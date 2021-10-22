@@ -193,7 +193,7 @@ void CYTBrowser::showMenu()
 		moviesMenu->addItem(item);
 	}
 
-	moviesMenu->setMode(MODE_LISTBOX);
+	moviesMenu->setWidgetMode(MODE_LISTBOX);
 	moviesMenu->setWidgetType(WIDGET_TYPE_FRAME);
 	moviesMenu->setItemsPerPage(3, 2);
 	moviesMenu->enablePaintFootInfo();
@@ -364,7 +364,7 @@ int CYTBrowser::showCategoriesMenu(void)
 	CMenuWidget mainMenu(g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_YOUTUBE), NEUTRINO_ICON_YT_SMALL);
 
 	mainMenu.enableSaveScreen();
-	mainMenu.setMode(MODE_MENU);
+	mainMenu.setWidgetMode(MODE_MENU);
 	mainMenu.enableShrinkMenu();
 
 	mainMenu.addItem(new CMenuForwarder(g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_MOST_POPULAR), true, NULL, new CYTBrowser(cYTFeedParser::MOST_POPULAR), NULL));

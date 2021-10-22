@@ -114,7 +114,7 @@ void CCAMMenuHandler::doMainMenu()
 
 	CMenuWidget * cammenu = new CMenuWidget(LOCALE_CAM_SETTINGS, NEUTRINO_ICON_SETTINGS);
 
-	cammenu->setMode(MODE_SETUP);
+	cammenu->setWidgetMode(MODE_SETUP);
 	cammenu->enableShrinkMenu();
 	
 	// intros
@@ -147,7 +147,7 @@ void CCAMMenuHandler::doMainMenu()
 			sprintf(str, "%s %d", g_Locale->getText(LOCALE_CAM_EMPTY), i + 1);
 			tempMenu = new CMenuWidget(str, NEUTRINO_ICON_SETTINGS);
 
-			tempMenu->setMode(MODE_SETUP);
+			tempMenu->setWidgetMode(MODE_SETUP);
 			tempMenu->enableShrinkMenu();
 
 			cammenu->addItem(new CMenuSeparator(LINE));
@@ -291,7 +291,7 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 			CMenuWidget * menu = new CMenuWidget(convertDVBUTF8(pMenu->title, strlen(pMenu->title), 0).c_str(), NEUTRINO_ICON_SETTINGS);
 
 			menu->enableSaveScreen();
-			menu->setMode(MODE_SETUP);
+			menu->setWidgetMode(MODE_SETUP);
 			menu->enableShrinkMenu();
 
 			int slen = strlen(pMenu->subtitle);

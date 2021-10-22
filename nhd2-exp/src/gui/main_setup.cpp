@@ -86,7 +86,7 @@ void CMainSetup::showMenu(void)
 
 	CMenuWidget * mainSettings = new CMenuWidget(LOCALE_MAINSETTINGS_HEAD, NEUTRINO_ICON_SETTINGS);
 
-	mainSettings->setMode(MODE_MENU);
+	mainSettings->setWidgetMode(MODE_MENU);
 	mainSettings->enableShrinkMenu();
 	mainSettings->enableMenuPosition();
 	mainSettings->enableWidgetChange();

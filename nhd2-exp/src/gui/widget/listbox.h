@@ -35,6 +35,8 @@
 #include <gui/widget/widget_helpers.h>
 #include <gui/widget/widget.h>
 
+#include <gui/plugins.h>
+
 
 
 extern CLocaleManager		*g_Locale;
@@ -469,7 +471,7 @@ class ClistBoxItem : public CMenuItem
 };
 
 //
-class ClistBox : public CWidgetItem
+class ClistBox : public CWidgetItem, CMenuTarget
 {
 	public:
 		std::vector<CMenuItem*>	items;
@@ -563,6 +565,24 @@ class ClistBox : public CWidgetItem
 		
 		//
 		bool paintFrame;
+		
+		////
+		//
+		neutrino_msg_t      msg;
+		neutrino_msg_data_t data;
+		
+		unsigned long long int timeout;
+		
+		//int selected;
+		bool exit_pressed;
+		//int retval;
+		//int pos;
+		
+		struct keyAction { std::string action; CMenuTarget *menue; };
+		std::map<neutrino_msg_t, keyAction> keyActionMap;
+		
+		uint32_t sec_timer_id;
+		bool MenuPos;
 
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -577,7 +597,7 @@ class ClistBox : public CWidgetItem
 		bool hasItem();
 		void clearItems(void){items.clear(); current_page = 0;};
 		void clearAll(void){items.clear(); hbutton_labels.clear(); fbutton_labels.clear(); widget.clear();current_page = 0;};
-		void setSelected(unsigned int _new) { /*if(_new <= items.size())*/ selected = _new; };
+		//void setSelected(unsigned int _new) { /*if(_new <= items.size())*/ selected = _new; };
 
 		virtual void initFrames();
 		virtual void paint();
@@ -622,7 +642,7 @@ class ClistBox : public CWidgetItem
 		int getItemsCount()const{return items.size();};
 		int getCurrentPage()const{return current_page;};
 		int getTotalPages()const{return total_pages;};
-		int getSelected(){return selected;};
+		//int getSelected(){return selected;};
 		inline CBox getWindowsPos(void){return(cFrameBox);};
 		int getTitleHeight(){return hheight;};
 		int getFootHeight(){return fheight;};
@@ -663,6 +683,23 @@ class ClistBox : public CWidgetItem
 		//
 		std::string getName(){return l_name;};
 		std::string getActionKey(void){return actionKey;};
+		
+		////TEST:fixme
+		virtual int exec(CMenuTarget * parent, const std::string &actionKey);
+		
+		void setTimeOut(unsigned long long int to = 0){timeout = to;};
+		
+		bool getExitPressed(){return exit_pressed;};
+
+		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
+		int getSelected(){return exit_pressed ? -1 : selected;};
+		
+		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
+		neutrino_msg_t getKey(){return msg;};
+		
+		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
+		
+		void enableMenuPosition(){MenuPos = true;};
 };
 
 #endif // LISTBOX_H_

@@ -313,7 +313,7 @@ void CTVShows::showMenu()
 		mlist->addItem(item);
 	}
 
-	mlist->setMode(MODE_LISTBOX);
+	mlist->setWidgetMode(MODE_LISTBOX);
 	mlist->setWidgetType(WIDGET_TYPE_FRAME);
 	mlist->setItemsPerPage(6, 2);
 	//mlist->setItemBoxColor(COL_YELLOW);
@@ -342,7 +342,7 @@ int CTVShows::showCategoriesMenu()
 
 	CMenuWidget * menu = new CMenuWidget("Serien Trailer");
 
-	menu->setMode(MODE_MENU);
+	menu->setWidgetMode(MODE_MENU);
 	menu->enableShrinkMenu();
 
 	menu->addItem(new CMenuForwarder("Heute auf Sendung", true, NULL, new CTVShows("airing_today"), "airing_today"));

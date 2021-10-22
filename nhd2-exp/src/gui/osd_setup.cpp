@@ -92,7 +92,7 @@ void COSDSettings::showMenu(void)
 	
 	CMenuWidget * osdSettings = new CMenuWidget(LOCALE_MAINSETTINGS_OSD, NEUTRINO_ICON_COLORS );
 
-	osdSettings->setMode(MODE_MENU);
+	osdSettings->setWidgetMode(MODE_MENU);
 	osdSettings->enableShrinkMenu();
 	osdSettings->enableMenuPosition();
 	osdSettings->enableWidgetChange();
@@ -182,7 +182,7 @@ void COSDMenuColorSettings::showMenu()
 	
 	CMenuWidget OSDmenuColorsSettings(LOCALE_COLORMENUSETUP_HEAD, NEUTRINO_ICON_SETTINGS );
 
-	OSDmenuColorsSettings.setMode(MODE_SETUP);
+	OSDmenuColorsSettings.setWidgetMode(MODE_SETUP);
 	OSDmenuColorsSettings.enableShrinkMenu();
 	
 	// intros
@@ -304,7 +304,7 @@ void COSDInfoBarColorSettings::showMenu()
 	
 	CMenuWidget OSDinfobarColorSettings(LOCALE_COLORMENU_STATUSBAR, NEUTRINO_ICON_SETTINGS);
 
-	OSDinfobarColorSettings.setMode(MODE_SETUP);
+	OSDinfobarColorSettings.setWidgetMode(MODE_SETUP);
 	OSDinfobarColorSettings.enableShrinkMenu();
 	
 	// intros
@@ -376,7 +376,7 @@ void CLanguageSettings::showMenu()
 	
 	CMenuWidget languageSettings(LOCALE_LANGUAGESETUP_HEAD, NEUTRINO_ICON_LANGUAGE );
 
-	languageSettings.setMode(MODE_SETUP);
+	languageSettings.setWidgetMode(MODE_SETUP);
 	languageSettings.enableShrinkMenu();
 	
 	// intros
@@ -494,7 +494,7 @@ void CFontSettings::showMenu()
 	
 	CMenuWidget fontSettings(LOCALE_EPGPLUS_SELECT_FONT_NAME, NEUTRINO_ICON_COLORS, 700);
 	
-	fontSettings.setMode(MODE_SETUP);
+	fontSettings.setWidgetMode(MODE_SETUP);
 	fontSettings.enableShrinkMenu();
 	
 	// intros
@@ -565,7 +565,7 @@ void COSDTimingSettings::showMenu()
 	
 	CMenuWidget osdTimingSettings(LOCALE_COLORMENU_TIMING, NEUTRINO_ICON_SETTINGS);
 
-	osdTimingSettings.setMode(MODE_SETUP);
+	osdTimingSettings.setWidgetMode(MODE_SETUP);
 	osdTimingSettings.enableShrinkMenu();
 	
 	// intros
@@ -733,7 +733,7 @@ void COSDDiverses::showMenu()
 	
 	CMenuWidget osdDiverseSettings(LOCALE_COLORMENU_TIMING, NEUTRINO_ICON_SETTINGS);
 
-	osdDiverseSettings.setMode(MODE_SETUP);
+	osdDiverseSettings.setWidgetMode(MODE_SETUP);
 	osdDiverseSettings.enableShrinkMenu();
 	osdDiverseSettings.enableMenuPosition();
 	

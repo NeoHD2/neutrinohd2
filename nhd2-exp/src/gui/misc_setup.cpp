@@ -138,7 +138,7 @@ void CMiscSettings::showMenu(void)
 
 	CMenuWidget * miscSettings = new CMenuWidget(LOCALE_MISCSETTINGS_HEAD, NEUTRINO_ICON_SETTINGS);
 
-	miscSettings->setMode(MODE_MENU);
+	miscSettings->setWidgetMode(MODE_MENU);
 	miscSettings->enableShrinkMenu();
 	miscSettings->enableMenuPosition();
 	miscSettings->enableWidgetChange();
@@ -265,7 +265,7 @@ void CGeneralSettings::showMenu()
 	
 	CMenuWidget miscSettingsGeneral(LOCALE_MISCSETTINGS_GENERAL, NEUTRINO_ICON_SETTINGS);
 
-	miscSettingsGeneral.setMode(MODE_SETUP);
+	miscSettingsGeneral.setWidgetMode(MODE_SETUP);
 	miscSettingsGeneral.enableShrinkMenu();
 	
 	// intros
@@ -598,7 +598,7 @@ void CChannelListSettings::showMenu()
 	
 	CMenuWidget miscSettingsChannelList(LOCALE_MISCSETTINGS_CHANNELLIST, NEUTRINO_ICON_SETTINGS);
 	miscSettingsChannelList.enableSaveScreen();
-	miscSettingsChannelList.setMode(MODE_SETUP);
+	miscSettingsChannelList.setWidgetMode(MODE_SETUP);
 	miscSettingsChannelList.enableShrinkMenu();
 	
 	int shortcutMiscChannel = 1;
@@ -709,7 +709,7 @@ void CEPGSettings::showMenu()
 	
 	CMenuWidget miscSettingsEPG(LOCALE_MISCSETTINGS_EPG_HEAD, NEUTRINO_ICON_SETTINGS);
 	
-	miscSettingsEPG.setMode(MODE_SETUP);
+	miscSettingsEPG.setWidgetMode(MODE_SETUP);
 	miscSettingsEPG.enableShrinkMenu();
 	
 	int shortcutMiscEpg = 1;
@@ -906,7 +906,7 @@ void CFileBrowserSettings::showMenu()
 	
 	CMenuWidget miscSettingsFileBrowser(LOCALE_FILEBROWSER_HEAD, NEUTRINO_ICON_SETTINGS);
 
-	miscSettingsFileBrowser.setMode(MODE_SETUP);
+	miscSettingsFileBrowser.setWidgetMode(MODE_SETUP);
 	miscSettingsFileBrowser.enableShrinkMenu();
 	
 	int shortcutMiscFileBrowser = 1;

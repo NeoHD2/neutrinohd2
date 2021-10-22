@@ -74,9 +74,16 @@ void CNeutrinoApp::mainMenu(void)
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::mainMenu:\n");
 
-	CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
+	//CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
+	
+	////
+	ClistBox * nMenu = new ClistBox();
+	nMenu->setTitle(g_Locale->getText(LOCALE_MAINMENU_HEAD), NEUTRINO_ICON_BUTTON_SETUP);
+	nMenu->enablePaintHead();
+	nMenu->enablePaintFoot();
 
-	nMenu->setMode(MODE_MENU);
+	//
+	nMenu->setWidgetMode(MODE_MENU);
 	nMenu->enableShrinkMenu();
 	nMenu->enableMenuPosition();
 	nMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
@@ -98,8 +105,6 @@ void CNeutrinoApp::mainMenu(void)
 	nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_SCARTMODE, true, NULL, this, "scart", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_SCART, LOCALE_HELPTEXT_SCART));
 #endif
 
-	//nMenu->addItem(new CMenuSeparator(LINE));
-
 	// mediaplayer
 	nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_MEDIAPLAYER, true, NULL, new CMediaPlayerMenu(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_MEDIAPLAYER, LOCALE_HELPTEXT_MEDIAPLAYER));
 	
@@ -109,8 +114,6 @@ void CNeutrinoApp::mainMenu(void)
 	// service
 	nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_SERVICE, true, NULL, new CServiceSetup(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SERVICE, LOCALE_HELPTEXT_SERVICE));
 	
-	//nMenu->addItem(new CMenuSeparator(LINE));
-	
 	// timerlist
 	nMenu->addItem(new CMenuForwarder(LOCALE_TIMERLIST_NAME, true, NULL, new CTimerList(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_TIMERLIST, LOCALE_HELPTEXT_TIMERLIST));
 	
@@ -119,8 +122,6 @@ void CNeutrinoApp::mainMenu(void)
 
 	// power menu
 	nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_POWERMENU, true, NULL, new CPowerMenu(), NULL, RC_standby, NEUTRINO_ICON_BUTTON_POWER, NEUTRINO_ICON_MENUITEM_POWERMENU, LOCALE_HELPTEXT_POWERMENU));
-
-	//nMenu->addItem(new CMenuSeparator(LINE));
 
 	//box info
 	nMenu->addItem( new CMenuForwarder(LOCALE_DBOXINFO, true, NULL, new CDBoxInfoWidget(), NULL, RC_info, NEUTRINO_ICON_BUTTON_HELP, NEUTRINO_ICON_MENUITEM_BOXINFO, LOCALE_HELPTEXT_BOXINFO));
@@ -256,7 +257,7 @@ bool CNeutrinoApp::showUserMenu(int button)
                 return 0;
 
 	//
-	menu->setMode(MODE_MENU);
+	menu->setWidgetMode(MODE_MENU);
 	menu->enableShrinkMenu();
 	menu->enableMenuPosition();
 	menu->enableWidgetChange();

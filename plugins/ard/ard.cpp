@@ -23,7 +23,7 @@ void CARDverpasst::showMenu(void)
 {
 	CMenuWidget * catMenu = new CMenuWidget("Sendung verpasst", PLUGINDIR "/ard/ard_small.png");
 
-	catMenu->setMode(MODE_MENU);
+	catMenu->setWidgetMode(MODE_MENU);
 	catMenu->enableShrinkMenu();
 
 	catMenu->addItem(new CMenuForwarder("Das Erste", true, NULL, new CARDverpasstSub("Das Erste"), ""));
@@ -72,7 +72,7 @@ void CARDverpasstSub::showMenu(void)
 {
 	CMenuWidget * catMenu = new CMenuWidget(Title.c_str(), PLUGINDIR "/ard/ard_small.png");
 
-	catMenu->setMode(MODE_MENU);
+	catMenu->setWidgetMode(MODE_MENU);
 	catMenu->enableShrinkMenu();
 
 	catMenu->addItem(new CMenuForwarder("Heute", true, getNowTimeStr("%d.%m.%Y").c_str(), new CARDtime("Heute"), ""));
@@ -115,7 +115,7 @@ void CARDtime::showMenu(void)
 {
 	CMenuWidget * catMenu = new CMenuWidget(Title.c_str(), PLUGINDIR "/ard/ard_small.png");
 
-	catMenu->setMode(MODE_MENU);
+	catMenu->setWidgetMode(MODE_MENU);
 	catMenu->enableShrinkMenu();
 
 	catMenu->addItem(new CMenuForwarder("00:00-12:00", true, NULL, new CARDstreams("00:00-12:00"), ""));
@@ -158,7 +158,7 @@ void CARDaz::showMenu(void)
 	for (int i = 0; i < 6; i++)
 		catMenu->addItem(new ClistBoxItem("coming soon!", true, NULL, this, NULL, RC_nokey, NULL, DATADIR "/neutrino/icons/nopreview.jpg"));
 	
-	catMenu->setMode(MODE_LISTBOX);
+	catMenu->setWidgetMode(MODE_LISTBOX);
 	catMenu->setWidgetType(WIDGET_TYPE_FRAME);
 	catMenu->setItemsPerPage(3, 2);
 	//catMenu->setItemBoxColor(COL_YELLOW);
@@ -198,7 +198,7 @@ void CARDTVlive::showMenu(void)
 	for (int i = 0; i < 6; i++)
 		catMenu->addItem(new ClistBoxItem("coming soon!", true, NULL, this, NULL, RC_nokey, NULL, DATADIR "/neutrino/icons/nopreview.jpg"));
 	
-	catMenu->setMode(MODE_LISTBOX);
+	catMenu->setWidgetMode(MODE_LISTBOX);
 	catMenu->setWidgetType(WIDGET_TYPE_FRAME);
 	catMenu->setItemsPerPage(3, 2);
 	//catMenu->setItemBoxColor(COL_YELLOW);
@@ -238,7 +238,7 @@ void CARDRadiolive::showMenu(void)
 	for (int i = 0; i < 6; i++)
 		catMenu->addItem(new ClistBoxItem("coming soon!", true, NULL, this, NULL, RC_nokey, NULL, DATADIR "/neutrino/icons/nopreview.jpg"));
 	
-	catMenu->setMode(MODE_LISTBOX);
+	catMenu->setWidgetMode(MODE_LISTBOX);
 	catMenu->setWidgetType(WIDGET_TYPE_FRAME);
 	catMenu->setItemsPerPage(3, 2);
 	//catMenu->setItemBoxColor(COL_YELLOW);
@@ -279,7 +279,7 @@ void CARDstreams::showMenu(void)
 	for (int i = 0; i < 6; i++)
 		catMenu->addItem(new ClistBoxItem("coming soon!", true, NULL, this, NULL, RC_nokey, NULL, DATADIR "/neutrino/icons/nopreview.jpg"));
 
-	catMenu->setMode(MODE_LISTBOX);
+	catMenu->setWidgetMode(MODE_LISTBOX);
 	catMenu->setWidgetType(WIDGET_TYPE_FRAME);
 	catMenu->setItemsPerPage(3, 2);
 	//catMenu->setItemBoxColor(COL_YELLOW);
@@ -315,7 +315,7 @@ void CARD::showMenu(void)
 {
 	CMenuWidget * catMenu = new CMenuWidget("ARD Mediathek", PLUGINDIR "/ard/ard_small.png");
 
-	catMenu->setMode(MODE_MENU);
+	catMenu->setWidgetMode(MODE_MENU);
 	catMenu->enableShrinkMenu();
 
 	catMenu->addItem(new CMenuForwarder("Sendung verpasst", true, NULL, new CARDverpasst(), ""));

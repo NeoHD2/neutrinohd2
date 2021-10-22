@@ -96,7 +96,7 @@ void CParentalLockSettings::showMenu()
 	
 	CMenuWidget parentallockSettings(LOCALE_PARENTALLOCK_PARENTALLOCK, NEUTRINO_ICON_LOCK);
 
-	parentallockSettings.setMode(MODE_SETUP);
+	parentallockSettings.setWidgetMode(MODE_SETUP);
 	parentallockSettings.enableShrinkMenu();
 	
 	// intro

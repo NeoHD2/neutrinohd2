@@ -117,7 +117,7 @@ void CPluginList::showMenu()
 		plist->addItem(item);
 	}
 
-	plist->setMode(MODE_LISTBOX);
+	plist->setWidgetMode(MODE_LISTBOX);
 	plist->setWidgetType(WIDGET_TYPE_CLASSIC);
 	plist->enableShrinkMenu();
 

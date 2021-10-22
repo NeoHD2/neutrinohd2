@@ -203,7 +203,7 @@ void CNEpisodes::showMenu()
 		listBox->addItem(item);
 	}
 
-	listBox->setMode(MODE_LISTBOX);
+	listBox->setWidgetMode(MODE_LISTBOX);
 	listBox->setWidgetType(WIDGET_TYPE_FRAME);
 	listBox->setItemsPerPage(3, 2);
 	//listBox->setItemBoxColor(COL_YELLOW);

@@ -170,7 +170,7 @@ void CRecordingSettings::showMenu()
 	
 	CMenuWidget recordingSettings(LOCALE_RECORDINGMENU_HEAD, NEUTRINO_ICON_RECORDING );
 
-	recordingSettings.setMode(MODE_SETUP);
+	recordingSettings.setWidgetMode(MODE_SETUP);
 	recordingSettings.enableShrinkMenu();
 	
 	int rec_pre = 0;

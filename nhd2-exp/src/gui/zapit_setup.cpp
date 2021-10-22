@@ -151,7 +151,7 @@ void CZapitSetup::showMenu()
 	//menue init
 	CMenuWidget * zapit = new CMenuWidget(LOCALE_MISCSETTINGS_ZAPIT, NEUTRINO_ICON_SETTINGS);
 
-	zapit->setMode(MODE_SETUP);
+	zapit->setWidgetMode(MODE_SETUP);
 	zapit->enableShrinkMenu();
 	
 	int shortcut = 1;

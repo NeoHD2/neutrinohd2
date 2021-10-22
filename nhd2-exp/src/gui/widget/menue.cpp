@@ -1249,7 +1249,8 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 	paint();
 
 	// add sec timer
-	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
+	if(PaintDate)
+		sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
 
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
 
@@ -1340,7 +1341,8 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 			if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 			{
 				// head
-				paintHead();
+				if (PaintDate)
+					paintHead();
 			} 
 
 			switch (msg) 

@@ -190,7 +190,7 @@ void CRemoteControlSettings::showMenu()
 	
 	CMenuWidget remoteControlSettings(LOCALE_MAINSETTINGS_KEYBINDING, NEUTRINO_ICON_KEYBINDING );
 
-	remoteControlSettings.setMode(MODE_SETUP);
+	remoteControlSettings.setWidgetMode(MODE_SETUP);
 	remoteControlSettings.enableShrinkMenu();
 	
 	// intros
@@ -335,7 +335,7 @@ void CKeysBindingSettings::showMenu()
 	// keybinding menu
 	CMenuWidget bindSettings(LOCALE_KEYBINDINGMENU_HEAD, NEUTRINO_ICON_KEYBINDING );
 
-	bindSettings.setMode(MODE_SETUP);
+	bindSettings.setWidgetMode(MODE_SETUP);
 	bindSettings.enableShrinkMenu();
 	
 	// intros

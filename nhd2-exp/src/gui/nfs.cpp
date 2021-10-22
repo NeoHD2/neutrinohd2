@@ -190,7 +190,7 @@ int CNFSMountGui::menu()
 {
 	CMenuWidget mountMenuW(LOCALE_NFS_MOUNT, NEUTRINO_ICON_NETWORK, 720);
 
-	mountMenuW.setMode(MODE_MENU);
+	mountMenuW.setWidgetMode(MODE_MENU);
 	mountMenuW.enableShrinkMenu();
 	
 	// intros
@@ -279,7 +279,7 @@ int CNFSMountGui::menuEntry(int nr)
 
 	CMenuWidget mountMenuEntryW(LOCALE_NFS_MOUNT, NEUTRINO_ICON_NETWORK);
 
-	mountMenuEntryW.setMode(MODE_SETUP);
+	mountMenuEntryW.setWidgetMode(MODE_SETUP);
 	mountMenuEntryW.enableShrinkMenu();
 	
 	// intros
@@ -363,7 +363,7 @@ int CNFSUmountGui::menu()
 	CFSMounter::MountInfos infos;
 	CMenuWidget umountMenu(LOCALE_NFS_UMOUNT, NEUTRINO_ICON_NETWORK);
 
-	umountMenu.setMode(MODE_MENU);
+	umountMenu.setWidgetMode(MODE_MENU);
 	umountMenu.enableShrinkMenu();
 	
 	// intros
@@ -409,7 +409,7 @@ int CNFSSmallMenu::exec( CMenuTarget* parent, const std::string & actionKey )
 	{
 		CMenuWidget menu(LOCALE_NFSMENU_HEAD, NEUTRINO_ICON_NETWORK);
 
-		menu.setMode(MODE_MENU);
+		menu.setWidgetMode(MODE_MENU);
 		menu.enableShrinkMenu();
 
 		CNFSMountGui mountGui;

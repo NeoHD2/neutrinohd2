@@ -107,7 +107,7 @@ void CAudioSelectMenuHandler::doMenu()
 
 	CMenuWidget AudioSelector(LOCALE_APIDSELECTOR_HEAD, NEUTRINO_ICON_AUDIO);
 
-	AudioSelector.setMode(MODE_SETUP);
+	AudioSelector.setWidgetMode(MODE_SETUP);
 	AudioSelector.enableShrinkMenu();
 	
 	unsigned int count;

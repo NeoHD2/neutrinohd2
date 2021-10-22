@@ -20,6 +20,7 @@
 */
 
 #include <global.h>
+#include <neutrino.h>
 
 #include <gui/widget/framebox.h>
 #include <gui/widget/textbox.h>
@@ -109,16 +110,16 @@ void CFrame::setActive(const bool Active)
 {
 	active = Active;
 	
-	if (window.getWindowsPos().iX != -1)
-		paint();
+	//if (window.getWindowsPos().iX != -1)
+	//	paint();
 }
 
 void CFrame::setMarked(const bool Marked)
 {
 	marked = Marked;
 	
-	if (window.getWindowsPos().iX != -1)
-		paint();
+	//if (window.getWindowsPos().iX != -1)
+	//	paint();
 }
 
 void CFrame::setPlugin(const char * const pluginName)
@@ -508,6 +509,9 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 	actionKey = "";
 
 	initFrames();
+	
+	////
+	timeout = 0;
 }
 
 CFrameBox::CFrameBox(CBox* position)
@@ -529,6 +533,9 @@ CFrameBox::CFrameBox(CBox* position)
 	actionKey = "";
 
 	initFrames();
+	
+	////
+	timeout = 0;
 }
 
 CFrameBox::~CFrameBox()
@@ -557,19 +564,6 @@ void CFrameBox::initFrames()
 void CFrameBox::paintFrames()
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::paintFrames:\n");
-
-	/*
-	int frame_width = itemBox.iWidth;
-	int frame_height = itemBox.iHeight;
-	int frame_x = itemBox.iX;
-	int frame_y = itemBox.iY;
-
-	if(frames.size() > 0)
-	{
-		frame_x = itemBox.iX + ICON_OFFSET;
-		frame_y = itemBox.iY + ICON_OFFSET;
-	}
-	*/
 
 	for (unsigned int count = 0; count < (unsigned int)frames.size(); count++) 
 	{
@@ -817,6 +811,179 @@ void CFrameBox::onPageDownKeyPressed()
 	//scrollPageDown();
 }
 
+////
+void CFrameBox::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
+{
+	keyActionMap[key].menue = menue;
+	keyActionMap[key].action = action;
+}
 
+int CFrameBox::exec(CMenuTarget* parent, const std::string&)
+{
+	dprintf(DEBUG_NORMAL, "CFrameBox::exec:\n");
+
+	int retval = RETURN_REPAINT;
+	
+	if (parent)
+		parent->hide();
+	
+	initFrames();
+	paint();
+	
+	// control loop
+	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
+
+	//control loop
+	do {
+		g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd);
+		
+		int handled = false;
+
+		dprintf(DEBUG_DEBUG, "CFrameBox::exec: msg:%s\n", CRCInput::getSpecialKeyName(msg));
+		
+		if ( msg <= RC_MaxRC ) 
+		{
+			timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
+			
+			// keymap
+			std::map<neutrino_msg_t, keyAction>::iterator it = keyActionMap.find(msg);
+			
+			if (it != keyActionMap.end()) 
+			{
+				actionKey = it->second.action;
+
+				if (it->second.menue != NULL)
+				{
+					int rv = it->second.menue->exec(this, it->second.action);
+
+					//FIXME:review this
+					switch ( rv ) 
+					{
+						case RETURN_EXIT_ALL:
+							retval = RETURN_EXIT_ALL; //fall through
+						case RETURN_EXIT:
+							msg = RC_timeout;
+							break;
+						case RETURN_REPAINT:
+							hide();
+							initFrames();
+							paint();
+							break;
+					}
+				}
+				else
+				{
+					selected = -1;
+					handled = true;
+
+					break;
+				}
+
+				frameBuffer->blit();
+				continue;
+			}
+		}
+		
+		if (!handled)
+		{
+			switch (msg)
+			{
+				//
+				case (RC_up):
+					onUpKeyPressed();
+					break;
+
+				case (RC_down):
+					onDownKeyPressed();
+					break;
+
+				case (RC_right):
+					onRightKeyPressed();
+					break;
+
+				case (RC_left):
+					onLeftKeyPressed();
+					break;
+
+				case (RC_page_up):
+					onPageUpKeyPressed();
+					break;
+
+				case (RC_page_down):
+					onPageDownKeyPressed();
+					break;
+
+				case (RC_home):
+					exit_pressed = true;
+					dprintf(DEBUG_NORMAL, "CFrameBox::exec: exit_pressed\n");
+					msg = RC_timeout;
+					selected = -1; 
+					break;
+
+				case (RC_ok):
+					{
+						if (hasItem())
+						{
+							CFrame* item = frames[selected];
+							item->msg = msg;
+							actionKey = item->actionKey;
+							
+							int rv = item->exec(this);
+							
+							//FIXME:review this
+							switch ( rv ) 
+							{
+								case RETURN_EXIT_ALL:
+									retval = RETURN_EXIT_ALL;
+								case RETURN_EXIT:
+									msg = RC_timeout;
+									break;
+								case RETURN_REPAINT:
+									hide();
+									initFrames();
+									paint();
+									break;
+							}
+						}
+						else
+							msg = RC_timeout;
+					}
+					break;
+					
+				case (RC_timeout):
+					exit_pressed = true;
+					break;
+
+				default:
+					if ( CNeutrinoApp::getInstance()->handleMsg( msg, data ) & messages_return::cancel_all ) 
+					{
+						retval = RETURN_EXIT_ALL;
+						msg = RC_timeout;
+					}
+			}
+			
+			if ( msg <= RC_MaxRC )
+			{
+				// recalculate timeout for RC-Tasten
+				timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
+			}
+		}
+		
+		frameBuffer->blit();
+	}while ( msg != RC_timeout );	
+	
+	hide();
+	
+	// vfd
+	if(!parent)
+	{
+		if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
+			CVFD::getInstance()->setMode(CVFD::MODE_WEBTV);
+		else
+			CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
+	}
+	
+	return retval;
+}
 
 

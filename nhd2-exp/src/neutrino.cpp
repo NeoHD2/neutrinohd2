@@ -3150,7 +3150,7 @@ void CNeutrinoApp::RealRun(void)
 				// event list
 				CMenuWidget redMenu(LOCALE_INFOVIEWER_EVENTLIST, NEUTRINO_ICON_FEATURES);
 
-				redMenu.setMode(MODE_MENU);
+				redMenu.setWidgetMode(MODE_MENU);
 				redMenu.enableShrinkMenu();
 				redMenu.enableSaveScreen();
 

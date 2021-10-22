@@ -360,7 +360,7 @@ int CChannelList::doChannelMenu(void)
 
 	CMenuWidget * menu = new CMenuWidget(LOCALE_CHANNELLIST_EDIT, NEUTRINO_ICON_SETTINGS);
 	menu->enableSaveScreen();
-	menu->setMode(MODE_MENU);
+	menu->setWidgetMode(MODE_MENU);
 	menu->enableShrinkMenu();
 
 	menu->addItem(new CMenuForwarder(LOCALE_BOUQUETEDITOR_DELETE, true, NULL, NULL, NULL, RC_red, NEUTRINO_ICON_BUTTON_RED), old_selected == i++);

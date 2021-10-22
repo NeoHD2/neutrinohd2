@@ -363,7 +363,7 @@ void CVideoSettings::showMenu()
 	
 	CMenuWidget videoSettings(LOCALE_VIDEOMENU_HEAD, NEUTRINO_ICON_VIDEO);
 
-	videoSettings.setMode(MODE_SETUP);
+	videoSettings.setWidgetMode(MODE_SETUP);
 	videoSettings.enableShrinkMenu();
 	
 	// intros

@@ -163,7 +163,7 @@ void CSatIPClient::showMenu()
 	// create menu
 	satIPClientMenu = new CMenuWidget("SatIP Client", NEUTRINO_ICON_SETTINGS);
 
-	satIPClientMenu->setMode(MODE_SETUP);
+	satIPClientMenu->setWidgetMode(MODE_SETUP);
 	satIPClientMenu->enableShrinkMenu();
 
 	satIPClientMenu->setFooterButtons(&FButtons, 1);

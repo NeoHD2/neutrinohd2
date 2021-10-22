@@ -190,7 +190,7 @@ int CThemes::Show()
 
 	CMenuWidget themes(LOCALE_COLORMENU_MENUCOLORS, NEUTRINO_ICON_SETTINGS);
 
-	themes.setMode(MODE_MENU);
+	themes.setWidgetMode(MODE_MENU);
 	themes.enableShrinkMenu();
 
 	// intros

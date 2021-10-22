@@ -97,7 +97,7 @@ void CPowerMenu::showMenu(void)
 
 	CMenuWidget * powerMenu = new CMenuWidget(LOCALE_MAINMENU_POWERMENU, NEUTRINO_ICON_BUTTON_POWER);
 
-	powerMenu->setMode(MODE_MENU);
+	powerMenu->setWidgetMode(MODE_MENU);
 	powerMenu->enableShrinkMenu();
 	powerMenu->enableMenuPosition();
 	powerMenu->enableWidgetChange();

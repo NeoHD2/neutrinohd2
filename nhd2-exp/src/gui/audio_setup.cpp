@@ -154,7 +154,7 @@ void CAudioSettings::showMenu()
 	
 	CMenuWidget audioSettings(LOCALE_AUDIOMENU_HEAD, NEUTRINO_ICON_AUDIO);
 
-	audioSettings.setMode(MODE_SETUP);
+	audioSettings.setWidgetMode(MODE_SETUP);
 	audioSettings.enableShrinkMenu();
 	
 	int shortcutAudio = 1;

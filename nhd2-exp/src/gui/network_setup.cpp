@@ -187,7 +187,7 @@ void CNetworkSettings::showMenu()
 	
 	CMenuWidget networkSettings(LOCALE_NETWORKMENU_HEAD, NEUTRINO_ICON_NETWORK);
 
-	networkSettings.setMode(MODE_SETUP);
+	networkSettings.setWidgetMode(MODE_SETUP);
 	networkSettings.enableShrinkMenu();
 	
 	struct dirent **namelist;

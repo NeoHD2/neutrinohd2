@@ -69,7 +69,7 @@ void CMediaPlayerMenu::showMenu()
 	
 	CMenuWidget * MediaPlayer = new CMenuWidget(LOCALE_MAINMENU_MEDIAPLAYER, NEUTRINO_ICON_MULTIMEDIA);
 
-	MediaPlayer->setMode(MODE_MENU);
+	MediaPlayer->setWidgetMode(MODE_MENU);
 	MediaPlayer->enableShrinkMenu();
 	MediaPlayer->enableMenuPosition();
 	MediaPlayer->enableWidgetChange();

@@ -127,7 +127,7 @@ void CLCDSettings::showMenu()
 	
 	CMenuWidget lcdSettings(LOCALE_LCDMENU_HEAD, NEUTRINO_ICON_LCD );
 
-	lcdSettings.setMode(MODE_SETUP);
+	lcdSettings.setWidgetMode(MODE_SETUP);
 	lcdSettings.enableShrinkMenu();
 	
 	int shortcutVFD = 1;

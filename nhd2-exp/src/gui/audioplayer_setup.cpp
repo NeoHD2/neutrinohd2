@@ -94,7 +94,7 @@ void CAudioPlayerSettings::showMenu()
 	
 	CMenuWidget audioPlayerSettings(LOCALE_AUDIOPLAYERSETTINGS_GENERAL, NEUTRINO_ICON_MP3);
 
-	audioPlayerSettings.setMode(MODE_SETUP);
+	audioPlayerSettings.setWidgetMode(MODE_SETUP);
 	audioPlayerSettings.enableShrinkMenu();
 	audioPlayerSettings.enableSaveScreen();
 	

@@ -158,7 +158,7 @@ class CFrame
 };
 
 //// CFrameBox
-class CFrameBox : public CWidgetItem
+class CFrameBox : public CWidgetItem, CMenuTarget
 {
 	private:
 		CFrameBuffer* frameBuffer;
@@ -173,6 +173,21 @@ class CFrameBox : public CWidgetItem
 		bool paintFrame;
 
 		std::string actionKey;
+		
+		////
+		//
+		neutrino_msg_t      msg;
+		neutrino_msg_data_t data;
+		
+		unsigned long long int timeout;
+		
+		//int selected;
+		bool exit_pressed;
+		//int retval;
+		//int pos;
+		
+		struct keyAction { std::string action; CMenuTarget *menue; };
+		std::map<neutrino_msg_t, keyAction> keyActionMap;
 
 	public:
 		CFrameBox(const int x = 0, int const y = 0, const int dx = 0, const int dy = 0);
@@ -193,7 +208,7 @@ class CFrameBox : public CWidgetItem
 		virtual void addFrame(CFrame *frame, const bool defaultselected = false);
 		bool hasItem();
 		void clearFrames(void){frames.clear();};
-		void setSelected(unsigned int _new) { /*if(_new <= frames.size())*/ selected = _new; };
+		//void setSelected(unsigned int _new) { /*if(_new <= frames.size())*/ selected = _new; };
 
 		virtual void initFrames();
 		virtual void paint();
@@ -204,7 +219,7 @@ class CFrameBox : public CWidgetItem
 		virtual void scrollLineDown(const int lines = 1);
 		virtual void scrollLineUp(const int lines = 1);
 
-		int getSelected(){return selected;};
+		//int getSelected(){return selected;};
 		void disablePaintFrame(void){paintFrame = false;};
 
 		//
@@ -222,6 +237,19 @@ class CFrameBox : public CWidgetItem
 		virtual void onPageDownKeyPressed();
 
 		std::string getActionKey(void){return actionKey;};
+		
+		////TEST:fixme
+		virtual int exec(CMenuTarget * parent, const std::string &actionKey);
+		
+		void setTimeOut(unsigned long long int to = 0){timeout = to;};
+		
+		bool getExitPressed(){return exit_pressed;};
+
+		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
+		int getSelected(){return exit_pressed ? -1 : selected;};
+		
+		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
+		neutrino_msg_t getKey(){return msg;};
 };
 
 #endif

@@ -170,7 +170,7 @@ bool CFlashUpdate::selectHttpImage(void)
 	// NOTE: remember me : i dont like this menu GUI :-(
 	CMenuWidget SelectionWidget(LOCALE_FLASHUPDATE_SELECTIMAGE, NEUTRINO_ICON_UPDATE , MENU_WIDTH + 50);
 
-	SelectionWidget.setMode(MODE_SETUP);
+	SelectionWidget.setWidgetMode(MODE_SETUP);
 	SelectionWidget.enableShrinkMenu();
 	
 	// intros
@@ -653,7 +653,7 @@ void CFlashExpert::showMTDSelector(const std::string & actionkey)
 	//mtd-selector erzeugen
 	CMenuWidget * mtdselector = new CMenuWidget(LOCALE_FLASHUPDATE_MTDSELECTOR, NEUTRINO_ICON_UPDATE);
 
-	mtdselector->setMode(MODE_SETUP);
+	mtdselector->setWidgetMode(MODE_SETUP);
 	mtdselector->enableShrinkMenu();
 	
 	// intros
@@ -712,7 +712,7 @@ void CFlashExpert::showFileSelector(const std::string & actionkey)
 {
 	CMenuWidget * fileselector = new CMenuWidget(LOCALE_FLASHUPDATE_FILESELECTOR, NEUTRINO_ICON_UPDATE);
 
-	fileselector->setMode(MODE_SETUP);
+	fileselector->setWidgetMode(MODE_SETUP);
 	fileselector->enableShrinkMenu();
 	
 	// intros
@@ -864,7 +864,7 @@ void CUpdateSettings::showMenu()
 	
 	CMenuWidget updateSettings(LOCALE_SERVICEMENU_UPDATE, NEUTRINO_ICON_UPDATE);
 
-	updateSettings.setMode(MODE_SETUP);
+	updateSettings.setWidgetMode(MODE_SETUP);
 	updateSettings.enableShrinkMenu();
 		
 	// intros
@@ -878,7 +878,7 @@ void CUpdateSettings::showMenu()
 	// expert-function for mtd read/write
 	CMenuWidget * mtdexpert = new CMenuWidget(LOCALE_FLASHUPDATE_EXPERTFUNCTIONS, NEUTRINO_ICON_UPDATE);
 
-	mtdexpert->setMode(MODE_SETUP);
+	mtdexpert->setWidgetMode(MODE_SETUP);
 	mtdexpert->enableShrinkMenu();
 		
 	// intros

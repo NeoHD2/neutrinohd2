@@ -100,7 +100,7 @@ void CServiceSetup::showMenu(void)
 	
 	CMenuWidget * service = new CMenuWidget(LOCALE_SERVICEMENU_HEAD, NEUTRINO_ICON_UPDATE);
 
-	service->setMode(MODE_MENU);
+	service->setWidgetMode(MODE_MENU);
 	service->enableShrinkMenu();
 	service->enableMenuPosition();
 	service->enableWidgetChange();

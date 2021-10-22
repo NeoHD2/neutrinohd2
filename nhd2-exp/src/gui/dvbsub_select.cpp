@@ -69,7 +69,7 @@ int CDVBSubSelectMenuHandler::doMenu()
 
 	CMenuWidget DVBSubSelector(LOCALE_SUBTITLES_HEAD, NEUTRINO_ICON_SUBT);
 
-	DVBSubSelector.setMode(MODE_SETUP);
+	DVBSubSelector.setWidgetMode(MODE_SETUP);
 	DVBSubSelector.enableShrinkMenu();
 	
 	CSubtitleChangeExec SubtitleChanger;

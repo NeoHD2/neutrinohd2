@@ -253,7 +253,7 @@ int COPKGManager::showMenu()
 
 	CMenuWidget * menu = new CMenuWidget("OPKG-Manager", NEUTRINO_ICON_UPDATE);
 
-	menu->setMode(MODE_SETUP);
+	menu->setWidgetMode(MODE_SETUP);
 	menu->enableShrinkMenu();
 
 	menu->addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_UPDATEMODE_INTERNET, true, NULL, this, "internet" ));

@@ -185,7 +185,7 @@ int CHDDMenuHandler::hddMenu()
 
 	CMenuWidget * hddmenu = new CMenuWidget(LOCALE_HDD_SETTINGS, NEUTRINO_ICON_SETTINGS);
 
-	hddmenu->setMode(MODE_SETUP);
+	hddmenu->setWidgetMode(MODE_SETUP);
 	hddmenu->enableShrinkMenu();
 	
 	hddmenu->addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
@@ -302,7 +302,7 @@ int CHDDMenuHandler::hddMenu()
 		tempMenu[i] = new CMenuWidget(str, NEUTRINO_ICON_SETTINGS);
 		tempMenu[i]->enableSaveScreen();
 
-		tempMenu[i]->setMode(MODE_MENU);
+		tempMenu[i]->setWidgetMode(MODE_MENU);
 		tempMenu[i]->enableShrinkMenu();
 		
 		tempMenu[i]->addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
@@ -345,7 +345,7 @@ int CHDDMenuHandler::hddMenu()
 			PartMenu[j] = new CMenuWidget(PART, NEUTRINO_ICON_SETTINGS);
 			PartMenu[j]->enableSaveScreen();
 
-			PartMenu[j]->setMode(MODE_MENU);
+			PartMenu[j]->setWidgetMode(MODE_MENU);
 			PartMenu[j]->enableShrinkMenu();
 			
 

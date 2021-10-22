@@ -416,7 +416,7 @@ void CTSBrowser::showMenu()
 		mlist->addItem(item);
 	}
 
-	mlist->setMode(MODE_LISTBOX);
+	mlist->setWidgetMode(MODE_LISTBOX);
 	mlist->setWidgetType(WIDGET_TYPE_FRAME);
 	mlist->setItemsPerPage(6, 2);
 	mlist->setSelected(selected);

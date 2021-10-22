@@ -964,7 +964,7 @@ int EpgPlus::exec(CChannelList * _channelList, int selectedChannelIndex, CBouque
 			{
 				CMenuWidget menuWidgetActions(LOCALE_EPGPLUS_ACTIONS, NEUTRINO_ICON_FEATURES, 400);
 				menuWidgetActions.enableSaveScreen();
-				menuWidgetActions.setMode(MODE_MENU);
+				menuWidgetActions.setWidgetMode(MODE_MENU);
 				menuWidgetActions.enableShrinkMenu();
 
 				// record
@@ -984,7 +984,7 @@ int EpgPlus::exec(CChannelList * _channelList, int selectedChannelIndex, CBouque
 			{
 				CMenuWidget menuWidgetOptions(LOCALE_EPGPLUS_OPTIONS, NEUTRINO_ICON_FEATURES, 500);
 				menuWidgetOptions.enableSaveScreen();
-				menuWidgetOptions.setMode(MODE_SETUP);
+				menuWidgetOptions.setWidgetMode(MODE_SETUP);
 				menuWidgetOptions.enableShrinkMenu();
 				
 				menuWidgetOptions.addItem(new MenuOptionChooserSwitchSwapMode (this));
