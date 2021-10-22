@@ -332,7 +332,7 @@ function testCMenuWidget()
 
 	local listBoxWidget = neutrino.CMenuWidget("CMenuBoxWidget")
 	listBoxWidget:setWidgetType(neutrino.WIDGET_TYPE_STANDARD)
-	listBoxWidget:setMode(neutrino.MODE_MENU)
+	listBoxWidget:setWidgetMode(neutrino.MODE_MENU)
 	listBoxWidget:enablePaintFootInfo()
 	listBoxWidget:enableShrinkMenu()
 
@@ -1086,7 +1086,7 @@ function main()
 	local ret = neutrino.RETURN_REPAINT
 	local m = neutrino.CMenuWidget("lua sample")
 
-	m:setMode(neutrino.MODE_MENU)
+	m:setWidgetMode(neutrino.MODE_MENU)
 	m:enableShrinkMenu()
 	m:enablePaintFootInfo()
 	m:setFootInfoMode(neutrino.FOOT_HINT_MODE)
