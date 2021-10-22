@@ -1812,6 +1812,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	////
 	timeout = 0;
 	MenuPos = false;
+	exit_pressed = false;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -1893,6 +1894,7 @@ ClistBox::ClistBox(CBox* position)
 	////
 	timeout = 0;
 	MenuPos = false;
+	exit_pressed = false;
 }
 
 ClistBox::~ClistBox()
@@ -2665,7 +2667,7 @@ void ClistBox::paintItemInfo(int pos)
 		}
 		else if(widgetMode == MODE_MENU)
 		{
-			if(fbutton_count == 0)
+			if(fbutton_count == 0 && paint_Foot)
 			{
 				CMenuItem* item = items[pos];
 
@@ -2696,7 +2698,7 @@ void ClistBox::paintItemInfo(int pos)
 
 		if(widgetMode == MODE_MENU)
 		{
-			if(fbutton_count == 0)
+			if(fbutton_count == 0 && paint_Foot)
 			{
 				// item info
 				// refresh box
@@ -3569,6 +3571,7 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 					
 				case (RC_timeout):
 					exit_pressed = true;
+					selected = -1;
 					break;
 
 				default:

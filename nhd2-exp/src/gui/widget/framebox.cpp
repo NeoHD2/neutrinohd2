@@ -510,8 +510,9 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 
 	initFrames();
 	
-	////
+	//
 	timeout = 0;
+	exit_pressed = false;
 }
 
 CFrameBox::CFrameBox(CBox* position)
@@ -534,8 +535,9 @@ CFrameBox::CFrameBox(CBox* position)
 
 	initFrames();
 	
-	////
+	//
 	timeout = 0;
+	exit_pressed = false;
 }
 
 CFrameBox::~CFrameBox()
@@ -642,23 +644,20 @@ void CFrameBox::swipRight()
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::swipRight:\n");
 
-	//if( (frameMode == FRAMEBOX_MODE_HORIZONTAL) || (frameMode == FRAMEBOX_MODE_RANDOM))
+	for (unsigned int count = 1; count < frames.size(); count++) 
 	{
-		for (unsigned int count = 1; count < frames.size(); count++) 
+		pos = (selected + count)%frames.size();
+
+		CFrame * frame = frames[pos];
+
+		if(frame->isSelectable())
 		{
-			pos = (selected + count)%frames.size();
+			frames[selected]->paint(false);
+			frame->paint(true);
 
-			CFrame * frame = frames[pos];
-
-			if(frame->isSelectable())
-			{
-				frames[selected]->paint(false);
-				frame->paint(true);
-
-				selected = pos;
+			selected = pos;
 				
-				break;
-			}
+			break;
 		}
 	}
 }
@@ -667,25 +666,22 @@ void CFrameBox::swipLeft()
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::swipLeft:\n");
 
-	//if( (frameMode == FRAMEBOX_MODE_HORIZONTAL) || (frameMode == FRAMEBOX_MODE_RANDOM))
+	for (unsigned int count = 1; count < frames.size(); count++) 
 	{
-		for (unsigned int count = 1; count < frames.size(); count++) 
+		pos = selected - count;
+		if ( pos < 0 )
+			pos += frames.size();
+
+		CFrame * frame = frames[pos];
+
+		if(frame->isSelectable())
 		{
-			pos = selected - count;
-			if ( pos < 0 )
-				pos += frames.size();
+			frames[selected]->paint(false);
+			frame->paint(true);
 
-			CFrame * frame = frames[pos];
+			selected = pos;
 
-			if(frame->isSelectable())
-			{
-				frames[selected]->paint(false);
-				frame->paint(true);
-
-				selected = pos;
-
-				break;
-			}
+			break;
 		}
 	}
 }
@@ -694,23 +690,20 @@ void CFrameBox::scrollLineDown(const int lines)
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::scrollLineDown:\n");
 
-	//if(frameMode == FRAMEBOX_MODE_RANDOM)
+	for (unsigned int count = 1; count < frames.size(); count++) 
 	{
-		for (unsigned int count = 1; count < frames.size(); count++) 
+		pos = (selected + count)%frames.size();
+
+		CFrame * frame = frames[pos];
+
+		if(frame->isSelectable())
 		{
-			pos = (selected + count)%frames.size();
+			frames[selected]->paint(false);
+			frame->paint(true);
 
-			CFrame * frame = frames[pos];
+			selected = pos;
 
-			if(frame->isSelectable())
-			{
-				frames[selected]->paint(false);
-				frame->paint(true);
-
-				selected = pos;
-
-				break;
-			}
+			break;
 		}
 	}
 }
@@ -719,25 +712,22 @@ void CFrameBox::scrollLineUp(const int lines)
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::scrollLineUp:\n");
 
-	//if(frameMode == FRAMEBOX_MODE_RANDOM) 
+	for (unsigned int count = 1; count < frames.size(); count++) 
 	{
-		for (unsigned int count = 1; count < frames.size(); count++) 
+		pos = selected - count;
+		if ( pos < 0 )
+			pos += frames.size();
+
+		CFrame * frame = frames[pos];
+
+		if(frame->isSelectable())
 		{
-			pos = selected - count;
-			if ( pos < 0 )
-				pos += frames.size();
+			frames[selected]->paint(false);
+			frame->paint(true);
 
-			CFrame * frame = frames[pos];
+			selected = pos;
 
-			if(frame->isSelectable())
-			{
-				frames[selected]->paint(false);
-				frame->paint(true);
-
-				selected = pos;
-
-				break;
-			}
+			break;
 		}
 	}
 }
@@ -811,7 +801,7 @@ void CFrameBox::onPageDownKeyPressed()
 	//scrollPageDown();
 }
 
-////
+//
 void CFrameBox::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
 {
 	keyActionMap[key].menue = menue;
@@ -952,6 +942,7 @@ int CFrameBox::exec(CMenuTarget* parent, const std::string&)
 					
 				case (RC_timeout):
 					exit_pressed = true;
+					selected = -1;
 					break;
 
 				default:

@@ -573,10 +573,7 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		
 		unsigned long long int timeout;
 		
-		//int selected;
 		bool exit_pressed;
-		//int retval;
-		//int pos;
 		
 		struct keyAction { std::string action; CMenuTarget *menue; };
 		std::map<neutrino_msg_t, keyAction> keyActionMap;
@@ -617,7 +614,7 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		void setHeadGradient(int grad){headGradient = grad;};
 		
 		// foot
-		void enablePaintFoot(){paint_Foot = true;};
+		void enablePaintFoot(){paint_Foot = true; if ((widgetType == WIDGET_TYPE_FRAME) && (widgetMode == MODE_MENU)) paint_Foot = false;};
 		void setFooterButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1, const int _fbutton_width = 0);
 		void setFootColor(fb_pixel_t col) {footColor = col;};
 		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};
@@ -642,7 +639,7 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		int getItemsCount()const{return items.size();};
 		int getCurrentPage()const{return current_page;};
 		int getTotalPages()const{return total_pages;};
-		//int getSelected(){return selected;};
+		int getSelected(){return selected;};
 		inline CBox getWindowsPos(void){return(cFrameBox);};
 		int getTitleHeight(){return hheight;};
 		int getFootHeight(){return fheight;};
@@ -692,7 +689,6 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		bool getExitPressed(){return exit_pressed;};
 
 		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
-		int getSelected(){return exit_pressed ? -1 : selected;};
 		
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 		neutrino_msg_t getKey(){return msg;};
