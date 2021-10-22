@@ -31,9 +31,6 @@ class CTestMenu : public CMenuTarget
 		// variables
 		CFrameBuffer* frameBuffer;
 
-		CMenuWidget * mainMenu;
-		int select;
-
 		//
 		CMenuWidget* listMenu;
 		CMenuItem* item;
@@ -76,13 +73,16 @@ class CTestMenu : public CMenuTarget
 		CBouquetList* webTVBouquetList;
 
 		CButtons buttons;
+		
+		CBox headBox;
+		CBox footBox;
 		CHeaders * headers;
 		CFooters *footers;
 
 		CWidget *testWidget;
 
 		CBox topBox;
-		CFrameBox *topWidget;
+		CFrameBox *frameBoxWidget;
 		int top_selected;
 
 		CBox leftBox;
@@ -96,24 +96,10 @@ class CTestMenu : public CMenuTarget
 		//
 		CListFrame *listFrame;
 		CTextBox *textWidget;
-		CWindow *windowWidget;
-
-		CBox headBox;
-		CBox footBox;
-		CHeaders *headersWidget;
-		CFooters *footersWidget;
-
-		CPig *pig;
-		CGrid *grid;
-
 		ClistBox *listBox;
 
+		CWindow *windowWidget;
 		CProgressWindow * progressWindow;
-
-		CFrameBox *frameBox;
-		CFrameBox *frameBox1;
-		CFrameBox *frameBox2;
-		CFrameBox *frameBox3;
 
 		// functions helpers
 		void loadTMDBPlaylist(const char *txt = "movie", const char *list = "popular", const int seite = 1, bool search = false);
@@ -275,32 +261,23 @@ CTestMenu::CTestMenu()
 	listMenu = NULL;
 	item = NULL;
 
-	// 
-	mainMenu = NULL;
-	select = -1;
-
 	//
 	plist = "popular";
 	page = 1;
 	TVShows = "movies";
 
 	//
+	headers = NULL;
+	footers = NULL;
 	testWidget = NULL;
-	topWidget = NULL;
+	frameBoxWidget = NULL;
 	leftWidget = NULL;
 	rightWidget = NULL;
 	listFrame = NULL;
 	textWidget = NULL;
 	windowWidget = NULL;
-	pig = NULL;
-	grid = NULL;
-	//leftFrame = NULL;
 	listBox = NULL;
 	progressWindow = NULL;
-	frameBox = NULL;
-	frameBox1 = NULL;
-	frameBox2 = NULL;
-	frameBox3 = NULL;
 }
 
 CTestMenu::~CTestMenu()
@@ -424,6 +401,7 @@ void CTestMenu::openAudioFileBrowser()
 
 	fileFilter.clear();
 	filelist.clear();
+	AudioPlaylist.clear();
 
 	fileFilter.addFilter("cdr");
 	fileFilter.addFilter("mp3");
@@ -512,6 +490,7 @@ void CTestMenu::loadMoviePlaylist()
 	
 	fileFilter.clear();
 	filelist.clear();
+	m_vMovieInfo.clear();
 
 	fileFilter.addFilter("ts");
 	fileFilter.addFilter("mpg");
@@ -575,6 +554,7 @@ void CTestMenu::openMovieFileBrowser()
 
 	fileFilter.clear();
 	filelist.clear();
+	m_vMovieInfo.clear();
 
 	fileFilter.addFilter("ts");
 	fileFilter.addFilter("mpg");
@@ -690,6 +670,7 @@ void CTestMenu::openPictureFileBrowser()
 
 	fileFilter.clear();
 	filelist.clear();
+	PicPlaylist.clear();
 
 	fileFilter.addFilter("png");
 	fileFilter.addFilter("bmp");
@@ -833,10 +814,10 @@ void CTestMenu::testCWidget()
 	headBox.iX = frameBuffer->getScreenX();
 	headBox.iY = frameBuffer->getScreenY();
 
-	headersWidget = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(Multi Widget)", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(Multi Widget)", NEUTRINO_ICON_MP3);
 
-	headersWidget->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	headersWidget->enablePaintDate();
+	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	headers->enablePaintDate();
 
 	// foot
 	footBox.iWidth = frameBuffer->getScreenWidth();
@@ -844,10 +825,10 @@ void CTestMenu::testCWidget()
 	footBox.iX = frameBuffer->getScreenX();
 	footBox.iY = frameBuffer->getScreenY() + frameBuffer->getScreenHeight() - footBox.iHeight;
 
-	footersWidget = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
-	footersWidget->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	footers = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
+	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
-	footersWidget->setCorner(RADIUS_MID, CORNER_BOTTOM);
+	footers->setCorner(RADIUS_MID, CORNER_BOTTOM);
 	
 	// topwidget
 	topBox.iWidth = testWidget->getWindowsPos().iWidth;
@@ -857,9 +838,9 @@ void CTestMenu::testCWidget()
 
 	top_selected = 0;
 
-	topWidget = new CFrameBox(&topBox);
-	//topWidget->setBackgroundColor(COL_DARK_TURQUOISE);
-	topWidget->setOutFocus();
+	frameBoxWidget = new CFrameBox(&topBox);
+	//frameBoxWidget->setBackgroundColor(COL_DARK_TURQUOISE);
+	frameBoxWidget->setOutFocus();
 
 	CFrame * frame = NULL;
 
@@ -867,22 +848,22 @@ void CTestMenu::testCWidget()
 	frame->setPosition(topBox.iX, topBox.iY, topBox.iWidth/3, topBox.iHeight);
 	frame->setTitle("Filme");
 	frame->setActionKey(this, "movie");
-	topWidget->addFrame(frame);
+	frameBoxWidget->addFrame(frame);
 	
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + topBox.iWidth/3, topBox.iY, topBox.iWidth/3, topBox.iHeight);
 	frame->setTitle("Serien");
 	frame->setActionKey(this, "tv");
-	topWidget->addFrame(frame);
+	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + 2*topBox.iWidth/3, topBox.iY, topBox.iWidth/3, topBox.iHeight);
 	frame->setTitle("Suche");
 	frame->setOption(tmdbsearch.c_str());
 	frame->setActionKey(this, "search");
-	topWidget->addFrame(frame);
+	frameBoxWidget->addFrame(frame);
 
-	topWidget->setSelected(top_selected); 
+	frameBoxWidget->setSelected(top_selected); 
 
 	// leftWidget
 	leftBox.iWidth = 200;
@@ -978,11 +959,11 @@ void CTestMenu::testCWidget()
 		rightWidget->addItem(item);
 	}
 
-	testWidget->addItem(headersWidget);
-	testWidget->addItem(topWidget);
+	testWidget->addItem(headers);
+	testWidget->addItem(frameBoxWidget);
 	testWidget->addItem(leftWidget);
 	testWidget->addItem(rightWidget);
-	testWidget->addItem(footersWidget);
+	testWidget->addItem(footers);
 
 	testWidget->addKey(RC_info, this, "winfo");
 	testWidget->addKey(RC_red, this, "nextPage");
@@ -993,8 +974,8 @@ void CTestMenu::testCWidget()
 	delete testWidget;
 	testWidget = NULL;
 
-	delete topWidget;
-	topWidget = NULL;
+	delete frameBoxWidget;
+	frameBoxWidget = NULL;
 
 	delete leftWidget;
 	leftWidget = NULL;
@@ -1002,14 +983,11 @@ void CTestMenu::testCWidget()
 	delete rightWidget;
 	rightWidget = NULL;
 
-	delete headersWidget;
-	headersWidget = NULL;
+	delete headers;
+	headers = NULL;
 
-	delete footersWidget;
-	footersWidget = NULL;
-
-	//delete leftFrame;
-	//leftFrame = NULL;
+	delete footers;
+	footers = NULL;
 }
 
 void CTestMenu::testSingleWidget()
@@ -1204,8 +1182,8 @@ void CTestMenu::testFireTV()
 	testWidget->enablePaintMainFrame();
 
 	// frameBox
-	frameBox = new CFrameBox(&box);
-	frameBox->disablePaintFrame();
+	frameBoxWidget = new CFrameBox(&box);
+	frameBoxWidget->disablePaintFrame();
 
 	CHintBox loadBox("FireTV", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -1225,7 +1203,7 @@ void CTestMenu::testFireTV()
 	homeFrame->disablePaintFrame();
 	homeFrame->setActionKey(this, "home");
 
-	frameBox->addFrame(homeFrame);
+	frameBoxWidget->addFrame(homeFrame);
 
 	// setup
 	CFrame *setupFrame = new CFrame();
@@ -1238,7 +1216,7 @@ void CTestMenu::testFireTV()
 	setupFrame->disablePaintFrame();
 	setupFrame->setActionKey(this, "setup");
 
-	frameBox->addFrame(setupFrame);
+	frameBoxWidget->addFrame(setupFrame);
 
 	// help
 	CFrame *helpFrame = new CFrame();
@@ -1252,7 +1230,7 @@ void CTestMenu::testFireTV()
 	helpFrame->disablePaintFrame();
 	helpFrame->setActionKey(this, "help");
 
-	frameBox->addFrame(helpFrame);
+	frameBoxWidget->addFrame(helpFrame);
 
 	// frameBox1
 	if (!m_vMovieInfo.empty())
@@ -1268,7 +1246,7 @@ void CTestMenu::testFireTV()
 	titleFrame->disablePaintFrame();
 	titleFrame->setActive(false);
 
-	frameBox->addFrame(titleFrame);
+	frameBoxWidget->addFrame(titleFrame);
 
 	// text
 	CFrame *textFrame = new CFrame();
@@ -1282,7 +1260,7 @@ void CTestMenu::testFireTV()
 	textFrame->disablePaintFrame();
 	textFrame->setActive(false);
 
-	frameBox->addFrame(textFrame);
+	frameBoxWidget->addFrame(textFrame);
 
 	// pic
 	CFrame * artFrame = new CFrame();
@@ -1292,7 +1270,7 @@ void CTestMenu::testFireTV()
 	artFrame->disablePaintFrame();
 	artFrame->setActionKey(this, "fire1play");
 
-	frameBox->addFrame(artFrame);
+	frameBoxWidget->addFrame(artFrame);
 	
 
 	// other
@@ -1306,7 +1284,7 @@ void CTestMenu::testFireTV()
 	otherFrame->disablePaintFrame();
 	otherFrame->setActive(false);
 
-	frameBox->addFrame(otherFrame);
+	frameBoxWidget->addFrame(otherFrame);
 
 	//
 	CFrame * art1Frame = NULL;
@@ -1321,25 +1299,16 @@ void CTestMenu::testFireTV()
 		art1Frame->setActionKey(this, "fireplay");
 		art1Frame->setTitle(m_vMovieInfo[i].epgTitle.c_str());
 
-		frameBox->addFrame(art1Frame);
+		frameBoxWidget->addFrame(art1Frame);
 	}
 	}
 
-	testWidget->addItem(frameBox);
+	testWidget->addItem(frameBoxWidget);
 	
 	testWidget->exec(NULL, "");
 
-	delete frameBox;
-	frameBox = NULL;
-
-	//delete frameBox1;
-	//frameBox1 = NULL;
-
-	//delete frameBox2;
-	//frameBox2 = NULL;
-
-	//delete frameBox3;
-	//frameBox3 = NULL;
+	delete frameBoxWidget;
+	frameBoxWidget = NULL;
 
 	delete testWidget;
 	testWidget = NULL;
@@ -1359,10 +1328,10 @@ void CTestMenu::testListFrameWidget()
 	headBox.iX = frameBuffer->getScreenX();
 	headBox.iY = frameBuffer->getScreenY();
 
-	headersWidget = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(ClistFrame)", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(ClistFrame)", NEUTRINO_ICON_MP3);
 
-	headersWidget->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	headersWidget->enablePaintDate();
+	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	headers->enablePaintDate();
 
 	// foot
 	footBox.iWidth = frameBuffer->getScreenWidth();
@@ -1370,10 +1339,10 @@ void CTestMenu::testListFrameWidget()
 	footBox.iX = frameBuffer->getScreenX();
 	footBox.iY = frameBuffer->getScreenY() + frameBuffer->getScreenHeight() - footBox.iHeight;
 
-	footersWidget = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
+	footers = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
 
-	footersWidget->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	footersWidget->setCorner(RADIUS_MID, CORNER_BOTTOM);
+	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	footers->setCorner(RADIUS_MID, CORNER_BOTTOM);
 
 	//
 	CBox listFrameBox;
@@ -1460,9 +1429,9 @@ void CTestMenu::testListFrameWidget()
 	listFrame->showSelection(true);
 
 	//
-	testWidget->addItem(headersWidget);
+	testWidget->addItem(headers);
 	testWidget->addItem(listFrame);
-	testWidget->addItem(footersWidget);
+	testWidget->addItem(footers);
 
 	testWidget->addKey(RC_ok, this, "aok");
 
@@ -1474,11 +1443,11 @@ void CTestMenu::testListFrameWidget()
 	delete listFrame;
 	listFrame = NULL;
 
-	delete headersWidget;
-	headersWidget = NULL;
+	delete headers;
+	headers = NULL;
 
-	delete footersWidget;
-	footersWidget = NULL;
+	delete footers;
+	footers = NULL;
 }
 
 void CTestMenu::testListBoxWidget()
@@ -1566,7 +1535,7 @@ void CTestMenu::testListBoxWidget()
 
 void CTestMenu::testTextBoxWidget()
 {
-	dprintf(DEBUG_NORMAL, "\nCTESTMenu:testCTextBoxWidget:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:testCTextBoxWidget:\n");
 	
 	testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
@@ -1578,11 +1547,11 @@ void CTestMenu::testTextBoxWidget()
 	headBox.iX = frameBuffer->getScreenX();
 	headBox.iY = frameBuffer->getScreenY();
 
-	headersWidget = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(CTextBox)", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(CTextBox)", NEUTRINO_ICON_MP3);
 
-	headersWidget->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	//ĥeadersWidget->setCorner(RADIUS_MID, CORNER_TOP);
-	headersWidget->enablePaintDate();
+	headers->enablePaintDate();
 
 	// foot
 	footBox.iWidth = frameBuffer->getScreenWidth();
@@ -1590,10 +1559,10 @@ void CTestMenu::testTextBoxWidget()
 	footBox.iX = frameBuffer->getScreenX();
 	footBox.iY = frameBuffer->getScreenY() + frameBuffer->getScreenHeight() - footBox.iHeight;
 
-	footersWidget = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
+	footers = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
 
-	footersWidget->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	footersWidget->setCorner(RADIUS_MID, CORNER_BOTTOM);
+	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	footers->setCorner(RADIUS_MID, CORNER_BOTTOM);
 
 	//textBox
 	textWidget = new CTextBox(frameBuffer->getScreenX(), frameBuffer->getScreenY() + headBox.iHeight, frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight() - headBox.iHeight - footBox.iHeight);
@@ -1615,9 +1584,9 @@ void CTestMenu::testTextBoxWidget()
 
 	testWidget->addKey(RC_info, this, "txtinfo");
 
-	testWidget->addItem(headersWidget);
+	testWidget->addItem(headers);
 	testWidget->addItem(textWidget);
-	testWidget->addItem(footersWidget);
+	testWidget->addItem(footers);
 
 	testWidget->exec(NULL, "");
 
@@ -1627,11 +1596,11 @@ void CTestMenu::testTextBoxWidget()
 	delete textWidget;
 	textWidget = NULL;
 
-	delete headersWidget;
-	headersWidget = NULL;
+	delete headers;
+	headers = NULL;
 
-	delete footersWidget;
-	footersWidget = NULL;
+	delete footers;
+	footers = NULL;
 }
 
 void CTestMenu::testMultiWidget()
@@ -1679,8 +1648,7 @@ void CTestMenu::testMultiWidget()
 	leftWidget = new ClistBox(&leftBox);
 
 	leftWidget->setSelected(left_selected);
-	//leftWidget->enableShrinkMenu();
-	leftWidget->setOutFocus();
+	//leftWidget->setOutFocus();
 
 	ClistBoxItem *item1 = new ClistBoxItem("In den Kinos", true, NULL, this, "movie_in_cinema");
 	ClistBoxItem *item2 = new ClistBoxItem("Am", true, NULL, this, "movie_popular");
@@ -1714,18 +1682,19 @@ void CTestMenu::testMultiWidget()
 	
 	// rightWidget
 	rightBox.iWidth = mainBox.iWidth - leftBox.iWidth;
-	leftBox.iHeight = mainBox.iHeight - headBox.iHeight - footBox.iHeight;
-	leftBox.iX = mainBox.iX + leftBox.iWidth;
-	leftBox.iY = mainBox.iY + headBox.iHeight;
+	rightBox.iHeight = mainBox.iHeight - headBox.iHeight - footBox.iHeight;
+	rightBox.iX = mainBox.iX + leftBox.iWidth;
+	rightBox.iY = mainBox.iY + headBox.iHeight;
 	
-	topWidget = new CFrameBox(&rightBox);
+	frameBoxWidget = new CFrameBox(&rightBox);
+	//frameBoxWidget->disablePaintFrame();
 	
 	testWidget = new CWidget(&mainBox);
 	
 	testWidget->addItem(headers);
 	testWidget->addItem(footers);
 	testWidget->addItem(leftWidget);
-	testWidget->addItem(topWidget);
+	testWidget->addItem(frameBoxWidget);
 	
 	testWidget->exec(NULL, "");
 	
@@ -1779,30 +1748,30 @@ void CTestMenu::test()
 	topBox.iWidth = mainBox.iWidth;
 	topBox.iHeight = 50;
 
-	topWidget = new CFrameBox(&topBox);
-	//topWidget->setMode(FRAMEBOX_MODE_HORIZONTAL);
+	frameBoxWidget = new CFrameBox(&topBox);
+	//frameBoxWidget->setMode(FRAMEBOX_MODE_HORIZONTAL);
 
 	CFrame * frame = NULL;
 
 	frame = new CFrame();
 	frame->setPosition(topBox.iX, topBox.iY, topBox.iWidth/3, topBox.iHeight);
 	frame->setTitle("Filme");
-	topWidget->addFrame(frame);
+	frameBoxWidget->addFrame(frame);
 	
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + topBox.iWidth/3, topBox.iY, topBox.iWidth/3, topBox.iHeight);
 	frame->setTitle("Serien");
-	topWidget->addFrame(frame);
+	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + 2*topBox.iWidth/3, topBox.iY, topBox.iWidth/3, topBox.iHeight);
 	frame->setTitle("Suche");
 	frame->setOption(tmdbsearch.c_str());
 	frame->setActionKey(this, "search");
-	topWidget->addFrame(frame);
+	frameBoxWidget->addFrame(frame);
 
-	topWidget->setSelected(top_selected); 
-	topWidget->setOutFocus();
+	frameBoxWidget->setSelected(top_selected); 
+	frameBoxWidget->setOutFocus();
 
 	// leftWidget
 	CBox leftBox;
@@ -1971,7 +1940,7 @@ REPAINT:
 	// paint all widget
 	headers->paint();
 	footers->paint();
-	topWidget->paint();
+	frameBoxWidget->paint();
 	leftWidget->paint();
 	rightWidget->paint();
 
@@ -2001,7 +1970,7 @@ REPAINT:
 		else if(msg == RC_right)
 		{
 			if(focus == WIDGET_TOP)
-				topWidget->swipRight();
+				frameBoxWidget->swipRight();
 			else if(focus == WIDGET_RIGHT)
 				rightWidget->swipRight();
 			else if (focus == WIDGET_LEFT)
@@ -2009,7 +1978,7 @@ REPAINT:
 				focus = WIDGET_RIGHT;
 
 				leftWidget->setOutFocus();
-				topWidget->setOutFocus();
+				frameBoxWidget->setOutFocus();
 
 				rightWidget->setSelected(right_selected);
 				rightWidget->setOutFocus(false);
@@ -2020,7 +1989,7 @@ REPAINT:
 		else if(msg == RC_left)
 		{
 			if(focus == WIDGET_TOP)
-				topWidget->swipLeft();
+				frameBoxWidget->swipLeft();
 			else if(focus == WIDGET_RIGHT)
 				rightWidget->swipLeft();
 		}
@@ -2041,7 +2010,7 @@ REPAINT:
 			{
 				focus = WIDGET_LEFT;
 
-				topWidget->setOutFocus();
+				frameBoxWidget->setOutFocus();
 				rightWidget->setOutFocus();
 
 				leftWidget->setSelected(left_selected);
@@ -2056,7 +2025,7 @@ REPAINT:
 			{
 				focus = WIDGET_LEFT;
 
-				topWidget->setOutFocus();
+				frameBoxWidget->setOutFocus();
 				rightWidget->setOutFocus();
 
 				leftWidget->setSelected(left_selected);
@@ -2067,7 +2036,7 @@ REPAINT:
 				focus = WIDGET_RIGHT;
 
 				leftWidget->setOutFocus();
-				topWidget->setOutFocus();
+				frameBoxWidget->setOutFocus();
 
 				rightWidget->setSelected(right_selected);
 				rightWidget->setOutFocus(false);
@@ -2079,8 +2048,8 @@ REPAINT:
 				leftWidget->setOutFocus();
 				rightWidget->setOutFocus();
 
-				topWidget->setSelected(top_selected);
-				topWidget->setOutFocus(false);
+				frameBoxWidget->setSelected(top_selected);
+				frameBoxWidget->setOutFocus(false);
 			}
 
 			goto REPAINT;
@@ -2248,7 +2217,7 @@ REPAINT:
 			}
 			else if(focus == WIDGET_TOP)
 			{
-				top_selected = topWidget->getSelected();
+				top_selected = frameBoxWidget->getSelected();
 
 				if(top_selected == 1)
 				{
@@ -2328,7 +2297,7 @@ REPAINT:
 				}
 				else if(top_selected == 2)
 				{
-					topWidget->oKKeyPressed(this);
+					frameBoxWidget->oKKeyPressed(this);
 					goto DOFILM;
 				}
 			}
@@ -2371,8 +2340,8 @@ REPAINT:
 
 	hide();
 
-	delete topWidget;
-	topWidget = NULL;
+	delete frameBoxWidget;
+	frameBoxWidget = NULL;
 
 	delete leftWidget;
 	leftWidget = NULL;
@@ -2466,7 +2435,7 @@ void CTestMenu::testCImage()
 	// paint testImage
 	testImage.setImage(PLUGINDIR "/netzkino/netzkino.png");
 
-	CFrameBuffer::getInstance()->displayImage(testImage.imageName.c_str(), 150 + BORDER_LEFT, 150, 100, 40);
+	CFrameBuffer::getInstance()->displayImage(testImage.imageName.c_str(), 150 + BORDER_LEFT, 150, testImage.iWidth, testImage.iHeight);
 
 	CFrameBuffer::getInstance()->blit();
 
@@ -4202,7 +4171,7 @@ void CTestMenu::testCFrameBox()
 	topBox.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
 	topBox.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20);;
 
-	topWidget = new CFrameBox(&topBox);
+	frameBoxWidget = new CFrameBox(&topBox);
 
 	CFrame * frame = NULL;
 
@@ -4212,31 +4181,31 @@ void CTestMenu::testCFrameBox()
 	frame->setIconName(NEUTRINO_ICON_MOVIE);
 	frame->setOption("in allen Kinos");
 	frame->setActionKey(this, "help");
-	topWidget->addFrame(frame);
+	frameBoxWidget->addFrame(frame);
 	
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + topBox.iWidth/4, topBox.iY + (20 + 60), topBox.iWidth/4, 60);
 	frame->setTitle("Im Kino");
 	frame->setActionKey(this, "help");
-	topWidget->addFrame(frame);
+	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + 2*topBox.iWidth/4, topBox.iY + 2*(20 + 60), topBox.iWidth/4, 60);
 	frame->setTitle("Am populärsten");
 	frame->setOption("(2019)");
 	frame->setActionKey(this, "help");
-	topWidget->addFrame(frame);
+	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + 3*topBox.iWidth/4, topBox.iY + 3*(20 + 60), topBox.iWidth/4, 60);
 	frame->setTitle("Exit");
 	frame->setActionKey(this, "exit");
-	topWidget->addFrame(frame);
+	frameBoxWidget->addFrame(frame);
 
-	topWidget->setSelected(selected);
+	frameBoxWidget->setSelected(selected);
 
 REPEAT:
-	topWidget->paint();
+	frameBoxWidget->paint();
 
 	// loop
 	neutrino_msg_t msg;
@@ -4248,32 +4217,32 @@ REPEAT:
 	{
 		g_RCInput->getMsg_ms(&msg, &data, 10); // 1 sec
 
-		if (topWidget->getActionKey() == "exit")
+		if (frameBoxWidget->getActionKey() == "exit")
 			loop = false;
 
-		if ( (msg == RC_home) || (topWidget->getSelected() == 9) )
+		if ( (msg == RC_home) || (frameBoxWidget->getSelected() == 9) )
 		{
 			loop = false;
 		}
 		else if(msg == RC_right)
 		{
-			topWidget->swipRight();
+			frameBoxWidget->swipRight();
 		}
 		else if(msg == RC_left)
 		{
-			topWidget->swipLeft();
+			frameBoxWidget->swipLeft();
 		}
 		else if(msg == RC_down)
 		{
-			topWidget->scrollLineDown();
+			frameBoxWidget->scrollLineDown();
 		}
 		else if(msg == RC_up)
 		{
-			topWidget->scrollLineUp();
+			frameBoxWidget->scrollLineUp();
 		}
 		else if(msg == RC_ok)
 		{
-			int rv = topWidget->oKKeyPressed(this);
+			int rv = frameBoxWidget->oKKeyPressed(this);
 
 			//FIXME:review this
 			switch ( rv ) 
@@ -4285,7 +4254,7 @@ REPEAT:
 					break;
 				case RETURN_REPAINT:
 					hide();
-					topWidget->paint();
+					frameBoxWidget->paint();
 					break;
 			}
 		}
@@ -4295,8 +4264,8 @@ REPEAT:
 
 	hide();
 
-	delete topWidget;
-	topWidget = NULL;
+	delete frameBoxWidget;
+	frameBoxWidget = NULL;
 }
 
 // play Movie Url
@@ -6003,7 +5972,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		}
 		else if(focus == 1)
 		{
-			top_selected = topWidget->getSelected();
+			top_selected = frameBoxWidget->getSelected();
 
 			if(top_selected == 1) //tv
 			{
@@ -6584,7 +6553,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 	else if(actionKey == "movie")
 	{
-		top_selected = topWidget->getSelected();
+		top_selected = frameBoxWidget->getSelected();
 
 		right_selected = 0;
 		left_selected = 0;
@@ -6742,7 +6711,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 	else if(actionKey == "nextPage")
 	{
-		top_selected = topWidget->getSelected();
+		top_selected = frameBoxWidget->getSelected();
 		page++;
 		right_selected = 0;
 		rightWidget->clearItems();
@@ -6790,7 +6759,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 	else if(actionKey == "prevPage")
 	{
-		top_selected = topWidget->getSelected();
+		top_selected = frameBoxWidget->getSelected();
 
 		page--;
 		if(page <= 1)
@@ -6938,8 +6907,8 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 	else if(actionKey == "fireplay")
 	{
-		if (frameBox)
-			selected = frameBox->getSelected() - 6;
+		if (frameBoxWidget)
+			selected = frameBoxWidget->getSelected() - 6;
 		else
 			selected = 0;
 
@@ -6984,14 +6953,14 @@ void CTestMenu::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CTestMenu::showMenu:\n");
 
-	mainMenu = new CMenuWidget(/*"testMenu", NEUTRINO_ICON_BUTTON_SETUP*/);
+	CMenuWidget * mainMenu = new CMenuWidget();
 
 	mainMenu->setTitle("testMenu", NEUTRINO_ICON_BUTTON_SETUP);
 
 	mainMenu->setMode(MODE_MENU);
 	mainMenu->enableShrinkMenu(),
 	mainMenu->enableMenuPosition();
-	//mainMenu->enablePaintFootInfo();
+	mainMenu->enablePaintFootInfo();
 	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(multi widget)", true, NULL, this, "widget"));
@@ -7127,8 +7096,8 @@ void CTestMenu::showMenu()
 	mainMenu->exec(NULL, "");
 	//mainMenu->hide();
 
-	select = mainMenu->getSelected();
-	printf("\nCTestMenu::exec: select:%d\n", select);
+	selected = mainMenu->getSelected();
+	printf("\nCTestMenu::exec: select:%d\n", selected);
 
 	delete mainMenu;
 	mainMenu = NULL;

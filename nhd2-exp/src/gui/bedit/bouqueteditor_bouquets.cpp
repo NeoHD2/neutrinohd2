@@ -449,7 +449,10 @@ void CBEBouquetWidget::deleteBouquet()
 		return;
 
 	if (MessageBox(LOCALE_FILEBROWSER_DELETE, (*Bouquets)[selected]->bFav ? g_Locale->getText(LOCALE_FAVORITES_BOUQUETNAME) : (*Bouquets)[selected]->Name.c_str(), mbrNo, mbYes | mbNo) != mbrYes)
+	{
+		paint();
 		return;
+	}
 
 	g_bouquetManager->deleteBouquet(selected);
 	Bouquets = &g_bouquetManager->Bouquets;
@@ -502,8 +505,10 @@ void CBEBouquetWidget::cancelMoveBouquet()
 
 void CBEBouquetWidget::internalMoveBouquet( unsigned int fromPosition, unsigned int toPosition)
 {
-	if ( (int) toPosition == -1 ) return;
-	if ( toPosition == Bouquets->size()) return;
+	if ( (int) toPosition == -1 ) 
+		return;
+	if ( toPosition == Bouquets->size()) 
+		return;
 
 	g_bouquetManager->moveBouquet(fromPosition, toPosition);
 	Bouquets = &g_bouquetManager->Bouquets;

@@ -122,7 +122,7 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 	
 	m_cBoxWindow = new CWindow(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
 	m_cBoxWindow->enableSaveScreen();
-	m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
+	//m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
 	m_cBoxWindow->enableShadow();
 	
 	// HG
@@ -207,7 +207,7 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	// Box
 	m_cBoxWindow = new CWindow(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
 	m_cBoxWindow->enableSaveScreen();
-	m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
+	//m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
 	m_cBoxWindow->enableShadow();
 	
 	// HG

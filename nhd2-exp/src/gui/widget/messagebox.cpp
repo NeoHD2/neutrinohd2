@@ -399,7 +399,7 @@ void CMessageBox::resizeFrame(void)
                                m_height);
 
 	m_cBoxWindow->enableSaveScreen();
-	m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
+	//m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
 	m_cBoxWindow->enableShadow();
 }
 

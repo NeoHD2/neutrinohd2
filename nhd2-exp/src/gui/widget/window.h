@@ -34,7 +34,7 @@
 
 
 // window
-class CWindow /*: public CWidgetItem*/
+class CWindow
 {
 	private:
 		CFrameBuffer* frameBuffer;
@@ -78,7 +78,7 @@ class CWindow /*: public CWidgetItem*/
 };
 
 // pig
-class CPig /*: public CWidgetItem */
+class CPig
 {
 	private:
 		CFrameBuffer* frameBuffer;
@@ -98,13 +98,14 @@ class CPig /*: public CWidgetItem */
 };
 
 //
-class CGrid /*: public CWidgetItem */
+class CGrid
 {
 	private:
 		CFrameBuffer* frameBuffer;
 		CBox itemBox;
 
 		__u32 rgb;
+		int inter_frame;
 
 	public:
 		CGrid(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -114,6 +115,7 @@ class CGrid /*: public CWidgetItem */
 		void init();
 
 		void setColor(__u32 col){rgb = col;};
+		void setInterFrame(int iframe = 15){inter_frame = iframe;};
 
 		void paint();
 		void hide();

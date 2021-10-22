@@ -85,8 +85,6 @@ void CWindow::init()
 	savescreen = false;
 	background = NULL;
 
-	//itemType = WIDGET_ITEM_WINDOW;
-
 	// sanity check
 	if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight()))
 		itemBox.iHeight = frameBuffer->getScreenHeight();
@@ -217,8 +215,6 @@ CPig::CPig(CBox* position)
 void CPig::init()
 {
 	frameBuffer = CFrameBuffer::getInstance();
-
-	//itemType = WIDGET_ITEM_PIG;
 }
 
 void CPig::paint()
@@ -261,18 +257,17 @@ void CGrid::init()
 	frameBuffer = CFrameBuffer::getInstance();
 
 	rgb = 0x505050;
-
-	//itemType = WIDGET_ITEM_GRID;
+	inter_frame = 15;
 }
 
 void CGrid::paint()
 {
 	// hlines grid
-	for(int count = 0; count < itemBox.iHeight; count += 15)
+	for(int count = 0; count < itemBox.iHeight; count += inter_frame)
 		frameBuffer->paintHLine(itemBox.iX, itemBox.iX + itemBox.iWidth, itemBox.iY + count, make16color(rgb) );
 
 	// vlines grid
-	for(int count = 0; count < itemBox.iWidth; count += 15)
+	for(int count = 0; count < itemBox.iWidth; count += inter_frame)
 		frameBuffer->paintVLine(itemBox.iX + count, itemBox.iY, itemBox.iY + itemBox.iHeight, make16color(rgb) );
 }
 
