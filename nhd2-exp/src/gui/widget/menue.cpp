@@ -766,7 +766,7 @@ void CMenuWidget::paintItemInfo(int pos)
 	
 				textBox = new CTextBox(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, full_width - 4, cFrameFootInfo.iHeight - 4);
 
-				textBox->disablePaintBackground();
+				textBox->disablePaintFrame();
 				textBox->setMode(AUTO_WIDTH);
 				
 				// itemIcon
@@ -882,7 +882,7 @@ void CMenuWidget::paintItemInfo(int pos)
 	
 					textBox = new CTextBox(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, full_width - 4, cFrameFootInfo.iHeight - 4);
 
-					textBox->disablePaintBackground();
+					textBox->disablePaintFrame();
 					textBox->setMode(AUTO_WIDTH);
 
 					if(!item->itemHelpText.empty())
@@ -992,7 +992,7 @@ void CMenuWidget::paintItemInfo(int pos)
 	
 					textBox = new CTextBox(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, width - 4, cFrameFootInfo.iHeight - 4);
 
-					textBox->disablePaintBackground();
+					textBox->disablePaintFrame();
 					textBox->setMode(AUTO_WIDTH);
 
 					if(!item->itemHelpText.empty())

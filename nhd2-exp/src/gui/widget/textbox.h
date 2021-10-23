@@ -152,7 +152,7 @@ class CTextBox : public CWidgetItem
 		void setBackgroundColor(fb_pixel_t col){m_textBackgroundColor = col;};
 		void setFontText(CFont * font_text){m_pcFontText = font_text;};
 		void setMode(const int mode);
-		void disablePaintBackground(){paintBG = false;};
+		void disablePaintFrame(){paintBG = false;};
 
 		void paint(void);
 		void hide(void);

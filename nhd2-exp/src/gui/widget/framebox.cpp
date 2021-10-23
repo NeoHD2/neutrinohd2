@@ -375,7 +375,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 
 		textBox = new CTextBox(window.getWindowsPos().iX + 1, window.getWindowsPos().iY + 1, window.getWindowsPos().iWidth - 2, window.getWindowsPos().iHeight - 2);
 
-		textBox->disablePaintBackground();
+		textBox->disablePaintFrame();
 		textBox->setMode(AUTO_WIDTH);
 		textBox->setFontText(captionFont);
 
