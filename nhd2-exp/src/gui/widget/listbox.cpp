@@ -1926,6 +1926,19 @@ void ClistBox::initFrames()
 	cFrameBox.iY = start_y;
 	cFrameFootInfo.iHeight = 0;
 	connectLineWidth = 0;
+	
+	// widget type
+	if(widgetChange && widgetMode == MODE_MENU)
+	{
+		if(g_settings.menu_design == SNeutrinoSettings::MENU_DESIGN_STANDARD)
+			widgetType = WIDGET_TYPE_STANDARD;
+		else if(g_settings.menu_design == SNeutrinoSettings::MENU_DESIGN_CLASSIC)
+			widgetType = WIDGET_TYPE_CLASSIC;
+		else if(g_settings.menu_design == SNeutrinoSettings::MENU_DESIGN_EXTENDED)
+			widgetType = WIDGET_TYPE_EXTENDED;
+		else if(g_settings.menu_design == SNeutrinoSettings::MENU_DESIGN_FRAME)
+			widgetType = WIDGET_TYPE_FRAME;
+	}
 
 	// widgettype forwarded to item 
 	for (unsigned int count = 0; count < items.size(); count++) 

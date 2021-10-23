@@ -1,14 +1,14 @@
 from neutrino import *
 
 class messageBox(CMessageBox):
-	title = "pythonTest"
+	title = "python: CMessageBox"
 	msg = "TEST"
 	def __init__(self):
 		CMessageBox.__init__(self, self.title, self.msg)
 		self._exec(-1)
 
 class helpBox(CHelpBox):
-	line1 = "Test"
+	line1 = "python: CHelpBox"
 	line2 = "Huhu"
 	line3 = "alles gut"
 	def __init__(self):
@@ -26,10 +26,11 @@ class hintBox(CHintBox):
 		self._exec()
 
 class infoBox(CInfoBox):
-	msgTitle = "pythonTest:"
+	msgTitle = "pythonTest: CInfoBox"
 	msgText = "first test\ntesting CInfoBox\nthat's all Folk!"
 	def __init__(self):
 		CInfoBox.__init__(self)
+		self.setTitle(self.msgTitle)
 		self.setText(self.msgTitle + "\n" + self.msgText)
 		self._exec(-1)
 
@@ -169,7 +170,7 @@ class moviePlayer(CFileBrowser):
 
 class testMenu(CMenuTarget):
 	selected = 0
-	listWidget = CMenuWidget("pythonTest:CMenuWidget", NEUTRINO_ICON_MOVIE)
+	listWidget = CMenuWidget("pythonTest: CMenuWidget", NEUTRINO_ICON_MOVIE)
 
 	def __init__(self):
 		CMenuTarget.__init__
@@ -177,7 +178,7 @@ class testMenu(CMenuTarget):
 
 	def showMenu(self):
 		self.listWidget.setWidgetType(WIDGET_TYPE_STANDARD)
-		self.listWidget.setMode(MODE_LISTBOX)
+		self.listWidget.setWidgetMode(MODE_LISTBOX)
 		self.listWidget.enableShrinkMenu()
 		self.listWidget.addWidget(WIDGET_TYPE_CLASSIC)
 		self.listWidget.addWidget(WIDGET_TYPE_EXTENDED)

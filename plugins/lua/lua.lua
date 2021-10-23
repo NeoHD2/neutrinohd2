@@ -424,7 +424,8 @@ function testClistBox()
 	local listBox = neutrino.ClistBox()
 	listBox:enableCenterPos()
 	listBox:enablePaintHead()
-	listBox:setTitle("ClistBox")
+	listBox:setTitle("ClistBox", neutrino.NEUTRINO_ICON_MOVIE)
+	listBox:enablePaintDate()
 	listBox:enablePaintFoot()
 	listBox:enableShrinkMenu()
 
@@ -485,38 +486,19 @@ function testClistBox()
 	listBox:addItem(item7)
 	listBox:addItem(item8)
 
-	local m = neutrino.CWidget()
+	listBox:addKey(neutrino.RC_info)
 
-	m:addKey(neutrino.RC_ok)
-	m:addKey(neutrino.RC_down)
-	m:addKey(neutrino.RC_up)
-	m:addKey(neutrino.RC_info)
-
-	repeat
-		listBox:paint()
-		ret = m:exec(null, "")
-		selected = listBox:getSelected()
-		local key = m:getKey()
-		local actionKey = m:getActionKey()
-
-		if key == neutrino.RC_down then
-			listBox:scrollLineDown()
-		end
-		if key == neutrino.RC_up then
-				listBox:scrollLineUp()
-		end
+	ret = listBox:exec(null, "")
+	
+	local selected = listBox:getSelected()
+	local key = listBox:getKey()
+	local actionKey = listBox:getActionKey()
 		
-		if key == neutrino.RC_ok or key == neutrino.RC_info then
-			listBox:hide()
-			if selected >=0 then
-				exec(selected, key, actionKey)
-			end
-		end
-	until m:getExitPressed() == true
-
-	listBox:setSelected(selected)
-
-	listBox:hide()
+	exec(selected, key, actionKey)
+	
+	if listBox:getExitPressed() ~= true then
+		testClistBox()
+	end
 
 	return ret
 end
@@ -588,7 +570,7 @@ function testCWindow()
 	frame1Box.iY = box.iY + box.iHeight - 10 - 40 - 60
 
 	-- head
-	head = neutrino.CHeaders(headBox, "lua sample Window|Widget", neutrino.NEUTRINO_ICON_MOVIE)
+	head = neutrino.CHeaders(headBox, "lua sample ClistBox|CFrameBox", neutrino.NEUTRINO_ICON_MOVIE)
 	head:enablePaintDate()
 
 	btn = neutrino.button_label_struct()
@@ -881,13 +863,13 @@ function testCFrameBox()
 	frame4:setActionKey(null, "exit")
 	frameBox:addFrame(frame4)
 
-	local m = neutrino.CWidget()
+	--local m = neutrino.CWidget()
 	--m:enablePaintMainFrame()
-	m:addItem(frameBox)
+	--m:addItem(frameBox)
 
-	ret = m:exec(null, "")
+	ret = frameBox:exec(null, "")
 
-	local actionKey = m:getActionKey()
+	local actionKey = frameBox:getActionKey()
 
 	if actionKey == "moviePlayer" then
 		print("testCFrameBox: actionKey: moviePlayer")
@@ -901,7 +883,7 @@ function testCFrameBox()
 		return ret
 	end
 
-	if m:getExitPressed() ~= true then
+	if frameBox:getExitPressed() ~= true then
 		testCFrameBox()
 	end
 
