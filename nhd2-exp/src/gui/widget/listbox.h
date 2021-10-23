@@ -614,7 +614,7 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		void setHeadGradient(int grad){headGradient = grad;};
 		
 		// foot
-		void enablePaintFoot(){paint_Foot = true; if ((widgetType == WIDGET_TYPE_FRAME) && (widgetMode == MODE_MENU)) paint_Foot = false;};
+		void enablePaintFoot(){paint_Foot = true;};
 		void setFooterButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1, const int _fbutton_width = 0);
 		void setFootColor(fb_pixel_t col) {footColor = col;};
 		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};

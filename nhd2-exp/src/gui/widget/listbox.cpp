@@ -1954,6 +1954,11 @@ void ClistBox::initFrames()
 		//
 		if(paintFootInfo)
 			cFrameFootInfo.iHeight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
+			
+		if(fbutton_count == 0)
+		{
+			fheight = 0;
+		}
 
 		//
 		page_start.clear();
@@ -2355,16 +2360,16 @@ void ClistBox::paintFoot()
 	{
 		if(widgetType == WIDGET_TYPE_FRAME)
 		{
-			frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY + cFrameBox.iHeight - fheight, cFrameBox.iWidth, fheight, COL_MENUCONTENT_PLUS_0);
-
-			// paint horizontal line buttom
-			frameBuffer->paintHLineRel(cFrameBox.iX + BORDER_LEFT, cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT, cFrameBox.iY + cFrameBox.iHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
-
-			// buttons
-			int buttonWidth = 0;
-
 			if(fbutton_count)
 			{
+				frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY + cFrameBox.iHeight - fheight, cFrameBox.iWidth, fheight, COL_MENUCONTENT_PLUS_0);
+
+				// paint horizontal line buttom
+				frameBuffer->paintHLineRel(cFrameBox.iX + BORDER_LEFT, cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT, cFrameBox.iY + cFrameBox.iHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
+
+				// buttons
+				int buttonWidth = 0;
+
 				buttonWidth = (cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
 	
 				for (unsigned int i = 0; i < fbutton_count; i++)

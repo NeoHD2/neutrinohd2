@@ -1235,72 +1235,71 @@ void CTestMenu::testFireTV()
 	// frameBox1
 	if (!m_vMovieInfo.empty())
 	{
-	// title
-	CFrame * titleFrame = new CFrame();
-	titleFrame->setMode(FRAME_LABEL);
-	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
-	int t_w = 200;
-	int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
-	titleFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10, box.iWidth - 20 - pic_w - 20, t_h);
-	titleFrame->setTitle((m_vMovieInfo[0].epgTitle.empty())? "" : m_vMovieInfo[0].epgTitle.c_str());
-	titleFrame->disablePaintFrame();
-	titleFrame->setActive(false);
+		// title
+		CFrame * titleFrame = new CFrame();
+		titleFrame->setMode(FRAME_LABEL);
+		titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+		int t_w = 200;
+		int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
+		titleFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10, box.iWidth - 20 - pic_w - 20, t_h);
+		titleFrame->setTitle((m_vMovieInfo[0].epgTitle.empty())? "" : m_vMovieInfo[0].epgTitle.c_str());
+		titleFrame->disablePaintFrame();
+		titleFrame->setActive(false);
 
-	frameBoxWidget->addFrame(titleFrame);
+		frameBoxWidget->addFrame(titleFrame);
 
-	// text
-	CFrame *textFrame = new CFrame();
-	textFrame->setMode(FRAME_TEXT);
-	textFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10 + t_h + 10, box.iWidth - 20 - pic_w - 20, 250 - t_h - 10 - 10);
-	std::string buffer;
-	buffer = m_vMovieInfo[0].epgInfo1;
-	buffer += "\n";
-	buffer += m_vMovieInfo[0].epgInfo2;
-	textFrame->setTitle(buffer.c_str());
-	textFrame->disablePaintFrame();
-	textFrame->setActive(false);
+		// text
+		CFrame *textFrame = new CFrame();
+		textFrame->setMode(FRAME_TEXT);
+		textFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10 + t_h + 10, box.iWidth - 20 - pic_w - 20, 250 - t_h - 10 - 10);
+		std::string buffer;
+		buffer = m_vMovieInfo[0].epgInfo1;
+		buffer += "\n";
+		buffer += m_vMovieInfo[0].epgInfo2;
+		textFrame->setTitle(buffer.c_str());
+		textFrame->disablePaintFrame();
+		textFrame->setActive(false);
 
-	frameBoxWidget->addFrame(textFrame);
+		frameBoxWidget->addFrame(textFrame);
 
-	// pic
-	CFrame * artFrame = new CFrame();
-	artFrame->setMode(FRAME_PICTURE);
-	artFrame->setPosition(box.iX + 10 + box.iWidth - 10 - pic_w - 20, box.iY + 40 + h_h + 10, pic_w - 20, 250);
-	artFrame->setIconName(m_vMovieInfo[0].tfile.c_str());
-	artFrame->disablePaintFrame();
-	artFrame->setActionKey(this, "fire1play");
+		// pic
+		CFrame * artFrame = new CFrame();
+		artFrame->setMode(FRAME_PICTURE);
+		artFrame->setPosition(box.iX + 10 + box.iWidth - 10 - pic_w - 20, box.iY + 40 + h_h + 10, pic_w - 20, 250);
+		artFrame->setIconName(m_vMovieInfo[0].tfile.c_str());
+		artFrame->disablePaintFrame();
+		artFrame->setActionKey(this, "fire1play");
 
-	frameBoxWidget->addFrame(artFrame);
-	
+		frameBoxWidget->addFrame(artFrame);
+		
 
-	// other
-	CFrame *otherFrame = new CFrame();
-	otherFrame->setMode(FRAME_LABEL);
-	otherFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
-	int o_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("andere Filme:");
-	int o_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
-	otherFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10 + 250 + 10, o_w + 10, o_h);
-	otherFrame->setTitle("andere Filme:");
-	otherFrame->disablePaintFrame();
-	otherFrame->setActive(false);
+		// other
+		CFrame *otherFrame = new CFrame();
+		otherFrame->setMode(FRAME_LABEL);
+		otherFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+		int o_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("andere Filme:");
+		int o_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
+		otherFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10 + 250 + 10, o_w + 10, o_h);
+		otherFrame->setTitle("andere Filme:");
+		otherFrame->disablePaintFrame();
+		otherFrame->setActive(false);
 
-	frameBoxWidget->addFrame(otherFrame);
+		frameBoxWidget->addFrame(otherFrame);
 
-	//
-	CFrame * art1Frame = NULL;
-	for (int i = 1; i < 7; i++)
-	{
-		art1Frame = new CFrame();
-		art1Frame->setMode(FRAME_PICTURE);
-		//art1Frame->setPosition(box.iX + 10 + (i - 1)*10 + (i - 1)*(pic_w - 20), box.iY + 40 + h_h + 10 + 250 + 10 + o_h + 10, pic_w - 20, box.iHeight - 40 - h_h - 10 - 250 - 10 - 40);
-		art1Frame->setPosition(box.iX + 10 + (i - 1)*((box.iWidth - 20)/6), box.iY + 40 + h_h + 10 + 250 + 10 + o_h + 10, (box.iWidth - 20)/6,box.iHeight - 40 - h_h - 10 - 250 - 10 - 40);
-		art1Frame->setIconName(m_vMovieInfo[i].tfile.c_str());
-		art1Frame->disablePaintFrame();
-		art1Frame->setActionKey(this, "fireplay");
-		art1Frame->setTitle(m_vMovieInfo[i].epgTitle.c_str());
+		//
+		CFrame * art1Frame = NULL;
+		for (int i = 1; i < 7; i++)
+		{
+			art1Frame = new CFrame();
+			art1Frame->setMode(FRAME_PICTURE);
+			art1Frame->setPosition(box.iX + 10 + (i - 1)*((box.iWidth - 20)/6), box.iY + 40 + h_h + 10 + 250 + 10 + o_h + 10, (box.iWidth - 20)/6,box.iHeight - 40 - h_h - 10 - 250 - 10 - 40);
+			art1Frame->setIconName(m_vMovieInfo[i].tfile.c_str());
+			art1Frame->disablePaintFrame();
+			art1Frame->setActionKey(this, "fireplay");
+			art1Frame->setTitle(m_vMovieInfo[i].epgTitle.c_str());
 
-		frameBoxWidget->addFrame(art1Frame);
-	}
+			frameBoxWidget->addFrame(art1Frame);
+		}
 	}
 
 	//testWidget->addItem(frameBoxWidget);
@@ -4208,9 +4207,6 @@ REPEAT:
 	while(loop)
 	{
 		g_RCInput->getMsg_ms(&msg, &data, 10); // 1 sec
-
-		if (frameBoxWidget->getActionKey() == "exit")
-			loop = false;
 
 		if ( (msg == RC_home) || (frameBoxWidget->getSelected() == 9) )
 		{
