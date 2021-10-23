@@ -188,9 +188,13 @@ int CMenuOptionChooser::exec(CMenuTarget *parent)
 	{
 		int select = -1;
 
-		CMenuWidget *menu = new CMenuWidget(optionNameString.c_str(), NEUTRINO_ICON_SETTINGS);
+		//CMenuWidget *menu = new CMenuWidget(optionNameString.c_str(), NEUTRINO_ICON_SETTINGS);
+		ClistBox *menu = new ClistBox();
+		menu->setTitle(optionNameString.c_str(), NEUTRINO_ICON_SETTINGS);
+		menu->enablePaintHead();
+		menu->enablePaintFoot();
 
-		menu->setWidgetMode(MODE_MENU);
+		menu->setWidgetMode(MODE_SETUP);
 		menu->enableShrinkMenu();
 		menu->enableSaveScreen();
 		
@@ -594,12 +598,17 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 	{
 		int select = -1;
 		
-		CMenuWidget * menu = new CMenuWidget(nameString.c_str(), NEUTRINO_ICON_SETTINGS);
+		//CMenuWidget * menu = new CMenuWidget(nameString.c_str(), NEUTRINO_ICON_SETTINGS);
+		ClistBox *menu = new ClistBox();
+		menu->setTitle(nameString.c_str(), NEUTRINO_ICON_SETTINGS);
+		menu->enablePaintHead();
+		menu->enablePaintFoot();
+		menu->enableShrinkMenu();
 		
 		//if(parent) 
 		//	menu->move(20, 0);
 		
-		menu->setWidgetMode(MODE_MENU);
+		menu->setWidgetMode(MODE_SETUP);
 		menu->enableSaveScreen();
 		
 		for(unsigned int count = 0; count < options.size(); count++) 
@@ -1755,6 +1764,8 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	cFrameFootInfo.iHeight = 0;
 	connectLineWidth = 0;
 	footInfoMode = FOOT_INFO_MODE;
+	
+	listmaxshow = 0;
 
 	hbutton_count	= 0;
 	hbutton_labels.clear();
@@ -1809,7 +1820,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	
 	paintFrame = true;
 	
-	////
+	//
 	timeout = 0;
 	MenuPos = false;
 	exit_pressed = false;
@@ -1837,6 +1848,8 @@ ClistBox::ClistBox(CBox* position)
 	cFrameFootInfo.iHeight = 0;
 	connectLineWidth = 0;
 	footInfoMode = FOOT_INFO_MODE;
+	
+	listmaxshow = 0;
 
 	hbutton_count	= 0;
 	hbutton_labels.clear();
@@ -1920,7 +1933,7 @@ bool ClistBox::hasItem()
 void ClistBox::initFrames()
 {
 	// reinit position
-	cFrameBox.iHeight = full_height;
+	//cFrameBox.iHeight = full_height;
 	cFrameBox.iWidth = full_width;
 	cFrameBox.iX = start_x;
 	cFrameBox.iY = start_y;
@@ -2043,12 +2056,14 @@ void ClistBox::initFrames()
 			if((heightCurrPage + hheight + fheight + cFrameFootInfo.iHeight) > cFrameBox.iHeight)
 			{
 				page_start.push_back(i);
-				heightFirstPage = heightCurrPage - item_height;
+				//heightFirstPage = heightCurrPage - item_height;
+				heightFirstPage = std::max(heightCurrPage - item_height, heightFirstPage);//TEST
 				total_pages++;
 				heightCurrPage = item_height;
 			}
 		}
 
+		heightFirstPage = std::max(heightCurrPage, heightFirstPage); //TEST
 		page_start.push_back(items.size());
 
 		// icon offset
@@ -2066,9 +2081,14 @@ void ClistBox::initFrames()
 		// recalculate height
 		if(shrinkMenu)
 		{
-			listmaxshow = (cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight)/item_height;
-			cFrameBox.iHeight = hheight + listmaxshow*item_height + fheight + cFrameFootInfo.iHeight;
+			//listmaxshow = (cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight)/item_height;
+			//cFrameBox.iHeight = hheight + listmaxshow*item_height + fheight + cFrameFootInfo.iHeight;
+			
+			cFrameBox.iHeight = std::min(cFrameBox.iHeight, hheight + heightFirstPage + fheight + cFrameFootInfo.iHeight);
 		}
+		
+		//TEST
+		full_height = cFrameBox.iHeight; 
 
 		// sanity check
 		if(cFrameBox.iHeight > ((int)frameBuffer->getScreenHeight()))
@@ -2090,7 +2110,6 @@ void ClistBox::initFrames()
 			cFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - cFrameBox.iHeight) >> 1 );
 		}
 		
-		////TEST
 		// menu position
 		if(widgetMode == MODE_MENU)
 		{
@@ -2260,7 +2279,7 @@ void ClistBox::paintItems()
 
 			if ((count >= page_start[current_page]) && (count < page_start[current_page + 1])) 
 			{
-				//item->init(xpos, ypos, items_width, iconOffset);
+				//
 				item->init(xpos, ypos, item_width, iconOffset);
 				
 			

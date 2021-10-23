@@ -6,7 +6,7 @@ local selected = 0
 
 -- CMessageBox
 function messageBox()
-	title = "CMessageBox"
+	title = "lua: CMessageBox"
 	msg = "neutrino lua:\n testing lua CMessageBox\n"
 	mBox = neutrino.CMessageBox(title, msg)
 	mBox:exec()
@@ -19,25 +19,26 @@ function helpBox()
 	hbox:addSeparator()
 	hbox:addLine("first test")
 	hbox:addLine("testing CHelpBox ;-)\n")
-	hbox:show("CHelpBox: lua")
+	hbox:show("lua: CHelpBox")
 end
 
 -- CHintBox
 function hintBox()
-	hint = neutrino.CHintBox("CHintBox","neutrino lua:\n first test\ntesting CHintBox\ndas ist alles ;-)")
+	hint = neutrino.CHintBox("lua: CHintBox","neutrino lua:\n first test\ntesting CHintBox\ndas ist alles ;-)")
 	hint:exec(10)
 end
 
 -- CInfoBox
 function infoBox()
 	info = neutrino.CInfoBox()
+	info:setTitle("lua: CInfoBox")
 	info:setText("neutrino lua:\nfirst test\ntesting CHintBox ;-)\n")
 	info:exec()
 end
 
 -- CStringInput
 function stringInput()
-	local title = "luaTest: CStringInputSMS"
+	local title = "lua: CStringInputSMS"
 	local value = "neutrino lua:"
 	local input = neutrino.CStringInputSMS(title, vale)
 	input:exec(None, "")
@@ -226,7 +227,7 @@ function testCWidget()
 
 	testWidget:enableCenterPos()
 
-	listBox:setTitle("CWidget|ClistBox")
+	listBox:setTitle("lua: CWidget|ClistBox")
 	listBox:enablePaintHead()
 	listBox:enablePaintDate()
 	listBox:enablePaintFoot()
@@ -330,7 +331,7 @@ end
 function testCMenuWidget()
 	local ret = neutrino.RETURN_REPAINT
 
-	local listBoxWidget = neutrino.CMenuWidget("CMenuBoxWidget")
+	local listBoxWidget = neutrino.CMenuWidget("lua: CMenuWidget")
 	listBoxWidget:setWidgetType(neutrino.WIDGET_TYPE_STANDARD)
 	listBoxWidget:setWidgetMode(neutrino.MODE_MENU)
 	listBoxWidget:enablePaintFootInfo()
@@ -424,7 +425,7 @@ function testClistBox()
 	local listBox = neutrino.ClistBox()
 	listBox:enableCenterPos()
 	listBox:enablePaintHead()
-	listBox:setTitle("ClistBox", neutrino.NEUTRINO_ICON_MOVIE)
+	listBox:setTitle("lua: ClistBox", neutrino.NEUTRINO_ICON_MOVIE)
 	listBox:enablePaintDate()
 	listBox:enablePaintFoot()
 	listBox:enableShrinkMenu()
@@ -570,7 +571,7 @@ function testCWindow()
 	frame1Box.iY = box.iY + box.iHeight - 10 - 40 - 60
 
 	-- head
-	head = neutrino.CHeaders(headBox, "lua sample ClistBox|CFrameBox", neutrino.NEUTRINO_ICON_MOVIE)
+	head = neutrino.CHeaders(headBox, "lua: ClistBox|CFrameBox", neutrino.NEUTRINO_ICON_MOVIE)
 	head:enablePaintDate()
 
 	btn = neutrino.button_label_struct()
