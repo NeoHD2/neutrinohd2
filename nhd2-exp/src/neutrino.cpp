@@ -2844,7 +2844,9 @@ void CNeutrinoApp::RealRun(void)
 	// neutrino run loop
 	while( true ) 
 	{
-		g_RCInput->getMsg(&msg, &data, 100);	// 10 secs..		
+		g_RCInput->getMsg(&msg, &data, 100);	// 10 secs..
+		
+		dprintf(DEBUG_DEBUG, "CNeutrinoApp::RealRun: msg:%s\n", CRCInput::getSpecialKeyName(msg));		
 
 		// mode TV/Radio/IPTV
 		if( (mode == mode_tv) || (mode == mode_radio) || (mode == mode_webtv) ) 
@@ -5527,9 +5529,6 @@ int main(int argc, char *argv[])
 {
 	// build date
 	printf(">>> neutrinoHD2 (compiled %s %s) <<<\n", __DATE__, __TIME__);
-	
-	// set debug level (default normal)
-	setDebugLevel(DEBUG_INFO);
 
 	// sighandler
         signal(SIGTERM, sighandler);
@@ -5547,7 +5546,7 @@ int main(int argc, char *argv[])
 #if ENABLE_GSTREAMER
 	gst_init(NULL, NULL);
 	
-	dprintf(DEBUG_NORMAL, "gst initialized\n");
+	dprintf(DEBUG_NORMAL, "main: gst initialized\n");
 #endif
 
 	char * buf = (char *)malloc(64);

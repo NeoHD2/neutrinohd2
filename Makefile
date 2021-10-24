@@ -55,6 +55,12 @@ default: neutrino plugins
 run:
 	$(DEST)/bin/neutrino
 	
+run-info:
+	$(DEST)/bin/neutrino -v 1
+	
+run-debug:
+	$(DEST)/bin/neutrino -v 2		
+	
 run-gdb:
 	gdb -ex run $(DEST)/bin/neutrino	
 

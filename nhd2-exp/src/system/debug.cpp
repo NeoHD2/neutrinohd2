@@ -28,6 +28,6 @@
 int debug = DEBUG_NORMAL;
 
 void setDebugLevel( int level )
-{
+{	
 	debug = level;
 }
