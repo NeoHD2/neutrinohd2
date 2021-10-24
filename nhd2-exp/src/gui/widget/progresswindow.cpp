@@ -142,8 +142,6 @@ void CProgressWindow::showGlobalStatus(const unsigned int prog)
 
 	// progressBar
 	progressBar->paint(x + BORDER_LEFT, globalstatusY, global_progress);
-	
-	frameBuffer->blit();
 
 #ifdef LCD_UPDATE
 	CVFD::getInstance()->showProgressBar2(-1, NULL, global_progress);
@@ -155,8 +153,6 @@ void CProgressWindow::showStatusMessageUTF(const std::string &text)
 	statusText = text;
 	frameBuffer->paintBox(x + 2, statusTextY - mheight, x + width - 4, statusTextY, COL_MENUCONTENT_PLUS_0);
 	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + 10, statusTextY, width - 20, text, COL_MENUCONTENT, 0, true); // UTF-8
-	
-	frameBuffer->blit();
 
 #ifdef LCD_UPDATE
 	CVFD::getInstance()->showProgressBar2(-1, text.c_str()); // set local text in VFD

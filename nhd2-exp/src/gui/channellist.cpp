@@ -526,8 +526,6 @@ int CChannelList::show(bool zap, bool customMode)
 	listBox = new ClistBox(&cFrameBox);
 
 	paint();
-		
-	frameBuffer->blit();
 
 	int oldselected = selected;
 	int zapOnExit = false;
@@ -857,6 +855,8 @@ void CChannelList::hide()
 		listBox->hide();
 	else
 		CFrameBuffer::getInstance()->clearFrameBuffer();
+		
+	frameBuffer->blit();
 }
 
 bool CChannelList::showInfo(int pos, int epgpos)

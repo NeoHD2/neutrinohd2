@@ -601,8 +601,6 @@ void CFrameBox::paint()
 	}
 
 	paintFrames();
-
-	CFrameBuffer::getInstance()->blit();
 }
 
 void CFrameBox::hide()
@@ -624,6 +622,8 @@ void CFrameBox::hide()
 	}
 
 	cFrameWindow.hide();
+	
+	frameBuffer->blit();
 }
 
 bool CFrameBox::isSelectable(void)
@@ -869,7 +869,6 @@ int CFrameBox::exec(CMenuTarget* parent, const std::string&)
 					break;
 				}
 
-				frameBuffer->blit();
 				continue;
 			}
 		}

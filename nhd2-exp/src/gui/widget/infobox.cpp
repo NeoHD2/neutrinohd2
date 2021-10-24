@@ -398,7 +398,6 @@ int CInfoBox::exec(int timeout)
 
 	// show infobox
 	paint();
-	frameBuffer->blit();
 
 	if ( timeout == -1 )
 		timeout = g_settings.timing[SNeutrinoSettings::TIMING_EPG];

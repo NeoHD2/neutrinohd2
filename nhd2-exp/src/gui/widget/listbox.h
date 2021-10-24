@@ -551,15 +551,18 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		virtual void paintItems();
 
 		//
-		int full_height;
-		int full_width;
+		int wanted_height;
+		int wanted_width;
 		int start_x;
 		int start_y;
 
+		//
 		fb_pixel_t * background;
 		bool savescreen;
 		void saveScreen();
 		void restoreScreen();
+		int full_height;
+		int full_width;
 
 		std::string actionKey;
 		
@@ -585,10 +588,6 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		ClistBox(CBox* position);
 		virtual ~ClistBox();
-
-		void setPosition(const int x, const int y, const int dx, const int dy){cFrameBox.iX = x;
-	cFrameBox.iY = y; cFrameBox.iWidth = dx; cFrameBox.iHeight = dy; full_height = dy; full_width = dx; start_x = x; start_y = y;};
-		void setPosition(CBox* position){cFrameBox = *position; full_height = position->iHeight; full_width = position->iWidth; start_x = position->iX; start_y = position->iY;};
 
 		virtual void addItem(CMenuItem * menuItem, const bool defaultselected = false);
 		bool hasItem();

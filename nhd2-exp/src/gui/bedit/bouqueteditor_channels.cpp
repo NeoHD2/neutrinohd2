@@ -128,9 +128,7 @@ void CBEChannelWidget::paint()
 		listBox->addItem(item);
 	}
 
-	//listBox->enableShrinkMenu();
 	listBox->enableCenterPos();
-
 	listBox->setTitle(caption.c_str());
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();

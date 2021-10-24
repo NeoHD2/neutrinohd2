@@ -1752,9 +1752,12 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	itemBox.iHeight = dy;
 
 	cFrameBox = itemBox;
+	
+	full_width = itemBox.iWidth;
+	full_height = itemBox.iHeight;
 
-	full_height = dy;
-	full_width = dx;
+	wanted_height = dy;
+	wanted_width = dx;
 	start_x = x;
 	start_y = y;
 
@@ -1836,9 +1839,12 @@ ClistBox::ClistBox(CBox* position)
 
 	itemBox = *position;
 	cFrameBox = itemBox;
+	
+	full_width = itemBox.iWidth;
+	full_height = itemBox.iHeight;
 
-	full_height = position->iHeight;
-	full_width = position->iWidth;
+	wanted_height = position->iHeight;
+	wanted_width = position->iWidth;
 	start_x = position->iX;
 	start_y = position->iY;
 
@@ -1933,8 +1939,8 @@ bool ClistBox::hasItem()
 void ClistBox::initFrames()
 {
 	// reinit position
-	//cFrameBox.iHeight = full_height;
-	cFrameBox.iWidth = full_width;
+	cFrameBox.iHeight = wanted_height;
+	cFrameBox.iWidth = wanted_width;
 	cFrameBox.iX = start_x;
 	cFrameBox.iY = start_y;
 	cFrameFootInfo.iHeight = 0;
@@ -2087,7 +2093,7 @@ void ClistBox::initFrames()
 			cFrameBox.iHeight = std::min(cFrameBox.iHeight, hheight + heightFirstPage + fheight + cFrameFootInfo.iHeight);
 		}
 		
-		//TEST
+		//
 		full_height = cFrameBox.iHeight; 
 
 		// sanity check
@@ -3447,7 +3453,6 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 					break;
 				}
 
-				frameBuffer->blit();
 				continue;
 			}
 			

@@ -360,8 +360,6 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 	listBox = new ClistBox(&cFrameBox);
 
 	paint();
-		
-	frameBuffer->blit();
 
 	int zapOnExit = false;
 
@@ -500,6 +498,8 @@ void CBouquetList::hide()
 		listBox->hide();
 	else
 		CFrameBuffer::getInstance()->clearFrameBuffer();
+		
+	frameBuffer->blit();
 }
 
 const struct button_label HButton = {NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL };

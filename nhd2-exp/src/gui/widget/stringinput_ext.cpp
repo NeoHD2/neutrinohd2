@@ -162,8 +162,6 @@ int CExtendedInput::exec( CMenuTarget* parent, const std::string & )
 
 	strcpy(oldval, value);
 	paint();
-	
-	frameBuffer->blit();
 
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_MENU] == 0 ? 0xFFFF : g_settings.timing[SNeutrinoSettings::TIMING_MENU]);
 

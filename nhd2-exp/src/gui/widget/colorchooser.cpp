@@ -182,8 +182,6 @@ int CColorChooser::exec(CMenuTarget *parent, const std::string &)
 
 	paint();
 	setColor();
-	
-	frameBuffer->blit();
 
 	int selected = 0;
 

@@ -373,8 +373,6 @@ bool CFileBrowser::exec(const char * const dirname)
 	listBox = new ClistBox(&cFrameBox);
 
 	listBox->initFrames();
-	//listBox->enableSaveScreen();
-	//listBox->enableShrinkMenu();
 	listBox->enableCenterPos();
 
 	name = dirname;
@@ -388,7 +386,6 @@ bool CFileBrowser::exec(const char * const dirname)
 	ChangeDir(name, selection);
 
 	paint();
-	frameBuffer->blit();
 
 	int oldselected = selected;
 
@@ -710,6 +707,8 @@ void CFileBrowser::hide()
 
 	frameBuffer->paintBackgroundBoxRel(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
 	listBox->hide();
+	
+	frameBuffer->blit();
 }
 
 const struct button_label FileBrowserButtons[4] =

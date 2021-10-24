@@ -743,7 +743,6 @@ int CPINInput::exec( CMenuTarget* parent, const std::string&)
 		strcat(value, " ");
 
 	paint();
-	frameBuffer->blit();
 
 	bool loop = true;
 

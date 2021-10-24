@@ -127,7 +127,6 @@ void CBEBouquetWidget::paint()
 		}
 	}
 
-	//listBox->enableShrinkMenu();
 	listBox->enableCenterPos();
 
 	listBox->setTitle(g_Locale->getText(LOCALE_BOUQUETLIST_HEAD));

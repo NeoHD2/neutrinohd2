@@ -160,6 +160,7 @@ int CKeyChooserItem::exec(CMenuTarget* parent, const std::string &)
 	}
 
 	hide();
+	
 	return res;
 }
 

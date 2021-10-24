@@ -309,7 +309,6 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 					break;
 				}
 
-				frameBuffer->blit();
 				continue;
 			}
 		}

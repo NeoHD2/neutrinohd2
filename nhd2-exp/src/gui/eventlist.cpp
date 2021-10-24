@@ -246,9 +246,6 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 	//
 	listBox = new ClistBox(&cFrameBox);
 	paint(channel_id);
-	
-	// blit
-	frameBuffer->blit();
 
 	// add sec timer
 	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
@@ -568,6 +565,8 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 void EventList::hide()
 {
 	listBox->hide();
+	
+	frameBuffer->blit();
 }
 
 CTimerd::CTimerEventTypes EventList::isScheduled(t_channel_id channel_id, CChannelEvent * event, int * tID)
@@ -687,10 +686,8 @@ void EventList::paint(t_channel_id channel_id)
 
 	logo = frameBuffer->getLogoName(channel_id);
 
-	//listBox->setWidgetType(WIDGET_TYPE_CLASSIC);
-	listBox->enableShrinkMenu();
+	//listBox->enableShrinkMenu();
 	listBox->enableCenterPos();
-
 	listBox->enablePaintHead();
 	listBox->setTitle(name.c_str(), logo.c_str(), true);
 	listBox->enablePaintDate();

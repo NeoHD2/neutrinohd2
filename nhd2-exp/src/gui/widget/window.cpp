@@ -182,8 +182,6 @@ void CWindow::paint()
 	}
 	else
 		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, enableshadow? NO_RADIUS : radius, enableshadow? CORNER_NONE : corner, gradient);
-		
-	frameBuffer->blit();
 }
 
 void CWindow::hide()
@@ -194,8 +192,6 @@ void CWindow::hide()
 		restoreScreen();
 	else
 		frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
-		
-	frameBuffer->blit();
 }
 
 // pig
@@ -227,9 +223,7 @@ void CPig::paint()
 		
 
 	if(videoDecoder)
-		videoDecoder->Pig(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
-		
-	frameBuffer->blit();	
+		videoDecoder->Pig(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);	
 }
 
 void CPig::hide()
@@ -238,8 +232,6 @@ void CPig::hide()
 		videoDecoder->Pig(-1, -1, -1, -1);
 
 	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
-	
-	frameBuffer->blit();
 }
 
 // grid
@@ -277,15 +269,11 @@ void CGrid::paint()
 	// vlines grid
 	for(int count = 0; count < itemBox.iWidth; count += inter_frame)
 		frameBuffer->paintVLine(itemBox.iX + count, itemBox.iY, itemBox.iY + itemBox.iHeight, make16color(rgb) );
-		
-	frameBuffer->blit();
 }
 
 void CGrid::hide()
 {
 	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
-	
-	frameBuffer->blit();
 }
 
 

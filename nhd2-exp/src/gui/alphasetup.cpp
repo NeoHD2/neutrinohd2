@@ -118,7 +118,6 @@ int CAlphaSetup::exec(CMenuTarget * parent, const std::string &)
 	frameBuffer->setBlendLevel(*alpha);
 	
 	paint();
-	frameBuffer->blit();
 
 	int selected = 0;
 	int max = 0;
