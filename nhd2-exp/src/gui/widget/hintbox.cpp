@@ -337,6 +337,8 @@ int CHintBox::exec(int timeout)
 	
 	if (paintHG)
 		paintHourGlass();
+		
+	CFrameBuffer::getInstance()->blit();
 
 	if ( timeout == -1 )
 		timeout = g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR];

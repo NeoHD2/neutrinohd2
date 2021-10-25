@@ -819,6 +819,7 @@ int CFrameBox::exec(CMenuTarget* parent, const std::string&)
 	
 	initFrames();
 	paint();
+	CFrameBuffer::getInstance()->blit();
 	
 	// control loop
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);

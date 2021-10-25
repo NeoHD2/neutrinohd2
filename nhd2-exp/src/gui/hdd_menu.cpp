@@ -64,7 +64,7 @@
 #include "system/debug.h"
 #include <system/helpers.h>
 
-#include <driver/audioplay.h>
+//#include <driver/audioplay.h>
 #include <pictureviewer.h>
 #include <movieplayer.h>
 

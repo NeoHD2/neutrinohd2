@@ -1247,6 +1247,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 	paintHead();
 	paintFoot();
 	paint();
+	CFrameBuffer::getInstance()->blit();
 
 	// add sec timer
 	if(PaintDate)

@@ -591,6 +591,7 @@ int CMessageBox::exec(int timeout)
 	// paint
 	paint();
 	paintButtons();
+	CFrameBuffer::getInstance()->blit();
 
 	if ( timeout == -1 )
 		timeout = g_settings.timing[SNeutrinoSettings::TIMING_EPG];

@@ -2087,10 +2087,13 @@ void ClistBox::initFrames()
 		// recalculate height
 		if(shrinkMenu)
 		{
-			//listmaxshow = (cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight)/item_height;
-			//cFrameBox.iHeight = hheight + listmaxshow*item_height + fheight + cFrameFootInfo.iHeight;
-			
-			cFrameBox.iHeight = std::min(cFrameBox.iHeight, hheight + heightFirstPage + fheight + cFrameFootInfo.iHeight);
+			if (widgetMode == MODE_LISTBOX)
+			{
+				listmaxshow = (cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight)/item_height;
+				cFrameBox.iHeight = hheight + listmaxshow*item_height + fheight + cFrameFootInfo.iHeight;
+			}
+			else
+				cFrameBox.iHeight = std::min(cFrameBox.iHeight, hheight + heightFirstPage + fheight + cFrameFootInfo.iHeight);
 		}
 		
 		//
@@ -3399,6 +3402,7 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 	
 	initFrames();
 	paint();
+	CFrameBuffer::getInstance()->blit();
 	
 	// control loop
 	// add sec timer

@@ -46,7 +46,7 @@ extern cVideo * videoDecoder;
 
 CWindow::CWindow(const int x, const int y, const int dx, const int dy)
 {
-	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
 	itemBox.iX = x;
 	itemBox.iY = y;
@@ -60,7 +60,7 @@ CWindow::CWindow(const int x, const int y, const int dx, const int dy)
 
 CWindow::CWindow(CBox* position)
 {
-	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
 	itemBox = *position;
 
@@ -71,7 +71,7 @@ CWindow::CWindow(CBox* position)
 
 void CWindow::init()
 {
-	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
 	frameBuffer = CFrameBuffer::getInstance();
 
@@ -102,7 +102,7 @@ void CWindow::init()
 
 void CWindow::saveScreen()
 {
-	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
 	if(!savescreen)
 		return;
@@ -123,7 +123,7 @@ void CWindow::saveScreen()
 
 void CWindow::restoreScreen()
 {
-	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
 	if(background) 
 	{
@@ -137,7 +137,7 @@ void CWindow::restoreScreen()
 
 void CWindow::enableSaveScreen()
 {
-	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
 	savescreen = true;
 	
@@ -150,7 +150,7 @@ void CWindow::enableSaveScreen()
 
 void CWindow::setPosition(const int x, const int y, const int dx, const int dy)
 {
-	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
 	itemBox.iX = x;
 	itemBox.iY = y;
@@ -160,14 +160,14 @@ void CWindow::setPosition(const int x, const int y, const int dx, const int dy)
 
 void CWindow::setPosition(CBox* position)
 {
-	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
 	itemBox = *position;
 }
 
 void CWindow::paint()
 {
-	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
 	if(savescreen) 
 		saveScreen();
@@ -186,7 +186,7 @@ void CWindow::paint()
 
 void CWindow::hide()
 {
-	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
 	if( savescreen && background)
 		restoreScreen();

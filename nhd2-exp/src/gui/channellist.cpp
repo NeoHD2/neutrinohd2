@@ -526,6 +526,7 @@ int CChannelList::show(bool zap, bool customMode)
 	listBox = new ClistBox(&cFrameBox);
 
 	paint();
+	CFrameBuffer::getInstance()->blit();
 
 	int oldselected = selected;
 	int zapOnExit = false;

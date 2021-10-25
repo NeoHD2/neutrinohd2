@@ -139,7 +139,6 @@ int CKeyChooserItem::exec(CMenuTarget* parent, const std::string &)
 		parent->hide();
 
 	paint();
-	
 	CFrameBuffer::getInstance()->blit();
 
 	g_RCInput->clearRCMsg();

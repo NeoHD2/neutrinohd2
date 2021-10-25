@@ -1743,6 +1743,7 @@ std::string readFile(std::string file)
 	return ret_s;
 }
 
+#ifndef SWIG
 bool parseJsonFromFile(std::string& jFile, Json::Value *root, std::string *errMsg)
 {
 	std::string jData = readFile(jFile);
@@ -1767,6 +1768,7 @@ bool parseJsonFromString(std::string& jData, Json::Value *root, std::string *err
 	delete reader;
 	return ret;
 }
+#endif
 
 // proc utils
 int proc_put(const char *path, const char *value, const int len)

@@ -246,6 +246,7 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 	//
 	listBox = new ClistBox(&cFrameBox);
 	paint(channel_id);
+	CFrameBuffer::getInstance()->blit();
 
 	// add sec timer
 	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);

@@ -360,6 +360,7 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 	listBox = new ClistBox(&cFrameBox);
 
 	paint();
+	CFrameBuffer::getInstance()->blit();
 
 	int zapOnExit = false;
 

@@ -321,6 +321,7 @@ int CStringInput::exec( CMenuTarget* parent, const std::string & )
 
 
 	paint();
+	CFrameBuffer::getInstance()->blit();
 
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_MENU] == 0 ? 0xFFFF : g_settings.timing[SNeutrinoSettings::TIMING_MENU]);
 
@@ -743,6 +744,7 @@ int CPINInput::exec( CMenuTarget* parent, const std::string&)
 		strcat(value, " ");
 
 	paint();
+	CFrameBuffer::getInstance()->blit();
 
 	bool loop = true;
 

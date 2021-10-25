@@ -5528,7 +5528,7 @@ void sighandler (int signum)
 int main(int argc, char *argv[])
 {
 	// build date
-	printf(">>> neutrinoHD2 (compiled %s %s) <<<\n", __DATE__, __TIME__);
+	printf(">>> neutrino-HD2 (compiled %s %s) <<<\n", __DATE__, __TIME__);
 
 	// sighandler
         signal(SIGTERM, sighandler);

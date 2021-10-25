@@ -41,7 +41,9 @@
 
 #include <gui/widget/icons.h>
 
+#ifndef SWIG
 #include <jsoncpp/include/json/json.h>
+#endif
 
 
 int my_system(const char * cmd);

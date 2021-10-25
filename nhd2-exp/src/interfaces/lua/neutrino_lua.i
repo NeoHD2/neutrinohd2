@@ -46,9 +46,6 @@
 #include <libdvbapi/video_cs.h>
 #include <libdvbapi/dmx_cs.h>
 
-// jsoncpp
-//#include <jsoncpp/include/json/json.h>
-
 // driver
 #include <driver/framebuffer.h>
 #include <driver/fontrenderer.h>

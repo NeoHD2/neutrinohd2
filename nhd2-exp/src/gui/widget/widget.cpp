@@ -257,6 +257,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 	}
 
 	paint();
+	CFrameBuffer::getInstance()->blit();
 
 	// add sec timer
 	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);

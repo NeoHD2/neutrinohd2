@@ -78,7 +78,7 @@ inline uint32_t make16color(uint16_t r, uint16_t g, uint16_t b, uint16_t t,
 CFrameBuffer::CFrameBuffer()
 : active ( true )
 {
-	dprintf(DEBUG_NORMAL, "CFrameBuffer::CFrameBuffer()");
+	dprintf(DEBUG_NORMAL, "CFrameBuffer::CFrameBuffer()\n");
 
 #if defined (USE_OPENGL)
 	mpGLThreadObj = NULL;
@@ -134,6 +134,8 @@ CFrameBuffer* CFrameBuffer::getInstance()
 
 void CFrameBuffer::init(const char * const fbDevice)
 {
+	dprintf(DEBUG_NORMAL, "CFrameBuffer::init\n");
+	
 #if defined (USE_OPENGL)
 	fd = -1;
 	if(!mpGLThreadObj)
