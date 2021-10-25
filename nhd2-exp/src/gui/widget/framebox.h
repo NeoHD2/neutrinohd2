@@ -77,10 +77,10 @@ class CFrame
 		bool pluginOrigName;
 		
 		//
-		//fb_pixel_t color;
-		//int radius;
-		//int corner;
-		//int gradient;
+		fb_pixel_t fcolor;
+		int radius;
+		int corner;
+		int gradient;
 
 		// head
 		fb_pixel_t headColor;
@@ -138,9 +138,9 @@ class CFrame
 		virtual void setPosition(CBox *position){window.setPosition(position);};
 		
 		//
-		//virtual void setColor(fb_pixel_t col) {color = col;};
-		//virtual void setCorner(int ra, int co){radius = ra; corner = co;};
-		//virtual void setGradient(int grad){gradient = grad;};
+		virtual void setColor(fb_pixel_t col) {fcolor = col;};
+		virtual void setCorner(int ra, int co){radius = ra; corner = co;};
+		virtual void setGradient(int grad){gradient = grad;};
 
 		// headFrame
 		void enablePaintDate(void){paintDate = true;};

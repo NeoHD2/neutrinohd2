@@ -4163,6 +4163,7 @@ void CTestMenu::testCFrameBox()
 	topBox.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20);;
 
 	frameBoxWidget = new CFrameBox(&topBox);
+	frameBoxWidget->disablePaintFrame();
 
 	CFrame * frame = NULL;
 
@@ -4172,12 +4173,18 @@ void CTestMenu::testCFrameBox()
 	frame->setIconName(NEUTRINO_ICON_MOVIE);
 	frame->setOption("in allen Kinos");
 	frame->setActionKey(this, "help");
+	frame->setColor(COL_RED);
+	frame->setGradient(gradientLight2Dark);
 	frameBoxWidget->addFrame(frame);
 	
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + topBox.iWidth/4, topBox.iY + (20 + 60), topBox.iWidth/4, 60);
 	frame->setTitle("Im Kino");
 	frame->setActionKey(this, "help");
+	frame->setColor(COL_GREEN);
+	frame->setGradient(gradientLight2Dark);
+	//frame->setCorner(RADIUS_LARGE, CORNER_ALL);
+	//frame->disableShadow();
 	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
@@ -4185,12 +4192,17 @@ void CTestMenu::testCFrameBox()
 	frame->setTitle("Am populärsten");
 	frame->setOption("(2019)");
 	frame->setActionKey(this, "help");
+	frame->setColor(COL_LIGHT_GRAY);
 	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + 3*topBox.iWidth/4, topBox.iY + 3*(20 + 60), topBox.iWidth/4, 60);
 	frame->setTitle("Exit");
 	frame->setActionKey(this, "exit");
+	frame->setGradient(gradientLight2Dark);
+	frame->setColor(COL_BLUE);
+	//frame->setCorner(RADIUS_LARGE, CORNER_ALL);
+	//frame->disableShadow();
 	frameBoxWidget->addFrame(frame);
 
 	frameBoxWidget->setSelected(selected);

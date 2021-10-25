@@ -45,6 +45,7 @@
 #include <linux/stmfb.h>
 #endif
 
+
 #ifdef USE_OPENGL
 class GLThreadObj;
 #endif

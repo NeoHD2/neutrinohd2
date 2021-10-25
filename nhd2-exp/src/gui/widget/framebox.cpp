@@ -56,10 +56,10 @@ CFrame::CFrame()
 	actionKey.clear();
 	
 	//
-	//color = COL_MENUCONTENT_PLUS_0;
-	//radius = RADIUS_MID;
-	//corner = CORNER_ALL;
-	//gradient = nogradient;
+	fcolor = COL_MENUCONTENT_PLUS_0;
+	radius = RADIUS_MID;
+	corner = NO_RADIUS;
+	gradient = nogradient;
 
 	// headFrame
 	headColor = COL_MENUHEAD_PLUS_0;
@@ -199,7 +199,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	dprintf(DEBUG_DEBUG, "CFrame::paint:\n");
 
 	uint8_t color = COL_MENUCONTENT;
-	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_2 : COL_MENUCONTENT_PLUS_0;
+	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_2 : fcolor;
 
 	if (selected)
 	{
@@ -215,13 +215,15 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	// paint frameBackground
 	if (paintFrame)
 	{
-		window.setColor(bgcolor);
-
 		if (shadow)
 		{
 			window.enableShadow();
 		}
 	
+		window.setColor(bgcolor);
+		//window.setCorner(radius, corner); //FIXME:
+		window.setGradient(gradient);
+		
 		window.paint();
 	}
 
