@@ -655,7 +655,7 @@ void CMenuWidget::paintItems()
 	else
 	{
 		// items height
-		items_height = height - hheight - fheight;
+		int items_height = height - hheight - fheight;
 	
 		// items width
 		sb_width = 0;
@@ -663,13 +663,13 @@ void CMenuWidget::paintItems()
 		if(total_pages > 1)
 			sb_width = SCROLLBAR_WIDTH; 
 	
-		items_width = width - sb_width;
+		//items_width = width - sb_width;
 		item_width = width - sb_width;
 
 		// extended
 		if(widgetType == WIDGET_TYPE_EXTENDED)
 		{
-			items_width = 2*(width/3) - sb_width;
+			//items_width = 2*(width/3) - sb_width;
 			item_width = 2*(width/3) - sb_width;
 
 			// extended
@@ -697,7 +697,7 @@ void CMenuWidget::paintItems()
 
 		if(widgetType == WIDGET_TYPE_EXTENDED && widgetMode == MODE_MENU)
 		{
-			frameBuffer->paintBoxRel(x + items_width, item_start_y, width - items_width, items_height, COL_MENUCONTENTDARK_PLUS_0);
+			frameBuffer->paintBoxRel(x + item_width, item_start_y, width - item_width, items_height, COL_MENUCONTENTDARK_PLUS_0);
 		}
 	
 		// paint right scrollBar if we have more then one page
@@ -719,7 +719,6 @@ void CMenuWidget::paintItems()
 
 			if ((count >= page_start[current_page]) && (count < page_start[current_page + 1])) 
 			{
-				//item->init(xpos, ypos, items_width, iconOffset);
 				item->init(xpos, ypos, item_width, iconOffset);
 
 				if( (item->isSelectable()) && (selected == -1)) 
@@ -749,9 +748,8 @@ void CMenuWidget::paintItemInfo(int pos)
 {
 	if(widgetType == WIDGET_TYPE_STANDARD)
 	{
-		if(widgetMode == MODE_MENU)
+		if(widgetMode == MODE_MENU || widgetMode == MODE_SETUP)
 		{
-			//TEST
 			if(paintFootInfo)
 			{
 				CMenuItem* item = items[pos];
@@ -1041,10 +1039,10 @@ void CMenuWidget::paintItemInfo(int pos)
 				frameBuffer->getIconSize(item->itemIcon.c_str(), &iw, &ih);
 
 				// refreshbox
-				frameBuffer->paintBoxRel(x + items_width + (width - items_width - ITEM_ICON_W)/2, y + (full_height - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H, COL_MENUCONTENTDARK_PLUS_0);
+				frameBuffer->paintBoxRel(x + item_width + (width - item_width - ITEM_ICON_W)/2, y + (full_height - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H, COL_MENUCONTENTDARK_PLUS_0);
 
 				// itemIcom
-				frameBuffer->paintHintIcon(item->itemIcon.c_str(), x + items_width + (width - items_width - ITEM_ICON_W)/2, y + (height - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H);// was paintHinticon
+				frameBuffer->paintHintIcon(item->itemIcon.c_str(), x + item_width + (width - item_width - ITEM_ICON_W)/2, y + (height - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H);// was paintHinticon
 			}
 		}
 		else if(widgetMode == MODE_LISTBOX)

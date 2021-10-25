@@ -365,6 +365,7 @@ void CVideoSettings::showMenu()
 
 	videoSettings.setWidgetMode(MODE_SETUP);
 	videoSettings.enableShrinkMenu();
+	videoSettings.enablePaintFootInfo();
 	
 	// intros
 	videoSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));

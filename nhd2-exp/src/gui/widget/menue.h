@@ -102,8 +102,8 @@ class CMenuWidget : public CMenuTarget
 		int item_height;
 		int item_width;
 		int sb_width;
-		int items_height;
-		int items_width;
+		//int items_height;
+		//int items_width;
 
 		// foot buttons
 		int fbutton_count;

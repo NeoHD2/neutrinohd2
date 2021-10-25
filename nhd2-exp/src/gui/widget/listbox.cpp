@@ -1125,10 +1125,10 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		//
-		frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENT_PLUS_0);
+		frameBuffer->paintBoxRel(x, y, item_width, height, COL_MENUCONTENT_PLUS_0);
 
 		if(!itemIcon.empty())
-			frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET); // was paintHinticon
+			frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);
 
 		//
 		if(selected)
@@ -1136,7 +1136,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 			frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
 
 			if(!itemIcon.empty())
-				frameBuffer->paintHintIcon(itemIcon, x, y, item_width, item_height);// was paintHinticon
+				frameBuffer->paintHintIcon(itemIcon, x, y, item_width, item_height);
 		}
 
 		// vfd
@@ -1199,7 +1199,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 				icon_h = ITEM_ICON_H_MINI;
 				icon_w = ITEM_ICON_W_MINI;
 
-				frameBuffer->paintHintIcon(itemIcon.c_str(), x + BORDER_LEFT, y + ((height - icon_h)/2), icon_w, icon_h); //was paintHintIcon
+				frameBuffer->paintHintIcon(itemIcon.c_str(), x + BORDER_LEFT, y + ((height - icon_h)/2), icon_w, icon_h);
 			}
 		}
 	
@@ -1451,10 +1451,10 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		// refresh
-		frameBuffer->paintBoxRel(x, y, item_width, item_height, paintFrame? COL_MENUCONTENT_PLUS_0 : 0);
+		frameBuffer->paintBoxRel(x, y, item_width, height, paintFrame? COL_MENUCONTENT_PLUS_0 : 0);
 
 		if(!itemIcon.empty())
-			frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);// was paintHinticon
+			frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);
 
 		//
 		if(selected)
@@ -1462,7 +1462,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
 
 			if(!itemIcon.empty())
-				frameBuffer->paintHintIcon(itemIcon, x, y, item_width, item_height);// was paintHinticon
+				frameBuffer->paintHintIcon(itemIcon, x, y, item_width, item_height);
 		}
 
 		// locale ???
@@ -1510,7 +1510,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 					icon_w = ITEM_ICON_W_MINI;
 				}
 
-				frameBuffer->paintHintIcon(itemIcon.c_str(), x + BORDER_LEFT, y + ((height - icon_h)/2), icon_w, icon_h);// was paintHinticon
+				frameBuffer->paintHintIcon(itemIcon.c_str(), x + BORDER_LEFT, y + ((height - icon_h)/2), icon_w, icon_h);
 			}
 		}
 		else // standard|extended
@@ -2194,7 +2194,7 @@ void ClistBox::paintItems()
 				{
 					CMenuItem * item = items[count];
 					
-					item->init(cFrameBox.iX + _x*item_width, item_start_y + _y*item_height, item_width, item_height);//TEST
+					item->init(cFrameBox.iX + _x*item_width, item_start_y + _y*item_height, item_width, item_height);
 
 					if((item->isSelectable()) && (selected == -1)) 
 					{
@@ -2228,20 +2228,20 @@ void ClistBox::paintItems()
 	}
 	else
 	{
-		items_height = cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight; 
+		int items_height = cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight; 
 
 		sb_width = 0;
 	
 		if(total_pages > 1)
 			sb_width = SCROLLBAR_WIDTH;
 
-		items_width = cFrameBox.iWidth - sb_width;
+		//items_width = cFrameBox.iWidth - sb_width;
 		item_width = cFrameBox.iWidth - sb_width;
 
 		// extended
 		if(widgetType == WIDGET_TYPE_EXTENDED)
 		{
-			items_width = 2*(cFrameBox.iWidth/3) - sb_width;
+			//items_width = 2*(cFrameBox.iWidth/3) - sb_width;
 			item_width = 2*(cFrameBox.iWidth/3) - sb_width;
 
 			// extended
@@ -2270,7 +2270,7 @@ void ClistBox::paintItems()
 		//FIXME: revisited this???
 		if(widgetType == WIDGET_TYPE_EXTENDED && widgetMode == MODE_MENU)
 		{
-			frameBuffer->paintBoxRel(cFrameBox.iX + items_width, cFrameBox.iY + hheight, cFrameBox.iWidth - items_width, items_height, COL_MENUCONTENTDARK_PLUS_0);
+			frameBuffer->paintBoxRel(cFrameBox.iX + item_width, cFrameBox.iY + hheight, cFrameBox.iWidth - item_width, items_height, COL_MENUCONTENTDARK_PLUS_0);
 		}
 	
 		// paint right scrollBar if we have more then one page
@@ -2774,9 +2774,9 @@ void ClistBox::paintItemInfo(int pos)
 				frameBuffer->getIconSize(item->itemIcon.c_str(), &iw, &ih);
 
 				// refreshbox
-				frameBuffer->paintBoxRel(cFrameBox.iX + items_width + (cFrameBox.iWidth - items_width - ITEM_ICON_W)/2, cFrameBox.iY + (cFrameBox.iHeight - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H, COL_MENUCONTENTDARK_PLUS_0);
+				frameBuffer->paintBoxRel(cFrameBox.iX + item_width + (cFrameBox.iWidth - item_width - ITEM_ICON_W)/2, cFrameBox.iY + (cFrameBox.iHeight - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H, COL_MENUCONTENTDARK_PLUS_0);
 
-				frameBuffer->paintHintIcon(item->itemIcon.c_str(), cFrameBox.iX + items_width + (cFrameBox.iWidth - items_width - ITEM_ICON_W)/2, cFrameBox.iY + (cFrameBox.iHeight - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H);// was paintHinticon
+				frameBuffer->paintHintIcon(item->itemIcon.c_str(), cFrameBox.iX + item_width + (cFrameBox.iWidth - item_width - ITEM_ICON_W)/2, cFrameBox.iY + (cFrameBox.iHeight - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H);
 			}
 		}
 		else if(widgetMode == MODE_LISTBOX)

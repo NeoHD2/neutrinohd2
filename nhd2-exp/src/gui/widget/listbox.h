@@ -493,8 +493,8 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		int iconOffset;
 		int pos;
 		unsigned int item_start_y;
-		int items_height;
-		int items_width;
+		//int items_height;
+		//int items_width;
 
 		CScrollBar scrollBar;
 
