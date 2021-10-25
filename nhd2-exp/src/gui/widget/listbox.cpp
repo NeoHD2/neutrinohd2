@@ -1966,6 +1966,8 @@ void ClistBox::initFrames()
 
 		item->widgetType = widgetType;
 		item->widgetMode = widgetMode;
+		
+		item->paintFrame = paintFrame;
 	} 
 
 	// head
@@ -2021,6 +2023,7 @@ void ClistBox::initFrames()
 		item_width = cFrameBox.iWidth/itemsPerX;
 		item_height = (cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight - 20)/itemsPerY; // 10 pixels for hlines top 10 pixels for hlines bottom
 
+/*
 		for (unsigned int count = 0; count < items.size(); count++) 
 		{
 			CMenuItem * item = items[count];
@@ -2031,6 +2034,7 @@ void ClistBox::initFrames()
 			//
 			item->paintFrame = paintFrame;
 		}
+*/		
 	}
 	else 
 	{
@@ -2297,11 +2301,13 @@ void ClistBox::paintItems()
 					selected = count;
 				} 
 
+				// paint itemInfo
 				if (selected == (signed int)count) 
 				{
 					paintItemInfo(count);
 				}
 
+				// paint item
 				if(inFocus)
 					ypos = item->paint(selected == ((signed int) count));
 				else

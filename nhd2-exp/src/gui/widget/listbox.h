@@ -112,8 +112,7 @@ class CChangeObserver
 // CMenuItem
 class CMenuItem
 {
-	//protected:
-	public:
+	protected:
 		int x, y, item_width, item_height;
 		
 	public:

@@ -281,13 +281,15 @@ void CMenuWidget::initFrames()
 		item_width = full_width/itemsPerX;
 		item_height = (full_height - hheight - fheight - (fbutton_count != 0? fheight : 0) - 20)/itemsPerY; // 10 pixels for hlines top 10 pixels bottom
 
+/*
 		for (unsigned int count = 0; count < items.size(); count++) 
 		{
 			CMenuItem * item = items[count];
 
 			item->item_width = item_width;
 			item->item_height = item_height;
-		} 
+		}
+*/		 
 
 		if(savescreen) 
 			saveScreen();
@@ -621,7 +623,6 @@ void CMenuWidget::paintItems()
 				{
 					CMenuItem * item = items[count];
 
-					//item->init(x + _x*item_width, item_start_y + _y*item_height, items_width, iconOffset);
 					item->init(x + _x*item_width, item_start_y + _y*item_height, item_width, item_height);
 
 					if( (item->isSelectable()) && (selected == -1)) 
@@ -726,11 +727,13 @@ void CMenuWidget::paintItems()
 					selected = count;
 				} 
 	
+				// paint itemInfo
 				if (selected == (signed int)count) 
 				{
 					paintItemInfo(count);
 				}
 
+				// paint item
 				ypos = item->paint(selected == ((signed int) count));
 			} 
 			else 
