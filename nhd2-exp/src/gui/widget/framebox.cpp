@@ -515,6 +515,13 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 	//
 	timeout = 0;
 	exit_pressed = false;
+	
+	//
+	bgcolor = COL_MENUCONTENT_PLUS_0;
+	radius = RADIUS_MID;
+	corner = NO_RADIUS;
+	shadow = false;
+	screen = false;
 }
 
 CFrameBox::CFrameBox(CBox* position)
@@ -540,6 +547,13 @@ CFrameBox::CFrameBox(CBox* position)
 	//
 	timeout = 0;
 	exit_pressed = false;
+	
+	//
+	bgcolor = COL_MENUCONTENT_PLUS_0;
+	radius = RADIUS_MID;
+	corner = NO_RADIUS;
+	shadow = false;
+	screen = false;
 }
 
 CFrameBox::~CFrameBox()
@@ -594,10 +608,14 @@ void CFrameBox::paint()
 
 	if (paintFrame)
 	{
-		cFrameWindow.setColor(COL_MENUCONTENT_PLUS_0);
-		//cFrameWindow.setCorner(RADIUS_MID, CORNER_ALL);
-		//cFrameWindow.enableShadow();
-		//cFrameWindow.enableSaveScreen();
+		cFrameWindow.setColor(bgcolor);
+		cFrameWindow.setCorner(radius, corner);
+		
+		if (shadow)
+			cFrameWindow.enableShadow();
+			
+		if (screen)
+			cFrameWindow.enableSaveScreen();
 
 		cFrameWindow.paint();
 	}

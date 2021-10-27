@@ -184,6 +184,12 @@ class CFrameBox : public CWidgetItem, CMenuTarget
 		
 		struct keyAction { std::string action; CMenuTarget *menue; };
 		std::map<neutrino_msg_t, keyAction> keyActionMap;
+		
+		fb_pixel_t bgcolor;
+		int radius;
+		int corner;
+		bool shadow;
+		bool screen;
 
 	public:
 		CFrameBox(const int x = 0, int const y = 0, const int dx = 0, const int dy = 0);
@@ -245,6 +251,12 @@ class CFrameBox : public CWidgetItem, CMenuTarget
 		
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 		neutrino_msg_t getKey(){return msg;};
+		
+		//
+		void setColor(fb_pixel_t col){bgcolor = col;};
+		virtual void setCorner(int ra, int co){radius = ra; corner = co;};
+		void enablePaintShadow(void){shadow = true;};
+		void enableSaveScreen(void){screen = true;};
 };
 
 #endif

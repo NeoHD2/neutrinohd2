@@ -4157,18 +4157,20 @@ void CTestMenu::testCFrameBox()
 	// frameBox
 	CBox topBox;
 	
-	topBox.iX = g_settings.screen_StartX + 10;
+	topBox.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20)/4;
+	topBox.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20);
+	topBox.iX = g_settings.screen_StartX + ((g_settings.screen_EndX - g_settings.screen_StartX - 20) - topBox.iWidth )>> 1;
 	topBox.iY = g_settings.screen_StartY + 10;
-	topBox.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
-	topBox.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20);;
 
 	frameBoxWidget = new CFrameBox(&topBox);
-	frameBoxWidget->disablePaintFrame();
+	frameBoxWidget->enablePaintShadow();
+	frameBoxWidget->enableSaveScreen();
+	frameBoxWidget->setColor(/*COL_DARK_BLUE*/0);
 
 	CFrame * frame = NULL;
 
 	frame = new CFrame();
-	frame->setPosition(topBox.iX, topBox.iY, topBox.iWidth/4, 60);
+	frame->setPosition(topBox.iX + 10, topBox.iY + 10, topBox.iWidth - 20, 60);
 	frame->setTitle("Neu Filme");
 	frame->setIconName(NEUTRINO_ICON_MOVIE);
 	frame->setOption("in allen Kinos");
@@ -4178,7 +4180,7 @@ void CTestMenu::testCFrameBox()
 	frameBoxWidget->addFrame(frame);
 	
 	frame = new CFrame();
-	frame->setPosition(topBox.iX + topBox.iWidth/4, topBox.iY + (20 + 60), topBox.iWidth/4, 60);
+	frame->setPosition(topBox.iX + 10, topBox.iY + 10 + 60 + 10, topBox.iWidth - 20, 60);
 	frame->setTitle("Im Kino");
 	frame->setActionKey(this, "help");
 	frame->setColor(COL_GREEN);
@@ -4188,7 +4190,7 @@ void CTestMenu::testCFrameBox()
 	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
-	frame->setPosition(topBox.iX + 2*topBox.iWidth/4, topBox.iY + 2*(20 + 60), topBox.iWidth/4, 60);
+	frame->setPosition(topBox.iX + 10, topBox.iY + 2*(10 + 60) +10, topBox.iWidth - 20, 60);
 	frame->setTitle("Am populärsten");
 	frame->setOption("(2019)");
 	frame->setActionKey(this, "help");
@@ -4196,13 +4198,21 @@ void CTestMenu::testCFrameBox()
 	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
-	frame->setPosition(topBox.iX + 3*topBox.iWidth/4, topBox.iY + 3*(20 + 60), topBox.iWidth/4, 60);
+	frame->setPosition(topBox.iX + 10, topBox.iY + topBox.iHeight - 60 - 10, topBox.iWidth - 20, 60);
 	frame->setTitle("Exit");
 	frame->setActionKey(this, "exit");
 	frame->setGradient(gradientLight2Dark);
 	frame->setColor(COL_BLUE);
 	//frame->setCorner(RADIUS_LARGE, CORNER_ALL);
 	//frame->disableShadow();
+	frameBoxWidget->addFrame(frame);
+	
+	// pic
+	frame = new CFrame();
+	frame->setMode(FRAME_PICTURE);
+	frame->setPosition(topBox.iX + 10, topBox.iY + 3*(10 + 60) +50, topBox.iWidth - 20, 200);
+	frame->setActive(false);
+	frame->setIconName(DATADIR "/neutrino/icons/mp3.jpg");
 	frameBoxWidget->addFrame(frame);
 
 	frameBoxWidget->setSelected(selected);
