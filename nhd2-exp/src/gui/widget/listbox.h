@@ -582,7 +582,9 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		
 		uint32_t sec_timer_id;
 		bool MenuPos;
-
+		
+		CTextBox * textBox;
+		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		ClistBox(CBox* position);
