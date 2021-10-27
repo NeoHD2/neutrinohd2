@@ -175,6 +175,9 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	actionKey = "";
 
 	textBox = NULL;
+	
+	item_height = 0;
+	item_width = 0;
 }
 
 void CMenuWidget::move(int xoff, int yoff)

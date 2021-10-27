@@ -1827,6 +1827,9 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	timeout = 0;
 	MenuPos = false;
 	exit_pressed = false;
+	
+	item_height = 0;
+	item_width = 0;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -1914,6 +1917,9 @@ ClistBox::ClistBox(CBox* position)
 	timeout = 0;
 	MenuPos = false;
 	exit_pressed = false;
+	
+	item_height = 0;
+	item_width = 0;
 }
 
 ClistBox::~ClistBox()
