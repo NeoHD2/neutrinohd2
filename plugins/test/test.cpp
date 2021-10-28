@@ -3334,6 +3334,8 @@ void CTestMenu::testClistBox()
 
 	listBox->setSelected(selected);
 	listBox->paint();
+	
+	CFrameBuffer::getInstance()->blit();
 
 	// loop
 	neutrino_msg_t msg;
@@ -3476,6 +3478,8 @@ void CTestMenu::testClistBox2()
 
 	listBox->setSelected(selected);
 	listBox->paint();
+	
+	CFrameBuffer::getInstance()->blit();
 
 	// loop
 	neutrino_msg_t msg;
@@ -3619,6 +3623,8 @@ void CTestMenu::testClistBox3()
 
 	listBox->setSelected(selected);
 	listBox->paint();
+	
+	CFrameBuffer::getInstance()->blit();
 
 	// loop
 	neutrino_msg_t msg;
@@ -3764,6 +3770,8 @@ void CTestMenu::testClistBox4()
 
 	listBox->setSelected(selected);
 	listBox->paint();
+	
+	CFrameBuffer::getInstance()->blit();
 
 	// loop
 	neutrino_msg_t msg;
@@ -4072,6 +4080,8 @@ void CTestMenu::testClistBox6()
 
 	listBox->setSelected(selected);
 	listBox->paint();
+	
+	CFrameBuffer::getInstance()->blit();
 
 	// loop
 	neutrino_msg_t msg;
@@ -4219,6 +4229,8 @@ void CTestMenu::testCFrameBox()
 
 REPEAT:
 	frameBoxWidget->paint();
+	
+	CFrameBuffer::getInstance()->blit();
 
 	// loop
 	neutrino_msg_t msg;

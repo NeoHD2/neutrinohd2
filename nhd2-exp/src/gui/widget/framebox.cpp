@@ -509,8 +509,6 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 	paintFrame = true;
 
 	actionKey = "";
-
-	initFrames();
 	
 	//
 	timeout = 0;
@@ -522,6 +520,9 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 	corner = NO_RADIUS;
 	shadow = false;
 	screen = false;
+	
+	// init
+	initFrames();
 }
 
 CFrameBox::CFrameBox(CBox* position)
@@ -541,8 +542,6 @@ CFrameBox::CFrameBox(CBox* position)
 	paintFrame = true;
 
 	actionKey = "";
-
-	initFrames();
 	
 	//
 	timeout = 0;
@@ -554,6 +553,9 @@ CFrameBox::CFrameBox(CBox* position)
 	corner = NO_RADIUS;
 	shadow = false;
 	screen = false;
+	
+	// init
+	initFrames();
 }
 
 CFrameBox::~CFrameBox()
@@ -576,6 +578,8 @@ bool CFrameBox::hasItem()
 
 void CFrameBox::initFrames()
 {
+	dprintf(DEBUG_NORMAL, "CFrameBox::initFrames:\n");
+	
 	cFrameWindow.setPosition(&itemBox);
 }
 
@@ -605,7 +609,11 @@ void CFrameBox::paintFrames()
 void CFrameBox::paint()
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::paint:\n");
+	
+	//
+	initFrames();
 
+	//
 	if (paintFrame)
 	{
 		cFrameWindow.setColor(bgcolor);
@@ -837,7 +845,6 @@ int CFrameBox::exec(CMenuTarget* parent, const std::string&)
 	if (parent)
 		parent->hide();
 	
-	initFrames();
 	paint();
 	CFrameBuffer::getInstance()->blit();
 	
@@ -877,7 +884,6 @@ int CFrameBox::exec(CMenuTarget* parent, const std::string&)
 							break;
 						case RETURN_REPAINT:
 							hide();
-							initFrames();
 							paint();
 							break;
 					}
@@ -950,7 +956,6 @@ int CFrameBox::exec(CMenuTarget* parent, const std::string&)
 									break;
 								case RETURN_REPAINT:
 									hide();
-									initFrames();
 									paint();
 									break;
 							}

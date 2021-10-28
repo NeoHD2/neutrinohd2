@@ -1944,6 +1944,8 @@ bool ClistBox::hasItem()
 
 void ClistBox::initFrames()
 {
+	dprintf(DEBUG_NORMAL, "ClistBox::initFrames:\n");
+	
 	// reinit position
 	cFrameBox.iHeight = wanted_height;
 	cFrameBox.iWidth = wanted_width;
@@ -2156,8 +2158,10 @@ void ClistBox::paint()
 {
 	dprintf(DEBUG_NORMAL, "ClistBox::paint: (%s)\n", l_name.c_str());
 
+	//
 	initFrames();
 
+	//
 	paintHead();
 	paintFoot();
 	paintItems();
@@ -3430,7 +3434,6 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 	if (parent)
 		parent->hide();
 	
-	initFrames();
 	paint();
 	CFrameBuffer::getInstance()->blit();
 	
@@ -3474,7 +3477,6 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 							break;
 						case RETURN_REPAINT:
 							hide();
-							initFrames();
 							paint();
 							break;
 					}
@@ -3586,7 +3588,6 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 									break;
 								case RETURN_REPAINT:
 									hide();
-									initFrames();
 									paint();
 									break;
 							}
@@ -3616,9 +3617,8 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 
 							g_settings.menu_design = widgetType;
 
-							initFrames();
-							paintHead();
-							paintFoot();
+							//paintHead();
+							//paintFoot();
 							paint();
 						}
 					}
@@ -3637,9 +3637,8 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 					
 							widgetType = widget[cnt];
 
-							initFrames();
-							paintHead();
-							paintFoot();
+							//paintHead();
+							//paintFoot();
 							paint();
 						}
 					}
