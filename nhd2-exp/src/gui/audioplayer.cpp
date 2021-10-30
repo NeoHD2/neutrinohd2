@@ -234,7 +234,8 @@ void CAudioPlayerGui::playFile()
 				playNext();
 		}
 
-		paintInfo(m_playlist[m_current]);
+		//paintInfo(m_playlist[m_current]);
+		updateTimes(true);
 		
 		g_RCInput->getMsg(&msg, &data, 10); // 1 sec timeout to update play/stop state display
 
@@ -820,6 +821,10 @@ void CAudioPlayerGui::updateTimes(const bool force)
 
 		int w1 = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(tot_time);
 		int w2 = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(tmp_time);
+		
+		// refreshBox
+		m_frameBuffer->paintBoxRel(cFrameBox.iX + cFrameBox.iWidth - 4 - w1 -2 - w2, cFrameBox.iY + 2 + cFrameBox.iHeight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()/2, w1 + w2, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), COL_INFOBAR_PLUS_0); 
+		
 
 		if (updateTotal)
 		{

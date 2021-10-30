@@ -302,6 +302,7 @@ void CInternetRadio::scanXmlData(_xmlDocPtr answer_parser, const char *nametag, 
 			
 			progress.setTitle(LOCALE_AUDIOPLAYER_READING_FILES);
 			progress.paint();
+			frameBuffer->blit();
 			
 			neutrino_msg_t      msg;
 			neutrino_msg_data_t data;
@@ -369,11 +370,14 @@ void CInternetRadio::scanXmlData(_xmlDocPtr answer_parser, const char *nametag, 
 				}
 				element = element->xmlNextNode;
 				g_RCInput->getMsg(&msg, &data, 0);
+				
+				frameBuffer->blit();
 
 			}
 
 			usleep(1000000);
 			progress.hide();
+			frameBuffer->blit();
 		}
 
 		xmlFreeDoc(answer_parser);
