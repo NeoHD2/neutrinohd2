@@ -3281,8 +3281,6 @@ void ClistBox::changeWidgetType(int)
 {
 	dprintf(DEBUG_NORMAL, "ClistBox::changeWidgetType:\n");
 
-	printf("cnt:%d\n", cnt);
-
 	if(widgetMode == MODE_MENU)
 	{
 		if(widgetChange)
@@ -3610,46 +3608,7 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 					break;
 					
 				case (RC_setup):
-					dprintf(DEBUG_NORMAL, "ClistBox::exec: (%s) changeWidgetType\n", l_name.c_str());
-
-					if(widgetMode == MODE_MENU)
-					{
-						if(widgetChange)
-						{
-							hide();
-
-							if(widgetType == WIDGET_TYPE_STANDARD)
-								widgetType = WIDGET_TYPE_CLASSIC;
-							else if(widgetType == WIDGET_TYPE_CLASSIC)
-								widgetType = WIDGET_TYPE_EXTENDED;
-							else if(widgetType == WIDGET_TYPE_EXTENDED)
-								widgetType = WIDGET_TYPE_FRAME;	
-							else if(widgetType == WIDGET_TYPE_FRAME)
-								widgetType = WIDGET_TYPE_STANDARD;
-
-							g_settings.menu_design = widgetType;
-
-							paint();
-						}
-					}
-					else if(widgetMode == MODE_LISTBOX)
-					{
-						if(widgetChange && widget.size())
-						{
-							hide();
-
-							cnt++;
-
-							if(cnt >= (int)widget.size())
-							{
-								cnt = WIDGET_TYPE_STANDARD;
-							}
-					
-							widgetType = widget[cnt];
-
-							paint();
-						}
-					}
+					changeWidgetType();
 					break;
 					
 				case (RC_timeout):

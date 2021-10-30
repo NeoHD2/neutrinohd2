@@ -96,7 +96,7 @@ class CTestMenu : public CMenuTarget
 		//
 		CListFrame *listFrame;
 		CTextBox *textWidget;
-		ClistBox *listBox;
+		//ClistBox *listBox;
 
 		CWindow *windowWidget;
 		CProgressWindow * progressWindow;
@@ -276,7 +276,7 @@ CTestMenu::CTestMenu()
 	listFrame = NULL;
 	textWidget = NULL;
 	windowWidget = NULL;
-	listBox = NULL;
+	//listBox = NULL;
 	progressWindow = NULL;
 }
 
@@ -299,11 +299,13 @@ CTestMenu::~CTestMenu()
 		webTVBouquetList = NULL;
 	}
 
+/*
 	if(listBox)
 	{
 		delete listBox;
 		listBox = NULL;
 	}
+	*/
 }
 
 void CTestMenu::hide()
@@ -1001,13 +1003,13 @@ void CTestMenu::testSingleWidget()
 	box.iWidth = CFrameBuffer::getInstance()->getScreenWidth() - 80;
 	box.iHeight = CFrameBuffer::getInstance()->getScreenHeight() - 80;
 
-	testWidget = new CWidget(&box);
+	//testWidget = new CWidget(&box);
 
-	testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
-	testWidget->enablePaintMainFrame();
+	//testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
+	//testWidget->enablePaintMainFrame();
 
-	CFrameBox *testFrame = new CFrameBox(&box);
-	testFrame->disablePaintFrame();
+	frameBoxWidget = new CFrameBox(&box);
+	//testFrame->disablePaintFrame();
 
 	CHintBox loadBox("singleWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -1054,7 +1056,7 @@ void CTestMenu::testSingleWidget()
 	headFrame->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	headFrame->setActive(false);
 
-	testFrame->addFrame(headFrame);
+	frameBoxWidget->addFrame(headFrame);
 
 	// artFrame
 	CFrame * artFrame = new CFrame();
@@ -1063,7 +1065,7 @@ void CTestMenu::testSingleWidget()
 	artFrame->setIconName(m_vMovieInfo[0].tfile.c_str());
 	artFrame->setActive(false);
 
-	testFrame->addFrame(artFrame);
+	frameBoxWidget->addFrame(artFrame);
 
 	// title
 	CFrame *titleFrame = new CFrame();
@@ -1074,7 +1076,7 @@ void CTestMenu::testSingleWidget()
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	titleFrame->setActive(false);
 
-	testFrame->addFrame(titleFrame);
+	frameBoxWidget->addFrame(titleFrame);
 
 	// star1
 	CFrame *star1Frame = new CFrame();
@@ -1084,7 +1086,7 @@ void CTestMenu::testSingleWidget()
 	star1Frame->disablePaintFrame();
 	star1Frame->setActive(false);
 
-	testFrame->addFrame(star1Frame);
+	frameBoxWidget->addFrame(star1Frame);
 
 	// star2
 	CFrame *star2Frame = new CFrame();
@@ -1094,7 +1096,7 @@ void CTestMenu::testSingleWidget()
 	star2Frame->disablePaintFrame();
 	star2Frame->setActive(false);
 
-	testFrame->addFrame(star2Frame);
+	frameBoxWidget->addFrame(star2Frame);
 
 	// star3
 	CFrame *star3Frame = new CFrame();
@@ -1104,7 +1106,7 @@ void CTestMenu::testSingleWidget()
 	star3Frame->disablePaintFrame();
 	star3Frame->setActive(false);
 
-	testFrame->addFrame(star3Frame);
+	frameBoxWidget->addFrame(star3Frame);
 
 	// star4
 	CFrame *star4Frame = new CFrame();
@@ -1114,7 +1116,7 @@ void CTestMenu::testSingleWidget()
 	star4Frame->disablePaintFrame();
 	star4Frame->setActive(false);
 
-	testFrame->addFrame(star4Frame);
+	frameBoxWidget->addFrame(star4Frame);
 
 	// text
 	CFrame *textFrame = new CFrame();
@@ -1129,7 +1131,7 @@ void CTestMenu::testSingleWidget()
 	textFrame->disablePaintFrame();
 	textFrame->setActive(false);
 	
-	testFrame->addFrame(textFrame);
+	frameBoxWidget->addFrame(textFrame);
 
 	// infoFrame
 	CFrame * infoFrame = new CFrame();
@@ -1139,7 +1141,7 @@ void CTestMenu::testSingleWidget()
 	infoFrame->setIconName(NEUTRINO_ICON_INFO);
 	infoFrame->setActionKey(this, "minfo");
 
-	testFrame->addFrame(infoFrame);
+	frameBoxWidget->addFrame(infoFrame);
 
 	// play
 	CFrame *playFrame = new CFrame();
@@ -1149,7 +1151,7 @@ void CTestMenu::testSingleWidget()
 	playFrame->setIconName(NEUTRINO_ICON_PLAY);
 	playFrame->setActionKey(this, "mplay");
 
-	testFrame->addFrame(playFrame);
+	frameBoxWidget->addFrame(playFrame);
 
 	// foot
 	CFrame *footFrame = new CFrame();
@@ -1158,11 +1160,14 @@ void CTestMenu::testSingleWidget()
 	footFrame->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	footFrame->setActive(false);
 
-	testFrame->addFrame(footFrame);
+	frameBoxWidget->addFrame(footFrame);
 
-	testWidget->addItem(testFrame);
+	//testWidget->addItem(testFrame);
 
-	testWidget->exec(NULL, "");
+	frameBoxWidget->exec(NULL, "");
+	
+	delete frameBoxWidget;
+	frameBoxWidget = NULL;
 }
 
 void CTestMenu::testFireTV()
@@ -1453,11 +1458,6 @@ void CTestMenu::testListFrameWidget()
 void CTestMenu::testListBoxWidget()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu:testClistBoxWidget:\n");
-	
-	//testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
-
-	//testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
-	//testWidget->enableSaveScreen();
 
 	//
 	rightBox.iWidth = frameBuffer->getScreenWidth();
@@ -1520,14 +1520,9 @@ void CTestMenu::testListBoxWidget()
 	}
 
 	rightWidget->addKey(RC_info, this, "linfo");
-	rightWidget->addKey(RC_setup, this, "lsetup");
-
-	//testWidget->addItem(rightWidget);
+	//rightWidget->addKey(RC_setup, this, "lsetup");
 
 	rightWidget->exec(NULL, "");
-
-	//delete testWidget;
-	//testWidget = NULL;
 
 	delete rightWidget;
 	rightWidget = NULL;
@@ -3278,7 +3273,7 @@ void CTestMenu::testClistBox()
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 
-	listBox = new ClistBox(&Box);
+	rightWidget = new ClistBox(&Box);
 	
 	CHintBox loadBox("ClistBox", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -3288,7 +3283,7 @@ void CTestMenu::testClistBox()
 	// load items
 	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
 	{
-		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "listplay");
+		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "mmwplay");
 
 		item->setOption(m_vMovieInfo[i].epgChannel.c_str());
 		//item->setOptionInfo("OptionInfo");
@@ -3303,37 +3298,37 @@ void CTestMenu::testClistBox()
 
 		item->set2lines();
 
-		listBox->addItem(item);
-
 		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
 		item->setHelpText(tmp.c_str());
+		
+		rightWidget->addItem(item);
 	}
 
 	// mode
-	listBox->setWidgetType(WIDGET_TYPE_STANDARD);
-	listBox->setWidgetMode(MODE_LISTBOX);
-	listBox->enableCenterPos();
-	listBox->enableShrinkMenu();
+	rightWidget->setWidgetType(WIDGET_TYPE_STANDARD);
+	rightWidget->setWidgetMode(MODE_LISTBOX);
+	rightWidget->enableCenterPos();
+	rightWidget->enableShrinkMenu();
 
 	// head
-	listBox->setTitle("ClistBox(standard)", NEUTRINO_ICON_MOVIE);
-	listBox->enablePaintHead();
-	listBox->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	listBox->enablePaintDate();
+	rightWidget->setTitle("ClistBox(standard)", NEUTRINO_ICON_MOVIE);
+	rightWidget->enablePaintHead();
+	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->enablePaintDate();
 
 	// footer
-	listBox->enablePaintFoot();
-	listBox->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	rightWidget->enablePaintFoot();
+	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	listBox->enablePaintFootInfo(80);
-	listBox->setFootInfoMode(FOOT_HINT_MODE);
+	rightWidget->enablePaintFootInfo(80);
+	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 
-	listBox->setSelected(selected);
-	listBox->paint();
+	rightWidget->setSelected(selected);
+	rightWidget->paint();
 	
 	CFrameBuffer::getInstance()->blit();
 
@@ -3353,31 +3348,31 @@ void CTestMenu::testClistBox()
 
 		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			listBox->paintHead();
+			rightWidget->paintHead();
 		} 
 		else if (msg == RC_up)
 		{
-			listBox->onUpKeyPressed();
+			rightWidget->onUpKeyPressed();
 		}
 		else if (msg == RC_down)
 		{
-			listBox->onDownKeyPressed();
+			rightWidget->onDownKeyPressed();
 		}
 		else if (msg == RC_right)
 		{
-			listBox->onRightKeyPressed();
+			rightWidget->onRightKeyPressed();
 		}
 		else if (msg == RC_left)
 		{
-			listBox->onLeftKeyPressed();
+			rightWidget->onLeftKeyPressed();
 		}
 		else if (msg == RC_page_up)
 		{
-			listBox->onPageUpKeyPressed();
+			rightWidget->onPageUpKeyPressed();
 		}
 		else if (msg == RC_page_down)
 		{
-			listBox->onPageDownKeyPressed();
+			rightWidget->onPageDownKeyPressed();
 		}
 		else if (msg == RC_home) 
 		{
@@ -3385,25 +3380,25 @@ void CTestMenu::testClistBox()
 		}
 		else if(msg == RC_ok)
 		{
-			listBox->oKKeyPressed(this);
-			listBox->paint();
+			rightWidget->oKKeyPressed(this);
+			rightWidget->paint();
 		}
 		else if(msg == RC_info)
 		{
-			listBox->hide();
+			rightWidget->hide();
 
-			selected = listBox->getSelected();
+			selected = rightWidget->getSelected();
 			m_movieInfo.showMovieInfo(m_vMovieInfo[selected]);
 
-			listBox->paint();
+			rightWidget->paint();
 		}
 
 		CFrameBuffer::getInstance()->blit();
 	}
 
-	listBox->hide();
-	delete listBox;
-	listBox = NULL;
+	rightWidget->hide();
+	delete rightWidget;
+	rightWidget = NULL;
 
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
@@ -3422,7 +3417,7 @@ void CTestMenu::testClistBox2()
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 
-	listBox = new ClistBox(&Box);
+	rightWidget = new ClistBox(&Box);
 
 	CHintBox loadBox("ClistBox(classic)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -3432,7 +3427,7 @@ void CTestMenu::testClistBox2()
 	// load items
 	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
 	{
-		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "listplay");
+		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "mmwplay");
 
 		item->setOption(m_vMovieInfo[i].epgChannel.c_str());
 		//item->setOptionInfo("OptionInfo");
@@ -3453,31 +3448,31 @@ void CTestMenu::testClistBox2()
 
 		item->setHelpText(tmp.c_str());
 
-		listBox->addItem(item);
+		rightWidget->addItem(item);
 	}
 
 	// widgettype
-	listBox->setWidgetType(WIDGET_TYPE_CLASSIC);
-	listBox->setWidgetMode(MODE_LISTBOX);
-	listBox->enableCenterPos();
-	listBox->enableShrinkMenu();
+	rightWidget->setWidgetType(WIDGET_TYPE_CLASSIC);
+	rightWidget->setWidgetMode(MODE_LISTBOX);
+	rightWidget->enableCenterPos();
+	rightWidget->enableShrinkMenu();
 
 	// head
-	listBox->setTitle("ClistBox(classic)", NEUTRINO_ICON_MOVIE);
-	listBox->enablePaintHead();
-	listBox->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	listBox->enablePaintDate();
+	rightWidget->setTitle("ClistBox(classic)", NEUTRINO_ICON_MOVIE);
+	rightWidget->enablePaintHead();
+	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->enablePaintDate();
 
 	// footer
-	listBox->enablePaintFoot();
-	listBox->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	rightWidget->enablePaintFoot();
+	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	listBox->enablePaintFootInfo(80);
-	listBox->setFootInfoMode(FOOT_HINT_MODE);
+	rightWidget->enablePaintFootInfo(80);
+	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 
-	listBox->setSelected(selected);
-	listBox->paint();
+	rightWidget->setSelected(selected);
+	rightWidget->paint();
 	
 	CFrameBuffer::getInstance()->blit();
 
@@ -3497,31 +3492,31 @@ void CTestMenu::testClistBox2()
 
 		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			listBox->paintHead();
+			rightWidget->paintHead();
 		}
 		else if (msg == RC_up)
 		{
-			listBox->onUpKeyPressed();
+			rightWidget->onUpKeyPressed();
 		}
 		else if (msg == RC_down)
 		{
-			listBox->onDownKeyPressed();
+			rightWidget->onDownKeyPressed();
 		}
 		else if (msg == RC_right)
 		{
-			listBox->onRightKeyPressed();
+			rightWidget->onRightKeyPressed();
 		}
 		else if (msg == RC_left)
 		{
-			listBox->onLeftKeyPressed();
+			rightWidget->onLeftKeyPressed();
 		}
 		else if (msg == RC_page_up)
 		{
-			listBox->onPageUpKeyPressed();
+			rightWidget->onPageUpKeyPressed();
 		}
 		else if (msg == RC_page_down)
 		{
-			listBox->onPageDownKeyPressed();
+			rightWidget->onPageDownKeyPressed();
 		} 
 		else if (msg == RC_home) 
 		{
@@ -3529,25 +3524,25 @@ void CTestMenu::testClistBox2()
 		}
 		else if(msg == RC_ok)
 		{
-			listBox->oKKeyPressed(this);
-			listBox->paint();
+			rightWidget->oKKeyPressed(this);
+			rightWidget->paint();
 		}
 		else if(msg == RC_info)
 		{
-			listBox->hide();
+			rightWidget->hide();
 
-			selected = listBox->getSelected();
+			selected = rightWidget->getSelected();
 			m_movieInfo.showMovieInfo(m_vMovieInfo[selected]);
 			
-			listBox->paint();
+			rightWidget->paint();
 		}
 
 		CFrameBuffer::getInstance()->blit();
 	}
 
-	listBox->hide();
-	delete listBox;
-	listBox = NULL;
+	rightWidget->hide();
+	delete rightWidget;
+	rightWidget = NULL;
 
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
@@ -3566,7 +3561,7 @@ void CTestMenu::testClistBox3()
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 
-	listBox = new ClistBox(&Box);
+	rightWidget = new ClistBox(&Box);
 
 	CHintBox loadBox("ClistBox(extended)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -3576,7 +3571,7 @@ void CTestMenu::testClistBox3()
 	// load items
 	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
 	{
-		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "listplay");
+		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "mmwplay");
 
 		item->setOption(m_vMovieInfo[i].epgChannel.c_str());
 		//item->setOptionInfo("OptionInfo");
@@ -3599,30 +3594,30 @@ void CTestMenu::testClistBox3()
 
 		item->setHelpText(tmp.c_str());
 
-		listBox->addItem(item);
+		rightWidget->addItem(item);
 	}
 
 	// widgettype
-	listBox->setWidgetType(WIDGET_TYPE_EXTENDED);
-	listBox->setWidgetMode(MODE_LISTBOX);
-	listBox->enableCenterPos();
-	listBox->enableShrinkMenu();
+	rightWidget->setWidgetType(WIDGET_TYPE_EXTENDED);
+	rightWidget->setWidgetMode(MODE_LISTBOX);
+	rightWidget->enableCenterPos();
+	rightWidget->enableShrinkMenu();
 
 	// head
-	listBox->setTitle("ClistBox(extended)", NEUTRINO_ICON_MOVIE);
-	listBox->enablePaintHead();
-	listBox->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	listBox->enablePaintDate();
+	rightWidget->setTitle("ClistBox(extended)", NEUTRINO_ICON_MOVIE);
+	rightWidget->enablePaintHead();
+	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->enablePaintDate();
 
 	// footer
-	listBox->enablePaintFoot();
-	listBox->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	rightWidget->enablePaintFoot();
+	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	listBox->enablePaintFootInfo(80);
+	rightWidget->enablePaintFootInfo(80);
 
-	listBox->setSelected(selected);
-	listBox->paint();
+	rightWidget->setSelected(selected);
+	rightWidget->paint();
 	
 	CFrameBuffer::getInstance()->blit();
 
@@ -3642,31 +3637,31 @@ void CTestMenu::testClistBox3()
 
 		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			listBox->paintHead();
+			rightWidget->paintHead();
 		} 
 		else if (msg == RC_up)
 		{
-			listBox->onUpKeyPressed();
+			rightWidget->onUpKeyPressed();
 		}
 		else if (msg == RC_down)
 		{
-			listBox->onDownKeyPressed();
+			rightWidget->onDownKeyPressed();
 		}
 		else if (msg == RC_right)
 		{
-			listBox->onRightKeyPressed();
+			rightWidget->onRightKeyPressed();
 		}
 		else if (msg == RC_left)
 		{
-			listBox->onLeftKeyPressed();
+			rightWidget->onLeftKeyPressed();
 		}
 		else if (msg == RC_page_up)
 		{
-			listBox->onPageUpKeyPressed();
+			rightWidget->onPageUpKeyPressed();
 		}
 		else if (msg == RC_page_down)
 		{
-			listBox->onPageDownKeyPressed();
+			rightWidget->onPageDownKeyPressed();
 		}
 		else if (msg == RC_home) 
 		{
@@ -3674,25 +3669,25 @@ void CTestMenu::testClistBox3()
 		}
 		else if(msg == RC_ok)
 		{
-			listBox->oKKeyPressed(this);
-			listBox->paint();
+			rightWidget->oKKeyPressed(this);
+			rightWidget->paint();
 		}
 		else if(msg == RC_info)
 		{
-			listBox->hide();
+			rightWidget->hide();
 
-			selected = listBox->getSelected();
+			selected = rightWidget->getSelected();
 			m_movieInfo.showMovieInfo(m_vMovieInfo[selected]);
 			
-			listBox->paint();
+			rightWidget->paint();
 		}
 
 		CFrameBuffer::getInstance()->blit();
 	}
 
-	listBox->hide();
-	delete listBox;
-	listBox = NULL;
+	rightWidget->hide();
+	delete rightWidget;
+	rightWidget = NULL;
 
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
@@ -3711,7 +3706,7 @@ void CTestMenu::testClistBox4()
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 
-	listBox = new ClistBox(&Box);
+	rightWidget = new ClistBox(&Box);
 
 	CHintBox loadBox("ClistBox(frame)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -3721,7 +3716,7 @@ void CTestMenu::testClistBox4()
 	// load items
 	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
 	{
-		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "listplay");
+		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "mmwplay");
 
 		item->setOption(m_vMovieInfo[i].epgChannel.c_str());
 
@@ -3741,35 +3736,20 @@ void CTestMenu::testClistBox4()
 
 		item->setHelpText(tmp.c_str());
 
-		listBox->addItem(item);
+		rightWidget->addItem(item);
 	}
 
 	// widgettype
-	listBox->setWidgetType(WIDGET_TYPE_FRAME);
-	listBox->setItemsPerPage(5,2);
-	listBox->setWidgetMode(MODE_LISTBOX);
-	listBox->enableCenterPos();
-	listBox->enableShrinkMenu();
+	rightWidget->setWidgetType(WIDGET_TYPE_FRAME);
+	rightWidget->setItemsPerPage(5,2);
+	rightWidget->setWidgetMode(MODE_LISTBOX);
+	rightWidget->enableCenterPos();
+	rightWidget->enableShrinkMenu();
 
-	// head
-/*	
-	listBox->setTitle("ClistBox(Frame)", NEUTRINO_ICON_MOVIE);
-	listBox->enablePaintHead();
-	listBox->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	listBox->enablePaintDate();
+	rightWidget->disablePaintFrame();	
 
-	// footer
-	listBox->enablePaintFoot();
-	listBox->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
-
-	// footinfo
-	listBox->enablePaintFootInfo(80);
-*/
-
-	listBox->disablePaintFrame();	
-
-	listBox->setSelected(selected);
-	listBox->paint();
+	rightWidget->setSelected(selected);
+	rightWidget->paint();
 	
 	CFrameBuffer::getInstance()->blit();
 
@@ -3789,31 +3769,31 @@ void CTestMenu::testClistBox4()
 
 		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			listBox->paintHead();
+			rightWidget->paintHead();
 		} 
 		else if (msg == RC_up)
 		{
-			listBox->onUpKeyPressed();
+			rightWidget->onUpKeyPressed();
 		}
 		else if (msg == RC_down)
 		{
-			listBox->onDownKeyPressed();
+			rightWidget->onDownKeyPressed();
 		}
 		else if (msg == RC_right)
 		{
-			listBox->onRightKeyPressed();
+			rightWidget->onRightKeyPressed();
 		}
 		else if (msg == RC_left)
 		{
-			listBox->onLeftKeyPressed();
+			rightWidget->onLeftKeyPressed();
 		}
 		else if (msg == RC_page_up)
 		{
-			listBox->onPageUpKeyPressed();
+			rightWidget->onPageUpKeyPressed();
 		}
 		else if (msg == RC_page_down)
 		{
-			listBox->onPageDownKeyPressed();
+			rightWidget->onPageDownKeyPressed();
 		}
 		else if (msg == RC_home) 
 		{
@@ -3821,25 +3801,25 @@ void CTestMenu::testClistBox4()
 		}
 		else if(msg == RC_ok)
 		{
-			listBox->oKKeyPressed(this);
-			listBox->paint();
+			rightWidget->oKKeyPressed(this);
+			rightWidget->paint();
 		}
 		else if(msg == RC_info)
 		{
-			listBox->hide();
+			rightWidget->hide();
 
-			selected = listBox->getSelected();
+			selected = rightWidget->getSelected();
 			m_movieInfo.showMovieInfo(m_vMovieInfo[selected]);
 			
-			listBox->paint();
+			rightWidget->paint();
 		}
 
 		CFrameBuffer::getInstance()->blit();
 	}
 
-	listBox->hide();
-	delete listBox;
-	listBox = NULL;
+	rightWidget->hide();
+	delete leftWidget;
+	rightWidget = NULL;
 
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
@@ -3858,7 +3838,7 @@ void CTestMenu::testClistBox5()
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 
-	listBox = new ClistBox(&Box);
+	rightWidget = new ClistBox(&Box);
 
 	CHintBox loadBox("ClistBox(menu mode)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -3868,7 +3848,7 @@ void CTestMenu::testClistBox5()
 	// load items
 	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
 	{
-		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "listplay");
+		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "mmwplay");
 
 		item->setOption(m_vMovieInfo[i].epgChannel.c_str());
 		//item->setOptionInfo("OptionInfo");
@@ -3883,8 +3863,6 @@ void CTestMenu::testClistBox5()
 
 		item->set2lines();
 
-		listBox->addItem(item);
-
 		std::string tmp = m_vMovieInfo[i].epgTitle;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo1;
@@ -3892,37 +3870,36 @@ void CTestMenu::testClistBox5()
 		tmp += m_vMovieInfo[i].epgInfo2;
 
 		item->setHelpText(tmp.c_str());
+		
+		rightWidget->addItem(item);
 	}
 
 	// mode
-	listBox->setWidgetType(WIDGET_TYPE_STANDARD);
-	listBox->setWidgetMode(MODE_MENU);
-	listBox->enableCenterPos();
-	listBox->enableShrinkMenu();
+	rightWidget->setWidgetType(WIDGET_TYPE_STANDARD);
+	rightWidget->setWidgetMode(MODE_MENU);
+	rightWidget->enableCenterPos();
+	rightWidget->enableShrinkMenu();
 
 	//
-	listBox->addWidget(WIDGET_TYPE_CLASSIC);
-	listBox->addWidget(WIDGET_TYPE_EXTENDED);
-	listBox->addWidget(WIDGET_TYPE_FRAME);
-	listBox->enableWidgetChange();
+	rightWidget->enableWidgetChange();
 
-	listBox->setItemsPerPage(5, 2);
+	rightWidget->setItemsPerPage(5, 2);
 
 	// head
-	listBox->setTitle("ClistBox(menu mode)", NEUTRINO_ICON_MOVIE);
-	listBox->enablePaintHead();
-	listBox->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	listBox->enablePaintDate();
+	rightWidget->setTitle("ClistBox(menu mode)", NEUTRINO_ICON_MOVIE);
+	rightWidget->enablePaintHead();
+	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->enablePaintDate();
 
 	// footer
-	listBox->enablePaintFoot();
-	listBox->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	rightWidget->enablePaintFoot();
+	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	listBox->enablePaintFootInfo(80);
+	rightWidget->enablePaintFootInfo(80);
 
-	listBox->setSelected(selected);
-	listBox->paint();
+	rightWidget->setSelected(selected);
+	rightWidget->paint();
 
 	CFrameBuffer::getInstance()->blit();
 
@@ -3942,31 +3919,31 @@ void CTestMenu::testClistBox5()
 
 		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			listBox->paintHead();
+			rightWidget->paintHead();
 		} 
 		else if (msg == RC_up)
 		{
-			listBox->onUpKeyPressed();
+			rightWidget->onUpKeyPressed();
 		}
 		else if (msg == RC_down)
 		{
-			listBox->onDownKeyPressed();
+			rightWidget->onDownKeyPressed();
 		}
 		else if (msg == RC_right)
 		{
-			listBox->onRightKeyPressed();
+			rightWidget->onRightKeyPressed();
 		}
 		else if (msg == RC_left)
 		{
-			listBox->onLeftKeyPressed();
+			rightWidget->onLeftKeyPressed();
 		}
 		else if (msg == RC_page_up)
 		{
-			listBox->onPageUpKeyPressed();
+			rightWidget->onPageUpKeyPressed();
 		}
 		else if (msg == RC_page_down)
 		{
-			listBox->onPageDownKeyPressed();
+			rightWidget->onPageDownKeyPressed();
 		}
 		else if (msg == RC_home) 
 		{
@@ -3974,29 +3951,29 @@ void CTestMenu::testClistBox5()
 		}
 		else if(msg == RC_ok)
 		{
-			listBox->oKKeyPressed(this);
-			listBox->paint();
+			rightWidget->oKKeyPressed(this);
+			rightWidget->paint();
 		}
 		else if(msg == RC_info)
 		{
-			listBox->hide();
+			rightWidget->hide();
 
-			selected = listBox->getSelected();
+			selected = rightWidget->getSelected();
 			m_movieInfo.showMovieInfo(m_vMovieInfo[selected]);
 			
-			listBox->paint();
+			rightWidget->paint();
 		}
 		else if(msg == RC_setup)
 		{
-			listBox->changeWidgetType();
+			rightWidget->changeWidgetType();
 		}
 
 		CFrameBuffer::getInstance()->blit();
 	}
 
-	listBox->hide();
-	delete listBox;
-	listBox = NULL;
+	rightWidget->hide();
+	delete rightWidget;
+	rightWidget = NULL;
 
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
@@ -4015,7 +3992,7 @@ void CTestMenu::testClistBox6()
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 
-	listBox = new ClistBox(&Box);
+	rightWidget = new ClistBox(&Box);
 
 	CHintBox loadBox("ClistBox(list mode)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -4025,7 +4002,7 @@ void CTestMenu::testClistBox6()
 	// load items
 	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
 	{
-		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "listplay");
+		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "mplay");
 
 		item->setOption(m_vMovieInfo[i].epgChannel.c_str());
 		//item->setOptionInfo("OptionInfo");
@@ -4040,8 +4017,6 @@ void CTestMenu::testClistBox6()
 
 		item->set2lines();
 
-		listBox->addItem(item);
-
 		std::string tmp = m_vMovieInfo[i].epgTitle;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo1;
@@ -4049,37 +4024,39 @@ void CTestMenu::testClistBox6()
 		tmp += m_vMovieInfo[i].epgInfo2;
 
 		item->setHelpText(tmp.c_str());
+		
+		rightWidget->addItem(item);
 	}
 
 	// mode
-	listBox->setWidgetType(WIDGET_TYPE_STANDARD);
-	listBox->setWidgetMode(MODE_LISTBOX);
-	listBox->enableCenterPos();
-	listBox->enableShrinkMenu();
+	rightWidget->setWidgetType(WIDGET_TYPE_STANDARD);
+	rightWidget->setWidgetMode(MODE_LISTBOX);
+	rightWidget->enableCenterPos();
+	rightWidget->enableShrinkMenu();
 
 	//
-	listBox->addWidget(WIDGET_TYPE_CLASSIC);
-	listBox->addWidget(WIDGET_TYPE_EXTENDED);
-	listBox->addWidget(WIDGET_TYPE_FRAME);
-	listBox->enableWidgetChange();
+	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
+	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
+	rightWidget->addWidget(WIDGET_TYPE_FRAME);
+	rightWidget->enableWidgetChange();
 
-	listBox->setItemsPerPage(5, 2);
+	rightWidget->setItemsPerPage(5, 2);
 
 	// head
-	listBox->setTitle("ClistBox(listBox mode)", NEUTRINO_ICON_MOVIE);
-	listBox->enablePaintHead();
-	listBox->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	listBox->enablePaintDate();
+	rightWidget->setTitle("ClistBox(listBox mode)", NEUTRINO_ICON_MOVIE);
+	rightWidget->enablePaintHead();
+	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->enablePaintDate();
 
 	// footer
-	listBox->enablePaintFoot();
-	listBox->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	rightWidget->enablePaintFoot();
+	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	listBox->enablePaintFootInfo(80);
+	rightWidget->enablePaintFootInfo(80);
 
-	listBox->setSelected(selected);
-	listBox->paint();
+	rightWidget->setSelected(selected);
+	rightWidget->paint();
 	
 	CFrameBuffer::getInstance()->blit();
 
@@ -4099,31 +4076,31 @@ void CTestMenu::testClistBox6()
 
 		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			listBox->paintHead();
+			rightWidget->paintHead();
 		} 
 		else if (msg == RC_up)
 		{
-			listBox->onUpKeyPressed();
+			rightWidget->onUpKeyPressed();
 		}
 		else if (msg == RC_down)
 		{
-			listBox->onDownKeyPressed();
+			rightWidget->onDownKeyPressed();
 		}
 		else if (msg == RC_right)
 		{
-			listBox->onRightKeyPressed();
+			rightWidget->onRightKeyPressed();
 		}
 		else if (msg == RC_left)
 		{
-			listBox->onLeftKeyPressed();
+			rightWidget->onLeftKeyPressed();
 		}
 		else if (msg == RC_page_up)
 		{
-			listBox->onPageUpKeyPressed();
+			rightWidget->onPageUpKeyPressed();
 		}
 		else if (msg == RC_page_down)
 		{
-			listBox->onPageDownKeyPressed();
+			rightWidget->onPageDownKeyPressed();
 		}
 		else if (msg == RC_home) 
 		{
@@ -4131,30 +4108,30 @@ void CTestMenu::testClistBox6()
 		}
 		else if(msg == RC_ok)
 		{
-			listBox->oKKeyPressed(this);
-			listBox->paint();
+			rightWidget->oKKeyPressed(this);
+			rightWidget->paint();
 		}
 		else if(msg == RC_info)
 		{
-			listBox->hide();
+			rightWidget->hide();
 
-			selected = listBox->getSelected();
+			selected = rightWidget->getSelected();
 			m_movieInfo.showMovieInfo(m_vMovieInfo[selected]);
 			
-			listBox->paint();
+			rightWidget->paint();
 		}
 		//
 		else if(msg == RC_setup)
 		{
-			listBox->changeWidgetType();
+			rightWidget->changeWidgetType();
 		}
 
 		CFrameBuffer::getInstance()->blit();
 	}
 
-	listBox->hide();
-	delete listBox;
-	listBox = NULL;
+	rightWidget->hide();
+	delete rightWidget;
+	rightWidget = NULL;
 
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
@@ -5649,23 +5626,6 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 		return RETURN_REPAINT;
 	}
-	else if(actionKey == "listplay")
-	{
-		selected = listBox->getSelected();
-
-		if (&m_vMovieInfo[selected].file != NULL) 
-		{
-			//tmpMoviePlayerGui.addToPlaylist(m_vMovieInfo[selected]);
-			//tmpMoviePlayerGui.exec(NULL, "");
-
-			CMovieInfoWidget movieInfoWidget;
-			movieInfoWidget.setMovie(m_vMovieInfo[selected]);
-		
-			movieInfoWidget.exec(NULL, "");
-		}
-
-		return RETURN_REPAINT;
-	}
 	else if(actionKey == "minfo")
 	{
 		if (listMenu)
@@ -6185,7 +6145,8 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 	else if(actionKey == "lsetup")
 	{
-		rightWidget->changeWidgetType();
+		if (rightWidget)
+			rightWidget->changeWidgetType();
 
 		return RETURN_NONE;
 	}
@@ -6985,11 +6946,8 @@ void CTestMenu::showMenu()
 	mainMenu->enablePaintFootInfo();
 	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(multi widget)", true, NULL, this, "widget"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(single widget)", true, NULL, this, "singleWidget"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(Fire TV)", true, NULL, this, "firetv"));
+	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox|CFrameBox)", true, NULL, this, "widget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(listFrame)", true, NULL, this, "listframewidget"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(listBox)", true, NULL, this, "listboxmwidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(textBox)", true, NULL, this, "textboxwidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(multiWidget)", true, NULL, this, "multiwidget"));
 
@@ -7019,19 +6977,28 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CWindow(with shadow)", true, NULL, this, "windowshadow"));
 	mainMenu->addItem(new CMenuForwarder("CWindow(customColor)", true, NULL, this, "windowcustomcolor"));
 	mainMenu->addItem(new CMenuForwarder("CProgressWindow", true, NULL, this, "progresswindow"));
+	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Widget Items"));
 	mainMenu->addItem(new CMenuForwarder("CHeaders", true, NULL, this, "headers"));
 	mainMenu->addItem(new CMenuForwarder("CTextBox", true, NULL, this, "textbox"));
 	mainMenu->addItem(new CMenuForwarder("CListFrame", true, NULL, this, "listframe"));
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "ClistBox"));
+	
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "WidgetItem (ClistBox)"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(standard)", true, NULL, this, "listbox"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(classic)", true, NULL, this, "listbox2"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(extended)", true, NULL, this, "listbox3"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(Frame)", true, NULL, this, "listbox4"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(menu mode)", true, NULL, this, "listbox5"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(listBox mode)", true, NULL, this, "listbox6"));
+	
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "ClistBox (standalonbe)"));
+	mainMenu->addItem(new CMenuForwarder("ClistBox", true, NULL, this, "listboxmwidget"));
+	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CFrameBox"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox", true, NULL, this, "framebox"));
+	mainMenu->addItem(new CMenuForwarder("CFrameBox2", true, NULL, this, "singleWidget"));
+	mainMenu->addItem(new CMenuForwarder("CFrameBox(Fire TV)", true, NULL, this, "firetv"));
+	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CFrameBox|ClistBpx"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox|ClistBox", true, NULL, this, "testing"));
 	
