@@ -166,7 +166,7 @@ void CInfoViewer::Init()
 	chanready = 1;
 	
 	// init dimension
-	initDimension();
+	initFrames();
 
 	channel_id = live_channel_id;
 	
@@ -197,7 +197,7 @@ CInfoViewer::~CInfoViewer()
 	}
 }
 
-void CInfoViewer::initDimension(void)
+void CInfoViewer::initFrames(void)
 {
 	// icons dimension
 	frameBuffer->getIconSize(NEUTRINO_ICON_16_9, &icon_w_aspect, &icon_h_aspect);
@@ -337,7 +337,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 	std::string ChannelName = Channel; //FIXME:
 	
 	// init Dimension
-	initDimension();
+	initFrames();
 	
 	//
 	int col_NumBoxText;
@@ -467,7 +467,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	showButtonBar = !_calledFromNumZap;
 	runningPercent = 0;
 	
-	initDimension();
+	initFrames();
 	
 	sigscale->reset(); 
 	snrscale->reset(); 

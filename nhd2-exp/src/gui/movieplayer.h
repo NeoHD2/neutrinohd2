@@ -131,7 +131,7 @@ class CMoviePlayerGui : public CMenuTarget
 		bool visible;
 
 		//
-		void GetDimensions();
+		void initFrames();
 
 		// movie infoviewer
 		CBox cFrameBoxInfo;

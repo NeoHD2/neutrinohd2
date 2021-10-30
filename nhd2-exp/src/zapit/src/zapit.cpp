@@ -288,22 +288,22 @@ void initFrontend()
 				
 				live_fe = fe;
     
-                if (fe->info.type == FE_QPSK)
-                {
-                    have_s = true;
-                }
-                else if (fe->info.type == FE_QAM)
-                {
-                    have_c = true;
-                }
-                else if (fe->info.type == FE_OFDM)
-                {
-                    have_t = true;
-                }
-                else if (fe->info.type == FE_ATSC)
-                {
-                    have_a = true;
-                }
+				if (fe->info.type == FE_QPSK)
+				{
+				    have_s = true;
+				}
+				else if (fe->info.type == FE_QAM)
+				{
+				    have_c = true;
+				}
+				else if (fe->info.type == FE_OFDM)
+				{
+				    have_t = true;
+				}
+				else if (fe->info.type == FE_ATSC)
+				{
+				    have_a = true;
+				}
 
 				// check if isusbtuner/vtuner
 				char devicename[256];
@@ -325,41 +325,41 @@ void initFrontend()
 	}
 
 #if defined (ENABLE_FAKE_TUNER)
-    for(j = 0; j < 4; j++)
+    	for(j = 0; j < 4; j++)
 	{
 		fe = new CFrontend(j, 0); // adapter_num = 0
 			
-        if (j == 0)
+		if (j == 0)
 		{
-            fe->info.type = FE_QPSK;
-		    strcpy(fe->info.name, "Sat Fake Tuner");
-            have_s = true;
-        }
-        else if (j == 1)
+			fe->info.type = FE_QPSK;
+			strcpy(fe->info.name, "Sat Fake Tuner");
+			have_s = true;
+		}
+		else if (j == 1)
 		{
-            fe->info.type = FE_QAM;
-		    strcpy(fe->info.name, "Cable Fake Tuner");
-            have_c = true;
-        }
-        else if(j == 2)
+			fe->info.type = FE_QAM;
+			strcpy(fe->info.name, "Cable Fake Tuner");
+			have_c = true;
+		}
+		else if(j == 2)
 		{
-            fe->info.type = FE_OFDM;
-		    strcpy(fe->info.name, "Terrestrial Fake Tuner");
-            have_t = true;
-        }
-        else if (j == 3)
+			fe->info.type = FE_OFDM;
+			strcpy(fe->info.name, "Terrestrial Fake Tuner");
+			have_t = true;
+		}
+		else if (j == 3)
 		{
-            fe->info.type = FE_ATSC;
-		    strcpy(fe->info.name, "ATSC Fake Tuner");
-            have_a = true;
-        }
+			fe->info.type = FE_ATSC;
+			strcpy(fe->info.name, "ATSC Fake Tuner");
+			have_a = true;
+		}
 
 		index++;
 		femap.insert(std::pair <unsigned short, CFrontend*> (index, fe));
 	}
 #endif
 
-    FrontendCount = femap.size();
+	FrontendCount = femap.size();
 	
 	dprintf(DEBUG_INFO, "[zapit] %s found %d frontends\n", __FUNCTION__, femap.size());
 }

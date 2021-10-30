@@ -52,7 +52,7 @@ class CInfoViewer
 {
 	private:
 		void Init(void);
-		void initDimension(void);
+		void initFrames(void);
 
 		CFrameBuffer *frameBuffer;
 		
@@ -61,6 +61,7 @@ class CInfoViewer
 		bool CA_Status;
 		bool showButtonBar;
 		
+		//
 		int BoxEndX;
 		int BoxEndY;
 		int BoxStartX;
@@ -145,7 +146,7 @@ class CInfoViewer
 		int             rt_h;
 		int             rt_w;	
 
-		int		asize;
+		int	asize;
 		bool show_dot;
 		bool new_chan;
 
@@ -220,10 +221,10 @@ class CInfoViewer
 		void clearVirtualZapMode() {virtual_zap_mode = false;}
 		
 		//
-		void showRadiotext(); // needed in radiotext
-		void killRadiotext(); // needed in radiotext
-		void showSubchan(); // needed in CNVODChangeExec
-		void showEpgInfo(); // neede in remotecontrol
+		void showRadiotext(); 	// needed in radiotext
+		void killRadiotext(); 	// needed in radiotext
+		void showSubchan(); 	// needed in CNVODChangeExec
+		void showEpgInfo(); 	// neede in remotecontrol
 		void showPercent();
 };
 

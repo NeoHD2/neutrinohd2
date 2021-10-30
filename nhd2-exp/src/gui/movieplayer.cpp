@@ -115,7 +115,7 @@ CMoviePlayerGui::CMoviePlayerGui()
 
 	// infoViewer
 	visible = false;
-	GetDimensions();
+	initFrames();
 }
 
 CMoviePlayerGui::~CMoviePlayerGui()
@@ -1487,7 +1487,7 @@ void CMoviePlayerGui::showMovieInfo()
 	startMovieInfoViewer();
 }
 
-void CMoviePlayerGui::GetDimensions()
+void CMoviePlayerGui::initFrames()
 {
 	// movieinfo
 	cFrameBoxInfo.iHeight = BOXHEIGHT_MOVIEINFO;
@@ -1545,7 +1545,7 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	frameBuffer->paintBoxRel(cFrameBoxInfo.iX - 1, cFrameBoxInfo.iY - 1, cFrameBoxInfo.iWidth + 2, cFrameBoxInfo.iHeight + 2, COL_MENUCONTENT_PLUS_6);
 		
 	// paint info box
-	frameBuffer->paintBoxRel(cFrameBoxInfo.iX, cFrameBoxInfo.iY, cFrameBoxInfo.iWidth, cFrameBoxInfo.iHeight, COL_INFOBAR_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.infobar_gradient); 
+	frameBuffer->paintBoxRel(cFrameBoxInfo.iX, cFrameBoxInfo.iY, cFrameBoxInfo.iWidth, cFrameBoxInfo.iHeight, COL_INFOBAR_PLUS_0/*, NO_RADIUS, CORNER_NONE, g_settings.infobar_gradient*/); 
 		
 	// bottum bar
 	frameBuffer->paintBoxRel(cFrameBoxButton.iX, cFrameBoxButton.iY, cFrameBoxButton.iWidth, cFrameBoxButton.iHeight, COL_INFOBAR_SHADOW_PLUS_1,  NO_RADIUS, CORNER_NONE); 
@@ -1674,10 +1674,11 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	strftime(cDisplayTime, 11, "%T/", gmtime(&tDisplayTime));//FIXME
 	strftime(durationTime, 10, "%T", gmtime(&dDisplayTime));//FIXME
 
-	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight(), t_w/2, cDisplayTime/*play_time*/, COL_INFOBAR);
+	// diaplayTime
+	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight(), t_w/2, cDisplayTime, COL_INFOBAR);
 
-	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w/2, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight(), t_w/2 + 1, durationTime/*tot_time*/, COL_INFOBAR);	
-	////
+	// durationTime
+	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w/2, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight(), t_w/2 + 1, durationTime, COL_INFOBAR);	
 
 	// Info
 	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(InfoStartX, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight() + TitleHeight, InfoWidth, (char *)Info.c_str(), COL_INFOBAR, 0, true);

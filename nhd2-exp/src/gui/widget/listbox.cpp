@@ -1996,7 +1996,8 @@ void ClistBox::initFrames()
 		//
 		if(paintFootInfo)
 			cFrameFootInfo.iHeight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
-			
+		
+		//	
 		if(fbutton_count == 0)
 		{
 			fheight = 0;
@@ -2174,9 +2175,10 @@ void ClistBox::paintItems()
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		item_start_y = cFrameBox.iY + hheight + 10;
+		int items_height = cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight; 
 
 		// items background
-		frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY + hheight, cFrameBox.iWidth, cFrameBox.iHeight - hheight - fheight, paintFrame? COL_MENUCONTENT_PLUS_0 : 0);
+		frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY + hheight, cFrameBox.iWidth, /*cFrameBox.iHeight - hheight - fheight*/items_height, paintFrame? COL_MENUCONTENT_PLUS_0 : 0);
 
 		// item not currently on screen
 		if (selected >= 0)
@@ -2336,6 +2338,8 @@ void ClistBox::paintHead()
 {
 	if(paintTitle)
 	{
+		dprintf(DEBUG_INFO, "ClistBox::paintHead:\n");
+		
 		if(widgetType == WIDGET_TYPE_FRAME)
 		{
 			// box
@@ -2415,6 +2419,8 @@ void ClistBox::paintFoot()
 {
 	if(paint_Foot)
 	{
+		dprintf(DEBUG_INFO, "ClistBox::paintFoot:\n");
+		
 		if(widgetType == WIDGET_TYPE_FRAME)
 		{
 			if(fbutton_count)
@@ -2508,6 +2514,8 @@ void ClistBox::setFooterButtons(const struct button_label* _fbutton_labels, cons
 
 void ClistBox::paintItemInfo(int pos)
 {
+	dprintf(DEBUG_INFO, "ClistBox::paintItemInfo:\n");
+	
 	if(widgetType == WIDGET_TYPE_STANDARD)
 	{
 		if(widgetMode == MODE_LISTBOX)
@@ -2856,18 +2864,18 @@ void ClistBox::paintItemInfo(int pos)
 
 void ClistBox::hideItemInfo()
 {
-	//if(paintFootInfo)
-		//itemsLine.clear(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth + CONNECTLINEBOX_WIDTH, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight);
-
+	dprintf(DEBUG_NORMAL, "ClistBox::hideItemInfo:\n");
+	
     	if((widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC) && paintFootInfo)
 	{
-		//if(widgetMode == MODE_LISTBOX)
 		itemsLine.clear(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth + CONNECTLINEBOX_WIDTH, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight);
 	}  
 }
 
 void ClistBox::saveScreen()
 {
+	dprintf(DEBUG_NORMAL, "ClistBox::saveScreen:\n");
+	
 	if(!savescreen)
 		return;
 
@@ -2887,6 +2895,8 @@ void ClistBox::saveScreen()
 
 void ClistBox::restoreScreen()
 {
+	dprintf(DEBUG_NORMAL, "ClistBox::restoreScreen:\n");
+	
 	if(background) 
 	{
 		if(savescreen)
@@ -2896,6 +2906,8 @@ void ClistBox::restoreScreen()
 
 void ClistBox::enableSaveScreen()
 {
+	dprintf(DEBUG_NORMAL, "ClistBox::enableSaveScreen:\n");
+	
 	savescreen = true;
 	
 	if(!savescreen && background) 
@@ -3617,8 +3629,6 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 
 							g_settings.menu_design = widgetType;
 
-							//paintHead();
-							//paintFoot();
 							paint();
 						}
 					}
@@ -3637,8 +3647,6 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 					
 							widgetType = widget[cnt];
 
-							//paintHead();
-							//paintFoot();
 							paint();
 						}
 					}
