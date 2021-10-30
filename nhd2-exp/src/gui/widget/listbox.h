@@ -585,7 +585,6 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		//
 		int items_height;
 		int items_width;
-		CTextBox * textBox;
 		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
