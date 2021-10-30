@@ -568,7 +568,6 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		//
 		bool paintFrame;
 		
-		////
 		//
 		neutrino_msg_t      msg;
 		neutrino_msg_data_t data;
@@ -583,6 +582,9 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		uint32_t sec_timer_id;
 		bool MenuPos;
 		
+		//
+		int items_height;
+		int items_width;
 		CTextBox * textBox;
 		
 	public:
@@ -681,7 +683,7 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		std::string getName(){return l_name;};
 		std::string getActionKey(void){return actionKey;};
 		
-		////TEST:fixme
+		//
 		virtual int exec(CMenuTarget * parent, const std::string &actionKey);
 		
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};

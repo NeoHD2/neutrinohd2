@@ -43,7 +43,6 @@
 
 
 extern CPlugins * g_PluginList;    // defined in neutrino.cpp
-//static CTextBox * textBox = NULL;
 
 // CMenuItem
 CMenuItem::CMenuItem()
@@ -2175,10 +2174,13 @@ void ClistBox::paintItems()
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		item_start_y = cFrameBox.iY + hheight + 10;
-		int items_height = cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight; 
+		
+		//
+		items_height = cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight; 
+		items_width = cFrameBox.iWidth;
 
 		// items background
-		frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY + hheight, cFrameBox.iWidth, /*cFrameBox.iHeight - hheight - fheight*/items_height, paintFrame? COL_MENUCONTENT_PLUS_0 : 0);
+		frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY + hheight, cFrameBox.iWidth, cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight, paintFrame? COL_MENUCONTENT_PLUS_0 : 0);
 
 		// item not currently on screen
 		if (selected >= 0)
@@ -2240,30 +2242,21 @@ void ClistBox::paintItems()
 	}
 	else
 	{
-		int items_height = cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight; 
+		items_height = cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight; 
 
 		sb_width = 0;
 	
 		if(total_pages > 1)
 			sb_width = SCROLLBAR_WIDTH;
 
-		//items_width = cFrameBox.iWidth - sb_width;
+		items_width = cFrameBox.iWidth - sb_width;
 		item_width = cFrameBox.iWidth - sb_width;
 
 		// extended
 		if(widgetType == WIDGET_TYPE_EXTENDED)
 		{
-			//items_width = 2*(cFrameBox.iWidth/3) - sb_width;
-			item_width = 2*(cFrameBox.iWidth/3) - sb_width;
-
-			// extended			
-			if(textBox)
-			{
-				delete textBox;
-				textBox = NULL;
-			}
-
-			textBox = new CTextBox(cFrameBox.iX + 2*(cFrameBox.iWidth/3), cFrameBox.iY + hheight, (cFrameBox.iWidth/3), items_height);			
+			items_width = 2*(cFrameBox.iWidth/3) - sb_width;
+			item_width = 2*(cFrameBox.iWidth/3) - sb_width;			
 		}
 
 		// item not currently on screen
@@ -2575,34 +2568,24 @@ void ClistBox::paintItemInfo(int pos)
 					itemsLine.paint(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
 					// HelpText
-					/*
-					if(textBox)
-					{
-						delete textBox;
-						textBox = NULL;
-					}
-					*/
-	
-					CTextBox * textBox = new CTextBox(cFrameBox.iX + 2, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight + 2, cFrameBox.iWidth - 4, cFrameFootInfo.iHeight - 4);
-					textBox->disablePaintFrame();
-					textBox->setMode(AUTO_WIDTH);
+					CTextBox * itemInfoBox = new CTextBox(cFrameBox.iX + 2, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight + 2, cFrameBox.iWidth - 4, cFrameFootInfo.iHeight - 4);
+					itemInfoBox->disablePaintFrame();
+					itemInfoBox->setMode(AUTO_WIDTH);
 
 					// HelpText
 					if(!item->itemHelpText.empty())
 					{
-						textBox->setText(item->itemHelpText.c_str(), !item->itemIcon.empty()? item->itemIcon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
-						textBox->paint();
+						itemInfoBox->setText(item->itemHelpText.c_str(), !item->itemIcon.empty()? item->itemIcon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
+						itemInfoBox->paint();
 					}
 					
-					////TEST
-					delete textBox;
-					textBox = NULL;
+					delete itemInfoBox;
+					itemInfoBox = NULL;
 				}
 			}
 		}
 		else if(widgetMode == MODE_MENU)
 		{
-			//TEST
 			if(paintFootInfo)
 			{
 				CMenuItem* item = items[pos];
@@ -2611,17 +2594,9 @@ void ClistBox::paintItemInfo(int pos)
 				itemsLine.paint(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
 				// HelpText
-				/*
-				if(textBox)
-				{
-					delete textBox;
-					textBox = NULL;
-				}
-				*/
-	
-				CTextBox * textBox = new CTextBox(cFrameBox.iX + 2, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight + 2, cFrameBox.iWidth - 4, cFrameFootInfo.iHeight - 4);
-				textBox->disablePaintFrame();
-				textBox->setMode(AUTO_WIDTH);
+				CTextBox * itemInfoBox = new CTextBox(cFrameBox.iX + 2, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight + 2, cFrameBox.iWidth - 4, cFrameFootInfo.iHeight - 4);
+				itemInfoBox->disablePaintFrame();
+				itemInfoBox->setMode(AUTO_WIDTH);
 				
 				// itemIcon
 				std::string icon;
@@ -2635,14 +2610,12 @@ void ClistBox::paintItemInfo(int pos)
 				// HelpText
 				if(!item->itemHelpText.empty())
 				{
-					//textBox->setText(item->itemHelpText.c_str(), !item->itemIcon.empty()? item->itemIcon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
-					textBox->setText(item->itemHelpText.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
-					textBox->paint();
+					itemInfoBox->setText(item->itemHelpText.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
+					itemInfoBox->paint();
 				}
 				
-				////
-				delete textBox;
-				textBox = NULL;
+				delete itemInfoBox;
+				itemInfoBox = NULL;
 			}
 			else
 			{
@@ -2727,29 +2700,20 @@ void ClistBox::paintItemInfo(int pos)
 					// detailslines box
 					itemsLine.paint(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
-					// HelpText
-					/*
-					if(textBox)
-					{
-						delete textBox;
-						textBox = NULL;
-					}
-					*/
-	
-					CTextBox * textBox = new CTextBox(cFrameBox.iX + 2, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight + 2, cFrameBox.iWidth - 4, cFrameFootInfo.iHeight - 4);
-					textBox->disablePaintFrame();
-					textBox->setMode(AUTO_WIDTH);
+					// HelpText	
+					CTextBox * itemInfoBox = new CTextBox(cFrameBox.iX + 2, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight + 2, cFrameBox.iWidth - 4, cFrameFootInfo.iHeight - 4);
+					itemInfoBox->disablePaintFrame();
+					itemInfoBox->setMode(AUTO_WIDTH);
 
 					// HelpText
 					if(!item->itemHelpText.empty())
 					{
-						textBox->setText(item->itemHelpText.c_str());
-						textBox->paint();
+						itemInfoBox->setText(item->itemHelpText.c_str());
+						itemInfoBox->paint();
 					}
 					
-					////
-					delete textBox;
-					textBox = NULL;
+					delete itemInfoBox;
+					itemInfoBox = NULL;
 				}
 			}
 		}
@@ -2825,6 +2789,14 @@ void ClistBox::paintItemInfo(int pos)
 
 			CFrameBuffer::getInstance()->scaleImage(fname, &p_w, &p_h);
 
+			if(textBox)
+			{
+				delete textBox;
+				textBox = NULL;
+			}
+					
+			textBox = new CTextBox(cFrameBox.iX + 2*(cFrameBox.iWidth/3), cFrameBox.iY + hheight, (cFrameBox.iWidth/3), items_height);
+			
 			textBox->setBackgroundColor(COL_MENUCONTENTDARK_PLUS_0);
 
 			// helpText

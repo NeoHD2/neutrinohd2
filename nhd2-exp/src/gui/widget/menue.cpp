@@ -658,7 +658,7 @@ void CMenuWidget::paintItems()
 	else
 	{
 		// items height
-		int items_height = height - hheight - fheight;
+		items_height = height - hheight - fheight;
 	
 		// items width
 		sb_width = 0;
@@ -666,23 +666,14 @@ void CMenuWidget::paintItems()
 		if(total_pages > 1)
 			sb_width = SCROLLBAR_WIDTH; 
 	
-		//items_width = width - sb_width;
+		items_width = width - sb_width;
 		item_width = width - sb_width;
 
 		// extended
 		if(widgetType == WIDGET_TYPE_EXTENDED)
 		{
-			//items_width = 2*(width/3) - sb_width;
+			items_width = 2*(width/3) - sb_width;
 			item_width = 2*(width/3) - sb_width;
-
-			// extended
-			if(textBox)
-			{
-				delete textBox;
-				textBox = NULL;
-			}
-
-			textBox = new CTextBox(x + 2*(width/3), y + hheight, width/3, items_height);
 		}
 	
 		// item not currently on screen
@@ -1057,6 +1048,14 @@ void CMenuWidget::paintItemInfo(int pos)
 			std::string fname = item->itemIcon;
 
 			CFrameBuffer::getInstance()->scaleImage(fname, &p_w, &p_h);
+			
+			if(textBox)
+			{
+				delete textBox;
+				textBox = NULL;
+			}
+
+			textBox = new CTextBox(x + 2*(width/3), y + hheight, width/3, items_height);
 
 			textBox->setBackgroundColor(COL_MENUCONTENTDARK_PLUS_0);
 
