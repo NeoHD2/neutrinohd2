@@ -2509,7 +2509,7 @@ void ClistBox::setFooterButtons(const struct button_label* _fbutton_labels, cons
 void ClistBox::paintItemInfo(int pos)
 {
 	dprintf(DEBUG_INFO, "ClistBox::paintItemInfo:\n");
-	
+#if 0	
 	if(widgetType == WIDGET_TYPE_STANDARD)
 	{
 		if(widgetMode == MODE_LISTBOX)
@@ -2842,6 +2842,7 @@ void ClistBox::paintItemInfo(int pos)
 			}
 		}
 	}
+#endif	
 }
 
 void ClistBox::hideItemInfo()
@@ -2851,7 +2852,7 @@ void ClistBox::hideItemInfo()
     	if((widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC) && paintFootInfo)
 	{
 		itemsLine.clear(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth + CONNECTLINEBOX_WIDTH, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight);
-	}  
+	} 	 
 }
 
 void ClistBox::saveScreen()
