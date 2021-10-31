@@ -1253,8 +1253,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 	CFrameBuffer::getInstance()->blit();
 
 	// add sec timer
-	if(PaintDate)
-		sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
+	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
 
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
 
@@ -1869,12 +1868,8 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 	hide();	
 
 	//
-	if(PaintDate)
-	{
-		//
-		g_RCInput->killTimer(sec_timer_id);
-		sec_timer_id = 0;
-	}	
+	g_RCInput->killTimer(sec_timer_id);
+	sec_timer_id = 0;	
 
 	// vfd
 	if(!parent)

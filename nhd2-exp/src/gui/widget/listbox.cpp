@@ -2509,7 +2509,7 @@ void ClistBox::setFooterButtons(const struct button_label* _fbutton_labels, cons
 void ClistBox::paintItemInfo(int pos)
 {
 	dprintf(DEBUG_INFO, "ClistBox::paintItemInfo:\n");
-#if 0	
+	
 	if(widgetType == WIDGET_TYPE_STANDARD)
 	{
 		if(widgetMode == MODE_LISTBOX)
@@ -2841,8 +2841,7 @@ void ClistBox::paintItemInfo(int pos)
 				}
 			}
 		}
-	}
-#endif	
+	}	
 }
 
 void ClistBox::hideItemInfo()
@@ -3430,10 +3429,8 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 	paint();
 	CFrameBuffer::getInstance()->blit();
 	
-	// control loop
 	// add sec timer
-	if(paintDate)
-		sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
+	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
 		
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
 
@@ -3529,7 +3526,6 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 			
 			switch (msg)
 			{
-				//
 				case (RC_up):
 					onUpKeyPressed();
 					break;
@@ -3618,13 +3614,10 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 	}while ( msg != RC_timeout );	
 	
 	hide();
-	
-	if(paintDate)
-	{
-		//
-		g_RCInput->killTimer(sec_timer_id);
-		sec_timer_id = 0;
-	}
+
+	//
+	g_RCInput->killTimer(sec_timer_id);
+	sec_timer_id = 0;
 	
 	// vfd
 	if(!parent)
