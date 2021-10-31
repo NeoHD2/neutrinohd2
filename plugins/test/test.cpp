@@ -32,9 +32,6 @@ class CTestMenu : public CMenuTarget
 		CFrameBuffer* frameBuffer;
 
 		//
-		CMenuWidget* listMenu;
-		CMenuItem* item;
-
 		CAudioPlayerGui tmpAudioPlayerGui;
 		CMoviePlayerGui tmpMoviePlayerGui;
 		CPictureViewerGui tmpPictureViewerGui;
@@ -72,23 +69,31 @@ class CTestMenu : public CMenuTarget
 		CChannelList* webTVchannelList;
 		CBouquetList* webTVBouquetList;
 
+		// CButtons
 		CButtons buttons;
 		
+		// CHeaders
 		CBox headBox;
-		CBox footBox;
 		CHeaders * headers;
+		
+		// CFooters
+		CBox footBox;
 		CFooters *footers;
 
+		// CWidget
 		CWidget *testWidget;
 
+		// frameBox
 		CBox topBox;
 		CFrameBox *frameBoxWidget;
 		int top_selected;
 
+		// ClistBox
 		CBox leftBox;
 		ClistBox *leftWidget;
 		int left_selected;
 
+		// ClistBox
 		CBox rightBox;
 		ClistBox *rightWidget;
 		int right_selected;
@@ -96,10 +101,13 @@ class CTestMenu : public CMenuTarget
 		//
 		CListFrame *listFrame;
 		CTextBox *textWidget;
-		//ClistBox *listBox;
 
 		CWindow *windowWidget;
 		CProgressWindow * progressWindow;
+		
+		// CMenuwidget
+		CMenuWidget* listMenu;
+		CMenuItem* item;
 
 		// functions helpers
 		void loadTMDBPlaylist(const char *txt = "movie", const char *list = "popular", const int seite = 1, bool search = false);
@@ -276,13 +284,13 @@ CTestMenu::CTestMenu()
 	listFrame = NULL;
 	textWidget = NULL;
 	windowWidget = NULL;
-	//listBox = NULL;
+	
+	//
 	progressWindow = NULL;
 }
 
 CTestMenu::~CTestMenu()
 {
-	//Channels.clear();
 	filelist.clear();
 	fileFilter.clear();
 	m_vMovieInfo.clear();
@@ -298,14 +306,6 @@ CTestMenu::~CTestMenu()
 		delete webTVBouquetList;
 		webTVBouquetList = NULL;
 	}
-
-/*
-	if(listBox)
-	{
-		delete listBox;
-		listBox = NULL;
-	}
-	*/
 }
 
 void CTestMenu::hide()
@@ -660,8 +660,6 @@ void CTestMenu::loadPicturePlaylist()
 			}
 		}
 	}
-
-	//loadBox.hide();
 }
 
 void CTestMenu::openPictureFileBrowser()
@@ -832,7 +830,7 @@ void CTestMenu::testCWidget()
 
 	footers->setCorner(RADIUS_MID, CORNER_BOTTOM);
 	
-	// topwidget
+	// topwidget (frameBox)
 	topBox.iWidth = testWidget->getWindowsPos().iWidth;
 	topBox.iHeight = 50;
 	topBox.iX = testWidget->getWindowsPos().iX;
@@ -867,7 +865,7 @@ void CTestMenu::testCWidget()
 
 	frameBoxWidget->setSelected(top_selected); 
 
-	// leftWidget
+	// leftWidget (listBox)
 	leftBox.iWidth = 200;
 	leftBox.iHeight = testWidget->getWindowsPos().iHeight - headBox.iHeight - INTER_FRAME_SPACE - topBox.iHeight - 2*INTER_FRAME_SPACE - footBox.iHeight;
 	leftBox.iX = testWidget->getWindowsPos().iX;
@@ -878,7 +876,6 @@ void CTestMenu::testCWidget()
 	leftWidget = new ClistBox(&leftBox);
 
 	leftWidget->setSelected(left_selected);
-	//leftWidget->enableShrinkMenu();
 	leftWidget->setOutFocus();
 
 	ClistBoxItem *item1 = new ClistBoxItem("In den Kinos", true, NULL, this, "movie_in_cinema");
@@ -911,7 +908,7 @@ void CTestMenu::testCWidget()
 	leftWidget->addItem(item9);
 	leftWidget->addItem(new CMenuSeparator(LINE));
 
-	// rightwidget
+	// rightwidget (listBox)
 	rightBox.iWidth = testWidget->getWindowsPos().iWidth - INTER_FRAME_SPACE - leftBox.iWidth;
 	rightBox.iHeight = testWidget->getWindowsPos().iHeight - headBox.iHeight - INTER_FRAME_SPACE - topBox.iHeight - 2*INTER_FRAME_SPACE - footBox.iHeight;
 	rightBox.iX = testWidget->getWindowsPos().iX + leftBox.iWidth + INTER_FRAME_SPACE;
@@ -925,7 +922,6 @@ void CTestMenu::testCWidget()
 	rightWidget->setItemsPerPage(6,2);
 	rightWidget->setSelected(right_selected);
 	rightWidget->enablePaintFootInfo();
-	//rightWidget->setOutFocus(false);
 
 	// loadPlaylist
 	CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
@@ -4120,7 +4116,6 @@ void CTestMenu::testClistBox6()
 			
 			rightWidget->paint();
 		}
-		//
 		else if(msg == RC_setup)
 		{
 			rightWidget->changeWidgetType();
@@ -5177,7 +5172,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::exec: actionKey:%s\n", actionKey.c_str());
 
-	int cnt = 0;
+	//int cnt = 0;
 	
 	if(parent)
 		hide();
@@ -5651,19 +5646,24 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 	else if(actionKey == "winfo")
 	{
-		if(testWidget->getSelected() == 3)
+		//if(testWidget->getSelected() == 3) // rightWidget onFocus
+		if (rightWidget)
 		{
-			right_selected = rightWidget->getSelected();
-			m_movieInfo.showMovieInfo(m_vMovieInfo[right_selected]);
+			if (rightWidget->inFocus)
+			{
+				right_selected = rightWidget->getSelected();
+				m_movieInfo.showMovieInfo(m_vMovieInfo[right_selected]);
+			}
 		}
 
 		return RETURN_REPAINT;
 	}
 	else if(actionKey == "wok")
 	{
-		int focus = testWidget->getSelected();
+		//int focus = testWidget->getSelected();
 
-		if(focus == 3)
+		//if(focus == 3)
+		if (rightWidget->inFocus)
 		{
 			//hide();
 /*
@@ -5698,7 +5698,8 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			}
 */
 		}
-		else if(focus == 2)
+		//else if(focus == 2)
+		else if (leftWidget->inFocus)
 		{
 			left_selected = leftWidget->getSelected();
 
@@ -5952,7 +5953,8 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			if(left_selected == 8)
 				return RETURN_EXIT_ALL;
 		}
-		else if(focus == 1)
+		//else if(focus == 1)
+		else if (frameBoxWidget->inFocus)
 		{
 			top_selected = frameBoxWidget->getSelected();
 

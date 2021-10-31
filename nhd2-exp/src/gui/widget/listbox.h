@@ -595,7 +595,7 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		bool hasItem();
 		void clearItems(void){items.clear(); current_page = 0;};
 		void clearAll(void){items.clear(); hbutton_labels.clear(); fbutton_labels.clear(); widget.clear();current_page = 0;};
-		//void setSelected(unsigned int _new) { /*if(_new <= items.size())*/ selected = _new; };
+		void setSelected(unsigned int _new) { /*if(_new <= items.size())*/ selected = _new; };
 
 		virtual void initFrames();
 		virtual void paint();
@@ -689,7 +689,7 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		
 		bool getExitPressed(){return exit_pressed;};
 
-		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
+		//void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
 		
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 		neutrino_msg_t getKey(){return msg;};
