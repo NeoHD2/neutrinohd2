@@ -258,7 +258,7 @@ void CTextBox::refreshTextLineArray(void)
 	if( m_nMode & AUTO_WIDTH)
 	{
 		// In case of autowidth, we calculate the max allowed width of the textbox
-		lineBreakWidth = MAX_WINDOW_WIDTH - BORDER_LEFT - BORDER_RIGHT - m_cFrameScrollRel.iWidth;
+		lineBreakWidth = m_cFrameTextRel.iWidth - BORDER_LEFT - BORDER_RIGHT - m_cFrameScrollRel.iWidth;
 	}
 	else
 	{
@@ -291,9 +291,9 @@ void CTextBox::refreshTextLineArray(void)
 			//if(pos == -1)
 			if(pos > TextChars || pos < 0)
 			{
-				//pos = TextChars + 1;
-				//loop = false; // note, this is not 100% correct. if the last characters does not fit in one line, the characters after are cut
-				break;
+				pos = TextChars + 1;
+				loop = false; // note, this is not 100% correct. if the last characters does not fit in one line, the characters after are cut
+				//break;
 			}
 
 			aktWord = m_cText.substr(pos_prev, pos - pos_prev + 1);
@@ -341,7 +341,7 @@ void CTextBox::refreshTextLineArray(void)
 				{
 					if( m_nMode & AUTO_WIDTH)
 					{
-						lineBreakWidth = MAX_WINDOW_WIDTH - m_cFrameScrollRel.iWidth - BORDER_LEFT - BORDER_RIGHT;
+						lineBreakWidth = m_cFrameTextRel.iWidth - m_cFrameScrollRel.iWidth - BORDER_LEFT - BORDER_RIGHT;
 					}
 					else
 					{
@@ -354,7 +354,7 @@ void CTextBox::refreshTextLineArray(void)
 				{
 					if( m_nMode & AUTO_WIDTH)
 					{
-						lineBreakWidth = MAX_WINDOW_WIDTH - m_cFrameScrollRel.iWidth - BORDER_LEFT - BORDER_RIGHT;
+						lineBreakWidth = m_cFrameTextRel.iWidth - m_cFrameScrollRel.iWidth - BORDER_LEFT - BORDER_RIGHT;
 					}
 					else
 					{
@@ -439,7 +439,7 @@ void CTextBox::refreshText(void)
 	}
 	
 	// paint text
-	int y = m_cFrameTextRel.iY;
+	int y = m_cFrameTextRel.iY + 10;
 	int i;
 	int x_start = 0;
 
@@ -597,7 +597,6 @@ bool CTextBox::setText(const char * const newText, const char * const _thumbnail
 	if (newText != NULL || thumbnail.empty())
 	{
 		m_cText = newText;
-		m_cText += "\n";
 		
 		refreshTextLineArray();
 		
