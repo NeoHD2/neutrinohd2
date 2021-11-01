@@ -906,13 +906,13 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	// progressbar color
 	g_settings.progressbar_color = configfile.getInt32("progressbar_color", 0);
-	g_settings.progressbar_gradient = configfile.getInt32("progressbar_gradient", nogradient);
+	g_settings.progressbar_gradient = configfile.getInt32("progressbar_gradient", NOGRADIENT);
 
 	// gradient
-	g_settings.Head_gradient = configfile.getInt32("Head_gradient", gradientLight2Dark);
-	g_settings.Foot_gradient = configfile.getInt32("Foot_gradient", gradientDark2Light);
-	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", nogradient);
-	g_settings.infobar_gradient = configfile.getInt32("infobar_gradient", nogradient);
+	g_settings.Head_gradient = configfile.getInt32("Head_gradient", LIGHT2DARK);
+	g_settings.Foot_gradient = configfile.getInt32("Foot_gradient", DARK2LIGHT);
+	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
+	g_settings.infobar_gradient = configfile.getInt32("infobar_gradient", NOGRADIENT);
 	// END MISC OPTS
 
 	// HDD

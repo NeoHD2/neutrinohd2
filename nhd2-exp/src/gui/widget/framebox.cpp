@@ -59,7 +59,7 @@ CFrame::CFrame()
 	fcolor = COL_MENUCONTENT_PLUS_0;
 	radius = RADIUS_MID;
 	corner = NO_RADIUS;
-	gradient = nogradient;
+	gradient = NOGRADIENT;
 
 	// headFrame
 	headColor = COL_MENUHEAD_PLUS_0;

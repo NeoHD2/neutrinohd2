@@ -45,7 +45,7 @@ class CSwigHelpers
 		unsigned int getScreenX(){return CFrameBuffer::getInstance()->getScreenX();};
 		unsigned int getScreenY(){return CFrameBuffer::getInstance()->getScreenY();};
 
-		void paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius = 0, int type = CORNER_NONE, int mode = nogradient);
+		void paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius = 0, int type = CORNER_NONE, int mode = NOGRADIENT);
 
 		bool paintIcon(const std::string & filename, const int x, const int y, const int h = 0, bool paint = true, int width = 0, int height = 0);
 

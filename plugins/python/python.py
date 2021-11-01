@@ -189,49 +189,49 @@ class testMenu(CMenuTarget):
 		# messageBox
 		item1 = CMenuForwarder("CMessageBox", True, "", None, "red action")
 		item1.setItemIcon(DATADIR + "/neutrino/icons/plugin.png")
-		item1.setHelpText("testing CMessageBox")
+		item1.setHint("testing CMessageBox")
 		item1.setInfo1("testing CMessageBox")
 
 		# CHelpBox
 		item2 = CMenuForwarder("CHelpBox")
 		item2.setItemIcon(DATADIR + "/neutrino/icons/plugin.png")
-		item2.setHelpText("testing CHelpBox")
+		item2.setHint("testing CHelpBox")
 		item2.setInfo1("testing CHelpBox")
 
 		# CHintBox
 		item3 = CMenuForwarder("CHintBox")
 		item3.setItemIcon(DATADIR + "/neutrino/icons/plugin.png")
-		item3.setHelpText("testing CHintBox")
+		item3.setHint("testing CHintBox")
 		item3.setInfo1("testing CHintBox")
 
 		# CInfoBox
 		item4 = CMenuForwarder("CInfoBox")
 		item4.setItemIcon(DATADIR + "/neutrino/icons/plugin.png")
-		item4.setHelpText("testing CInfoBox")
+		item4.setHint("testing CInfoBox")
 		item4.setInfo1("testing CInfoBox")
 
 		# CStringInput
 		item5 = CMenuForwarder("CStringInput")
 		item5.setItemIcon(DATADIR + "/neutrino/icons/plugin.png")
-		item5.setHelpText("testing CStringInput")
+		item5.setHint("testing CStringInput")
 		item5.setInfo1("testing CStringInput")
 
 		# CAudioPlayerGui
 		item6 = CMenuForwarder("CAudioPlayerGui")
 		item6.setItemIcon(DATADIR + "/neutrino/icons/plugin.png")
-		item6.setHelpText("testing CAudioPlayerGui")
+		item6.setHint("testing CAudioPlayerGui")
 		item6.setInfo1("testing CAudioPlayerGui")
 
 		# CPictureViewerGui
 		item7 = CMenuForwarder("CPictureViewerGui")
 		item7.setItemIcon(DATADIR + "/neutrino/icons/plugin.png")
-		item7.setHelpText("testing CPictureViewerGui")
+		item7.setHint("testing CPictureViewerGui")
 		item7.setInfo1("testing CPictureViewerGui")
 
 		# CFileBrowser | CMoviePlayerGui
 		item8 = CMenuForwarder("CMoviePlayerGui")
 		item8.setItemIcon(DATADIR + "/neutrino/icons/plugin.png")
-		item8.setHelpText("testing CMoviePlayerGui")
+		item8.setHint("testing CMoviePlayerGui")
 		item8.setInfo1("testing CMoviePlayerGui")
 
 		item = CMenuSeparator(LINE)

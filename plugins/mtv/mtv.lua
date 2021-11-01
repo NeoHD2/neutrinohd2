@@ -1142,7 +1142,7 @@ function mtv_listen_menu()
 	local item = nil
 	for i, v in ipairs(glob.mtv) do
 		item = neutrino.ClistBoxItem(v.name)
-		item:setHelpText(v.url)
+		item:setHint(v.url)
 		item:setActionKey(null, "mtv_liste")
 
 		menu:addItem(item)

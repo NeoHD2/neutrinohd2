@@ -301,13 +301,13 @@ fb_pixel_t* gradientOneColor(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize,
 
 	switch (mode) 
 	{
-		case gradientDark2Light:
-		case gradientDark2Light2Dark:
+		case DARK2LIGHT:
+		case DARK2LIGHT2DARK:
 			start_v = min_v;
 			end_v   = max_v;
 			break;
-		case gradientLight2Dark:
-		case gradientLight2Dark2Light:
+		case LIGHT2DARK:
+		case LIGHT2DARK2LIGHT:
 			start_v = max_v;
 			end_v   = min_v;
 			break;
@@ -315,7 +315,7 @@ fb_pixel_t* gradientOneColor(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize,
 			return 0;
 	}
 
-	int bSize1 = ((mode == gradientDark2Light2Dark) || (mode == gradientLight2Dark2Light)) ? bSize/2 : bSize;
+	int bSize1 = ((mode == DARK2LIGHT2DARK) || (mode == LIGHT2DARK2LIGHT)) ? bSize/2 : bSize;
 
 	int v  = start_v; int v_ = v;
 	float factor_v = ((float)end_v - (float)v) / (float)bSize1;
@@ -328,7 +328,7 @@ fb_pixel_t* gradientOneColor(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize,
 		gradientBuf[i] = Hsv2SysColor(&hsv, tr);
 	}
 
-	if ((mode == gradientDark2Light2Dark) || (mode == gradientLight2Dark2Light)) 
+	if ((mode == DARK2LIGHT2DARK) || (mode == LIGHT2DARK2LIGHT)) 
 	{
 		bSize1 = bSize - bSize1;
 		for (int i = 0; i < bSize1; i++) 
@@ -363,7 +363,7 @@ fb_pixel_t* gradientColorToColor(fb_pixel_t start_col,fb_pixel_t end_col, fb_pix
 	end_col =  start_col;
 	start_col = temp_col;
 
-	if (mode == gradientDark2Light)
+	if (mode == DARK2LIGHT)
 	{
 		temp_col = start_col;
 		start_col = end_col;
@@ -402,7 +402,6 @@ fb_pixel_t* gradientColorToColor(fb_pixel_t start_col,fb_pixel_t end_col, fb_pix
 	}
 
 	return gradientBuf;
-
 }
 
 

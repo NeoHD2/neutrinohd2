@@ -59,6 +59,7 @@ class CEpgData
 		CFrameBuffer* frameBuffer;
 
 		CBox cFrameBox;
+		CWindow cFrameWindow;
 
 		CBox cFollowScreeningBox;
 		CWindow cFollowScreeningWindow;

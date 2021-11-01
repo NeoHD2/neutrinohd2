@@ -308,7 +308,7 @@ void CTVShows::showMenu()
 
 		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, new CNSeasons(season_id), NULL, RC_nokey, NULL, file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
-		item->setHelpText(tmp.c_str());
+		item->setHint(tmp.c_str());
 
 		mlist->addItem(item);
 	}

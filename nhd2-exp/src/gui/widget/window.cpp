@@ -78,7 +78,7 @@ void CWindow::init()
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
 	bgcolor = COL_MENUCONTENT_PLUS_0;
-	gradient = nogradient;
+	gradient = NOGRADIENT;
 
 	enableshadow = false;
 

@@ -56,7 +56,7 @@ CMenuItem::CMenuItem()
 	itemName = "";
 	option = "";
 	optionInfo = "";
-	itemHelpText = "";
+	itemHint = "";
 	info1 = "";
 	option_info1 = "";
 	info2 = "";
@@ -140,8 +140,8 @@ CMenuOptionChooser::CMenuOptionChooser(const neutrino_locale_t OptionName, int *
 	
 	pulldown = Pulldown;
 
-	if (itemHelpText.empty())
-		itemHelpText = optionNameString;
+	if (itemHint.empty())
+		itemHint = optionNameString;
 
 	itemType = ITEM_TYPE_OPTION_CHOOSER;
 }
@@ -166,8 +166,8 @@ CMenuOptionChooser::CMenuOptionChooser(const char * const OptionName, int* const
 	can_arrow = true;
 	pulldown = Pulldown;
 
-	if (itemHelpText.empty())
-		itemHelpText = optionNameString;
+	if (itemHint.empty())
+		itemHint = optionNameString;
 
 	itemType = ITEM_TYPE_OPTION_CHOOSER;
 }
@@ -397,8 +397,8 @@ CMenuOptionNumberChooser::CMenuOptionNumberChooser(const neutrino_locale_t Name,
 	can_arrow = true;
 	observ = Observ;
 
-	if (itemHelpText.empty())
-		itemHelpText = nameString;
+	if (itemHint.empty())
+		itemHint = nameString;
 
 	itemType = ITEM_TYPE_OPTION_NUMBER_CHOOSER;
 }
@@ -428,8 +428,8 @@ CMenuOptionNumberChooser::CMenuOptionNumberChooser(const char * const Name, int 
 	can_arrow = true;
 	observ = Observ;
 
-	if (itemHelpText.empty())
-		itemHelpText = nameString;
+	if (itemHint.empty())
+		itemHint = nameString;
 
 	itemType = ITEM_TYPE_OPTION_NUMBER_CHOOSER;
 }
@@ -551,8 +551,8 @@ CMenuOptionStringChooser::CMenuOptionStringChooser(const neutrino_locale_t Name,
 	
 	pulldown = Pulldown;
 
-	if (itemHelpText.empty())
-		itemHelpText = nameString;
+	if (itemHint.empty())
+		itemHint = nameString;
 
 	itemType = ITEM_TYPE_OPTION_STRING_CHOOSER;
 }
@@ -576,8 +576,8 @@ CMenuOptionStringChooser::CMenuOptionStringChooser(const char * const Name, char
 	
 	pulldown = Pulldown;
 
-	if (itemHelpText.empty())
-		itemHelpText = nameString;
+	if (itemHint.empty())
+		itemHint = nameString;
 
 	itemType = ITEM_TYPE_OPTION_STRING_CHOOSER;
 }
@@ -769,8 +769,8 @@ CMenuOptionLanguageChooser::CMenuOptionLanguageChooser(char *Name, CChangeObserv
 	directKey = RC_nokey;
 	iconName = IconName ? IconName : "";
 
-	if (itemHelpText.empty())
-		itemHelpText = Name;
+	if (itemHint.empty())
+		itemHint = Name;
 
 	itemType = ITEM_TYPE_OPTION_LANGUAGE_CHOOSER;
 }
@@ -976,7 +976,7 @@ bool CZapProtection::check()
 }
 
 // CMenuForwarder
-CMenuForwarder::CMenuForwarder(const neutrino_locale_t Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const neutrino_locale_t HelpText )
+CMenuForwarder::CMenuForwarder(const neutrino_locale_t Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const neutrino_locale_t Hint )
 {
 	option = Option? Option : "";
 
@@ -991,17 +991,17 @@ CMenuForwarder::CMenuForwarder(const neutrino_locale_t Text, const bool Active, 
 	iconName = IconName ? IconName : "";
 	
 	itemIcon = ItemIcon ? ItemIcon : "";
-	itemHelpText = g_Locale->getText(HelpText);
+	itemHint = g_Locale->getText(Hint);
 	itemType = ITEM_TYPE_FORWARDER;
 	itemName = g_Locale->getText(Text);
 
-	if (itemHelpText.empty())
-		itemHelpText = itemName;
+	if (itemHint.empty())
+		itemHint = itemName;
 
 	optionValueString = "";
 }
 
-CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const neutrino_locale_t HelpText )
+CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const neutrino_locale_t Hint )
 {
 	textString = Text? Text : "";
 	text = NONEXISTANT_LOCALE;
@@ -1016,12 +1016,12 @@ CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const
 	iconName = IconName ? IconName : "";
 	
 	itemIcon = ItemIcon ? ItemIcon : "";
-	itemHelpText = g_Locale->getText(HelpText);
+	itemHint = g_Locale->getText(Hint);
 	itemType = ITEM_TYPE_FORWARDER;
 	itemName = Text? Text : "";
 
-	if (itemHelpText.empty())
-		itemHelpText = itemName;
+	if (itemHint.empty())
+		itemHint = itemName;
 
 	optionValueString = "";
 }
@@ -1296,8 +1296,8 @@ ClistBoxItem::ClistBoxItem(const neutrino_locale_t Text, const bool Active, cons
 	itemIcon = ItemIcon? ItemIcon : "";
 	itemName = g_Locale->getText(Text);
 
-	if (itemHelpText.empty())
-		itemHelpText = itemName;
+	if (itemHint.empty())
+		itemHint = itemName;
 
 	itemType = ITEM_TYPE_LISTBOXITEM;
 }
@@ -1319,8 +1319,8 @@ ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const cha
 	itemIcon = ItemIcon? ItemIcon : "";
 	itemName = Text? Text : "";
 
-	if (itemHelpText.empty())
-		itemHelpText = itemName;
+	if (itemHint.empty())
+		itemHint = itemName;
 
 	itemType = ITEM_TYPE_LISTBOXITEM;
 }
@@ -2578,7 +2578,7 @@ void ClistBox::paintItemInfo(int pos)
 					// detailslines box
 					itemsLine.paint(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
-					// HelpText
+					// Hint
 					if(textBox)
 					{
 						delete textBox;
@@ -2589,10 +2589,10 @@ void ClistBox::paintItemInfo(int pos)
 					textBox->disablePaintFrame();
 					textBox->setMode(AUTO_WIDTH);
 
-					// HelpText
-					if(!item->itemHelpText.empty())
+					// Hint
+					if(!item->itemHint.empty())
 					{
-						textBox->setText(item->itemHelpText.c_str(), !item->itemIcon.empty()? item->itemIcon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
+						textBox->setText(item->itemHint.c_str(), !item->itemIcon.empty()? item->itemIcon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
 					}
 					
 					textBox->paint();
@@ -2608,7 +2608,7 @@ void ClistBox::paintItemInfo(int pos)
 				// detailslines box
 				itemsLine.paint(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
-				// HelpText
+				// Hint
 				if(textBox)
 				{
 					delete textBox;
@@ -2628,10 +2628,10 @@ void ClistBox::paintItemInfo(int pos)
 				else				
 					icon = g_settings.icons_dir + item->itemIcon.c_str() + ".png";
 
-				// HelpText
-				if(!item->itemHelpText.empty())
+				// Hint
+				if(!item->itemHint.empty())
 				{
-					textBox->setText(item->itemHelpText.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
+					textBox->setText(item->itemHint.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
 				}
 				
 				textBox->paint();
@@ -2652,10 +2652,10 @@ void ClistBox::paintItemInfo(int pos)
 					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
 					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + (fheight - ih)/2);
 
-					// HelpText
-					if(!item->itemHelpText.empty())
+					// Hint
+					if(!item->itemHint.empty())
 					{
-						g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBox.iX + BORDER_LEFT + iw + ICON_OFFSET, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHelpText.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+						g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBox.iX + BORDER_LEFT + iw + ICON_OFFSET, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
 					}
 				}
 			}
@@ -2719,7 +2719,7 @@ void ClistBox::paintItemInfo(int pos)
 					// detailslines box
 					itemsLine.paint(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
-					// HelpText
+					// Hint
 					if(textBox)
 					{
 						delete textBox;
@@ -2730,10 +2730,10 @@ void ClistBox::paintItemInfo(int pos)
 					textBox->disablePaintFrame();
 					textBox->setMode(AUTO_WIDTH);
 
-					// HelpText
-					if(!item->itemHelpText.empty())
+					// Hint
+					if(!item->itemHint.empty())
 					{
-						textBox->setText(item->itemHelpText.c_str());
+						textBox->setText(item->itemHint.c_str());
 					}
 					
 					textBox->paint();
@@ -2756,10 +2756,10 @@ void ClistBox::paintItemInfo(int pos)
 				frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
 				frameBuffer->paintIcon(NEUTRINO_ICON_INFO, cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + (fheight - ih)/2);
 
-				// HelpText
-				if(!item->itemHelpText.empty())
+				// Hint
+				if(!item->itemHint.empty())
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBox.iX + BORDER_LEFT + iw + ICON_OFFSET, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHelpText.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBox.iX + BORDER_LEFT + iw + ICON_OFFSET, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
 		}
@@ -2783,10 +2783,10 @@ void ClistBox::paintItemInfo(int pos)
 				frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
 				frameBuffer->paintIcon(NEUTRINO_ICON_INFO, cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + cFrameBox.iHeight - fheight + (fheight - ih)/2);
 
-				// itemHelpText
-				if(!item->itemHelpText.empty())
+				// itemHint
+				if(!item->itemHint.empty())
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBox.iX + BORDER_LEFT + iw + ICON_OFFSET, cFrameBox.iY + cFrameBox.iHeight - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHelpText.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBox.iX + BORDER_LEFT + iw + ICON_OFFSET, cFrameBox.iY + cFrameBox.iHeight - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
 
@@ -2822,8 +2822,8 @@ void ClistBox::paintItemInfo(int pos)
 			
 			textBox->setBackgroundColor(COL_MENUCONTENTDARK_PLUS_0);
 
-			// helpText
-			textBox->setText(item->itemHelpText.c_str(), item->itemIcon.c_str(), p_w, p_h, TOP_CENTER);
+			// hint
+			textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), p_w, p_h, TOP_CENTER);
 			textBox->paint();
 		}
 	}
@@ -2847,10 +2847,10 @@ void ClistBox::paintItemInfo(int pos)
 					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->RenderString(cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + cFrameBox.iHeight - fheight - cFrameFootInfo.iHeight + (cFrameFootInfo.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE] ->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT, item->itemName.c_str(), COL_MENUFOOT_INFO);
 				}
 
-				// helpText
-				if(!item->itemHelpText.empty())
+				// hint
+				if(!item->itemHint.empty())
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + cFrameBox.iHeight - fheight, cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT, item->itemHelpText.c_str(), COL_MENUFOOT_INFO);
+					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + cFrameBox.iHeight - fheight, cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT, item->itemHint.c_str(), COL_MENUFOOT_INFO);
 				}
 			}
 		}
@@ -3431,7 +3431,7 @@ void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned i
 			//FIXME: iconName
 			CMenuForwarder *fw_plugin = new CMenuForwarder(g_PluginList->getName(count), enabled, NULL, CPluginsExec::getInstance(), to_string(count).c_str(), dk, NULL, IconName.c_str());
 
-			fw_plugin->setHelpText(g_PluginList->getDescription(count).c_str());
+			fw_plugin->setHint(g_PluginList->getDescription(count).c_str());
 			fw_plugin->setWidgetMode(MODE_LISTBOX); //FIXME:
 			fw_plugin->isPlugin = true;
 

@@ -305,7 +305,7 @@ function select_playitem()
 	local item = nil
   	for i,r in  ipairs(p) do
 		item = neutrino.ClistBoxItem(r.title)
-		item:setHelpText(r.epg)
+		item:setHint(r.epg)
 		--item:setItemIcon(arte_concert)
 
 		m:addItem(item)

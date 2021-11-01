@@ -188,7 +188,7 @@ void CYTBrowser::showMenu()
 
 		item = new ClistBoxItem(itemTitle.c_str(), true, NULL, this, "play", RC_nokey, NULL,  file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
-		item->setHelpText(m_vMovieInfo[i].epgInfo2.c_str());
+		item->setHint(m_vMovieInfo[i].epgInfo2.c_str());
  
 		moviesMenu->addItem(item);
 	}
@@ -206,7 +206,6 @@ void CYTBrowser::showMenu()
 	moviesMenu->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
 	moviesMenu->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
 	moviesMenu->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
-
 	moviesMenu->addKey(RC_record, this, CRCInput::getSpecialKeyName(RC_record));
 
 	moviesMenu->exec(NULL, "");

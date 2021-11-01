@@ -154,7 +154,7 @@ void CWidget::paint()
 
 	// paint mainFrame
 	if(paintMainFrame)
-		frameBuffer->paintBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight, backgroundColor, radius, corner, nogradient);
+		frameBuffer->paintBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight, backgroundColor, radius, corner);
 
 	// paint items
 	paintItems();

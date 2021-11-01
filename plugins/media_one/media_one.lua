@@ -1272,7 +1272,7 @@ function rssurlmenu(url)
 		end
 		--m:addItem{type="forwarder", name=title, action="showMenuItem", id=i, directkey=dkey }
 		item = neutrino.CMenuForwarder(title)
-		--item:setHelpText(glob.feedpersed.entries[i].content)
+		--item:setHint(glob.feedpersed.entries[i].content)
 
 		m:addItem(item)
 	end

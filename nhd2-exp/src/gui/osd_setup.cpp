@@ -140,11 +140,11 @@ void COSDSettings::showMenu(void)
 #define COLOR_GRADIENT_TYPE_OPTION_COUNT 5
 const keyval COLOR_GRADIENT_TYPE_OPTIONS[COLOR_GRADIENT_TYPE_OPTION_COUNT] =
 {
-	{ nogradient, NONEXISTANT_LOCALE, "no gradient" },
-	{ gradientDark2Light, NONEXISTANT_LOCALE, "Dark to Light" },
-	{ gradientLight2Dark, NONEXISTANT_LOCALE, "Light to Dark" },
-	{ gradientDark2Light2Dark, NONEXISTANT_LOCALE, "Dark to Light to Dark" },
-	{ gradientLight2Dark2Light, NONEXISTANT_LOCALE, "Light to Dark to Light" }
+	{ NOGRADIENT, NONEXISTANT_LOCALE, "no gradient" },
+	{ DARK2LIGHT, NONEXISTANT_LOCALE, "Dark to Light" },
+	{ LIGHT2DARK, NONEXISTANT_LOCALE, "Light to Dark" },
+	{ DARK2LIGHT2DARK, NONEXISTANT_LOCALE, "Dark to Light to Dark" },
+	{ LIGHT2DARK2LIGHT, NONEXISTANT_LOCALE, "Light to Dark to Light" }
 };
 
 COSDMenuColorSettings::COSDMenuColorSettings()

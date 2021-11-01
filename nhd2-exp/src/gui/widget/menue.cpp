@@ -760,7 +760,7 @@ void CMenuWidget::paintItemInfo(int pos)
 				itemsLine.paint(x, y, full_width, full_height - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
 
-				// HelpText
+				// Hint
 				if(textBox)
 				{
 					delete textBox;
@@ -781,10 +781,10 @@ void CMenuWidget::paintItemInfo(int pos)
 				else				
 					icon = g_settings.icons_dir + item->itemIcon.c_str() + ".png";
 
-				// HelpText
-				if(!item->itemHelpText.empty())
+				// Hint
+				if(!item->itemHint.empty())
 				{
-					textBox->setText(item->itemHelpText.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
+					textBox->setText(item->itemHint.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
 				}
 				
 				textBox->paint();
@@ -805,10 +805,10 @@ void CMenuWidget::paintItemInfo(int pos)
 					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
 					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + full_height - fheight + (fheight - ih)/2);
 
-					// HelpText
-					if(!item->itemHelpText.empty())
+					// Hint
+					if(!item->itemHint.empty())
 					{
-						g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + full_height - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHelpText.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+						g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + full_height - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
 					}
 				}
 			}
@@ -877,7 +877,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					// detailslines|box
 					itemsLine.paint(x, y, full_width, full_height - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
-					// HelpText
+					// Hint
 					if(textBox)
 					{
 						delete textBox;
@@ -889,9 +889,9 @@ void CMenuWidget::paintItemInfo(int pos)
 					textBox->disablePaintFrame();
 					textBox->setMode(AUTO_WIDTH);
 
-					if(!item->itemHelpText.empty())
+					if(!item->itemHint.empty())
 					{
-						textBox->setText(item->itemHelpText.c_str(), item->itemIcon.c_str(), 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
+						textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
 					}
 					
 					textBox->paint();
@@ -917,10 +917,10 @@ void CMenuWidget::paintItemInfo(int pos)
 				frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
 				frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + full_height - fheight + (fheight - ih)/2);
 
-				// HelpText
-				if(!item->itemHelpText.empty())
+				// Hint
+				if(!item->itemHint.empty())
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + full_height - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHelpText.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + full_height - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
 		}
@@ -988,7 +988,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					// detailslines|box
 					itemsLine.paint(x, y, width, height, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
-					// HelpText
+					// Hint
 					if(textBox)
 					{
 						delete textBox;
@@ -1000,9 +1000,9 @@ void CMenuWidget::paintItemInfo(int pos)
 					textBox->disablePaintFrame();
 					textBox->setMode(AUTO_WIDTH);
 
-					if(!item->itemHelpText.empty())
+					if(!item->itemHint.empty())
 					{
-						textBox->setText(item->itemHelpText.c_str());
+						textBox->setText(item->itemHint.c_str());
 					}
 					
 					textBox->paint();
@@ -1020,7 +1020,7 @@ void CMenuWidget::paintItemInfo(int pos)
 		{
 			int iw, ih;
 
-			// helpText
+			// hint
 			if(fbutton_count == 0)
 			{
 				// refresh box
@@ -1030,10 +1030,10 @@ void CMenuWidget::paintItemInfo(int pos)
 				frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
 				frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + full_height - fheight + (fheight - ih)/2);
 
-				// itemHelpText
-				if(!item->itemHelpText.empty())
+				// itemHint
+				if(!item->itemHint.empty())
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + full_height - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHelpText.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + full_height - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
 
@@ -1070,14 +1070,14 @@ void CMenuWidget::paintItemInfo(int pos)
 
 			textBox->setBackgroundColor(COL_MENUCONTENTDARK_PLUS_0);
 
-			// helpText
-			textBox->setText(item->itemHelpText.c_str(), item->itemIcon.c_str(), p_w, p_h, TOP_CENTER);
+			// hint
+			textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), p_w, p_h, TOP_CENTER);
 			textBox->paint();
 		}
 	}
 	else if(widgetType == WIDGET_TYPE_FRAME)
 	{
-		// helpText
+		// hint
 		frameBuffer->paintBoxRel(x, y + height - fheight - (fbutton_count != 0? fheight : 0), width, fheight, COL_MENUCONTENT_PLUS_0);
 
 		// refresh horizontal line buttom
@@ -1093,10 +1093,10 @@ void CMenuWidget::paintItemInfo(int pos)
 				g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->RenderString(x + BORDER_LEFT, y + height - fheight - (fbutton_count != 0? fheight : 0) + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE] ->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT, item->itemName.c_str(), COL_MENUFOOT_INFO);
 			}
 
-			// helpText
-			if(!item->itemHelpText.empty())
+			// hint
+			if(!item->itemHint.empty())
 			{
-				g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT, y + height - (fbutton_count != 0? fheight : 0), width - BORDER_LEFT - BORDER_RIGHT, item->itemHelpText.c_str(), COL_MENUFOOT_INFO);
+				g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT, y + height - (fbutton_count != 0? fheight : 0), width - BORDER_LEFT - BORDER_RIGHT, item->itemHint.c_str(), COL_MENUFOOT_INFO);
 			}
 		}
 	}
@@ -1106,8 +1106,7 @@ void CMenuWidget::hideItemInfo()
 {
 	if((widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC) && paintFootInfo)
 	{
-		//if(widgetMode == MODE_LISTBOX)
-			itemsLine.clear(x, y, full_width + CONNECTLINEBOX_WIDTH, full_height, cFrameFootInfo.iHeight);
+		itemsLine.clear(x, y, full_width + CONNECTLINEBOX_WIDTH, full_height, cFrameFootInfo.iHeight);
 	}  
 }
 
@@ -1235,7 +1234,7 @@ void CMenuWidget::integratePlugins(CPlugins::i_type_t integration, const unsigne
 			//FIXME: iconName
 			CMenuForwarder *fw_plugin = new CMenuForwarder(g_PluginList->getName(count), enabled, NULL, CPluginsExec::getInstance(), to_string(count).c_str(), dk, NULL, IconName.c_str());
 
-			fw_plugin->setHelpText(g_PluginList->getDescription(count).c_str());
+			fw_plugin->setHint(g_PluginList->getDescription(count).c_str());
 			fw_plugin->setWidgetMode(MODE_LISTBOX); //FIXME:
 			fw_plugin->isPlugin = true;
 

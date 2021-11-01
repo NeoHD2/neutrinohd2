@@ -952,7 +952,7 @@ void CTestMenu::testCWidget()
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
-		item->setHelpText(tmp.c_str());
+		item->setHint(tmp.c_str());
 
 		rightWidget->addItem(item);
 	}
@@ -1510,7 +1510,7 @@ void CTestMenu::testListBoxWidget()
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
-		item->setHelpText(tmp.c_str());
+		item->setHint(tmp.c_str());
 
 		rightWidget->addItem(item);
 	}
@@ -1618,14 +1618,14 @@ void CTestMenu::testMultiWidget()
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	//headers->setColor(COL_DARK_TURQUOISE);
 	//headers->setCorner();
-	//headers->setGradient(nogradient);
+	//headers->setGradient(NOGRADIENT);
 
 	footers = new CFooters(footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	//footers->setColor(COL_DARK_TURQUOISE);
 	//footers->setCorner();
-	//footers->setGradient(nogradient);
+	//footers->setGradient(NOGRADIENT);
 	
 	////
 	// leftWidget
@@ -1722,14 +1722,14 @@ void CTestMenu::test()
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	//headers->setColor(COL_DARK_TURQUOISE);
 	//headers->setCorner();
-	//headers->setGradient(nogradient);
+	//headers->setGradient(NOGRADIENT);
 
 	footers = new CFooters(footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	//footers->setColor(COL_DARK_TURQUOISE);
 	//footers->setCorner();
-	//footers->setGradient(nogradient);
+	//footers->setGradient(NOGRADIENT);
 
 	// top widget
 	CBox topBox;
@@ -2374,7 +2374,7 @@ void CTestMenu::testCBox()
 	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20)/2;
 	Box.iHeight = 40; //(g_settings.screen_EndY - g_settings.screen_StartY - 20);
 
-	CFrameBuffer::getInstance()->paintBoxRel(Box.iX, Box.iY, Box.iWidth, Box.iHeight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_ALL, gradientDark2Light2Dark);
+	CFrameBuffer::getInstance()->paintBoxRel(Box.iX, Box.iY, Box.iWidth, Box.iHeight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_ALL, DARK2LIGHT2DARK);
 
 	CFrameBuffer::getInstance()->blit();
 
@@ -2459,7 +2459,7 @@ void CTestMenu::testCWindow()
 
 	window->setColor(COL_MENUHEAD_PLUS_0);
 	window->setCorner(RADIUS_MID, CORNER_ALL);
-	//window->setGradient(gradientDark2Light2Dark);
+	//window->setGradient(DARK2LIGHT2DARK);
 
 	window->paint();
 	CFrameBuffer::getInstance()->blit();
@@ -2569,14 +2569,14 @@ void CTestMenu::testCHeaders()
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	//headers->setColor(COL_BLUE);
 	//headers->setCorner();
-	//headers->setGradient(nogradient);
+	//headers->setGradient(NOGRADIENT);
 
 	footers = new CFooters(footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	//headers->setColor(COL_BLUE);
 	//headers->setCorner();
-	//headers->setGradient(nogradient);
+	//headers->setGradient(NOGRADIENT);
 
 	//headers->paintHead(headBox, "test CHeaders", NEUTRINO_ICON_MP3);
 	//headers->paintFoot(footBox, FOOT_BUTTONS_COUNT, FootButtons);	
@@ -3298,7 +3298,7 @@ void CTestMenu::testClistBox()
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
-		item->setHelpText(tmp.c_str());
+		item->setHint(tmp.c_str());
 		
 		rightWidget->addItem(item);
 	}
@@ -3442,7 +3442,7 @@ void CTestMenu::testClistBox2()
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
-		item->setHelpText(tmp.c_str());
+		item->setHint(tmp.c_str());
 
 		rightWidget->addItem(item);
 	}
@@ -3588,7 +3588,7 @@ void CTestMenu::testClistBox3()
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
-		item->setHelpText(tmp.c_str());
+		item->setHint(tmp.c_str());
 
 		rightWidget->addItem(item);
 	}
@@ -3730,7 +3730,7 @@ void CTestMenu::testClistBox4()
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
-		item->setHelpText(tmp.c_str());
+		item->setHint(tmp.c_str());
 
 		rightWidget->addItem(item);
 	}
@@ -3865,7 +3865,7 @@ void CTestMenu::testClistBox5()
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
-		item->setHelpText(tmp.c_str());
+		item->setHint(tmp.c_str());
 		
 		rightWidget->addItem(item);
 	}
@@ -4019,7 +4019,7 @@ void CTestMenu::testClistBox6()
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
-		item->setHelpText(tmp.c_str());
+		item->setHint(tmp.c_str());
 		
 		rightWidget->addItem(item);
 	}
@@ -4158,7 +4158,7 @@ void CTestMenu::testCFrameBox()
 	frame->setOption("in allen Kinos");
 	frame->setActionKey(this, "help");
 	frame->setColor(COL_RED);
-	frame->setGradient(gradientLight2Dark);
+	frame->setGradient(DARK2LIGHT2DARK);
 	frameBoxWidget->addFrame(frame);
 	
 	frame = new CFrame();
@@ -4166,7 +4166,7 @@ void CTestMenu::testCFrameBox()
 	frame->setTitle("Im Kino");
 	frame->setActionKey(this, "help");
 	frame->setColor(COL_GREEN);
-	frame->setGradient(gradientLight2Dark);
+	frame->setGradient(LIGHT2DARK);
 	//frame->setCorner(RADIUS_LARGE, CORNER_ALL);
 	//frame->disableShadow();
 	frameBoxWidget->addFrame(frame);
@@ -4183,7 +4183,7 @@ void CTestMenu::testCFrameBox()
 	frame->setPosition(topBox.iX + 10, topBox.iY + topBox.iHeight - 60 - 10, topBox.iWidth - 20, 60);
 	frame->setTitle("Exit");
 	frame->setActionKey(this, "exit");
-	frame->setGradient(gradientLight2Dark);
+	frame->setGradient(LIGHT2DARK);
 	frame->setColor(COL_BLUE);
 	//frame->setCorner(RADIUS_LARGE, CORNER_ALL);
 	//frame->disableShadow();
@@ -5014,7 +5014,7 @@ void CTestMenu::testClistBoxWidget()
 		item->setOption(m_vMovieInfo[i].epgChannel.c_str());
 		item->set2lines();
 
-		item->setHelpText(m_vMovieInfo[i].epgInfo2.c_str());
+		item->setHint(m_vMovieInfo[i].epgInfo2.c_str());
 
 		// standard | classic
 		item->setInfo1(m_vMovieInfo[i].epgInfo1.c_str());
@@ -5076,7 +5076,7 @@ void CTestMenu::testClistBoxWidget1()
 
 		item->set2lines();
 
-		item->setHelpText(m_vMovieInfo[i].epgInfo2.c_str());
+		item->setHint(m_vMovieInfo[i].epgInfo2.c_str());
 
 		item->setInfo1(m_vMovieInfo[i].epgInfo1.c_str());
 		item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
@@ -6197,7 +6197,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-		item->setHelpText(tmp.c_str());
+		item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6239,7 +6239,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-			item->setHelpText(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6281,7 +6281,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-			item->setHelpText(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6323,7 +6323,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-			item->setHelpText(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6365,7 +6365,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-			item->setHelpText(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6407,7 +6407,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-			item->setHelpText(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6449,7 +6449,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-			item->setHelpText(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6491,7 +6491,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-			item->setHelpText(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6602,7 +6602,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-			item->setHelpText(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6684,7 +6684,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-			item->setHelpText(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6733,7 +6733,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-			item->setHelpText(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6785,7 +6785,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-			item->setHelpText(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}
@@ -6833,7 +6833,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 				tmp += "\n";
 				tmp += m_vMovieInfo[i].epgInfo2;
 
-				item->setHelpText(tmp.c_str());
+				item->setHint(tmp.c_str());
 
 				rightWidget->addItem(item);
 			}

@@ -149,12 +149,14 @@ CEpgData::CEpgData()
 
 void CEpgData::start()
 {
-	// box	
+	// mainBox	
 	cFrameBox.iWidth = w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 ));
 	cFrameBox.iHeight = h_max ( (frameBuffer->getScreenHeight() / 20 * 18), (frameBuffer->getScreenHeight() / 20));
 	
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
-	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;		
+	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
+	
+	cFrameWindow.setPosition(&cFrameBox);		
 
 	// headBox
 	cHeadBox.iHeight = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_TITLE]->getHeight() + 10;
@@ -434,8 +436,11 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 	
 	id = a_id;
 
-	// init gui
+	// init frames
 	start();
+	
+	// paint mainBox
+	cFrameWindow.paint();
 
 	// getepg data
 	GetEPGData(channel_id, id, &startzeit);

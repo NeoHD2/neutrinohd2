@@ -182,7 +182,7 @@ void CNKMovies::showMenu()
 
 	headersWidget->setButtons(NKHeadButtons, HEAD_BUTTONS_COUNT);
 	headersWidget->enablePaintDate();
-	headersWidget->setGradient(nogradient);
+	headersWidget->setGradient(NOGRADIENT);
 	headersWidget->setCorner(NO_RADIUS);
 
 	// foot
@@ -194,7 +194,7 @@ void CNKMovies::showMenu()
 	footersWidget = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
 
 	footersWidget->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	footersWidget->setGradient(nogradient);
+	footersWidget->setGradient(NOGRADIENT);
 	footersWidget->setCorner(NO_RADIUS);
 
 	// leftwidget
@@ -248,7 +248,7 @@ void CNKMovies::showMenu()
 	{
 		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "play", RC_nokey, NULL, file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
-		item->setHelpText(m_vMovieInfo[i].epgInfo2.c_str());
+		item->setHint(m_vMovieInfo[i].epgInfo2.c_str());
 
 		rightWidget->addItem(item);
 	}

@@ -198,7 +198,7 @@ void CNEpisodes::showMenu()
 
 		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "mplay", RC_nokey, NULL, file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
-		item->setHelpText(m_vMovieInfo[i].epgInfo1.c_str());
+		item->setHint(m_vMovieInfo[i].epgInfo1.c_str());
 
 		listBox->addItem(item);
 	}

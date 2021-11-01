@@ -308,7 +308,7 @@ void CMP3Player::showMenu()
 		tmp += "\n";
 		tmp += date.c_str();
 
-		item->setHelpText(tmp.c_str());
+		item->setHint(tmp.c_str());
 
 		alist->addItem(item);
 	}

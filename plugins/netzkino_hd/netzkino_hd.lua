@@ -324,7 +324,7 @@ function get_movies_menu(_id)
 	for _id, movie_detail in pairs(movies) do
 		item = neutrino.ClistBoxItem(conv_utf8(movie_detail.title))
 		item:setItemIcon(movie_detail.cover)
-		--item:setHelpText(conv_utf8(movie_detail.content))
+		--item:setHint(conv_utf8(movie_detail.content))
 		item:setActionKey(null, "play")
 
 		m_movies:addItem(item)
