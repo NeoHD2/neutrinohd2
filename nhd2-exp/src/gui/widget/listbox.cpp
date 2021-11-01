@@ -2938,6 +2938,8 @@ void ClistBox::hide()
 
 void ClistBox::scrollLineDown(const int)
 {
+	dprintf(DEBUG_NORMAL, "ClistBox::scrollLineDown:\n");
+	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		if(items.size())
@@ -2999,6 +3001,8 @@ void ClistBox::scrollLineDown(const int)
 
 void ClistBox::scrollLineUp(const int)
 {
+	dprintf(DEBUG_NORMAL, "ClistBox::scrollLineUp:\n");
+	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		if(items.size())
@@ -3061,6 +3065,8 @@ void ClistBox::scrollLineUp(const int)
 
 void ClistBox::scrollPageDown(const int)
 {
+	dprintf(DEBUG_NORMAL, "ClistBox::scrollPageDown:\n");
+	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		if(items.size())
@@ -3110,6 +3116,8 @@ void ClistBox::scrollPageDown(const int)
 
 void ClistBox::scrollPageUp(const int)
 {
+	dprintf(DEBUG_NORMAL, "ClistBox::scrollPageUp:\n");
+	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		if(items.size())
@@ -3344,42 +3352,42 @@ void ClistBox::onHomeKeyPressed()
 
 void ClistBox::onUpKeyPressed()
 {
-	dprintf(DEBUG_DEBUG, "ClistBox::UpKeyPressed:\n");
+	dprintf(DEBUG_NORMAL, "ClistBox::UpKeyPressed:\n");
 
 	scrollLineUp();
 }
 
 void ClistBox::onDownKeyPressed()
 {
-	dprintf(DEBUG_DEBUG, "ClistBox::DownKeyPressed:\n");
+	dprintf(DEBUG_NORMAL, "ClistBox::DownKeyPressed:\n");
 
 	scrollLineDown();
 }
 
 void ClistBox::onRightKeyPressed()
 {
-	dprintf(DEBUG_DEBUG, "ClistBox::RightKeyPressed:\n");
+	dprintf(DEBUG_NORMAL, "ClistBox::RightKeyPressed:\n");
 
 	swipRight();
 }
 
 void ClistBox::onLeftKeyPressed()
 {
-	dprintf(DEBUG_DEBUG, "ClistBox::LeftKeyPressed:\n");
+	dprintf(DEBUG_NORMAL, "ClistBox::LeftKeyPressed:\n");
 
 	swipLeft();
 }
 
 void ClistBox::onPageUpKeyPressed()
 {
-	dprintf(DEBUG_DEBUG, "ClistBox::PageUpKeyPressed:\n");
+	dprintf(DEBUG_NORMAL, "ClistBox::PageUpKeyPressed:\n");
 
 	scrollPageUp();
 }
 
 void ClistBox::onPageDownKeyPressed()
 {
-	dprintf(DEBUG_DEBUG, "ClistBox::PageDownKeyPressed:\n");
+	dprintf(DEBUG_NORMAL, "ClistBox::PageDownKeyPressed:\n");
 
 	scrollPageDown();
 }

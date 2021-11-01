@@ -440,6 +440,7 @@ void CHeaders::paint()
 void CHeaders::hide()
 {
 	CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	CFrameBuffer::getInstance()->blit();
 }
 
 // footers
@@ -529,5 +530,7 @@ void CFooters::paint()
 void CFooters::hide()
 {
 	CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	
+	CFrameBuffer::getInstance()->blit();
 }
 

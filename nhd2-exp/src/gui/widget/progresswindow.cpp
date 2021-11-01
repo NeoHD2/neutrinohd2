@@ -162,6 +162,8 @@ void CProgressWindow::showStatusMessageUTF(const std::string &text)
 void CProgressWindow::hide()
 {
 	m_cBoxWindow.hide();
+	
+	CFrameBuffer::getInstance()->blit();
 
 	delete progressBar;
 	progressBar = NULL;	

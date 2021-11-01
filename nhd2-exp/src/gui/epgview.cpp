@@ -415,6 +415,8 @@ void CEpgData::showHead(const t_channel_id channel_id)
 	headers.enablePaintDate();
 	headers.enableLogo();
 	headers.setButtons(&HButton, 1);
+	//TEST
+	headers.setCorner(RADIUS_LARGE, CORNER_ALL);
 
 	headers.paint();
 }
@@ -780,13 +782,13 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 				}
 				
 				case RC_info:
-					showTimerEventBar(false);
-					start();
+					//showTimerEventBar(false);
+					//start();
 					
 					if(textBox)
 						textBox->setBigFonts();
 					
-					show(channel_id, id, &startzeit, false);
+					//show(channel_id, id, &startzeit, false);
 					break;
 
 				case RC_ok:
@@ -1016,6 +1018,8 @@ void CEpgData::showTimerEventBar(bool _show)
 
 	CFooters footers(cFootBox.iX, cFootBox.iY, cFootBox.iWidth, cFootBox.iHeight);
 	footers.setButtons(FButtons, 4);
+	//TEST
+	footers.setCorner(RADIUS_LARGE, CORNER_ALL);
 	footers.paint();
 }
 

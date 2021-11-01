@@ -192,6 +192,8 @@ void CWindow::hide()
 		restoreScreen();
 	else
 		frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+		
+	CFrameBuffer::getInstance()->blit();
 }
 
 // pig
@@ -232,6 +234,8 @@ void CPig::hide()
 		videoDecoder->Pig(-1, -1, -1, -1);
 
 	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	
+	CFrameBuffer::getInstance()->blit();
 }
 
 // grid
@@ -274,6 +278,8 @@ void CGrid::paint()
 void CGrid::hide()
 {
 	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	
+	CFrameBuffer::getInstance()->blit();
 }
 
 

@@ -626,6 +626,8 @@ void CTextBox::hide(void)
 	
 	m_cBoxWindow.setPosition(&itemBox);
 	m_cBoxWindow.hide();
+	
+	CFrameBuffer::getInstance()->blit();
 
 	painted = false;
 }

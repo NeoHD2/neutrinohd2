@@ -1186,9 +1186,6 @@ void CMenuWidget::enableSaveScreen()
 void CMenuWidget::hide()
 {
 	dprintf(DEBUG_NORMAL, "CMenuWidget::hide: (%s)\n", l_name.c_str());
-	
-	//
-	initFrames();
 
 	if( savescreen && background)
 		restoreScreen();

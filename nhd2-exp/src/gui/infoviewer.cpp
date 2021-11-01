@@ -553,6 +553,8 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	
 	//
 	show_Data();
+	
+	frameBuffer->blit();
 
 	// add sec timer
 	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);

@@ -708,6 +708,7 @@ void CListFrame::hide(void)
 	dprintf(DEBUG_DEBUG, "CListFrame::hide: %s\n", m_textTitle.c_str());
 
 	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	CFrameBuffer::getInstance()->blit();
 	
 	frameBuffer = NULL;
 }
