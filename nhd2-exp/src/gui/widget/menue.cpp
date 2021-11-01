@@ -178,6 +178,9 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	
 	item_height = 0;
 	item_width = 0;
+	
+	items_width = 0;
+	items_height = 0;
 }
 
 void CMenuWidget::move(int xoff, int yoff)
@@ -284,15 +287,13 @@ void CMenuWidget::initFrames()
 		item_width = full_width/itemsPerX;
 		item_height = (full_height - hheight - fheight - (fbutton_count != 0? fheight : 0) - 20)/itemsPerY; // 10 pixels for hlines top 10 pixels bottom
 
-/*
 		for (unsigned int count = 0; count < items.size(); count++) 
 		{
 			CMenuItem * item = items[count];
 
 			item->item_width = item_width;
 			item->item_height = item_height;
-		}
-*/		 
+		}		 
 
 		if(savescreen) 
 			saveScreen();
@@ -571,7 +572,14 @@ void CMenuWidget::paint()
 	dprintf(DEBUG_NORMAL, "CMenuWidget::paint: (%s)\n", l_name.c_str());
 
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8 );
+	
+	//
+	initFrames();
+	
+	paintHead();
+	paintFoot();
 
+	//
 	item_start_y = y + hheight;
 
 	if(widgetType == WIDGET_TYPE_FRAME)
@@ -597,7 +605,7 @@ void CMenuWidget::paintItems()
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		// items background
-		frameBuffer->paintBoxRel(x, y + hheight + 10, width, height - hheight - fheight - (fbutton_count != 0? fheight : 0) - 20, COL_MENUCONTENT_PLUS_0);
+		frameBuffer->paintBoxRel(x, item_start_y, width, height - hheight - fheight - (fbutton_count != 0? fheight : 0) - 20, COL_MENUCONTENT_PLUS_0);
 
 		// item not currently on screen
 		if (selected >= 0)
@@ -626,7 +634,7 @@ void CMenuWidget::paintItems()
 				{
 					CMenuItem * item = items[count];
 
-					item->init(x + _x*item_width, item_start_y + _y*item_height, item_width, item_height);
+					item->init(x + _x*item_width, item_start_y + _y*item_height, item_width, /*item_height*/iconOffset);
 
 					if( (item->isSelectable()) && (selected == -1)) 
 					{
@@ -667,13 +675,13 @@ void CMenuWidget::paintItems()
 			sb_width = SCROLLBAR_WIDTH; 
 	
 		items_width = width - sb_width;
-		item_width = width - sb_width;
+		//item_width = width - sb_width;
 
 		// extended
 		if(widgetType == WIDGET_TYPE_EXTENDED)
 		{
 			items_width = 2*(width/3) - sb_width;
-			item_width = 2*(width/3) - sb_width;
+			//item_width = 2*(width/3) - sb_width;
 		}
 	
 		// item not currently on screen
@@ -691,7 +699,7 @@ void CMenuWidget::paintItems()
 
 		if(widgetType == WIDGET_TYPE_EXTENDED && widgetMode == MODE_MENU)
 		{
-			frameBuffer->paintBoxRel(x + item_width, item_start_y, width - item_width, items_height, COL_MENUCONTENTDARK_PLUS_0);
+			frameBuffer->paintBoxRel(x + items_width, item_start_y, width - items_width, items_height, COL_MENUCONTENTDARK_PLUS_0);
 		}
 	
 		// paint right scrollBar if we have more then one page
@@ -713,7 +721,7 @@ void CMenuWidget::paintItems()
 
 			if ((count >= page_start[current_page]) && (count < page_start[current_page + 1])) 
 			{
-				item->init(xpos, ypos, item_width, iconOffset);
+				item->init(xpos, ypos, items_width, iconOffset);
 
 				if( (item->isSelectable()) && (selected == -1)) 
 				{
@@ -777,8 +785,9 @@ void CMenuWidget::paintItemInfo(int pos)
 				if(!item->itemHelpText.empty())
 				{
 					textBox->setText(item->itemHelpText.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
-					textBox->paint();
 				}
+				
+				textBox->paint();
 			}
 			else 
 			{
@@ -883,8 +892,9 @@ void CMenuWidget::paintItemInfo(int pos)
 					if(!item->itemHelpText.empty())
 					{
 						textBox->setText(item->itemHelpText.c_str(), item->itemIcon.c_str(), 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
-						textBox->paint();
 					}
+					
+					textBox->paint();
 				}
 			}
 		}
@@ -993,8 +1003,9 @@ void CMenuWidget::paintItemInfo(int pos)
 					if(!item->itemHelpText.empty())
 					{
 						textBox->setText(item->itemHelpText.c_str());
-						textBox->paint();
 					}
+					
+					textBox->paint();
 				}
 			}
 		}
@@ -1033,10 +1044,10 @@ void CMenuWidget::paintItemInfo(int pos)
 				frameBuffer->getIconSize(item->itemIcon.c_str(), &iw, &ih);
 
 				// refreshbox
-				frameBuffer->paintBoxRel(x + item_width + (width - item_width - ITEM_ICON_W)/2, y + (full_height - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H, COL_MENUCONTENTDARK_PLUS_0);
+				frameBuffer->paintBoxRel(x + items_width + (width - items_width - ITEM_ICON_W)/2, y + (full_height - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H, COL_MENUCONTENTDARK_PLUS_0);
 
 				// itemIcom
-				frameBuffer->paintHintIcon(item->itemIcon.c_str(), x + item_width + (width - item_width - ITEM_ICON_W)/2, y + (height - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H);// was paintHinticon
+				frameBuffer->paintHintIcon(item->itemIcon.c_str(), x + items_width + (width - items_width - ITEM_ICON_W)/2, y + (height - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H);// was paintHinticon
 			}
 		}
 		else if(widgetMode == MODE_LISTBOX)
@@ -1175,6 +1186,9 @@ void CMenuWidget::enableSaveScreen()
 void CMenuWidget::hide()
 {
 	dprintf(DEBUG_NORMAL, "CMenuWidget::hide: (%s)\n", l_name.c_str());
+	
+	//
+	initFrames();
 
 	if( savescreen && background)
 		restoreScreen();
@@ -1246,9 +1260,9 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 		parent->hide();
 
 	//
-	initFrames();
-	paintHead();
-	paintFoot();
+	//initFrames();
+	//paintHead();
+	//paintFoot();
 	paint();
 	CFrameBuffer::getInstance()->blit();
 
@@ -1289,9 +1303,9 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 							break;
 						case RETURN_REPAINT:
 							hide();
-							initFrames();
-							paintHead();
-							paintFoot();
+							//initFrames();
+							//paintHead();
+							//paintFoot();
 							paint();
 							break;
 					}
@@ -1654,9 +1668,9 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 									
 										case RETURN_REPAINT:
 											hide();
-											initFrames();
-											paintHead();
-											paintFoot();
+											//initFrames();
+											//paintHead();
+											//paintFoot();
 											paint();
 											break;	
 									}
@@ -1732,9 +1746,9 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 									
 										case RETURN_REPAINT:
 											hide();
-											initFrames();
-											paintHead();
-											paintFoot();
+											//initFrames();
+											//paintHead();
+											//paintFoot();
 											paint();
 											break;	
 									}
@@ -1771,9 +1785,9 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 									
 								case RETURN_REPAINT:
 									hide();
-									initFrames();
-									paintHead();
-									paintFoot();
+									//initFrames();
+									//paintHead();
+									//paintFoot();
 									paint();
 									break;
 							}
@@ -1803,9 +1817,9 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 
 							g_settings.menu_design = widgetType;
 
-							initFrames();
-							paintHead();
-							paintFoot();
+							//initFrames();
+							//paintHead();
+							//paintFoot();
 							paint();
 						}
 					}
@@ -1824,9 +1838,9 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 					
 							widgetType = widget[cnt];
 
-							initFrames();
-							paintHead();
-							paintFoot();
+							//initFrames();
+							//paintHead();
+							//paintFoot();
 							paint();
 						}
 					}

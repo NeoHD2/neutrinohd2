@@ -2593,8 +2593,9 @@ void ClistBox::paintItemInfo(int pos)
 					if(!item->itemHelpText.empty())
 					{
 						textBox->setText(item->itemHelpText.c_str(), !item->itemIcon.empty()? item->itemIcon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
-						textBox->paint();
 					}
+					
+					textBox->paint();
 				}
 			}
 		}
@@ -2631,8 +2632,9 @@ void ClistBox::paintItemInfo(int pos)
 				if(!item->itemHelpText.empty())
 				{
 					textBox->setText(item->itemHelpText.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
-					textBox->paint();
 				}
+				
+				textBox->paint();
 			}
 			else
 			{
@@ -2732,8 +2734,9 @@ void ClistBox::paintItemInfo(int pos)
 					if(!item->itemHelpText.empty())
 					{
 						textBox->setText(item->itemHelpText.c_str());
-						textBox->paint();
 					}
+					
+					textBox->paint();
 				}
 			}
 		}
@@ -2914,6 +2917,8 @@ void ClistBox::enableSaveScreen()
 void ClistBox::hide()
 {
 	dprintf(DEBUG_NORMAL, "ClistBox::hide: (%s)\n", l_name.c_str());
+	
+	initFrames();
 
 	if( savescreen && background)
 		restoreScreen();
