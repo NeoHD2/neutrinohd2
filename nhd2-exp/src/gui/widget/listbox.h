@@ -113,7 +113,8 @@ class CChangeObserver
 class CMenuItem
 {
 	protected:
-		int x, y, item_width, item_height;
+		//int x, y, item_width, item_height;
+		int x, y, dx, offx;
 		
 	public:
 		bool active;
@@ -139,6 +140,10 @@ class CMenuItem
 		int widgetType;
 		int widgetMode;
 		bool isPlugin;
+		
+		// HACK for FRAME_WIDGET_TYPE
+		int item_height;
+		int item_width;
 
 		//
 		//static CFont* nameFont;
@@ -154,7 +159,8 @@ class CMenuItem
 		CMenuItem();
 		virtual ~CMenuItem(){};
 
-		virtual void init(const int X, const int Y, const int DX, const int DY);
+		//virtual void init(const int X, const int Y, const int DX, const int DY);
+		virtual void init(const int X, const int Y, const int DX, const int OFFX);
 		virtual int paint(bool selected = false, bool AfterPulldown = false) = 0;
 		virtual int getHeight(void) const = 0;
 		virtual int getWidth(void) const

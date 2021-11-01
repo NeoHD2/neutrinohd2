@@ -85,12 +85,21 @@ CMenuItem::CMenuItem()
 	paintFrame = true;
 }
 
+/*
 void CMenuItem::init(const int X, const int Y, const int DX, const int DY)
 {
 	x    = X;
 	y    = Y;
 	item_width = DX;
 	item_height = DY;
+}
+*/
+void CMenuItem::init(const int X, const int Y, const int DX, const int OFFX)
+{
+	x    = X;
+	y    = Y;
+	dx   = DX;
+	offx = OFFX;
 }
 
 void CMenuItem::setActive(const bool Active)
@@ -279,7 +288,7 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 	}
 	
 	// paint item
-	frameBuffer->paintBoxRel(x, y, item_width, height, bgcolor); //FIXME
+	frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
 
 	neutrino_locale_t option = NONEXISTANT_LOCALE;
 	const char * l_option = NULL;
@@ -340,15 +349,15 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 
 	int stringwidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_option, true); // UTF-8
 	int stringstartposName = x + BORDER_LEFT + icon_w + ICON_OFFSET;
-	int stringstartposOption = x + item_width - (stringwidth + BORDER_RIGHT); //
+	int stringstartposOption = x + dx - (stringwidth + BORDER_RIGHT); //
 
 	// locale
 	const char * l_name = optionNameString.c_str();
 	
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposName, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_RIGHT - (stringstartposName - x), l_name, color, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposName, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - (stringstartposName - x), l_name, color, 0, true); // UTF-8
 	
 	// option
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_LEFT - (stringstartposOption - x), l_option, color, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_LEFT - (stringstartposOption - x), l_option, color, 0, true); // UTF-8
 
 	// vfd
 	if (selected && !AfterPulldown)
@@ -473,7 +482,7 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 	}
 	
 	// paint item
-	frameBuffer->paintBoxRel(x, y, item_width, height, bgcolor); //FIXME
+	frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
 
 	// option
 	const char * l_option;
@@ -493,7 +502,7 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 	int icon_h = 0;
 
 	int stringstartposName = x + BORDER_LEFT + icon_w + ICON_OFFSET;
-	int stringstartposOption = x + item_width - stringwidth - BORDER_RIGHT; //
+	int stringstartposOption = x + dx - stringwidth - BORDER_RIGHT; //
 
 	const char * l_name;
 	
@@ -505,10 +514,10 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 	l_name = (optionString != NULL) ? optionString : l_name;
 
 	// locale
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposName, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_RIGHT - (stringstartposName - x), l_name, color, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposName, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - (stringstartposName - x), l_name, color, 0, true); // UTF-8
 	
 	// option value
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_LEFT - (stringstartposOption - x), l_option, color, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_LEFT - (stringstartposOption - x), l_option, color, 0, true); // UTF-8
 	
 	// vfd
 	if(selected)
@@ -684,7 +693,7 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
 	}
 	
 	// paint item
-	frameBuffer->paintBoxRel(x, y, item_width, height, bgcolor); //FIXME
+	frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
 
 	// paint icon
 	int icon_w = 0;
@@ -727,13 +736,13 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
 	
 	int stringstartposName = x + BORDER_LEFT + icon_w + ICON_OFFSET;
 	
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposName, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_RIGHT - (stringstartposName - x),  l_name, color, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposName, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - (stringstartposName - x),  l_name, color, 0, true); // UTF-8
 	
 	// option value
 	int stringwidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(optionValue, true);
-	int stringstartposOption = std::max(stringstartposName + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_name, true) + ICON_OFFSET, x + item_width - stringwidth - BORDER_RIGHT); //
+	int stringstartposOption = std::max(stringstartposName + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_name, true) + ICON_OFFSET, x + dx - stringwidth - BORDER_RIGHT); //
 	
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_RIGHT - (stringstartposOption - x),  optionValue, color, 0, true);
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - (stringstartposOption - x),  optionValue, color, 0, true);
 	
 	if (selected && !afterPulldown)
 	{
@@ -820,7 +829,7 @@ int CMenuOptionLanguageChooser::paint( bool selected, bool /*AfterPulldown*/)
 	}
 	
 	// paint item
-	frameBuffer->paintBoxRel(x, y, item_width, height, bgcolor); //FIXME
+	frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
 
 	// paint icon
 	int icon_w = 0;
@@ -836,7 +845,7 @@ int CMenuOptionLanguageChooser::paint( bool selected, bool /*AfterPulldown*/)
 
 	// locale
 	int stringstartposOption = x + BORDER_LEFT + icon_w + ICON_OFFSET;
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_RIGHT - (stringstartposOption - x), optionValue, color, 0, true); //UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - (stringstartposOption - x), optionValue, color, 0, true); //UTF-8
 
 	// vfd
 	if (selected)
@@ -885,13 +894,13 @@ int CMenuSeparator::paint(bool /*selected*/, bool /*AfterPulldown*/)
 
 	if(widgetType != WIDGET_TYPE_FRAME)
 	{
-		frameBuffer->paintBoxRel(x, y, item_width, height, COL_MENUCONTENT_PLUS_0);
+		frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_0);
 
 		// line
 		if ((type & LINE))
 		{
-			frameBuffer->paintHLineRel(x + BORDER_LEFT, item_width - BORDER_LEFT - BORDER_RIGHT, y + (height >> 1), COL_MENUCONTENTDARK_PLUS_0 );
-			frameBuffer->paintHLineRel(x + BORDER_LEFT, item_width - BORDER_LEFT - BORDER_RIGHT, y + (height >> 1) + 1, COL_MENUCONTENTDARK_PLUS_0 );
+			frameBuffer->paintHLineRel(x + BORDER_LEFT, dx - BORDER_LEFT - BORDER_RIGHT, y + (height >> 1), COL_MENUCONTENTDARK_PLUS_0 );
+			frameBuffer->paintHLineRel(x + BORDER_LEFT, dx - BORDER_LEFT - BORDER_RIGHT, y + (height >> 1) + 1, COL_MENUCONTENTDARK_PLUS_0 );
 		}
 
 		// string
@@ -910,13 +919,13 @@ int CMenuSeparator::paint(bool /*selected*/, bool /*AfterPulldown*/)
 				if (type & ALIGN_LEFT)
 					stringstartposX = x + BORDER_LEFT;
 				else if (type & ALIGN_RIGHT)
-					stringstartposX = x + item_width - stringwidth - BORDER_RIGHT;
+					stringstartposX = x + dx - stringwidth - BORDER_RIGHT;
 				else // ALIGN_CENTER
-					stringstartposX = x + (item_width >> 1) - (stringwidth >> 1);
+					stringstartposX = x + (dx >> 1) - (stringwidth >> 1);
 
 				frameBuffer->paintBoxRel(stringstartposX - 5, y, stringwidth + 10, height, COL_MENUCONTENT_PLUS_0);
 
-				g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposX, y + height, item_width - (stringstartposX - x) , l_text, COL_MENUCONTENTINACTIVE, 0, true); // UTF-8
+				g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposX, y + height, dx - (stringstartposX - x) , l_text, COL_MENUCONTENTINACTIVE, 0, true); // UTF-8
 			}
 		}
 	}
@@ -1152,7 +1161,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 		int stringstartposX = x;	
 	
 		// paint item
-		frameBuffer->paintBoxRel(x, y, item_width, height, bgcolor);
+		frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 
 		// iconName
 		int icon_w = 0;
@@ -1211,13 +1220,13 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 			// local
 			if(l_text != NULL)
 			{
-				g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + 3 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_RIGHT - BORDER_LEFT - icon_w - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+				g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + 3 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - icon_w - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 			}
 
 			// option
 			if(option_text != NULL)
 			{
-				g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + height, item_width - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - icon_w, option_text, color, 0, true);
+				g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - icon_w, option_text, color, 0, true);
 			}
 		}
 		else
@@ -1225,16 +1234,16 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 			// local
 			if(l_text != NULL)
 			{
-				g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + /*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_RIGHT - BORDER_LEFT - ICON_OFFSET - icon_w, l_text, color, 0, true); // UTF-8
+				g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + /*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - ICON_OFFSET - icon_w, l_text, color, 0, true); // UTF-8
 			}
 
 			// option
 			if(option_text != NULL)
 			{
 				int stringwidth = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getRenderWidth(option_text, true);
-				int stringstartposOption = std::max(x + BORDER_LEFT + icon_w + ICON_OFFSET + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_text, true) + ICON_OFFSET, x + item_width - (stringwidth + BORDER_RIGHT)); //
+				int stringstartposOption = std::max(x + BORDER_LEFT + icon_w + ICON_OFFSET + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_text, true) + ICON_OFFSET, x + dx - (stringwidth + BORDER_RIGHT)); //
 
-				g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + /*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), item_width - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - l_text_width - icon_w, option_text, color, 0, true);
+				g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + /*optionFont*/g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - l_text_width - icon_w, option_text, color, 0, true);
 			}
 		}
 
@@ -1478,7 +1487,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 	else // standard|classic|extended
 	{	
 		// itemBox
-		frameBuffer->paintBoxRel(x, y, item_width, height, bgcolor); //FIXME
+		frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
 	
 		// icon (left)
 		int icon_w = 0;
@@ -1536,7 +1545,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			//get icon size
 			frameBuffer->getIconSize(icon1.c_str(), &icon1_w, &icon1_h);
 		
-			frameBuffer->paintIcon(icon1, x + item_width - BORDER_LEFT - icon1_w, y + (height - icon1_h)/2 );
+			frameBuffer->paintIcon(icon1, x + dx - BORDER_LEFT - icon1_w, y + (height - icon1_h)/2 );
 		}
 
 		// icon2 (right)
@@ -1548,7 +1557,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			//get icon size
 			frameBuffer->getIconSize(icon2.c_str(), &icon2_w, &icon2_h);
 		
-			frameBuffer->paintIcon(icon2, x + item_width - BORDER_LEFT - (icon1_w? icon1_w + ICON_OFFSET : 0) - icon2_w, y + (height - icon2_h)/2 );
+			frameBuffer->paintIcon(icon2, x + dx - BORDER_LEFT - (icon1_w? icon1_w + ICON_OFFSET : 0) - icon2_w, y + (height - icon2_h)/2 );
 		}
 
 		// optionInfo (right)
@@ -1558,7 +1567,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		{
 			optionInfo_width = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getRenderWidth(optionInfo.c_str());
 
-			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + item_width - BORDER_RIGHT - (icon1_w? icon1_w + ICON_OFFSET : 0) - (icon2_w? icon2_w + ICON_OFFSET : 0) - optionInfo_width, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), optionInfo_width, optionInfo.c_str(), color, 0, true); // UTF-8
+			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + dx - BORDER_RIGHT - (icon1_w? icon1_w + ICON_OFFSET : 0) - (icon2_w? icon2_w + ICON_OFFSET : 0) - optionInfo_width, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), optionInfo_width, optionInfo.c_str(), color, 0, true); // UTF-8
 		}
 
 		// number
@@ -1595,21 +1604,21 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		if(widgetType == WIDGET_TYPE_EXTENDED)
 		{
 			// local
-			if(l_text_width >= item_width - BORDER_LEFT - BORDER_RIGHT)
-				l_text_width = item_width - BORDER_LEFT - BORDER_RIGHT;
+			if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)
+				l_text_width = dx - BORDER_LEFT - BORDER_RIGHT;
 
 			if(nLinesItem)
 			{
 				// local
 				if(l_text != NULL)
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
 				if(option_text != NULL)
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, item_width - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
+					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
 				}
 			}
 			else
@@ -1617,7 +1626,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// local
 				if(l_text != NULL)
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w/2 + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w/2 + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
@@ -1632,27 +1641,27 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 					Option = " - ";
 					Option += option_text;
 
-					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->RenderString(x + BORDER_LEFT + numwidth + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), item_width - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, Option.c_str(), COL_COLORED_EVENTS_CHANNELLIST, 0, true);
+					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->RenderString(x + BORDER_LEFT + numwidth + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, Option.c_str(), COL_COLORED_EVENTS_CHANNELLIST, 0, true);
 				}
 			}
 		}
 		else if (widgetType == WIDGET_TYPE_CLASSIC)
 		{
-			if(l_text_width >= item_width - BORDER_LEFT - BORDER_RIGHT)
-				l_text_width = item_width - BORDER_LEFT - BORDER_RIGHT;
+			if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)
+				l_text_width = dx - BORDER_LEFT - BORDER_RIGHT;
 
 			if(nLinesItem)
 			{
 				// local
 				if(l_text != NULL)
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2, item_width - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
 				if(option_text != NULL)
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight() + height/2 + (height/2  - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2, item_width - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
+					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight() + height/2 + (height/2  - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
 				}
 			}
 			else
@@ -1660,7 +1669,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// locale
 				if(l_text != NULL)
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2, item_width - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
@@ -1675,7 +1684,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 					Option = " - ";
 					Option += option_text;
 
-					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + numwidth + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), item_width - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, Option.c_str(), COL_COLORED_EVENTS_CHANNELLIST, 0, true);
+					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + numwidth + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, Option.c_str(), COL_COLORED_EVENTS_CHANNELLIST, 0, true);
 				}
 			}
 		}
@@ -1684,30 +1693,30 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			//
 			if (nLinesItem)
 			{
-				if(l_text_width >= item_width - BORDER_LEFT - BORDER_RIGHT)
-					l_text_width = item_width - BORDER_LEFT - BORDER_RIGHT;
+				if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)
+					l_text_width = dx - BORDER_LEFT - BORDER_RIGHT;
 
 				// local
 				if(l_text != NULL)
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
 				if(option_text != NULL)
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, item_width - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
+					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
 				}
 			}
 			else
 			{
 				// locale
-				if(l_text_width >= item_width - BORDER_LEFT - BORDER_RIGHT)
-					l_text_width = item_width - BORDER_LEFT - BORDER_RIGHT;
+				if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)
+					l_text_width = dx - BORDER_LEFT - BORDER_RIGHT;
 
 				if(l_text != NULL)
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), item_width - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
@@ -1722,7 +1731,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 					Option = " - ";
 					Option += option_text;
 
-					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->RenderString(x + BORDER_LEFT + numwidth + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), item_width - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, Option.c_str(), COL_COLORED_EVENTS_CHANNELLIST, 0, true);
+					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->RenderString(x + BORDER_LEFT + numwidth + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, Option.c_str(), COL_COLORED_EVENTS_CHANNELLIST, 0, true);
 				}
 			}
 		}
@@ -1830,6 +1839,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	
 	item_height = 0;
 	item_width = 0;
+	iconOffset = 0;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -1920,6 +1930,7 @@ ClistBox::ClistBox(CBox* position)
 	
 	item_height = 0;
 	item_width = 0;
+	iconOffset = 0;
 }
 
 ClistBox::~ClistBox()
@@ -2032,7 +2043,7 @@ void ClistBox::initFrames()
 		item_width = cFrameBox.iWidth/itemsPerX;
 		item_height = (cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight - 20)/itemsPerY; // 10 pixels for hlines top 10 pixels for hlines bottom
 
-/*
+		// HACK:
 		for (unsigned int count = 0; count < items.size(); count++) 
 		{
 			CMenuItem * item = items[count];
@@ -2042,8 +2053,7 @@ void ClistBox::initFrames()
 			
 			//
 			item->paintFrame = paintFrame;
-		}
-*/		
+		}		
 	}
 	else 
 	{
@@ -2209,7 +2219,7 @@ void ClistBox::paintItems()
 				{
 					CMenuItem * item = items[count];
 					
-					item->init(cFrameBox.iX + _x*item_width, item_start_y + _y*item_height, item_width, item_height);
+					item->init(cFrameBox.iX + _x*item_width, item_start_y + _y*item_height, item_width, /*item_height*/iconOffset);
 
 					if((item->isSelectable()) && (selected == -1)) 
 					{
@@ -2251,13 +2261,13 @@ void ClistBox::paintItems()
 			sb_width = SCROLLBAR_WIDTH;
 
 		items_width = cFrameBox.iWidth - sb_width;
-		item_width = cFrameBox.iWidth - sb_width;
+		//item_width = cFrameBox.iWidth - sb_width;
 
 		// extended
 		if(widgetType == WIDGET_TYPE_EXTENDED)
 		{
 			items_width = 2*(cFrameBox.iWidth/3) - sb_width;
-			item_width = 2*(cFrameBox.iWidth/3) - sb_width;			
+			//item_width = 2*(cFrameBox.iWidth/3) - sb_width;			
 		}
 
 		// item not currently on screen
@@ -2276,7 +2286,7 @@ void ClistBox::paintItems()
 		//FIXME: revisited this???
 		if(widgetType == WIDGET_TYPE_EXTENDED && widgetMode == MODE_MENU)
 		{
-			frameBuffer->paintBoxRel(cFrameBox.iX + item_width, cFrameBox.iY + hheight, cFrameBox.iWidth - item_width, items_height, COL_MENUCONTENTDARK_PLUS_0);
+			frameBuffer->paintBoxRel(cFrameBox.iX + items_width, cFrameBox.iY + hheight, cFrameBox.iWidth - items_width, items_height, COL_MENUCONTENTDARK_PLUS_0);
 		}
 	
 		// paint right scrollBar if we have more then one page
@@ -2299,7 +2309,7 @@ void ClistBox::paintItems()
 			if ((count >= page_start[current_page]) && (count < page_start[current_page + 1])) 
 			{
 				//
-				item->init(xpos, ypos, item_width, iconOffset);
+				item->init(xpos, ypos, items_width, iconOffset);
 				
 			
 				if((item->isSelectable()) && (selected == -1)) 
@@ -2784,9 +2794,9 @@ void ClistBox::paintItemInfo(int pos)
 				frameBuffer->getIconSize(item->itemIcon.c_str(), &iw, &ih);
 
 				// refreshbox
-				frameBuffer->paintBoxRel(cFrameBox.iX + item_width + (cFrameBox.iWidth - item_width - ITEM_ICON_W)/2, cFrameBox.iY + (cFrameBox.iHeight - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H, COL_MENUCONTENTDARK_PLUS_0);
+				frameBuffer->paintBoxRel(cFrameBox.iX + items_width + (cFrameBox.iWidth - items_width - ITEM_ICON_W)/2, cFrameBox.iY + (cFrameBox.iHeight - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H, COL_MENUCONTENTDARK_PLUS_0);
 
-				frameBuffer->paintHintIcon(item->itemIcon.c_str(), cFrameBox.iX + item_width + (cFrameBox.iWidth - item_width - ITEM_ICON_W)/2, cFrameBox.iY + (cFrameBox.iHeight - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H);
+				frameBuffer->paintHintIcon(item->itemIcon.c_str(), cFrameBox.iX + items_width + (cFrameBox.iWidth - items_width - ITEM_ICON_W)/2, cFrameBox.iY + (cFrameBox.iHeight - ITEM_ICON_H)/2, ITEM_ICON_W, ITEM_ICON_H);
 			}
 		}
 		else if(widgetMode == MODE_LISTBOX)
