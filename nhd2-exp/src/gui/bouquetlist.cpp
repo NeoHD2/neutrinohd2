@@ -442,13 +442,21 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 
 			paint();
 		}
-		else if (msg == RC_up || (int) msg == g_settings.key_channelList_pageup )
+		else if (msg == RC_up)
 		{
 			listBox->scrollLineUp();
 		}
-		else if ( msg == RC_down || (int) msg == g_settings.key_channelList_pagedown )
+		else if (msg == RC_page_up || (int) msg == g_settings.key_channelList_pageup )
+		{
+			listBox->scrollPageUp();
+		}
+		else if ( msg == RC_down)
 		{
 			listBox->scrollLineDown();
+		}
+		else if ( msg == RC_page_down || (int) msg == g_settings.key_channelList_pagedown )
+		{
+			listBox->scrollPageDown();
 		}
 		else if ( msg == RC_ok ) 
 		{

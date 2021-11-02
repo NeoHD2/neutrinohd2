@@ -1691,6 +1691,9 @@ void CTestMenu::testMultiWidget()
 	
 	delete testWidget;
 	testWidget = NULL;
+	
+	delete leftWidget;
+	leftWidget = NULL;
 }
 
 // test
@@ -3208,30 +3211,41 @@ void CTestMenu::testCProgressWindow()
 	
 	progress->showStatusMessageUTF("testing CProgressWindow:0");
 	progress->showGlobalStatus(0);
+	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	progress->showGlobalStatus(10);
+	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	progress->showGlobalStatus(20);
+	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	progress->showStatusMessageUTF("testing CProgressWindow:30");
 	progress->showGlobalStatus(30);
+	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	progress->showGlobalStatus(40);
+	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	progress->showGlobalStatus(50);
+	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	progress->showStatusMessageUTF("testing CProgressWindow:60");
 	progress->showGlobalStatus(60);
+	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	progress->showGlobalStatus(70);
+	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	progress->showStatusMessageUTF("testing CProgressWindow:80");
 	progress->showGlobalStatus(80);
+	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	progress->showGlobalStatus(90);
+	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	progress->showStatusMessageUTF("testing CProgressWindow:100");
 	progress->showGlobalStatus(100);
+	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	
 	progress->hide();
@@ -6197,7 +6211,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
-		item->setHint(tmp.c_str());
+			item->setHint(tmp.c_str());
 
 			rightWidget->addItem(item);
 		}

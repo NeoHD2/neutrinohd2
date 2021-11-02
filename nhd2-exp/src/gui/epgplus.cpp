@@ -490,7 +490,7 @@ void EpgPlus::Footer::setBouquetChannelName (const std::string & newBouquetName,
 
 int EpgPlus::Footer::getUsedHeight ()
 {
-	return fontBouquetChannelName->getHeight() + fontEventDescription->getHeight() + fontEventShortDescription->getHeight() + fontButtons->getHeight() + 10;
+	return fontBouquetChannelName->getHeight() + fontEventDescription->getHeight() + fontEventShortDescription->getHeight() + fontButtons->getHeight() + 14;
 }
 
 void EpgPlus::Footer::paintEventDetails (const std::string & description, const std::string & shortDescription)
@@ -538,19 +538,19 @@ struct button_label buttonLabels[] = {
 void EpgPlus::Footer::paintButtons(button_label * _buttonLabels, int numberOfButtons)
 {
 	// paint foot box
-	this->frameBuffer->paintBoxRel(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 10), this->width, this->fontButtons->getHeight() + 10, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
+	this->frameBuffer->paintBoxRel(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 14), this->width, this->fontButtons->getHeight() + 10, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
 	
-	buttons.paintFootButtons(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 10), this->width, this->fontButtons->getHeight() + 10, numberOfButtons, _buttonLabels);
+	buttons.paintFootButtons(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 14), this->width, this->fontButtons->getHeight() + 14, numberOfButtons, _buttonLabels);
 }
 
-EpgPlus::EpgPlus ()
+EpgPlus::EpgPlus()
 {
-  	this->init ();
+  	this->init();
 }
 
-EpgPlus::~EpgPlus ()
+EpgPlus::~EpgPlus()
 {
- 	 this->free ();
+ 	 this->free();
 }
 
 void sectionsd_getEventsServiceKey(t_channel_id serviceUniqueKey, CChannelEventList &eList, char search = 0, std::string search_text = "");

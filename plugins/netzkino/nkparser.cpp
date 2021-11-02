@@ -42,10 +42,10 @@
 
 
 #define MAIN_URL  	"https://www.netzkino.de/capi/"
-#define HLS_URL		"http://mf.netzkinomobil.c.nmdn.net/netzkino_mobil/_definst_/mp4:" //%s/playlist.m3u8
+#define HLS_URL	"http://mf.netzkinomobil.c.nmdn.net/netzkino_mobil/_definst_/mp4:" //%s/playlist.m3u8
 #define RTMP_URL 	"rtmp://mf.netzkino.c.nmdn.net/netzkino/_definst_/mp4:"
-#define	MP4_URL 	"http://dl.netzkinotv.c.nmdn.net/netzkino_tv/"
-#define PMD_URL		"http://pmd.netzkino-and.netzkino.de/"
+#define MP4_URL 	"http://dl.netzkinotv.c.nmdn.net/netzkino_tv/"
+#define PMD_URL	"http://pmd.netzkino-and.netzkino.de/"
 
 cNKFeedParser::cNKFeedParser()
 {

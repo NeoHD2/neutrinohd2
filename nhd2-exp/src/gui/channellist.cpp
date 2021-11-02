@@ -655,7 +655,7 @@ int CChannelList::show(bool zap, bool customMode)
 				zapTo(selected); 
 			}
                 }
-		else if ( msg == RC_page_up )
+		else if ( msg == RC_page_up || (int) msg == g_settings.key_channelList_pageup)
                 {
 			listBox->scrollPageUp();
 
@@ -679,7 +679,7 @@ int CChannelList::show(bool zap, bool customMode)
 				zapTo(selected); 
 			}
                 }
-		else if (msg == RC_page_down )
+		else if (msg == RC_page_down || (int) msg == g_settings.key_channelList_pagedown)
                 {
 			listBox->scrollPageDown();
 

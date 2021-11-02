@@ -721,14 +721,11 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	strcpy(g_settings.repeat_genericblocker, configfile.getString("repeat_genericblocker", "25").c_str());
 
 	g_settings.key_tvradio_mode = configfile.getInt32( "key_tvradio_mode", RC_mode );
+	
 	g_settings.key_channelList_pageup = configfile.getInt32( "key_channelList_pageup", RC_page_up );
 	g_settings.key_channelList_pagedown = configfile.getInt32( "key_channelList_pagedown", RC_page_down );
 	g_settings.key_channelList_cancel = configfile.getInt32( "key_channelList_cancel", RC_home );
-	g_settings.key_channelList_reload = configfile.getInt32( "key_channelList_reload", RC_setup );
-	g_settings.key_channelList_sort = configfile.getInt32( "key_channelList_sort", RC_blue );
-	g_settings.key_channelList_addrecord = configfile.getInt32( "key_channelList_addrecord", RC_red );
-	g_settings.key_channelList_search = configfile.getInt32( "key_channelList_search", RC_green );
-	g_settings.key_channelList_addremind = configfile.getInt32( "key_channelList_addremind", RC_yellow );
+	
 	g_settings.key_list_start = configfile.getInt32( "key_list_start", RC_nokey );
 	g_settings.key_list_end = configfile.getInt32( "key_list_end", RC_nokey );
 	
@@ -737,6 +734,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	g_settings.key_quickzap_up = configfile.getInt32( "key_quickzap_up", RC_up );
 	g_settings.key_quickzap_down = configfile.getInt32( "key_quickzap_down", RC_down );
+	
 	g_settings.key_subchannel_up = configfile.getInt32( "key_subchannel_up", RC_right );
 	g_settings.key_subchannel_down = configfile.getInt32( "key_subchannel_down", RC_left );
 	g_settings.key_zaphistory = configfile.getInt32( "key_zaphistory", RC_home );	
@@ -1198,16 +1196,13 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32( "key_channelList_pageup", g_settings.key_channelList_pageup );
 	configfile.setInt32( "key_channelList_pagedown", g_settings.key_channelList_pagedown );
 	configfile.setInt32( "key_channelList_cancel", g_settings.key_channelList_cancel );
-	configfile.setInt32( "key_channelList_reload", g_settings.key_channelList_reload );
-	configfile.setInt32( "key_channelList_sort", g_settings.key_channelList_sort );
-	configfile.setInt32( "key_channelList_addrecord", g_settings.key_channelList_addrecord );
-	configfile.setInt32( "key_channelList_addremind", g_settings.key_channelList_addremind );
-	configfile.setInt32( "key_channelList_search", g_settings.key_channelList_search );
 
 	configfile.setInt32( "key_quickzap_up", g_settings.key_quickzap_up );
 	configfile.setInt32( "key_quickzap_down", g_settings.key_quickzap_down );
+	
 	configfile.setInt32( "key_bouquet_up", g_settings.key_bouquet_up );
 	configfile.setInt32( "key_bouquet_down", g_settings.key_bouquet_down );
+	
 	configfile.setInt32( "key_subchannel_up", g_settings.key_subchannel_up );
 	configfile.setInt32( "key_subchannel_down", g_settings.key_subchannel_down );
 	configfile.setInt32( "key_zaphistory", g_settings.key_zaphistory );

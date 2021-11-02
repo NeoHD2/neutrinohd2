@@ -280,7 +280,7 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 			listBox->scrollPageDown();
 		}
 		// sort
-		else if (msg == (neutrino_msg_t)g_settings.key_channelList_sort)
+		else if (msg == RC_blue)
 		{
 			uint64_t selected_id = evtlist[selected].eventID;
 			
@@ -306,14 +306,14 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 			paint(channel_id);
 		}
 		// epg reload
-		else if (msg == (neutrino_msg_t)g_settings.key_channelList_reload)
+		else if (msg == RC_setup)
 		{
 			sort_mode = SORT_DESCRIPTION;
 			hide();
 			paint(channel_id);			
 		}
 		// add record
-		else if ( msg == (neutrino_msg_t)g_settings.key_channelList_addrecord )
+		else if ( msg == RC_red )
 		{
 			//oldselected = selected;
 			selected = listBox->getSelected();
@@ -366,7 +366,7 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 			}					
 		}
 		// add remind
-		else if ( msg == (neutrino_msg_t) g_settings.key_channelList_addremind )		  
+		else if ( msg == RC_yellow )		  
 		{
 			selected = listBox->getSelected();
 

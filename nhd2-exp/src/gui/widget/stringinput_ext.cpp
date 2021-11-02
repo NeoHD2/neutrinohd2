@@ -81,15 +81,16 @@ CExtendedInput::CExtendedInput(const char * const Name, const char * const Value
 void CExtendedInput::Init(void)
 {
 	frameBuffer = CFrameBuffer::getInstance();
-	hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
+	hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 	mheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
 	iheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_INFO]->getHeight();
 
 	width = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(name) + 20; // UTF-8
-	height = hheight + mheight+ 20;
+	height = hheight + mheight + 20;
 
 	if (hint_1 != NONEXISTANT_LOCALE)
 		height += iheight;
+		
 	if (hint_2 != NONEXISTANT_LOCALE)
 		height += iheight;
 
@@ -174,7 +175,7 @@ int CExtendedInput::exec( CMenuTarget* parent, const std::string & )
 			strcpy(dispval, value);
 		}
 
-		g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd, true );
+		g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd, true);
 
 		if (msg == RC_left) 
 		{
@@ -318,7 +319,7 @@ int CExtendedInput::exec( CMenuTarget* parent, const std::string & )
 
 void CExtendedInput::hide()
 {
-	frameBuffer->paintBackgroundBoxRel(x - 1, y - 1, width + 2, height + 2);
+	frameBuffer->paintBackgroundBoxRel(x, y, width, height);
 
 	frameBuffer->blit();
 }
@@ -328,13 +329,13 @@ void CExtendedInput::paint()
 	dprintf(DEBUG_NORMAL, "CExtendedInput::paint\n");
 
 	//
-	frameBuffer->paintBoxRel(x - 1, y - 1, width + 2, height + 2, COL_MENUCONTENT_PLUS_6);
+	//frameBuffer->paintBoxRel(x - 1, y - 1, width + 2, height + 2, COL_MENUCONTENT_PLUS_6);
 	
 	// headbox
-	frameBuffer->paintBoxRel(x, y, width, hheight, COL_MENUHEAD_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.Head_gradient);
+	frameBuffer->paintBoxRel(x, y, width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
 
 	// body / footbox
-	frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight, COL_MENUCONTENT_PLUS_0, NO_RADIUS, CORNER_NONE);
+	frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight, COL_MENUCONTENT_PLUS_0, RADIUS_MID, CORNER_BOTTOM);
 
 	g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT, y + hheight, width - BORDER_LEFT - BORDER_RIGHT, name.c_str(), COL_MENUHEAD, 0, true); // UTF-8
 
@@ -349,8 +350,6 @@ void CExtendedInput::paint()
 	{
 		inputFields[i]->paint( x + 20, y+hheight + 20, (i == (unsigned int) selectedChar) );
 	}
-
-
 }
 
 CExtendedInput_Item_Char::CExtendedInput_Item_Char(const std::string & Chars, bool Selectable )
@@ -394,7 +393,7 @@ void CExtendedInput_Item_Char::paint(int x, int y, bool focusGained )
 	}
 
 	frameBuffer->paintBoxRel( startx, starty, idx, idy, COL_MENUCONTENT_PLUS_4);
-	frameBuffer->paintBoxRel( startx+1, starty+1, idx-2, idy-2, bgcolor);
+	frameBuffer->paintBoxRel( startx + 1, starty + 1, idx - 2, idy - 2, bgcolor);
 
 	char text[2];
 	text[0] = *data;

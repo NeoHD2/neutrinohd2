@@ -130,7 +130,7 @@ void CStringInput::init()
 	if (neededWidth + 20 > width)
 		width = neededWidth + 20;
 
-	hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
+	hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 	
 	if ( !(iconfile.empty()))
 	{
@@ -492,14 +492,12 @@ void CStringInput::paint()
 	//box
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	m_cBoxWindow.enableShadow();
+	m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
+	//m_cBoxWindow.enableShadow();
 	m_cBoxWindow.paint();
 
 	// head
-	CHeaders headers(x + 1, y + 1, width - 2, hheight - 2, head ? head : g_Locale->getText(name), iconfile.c_str());
-
-	headers.setCorner();
+	CHeaders headers(x, y, width, hheight, head ? head : g_Locale->getText(name), iconfile.c_str());
 	headers.paint();
 
 	if (hint_1 != NONEXISTANT_LOCALE)
@@ -714,9 +712,9 @@ void CStringInputSMS::paint()
 	// foot
 	int icon_w, icon_h;
 	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
-	int ButtonHeight = std::max(g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight(), icon_h) + 10;
+	int ButtonHeight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 
-	frameBuffer->paintBoxRel(x + 1, y + height - ButtonHeight, width - 2, ButtonHeight - 2, COL_MENUHEAD_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.Foot_gradient);
+	frameBuffer->paintBoxRel(x, y + height - ButtonHeight, width, ButtonHeight, COL_MENUHEAD_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.Foot_gradient);
 
 	// foot buttons
 	buttons.paintFootButtons(x, y + height - ButtonHeight, width, ButtonHeight, 4, CStringInputSMSButtons);
