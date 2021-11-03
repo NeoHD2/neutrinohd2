@@ -4208,7 +4208,7 @@ void CTestMenu::testCFrameBox()
 	frame->setMode(FRAME_PICTURE);
 	frame->setPosition(topBox.iX + 10, topBox.iY + 3*(10 + 60) +50, topBox.iWidth - 20, 200);
 	frame->setActive(false);
-	frame->setIconName(DATADIR "/neutrino/icons/mp3.jpg");
+	frame->setIconName(DATADIR "/neutrino/icons/nopreview.jpg");
 	frameBoxWidget->addFrame(frame);
 
 	frameBoxWidget->setSelected(selected);
@@ -7012,6 +7012,7 @@ void CTestMenu::showMenu()
 	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CFrameBox"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox", true, NULL, this, "framebox"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CFrameBox(standalone)"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox2", true, NULL, this, "singleWidget"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox(Fire TV)", true, NULL, this, "firetv"));
 	

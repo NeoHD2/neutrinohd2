@@ -85,8 +85,8 @@ $(N_SRC)/config.status: | $(N_SRC) $(DEST)
 			--enable-playback \
 			--enable-scart \
 			--enable-ci \
-			--enable-python \
-			--enable-lua
+			--enable-lua \
+			--enable-python
 $(DEST):
 	mkdir $@
 

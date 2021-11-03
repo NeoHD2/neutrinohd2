@@ -205,7 +205,7 @@ int CThemes::Show()
 	themes.addItem( new CMenuSeparator(LINE) );
 	
 	//set default theme
-	themes.addItem(new CMenuForwarder(LOCALE_COLORTHEMEMENU_DEFAULT_THEME, true, NULL, this, "theme_default" ));
+	themes.addItem(new CMenuForwarder(LOCALE_COLORTHEMEMENU_DEFAULT_THEME, true, NULL, this, "theme_default", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
 	
 	readThemes(themes);
 
