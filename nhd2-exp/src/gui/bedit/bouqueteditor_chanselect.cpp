@@ -66,7 +66,7 @@ CBEChannelSelectWidget::CBEChannelSelectWidget(const std::string& Caption, unsig
 	frameBuffer = CFrameBuffer::getInstance();
 
 	//
-	selected =  0;
+	selected =  -1;
 
 	caption = Caption;
 
@@ -206,7 +206,7 @@ int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string& actionK
 	neutrino_msg_data_t data;
 
 	int res = RETURN_REPAINT;
-	selected = 0;
+	selected = -1;
 
 	if (parent)
 		parent->hide();
@@ -233,19 +233,22 @@ int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string& actionK
 
 		if( msg == RC_ok)
 		{
-			selected = listBox->getSelected();
+			if (listBox && listBox->hasItem())
+			{
+				selected = listBox->getSelected();
+			
+				setModified();
+		
+				if (isChannelInBouquet(selected))
+					g_bouquetManager->Bouquets[bouquet]->removeService(Channels[selected]->channel_id);
+				else
+					addChannelToBouquet(bouquet, Channels[selected]->channel_id);
 
-			setModified();
-	
-			if (isChannelInBouquet(selected))
-				g_bouquetManager->Bouquets[bouquet]->removeService(Channels[selected]->channel_id);
-			else
-				addChannelToBouquet(bouquet, Channels[selected]->channel_id);
-
-			bouquetChannels = mode == CZapitClient::MODE_TV ? &(g_bouquetManager->Bouquets[bouquet]->tvChannels) : &(g_bouquetManager->Bouquets[bouquet]->radioChannels);
-	
-			paint();
-			g_RCInput->postMsg(RC_down, 0);
+				bouquetChannels = mode == CZapitClient::MODE_TV ? &(g_bouquetManager->Bouquets[bouquet]->tvChannels) : &(g_bouquetManager->Bouquets[bouquet]->radioChannels);
+		
+				paint();
+				g_RCInput->postMsg(RC_down, 0);
+			}
 		}
 		else if (msg == RC_home)
 		{

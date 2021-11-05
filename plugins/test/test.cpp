@@ -2376,8 +2376,13 @@ void CTestMenu::testCBox()
 	Box.iY = g_settings.screen_StartY + 10;
 	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20)/2;
 	Box.iHeight = 40; //(g_settings.screen_EndY - g_settings.screen_StartY - 20);
+	
+	Box.iRadius = RADIUS_MID;
+	Box.iCorner = CORNER_ALL;
+	Box.iColor = COL_MENUHEAD_PLUS_0;
+	Box.iGradient = DARK2LIGHT2DARK;
 
-	CFrameBuffer::getInstance()->paintBoxRel(Box.iX, Box.iY, Box.iWidth, Box.iHeight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_ALL, DARK2LIGHT2DARK);
+	Box.paint();
 
 	CFrameBuffer::getInstance()->blit();
 
@@ -2402,8 +2407,10 @@ void CTestMenu::testCIcon()
 
 	// paint testIcon
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
+	
+	dprintf(DEBUG_NORMAL, "\ntestCIcon: icon:%s iw:%d ih:%d\n", testIcon.iconName.c_str(), testIcon.iWidth, testIcon.iHeight);
 
-	CFrameBuffer::getInstance()->paintIcon(testIcon.iconName.c_str(), 150 + BORDER_LEFT, 150);
+	testIcon.paint(150 + BORDER_LEFT, 150);
 
 	CFrameBuffer::getInstance()->blit();
 
@@ -2428,8 +2435,10 @@ void CTestMenu::testCImage()
 
 	// paint testImage
 	testImage.setImage(PLUGINDIR "/netzkino/netzkino.png");
-
-	CFrameBuffer::getInstance()->displayImage(testImage.imageName.c_str(), 150 + BORDER_LEFT, 150, testImage.iWidth, testImage.iHeight);
+	
+	dprintf(DEBUG_NORMAL, "\ntestCImahe: image:%s iw:%d ih:%d nbp:%d\n", testImage.imageName.c_str(), testImage.iWidth, testImage.iHeight, testImage.iNbp);
+	
+	testImage.paint(150 + BORDER_LEFT, 150, testImage.iWidth, testImage.iHeight);
 
 	CFrameBuffer::getInstance()->blit();
 
@@ -2460,7 +2469,7 @@ void CTestMenu::testCWindow()
 
 	window->setPosition(Box.iX, Box.iY, Box.iWidth, Box.iHeight);
 
-	window->setColor(COL_MENUHEAD_PLUS_0);
+	window->setColor(COL_MENUCONTENT_PLUS_0);
 	window->setCorner(RADIUS_MID, CORNER_ALL);
 	//window->setGradient(DARK2LIGHT2DARK);
 

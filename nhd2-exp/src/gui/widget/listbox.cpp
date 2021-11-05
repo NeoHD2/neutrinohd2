@@ -2033,10 +2033,10 @@ void ClistBox::initFrames()
 		//
 		if (widgetMode == MODE_MENU)
 		{
-			cFrameBox.iX = g_settings.screen_StartX;
-			cFrameBox.iY = g_settings.screen_StartY;
-			cFrameBox.iWidth = g_settings.screen_EndX - g_settings.screen_StartX;
-			cFrameBox.iHeight = g_settings.screen_EndY - g_settings.screen_StartY;
+			cFrameBox.iX = frameBuffer->getScreenX(true);
+			cFrameBox.iY = frameBuffer->getScreenY(true);
+			cFrameBox.iWidth = frameBuffer->getScreenWidth(true);
+			cFrameBox.iHeight = frameBuffer->getScreenHeight(true);
 		}
 
 		//

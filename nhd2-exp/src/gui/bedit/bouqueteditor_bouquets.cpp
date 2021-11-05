@@ -62,7 +62,7 @@ CBEBouquetWidget::CBEBouquetWidget()
 {
 	frameBuffer = CFrameBuffer::getInstance();
 
-	selected = 0;
+	selected = -1;
 	state = beDefault;
 	blueFunction = beRename;
 	

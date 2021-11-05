@@ -66,7 +66,7 @@ extern CBouquetManager * g_bouquetManager;	// defined in zapit.cpp
 CBEChannelWidget::CBEChannelWidget(const std::string & Caption, unsigned int Bouquet)
 {
 	frameBuffer = CFrameBuffer::getInstance();
-	selected = 0;
+	selected = -1;
 	
 	state = beDefault;
 	caption = Caption;
@@ -308,6 +308,7 @@ int CBEChannelWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 		else if(msg == RC_ok)
 		{
 			selected = listBox->getSelected();
+			
 			if (state == beDefault)
 			{
 				if (selected < Channels->size()) /* Channels.size() might be 0 */

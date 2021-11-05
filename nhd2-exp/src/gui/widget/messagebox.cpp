@@ -393,10 +393,12 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 
 void CMessageBox::resizeFrame(void)
 {
-	m_cBoxWindow = new CWindow(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1),
-                               CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2),
-                               m_width,
-                               m_height);
+	cFrameBox.iWidth = m_width;
+	cFrameBox.iHeight = m_height;
+	cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1);
+	cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2);
+	
+	m_cBoxWindow = new CWindow(&cFrameBox);
 
 	m_cBoxWindow->enableSaveScreen();
 	//m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);

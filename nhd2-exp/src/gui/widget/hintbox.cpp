@@ -107,6 +107,7 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 	for (std::vector<char *>::const_iterator it = line.begin(); it != line.end(); it++)
 	{
 		nw = additional_width + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(*it, true); // UTF-8
+		
 		if (nw > cFrameBox.iWidth)
 		{
 			cFrameBox.iWidth = nw;
@@ -120,7 +121,7 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 	cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - cFrameBox.iWidth ) >> 1);
 	cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - cFrameBox.iHeight) >> 2);
 	
-	m_cBoxWindow = new CWindow(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
+	m_cBoxWindow = new CWindow(/*cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight*/&cFrameBox);
 	m_cBoxWindow->enableSaveScreen();
 	//m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
 	m_cBoxWindow->enableShadow();

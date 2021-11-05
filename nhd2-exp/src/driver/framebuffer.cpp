@@ -316,14 +316,20 @@ unsigned int CFrameBuffer::getScreenHeight(bool real)
 		return g_settings.screen_EndY - g_settings.screen_StartY;
 }
 
-unsigned int CFrameBuffer::getScreenX()
+unsigned int CFrameBuffer::getScreenX(bool real)
 {
-	return g_settings.screen_StartX;
+	if (real)
+		return 0;
+	else
+		return g_settings.screen_StartX;
 }
 
-unsigned int CFrameBuffer::getScreenY()
+unsigned int CFrameBuffer::getScreenY(bool real)
 {
-	return g_settings.screen_StartY;
+	if (real)
+		return 0;
+	else
+		return g_settings.screen_StartY;
 }
 
 fb_pixel_t * CFrameBuffer::getFrameBufferPointer() const

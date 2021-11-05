@@ -297,7 +297,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	CFrameBuffer::getInstance()->paintBoxRel(xpos, ypos2a, 12, 4, col1);
 	CFrameBuffer::getInstance()->paintBoxRel(xpos, ypos2a, 1, 4, col2);
 
-	// untere info box background
+	// info box background
 	CFrameBuffer::getInstance()->paintBoxRel(x, ypos2, width, info_height, col1);
 
 	// infoBox
@@ -314,7 +314,7 @@ void CItems2DetailsLine::clear(int x, int y, int width, int height, int info_hei
 	CFrameBuffer::getInstance()->paintBackgroundBoxRel(x, y + height, width, info_height);
 }
 
-// Components
+//// widget items
 // headers
 CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const char * const title, const char * const icon)
 {

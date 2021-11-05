@@ -74,6 +74,7 @@ typedef enum buttons_
 class CMessageBox
 {
 	protected:
+		CBox cFrameBox;
 		CWindow* m_cBoxWindow;
 
 		unsigned int m_currentPage;

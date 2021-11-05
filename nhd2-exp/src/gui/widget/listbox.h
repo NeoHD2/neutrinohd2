@@ -601,7 +601,7 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		bool hasItem();
 		void clearItems(void){items.clear(); current_page = 0;};
 		void clearAll(void){items.clear(); hbutton_labels.clear(); fbutton_labels.clear(); widget.clear();current_page = 0;};
-		void setSelected(unsigned int _new) { /*if(_new <= items.size())*/ selected = _new; };
+		void setSelected(unsigned int _new) { selected = _new; };
 
 		virtual void initFrames();
 		virtual void paint();

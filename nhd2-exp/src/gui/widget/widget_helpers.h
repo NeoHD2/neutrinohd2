@@ -42,11 +42,21 @@ class CBox
 		int iY;
 		int iWidth;
 		int iHeight;
+		int iRadius;
+		int iCorner;
+		fb_pixel_t iColor;
+		int iGradient;
 
 		// Constructor
 		inline CBox(){;};
 		inline CBox( const int _iX, const int _iY, const int _iWidth, const int _iHeight){iX =_iX; iY=_iY; iWidth =_iWidth; iHeight =_iHeight;};
 		inline ~CBox(){;};
+		
+		//
+		void paint()
+		{
+			CFrameBuffer::getInstance()->paintBoxRel(iX, iY, iWidth, iHeight, iColor, iRadius, iCorner, iGradient);
+		};
 };
 
 class CIcon
@@ -57,17 +67,23 @@ class CIcon
 		std::string iconName;
 
 		inline CIcon(){;};
-
+		
 		void setIcon(const char* icon)
 		{
 			iconName = std::string(icon); 
 			CFrameBuffer::getInstance()->getIconSize(iconName.c_str(), &iWidth, &iHeight);
 		};
-
+		
 		inline CIcon(const char* icon)
 		{
 			iconName = std::string(icon); 
 			CFrameBuffer::getInstance()->getIconSize(iconName.c_str(), &iWidth, &iHeight);
+		};
+
+		//
+		void paint(const int x, const int y)
+		{
+			CFrameBuffer::getInstance()->paintIcon(iconName.c_str(), x, y);
 		};
 };
 
@@ -91,6 +107,12 @@ class CImage
 		{
 			imageName = std::string(image); 
 			CFrameBuffer::getInstance()->getSize(imageName, &iWidth, &iHeight, &iNbp);
+		};
+		
+		//
+		void paint(const int x, const int y, const int dx, const int dy)
+		{
+			CFrameBuffer::getInstance()->displayImage(imageName.c_str(), x, y, dx, dy);
 		};
 };
 

@@ -203,8 +203,8 @@ class CFrameBuffer
 		unsigned int getStride() const;             // size of a single line in the framebuffer (in bytes)
 		unsigned int getScreenWidth(bool real = false);
 		unsigned int getScreenHeight(bool real = false); 
-		unsigned int getScreenX();
-		unsigned int getScreenY();
+		unsigned int getScreenX(bool real = false);
+		unsigned int getScreenY(bool real = false);
 		unsigned int getAvailableMem() const;             	// size of a available mem occupied by the framebuffer
 		
 		bool getActive() const;                     		// is framebuffer active?
