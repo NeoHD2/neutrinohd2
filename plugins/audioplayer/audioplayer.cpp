@@ -271,6 +271,12 @@ const struct button_label AudioPlayerButtons[FOOT_BUTTONS_COUNT] =
 
 void CMP3Player::showMenu()
 {
+	if (alist)
+	{
+		delete alist;
+		alist = NULL;
+	}
+	
 	alist = new CMenuWidget(LOCALE_AUDIOPLAYER_HEAD, NEUTRINO_ICON_MP3, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
 
 	for(unsigned int i = 0; i < playlist.size(); i++)
@@ -328,7 +334,6 @@ void CMP3Player::showMenu()
 	alist->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
 
 	alist->exec(NULL, "");
-	//alist->hide();
 	delete alist;
 	alist = NULL;
 }
@@ -402,7 +407,7 @@ int CMP3Player::exec(CMenuTarget* parent, const std::string& actionKey)
 	loadPlaylist();
 	showMenu();
 	
-	return RETURN_EXIT;
+	return RETURN_EXIT_ALL;
 }
 
 void plugin_init(void)

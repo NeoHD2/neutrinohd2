@@ -592,6 +592,8 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		int items_height;
 		int items_width;
 		
+		bool painted;
+		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		ClistBox(CBox* position);
@@ -703,6 +705,9 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
 		
 		void enableMenuPosition(){MenuPos = true;};
+		
+		//
+		inline bool isPainted(void){return painted;};
 };
 
 #endif // LISTBOX_H_

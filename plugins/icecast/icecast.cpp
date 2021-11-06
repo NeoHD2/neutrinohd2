@@ -742,11 +742,21 @@ int CIceCast::exec(CMenuTarget* parent, const std::string& actionKey)
 	{
 		selected = ilist->getSelected();
 
+/*
 		tmpAudioPlayerGui.addToPlaylist(playlist[selected]);
 
 		tmpAudioPlayerGui.setCurrent(0);
 		tmpAudioPlayerGui.setInetMode();
 		tmpAudioPlayerGui.exec(NULL, "");
+*/
+		for (unsigned int i = 0; i < playlist.size(); i++)
+		{
+			tmpAudioPlayerGui.addToPlaylist(playlist[i]);
+		}
+
+		tmpAudioPlayerGui.setInetMode();
+		tmpAudioPlayerGui.setCurrent(selected);
+		tmpAudioPlayerGui.exec(NULL, "");		
 
 		return RETURN_REPAINT;
 	}

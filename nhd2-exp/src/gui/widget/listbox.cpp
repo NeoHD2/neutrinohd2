@@ -1840,6 +1840,9 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	item_height = 0;
 	item_width = 0;
 	iconOffset = 0;
+	
+	//
+	painted = false;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -1931,6 +1934,9 @@ ClistBox::ClistBox(CBox* position)
 	item_height = 0;
 	item_width = 0;
 	iconOffset = 0;
+	
+	//
+	painted = false;
 }
 
 ClistBox::~ClistBox()
@@ -2176,6 +2182,9 @@ void ClistBox::paint()
 	paintHead();
 	paintFoot();
 	paintItems();
+	
+	//
+	painted = true;
 }
 
 void ClistBox::paintItems()
@@ -2934,6 +2943,9 @@ void ClistBox::hide()
 	}	
 
 	frameBuffer->blit();
+	
+	//
+	painted = false;
 }
 
 void ClistBox::scrollLineDown(const int)

@@ -75,6 +75,7 @@ class CAudioPlayerGui : public CMenuTarget
 		//
 		int m_current;
 		bool exit_pressed;
+		bool update_t;
 
 		//
 		State          m_state;
@@ -112,7 +113,7 @@ class CAudioPlayerGui : public CMenuTarget
 		int getNext();
 		void GetMetaData(CAudiofile& File);
 		void updateMetaData();
-		void updateTimes(const bool force = false);
+		void updateTimes(const bool force = false, bool paint = true);
 		
 		/**
 		* Appends the file information to the given string.
@@ -161,6 +162,12 @@ class CAudioPlayerGui : public CMenuTarget
 		bool shufflePlaylist(void);
 
 		void playFile();
+		
+		//
+		ClistBox* alist;
+		CMenuItem* item;
+		int selected;
+		void showPlaylist();
 	
 	public:
 		CAudioPlayerGui();
