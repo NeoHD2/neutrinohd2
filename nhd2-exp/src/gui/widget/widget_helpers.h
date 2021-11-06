@@ -32,9 +32,48 @@
 
 
 class CMenuTarget;
+class CWidgetItem;
 
 //// helpers
-class CBox
+typedef enum {
+	CC_BOX,
+	CC_ICON,
+	CC_IMAGE,
+	CC_LABEL,
+	CC_TEXT,
+	CC_SCROLLBAR,
+	CC_PROGRESSBAR,
+	CC_BUTTON,
+	CC_HLINE,
+	CC_VLINE,
+	CC_FRAMELINE,
+	CC_DETAILSLINE,
+	CC_PIG,
+	CC_GRID
+}ui_component_t;
+
+class CComponent
+{
+	public:
+		//
+		CFrameBuffer *frameBuffer;
+		int cc_type;
+		
+		CWidgetItem* parent;
+		
+		//
+		CComponent(){frameBuffer = CFrameBuffer::getInstance();};
+		virtual ~CComponent(){};
+		
+		//
+		virtual void paint(void){};
+		virtual void hide(void){};
+		
+		virtual int getCCType(){return cc_type;};
+		virtual void setParent(CWidgetItem* w){parent = w;};
+};
+
+class CBox : public CComponent
 {
 	public:
 		// Variables
@@ -55,11 +94,11 @@ class CBox
 		//
 		void paint()
 		{
-			CFrameBuffer::getInstance()->paintBoxRel(iX, iY, iWidth, iHeight, iColor, iRadius, iCorner, iGradient);
+			frameBuffer->paintBoxRel(iX, iY, iWidth, iHeight, iColor, iRadius, iCorner, iGradient);
 		};
 };
 
-class CIcon
+class CIcon : public CComponent
 {
 	public:
 		int iWidth;
@@ -71,7 +110,7 @@ class CIcon
 		void setIcon(const char* icon)
 		{
 			iconName = std::string(icon); 
-			CFrameBuffer::getInstance()->getIconSize(iconName.c_str(), &iWidth, &iHeight);
+			frameBuffer->getIconSize(iconName.c_str(), &iWidth, &iHeight);
 		};
 		
 		inline CIcon(const char* icon)
@@ -87,7 +126,7 @@ class CIcon
 		};
 };
 
-class CImage
+class CImage : public CComponent
 {
 	public:
 		int iWidth;
@@ -100,19 +139,19 @@ class CImage
 		void setImage(const char* image)
 		{
 			imageName = std::string(image); 
-			CFrameBuffer::getInstance()->getSize(imageName, &iWidth, &iHeight, &iNbp);
+			frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
 		};
 
 		inline CImage(const char* image)
 		{
 			imageName = std::string(image); 
-			CFrameBuffer::getInstance()->getSize(imageName, &iWidth, &iHeight, &iNbp);
+			frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
 		};
 		
 		//
 		void paint(const int x, const int y, const int dx, const int dy)
 		{
-			CFrameBuffer::getInstance()->displayImage(imageName.c_str(), x, y, dx, dy);
+			frameBuffer->displayImage(imageName.c_str(), x, y, dx, dy);
 		};
 };
 
@@ -127,7 +166,7 @@ typedef struct button_label
 typedef std::vector<button_label_struct> button_label_list_t;
 
 // CButtons
-class CButtons
+class CButtons : public CComponent
 {
 	private:
 		button_label_list_t buttons;
@@ -142,7 +181,7 @@ class CButtons
 };
 
 //CScrollBar
-class CScrollBar
+class CScrollBar : public CComponent
 {
 	private:
 	public:
@@ -154,10 +193,9 @@ class CScrollBar
 };
 
 // CProgressbar
-class CProgressBar
+class CProgressBar : public CComponent
 {
 	private:
-		CFrameBuffer * frameBuffer;
 		short width;
 		short height;
 		unsigned char percent;
@@ -172,7 +210,7 @@ class CProgressBar
 };
 
 // detailsLine
-class CItems2DetailsLine
+class CItems2DetailsLine : public CComponent
 {
 	public:
 		CItems2DetailsLine(){};
@@ -180,6 +218,69 @@ class CItems2DetailsLine
 		
 		void paint(int x, int y, int width, int height, int info_height, int iheight, int iy);
 		void clear(int x, int y, int width, int height, int info_height);
+};
+
+// CHline
+class CHline : public CComponent
+{
+	public:
+		CHline(){};
+		virtual ~CHline(){};
+		
+		void paint(const int x, const int y, const int dx, fb_pixel_t col)
+		{
+			frameBuffer->paintHLineRel(x, dx, y, col);
+		};
+};
+
+// CVline
+class CVline : public CComponent
+{
+	public:
+		CVline(){};
+		virtual ~CVline(){};
+		
+		void paint(const int x, const int y, const int dy, fb_pixel_t col)
+		{
+			frameBuffer->paintVLineRel(x, y, dy, col);
+		};
+};
+
+// CFrameline
+class CFrameLine : public CComponent
+{
+	public:
+		CFrameLine(){};
+		virtual ~CFrameLine(){};
+		
+		void paint(const int x, const int y, const int dx, const int dy, const fb_pixel_t col)
+		{
+			frameBuffer->paintFrameBox(x, y, dx, dy, col);
+		};
+};
+
+// CLabel
+class CLabel : public CComponent
+{
+	public:
+		uint8_t color;
+		CFont* font;
+		std::string label;
+		bool paintBG;
+		bool utf8;
+		
+		CLabel(){paintBG = false; utf8 = true; /*font = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]*/};
+		virtual ~CLabel(){};
+		
+		//
+		void setColor(uint8_t col){color = col;};
+		void setFont(CFont *f){font = f;};
+		void settext(const char* text){label = text;};
+		
+		void paint(const int x, const int y, const int dx, const int dy)
+		{
+			font->RenderString(x, y, dx, label.c_str(), color, 0, utf8, paintBG);
+		};
 };
 
 // CWidgetItem

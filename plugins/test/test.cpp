@@ -6996,11 +6996,13 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CImage", true, NULL, this, "image"));
 	mainMenu->addItem(new CMenuForwarder("CButtons", true, NULL, this, "buttons"));
 	mainMenu->addItem(new CMenuForwarder("CProgressBar", true, NULL, this, "progressbar"));
-	mainMenu->addItem(new CMenuForwarder("CScrollBar", false, NULL, this, "scrollbar"));
-	mainMenu->addItem(new CMenuForwarder("CItems2DetailsLine", false, NULL, this, "detailsline"));
+	//mainMenu->addItem(new CMenuForwarder("CScrollBar", true, NULL, this, "scrollbar"));
+	//mainMenu->addItem(new CMenuForwarder("CItems2DetailsLine", true, NULL, this, "detailsline"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWindow|CPIG|CGrid"));
 	mainMenu->addItem(new CMenuForwarder("CWindow", true, NULL, this, "window"));
 	mainMenu->addItem(new CMenuForwarder("CWindow(with shadow)", true, NULL, this, "windowshadow"));
 	mainMenu->addItem(new CMenuForwarder("CWindow(customColor)", true, NULL, this, "windowcustomcolor"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CProgressWindow"));
 	mainMenu->addItem(new CMenuForwarder("CProgressWindow", true, NULL, this, "progresswindow"));
 	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Widget Items"));
