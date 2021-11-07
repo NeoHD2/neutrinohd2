@@ -495,7 +495,7 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 							int p_w = 0;
 							int p_h = 0;
 
-							CFrameBuffer::getInstance()->scaleImage(tname, &p_w, &p_h);
+							::scaleImage(tname, &p_w, &p_h);
 	
 							CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	

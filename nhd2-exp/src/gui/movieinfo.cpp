@@ -919,7 +919,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	int p_w = 0;
 	int p_h = 0;
 
-	CFrameBuffer::getInstance()->scaleImage(movie_info.tfile, &p_w, &p_h);
+	::scaleImage(movie_info.tfile, &p_w, &p_h);
 
 	infoBox->setText(print_buffer.c_str(), movie_info.tfile.c_str(), p_w, p_h);
 	infoBox->exec();

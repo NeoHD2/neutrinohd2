@@ -2799,7 +2799,7 @@ void CTestMenu::testCInfoBox()
 	int p_w = 0;
 	int p_h = 0;
 
-	CFrameBuffer::getInstance()->scaleImage(tname, &p_w, &p_h);
+	scaleImage(tname, &p_w, &p_h);
 		
 	
 	CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
@@ -2941,7 +2941,7 @@ void CTestMenu::testCTextBox()
 	int p_w = 0;
 	int p_h = 0;
 	
-	CFrameBuffer::getInstance()->scaleImage(tname, &p_w, &p_h);
+	scaleImage(tname, &p_w, &p_h);
 	
 	textBox->setText(buffer, tname.c_str(), p_w, p_h);
 	
@@ -6983,7 +6983,7 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CProgressWindow", true, NULL, this, "progresswindow"));
 	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItems"));
-	mainMenu->addItem(new CMenuForwarder("CHeaders", true, NULL, this, "headers"));
+	mainMenu->addItem(new CMenuForwarder("CHeaders|CFooters", true, NULL, this, "headers"));
 	//mainMenu->addItem(new CMenuForwarder("CTextBox", true, NULL, this, "textbox"));
 	mainMenu->addItem(new CMenuForwarder("CListFrame", true, NULL, this, "listframe"));
 	

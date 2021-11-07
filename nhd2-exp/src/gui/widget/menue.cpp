@@ -1058,7 +1058,7 @@ void CMenuWidget::paintItemInfo(int pos)
 
 			std::string fname = item->itemIcon;
 
-			CFrameBuffer::getInstance()->scaleImage(fname, &p_w, &p_h);
+			::scaleImage(fname, &p_w, &p_h);
 			
 			if(textBox)
 			{

@@ -227,4 +227,7 @@ class CChannellogo
 		void scaleImage(const std::string &tname, int *p_w, int *p_h);		
 };
 
+//
+void scaleImage(const std::string &tname, int *p_w, int *p_h);
+
 #endif

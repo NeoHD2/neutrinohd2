@@ -117,11 +117,6 @@ int CSwigHelpers::getIconWidth(const char * const filename)
 	return width;
 }
 
-void CSwigHelpers::scaleImage(const std::string tname, int p_w, int p_h)
-{
-	CFrameBuffer::getInstance()->scaleImage(tname, &p_w, &p_h);
-}
-
 // fontRenderer
 void CSwigHelpers::RenderString(int font_type, int x, int y, const int width, const char * text, const uint8_t color, const int boxheight, bool utf8_encoded, const bool useBackground)
 {

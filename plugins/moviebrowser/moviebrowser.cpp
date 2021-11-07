@@ -1011,7 +1011,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 					int p_w = 0;
 					int p_h = 0;
 				
-					CFrameBuffer::getInstance()->scaleImage(tname, &p_w, &p_h);
+					scaleImage(tname, &p_w, &p_h);
 
 					CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	
@@ -1385,7 +1385,7 @@ void CMovieBrowser::refreshMovieInfo(void)
 		int p_w = 0;
 		int p_h = 0;
 		
-		CFrameBuffer::getInstance()->scaleImage(fname, &p_w, &p_h);
+		scaleImage(fname, &p_w, &p_h);
 		
 		m_pcInfo->setText(m_movieSelectionHandler->epgInfo2.c_str(), fname.c_str(), p_w, p_h);
 	}
@@ -1909,7 +1909,7 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 					int p_w = 0;
 					int p_h = 0;
 				
-					CFrameBuffer::getInstance()->scaleImage(tname, &p_w, &p_h);
+					scaleImage(tname, &p_w, &p_h);
 	
 					CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	

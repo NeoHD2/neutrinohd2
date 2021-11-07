@@ -68,8 +68,6 @@ class CSwigHelpers
 		int getIconHeight(const char * const filename);
 		int getIconWidth(const char * const filename);
 
-		void scaleImage(const std::string tname, int p_w, int p_h);
-
 		// fontrenderer
 		void RenderString(int font_type, int x, int y, const int width, const char * text, const uint8_t color, const int boxheight = 0, bool utf8_encoded = true, const bool useBackground = false);
 

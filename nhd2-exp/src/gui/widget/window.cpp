@@ -177,14 +177,14 @@ void CWindow::paint()
 
 	if(enableshadow)
 	{
-		// shadow Box
-		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6, radius, corner);
+		// shadow
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6/*, radius, corner*/);
 
 		// window Box
-		frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, /*enableshadow? NO_RADIUS :*/ radius, /*enableshadow? CORNER_NONE :*/ corner, gradient);
+		frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, NO_RADIUS /*radius*/, CORNER_NONE/*corner*/, gradient);
 	}
 	else
-		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, /*enableshadow? NO_RADIUS :*/ radius, /*enableshadow? CORNER_NONE :*/ corner, gradient);
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
 }
 
 void CWindow::hide()
