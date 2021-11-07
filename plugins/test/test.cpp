@@ -2366,6 +2366,16 @@ void CTestMenu::testCComponent()
 	testWindow.setCorner(RADIUS_MID, CORNER_ALL);
 	testWindow.paint();
 	
+	// heades
+	CHeaders head(Box.iX, Box.iY, Box.iWidth, 40, "CComponents", NEUTRINO_ICON_COLORS);
+	head.enablePaintDate();
+	head.paint();
+	
+	// footers
+	CFooters foot(Box.iX, Box.iY + Box.iHeight - 40, Box.iWidth, 40);
+	foot.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	foot.paint();
+	
 	// icon
 	CIcon testIcon;
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
@@ -2374,7 +2384,7 @@ void CTestMenu::testCComponent()
 	// image
 	CImage testImage;
 	testImage.setImage(DATADIR "/neutrino/icons/nopreview.jpg");
-	testImage.paint(Box.iX + Box.iWidth - testImage.iWidth - 50, Box.iY + 10, testImage.iWidth, testImage.iHeight);
+	testImage.paint(Box.iX + Box.iWidth - testImage.iWidth - 50, Box.iY + 150, testImage.iWidth, testImage.iHeight);
 	
 	// label
 	CLabel testLabel;
@@ -2382,13 +2392,13 @@ void CTestMenu::testCComponent()
 	testLabel.setColor(COL_YELLOW0);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponet label test :-)");
-	testLabel.paint(Box.iX, Box.iY, Box.iWidth);
+	testLabel.paint(Box.iX + 20, Box.iY + 50, Box.iWidth);
 	
 	// CButtons
 	int icon_w, icon_h;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
 	
-	buttons.paintFootButtons(Box.iX + 10, Box.iY + Box.iHeight - icon_h, Box.iWidth, icon_h, FOOT_BUTTONS_COUNT, FootButtons);
+	buttons.paintFootButtons(Box.iX + 10, Box.iY + Box.iHeight - 100, Box.iWidth, icon_h, FOOT_BUTTONS_COUNT, FootButtons);
 	
 	// Hline
 	CHline testHline;
@@ -2408,7 +2418,7 @@ void CTestMenu::testCComponent()
 	
 	// pb
 	CProgressBar testPB(Box.iWidth /3, 10, 40, 100, 70, true);
-	testPB.paint(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - testIcon.iHeight - 10 - 10, 50);
+	testPB.paint(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, 50);
 	
 	// sb
 	CScrollBar testSB;
