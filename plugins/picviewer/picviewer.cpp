@@ -142,7 +142,7 @@ void CPicViewer::openFileBrowser()
 				pic.Date = statbuf.st_mtime;
 
 				// skip duplicate
-				for (unsigned long i = 0; i < playlist.size(); i++)
+				for (unsigned long i = 0; i < (unsigned long)playlist.size(); i++)
 				{
 					if(playlist[i].Filename == pic.Filename)
 						playlist.erase(playlist.begin() + i); 

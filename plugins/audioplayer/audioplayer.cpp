@@ -205,7 +205,7 @@ void CMP3Player::openFileBrowser()
 				CAudiofile audiofile(files->Name, files->getExtension());
 
 				// skip duplicate
-				for (unsigned long i = 0; i < playlist.size(); i++)
+				for (unsigned long i = 0; i < (unsigned long)playlist.size(); i++)
 				{
 					if(playlist[i].Filename == audiofile.Filename)
 						playlist.erase(playlist.begin() + i); 
@@ -279,7 +279,7 @@ void CMP3Player::showMenu()
 	
 	alist = new CMenuWidget(LOCALE_AUDIOPLAYER_HEAD, NEUTRINO_ICON_MP3, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
 
-	for(unsigned int i = 0; i < playlist.size(); i++)
+	for(unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 	{
 		std::string title;
 		std::string artist;
@@ -350,7 +350,7 @@ int CMP3Player::exec(CMenuTarget* parent, const std::string& actionKey)
 
 	if(actionKey == "aplay")
 	{
-		for (unsigned int i = 0; i < playlist.size(); i++)
+		for (unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 		{
 			tmpAudioPlayerGui.addToPlaylist(playlist[i]);
 		}
@@ -374,7 +374,7 @@ int CMP3Player::exec(CMenuTarget* parent, const std::string& actionKey)
 		CAudioPlayList::iterator p = playlist.begin() + alist->getSelected();
 		playlist.erase(p);
 
-		if (selected >= playlist.size())
+		if (selected >= (int)playlist.size())
 			selected = playlist.size() - 1;
 
 		showMenu();

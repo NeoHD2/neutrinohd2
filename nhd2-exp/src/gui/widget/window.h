@@ -34,7 +34,7 @@
 
 
 // window
-class CWindow
+class CWindow : public CComponent
 {
 	private:
 		CFrameBuffer* frameBuffer;
@@ -78,7 +78,7 @@ class CWindow
 };
 
 // pig
-class CPig
+class CPig : public CComponent
 {
 	private:
 		CFrameBuffer* frameBuffer;
@@ -98,7 +98,7 @@ class CPig
 };
 
 //
-class CGrid
+class CGrid : public CComponent
 {
 	private:
 		CFrameBuffer* frameBuffer;

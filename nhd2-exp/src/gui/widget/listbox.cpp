@@ -83,6 +83,9 @@ CMenuItem::CMenuItem()
 	actionKey = "";
 	
 	paintFrame = true;
+	
+	//
+	parent = NULL;
 }
 
 /*
@@ -279,7 +282,13 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 	if (selected)
 	{
 		color = COL_MENUCONTENTSELECTED;
-		bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+		
+		if (parent)
+		{
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: /*COL_MENUCONTENTSELECTED_PLUS_2*/COL_MENUCONTENTINACTIVE_PLUS_0;
+		}
+		else
+			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	else if (!active)
 	{
@@ -473,7 +482,13 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 	if (selected)
 	{
 		color = COL_MENUCONTENTSELECTED;
-		bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+		
+		if (parent)
+		{
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: /*COL_MENUCONTENTSELECTED_PLUS_2*/COL_MENUCONTENTINACTIVE_PLUS_0;
+		}
+		else
+			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	else if (!active)
 	{
@@ -684,7 +699,13 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
 	if (selected) 
 	{
 		color = COL_MENUCONTENTSELECTED;
-		bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+		
+		if (parent)
+		{
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: /*COL_MENUCONTENTSELECTED_PLUS_2*/COL_MENUCONTENTINACTIVE_PLUS_0;
+		}
+		else
+			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	else if (!active) 
 	{
@@ -825,7 +846,13 @@ int CMenuOptionLanguageChooser::paint( bool selected, bool /*AfterPulldown*/)
 	if(selected)
 	{
 		color = COL_MENUCONTENTSELECTED;
-		bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+		
+		if (parent)
+		{
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: /*COL_MENUCONTENTSELECTED_PLUS_2*/COL_MENUCONTENTINACTIVE_PLUS_0;
+		}
+		else
+			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	
 	// paint item
@@ -1123,7 +1150,13 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 	if (selected)
 	{
 		color = COL_MENUCONTENTSELECTED;
-		bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+		
+		if (parent)
+		{
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: COL_MENUCONTENTSELECTED_PLUS_1;
+		}
+		else
+			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	else if (!active)
 	{
@@ -1449,7 +1482,12 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 	if (selected)
 	{
 		color = COL_MENUCONTENTSELECTED;
-		bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+		if (parent)
+		{
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0 : COL_MENUCONTENTSELECTED_PLUS_1;
+		}
+		else
+			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	else if (!active)
 	{
@@ -1952,6 +1990,7 @@ void ClistBox::addItem(CMenuItem * menuItem, const bool defaultselected)
 		selected = items.size();
 	
 	items.push_back(menuItem);
+	menuItem->setParent(this);
 }
 
 bool ClistBox::hasItem()
@@ -2333,10 +2372,10 @@ void ClistBox::paintItems()
 				}
 
 				// paint item
-				if(inFocus)
+				//if(inFocus)
 					ypos = item->paint(selected == ((signed int) count));
-				else
-					ypos = item->paint(false);
+				//else
+				//	ypos = item->paint(false);
 			} 
 			else 
 			{

@@ -128,6 +128,8 @@ void CTextBox::initVar(void)
 	painted = false;
 	paintBG = true;
 	enableFrame = false;
+	
+	cc_type = CC_TEXT;
 }
 
 void CTextBox::setPosition(const CBox * position)
@@ -632,6 +634,7 @@ void CTextBox::hide(void)
 	painted = false;
 }
 
+/*
 void CTextBox::onUpKeyPressed()
 {
 	dprintf(DEBUG_DEBUG, "CTextBox::UpKeyPressed:\n");
@@ -673,5 +676,6 @@ void CTextBox::onPageDownKeyPressed()
 
 	scrollPageDown();
 }
+*/
 
 

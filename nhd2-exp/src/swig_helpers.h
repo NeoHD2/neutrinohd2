@@ -51,8 +51,6 @@ class CSwigHelpers
 
 		bool displayImage(const std::string & name, int posx = 0, int posy = 0, int width = DEFAULT_XRES, int height = DEFAULT_YRES, ScalingMode scaling = COLOR, int x_pan = 0, int y_pan = 0, bool clearfb = false);
 
-		bool displayLogo(t_channel_id channel_id, int posx, int posy, int width, int height, bool upscale = false, bool center_x = true, bool center_y = true);
-
 		void paintBackground();
 		void paintBackgroundBoxRel(int x, int y, int dx, int dy);
 		bool loadBackgroundPic(const std::string filename, bool show = true);

@@ -685,7 +685,7 @@ void EventList::paint(t_channel_id channel_id)
 	// head
 	std::string logo;
 
-	logo = frameBuffer->getLogoName(channel_id);
+	logo = CChannellogo::getInstance()->getLogoName(channel_id);
 
 	//listBox->enableShrinkMenu();
 	listBox->enableCenterPos();

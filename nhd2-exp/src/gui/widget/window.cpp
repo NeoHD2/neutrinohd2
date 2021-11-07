@@ -98,6 +98,9 @@ void CWindow::init()
 		itemBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - itemBox.iWidth) >> 1 );
 		itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - itemBox.iHeight) >> 1 );
 	}
+	
+	//
+	cc_type = CC_WINDOW;
 }
 
 void CWindow::saveScreen()
@@ -217,6 +220,9 @@ CPig::CPig(CBox* position)
 void CPig::init()
 {
 	frameBuffer = CFrameBuffer::getInstance();
+	
+	//
+	cc_type = CC_PIG;
 }
 
 void CPig::paint()
@@ -262,6 +268,9 @@ void CGrid::init()
 
 	rgb = 0x505050;
 	inter_frame = 15;
+	
+	//
+	cc_type = CC_GRID;
 }
 
 void CGrid::paint()

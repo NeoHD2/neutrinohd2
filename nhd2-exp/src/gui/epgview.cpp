@@ -410,7 +410,7 @@ void CEpgData::showHead(const t_channel_id channel_id)
 
 	std::string logo;
 
-	logo = frameBuffer->getLogoName(channel_id);
+	logo = CChannellogo::getInstance()->getLogoName(channel_id);
 
 	CHeaders headers(cHeadBox, text1.c_str(), logo.c_str());
 

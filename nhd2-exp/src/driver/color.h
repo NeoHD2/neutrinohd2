@@ -40,7 +40,7 @@
 #include <driver/framebuffer.h>
 
 
-// common
+// fonts common colors
 #define COL_TRANSPARENT0			0x01
 #define COL_DARK_RED0	 			0x02
 #define COL_DARK_GREEN0	 		0x03
@@ -62,7 +62,7 @@
 #define COL_DARK_ORANGE0			0xBC
 #define COL_BACKGROUND0 			0xFF
 
-// neutrino color
+// neutrino font colors
 #define COL_MENUCONTENTINACTIVE		254-8*1
 #define COL_MENUCONTENTSELECTED		254-8*2
 #define COL_MENUCONTENTDARK			254-8*3
@@ -75,7 +75,7 @@
 #define COL_COLORED_EVENTS_CHANNELLIST	254-8*10
 #define COL_MENUFOOT_INFO			254-8*11
 
-//
+// gui common colors
 #define COL_TRANSPARENT			CFrameBuffer::getInstance()->realcolor[COL_TRANSPENT0]
 #define COL_DARK_RED				CFrameBuffer::getInstance()->realcolor[COL_DARK_RED0]
 #define COL_DARK_GREEN				CFrameBuffer::getInstance()->realcolor[COL_DARK_GREEN0]
@@ -97,20 +97,23 @@
 #define COL_DARK_ORANGE			CFrameBuffer::getInstance()->realcolor[COL_DARK_ORANGE0]
 #define COL_BACKGROUND           		CFrameBuffer::getInstance()->realcolor[COL_BACKGROUND0]
 
-//
+// neutrino gui colors
+// infoBar color
 #define COL_INFOBAR_PLUS_0              	CFrameBuffer::getInstance()->realcolor[COL_INFOBAR + 0]
-#define COL_INFOBAR_SHADOW_PLUS_0       	CFrameBuffer::getInstance()->realcolor[COL_INFOBAR_SHADOW + 0]
-#define COL_INFOBAR_SHADOW_PLUS_1       	CFrameBuffer::getInstance()->realcolor[COL_INFOBAR_SHADOW + 1]
+#define COL_INFOBAR_SHADOW_PLUS_0       	CFrameBuffer::getInstance()->realcolor[COL_INFOBAR_SHADOW + 0] // CMessageBox
+#define COL_INFOBAR_SHADOW_PLUS_1       	CFrameBuffer::getInstance()->realcolor[COL_INFOBAR_SHADOW + 1] // infobar buttons
 
+// head color
 #define COL_MENUHEAD_PLUS_0             	CFrameBuffer::getInstance()->realcolor[COL_MENUHEAD + 0]
+
+// menu
 #define COL_MENUCONTENT_PLUS_0          	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENT + 0]
 #define COL_MENUCONTENT_PLUS_1          	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENT + 1] // scrollbar
-#define COL_MENUCONTENT_PLUS_2          	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENT + 2] // progresswindow
-#define COL_MENUCONTENT_PLUS_3          	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENT + 3] // scrollbar
+#define COL_MENUCONTENT_PLUS_2          	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENT + 2] // progressbar
+#define COL_MENUCONTENT_PLUS_3          	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENT + 3] // scrollbarslider
 #define COL_MENUCONTENT_PLUS_4          	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENT + 4] // stringinput
 #define COL_MENUCONTENT_PLUS_5          	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENT + 5] // epgplus
-#define COL_MENUCONTENT_PLUS_6          	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENT + 6]
-#define COL_MENUCONTENT_PLUS_7          	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENT + 7] // progress window
+#define COL_MENUCONTENT_PLUS_6          	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENT + 6] // shadow
 
 // CMenuwidgetExtended
 #define COL_MENUCONTENTDARK_PLUS_0      	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTDARK + 0]
@@ -118,18 +121,18 @@
 // menu selected
 #define COL_MENUCONTENTSELECTED_PLUS_0  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 0]
 #define COL_MENUCONTENTSELECTED_PLUS_1  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 1]
-#define COL_MENUCONTENTSELECTED_PLUS_2  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 2]
+#define COL_MENUCONTENTSELECTED_PLUS_2  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 2] // marked
 
+// menu inactive
 #define COL_MENUCONTENTINACTIVE_PLUS_0  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTINACTIVE + 0]
 
+// foot
 #define COL_MENUFOOT_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_MENUFOOT + 0]
 
+// footInfo
 #define COL_MENUFOOT_INFO_PLUS_0        	CFrameBuffer::getInstance()->realcolor[COL_MENUFOOT_INFO + 0]
 
-#define COL_SCROLLBAR				COL_MENUCONTENT_PLUS_1
-#define COL_SCROLLBAR_SLIDER			COL_MENUCONTENT_PLUS_3
-
-
+//
 int convertSetupColor2RGB(unsigned char r, unsigned char g, unsigned char b);
 int convertSetupAlpha2Alpha(unsigned char alpha);
 uint8_t limitChar(int c);

@@ -236,6 +236,7 @@ void GLThreadObj::keyboardcb(unsigned char key, int /*x*/, int /*y*/)
 void GLThreadObj::specialcb(int key, int /*x*/, int /*y*/)
 {
 	std::map<int, neutrino_msg_t>::const_iterator i = gThiz->mSpecialMap.find(key);
+	
 	if(key == GLUT_KEY_F12)
 	{
 		gThiz->mReInit = true;

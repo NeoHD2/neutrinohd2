@@ -36,6 +36,8 @@
 #include <gui/widget/widget.h>
 
 
+class CFrameBox;
+
 enum {
 	FRAME_BOX = 0, // caption, option and left icon | optionInfo and 2lines
 	FRAME_PICTURE,
@@ -43,8 +45,8 @@ enum {
 	FRAME_TEXT,
 	FRAME_LABEL,
 	FRAME_PLUGIN,
-	FRAME_LINE_VERTICAL,
-	FRAME_LINE_HORIZONTAL,
+	FRAME_HLINE,
+	FRAME_VLINE,
 	FRAME_HEAD,
 	FRAME_FOOT,
 	FRAME_PIG
@@ -101,6 +103,9 @@ class CFrame
 		button_label_list_t fbutton_labels;
 		
 		//
+		CFrameBox* parent;
+		
+		//
 		CFrame();
 		virtual ~CFrame(){};
 
@@ -155,6 +160,9 @@ class CFrame
 		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};
 		void setFootGradient(int grad){footGradient = grad;};
 		void setFooterButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1);
+		
+		//
+		virtual void setParent(CFrameBox* f_parent){parent = f_parent;};
 };
 
 //// CFrameBox

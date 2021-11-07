@@ -708,7 +708,7 @@ function testCWindow()
 
 	-- vframe
 	vframe = neutrino.CFrame()
-	vframe:setMode(neutrino.FRAME_LINE_VERTICAL)
+	vframe:setMode(neutrino.FRAME_VLINE)
 	vframe:setPosition(box.iX + listbox.iWidth + 10, box.iY + 50, 5, box.iHeight- 100)
 
 	testFrame = neutrino.CFrameBox(framebox)
@@ -729,7 +729,7 @@ function testCWindow()
 	listBox = neutrino.ClistBox(listbox)
 	listBox:enablePaintHead()
 	listBox:setTitle("listBox", neutrino.NEUTRINO_ICON_MOVIE)
-	listBox:setHeadGradient(neutrino.nogradient)
+	listBox:setHeadGradient(neutrino.NOGRADIENT)
 	listBox:setOutFocus()
 
 	listBox:addItem(neutrino.CMenuForwarder(neutrino.LOCALE_MENU_BACK))

@@ -188,6 +188,8 @@ void CListFrame::initVar(void)
 	m_nMaxHeight = MAX_WINDOW_HEIGHT;
 	m_nMaxWidth = MAX_WINDOW_WIDTH;
 	frameBuffer = NULL;
+	
+	itemType = WIDGET_ITEM_LISTFRAME;
 }
 
 void CListFrame::reSizeMainFrameWidth(int textWidth)

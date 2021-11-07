@@ -45,6 +45,9 @@
 #include <jsoncpp/include/json/json.h>
 #endif
 
+// zapit types
+#include <client/zapittypes.h>
+
 
 int my_system(const char * cmd);
 int my_system(int argc, const char *arg, ...); /* argc is number of arguments including command */
@@ -206,5 +209,22 @@ int proc_put(const char *path, unsigned long long value);
 int proc_put(const char *path, bool state);
 int proc_get(const char *path, char *value, const int len);
 unsigned int proc_get_hex(const char *path);
+
+// channel logo helper class
+class CChannellogo
+{
+	public:
+		CChannellogo(){};
+		~CChannellogo(){};
+		
+		static CChannellogo* getInstance();
+		
+		bool displayLogo(t_channel_id channel_id, int posx, int posy, int width, int height, bool upscale = false, bool center_x = true, bool center_y = true);
+		bool checkLogo(t_channel_id channel_id);
+		void getLogoSize(t_channel_id channel_id, int * width, int * height, int * bpp);
+		std::string getLogoName(t_channel_id channel_id);
+
+		void scaleImage(const std::string &tname, int *p_w, int *p_h);		
+};
 
 #endif

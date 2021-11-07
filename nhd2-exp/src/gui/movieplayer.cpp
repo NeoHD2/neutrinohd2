@@ -1541,7 +1541,7 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	
 	moviescale.reset();
 	
-	// paint shadow
+	// shadow
 	frameBuffer->paintBoxRel(cFrameBoxInfo.iX - 1, cFrameBoxInfo.iY - 1, cFrameBoxInfo.iWidth + 2, cFrameBoxInfo.iHeight + 2, COL_MENUCONTENT_PLUS_6);
 		
 	// paint info box

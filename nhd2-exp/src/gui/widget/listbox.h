@@ -38,7 +38,7 @@
 #include <gui/plugins.h>
 
 
-
+class CWidgetItem;
 extern CLocaleManager		*g_Locale;
 
 // item type
@@ -155,6 +155,8 @@ class CMenuItem
 		std::string actionKey;
 		
 		bool paintFrame;
+		
+		CWidgetItem* parent;
 
 		CMenuItem();
 		virtual ~CMenuItem(){};
@@ -217,6 +219,9 @@ class CMenuItem
 		//
 		virtual void setDirectKey(neutrino_msg_t key){directKey = key;};
 		virtual void setActionKey(CMenuTarget *Target, const char *const ActionKey){jumpTarget = Target; actionKey = ActionKey;};
+		
+		//
+		virtual void setParent(CWidgetItem* w_parent){parent = w_parent;};
 };
 
 // CMenuOptionChooser

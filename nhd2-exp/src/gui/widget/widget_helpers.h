@@ -33,10 +33,28 @@
 
 class CMenuTarget;
 class CWidgetItem;
+class CWidget;
 
-//// helpers
-typedef enum {
-	CC_BOX,
+// dimension helper
+class CBox
+{
+	public:
+		// Variables
+		int iX;
+		int iY;
+		int iWidth;
+		int iHeight;
+		int iRadius;
+
+		//
+		inline CBox(){};
+		inline CBox( const int _iX, const int _iY, const int _iWidth, const int _iHeight){iX =_iX; iY=_iY; iWidth =_iWidth; iHeight =_iHeight;};
+		~CBox(){};
+};
+
+// CComponent
+enum {
+	CC_WINDOW,
 	CC_ICON,
 	CC_IMAGE,
 	CC_LABEL,
@@ -49,53 +67,45 @@ typedef enum {
 	CC_FRAMELINE,
 	CC_DETAILSLINE,
 	CC_PIG,
-	CC_GRID
-}ui_component_t;
+	CC_GRID,
+	CC_SLIDER,
+	CC_TIME
+};
 
 class CComponent
 {
 	public:
 		//
 		CFrameBuffer *frameBuffer;
+		CBox itemBox;
+		
 		int cc_type;
 		
 		CWidgetItem* parent;
 		
 		//
-		CComponent(){frameBuffer = CFrameBuffer::getInstance();};
+		CComponent(){frameBuffer = CFrameBuffer::getInstance(); parent = NULL;};
 		virtual ~CComponent(){};
 		
 		//
 		virtual void paint(void){};
 		virtual void hide(void){};
 		
+		//
 		virtual int getCCType(){return cc_type;};
-		virtual void setParent(CWidgetItem* w){parent = w;};
-};
-
-class CBox : public CComponent
-{
-	public:
-		// Variables
-		int iX;
-		int iY;
-		int iWidth;
-		int iHeight;
-		int iRadius;
-		int iCorner;
-		fb_pixel_t iColor;
-		int iGradient;
-
-		// Constructor
-		inline CBox(){;};
-		inline CBox( const int _iX, const int _iY, const int _iWidth, const int _iHeight){iX =_iX; iY=_iY; iWidth =_iWidth; iHeight =_iHeight;};
-		inline ~CBox(){;};
 		
 		//
-		void paint()
+		virtual void setParent(CWidgetItem* w){parent = w;};
+		virtual void setPosition(const int _x, const int _y, const int _width, const int _height)
 		{
-			frameBuffer->paintBoxRel(iX, iY, iWidth, iHeight, iColor, iRadius, iCorner, iGradient);
+			itemBox.iX = _x;
+			itemBox.iY = _y;
+			itemBox.iWidth = _width;
+			itemBox.iHeight = _height;
 		};
+		
+		//
+		virtual inline CBox getWindowsPos(void){return (itemBox);};
 };
 
 class CIcon : public CComponent
@@ -105,7 +115,7 @@ class CIcon : public CComponent
 		int iHeight;
 		std::string iconName;
 
-		inline CIcon(){;};
+		inline CIcon(){cc_type = CC_ICON;};
 		
 		void setIcon(const char* icon)
 		{
@@ -117,6 +127,8 @@ class CIcon : public CComponent
 		{
 			iconName = std::string(icon); 
 			CFrameBuffer::getInstance()->getIconSize(iconName.c_str(), &iWidth, &iHeight);
+			
+			cc_type = CC_ICON;
 		};
 
 		//
@@ -134,7 +146,7 @@ class CImage : public CComponent
 		int iNbp;
 		std::string imageName;
 
-		inline CImage(){;};
+		inline CImage(){cc_type = CC_IMAGE;};
 
 		void setImage(const char* image)
 		{
@@ -146,6 +158,8 @@ class CImage : public CComponent
 		{
 			imageName = std::string(image); 
 			frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
+			
+			cc_type = CC_IMAGE;
 		};
 		
 		//
@@ -171,7 +185,7 @@ class CButtons : public CComponent
 	private:
 		button_label_list_t buttons;
 	public:
-		CButtons(){buttons.clear();};
+		CButtons(){buttons.clear(); cc_type = CC_BUTTON;};
 
 		// foot buttons
 		void paintFootButtons(const int x, const int y, const int dx, const int dy, const unsigned int count, const struct button_label* const content);
@@ -185,7 +199,7 @@ class CScrollBar : public CComponent
 {
 	private:
 	public:
-		CScrollBar(){};
+		CScrollBar(){cc_type = CC_SCROLLBAR;};
 		virtual ~CScrollBar(){};
 
 		void paint(const int x, const int y, const int dy, const int NrOfPages, const int CurrentPage);
@@ -213,7 +227,7 @@ class CProgressBar : public CComponent
 class CItems2DetailsLine : public CComponent
 {
 	public:
-		CItems2DetailsLine(){};
+		CItems2DetailsLine(){cc_type = CC_DETAILSLINE;};
 		virtual ~CItems2DetailsLine(){};
 		
 		void paint(int x, int y, int width, int height, int info_height, int iheight, int iy);
@@ -224,12 +238,18 @@ class CItems2DetailsLine : public CComponent
 class CHline : public CComponent
 {
 	public:
-		CHline(){};
+		//
+		fb_pixel_t color;
+		
+		CHline();
 		virtual ~CHline(){};
 		
-		void paint(const int x, const int y, const int dx, fb_pixel_t col)
+		//
+		void setColor(fb_pixel_t col){color = col;};
+		
+		void paint(const int x, const int y, const int dx)
 		{
-			frameBuffer->paintHLineRel(x, dx, y, col);
+			frameBuffer->paintHLineRel(x, dx, y, color);
 		};
 };
 
@@ -237,12 +257,19 @@ class CHline : public CComponent
 class CVline : public CComponent
 {
 	public:
-		CVline(){};
+		//
+		fb_pixel_t color;
+		
+		//
+		CVline();
 		virtual ~CVline(){};
 		
-		void paint(const int x, const int y, const int dy, fb_pixel_t col)
+		//
+		void setColor(fb_pixel_t col){color = col;};
+		
+		void paint(const int x, const int y, const int dy)
 		{
-			frameBuffer->paintVLineRel(x, y, dy, col);
+			frameBuffer->paintVLineRel(x, y, dy, color);
 		};
 };
 
@@ -250,12 +277,19 @@ class CVline : public CComponent
 class CFrameLine : public CComponent
 {
 	public:
-		CFrameLine(){};
+		//
+		fb_pixel_t color;
+		
+		//
+		CFrameLine();
 		virtual ~CFrameLine(){};
 		
-		void paint(const int x, const int y, const int dx, const int dy, const fb_pixel_t col)
+		//
+		void setColor(fb_pixel_t col){color = col;};
+		
+		void paint(const int x, const int y, const int dx, const int dy)
 		{
-			frameBuffer->paintFrameBox(x, y, dx, dy, col);
+			frameBuffer->paintFrameBox(x, y, dx, dy, color);
 		};
 };
 
@@ -269,29 +303,31 @@ class CLabel : public CComponent
 		bool paintBG;
 		bool utf8;
 		
-		CLabel(){paintBG = false; utf8 = true; /*font = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]*/};
+		CLabel();
 		virtual ~CLabel(){};
 		
 		//
 		void setColor(uint8_t col){color = col;};
 		void setFont(CFont *f){font = f;};
-		void settext(const char* text){label = text;};
+		void setText(const char* text){label = text;};
+		void enablePaintBG(){paintBG = true;};
 		
-		void paint(const int x, const int y, const int dx, const int dy)
+		void paint(const int x, const int y, const int dx)
 		{
-			font->RenderString(x, y, dx, label.c_str(), color, 0, utf8, paintBG);
+			font->RenderString(x, y + font->getHeight(), dx, label.c_str(), color, 0, utf8, paintBG);
 		};
+		
+		int getHeight(){return itemBox.iHeight;};
 };
 
 // CWidgetItem
-typedef enum {
+enum {
 	WIDGET_ITEM_HEAD = 0,
 	WIDGET_ITEM_FOOT,
 	WIDGET_ITEM_LISTBOX,
 	WIDGET_ITEM_FRAMEBOX,
-	WIDGET_ITEM_LISTFRAME,
-	WIDGET_ITEM_TEXTBOX,
-}widget_item_t;
+	WIDGET_ITEM_LISTFRAME
+};
 
 class CWidgetItem
 {
@@ -302,8 +338,10 @@ class CWidgetItem
 		bool inFocus;
 		bool paintDate;
 		std::string actionKey;
+		
+		CWidget* parent;
 
-		CWidgetItem(){inFocus = true; actionKey = "";};
+		CWidgetItem(){inFocus = true; actionKey = ""; parent = NULL;};
 		virtual ~CWidgetItem(){};
 
 		virtual bool isSelectable(void){return false;}
@@ -339,6 +377,9 @@ class CWidgetItem
 
 		//
 		virtual std::string getActionKey(void){ return actionKey;};
+		
+		//
+		virtual void setParent(CWidget* w_parent){parent = w_parent;};
 };
 
 // CHeaders

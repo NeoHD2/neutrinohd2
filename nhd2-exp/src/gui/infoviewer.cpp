@@ -354,7 +354,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 		col_NumBox = COL_INFOBAR_PLUS_0;
 	}
 	
-	// infobar shadow
+	// shadow
 	frameBuffer->paintBoxRel(BoxStartX - 1, BoxStartY - 1, BoxWidth + 2, BoxHeight + buttonBarHeight + 2, COL_MENUCONTENT_PLUS_6);
 	
 	// infobarbox
@@ -414,15 +414,15 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 		logo_bpp = 0;
 		
 		// check logo
-		logo_ok = frameBuffer->checkLogo(channel_id);
+		logo_ok = CChannellogo::getInstance()->checkLogo(channel_id);
 		
 		if(logo_ok)
 		{
 			// get logo size	
-			frameBuffer->getLogoSize(channel_id, &logo_w, &logo_h, &logo_bpp);
+			CChannellogo::getInstance()->getLogoSize(channel_id, &logo_w, &logo_h, &logo_bpp);
 		
 			// display logo
-			frameBuffer->displayLogo(channel_id, pic_x, pic_y, (logo_bpp == 4 && !g_settings.show_channelname)? logo_w : pic_w, pic_h, (logo_h > pic_h)? true : false, false, true);
+			CChannellogo::getInstance()->displayLogo(channel_id, pic_x, pic_y, (logo_bpp == 4 && !g_settings.show_channelname)? logo_w : pic_w, pic_h, (logo_h > pic_h)? true : false, false, true);
 
 			// recalculate ChanNameWidth //FIXME: timewidth
 			ChanNameWidth = BoxWidth - (30 + CHANNUMBER_WIDTH + logo_w + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getRenderWidth(ChannelName, true));
@@ -1159,6 +1159,7 @@ void CInfoViewer::showRadiotext()
 			// Body
 			if (lines) 
 			{
+				// shadow
 				frameBuffer->paintBoxRel(rt_x, rt_y+rt_dy, rt_dx, 7 + rt_dy* g_Radiotext->S_RtOsdRows, COL_MENUCONTENT_PLUS_6, NO_RADIUS, CORNER_NONE);
 
 				frameBuffer->paintBoxRel(rt_x + 1, rt_y + rt_dy + 1, rt_dx - 2, 7 + rt_dy* g_Radiotext->S_RtOsdRows - 2, COL_INFOBAR_PLUS_0, NO_RADIUS, CORNER_NONE);

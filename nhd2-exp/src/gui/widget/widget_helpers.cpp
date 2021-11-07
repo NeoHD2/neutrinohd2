@@ -48,6 +48,8 @@ CProgressBar::CProgressBar(int w, int h, int r, int g, int b, bool inv)
 	yellow = (double) b / (double) div;
 	
 	percent = 255;
+	
+	cc_type = CC_PROGRESSBAR;
 }
 
 void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
@@ -67,6 +69,7 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 	xpos = x;
 	ypos = y;
 
+	// body
 	frameBuffer->paintBoxRel(x, y, width, height, COL_MENUCONTENT_PLUS_2, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);	//fill passive
 	
 	if (pcr != percent) 
@@ -129,7 +132,7 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 			{
 				for(; (i < maxi); i++) 
 				{
-					frameBuffer->paintBoxRel(posx + i, posy, 1, height, COL_MENUCONTENT_PLUS_7, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
+					frameBuffer->paintBoxRel(posx + i, posy, 1, height, COL_MENUCONTENT_PLUS_6, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
 			}
 		}
@@ -212,7 +215,7 @@ void CScrollBar::paint(const int x, const int y, const int dy, const int NrOfPag
 
 
 	cScrollBarWindow.setPosition(&cFrameScrollBar);
-	cScrollBarWindow.setColor(COL_SCROLLBAR);
+	cScrollBarWindow.setColor(COL_MENUCONTENT_PLUS_1);
 	cScrollBarWindow.setCorner(NO_RADIUS, CORNER_ALL);
 	cScrollBarWindow.paint();
 		
@@ -226,7 +229,7 @@ void CScrollBar::paint(const int x, const int y, const int dy, const int NrOfPag
 	cFrameSlider.iHeight = cFrameScrollBar.iHeight/NrOfPages;
 
 	cSliderWindow.setPosition(&cFrameSlider);
-	cSliderWindow.setColor(COL_SCROLLBAR_SLIDER);
+	cSliderWindow.setColor(COL_MENUCONTENT_PLUS_3);
 	cSliderWindow.setCorner(NO_RADIUS, CORNER_ALL);
 	cSliderWindow.paint();
 }
@@ -240,7 +243,7 @@ void CScrollBar::paint(CBox* position, const int NrOfPages, const int CurrentPag
 	cFrameScrollBar = *position;
 
 	cScrollBarWindow.setPosition(&cFrameScrollBar);
-	cScrollBarWindow.setColor(COL_SCROLLBAR);
+	cScrollBarWindow.setColor(COL_MENUCONTENT_PLUS_1);
 	cScrollBarWindow.setCorner(NO_RADIUS, CORNER_ALL);
 	cScrollBarWindow.paint();
 		
@@ -254,7 +257,7 @@ void CScrollBar::paint(CBox* position, const int NrOfPages, const int CurrentPag
 	cFrameSlider.iHeight = cFrameScrollBar.iHeight/NrOfPages;
 
 	cSliderWindow.setPosition(&cFrameSlider);
-	cSliderWindow.setColor(COL_SCROLLBAR_SLIDER);
+	cSliderWindow.setColor(COL_MENUCONTENT_PLUS_3);
 	cSliderWindow.setCorner(NO_RADIUS, CORNER_ALL);
 	cSliderWindow.paint();
 }
@@ -312,6 +315,42 @@ void CItems2DetailsLine::clear(int x, int y, int width, int height, int info_hei
 
 	// info box
 	frameBuffer->paintBackgroundBoxRel(x, y + height, width, info_height);
+}
+
+// Hline
+CHline::CHline()
+{
+	color = COL_MENUCONTENTDARK_PLUS_0; 
+	
+	cc_type = CC_HLINE;
+}
+
+// Vline
+CVline::CVline()
+{
+	color = COL_MENUCONTENTDARK_PLUS_0; 
+	
+	cc_type = CC_VLINE;
+}
+
+// CFrameLine
+CFrameLine::CFrameLine()
+{
+	color = COL_WHITE; 
+	
+	cc_type = CC_FRAMELINE;
+}
+
+// CLabel
+CLabel::CLabel()
+{
+	color = COL_MENUCONTENT;
+	paintBG = false; 
+	utf8 = true; 
+	font = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
+	itemBox.iHeight = font->getHeight();
+	
+	cc_type = CC_LABEL;
 }
 
 //// widget items

@@ -42,11 +42,6 @@ bool CSwigHelpers::displayImage(const std::string & name, int posx, int posy, in
 	return CFrameBuffer::getInstance()->displayImage(name, posx, posy, width, height, scaling, x_pan, y_pan, clearfb);
 }
 
-bool CSwigHelpers::displayLogo(t_channel_id channel_id, int posx, int posy, int width, int height, bool upscale, bool center_x, bool center_y)
-{
-	return CFrameBuffer::getInstance()->displayLogo(channel_id, posx, posy, width, height, upscale, center_x, center_y);
-}
-
 void CSwigHelpers::paintBackground()
 {
 	CFrameBuffer::getInstance()->paintBackground();

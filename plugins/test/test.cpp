@@ -100,7 +100,6 @@ class CTestMenu : public CMenuTarget
 
 		//
 		CListFrame *listFrame;
-		CTextBox *textWidget;
 
 		CWindow *windowWidget;
 		CProgressWindow * progressWindow;
@@ -127,19 +126,18 @@ class CTestMenu : public CMenuTarget
 		void testFireTV();
 		void testListFrameWidget();
 		void testListBoxWidget();
-		void testTextBoxWidget();
 		//void testWindowWidget();
 		//void testProgressWindowWidget();
 		void testMultiWidget();
 
-		// compenents helpers
-		void testCBox();
+		// CCompenents 
 		void testCIcon();
 		void testCImage();
 		void testCProgressBar();
 		void testCButtons();
+		void testCComponent();
 
-		// widget_helpers
+		// CWidgetItem
 		void testCHeaders();
 		void testCWindow();
 		void testCWindowShadow();
@@ -282,7 +280,8 @@ CTestMenu::CTestMenu()
 	leftWidget = NULL;
 	rightWidget = NULL;
 	listFrame = NULL;
-	textWidget = NULL;
+	
+	//
 	windowWidget = NULL;
 	
 	//
@@ -1524,76 +1523,6 @@ void CTestMenu::testListBoxWidget()
 	rightWidget = NULL;
 }
 
-void CTestMenu::testTextBoxWidget()
-{
-	dprintf(DEBUG_NORMAL, "\nCTestMenu:testCTextBoxWidget:\n");
-	
-	testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
-
-	testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
-
-	// head
-	headBox.iWidth = frameBuffer->getScreenWidth();
-	headBox.iHeight = 40;
-	headBox.iX = frameBuffer->getScreenX();
-	headBox.iY = frameBuffer->getScreenY();
-
-	headers = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(CTextBox)", NEUTRINO_ICON_MP3);
-
-	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	//ĥeadersWidget->setCorner(RADIUS_MID, CORNER_TOP);
-	headers->enablePaintDate();
-
-	// foot
-	footBox.iWidth = frameBuffer->getScreenWidth();
-	footBox.iHeight = 40;
-	footBox.iX = frameBuffer->getScreenX();
-	footBox.iY = frameBuffer->getScreenY() + frameBuffer->getScreenHeight() - footBox.iHeight;
-
-	footers = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
-
-	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	footers->setCorner(RADIUS_MID, CORNER_BOTTOM);
-
-	//textBox
-	textWidget = new CTextBox(frameBuffer->getScreenX(), frameBuffer->getScreenY() + headBox.iHeight, frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight() - headBox.iHeight - footBox.iHeight);
-	
-	const char *buffer = NULL;
-	
-	// prepare print buffer
-	buffer = "CTextBox\ntesting CTextBox with CWidget\n";  
-		
-	std::string tname = PLUGINDIR "/netzkino/netzkino.png";
-	
-	// scale pic
-	int p_w = 0;
-	int p_h = 0;
-	
-	CFrameBuffer::getInstance()->scaleImage(tname, &p_w, &p_h);
-	
-	textWidget->setText(buffer, tname.c_str(), p_w, p_h);
-
-	testWidget->addKey(RC_info, this, "txtinfo");
-
-	testWidget->addItem(headers);
-	testWidget->addItem(textWidget);
-	testWidget->addItem(footers);
-
-	testWidget->exec(NULL, "");
-
-	delete testWidget;
-	testWidget = NULL;
-
-	delete textWidget;
-	textWidget = NULL;
-
-	delete headers;
-	headers = NULL;
-
-	delete footers;
-	footers = NULL;
-}
-
 void CTestMenu::testMultiWidget()
 {
 	dprintf(DEBUG_NORMAL, "\ntestMultiWidget\n");
@@ -1743,7 +1672,6 @@ void CTestMenu::test()
 	topBox.iHeight = 50;
 
 	frameBoxWidget = new CFrameBox(&topBox);
-	//frameBoxWidget->setMode(FRAMEBOX_MODE_HORIZONTAL);
 
 	CFrame * frame = NULL;
 
@@ -2365,38 +2293,6 @@ REPAINT:
 	}
 }
 
-// CBox
-void CTestMenu::testCBox()
-{
-	dprintf(DEBUG_NORMAL, "\ntestCBox\n");
-
-	CBox Box;
-	
-	Box.iX = g_settings.screen_StartX + 10;
-	Box.iY = g_settings.screen_StartY + 10;
-	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20)/2;
-	Box.iHeight = 40; //(g_settings.screen_EndY - g_settings.screen_StartY - 20);
-	
-	Box.iRadius = RADIUS_MID;
-	Box.iCorner = CORNER_ALL;
-	Box.iColor = COL_MENUHEAD_PLUS_0;
-	Box.iGradient = DARK2LIGHT2DARK;
-
-	Box.paint();
-
-	CFrameBuffer::getInstance()->blit();
-
-	// loop
-	testWidget = new CWidget();
-
-	testWidget->exec(NULL, "");
-
-	hide();
-
-	delete testWidget;
-	testWidget = NULL;
-}
-
 // CIcon
 void CTestMenu::testCIcon()
 {
@@ -2434,7 +2330,7 @@ void CTestMenu::testCImage()
 	CImage testImage;
 
 	// paint testImage
-	testImage.setImage(PLUGINDIR "/netzkino/netzkino.png");
+	testImage.setImage(DATADIR "/neutrino/icons/nopreview.jpg");
 	
 	dprintf(DEBUG_NORMAL, "\ntestCImahe: image:%s iw:%d ih:%d nbp:%d\n", testImage.imageName.c_str(), testImage.iWidth, testImage.iHeight, testImage.iNbp);
 	
@@ -2446,6 +2342,92 @@ void CTestMenu::testCImage()
 
 	testWidget->exec(NULL, "");
 
+	hide();
+
+	delete testWidget;
+	testWidget = NULL;
+}
+
+// CComponent
+void CTestMenu::testCComponent()
+{
+	dprintf(DEBUG_NORMAL, "\ntestCComponent\n");
+
+	// CBox
+	CBox Box;
+	Box.iX = g_settings.screen_StartX + 50;
+	Box.iY = g_settings.screen_StartY + 50;
+	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 100);
+	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 100);
+	
+	// CWindow
+	CWindow testWindow(&Box);
+	testWindow.setColor(COL_MENUCONTENT_PLUS_0);
+	testWindow.setCorner(RADIUS_MID, CORNER_ALL);
+	testWindow.paint();
+	
+	// icon
+	CIcon testIcon;
+	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
+	testIcon.paint(Box.iX + 150, Box.iY + 150);
+	
+	// image
+	CImage testImage;
+	testImage.setImage(DATADIR "/neutrino/icons/nopreview.jpg");
+	testImage.paint(Box.iX + Box.iWidth - testImage.iWidth - 50, Box.iY + 10, testImage.iWidth, testImage.iHeight);
+	
+	// label
+	CLabel testLabel;
+	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
+	testLabel.setColor(COL_YELLOW0);
+	testLabel.enablePaintBG();
+	testLabel.setText("this is a CComponet label test :-)");
+	testLabel.paint(Box.iX, Box.iY, Box.iWidth);
+	
+	// CButtons
+	int icon_w, icon_h;
+	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
+	
+	buttons.paintFootButtons(Box.iX + 10, Box.iY + Box.iHeight - icon_h, Box.iWidth, icon_h, FOOT_BUTTONS_COUNT, FootButtons);
+	
+	// Hline
+	CHline testHline;
+	testHline.paint(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10);
+	
+	// Vline
+	CVline testVline;
+	testVline.paint(Box.iX + Box.iWidth - 10, Box.iY + 10, Box.iHeight - 20);
+	
+	// CFrameLine
+	CFrameLine testFrameLine;
+	testFrameLine.paint(Box.iX + 100, Box.iY + 100, 100, 100);
+	
+	// DL
+	CItems2DetailsLine testDline;
+	testDline.paint(Box.iX, Box.iY, Box.iWidth, Box.iHeight, 70, 35, Box.iY + 2*35);
+	
+	// pb
+	CProgressBar testPB(Box.iWidth /3, 10, 40, 100, 70, true);
+	testPB.paint(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - testIcon.iHeight - 10 - 10, 50);
+	
+	// sb
+	CScrollBar testSB;
+	testSB.paint(Box.iX, Box.iY + 40, Box.iHeight - 80, 20, 10);
+	
+	// text
+	// slider
+	// pig
+	// grid
+	// time
+	
+	//
+	CFrameBuffer::getInstance()->blit();
+	
+	// loop
+	testWidget = new CWidget();
+	
+	testWidget->exec(NULL, "");
+	
 	hide();
 
 	delete testWidget;
@@ -2943,7 +2925,7 @@ void CTestMenu::testCTextBox()
 	// prepare print buffer  
 	buffer = "CTextBox\ntesting CTextBox\n";
 		
-	std::string tname = PLUGINDIR "/netzkino/netzkino.png";
+	std::string tname = DATADIR "/neutrino/icons/nopreview.jpg";
 	
 	// scale pic
 	int p_w = 0;
@@ -5224,12 +5206,6 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 		return RETURN_REPAINT;
 	}
-	else if(actionKey == "box")
-	{
-		testCBox();
-
-		return RETURN_REPAINT;
-	}
 	else if(actionKey == "icon")
 	{
 		testCIcon();
@@ -5240,6 +5216,11 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	{
 		testCImage();
 
+		return RETURN_REPAINT;
+	}
+	else if(actionKey == "component")
+	{
+		testCComponent();
 		return RETURN_REPAINT;
 	}
 	else if(actionKey == "window")
@@ -6175,12 +6156,6 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 		return RETURN_NONE;
 	}
-	else if(actionKey == "textboxwidget")
-	{
-		testTextBoxWidget();
-
-		return RETURN_REPAINT;
-	}
 	else if(actionKey == "exit")
 	{
 		return RETURN_EXIT_ALL;
@@ -6873,14 +6848,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		testMultiWidget();
 
 		return RETURN_REPAINT;
-	}
-	else if(actionKey == "txtinfo")
-	{
-		if(textWidget)
-			textWidget->setBigFonts();
-
-		return RETURN_REPAINT;
-	}
+	}	
 	else if(actionKey == "singleWidget")
 	{
 		testSingleWidget();
@@ -6973,41 +6941,40 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox|CFrameBox)", true, NULL, this, "widget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(listFrame)", true, NULL, this, "listframewidget"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(textBox)", true, NULL, this, "textboxwidget"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(multiWidget)", true, NULL, this, "multiwidget"));
+	//mainMenu->addItem(new CMenuForwarder("CWidget(multiWidget)", true, NULL, this, "multiwidget"));
 
 	//
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "menu CMenuItems"));
-	mainMenu->addItem(new CMenuForwarder("CMenuForwarder", true, NULL, this, "menuforwarder"));
+	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "menu CMenuItems"));
+	//mainMenu->addItem(new CMenuForwarder("CMenuForwarder", true, NULL, this, "menuforwarder"));
 
 	//
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "list CMenuItems"));
-	mainMenu->addItem(new ClistBoxItem("listBoxItem", true, NULL, this, "listboxitem"));
+	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "list CMenuItems"));
+	//mainMenu->addItem(new ClistBoxItem("listBoxItem", true, NULL, this, "listboxitem"));
 
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "setup CMenuItems"));
-	mainMenu->addItem(new CMenuOptionChooser("CMenuOptionChooser:", &selected, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true));
+	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "setup CMenuItems"));
+	//mainMenu->addItem(new CMenuOptionChooser("CMenuOptionChooser:", &selected, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true));
 
-	mainMenu->addItem(new CMenuOptionNumberChooser("CMenuOptionNumberChooser:", &selected, true, 0, 100));
+	//mainMenu->addItem(new CMenuOptionNumberChooser("CMenuOptionNumberChooser:", &selected, true, 0, 100));
 	
 	//
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "widget Items Helpers"));
-	mainMenu->addItem(new CMenuForwarder("CBox", true, NULL, this, "box"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CComponent"));
+	//mainMenu->addItem(new CMenuForwarder("CBox", true, NULL, this, "box"));
 	mainMenu->addItem(new CMenuForwarder("CIcon", true, NULL, this, "icon"));
 	mainMenu->addItem(new CMenuForwarder("CImage", true, NULL, this, "image"));
 	mainMenu->addItem(new CMenuForwarder("CButtons", true, NULL, this, "buttons"));
 	mainMenu->addItem(new CMenuForwarder("CProgressBar", true, NULL, this, "progressbar"));
-	//mainMenu->addItem(new CMenuForwarder("CScrollBar", true, NULL, this, "scrollbar"));
-	//mainMenu->addItem(new CMenuForwarder("CItems2DetailsLine", true, NULL, this, "detailsline"));
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWindow|CPIG|CGrid"));
+	mainMenu->addItem(new CMenuForwarder("CComponent", true, NULL, this, "component"));
+	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWindow|CPIG|CGrid"));
 	mainMenu->addItem(new CMenuForwarder("CWindow", true, NULL, this, "window"));
 	mainMenu->addItem(new CMenuForwarder("CWindow(with shadow)", true, NULL, this, "windowshadow"));
 	mainMenu->addItem(new CMenuForwarder("CWindow(customColor)", true, NULL, this, "windowcustomcolor"));
+	mainMenu->addItem(new CMenuForwarder("CTextBox", true, NULL, this, "textbox"));
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CProgressWindow"));
 	mainMenu->addItem(new CMenuForwarder("CProgressWindow", true, NULL, this, "progresswindow"));
 	
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Widget Items"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItems"));
 	mainMenu->addItem(new CMenuForwarder("CHeaders", true, NULL, this, "headers"));
-	mainMenu->addItem(new CMenuForwarder("CTextBox", true, NULL, this, "textbox"));
+	//mainMenu->addItem(new CMenuForwarder("CTextBox", true, NULL, this, "textbox"));
 	mainMenu->addItem(new CMenuForwarder("CListFrame", true, NULL, this, "listframe"));
 	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "WidgetItem (ClistBox)"));
@@ -7027,8 +6994,8 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CFrameBox2", true, NULL, this, "singleWidget"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox(Fire TV)", true, NULL, this, "firetv"));
 	
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CFrameBox|ClistBpx"));
-	mainMenu->addItem(new CMenuForwarder("CFrameBox|ClistBox", true, NULL, this, "testing"));
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItem(CFrameBox|ClistBox)"));
+	mainMenu->addItem(new CMenuForwarder("CWidgetItem(CFrameBox|ClistBox)", true, NULL, this, "testing"));
 	
 	// CMenuWidhet
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CMenuWidget"));

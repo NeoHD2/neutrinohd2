@@ -85,14 +85,17 @@ CFrame::CFrame()
 	
 	// 
 	active = true;
-	marked = false;	
+	marked = false;
+	
+	//
+	parent = NULL;	
 }
 
 void CFrame::setMode(int m)
 {
 	mode = m;
 			
-	if ( (mode == FRAME_LINE_HORIZONTAL) || (mode == FRAME_LINE_VERTICAL) ) 
+	if ( (mode == FRAME_HLINE) || (mode == FRAME_VLINE) ) 
 	{
 		shadow = false;
 		paintFrame = false;
@@ -204,7 +207,13 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	if (selected)
 	{
 		color = COL_MENUCONTENTSELECTED;
-		bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+		
+		if (parent)
+		{
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0 : COL_MENUCONTENTSELECTED_PLUS_1;
+		}
+		else
+			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	else if (!active)
 	{
@@ -409,11 +418,11 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 			captionFont->RenderString(window.getWindowsPos().iX + 2, window.getWindowsPos().iY + window.getWindowsPos().iHeight, window.getWindowsPos().iWidth - 4, caption.c_str(), color);
 		}
 	}
-	else if (mode == FRAME_LINE_VERTICAL)
+	else if (mode == FRAME_VLINE)
 	{
 		CFrameBuffer::getInstance()->paintVLineRel(window.getWindowsPos().iX, window.getWindowsPos().iY, window.getWindowsPos().iHeight, COL_MENUCONTENTDARK_PLUS_0);
 	}
-	else if (mode == FRAME_LINE_HORIZONTAL)
+	else if (mode == FRAME_HLINE)
 	{
 		CFrameBuffer::getInstance()->paintHLineRel(window.getWindowsPos().iX, window.getWindowsPos().iWidth, window.getWindowsPos().iY, COL_MENUCONTENTDARK_PLUS_0);
 	}
@@ -569,6 +578,7 @@ void CFrameBox::addFrame(CFrame *frame, const bool defaultselected)
 		selected = frames.size();
 	
 	frames.push_back(frame);
+	frame->setParent(this);
 }
 
 bool CFrameBox::hasItem()
@@ -599,10 +609,10 @@ void CFrameBox::paintFrames()
 			selected = count;
 		} 
 
-		if(inFocus)
+		//if(inFocus)
 			frame->paint( selected == ((signed int) count));
-		else
-			frame->paint(false);
+		//else
+		//	frame->paint(false);
 	}
 }
 

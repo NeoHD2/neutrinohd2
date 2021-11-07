@@ -1859,4 +1859,204 @@ unsigned int proc_get_hex(const char *path)
 	return ret;
 }
 
+// CChannellogo
+CChannellogo* CChannellogo::getInstance()
+{
+	static CChannellogo* Channellogo = NULL;
+	if(!Channellogo)
+		Channellogo = new CChannellogo();
+	return Channellogo;
+}
+
+// check for logo
+bool CChannellogo::checkLogo(t_channel_id channel_id)
+{	
+        std::string logo_name;
+	bool logo_ok = false;
+	
+	// first png, then jpg, then gif
+	std::string strLogoExt[2] = { ".png", ".jpg" };
+	
+	// check for logo
+	for (int i = 0; i < 2; i++)
+	{
+		logo_name = g_settings.logos_dir;
+		logo_name += "/";
+		logo_name += to_hexstring(channel_id & 0xFFFFFFFFFFFFULL);
+		logo_name += strLogoExt[i].c_str();
+
+		if(!access(logo_name.c_str(), F_OK)) 
+		{
+			logo_ok = true;
+			dprintf(DEBUG_DEBUG, "CChannellogo::checkLogo: found logo: %s\n", logo_name.c_str());
+			break;
+		}
+	}
+	
+	return logo_ok;
+}
+
+void CChannellogo::getLogoSize(t_channel_id channel_id, int * width, int * height, int * bpp)
+{
+	std::string logo_name;
+	bool logo_ok = false;
+	
+	// check for logo/convert channelid to logo
+	std::string strLogoExt[2] = { ".png", ".jpg" };
+	
+	// check for logo
+	for (int i = 0; i < 2; i++)
+	{
+		logo_name = g_settings.logos_dir;
+		logo_name += "/";
+		logo_name += to_hexstring(channel_id & 0xFFFFFFFFFFFFULL);
+		logo_name += strLogoExt[i].c_str();
+
+		if(!access(logo_name.c_str(), F_OK)) 
+		{
+			logo_ok = true;
+			break;
+		}
+	}
+	
+	if(logo_ok)
+	{
+		// get logo real size
+		CFrameBuffer::getInstance()->getSize(logo_name.c_str(), width, height, bpp);
+		
+		dprintf(DEBUG_DEBUG, "CChannellogo::getLogoSize: logo: %s (%dx%d) %dbpp\n", logo_name.c_str(), *width, *height, *bpp);
+	}
+}
+
+// display logo
+bool CChannellogo::displayLogo(t_channel_id channel_id, int posx, int posy, int width, int height, bool upscale, bool center_x, bool center_y)
+{	
+        std::string logo_name;
+	bool ret = false;
+	bool logo_ok = false;
+	
+	int logo_w = width;
+	int logo_h = height;
+	int logo_bpp = 0;
+	
+	
+	// check for logo
+	std::string strLogoExt[2] = { ".png", ".jpg" };
+	
+	// check for logo
+	for (int i = 0; i < 2; i++)
+	{
+		logo_name = g_settings.logos_dir;
+		logo_name += "/";
+		logo_name += to_hexstring(channel_id & 0xFFFFFFFFFFFFULL);
+		logo_name += strLogoExt[i].c_str();
+
+		if(!access(logo_name.c_str(), F_OK)) 
+		{
+			logo_ok = true;
+			break;
+		}
+	}
+	
+	if(logo_ok)
+	{
+		// get logo real size
+		CFrameBuffer::getInstance()->getSize(logo_name, &logo_w, &logo_h, &logo_bpp);
+	
+		// scale only PNG logos
+		if( logo_name.find(".png") == (logo_name.length() - 4) )
+		{
+			// upscale
+			if(upscale)
+			{	
+				//rescale logo image
+				float aspect = (float)(logo_w) / (float)(logo_h);
+					
+				if (((float)(logo_w) / (float)width) > ((float)(logo_h) / (float)height)) 
+				{
+					logo_w = width;
+					logo_h = (int)(width / aspect);
+				}
+				else
+				{
+					logo_h = height;
+					logo_w = (int)(height * aspect);
+				}
+			}
+			
+			ret = CFrameBuffer::getInstance()->displayImage(logo_name, center_x?posx + (width - logo_w)/2 : posx, center_y?posy + (height - logo_h)/2 : posy, logo_w, logo_h);
+		}
+		else
+		{
+			ret = CFrameBuffer::getInstance()->displayImage(logo_name, posx, posy, width, height);
+		}
+        }
+
+	return ret;
+}
+
+std::string CChannellogo::getLogoName(t_channel_id channel_id)
+{
+	std::string logo_name = "";
+	bool logo_ok = false;
+	
+	// check for logo/convert channelid to logo
+	std::string strLogoExt[2] = { ".png", ".jpg" };
+	
+	// check for logo
+	for (int i = 0; i < 2; i++)
+	{
+		logo_name = g_settings.logos_dir;
+		logo_name += "/";
+		logo_name += to_hexstring(channel_id & 0xFFFFFFFFFFFFULL);
+		logo_name += strLogoExt[i].c_str();
+
+		if(!access(logo_name.c_str(), F_OK)) 
+		{
+			logo_ok = true;
+			break;
+		}
+	}
+
+	return logo_name;
+}
+
+void CChannellogo::scaleImage(const std::string &tname, int *p_w, int *p_h)
+{
+	int nbpp = 0;
+
+	if(!access(tname.c_str(), F_OK) )
+	{
+		CFrameBuffer::getInstance()->getSize(tname, p_w, p_h, &nbpp);
+
+		// scale
+		if(*p_w <= PIC_W && *p_h <= PIC_H)
+		{
+			// do not thing
+		}
+		else
+		{
+			float aspect = (float)(*p_w) / (float)(*p_h);
+					
+			if (((float)(*p_w) / (float)PIC_W) > ((float)(*p_h) / (float)PIC_H)) 
+			{
+				*p_w = PIC_W;
+				*p_h = (int)(PIC_W / aspect);
+			}
+			else
+			{
+				*p_h = PIC_H;
+				*p_w = (int)(PIC_H * aspect);
+			}
+		}
+	}
+	else
+	{
+		*p_w = 0;
+		*p_h = 0;
+	}
+}
+
+
+
 

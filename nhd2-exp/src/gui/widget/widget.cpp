@@ -95,6 +95,7 @@ void CWidget::addItem(CWidgetItem *widgetItem, const bool defaultselected)
 		selected = items.size();
 	
 	items.push_back(widgetItem);
+	widgetItem->setParent(this);
 }
 
 bool CWidget::hasItem()

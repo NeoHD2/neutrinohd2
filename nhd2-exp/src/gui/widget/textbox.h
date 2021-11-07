@@ -68,12 +68,11 @@ enum
 #define TOP_LEFT	1
 #define TOP_CENTER	2
 
-class CTextBox : public CWidgetItem
+class CTextBox : public CComponent
 {
 	public:
 
 	private:
-		//CBox m_cFrame;
 		CBox m_cFrameTextRel;
 		CBox m_cFrameScrollRel;
 
@@ -162,6 +161,7 @@ class CTextBox : public CWidgetItem
 		//
 		bool isSelectable(void){return true;}
 
+/*
 		virtual void onUpKeyPressed();
 		virtual void onDownKeyPressed();
 		virtual void onRightKeyPressed();
@@ -169,6 +169,7 @@ class CTextBox : public CWidgetItem
 
 		virtual void onPageUpKeyPressed();
 		virtual void onPageDownKeyPressed();
+*/
 };
 
 #endif // !defined(AFX_TEXTBOX_H__208DED01_ABEC_491C_A632_5B21057DC5D8__INCLUDED_)
