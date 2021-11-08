@@ -42,23 +42,23 @@
 #include <system/debug.h>
 #include <system/settings.h>
 
-#define	TEXT_BORDER_WIDTH		8
-#define ROW_BORDER_WIDTH             	4
-#define	SCROLL_FRAME_WIDTH		SCROLLBAR_WIDTH
-#define	SCROLL_MARKER_BORDER		2	
+#define TEXT_BORDER_WIDTH			8
+#define ROW_BORDER_WIDTH             		4
+#define SCROLL_FRAME_WIDTH			SCROLLBAR_WIDTH
+#define SCROLL_MARKER_BORDER			2	
 
 #define TITLE_BACKGROUND_COLOR 		COL_MENUHEAD_PLUS_0
 #define LIST_BACKGROUND_COLOR 		COL_MENUCONTENT_PLUS_0
 #define LIST_BACKGROUND_COLOR_SELECTED 	COL_MENUCONTENTSELECTED_PLUS_0
 
-#define TITLE_FONT_COLOR 		COL_MENUHEAD
+#define TITLE_FONT_COLOR 			COL_MENUHEAD
 #define HEADER_LIST_FONT_COLOR 		COL_MENUCONTENT
-#define LIST_FONT_COLOR 		COL_MENUCONTENT
-#define LIST_FONT_COLOR_SELECTED 	COL_MENUCONTENTSELECTED
+#define LIST_FONT_COLOR 			COL_MENUCONTENT
+#define LIST_FONT_COLOR_SELECTED 		COL_MENUCONTENTSELECTED
 
-#define FONT_LIST 			g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2]
-#define FONT_HEADER_LIST 		g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]
-#define FONT_TITLE 			g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE];
+#define FONT_LIST 				g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2]
+#define FONT_HEADER_LIST 			g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]
+#define FONT_TITLE 				g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE];
 
 
 CFont* CListFrame::m_pcFontTitle = NULL;
@@ -68,7 +68,7 @@ CFont* CListFrame::m_pcFontHeaderList = NULL;
 //
 // Construction/Destruction
 //
-CListFrame::CListFrame(	LF_LINES * lines, CFont * font_text, const int _mode, const CBox* position, const char* textTitle, CFont *font_title)
+CListFrame::CListFrame(LF_LINES * lines, CFont * font_text, const int _mode, const CBox* position, const char* textTitle, CFont *font_title)
 {
 	dprintf(DEBUG_DEBUG, "CListFrame::CListFrame\r\n");
 	
@@ -96,7 +96,7 @@ CListFrame::CListFrame(	LF_LINES * lines, CFont * font_text, const int _mode, co
 		m_nMaxWidth = itemBox.iWidth;
 	}
 
-	m_nMode	= _mode;
+	m_nMode = _mode;
 
 	if(font_title != NULL) 
 		m_pcFontTitle = font_title;
@@ -115,7 +115,7 @@ CListFrame::CListFrame(	LF_LINES * lines, CFont * font_text, const int _mode, co
 	onNewLineArray();
 }
 
-CListFrame::CListFrame(	LF_LINES* lines)
+CListFrame::CListFrame(LF_LINES* lines)
 {
 	dprintf(DEBUG_DEBUG, "CListFrame::CListFrame\r\n");
 

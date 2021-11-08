@@ -123,6 +123,8 @@ class CFrame
 		//
 		virtual void setActionKey(CMenuTarget *Target, const char *const ActionKey){jumpTarget = Target; actionKey = ActionKey;};
 		virtual void setDirectKey(neutrino_msg_t key){directKey = key;};
+		
+		//
 		virtual void setCaptionFont(CFont * font){captionFont = font;};
 		virtual void setOptionFont(CFont *font){optionFont = font;}; 
 

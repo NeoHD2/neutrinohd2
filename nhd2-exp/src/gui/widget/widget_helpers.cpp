@@ -27,9 +27,15 @@
 
 #include <driver/color.h>
 #include <system/settings.h>
+#include <system/debug.h>
 
 #include <gui/widget/widget_helpers.h>
+#include <gui/widget/textbox.h>
 
+#include <video_cs.h>
+
+
+extern cVideo * videoDecoder;
 
 // progressbar
 CProgressBar::CProgressBar(int w, int h, int r, int g, int b, bool inv)
@@ -146,7 +152,55 @@ void CProgressBar::reset()
   	percent = 255;
 }
 
-// Buttons
+// CButtons
+void CButtons::setButtons(const struct button_label *button_label, const int button_count)
+{
+	if (button_count)
+	{
+		for (int i = 0; i < button_count; i++)
+		{
+			buttons.push_back(button_label[i]);
+		}
+	}
+
+	count = buttons.size();	
+}
+
+void CButtons::paint()
+{
+	int buttonWidth = 0;
+
+	count = buttons.size();
+
+	if(count)
+	{
+		buttonWidth = (cCBox.iWidth - BORDER_LEFT - BORDER_RIGHT)/count;
+	
+		for (int i = 0; i < count; i++)
+		{
+			if (buttons[i].button != NULL)
+			{
+				const char * l_option = NULL;
+				int iw = 0;
+				int ih = 0;
+
+				CFrameBuffer::getInstance()->getIconSize(buttons[i].button, &iw, &ih);
+				int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
+
+				if(buttons[i].localename != NULL)
+					l_option = buttons[i].localename;
+				else
+					l_option = g_Locale->getText(buttons[i].locale);
+		
+				CFrameBuffer::getInstance()->paintIcon(buttons[i].button, cCBox.iX + BORDER_LEFT + i*buttonWidth, cCBox.iY + (cCBox.iHeight - ih)/2);
+
+				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(cCBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, cCBox.iY + f_h + (cCBox.iHeight - f_h)/2, buttonWidth - iw - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
+			}
+		}
+	}
+}
+
+//
 void CButtons::paintFootButtons(const int x, const int y, const int dx, const int dy, const unsigned int count, const struct button_label * const content)
 {
 	int iw, ih;
@@ -320,37 +374,189 @@ void CItems2DetailsLine::clear(int x, int y, int width, int height, int info_hei
 // Hline
 CHline::CHline()
 {
+	frameBuffer = CFrameBuffer::getInstance();
 	color = COL_MENUCONTENTDARK_PLUS_0; 
-	
 	cc_type = CC_HLINE;
 }
 
 // Vline
 CVline::CVline()
 {
+	frameBuffer = CFrameBuffer::getInstance();
 	color = COL_MENUCONTENTDARK_PLUS_0; 
-	
 	cc_type = CC_VLINE;
 }
 
 // CFrameLine
 CFrameLine::CFrameLine()
 {
+	frameBuffer = CFrameBuffer::getInstance();
 	color = COL_WHITE; 
-	
 	cc_type = CC_FRAMELINE;
 }
 
 // CLabel
 CLabel::CLabel()
 {
+	frameBuffer = CFrameBuffer::getInstance();
 	color = COL_MENUCONTENT;
 	paintBG = false; 
 	utf8 = true; 
 	font = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
-	itemBox.iHeight = font->getHeight();
-	
+	height = font->getHeight();
 	cc_type = CC_LABEL;
+}
+
+CText::CText()
+{
+	font = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
+	mode = AUTO_WIDTH;
+	
+	cc_type = CC_TEXT;
+}
+
+void CText::paint()
+{
+	CTextBox textBox;
+	textBox.setPosition(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
+
+	textBox.disablePaintFrame();
+	textBox.setMode(mode);
+	textBox.setFontText(font);
+
+	// caption
+	if(!Text.empty())
+	{
+		textBox.setText(Text.c_str());
+	}
+	
+	textBox.paint();
+}
+
+// grid
+CGrid::CGrid(const int x, const int y, const int dx, const int dy)
+{
+	itemBox.iX = x;
+	itemBox.iY = y;
+	itemBox.iWidth = dx;
+	itemBox.iHeight = dy;
+
+	init();
+}
+
+CGrid::CGrid(CBox* position)
+{
+	itemBox = *position;
+
+	init();
+}
+
+void CGrid::init()
+{
+	frameBuffer = CFrameBuffer::getInstance();
+
+	rgb = COL_LIGHT_GRAY;
+	inter_frame = 15;
+	
+	//
+	cc_type = CC_GRID;
+}
+
+void CGrid::setPosition(const int x, const int y, const int dx, const int dy)
+{
+	dprintf(DEBUG_DEBUG, "CGrid::%s\n", __FUNCTION__);
+	
+	itemBox.iX = x;
+	itemBox.iY = y;
+	itemBox.iWidth = dx;
+	itemBox.iHeight = dy;
+}
+
+void CGrid::setPosition(CBox* position)
+{
+	dprintf(DEBUG_DEBUG, "CGrid::%s\n", __FUNCTION__);
+	
+	itemBox = *position;
+}
+
+void CGrid::paint()
+{
+	// hlines grid
+	for(int count = 0; count < itemBox.iHeight; count += inter_frame)
+		frameBuffer->paintHLine(itemBox.iX, itemBox.iX + itemBox.iWidth, itemBox.iY + count, /*make16color(rgb)*/rgb );
+
+	// vlines grid
+	for(int count = 0; count < itemBox.iWidth; count += inter_frame)
+		frameBuffer->paintVLine(itemBox.iX + count, itemBox.iY, itemBox.iY + itemBox.iHeight, /*make16color(rgb)*/rgb );
+}
+
+void CGrid::hide()
+{
+	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	
+	CFrameBuffer::getInstance()->blit();
+}
+
+// pig
+CPig::CPig(const int x, const int y, const int dx, const int dy)
+{
+	itemBox.iX = x;
+	itemBox.iY = y;
+	itemBox.iWidth = dx;
+	itemBox.iHeight = dy;
+
+	init();
+}
+
+CPig::CPig(CBox* position)
+{
+	itemBox = *position;
+
+	init();
+}
+
+void CPig::init()
+{
+	frameBuffer = CFrameBuffer::getInstance();
+	
+	//
+	cc_type = CC_PIG;
+}
+
+void CPig::setPosition(const int x, const int y, const int dx, const int dy)
+{
+	dprintf(DEBUG_DEBUG, "CPig::%s\n", __FUNCTION__);
+	
+	itemBox.iX = x;
+	itemBox.iY = y;
+	itemBox.iWidth = dx;
+	itemBox.iHeight = dy;
+}
+
+void CPig::setPosition(CBox* position)
+{
+	dprintf(DEBUG_DEBUG, "CPig::%s\n", __FUNCTION__);
+	
+	itemBox = *position;
+}
+
+void CPig::paint()
+{
+	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);	
+		
+
+	if(videoDecoder)
+		videoDecoder->Pig(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);	
+}
+
+void CPig::hide()
+{
+	if(videoDecoder)  
+		videoDecoder->Pig(-1, -1, -1, -1);
+
+	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	
+	CFrameBuffer::getInstance()->blit();
 }
 
 //// widget items

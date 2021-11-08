@@ -39,10 +39,6 @@
 #include <gui/widget/window.h>
 #include <system/debug.h>
 
-#include <video_cs.h>
-
-
-extern cVideo * videoDecoder;
 
 CWindow::CWindow(const int x, const int y, const int dx, const int dy)
 {
@@ -100,7 +96,7 @@ void CWindow::init()
 	}
 	
 	//
-	cc_type = CC_WINDOW;
+	itemType = WIDGET_ITEM_WINDOW;
 }
 
 void CWindow::saveScreen()
@@ -178,10 +174,10 @@ void CWindow::paint()
 	if(enableshadow)
 	{
 		// shadow
-		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6/*, radius, corner*/);
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
 
 		// window Box
-		frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, NO_RADIUS /*radius*/, CORNER_NONE/*corner*/, gradient);
+		frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, NO_RADIUS, CORNER_NONE, gradient);
 	}
 	else
 		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
@@ -198,100 +194,4 @@ void CWindow::hide()
 		
 	CFrameBuffer::getInstance()->blit();
 }
-
-// pig
-CPig::CPig(const int x, const int y, const int dx, const int dy)
-{
-	itemBox.iX = x;
-	itemBox.iY = y;
-	itemBox.iWidth = dx;
-	itemBox.iHeight = dy;
-
-	init();
-}
-
-CPig::CPig(CBox* position)
-{
-	itemBox = *position;
-
-	init();
-}
-
-void CPig::init()
-{
-	frameBuffer = CFrameBuffer::getInstance();
-	
-	//
-	cc_type = CC_PIG;
-}
-
-void CPig::paint()
-{
-	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);	
-		
-
-	if(videoDecoder)
-		videoDecoder->Pig(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);	
-}
-
-void CPig::hide()
-{
-	if(videoDecoder)  
-		videoDecoder->Pig(-1, -1, -1, -1);
-
-	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
-	
-	CFrameBuffer::getInstance()->blit();
-}
-
-// grid
-CGrid::CGrid(const int x, const int y, const int dx, const int dy)
-{
-	itemBox.iX = x;
-	itemBox.iY = y;
-	itemBox.iWidth = dx;
-	itemBox.iHeight = dy;
-
-	init();
-}
-
-CGrid::CGrid(CBox* position)
-{
-	itemBox = *position;
-
-	init();
-}
-
-void CGrid::init()
-{
-	frameBuffer = CFrameBuffer::getInstance();
-
-	rgb = 0x505050;
-	inter_frame = 15;
-	
-	//
-	cc_type = CC_GRID;
-}
-
-void CGrid::paint()
-{
-	// hlines grid
-	for(int count = 0; count < itemBox.iHeight; count += inter_frame)
-		frameBuffer->paintHLine(itemBox.iX, itemBox.iX + itemBox.iWidth, itemBox.iY + count, make16color(rgb) );
-
-	// vlines grid
-	for(int count = 0; count < itemBox.iWidth; count += inter_frame)
-		frameBuffer->paintVLine(itemBox.iX + count, itemBox.iY, itemBox.iY + itemBox.iHeight, make16color(rgb) );
-}
-
-void CGrid::hide()
-{
-	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
-	
-	CFrameBuffer::getInstance()->blit();
-}
-
-
-
-
 

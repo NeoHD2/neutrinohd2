@@ -98,11 +98,14 @@ class CTestMenu : public CMenuTarget
 		ClistBox *rightWidget;
 		int right_selected;
 
-		//
+		// CListFrame
 		CListFrame *listFrame;
 
+		// CWindow
 		CWindow *windowWidget;
 		CProgressWindow * progressWindow;
+		
+		// CTextBox
 		
 		// CMenuwidget
 		CMenuWidget* listMenu;
@@ -2305,8 +2308,10 @@ void CTestMenu::testCIcon()
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
 	
 	dprintf(DEBUG_NORMAL, "\ntestCIcon: icon:%s iw:%d ih:%d\n", testIcon.iconName.c_str(), testIcon.iWidth, testIcon.iHeight);
+	
+	testIcon.setPosition(150 + BORDER_LEFT, 150, testIcon.iWidth, testIcon.iHeight);
 
-	testIcon.paint(150 + BORDER_LEFT, 150);
+	testIcon.paint();
 
 	CFrameBuffer::getInstance()->blit();
 
@@ -2326,7 +2331,7 @@ void CTestMenu::testCImage()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCImage\n");
 
-	//CImage testImage(PLUGINDIR "/netzkino/netzkino.png");
+	//
 	CImage testImage;
 
 	// paint testImage
@@ -2334,7 +2339,8 @@ void CTestMenu::testCImage()
 	
 	dprintf(DEBUG_NORMAL, "\ntestCImahe: image:%s iw:%d ih:%d nbp:%d\n", testImage.imageName.c_str(), testImage.iWidth, testImage.iHeight, testImage.iNbp);
 	
-	testImage.paint(150 + BORDER_LEFT, 150, testImage.iWidth, testImage.iHeight);
+	testImage.setPosition(150 + BORDER_LEFT, 150, testImage.iWidth, testImage.iHeight);
+	testImage.paint();
 
 	CFrameBuffer::getInstance()->blit();
 
@@ -2360,31 +2366,30 @@ void CTestMenu::testCComponent()
 	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 100);
 	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 100);
 	
+	loadMoviePlaylist();
+	
 	// CWindow
 	CWindow testWindow(&Box);
 	testWindow.setColor(COL_MENUCONTENT_PLUS_0);
 	testWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	testWindow.paint();
 	
 	// heades
 	CHeaders head(Box.iX, Box.iY, Box.iWidth, 40, "CComponents", NEUTRINO_ICON_COLORS);
 	head.enablePaintDate();
-	head.paint();
 	
 	// footers
 	CFooters foot(Box.iX, Box.iY + Box.iHeight - 40, Box.iWidth, 40);
 	foot.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	foot.paint();
 	
 	// icon
 	CIcon testIcon;
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
-	testIcon.paint(Box.iX + 150, Box.iY + 150);
+	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
 	
 	// image
 	CImage testImage;
-	testImage.setImage(DATADIR "/neutrino/icons/nopreview.jpg");
-	testImage.paint(Box.iX + Box.iWidth - testImage.iWidth - 50, Box.iY + 150, testImage.iWidth, testImage.iHeight);
+	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
+	testImage.setPosition(Box.iX + Box.iWidth - testImage.iWidth - 50, Box.iY + 150, testImage.iWidth, testImage.iHeight);
 	
 	// label
 	CLabel testLabel;
@@ -2392,56 +2397,146 @@ void CTestMenu::testCComponent()
 	testLabel.setColor(COL_YELLOW0);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponet label test :-)");
-	testLabel.paint(Box.iX + 20, Box.iY + 50, Box.iWidth);
+	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
 	
 	// CButtons
+	CButtons testButton;
 	int icon_w, icon_h;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
-	
-	buttons.paintFootButtons(Box.iX + 10, Box.iY + Box.iHeight - 100, Box.iWidth, icon_h, FOOT_BUTTONS_COUNT, FootButtons);
+	testButton.setPosition(Box.iX + 10, Box.iY + Box.iHeight - 100, Box.iWidth, 40);
+	testButton.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
 	// Hline
 	CHline testHline;
-	testHline.paint(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10);
+	testHline.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10, 10);
 	
 	// Vline
 	CVline testVline;
-	testVline.paint(Box.iX + Box.iWidth - 10, Box.iY + 10, Box.iHeight - 20);
+	testVline.setPosition(Box.iX + Box.iWidth - 20 - 15, Box.iY + 10, 10, Box.iHeight - 20);
 	
 	// CFrameLine
 	CFrameLine testFrameLine;
-	testFrameLine.paint(Box.iX + 100, Box.iY + 100, 100, 100);
+	testFrameLine.setPosition(Box.iX + 140, Box.iY + 140, testIcon.iWidth + 100, testIcon.iHeight + 20);
 	
 	// DL
 	CItems2DetailsLine testDline;
-	testDline.paint(Box.iX, Box.iY, Box.iWidth, Box.iHeight, 70, 35, Box.iY + 2*35);
 	
 	// pb
 	CProgressBar testPB(Box.iWidth /3, 10, 40, 100, 70, true);
-	testPB.paint(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, 50);
 	
 	// sb
 	CScrollBar testSB;
-	testSB.paint(Box.iX, Box.iY + 40, Box.iHeight - 80, 20, 10);
 	
 	// text
-	// slider
-	// pig
+	loadMoviePlaylist();
+	
+	std::string buffer;
+	buffer = m_vMovieInfo[0].epgInfo1;
+	buffer += "\n";
+	buffer += m_vMovieInfo[0].epgInfo2;
+	
+	CText testText;
+	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20 - testImage.iWidth - 50, Box.iHeight/4);
+	//testText.disablePaintFrame();
+	testText.setMode(AUTO_WIDTH);
+	testText.setText(buffer.c_str());
+
 	// grid
+	CGrid testGrid;
+	testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
+	testGrid.setColor(COL_RED);
+	
+	// pig
+	CPig testPig;
+	testPig.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20 + 200 + 10, Box.iY + 100, 300, 160);
+	
 	// time
+	// slider
 	
 	//
+REPAINT:
+	testWindow.paint();
+	head.paint();
+	foot.paint();
+	testIcon.paint();
+	testImage.paint();
+	testLabel.paint();
+	testButton.paint();
+	testHline.paint();
+	testVline.paint();
+	testFrameLine.paint();
+	testDline.paint(Box.iX, Box.iY, Box.iWidth, Box.iHeight, 70, 35, Box.iY + 2*35);
+	testPB.paint(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, 50);
+	testSB.paint(Box.iX + Box.iWidth - 15, Box.iY + 40, Box.iHeight - 80, 3, 0);
+	testText.paint();
+	testGrid.paint();
+	testPig.paint();
+	
 	CFrameBuffer::getInstance()->blit();
 	
 	// loop
-	testWidget = new CWidget();
+	//testWidget = new CWidget();
+	//testWidget->addKey(RC_ok, this, "mplay");
+	//testWidget->exec(NULL, "");
 	
-	testWidget->exec(NULL, "");
+	// loop
+	neutrino_msg_t msg;
+	neutrino_msg_data_t data;
+
+	uint32_t sec_timer_id = 0;
+
+	// add sec timer
+	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
+
+	bool loop = true;
+
+	while(loop)
+	{
+		g_RCInput->getMsg_ms(&msg, &data, 10); // 1 sec
+
+		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
+		{
+			head.paint();
+		} 
+		else if (msg == RC_home) 
+		{
+			loop = false;
+		}
+		else if(msg == RC_page_up)
+		{
+		}
+		else if(msg == RC_page_down)
+		{
+		}
+		else if (msg == RC_ok)
+		{
+			hide();
+			
+			if (&m_vMovieInfo[0].file != NULL) 
+			{
+				CMovieInfoWidget movieInfoWidget;
+				movieInfoWidget.setMovie(m_vMovieInfo[0]);
+			
+				movieInfoWidget.exec(NULL, "");
+			}
+			
+			goto REPAINT;
+		}
+		else
+		{
+			if ( CNeutrinoApp::getInstance()->handleMsg( msg, data ) & messages_return::cancel_all )
+			{
+				loop = false;
+			}
+		}
+		
+		frameBuffer->blit();
+	}
 	
 	hide();
 
-	delete testWidget;
-	testWidget = NULL;
+	//delete testWidget;
+	//testWidget = NULL;
 }
 
 // Cwindow

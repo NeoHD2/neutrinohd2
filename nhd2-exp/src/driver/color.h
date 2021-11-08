@@ -40,7 +40,7 @@
 #include <driver/framebuffer.h>
 
 
-// fonts common colors
+// font common colors
 #define COL_TRANSPARENT0			0x01
 #define COL_DARK_RED0	 			0x02
 #define COL_DARK_GREEN0	 		0x03
@@ -120,7 +120,7 @@
 
 // menu selected
 #define COL_MENUCONTENTSELECTED_PLUS_0  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 0]
-#define COL_MENUCONTENTSELECTED_PLUS_1  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 1]
+#define COL_MENUCONTENTSELECTED_PLUS_1  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 1] // selected out focus
 #define COL_MENUCONTENTSELECTED_PLUS_2  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 2] // marked
 
 // menu inactive

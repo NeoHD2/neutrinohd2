@@ -34,7 +34,7 @@
 
 
 // window
-class CWindow : public CComponent
+class CWindow : public CWidgetItem
 {
 	private:
 		CFrameBuffer* frameBuffer;
@@ -70,52 +70,6 @@ class CWindow : public CComponent
 		void enableSaveScreen();
 
 		void enableCenterPos(){centerPos = true; init();};
-
-		void paint();
-		void hide();
-		
-		inline CBox getWindowsPos(void){return (itemBox);};
-};
-
-// pig
-class CPig : public CComponent
-{
-	private:
-		CFrameBuffer* frameBuffer;
-		CBox itemBox;
-
-	public:
-		CPig(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
-		CPig(CBox* position);
-		virtual ~CPig(){};
-
-		void init();
-
-		void paint();
-		void hide();
-		
-		inline CBox getWindowsPos(void){return (itemBox);};
-};
-
-//
-class CGrid : public CComponent
-{
-	private:
-		CFrameBuffer* frameBuffer;
-		CBox itemBox;
-
-		__u32 rgb;
-		int inter_frame;
-
-	public:
-		CGrid(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
-		CGrid(CBox* position);
-		virtual ~CGrid(){};
-
-		void init();
-
-		void setColor(__u32 col){rgb = col;};
-		void setInterFrame(int iframe = 15){inter_frame = iframe;};
 
 		void paint();
 		void hide();

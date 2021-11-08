@@ -129,7 +129,20 @@ void CTextBox::initVar(void)
 	paintBG = true;
 	enableFrame = false;
 	
-	cc_type = CC_TEXT;
+	itemType = WIDGET_ITEM_TEXTBOX;
+}
+
+void CTextBox::setPosition(const int x, const int y, const int dx, const int dy)
+{
+	itemBox.iX = x;
+	itemBox.iY = y;
+	itemBox.iWidth = dx;
+	itemBox.iHeight = dy;
+
+	m_nMaxHeight = itemBox.iHeight;
+	m_nMaxWidth = itemBox.iWidth;
+
+	initFramesRel();
 }
 
 void CTextBox::setPosition(const CBox * position)
@@ -634,7 +647,6 @@ void CTextBox::hide(void)
 	painted = false;
 }
 
-/*
 void CTextBox::onUpKeyPressed()
 {
 	dprintf(DEBUG_DEBUG, "CTextBox::UpKeyPressed:\n");
@@ -676,6 +688,5 @@ void CTextBox::onPageDownKeyPressed()
 
 	scrollPageDown();
 }
-*/
 
 

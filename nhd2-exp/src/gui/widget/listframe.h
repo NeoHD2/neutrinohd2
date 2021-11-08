@@ -96,7 +96,7 @@ class CListFrame : public CWidgetItem
 		// Variables 
 		LF_LINES* m_pLines;
 
-		//CBox m_cFrame;
+		//
 		CBox m_cFrameTitleRel;
 		CBox m_cFrameListRel;
 		CBox m_cFrameScrollRel;

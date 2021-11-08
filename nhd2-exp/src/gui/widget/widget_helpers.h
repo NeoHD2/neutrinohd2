@@ -54,7 +54,7 @@ class CBox
 
 // CComponent
 enum {
-	CC_WINDOW,
+	//CC_WINDOW,
 	CC_ICON,
 	CC_IMAGE,
 	CC_LABEL,
@@ -77,15 +77,14 @@ class CComponent
 	public:
 		//
 		CFrameBuffer *frameBuffer;
-		CBox itemBox;
-		
 		int cc_type;
-		
-		CWidgetItem* parent;
+		CBox cCBox;
 		
 		//
-		CComponent(){frameBuffer = CFrameBuffer::getInstance(); parent = NULL;};
+		CComponent(){frameBuffer = CFrameBuffer::getInstance();};
 		virtual ~CComponent(){};
+		
+		virtual bool isSelectable(void){return false;}
 		
 		//
 		virtual void paint(void){};
@@ -95,27 +94,33 @@ class CComponent
 		virtual int getCCType(){return cc_type;};
 		
 		//
-		virtual void setParent(CWidgetItem* w){parent = w;};
 		virtual void setPosition(const int _x, const int _y, const int _width, const int _height)
 		{
-			itemBox.iX = _x;
-			itemBox.iY = _y;
-			itemBox.iWidth = _width;
-			itemBox.iHeight = _height;
+			cCBox.iX = _x;
+			cCBox.iY = _y;
+			cCBox.iWidth = _width;
+			cCBox.iHeight = _height;
 		};
 		
+		virtual void setPosition(const CBox * position){cCBox = *position;};
+		
 		//
-		virtual inline CBox getWindowsPos(void){return (itemBox);};
+		virtual inline CBox getWindowsPos(void){return (cCBox);};
 };
 
 class CIcon : public CComponent
 {
 	public:
+		//
+		CFrameBuffer* frameBuffer;
+		int cc_type;
+
+		//		
 		int iWidth;
 		int iHeight;
 		std::string iconName;
 
-		inline CIcon(){cc_type = CC_ICON;};
+		CIcon(){frameBuffer = CFrameBuffer::getInstance(); cc_type = CC_ICON;};
 		
 		void setIcon(const char* icon)
 		{
@@ -123,30 +128,36 @@ class CIcon : public CComponent
 			frameBuffer->getIconSize(iconName.c_str(), &iWidth, &iHeight);
 		};
 		
-		inline CIcon(const char* icon)
+		CIcon(const char* icon)
 		{
+			frameBuffer = CFrameBuffer::getInstance();
 			iconName = std::string(icon); 
-			CFrameBuffer::getInstance()->getIconSize(iconName.c_str(), &iWidth, &iHeight);
+			frameBuffer->getIconSize(iconName.c_str(), &iWidth, &iHeight);
 			
 			cc_type = CC_ICON;
 		};
 
 		//
-		void paint(const int x, const int y)
+		//void paint(const int x, const int y)
+		void paint()
 		{
-			CFrameBuffer::getInstance()->paintIcon(iconName.c_str(), x, y);
+			frameBuffer->paintIcon(iconName.c_str(), cCBox.iX + (cCBox.iWidth - iWidth)/2, cCBox.iY + (cCBox.iHeight - iHeight)/2);
 		};
 };
 
 class CImage : public CComponent
 {
 	public:
+		//
+		CFrameBuffer* frameBuffer;
+		int cc_type;
+		
 		int iWidth;
 		int iHeight;
 		int iNbp;
 		std::string imageName;
 
-		inline CImage(){cc_type = CC_IMAGE;};
+		CImage(){frameBuffer = CFrameBuffer::getInstance(); cc_type = CC_IMAGE;};
 
 		void setImage(const char* image)
 		{
@@ -154,8 +165,9 @@ class CImage : public CComponent
 			frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
 		};
 
-		inline CImage(const char* image)
+		CImage(const char* image)
 		{
+			frameBuffer = CFrameBuffer::getInstance();
 			imageName = std::string(image); 
 			frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
 			
@@ -163,9 +175,10 @@ class CImage : public CComponent
 		};
 		
 		//
-		void paint(const int x, const int y, const int dx, const int dy)
+		//void paint(const int x, const int y, const int dx, const int dy)
+		void paint()
 		{
-			frameBuffer->displayImage(imageName.c_str(), x, y, dx, dy);
+			frameBuffer->displayImage(imageName.c_str(), cCBox.iX + (cCBox.iWidth - iWidth)/2, cCBox.iY + (cCBox.iHeight - iHeight)/2, cCBox.iWidth, cCBox.iHeight);
 		};
 };
 
@@ -184,29 +197,42 @@ class CButtons : public CComponent
 {
 	private:
 		button_label_list_t buttons;
+		unsigned int count;
 	public:
-		CButtons(){buttons.clear(); cc_type = CC_BUTTON;};
+		//
+		CFrameBuffer* frameBuffer;
+		int cc_type;
+		
+		//
+		CButtons(){frameBuffer = CFrameBuffer::getInstance(); buttons.clear(); count = 0; cc_type = CC_BUTTON;};
+		
+		//
+		void setButtons(const struct button_label *button_label, const int button_count = 1);
+		void paint();
 
-		// foot buttons
+		//
 		void paintFootButtons(const int x, const int y, const int dx, const int dy, const unsigned int count, const struct button_label* const content);
-
-		// head buttons right
 		void paintHeadButtons(const int x, const int y, const int dx, const int dy, const unsigned int count, const struct button_label * const content);
 };
 
 //CScrollBar
 class CScrollBar : public CComponent
 {
-	private:
 	public:
-		CScrollBar(){cc_type = CC_SCROLLBAR;};
+		//
+		CFrameBuffer* frameBuffer;
+		int cc_type;
+		
+		//
+		CScrollBar(){frameBuffer = CFrameBuffer::getInstance(); cc_type = CC_SCROLLBAR;};
 		virtual ~CScrollBar(){};
 
+		// currentPage start with 0
 		void paint(const int x, const int y, const int dy, const int NrOfPages, const int CurrentPage);
 		void paint(CBox* position, const int NrOfPages, const int CurrentPage);
 };
 
-// CProgressbar
+// CProgressBar
 class CProgressBar : public CComponent
 {
 	private:
@@ -217,7 +243,13 @@ class CProgressBar : public CComponent
 		bool inverse;
 
 	public:
+		CFrameBuffer* frameBuffer;
+		int cc_type;
+		
+		//
 		CProgressBar(int w, int h, int r = 40, int g = 100, int b = 70, bool inv = true);
+		
+		//
 		void paint(unsigned int x, unsigned int y, unsigned char pcr);
 		void reset();
 		int getPercent() { return percent; };
@@ -227,9 +259,15 @@ class CProgressBar : public CComponent
 class CItems2DetailsLine : public CComponent
 {
 	public:
-		CItems2DetailsLine(){cc_type = CC_DETAILSLINE;};
+		//
+		CFrameBuffer* frameBuffer;
+		int cc_type;
+		
+		//
+		CItems2DetailsLine(){frameBuffer = CFrameBuffer::getInstance(); cc_type = CC_DETAILSLINE;};
 		virtual ~CItems2DetailsLine(){};
 		
+		//
 		void paint(int x, int y, int width, int height, int info_height, int iheight, int iy);
 		void clear(int x, int y, int width, int height, int info_height);
 };
@@ -239,17 +277,22 @@ class CHline : public CComponent
 {
 	public:
 		//
+		CFrameBuffer* frameBuffer;
+		int cc_type;
+		
 		fb_pixel_t color;
 		
+		//
 		CHline();
 		virtual ~CHline(){};
 		
 		//
 		void setColor(fb_pixel_t col){color = col;};
 		
-		void paint(const int x, const int y, const int dx)
+		//void paint(const int x, const int y, const int dx)
+		void paint()
 		{
-			frameBuffer->paintHLineRel(x, dx, y, color);
+			frameBuffer->paintHLineRel(cCBox.iX, cCBox.iWidth, cCBox.iY, color);
 		};
 };
 
@@ -258,6 +301,9 @@ class CVline : public CComponent
 {
 	public:
 		//
+		CFrameBuffer* frameBuffer;
+		int cc_type;
+		
 		fb_pixel_t color;
 		
 		//
@@ -267,9 +313,10 @@ class CVline : public CComponent
 		//
 		void setColor(fb_pixel_t col){color = col;};
 		
-		void paint(const int x, const int y, const int dy)
+		//void paint(const int x, const int y, const int dy)
+		void paint()
 		{
-			frameBuffer->paintVLineRel(x, y, dy, color);
+			frameBuffer->paintVLineRel(cCBox.iX, cCBox.iY, cCBox.iHeight, color);
 		};
 };
 
@@ -278,6 +325,9 @@ class CFrameLine : public CComponent
 {
 	public:
 		//
+		CFrameBuffer* frameBuffer;
+		int cc_type;
+		
 		fb_pixel_t color;
 		
 		//
@@ -287,9 +337,10 @@ class CFrameLine : public CComponent
 		//
 		void setColor(fb_pixel_t col){color = col;};
 		
-		void paint(const int x, const int y, const int dx, const int dy)
+		//void paint(const int x, const int y, const int dx, const int dy)
+		void paint()
 		{
-			frameBuffer->paintFrameBox(x, y, dx, dy, color);
+			frameBuffer->paintFrameBox(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, color);
 		};
 };
 
@@ -297,12 +348,20 @@ class CFrameLine : public CComponent
 class CLabel : public CComponent
 {
 	public:
+		//
+		CFrameBuffer* frameBuffer;
+		int cc_type;
+		
+		int width;
+		int height;
+		
 		uint8_t color;
 		CFont* font;
 		std::string label;
 		bool paintBG;
 		bool utf8;
 		
+		//
 		CLabel();
 		virtual ~CLabel(){};
 		
@@ -312,26 +371,112 @@ class CLabel : public CComponent
 		void setText(const char* text){label = text;};
 		void enablePaintBG(){paintBG = true;};
 		
-		void paint(const int x, const int y, const int dx)
+		//void paint(const int x, const int y, const int dx)
+		void paint()
 		{
-			font->RenderString(x, y + font->getHeight(), dx, label.c_str(), color, 0, utf8, paintBG);
+			//font->RenderString(x, y + font->getHeight(), dx, label.c_str(), color, 0, utf8, paintBG);
+			font->RenderString(cCBox.iX, cCBox.iY + height, cCBox.iWidth, label.c_str(), color, 0, utf8, paintBG);
 		};
 		
-		int getHeight(){return itemBox.iHeight;};
+		int getHeight(){return height;};
+};
+
+//
+class CGrid : public CComponent
+{
+	private:
+		//
+		CFrameBuffer* frameBuffer;
+		CBox itemBox;
+
+		fb_pixel_t rgb;
+		int inter_frame;
+
+	public:
+		//
+		int cc_type;
+		
+		//
+		CGrid(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
+		CGrid(CBox* position);
+		virtual ~CGrid(){};
+
+		//
+		void init();
+
+		void setPosition(const int x, const int y, const int dx, const int dy);
+		void setPosition(CBox* position);
+		void setColor(fb_pixel_t col){rgb = col;};
+		void setInterFrame(int iframe = 15){inter_frame = iframe;};
+
+		void paint();
+		void hide();
+		
+		inline CBox getWindowsPos(void){return (itemBox);};
+};
+
+// pig
+class CPig : public CComponent
+{
+	private:
+		CFrameBuffer* frameBuffer;
+		CBox itemBox;
+
+	public:
+		CPig(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
+		CPig(CBox* position);
+		virtual ~CPig(){};
+
+		void init();
+		
+		void setPosition(const int x, const int y, const int dx, const int dy);
+		void setPosition(CBox* position);
+
+		void paint();
+		void hide();
+		
+		inline CBox getWindowsPos(void){return (itemBox);};
+};
+
+//CCText
+class CText : public CComponent
+{
+	public:
+		//
+		CFont* font;
+		int mode;
+		std::string Text;
+		
+		//
+		CText();
+		~CText(){};
+		
+		//
+		void setFont(CFont* f){font = f;};
+		void setMode(int m){mode = m;};
+		void setText(const char* const text){Text = text;};
+		
+		//
+		void paint();
 };
 
 // CWidgetItem
 enum {
-	WIDGET_ITEM_HEAD = 0,
+	WIDGET_ITEM_WINDOW,
+	WIDGET_ITEM_HEAD,
 	WIDGET_ITEM_FOOT,
 	WIDGET_ITEM_LISTBOX,
 	WIDGET_ITEM_FRAMEBOX,
-	WIDGET_ITEM_LISTFRAME
+	WIDGET_ITEM_LISTFRAME,
+	WIDGET_ITEM_TEXTBOX,
+	WIDGET_ITEM_PIG
 };
 
 class CWidgetItem
 {
 	public:
+		//
+		CFrameBuffer* frameBuffer;
 		CBox itemBox;
 
 		int itemType;

@@ -531,7 +531,7 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 	screen = false;
 	
 	// init
-	initFrames();
+	//initFrames();
 }
 
 CFrameBox::CFrameBox(CBox* position)
@@ -564,7 +564,7 @@ CFrameBox::CFrameBox(CBox* position)
 	screen = false;
 	
 	// init
-	initFrames();
+	//initFrames();
 }
 
 CFrameBox::~CFrameBox()
@@ -907,6 +907,39 @@ int CFrameBox::exec(CMenuTarget* parent, const std::string&)
 				}
 
 				continue;
+			}
+			
+			// direktKey
+			for (unsigned int i = 0; i < frames.size(); i++) 
+			{
+				CFrame * titem = frames[i];
+			
+				if ((titem->directKey != RC_nokey) && (titem->directKey == msg)) 
+				{
+					if (titem->isSelectable()) 
+					{
+						frames[selected]->paint(false);
+						selected = i;
+
+						/*
+						if (selected > (int)page_start[current_page + 1] || selected < (int)page_start[current_page]) 
+						{
+							// different page
+							paintFrames();
+						}
+						*/
+						
+						pos = selected;
+						msg = RC_ok;
+						actionKey = titem->actionKey;
+					} 
+					else 
+					{
+						// swallow-key...
+						handled = true;
+					}
+					break;
+				}
 			}
 		}
 		

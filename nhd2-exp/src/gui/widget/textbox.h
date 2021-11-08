@@ -68,11 +68,12 @@ enum
 #define TOP_LEFT	1
 #define TOP_CENTER	2
 
-class CTextBox : public CComponent
+class CTextBox : public CWidgetItem
 {
 	public:
 
 	private:
+		CBox itemBox;
 		CBox m_cFrameTextRel;
 		CBox m_cFrameScrollRel;
 
@@ -147,6 +148,7 @@ class CTextBox : public CComponent
 		inline int getPages(void){return(m_nNrOfPages);};
 		inline void movePosition(int x, int y){itemBox.iX = x; itemBox.iY = y;};
 
+		void setPosition(const int x, const int y, const int dx, const int dy);
 		void setPosition(const CBox * position);
 		void setBackgroundColor(fb_pixel_t col){m_textBackgroundColor = col;};
 		void setFontText(CFont * font_text){m_pcFontText = font_text;};
@@ -161,7 +163,7 @@ class CTextBox : public CComponent
 		//
 		bool isSelectable(void){return true;}
 
-/*
+		//
 		virtual void onUpKeyPressed();
 		virtual void onDownKeyPressed();
 		virtual void onRightKeyPressed();
@@ -169,7 +171,6 @@ class CTextBox : public CComponent
 
 		virtual void onPageUpKeyPressed();
 		virtual void onPageDownKeyPressed();
-*/
 };
 
 #endif // !defined(AFX_TEXTBOX_H__208DED01_ABEC_491C_A632_5B21057DC5D8__INCLUDED_)
