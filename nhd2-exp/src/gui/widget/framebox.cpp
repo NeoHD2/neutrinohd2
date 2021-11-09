@@ -376,26 +376,21 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	}
 	else if (mode == FRAME_TEXT)
 	{
-		CTextBox * textBox = NULL;
+		CTextBox textBox;
 
-		if(textBox)
-		{
-			delete textBox;
-			textBox = NULL;
-		}
+		textBox.setPosition(window.getWindowsPos().iX + 1, window.getWindowsPos().iY + 1, window.getWindowsPos().iWidth - 2, window.getWindowsPos().iHeight - 2);
 
-		textBox = new CTextBox(window.getWindowsPos().iX + 1, window.getWindowsPos().iY + 1, window.getWindowsPos().iWidth - 2, window.getWindowsPos().iHeight - 2);
-
-		textBox->disablePaintFrame();
-		textBox->setMode(AUTO_WIDTH);
-		textBox->setFontText(captionFont);
+		textBox.disablePaintFrame();
+		textBox.setMode(AUTO_WIDTH);
+		textBox.setFontText(captionFont);
 
 		// caption
 		if(!caption.empty())
 		{
-			textBox->setText(caption.c_str());
-			textBox->paint();
+			textBox.setText(caption.c_str());
 		}
+		
+		textBox.paint();
 	}
 	else if (mode == FRAME_PLUGIN)
 	{

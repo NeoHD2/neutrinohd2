@@ -2366,7 +2366,16 @@ void CTestMenu::testCComponent()
 	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 100);
 	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 100);
 	
+	int currentPage = 0;
+	int NrOfPages = 4;
+	int pcr = 25;
+	
 	loadMoviePlaylist();
+	
+	std::string buffer;
+	buffer = m_vMovieInfo[0].epgInfo1;
+	buffer += "\n";
+	buffer += m_vMovieInfo[0].epgInfo2;
 	
 	// CWindow
 	CWindow testWindow(&Box);
@@ -2394,7 +2403,7 @@ void CTestMenu::testCComponent()
 	// label
 	CLabel testLabel;
 	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
-	testLabel.setColor(COL_YELLOW0);
+	testLabel.setColor(COL_GREEN0);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponet label test :-)");
 	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
@@ -2421,30 +2430,30 @@ void CTestMenu::testCComponent()
 	// DL
 	CItems2DetailsLine testDline;
 	
+	testDline.disablePaintLines();
+	
 	// pb
-	CProgressBar testPB(Box.iWidth /3, 10, 40, 100, 70, true);
+	CProgressBar testPB(40, 100, 70, true);
+	testPB.setPosition(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, Box.iWidth /3, 10);
 	
 	// sb
 	CScrollBar testSB;
 	
 	// text
-	loadMoviePlaylist();
-	
-	std::string buffer;
-	buffer = m_vMovieInfo[0].epgInfo1;
-	buffer += "\n";
-	buffer += m_vMovieInfo[0].epgInfo2;
-	
 	CText testText;
 	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20 - testImage.iWidth - 50, Box.iHeight/4);
-	//testText.disablePaintFrame();
 	testText.setMode(AUTO_WIDTH);
 	testText.setText(buffer.c_str());
+	
+	CText testText2;
+	testText2.setPosition(Box.iX + 10, Box.iY + Box.iHeight + 2, Box.iWidth - 20, 64);
+	testText2.setMode(AUTO_WIDTH);
+	testText2.setText(buffer.c_str());
 
 	// grid
 	CGrid testGrid;
 	testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
-	testGrid.setColor(COL_RED);
+	testGrid.setColor(COL_PURPLE);
 	
 	// pig
 	CPig testPig;
@@ -2466,9 +2475,11 @@ REPAINT:
 	testVline.paint();
 	testFrameLine.paint();
 	testDline.paint(Box.iX, Box.iY, Box.iWidth, Box.iHeight, 70, 35, Box.iY + 2*35);
-	testPB.paint(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, 50);
-	testSB.paint(Box.iX + Box.iWidth - 15, Box.iY + 40, Box.iHeight - 80, 3, 0);
+	testPB.paintPCR(/*Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150,*/ pcr);
+	testPB.paint();
+	testSB.paint(Box.iX + Box.iWidth - 15, Box.iY + 40, Box.iHeight - 80, NrOfPages, currentPage);
 	testText.paint();
+	testText2.paint();
 	testGrid.paint();
 	testPig.paint();
 	
@@ -2504,9 +2515,31 @@ REPAINT:
 		}
 		else if(msg == RC_page_up)
 		{
+			currentPage--;
+			
+			if (currentPage < 0)
+				currentPage = 0;
+				
+			pcr -= 25;
+			
+			if (pcr < 0)
+				pcr = 0;
+				
+			goto REPAINT;
 		}
 		else if(msg == RC_page_down)
 		{
+			currentPage++;
+			
+			if (currentPage >= (NrOfPages - 1))
+				currentPage = NrOfPages -1;
+				
+			pcr += 25;
+			
+			if (pcr > 100)
+				pcr = 100;
+				
+			goto REPAINT;
 		}
 		else if (msg == RC_ok)
 		{
@@ -3257,37 +3290,38 @@ void CTestMenu::testCProgressBar()
 	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
 	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20)/40;
 	
-	timescale = new CProgressBar(Box.iWidth, Box.iHeight);
+	timescale = new CProgressBar();
+	timescale->setPosition(Box.iX, Box.iY, Box.iWidth, Box.iHeight);
 	timescale->reset();
 	
-	timescale->paint(Box.iX, Box.iY, 10);
+	timescale->paintPCR(10);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 20);
+	timescale->paintPCR(20);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 30);
+	timescale->paintPCR(30);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 40);
+	timescale->paintPCR(40);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 50);
+	timescale->paintPCR(50);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 60);
+	timescale->paintPCR(60);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 70);
+	timescale->paintPCR(70);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 80);
+	timescale->paintPCR(80);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 90);
+	timescale->paintPCR(90);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 100);
+	timescale->paintPCR(100);
 	CFrameBuffer::getInstance()->blit();
 	
 	delete timescale;

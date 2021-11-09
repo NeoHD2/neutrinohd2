@@ -38,13 +38,13 @@
 extern cVideo * videoDecoder;
 
 // progressbar
-CProgressBar::CProgressBar(int w, int h, int r, int g, int b, bool inv)
+CProgressBar::CProgressBar(/*int w, int h,*/ int r, int g, int b, bool inv)
 {
 	frameBuffer = CFrameBuffer::getInstance();
 	
 	double div;
-	width = w;
-	height = h;
+	//width = w;
+	//height = h;
 	inverse = inv;
 	
 	div = (double) 100 / (double) width;
@@ -58,7 +58,16 @@ CProgressBar::CProgressBar(int w, int h, int r, int g, int b, bool inv)
 	cc_type = CC_PROGRESSBAR;
 }
 
-void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
+void CProgressBar::setPosition(const int x, const int y, const int w, const int h)
+{
+	cCBox.iWidth = w;
+	cCBox.iHeight = h;
+	cCBox.iX = x;
+	cCBox.iY = y;
+}
+
+//void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
+void CProgressBar::paintPCR(unsigned char pcr)
 {
 	int i, siglen;
 	unsigned int posx;
@@ -72,23 +81,23 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 	int b = 0;
 	
 	i = 0;
-	xpos = x;
-	ypos = y;
+	xpos = cCBox.iX;
+	ypos = cCBox.iY;
 
 	// body
-	frameBuffer->paintBoxRel(x, y, width, height, COL_MENUCONTENT_PLUS_2, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);	//fill passive
+	frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, COL_MENUCONTENT_PLUS_2, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);	//fill passive
 	
 	if (pcr != percent) 
 	{
 		if(percent == 255) 
 			percent = 0;
 
-		div = (double) 100 / (double) width;
+		div = (double) 100 / (double) cCBox.iWidth;
 		siglen = (double) pcr / (double) div;
 		posx = xpos;
 		posy = ypos;
 		int maxi = siglen;
-		int total = width;
+		int total = cCBox.iWidth;
 		int step = 255/total;
 
 		if (pcr > percent) 
@@ -105,7 +114,7 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 					else
 						rgb = COL_RED + ((unsigned char)(step*i) <<  8); // adding green
 				
-					frameBuffer->paintBoxRel(posx + i, posy, 1, height, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
+					frameBuffer->paintBoxRel(posx + i, posy, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
 	
 				//yellow
@@ -118,7 +127,7 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 					else
 						rgb = COL_YELLOW - ((unsigned char)(step*(b++)) << 16); // removing red
 	
-					frameBuffer->paintBoxRel(posx + i, posy, 1, height, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
+					frameBuffer->paintBoxRel(posx + i, posy, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
 
 				//green
@@ -131,14 +140,14 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 					else
 						rgb = COL_YELLOW - ((unsigned char) (step*(b++)) << 16); // removing red
 				
-					frameBuffer->paintBoxRel (posx + i, posy, 1, height, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
+					frameBuffer->paintBoxRel (posx + i, posy, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
 			}
 			else
 			{
 				for(; (i < maxi); i++) 
 				{
-					frameBuffer->paintBoxRel(posx + i, posy, 1, height, COL_MENUCONTENT_PLUS_6, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
+					frameBuffer->paintBoxRel(posx + i, posy, 1, cCBox.iHeight, COL_MENUCONTENT_PLUS_6, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
 			}
 		}
@@ -328,33 +337,36 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	fb_pixel_t col1 = COL_MENUCONTENT_PLUS_6;
 	fb_pixel_t col2 = COL_MENUFOOT_INFO_PLUS_0;
 
-	// clear infoBox
-	frameBuffer->paintBackgroundBoxRel(xpos, y, CONNECTLINEBOX_WIDTH, height + info_height);
+	if (paintLines)
+	{
+		// clear infoBox
+		frameBuffer->paintBackgroundBoxRel(xpos, y, CONNECTLINEBOX_WIDTH, height + info_height);
 
-	//
-	int fh = iheight > 10 ? iheight - 10 : 5;
-		
-	// vertical line connected to item	
-	frameBuffer->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos1 + 5, 4, fh, col1);
-	CFrameBuffer::getInstance()->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos1 + 5, 1, fh, col2);
-		
-	// vertical line connected to infobox	
-	frameBuffer->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos2 + 7, 4, info_height - 14, col1);
-	frameBuffer->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos2 + 7, 1, info_height - 14, col2);			
+		//
+		int fh = iheight > 10 ? iheight - 10 : 5;
+			
+		// vertical line connected to item	
+		frameBuffer->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos1 + 5, 4, fh, col1);
+		CFrameBuffer::getInstance()->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos1 + 5, 1, fh, col2);
+			
+		// vertical line connected to infobox	
+		frameBuffer->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos2 + 7, 4, info_height - 14, col1);
+		frameBuffer->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos2 + 7, 1, info_height - 14, col2);			
 
-	// vertical line
-	frameBuffer->paintBoxRel(xpos, ypos1a, 4, ypos2a - ypos1a, col1);
-	frameBuffer->paintBoxRel(xpos, ypos1a, 1, ypos2a - ypos1a + 4, col2);		
+		// vertical line
+		frameBuffer->paintBoxRel(xpos, ypos1a, 4, ypos2a - ypos1a, col1);
+		frameBuffer->paintBoxRel(xpos, ypos1a, 1, ypos2a - ypos1a + 4, col2);		
 
-	// Hline (item)
-	frameBuffer->paintBoxRel(xpos, ypos1a, 12, 4, col1);
-	frameBuffer->paintBoxRel(xpos, ypos1a, 1, 4, col2);
-		
-	// Hline (infobox)
-	frameBuffer->paintBoxRel(xpos, ypos2a, 12, 4, col1);
-	frameBuffer->paintBoxRel(xpos, ypos2a, 1, 4, col2);
+		// Hline (item)
+		frameBuffer->paintBoxRel(xpos, ypos1a, 12, 4, col1);
+		frameBuffer->paintBoxRel(xpos, ypos1a, 1, 4, col2);
+			
+		// Hline (infobox)
+		frameBuffer->paintBoxRel(xpos, ypos2a, 12, 4, col1);
+		frameBuffer->paintBoxRel(xpos, ypos2a, 1, 4, col2);
+	}
 
-	// info box background
+	// info box shadow
 	frameBuffer->paintBoxRel(x, ypos2, width, info_height, col1);
 
 	// infoBox
@@ -436,17 +448,17 @@ void CText::paint()
 // grid
 CGrid::CGrid(const int x, const int y, const int dx, const int dy)
 {
-	itemBox.iX = x;
-	itemBox.iY = y;
-	itemBox.iWidth = dx;
-	itemBox.iHeight = dy;
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
 
 	init();
 }
 
 CGrid::CGrid(CBox* position)
 {
-	itemBox = *position;
+	cCBox = *position;
 
 	init();
 }
@@ -466,33 +478,33 @@ void CGrid::setPosition(const int x, const int y, const int dx, const int dy)
 {
 	dprintf(DEBUG_DEBUG, "CGrid::%s\n", __FUNCTION__);
 	
-	itemBox.iX = x;
-	itemBox.iY = y;
-	itemBox.iWidth = dx;
-	itemBox.iHeight = dy;
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
 }
 
 void CGrid::setPosition(CBox* position)
 {
 	dprintf(DEBUG_DEBUG, "CGrid::%s\n", __FUNCTION__);
 	
-	itemBox = *position;
+	cCBox = *position;
 }
 
 void CGrid::paint()
 {
 	// hlines grid
-	for(int count = 0; count < itemBox.iHeight; count += inter_frame)
-		frameBuffer->paintHLine(itemBox.iX, itemBox.iX + itemBox.iWidth, itemBox.iY + count, /*make16color(rgb)*/rgb );
+	for(int count = 0; count < cCBox.iHeight; count += inter_frame)
+		frameBuffer->paintHLine(cCBox.iX, cCBox.iX + cCBox.iWidth, cCBox.iY + count, rgb );
 
 	// vlines grid
-	for(int count = 0; count < itemBox.iWidth; count += inter_frame)
-		frameBuffer->paintVLine(itemBox.iX + count, itemBox.iY, itemBox.iY + itemBox.iHeight, /*make16color(rgb)*/rgb );
+	for(int count = 0; count < cCBox.iWidth; count += inter_frame)
+		frameBuffer->paintVLine(cCBox.iX + count, cCBox.iY, cCBox.iY + cCBox.iHeight, rgb );
 }
 
 void CGrid::hide()
 {
-	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	frameBuffer->paintBackgroundBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
 	
 	CFrameBuffer::getInstance()->blit();
 }
@@ -500,17 +512,17 @@ void CGrid::hide()
 // pig
 CPig::CPig(const int x, const int y, const int dx, const int dy)
 {
-	itemBox.iX = x;
-	itemBox.iY = y;
-	itemBox.iWidth = dx;
-	itemBox.iHeight = dy;
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
 
 	init();
 }
 
 CPig::CPig(CBox* position)
 {
-	itemBox = *position;
+	cCBox = *position;
 
 	init();
 }
@@ -527,26 +539,26 @@ void CPig::setPosition(const int x, const int y, const int dx, const int dy)
 {
 	dprintf(DEBUG_DEBUG, "CPig::%s\n", __FUNCTION__);
 	
-	itemBox.iX = x;
-	itemBox.iY = y;
-	itemBox.iWidth = dx;
-	itemBox.iHeight = dy;
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
 }
 
 void CPig::setPosition(CBox* position)
 {
 	dprintf(DEBUG_DEBUG, "CPig::%s\n", __FUNCTION__);
 	
-	itemBox = *position;
+	cCBox = *position;
 }
 
 void CPig::paint()
 {
-	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);	
+	frameBuffer->paintBackgroundBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);	
 		
 
 	if(videoDecoder)
-		videoDecoder->Pig(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);	
+		videoDecoder->Pig(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);	
 }
 
 void CPig::hide()
@@ -554,7 +566,7 @@ void CPig::hide()
 	if(videoDecoder)  
 		videoDecoder->Pig(-1, -1, -1, -1);
 
-	frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	frameBuffer->paintBackgroundBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
 	
 	CFrameBuffer::getInstance()->blit();
 }

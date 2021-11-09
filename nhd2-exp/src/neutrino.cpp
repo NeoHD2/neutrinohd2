@@ -2619,7 +2619,7 @@ int CNeutrinoApp::run(int argc, char **argv)
 	g_EventList = new EventList;
 	
 	// volume bar
-	g_volscale = new CProgressBar(200, 15, 50, 100, 80, true);
+	g_volscale = new CProgressBar(50, 100, 80, true);
 
 	// Ci Cam handler
 #if defined (ENABLE_CI)	
@@ -4583,8 +4583,9 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 		frameBuffer->paintIcon(NEUTRINO_ICON_VOLUME, x+dy/2,y + (dy/4), 0, COL_MENUCONTENT_PLUS_0);
 
 		g_volscale->reset();
-		g_volscale->paint(x + dy+ (dy/4), y +(dy/4), current_volume);
-		
+
+		g_volscale->setPosition(x + dy+ (dy/4), y +(dy/4), 200, 15);
+		g_volscale->paintPCR(current_volume);
 
 		char p1[4]; // 3 digits + '\0'
 		sprintf(p1, "%3d", current_volume);
@@ -4650,7 +4651,8 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 				
 				dprintf(DEBUG_NORMAL, "CNeutrinoApp::setVolume: current_volume %d\n", current_volume);
 
-				g_volscale->paint(x + dy+ (dy/4), y +(dy/4), current_volume);
+				g_volscale->setPosition(x + dy+ (dy/4), y +(dy/4), 200, 15);
+				g_volscale->paintPCR(current_volume);
 
 				char p[4]; // 3 digits + '\0'
 				sprintf(p, "%3d", current_volume);

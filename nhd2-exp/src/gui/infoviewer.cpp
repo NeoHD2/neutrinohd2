@@ -171,9 +171,9 @@ void CInfoViewer::Init()
 	channel_id = live_channel_id;
 	
 	// init progressbar
-	sigscale = new CProgressBar(BAR_WIDTH, SIGSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	snrscale = new CProgressBar(BAR_WIDTH, SNRSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	timescale = new CProgressBar(BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);	//5? see in code
+	sigscale = new CProgressBar(RED_BAR, GREEN_BAR, YELLOW_BAR, false);
+	snrscale = new CProgressBar(RED_BAR, GREEN_BAR, YELLOW_BAR, false);
+	timescale = new CProgressBar();	//5? see in code
 }
 
 CInfoViewer::~CInfoViewer()
@@ -1528,7 +1528,8 @@ void CInfoViewer::showSNR()
 				{
 					posx = freqStartX + freqWidth + 10;
 
-					sigscale->paint(posx, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, sig);
+					sigscale->setPosition(posx, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SIGSCALE_BAR_HEIGHT);
+					sigscale->paintPCR(sig);
 
 					sprintf (percent, "SIG:%d%%S", sig);
 					posx = posx + barwidth + 2;
@@ -1543,7 +1544,8 @@ void CInfoViewer::showSNR()
 				{
 					int snr_posx = posx + sw + 10;
 
-					snrscale->paint(snr_posx, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, snr);
+					snrscale->setPosition(snr_posx, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SNRSCALE_BAR_HEIGHT);
+					snrscale->paintPCR(snr);
 
 					sprintf (percent, "SNR:%d%%Q", snr);
 					snr_posx = snr_posx + barwidth + 2;
@@ -1678,7 +1680,9 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 	  	}
 
 		// timescale
-		timescale->paint(timescale_posx, timescale_posy, runningPercent);
+		timescale->setPosition(timescale_posx, timescale_posy, BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);
+
+		timescale->paintPCR(runningPercent);
 
 		int EPGTimeWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth("00:00:00"); //FIXME
 
@@ -1746,9 +1750,7 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 
 void CInfoViewer::showPercent()
 {
-	//timescale->reset();
-	
-	timescale->paint(timescale_posx, timescale_posy, runningPercent);
+	timescale->paintPCR(runningPercent);
 }
 
 void CInfoViewer::showButton_Audio()

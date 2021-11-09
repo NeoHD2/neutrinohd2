@@ -83,8 +83,8 @@ CScanTs::CScanTs(int num)
 	total = done = 0;
 	freqready = 0;
 
-	sigscale = new CProgressBar(BAR_WIDTH, BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR);
-	snrscale = new CProgressBar(BAR_WIDTH, BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR);
+	sigscale = new CProgressBar(RED_BAR, GREEN_BAR, YELLOW_BAR);
+	snrscale = new CProgressBar(RED_BAR, GREEN_BAR, YELLOW_BAR);
 	
 	feindex = num;
 }
@@ -638,7 +638,8 @@ void CScanTs::showSNR()
 		sprintf(percent, "%d%% SIG", sig);
 		sw = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth ("100% SIG");
 
-		sigscale->paint(posx - 1, posy+2, sig);
+		sigscale->setPosition(posx - 1, posy + 2, BAR_WIDTH, BAR_HEIGHT);
+		sigscale->paintPCR(sig);
 
 		posx = posx + barwidth + 3;
 		sw = x + 247 - posx;
@@ -651,7 +652,9 @@ void CScanTs::showSNR()
 		posx = x + 20 + 260;
 		sprintf(percent, "%d%% SNR", snr);
 		sw = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth ("100% SNR");
-		snrscale->paint(posx - 1, posy+2, snr);
+		
+		snrscale->setPosition(posx - 1, posy + 2, BAR_WIDTH, BAR_HEIGHT);
+		snrscale->paintPCR(snr);
 
 		posx = posx + barwidth + 3;
 		sw = x + width - posx;

@@ -1537,7 +1537,7 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_BLUE, &icon_blue_w, &icon_blue_h);
 	
 	// init progressbar
-	CProgressBar moviescale(cFrameBoxInfo.iWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);
+	CProgressBar moviescale;
 	
 	moviescale.reset();
 	
@@ -1692,7 +1692,8 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	if(runningPercent > 100)
 		runningPercent = 100;
 	
-	moviescale.paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, runningPercent);
+	moviescale.setPosition(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, cFrameBoxInfo.iWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);
+	moviescale.paintPCR(runningPercent);
 }
 
 

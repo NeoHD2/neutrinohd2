@@ -54,20 +54,19 @@ class CBox
 
 // CComponent
 enum {
-	//CC_WINDOW,
 	CC_ICON,
 	CC_IMAGE,
 	CC_LABEL,
 	CC_TEXT,
-	CC_SCROLLBAR,
-	CC_PROGRESSBAR,
 	CC_BUTTON,
 	CC_HLINE,
 	CC_VLINE,
 	CC_FRAMELINE,
-	CC_DETAILSLINE,
 	CC_PIG,
 	CC_GRID,
+	CC_SCROLLBAR,
+	CC_PROGRESSBAR,
+	CC_DETAILSLINE,
 	CC_SLIDER,
 	CC_TIME
 };
@@ -111,10 +110,6 @@ class CComponent
 class CIcon : public CComponent
 {
 	public:
-		//
-		CFrameBuffer* frameBuffer;
-		int cc_type;
-
 		//		
 		int iWidth;
 		int iHeight;
@@ -138,7 +133,6 @@ class CIcon : public CComponent
 		};
 
 		//
-		//void paint(const int x, const int y)
 		void paint()
 		{
 			frameBuffer->paintIcon(iconName.c_str(), cCBox.iX + (cCBox.iWidth - iWidth)/2, cCBox.iY + (cCBox.iHeight - iHeight)/2);
@@ -149,9 +143,6 @@ class CImage : public CComponent
 {
 	public:
 		//
-		CFrameBuffer* frameBuffer;
-		int cc_type;
-		
 		int iWidth;
 		int iHeight;
 		int iNbp;
@@ -175,7 +166,6 @@ class CImage : public CComponent
 		};
 		
 		//
-		//void paint(const int x, const int y, const int dx, const int dy)
 		void paint()
 		{
 			frameBuffer->displayImage(imageName.c_str(), cCBox.iX + (cCBox.iWidth - iWidth)/2, cCBox.iY + (cCBox.iHeight - iHeight)/2, cCBox.iWidth, cCBox.iHeight);
@@ -200,10 +190,6 @@ class CButtons : public CComponent
 		unsigned int count;
 	public:
 		//
-		CFrameBuffer* frameBuffer;
-		int cc_type;
-		
-		//
 		CButtons(){frameBuffer = CFrameBuffer::getInstance(); buttons.clear(); count = 0; cc_type = CC_BUTTON;};
 		
 		//
@@ -219,10 +205,6 @@ class CButtons : public CComponent
 class CScrollBar : public CComponent
 {
 	public:
-		//
-		CFrameBuffer* frameBuffer;
-		int cc_type;
-		
 		//
 		CScrollBar(){frameBuffer = CFrameBuffer::getInstance(); cc_type = CC_SCROLLBAR;};
 		virtual ~CScrollBar(){};
@@ -243,16 +225,19 @@ class CProgressBar : public CComponent
 		bool inverse;
 
 	public:
-		CFrameBuffer* frameBuffer;
-		int cc_type;
+		//
+		CProgressBar(/*int w, int h,*/ int r = 40, int g = 100, int b = 70, bool inv = true);
 		
 		//
-		CProgressBar(int w, int h, int r = 40, int g = 100, int b = 70, bool inv = true);
+		void setPosition(const int x, const int y, const int w, const int h);
 		
 		//
-		void paint(unsigned int x, unsigned int y, unsigned char pcr);
+		void paintPCR(unsigned char pcr);
 		void reset();
 		int getPercent() { return percent; };
+		
+		//
+		void paint(){};
 };
 
 // detailsLine
@@ -260,15 +245,19 @@ class CItems2DetailsLine : public CComponent
 {
 	public:
 		//
-		CFrameBuffer* frameBuffer;
-		int cc_type;
+		bool paintLines;
 		
 		//
-		CItems2DetailsLine(){frameBuffer = CFrameBuffer::getInstance(); cc_type = CC_DETAILSLINE;};
+		CItems2DetailsLine(){frameBuffer = CFrameBuffer::getInstance(); paintLines = true; cc_type = CC_DETAILSLINE;};
 		virtual ~CItems2DetailsLine(){};
 		
 		//
+		void disablePaintLines(){paintLines = false;};
+		
+		//
 		void paint(int x, int y, int width, int height, int info_height, int iheight, int iy);
+		//void setPosition(int x, int y, int width, int height, int info_height, int iheight, int iy);
+		//void paint();
 		void clear(int x, int y, int width, int height, int info_height);
 };
 
@@ -277,9 +266,6 @@ class CHline : public CComponent
 {
 	public:
 		//
-		CFrameBuffer* frameBuffer;
-		int cc_type;
-		
 		fb_pixel_t color;
 		
 		//
@@ -289,7 +275,7 @@ class CHline : public CComponent
 		//
 		void setColor(fb_pixel_t col){color = col;};
 		
-		//void paint(const int x, const int y, const int dx)
+		//
 		void paint()
 		{
 			frameBuffer->paintHLineRel(cCBox.iX, cCBox.iWidth, cCBox.iY, color);
@@ -301,9 +287,6 @@ class CVline : public CComponent
 {
 	public:
 		//
-		CFrameBuffer* frameBuffer;
-		int cc_type;
-		
 		fb_pixel_t color;
 		
 		//
@@ -313,7 +296,7 @@ class CVline : public CComponent
 		//
 		void setColor(fb_pixel_t col){color = col;};
 		
-		//void paint(const int x, const int y, const int dy)
+		//
 		void paint()
 		{
 			frameBuffer->paintVLineRel(cCBox.iX, cCBox.iY, cCBox.iHeight, color);
@@ -325,9 +308,6 @@ class CFrameLine : public CComponent
 {
 	public:
 		//
-		CFrameBuffer* frameBuffer;
-		int cc_type;
-		
 		fb_pixel_t color;
 		
 		//
@@ -337,7 +317,7 @@ class CFrameLine : public CComponent
 		//
 		void setColor(fb_pixel_t col){color = col;};
 		
-		//void paint(const int x, const int y, const int dx, const int dy)
+		//
 		void paint()
 		{
 			frameBuffer->paintFrameBox(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, color);
@@ -349,9 +329,6 @@ class CLabel : public CComponent
 {
 	public:
 		//
-		CFrameBuffer* frameBuffer;
-		int cc_type;
-		
 		int width;
 		int height;
 		
@@ -371,10 +348,9 @@ class CLabel : public CComponent
 		void setText(const char* text){label = text;};
 		void enablePaintBG(){paintBG = true;};
 		
-		//void paint(const int x, const int y, const int dx)
+		//
 		void paint()
 		{
-			//font->RenderString(x, y + font->getHeight(), dx, label.c_str(), color, 0, utf8, paintBG);
 			font->RenderString(cCBox.iX, cCBox.iY + height, cCBox.iWidth, label.c_str(), color, 0, utf8, paintBG);
 		};
 		
@@ -386,16 +362,10 @@ class CGrid : public CComponent
 {
 	private:
 		//
-		CFrameBuffer* frameBuffer;
-		CBox itemBox;
-
 		fb_pixel_t rgb;
 		int inter_frame;
 
 	public:
-		//
-		int cc_type;
-		
 		//
 		CGrid(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		CGrid(CBox* position);
@@ -403,7 +373,6 @@ class CGrid : public CComponent
 
 		//
 		void init();
-
 		void setPosition(const int x, const int y, const int dx, const int dy);
 		void setPosition(CBox* position);
 		void setColor(fb_pixel_t col){rgb = col;};
@@ -411,34 +380,27 @@ class CGrid : public CComponent
 
 		void paint();
 		void hide();
-		
-		inline CBox getWindowsPos(void){return (itemBox);};
 };
 
 // pig
 class CPig : public CComponent
 {
-	private:
-		CFrameBuffer* frameBuffer;
-		CBox itemBox;
-
 	public:
+		//
 		CPig(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		CPig(CBox* position);
 		virtual ~CPig(){};
 
+		//
 		void init();
-		
 		void setPosition(const int x, const int y, const int dx, const int dy);
 		void setPosition(CBox* position);
 
 		void paint();
 		void hide();
-		
-		inline CBox getWindowsPos(void){return (itemBox);};
 };
 
-//CCText
+//CText
 class CText : public CComponent
 {
 	public:
@@ -468,8 +430,7 @@ enum {
 	WIDGET_ITEM_LISTBOX,
 	WIDGET_ITEM_FRAMEBOX,
 	WIDGET_ITEM_LISTFRAME,
-	WIDGET_ITEM_TEXTBOX,
-	WIDGET_ITEM_PIG
+	WIDGET_ITEM_TEXTBOX
 };
 
 class CWidgetItem
