@@ -187,7 +187,7 @@ class testMenu(CMenuTarget):
 		self.listWidget.enablePaintFootInfo()
 
 		# messageBox
-		item1 = CMenuForwarder("CMessageBox", True, "", None, "red action")
+		item1 = CMenuForwarder("CMessageBox")
 		item1.setItemIcon(DATADIR + "/neutrino/icons/plugin.png")
 		item1.setHint("testing CMessageBox")
 		item1.setInfo1("testing CMessageBox")

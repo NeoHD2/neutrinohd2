@@ -788,7 +788,7 @@ function settings()
 
 	local menu = neutrino.CMenuWidget("Einstellungen", neutrino.NEUTRINO_ICON_SETTINGS)
 	local item = nil
-	menu:setMode(neutrino.MODE_SETUP)
+	menu:setWidgetMode(neutrino.MODE_SETUP)
 	menu:enableShrinkMenu()
 
 	menu:addItem(neutrino.CMenuForwarder(neutrino.LOCALE_MENU_BACK))
@@ -1167,7 +1167,7 @@ function main_menu()
 	print("mainMenu:")
 
 	local menu = neutrino.CMenuWidget("MTV", neutrino.PLUGINDIR .. "/mtv/mtv_hint.png")
-	menu:setMode(neutrino.MODE_MENU)
+	menu:setWidgetMode(neutrino.MODE_MENU)
 	menu:enableShrinkMenu()
 	menu:enablePaintDate()
 

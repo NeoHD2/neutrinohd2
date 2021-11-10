@@ -32,14 +32,6 @@ class CMediaPortal : public CMenuTarget
 		/*CMenuWidget*/ClistBox* mediaPortal;
 		CMenuItem* item;
 
-		void youTube(void);
-		void netzKino(void);
-		void iceCast(void);
-		void internetRadio(void);
-		void ard(void);
-		void nFilm(void);
-		void nTVShows(void);
-
 		void showMenu(void);
 	
 	public:
@@ -62,41 +54,6 @@ CMediaPortal::~CMediaPortal()
 	dprintf(DEBUG_NORMAL, "CMediaPortal: del\n");
 }
 
-void CMediaPortal::youTube(void)
-{
-	g_PluginList->startPlugin("youtube");
-}
-
-void CMediaPortal::netzKino(void)
-{
-	g_PluginList->startPlugin("netzkino");
-}
-
-void CMediaPortal::iceCast(void)
-{
-	g_PluginList->startPlugin("icecast");
-}
-
-void CMediaPortal::internetRadio(void)
-{
-	g_PluginList->startPlugin("internetradio");
-}
-
-void CMediaPortal::ard(void)
-{
-	g_PluginList->startPlugin("ard");
-}
-
-void CMediaPortal::nFilm()
-{
-	g_PluginList->startPlugin("nfilm");
-}
-
-void CMediaPortal::nTVShows()
-{
-	g_PluginList->startPlugin("ntvshows");
-}
-
 int CMediaPortal::exec(CMenuTarget * parent, const std::string & actionKey)
 {
 	dprintf(DEBUG_NORMAL, "CMediaPortal::exec: actionKey:%s\n", actionKey.c_str());
@@ -108,43 +65,67 @@ int CMediaPortal::exec(CMenuTarget * parent, const std::string & actionKey)
 
 	if(actionKey == "youtube")
 	{
-		youTube();
+		g_PluginList->startPlugin("youtube");
 
 		return RETURN_REPAINT;
 	}
 	else if(actionKey == "netzkino")
 	{
-		netzKino();
+		g_PluginList->startPlugin("netzkino");
 
 		return RETURN_REPAINT;
 	}
 	else if(actionKey == "icecast")
 	{
-		iceCast();
+		g_PluginList->startPlugin("icecast");
 
 		return RETURN_REPAINT;
 	}
 	else if(actionKey == "internetradio")
 	{
-		internetRadio();
+		g_PluginList->startPlugin("internetradio");
 
 		return RETURN_REPAINT;
 	}
 	else if(actionKey == "ard")
 	{
-		ard();
+		g_PluginList->startPlugin("ard");
 
 		return RETURN_REPAINT;
 	}
 	else if(actionKey == "nfilm")
 	{
-		nFilm();
+		g_PluginList->startPlugin("nfilm");
 
 		return RETURN_REPAINT;
 	}
 	else if(actionKey == "ntvshows")
 	{
-		nTVShows();
+		g_PluginList->startPlugin("ntvshows");
+
+		return RETURN_REPAINT;
+	}
+	else if(actionKey == "arte_concert")
+	{
+		g_PluginList->startPlugin("arte_concert");
+
+		return RETURN_REPAINT;
+	}
+	else if(actionKey == "media_one")
+	{
+		g_PluginList->startPlugin("media_one");
+
+		return RETURN_REPAINT;
+	}
+	else if(actionKey == "mtv")
+	{
+		g_PluginList->startPlugin("mtv");
+
+		return RETURN_REPAINT;
+	}
+	else if(actionKey == "netzkino_hd")
+	{
+		g_PluginList->startPlugin("netzkino_hd");
 
 		return RETURN_REPAINT;
 	}
@@ -203,7 +184,26 @@ void CMediaPortal::showMenu(void)
 	// nTVShows
 	item = new ClistBoxItem("Serien Trailer", true, NULL, this, "ntvshows", RC_nokey, NULL, PLUGINDIR "/ntvshows/ntvshows.png");
 	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("ntvshows")).c_str());
-
+	mediaPortal->addItem(item);
+	
+	// arte concert
+	item = new ClistBoxItem("Arte Concert", true, NULL, this, "arte_concert", RC_nokey, NULL, PLUGINDIR "/arte_concert/arte_concert_hint.png");
+	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("arte_concert")).c_str());
+	mediaPortal->addItem(item);
+	
+	// media_one
+	item = new ClistBoxItem("Media One", true, NULL, this, "media_one", RC_nokey, NULL, PLUGINDIR "/media_one/media_one.png");
+	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("media_one")).c_str());
+	mediaPortal->addItem(item);
+	
+	// mtv
+	item = new ClistBoxItem("MTV", true, NULL, this, "mtv", RC_nokey, NULL, PLUGINDIR "/mtv/mtv_hint.png");
+	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("mtv")).c_str());
+	mediaPortal->addItem(item);
+	
+	// netzkino_hd
+	item = new ClistBoxItem("Netzkino HD", true, NULL, this, "netzkino_hd", RC_nokey, NULL, PLUGINDIR "/netzkino_hd/netzkino.png");
+	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("netzkino_hd")).c_str());
 	mediaPortal->addItem(item);
 
 	mediaPortal->exec(NULL, "");

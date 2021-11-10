@@ -465,8 +465,8 @@ void CNFilm::showMenu(bool genre)
 	headersWidget->setButtons(&HeadButtons, 1);
 	headersWidget->enablePaintDate();
 	//headersWidget->setColor(COL_BLUE);
-	headersWidget->setGradient(NOGRADIENT);
-	headersWidget->setCorner(NO_RADIUS);
+	//headersWidget->setGradient(NOGRADIENT);
+	//headersWidget->setCorner(NO_RADIUS);
 
 	// foot
 	footBox.iWidth = frameBuffer->getScreenWidth();
@@ -478,8 +478,8 @@ void CNFilm::showMenu(bool genre)
 
 	//footersWidget->setColor(COL_BLUE);
 	footersWidget->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	footersWidget->setGradient(NOGRADIENT);
-	footersWidget->setCorner(NO_RADIUS);
+	//footersWidget->setGradient(NOGRADIENT);
+	//footersWidget->setCorner(NO_RADIUS);
 
 	// leftwidget
 	leftBox.iWidth = 250;

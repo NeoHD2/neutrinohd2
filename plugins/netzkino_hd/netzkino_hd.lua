@@ -456,7 +456,6 @@ function funArt(_id)
 	--infoFrame:disableShadow()
 
 	testFrame = neutrino.CFrameBox(fb:getScreenX(), fb:getScreenY(), fb:getScreenWidth(), fb:getScreenHeight())
-	testFrame:setMode(neutrino.FRAMEBOX_MODE_RANDOM)
 	testFrame:addFrame(artFrame)
 	testFrame:addFrame(textFrame)
 	testFrame:addFrame(playFrame)
