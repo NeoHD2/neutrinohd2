@@ -451,8 +451,8 @@ void CNFilm::showMenu(bool genre)
 
 	mainWidget->enableSaveScreen();
 	mainWidget->setSelected(selected);
-	mainWidget->enablePaintMainFrame();
-	mainWidget->setBackgroundColor(COL_DARK_TURQUOISE);
+	//mainWidget->enablePaintMainFrame();
+	//mainWidget->setBackgroundColor(COL_DARK_TURQUOISE);
 
 	// headwidget
 	headBox.iWidth = frameBuffer->getScreenWidth();

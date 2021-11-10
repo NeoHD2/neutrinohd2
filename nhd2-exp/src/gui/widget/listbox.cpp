@@ -1145,7 +1145,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 	const char * option_text = getOption();	
 
 	uint8_t color = COL_MENUCONTENT;
-	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_2 : COL_MENUCONTENT_PLUS_0;
+	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_1 : COL_MENUCONTENT_PLUS_0;
 
 	if (selected)
 	{
@@ -1153,7 +1153,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 		
 		if (parent)
 		{
-			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: COL_MENUCONTENTSELECTED_PLUS_1;
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: COL_MENUCONTENT_PLUS_0;
 		}
 		else
 			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
@@ -1178,7 +1178,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 			frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
 
 			if(!itemIcon.empty())
-				frameBuffer->paintHintIcon(itemIcon, x + 1, y + 1, item_width - 2, item_height - 2);
+				frameBuffer->paintHintIcon(itemIcon, x + 2, y + 2, item_width - 4, item_height - 4);
 		}
 
 		// vfd
@@ -1477,14 +1477,14 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 	const char * option_text = getOption();	
 
 	uint8_t color = COL_MENUCONTENT;
-	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_2 : COL_MENUCONTENT_PLUS_0;
+	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_1 : COL_MENUCONTENT_PLUS_0;
 
 	if (selected)
 	{
 		color = COL_MENUCONTENTSELECTED;
 		if (parent)
 		{
-			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0 : COL_MENUCONTENTSELECTED_PLUS_1;
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0 : COL_MENUCONTENT_PLUS_0;
 		}
 		else
 			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
@@ -1509,7 +1509,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
 
 			if(!itemIcon.empty())
-				frameBuffer->paintHintIcon(itemIcon, x + 1, y + 1, item_width - 2, item_height - 2);
+				frameBuffer->paintHintIcon(itemIcon, x + 2, y + 2, item_width - 4, item_height - 4);
 		}
 
 		// locale ???

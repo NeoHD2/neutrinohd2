@@ -48,14 +48,14 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 	background = NULL;
 
 	enableCenter = false;
-	paintMainFrame = false;
 
 	timeout = 0;
 	selected = -1;
 
-	backgroundColor = COL_MENUCONTENT_PLUS_0;
-	radius = NO_RADIUS;
-	corner = CORNER_NONE;
+	//paintMainFrame = false;
+	//backgroundColor = COL_MENUCONTENT_PLUS_0;
+	//radius = NO_RADIUS;
+	//corner = CORNER_NONE;
 
 	actionKey = "";
 }
@@ -70,14 +70,14 @@ CWidget::CWidget(CBox *position)
 	background = NULL;
 
 	enableCenter = false;
-	paintMainFrame = false;
 
 	timeout = 0;
 	selected = -1;
 
-	backgroundColor = COL_MENUCONTENT_PLUS_0;
-	radius = RADIUS_MID;
-	corner = CORNER_ALL;
+	//paintMainFrame = false;
+	//backgroundColor = COL_MENUCONTENT_PLUS_0;
+	//radius = RADIUS_MID;
+	//corner = CORNER_ALL;
 
 	actionKey = "";
 }
@@ -154,8 +154,8 @@ void CWidget::paint()
 	dprintf(DEBUG_NORMAL, "CWidget:: paint\n");
 
 	// paint mainFrame
-	if(paintMainFrame)
-		frameBuffer->paintBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight, backgroundColor, radius, corner);
+	//if(paintMainFrame)
+	//	frameBuffer->paintBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight, backgroundColor, radius, corner);
 
 	// paint items
 	paintItems();
@@ -218,7 +218,7 @@ void CWidget::hide()
 	}
 	else
 	{
-		if(paintMainFrame)
+		//if(paintMainFrame)
 			frameBuffer->paintBackgroundBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight);
 	}
 
@@ -322,7 +322,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 				// update time
 				for (unsigned int i = 0; i < items.size(); i++)
 				{
-					if( (items[i]->itemType == WIDGET_ITEM_HEAD) /*&& (items[i]->paintDate)*/)
+					if( (items[i]->itemType == WIDGET_ITEM_HEAD) && (items[i]->paintDate) )
 					{
 						items[i]->paint();
 						break;
@@ -393,10 +393,6 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 				case (RC_setup):
 					onMenuKeyPressed();
 					break;
-
-				//case (RC_standby):
-				//	onPowerKeyPressed();
-				//	break;
 
 				case (RC_spkr):
 					onMuteKeyPressed();
@@ -703,7 +699,7 @@ void CWidget::onUpKeyPressed()
 	if(hasItem() && selected >= 0)
 	{
 #if 0
-		if( ((items[selected]->itemType == WIDGET_ITEM_FRAMEBOX) && ((items[selected]->getFrameBoxMode() == FRAMEBOX_MODE_RANDOM) || (items[selected]->getFrameBoxMode() == FRAMEBOX_MODE_HORIZONTAL))) /*|| ((items[selected]->itemType == WIDGET_ITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) && items.size() > 1)*/ )
+		if( ((items[selected]->itemType == WIDGET_ITEM_FRAMEBOX) ) /*|| ((items[selected]->itemType == WIDGET_ITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) )*/ )
 		{
 			for (unsigned int count = 1; count < items.size(); count++) 
 			{
@@ -739,7 +735,7 @@ void CWidget::onDownKeyPressed()
 	if(hasItem() && selected >= 0)
 	{
 #if 0
-		if( ((items[selected]->itemType == WIDGET_ITEM_FRAMEBOX) && ( (items[selected]->getFrameBoxMode() == FRAMEBOX_MODE_RANDOM) || (items[selected]->getFrameBoxMode() == FRAMEBOX_MODE_HORIZONTAL))) /*|| ((items[selected]->itemType == WIDGET_ITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) && items.size() > 1)*/ )
+		if( ((items[selected]->itemType == WIDGET_ITEM_FRAMEBOX) ) /*|| ((items[selected]->itemType == WIDGET_ITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) )*/ )
 		{
 			//onYellowKeyPressed();
 			for (unsigned int count = 1; count < items.size(); count++) 

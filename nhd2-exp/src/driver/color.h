@@ -120,8 +120,7 @@
 
 // menu selected
 #define COL_MENUCONTENTSELECTED_PLUS_0  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 0]
-#define COL_MENUCONTENTSELECTED_PLUS_1  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 1] // selected out focus
-#define COL_MENUCONTENTSELECTED_PLUS_2  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 2] // marked
+#define COL_MENUCONTENTSELECTED_PLUS_1  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTSELECTED + 1] // marked
 
 // menu inactive
 #define COL_MENUCONTENTINACTIVE_PLUS_0  	CFrameBuffer::getInstance()->realcolor[COL_MENUCONTENTINACTIVE + 0]

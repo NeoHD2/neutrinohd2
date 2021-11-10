@@ -202,7 +202,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	dprintf(DEBUG_DEBUG, "CFrame::paint:\n");
 
 	uint8_t color = COL_MENUCONTENT;
-	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_2 : fcolor;
+	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_1 : fcolor;
 
 	if (selected)
 	{
@@ -210,7 +210,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 		
 		if (parent)
 		{
-			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0 : COL_MENUCONTENTSELECTED_PLUS_1;
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0 : fcolor;
 		}
 		else
 			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
