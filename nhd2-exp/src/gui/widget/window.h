@@ -54,6 +54,9 @@ class CWindow : public CWidgetItem
 		void restoreScreen();
 
 		bool centerPos;
+		
+		//
+		std::vector<CComponent*> CCItems;
 
 	public:
 		CWindow(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -75,6 +78,12 @@ class CWindow : public CWidgetItem
 		void hide();
 		
 		inline CBox getWindowsPos(void){return (itemBox);};
+		
+		//
+		void addCCItem(CComponent* CCItem);
+		bool hasItem(){return !CCItems.empty();};
+		void clearCCItems(){CCItems.clear();};
+		void paintCCItems();
 };
 
 #endif

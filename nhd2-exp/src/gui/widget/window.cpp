@@ -181,6 +181,12 @@ void CWindow::paint()
 	}
 	else
 		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
+		
+	//CCItems
+	if (hasItem())
+	{
+		paintCCItems();
+	}
 }
 
 void CWindow::hide()
@@ -194,4 +200,25 @@ void CWindow::hide()
 		
 	CFrameBuffer::getInstance()->blit();
 }
+
+//
+void CWindow::addCCItem(CComponent* CCItem)
+{
+	CCItems.push_back(CCItem);
+}
+
+void CWindow::paintCCItems()
+{
+	dprintf(DEBUG_NORMAL, "CWindow::paintCCItems:\n");
+
+	for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
+	{
+		CComponent *CCItem = CCItems[count];
+
+		CCItem->paint();
+	}
+}
+
+
+
 

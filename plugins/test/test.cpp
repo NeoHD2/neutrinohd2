@@ -103,9 +103,12 @@ class CTestMenu : public CMenuTarget
 
 		// CWindow
 		CWindow *windowWidget;
+		
+		// CprogressWindow
 		CProgressWindow * progressWindow;
 		
 		// CTextBox
+		CTextBox* textBoxWidget;
 		
 		// CMenuwidget
 		CMenuWidget* listMenu;
@@ -123,14 +126,14 @@ class CTestMenu : public CMenuTarget
 		// testing widgets helpers (without CWidget)
 		void test();
 
-		// testing (with CWidget)
+		// CWidget
 		void testCWidget();
 		void testSingleWidget();
 		void testFireTV();
 		void testListFrameWidget();
 		void testListBoxWidget();
-		//void testWindowWidget();
-		//void testProgressWindowWidget();
+		void testWindowWidget();
+		void testTextBoxWidget();
 		void testMultiWidget();
 
 		// CCompenents 
@@ -283,9 +286,8 @@ CTestMenu::CTestMenu()
 	leftWidget = NULL;
 	rightWidget = NULL;
 	listFrame = NULL;
-	
-	//
 	windowWidget = NULL;
+	textBoxWidget = NULL;
 	
 	//
 	progressWindow = NULL;
@@ -988,6 +990,195 @@ void CTestMenu::testCWidget()
 
 	delete footers;
 	footers = NULL;
+}
+
+void CTestMenu::testWindowWidget()
+{
+	dprintf(DEBUG_NORMAL, "\ntestWindowWidget(CCItems)\n");
+
+	// CBox
+	CBox Box;
+	Box.iX = g_settings.screen_StartX + 50;
+	Box.iY = g_settings.screen_StartY + 50;
+	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 100);
+	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 100);
+	
+	int currentPage = 0;
+	int NrOfPages = 4;
+	int pcr = 25;
+	
+	loadMoviePlaylist();
+	
+	std::string buffer;
+	buffer = m_vMovieInfo[0].epgInfo1;
+	buffer += "\n";
+	buffer += m_vMovieInfo[0].epgInfo2;
+	
+	// CWindow
+	windowWidget = new CWindow(&Box);
+	windowWidget->setColor(COL_MENUCONTENT_PLUS_0);
+	windowWidget->setCorner(RADIUS_MID, CORNER_ALL);
+	
+	// heades
+	CHeaders head(Box.iX, Box.iY, Box.iWidth, 40, "CComponents", NEUTRINO_ICON_COLORS);
+	head.enablePaintDate();
+	
+	//windowWidget->addCCItem(&head);
+	
+	// footers
+	CFooters foot(Box.iX, Box.iY + Box.iHeight - 40, Box.iWidth, 40);
+	foot.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	
+	//windowWidget->addCCItem(&foot);
+	
+	// icon
+	CIcon testIcon;
+	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
+	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
+	
+	windowWidget->addCCItem(&testIcon);
+	
+	// image
+	CImage testImage;
+	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
+	testImage.setPosition(Box.iX + Box.iWidth - testImage.iWidth - 50, Box.iY + 150, testImage.iWidth, testImage.iHeight);
+	
+	windowWidget->addCCItem(&testImage);
+	
+	// label
+	CLabel testLabel;
+	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
+	testLabel.setColor(COL_GREEN0);
+	testLabel.enablePaintBG();
+	testLabel.setText("this is a CComponet label test :-)");
+	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
+	
+	windowWidget->addCCItem(&testLabel);
+	
+	// CButtons
+	CButtons testButton;
+	int icon_w, icon_h;
+	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
+	testButton.setPosition(Box.iX + 10, Box.iY + Box.iHeight - 100, Box.iWidth, 40);
+	testButton.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	
+	windowWidget->addCCItem(&testButton);
+	
+	// Hline
+	CHline testHline;
+	testHline.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10, 10);
+	
+	windowWidget->addCCItem(&testHline);
+	
+	// Vline
+	CVline testVline;
+	testVline.setPosition(Box.iX + Box.iWidth - 20 - 15, Box.iY + 10, 10, Box.iHeight - 20);
+	
+	windowWidget->addCCItem(&testVline);
+	
+	// CFrameLine
+	CFrameLine testFrameLine;
+	testFrameLine.setPosition(Box.iX + 140, Box.iY + 140, testIcon.iWidth + 100, testIcon.iHeight + 20);
+	
+	windowWidget->addCCItem(&testFrameLine);
+	
+	// DL
+	CItems2DetailsLine testDline;
+	
+	testDline.disablePaintLines();
+	
+	// pb
+	CProgressBar testPB(40, 100, 70, true);
+	testPB.setPosition(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, Box.iWidth /3, 10);
+	
+	// sb
+	CScrollBar testSB;
+	
+	// text
+	CText testText;
+	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20 - testImage.iWidth - 50, Box.iHeight/4);
+	testText.setMode(AUTO_WIDTH);
+	testText.setText(buffer.c_str());
+	
+	windowWidget->addCCItem(&testText);
+	
+	CText testText2;
+	testText2.setPosition(Box.iX + 10, Box.iY + Box.iHeight + 2, Box.iWidth - 20, 64);
+	testText2.setMode(AUTO_WIDTH);
+	testText2.setText(buffer.c_str());
+
+	// grid
+	CGrid testGrid;
+	testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
+	testGrid.setColor(COL_PURPLE);
+	
+	windowWidget->addCCItem(&testGrid);
+	
+	// pig
+	CPig testPig;
+	testPig.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20 + 200 + 10, Box.iY + 100, 300, 160);
+	
+	windowWidget->addCCItem(&testPig);
+	
+	// time
+	// slider
+	
+	CWidget* testWidget = new CWidget();
+	testWidget->addItem(windowWidget);
+	testWidget->addItem(&head);
+	testWidget->addItem(&foot);
+	
+	testWidget->addKey(RC_red, this, "mplay");
+	testWidget->addKey(RC_green, this, "mplay");
+	testWidget->addKey(RC_yellow, this, "mplay");
+	testWidget->addKey(RC_blue, this, "mplay");
+	
+	testWidget->exec(NULL, "");
+	
+	delete testWidget;
+	testWidget = NULL;
+	
+	delete windowWidget;
+	windowWidget = NULL;
+}
+
+void CTestMenu::testTextBoxWidget()
+{
+	// mainBox
+	CBox box;
+	box.iX = CFrameBuffer::getInstance()->getScreenX() + 40;
+	box.iY = CFrameBuffer::getInstance()->getScreenY() + 40;
+	box.iWidth = CFrameBuffer::getInstance()->getScreenWidth() - 80;
+	box.iHeight = CFrameBuffer::getInstance()->getScreenHeight() - 80;
+	
+	loadMoviePlaylist();
+	
+	std::string buffer;
+	buffer = m_vMovieInfo[0].epgInfo1;
+	buffer += "\n";
+	buffer += m_vMovieInfo[0].epgInfo2;
+	
+	textBoxWidget = new CTextBox(&box);
+	
+	// scale pic
+	int p_w = 0;
+	int p_h = 0;
+
+	scaleImage(m_vMovieInfo[0].tfile, &p_w, &p_h);
+	
+	textBoxWidget->setText(buffer.c_str(), m_vMovieInfo[0].tfile.c_str(), p_w, p_h);
+	
+	CWidget* testWidget = new CWidget();
+	testWidget->addItem(textBoxWidget);
+	testWidget->addKey(RC_ok, this, "mplay");
+	
+	testWidget->exec(NULL, "");
+	
+	delete testWidget;
+	testWidget = NULL;
+	
+	delete textBoxWidget;
+	textBoxWidget = NULL;
 }
 
 void CTestMenu::testSingleWidget()
@@ -5333,6 +5524,18 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 		return RETURN_REPAINT;
 	}
+	else if (actionKey == "ccwindow")
+	{
+		testWindowWidget();
+		
+		return RETURN_REPAINT;
+	}
+	else if (actionKey == "textboxwidget")
+	{
+		testTextBoxWidget();
+		
+		return RETURN_REPAINT;
+	}
 	else if(actionKey == "menuforwarder")
 	{
 		MessageBox(LOCALE_MESSAGEBOX_INFO, "testing CMenuForwarder", mbrBack, mbBack, NEUTRINO_ICON_INFO);
@@ -7079,8 +7282,9 @@ void CTestMenu::showMenu()
 	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox|CFrameBox)", true, NULL, this, "widget"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(listFrame)", true, NULL, this, "listframewidget"));
-	//mainMenu->addItem(new CMenuForwarder("CWidget(multiWidget)", true, NULL, this, "multiwidget"));
+	mainMenu->addItem(new CMenuForwarder("CWidget(ClistFrame)", true, NULL, this, "listframewidget"));
+	mainMenu->addItem(new CMenuForwarder("CWidget(CWindow|CCItems)", true, NULL, this, "ccwindow"));
+	mainMenu->addItem(new CMenuForwarder("CWidget(CTextBox)", true, NULL, this, "textboxwidget"));
 
 	//
 	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "menu CMenuItems"));
@@ -7102,7 +7306,7 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CImage", true, NULL, this, "image"));
 	mainMenu->addItem(new CMenuForwarder("CButtons", true, NULL, this, "buttons"));
 	mainMenu->addItem(new CMenuForwarder("CProgressBar", true, NULL, this, "progressbar"));
-	mainMenu->addItem(new CMenuForwarder("CComponent", true, NULL, this, "component"));
+	mainMenu->addItem(new CMenuForwarder("allCComponent", true, NULL, this, "component"));
 	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWindow|CPIG|CGrid"));
 	mainMenu->addItem(new CMenuForwarder("CWindow", true, NULL, this, "window"));
 	mainMenu->addItem(new CMenuForwarder("CWindow(with shadow)", true, NULL, this, "windowshadow"));
