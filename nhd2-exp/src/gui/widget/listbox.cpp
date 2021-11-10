@@ -1178,7 +1178,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 			frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
 
 			if(!itemIcon.empty())
-				frameBuffer->paintHintIcon(itemIcon, x, y, item_width, item_height);
+				frameBuffer->paintHintIcon(itemIcon, x + 1, y + 1, item_width - 2, item_height - 2);
 		}
 
 		// vfd
@@ -1509,7 +1509,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
 
 			if(!itemIcon.empty())
-				frameBuffer->paintHintIcon(itemIcon, x, y, item_width, item_height);
+				frameBuffer->paintHintIcon(itemIcon, x + 1, y + 1, item_width - 2, item_height - 2);
 		}
 
 		// locale ???
