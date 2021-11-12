@@ -416,6 +416,8 @@ CLabel::CLabel()
 	utf8 = true; 
 	font = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
 	height = font->getHeight();
+	width = 0;
+	
 	cc_type = CC_LABEL;
 }
 

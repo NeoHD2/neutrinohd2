@@ -115,7 +115,7 @@ class CIcon : public CComponent
 		int iHeight;
 		std::string iconName;
 
-		CIcon(){frameBuffer = CFrameBuffer::getInstance(); cc_type = CC_ICON;};
+		CIcon(){frameBuffer = CFrameBuffer::getInstance(); iWidth = 0; iHeight = 0; cc_type = CC_ICON;};
 		
 		void setIcon(const char* icon)
 		{
@@ -351,10 +351,11 @@ class CLabel : public CComponent
 		//
 		void paint()
 		{
-			font->RenderString(cCBox.iX, cCBox.iY + height, cCBox.iWidth, label.c_str(), color, 0, utf8, paintBG);
+			font->RenderString(cCBox.iX, cCBox.iY + height + (cCBox.iHeight - height)/2, cCBox.iWidth, label, color, 0, utf8, paintBG);
 		};
 		
 		int getHeight(){return height;};
+		int getWidth(){if (!label.empty()) return font->getRenderWidth(label);};
 };
 
 //

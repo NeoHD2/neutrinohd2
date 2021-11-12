@@ -1171,6 +1171,7 @@ void CTestMenu::testTextBoxWidget()
 	CWidget* testWidget = new CWidget();
 	testWidget->addItem(textBoxWidget);
 	testWidget->addKey(RC_ok, this, "mplay");
+	testWidget->addKey(RC_info, this, "tinfo");
 	
 	testWidget->exec(NULL, "");
 	
@@ -3249,22 +3250,6 @@ void CTestMenu::testCTextBox()
 
 	textBox->setPosition(&Box);
 	
-	/*
-	const char * buffer = NULL;
-	
-	// prepare print buffer  
-	buffer = "CTextBox\ntesting CTextBox\n";
-		
-	std::string tname = DATADIR "/neutrino/icons/nopreview.jpg";
-	
-	// scale pic
-	int p_w = 0;
-	int p_h = 0;
-	
-	scaleImage(tname, &p_w, &p_h);
-	
-	textBox->setText(buffer, tname.c_str(), p_w, p_h);
-	*/
 	loadMoviePlaylist();
 	
 	std::string buffer;
@@ -3280,6 +3265,7 @@ void CTestMenu::testCTextBox()
 	
 	textBox->setText(buffer.c_str(), m_vMovieInfo[0].tfile.c_str(), p_w, p_h);
 	
+REPAINT:	
 	textBox->paint();
 	CFrameBuffer::getInstance()->blit();
 	
@@ -3299,6 +3285,20 @@ void CTestMenu::testCTextBox()
 		else if(msg == RC_info)
 		{
 			textBox->setBigFonts();
+		}
+		else if(msg == RC_ok)
+		{
+			hide();
+			
+			if (&m_vMovieInfo[0].file != NULL) 
+			{
+				CMovieInfoWidget movieInfoWidget;
+				movieInfoWidget.setMovie(m_vMovieInfo[0]);
+			
+				movieInfoWidget.exec(NULL, "");
+			}
+			
+			goto REPAINT;
 		}
 
 		CFrameBuffer::getInstance()->blit();
@@ -7268,6 +7268,12 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 			movieInfoWidget.exec(NULL, "");
 		}
 
+		return RETURN_REPAINT;
+	}
+	else if(actionKey == "tinfo")
+	{
+		textBoxWidget->setBigFonts();
+		
 		return RETURN_REPAINT;
 	}
 

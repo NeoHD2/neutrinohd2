@@ -89,6 +89,11 @@ static int my_filter(const struct dirent * dent)
 CDBoxInfoWidget::CDBoxInfoWidget()
 {
 	dprintf(DEBUG_DEBUG, "CDBoxInfoWidget::CDBoxInfoWidget:\n");
+	
+	Box.iX = g_settings.screen_StartX + 20;
+	Box.iY = g_settings.screen_StartY + 20;
+	Box.iWidth = g_settings.screen_EndX - g_settings.screen_StartX - 40;
+	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 40);
 }
 
 int CDBoxInfoWidget::exec(CMenuTarget * parent, const std::string &)
@@ -114,16 +119,39 @@ void CDBoxInfoWidget::showInfo()
 {
 	dprintf(DEBUG_NORMAL, "CDBoxInfoWidget::showInfo:\n");
 
-	dboxInfo = new CHelpBox();
+	//dboxInfo = new CHelpBox();
+	dboxInfo = new CWidget(&Box);
+	
+	m_window = new CWindow(&Box);
+	m_window->setCorner(NO_RADIUS, CORNER_ALL);
+	
+	int yPos = Box.iY;
+	
+	// head
+	CHeaders* head = new CHeaders(Box.iX, yPos, Box.iWidth, 40, "Box Info", NEUTRINO_ICON_INFO);
+	head->enablePaintDate();
+	head->setCorner(NO_RADIUS, CORNER_ALL);
+	head->setGradient(NOGRADIENT);
+	head->setColor(COL_INFOBAR_SHADOW_PLUS_1);
 
 	int i = 0;
 
 	//cpu
-	//std::string CPU_ICON = g_settings.hint_icons_dir;
-	//CPU_ICON += NEUTRINO_ICON_MENUITEM_IMAGEINFO;
-	//CPU_ICON += ".png";
+	yPos += 40 + 10;
+	CIcon* cpuIcon = new CIcon(NEUTRINO_ICON_MENUITEM_IMAGEINFO);
+	cpuIcon->setPosition(Box.iX + 10, yPos, cpuIcon->iWidth, cpuIcon->iHeight);
+	m_window->addCCItem(cpuIcon);
 	
-	dboxInfo->addLine(/*CPU_ICON.c_str()*/NEUTRINO_ICON_MENUITEM_IMAGEINFO, "CPU:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
+	CLabel* cpuLabel = new CLabel();
+	cpuLabel->setText("CPU:");
+	cpuLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+	cpuLabel->setColor(COL_MENUHEAD);
+	cpuLabel->setPosition(Box.iX + 10 + cpuIcon->iWidth + 10, yPos, cpuLabel->getWidth(), cpuIcon->iHeight);
+	m_window->addCCItem(cpuLabel);
+	
+	//dboxInfo->addLine(NEUTRINO_ICON_MENUITEM_IMAGEINFO, "CPU:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
+	
+	yPos += cpuIcon->iHeight + 10;
 	
 	FILE* fd = fopen("/proc/cpuinfo", "rt");
 
@@ -151,7 +179,18 @@ void CDBoxInfoWidget::showInfo()
 					hw = ++p;
 				hw += " Info";
 
-				dboxInfo->addLine(hw, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENTINACTIVE);
+				//dboxInfo->addLine(hw, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENTINACTIVE);
+				//yPos += cpuIcon->iHeight + 10;
+				
+				CLabel* cpuLabel1 = new CLabel();
+				cpuLabel1->setText(hw.c_str());
+				cpuLabel1->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
+				cpuLabel1->setColor(COL_MENUCONTENTINACTIVE);
+				cpuLabel1->setPosition(Box.iX + 10 + cpuIcon->iWidth, yPos, Box.iWidth, cpuLabel1->getHeight());
+				m_window->addCCItem(cpuLabel1);
+				
+				yPos += cpuLabel1->getHeight();
+				
 				break;
 			}
 			i++;
@@ -159,7 +198,17 @@ void CDBoxInfoWidget::showInfo()
 			if (i > 4)
 				continue;
 
-			dboxInfo->addLine(buffer, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENTINACTIVE);
+			//dboxInfo->addLine(buffer, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENTINACTIVE);
+			//yPos += cpuIcon->iHeight + 10;
+				
+			CLabel* cpuLabel2 = new CLabel();
+			cpuLabel2->setText(buffer);
+			cpuLabel2->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
+			cpuLabel2->setColor(COL_MENUCONTENTINACTIVE);
+			cpuLabel2->setPosition(Box.iX + 10 + cpuIcon->iWidth, yPos, Box.iWidth, cpuLabel2->getHeight());
+			m_window->addCCItem(cpuLabel2);
+			
+			yPos += cpuLabel2->getHeight();
 		}
 		fclose(fd);
 
@@ -168,7 +217,12 @@ void CDBoxInfoWidget::showInfo()
 	}
 	
 	// separator
-	dboxInfo->addSeparator();
+	//dboxInfo->addSeparator();
+	//yPos += cpuIcon->iHeight + 10;
+	
+	CHline* hLine = new CHline();
+	hLine->setPosition(Box.iX + 10,  yPos, Box.iWidth - 20, 10);
+	m_window->addCCItem(hLine);
 
 	// up time
 	int updays, uphours, upminutes;
@@ -210,17 +264,40 @@ void CDBoxInfoWidget::showInfo()
 
 	strcat(sbuf, ubuf);
 
-	dboxInfo->addLine(sbuf, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENT);
+	//dboxInfo->addLine(sbuf, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENT);
+	//yPos += 20;
+	
+	CLabel* upLabel = new CLabel();
+	upLabel->setText(sbuf);
+	upLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
+	upLabel->setColor(COL_MENUCONTENTINACTIVE);
+	upLabel->setPosition(Box.iX + 10, yPos, Box.iWidth, 35);
+	m_window->addCCItem(upLabel);
 	
 	// mem
 	sprintf(ubuf, "memory total %dKb, free %dKb", (int) info.totalram/1024, (int) info.freeram/1024);
 
-	dboxInfo->addLine(ubuf, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENT);
+	//dboxInfo->addLine(ubuf, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENT);
+	yPos += upLabel->getHeight() + 10;
+	
+	CLabel* memLabel = new CLabel();
+	memLabel->setText(ubuf);
+	memLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
+	memLabel->setColor(COL_MENUCONTENTINACTIVE);
+	memLabel->setPosition(Box.iX + 10, yPos, Box.iWidth, 35);
+	m_window->addCCItem(memLabel);
 	
 	// separator
-	dboxInfo->addSeparator();
+	//dboxInfo->addSeparator();
+	yPos += memLabel->getHeight() + 10;
+	
+	CHline* hLine2 = new CHline();
+	hLine2->setPosition(Box.iX + 10,  yPos, Box.iWidth - 20, 10);
+	m_window->addCCItem(hLine2);
     	
     	//hdd devices
+    	CIcon* hddIcon = new CIcon(NEUTRINO_ICON_MENUITEM_HDDSETTINGS);
+    	
 	FILE * f;
 	int fd_hdd;
 	struct dirent **namelist;
@@ -229,13 +306,22 @@ void CDBoxInfoWidget::showInfo()
 	
 	if (n)
 	{
-		//std::string HDD_ICON = g_settings.hint_icons_dir;
-		//HDD_ICON += NEUTRINO_ICON_MENUITEM_HDDSETTINGS;
-		//HDD_ICON += ".png";
+		//dboxInfo->addLine(NEUTRINO_ICON_MENUITEM_HDDSETTINGS, "HDD devices:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
 		
-		dboxInfo->addLine(/*HDD_ICON.c_str()*/NEUTRINO_ICON_MENUITEM_HDDSETTINGS, "HDD devices:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
+		yPos += 10;
+		
+		hddIcon->setPosition(Box.iX + 10, yPos, hddIcon->iWidth, hddIcon->iHeight);
+		m_window->addCCItem(hddIcon);
+		
+		CLabel* hddLabel = new CLabel();
+		hddLabel->setText("HDD Devices:");
+		hddLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+		hddLabel->setColor(COL_MENUHEAD);
+		hddLabel->setPosition(Box.iX + 10 + hddIcon->iWidth + 10, yPos, hddLabel->getWidth(), hddIcon->iHeight);
+		m_window->addCCItem(hddLabel);
 	}
 	
+	yPos += hddIcon->iHeight + 10;
 	for(int i1 = 0; i1 < n; i1++) 
 	{
 		char str[256];
@@ -306,33 +392,72 @@ void CDBoxInfoWidget::showInfo()
 		
 		free(namelist[i1]);
 		
-		dboxInfo->add2Line("HDD:", str, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENTINACTIVE, false, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENT);
+		//dboxInfo->add2Line("HDD:", str, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENTINACTIVE, false, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENT);
+		
+		CLabel* hddLabel1 = new CLabel();
+		hddLabel1->setText(str);
+		hddLabel1->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
+		hddLabel1->setColor(COL_MENUCONTENTINACTIVE);
+		hddLabel1->setPosition(Box.iX + 10 + hddIcon->iWidth, yPos, Box.iWidth, hddLabel1->getHeight());
+		m_window->addCCItem(hddLabel1);
+			
+		yPos += hddLabel1->getHeight();
 	}
 	
 	//frontend
+	CIcon* tunerIcon = new CIcon(NEUTRINO_ICON_MENUITEM_SCANSETTINGS);
+	
 	if (FrontendCount)
 	{
-		//std::string TUNER_ICON = g_settings.hint_icons_dir;
-		//TUNER_ICON += NEUTRINO_ICON_MENUITEM_SCANSETTINGS;
-		//TUNER_ICON += ".png";
+		//dboxInfo->addLine(NEUTRINO_ICON_MENUITEM_SCANSETTINGS, "Frontend:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
 		
-		dboxInfo->addLine(/*TUNER_ICON.c_str()*/NEUTRINO_ICON_MENUITEM_SCANSETTINGS, "Frontend:", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_MENUHEAD);
+		yPos += hddIcon->iHeight + 10;
+		
+		tunerIcon->setPosition(Box.iX + 10, yPos, tunerIcon->iWidth, tunerIcon->iHeight);
+		m_window->addCCItem(tunerIcon);
+		
+		CLabel* tunerLabel = new CLabel();
+		tunerLabel->setText("Frontend:");
+		tunerLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+		tunerLabel->setColor(COL_MENUHEAD);
+		tunerLabel->setPosition(Box.iX + 10 + tunerIcon->iWidth + 10, yPos, tunerLabel->getWidth(), tunerIcon->iHeight);
+		m_window->addCCItem(tunerLabel);
 	}
 	
+	yPos += tunerIcon->iHeight + 10;
 	for(int i2 = 0; i2 < FrontendCount; i2++)
 	{
 		CFrontend * fe = getFE(i2);
 		char tbuf[255];
-		char tbuf1[255];
+		//char tbuf1[255];
 		
-		sprintf(tbuf, "Tuner-%d: ", i2 + 1);
-		sprintf(tbuf1, "%s", fe->getInfo()->name);
+		sprintf(tbuf, "Tuner-%d: %s", i2 + 1, fe->getInfo()->name);
+		//sprintf(tbuf1, "%s", fe->getInfo()->name);
 
-		dboxInfo->add2Line(tbuf, tbuf1, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENTINACTIVE, false, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENT);
+		//dboxInfo->add2Line(tbuf, tbuf1, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENTINACTIVE, false, g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENT);
+		
+		//yPos += tunerIcon->iHeight + 10;
+		
+		CLabel* tunerLabel1 = new CLabel();
+		tunerLabel1->setText(tbuf);
+		tunerLabel1->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
+		tunerLabel1->setColor(COL_MENUCONTENT);
+		tunerLabel1->setPosition(Box.iX + 10 + tunerIcon->iWidth, yPos, tunerLabel1->getWidth(), tunerLabel1->getHeight());
+		m_window->addCCItem(tunerLabel1);
+		
+		yPos += tunerLabel1->getHeight();
+		
 	}
 
-	dboxInfo->show("Box Info", 800, -1, mbrBack, mbNone);
+	//dboxInfo->show("Box Info", 800, -1, mbrBack, mbNone);
+	dboxInfo->addItem(m_window);
+	dboxInfo->addItem(head);
+	
+	dboxInfo->exec(NULL, "");
 
 	delete dboxInfo;
-	dboxInfo = NULL;	
+	dboxInfo = NULL;
+	
+	delete m_window;
+	m_window = NULL;	
 }

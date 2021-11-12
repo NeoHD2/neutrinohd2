@@ -322,7 +322,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 				// update time
 				for (unsigned int i = 0; i < items.size(); i++)
 				{
-					if( (items[i]->itemType == WIDGET_ITEM_HEAD) && (items[i]->paintDate) )
+					if( (items[i]->itemType == WIDGET_ITEM_HEAD) /*&& (items[i]->paintDate)*/ )
 					{
 						items[i]->paint();
 						break;
