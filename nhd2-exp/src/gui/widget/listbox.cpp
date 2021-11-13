@@ -200,11 +200,7 @@ int CMenuOptionChooser::exec(CMenuTarget *parent)
 	{
 		int select = -1;
 
-		//CMenuWidget *menu = new CMenuWidget(optionNameString.c_str(), NEUTRINO_ICON_SETTINGS);
-		ClistBox *menu = new ClistBox();
-		menu->setTitle(optionNameString.c_str(), NEUTRINO_ICON_SETTINGS);
-		menu->enablePaintHead();
-		menu->enablePaintFoot();
+		CMenuWidget *menu = new CMenuWidget(optionNameString.c_str(), NEUTRINO_ICON_SETTINGS);
 
 		menu->setWidgetMode(MODE_SETUP);
 		menu->enableShrinkMenu();
@@ -622,12 +618,7 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 	{
 		int select = -1;
 		
-		//CMenuWidget * menu = new CMenuWidget(nameString.c_str(), NEUTRINO_ICON_SETTINGS);
-		ClistBox *menu = new ClistBox();
-		menu->setTitle(nameString.c_str(), NEUTRINO_ICON_SETTINGS);
-		menu->enablePaintHead();
-		menu->enablePaintFoot();
-		menu->enableShrinkMenu();
+		CMenuWidget * menu = new CMenuWidget(nameString.c_str(), NEUTRINO_ICON_SETTINGS);
 		
 		//if(parent) 
 		//	menu->move(20, 0);
@@ -1872,9 +1863,9 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	paintFrame = true;
 	
 	//
-	timeout = 0;
+	//timeout = 0;
 	MenuPos = false;
-	exit_pressed = false;
+	//exit_pressed = false;
 	
 	item_height = 0;
 	item_width = 0;
@@ -1966,9 +1957,9 @@ ClistBox::ClistBox(CBox* position)
 	paintFrame = true;
 	
 	////
-	timeout = 0;
+	//timeout = 0;
 	MenuPos = false;
-	exit_pressed = false;
+	//exit_pressed = false;
 	
 	item_height = 0;
 	item_width = 0;
@@ -3433,6 +3424,7 @@ int ClistBox::oKKeyPressed(CMenuTarget* parent)
 		return RETURN_EXIT;
 }
 
+#if 0
 void ClistBox::onHomeKeyPressed()
 {
 	dprintf(DEBUG_NORMAL, "ClistBox::HomeKeyPressed:\n");
@@ -3481,13 +3473,15 @@ void ClistBox::onPageDownKeyPressed()
 
 	scrollPageDown();
 }
+#endif
 
-////
+/*
 void ClistBox::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
 {
 	keyActionMap[key].menue = menue;
 	keyActionMap[key].action = action;
 }
+*/
 
 void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned int shortcut, bool enabled)
 {
@@ -3530,6 +3524,7 @@ void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned i
 	}
 }
 
+# if 0
 int ClistBox::exec(CMenuTarget* parent, const std::string&)
 {
 	dprintf(DEBUG_NORMAL, "ClistBox::exec:\n");
@@ -3743,6 +3738,6 @@ int ClistBox::exec(CMenuTarget* parent, const std::string&)
 	
 	return retval;
 }
-
+#endif
 
 

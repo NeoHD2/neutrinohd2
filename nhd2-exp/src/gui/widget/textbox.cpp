@@ -647,6 +647,7 @@ void CTextBox::hide(void)
 	painted = false;
 }
 
+# if 0
 void CTextBox::onUpKeyPressed()
 {
 	dprintf(DEBUG_DEBUG, "CTextBox::UpKeyPressed:\n");
@@ -688,5 +689,5 @@ void CTextBox::onPageDownKeyPressed()
 
 	scrollPageDown();
 }
-
+#endif
 

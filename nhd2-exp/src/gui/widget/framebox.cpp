@@ -515,8 +515,8 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 	actionKey = "";
 	
 	//
-	timeout = 0;
-	exit_pressed = false;
+	//timeout = 0;
+	//exit_pressed = false;
 	
 	//
 	bgcolor = COL_MENUCONTENT_PLUS_0;
@@ -524,9 +524,6 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 	corner = NO_RADIUS;
 	shadow = false;
 	screen = false;
-	
-	// init
-	//initFrames();
 }
 
 CFrameBox::CFrameBox(CBox* position)
@@ -548,8 +545,8 @@ CFrameBox::CFrameBox(CBox* position)
 	actionKey = "";
 	
 	//
-	timeout = 0;
-	exit_pressed = false;
+	//timeout = 0;
+	//exit_pressed = false;
 	
 	//
 	bgcolor = COL_MENUCONTENT_PLUS_0;
@@ -557,9 +554,6 @@ CFrameBox::CFrameBox(CBox* position)
 	corner = NO_RADIUS;
 	shadow = false;
 	screen = false;
-	
-	// init
-	//initFrames();
 }
 
 CFrameBox::~CFrameBox()
@@ -785,6 +779,7 @@ int CFrameBox::oKKeyPressed(CMenuTarget *parent)
 		return RETURN_EXIT;
 }
 
+/*
 void CFrameBox::onHomeKeyPressed()
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::HomeKeyPressed:\n");
@@ -833,8 +828,9 @@ void CFrameBox::onPageDownKeyPressed()
 
 	//scrollPageDown();
 }
+*/
 
-//
+#if 0
 void CFrameBox::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
 {
 	keyActionMap[key].menue = menue;
@@ -1039,5 +1035,6 @@ int CFrameBox::exec(CMenuTarget* parent, const std::string&)
 	
 	return retval;
 }
+#endif
 
 

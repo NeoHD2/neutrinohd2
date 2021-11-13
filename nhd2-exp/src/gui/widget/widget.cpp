@@ -657,6 +657,7 @@ void CWidget::onHomeKeyPressed()
 	dprintf(DEBUG_NORMAL, "CWidget::exec: exit_pressed\n");
 	msg = RC_timeout;
 	
+	/*
 	if (hasItem())
 	{
 		for (unsigned int count = 0; count < items.size(); count++) 
@@ -664,6 +665,7 @@ void CWidget::onHomeKeyPressed()
 			items[count]->onHomeKeyPressed();
 		}
 	}
+	*/
 
 	selected = -1;
 }
@@ -726,7 +728,7 @@ void CWidget::onUpKeyPressed()
 		}
 		else
 #endif
-			items[selected]->onUpKeyPressed();
+			items[selected]->scrollLineUp();
 	}
 }
 
@@ -766,7 +768,7 @@ void CWidget::onDownKeyPressed()
 		else
 #endif
 		{
-			items[selected]->onDownKeyPressed();
+			items[selected]->scrollLineDown();
 		}
 	}
 }
@@ -798,7 +800,7 @@ void CWidget::onRightKeyPressed()
 			}
 		}
 		else
-			items[selected]->onRightKeyPressed();
+			items[selected]->swipRight();
 	}
 }
 
@@ -829,7 +831,7 @@ void CWidget::onLeftKeyPressed()
 			}
 		}
 		else
-			items[selected]->onLeftKeyPressed();
+			items[selected]->swipLeft();
 	}
 }
 
@@ -837,7 +839,7 @@ void CWidget::onPageUpKeyPressed()
 {
 	if(hasItem() && selected >= 0)
 	{
-		items[selected]->onPageUpKeyPressed();
+		items[selected]->scrollPageUp();
 	}
 }
 
@@ -845,7 +847,7 @@ void CWidget::onPageDownKeyPressed()
 {
 	if(hasItem() && selected >= 0)
 	{
-		items[selected]->onPageDownKeyPressed();
+		items[selected]->scrollPageDown();
 	}
 }
 

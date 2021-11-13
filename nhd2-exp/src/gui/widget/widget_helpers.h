@@ -473,7 +473,14 @@ class CWidgetItem
 		virtual void enablePaintDate(void){paintDate = true;};
 
 		virtual int oKKeyPressed(CMenuTarget *parent){return 0;};
+		
+		//
+		virtual std::string getActionKey(void){ return actionKey;};
+		
+		//
+		virtual void setParent(CWidget* w_parent){parent = w_parent;};
 
+		/*
 		virtual void onHomeKeyPressed(){};
 		virtual void onUpKeyPressed(){};
 		virtual void onDownKeyPressed(){};
@@ -481,12 +488,7 @@ class CWidgetItem
 		virtual void onLeftKeyPressed(){};
 		virtual void onPageUpKeyPressed(){};
 		virtual void onPageDownKeyPressed(){};
-
-		//
-		virtual std::string getActionKey(void){ return actionKey;};
-		
-		//
-		virtual void setParent(CWidget* w_parent){parent = w_parent;};
+		*/
 };
 
 // CHeaders

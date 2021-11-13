@@ -128,8 +128,10 @@ class CTestMenu : public CMenuTarget
 
 		// CWidget
 		void testCWidget();
+		
 		void testSingleWidget();
 		void testFireTV();
+		
 		void testListFrameWidget();
 		void testListBoxWidget();
 		void testWindowWidget();
@@ -1193,7 +1195,7 @@ void CTestMenu::testSingleWidget()
 	box.iWidth = CFrameBuffer::getInstance()->getScreenWidth() - 80;
 	box.iHeight = CFrameBuffer::getInstance()->getScreenHeight() - 80;
 
-	//testWidget = new CWidget(&box);
+	testWidget = new CWidget(&box);
 
 	//testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
 	//testWidget->enablePaintMainFrame();
@@ -1352,9 +1354,12 @@ void CTestMenu::testSingleWidget()
 
 	frameBoxWidget->addFrame(footFrame);
 
-	//testWidget->addItem(testFrame);
+	testWidget->addItem(frameBoxWidget);
 
-	frameBoxWidget->exec(NULL, "");
+	testWidget->exec(NULL, "");
+	
+	delete testWidget;
+	testWidget = NULL;
 	
 	delete frameBoxWidget;
 	frameBoxWidget = NULL;
@@ -1373,7 +1378,7 @@ void CTestMenu::testFireTV()
 
 	int pic_w = box.iWidth/6;
 
-	//testWidget = new CWidget(&box);
+	testWidget = new CWidget(&box);
 	//testWidget->enablePaintMainFrame();
 
 	// frameBox
@@ -1497,16 +1502,16 @@ void CTestMenu::testFireTV()
 		}
 	}
 
-	//testWidget->addItem(frameBoxWidget);
+	testWidget->addItem(frameBoxWidget);
 	
-	//testWidget->exec(NULL, "");
-	frameBoxWidget->exec(NULL, "");
+	testWidget->exec(NULL, "");
+	//frameBoxWidget->exec(NULL, "");
 
 	delete frameBoxWidget;
 	frameBoxWidget = NULL;
 
-	//delete testWidget;
-	//testWidget = NULL;
+	delete testWidget;
+	testWidget = NULL;
 }
 
 void CTestMenu::testListFrameWidget()
@@ -1708,11 +1713,17 @@ void CTestMenu::testListBoxWidget()
 
 		rightWidget->addItem(item);
 	}
+	
+	testWidget = new CWidget(&rightBox);
+	testWidget->addItem(rightWidget);
 
-	rightWidget->addKey(RC_info, this, "linfo");
-	//rightWidget->addKey(RC_setup, this, "lsetup");
+	testWidget->addKey(RC_info, this, "linfo");
+	testWidget->addKey(RC_setup, this, "lsetup");
 
-	rightWidget->exec(NULL, "");
+	testWidget->exec(NULL, "");
+	
+	delete testWidget;
+	testWidget = NULL;
 
 	delete rightWidget;
 	rightWidget = NULL;
@@ -3699,27 +3710,27 @@ void CTestMenu::testClistBox()
 		} 
 		else if (msg == RC_up)
 		{
-			rightWidget->onUpKeyPressed();
+			rightWidget->scrollLineUp();
 		}
 		else if (msg == RC_down)
 		{
-			rightWidget->onDownKeyPressed();
+			rightWidget->scrollLineDown();
 		}
 		else if (msg == RC_right)
 		{
-			rightWidget->onRightKeyPressed();
+			rightWidget->swipRight();
 		}
 		else if (msg == RC_left)
 		{
-			rightWidget->onLeftKeyPressed();
+			rightWidget->swipLeft();
 		}
 		else if (msg == RC_page_up)
 		{
-			rightWidget->onPageUpKeyPressed();
+			rightWidget->scrollPageUp();
 		}
 		else if (msg == RC_page_down)
 		{
-			rightWidget->onPageDownKeyPressed();
+			rightWidget->scrollPageDown();
 		}
 		else if (msg == RC_home) 
 		{
@@ -3843,27 +3854,27 @@ void CTestMenu::testClistBox2()
 		}
 		else if (msg == RC_up)
 		{
-			rightWidget->onUpKeyPressed();
+			rightWidget->scrollLineUp();
 		}
 		else if (msg == RC_down)
 		{
-			rightWidget->onDownKeyPressed();
+			rightWidget->scrollLineDown();
 		}
 		else if (msg == RC_right)
 		{
-			rightWidget->onRightKeyPressed();
+			rightWidget->swipRight();
 		}
 		else if (msg == RC_left)
 		{
-			rightWidget->onLeftKeyPressed();
+			rightWidget->swipLeft();
 		}
 		else if (msg == RC_page_up)
 		{
-			rightWidget->onPageUpKeyPressed();
+			rightWidget->scrollPageUp();
 		}
 		else if (msg == RC_page_down)
 		{
-			rightWidget->onPageDownKeyPressed();
+			rightWidget->scrollPageDown();
 		} 
 		else if (msg == RC_home) 
 		{
@@ -3988,27 +3999,27 @@ void CTestMenu::testClistBox3()
 		} 
 		else if (msg == RC_up)
 		{
-			rightWidget->onUpKeyPressed();
+			rightWidget->scrollLineUp();
 		}
 		else if (msg == RC_down)
 		{
-			rightWidget->onDownKeyPressed();
+			rightWidget->scrollLineDown();
 		}
 		else if (msg == RC_right)
 		{
-			rightWidget->onRightKeyPressed();
+			rightWidget->swipRight();
 		}
 		else if (msg == RC_left)
 		{
-			rightWidget->onLeftKeyPressed();
+			rightWidget->swipLeft();
 		}
 		else if (msg == RC_page_up)
 		{
-			rightWidget->onPageUpKeyPressed();
+			rightWidget->scrollPageUp();
 		}
 		else if (msg == RC_page_down)
 		{
-			rightWidget->onPageDownKeyPressed();
+			rightWidget->scrollPageDown();
 		}
 		else if (msg == RC_home) 
 		{
@@ -4120,27 +4131,27 @@ void CTestMenu::testClistBox4()
 		} 
 		else if (msg == RC_up)
 		{
-			rightWidget->onUpKeyPressed();
+			rightWidget->scrollLineUp();
 		}
 		else if (msg == RC_down)
 		{
-			rightWidget->onDownKeyPressed();
+			rightWidget->scrollLineDown();
 		}
 		else if (msg == RC_right)
 		{
-			rightWidget->onRightKeyPressed();
+			rightWidget->swipRight();
 		}
 		else if (msg == RC_left)
 		{
-			rightWidget->onLeftKeyPressed();
+			rightWidget->swipLeft();
 		}
 		else if (msg == RC_page_up)
 		{
-			rightWidget->onPageUpKeyPressed();
+			rightWidget->scrollPageUp();
 		}
 		else if (msg == RC_page_down)
 		{
-			rightWidget->onPageDownKeyPressed();
+			rightWidget->scrollPageDown();
 		}
 		else if (msg == RC_home) 
 		{
@@ -4270,27 +4281,27 @@ void CTestMenu::testClistBox5()
 		} 
 		else if (msg == RC_up)
 		{
-			rightWidget->onUpKeyPressed();
+			rightWidget->scrollLineUp();
 		}
 		else if (msg == RC_down)
 		{
-			rightWidget->onDownKeyPressed();
+			rightWidget->scrollLineDown();
 		}
 		else if (msg == RC_right)
 		{
-			rightWidget->onRightKeyPressed();
+			rightWidget->swipRight();
 		}
 		else if (msg == RC_left)
 		{
-			rightWidget->onLeftKeyPressed();
+			rightWidget->swipLeft();
 		}
 		else if (msg == RC_page_up)
 		{
-			rightWidget->onPageUpKeyPressed();
+			rightWidget->scrollPageUp();
 		}
 		else if (msg == RC_page_down)
 		{
-			rightWidget->onPageDownKeyPressed();
+			rightWidget->scrollPageDown();
 		}
 		else if (msg == RC_home) 
 		{
@@ -4427,27 +4438,27 @@ void CTestMenu::testClistBox6()
 		} 
 		else if (msg == RC_up)
 		{
-			rightWidget->onUpKeyPressed();
+			rightWidget->scrollLineUp();
 		}
 		else if (msg == RC_down)
 		{
-			rightWidget->onDownKeyPressed();
+			rightWidget->scrollLineDown();
 		}
 		else if (msg == RC_right)
 		{
-			rightWidget->onRightKeyPressed();
+			rightWidget->swipRight();
 		}
 		else if (msg == RC_left)
 		{
-			rightWidget->onLeftKeyPressed();
+			rightWidget->swipLeft();
 		}
 		else if (msg == RC_page_up)
 		{
-			rightWidget->onPageUpKeyPressed();
+			rightWidget->scrollPageUp();
 		}
 		else if (msg == RC_page_down)
 		{
-			rightWidget->onPageDownKeyPressed();
+			rightWidget->scrollPageDown();
 		}
 		else if (msg == RC_home) 
 		{

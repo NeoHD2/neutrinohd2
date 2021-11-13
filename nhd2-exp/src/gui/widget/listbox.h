@@ -481,10 +481,10 @@ class ClistBoxItem : public CMenuItem
 };
 
 //
-class ClistBox : public CWidgetItem, CMenuTarget
+class ClistBox : public CWidgetItem
 {
 	public:
-		std::vector<CMenuItem*>	items;
+		std::vector<CMenuItem*> items;
 	private:
 		CFrameBuffer* frameBuffer;
 
@@ -580,24 +580,22 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		bool paintFrame;
 		
 		//
-		neutrino_msg_t      msg;
-		neutrino_msg_data_t data;
-		
-		unsigned long long int timeout;
-		
-		bool exit_pressed;
-		
-		struct keyAction { std::string action; CMenuTarget *menue; };
-		std::map<neutrino_msg_t, keyAction> keyActionMap;
-		
-		uint32_t sec_timer_id;
-		bool MenuPos;
-		
-		//
 		int items_height;
 		int items_width;
 		
 		bool painted;
+		
+		/*
+		neutrino_msg_t      msg;
+		neutrino_msg_data_t data;
+		unsigned long long int timeout;
+		bool exit_pressed;
+		struct keyAction { std::string action; CMenuTarget *menue; };
+		std::map<neutrino_msg_t, keyAction> keyActionMap;
+		uint32_t sec_timer_id;
+		*/
+		
+		bool MenuPos;
 		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -680,7 +678,7 @@ class ClistBox : public CWidgetItem, CMenuTarget
 
 		int oKKeyPressed(CMenuTarget *parent);
 
-		//
+		/*
 		virtual void onHomeKeyPressed();
 		virtual void onUpKeyPressed();
 		virtual void onDownKeyPressed();
@@ -688,6 +686,7 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		virtual void onLeftKeyPressed();
 		virtual void onPageUpKeyPressed();
 		virtual void onPageDownKeyPressed();
+		*/
 
 		void enableSaveScreen();
 
@@ -695,17 +694,13 @@ class ClistBox : public CWidgetItem, CMenuTarget
 		std::string getName(){return l_name;};
 		std::string getActionKey(void){return actionKey;};
 		
-		//
+		/*
 		virtual int exec(CMenuTarget * parent, const std::string &actionKey);
-		
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
-		
-		bool getExitPressed(){return exit_pressed;};
-
-		//void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
-		
+		bool getExitPressed(){return exit_pressed;};		
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 		neutrino_msg_t getKey(){return msg;};
+		*/
 		
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
 		

@@ -168,7 +168,7 @@ class CFrame
 };
 
 //// CFrameBox
-class CFrameBox : public CWidgetItem, CMenuTarget
+class CFrameBox : public CWidgetItem
 {
 	private:
 		CFrameBuffer* frameBuffer;
@@ -180,11 +180,18 @@ class CFrameBox : public CWidgetItem, CMenuTarget
 
 		virtual void paintFrames();
 
-		bool paintFrame;
-
 		std::string actionKey;
 		
-		////
+		//
+		bool paintFrame;
+		
+		fb_pixel_t bgcolor;
+		int radius;
+		int corner;
+		bool shadow;
+		bool screen;
+		
+		/*
 		neutrino_msg_t      msg;
 		neutrino_msg_data_t data;
 		
@@ -194,12 +201,7 @@ class CFrameBox : public CWidgetItem, CMenuTarget
 		
 		struct keyAction { std::string action; CMenuTarget *menue; };
 		std::map<neutrino_msg_t, keyAction> keyActionMap;
-		
-		fb_pixel_t bgcolor;
-		int radius;
-		int corner;
-		bool shadow;
-		bool screen;
+		*/
 
 	public:
 		CFrameBox(const int x = 0, int const y = 0, const int dx = 0, const int dy = 0);
@@ -220,7 +222,7 @@ class CFrameBox : public CWidgetItem, CMenuTarget
 		virtual void addFrame(CFrame *frame, const bool defaultselected = false);
 		bool hasItem();
 		void clearFrames(void){frames.clear();};
-		//void setSelected(unsigned int _new) { /*if(_new <= frames.size())*/ selected = _new; };
+		void setSelected(unsigned int _new) { /*if(_new <= frames.size())*/ selected = _new; };
 
 		virtual void initFrames();
 		virtual void paint();
@@ -233,13 +235,17 @@ class CFrameBox : public CWidgetItem, CMenuTarget
 
 		int getSelected(){return selected;};
 		void disablePaintFrame(void){paintFrame = false;};
+		void setColor(fb_pixel_t col){bgcolor = col;};
+		void setCorner(int ra, int co){radius = ra; corner = co;};
+		void enablePaintShadow(void){shadow = true;};
+		void enableSaveScreen(void){screen = true;};
 
 		//
 		bool isSelectable(void);
 
 		int oKKeyPressed(CMenuTarget *parent);
 		
-		//
+		/*
 		virtual void onHomeKeyPressed();
 		virtual void onUpKeyPressed();
 		virtual void onDownKeyPressed();
@@ -247,26 +253,17 @@ class CFrameBox : public CWidgetItem, CMenuTarget
 		virtual void onLeftKeyPressed();
 		virtual void onPageUpKeyPressed();
 		virtual void onPageDownKeyPressed();
+		*/
 
 		std::string getActionKey(void){return actionKey;};
 		
-		////TEST:fixme
+		/*
 		virtual int exec(CMenuTarget * parent, const std::string &actionKey);
-		
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
-		
-		bool getExitPressed(){return exit_pressed;};
-
-		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
-		
+		bool getExitPressed(){return exit_pressed;};		
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 		neutrino_msg_t getKey(){return msg;};
-		
-		//
-		void setColor(fb_pixel_t col){bgcolor = col;};
-		virtual void setCorner(int ra, int co){radius = ra; corner = co;};
-		void enablePaintShadow(void){shadow = true;};
-		void enableSaveScreen(void){screen = true;};
+		*/
 };
 
 #endif

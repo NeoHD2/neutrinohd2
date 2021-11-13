@@ -723,6 +723,7 @@ void CListFrame::paint(void)
 	refresh();
 }
 
+#if 0
 void CListFrame::onUpKeyPressed()
 {
 	dprintf(DEBUG_DEBUG, "CListFrame::UpKeyPressed:\n");
@@ -764,6 +765,6 @@ void CListFrame::onPageDownKeyPressed()
 
 	scrollPageDown();
 }
-
+#endif
 
 

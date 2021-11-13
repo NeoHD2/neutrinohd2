@@ -305,7 +305,7 @@ void CHintBox::paintHourGlass()
 	std::string filename = "hourglass";
 	filename += to_string(count);
 		
-	count = (count + 1) % 7;
+	count = (count + 1) % 10;
 	
 	hideHourGlass();
 	
