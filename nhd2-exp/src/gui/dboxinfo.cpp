@@ -420,7 +420,6 @@ void CDBoxInfoWidget::showInfo()
 
 	dboxInfo->addItem(m_window);
 	dboxInfo->addItem(head);
-	dboxInfo->addItem(foot);
 	
 	dboxInfo->exec(NULL, "");
 
