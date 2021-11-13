@@ -73,14 +73,8 @@ void CNeutrinoApp::mainMenu(void)
 	int shortcut = 1;
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::mainMenu:\n");
-	
-	////
-	ClistBox * nMenu = new ClistBox();
-	nMenu->setTitle(g_Locale->getText(LOCALE_MAINMENU_HEAD), NEUTRINO_ICON_BUTTON_SETUP);
-	nMenu->enablePaintHead();
-	nMenu->enablePaintFoot();
 
-	//CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
+	CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
 	
 	nMenu->setWidgetMode(MODE_MENU);
 	nMenu->enableShrinkMenu();
