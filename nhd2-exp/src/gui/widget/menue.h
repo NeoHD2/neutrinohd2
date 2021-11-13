@@ -157,8 +157,6 @@ class CMenuWidget : public CMenuTarget
 		bool shrinkMenu;
 
 		//
-		//CHeaders * headers;
-		CFooters *footers;
 		CItems2DetailsLine itemsLine;
 		CScrollBar scrollBar;
 		CButtons buttons;

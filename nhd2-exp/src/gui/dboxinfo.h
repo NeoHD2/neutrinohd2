@@ -48,7 +48,6 @@
 class CDBoxInfoWidget : public CMenuTarget
 {
 	private:
-		//CHelpBox* dboxInfo;
 		CBox Box;
 		CWidget* dboxInfo;
 		CWindow* m_window;

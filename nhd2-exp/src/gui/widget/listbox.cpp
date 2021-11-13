@@ -2445,26 +2445,51 @@ void ClistBox::paintHead()
 			g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(cFrameBox.iX + BORDER_LEFT + icon_head_w + ICON_OFFSET, cFrameBox.iY + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - icon_head_w - 2*ICON_OFFSET - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET - timestr_len, l_name, COL_MENUHEAD);
 		}
 		else
-		{
-			CHeaders headers(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, hheight, l_name.c_str(), iconfile.c_str());
-
-			headers.setColor(headColor);
-			headers.setCorner(headRadius, headCorner);
-			headers.setGradient(headGradient);
+		{		
+			// paint head
+			frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
 		
-			if(paintDate)
-				headers.enablePaintDate();
+			//paint icon (left)
+			int icon_head_w = 0;
+			int icon_head_h = 0;
+			
+			frameBuffer->getIconSize(iconfile.c_str(), &icon_head_w, &icon_head_h);
+			frameBuffer->paintIcon(iconfile, cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + (hheight - icon_head_h)/2);
 
-			if(logo)
-				headers.enableLogo();
+			// Buttons
+			int iw[hbutton_count], ih[hbutton_count];
+			int xstartPos = cFrameBox.iX + cFrameBox.iWidth - BORDER_RIGHT;
+			int buttonWidth = 0; //FIXME
 
-			for (int i = 0; i < hbutton_count; i++)
-			{			
-				headers.setButtons(&hbutton_labels[i]);
+			if (hbutton_count)
+			{
+				for (unsigned int i = 0; i < hbutton_count; i++)
+				{
+					if (hbutton_labels[i].button != NULL)
+					{
+						frameBuffer->getIconSize(hbutton_labels[i].button, &iw[i], &ih[i]);
+						xstartPos -= (iw[i] + ICON_TO_ICON_OFFSET);
+						buttonWidth += iw[i];
+
+						CFrameBuffer::getInstance()->paintIcon(hbutton_labels[i].button, xstartPos, cFrameBox.iY + (hheight - ih[i])/2);
+					}
+				}
 			}
 
-			headers.paint();
-		}
+			// paint time/date
+			int timestr_len = 0;
+			if(paintDate)
+			{
+				std::string timestr = getNowTimeStr("%d.%m.%Y %H:%M");;
+			
+				timestr_len = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(timestr.c_str(), true); // UTF-8
+		
+				g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->RenderString(xstartPos - timestr_len, cFrameBox.iY + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight(), timestr_len + 1, timestr.c_str(), COL_MENUHEAD, 0, true); 
+			}
+		
+			// head title
+			g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(cFrameBox.iX + BORDER_LEFT + icon_head_w + 2*ICON_OFFSET, cFrameBox.iY + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), cFrameBox.iWidth - BORDER_RIGHT - BORDER_RIGHT - icon_head_w - 2*ICON_OFFSET - timestr_len - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET, l_name.c_str(), COL_MENUHEAD, 0, true); // UTF-8
+		}		
 	}	
 }
 
@@ -2513,21 +2538,34 @@ void ClistBox::paintFoot()
 		}
 		else
 		{
-			CFooters footers(cFrameBox.iX, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight, cFrameBox.iWidth, fheight);
+			frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight, cFrameBox.iWidth, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
 
-			if (fbutton_count)
+			// buttons
+			int buttonWidth = 0;
+
+			buttonWidth = (cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
+	
+			for (unsigned int i = 0; i < fbutton_count; i++)
 			{
-				for (unsigned int i = 0; i < fbutton_count; i++)
+				if (fbutton_labels[i].button != NULL)
 				{
-					footers.setButtons(&fbutton_labels[i]);
-				}
+					const char * l_option = NULL;
+					int iw = 0;
+					int ih = 0;
+
+					CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw, &ih);
+					int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
+
+					if(fbutton_labels[i].localename != NULL)
+						l_option = fbutton_labels[i].localename;
+					else
+						l_option = g_Locale->getText(fbutton_labels[i].locale);
+		
+					CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, cFrameBox.iX + BORDER_LEFT + i*buttonWidth, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + (fheight - ih)/2);
+
+					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(cFrameBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, cFrameBox.iY + cFrameBox.iHeight - cFrameFootInfo.iHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
+					}
 			}
-
-			footers.setColor(footColor);
-			footers.setCorner(footRadius, footCorner);
-			footers.setGradient(footGradient);
-
-			footers.paint();
 		}
 	}
 }

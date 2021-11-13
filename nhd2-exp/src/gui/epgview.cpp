@@ -417,8 +417,7 @@ void CEpgData::showHead(const t_channel_id channel_id)
 	headers.enablePaintDate();
 	headers.enableLogo();
 	headers.setButtons(&HButton, 1);
-	//TEST
-	headers.setCorner(RADIUS_LARGE, CORNER_ALL);
+	headers.setCorner(RADIUS_MID, CORNER_TOP);
 
 	headers.paint();
 }
@@ -1026,8 +1025,7 @@ void CEpgData::showTimerEventBar(bool _show)
 
 	CFooters footers(cFootBox.iX, cFootBox.iY, cFootBox.iWidth, cFootBox.iHeight);
 	footers.setButtons(FButtons, 4);
-	//TEST
-	footers.setCorner(RADIUS_LARGE, CORNER_ALL);
+	footers.setCorner(RADIUS_MID, CORNER_BOTTOM);
 	footers.paint();
 }
 
