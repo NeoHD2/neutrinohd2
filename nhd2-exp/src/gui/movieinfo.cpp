@@ -1550,7 +1550,10 @@ void CMovieInfoWidget::funArt()
 	// title
 	CFrame *titleFrame = new CFrame();
 	titleFrame->setMode(FRAME_LABEL);
-	titleFrame->setPosition(&titleBox);
+	int t_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(movieFile.epgTitle);
+	if (t_w > box.iWidth)
+		t_w = box.iWidth;
+	titleFrame->setPosition(titleBox.iX, titleBox.iY, t_w, titleBox.iHeight);
 	titleFrame->disablePaintFrame();
 	titleFrame->setTitle(movieFile.epgTitle.c_str());
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);

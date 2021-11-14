@@ -473,6 +473,7 @@ class CWidgetItem
 		virtual void enablePaintDate(void){paintDate = true;};
 
 		virtual int oKKeyPressed(CMenuTarget *parent){return 0;};
+		virtual void homeKeyPressed(){};
 		
 		//
 		virtual std::string getActionKey(void){ return actionKey;};

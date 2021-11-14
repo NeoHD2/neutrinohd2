@@ -232,6 +232,7 @@ class CFrameBox : public CWidgetItem
 		bool isSelectable(void);
 
 		int oKKeyPressed(CMenuTarget *parent);
+		void homeKeyPressed(){selected = -1;};
 
 		std::string getActionKey(void){return actionKey;};
 };

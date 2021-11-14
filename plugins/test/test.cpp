@@ -7318,6 +7318,7 @@ void CTestMenu::showMenu()
 	mainMenu->setWidgetMode(MODE_MENU);
 	mainMenu->enableShrinkMenu(),
 	mainMenu->enableMenuPosition();
+	mainMenu->enablePaintDate();
 	//mainMenu->enablePaintFootInfo();
 	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget"));

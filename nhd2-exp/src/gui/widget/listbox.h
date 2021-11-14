@@ -667,6 +667,7 @@ class ClistBox : public CWidgetItem
 		bool isSelectable(void){return true;};
 
 		int oKKeyPressed(CMenuTarget *parent);
+		void homeKeyPressed(){selected = -1;};
 
 		void enableSaveScreen();
 

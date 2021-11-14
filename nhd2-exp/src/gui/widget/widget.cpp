@@ -678,6 +678,14 @@ void CWidget::onHomeKeyPressed()
 	exit_pressed = true;
 	dprintf(DEBUG_NORMAL, "CWidget::exec: exit_pressed\n");
 	msg = RC_timeout;
+	
+	if (hasItem())
+	{
+		for (unsigned int count = 0; count < items.size(); count++) 
+		{
+			items[count]->homeKeyPressed();
+		}
+	}
 
 	selected = -1;
 }
