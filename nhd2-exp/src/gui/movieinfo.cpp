@@ -303,7 +303,7 @@ bool CMovieInfo::saveMovieInfo(MI_MOVIE_INFO & movie_info, CFile * file)
 
 bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 {
-	dprintf(DEBUG_NORMAL, "CMovieInfo::loadMovieInfo\n");
+	dprintf(DEBUG_INFO, "CMovieInfo::loadMovieInfo\n");
 
 	bool result = true;
 	CFile file_xml;
@@ -463,7 +463,7 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 //
 MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 {
-	dprintf(DEBUG_NORMAL, "CMovieInfo::loadMovieInfo\n");
+	dprintf(DEBUG_INFO, "CMovieInfo::loadMovieInfo\n");
 
 	MI_MOVIE_INFO movie_info;
 	clearMovieInfo(&movie_info);

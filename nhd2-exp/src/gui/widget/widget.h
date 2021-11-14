@@ -57,43 +57,37 @@ class CWidget : public CMenuTarget
 	protected:
 		CFrameBuffer *frameBuffer;
 		CBox mainFrameBox;
+		bool enableCenter;
 
 		std::vector<CWidgetItem*> items;
-
-		//bool paintMainFrame;
 
 		//
 		neutrino_msg_t      msg;
 		neutrino_msg_data_t data;
-		
 		int selected;
 		bool exit_pressed;
 		int retval;
 		int pos;
+		struct keyAction { std::string action; CMenuTarget *menue; };
+		std::map<neutrino_msg_t, keyAction> keyActionMap;
+		unsigned long long int timeout;
+		uint32_t sec_timer_id;
+		std::string actionKey;
 		
+		// screen
 		fb_pixel_t * background;
 		bool savescreen;
 		void saveScreen();
 		void restoreScreen();
 
-		bool enableCenter;
-
-		struct keyAction { std::string action; CMenuTarget *menue; };
-		std::map<neutrino_msg_t, keyAction> keyActionMap;
-
-		unsigned long long int timeout;
-		uint32_t sec_timer_id;
-
-		//bool paintMainFrame;
-		//fb_pixel_t backgroundColor;
-		//int radius;
-		//int corner;
-
-		//
-		std::string actionKey;
+		//		
+		bool paintMainFrame;
+		fb_pixel_t backgroundColor;
+		int radius;
+		int corner;
 
 	public:
-		CWidget(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
+		CWidget(const int x = 0, const int y = 0, const int dx = DEFAULT_XRES, const int dy = DEFAULT_YRES);
 		CWidget(CBox *position);
 		virtual ~CWidget();
 
@@ -123,9 +117,9 @@ class CWidget : public CMenuTarget
 		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
 		int getSelected(){return exit_pressed ? -1 : selected;};
 
-		//void enablePaintMainFrame(){paintMainFrame = true;};
-		//void setBackgroundColor(fb_pixel_t col) {backgroundColor = col;};
-		//void setCorner(int ra = NO_RADIUS, int co = CORNER_NONE){radius = ra; corner = co;};
+		void enablePaintMainFrame(){paintMainFrame = true;};
+		void setBackgroundColor(fb_pixel_t col) {backgroundColor = col;};
+		void setCorner(int ra = NO_RADIUS, int co = CORNER_NONE){radius = ra; corner = co;};
 
 		void enableSaveScreen();
 

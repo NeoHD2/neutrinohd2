@@ -1273,9 +1273,6 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 		parent->hide();
 
 	//
-	//initFrames();
-	//paintHead();
-	//paintFoot();
 	paint();
 	CFrameBuffer::getInstance()->blit();
 
@@ -1315,10 +1312,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 							msg = RC_timeout;
 							break;
 						case RETURN_REPAINT:
-							hide();
-							//initFrames();
-							//paintHead();
-							//paintFoot();
+							//hide(); // for lua???
 							paint();
 							break;
 					}
@@ -1680,10 +1674,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 											break;
 									
 										case RETURN_REPAINT:
-											hide();
-											//initFrames();
-											//paintHead();
-											//paintFoot();
+											//hide(); // for lua???
 											paint();
 											break;	
 									}
@@ -1758,10 +1749,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 											break;
 									
 										case RETURN_REPAINT:
-											hide();
-											//initFrames();
-											//paintHead();
-											//paintFoot();
+											//hide(); // for lua ???
 											paint();
 											break;	
 									}
@@ -1797,10 +1785,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 									break;
 									
 								case RETURN_REPAINT:
-									hide();
-									//initFrames();
-									//paintHead();
-									//paintFoot();
+									//hide(); // for lua?
 									paint();
 									break;
 							}
@@ -1830,9 +1815,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 
 							g_settings.menu_design = widgetType;
 
-							//initFrames();
-							//paintHead();
-							//paintFoot();
+							//
 							paint();
 						}
 					}
@@ -1851,9 +1834,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 					
 							widgetType = widget[cnt];
 
-							//initFrames();
-							//paintHead();
-							//paintFoot();
+							//
 							paint();
 						}
 					}

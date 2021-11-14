@@ -435,7 +435,13 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	{
 		if(!caption.empty())
 		{
-			captionFont->RenderString(window.getWindowsPos().iX + 2, window.getWindowsPos().iY + window.getWindowsPos().iHeight, window.getWindowsPos().iWidth - 4, caption.c_str(), color);
+			int c_w = captionFont->getRenderWidth(caption);
+			
+			if (c_w > window.getWindowsPos().iWidth)
+				c_w = window.getWindowsPos().iWidth;
+			//captionFont->RenderString(window.getWindowsPos().iX + 2, window.getWindowsPos().iY + window.getWindowsPos().iHeight, window.getWindowsPos().iWidth - 4, caption.c_str(), color);
+			
+			captionFont->RenderString(window.getWindowsPos().iX + (window.getWindowsPos().iWidth - c_w)/2, window.getWindowsPos().iY + captionFont->getHeight() + (window.getWindowsPos().iHeight - captionFont->getHeight())/2, c_w, caption.c_str(), color);
 		}
 	}
 	else if (mode == FRAME_HEAD)

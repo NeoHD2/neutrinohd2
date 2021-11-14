@@ -316,6 +316,8 @@ CTestMenu::~CTestMenu()
 
 void CTestMenu::hide()
 {
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:hide:\n");
+	
 	frameBuffer->paintBackground();
 	frameBuffer->blit();
 }
@@ -811,7 +813,7 @@ void CTestMenu::testCWidget()
 
 	testWidget->enableSaveScreen();
 	testWidget->setSelected(selected);
-	//testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
+	//testWidget->setBackgroundColor(COL_RED);
 	//testWidget->enablePaintMainFrame();
 
 	// head
@@ -996,7 +998,7 @@ void CTestMenu::testCWidget()
 
 void CTestMenu::testWindowWidget()
 {
-	dprintf(DEBUG_NORMAL, "\ntestWindowWidget(CCItems)\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testWindowWidget(CCItems)\n");
 
 	// CBox
 	CBox Box;
@@ -1043,7 +1045,7 @@ void CTestMenu::testWindowWidget()
 	// image
 	CImage testImage;
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
-	testImage.setPosition(Box.iX + Box.iWidth - testImage.iWidth - 50, Box.iY + 150, testImage.iWidth, testImage.iHeight);
+	testImage.setPosition(Box.iX + Box.iWidth - testImage.iWidth - 50, Box.iY + 150, 200, 300);
 	
 	windowWidget->addCCItem(&testImage);
 	
@@ -1125,7 +1127,7 @@ void CTestMenu::testWindowWidget()
 	// time
 	// slider
 	
-	CWidget* testWidget = new CWidget();
+	testWidget = new CWidget();
 	testWidget->addItem(windowWidget);
 	testWidget->addItem(&head);
 	testWidget->addItem(&foot);
@@ -1170,7 +1172,7 @@ void CTestMenu::testTextBoxWidget()
 	
 	textBoxWidget->setText(buffer.c_str(), m_vMovieInfo[0].tfile.c_str(), p_w, p_h);
 	
-	CWidget* testWidget = new CWidget();
+	testWidget = new CWidget();
 	testWidget->addItem(textBoxWidget);
 	testWidget->addKey(RC_ok, this, "mplay");
 	testWidget->addKey(RC_info, this, "tinfo");
@@ -1443,9 +1445,9 @@ void CTestMenu::testFireTV()
 		CFrame * titleFrame = new CFrame();
 		titleFrame->setMode(FRAME_LABEL);
 		titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
-		int t_w = 200;
+		int t_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(m_vMovieInfo[0].epgTitle);
 		int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
-		titleFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10, box.iWidth - 20 - pic_w - 20, t_h);
+		titleFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10, t_w, t_h);
 		titleFrame->setTitle((m_vMovieInfo[0].epgTitle.empty())? "" : m_vMovieInfo[0].epgTitle.c_str());
 		titleFrame->disablePaintFrame();
 		titleFrame->setActive(false);
@@ -2606,7 +2608,7 @@ void CTestMenu::testCComponent()
 	// image
 	CImage testImage;
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
-	testImage.setPosition(Box.iX + Box.iWidth - testImage.iWidth - 50, Box.iY + 150, testImage.iWidth, testImage.iHeight);
+	testImage.setPosition(Box.iX + Box.iWidth - testImage.iWidth - 50, Box.iY + 150, 200, 300);
 	
 	// label
 	CLabel testLabel;
@@ -7316,7 +7318,7 @@ void CTestMenu::showMenu()
 	mainMenu->setWidgetMode(MODE_MENU);
 	mainMenu->enableShrinkMenu(),
 	mainMenu->enableMenuPosition();
-	mainMenu->enablePaintFootInfo();
+	//mainMenu->enablePaintFootInfo();
 	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox|CFrameBox)", true, NULL, this, "widget"));
@@ -7362,7 +7364,7 @@ void CTestMenu::showMenu()
 	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItem (CFrameBox)"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox", true, NULL, this, "framebox"));
 	
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItem(CFrameBox|ClistBox)"));
+	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItem(CFrameBox|ClistBox)"));
 	mainMenu->addItem(new CMenuForwarder("CWidgetItem(CFrameBox|ClistBox)", true, NULL, this, "testing"));
 	
 	// CMenuWidhet
