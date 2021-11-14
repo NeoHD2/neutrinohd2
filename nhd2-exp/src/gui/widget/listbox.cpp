@@ -77,7 +77,9 @@ CMenuItem::CMenuItem()
 	widgetMode = MODE_LISTBOX;
 	isPlugin = false;
 
+	active = true;
 	marked = false;
+	selectedOnOK = false;
 
 	jumpTarget = NULL;
 	actionKey = "";
@@ -88,15 +90,6 @@ CMenuItem::CMenuItem()
 	parent = NULL;
 }
 
-/*
-void CMenuItem::init(const int X, const int Y, const int DX, const int DY)
-{
-	x    = X;
-	y    = Y;
-	item_width = DX;
-	item_height = DY;
-}
-*/
 void CMenuItem::init(const int X, const int Y, const int DX, const int OFFX)
 {
 	x    = X;
@@ -116,6 +109,14 @@ void CMenuItem::setActive(const bool Active)
 void CMenuItem::setMarked(const bool Marked)
 {
 	marked = Marked;
+	
+	if (x != -1)
+		paint();
+}
+
+void CMenuItem::setSelected(const bool Selected)
+{
+	selectedOnOK = Selected;
 	
 	if (x != -1)
 		paint();
@@ -1431,6 +1432,10 @@ int ClistBoxItem::exec(CMenuTarget* parent)
 	}
 	else
 		ret = RETURN_EXIT;
+	
+	//TEST	
+	//setSelected(true);
+	//printf("ClistBoxItem::exec: selectedOnOK:%s\n", selectedOnOK? "yes" : "no");
 
 	return ret;
 }
@@ -1472,19 +1477,41 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 
 	if (selected)
 	{
-		color = COL_MENUCONTENTSELECTED;
 		if (parent)
 		{
-			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0 : COL_MENUCONTENT_PLUS_0;
+			if (parent->inFocus)
+			{
+				color = COL_MENUCONTENTSELECTED;
+				bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+			}
+			else
+			{
+				color = COL_MENUCONTENT;	
+				bgcolor = COL_MENUCONTENT_PLUS_0;
+			}
 		}
 		else
+		{
+			color = COL_MENUCONTENTSELECTED;
 			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+		}
 	}
 	else if (!active)
 	{
 		color = COL_MENUCONTENTINACTIVE;
 		bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
 	}
+	
+	/*
+	if (selectedOnOK)
+	{
+		if (parent && !parent->inFocus)
+		{
+			color = COL_MENUCONTENTINACTIVE;	
+			bgcolor = COL_MENUCONTENT_PLUS_0;
+		}
+	}
+	*/
 
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
@@ -1863,9 +1890,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	paintFrame = true;
 	
 	//
-	//timeout = 0;
 	MenuPos = false;
-	//exit_pressed = false;
 	
 	item_height = 0;
 	item_width = 0;
@@ -1956,10 +1981,8 @@ ClistBox::ClistBox(CBox* position)
 	
 	paintFrame = true;
 	
-	////
-	//timeout = 0;
+	//
 	MenuPos = false;
-	//exit_pressed = false;
 	
 	item_height = 0;
 	item_width = 0;
@@ -2259,7 +2282,7 @@ void ClistBox::paintItems()
 				{
 					CMenuItem * item = items[count];
 					
-					item->init(cFrameBox.iX + _x*item_width, item_start_y + _y*item_height, item_width, /*item_height*/iconOffset);
+					item->init(cFrameBox.iX + _x*item_width, item_start_y + _y*item_height, item_width, iconOffset);
 
 					if((item->isSelectable()) && (selected == -1)) 
 					{
@@ -2364,15 +2387,14 @@ void ClistBox::paintItems()
 				}
 
 				// paint item
-				//if(inFocus)
-					ypos = item->paint(selected == ((signed int) count));
-				//else
-				//	ypos = item->paint(false);
+				ypos = item->paint(selected == ((signed int) count));
 			} 
 			else 
 			{
 				// x = -1 is a marker which prevents the item from being painted on setActive changes
 				item->init(-1, 0, 0, 0);
+				//TEST
+				//item->setSelected(false);
 			}	
 		} 
 	}
@@ -2534,7 +2556,8 @@ void ClistBox::paintFoot()
 			// buttons
 			int buttonWidth = 0;
 
-			buttonWidth = (cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
+			if (fbutton_count)
+				buttonWidth = (cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
 	
 			for (unsigned int i = 0; i < fbutton_count; i++)
 			{
@@ -2996,7 +3019,8 @@ void ClistBox::hide()
 {
 	dprintf(DEBUG_NORMAL, "ClistBox::hide: (%s)\n", l_name.c_str());
 	
-	initFrames();
+	//TEST
+	//initFrames();
 
 	if( savescreen && background)
 		restoreScreen();
@@ -3424,65 +3448,6 @@ int ClistBox::oKKeyPressed(CMenuTarget* parent)
 		return RETURN_EXIT;
 }
 
-#if 0
-void ClistBox::onHomeKeyPressed()
-{
-	dprintf(DEBUG_NORMAL, "ClistBox::HomeKeyPressed:\n");
-
-	selected = -1;
-}
-
-void ClistBox::onUpKeyPressed()
-{
-	dprintf(DEBUG_NORMAL, "ClistBox::UpKeyPressed:\n");
-
-	scrollLineUp();
-}
-
-void ClistBox::onDownKeyPressed()
-{
-	dprintf(DEBUG_NORMAL, "ClistBox::DownKeyPressed:\n");
-
-	scrollLineDown();
-}
-
-void ClistBox::onRightKeyPressed()
-{
-	dprintf(DEBUG_NORMAL, "ClistBox::RightKeyPressed:\n");
-
-	swipRight();
-}
-
-void ClistBox::onLeftKeyPressed()
-{
-	dprintf(DEBUG_NORMAL, "ClistBox::LeftKeyPressed:\n");
-
-	swipLeft();
-}
-
-void ClistBox::onPageUpKeyPressed()
-{
-	dprintf(DEBUG_NORMAL, "ClistBox::PageUpKeyPressed:\n");
-
-	scrollPageUp();
-}
-
-void ClistBox::onPageDownKeyPressed()
-{
-	dprintf(DEBUG_NORMAL, "ClistBox::PageDownKeyPressed:\n");
-
-	scrollPageDown();
-}
-#endif
-
-/*
-void ClistBox::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
-{
-	keyActionMap[key].menue = menue;
-	keyActionMap[key].action = action;
-}
-*/
-
 void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned int shortcut, bool enabled)
 {
 	unsigned int number_of_plugins = (unsigned int) g_PluginList->getNumberOfPlugins();
@@ -3523,221 +3488,4 @@ void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned i
 		}
 	}
 }
-
-# if 0
-int ClistBox::exec(CMenuTarget* parent, const std::string&)
-{
-	dprintf(DEBUG_NORMAL, "ClistBox::exec:\n");
-
-	int retval = RETURN_REPAINT;
-	
-	if (parent)
-		parent->hide();
-	
-	paint();
-	CFrameBuffer::getInstance()->blit();
-	
-	// add sec timer
-	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
-		
-	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
-
-	//control loop
-	do {
-		g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd);
-		
-		int handled = false;
-
-		dprintf(DEBUG_DEBUG, "ClistBox::exec: msg:%s\n", CRCInput::getSpecialKeyName(msg));
-		
-		if ( msg <= RC_MaxRC ) 
-		{
-			timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
-			
-			// keymap
-			std::map<neutrino_msg_t, keyAction>::iterator it = keyActionMap.find(msg);
-			
-			if (it != keyActionMap.end()) 
-			{
-				actionKey = it->second.action;
-
-				if (it->second.menue != NULL)
-				{
-					int rv = it->second.menue->exec(this, it->second.action);
-
-					//FIXME:review this
-					switch ( rv ) 
-					{
-						case RETURN_EXIT_ALL:
-							retval = RETURN_EXIT_ALL; //fall through
-						case RETURN_EXIT:
-							msg = RC_timeout;
-							break;
-						case RETURN_REPAINT:
-							hide();
-							paint();
-							break;
-					}
-				}
-				else
-				{
-					selected = -1;
-					handled = true;
-
-					break;
-				}
-
-				continue;
-			}
-			
-			// direkKey
-			for (unsigned int i = 0; i < items.size(); i++) 
-			{
-				CMenuItem * titem = items[i];
-			
-				if ((titem->directKey != RC_nokey) && (titem->directKey == msg)) 
-				{
-					if (titem->isSelectable()) 
-					{
-						items[selected]->paint(false);
-						selected = i;
-
-						if (selected > (int)page_start[current_page + 1] || selected < (int)page_start[current_page]) 
-						{
-							// different page
-							paintItems();
-						}
-
-						paintItemInfo(selected);
-						pos = selected;
-						msg = RC_ok;
-						actionKey = titem->actionKey;
-					} 
-					else 
-					{
-						// swallow-key...
-						handled = true;
-					}
-					break;
-				}
-			}
-		}
-		
-		if (!handled)
-		{
-			if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
-			{
-				// head
-				if (paintDate)
-					paintHead();
-			} 
-			
-			switch (msg)
-			{
-				case (RC_up):
-					onUpKeyPressed();
-					break;
-
-				case (RC_down):
-					onDownKeyPressed();
-					break;
-
-				case (RC_right):
-					onRightKeyPressed();
-					break;
-
-				case (RC_left):
-					onLeftKeyPressed();
-					break;
-
-				case (RC_page_up):
-					onPageUpKeyPressed();
-					break;
-
-				case (RC_page_down):
-					onPageDownKeyPressed();
-					break;
-
-				case (RC_home):
-					exit_pressed = true;
-					dprintf(DEBUG_NORMAL, "ClistBox::exec: exit_pressed\n");
-					msg = RC_timeout;
-					selected = -1; 
-					break;
-
-				case (RC_ok):
-					{
-						if (hasItem())
-						{
-							CMenuItem* item = items[selected];
-							item->msg = msg;
-							actionKey = item->actionKey;
-							
-							int rv = item->exec(this);
-							
-							//FIXME:review this
-							switch ( rv ) 
-							{
-								case RETURN_EXIT_ALL:
-									retval = RETURN_EXIT_ALL;
-								case RETURN_EXIT:
-									msg = RC_timeout;
-									break;
-								case RETURN_REPAINT:
-									hide();
-									paint();
-									break;
-							}
-						}
-						else
-							msg = RC_timeout;
-					}
-					break;
-					
-				case (RC_setup):
-					changeWidgetType();
-					break;
-					
-				case (RC_timeout):
-					exit_pressed = true;
-					selected = -1;
-					break;
-
-				default:
-					if ( CNeutrinoApp::getInstance()->handleMsg( msg, data ) & messages_return::cancel_all ) 
-					{
-						retval = RETURN_EXIT_ALL;
-						msg = RC_timeout;
-					}
-			}
-			
-			if ( msg <= RC_MaxRC )
-			{
-				// recalculate timeout for RC-Tasten
-				timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
-			}
-		}
-		
-		frameBuffer->blit();
-	}while ( msg != RC_timeout );	
-	
-	hide();
-
-	//
-	g_RCInput->killTimer(sec_timer_id);
-	sec_timer_id = 0;
-	
-	// vfd
-	if(!parent)
-	{
-		if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
-			CVFD::getInstance()->setMode(CVFD::MODE_WEBTV);
-		else
-			CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
-	}
-	
-	return retval;
-}
-#endif
-
 

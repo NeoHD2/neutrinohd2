@@ -1535,7 +1535,6 @@ void CMovieInfoWidget::funArt()
 	artBox.iY = box.iY + 10;
 
 	CFrameBox * testFrameBox = new CFrameBox(&box);
-	//testFrameBox->disablePaintFrame();
 	
 	CWidget * widget = new CWidget(&box);
 
@@ -1626,8 +1625,6 @@ void CMovieInfoWidget::funArt()
 
 	delete widget;
 	widget = NULL;
-	
-	//testFrameBox->exec(NULL, "");
 
 	delete testFrameBox;
 	testFrameBox = NULL;

@@ -676,6 +676,16 @@ int COSDDiverses::exec(CMenuTarget* parent, const std::string& actionKey)
 	return ret;
 }
 
+// widget type
+#define WIDGET_TYPE_OPTION_COUNT	4
+const keyval WIDGET_TYPE_OPTIONS[WIDGET_TYPE_OPTION_COUNT] =
+{
+	{ WIDGET_TYPE_STANDARD, NONEXISTANT_LOCALE, "Standard"},
+	{ WIDGET_TYPE_CLASSIC, NONEXISTANT_LOCALE, "Classic"},
+	{ WIDGET_TYPE_EXTENDED, NONEXISTANT_LOCALE, "Extended"},
+	{ WIDGET_TYPE_FRAME, NONEXISTANT_LOCALE, "Frame"}
+};
+
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
@@ -743,6 +753,9 @@ void COSDDiverses::showMenu()
 
 	osdDiverseSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	osdDiverseSettings.addItem(new CMenuSeparator(LINE));
+	
+	// widget type
+	osdDiverseSettings.addItem(new CMenuOptionChooser("Menu Design", &g_settings.menu_design, WIDGET_TYPE_OPTIONS, WIDGET_TYPE_OPTION_COUNT, true));
 
 	// menu position
 	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_MENU_POSITION, &g_settings.menu_position, MENU_POSITION_OPTIONS, MENU_POSITION_OPTION_COUNT, true));

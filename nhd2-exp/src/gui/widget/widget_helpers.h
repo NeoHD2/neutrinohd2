@@ -479,16 +479,6 @@ class CWidgetItem
 		
 		//
 		virtual void setParent(CWidget* w_parent){parent = w_parent;};
-
-		/*
-		virtual void onHomeKeyPressed(){};
-		virtual void onUpKeyPressed(){};
-		virtual void onDownKeyPressed(){};
-		virtual void onRightKeyPressed(){};
-		virtual void onLeftKeyPressed(){};
-		virtual void onPageUpKeyPressed(){};
-		virtual void onPageDownKeyPressed(){};
-		*/
 };
 
 // CHeaders

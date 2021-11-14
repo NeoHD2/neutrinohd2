@@ -190,18 +190,6 @@ class CFrameBox : public CWidgetItem
 		int corner;
 		bool shadow;
 		bool screen;
-		
-		/*
-		neutrino_msg_t      msg;
-		neutrino_msg_data_t data;
-		
-		unsigned long long int timeout;
-		
-		bool exit_pressed;
-		
-		struct keyAction { std::string action; CMenuTarget *menue; };
-		std::map<neutrino_msg_t, keyAction> keyActionMap;
-		*/
 
 	public:
 		CFrameBox(const int x = 0, int const y = 0, const int dx = 0, const int dy = 0);
@@ -244,26 +232,8 @@ class CFrameBox : public CWidgetItem
 		bool isSelectable(void);
 
 		int oKKeyPressed(CMenuTarget *parent);
-		
-		/*
-		virtual void onHomeKeyPressed();
-		virtual void onUpKeyPressed();
-		virtual void onDownKeyPressed();
-		virtual void onRightKeyPressed();
-		virtual void onLeftKeyPressed();
-		virtual void onPageUpKeyPressed();
-		virtual void onPageDownKeyPressed();
-		*/
 
 		std::string getActionKey(void){return actionKey;};
-		
-		/*
-		virtual int exec(CMenuTarget * parent, const std::string &actionKey);
-		void setTimeOut(unsigned long long int to = 0){timeout = to;};
-		bool getExitPressed(){return exit_pressed;};		
-		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
-		neutrino_msg_t getKey(){return msg;};
-		*/
 };
 
 #endif

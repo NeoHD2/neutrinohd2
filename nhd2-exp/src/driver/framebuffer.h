@@ -258,7 +258,7 @@ class CFrameBuffer
 		
 		void getIconSize(const char * const filename, int* width, int *height);
 		bool paintIcon(const std::string & filename, const int x, const int y, const int h = 0, bool paint = true, int width = 0, int height = 0);
-		bool paintHintIcon(const std::string& filename, int posx = 0, int posy = 0, int width = DEFAULT_XRES, int height = DEFAULT_YRES);
+		bool paintHintIcon(const std::string& filename, int posx, int posy, int width , int height);
 		
 		// raw/pal icons
 		bool paintIcon8(const std::string & filename, const int x, const int y, const unsigned char offset = 0);

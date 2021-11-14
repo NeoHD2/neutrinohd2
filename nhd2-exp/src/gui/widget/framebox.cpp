@@ -206,14 +206,24 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 
 	if (selected)
 	{
-		color = COL_MENUCONTENTSELECTED;
-		
 		if (parent)
 		{
-			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0 : fcolor;
+			if (parent->inFocus)
+			{
+					color = COL_MENUCONTENTSELECTED;
+					bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+			}
+			else
+			{
+					color = COL_MENUCONTENT;	
+					bgcolor = fcolor;
+			}
 		}
 		else
+		{
+			color = COL_MENUCONTENTSELECTED;
 			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
+		}
 	}
 	else if (!active)
 	{
@@ -515,10 +525,6 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 	actionKey = "";
 	
 	//
-	//timeout = 0;
-	//exit_pressed = false;
-	
-	//
 	bgcolor = COL_MENUCONTENT_PLUS_0;
 	radius = RADIUS_MID;
 	corner = NO_RADIUS;
@@ -543,10 +549,6 @@ CFrameBox::CFrameBox(CBox* position)
 	paintFrame = true;
 
 	actionKey = "";
-	
-	//
-	//timeout = 0;
-	//exit_pressed = false;
 	
 	//
 	bgcolor = COL_MENUCONTENT_PLUS_0;
@@ -778,263 +780,4 @@ int CFrameBox::oKKeyPressed(CMenuTarget *parent)
 	else
 		return RETURN_EXIT;
 }
-
-/*
-void CFrameBox::onHomeKeyPressed()
-{
-	dprintf(DEBUG_NORMAL, "CFrameBox::HomeKeyPressed:\n");
-
-	selected = -1;
-}
-
-void CFrameBox::onUpKeyPressed()
-{
-	dprintf(DEBUG_DEBUG, "CFrameBox::UpKeyPressed:\n");
-
-	scrollLineUp();
-}
-
-void CFrameBox::onDownKeyPressed()
-{
-	dprintf(DEBUG_DEBUG, "CFrameBox::DownKeyPressed:\n");
-
-	scrollLineDown();
-}
-
-void CFrameBox::onRightKeyPressed()
-{
-	dprintf(DEBUG_DEBUG, "CFrameBox::RightKeyPressed:\n");
-
-	swipRight();
-}
-
-void CFrameBox::onLeftKeyPressed()
-{
-	dprintf(DEBUG_DEBUG, "CFrameBox::LeftKeyPressed:\n");
-
-	swipLeft();
-}
-
-void CFrameBox::onPageUpKeyPressed()
-{
-	dprintf(DEBUG_DEBUG, "CFrameBox::PageUpKeyPressed:\n");
-
-	//scrollPageUp();
-}
-
-void CFrameBox::onPageDownKeyPressed()
-{
-	dprintf(DEBUG_DEBUG, "CFrameBox::PageDownKeyPressed:\n");
-
-	//scrollPageDown();
-}
-*/
-
-#if 0
-void CFrameBox::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
-{
-	keyActionMap[key].menue = menue;
-	keyActionMap[key].action = action;
-}
-
-int CFrameBox::exec(CMenuTarget* parent, const std::string&)
-{
-	dprintf(DEBUG_NORMAL, "CFrameBox::exec:\n");
-
-	int retval = RETURN_REPAINT;
-	
-	if (parent)
-		parent->hide();
-	
-	paint();
-	CFrameBuffer::getInstance()->blit();
-	
-	// control loop
-	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
-
-	//control loop
-	do {
-		g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd);
-		
-		int handled = false;
-
-		dprintf(DEBUG_DEBUG, "CFrameBox::exec: msg:%s\n", CRCInput::getSpecialKeyName(msg));
-		
-		if ( msg <= RC_MaxRC ) 
-		{
-			timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
-			
-			// keymap
-			std::map<neutrino_msg_t, keyAction>::iterator it = keyActionMap.find(msg);
-			
-			if (it != keyActionMap.end()) 
-			{
-				actionKey = it->second.action;
-
-				if (it->second.menue != NULL)
-				{
-					int rv = it->second.menue->exec(this, it->second.action);
-
-					//FIXME:review this
-					switch ( rv ) 
-					{
-						case RETURN_EXIT_ALL:
-							retval = RETURN_EXIT_ALL; //fall through
-						case RETURN_EXIT:
-							msg = RC_timeout;
-							break;
-						case RETURN_REPAINT:
-							hide();
-							paint();
-							break;
-					}
-				}
-				else
-				{
-					selected = -1;
-					handled = true;
-
-					break;
-				}
-
-				continue;
-			}
-			
-			// direktKey
-			for (unsigned int i = 0; i < frames.size(); i++) 
-			{
-				CFrame * titem = frames[i];
-			
-				if ((titem->directKey != RC_nokey) && (titem->directKey == msg)) 
-				{
-					if (titem->isSelectable()) 
-					{
-						frames[selected]->paint(false);
-						selected = i;
-
-						/*
-						if (selected > (int)page_start[current_page + 1] || selected < (int)page_start[current_page]) 
-						{
-							// different page
-							paintFrames();
-						}
-						*/
-						
-						pos = selected;
-						msg = RC_ok;
-						actionKey = titem->actionKey;
-					} 
-					else 
-					{
-						// swallow-key...
-						handled = true;
-					}
-					break;
-				}
-			}
-		}
-		
-		if (!handled)
-		{
-			switch (msg)
-			{
-				//
-				case (RC_up):
-					onUpKeyPressed();
-					break;
-
-				case (RC_down):
-					onDownKeyPressed();
-					break;
-
-				case (RC_right):
-					onRightKeyPressed();
-					break;
-
-				case (RC_left):
-					onLeftKeyPressed();
-					break;
-
-				case (RC_page_up):
-					onPageUpKeyPressed();
-					break;
-
-				case (RC_page_down):
-					onPageDownKeyPressed();
-					break;
-
-				case (RC_home):
-					exit_pressed = true;
-					dprintf(DEBUG_NORMAL, "CFrameBox::exec: exit_pressed\n");
-					msg = RC_timeout;
-					selected = -1; 
-					break;
-
-				case (RC_ok):
-					{
-						if (hasItem())
-						{
-							CFrame* item = frames[selected];
-							item->msg = msg;
-							actionKey = item->actionKey;
-							
-							int rv = item->exec(this);
-							
-							//FIXME:review this
-							switch ( rv ) 
-							{
-								case RETURN_EXIT_ALL:
-									retval = RETURN_EXIT_ALL;
-								case RETURN_EXIT:
-									msg = RC_timeout;
-									break;
-								case RETURN_REPAINT:
-									hide();
-									paint();
-									break;
-							}
-						}
-						else
-							msg = RC_timeout;
-					}
-					break;
-					
-				case (RC_timeout):
-					exit_pressed = true;
-					selected = -1;
-					break;
-
-				default:
-					if ( CNeutrinoApp::getInstance()->handleMsg( msg, data ) & messages_return::cancel_all ) 
-					{
-						retval = RETURN_EXIT_ALL;
-						msg = RC_timeout;
-					}
-			}
-			
-			if ( msg <= RC_MaxRC )
-			{
-				// recalculate timeout for RC-Tasten
-				timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
-			}
-		}
-		
-		frameBuffer->blit();
-	}while ( msg != RC_timeout );	
-	
-	hide();
-	
-	// vfd
-	if(!parent)
-	{
-		if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
-			CVFD::getInstance()->setMode(CVFD::MODE_WEBTV);
-		else
-			CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
-	}
-	
-	return retval;
-}
-#endif
-
 

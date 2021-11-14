@@ -644,8 +644,8 @@ void CHeaders::paint()
 	{
 		CFrameBuffer::getInstance()->getIconSize(hicon, &i_w, &i_h);
 
-		// limit icon dimensions
-		if(i_h > itemBox.iHeight)
+		// limit icon height
+		if(i_h >= itemBox.iHeight)
 			i_h = itemBox.iHeight - 2;
 
 		if(logo)
@@ -685,7 +685,7 @@ void CHeaders::paint()
 	int timestr_len = 0;
 	if(paintDate)
 	{
-		std::string timestr = getNowTimeStr("%d.%m.%Y %H:%M");;
+		std::string timestr = getNowTimeStr("%d.%m.%Y %H:%M");
 		
 		timestr_len = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(timestr.c_str(), true); // UTF-8
 	

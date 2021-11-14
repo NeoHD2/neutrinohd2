@@ -1380,10 +1380,15 @@ void CTestMenu::testFireTV()
 
 	testWidget = new CWidget(&box);
 	//testWidget->enablePaintMainFrame();
+	
+	headers = new CHeaders(box.iX, box.iY, box.iWidth, 40, "CWidget(Fire TV)", NEUTRINO_ICON_MP3);
+
+	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	headers->enablePaintDate();
 
 	// frameBox
 	frameBoxWidget = new CFrameBox(&box);
-	//frameBoxWidget->disablePaintFrame();
+	frameBoxWidget->setCorner(RADIUS_MID, CORNER_ALL);
 
 	CHintBox loadBox("FireTV", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -1400,7 +1405,7 @@ void CTestMenu::testFireTV()
 	int h_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 	homeFrame->setPosition(box.iX + 10, box.iY + 40, h_w + 10, h_h);
 	homeFrame->setTitle("Home");
-	homeFrame->disablePaintFrame();
+	//homeFrame->disablePaintFrame();
 	homeFrame->setActionKey(this, "home");
 
 	frameBoxWidget->addFrame(homeFrame);
@@ -1413,7 +1418,7 @@ void CTestMenu::testFireTV()
 	int s_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 	setupFrame->setPosition(box.iX + 10 + 5 + h_w + 20, box.iY + 40, s_w + 10, h_h);
 	setupFrame->setTitle("Setup");
-	setupFrame->disablePaintFrame();
+	//setupFrame->disablePaintFrame();
 	setupFrame->setActionKey(this, "setup");
 
 	frameBoxWidget->addFrame(setupFrame);
@@ -1425,9 +1430,8 @@ void CTestMenu::testFireTV()
 	int i_h = 0;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_INFO, &i_w, &i_h);
 	helpFrame->setPosition(box.iX + 10 + 5 + h_w + 10 + s_w + 40, box.iY + 40, i_w + 4, h_h);
-	//helpFrame->setIconName(NEUTRINO_ICON_INFO);
 	helpFrame->setTitle("?");
-	helpFrame->disablePaintFrame();
+	//helpFrame->disablePaintFrame();
 	helpFrame->setActionKey(this, "help");
 
 	frameBoxWidget->addFrame(helpFrame);
@@ -1503,6 +1507,7 @@ void CTestMenu::testFireTV()
 	}
 
 	testWidget->addItem(frameBoxWidget);
+	testWidget->addItem(headers);
 	
 	testWidget->exec(NULL, "");
 	//frameBoxWidget->exec(NULL, "");
@@ -4540,6 +4545,14 @@ void CTestMenu::testCFrameBox()
 	frame->setActionKey(this, "help");
 	frame->setColor(COL_LIGHT_GRAY);
 	frameBoxWidget->addFrame(frame);
+	
+	// pic
+	frame = new CFrame();
+	frame->setMode(FRAME_PICTURE);
+	frame->setPosition(topBox.iX + 10, topBox.iY + 3*(10 + 60) +50, topBox.iWidth - 20, 200);
+	//frame->setActive(false);
+	frame->setIconName(DATADIR "/neutrino/icons/nopreview.jpg");
+	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + 10, topBox.iY + topBox.iHeight - 60 - 10, topBox.iWidth - 20, 60);
@@ -4549,14 +4562,6 @@ void CTestMenu::testCFrameBox()
 	frame->setColor(COL_BLUE);
 	//frame->setCorner(RADIUS_LARGE, CORNER_ALL);
 	//frame->disableShadow();
-	frameBoxWidget->addFrame(frame);
-	
-	// pic
-	frame = new CFrame();
-	frame->setMode(FRAME_PICTURE);
-	frame->setPosition(topBox.iX + 10, topBox.iY + 3*(10 + 60) +50, topBox.iWidth - 20, 200);
-	frame->setActive(false);
-	frame->setIconName(DATADIR "/neutrino/icons/nopreview.jpg");
 	frameBoxWidget->addFrame(frame);
 
 	frameBoxWidget->setSelected(selected);
@@ -7318,6 +7323,9 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistFrame)", true, NULL, this, "listframewidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(CWindow|CCItems)", true, NULL, this, "ccwindow"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(CTextBox)", true, NULL, this, "textboxwidget"));
+	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox)", true, NULL, this, "listboxmwidget"));
+	mainMenu->addItem(new CMenuForwarder("CWidget(CFrameBox)", true, NULL, this, "singleWidget"));
+	mainMenu->addItem(new CMenuForwarder("CWidget(CFrameBox(Fire TV))", true, NULL, this, "firetv"));
 
 	//
 	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CMenuItem(ClistBox)"));
@@ -7343,7 +7351,7 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CWindow(with shadow)", true, NULL, this, "windowshadow"));
 	mainMenu->addItem(new CMenuForwarder("CWindow(customColor)", true, NULL, this, "windowcustomcolor"));
 	
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "WidgetItem (ClistBox)"));
+	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItem (ClistBox)"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(standard)", true, NULL, this, "listbox"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(classic)", true, NULL, this, "listbox2"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(extended)", true, NULL, this, "listbox3"));
@@ -7351,14 +7359,8 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("ClistBox(menu mode)", true, NULL, this, "listbox5"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(listBox mode)", true, NULL, this, "listbox6"));
 	
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "ClistBox (standalonbe)"));
-	mainMenu->addItem(new CMenuForwarder("ClistBox", true, NULL, this, "listboxmwidget"));
-	
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CFrameBox"));
+	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItem (CFrameBox)"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox", true, NULL, this, "framebox"));
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CFrameBox(standalone)"));
-	mainMenu->addItem(new CMenuForwarder("CFrameBox2", true, NULL, this, "singleWidget"));
-	mainMenu->addItem(new CMenuForwarder("CFrameBox(Fire TV)", true, NULL, this, "firetv"));
 	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItem(CFrameBox|ClistBox)"));
 	mainMenu->addItem(new CMenuForwarder("CWidgetItem(CFrameBox|ClistBox)", true, NULL, this, "testing"));

@@ -119,6 +119,9 @@ class CMenuItem
 	public:
 		bool active;
 		bool marked;
+		bool selectedOnOK;
+		
+		//
 		neutrino_msg_t directKey;
 		neutrino_msg_t msg;
 		bool can_arrow;
@@ -177,6 +180,7 @@ class CMenuItem
 		//
 		virtual void setActive(const bool Active);
 		virtual void setMarked(const bool Marked);
+		virtual void setSelected(const bool Selected);
 
 		//
 		virtual int getYPosition(void) const { return y; }
@@ -504,8 +508,8 @@ class ClistBox : public CWidgetItem
 		int iconOffset;
 		int pos;
 		unsigned int item_start_y;
-		//int items_height;
-		//int items_width;
+		int items_height;
+		int items_width;
 
 		CScrollBar scrollBar;
 
@@ -580,21 +584,7 @@ class ClistBox : public CWidgetItem
 		bool paintFrame;
 		
 		//
-		int items_height;
-		int items_width;
-		
 		bool painted;
-		
-		/*
-		neutrino_msg_t      msg;
-		neutrino_msg_data_t data;
-		unsigned long long int timeout;
-		bool exit_pressed;
-		struct keyAction { std::string action; CMenuTarget *menue; };
-		std::map<neutrino_msg_t, keyAction> keyActionMap;
-		uint32_t sec_timer_id;
-		*/
-		
 		bool MenuPos;
 		
 	public:
@@ -678,29 +668,11 @@ class ClistBox : public CWidgetItem
 
 		int oKKeyPressed(CMenuTarget *parent);
 
-		/*
-		virtual void onHomeKeyPressed();
-		virtual void onUpKeyPressed();
-		virtual void onDownKeyPressed();
-		virtual void onRightKeyPressed();
-		virtual void onLeftKeyPressed();
-		virtual void onPageUpKeyPressed();
-		virtual void onPageDownKeyPressed();
-		*/
-
 		void enableSaveScreen();
 
 		//
 		std::string getName(){return l_name;};
 		std::string getActionKey(void){return actionKey;};
-		
-		/*
-		virtual int exec(CMenuTarget * parent, const std::string &actionKey);
-		void setTimeOut(unsigned long long int to = 0){timeout = to;};
-		bool getExitPressed(){return exit_pressed;};		
-		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
-		neutrino_msg_t getKey(){return msg;};
-		*/
 		
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
 		

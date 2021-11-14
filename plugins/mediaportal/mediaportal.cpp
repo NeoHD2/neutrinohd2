@@ -137,9 +137,6 @@ int CMediaPortal::exec(CMenuTarget * parent, const std::string & actionKey)
 
 void CMediaPortal::showMenu(void)
 {
-	//mediaPortal = new ClistBox(CFrameBuffer::getInstance()->getScreenX(), CFrameBuffer::getInstance()->getScreenY(), CFrameBuffer::getInstance()->getScreenWidth(), CFrameBuffer::getInstance()->getScreenHeight());
-	//mediaPortal->setTitle("Media Portal", PLUGINDIR "/mediaportal/mp.png");
-	//mediaPortal->disablePaintFrame();
 	mediaPortal = new CMenuWidget("Media Portal", PLUGINDIR "/mediaportal/mp.png");
 
 	mediaPortal->setWidgetMode(MODE_MENU);
