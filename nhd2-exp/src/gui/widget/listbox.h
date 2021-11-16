@@ -562,6 +562,9 @@ class ClistBox : public CWidgetItem
 		int connectLineWidth;
 		bool paintFootInfo;
 		int footInfoMode;
+		
+		//
+		CTextBox * textBox;
 
 		// methods
 		virtual void paintItems();

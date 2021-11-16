@@ -140,6 +140,8 @@ class CMenuWidget : public CMenuTarget
 		int footInfoHeight;
 		int connectLineWidth;
 		int footInfoMode;
+		
+		CTextBox * textBox;
 
 		//
 		unsigned long long int timeout;

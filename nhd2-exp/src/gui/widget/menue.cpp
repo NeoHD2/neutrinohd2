@@ -58,7 +58,7 @@
 	
 
 extern CPlugins * g_PluginList;    // defined in neutrino.cpp
-static CTextBox * textBox = NULL;
+//static CTextBox * textBox = NULL;
 
 /// CMenuWidget
 CMenuWidget::CMenuWidget()
@@ -783,16 +783,18 @@ void CMenuWidget::paintItemInfo(int pos)
 
 
 				// Hint
+				/*
 				if(textBox)
 				{
 					delete textBox;
 					textBox = NULL;
 				}
+				*/
 	
-				textBox = new CTextBox(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, full_width - 4, cFrameFootInfo.iHeight - 4);
+				CTextBox Dline(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, full_width - 4, cFrameFootInfo.iHeight - 4);
 
-				textBox->disablePaintFrame();
-				textBox->setMode(AUTO_WIDTH);
+				Dline.disablePaintFrame();
+				Dline.setMode(AUTO_WIDTH);
 				
 				// itemIcon
 				std::string icon;
@@ -806,10 +808,10 @@ void CMenuWidget::paintItemInfo(int pos)
 				// Hint
 				if(!item->itemHint.empty())
 				{
-					textBox->setText(item->itemHint.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
+					Dline.setText(item->itemHint.c_str(), icon.c_str(), 100, 40, TOP_LEFT);
 				}
 				
-				textBox->paint();
+				Dline.paint();
 			}
 			else 
 			{
@@ -817,7 +819,7 @@ void CMenuWidget::paintItemInfo(int pos)
 				{
 					CMenuItem* item = items[pos];
 
-					item->getYPosition();
+					//item->getYPosition();
 
 					// refresh box
 					frameBuffer->paintBoxRel(x, y + full_height - fheight, full_width, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
@@ -843,7 +845,7 @@ void CMenuWidget::paintItemInfo(int pos)
 				{
 					CMenuItem * item = items[pos];
 
-					item->getYPosition();
+					//item->getYPosition();
 	
 					// detailslines
 					itemsLine.paint(x, y, full_width, full_height - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
@@ -894,29 +896,31 @@ void CMenuWidget::paintItemInfo(int pos)
 				{
 					CMenuItem* item = items[pos];
 
-					item->getYPosition();
+					//item->getYPosition();
 	
 					// detailslines|box
 					itemsLine.paint(x, y, full_width, full_height - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
 					// Hint
+					/*
 					if(textBox)
 					{
 						delete textBox;
 						textBox = NULL;
 					}
+					*/
 	
-					textBox = new CTextBox(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, full_width - 4, cFrameFootInfo.iHeight - 4);
+					CTextBox Dline(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, full_width - 4, cFrameFootInfo.iHeight - 4);
 
-					textBox->disablePaintFrame();
-					textBox->setMode(AUTO_WIDTH);
+					Dline.disablePaintFrame();
+					Dline.setMode(AUTO_WIDTH);
 
 					if(!item->itemHint.empty())
 					{
-						textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
+						Dline.setText(item->itemHint.c_str(), item->itemIcon.c_str(), 100, cFrameFootInfo.iHeight - 10, TOP_LEFT);
 					}
 					
-					textBox->paint();
+					Dline.paint();
 				}
 			}
 		}
@@ -929,7 +933,7 @@ void CMenuWidget::paintItemInfo(int pos)
 			{
 				CMenuItem* item = items[pos];
 
-				item->getYPosition();
+				//item->getYPosition();
 
 				// refresh box
 				frameBuffer->paintBoxRel(x, y + full_height - fheight, full_width, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
@@ -954,7 +958,7 @@ void CMenuWidget::paintItemInfo(int pos)
 				{
 					CMenuItem * item = items[pos];
 
-					item->getYPosition();
+					//item->getYPosition();
 	
 					// detailslines
 					itemsLine.paint(x, y, full_width, full_height, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
@@ -1005,29 +1009,31 @@ void CMenuWidget::paintItemInfo(int pos)
 				{
 					CMenuItem* item = items[pos];
 
-					item->getYPosition();
+					//item->getYPosition();
 	
 					// detailslines|box
 					itemsLine.paint(x, y, width, height, cFrameFootInfo.iHeight, item->getHeight(), item->getYPosition());
 
 					// Hint
+					/*
 					if(textBox)
 					{
 						delete textBox;
 						textBox = NULL;
 					}
+					*/
 	
-					textBox = new CTextBox(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, width - 4, cFrameFootInfo.iHeight - 4);
+					CTextBox Dline(x + 2, y + full_height - cFrameFootInfo.iHeight + 2, width - 4, cFrameFootInfo.iHeight - 4);
 
-					textBox->disablePaintFrame();
-					textBox->setMode(AUTO_WIDTH);
+					Dline.disablePaintFrame();
+					Dline.setMode(AUTO_WIDTH);
 
 					if(!item->itemHint.empty())
 					{
-						textBox->setText(item->itemHint.c_str());
+						Dline.setText(item->itemHint.c_str());
 					}
 					
-					textBox->paint();
+					Dline.paint();
 				}
 			}
 		}
@@ -1036,7 +1042,7 @@ void CMenuWidget::paintItemInfo(int pos)
 	{
 		CMenuItem* item = items[pos];
 
-		item->getYPosition();
+		//item->getYPosition();
 
 		if(widgetMode == MODE_MENU)
 		{
