@@ -149,8 +149,8 @@ class CMenuItem
 		int item_width;
 
 		//
-		//static CFont* nameFont;
-		//static CFont* optionFont;
+		CFont* nameFont;
+		CFont* optionFont;
 
 		bool nLinesItem; // 2 lines Item 
 
@@ -158,13 +158,13 @@ class CMenuItem
 		std::string actionKey;
 		
 		bool paintFrame;
+		bool itemShadow;
 		
 		CWidgetItem* parent;
 
 		CMenuItem();
 		virtual ~CMenuItem(){};
 
-		//virtual void init(const int X, const int Y, const int DX, const int DY);
 		virtual void init(const int X, const int Y, const int DX, const int OFFX);
 		virtual int paint(bool selected = false, bool AfterPulldown = false) = 0;
 		virtual int getHeight(void) const = 0;
@@ -213,8 +213,8 @@ class CMenuItem
 		virtual void setNumber(int nr){number = nr;};
 		virtual void setPercent(int percent = -1){runningPercent = percent;};
 
-		//virtual void setNameFont(CFont* font){nameFont = font;};
-		//virtual void setOptionFont(CFont* font){optionFont = font;};
+		virtual void setNameFont(CFont* font){nameFont = font;};
+		virtual void setOptionFont(CFont* font){optionFont = font;};
 
 		virtual void set2lines(void){nLinesItem = true;};
 		virtual void setWidgetType(int type){widgetType = type;};
@@ -226,6 +226,8 @@ class CMenuItem
 		
 		//
 		virtual void setParent(CWidgetItem* w_parent){parent = w_parent;};
+		
+		void enableItemShadow(){itemShadow = true;};
 };
 
 // CMenuOptionChooser
@@ -587,6 +589,9 @@ class ClistBox : public CWidgetItem
 		bool painted;
 		bool MenuPos;
 		
+		//
+		bool itemShadow;
+		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		ClistBox(CBox* position);
@@ -681,6 +686,8 @@ class ClistBox : public CWidgetItem
 		
 		//
 		inline bool isPainted(void){return painted;};
+		
+		void enableItemShadow(){itemShadow = true;};
 };
 
 #endif // LISTBOX_H_

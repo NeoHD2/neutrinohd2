@@ -358,7 +358,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 	frameBuffer->paintBoxRel(BoxStartX - 1, BoxStartY - 1, BoxWidth + 2, BoxHeight + buttonBarHeight + 2, COL_MENUCONTENT_PLUS_6);
 	
 	// infobarbox
-	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight, COL_INFOBAR_PLUS_0/*, NO_RADIUS, CORNER_NONE, g_settings.infobar_gradient*/);
+	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight + buttonBarHeight, COL_INFOBAR_PLUS_0/*, NO_RADIUS, CORNER_NONE, g_settings.infobar_gradient*/);
 
 	//time
 	paintTime(BoxEndX, ChanNameY, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]);
@@ -1123,7 +1123,7 @@ void CInfoViewer::showRadiotext()
 		rt_dy = 25;
 		rt_x = BoxStartX;
 		rt_y = g_settings.screen_StartY + 10;
-		rt_h = rt_y + 7 + rt_dy*(g_Radiotext->S_RtOsdRows+1)/*+SHADOW_OFFSET*/;
+		rt_h = rt_y + 7 + rt_dy*(g_Radiotext->S_RtOsdRows + 1)/*+SHADOW_OFFSET*/;
 		rt_w = rt_x+rt_dx /*+ SHADOW_OFFSET*/;
 		
 		int lines = 0;
@@ -1147,7 +1147,7 @@ void CInfoViewer::showRadiotext()
 					sprintf(stext[0], g_Radiotext->RT_PTY == 0 ? "%s %s%s" : "%s (%s)%s", tr("Radiotext"), g_Radiotext->RT_PTY == 0 ? g_Radiotext->RDS_PTYN : g_Radiotext->ptynr2string(g_Radiotext->RT_PTY), ":");
 					
 					// shadow
-					frameBuffer->paintBoxRel(rt_x, rt_y, rt_dx, rt_dy, COL_MENUCONTENT_PLUS_6, RADIUS_MID, CORNER_TOP);
+					frameBuffer->paintBoxRel(rt_x, rt_y, rt_dx, rt_dy, COL_MENUCONTENT_PLUS_6, NO_RADIUS, CORNER_NONE);
 
 					frameBuffer->paintBoxRel(rt_x + 1, rt_y + 1, rt_dx - 2, rt_dy - 2, COL_INFOBAR_PLUS_0, NO_RADIUS, CORNER_NONE);
 					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(rt_x + 10, rt_y + 30, rt_dx - 20, stext[0], COL_INFOBAR, 0, RTisIsUTF); // UTF-8
@@ -1160,7 +1160,7 @@ void CInfoViewer::showRadiotext()
 			if (lines) 
 			{
 				// shadow
-				frameBuffer->paintBoxRel(rt_x, rt_y+rt_dy, rt_dx, 7 + rt_dy* g_Radiotext->S_RtOsdRows, COL_MENUCONTENT_PLUS_6, NO_RADIUS, CORNER_NONE);
+				frameBuffer->paintBoxRel(rt_x, rt_y + rt_dy, rt_dx, 7 + rt_dy* g_Radiotext->S_RtOsdRows, COL_MENUCONTENT_PLUS_6, NO_RADIUS, CORNER_NONE);
 
 				frameBuffer->paintBoxRel(rt_x + 1, rt_y + rt_dy + 1, rt_dx - 2, 7 + rt_dy* g_Radiotext->S_RtOsdRows - 2, COL_INFOBAR_PLUS_0, NO_RADIUS, CORNER_NONE);
 

@@ -1107,7 +1107,7 @@ bool CFrameBuffer::paintHintIcon(const std::string& filename, int posx, int posy
 		return displayImage(newname, posx, posy, width, height);
 	}
 
-	return true;
+	return false;
 }
 
 void CFrameBuffer::loadPal(const std::string & filename, const unsigned char offset, const unsigned char endidx)

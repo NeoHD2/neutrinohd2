@@ -864,13 +864,13 @@ function testCFrameBox()
 	frame4:setActionKey(null, "exit")
 	frameBox:addFrame(frame4)
 
-	--local m = neutrino.CWidget()
+	local m = neutrino.CWidget()
 	--m:enablePaintMainFrame()
-	--m:addItem(frameBox)
+	m:addItem(frameBox)
 
-	ret = frameBox:exec(null, "")
+	ret = m:exec(null, "")
 
-	local actionKey = frameBox:getActionKey()
+	local actionKey = m:getActionKey()
 
 	if actionKey == "moviePlayer" then
 		print("testCFrameBox: actionKey: moviePlayer")
@@ -884,7 +884,7 @@ function testCFrameBox()
 		return ret
 	end
 
-	if frameBox:getExitPressed() ~= true then
+	if m:getExitPressed() ~= true then
 		testCFrameBox()
 	end
 

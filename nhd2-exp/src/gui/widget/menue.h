@@ -163,6 +163,8 @@ class CMenuWidget : public CMenuTarget
 
 		int widgetMode;
 		bool MenuPos;
+		
+		bool itemShadow;
 
 		std::string actionKey;
 			
@@ -249,6 +251,8 @@ class CMenuWidget : public CMenuTarget
 		//
 		std::string getName(void){ return l_name.c_str();};
 		std::string getActionKey(){return actionKey;};
+		
+		void enableItemShadow(){itemShadow = true;};
 };
 
 #endif

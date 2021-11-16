@@ -120,6 +120,7 @@ void CPluginList::showMenu()
 	plist->setWidgetMode(MODE_LISTBOX);
 	plist->setWidgetType(WIDGET_TYPE_CLASSIC);
 	plist->enableShrinkMenu();
+	plist->enableItemShadow();
 
 	// head
 	plist->enablePaintDate();

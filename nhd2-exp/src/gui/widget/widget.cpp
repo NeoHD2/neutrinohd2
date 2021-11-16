@@ -343,7 +343,6 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 					if( (items[i]->itemType == WIDGET_ITEM_HEAD) /*&& (items[i]->paintDate)*/ )
 					{
 						items[i]->paint();
-						break;
 					}
 				}
 			} 
