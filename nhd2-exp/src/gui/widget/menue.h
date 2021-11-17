@@ -141,6 +141,7 @@ class CMenuWidget : public CMenuTarget
 		int connectLineWidth;
 		int footInfoMode;
 		
+		// extended
 		CTextBox * textBox;
 
 		//
@@ -225,7 +226,7 @@ class CMenuWidget : public CMenuTarget
 		void enablePaintDate(void){PaintDate = true;};
 
 		//
-		void enablePaintFootInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh; initFrames();};
+		void enablePaintFootInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh; /*initFrames();*/};
 		void setFootInfoMode(int mode = FOOT_INFO_MODE){footInfoMode = mode;};
 
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
@@ -240,7 +241,6 @@ class CMenuWidget : public CMenuTarget
 		void setItemsPerPage(int itemsX = 6, int itemsY = 3){itemsPerX = itemsX; itemsPerY = itemsY; maxItemsPerPage = itemsPerX*itemsPerY;};
 
 		void enableShrinkMenu(){shrinkMenu = true;};
-		void enableCenterPos(){};
 
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
 
