@@ -1524,7 +1524,7 @@ void CFrameBuffer::blit(int mode3d)
 		perror("frameBuffer <FBIOGET_VSCREENINFO>");
 	}
 
-	/* dst */
+	// dst
 	bltData.dstOffset  = 0; 
 	bltData.dstPitch   = screeninfo.xres * 4;
 

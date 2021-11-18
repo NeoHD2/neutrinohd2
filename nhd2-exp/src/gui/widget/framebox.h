@@ -47,8 +47,8 @@ enum {
 	FRAME_PLUGIN,
 	FRAME_HLINE,
 	FRAME_VLINE,
-	FRAME_HEAD,
-	FRAME_FOOT,
+	//FRAME_HEAD,
+	//FRAME_FOOT,
 	FRAME_PIG
 };
 
@@ -85,6 +85,7 @@ class CFrame
 		int gradient;
 
 		// head
+		/*
 		fb_pixel_t headColor;
 		int headRadius;
 		int headCorner;
@@ -93,14 +94,17 @@ class CFrame
 		button_label_list_t hbutton_labels;
 		bool paintDate;
 		bool logo;
+		*/
 
 		// foot
+		/*
 		fb_pixel_t footColor;
 		int footRadius;
 		int footCorner;
 		int footGradient;
 		int fbutton_count;
 		button_label_list_t fbutton_labels;
+		*/
 		
 		//
 		CFrameBox* parent;
@@ -150,18 +154,22 @@ class CFrame
 		virtual void setGradient(int grad){gradient = grad;};
 
 		// headFrame
+		/*
 		void enablePaintDate(void){paintDate = true;};
 		void enableLogo(){logo = true;};
 		void setHeadColor(fb_pixel_t col) {headColor = col;};
 		void setHeadCorner(int ra, int co){headRadius = ra; headCorner = co;};
 		void setHeadGradient(int grad){headGradient = grad;};
 		void setHeaderButtons(const struct button_label *_hbutton_label, const int _hbutton_count = 1);
+		*/
 
 		// footFrame
+		/*
 		void setFootColor(fb_pixel_t col) {footColor = col;};
 		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};
 		void setFootGradient(int grad){footGradient = grad;};
 		void setFooterButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1);
+		*/
 		
 		//
 		virtual void setParent(CFrameBox* f_parent){parent = f_parent;};
@@ -184,12 +192,36 @@ class CFrameBox : public CWidgetItem
 		
 		//
 		bool paintFrame;
-		
 		fb_pixel_t bgcolor;
 		int radius;
 		int corner;
 		bool shadow;
 		bool screen;
+		
+		// head
+		std::string iconfile;
+		std::string l_name;
+		int hheight;
+		fb_pixel_t headColor;
+		int headRadius;
+		int headCorner;
+		int headGradient;
+		int hbutton_count;
+		button_label_list_t hbutton_labels;
+		bool paintDate;
+		bool logo;
+		bool paintTitle;
+		
+		// foot
+		int fheight;
+		fb_pixel_t footColor;
+		int footRadius;
+		int footCorner;
+		int footGradient;
+		int fbutton_count;
+		int fbutton_width;
+		button_label_list_t fbutton_labels;
+		bool paint_Foot;
 
 	public:
 		CFrameBox(const int x = 0, int const y = 0, const int dx = 0, const int dy = 0);
@@ -235,6 +267,24 @@ class CFrameBox : public CWidgetItem
 		void homeKeyPressed(){selected = -1;};
 
 		std::string getActionKey(void){return actionKey;};
+		
+		// head
+		virtual void paintHead();
+		void enablePaintHead(){paintTitle = true;};
+		void enablePaintDate(void){paintDate = true;};
+		void setTitle(const char* title = "", const char* icon = NULL, bool logo_ok = false){l_name = title; if(icon != NULL) iconfile = icon; logo = logo_ok;};
+		void setHeaderButtons(const struct button_label *_hbutton_label, const int _hbutton_count = 1);
+		void setHeadColor(fb_pixel_t col) {headColor = col;};
+		void setHeadCorner(int ra, int co){headRadius = ra; headCorner = co;};
+		void setHeadGradient(int grad){headGradient = grad;};
+		
+		// foot
+		virtual void paintFoot();
+		void enablePaintFoot(){paint_Foot = true;};
+		void setFooterButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1, const int _fbutton_width = 0);
+		void setFootColor(fb_pixel_t col) {footColor = col;};
+		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};
+		void setFootGradient(int grad){footGradient = grad;};
 };
 
 #endif

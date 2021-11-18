@@ -1195,7 +1195,7 @@ void CTestMenu::testSingleWidget()
 	box.iWidth = CFrameBuffer::getInstance()->getScreenWidth() - 80;
 	box.iHeight = CFrameBuffer::getInstance()->getScreenHeight() - 80;
 
-	testWidget = new CWidget(&box);
+	//testWidget = new CWidget(&box);
 
 	//testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
 	//testWidget->enablePaintMainFrame();
@@ -1239,6 +1239,7 @@ void CTestMenu::testSingleWidget()
 	textBox.iY = starBox.iY + 20;
 
 	// head
+	/*
 	CFrame *headFrame = new CFrame();
 	headFrame->setMode(FRAME_HEAD);
 	headFrame->setPosition(box.iX, box.iY, box.iWidth, 40);
@@ -1249,6 +1250,11 @@ void CTestMenu::testSingleWidget()
 	headFrame->setActive(false);
 
 	frameBoxWidget->addFrame(headFrame);
+	*/
+	frameBoxWidget->enablePaintHead();
+	frameBoxWidget->setTitle("CFrameBox", NEUTRINO_ICON_MOVIE);
+	frameBoxWidget->enablePaintDate();
+	frameBoxWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 
 	// artFrame
 	CFrame * artFrame = new CFrame();
@@ -1346,6 +1352,7 @@ void CTestMenu::testSingleWidget()
 	frameBoxWidget->addFrame(playFrame);
 
 	// foot
+	/*
 	CFrame *footFrame = new CFrame();
 	footFrame->setMode(FRAME_FOOT);
 	footFrame->setPosition(box.iX, box.iY + box.iHeight - 40, box.iWidth, 40);
@@ -1353,16 +1360,86 @@ void CTestMenu::testSingleWidget()
 	footFrame->setActive(false);
 
 	frameBoxWidget->addFrame(footFrame);
+	*/
+	frameBoxWidget->enablePaintFoot();
+	frameBoxWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
-	testWidget->addItem(frameBoxWidget);
+	//testWidget->addItem(frameBoxWidget);
 
-	testWidget->exec(NULL, "");
+	//testWidget->exec(NULL, "");
 	
-	delete testWidget;
-	testWidget = NULL;
+	//delete testWidget;
+	//testWidget = NULL;
+	
+	REPEAT:
+	frameBoxWidget->paint();
+	
+	CFrameBuffer::getInstance()->blit();
+
+	// loop
+	neutrino_msg_t msg;
+	neutrino_msg_data_t data;
+	
+	uint32_t sec_timer_id = 0;
+
+	// add sec timer
+	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
+
+	bool loop = true;
+
+	while(loop)
+	{
+		g_RCInput->getMsg_ms(&msg, &data, 10); // 1 sec
+
+		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
+		{
+			frameBoxWidget->paintHead();
+		} 
+		else if(msg == RC_right)
+		{
+			frameBoxWidget->swipRight();
+		}
+		else if(msg == RC_left)
+		{
+			frameBoxWidget->swipLeft();
+		}
+		else if(msg == RC_down)
+		{
+			frameBoxWidget->scrollLineDown();
+		}
+		else if(msg == RC_up)
+		{
+			frameBoxWidget->scrollLineUp();
+		}
+		else if(msg == RC_ok)
+		{
+			int rv = frameBoxWidget->oKKeyPressed(this);
+
+			//FIXME:review this
+			switch ( rv ) 
+			{
+				case RETURN_EXIT_ALL:
+					loop = false;
+				case RETURN_EXIT:
+					loop = false;
+					break;
+				case RETURN_REPAINT:
+					hide();
+					frameBoxWidget->paint();
+					break;
+			}
+		}
+
+		CFrameBuffer::getInstance()->blit();
+	}
+
+	hide();
 	
 	delete frameBoxWidget;
 	frameBoxWidget = NULL;
+	
+	g_RCInput->killTimer(sec_timer_id);
+	sec_timer_id = 0;
 }
 
 void CTestMenu::testFireTV()
@@ -7457,8 +7534,8 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CWidget(CWindow|CCItems)", true, NULL, this, "ccwindow"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(CTextBox)", true, NULL, this, "textboxwidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox)", true, NULL, this, "listboxmwidget"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(CFrameBox)", true, NULL, this, "singleWidget"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(CFrameBox(Fire TV))", true, NULL, this, "firetv"));
+	//mainMenu->addItem(new CMenuForwarder("CWidget(CFrameBox)", true, NULL, this, "singleWidget"));
+	mainMenu->addItem(new CMenuForwarder("CWidget(CFrameBox)", true, NULL, this, "firetv"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox|CWindow)", true, NULL, this, "multiwidget"));
 
 	//
@@ -7495,6 +7572,7 @@ void CTestMenu::showMenu()
 	
 	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItem (CFrameBox)"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox", true, NULL, this, "framebox"));
+	mainMenu->addItem(new CMenuForwarder("CFrameBox", true, NULL, this, "singleWidget"));
 	
 	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItem(CFrameBox|ClistBox)"));
 	mainMenu->addItem(new CMenuForwarder("CWidgetItem(CFrameBox|ClistBox)", true, NULL, this, "testing"));
