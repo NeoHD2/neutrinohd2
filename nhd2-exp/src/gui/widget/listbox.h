@@ -119,7 +119,6 @@ class CMenuItem
 	public:
 		bool active;
 		bool marked;
-		bool selectedOnOK;
 		
 		//
 		neutrino_msg_t directKey;
@@ -180,7 +179,6 @@ class CMenuItem
 		//
 		virtual void setActive(const bool Active);
 		virtual void setMarked(const bool Marked);
-		virtual void setSelected(const bool Selected);
 
 		//
 		virtual int getYPosition(void) const { return y; }
@@ -227,7 +225,7 @@ class CMenuItem
 		//
 		virtual void setParent(CWidgetItem* w_parent){parent = w_parent;};
 		
-		void enableItemShadow(){itemShadow = true;};
+		virtual void enableItemShadow(){itemShadow = true;};
 };
 
 // CMenuOptionChooser

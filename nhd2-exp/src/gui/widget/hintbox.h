@@ -76,6 +76,7 @@ class CHintBox
 		int count;
 		void paintHourGlass();
 		void hideHourGlass();
+		fb_pixel_t* background;
 
 	public:
 		// Text is UTF-8 encoded

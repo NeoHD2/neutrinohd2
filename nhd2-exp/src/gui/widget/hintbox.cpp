@@ -130,6 +130,7 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 	paintHG = true;
 	count = 0;
 	sec_timer_id = 0;
+	background = NULL;
 }
 
 CHintBox::CHintBox(const char * Caption, const char * const Text, const int Width, const char * const Icon)
@@ -215,6 +216,7 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	paintHG = true;
 	count = 0;
 	sec_timer_id = 0;
+	background = NULL;
 }
 
 CHintBox::~CHintBox(void)
@@ -307,7 +309,24 @@ void CHintBox::paintHourGlass()
 		
 	count = (count + 1) % 9;
 	
-	hideHourGlass();
+	//hideHourGlass();
+	int ih = 0;
+	int iw = 0;
+	
+	CFrameBuffer::getInstance()->getIconSize("hourglass0", &iw, &ih);
+	
+	if(background)
+	{
+		delete[] background;
+		background = NULL;
+	}
+
+	background = new fb_pixel_t[(iw + 10)*(ih + 10)];
+	
+	if(background)
+	{
+		CFrameBuffer::getInstance()->saveScreen(CFrameBuffer::getInstance()->getScreenX() + 15, CFrameBuffer::getInstance()->getScreenY() + 15, iw + 10, ih + 10, background);
+	}
 	
 	CFrameBuffer::getInstance()->paintIcon(filename, CFrameBuffer::getInstance()->getScreenX() + 20, CFrameBuffer::getInstance()->getScreenY() + 20);
 }
@@ -321,7 +340,12 @@ void CHintBox::hideHourGlass()
 	
 	CFrameBuffer::getInstance()->getIconSize("hourglass0", &iw, &ih);
 	
-	CFrameBuffer::getInstance()->paintBackgroundBoxRel(CFrameBuffer::getInstance()->getScreenX() + 20, CFrameBuffer::getInstance()->getScreenY() + 20, 48, 48);
+	if(background) 
+	{
+		CFrameBuffer::getInstance()->restoreScreen(CFrameBuffer::getInstance()->getScreenX() + 15, CFrameBuffer::getInstance()->getScreenY() + 15, iw + 10, ih + 10, background);
+	}
+	
+	//CFrameBuffer::getInstance()->paintBackgroundBoxRel(CFrameBuffer::getInstance()->getScreenX() + 20, CFrameBuffer::getInstance()->getScreenY() + 20, 48, 48);
 }
 
 int CHintBox::exec(int timeout)

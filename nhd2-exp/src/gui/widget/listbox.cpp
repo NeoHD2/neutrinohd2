@@ -79,7 +79,6 @@ CMenuItem::CMenuItem()
 
 	active = true;
 	marked = false;
-	selectedOnOK = false;
 
 	jumpTarget = NULL;
 	actionKey = "";
@@ -110,14 +109,6 @@ void CMenuItem::setActive(const bool Active)
 void CMenuItem::setMarked(const bool Marked)
 {
 	marked = Marked;
-	
-	if (x != -1)
-		paint();
-}
-
-void CMenuItem::setSelected(const bool Selected)
-{
-	selectedOnOK = Selected;
 	
 	if (x != -1)
 		paint();
@@ -1200,7 +1191,9 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 		}
 		else
+		{
 			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+		}
 
 		// iconName
 		int icon_w = 0;
@@ -1446,10 +1439,6 @@ int ClistBoxItem::exec(CMenuTarget* parent)
 	}
 	else
 		ret = RETURN_EXIT;
-	
-	//TEST	
-	//setSelected(true);
-	//printf("ClistBoxItem::exec: selectedOnOK:%s\n", selectedOnOK? "yes" : "no");
 
 	return ret;
 }
@@ -1515,17 +1504,6 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		color = COL_MENUCONTENTINACTIVE;
 		bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
 	}
-	
-	/*
-	if (selectedOnOK)
-	{
-		if (parent && !parent->inFocus)
-		{
-			color = COL_MENUCONTENTINACTIVE;	
-			bgcolor = COL_MENUCONTENT_PLUS_0;
-		}
-	}
-	*/
 
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
@@ -3111,6 +3089,8 @@ void ClistBox::scrollLineDown(const int)
 	}
 	else
 	{
+		if(items.size())
+		{
 		//search next / prev selectable item
 		for (unsigned int count = 1; count < items.size(); count++) 
 		{
@@ -3137,6 +3117,7 @@ void ClistBox::scrollLineDown(const int)
 				}
 				break;
 			}
+		}
 		}
 	}
 }
@@ -3173,6 +3154,8 @@ void ClistBox::scrollLineUp(const int)
 	}
 	else
 	{
+		if(items.size())
+		{
 		//search next / prev selectable item
 		for (unsigned int count = 1; count < items.size(); count++) 
 		{
@@ -3202,6 +3185,7 @@ void ClistBox::scrollLineUp(const int)
 				break;
 			}
 		}
+		}
 	}
 }
 
@@ -3224,6 +3208,8 @@ void ClistBox::scrollPageDown(const int)
 	}
 	else
 	{
+		if(items.size())
+		{
 		pos = (int) page_start[current_page + 1];
 
 		// check pos
@@ -3253,6 +3239,7 @@ void ClistBox::scrollPageDown(const int)
 			}
 			pos++;
 		}
+		}
 	}
 }
 
@@ -3274,6 +3261,8 @@ void ClistBox::scrollPageUp(const int)
 	}
 	else
 	{
+		if(items.size())
+		{
 		if(current_page) 
 		{
 			pos = (int) page_start[current_page] - 1;
@@ -3329,6 +3318,7 @@ void ClistBox::scrollPageUp(const int)
 				}
 				pos++;
 			}
+		}
 		}
 	}
 }
