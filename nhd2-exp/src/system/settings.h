@@ -262,14 +262,6 @@ struct SNeutrinoSettings
 	
 	int volume_pos;
 	int rounded_corners;
-	
-	enum MENU_DESIGN {
-		MENU_DESIGN_STANDARD = 0,
-		MENU_DESIGN_CLASSIC = 1,
-		MENU_DESIGN_EXTENDED = 2,
-		MENU_DESIGN_FRAME = 3
-	};
-
 	int menu_design;
 
 	enum MENU_POSITION {

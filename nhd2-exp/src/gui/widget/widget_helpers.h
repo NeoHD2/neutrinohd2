@@ -31,6 +31,8 @@
 #include <driver/rcinput.h>
 
 
+extern CLocaleManager* g_Locale; // for DL
+
 class CMenuTarget;
 class CWidgetItem;
 class CWidget;
@@ -241,14 +243,25 @@ class CProgressBar : public CComponent
 };
 
 // detailsLine
+enum {
+	DL_INFO,
+	DL_HINT
+};
+
 class CItems2DetailsLine : public CComponent
 {
 	public:
+		std::string info1, option_info1;
+		std::string info2, option_info2;
+		std::string hint;
+		std::string icon;
+		int mode;
+
 		//
 		bool paintLines;
 		
 		//
-		CItems2DetailsLine(){frameBuffer = CFrameBuffer::getInstance(); paintLines = true; cc_type = CC_DETAILSLINE;};
+		CItems2DetailsLine();
 		virtual ~CItems2DetailsLine(){};
 		
 		//
@@ -256,9 +269,17 @@ class CItems2DetailsLine : public CComponent
 		
 		//
 		void paint(int x, int y, int width, int height, int info_height, int iheight, int iy);
-		//void setPosition(int x, int y, int width, int height, int info_height, int iheight, int iy);
-		//void paint();
 		void clear(int x, int y, int width, int height, int info_height);
+		
+		//
+		virtual void setMode(int m){mode = m;};
+		virtual void setInfo1(const char* const text){info1 = text;};
+		virtual void setInfo2(const char* const text){info2 = text;};
+		virtual void setOptionInfo1(const char* const text){option_info1 = text;};
+		virtual void setOptionInfo2(const char* const text){option_info2 = text;};
+		virtual void setHint(const char* const Text){hint =  Text;};
+		virtual void setHint(const neutrino_locale_t locale){hint = g_Locale->getText(locale); };
+		virtual void setIcon(const char* const ic){icon = ic;};
 };
 
 // CHline

@@ -712,7 +712,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	
 	g_settings.rounded_corners = configfile.getInt32("rounded_corners", ROUNDED);
 	
-	g_settings.menu_design = configfile.getInt32("menu_design", SNeutrinoSettings::MENU_DESIGN_CLASSIC);
+	g_settings.menu_design = configfile.getInt32("menu_design", WIDGET_TYPE_CLASSIC);
 	g_settings.menu_position = configfile.getInt32("menu_position", SNeutrinoSettings::MENU_POSITION_LEFT);
 	// end OSD
 

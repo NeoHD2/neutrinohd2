@@ -956,9 +956,9 @@ void CTestMenu::testCWidget()
 
 		item->set2lines();
 
-		std::string tmp = m_vMovieInfo[i].epgTitle;
-		tmp += "\n";
-		tmp += m_vMovieInfo[i].epgInfo1;
+		//std::string tmp = m_vMovieInfo[i].epgTitle;
+		//tmp += "\n";
+		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -1429,6 +1429,10 @@ void CTestMenu::testSingleWidget()
 					break;
 			}
 		}
+		else if (msg == RC_home) 
+		{
+			loop = false;
+		}
 
 		CFrameBuffer::getInstance()->blit();
 	}
@@ -1785,9 +1789,9 @@ void CTestMenu::testListBoxWidget()
 
 		item->set2lines();
 
-		std::string tmp = m_vMovieInfo[i].epgTitle;
-		tmp += "\n";
-		tmp += m_vMovieInfo[i].epgInfo1;
+		//std::string tmp = m_vMovieInfo[i].epgTitle;
+		//tmp += "\n";
+		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -2995,10 +2999,10 @@ void CTestMenu::testCWindow()
 
 	CBox Box;
 	
-	Box.iX = g_settings.screen_StartX + 10;
-	Box.iY = g_settings.screen_StartY + 10;
-	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
-	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20);
+	Box.iX = g_settings.screen_StartX + 200;
+	Box.iY = g_settings.screen_StartY + 200;
+	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 400);
+	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 400);
 
 	//
 	CWindow* window = new CWindow();
@@ -3007,7 +3011,7 @@ void CTestMenu::testCWindow()
 
 	window->setColor(COL_MENUCONTENT_PLUS_0);
 	window->setCorner(RADIUS_MID, CORNER_ALL);
-	//window->setGradient(DARK2LIGHT2DARK);
+	window->setGradient(NOGRADIENT);
 
 	window->paint();
 	CFrameBuffer::getInstance()->blit();
@@ -3032,10 +3036,10 @@ void CTestMenu::testCWindowShadow()
 
 	CBox Box;
 	
-	Box.iX = g_settings.screen_StartX + 10;
-	Box.iY = g_settings.screen_StartY + 10;
-	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
-	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20);
+	Box.iX = g_settings.screen_StartX + 200;
+	Box.iY = g_settings.screen_StartY + 200;
+	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 400);
+	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 400);
 
 	//
 	CWindow* window = new CWindow(&Box);
@@ -3067,10 +3071,10 @@ void CTestMenu::testCWindowCustomColor()
 
 	CBox Box;
 	
-	Box.iX = g_settings.screen_StartX + 10;
-	Box.iY = g_settings.screen_StartY + 10;
-	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
-	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20);
+	Box.iX = g_settings.screen_StartX + 200;
+	Box.iY = g_settings.screen_StartY + 200;
+	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 400);
+	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 400);
 
 	//
 	CWindow* window = new CWindow(&Box);
@@ -4157,9 +4161,9 @@ void CTestMenu::testClistBox3()
 
 		item->set2lines();
 
-		std::string tmp = m_vMovieInfo[i].epgTitle;
-		tmp += "\n";
-		tmp += m_vMovieInfo[i].epgInfo1;
+		//std::string tmp = m_vMovieInfo[i].epgTitle;
+		//tmp += "\n";
+		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -4299,9 +4303,9 @@ void CTestMenu::testClistBox4()
 
 		item->set2lines();
 
-		std::string tmp = m_vMovieInfo[i].epgTitle;
-		tmp += "\n";
-		tmp += m_vMovieInfo[i].epgInfo1;
+		//std::string tmp = m_vMovieInfo[i].epgTitle;
+		//tmp += "\n";
+		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -4434,9 +4438,9 @@ void CTestMenu::testClistBox5()
 
 		item->set2lines();
 
-		std::string tmp = m_vMovieInfo[i].epgTitle;
-		tmp += "\n";
-		tmp += m_vMovieInfo[i].epgInfo1;
+		//std::string tmp = m_vMovieInfo[i].epgTitle;
+		//tmp += "\n";
+		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -4588,9 +4592,9 @@ void CTestMenu::testClistBox6()
 
 		item->set2lines();
 
-		std::string tmp = m_vMovieInfo[i].epgTitle;
-		tmp += "\n";
-		tmp += m_vMovieInfo[i].epgInfo1;
+		//std::string tmp = m_vMovieInfo[i].epgTitle;
+		//tmp += "\n";
+		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -6771,9 +6775,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -6813,9 +6817,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -6855,9 +6859,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -6897,9 +6901,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -6939,9 +6943,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -6981,9 +6985,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -7023,9 +7027,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -7065,9 +7069,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -7176,9 +7180,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -7258,9 +7262,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -7307,9 +7311,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -7359,9 +7363,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->set2lines();
 
-			std::string tmp = m_vMovieInfo[i].epgTitle;
-			tmp += "\n";
-			tmp += m_vMovieInfo[i].epgInfo1;
+			//std::string tmp = m_vMovieInfo[i].epgTitle;
+			//tmp += "\n";
+			std::string tmp = m_vMovieInfo[i].epgInfo1;
 			tmp += "\n";
 			tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -7407,9 +7411,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 				item->set2lines();
 
-				std::string tmp = m_vMovieInfo[i].epgTitle;
-				tmp += "\n";
-				tmp += m_vMovieInfo[i].epgInfo1;
+				//std::string tmp = m_vMovieInfo[i].epgTitle;
+				//tmp += "\n";
+				std::string tmp = m_vMovieInfo[i].epgInfo1;
 				tmp += "\n";
 				tmp += m_vMovieInfo[i].epgInfo2;
 
@@ -7529,14 +7533,13 @@ void CTestMenu::showMenu()
 	mainMenu->enableItemShadow();
 	
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox|CFrameBox)", true, NULL, this, "widget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistFrame)", true, NULL, this, "listframewidget"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(CWindow|CCItems)", true, NULL, this, "ccwindow"));
+	mainMenu->addItem(new CMenuForwarder("CWidget(CWindow)", true, NULL, this, "ccwindow"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(CTextBox)", true, NULL, this, "textboxwidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox)", true, NULL, this, "listboxmwidget"));
-	//mainMenu->addItem(new CMenuForwarder("CWidget(CFrameBox)", true, NULL, this, "singleWidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(CFrameBox)", true, NULL, this, "firetv"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox|CWindow)", true, NULL, this, "multiwidget"));
+	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox|CFrameBox)", true, NULL, this, "widget"));
 
 	//
 	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CMenuItem(ClistBox)"));

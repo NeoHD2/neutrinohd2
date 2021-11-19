@@ -61,29 +61,6 @@ CFrame::CFrame()
 	corner = NO_RADIUS;
 	gradient = NOGRADIENT;
 
-	// headFrame
-	/*
-	headColor = COL_MENUHEAD_PLUS_0;
-	headRadius = RADIUS_MID;
-	headCorner = CORNER_TOP;
-	headGradient = g_settings.Head_gradient;
-	paintDate = false;
-	logo = false;
-	hbutton_count	= 0;
-	hbutton_labels.clear();
-	*/
-
-	// footFrame
-	/*
-	footColor = COL_MENUFOOT_PLUS_0;
-	footRadius = RADIUS_MID;
-	footCorner = CORNER_BOTTOM;
-	footGradient = g_settings.Foot_gradient;
-	fbutton_count	= 0;
-	fbutton_labels.clear();
-	//fbutton_width = cFrameBox.iWidth;
-	*/
-
 	// init
 	window.setPosition(-1, -1, -1, -1);
 	
@@ -106,13 +83,6 @@ void CFrame::setMode(int m)
 		
 		setActive(false);
 	}
-	
-	/*
-	if ( (mode == FRAME_HEAD) || (mode == FRAME_FOOT) ) 
-	{
-		setActive(false);
-	}
-	*/
 }
 
 void CFrame::setActive(const bool Active)
@@ -170,41 +140,6 @@ void CFrame::setPlugin(const char * const pluginName)
 		}
 	}
 }
-
-/*
-void CFrame::setHeaderButtons(const struct button_label *_hbutton_labels, const int _hbutton_count)
-{
-	if (mode == FRAME_HEAD)
-	{
-		if (_hbutton_count)
-		{
-			for (unsigned int i = 0; i < _hbutton_count; i++)
-			{
-				hbutton_labels.push_back(_hbutton_labels[i]);
-			}
-		}
-
-		hbutton_count = hbutton_labels.size();
-	}
-}
-*/
-/*
-void CFrame::setFooterButtons(const struct button_label* _fbutton_labels, const int _fbutton_count)
-{
-	if (mode == FRAME_FOOT)
-	{
-		if (_fbutton_count)
-		{
-			for (unsigned int i = 0; i < _fbutton_count; i++)
-			{
-				fbutton_labels.push_back(_fbutton_labels[i]);
-			}
-		}
-
-		fbutton_count = fbutton_labels.size();	
-	}
-}
-*/
 
 int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 {
@@ -452,50 +387,9 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 			
 			captionFont->RenderString(window.getWindowsPos().iX + (window.getWindowsPos().iWidth - c_w)/2, window.getWindowsPos().iY + captionFont->getHeight() + (window.getWindowsPos().iHeight - captionFont->getHeight())/2, c_w, caption.c_str(), color);
 		}
-	}
-	/*
-	else if (mode == FRAME_HEAD)
-	{
-		CHeaders headers(window.getWindowsPos(), caption.c_str(), iconName.c_str());
-
-		headers.setColor(headColor);
-		headers.setCorner(headRadius, headCorner);
-		headers.setGradient(headGradient);
-		
-		if(paintDate)
-			headers.enablePaintDate();
-
-		if(logo)
-			headers.enableLogo();
-
-		for (int i = 0; i < hbutton_count; i++)
-		{			
-			headers.setButtons(&hbutton_labels[i]);
-		}
-
-		headers.paint();
-	}
-	*/
-	/*
-	else if ( mode == FRAME_FOOT)
-	{
-		CFooters footers(window.getWindowsPos());
-
-		footers.setColor(footColor);
-		footers.setCorner(footRadius, footCorner);
-		footers.setGradient(footGradient);
-
-		for (int i = 0; i < fbutton_count; i++)
-		{			
-			footers.setButtons(&fbutton_labels[i]);
-		}
-
-		footers.paint();
-	}
-	*/	
+	}	
 	else if (mode == FRAME_PIG)
 	{
-		//window.paint();
 		CFrameBuffer::getInstance()->paintBackgroundBoxRel(window.getWindowsPos().iX, window.getWindowsPos().iY, window.getWindowsPos().iWidth, window.getWindowsPos().iHeight);	
 		
 

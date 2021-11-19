@@ -47,8 +47,6 @@ enum {
 	FRAME_PLUGIN,
 	FRAME_HLINE,
 	FRAME_VLINE,
-	//FRAME_HEAD,
-	//FRAME_FOOT,
 	FRAME_PIG
 };
 
@@ -83,28 +81,6 @@ class CFrame
 		int radius;
 		int corner;
 		int gradient;
-
-		// head
-		/*
-		fb_pixel_t headColor;
-		int headRadius;
-		int headCorner;
-		int headGradient;
-		int hbutton_count;
-		button_label_list_t hbutton_labels;
-		bool paintDate;
-		bool logo;
-		*/
-
-		// foot
-		/*
-		fb_pixel_t footColor;
-		int footRadius;
-		int footCorner;
-		int footGradient;
-		int fbutton_count;
-		button_label_list_t fbutton_labels;
-		*/
 		
 		//
 		CFrameBox* parent;
@@ -152,24 +128,6 @@ class CFrame
 		virtual void setColor(fb_pixel_t col) {fcolor = col;};
 		virtual void setCorner(int ra, int co){radius = ra; corner = co;};
 		virtual void setGradient(int grad){gradient = grad;};
-
-		// headFrame
-		/*
-		void enablePaintDate(void){paintDate = true;};
-		void enableLogo(){logo = true;};
-		void setHeadColor(fb_pixel_t col) {headColor = col;};
-		void setHeadCorner(int ra, int co){headRadius = ra; headCorner = co;};
-		void setHeadGradient(int grad){headGradient = grad;};
-		void setHeaderButtons(const struct button_label *_hbutton_label, const int _hbutton_count = 1);
-		*/
-
-		// footFrame
-		/*
-		void setFootColor(fb_pixel_t col) {footColor = col;};
-		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};
-		void setFootGradient(int grad){footGradient = grad;};
-		void setFooterButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1);
-		*/
 		
 		//
 		virtual void setParent(CFrameBox* f_parent){parent = f_parent;};
