@@ -217,6 +217,7 @@ class CMenuItem
 		virtual void set2lines(void){nLinesItem = true;};
 		virtual void setWidgetType(int type){widgetType = type;};
 		virtual void setWidgetMode(int mode){widgetMode = mode;};
+		virtual void enableItemShadow(){itemShadow = true;};
 
 		//
 		virtual void setDirectKey(neutrino_msg_t key){directKey = key;};
@@ -224,8 +225,6 @@ class CMenuItem
 		
 		//
 		virtual void setParent(CWidgetItem* w_parent){parent = w_parent;};
-		
-		virtual void enableItemShadow(){itemShadow = true;};
 };
 
 // CMenuOptionChooser
@@ -524,7 +523,7 @@ class ClistBox : public CWidgetItem
 
 		// widget type
 		int widgetType;
-		int widgetMode;
+		//int widgetMode;
 		bool widgetChange;
 		std::vector<int> widget;
 		int cnt;
@@ -664,7 +663,7 @@ class ClistBox : public CWidgetItem
 		// widget type|mode
 		void setWidgetType(int type){widgetType = type; widget.push_back(widgetType);};
 		int getWidgetType(){return widgetType;};
-		void setWidgetMode(int mode){widgetMode = mode; if(widgetMode == MODE_SETUP) enableCenter = true;};
+		//void setWidgetMode(int mode){widgetMode = mode; if(widgetMode == MODE_SETUP) enableCenter = true;};
 		void enableWidgetChange(){widgetChange = true;};
 		void addWidget(int wtype){widget.push_back(wtype);};
 		void changeWidgetType(int cnt = 0);

@@ -3850,10 +3850,10 @@ void CTestMenu::testClistBox()
 
 	rightWidget = new ClistBox(&Box);
 	
-	CHintBox loadBox("ClistBox", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
-	loadBox.paint();
+	//CHintBox loadBox("ClistBox", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	//loadBox.paint();
 	loadMoviePlaylist();
-	loadBox.hide();
+	//loadBox.hide();
 
 	// load items
 	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
@@ -3884,7 +3884,7 @@ void CTestMenu::testClistBox()
 
 	// mode
 	rightWidget->setWidgetType(WIDGET_TYPE_STANDARD);
-	rightWidget->setWidgetMode(MODE_LISTBOX);
+	//rightWidget->setWidgetMode(MODE_LISTBOX);
 	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
@@ -4028,7 +4028,7 @@ void CTestMenu::testClistBox2()
 
 	// widgettype
 	rightWidget->setWidgetType(WIDGET_TYPE_CLASSIC);
-	rightWidget->setWidgetMode(MODE_LISTBOX);
+	//rightWidget->setWidgetMode(MODE_LISTBOX);
 	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
@@ -4161,8 +4161,6 @@ void CTestMenu::testClistBox3()
 
 		item->set2lines();
 
-		//std::string tmp = m_vMovieInfo[i].epgTitle;
-		//tmp += "\n";
 		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
@@ -4174,7 +4172,7 @@ void CTestMenu::testClistBox3()
 
 	// widgettype
 	rightWidget->setWidgetType(WIDGET_TYPE_EXTENDED);
-	rightWidget->setWidgetMode(MODE_LISTBOX);
+	//rightWidget->setWidgetMode(MODE_LISTBOX);
 	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
@@ -4303,8 +4301,6 @@ void CTestMenu::testClistBox4()
 
 		item->set2lines();
 
-		//std::string tmp = m_vMovieInfo[i].epgTitle;
-		//tmp += "\n";
 		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
@@ -4317,7 +4313,7 @@ void CTestMenu::testClistBox4()
 	// widgettype
 	rightWidget->setWidgetType(WIDGET_TYPE_FRAME);
 	rightWidget->setItemsPerPage(5,2);
-	rightWidget->setWidgetMode(MODE_LISTBOX);
+	//rightWidget->setWidgetMode(MODE_LISTBOX);
 	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
@@ -4400,10 +4396,10 @@ void CTestMenu::testClistBox4()
 	sec_timer_id = 0;
 }
 
-// ClistBox(mode menu)
+// ClistBox(DL_INFO)
 void CTestMenu::testClistBox5()
 {
-	dprintf(DEBUG_NORMAL, "\ntestClistBox(menu mode)\n");
+	dprintf(DEBUG_NORMAL, "\ntestClistBox(DL_INFO)\n");
 
 	CBox Box;
 	
@@ -4415,7 +4411,7 @@ void CTestMenu::testClistBox5()
 
 	rightWidget = new ClistBox(&Box);
 
-	CHintBox loadBox("ClistBox(menu mode)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("ClistBox(DL_INFO)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -4438,8 +4434,6 @@ void CTestMenu::testClistBox5()
 
 		item->set2lines();
 
-		//std::string tmp = m_vMovieInfo[i].epgTitle;
-		//tmp += "\n";
 		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
@@ -4451,17 +4445,21 @@ void CTestMenu::testClistBox5()
 
 	// mode
 	rightWidget->setWidgetType(WIDGET_TYPE_STANDARD);
-	rightWidget->setWidgetMode(MODE_MENU);
+	//rightWidget->setWidgetMode(MODE_MENU);
 	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
 	//
+	//
+	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
+	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
+	rightWidget->addWidget(WIDGET_TYPE_FRAME);
 	rightWidget->enableWidgetChange();
 
 	rightWidget->setItemsPerPage(5, 2);
 
 	// head
-	rightWidget->setTitle("ClistBox(menu mode)", NEUTRINO_ICON_MOVIE);
+	rightWidget->setTitle("ClistBox(DL_INFO)", NEUTRINO_ICON_MOVIE);
 	rightWidget->enablePaintHead();
 	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
@@ -4472,6 +4470,7 @@ void CTestMenu::testClistBox5()
 
 	// footinfo
 	rightWidget->enablePaintFootInfo(80);
+	rightWidget->setFootInfoMode(FOOT_INFO_MODE);
 
 	rightWidget->setSelected(selected);
 	rightWidget->paint();
@@ -4557,7 +4556,7 @@ void CTestMenu::testClistBox5()
 // ClistBox(listBox mode)
 void CTestMenu::testClistBox6()
 {
-	dprintf(DEBUG_NORMAL, "\ntestClistBox(listBox mode)\n");
+	dprintf(DEBUG_NORMAL, "\ntestClistBox(DL_HINT)\n");
 
 	CBox Box;
 	
@@ -4569,7 +4568,7 @@ void CTestMenu::testClistBox6()
 
 	rightWidget = new ClistBox(&Box);
 
-	CHintBox loadBox("ClistBox(list mode)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("ClistBox(DL_HINT)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -4592,20 +4591,20 @@ void CTestMenu::testClistBox6()
 
 		item->set2lines();
 
-		//std::string tmp = m_vMovieInfo[i].epgTitle;
-		//tmp += "\n";
 		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
 
 		item->setHint(tmp.c_str());
 		
+		item->setWidgetMode(MODE_MENU);
+		item->enableItemShadow();
+		
 		rightWidget->addItem(item);
 	}
 
 	// mode
 	rightWidget->setWidgetType(WIDGET_TYPE_STANDARD);
-	rightWidget->setWidgetMode(MODE_LISTBOX);
 	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
@@ -4618,7 +4617,7 @@ void CTestMenu::testClistBox6()
 	rightWidget->setItemsPerPage(5, 2);
 
 	// head
-	rightWidget->setTitle("ClistBox(listBox mode)", NEUTRINO_ICON_MOVIE);
+	rightWidget->setTitle("ClistBox(DL_HINT)", NEUTRINO_ICON_MOVIE);
 	rightWidget->enablePaintHead();
 	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
@@ -4629,6 +4628,9 @@ void CTestMenu::testClistBox6()
 
 	// footinfo
 	rightWidget->enablePaintFootInfo(80);
+	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
+	
+	rightWidget->enableItemShadow();
 
 	rightWidget->setSelected(selected);
 	rightWidget->paint();
@@ -5609,7 +5611,7 @@ void CTestMenu::testClistBoxWidget()
 	listMenu->addWidget(WIDGET_TYPE_FRAME);
 	listMenu->enableWidgetChange();
 	listMenu->setItemsPerPage(6, 2);
-	//listMenu->enableShrinkMenu();
+	listMenu->enableShrinkMenu();
 
 	listMenu->setSelected(selected);
 
@@ -5666,7 +5668,7 @@ void CTestMenu::testClistBoxWidget1()
 	listMenu->setWidgetMode(MODE_MENU);
 	listMenu->setItemsPerPage(6, 2);
 	listMenu->enableWidgetChange();
-	//listMenu->enableShrinkMenu();
+	listMenu->enableShrinkMenu();
 
 	listMenu->setSelected(selected);
 
@@ -7570,8 +7572,8 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("ClistBox(classic)", true, NULL, this, "listbox2"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(extended)", true, NULL, this, "listbox3"));
 	mainMenu->addItem(new CMenuForwarder("ClistBox(Frame)", true, NULL, this, "listbox4"));
-	mainMenu->addItem(new CMenuForwarder("ClistBox(menu mode)", true, NULL, this, "listbox5"));
-	mainMenu->addItem(new CMenuForwarder("ClistBox(listBox mode)", true, NULL, this, "listbox6"));
+	mainMenu->addItem(new CMenuForwarder("ClistBox(DL_INFO)", true, NULL, this, "listbox5"));
+	mainMenu->addItem(new CMenuForwarder("ClistBox(DL_HINT)", true, NULL, this, "listbox6"));
 	
 	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidgetItem (CFrameBox)"));
 	mainMenu->addItem(new CMenuForwarder("CFrameBox", true, NULL, this, "framebox"));
