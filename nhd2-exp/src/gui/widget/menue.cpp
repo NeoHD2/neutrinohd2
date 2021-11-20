@@ -410,9 +410,6 @@ void CMenuWidget::initFrames()
 			cFrameFootInfo.iWidth = full_width;
 		}
 	}
-	
-	//if(savescreen) 
-	//	saveScreen();
 }
 
 void CMenuWidget::paintHead()
@@ -1069,6 +1066,8 @@ void CMenuWidget::enableSaveScreen()
 		delete[] background;
 		background = NULL;
 	}
+	
+	saveScreen();
 }
 
 void CMenuWidget::hide()
@@ -1147,9 +1146,6 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 	//
 	paint();
 	CFrameBuffer::getInstance()->blit();
-	
-	if(savescreen) 
-		saveScreen();
 
 	// add sec timer
 	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);

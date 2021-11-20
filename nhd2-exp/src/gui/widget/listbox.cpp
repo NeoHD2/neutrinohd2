@@ -1663,147 +1663,54 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		// locale|option text
 		int l_text_width = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_text, true);
 
-		if(widgetType == WIDGET_TYPE_EXTENDED)
+		// local
+		if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)
+			l_text_width = dx - BORDER_LEFT - BORDER_RIGHT;
+
+		if(nLinesItem)
 		{
 			// local
-			if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)
-				l_text_width = dx - BORDER_LEFT - BORDER_RIGHT;
-
-			if(nLinesItem)
+			if(l_text != NULL)
 			{
-				// local
-				if(l_text != NULL)
-				{
 					nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
-				}
+			}
 
-				// option
-				if(option_text != NULL)
-				{
+			// option
+			if(option_text != NULL)
+			{
 					optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
-				}
-			}
-			else
-			{
-				// local
-				if(l_text != NULL)
-				{
-					nameFont->RenderString(x + BORDER_LEFT + icon_w/2 + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
-				}
-
-				// option
-				std::string Option;
-			
-				if(option_text != NULL)
-				{
-					int iw, ih;
-					//get icon size
-					frameBuffer->getIconSize(NEUTRINO_ICON_HD, &iw, &ih);
-
-					Option = " - ";
-					Option += option_text;
-
-					optionFont->RenderString(x + BORDER_LEFT + numwidth + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - optionFont->getHeight())/2 + optionFont->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, Option.c_str(), COL_COLORED_EVENTS_CHANNELLIST, 0, true);
-				}
 			}
 		}
-		else if (widgetType == WIDGET_TYPE_CLASSIC)
+		else
 		{
-			if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)
-				l_text_width = dx - BORDER_LEFT - BORDER_RIGHT;
-
-			if(nLinesItem)
+			// local
+			if(l_text != NULL)
 			{
-				// local
-				if(l_text != NULL)
-				{
-					nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + nameFont->getHeight() + (height - nameFont->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
-				}
-
-				// option
-				if(option_text != NULL)
-				{
-					optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + optionFont->getHeight() + height/2 + (height/2  - optionFont->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
-				}
+				nameFont->RenderString(x + BORDER_LEFT + icon_w/2 + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 			}
-			else
-			{
-				// locale
-				if(l_text != NULL)
-				{
-					nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + nameFont->getHeight() + (height - nameFont->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
-				}
 
-				// option
-				std::string Option;
+			// option
+			std::string Option;
 			
-				if(option_text != NULL)
-				{
-					int iw, ih;
-					//get icon size
-					frameBuffer->getIconSize(NEUTRINO_ICON_HD, &iw, &ih);
+			if(option_text != NULL)
+			{
+				int iw, ih;
+				//get icon size
+				frameBuffer->getIconSize(NEUTRINO_ICON_HD, &iw, &ih);
 
-					Option = " - ";
-					Option += option_text;
+				Option = " - ";
+				Option += option_text;
 
-					optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - optionFont->getHeight())/2 + optionFont->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, Option.c_str(), COL_COLORED_EVENTS_CHANNELLIST, 0, true);
-				}
+				optionFont->RenderString(x + BORDER_LEFT + numwidth + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - optionFont->getHeight())/2 + optionFont->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, Option.c_str(), COL_COLORED_EVENTS_CHANNELLIST, 0, true);
 			}
 		}
-		else if(widgetType == WIDGET_TYPE_STANDARD)// standard
-		{
-			//
-			if (nLinesItem)
-			{
-				if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)
-					l_text_width = dx - BORDER_LEFT - BORDER_RIGHT;
-
-				// local
-				if(l_text != NULL)
-				{
-					nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
-				}
-
-				// option
-				if(option_text != NULL)
-				{
-					optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
-				}
-			}
-			else
-			{
-				// locale
-				if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)
-					l_text_width = dx - BORDER_LEFT - BORDER_RIGHT;
-
-				if(l_text != NULL)
-				{
-					nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + (height - nameFont->getHeight())/2 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
-				}
-
-				// option
-				std::string Option;
-			
-				if(option_text != NULL)
-				{
-					int iw, ih;
-					//get icon size
-					frameBuffer->getIconSize(NEUTRINO_ICON_HD, &iw, &ih);
-
-					Option = " - ";
-					Option += option_text;
-
-					optionFont->RenderString(x + BORDER_LEFT + numwidth + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - optionFont->getHeight())/2 + optionFont->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, Option.c_str(), COL_COLORED_EVENTS_CHANNELLIST, 0, true);
-				}
-			}
-		}
-
+		
 		// vfd
 		if (selected)
 		{
 			CVFD::getInstance()->showMenuText(0, l_text, -1, true);
 		}
-	
+		
 		return y + height;
 	}
 }

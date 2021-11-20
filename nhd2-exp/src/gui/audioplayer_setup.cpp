@@ -115,7 +115,6 @@ void CAudioPlayerSettings::showMenu()
 	audioPlayerSettings.addItem(new CMenuForwarder(LOCALE_AUDIOPLAYER_DEFDIR, true, g_settings.network_nfs_audioplayerdir, this, "audioplayerdir", CRCInput::convertDigitToKey(shortcutAudioPlayer++)));
 	
 	audioPlayerSettings.exec(NULL, "");
-	audioPlayerSettings.hide();
 }
 
 

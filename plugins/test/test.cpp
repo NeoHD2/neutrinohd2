@@ -1749,10 +1749,10 @@ void CTestMenu::testListBoxWidget()
 	rightWidget = new ClistBox(&rightBox);
 
 	rightWidget->setWidgetType(WIDGET_TYPE_FRAME);
-	rightWidget->enableWidgetChange();
 	rightWidget->addWidget(WIDGET_TYPE_STANDARD);
 	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
 	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
+	rightWidget->enableWidgetChange();
 	rightWidget->enableShrinkMenu();
 	rightWidget->enableCenterPos();
 	rightWidget->setItemsPerPage(6,2);
@@ -1763,8 +1763,9 @@ void CTestMenu::testListBoxWidget()
 	rightWidget->enablePaintDate();
 	rightWidget->enablePaintFoot();
 	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	rightWidget->enablePaintFootInfo(); //FIXME:
+	rightWidget->enablePaintFootInfo();
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
+	rightWidget->enableItemShadow();
 
 	// loadPlaylist
 	CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
@@ -1789,8 +1790,6 @@ void CTestMenu::testListBoxWidget()
 
 		item->set2lines();
 
-		//std::string tmp = m_vMovieInfo[i].epgTitle;
-		//tmp += "\n";
 		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
 		tmp += m_vMovieInfo[i].epgInfo2;
