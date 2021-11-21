@@ -60,13 +60,8 @@ class CMenuWidget : public CMenuTarget
 	protected:
 		//
 		CFrameBuffer *frameBuffer;
-
+		
 		//
-		std::string nameString;
-		neutrino_locale_t name;
-		std::vector<CMenuItem*>	items;
-		std::vector<unsigned int> page_start;
-
 		int width;
 		int height;
 		int wanted_height;
@@ -75,64 +70,64 @@ class CMenuWidget : public CMenuTarget
 		int y;
 		int offx, offy;
 		int iconOffset;
-		unsigned int item_start_y;
-		unsigned int current_page;
-		unsigned int total_pages;
 
 		//
-		neutrino_msg_t      msg;
-		neutrino_msg_data_t data;
-		
-		int selected;
-		bool exit_pressed;
-		
-		fb_pixel_t * background;
-		int full_width;
-		int full_height;
-		bool savescreen;
+		std::vector<CMenuItem*> items;
 		
 		void Init(const std::string & Icon, const int mwidth, const int mheight);
 		virtual void paintItems();
 		
+		//
+		std::vector<unsigned int> page_start;
+		unsigned int item_start_y;
+		unsigned int current_page;
+		unsigned int total_pages;
+		int sb_width;
+		int items_height;
+		int items_width;
+		CScrollBar scrollBar;
+		
+		//
+		fb_pixel_t * background;
+		int full_width;
+		int full_height;
+		bool savescreen;
 		void saveScreen();
 		void restoreScreen();
 		
-		int hheight;
-		int fheight;
-		int item_height;
-		int item_width;
-		int sb_width;
-		
 		//
-		int items_height;
-		int items_width;
+		neutrino_msg_t      msg;
+		neutrino_msg_data_t data;
+		int selected;
+		bool exit_pressed;
 
-		// foot buttons
-		int fbutton_count;
-		int fbutton_width;
-		button_label_list_t fbutton_labels;
-
-		// head buttons
-		int hbutton_count;
-		button_label_list_t hbutton_labels;
-
-		//
 		struct keyAction { 
 			std::string action; 
 			CMenuTarget *menue; 
 		};
 		std::map<neutrino_msg_t, keyAction> keyActionMap;
 
-		//
-		bool PaintDate;
-		int timestr_len;
 		uint32_t sec_timer_id;
+		unsigned long long int timeout;
 
 		// head
-		int icon_head_w;
-		int icon_head_h;
+		int hheight;
+		std::string nameString;
+		neutrino_locale_t name;
+		//int icon_head_w;
+		//int icon_head_h;
 		std::string l_name;
 		std::string iconfile;
+		int hbutton_count;
+		button_label_list_t hbutton_labels;
+		bool PaintDate;
+		int timestr_len;
+		
+		// foot
+		int fheight;
+		int fbutton_count;
+		int fbutton_width;
+		button_label_list_t fbutton_labels;
 
 		// itemInfo
 		bool paintFootInfo;
@@ -140,35 +135,30 @@ class CMenuWidget : public CMenuTarget
 		int footInfoHeight;
 		int connectLineWidth;
 		int footInfoMode;
+		CItems2DetailsLine itemsLine;
 		
 		// extended
 		CTextBox * textBox;
-
-		//
-		unsigned long long int timeout;
-
-		//
-		int widgetType;
-		bool widgetChange;
-		std::vector<int> widget;
-
+		
 		// frame
 		int itemsPerX;
 		int itemsPerY;
 		int maxItemsPerPage;
+		int item_height;
+		int item_width;
 
-		bool shrinkMenu;
+		// widgettype
+		int widgetType;
+		bool widgetChange;
+		std::vector<int> widget;
 
 		//
-		CItems2DetailsLine itemsLine;
-		CScrollBar scrollBar;
-		CButtons buttons;
-
+		bool shrinkMenu;
 		int widgetMode;
 		bool MenuPos;
-		
 		bool itemShadow;
 
+		// for lua
 		std::string actionKey;
 			
 	public:

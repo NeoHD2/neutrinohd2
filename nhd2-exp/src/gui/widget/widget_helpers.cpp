@@ -720,13 +720,13 @@ void CHeaders::paint()
 
 		// limit icon height
 		if(i_h >= itemBox.iHeight)
-			i_h = itemBox.iHeight - 2;
+			i_h = itemBox.iHeight;
 
 		if(logo)
 		{
 			i_w = i_h*1.67;
 
-			CFrameBuffer::getInstance()->paintIcon(hicon, itemBox.iX + BORDER_LEFT, itemBox.iY + (itemBox.iHeight - i_h)/2, 0, true, i_w, i_h);
+			CFrameBuffer::getInstance()->paintIcon(hicon, itemBox.iX + BORDER_LEFT, itemBox.iY + (itemBox.iHeight - i_h)/2, itemBox.iHeight, true, i_w, i_h);
 		}
 		else
 			CFrameBuffer::getInstance()->paintIcon(hicon, itemBox.iX + BORDER_LEFT, itemBox.iY + (itemBox.iHeight - i_h)/2);

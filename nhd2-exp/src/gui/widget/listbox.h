@@ -523,7 +523,6 @@ class ClistBox : public CWidgetItem
 
 		// widget type
 		int widgetType;
-		//int widgetMode;
 		bool widgetChange;
 		std::vector<int> widget;
 		int cnt;
@@ -660,10 +659,9 @@ class ClistBox : public CWidgetItem
 		int getItemsPerY()const{return itemsPerY;};
 		int getMaxItemsPerPage()const{return maxItemsPerPage;};
 
-		// widget type|mode
+		// widget type
 		void setWidgetType(int type){widgetType = type; widget.push_back(widgetType);};
 		int getWidgetType(){return widgetType;};
-		//void setWidgetMode(int mode){widgetMode = mode; if(widgetMode == MODE_SETUP) enableCenter = true;};
 		void enableWidgetChange(){widgetChange = true;};
 		void addWidget(int wtype){widget.push_back(wtype);};
 		void changeWidgetType(int cnt = 0);
@@ -680,7 +678,7 @@ class ClistBox : public CWidgetItem
 		std::string getName(){return l_name;};
 		std::string getActionKey(void){return actionKey;};
 		
-		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
+		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, CWidgetItem* parent = NULL, const unsigned int shortcut = RC_nokey, bool enabled = true);
 		
 		void enableMenuPosition(){MenuPos = true;};
 		

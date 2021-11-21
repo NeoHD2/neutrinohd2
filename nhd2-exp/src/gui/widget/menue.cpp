@@ -277,10 +277,11 @@ void CMenuWidget::initFrames()
 		full_height = height;
 
 		//head height
-		icon_head_w = 0;
-		icon_head_h = 0;
-		frameBuffer->getIconSize(iconfile.c_str(), &icon_head_w, &icon_head_h);
-		hheight = std::max(icon_head_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight()) + 6;
+		//icon_head_w = 0;
+		//icon_head_h = 0;
+		//frameBuffer->getIconSize(iconfile.c_str(), &icon_head_w, &icon_head_h);
+		//hheight = std::max(icon_head_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight()) + 6;
+		hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 	
 		// foot height
 		if (fbutton_count)
@@ -316,16 +317,18 @@ void CMenuWidget::initFrames()
 		}
 
 		// head height
-		icon_head_w = 0;
-		icon_head_h = 0;
-		frameBuffer->getIconSize(iconfile.c_str(), &icon_head_w, &icon_head_h);
-		hheight = std::max(icon_head_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight()) + 6;
+		//icon_head_w = 0;
+		//icon_head_h = 0;
+		//frameBuffer->getIconSize(iconfile.c_str(), &icon_head_w, &icon_head_h);
+		//hheight = std::max(icon_head_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight()) + 6;
+		hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 	
 		// foot height
-		int icon_foot_w = 0;
-		int icon_foot_h = 0;
-		frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &icon_foot_w, &icon_foot_h);
-		fheight = std::max(icon_foot_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight()) + 6;
+		//int icon_foot_w = 0;
+		//int icon_foot_h = 0;
+		//frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &icon_foot_w, &icon_foot_h);
+		//fheight = std::max(icon_foot_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight()) + 6;
+		fheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 
 		// calculate some values
 		int itemHeightTotal = 0;
@@ -403,13 +406,16 @@ void CMenuWidget::initFrames()
 		}
 
 		// re-set FrameFootInfo position
-		if(paintFootInfo /*&& (widgetType == WIDGET_TYPE_STANDARD || (widgetType == WIDGET_TYPE_CLASSIC ))*/)
+		if(paintFootInfo)
 		{
 			cFrameFootInfo.iX = x;
 			cFrameFootInfo.iY = y + full_height - cFrameFootInfo.iHeight;
 			cFrameFootInfo.iWidth = full_width;
 		}
 	}
+	
+	if(savescreen)
+		saveScreen();
 }
 
 void CMenuWidget::paintHead()
@@ -421,9 +427,19 @@ void CMenuWidget::paintHead()
 
 		// paint horizontal line top
 		frameBuffer->paintHLineRel(x + BORDER_LEFT, full_width - BORDER_LEFT - BORDER_RIGHT, y + hheight - 2, COL_MENUCONTENT_PLUS_5);
+		
+		// icon
+		int i_w = 0;
+		int i_h = 0;
+
+		frameBuffer->getIconSize(iconfile.c_str(), &i_w, &i_h);
+			
+		// limit icon height
+		if(i_h >= hheight)
+			i_h = hheight;
 
 		// left icon
-		frameBuffer->paintIcon(iconfile, x + BORDER_LEFT, y + (hheight - icon_head_h)/2);
+		frameBuffer->paintIcon(iconfile, x + BORDER_LEFT, y + (hheight - i_h)/2);
 
 		// Buttons
 		int iw[hbutton_count], ih[hbutton_count];
@@ -456,7 +472,7 @@ void CMenuWidget::paintHead()
 		}
 
 		// title
-		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT + icon_head_w + ICON_OFFSET, y + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - icon_head_w - 2*ICON_OFFSET - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET - timestr_len, l_name.c_str(), COL_MENUHEAD);
+		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT + i_w + ICON_OFFSET, y + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - i_w - 2*ICON_OFFSET - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET - timestr_len, l_name.c_str(), COL_MENUHEAD);
 	}
 	else
 	{
@@ -464,7 +480,16 @@ void CMenuWidget::paintHead()
 		frameBuffer->paintBoxRel(x, y, full_width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
 	
 		//paint icon (left)
-		frameBuffer->paintIcon(iconfile, x + BORDER_LEFT, y + (hheight - icon_head_h)/2);
+		int i_w = 0;
+		int i_h = 0;
+			
+		frameBuffer->getIconSize(iconfile.c_str(), &i_w, &i_h);
+			
+		// limit icon height
+		if(i_h >= hheight)
+			i_h = hheight;
+				
+		frameBuffer->paintIcon(iconfile, x + BORDER_LEFT, y + (hheight - i_h)/2);
 
 		// Buttons
 		int iw[hbutton_count], ih[hbutton_count];
@@ -497,7 +522,7 @@ void CMenuWidget::paintHead()
 		}
 	
 		// head title
-		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT + icon_head_w + 2*ICON_OFFSET, y + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), width - BORDER_RIGHT - BORDER_RIGHT - icon_head_w - 2*ICON_OFFSET - timestr_len - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET, l_name.c_str(), COL_MENUHEAD, 0, true); // UTF-8
+		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT + i_w + 2*ICON_OFFSET, y + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), width - BORDER_RIGHT - BORDER_RIGHT - i_w - 2*ICON_OFFSET - timestr_len - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET, l_name.c_str(), COL_MENUHEAD, 0, true); // UTF-8
 	}
 }
 
@@ -792,6 +817,11 @@ void CMenuWidget::paintItemInfo(int pos)
 					// info icon
 					int iw, ih;
 					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
+					
+					// limit icon height
+					if(ih >= fheight)
+						ih = fheight;
+				
 					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + full_height - fheight + (fheight - ih)/2);
 
 					// Hint
@@ -849,6 +879,11 @@ void CMenuWidget::paintItemInfo(int pos)
 					// info icon
 					int iw, ih;
 					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
+					
+					// limit icon height
+					if(ih >= fheight)
+						ih = fheight;
+						
 					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + full_height - fheight + (fheight - ih)/2);
 
 					// Hint
@@ -907,6 +942,11 @@ void CMenuWidget::paintItemInfo(int pos)
 
 					// info icon
 					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
+					
+					// limit icon height
+					if(ih >= fheight)
+						ih = fheight;
+						
 					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + full_height - fheight + (fheight - ih)/2);
 
 					// itemHint
@@ -1066,8 +1106,6 @@ void CMenuWidget::enableSaveScreen()
 		delete[] background;
 		background = NULL;
 	}
-	
-	saveScreen();
 }
 
 void CMenuWidget::hide()
@@ -1145,6 +1183,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 
 	//
 	paint();
+		
 	CFrameBuffer::getInstance()->blit();
 
 	// add sec timer

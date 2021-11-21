@@ -95,6 +95,9 @@ void CWindow::init()
 		itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - itemBox.iHeight) >> 1 );
 	}
 	
+	if(savescreen) 
+		saveScreen();
+	
 	//
 	itemType = WIDGET_ITEM_WINDOW;
 }
@@ -167,9 +170,6 @@ void CWindow::setPosition(CBox* position)
 void CWindow::paint()
 {
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
-	
-	if(savescreen) 
-		saveScreen();
 
 	if(enableshadow)
 	{

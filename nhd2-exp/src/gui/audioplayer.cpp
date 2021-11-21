@@ -516,7 +516,7 @@ void CAudioPlayerGui::paintInfo(CAudiofile& File)
 	int w_time = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("00:00 / 00:00");
 
 	w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(tmp, true); // UTF-8
-	xstart = (cFrameBox.iWidth - w - w_time)/2;
+	xstart = (cFrameBox.iWidth - w)/2;
 	if(xstart < (BORDER_LEFT + 1*cFrameBox.iHeight + ICON_OFFSET))
 		xstart = BORDER_LEFT + 1*cFrameBox.iHeight + ICON_OFFSET;
 	

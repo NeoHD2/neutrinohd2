@@ -1050,9 +1050,9 @@ void CTestMenu::testWindowWidget()
 	// label
 	CLabel testLabel;
 	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
-	testLabel.setColor(COL_GREEN0);
+	testLabel.setColor(COL_ORANGE0);
 	testLabel.enablePaintBG();
-	testLabel.setText("this is a CComponet label test :-)");
+	testLabel.setText("this is a CComponent label test :-)");
 	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
 	
 	windowWidget->addCCItem(&testLabel);
@@ -1084,18 +1084,6 @@ void CTestMenu::testWindowWidget()
 	
 	windowWidget->addCCItem(&testFrameLine);
 	
-	// DL
-	CItems2DetailsLine testDline;
-	
-	testDline.disablePaintLines();
-	
-	// pb
-	CProgressBar testPB(40, 100, 70, true);
-	testPB.setPosition(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, Box.iWidth /3, 10);
-	
-	// sb
-	CScrollBar testSB;
-	
 	// text
 	CText testText;
 	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20 - testImage.iWidth - 50, Box.iHeight/4);
@@ -1103,11 +1091,6 @@ void CTestMenu::testWindowWidget()
 	testText.setText(buffer.c_str());
 	
 	windowWidget->addCCItem(&testText);
-	
-	CText testText2;
-	testText2.setPosition(Box.iX + 10, Box.iY + Box.iHeight + 2, Box.iWidth - 20, 64);
-	testText2.setMode(AUTO_WIDTH);
-	testText2.setText(buffer.c_str());
 
 	// grid
 	CGrid testGrid;
@@ -1121,9 +1104,6 @@ void CTestMenu::testWindowWidget()
 	testPig.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20 + 200 + 10, Box.iY + 100, 300, 160);
 	
 	windowWidget->addCCItem(&testPig);
-	
-	// time
-	// slider
 	
 	testWidget = new CWidget();
 	testWidget->addItem(windowWidget);
@@ -1753,7 +1733,7 @@ void CTestMenu::testListBoxWidget()
 	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
 	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
 	rightWidget->enableWidgetChange();
-	rightWidget->enableShrinkMenu();
+	//rightWidget->enableShrinkMenu();
 	rightWidget->enableCenterPos();
 	rightWidget->setItemsPerPage(6,2);
 	rightWidget->setSelected(selected);
@@ -1943,7 +1923,7 @@ void CTestMenu::testMultiWidget()
 	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
 	testLabel.setColor(COL_GREEN0);
 	testLabel.enablePaintBG();
-	testLabel.setText("this is a CComponet label test :-)");
+	testLabel.setText("this is a CComponent label test :-)");
 	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
 	
 	windowWidget->addCCItem(&testLabel);
@@ -2847,6 +2827,9 @@ void CTestMenu::testCComponent()
 	// DL
 	CItems2DetailsLine testDline;
 	testDline.disablePaintLines();
+	testDline.setMode(DL_HINT);
+	testDline.setHint(buffer.c_str());
+	testDline.setIcon(m_vMovieInfo[0].tfile.c_str());
 	
 	// pb
 	CProgressBar testPB(40, 100, 70, true);
@@ -2862,13 +2845,6 @@ void CTestMenu::testCComponent()
 	testText.setText(buffer.c_str());
 	
 	testWindow.addCCItem(&testText);
-	
-	CText testText2;
-	testText2.setPosition(Box.iX + 10, Box.iY + Box.iHeight + 2, Box.iWidth - 20, 64);
-	testText2.setMode(AUTO_WIDTH);
-	testText2.setText(buffer.c_str());
-	
-	testWindow.addCCItem(&testText2);
 
 	// grid
 	CGrid testGrid;
@@ -2891,21 +2867,10 @@ REPAINT:
 	testWindow.paint();
 	head.paint();
 	foot.paint();
-	//testIcon.paint();
-	//testImage.paint();
-	//testLabel.paint();
-	//testButton.paint();
-	//testHline.paint();
-	//testVline.paint();
-	//testFrameLine.paint();
 	testDline.paint(Box.iX, Box.iY, Box.iWidth, Box.iHeight, 70, 35, Box.iY + 2*35);
 	testPB.paintPCR(pcr);
 	testPB.paint();
 	testSB.paint(Box.iX + Box.iWidth - 15, Box.iY + 40, Box.iHeight - 80, NrOfPages, currentPage);
-	//testText.paint();
-	testText2.paint();
-	//testGrid.paint();
-	//testPig.paint();
 	
 	CFrameBuffer::getInstance()->blit();
 	
@@ -3078,7 +3043,7 @@ void CTestMenu::testCWindowCustomColor()
 	//
 	CWindow* window = new CWindow(&Box);
 
-	window->setColor(COL_DARK_GREEN);
+	window->setColor(COL_ORANGE);
 	window->setCorner(RADIUS_MID, CORNER_ALL);
 	window->enableShadow();
 	window->enableSaveScreen();
