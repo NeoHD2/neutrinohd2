@@ -489,12 +489,12 @@ function testClistBox()
 	
 	local m = neutrino.CWidget()
 
+	m:addItem(listBox)
 	m:addKey(neutrino.RC_info)
 
 	ret = m:exec(null, "")
 	
 	local selected = listBox:getSelected()
-	--local key = listBox:getKey()
 	local actionKey = listBox:getActionKey()
 		
 	exec(selected, key, actionKey)

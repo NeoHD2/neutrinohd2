@@ -1797,7 +1797,6 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
-	//widgetMode = MODE_LISTBOX;
 	widgetChange = false;
 	cnt = 0;
 
@@ -1895,7 +1894,6 @@ ClistBox::ClistBox(CBox* position)
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
-	//widgetMode = MODE_LISTBOX;
 	widgetChange = false;
 	cnt = 0;
 
@@ -2028,7 +2026,7 @@ void ClistBox::initFrames()
 		// footInfoBox
 		if(paintFootInfo)
 		{
-			if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC /*&& widgetMode == MODE_LISTBOX*/) )
+			if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC) )
 			{
 				cFrameFootInfo.iHeight = footInfoHeight;
 				connectLineWidth = CONNECTLINEBOX_WIDTH;
@@ -2053,14 +2051,14 @@ void ClistBox::initFrames()
 			if((heightCurrPage + hheight + fheight + cFrameFootInfo.iHeight) > cFrameBox.iHeight)
 			{
 				page_start.push_back(i);
-				//heightFirstPage = heightCurrPage - item_height;
-				heightFirstPage = std::max(heightCurrPage - item_height, heightFirstPage);//TEST
+				heightFirstPage = heightCurrPage - item_height;
+				//heightFirstPage = std::max(heightCurrPage - item_height, heightFirstPage);//TEST
 				total_pages++;
 				heightCurrPage = item_height;
 			}
 		}
 
-		heightFirstPage = std::max(heightCurrPage, heightFirstPage); //TEST
+		//heightFirstPage = std::max(heightCurrPage, heightFirstPage); //TEST
 		page_start.push_back(items.size());
 
 		// icon offset
@@ -2083,7 +2081,7 @@ void ClistBox::initFrames()
 		}
 		
 		//
-		full_height = cFrameBox.iHeight; 
+		//full_height = cFrameBox.iHeight;  //FIXME:
 
 		// sanity check
 		if(cFrameBox.iHeight > ((int)frameBuffer->getScreenHeight()))
@@ -2531,7 +2529,7 @@ void ClistBox::setFooterButtons(const struct button_label* _fbutton_labels, cons
 
 void ClistBox::paintItemInfo(int pos)
 {
-	dprintf(DEBUG_INFO, "ClistBox::paintItemInfo:\n");
+	dprintf(DEBUG_NORMAL, "ClistBox::paintItemInfo:\n"); //FIXME:
 	
 	if(widgetType == WIDGET_TYPE_STANDARD)
 	{

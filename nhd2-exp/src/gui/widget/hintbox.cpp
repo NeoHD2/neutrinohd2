@@ -221,7 +221,7 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 
 CHintBox::~CHintBox(void)
 {
-	dprintf(DEBUG_NORMAL, "CHintBox::del: %s\n", caption.c_str());
+	dprintf(DEBUG_NORMAL, "CHintBox::del: (%s)\n", caption.c_str());
 
 	free(message);
 	//hide();
@@ -229,7 +229,7 @@ CHintBox::~CHintBox(void)
 
 void CHintBox::paint(void)
 {
-	dprintf(DEBUG_NORMAL, "CHintBox::paint: %s\n", caption.c_str());
+	dprintf(DEBUG_NORMAL, "CHintBox::paint: (%s)\n", caption.c_str());
 
 	refresh();
 	
@@ -293,7 +293,7 @@ void CHintBox::scroll_down(void)
 
 void CHintBox::hide(void)
 {
-	dprintf(DEBUG_NORMAL, "CHintBox::hide: %s\n", caption.c_str());
+	dprintf(DEBUG_NORMAL, "CHintBox::hide: (%s)\n", caption.c_str());
 
 	m_cBoxWindow->hide();
 
