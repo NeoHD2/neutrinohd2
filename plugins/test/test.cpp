@@ -1838,10 +1838,10 @@ void CTestMenu::testMultiWidget()
 	leftWidget = new ClistBox(&leftBox);
 
 	leftWidget->enableItemShadow();
-	leftWidget->enablePaintHead();
-	leftWidget->setTitle("leftWidget", NEUTRINO_ICON_MOVIE);
-	leftWidget->setHeadGradient(NOGRADIENT);
-	leftWidget->setHeadCorner(NO_RADIUS, CORNER_NONE);
+	//leftWidget->enablePaintHead();
+	//leftWidget->setTitle("leftWidget", NEUTRINO_ICON_MOVIE);
+	//leftWidget->setHeadGradient(NOGRADIENT);
+	//leftWidget->setHeadCorner(NO_RADIUS, CORNER_NONE);
 	leftWidget->setSelected(left_selected);
 	//leftWidget->setOutFocus();
 
@@ -1896,13 +1896,6 @@ void CTestMenu::testMultiWidget()
 	// CWindow
 	windowWidget = new CWindow(&Box);
 	windowWidget->setColor(COL_MENUCONTENT_PLUS_0);
-	//windowWidget->setCorner(RADIUS_MID, CORNER_ALL);
-	
-	// heades
-	CHeaders* head = new CHeaders(Box.iX, Box.iY, Box.iWidth, 40, "CComponents", NEUTRINO_ICON_COLORS);
-	head->enablePaintDate();
-	head->setGradient(NOGRADIENT);
-	head->setCorner(NO_RADIUS, CORNER_NONE);
 	
 	// icon
 	CIcon testIcon;
@@ -1955,18 +1948,6 @@ void CTestMenu::testMultiWidget()
 	
 	windowWidget->addCCItem(&testFrameLine);
 	
-	// DL
-	CItems2DetailsLine testDline;
-	
-	testDline.disablePaintLines();
-	
-	// pb
-	CProgressBar testPB(40, 100, 70, true);
-	testPB.setPosition(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, Box.iWidth /3, 10);
-	
-	// sb
-	CScrollBar testSB;
-	
 	// text
 	CText testText;
 	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20 - testImage.iWidth - 50, Box.iHeight/4);
@@ -1974,11 +1955,6 @@ void CTestMenu::testMultiWidget()
 	testText.setText(buffer.c_str());
 	
 	windowWidget->addCCItem(&testText);
-	
-	CText testText2;
-	testText2.setPosition(Box.iX + 10, Box.iY + Box.iHeight + 2, Box.iWidth - 20, 64);
-	testText2.setMode(AUTO_WIDTH);
-	testText2.setText(buffer.c_str());
 
 	// grid
 	CGrid testGrid;
@@ -1999,7 +1975,6 @@ void CTestMenu::testMultiWidget()
 	testWidget->addItem(footers);
 	testWidget->addItem(leftWidget);
 	testWidget->addItem(windowWidget);
-	testWidget->addItem(head);
 	
 	testWidget->exec(NULL, "");
 	
@@ -4690,7 +4665,6 @@ void CTestMenu::testCFrameBox()
 	topBox.iY = g_settings.screen_StartY + 10;
 
 	frameBoxWidget = new CFrameBox(&topBox);
-	frameBoxWidget->enablePaintShadow();
 	frameBoxWidget->enableSaveScreen();
 	frameBoxWidget->setColor(/*COL_DARK_BLUE*/0);
 

@@ -583,9 +583,11 @@ class ClistBox : public CWidgetItem
 		
 		//
 		bool paintFrame;
+		fb_pixel_t bgcolor;
+		int radius;
+		int corner;
 		
 		//
-		bool painted;
 		bool MenuPos;
 		
 		//
@@ -633,7 +635,10 @@ class ClistBox : public CWidgetItem
 		void enableCenterPos(){enableCenter = true;};
 		void enableShrinkMenu(){shrinkMenu = true;};
 		
+		//
 		void disablePaintFrame(void){paintFrame = false;};
+		void setColor(fb_pixel_t col){bgcolor = col;};
+		void setCorner(int ra, int co){radius = ra; corner = co;};
 
 		virtual void scrollLineDown(const int lines = 1);
 		virtual void scrollLineUp(const int lines = 1);
@@ -683,7 +688,7 @@ class ClistBox : public CWidgetItem
 		void enableMenuPosition(){MenuPos = true;};
 		
 		//
-		inline bool isPainted(void){return painted;};
+		//inline bool isPainted(void){return painted;};
 		
 		void enableItemShadow(){itemShadow = true;};
 };

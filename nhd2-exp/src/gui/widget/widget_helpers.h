@@ -467,6 +467,9 @@ class CWidgetItem
 		bool paintDate;
 		std::string actionKey;
 		
+		//
+		bool painted;
+		
 		CWidget* parent;
 
 		CWidgetItem(){inFocus = true; actionKey = ""; parent = NULL;};
@@ -475,8 +478,8 @@ class CWidgetItem
 		virtual bool isSelectable(void){return false;}
 		virtual bool hasItem(){return false;};
 
-		virtual void paint(){};
-		virtual void hide(){};
+		virtual void paint(){painted = true;};
+		virtual void hide(){painted = false;};
 
 		virtual void scrollLineDown(const int lines = 1){};
 		virtual void scrollLineUp(const int lines = 1){};
@@ -501,6 +504,8 @@ class CWidgetItem
 		
 		//
 		virtual void setParent(CWidget* w_parent){parent = w_parent;};
+		
+		inline bool isPainted(void){return painted;};
 };
 
 // CHeaders

@@ -109,13 +109,12 @@ class CMenuWidget : public CMenuTarget
 
 		uint32_t sec_timer_id;
 		unsigned long long int timeout;
+		int sec_timer_interval;
 
 		// head
 		int hheight;
 		std::string nameString;
 		neutrino_locale_t name;
-		//int icon_head_w;
-		//int icon_head_h;
 		std::string l_name;
 		std::string iconfile;
 		int hbutton_count;
@@ -197,6 +196,8 @@ class CMenuWidget : public CMenuTarget
 		int getWidth(void) const {return width;};
 		int getX(void) const {return x;};
 		int getY(void) const {return y;};
+		
+		//
 		bool getExitPressed(){return exit_pressed;};
 		
 		//
@@ -220,6 +221,7 @@ class CMenuWidget : public CMenuTarget
 		void setFootInfoMode(int mode = FOOT_INFO_MODE){footInfoMode = mode;};
 
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
+		void setSecTimerInterval(int interval){sec_timer_interval = interval;};
 
 		//
 		void setWidgetType(int type){widgetType = type; widget.push_back(widgetType);};

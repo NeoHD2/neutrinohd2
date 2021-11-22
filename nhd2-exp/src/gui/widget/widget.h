@@ -72,6 +72,7 @@ class CWidget : public CMenuTarget
 		std::map<neutrino_msg_t, keyAction> keyActionMap;
 		unsigned long long int timeout;
 		uint32_t sec_timer_id;
+		int sec_timer_interval;
 		std::string actionKey;
 		
 		// screen
@@ -107,6 +108,7 @@ class CWidget : public CMenuTarget
 		void enableCenterPos(){enableCenter = true;};
 
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
+		void setSecTimerInterval(int interval){sec_timer_interval = interval;};
 
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 		neutrino_msg_t getKey(){return msg;};

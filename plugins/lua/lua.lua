@@ -234,7 +234,7 @@ function testCWidget()
 	listBox:enableCenterPos()
 	listBox:enableShrinkMenu()
 
-	listBox:setWidgetMode(neutrino.MODE_LISTBOX)
+	--listBox:setWidgetMode(neutrino.MODE_LISTBOX)
 	listBox:setWidgetType(neutrino.WIDGET_TYPE_CLASSIC)
 
 	-- CMessageBox
@@ -486,18 +486,20 @@ function testClistBox()
 	listBox:addItem(item6)
 	listBox:addItem(item7)
 	listBox:addItem(item8)
+	
+	local m = neutrino.CWidget()
 
-	listBox:addKey(neutrino.RC_info)
+	m:addKey(neutrino.RC_info)
 
-	ret = listBox:exec(null, "")
+	ret = m:exec(null, "")
 	
 	local selected = listBox:getSelected()
-	local key = listBox:getKey()
+	--local key = listBox:getKey()
 	local actionKey = listBox:getActionKey()
 		
 	exec(selected, key, actionKey)
 	
-	if listBox:getExitPressed() ~= true then
+	if m:getExitPressed() ~= true then
 		testClistBox()
 	end
 

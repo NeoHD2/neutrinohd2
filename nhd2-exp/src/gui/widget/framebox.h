@@ -138,7 +138,7 @@ class CFrameBox : public CWidgetItem
 {
 	private:
 		CFrameBuffer* frameBuffer;
-		CWindow cFrameWindow;
+		//CWindow cFrameWindow;
 		int selected;
 		int pos;
 
@@ -153,8 +153,14 @@ class CFrameBox : public CWidgetItem
 		fb_pixel_t bgcolor;
 		int radius;
 		int corner;
-		bool shadow;
-		bool screen;
+		//bool shadow;
+		
+		//
+		//bool screen;
+		fb_pixel_t * background;
+		bool savescreen;
+		void saveScreen();
+		void restoreScreen();
 		
 		// head
 		std::string iconfile;
@@ -215,8 +221,10 @@ class CFrameBox : public CWidgetItem
 		void disablePaintFrame(void){paintFrame = false;};
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
-		void enablePaintShadow(void){shadow = true;};
-		void enableSaveScreen(void){screen = true;};
+		//void enablePaintShadow(void){shadow = true;};
+		
+		//
+		void enableSaveScreen();
 
 		//
 		bool isSelectable(void);

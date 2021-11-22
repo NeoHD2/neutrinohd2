@@ -439,10 +439,12 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 	
 	//
 	bgcolor = COL_MENUCONTENT_PLUS_0;
-	radius = RADIUS_MID;
-	corner = NO_RADIUS;
-	shadow = false;
-	screen = false;
+	radius = NO_RADIUS;
+	corner = CORNER_NONE;
+	
+	//
+	savescreen = false;
+	background = NULL;
 	
 	// head
 	paintTitle = false;
@@ -487,10 +489,12 @@ CFrameBox::CFrameBox(CBox* position)
 	
 	//
 	bgcolor = COL_MENUCONTENT_PLUS_0;
-	radius = RADIUS_MID;
-	corner = NO_RADIUS;
-	shadow = false;
-	screen = false;
+	radius = NO_RADIUS;
+	corner = CORNER_NONE;
+	
+	//
+	savescreen = false;
+	background = NULL;
 	
 	// head
 	paintTitle = false;
@@ -538,7 +542,7 @@ void CFrameBox::initFrames()
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::initFrames:\n");
 	
-	cFrameWindow.setPosition(&itemBox);
+	//cFrameWindow.setPosition(&itemBox);
 	
 	// head
 	if(paintTitle)
@@ -551,6 +555,9 @@ void CFrameBox::initFrames()
 	{
 		fheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 	}
+	
+	if(savescreen) 
+		saveScreen();
 }
 
 void CFrameBox::paintFrames()
@@ -569,10 +576,7 @@ void CFrameBox::paintFrames()
 			selected = count;
 		} 
 
-		//if(inFocus)
-			frame->paint( selected == ((signed int) count));
-		//else
-		//	frame->paint(false);
+		frame->paint( selected == ((signed int) count));
 	}
 }
 
@@ -586,22 +590,70 @@ void CFrameBox::paint()
 	//
 	if (paintFrame)
 	{
+/*	
 		cFrameWindow.setColor(bgcolor);
 		cFrameWindow.setCorner(radius, corner);
 		
 		if (shadow)
 			cFrameWindow.enableShadow();
 			
-		if (screen)
-			cFrameWindow.enableSaveScreen();
+		//if (screen)
+		//	cFrameWindow.enableSaveScreen();
 
 		cFrameWindow.paint();
+*/
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, NOGRADIENT);		
 	}
 
 	paintFrames();
 	
 	paintHead();
 	paintFoot();
+}
+
+void CFrameBox::saveScreen()
+{
+	dprintf(DEBUG_NORMAL, "CFrameBox::saveScreen:\n");
+	
+	if(!savescreen)
+		return;
+
+	if(background)
+	{
+		delete[] background;
+		background = NULL;
+	}
+
+	background = new fb_pixel_t[itemBox.iWidth*itemBox.iHeight];
+	
+	if(background)
+	{
+		frameBuffer->saveScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+	}
+}
+
+void CFrameBox::restoreScreen()
+{
+	dprintf(DEBUG_NORMAL, "CFrameBox::restoreScreen:\n");
+	
+	if(background) 
+	{
+		if(savescreen)
+			frameBuffer->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+	}
+}
+
+void CFrameBox::enableSaveScreen()
+{
+	dprintf(DEBUG_NORMAL, "CFrameBox::enableSaveScreen:\n");
+	
+	savescreen = true;
+	
+	if(!savescreen && background) 
+	{
+		delete[] background;
+		background = NULL;
+	}
 }
 
 void CFrameBox::hide()
@@ -621,8 +673,17 @@ void CFrameBox::hide()
 			}
 		}
 	}
+	
+	if( savescreen && background)
+	{
+		restoreScreen();
+	}
+	else
+	{
+		frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	}
 
-	cFrameWindow.hide();
+	//cFrameWindow.hide();
 	
 	frameBuffer->blit();
 }

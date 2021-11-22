@@ -159,6 +159,7 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	footInfoMode = FOOT_INFO_MODE;
 
 	timeout = 0;
+	sec_timer_interval = 60; // 1 min
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
@@ -277,10 +278,6 @@ void CMenuWidget::initFrames()
 		full_height = height;
 
 		//head height
-		//icon_head_w = 0;
-		//icon_head_h = 0;
-		//frameBuffer->getIconSize(iconfile.c_str(), &icon_head_w, &icon_head_h);
-		//hheight = std::max(icon_head_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight()) + 6;
 		hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 	
 		// foot height
@@ -317,17 +314,9 @@ void CMenuWidget::initFrames()
 		}
 
 		// head height
-		//icon_head_w = 0;
-		//icon_head_h = 0;
-		//frameBuffer->getIconSize(iconfile.c_str(), &icon_head_w, &icon_head_h);
-		//hheight = std::max(icon_head_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight()) + 6;
 		hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 	
 		// foot height
-		//int icon_foot_w = 0;
-		//int icon_foot_h = 0;
-		//frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &icon_foot_w, &icon_foot_h);
-		//fheight = std::max(icon_foot_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight()) + 6;
 		fheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 
 		// calculate some values
@@ -385,7 +374,6 @@ void CMenuWidget::initFrames()
 		y = offy + frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
 
 		// menu position
-		//if(widgetMode != MODE_LISTBOX)
 		if (MenuPos)
 		{
 			if(g_settings.menu_position == SNeutrinoSettings::MENU_POSITION_CENTER)
@@ -1187,7 +1175,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 	CFrameBuffer::getInstance()->blit();
 
 	// add sec timer
-	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
+	sec_timer_id = g_RCInput->addTimer(sec_timer_interval*10001000, false);
 
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
 
@@ -1233,6 +1221,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 					break;
 				}
 
+				frameBuffer->blit();
 				continue;
 			}
 

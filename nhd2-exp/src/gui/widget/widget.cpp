@@ -53,6 +53,7 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 
 	timeout = 0;
 	selected = -1;
+	sec_timer_interval = 60; // 1 min
 
 	//
 	paintMainFrame = false;
@@ -78,6 +79,7 @@ CWidget::CWidget(CBox *position)
 
 	timeout = 0;
 	selected = -1;
+	sec_timer_interval = 60; // 1 min
 
 	//
 	paintMainFrame = false;
@@ -260,8 +262,6 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 	if (parent)
 		parent->hide();
 
-	//initFrames();
-
 	// set in focus
 	if (hasItem() && items.size() > 1)
 	{
@@ -279,7 +279,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 	CFrameBuffer::getInstance()->blit();
 
 	// add sec timer
-	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
+	sec_timer_id = g_RCInput->addTimer(sec_timer_interval*1000000, false);
 	
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
 
@@ -329,6 +329,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 					break;
 				}
 
+				frameBuffer->blit();
 				continue;
 			}
 		}
