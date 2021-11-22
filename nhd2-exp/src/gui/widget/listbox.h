@@ -156,10 +156,10 @@ class CMenuItem
 		CMenuTarget *jumpTarget;
 		std::string actionKey;
 		
+		//
 		bool paintFrame;
 		bool itemShadow;
-		
-		CWidgetItem* parent;
+		//CWidgetItem* parent;
 
 		CMenuItem();
 		virtual ~CMenuItem(){};
@@ -224,7 +224,7 @@ class CMenuItem
 		virtual void setActionKey(CMenuTarget *Target, const char *const ActionKey){jumpTarget = Target; actionKey = ActionKey;};
 		
 		//
-		virtual void setParent(CWidgetItem* w_parent){parent = w_parent;};
+		//virtual void setParent(CWidgetItem* w_parent){parent = w_parent;};
 };
 
 // CMenuOptionChooser
@@ -683,7 +683,7 @@ class ClistBox : public CWidgetItem
 		std::string getName(){return l_name;};
 		std::string getActionKey(void){return actionKey;};
 		
-		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, CWidgetItem* parent = NULL, const unsigned int shortcut = RC_nokey, bool enabled = true);
+		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
 		
 		void enableMenuPosition(){MenuPos = true;};
 		

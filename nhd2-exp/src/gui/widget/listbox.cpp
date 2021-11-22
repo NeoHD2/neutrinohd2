@@ -85,9 +85,7 @@ CMenuItem::CMenuItem()
 	
 	paintFrame = true;
 	itemShadow = false;
-	
-	//
-	parent = NULL;
+	//parent = NULL;
 }
 
 void CMenuItem::init(const int X, const int Y, const int DX, const int OFFX)
@@ -272,11 +270,14 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 	{
 		color = COL_MENUCONTENTSELECTED;
 		
+		//TEST
+		/*
 		if (parent)
 		{
-			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: /*COL_MENUCONTENTSELECTED_PLUS_2*/COL_MENUCONTENTINACTIVE_PLUS_0;
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: COL_MENUCONTENTINACTIVE_PLUS_0;
 		}
 		else
+		*/
 			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	else if (!active)
@@ -472,11 +473,13 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 	{
 		color = COL_MENUCONTENTSELECTED;
 		
+		/*
 		if (parent)
 		{
-			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: /*COL_MENUCONTENTSELECTED_PLUS_2*/COL_MENUCONTENTINACTIVE_PLUS_0;
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: COL_MENUCONTENTINACTIVE_PLUS_0;
 		}
 		else
+		*///TEST
 			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	else if (!active)
@@ -684,11 +687,13 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
 	{
 		color = COL_MENUCONTENTSELECTED;
 		
+		/*
 		if (parent)
 		{
-			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: /*COL_MENUCONTENTSELECTED_PLUS_2*/COL_MENUCONTENTINACTIVE_PLUS_0;
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: COL_MENUCONTENTINACTIVE_PLUS_0;
 		}
 		else
+		*///TEST
 			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	else if (!active) 
@@ -831,11 +836,13 @@ int CMenuOptionLanguageChooser::paint( bool selected, bool /*AfterPulldown*/)
 	{
 		color = COL_MENUCONTENTSELECTED;
 		
+		/*
 		if (parent)
 		{
-			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: /*COL_MENUCONTENTSELECTED_PLUS_2*/COL_MENUCONTENTINACTIVE_PLUS_0;
+			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: COL_MENUCONTENTINACTIVE_PLUS_0;
 		}
 		else
+		*///TEST
 			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	
@@ -1135,11 +1142,13 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 	{
 		color = COL_MENUCONTENTSELECTED;
 		
+		/*
 		if (parent)
 		{
 			bgcolor = parent->inFocus? COL_MENUCONTENTSELECTED_PLUS_0: COL_MENUCONTENT_PLUS_0;
 		}
 		else
+		*///TEST
 			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
 	}
 	else if (!active)
@@ -1480,6 +1489,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 
 	if (selected)
 	{
+		/*
 		if (parent)
 		{
 			if (parent->inFocus)
@@ -1494,6 +1504,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			}
 		}
 		else
+		*///TEST
 		{
 			color = COL_MENUCONTENTSELECTED;
 			bgcolor = COL_MENUCONTENTSELECTED_PLUS_0;
@@ -1929,7 +1940,6 @@ void ClistBox::addItem(CMenuItem * menuItem, const bool defaultselected)
 		selected = items.size();
 	
 	items.push_back(menuItem);
-	//menuItem->setParent(this);
 }
 
 bool ClistBox::hasItem()
@@ -3120,7 +3130,7 @@ int ClistBox::oKKeyPressed(CMenuTarget* parent)
 		return RETURN_EXIT;
 }
 
-void ClistBox::integratePlugins(CPlugins::i_type_t integration, CWidgetItem* parent, const unsigned int shortcut, bool enabled)
+void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned int shortcut, bool enabled)
 {
 	unsigned int number_of_plugins = (unsigned int) g_PluginList->getNumberOfPlugins();
 
@@ -3155,9 +3165,6 @@ void ClistBox::integratePlugins(CPlugins::i_type_t integration, CWidgetItem* par
 			fw_plugin->setHint(g_PluginList->getDescription(count).c_str());
 			fw_plugin->setWidgetMode(MODE_LISTBOX); //FIXME:
 			fw_plugin->isPlugin = true;
-
-			if (parent)
-			 	fw_plugin->setParent(parent);
 			 
 			addItem(fw_plugin);
 		}

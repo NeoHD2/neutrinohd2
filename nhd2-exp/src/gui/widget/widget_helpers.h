@@ -465,11 +465,10 @@ class CWidgetItem
 		int itemType;
 		bool inFocus;
 		bool paintDate;
-		std::string actionKey;
+		std::string actionKey; // lua
 		
 		//
 		bool painted;
-		
 		CWidget* parent;
 
 		CWidgetItem(){inFocus = true; actionKey = ""; parent = NULL;};
@@ -500,7 +499,7 @@ class CWidgetItem
 		virtual void homeKeyPressed(){};
 		
 		//
-		virtual std::string getActionKey(void){ return actionKey;};
+		virtual std::string getActionKey(void){ return actionKey;}; // lua
 		
 		//
 		virtual void setParent(CWidget* w_parent){parent = w_parent;};
