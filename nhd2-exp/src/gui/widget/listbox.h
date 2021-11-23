@@ -38,7 +38,7 @@
 #include <gui/plugins.h>
 
 
-class CWidgetItem;
+class ClistBox;
 extern CLocaleManager		*g_Locale;
 
 // item type
@@ -159,7 +159,7 @@ class CMenuItem
 		//
 		bool paintFrame;
 		bool itemShadow;
-		//CWidgetItem* parent;
+		ClistBox* parent;
 
 		CMenuItem();
 		virtual ~CMenuItem(){};
@@ -224,7 +224,7 @@ class CMenuItem
 		virtual void setActionKey(CMenuTarget *Target, const char *const ActionKey){jumpTarget = Target; actionKey = ActionKey;};
 		
 		//
-		//virtual void setParent(CWidgetItem* w_parent){parent = w_parent;};
+		virtual void setParent(ClistBox* p){parent = p;};
 };
 
 // CMenuOptionChooser

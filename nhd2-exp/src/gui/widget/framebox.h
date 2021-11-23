@@ -130,7 +130,7 @@ class CFrame
 		virtual void setGradient(int grad){gradient = grad;};
 		
 		//
-		virtual void setParent(CFrameBox* f_parent){parent = f_parent;};
+		virtual void setParent(CFrameBox* p){parent = p;};
 };
 
 //// CFrameBox
@@ -221,7 +221,6 @@ class CFrameBox : public CWidgetItem
 		void disablePaintFrame(void){paintFrame = false;};
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
-		//void enablePaintShadow(void){shadow = true;};
 		
 		//
 		void enableSaveScreen();
