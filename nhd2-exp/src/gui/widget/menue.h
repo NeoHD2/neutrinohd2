@@ -155,7 +155,6 @@ class CMenuWidget : public CMenuTarget
 		bool shrinkMenu;
 		int widgetMode;
 		bool MenuPos;
-		bool itemShadow;
 
 		// for lua
 		std::string actionKey;
@@ -186,10 +185,11 @@ class CMenuWidget : public CMenuTarget
 		//
 		virtual int exec(CMenuTarget * parent, const std::string &actionKey);
 
-		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
-
 		void setSelected(unsigned int _new) { if(_new <= items.size()) selected = _new; if (selected < 0) selected = 0;};
 		int getSelected(){return selected;};
+		
+		void setTimeOut(unsigned long long int to = 0){timeout = to;};
+		void setSecTimerInterval(int interval){sec_timer_interval = interval;};
 
 		void move(int xoff, int yoff);
 		int getHeight(void) const {return height;}
@@ -207,36 +207,31 @@ class CMenuWidget : public CMenuTarget
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 		neutrino_msg_t getKey(){return msg;};
 
-		//
+		// foot
 		void setFooterButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1, const int _fbutton_width = 0);
 
-		//
+		// head
+		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
 		void setHeaderButtons(const struct button_label* _hbutton_label, const int _hbutton_count = 1);
-
-		//
 		void enablePaintDate(void){PaintDate = true;};
 
-		//
+		// footInfo
 		void enablePaintFootInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh; /*initFrames();*/};
 		void setFootInfoMode(int mode = FOOT_INFO_MODE){footInfoMode = mode;};
-
-		void setTimeOut(unsigned long long int to = 0){timeout = to;};
-		void setSecTimerInterval(int interval){sec_timer_interval = interval;};
 
 		//
 		void setWidgetType(int type){widgetType = type; widget.push_back(widgetType);};
 		int getWidgetType(){return widgetType;};
 		void enableWidgetChange(){widgetChange = true;};
 		void addWidget(int wtype){widget.push_back(wtype);};
+		void setWidgetMode(int mode){widgetMode = mode;};
 
 		//
 		void setItemsPerPage(int itemsX = 6, int itemsY = 3){itemsPerX = itemsX; itemsPerY = itemsY; maxItemsPerPage = itemsPerX*itemsPerY;};
 
-		void enableShrinkMenu(){shrinkMenu = true;};
-
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
 
-		void setWidgetMode(int mode){widgetMode = mode;};
+		void enableShrinkMenu(){shrinkMenu = true;};
 		void enableMenuPosition(){MenuPos = true;};
 
 		virtual std::string& getString(void) { if (hasItem())return items[selected]->itemName; };
@@ -244,9 +239,7 @@ class CMenuWidget : public CMenuTarget
 
 		//
 		std::string getName(void){ return l_name.c_str();};
-		std::string getActionKey(){return actionKey;};
-		
-		void enableItemShadow(){itemShadow = true;};
+		std::string getActionKey(){return actionKey;}; // lua
 };
 
 #endif

@@ -90,9 +90,9 @@ enum {
 
 ///intensity
 enum {
-	light,
-	normal,
-	extended
+	INT_LIGHT,
+	INT_NORMAL,
+	INT_EXTENDED
 };
 
 // transparency

@@ -113,7 +113,6 @@ class CChangeObserver
 class CMenuItem
 {
 	protected:
-		//int x, y, item_width, item_height;
 		int x, y, dx, offx;
 		
 	public:
@@ -183,9 +182,6 @@ class CMenuItem
 		//
 		virtual int getYPosition(void) const { return y; }
 		virtual int getItemType(){ return itemType;};
-
-		// 
-		virtual void setItemHeight(int height){item_height = height;};
 
 		//
 		virtual void setOption(const char* text){option = text;};
@@ -493,6 +489,13 @@ class ClistBox : public CWidgetItem
 
 		CBox cFrameBox;
 		CBox cFrameFootInfo;
+		
+		int wanted_height;
+		int wanted_width;
+		int start_x;
+		int start_y;
+		
+		CTextBox * textBox;
 
 		int selected;
 
@@ -515,6 +518,7 @@ class ClistBox : public CWidgetItem
 		//
 		bool enableCenter;
 		bool shrinkMenu;
+		bool MenuPos;
 
 		// frame
 		int itemsPerX;
@@ -558,18 +562,9 @@ class ClistBox : public CWidgetItem
 		int connectLineWidth;
 		bool paintFootInfo;
 		int footInfoMode;
-		
-		//
-		CTextBox * textBox;
 
 		// methods
 		virtual void paintItems();
-
-		//
-		int wanted_height;
-		int wanted_width;
-		int start_x;
-		int start_y;
 
 		//
 		fb_pixel_t * background;
@@ -579,19 +574,13 @@ class ClistBox : public CWidgetItem
 		int full_height;
 		int full_width;
 
-		std::string actionKey;
+		std::string actionKey; // lua
 		
 		//
 		bool paintFrame;
 		fb_pixel_t bgcolor;
 		int radius;
 		int corner;
-		
-		//
-		bool MenuPos;
-		
-		//
-		bool itemShadow;
 		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -681,16 +670,11 @@ class ClistBox : public CWidgetItem
 
 		//
 		std::string getName(){return l_name;};
-		std::string getActionKey(void){return actionKey;};
+		std::string getActionKey(void){return actionKey;}; // lua
 		
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
 		
 		void enableMenuPosition(){MenuPos = true;};
-		
-		//
-		//inline bool isPainted(void){return painted;};
-		
-		void enableItemShadow(){itemShadow = true;};
 };
 
 #endif // LISTBOX_H_

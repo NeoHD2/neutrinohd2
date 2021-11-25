@@ -131,6 +131,7 @@
 // footInfo
 #define COL_MENUFOOT_INFO_PLUS_0        	CFrameBuffer::getInstance()->realcolor[COL_MENUFOOT_INFO + 0]
 
+
 //
 int convertSetupColor2RGB(unsigned char r, unsigned char g, unsigned char b);
 int convertSetupAlpha2Alpha(unsigned char alpha);
@@ -159,11 +160,11 @@ uint8_t SysColor2Hsv(fb_pixel_t color, HsvColor *hsv);
 void Hsv2Rgb(HsvColor *hsv, RgbColor *rgb);
 void Rgb2Hsv(RgbColor *rgb, HsvColor *hsv);
 
-fb_pixel_t* gradientColorToTransparent(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize, int mode, int intensity = normal);
+fb_pixel_t* gradientColorToTransparent(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize, int mode, int intensity = INT_LIGHT);
 
-fb_pixel_t* gradientOneColor(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize, int mode, int intensity = normal, uint8_t v_min = 0x40, uint8_t v_max = 0xE0, uint8_t s = 0xC0);
+fb_pixel_t* gradientOneColor(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize, int mode, int intensity = INT_LIGHT, uint8_t v_min = 0x40, uint8_t v_max = 0xE0, uint8_t s = 0xC0);
 
-fb_pixel_t* gradientColorToColor(fb_pixel_t start_col, fb_pixel_t end_col, fb_pixel_t *gradientBuf, int bSize, int mode, int intensity = normal);
+fb_pixel_t* gradientColorToColor(fb_pixel_t start_col, fb_pixel_t end_col, fb_pixel_t *gradientBuf, int bSize, int mode, int intensity = INT_LIGHT);
 
 inline uint32_t make16color(__u32 rgb)
 {

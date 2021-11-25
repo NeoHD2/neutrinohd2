@@ -875,7 +875,6 @@ CMenuSeparator::CMenuSeparator(const int Type, const char * const Text)
 	directKey = RC_nokey;
 	iconName = "";
 	type = Type;
-	//text = NONEXISTANT_LOCALE;
 	textString = Text;
 
 	itemType = ITEM_TYPE_SEPARATOR;
@@ -902,8 +901,7 @@ int CMenuSeparator::paint(bool /*selected*/, bool /*AfterPulldown*/)
 
 	CFrameBuffer * frameBuffer = CFrameBuffer::getInstance();
 
-	int height;
-	height = getHeight();
+	int height = getHeight();
 
 	if(widgetType != WIDGET_TYPE_FRAME)
 	{
@@ -919,8 +917,6 @@ int CMenuSeparator::paint(bool /*selected*/, bool /*AfterPulldown*/)
 		// string
 		if ((type & STRING))
 		{
-
-			//if (!textString.empty())
 			if(textString != NULL)
 			{
 				int stringstartposX;
@@ -1815,10 +1811,8 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	iconOffset = 0;
 	
 	//
-	//painted = false;
-	
-	//
-	itemShadow = false;
+	//itemShadow = false;
+	//itemMode = MODE_LISTBOX;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -1912,10 +1906,8 @@ ClistBox::ClistBox(CBox* position)
 	iconOffset = 0;
 	
 	//
-	//painted = false;
-	
-	//
-	itemShadow = false;
+	//itemShadow = false;
+	//itemMode = MODE_LISTBOX;
 }
 
 ClistBox::~ClistBox()
@@ -1958,7 +1950,6 @@ void ClistBox::initFrames()
 
 		item->widgetType = widgetType;
 		item->paintFrame = paintFrame;
-		item->itemShadow = itemShadow;
 	} 
 
 	// head
@@ -2046,13 +2037,11 @@ void ClistBox::initFrames()
 			{
 				page_start.push_back(i);
 				heightFirstPage = heightCurrPage - item_height;
-				//heightFirstPage = std::max(heightCurrPage - item_height, heightFirstPage);//TEST
 				total_pages++;
 				heightCurrPage = item_height;
 			}
 		}
 
-		//heightFirstPage = std::max(heightCurrPage, heightFirstPage); //TEST
 		page_start.push_back(items.size());
 
 		// icon offset
@@ -2075,7 +2064,8 @@ void ClistBox::initFrames()
 		}
 		
 		//
-		//full_height = cFrameBox.iHeight;  //FIXME:
+		full_height = cFrameBox.iHeight;  //FIXME:
+		full_width = cFrameBox.iWidth;
 
 		// sanity check
 		if(cFrameBox.iHeight > ((int)frameBuffer->getScreenHeight()))
@@ -2087,7 +2077,10 @@ void ClistBox::initFrames()
 
 		if(paintFootInfo)
 		{
-			cFrameBox.iWidth -= connectLineWidth;
+			if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC) )
+			{
+				cFrameBox.iWidth -= connectLineWidth;
+			}
 		}
 
 		// position xy
@@ -2649,10 +2642,13 @@ void ClistBox::hideItemInfo()
 {
 	dprintf(DEBUG_NORMAL, "ClistBox::hideItemInfo:\n");
 	
-    	if((widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC) && paintFootInfo)
+	if (paintFootInfo)
 	{
-		itemsLine.clear(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth + CONNECTLINEBOX_WIDTH, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight);
-	} 	 
+	    	if(widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC)
+		{
+			itemsLine.clear(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth + CONNECTLINEBOX_WIDTH, cFrameBox.iHeight - cFrameFootInfo.iHeight, cFrameFootInfo.iHeight);
+		} 
+	}	 
 }
 
 void ClistBox::saveScreen()
@@ -2705,7 +2701,7 @@ void ClistBox::hide()
 	dprintf(DEBUG_NORMAL, "ClistBox::hide: (%s)\n", l_name.c_str());
 	
 	//
-	initFrames();
+	//initFrames();
 
 	if( savescreen && background)
 		restoreScreen();

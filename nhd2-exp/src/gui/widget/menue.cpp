@@ -159,7 +159,7 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	footInfoMode = FOOT_INFO_MODE;
 
 	timeout = 0;
-	sec_timer_interval = 60; // 1 min
+	sec_timer_interval = 1; // 1 min
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
@@ -184,9 +184,6 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	
 	items_width = 0;
 	items_height = 0;
-	
-	//
-	itemShadow = false;
 }
 
 void CMenuWidget::move(int xoff, int yoff)
@@ -243,10 +240,7 @@ void CMenuWidget::initFrames()
 		CMenuItem * item = items[count];
 
 		item->widgetType = widgetType;
-		if (!item->isPlugin)
-			item->widgetMode = widgetMode;
-			
-		item->itemShadow = itemShadow;
+		item->widgetMode = widgetMode;
 	} 
 
 	// init frames
@@ -309,7 +303,6 @@ void CMenuWidget::initFrames()
 			{
 				cFrameFootInfo.iHeight = footInfoHeight;
 				connectLineWidth = CONNECTLINEBOX_WIDTH;
-				width -= connectLineWidth;
 			}
 		}
 
@@ -334,11 +327,11 @@ void CMenuWidget::initFrames()
 			itemHeightTotal += item_height;
 			heightCurrPage += item_height;
 
-			if( (heightCurrPage + hheight + fheight) > height)
+			if( (heightCurrPage + hheight + fheight + cFrameFootInfo.iHeight) > height)
 			{
 				page_start.push_back(i);
-				total_pages++;
 				heightFirstPage = std::max(heightCurrPage - item_height, heightFirstPage);
+				total_pages++;
 				heightCurrPage = item_height;
 			}
 		}
@@ -361,12 +354,21 @@ void CMenuWidget::initFrames()
 		// shrink menu if less items
 		if(shrinkMenu)
 		{
-			height = std::min(height, hheight + heightFirstPage + fheight);
+			if (hasItem())
+				height = std::min(height, hheight + heightFirstPage + fheight + cFrameFootInfo.iHeight);
 		}
 
 		//
 		full_width = width;
-		full_height = height + cFrameFootInfo.iHeight;
+		full_height = height;
+		
+		if(paintFootInfo)
+		{
+			if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC && widgetMode == MODE_LISTBOX) )
+			{
+				width -= connectLineWidth;
+			}
+		}
 		
 		// position
 		// default centered
@@ -599,6 +601,7 @@ void CMenuWidget::paint()
 	//
 	initFrames();
 	
+	//
 	paintHead();
 	paintFoot();
 
@@ -611,11 +614,11 @@ void CMenuWidget::paint()
 	// paint background
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
-		frameBuffer->paintBoxRel(x, y + hheight, full_width, full_height - hheight - fheight, COL_MENUCONTENT_PLUS_0);
+		frameBuffer->paintBoxRel(x, y + hheight, full_width, full_height - hheight - fheight - cFrameFootInfo.iHeight, COL_MENUCONTENT_PLUS_0);
 	}
 	else
 	{
-		frameBuffer->paintBoxRel(x, y + hheight, full_width, height - hheight - fheight, COL_MENUCONTENT_PLUS_0);
+		frameBuffer->paintBoxRel(x, y + hheight, full_width, full_height - hheight - fheight - cFrameFootInfo.iHeight, COL_MENUCONTENT_PLUS_0);
 	}
 
 	//
@@ -689,7 +692,7 @@ void CMenuWidget::paintItems()
 	else
 	{
 		// items height
-		items_height = height - hheight - fheight;
+		items_height = full_height - hheight - fheight - cFrameFootInfo.iHeight;
 	
 		// items width
 		sb_width = 0;
@@ -698,13 +701,11 @@ void CMenuWidget::paintItems()
 			sb_width = SCROLLBAR_WIDTH; 
 	
 		items_width = full_width - sb_width;
-		//item_width = width - sb_width;
 
 		// extended
 		if(widgetType == WIDGET_TYPE_EXTENDED)
 		{
 			items_width = 2*(width/3) - sb_width;
-			//item_width = 2*(width/3) - sb_width;
 		}
 	
 		// item not currently on screen
@@ -1175,7 +1176,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 	CFrameBuffer::getInstance()->blit();
 
 	// add sec timer
-	sec_timer_id = g_RCInput->addTimer(sec_timer_interval*10001000, false);
+	sec_timer_id = g_RCInput->addTimer(sec_timer_interval*1000*1000, false);
 
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
 

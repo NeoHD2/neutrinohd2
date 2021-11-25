@@ -133,7 +133,7 @@ class CTestMenu : public CMenuTarget
 		void testFireTV();
 		
 		void testListFrameWidget();
-		void testListBoxWidget();
+		void testClistBoxWidget();
 		void testWindowWidget();
 		void testTextBoxWidget();
 		void testMultiWidget();
@@ -162,9 +162,9 @@ class CTestMenu : public CMenuTarget
 		void testClistBox6();
 		
 		// CMenuWidget
-		void testClistBoxWidget();
-		void testClistBoxWidget1();
-		void testClistBoxWidget2();
+		void testCMenuWidget();
+		void testCMenuWidget1();
+		void testCMenuWidget2();
 
 		// widgets
 		void testCStringInput();
@@ -1716,7 +1716,7 @@ void CTestMenu::testListFrameWidget()
 	footers = NULL;
 }
 
-void CTestMenu::testListBoxWidget()
+void CTestMenu::testClistBoxWidget()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu:testClistBoxWidget:\n");
 
@@ -1733,7 +1733,6 @@ void CTestMenu::testListBoxWidget()
 	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
 	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
 	rightWidget->enableWidgetChange();
-	//rightWidget->enableShrinkMenu();
 	rightWidget->enableCenterPos();
 	rightWidget->setItemsPerPage(6,2);
 	rightWidget->setSelected(selected);
@@ -1745,7 +1744,7 @@ void CTestMenu::testListBoxWidget()
 	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	rightWidget->enablePaintFootInfo();
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
-	rightWidget->enableItemShadow();
+	rightWidget->enableShrinkMenu();
 
 	// loadPlaylist
 	CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
@@ -1775,6 +1774,9 @@ void CTestMenu::testListBoxWidget()
 		tmp += m_vMovieInfo[i].epgInfo2;
 
 		item->setHint(tmp.c_str());
+		
+		item->enableItemShadow();
+		item->setWidgetMode(MODE_MENU);
 
 		rightWidget->addItem(item);
 	}
@@ -1837,7 +1839,7 @@ void CTestMenu::testMultiWidget()
 
 	leftWidget = new ClistBox(&leftBox);
 
-	leftWidget->enableItemShadow();
+	//leftWidget->enableItemShadow();
 	//leftWidget->enablePaintHead();
 	//leftWidget->setTitle("leftWidget", NEUTRINO_ICON_MOVIE);
 	//leftWidget->setHeadGradient(NOGRADIENT);
@@ -1846,12 +1848,14 @@ void CTestMenu::testMultiWidget()
 	//leftWidget->setOutFocus();
 
 	ClistBoxItem *item1 = new ClistBoxItem("Item 1");
+	item1->enableItemShadow();
 	ClistBoxItem *item2 = new ClistBoxItem("Item 2");
 	item2->setOption("Item 2- Option");
 	item2->set2lines();
 	ClistBoxItem *item3 = new ClistBoxItem("Item 3");
 	item3->setOption("Item 3 Option");
 	item3->set2lines();
+	item3->enableItemShadow();
 	ClistBoxItem *item4 = new ClistBoxItem("Item4");
 	CMenuSeparator *item5 = new CMenuSeparator();
 	CMenuSeparator *item6 = new CMenuSeparator();
@@ -4569,7 +4573,7 @@ void CTestMenu::testClistBox6()
 	rightWidget->enablePaintFootInfo(80);
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 	
-	rightWidget->enableItemShadow();
+	//rightWidget->enableItemShadow();
 
 	rightWidget->setSelected(selected);
 	rightWidget->paint();
@@ -5512,7 +5516,7 @@ void CTestMenu::testShowPictureDir()
 }
 
 // CMenuWidget (listBox mode)
-void CTestMenu::testClistBoxWidget()
+void CTestMenu::testCMenuWidget()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCMenuWidget (listBox mode)\n");
 	
@@ -5573,7 +5577,7 @@ void CTestMenu::testClistBoxWidget()
 }
 
 // CMenuWidget (menu mode)
-void CTestMenu::testClistBoxWidget1()
+void CTestMenu::testCMenuWidget1()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCMenuWidget (menu mode)\n");
 	
@@ -5630,7 +5634,7 @@ void CTestMenu::testClistBoxWidget1()
 }
 
 // CMenuWidget (setup mode)
-void CTestMenu::testClistBoxWidget2()
+void CTestMenu::testCMenuWidget2()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCMenuWidget (setup mode)\n");
 	
@@ -6089,9 +6093,9 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 		return RETURN_REPAINT;
 	}
-	else if(actionKey == "listboxwidget")
+	else if(actionKey == "menuwidget")
 	{
-		testClistBoxWidget();
+		testCMenuWidget();
 
 		return RETURN_REPAINT;
 	}
@@ -6119,15 +6123,15 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 		return RETURN_REPAINT;
 	}
-	else if(actionKey == "listboxwidget1")
+	else if(actionKey == "menuwidget1")
 	{
-		testClistBoxWidget1();
+		testCMenuWidget1();
 
 		return RETURN_REPAINT;
 	}
-	else if(actionKey == "listboxwidget2")
+	else if(actionKey == "menuwidget2")
 	{
-		testClistBoxWidget2();
+		testCMenuWidget2();
 
 		return RETURN_REPAINT;
 	}
@@ -6647,7 +6651,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 	else if(actionKey == "listboxmwidget")
 	{
-		testListBoxWidget();
+		testClistBoxWidget();
 
 		return RETURN_REPAINT;
 	}
@@ -7466,12 +7470,10 @@ void CTestMenu::showMenu()
 	mainMenu->setTitle("testMenu", NEUTRINO_ICON_BUTTON_SETUP);
 
 	mainMenu->setWidgetMode(MODE_MENU);
-	mainMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	mainMenu->enableShrinkMenu(),
 	mainMenu->enableMenuPosition();
 	mainMenu->enablePaintDate();
-	mainMenu->enableItemShadow();
-	
+			
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistFrame)", true, NULL, this, "listframewidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(CWindow)", true, NULL, this, "ccwindow"));
@@ -7522,9 +7524,9 @@ void CTestMenu::showMenu()
 	
 	// CMenuWidhet
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CMenuWidget"));
-	mainMenu->addItem(new CMenuForwarder("CMenuWidget(MODE_LISTBOX)", true, NULL, this, "listboxwidget"));
-	mainMenu->addItem(new CMenuForwarder("CMenuWidget(MODE_MENU)", true, NULL, this, "listboxwidget1"));
-	mainMenu->addItem(new CMenuForwarder("CMenuWidget(MODE_SETUP)", true, NULL, this, "listboxwidget2"));
+	mainMenu->addItem(new CMenuForwarder("CMenuWidget(MODE_LISTBOX)", true, NULL, this, "menuwidget"));
+	mainMenu->addItem(new CMenuForwarder("CMenuWidget(MODE_MENU)", true, NULL, this, "menuwidget1"));
+	mainMenu->addItem(new CMenuForwarder("CMenuWidget(MODE_SETUP)", true, NULL, this, "menuwidget2"));
 	
 	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CProgressWindow"));
 	//mainMenu->addItem(new CMenuForwarder("CProgressWindow", true, NULL, this, "progresswindow"));
@@ -7600,13 +7602,9 @@ void CTestMenu::showMenu()
 	//
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Channellist") );
 	mainMenu->addItem(new CMenuForwarder("CChannelList:", true, NULL, this, "channellist"));
-	mainMenu->addItem(new CMenuForwarder("CBouquetList:", true, NULL, this, "bouquetlist"));
+	mainMenu->addItem(new CMenuForwarder("CBouquetList:", true, NULL, this, "bouquetlist"));		
 	
 	mainMenu->exec(NULL, "");
-	//mainMenu->hide();
-
-	selected = mainMenu->getSelected();
-	printf("\nCTestMenu::exec: select:%d\n", selected);
 
 	delete mainMenu;
 	mainMenu = NULL;

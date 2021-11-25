@@ -113,6 +113,7 @@ void CPluginList::showMenu()
 		item = new CMenuForwarder(g_PluginList->getName(count), enabled, g_PluginList->getDescription(count).c_str(), CPluginsExec::getInstance(), to_string(count).c_str(), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
 
 		item->set2lines(); 
+		item->enableItemShadow();
 
 		plist->addItem(item);
 	}
@@ -120,7 +121,7 @@ void CPluginList::showMenu()
 	plist->setWidgetMode(MODE_LISTBOX);
 	plist->setWidgetType(WIDGET_TYPE_CLASSIC);
 	plist->enableShrinkMenu();
-	plist->enableItemShadow();
+	//plist->enableItemShadow();
 
 	// head
 	plist->enablePaintDate();

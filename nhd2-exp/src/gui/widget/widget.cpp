@@ -53,7 +53,7 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 
 	timeout = 0;
 	selected = -1;
-	sec_timer_interval = 60; // 1 min
+	sec_timer_interval = 1;
 
 	//
 	paintMainFrame = false;
@@ -79,7 +79,7 @@ CWidget::CWidget(CBox *position)
 
 	timeout = 0;
 	selected = -1;
-	sec_timer_interval = 60; // 1 min
+	sec_timer_interval = 1;
 
 	//
 	paintMainFrame = false;
@@ -221,15 +221,13 @@ void CWidget::hide()
 {
 	dprintf(DEBUG_NORMAL, "CWidget:: hide\n");
 
-/*
 	if (hasItem())
 	{
 		for(unsigned int i = 0; i < items.size(); i++)
 		{
 			items[i]->hide();
 		}
-	}
-*/		
+	}		
 
 	if( savescreen && background)
 	{
@@ -279,7 +277,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 	CFrameBuffer::getInstance()->blit();
 
 	// add sec timer
-	sec_timer_id = g_RCInput->addTimer(sec_timer_interval*1000000, false);
+	sec_timer_id = g_RCInput->addTimer(sec_timer_interval*1000*1000, false);
 	
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
 

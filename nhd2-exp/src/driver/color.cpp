@@ -224,13 +224,17 @@ void Rgb2Hsv(RgbColor *rgb, HsvColor *hsv)
 
 fb_pixel_t* gradientColorToTransparent(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize, int /*mode*/, int /*intensity*/)
 {
-	if (gradientBuf == NULL) {
+	if (gradientBuf == NULL) 
+	{
 		gradientBuf = (fb_pixel_t*) malloc(bSize * sizeof(fb_pixel_t));
-		if (gradientBuf == NULL) {
+		
+		if (gradientBuf == NULL) 
+		{
 			dprintf(DEBUG_NORMAL, "[%s:%d] malloc error\n", __func__, __LINE__);
 			return NULL;
 		}
 	}
+	
 	memset((void*)gradientBuf, '\0', bSize * sizeof(fb_pixel_t));
 
 	int start_box = 0;
@@ -239,7 +243,8 @@ fb_pixel_t* gradientColorToTransparent(fb_pixel_t col, fb_pixel_t *gradientBuf, 
 	uint8_t tr_max = 0x20;
 	float factor = (float)(tr_min - tr_max) / (float)(end_box - start_box);
 
-	for (int i = start_box; i < end_box; i++) {
+	for (int i = start_box; i < end_box; i++) 
+	{
 
 		uint8_t tr = limitChar((int)(factor * (float)i + tr_max) + 1);
 		uint8_t r  = (uint8_t)((col & 0x00FF0000) >> 16);
@@ -261,12 +266,14 @@ fb_pixel_t* gradientOneColor(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize,
 	if (gradientBuf == NULL) 
 	{
 		gradientBuf = (fb_pixel_t*) malloc(bSize * sizeof(fb_pixel_t));
+		
 		if (gradientBuf == NULL) 
 		{
 			dprintf(DEBUG_NORMAL, "[%s:%d] malloc error\n", __func__, __LINE__);
 			return NULL;
 		}
 	}
+	
 	memset((void*)gradientBuf, '\0', bSize * sizeof(fb_pixel_t));
 
 	HsvColor hsv;
@@ -276,7 +283,7 @@ fb_pixel_t* gradientOneColor(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize,
 	uint8_t tr = SysColor2Hsv(col, &hsv);
 	bool noSaturation = (hsv.s <= (float)0.05);
 
-	if (intensity == extended) 
+	if (intensity == INT_EXTENDED) 
 	{
 		min_v   = v_min;
 		max_v   = v_max;
@@ -286,12 +293,12 @@ fb_pixel_t* gradientOneColor(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize,
 	{
 		switch (intensity) 
 		{
-			case light:
+			case INT_LIGHT:
 				min_v   = 0x40;
 				max_v   = 0xE0;
 				col_s   = (noSaturation) ? 0 : 0xC0;
 				break;
-			case normal:
+			case INT_NORMAL:
 				min_v   = 0x00;
 				max_v   = 0xFF;
 				col_s   = (noSaturation) ? 0 : 0xC0;
@@ -348,12 +355,14 @@ fb_pixel_t* gradientColorToColor(fb_pixel_t start_col,fb_pixel_t end_col, fb_pix
 	if (gradientBuf == NULL) 
 	{
 		gradientBuf = (fb_pixel_t*) malloc(bSize * sizeof(fb_pixel_t));
+		
 		if (gradientBuf == NULL) 
 		{
 			dprintf(DEBUG_NORMAL, "[%s:%d] malloc error\n", __func__, __LINE__);
 			return NULL;
 		}
 	}
+	
 	memset((void*)gradientBuf, '\0', bSize * sizeof(fb_pixel_t));
 
 	int start_box = 0;
