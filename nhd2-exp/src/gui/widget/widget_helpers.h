@@ -376,7 +376,7 @@ class CLabel : public CComponent
 		};
 		
 		int getHeight(){return height;};
-		int getWidth(){if (!label.empty()) return font->getRenderWidth(label);};
+		int getWidth(){if (!label.empty()) return font->getRenderWidth(label); return 0;};
 };
 
 //

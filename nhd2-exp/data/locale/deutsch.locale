@@ -1604,6 +1604,7 @@ scansetup.tunermode Tuner Mode
 scansetup.tunermode_connected Direkt angeschlossen
 scansetup.tunermode_loop Loop
 scansetup.tunermode_notconnected nicht angeschloßen
+scansetup.tunertype Tuner Type
 
 miscsettings.backup Image Einstellungen speichern
 miscsettings.backupfailed Backup fehlgeschalgen

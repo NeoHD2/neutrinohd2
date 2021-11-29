@@ -459,7 +459,7 @@ bool CFileBrowser::exec(const char * const dirname)
 					{
 						selections.push_back(selected);
 						ChangeDir(filelist[selected].Name);
-						//hide();
+
 						paint();
 					}
 				}
@@ -471,13 +471,13 @@ bool CFileBrowser::exec(const char * const dirname)
 			{
 				ChangeDir("..", selections.back());
 				selections.pop_back();
-				//hide();
+				
 				paint();
 			} 
 			else
 			{
 				ChangeDir("..");
-				//hide();
+				
 				paint();
 			}
 

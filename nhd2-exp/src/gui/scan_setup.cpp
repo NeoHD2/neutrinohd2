@@ -496,7 +496,7 @@ void CScanSetup::showScanService()
 			}
 		}
 	}
-    else if ( getFE(feindex)->getInfo()->type == FE_ATSC) 
+    	else if ( getFE(feindex)->getInfo()->type == FE_ATSC) 
 	{
 		satSelect = new CMenuOptionStringChooser(LOCALE_TERRESTRIALSETUP_PROVIDER, (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
 
@@ -582,6 +582,7 @@ void CScanSetup::showScanService()
 			}
 		}
 	}
+	
 	scansetup->addItem(new CMenuOptionChooser(LOCALE_SCANSETUP_FEMODE,  (int *)&getFE(feindex)->mode, FRONTEND_MODE_OPTIONS, have_twin? FRONTEND_MODE_TWIN_OPTION_COUNT:FRONTEND_MODE_SINGLE_OPTION_COUNT, true, feModeNotifier, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true ));
 	
 	scansetup->addItem( new CMenuSeparator(LINE) );

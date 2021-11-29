@@ -1516,10 +1516,30 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		//
 		if(selected)
 		{
-			frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
+			if (parent)
+			{
+				if (parent->inFocus)
+				{	
+					frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
 
-			if(!itemIcon.empty())
-				frameBuffer->paintHintIcon(itemIcon, x + 2, y + 2, item_width - 4, item_height - 4);
+					if(!itemIcon.empty())
+						frameBuffer->paintHintIcon(itemIcon, x + 2, y + 2, item_width - 4, item_height - 4);
+				}
+				else
+				{
+					frameBuffer->paintBoxRel(x, y, item_width, item_height, paintFrame? COL_MENUCONTENT_PLUS_0 : 0);
+
+					if(!itemIcon.empty())
+						frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);
+				}
+			}
+			else
+			{
+				frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
+
+				if(!itemIcon.empty())
+					frameBuffer->paintHintIcon(itemIcon, x + 2, y + 2, item_width - 4, item_height - 4);
+			}
 		}
 
 		// locale ???
@@ -1554,6 +1574,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		int icon_w = 0;
 		int icon_h = 0;
 		int bpp = 0;
+		int icon_offset = 0;
 
 		if(widgetType == WIDGET_TYPE_CLASSIC)
 		{
@@ -1587,8 +1608,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		{
 			if (!iconName.empty())
 			{
-				icon_w = ITEM_ICON_H_MINI/2;
-				icon_h = ITEM_ICON_H_MINI/2;
+				icon_offset = ICON_OFFSET;
 				
 				//get icon size
 				frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
@@ -1600,9 +1620,12 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		// icon1 (right)
 		int icon1_w = 0;
 		int icon1_h = 0;
+		int icon1_offset = 0;
 	
 		if (!icon1.empty())
 		{
+			icon1_offset = ICON_OFFSET; 
+			
 			//get icon size
 			frameBuffer->getIconSize(icon1.c_str(), &icon1_w, &icon1_h);
 		
@@ -1612,9 +1635,12 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		// icon2 (right)
 		int icon2_w = 0;
 		int icon2_h = 0;
+		int icon2_offset = 0;
 	
 		if (!icon2.empty())
 		{
+			icon2_offset = ICON_OFFSET;
+			
 			//get icon size
 			frameBuffer->getIconSize(icon2.c_str(), &icon2_w, &icon2_h);
 		
@@ -1633,8 +1659,12 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 
 		// number
 		int numwidth = 0;
+		int num_offset = 0;
+		
 		if(number != 0)
 		{
+			num_offset = ICON_OFFSET;
+			
 			char tmp[10];
 
 			sprintf((char*) tmp, "%d", number);
@@ -1648,8 +1678,12 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 
 		// ProgressBar
 		int pBarWidth = 0;
+		int pb_offset = 0;
+		
 		if(runningPercent > -1)
 		{
+			pb_offset = ICON_OFFSET;
+			
 			pBarWidth = 35;
 			int pBarHeight = height/5;
 
@@ -1686,7 +1720,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			// local
 			if(l_text != NULL)
 			{
-				nameFont->RenderString(x + BORDER_LEFT + icon_w/2 + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+				nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 			}
 
 			// option
@@ -1809,10 +1843,6 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	item_height = 0;
 	item_width = 0;
 	iconOffset = 0;
-	
-	//
-	//itemShadow = false;
-	//itemMode = MODE_LISTBOX;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -1904,10 +1934,6 @@ ClistBox::ClistBox(CBox* position)
 	item_height = 0;
 	item_width = 0;
 	iconOffset = 0;
-	
-	//
-	//itemShadow = false;
-	//itemMode = MODE_LISTBOX;
 }
 
 ClistBox::~ClistBox()
@@ -2036,7 +2062,8 @@ void ClistBox::initFrames()
 			if((heightCurrPage + hheight + fheight + cFrameFootInfo.iHeight) > cFrameBox.iHeight)
 			{
 				page_start.push_back(i);
-				heightFirstPage = heightCurrPage - item_height;
+				//heightFirstPage = heightCurrPage - item_height;
+				heightFirstPage = std::max(heightCurrPage - item_height, heightFirstPage); //FIXME:
 				total_pages++;
 				heightCurrPage = item_height;
 			}
@@ -2127,9 +2154,6 @@ void ClistBox::paint()
 	paintHead();
 	paintFoot();
 	paintItems();
-	
-	//
-	//painted = true;
 }
 
 void ClistBox::paintItems()
@@ -2212,13 +2236,11 @@ void ClistBox::paintItems()
 			sb_width = SCROLLBAR_WIDTH;
 
 		items_width = cFrameBox.iWidth - sb_width;
-		//item_width = cFrameBox.iWidth - sb_width;
 
 		// extended
 		if(widgetType == WIDGET_TYPE_EXTENDED)
 		{
-			items_width = 2*(cFrameBox.iWidth/3) - sb_width;
-			//item_width = 2*(cFrameBox.iWidth/3) - sb_width;			
+			items_width = 2*(cFrameBox.iWidth/3) - sb_width;			
 		}
 
 		// item not currently on screen

@@ -183,7 +183,7 @@ class CZapitChannel
 		
 		uint8_t	polarization;
 
-		//
+		// webtv
 		std::string url;
 		std::string description;
 		bool isWebTV;

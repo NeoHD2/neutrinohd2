@@ -1615,6 +1615,7 @@ const char * locale_real_names[] = {
 	"scansetup.tunermode_connected",
 	"scansetup.tunermode_loop",
 	"scansetup.tunermode_notconnected",
+	"scansetup.tunertype",
 	
 	"miscsettings.backup",
 	"miscsettings.backupfailed",

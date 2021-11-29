@@ -237,7 +237,7 @@ typedef enum {
 	DVB_C,
 	DVB_S,
 	DVB_T,
-    DVB_A
+    	DVB_A
 } delivery_system_t;
 
 /* service types */

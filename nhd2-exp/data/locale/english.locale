@@ -1603,6 +1603,7 @@ scansetup.tunermode Tuner mode
 scansetup.tunermode_connected direct connected
 scansetup.tunermode_loop loop
 scansetup.tunermode_notconnected not connected
+scansetup.tunertype Tuner Type
 
 miscsettings.backup Settings backup
 miscsettings.backupfailed Backup failed

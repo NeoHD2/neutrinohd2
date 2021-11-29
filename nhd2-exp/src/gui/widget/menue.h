@@ -64,12 +64,12 @@ class CMenuWidget : public CMenuTarget
 		//
 		int width;
 		int height;
-		int wanted_height;
-		int wanted_width;
 		int x;
 		int y;
 		int offx, offy;
 		int iconOffset;
+		int wanted_height;
+		int wanted_width;
 
 		//
 		std::vector<CMenuItem*> items;
@@ -231,6 +231,7 @@ class CMenuWidget : public CMenuTarget
 
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
 
+		//
 		void enableShrinkMenu(){shrinkMenu = true;};
 		void enableMenuPosition(){MenuPos = true;};
 
