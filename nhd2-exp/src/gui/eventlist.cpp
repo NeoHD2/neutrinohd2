@@ -690,7 +690,7 @@ void EventList::paint(t_channel_id channel_id)
 	//listBox->enableShrinkMenu();
 	listBox->enableCenterPos();
 	listBox->enablePaintHead();
-	listBox->setTitle(name.c_str(), logo.c_str(), true);
+	listBox->setTitle(name.c_str(), logo.c_str());
 	listBox->enablePaintDate();
 	listBox->setHeaderButtons(HeadButtons, 3);
 

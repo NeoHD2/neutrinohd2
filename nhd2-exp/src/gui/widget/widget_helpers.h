@@ -522,7 +522,6 @@ class CHeaders : public CWidgetItem
 		int corner;
 		int gradient;
 		bool paintDate;
-		bool logo;
 		int hbutton_count;
 		button_label_list_t hbutton_labels;
 		const char *htitle;
@@ -535,15 +534,13 @@ class CHeaders : public CWidgetItem
 
 		void setTitle(const char * const title){htitle = title;};
 		void setIcon(const char * const icon){hicon = icon;};
-
-		// head
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setCorner(int ra = NO_RADIUS, int co = CORNER_NONE){radius = ra; corner = co;};
 		void setGradient(int grad){gradient = grad;};
 		void setButtons(const struct button_label* _hbutton_labels, const int _hbutton_count = 1);
 		void enablePaintDate(void){paintDate = true;};
-		void enableLogo(void){logo = true;};
 
+		//
 		void paint();
 		void hide();
 };

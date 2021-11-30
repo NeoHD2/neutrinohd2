@@ -665,7 +665,6 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 	gradient = g_settings.Head_gradient;
 
 	paintDate = false;
-	logo = false;
 	hbutton_count	= 0;
 	hbutton_labels.clear();
 
@@ -685,7 +684,6 @@ CHeaders::CHeaders(CBox position, const char * const title, const char * const i
 	gradient = g_settings.Head_gradient;
 
 	paintDate = false;
-	logo = false;
 	hbutton_count	= 0;
 	hbutton_labels.clear();
 
@@ -718,18 +716,14 @@ void CHeaders::paint()
 	{
 		CFrameBuffer::getInstance()->getIconSize(hicon, &i_w, &i_h);
 
-		// limit icon height
+		// scale icon
 		if(i_h >= itemBox.iHeight)
-			i_h = itemBox.iHeight;
-
-		if(logo)
 		{
+			i_h = itemBox.iHeight - 2;
 			i_w = i_h*1.67;
-
-			CFrameBuffer::getInstance()->paintIcon(hicon, itemBox.iX + BORDER_LEFT, itemBox.iY + (itemBox.iHeight - i_h)/2, itemBox.iHeight, true, i_w, i_h);
 		}
-		else
-			CFrameBuffer::getInstance()->paintIcon(hicon, itemBox.iX + BORDER_LEFT, itemBox.iY + (itemBox.iHeight - i_h)/2);
+
+		CFrameBuffer::getInstance()->paintIcon(hicon, itemBox.iX + BORDER_LEFT, itemBox.iY + (itemBox.iHeight - i_h)/2, 0, true, i_w, i_h);
 	}
 
 	// right buttons

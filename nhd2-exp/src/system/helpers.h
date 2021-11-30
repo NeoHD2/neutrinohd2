@@ -120,7 +120,7 @@ std::string encodeUrl(std::string txt);
 std::string decodeUrl(std::string url);
 
 bool getUrl(std::string &url, std::string &answer, std::string userAgent = "", unsigned int timeout = 0);
-bool downloadUrl(std::string url, std::string file, std::string userAgent = "", unsigned int timeout = 0);
+bool downloadUrl(std::string url, std::string file, std::string userAgent = "", unsigned int timeout = 90);
 
 std::string getUrlAnswer(std::string url, std::string userAgent = "", unsigned int timeout = 0);
 

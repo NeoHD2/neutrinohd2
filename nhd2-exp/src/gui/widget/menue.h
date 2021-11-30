@@ -121,12 +121,20 @@ class CMenuWidget : public CMenuTarget
 		button_label_list_t hbutton_labels;
 		bool PaintDate;
 		int timestr_len;
+		fb_pixel_t headColor;
+		int headRadius;
+		int headCorner;
+		int headGradient;
 		
 		// foot
 		int fheight;
 		int fbutton_count;
 		int fbutton_width;
 		button_label_list_t fbutton_labels;
+		fb_pixel_t footColor;
+		int footRadius;
+		int footCorner;
+		int footGradient;
 
 		// itemInfo
 		bool paintFootInfo;
@@ -209,11 +217,17 @@ class CMenuWidget : public CMenuTarget
 
 		// foot
 		void setFooterButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1, const int _fbutton_width = 0);
+		void setFootColor(fb_pixel_t col) {footColor = col;};
+		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};
+		void setFootGradient(int grad){footGradient = grad;};
 
 		// head
 		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
 		void setHeaderButtons(const struct button_label* _hbutton_label, const int _hbutton_count = 1);
 		void enablePaintDate(void){PaintDate = true;};
+		void setHeadColor(fb_pixel_t col) {headColor = col;};
+		void setHeadCorner(int ra, int co){headRadius = ra; headCorner = co;};
+		void setHeadGradient(int grad){headGradient = grad;};
 
 		// footInfo
 		void enablePaintFootInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh; /*initFrames();*/};

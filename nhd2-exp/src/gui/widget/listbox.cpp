@@ -1796,7 +1796,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	l_name = "";
 	iconfile = "";
 
-	logo = false;
+	//
 	enableCenter = false;
 	inFocus = true;
 	shrinkMenu = false;
@@ -1887,7 +1887,7 @@ ClistBox::ClistBox(CBox* position)
 	l_name = "";
 	iconfile = "";
 
-	logo = false;
+	//
 	enableCenter = false;
 	inFocus = true;
 	shrinkMenu = false;
@@ -2322,11 +2322,13 @@ void ClistBox::paintHead()
 
 			frameBuffer->getIconSize(iconfile.c_str(), &i_w, &i_h);
 			
-			// limit icon height
 			if(i_h >= hheight)
-				i_h = hheight;
-				
-			frameBuffer->paintIcon(iconfile, cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + (hheight - i_h)/2);
+			{
+				i_h = hheight - 2;
+				i_w = i_h*1.67;
+			}
+
+			CFrameBuffer::getInstance()->paintIcon(iconfile, cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + (hheight - i_h)/2, 0, true, i_w, i_h);
 
 			// Buttons
 			int iw[hbutton_count], ih[hbutton_count];
@@ -2377,16 +2379,12 @@ void ClistBox::paintHead()
 			
 			// limit icon height
 			if(i_h >= hheight)
-				i_h = hheight;
-			
-			if(logo)
 			{
+				i_h = hheight - 2;
 				i_w = i_h*1.67;
-
-				CFrameBuffer::getInstance()->paintIcon(iconfile, cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + (hheight - i_h)/2, hheight, true, i_w, i_h);
 			}
-			else
-				frameBuffer->paintIcon(iconfile, cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + (hheight - i_h)/2);
+
+			CFrameBuffer::getInstance()->paintIcon(iconfile, cFrameBox.iX + BORDER_LEFT, cFrameBox.iY + (hheight - i_h)/2, 0, true, i_w, i_h);
 
 			// Buttons
 			int iw[hbutton_count], ih[hbutton_count];

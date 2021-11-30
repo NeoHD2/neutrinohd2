@@ -136,16 +136,21 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	fbutton_labels.clear();
 	fbutton_width = width;
 	fheight = 0;
+	footColor = COL_MENUFOOT_PLUS_0;
+	footRadius = RADIUS_MID;
+	footCorner = CORNER_BOTTOM;
+	footGradient = g_settings.Foot_gradient;
 
 	//
 	PaintDate = false;
 	timestr_len = 0;
-
-	//
 	hbutton_count	= 0;
 	hbutton_labels.clear();
-	
 	hheight = 0;
+	headColor = COL_MENUHEAD_PLUS_0;
+	headRadius = RADIUS_MID;
+	headCorner = CORNER_TOP;
+	headGradient = g_settings.Head_gradient;
 
 	//
 	paintFootInfo = false;
@@ -412,10 +417,10 @@ void CMenuWidget::paintHead()
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		// box
-		frameBuffer->paintBoxRel(x, y, width, hheight, COL_MENUCONTENT_PLUS_0);
+		frameBuffer->paintBoxRel(x, y, width, hheight, headColor, headRadius, headCorner, headGradient);
 
 		// paint horizontal line top
-		frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + hheight - 2, COL_MENUCONTENT_PLUS_5);
+		//frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + hheight - 2, COL_MENUCONTENT_PLUS_5);
 		
 		// icon
 		int i_w = 0;
@@ -423,12 +428,13 @@ void CMenuWidget::paintHead()
 
 		frameBuffer->getIconSize(iconfile.c_str(), &i_w, &i_h);
 			
-		// limit icon height
 		if(i_h >= hheight)
-			i_h = hheight;
-
-		// left icon
-		frameBuffer->paintIcon(iconfile, x + BORDER_LEFT, y + (hheight - i_h)/2);
+		{
+			i_h = hheight - 2;
+			i_w = i_h*1.67;
+		}
+				
+		frameBuffer->paintIcon(iconfile, x + BORDER_LEFT, y + (hheight - i_h)/2, 0, true, i_w, i_h);
 
 		// Buttons
 		int iw[hbutton_count], ih[hbutton_count];
@@ -466,7 +472,7 @@ void CMenuWidget::paintHead()
 	else
 	{
 		// headBox
-		frameBuffer->paintBoxRel(x, y, width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
+		frameBuffer->paintBoxRel(x, y, width, hheight, headColor, headRadius, headCorner, headGradient);
 	
 		//paint icon (left)
 		int i_w = 0;
@@ -476,9 +482,12 @@ void CMenuWidget::paintHead()
 			
 		// limit icon height
 		if(i_h >= hheight)
-			i_h = hheight;
+		{
+			i_h = hheight - 2;
+			i_w = i_h*1.67;
+		}
 				
-		frameBuffer->paintIcon(iconfile, x + BORDER_LEFT, y + (hheight - i_h)/2);
+		frameBuffer->paintIcon(iconfile, x + BORDER_LEFT, y + (hheight - i_h)/2, 0, true, i_w, i_h);
 
 		// Buttons
 		int iw[hbutton_count], ih[hbutton_count];
@@ -522,10 +531,10 @@ void CMenuWidget::paintFoot()
 		if(fbutton_count)
 		{
 			//
-			frameBuffer->paintBoxRel(x, y + height - fheight, width, fheight, COL_MENUCONTENT_PLUS_0);
+			frameBuffer->paintBoxRel(x, y + height - fheight, width, fheight, footColor, footRadius, footCorner, footGradient);
 
 			// paint horizontal line buttom
-			frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight + 2, COL_MENUCONTENT_PLUS_5);
+			//frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight + 2, COL_MENUCONTENT_PLUS_5);
 
 			// buttons
 			int buttonWidth = 0;
@@ -558,7 +567,7 @@ void CMenuWidget::paintFoot()
 	else
 	{
 		// footBox	
-		frameBuffer->paintBoxRel(x, y + height - cFrameFootInfo.iHeight - fheight, width, fheight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
+		frameBuffer->paintBoxRel(x, y + height - cFrameFootInfo.iHeight - fheight, width, fheight, footColor, footRadius, footCorner, footGradient);
 		
 		// buttons
 		int buttonWidth = 0;
@@ -615,6 +624,13 @@ void CMenuWidget::paint()
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight - fheight - cFrameFootInfo.iHeight, COL_MENUCONTENT_PLUS_0);
+		
+		// head line
+		frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + hheight, COL_MENUCONTENT_PLUS_5);
+		
+		//footline
+		if(fbutton_count)
+			frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight, COL_MENUCONTENT_PLUS_5);
 	}
 	else
 	{
