@@ -63,4 +63,18 @@ class CDBoxInfoWidget : public CMenuTarget
 		int exec(CMenuTarget* parent, const std::string & actionKey);
 };
 
+class CInfo : public CMenuTarget
+{
+	private:
+		CMenuWidget* infoMenu;
+		void showMenu();
+		
+	public:
+		CInfo();
+		~CInfo();
+		
+		void hide(){};
+		int exec(CMenuTarget* parent, const std::string& actionKey);
+};
+
 #endif

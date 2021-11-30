@@ -2335,7 +2335,7 @@ void ClistBox::paintHead()
 
 			if (hbutton_count)
 			{
-				for (int i = 0; i < hbutton_count; i++)
+				for (int i = 0; i < (int)hbutton_count; i++)
 				{
 					if (hbutton_labels[i].button != NULL)
 					{
@@ -2395,7 +2395,7 @@ void ClistBox::paintHead()
 
 			if (hbutton_count)
 			{
-				for (unsigned int i = 0; i < hbutton_count; i++)
+				for (int i = 0; i < (int)hbutton_count; i++)
 				{
 					if (hbutton_labels[i].button != NULL)
 					{
@@ -2445,7 +2445,7 @@ void ClistBox::paintFoot()
 
 				buttonWidth = (cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
 	
-				for (unsigned int i = 0; i < fbutton_count; i++)
+				for (int i = 0; i < (int)fbutton_count; i++)
 				{
 					if (fbutton_labels[i].button != NULL)
 					{
@@ -2478,7 +2478,7 @@ void ClistBox::paintFoot()
 			if (fbutton_count)
 				buttonWidth = (cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
 	
-			for (unsigned int i = 0; i < fbutton_count; i++)
+			for (int i = 0; i < (int)fbutton_count; i++)
 			{
 				if (fbutton_labels[i].button != NULL)
 				{
@@ -2509,7 +2509,7 @@ void ClistBox::setHeaderButtons(const struct button_label *_hbutton_labels, cons
 	{
 		if (_hbutton_count)
 		{
-			for (unsigned int i = 0; i < _hbutton_count; i++)
+			for (int i = 0; i < (int)_hbutton_count; i++)
 			{
 				hbutton_labels.push_back(_hbutton_labels[i]);
 			}
@@ -2525,7 +2525,7 @@ void ClistBox::setFooterButtons(const struct button_label* _fbutton_labels, cons
 	{
 		if (_fbutton_count)
 		{
-			for (unsigned int i = 0; i < _fbutton_count; i++)
+			for (int i = 0; i < (int)_fbutton_count; i++)
 			{
 				fbutton_labels.push_back(_fbutton_labels[i]);
 			}

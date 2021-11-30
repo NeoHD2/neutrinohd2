@@ -115,6 +115,7 @@ void CTextBox::initVar(void)
 	m_nMaxWidth = MAX_WINDOW_WIDTH;
 	
 	m_textBackgroundColor = COL_MENUCONTENT_PLUS_0;
+	tColor = COL_MENUCONTENT;
 
 	m_cLineArray.clear();
 	
@@ -477,7 +478,7 @@ void CTextBox::refreshText(void)
 			}
 		}
 
-		m_pcFontText->RenderString(m_cFrameTextRel.iX + x_start, y, m_cFrameTextRel.iWidth, m_cLineArray[i].c_str(), COL_MENUCONTENT, 0, true); // UTF-8
+		m_pcFontText->RenderString(m_cFrameTextRel.iX + x_start, y, m_cFrameTextRel.iWidth, m_cLineArray[i].c_str(), tColor, 0, true); // UTF-8
 	}
 }
 

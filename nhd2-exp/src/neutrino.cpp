@@ -3161,9 +3161,10 @@ void CNeutrinoApp::RealRun(void)
 				// epg view
 				redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_EVENTINFO, true, NULL, new CEPGDataHandler(), "", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
 		
-			       	// epgplus/tech info
+			       // epgplus
 				redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_EPGPLUS, true, NULL, new CEPGplusHandler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
 
+				//tech info
 				redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_STREAMINFO, true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
 				
 				redMenu.exec(NULL, "");

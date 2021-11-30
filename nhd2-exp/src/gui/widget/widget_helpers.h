@@ -73,6 +73,12 @@ enum {
 	CC_TIME
 };
 
+enum {
+	CC_ALIGN_LEFT,
+	CC_ALIGN_CENTER,
+	CC_ALIGN_RIGHT
+};
+
 class CComponent
 {
 	public:

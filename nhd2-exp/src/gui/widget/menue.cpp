@@ -719,7 +719,7 @@ void CMenuWidget::paintItems()
 		}
 	
 		// paint items background
-		//frameBuffer->paintBoxRel(x, item_start_y, width, items_height, COL_MENUCONTENT_PLUS_0);
+		frameBuffer->paintBoxRel(x, item_start_y, width, items_height, COL_MENUCONTENT_PLUS_0);
 
 		if(widgetType == WIDGET_TYPE_EXTENDED && widgetMode == MODE_MENU)
 		{

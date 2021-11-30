@@ -48,6 +48,8 @@
 #include <driver/rcinput.h>
 
 #include <gui/dboxinfo.h>
+#include <gui/imageinfo.h>
+#include <gui/streaminfo2.h>
 
 // zapit includes
 #include <frontend_c.h>
@@ -429,4 +431,49 @@ void CDBoxInfoWidget::showInfo()
 	delete m_window;
 	m_window = NULL;	
 }
+
+//
+CInfo::CInfo()
+{
+	dprintf(DEBUG_NORMAL, "CInfo::CInfo:\n");
+}
+
+CInfo::~CInfo()
+{
+	dprintf(DEBUG_NORMAL, "CInfo::~CInfo:\n");
+}
+
+int CInfo::exec(CMenuTarget* parent, const std::string& actionKey)
+{
+	dprintf(DEBUG_NORMAL, "CInfo::exec: %s\n", actionKey.c_str());
+	
+	int ret = RETURN_REPAINT;
+	
+	if (parent)
+		parent->hide();
+		
+	showMenu();
+	
+	return ret;
+}
+
+void CInfo::showMenu()
+{
+	infoMenu = new CMenuWidget("Information", NEUTRINO_ICON_INFO);
+	
+	infoMenu->setWidgetMode(MODE_MENU);
+	infoMenu->enablePaintDate();
+	infoMenu->enableShrinkMenu();
+	
+	infoMenu->addItem( new CMenuForwarder(LOCALE_DBOXINFO, true, NULL, new CDBoxInfoWidget(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_BOXINFO, LOCALE_HELPTEXT_BOXINFO));
+	
+	infoMenu->addItem(new CMenuForwarder(LOCALE_SERVICEMENU_IMAGEINFO,  true, NULL, new CImageInfo(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_IMAGEINFO, LOCALE_HELPTEXT_IMAGEINFO), false);
+	
+	infoMenu->addItem(new CMenuForwarder(LOCALE_EPGMENU_STREAMINFO, true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	
+	infoMenu->integratePlugins(CPlugins::I_TYPE_MAIN);
+	
+	infoMenu->exec(NULL, "");
+}
+
 

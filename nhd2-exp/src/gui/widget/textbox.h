@@ -103,6 +103,7 @@ class CTextBox : public CWidgetItem
 
 		// backgrond
 		fb_pixel_t m_textBackgroundColor;
+		uint8_t tColor;
 		
 		std::string thumbnail;
 		int lx; 
@@ -151,6 +152,7 @@ class CTextBox : public CWidgetItem
 		void setPosition(const int x, const int y, const int dx, const int dy);
 		void setPosition(const CBox * position);
 		void setBackgroundColor(fb_pixel_t col){m_textBackgroundColor = col;};
+		void setTextColor(uint8_t col){tColor = col;};
 		void setFontText(CFont * font_text){m_pcFontText = font_text;};
 		void setMode(const int mode);
 		void disablePaintFrame(){paintBG = false;};

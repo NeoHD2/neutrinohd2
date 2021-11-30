@@ -170,6 +170,9 @@ void CWindow::setPosition(CBox* position)
 void CWindow::paint()
 {
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
+	
+	if(savescreen) 
+		saveScreen();
 
 	if(enableshadow)
 	{

@@ -1086,8 +1086,8 @@ function main()
 	item3 = neutrino.CMenuForwarder("testClistBox")
 	item3:setInfo1("lua: testing ClistBox")
 
-	item4 = neutrino.CMenuForwarder("testCWindow")
-	item4:setInfo1("lua: testing CWindow")
+	item4 = neutrino.CMenuForwarder("testCWidget (ClistBox|CFrameBox)")
+	item4:setInfo1("lua: testing ClistBox|CFrameBox")
 
 	item5 = neutrino.CMenuForwarder("testCFrameBox")
 	item5:setInfo1("lua: testing CFrameBox")
