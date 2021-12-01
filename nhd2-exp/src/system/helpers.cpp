@@ -50,6 +50,14 @@
 
 #include <wordexp.h>
 
+#include <cstring>
+#include <fstream>
+#include <string>
+#include <iostream>
+
+
+using namespace std;
+
 #if defined (__USE_FILE_OFFSET64) || defined (_DARWIN_USE_64_BIT_INODE)
 typedef struct dirent64 dirent_struct;
 #define my_alphasort alphasort64
@@ -823,14 +831,22 @@ bool downloadUrl(std::string url, std::string file, std::string userAgent, unsig
 		perror(file.c_str());
 		return false;
 	}
+	
 	curl_easy_setopt(curl_handle, CURLOPT_URL, url.c_str());
 	curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, NULL);
 	curl_easy_setopt(curl_handle, CURLOPT_FILE, fp);
 	curl_easy_setopt(curl_handle, CURLOPT_FAILONERROR, 1);
-	curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, timeout);
+	curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, (long)timeout);
+	curl_easy_setopt(curl_handle, CURLOPT_CONNECTTIMEOUT, (long)timeout);
 	curl_easy_setopt(curl_handle, CURLOPT_NOSIGNAL, (long)1);
-	curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYPEER, false);
+	curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYPEER, 0L);
+	
+	curl_easy_setopt(curl_handle, CURLOPT_ACCEPT_ENCODING, "");//
+	curl_easy_setopt(curl_handle, CURLOPT_COOKIE, "");//
+	
 	curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, userAgent.c_str());
+	
+	curl_easy_setopt(curl_handle, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);//
 
 	if(strcmp(g_settings.softupdate_proxyserver, "") != 0)
 	{
@@ -845,6 +861,9 @@ bool downloadUrl(std::string url, std::string file, std::string userAgent, unsig
 			curl_easy_setopt(curl_handle, CURLOPT_PROXYUSERPWD, tmp);
 		}
 	}
+	
+	curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
+	curl_easy_setopt(curl_handle, CURLOPT_MAXREDIRS, (long)20);
 
 	char cerror[CURL_ERROR_SIZE];
 	curl_easy_setopt(curl_handle, CURLOPT_ERRORBUFFER, cerror);
@@ -1637,81 +1656,6 @@ uint64_t cTimeMs::Elapsed(void)
 }
 
 //
-char * setIconName(neutrino_msg_t key)
-{
-	char * iconName = NULL;
-
-	switch (key) 
-	{
-		case RC_red:
-			iconName = NEUTRINO_ICON_BUTTON_RED;
-			break;
-		case RC_green:
-			iconName = NEUTRINO_ICON_BUTTON_GREEN;
-			break;
-		case RC_yellow:
-			iconName = NEUTRINO_ICON_BUTTON_YELLOW;
-			break;
-		case RC_blue:
-			iconName = NEUTRINO_ICON_BUTTON_BLUE;
-			break;
-		case RC_standby:
-			iconName = NEUTRINO_ICON_BUTTON_POWER;
-			break;
-		//case RC_setup:
-		//	iconName = NEUTRINO_ICON_BUTTON_MENU_SMALL;
-		//	break;
-		//case RC_help:
-		//	iconName = NEUTRINO_ICON_BUTTON_HELP_SMALL;
-		//	break;
-		//case RC_info:
-		//	iconName = NEUTRINO_ICON_BUTTON_INFO_SMALL;
-		//	break;
-		//case RC_stop:
-		//	iconName = NEUTRINO_ICON_BUTTON_STOP;
-		//	break;
-		case RC_0:
-			iconName = NEUTRINO_ICON_BUTTON_0;
-			break;
-		case RC_1:
-			iconName = NEUTRINO_ICON_BUTTON_1;
-			break;
-		case RC_2:
-			iconName = NEUTRINO_ICON_BUTTON_2;
-			break;
-		case RC_3:
-			iconName = NEUTRINO_ICON_BUTTON_3;
-			break;
-		case RC_4:
-			iconName = NEUTRINO_ICON_BUTTON_4;
-			break;
-		case RC_5:
-			iconName = NEUTRINO_ICON_BUTTON_5;
-			break;
-		case RC_6:
-			iconName = NEUTRINO_ICON_BUTTON_6;
-			break;
-		case RC_7:
-			iconName = NEUTRINO_ICON_BUTTON_7;
-			break;
-		case RC_8:
-			iconName = NEUTRINO_ICON_BUTTON_8;
-			break;
-		case RC_9:
-			iconName = NEUTRINO_ICON_BUTTON_9;
-			break;
-	}
-
-	return iconName;
-}
-
-////
-#include <cstring>
-#include <fstream>
-#include <string>
-#include <iostream>
-using namespace std;
-
 std::string readFile(std::string file)
 {
 	std::string ret_s;

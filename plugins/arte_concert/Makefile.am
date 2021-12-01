@@ -8,7 +8,7 @@ uninstall-local:
 	-rm $(DESTDIR)$(PLUGINDIR)/arte_concert/arte_concert.cfg
 	-rm $(DESTDIR)$(PLUGINDIR)/arte_concert/arte_concert.lua
 	-rm $(DESTDIR)$(PLUGINDIR)/arte_concert/arte_concert_hint.png
-	-rmdir $(DESTDIR)$(PLUGINDIR)/arte_concert/arte_concert
+	-rmdir $(DESTDIR)$(PLUGINDIR)/arte_concert
 
 
 

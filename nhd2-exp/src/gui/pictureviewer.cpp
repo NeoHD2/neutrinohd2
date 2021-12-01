@@ -350,7 +350,7 @@ void CPictureViewerGui::addToPlaylist(const char* fileName)
 	CPicture pic;
 	struct stat statbuf;
 				
-	pic.Filename = file.Name;
+	pic.Filename = fileName;
 	std::string tmp = file.Name.substr(file.Name.rfind('/') + 1);
 	pic.Name = tmp.substr(0, tmp.rfind('.'));
 	pic.Type = tmp.substr(tmp.rfind('.') + 1);

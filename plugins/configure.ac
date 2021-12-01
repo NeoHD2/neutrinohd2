@@ -66,5 +66,6 @@ netzkino_hd/Makefile
 mtv/Makefile
 media_one/Makefile
 arte_concert/Makefile
+plutotv/Makefile
 ])
 

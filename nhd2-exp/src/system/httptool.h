@@ -44,13 +44,17 @@ class CHTTPTool
 		std::string userAgent;
 		int iGlobalProgressEnd;
 		int iGlobalProgressBegin;
+		std::string captionString;
 
 		CProgressWindow* statusViewer;
 		static int show_progress(void *clientp, double dltotal, double dlnow, double ultotal, double ulnow);
 
 	public:
 		CHTTPTool();
-		void setStatusViewer( CProgressWindow* statusview );
+		
+		//
+		void setTitle(const neutrino_locale_t title);
+		void setTitle(const char* const title);
 		bool downloadFile(const std::string &URL, const char * const downloadTarget, int globalProgressEnd = -1);
 };
 

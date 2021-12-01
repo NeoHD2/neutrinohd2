@@ -119,18 +119,14 @@ size_t WriteMemoryCallback(void *ptr, size_t size, size_t nmemb, void *data);
 std::string encodeUrl(std::string txt);
 std::string decodeUrl(std::string url);
 
-bool getUrl(std::string &url, std::string &answer, std::string userAgent = "", unsigned int timeout = 0);
-bool downloadUrl(std::string url, std::string file, std::string userAgent = "", unsigned int timeout = 90);
-
-std::string getUrlAnswer(std::string url, std::string userAgent = "", unsigned int timeout = 0);
+bool getUrl(std::string &url, std::string &answer, std::string userAgent = "", unsigned int timeout = 60);
+bool downloadUrl(std::string url, std::string file, std::string userAgent = "", unsigned int timeout = 60);
+std::string getUrlAnswer(std::string url, std::string userAgent = "", unsigned int timeout = 60);
 
 //
 int _select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
 ssize_t _writeall(int fd, const void *buf, size_t count);
 ssize_t _read(int fd, void *buf, size_t count);
-
-//
-char * setIconName(neutrino_msg_t key);
 
 //
 class RandomNumber
@@ -192,9 +188,11 @@ class cTimeMs {
 		uint64_t Elapsed(void);
 };
 
-////
+//
+#ifndef SWIG
 bool parseJsonFromFile(std::string& jFile, Json::Value *root, std::string *errMsg);
 bool parseJsonFromString(std::string& jData, Json::Value *root, std::string *errMsg);
+#endif
 
 // proc utils
 int proc_put(const char *path, const char *value, const int len);

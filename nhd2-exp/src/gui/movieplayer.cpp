@@ -241,13 +241,10 @@ void CMoviePlayerGui::addToPlaylist(const char* fileName, std::string title, std
 {
 	dprintf(DEBUG_NORMAL, "CMoviePlayerGui::addToPlaylist: %s\n", fileName);
 
-	CFile file;
-	file.Name = fileName;
-
 	MI_MOVIE_INFO movieInfo;
 	cMovieInfo.clearMovieInfo(&movieInfo); // refresh structure
 
-	movieInfo.file.Name = file.Name;
+	movieInfo.file.Name = fileName;
 	movieInfo.epgTitle = title;
 	movieInfo.epgInfo1 = info1;
 	movieInfo.epgInfo2 = info2;

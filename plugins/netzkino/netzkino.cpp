@@ -290,12 +290,8 @@ void CNKMovies::showMovieInfo(MI_MOVIE_INFO& movie)
 
 void CNKMovies::recordMovie(MI_MOVIE_INFO& movie)
 {
-	CProgressWindow * progressWindow = new CProgressWindow();
-	progressWindow->setTitle("NetzKino: downloading...");
-
 	CHTTPTool httpTool;
-
-	httpTool.setStatusViewer(progressWindow);
+	httpTool.setTitle("NetzKino: downloading...");
 
 	std::string target = g_settings.network_nfs_recordingdir;
 	target += "/";
@@ -306,9 +302,6 @@ void CNKMovies::recordMovie(MI_MOVIE_INFO& movie)
 	{
 		// write .xml
 		movie.file.Name = target;
-		std::string infoString = " ";
-
-		m_movieInfo.encodeMovieInfoXml(&infoString, &movie);
 		m_movieInfo.saveMovieInfo(movie);
 		
 		// write thumbnail

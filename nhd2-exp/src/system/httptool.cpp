@@ -19,7 +19,6 @@
 */
 
 #include <curl/curl.h>
-//#include <curl/types.h>
 #include <curl/easy.h>
 
 #include <global.h>
@@ -30,15 +29,24 @@
 
 CHTTPTool::CHTTPTool()
 {
-	statusViewer = NULL;
+	statusViewer = new CProgressWindow();
+	
 	userAgent = "neutrino/httpdownloader";
 }
 
-void CHTTPTool::setStatusViewer(CProgressWindow* statusview)
+void CHTTPTool::setTitle(const neutrino_locale_t title)
 {
-	statusViewer = statusview;
+	captionString = g_Locale->getText(title);
+	
+	statusViewer->setTitle(captionString.c_str());
 }
 
+void CHTTPTool::setTitle(const char * const title)
+{
+	captionString = title;
+	
+	statusViewer->setTitle(captionString.c_str());
+}
 
 int CHTTPTool::show_progress(void * clientp, double dltotal, double dlnow, double /*ultotal*/, double /*ulnow*/)
 {

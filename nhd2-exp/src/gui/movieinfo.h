@@ -202,8 +202,11 @@ class CMovieInfo
 		MI_MOVIE_INFO loadMovieInfo(const char *file);		
  		// load movie information for the given .xml filename. If there is no filename, the filename (ts) from movie_info is converted to xml and used instead
 		bool encodeMovieInfoXml(std::string* extMessage, MI_MOVIE_INFO * movie_info); 	// encode the movie_info structure to xml string
+		bool encodeMovieInfoXml(std::string* extMessage, const char* fileName, std::string title = "", std::string info1 = "", std::string info2 = ""); 	// encode the movie_info structure to xml string
 		bool saveMovieInfo(MI_MOVIE_INFO& movie_info, CFile* file = NULL ); 		// encode the movie_info structure to xml and save it to the given .xml filename. If there is no filename, the filename (ts) from movie_info is converted to xml and used instead
-		void showMovieInfo(MI_MOVIE_INFO& movie_info);					// open a Hintbox and show the movie info
+		bool saveMovieInfo(const char* fileName, std::string title = "", std::string info1 = "", std::string info2 = "" ,CFile* file = NULL);
+		void showMovieInfo(MI_MOVIE_INFO& movie_info); // open a CIntbox and show the movie info
+
 		void printDebugMovieInfo(MI_MOVIE_INFO& movie_info);				// print movie info on debug channel (RS232)
 		void clearMovieInfo(MI_MOVIE_INFO* movie_info);					// Set movie info structure to initial values
 		bool addNewBookmark(MI_MOVIE_INFO* movie_info,MI_BOOKMARK &new_bookmark);	// add a new bookmark to the given movie info. If there is no space false is returned
@@ -232,8 +235,8 @@ class CMovieInfoWidget : public CMenuTarget
 		int exec(CMenuTarget *parent, const std::string &actionKey);
 
 		void setMovie(MI_MOVIE_INFO& file);
-		void setMovie(const CFile& file, std::string title = "", std::string info1 = "", std::string info2 = "", std::string tfile = "");
-		void setMovie(const char* fileName, std::string title = "", std::string info1 = "", std::string info2 = "", std::string tfile = "");
+		void setMovie(const CFile& file, std::string title = "", std::string info1 = "", std::string info2 = "", std::string tfile = "", int duration = 0, int rating = 0);
+		void setMovie(const char* fileName, std::string title = "", std::string info1 = "", std::string info2 = "", std::string tfile = "", int duration = 0, int rating = 0);
 };
 
 #endif /*MOVIEINFO_H_*/

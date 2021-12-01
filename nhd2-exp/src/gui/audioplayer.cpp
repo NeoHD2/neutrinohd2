@@ -1051,7 +1051,7 @@ void CAudioPlayerGui::addToPlaylist(const CFile& file)
 void CAudioPlayerGui::addToPlaylist(const char* fileName)
 {
 	dprintf(DEBUG_DEBUG, "CAudioPlayerGui::add2Playlist: %s\n", fileName);
-
+	
 	CFile file;
 	file.Name = fileName;
 

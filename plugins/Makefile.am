@@ -36,7 +36,8 @@ SUBDIRS += lua \
 	netzkino_hd \
 	mtv \
 	media_one \
-	arte_concert
+	arte_concert \
+	plutotv
 endif
 
 

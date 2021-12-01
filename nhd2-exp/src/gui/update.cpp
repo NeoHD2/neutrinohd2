@@ -94,7 +94,6 @@
 
 
 CFlashUpdate::CFlashUpdate(int uMode)
-	/*:CProgressWindow()*/
 {
 	progressWindow = new CProgressWindow();
 
@@ -164,7 +163,8 @@ bool CFlashUpdate::selectHttpImage(void)
 	char fileTypes[128];
 	int selected = -1;
 
-	httpTool.setStatusViewer(progressWindow);
+	//httpTool.setStatusViewer(progressWindow);
+	httpTool.setTitle(LOCALE_FLASHUPDATE_HEAD);
 	progressWindow->showStatusMessageUTF(g_Locale->getText(LOCALE_FLASHUPDATE_GETINFOFILE)); // UTF-8
 
 	// NOTE: remember me : i dont like this menu GUI :-(
@@ -269,7 +269,7 @@ bool CFlashUpdate::getUpdateImage(const std::string & version)
 {
 	CHTTPTool httpTool;
 	char * fname, dest_name[100];
-	httpTool.setStatusViewer(progressWindow);
+	httpTool.setTitle(LOCALE_FLASHUPDATE_HEAD);
 
 	fname = rindex(const_cast<char *>(filename.c_str()), '/');
 	if(fname != NULL) 
@@ -299,13 +299,11 @@ bool CFlashUpdate::checkVersion4Update()
 		if(!selectHttpImage())
 			return false;
 
-		//showLocalStatus(100);
 		progressWindow->showGlobalStatus(20);
 		progressWindow->showStatusMessageUTF(g_Locale->getText(LOCALE_FLASHUPDATE_VERSIONCHECK) ); // UTF-8
 
 		dprintf(DEBUG_NORMAL, "internet version: %s\n", newVersion.c_str());
 
-		//showLocalStatus(100);
 		progressWindow->showGlobalStatus(20);
 		progressWindow->hide();
 		
@@ -564,8 +562,8 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 	return RETURN_REPAINT;
 }
 
+//
 CFlashExpert::CFlashExpert()
-	/*:CProgressWindow()*/
 {
 	progressWindow = new CProgressWindow();
 	selectedMTD = -1;
