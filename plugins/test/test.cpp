@@ -1086,7 +1086,7 @@ void CTestMenu::testWindowWidget()
 	
 	// text
 	CText testText;
-	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20 - testImage.iWidth - 50, Box.iHeight/4);
+	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20, Box.iHeight/4);
 	testText.setMode(AUTO_WIDTH);
 	testText.setText(buffer.c_str());
 	
@@ -1954,7 +1954,7 @@ void CTestMenu::testMultiWidget()
 	
 	// text
 	CText testText;
-	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20 - testImage.iWidth - 50, Box.iHeight/4);
+	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20, Box.iHeight/4);
 	testText.setMode(AUTO_WIDTH);
 	testText.setText(buffer.c_str());
 	
@@ -2819,7 +2819,7 @@ void CTestMenu::testCComponent()
 	
 	// text
 	CText testText;
-	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20 - testImage.iWidth - 50, Box.iHeight/4);
+	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20, Box.iHeight/4);
 	testText.setMode(AUTO_WIDTH);
 	testText.setText(buffer.c_str());
 	

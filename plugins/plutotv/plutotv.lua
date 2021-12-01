@@ -19,21 +19,7 @@ episodelist_details = {}
 
 playback_details = {}
 
-mode = 0;
-
 re_url= ""
-
-function getdata(Url, File)
-	if Url == nil then 
-		return nil 
-	end
-
-	local data = nil
-
-	data = neutrino.getUrlAnswer(Url, "Mozilla/5.0")
-
-	return data
-end
 
 function convert(s)
 	s=s:gsub("&","&amp;")
@@ -53,7 +39,7 @@ function get_channels()
 	local r = false
 		
 	local webtvdir = neutrino.CONFIGDIR .. "/webtv"
-	local c_data = getdata("http://api.pluto.tv/v2/channels.json")
+	local c_data = neutrino.getUrlAnswer("http://api.pluto.tv/v2/channels.json", "Mozilla/5.0")
 	local xmltv = "https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/PlutoTV/de.xml"
 	
 	if c_data then
@@ -143,8 +129,9 @@ function getVideoData(url) -- Generate stream address and evaluate it according 
 	http = "http://service-stitcher-ipv4.clusters.pluto.tv/stitch/hls/episode/"
 	token = "?advertisingId=&appName=web&appVersion=unknown&appStoreUrl=&architecture=&buildVersion=&clientTime=0&deviceDNT=0&deviceId=" .. gen_ids() .. "&deviceMake=Chrome&deviceModel=web&deviceType=web&deviceVersion=unknown&includeExtendedEvents=false&sid=" .. gen_ids() .. "&userId=&serverSideAds=true"
 
-	local data = getdata(http .. url .."/master.m3u8" ..token) -- Calling the generated master.m3u8
+	local data = neutrino.getUrlAnswer(http .. url .."/master.m3u8" ..token, "Mozilla/5.0") -- Calling the generated master.m3u8
 	local count = 0
+	
 	if data then
 		local res = 0
 		for band, url2 in data:gmatch(',BANDWIDTH=(%d+).-\n(%d+.-m3u8)') do
@@ -164,8 +151,8 @@ function get_cat()
 	hint:paint()
 	
 	local r = false
-
-	local c_data = getdata("http://api.pluto.tv/v3/vod/categories?includeItems=true&deviceType=web")
+	local c_data = neutrino.getUrlAnswer("http://api.pluto.tv/v3/vod/categories?includeItems=true&deviceType=web", "Mozilla/5.0")
+	
 	if c_data then
 		local jd = json:decode(c_data)
 		if jd then
@@ -330,8 +317,8 @@ function season_menu(_id)
 	local h = neutrino.CHintBox(plugin_title, "Suche Episoden ...")
 	h:paint()
 	local seasons = 1
-
-	local c_data = getdata("http://api.pluto.tv/v3/vod/series/".. _id .."/seasons?includeItems=true&deviceType=web")
+	local c_data = neutrino.getUrlAnswer("http://api.pluto.tv/v3/vod/series/".. _id .."/seasons?includeItems=true&deviceType=web", "Mozilla/5.0")
+	
 	if c_data then
 		local jd = json:decode(c_data)
 		if jd then
