@@ -256,104 +256,6 @@ bool CMovieInfo::encodeMovieInfoXml(std::string * extMessage, MI_MOVIE_INFO * mo
 	return true;
 }
 
-//
-bool CMovieInfo::encodeMovieInfoXml(std::string * extMessage, const char* fileName, std::string title, std::string info1, std::string info2)
-{
-	MI_MOVIE_INFO* movie_info;
-	clearMovieInfo(movie_info);
-
-	movie_info->file.Name = fileName;
-	movie_info->epgTitle = title;
-	movie_info->epgInfo1 = info1;
-	movie_info->epgInfo2 = info2;
-	
-	char tmp[40];
-
-	*extMessage = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n";
-	*extMessage += "<" MI_XML_TAG_NEUTRINO " commandversion=\"1\">\n";
-	*extMessage += "\t<" MI_XML_TAG_RECORD " command=\"";
-	*extMessage += "record";
-	*extMessage += "\">\n";
-	XML_ADD_TAG_STRING(*extMessage, MI_XML_TAG_CHANNELNAME, movie_info->epgChannel);
-	XML_ADD_TAG_STRING(*extMessage, MI_XML_TAG_EPGTITLE, movie_info->epgTitle);
-	XML_ADD_TAG_LONG(*extMessage, MI_XML_TAG_ID, movie_info->epgId);
-	XML_ADD_TAG_STRING(*extMessage, MI_XML_TAG_INFO1, movie_info->epgInfo1);
-	XML_ADD_TAG_STRING(*extMessage, MI_XML_TAG_INFO2, movie_info->epgInfo2);
-	XML_ADD_TAG_LONG(*extMessage, MI_XML_TAG_EPGID, movie_info->epgEpgId);			// %llu
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_MODE, movie_info->epgMode);		//%d
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_VIDEOPID, movie_info->epgVideoPid);	//%u
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_VIDEOTYPE, movie_info->VideoType);		//%u
-	
-	if (movie_info->audioPids.size() > 0) 
-	{
-		*extMessage += "\t\t<" MI_XML_TAG_AUDIOPIDS ">\n";
-
-		for (unsigned int i = 0; i < movie_info->audioPids.size(); i++)	// pids.APIDs.size()
-		{
-			*extMessage += "\t\t\t<" MI_XML_TAG_AUDIO " " MI_XML_TAG_PID "=\"";
-			sprintf(tmp, "%u", movie_info->audioPids[i].epgAudioPid);	//pids.APIDs[i].pid);
-			*extMessage += tmp;
-			*extMessage += "\" " MI_XML_TAG_ATYPE "=\"";
-			sprintf(tmp, "%u", movie_info->audioPids[i].atype);	//pids.APIDs[i].pid);
-			*extMessage += tmp;
-			*extMessage += "\" " MI_XML_TAG_SELECTED "=\"";
-			sprintf(tmp, "%u", movie_info->audioPids[i].selected);	//pids.APIDs[i].pid);
-			*extMessage += tmp;
-			*extMessage += "\" " MI_XML_TAG_NAME "=\"";
-			*extMessage += movie_info->audioPids[i].epgAudioPidName;	// ZapitTools::UTF8_to_UTF8XML(g_RemoteControl->current_PIDs.APIDs[i].desc);
-			*extMessage += "\"/>\n";
-		}
-		*extMessage += "\t\t</" MI_XML_TAG_AUDIOPIDS ">\n";
-	}
-
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_VTXTPID, movie_info->epgVTXPID);	//%u
-	/* new tags */
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_GENRE_MAJOR, movie_info->genreMajor);
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_GENRE_MINOR, movie_info->genreMinor);
-	XML_ADD_TAG_STRING(*extMessage, MI_XML_TAG_SERIE_NAME, movie_info->serieName);
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_LENGTH, movie_info->length);
-	XML_ADD_TAG_STRING(*extMessage, MI_XML_TAG_PRODUCT_COUNTRY, movie_info->productionCountry);
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_PRODUCT_DATE, movie_info->productionDate);
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_QUALITY, movie_info->quality);
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_PARENTAL_LOCKAGE, movie_info->parentalLockAge);
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_DATE_OF_LAST_PLAY, movie_info->dateOfLastPlay);
-	*extMessage += "\t\t<" MI_XML_TAG_BOOKMARK ">\n";
-	*extMessage += "\t";
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_BOOKMARK_START, movie_info->bookmarks.start);
-	*extMessage += "\t";
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_BOOKMARK_END, movie_info->bookmarks.end);
-	*extMessage += "\t";
-	XML_ADD_TAG_UNSIGNED(*extMessage, MI_XML_TAG_BOOKMARK_LAST, movie_info->bookmarks.lastPlayStop);
-	
-	for (int i = 0; i < MI_MOVIE_BOOK_USER_MAX; i++) 
-	{
-		if (movie_info->bookmarks.user[i].pos != 0 || i == 0) 
-		{
-			// encode any valid book, at least 1
-			*extMessage += "\t\t\t<" MI_XML_TAG_BOOKMARK_USER " " MI_XML_TAG_BOOKMARK_USER_POS "=\"";
-			sprintf(tmp, "%d", movie_info->bookmarks.user[i].pos);		//pids.APIDs[i].pid);
-			*extMessage += tmp;
-			*extMessage += "\" " MI_XML_TAG_BOOKMARK_USER_TYPE "=\"";
-			sprintf(tmp, "%d", movie_info->bookmarks.user[i].length);	//pids.APIDs[i].pid);
-			*extMessage += tmp;
-			*extMessage += "\" " MI_XML_TAG_BOOKMARK_USER_NAME "=\"";
-			*extMessage += movie_info->bookmarks.user[i].name;
-			*extMessage += "\"/>\n";
-		}
-	}
-
-	*extMessage += "\t\t</" MI_XML_TAG_BOOKMARK ">\n";
-	 //
-
-	// vote_average
-	XML_ADD_TAG_UNSIGNED(*extMessage, "vote_average", movie_info->vote_average);
-
-	*extMessage += "\t</" MI_XML_TAG_RECORD ">\n";
-	*extMessage += "</" MI_XML_TAG_NEUTRINO ">\n";
-	
-	return true;
-}
-
 bool CMovieInfo::saveMovieInfo(MI_MOVIE_INFO & movie_info, CFile * file)
 {
 	dprintf(DEBUG_NORMAL, "CMovieInfo::saveMovieInfo\n");
@@ -1612,7 +1514,7 @@ void CMovieInfoWidget::setMovie(MI_MOVIE_INFO& file)
 	movieFile = file;
 }
 
-void CMovieInfoWidget::setMovie(const CFile& file, std::string title, std::string info1, std::string info2, std::string tfile, int duration, int rating)
+void CMovieInfoWidget::setMovie(const CFile& file, std::string title, std::string info1, std::string info2, std::string tfile, std::string duration, std::string rating)
 {
 	m_movieInfo.clearMovieInfo(&movieFile);
 
@@ -1621,11 +1523,11 @@ void CMovieInfoWidget::setMovie(const CFile& file, std::string title, std::strin
 	movieFile.epgInfo1 = info1;
 	movieFile.epgInfo2 = info2;
 	movieFile.tfile = tfile;
-	movieFile.length = duration;
-	movieFile.vote_average = rating;
+	movieFile.length = atol(duration.c_str());
+	movieFile.vote_average = (float)atol(rating.c_str());
 }
 
-void CMovieInfoWidget::setMovie(const char* fileName, std::string title, std::string info1, std::string info2, std::string tfile, int duration, int rating)
+void CMovieInfoWidget::setMovie(const char* fileName, std::string title, std::string info1, std::string info2, std::string tfile, std::string duration, std::string rating)
 {
 	m_movieInfo.clearMovieInfo(&movieFile);
 
@@ -1634,8 +1536,10 @@ void CMovieInfoWidget::setMovie(const char* fileName, std::string title, std::st
 	movieFile.epgInfo1 = info1;
 	movieFile.epgInfo2 = info2;
 	movieFile.tfile = tfile;
-	movieFile.length = duration;
-	movieFile.vote_average = rating;
+	movieFile.length = atol(duration.c_str());
+	movieFile.vote_average = (float)atol(rating.c_str());
+	
+	printf("setMovie:%d\n", movieFile.length);
 }
 
 void CMovieInfoWidget::funArt()
@@ -1741,6 +1645,27 @@ void CMovieInfoWidget::funArt()
 		starOnFrame->setActive(false);
 
 		testFrameBox->addFrame(starOnFrame);
+	}
+	
+	// duration
+	if (movieFile.length != 0)
+	{
+		CFrame *lengthFrame = new CFrame();
+		lengthFrame->setMode(FRAME_LABEL);
+		
+		std::string buffer = to_string(movieFile.length);
+		buffer += " Min";
+		
+		int t_w = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth(buffer);
+			
+		lengthFrame->setPosition(titleBox.iX, starBox.iY + starBox.iHeight + 10, t_w, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight());
+		lengthFrame->disablePaintFrame();
+		
+		lengthFrame->setTitle(buffer.c_str());
+		lengthFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+		lengthFrame->setActive(false);
+
+		testFrameBox->addFrame(lengthFrame);
 	}
 
 	// text

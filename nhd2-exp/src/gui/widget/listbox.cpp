@@ -1795,6 +1795,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 
 	l_name = "";
 	iconfile = "";
+	tMode = CC_ALIGN_LEFT;
 
 	//
 	enableCenter = false;
@@ -1886,6 +1887,7 @@ ClistBox::ClistBox(CBox* position)
 
 	l_name = "";
 	iconfile = "";
+	tMode = CC_ALIGN_LEFT;
 
 	//
 	enableCenter = false;
@@ -2364,7 +2366,13 @@ void ClistBox::paintHead()
 			}
 
 			// title
-			g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(cFrameBox.iX + BORDER_LEFT + i_w + ICON_OFFSET, cFrameBox.iY + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - i_w - 2*ICON_OFFSET - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET - timestr_len, l_name, COL_MENUHEAD);
+			int startPosX = cFrameBox.iX + BORDER_LEFT + i_w + ICON_OFFSET;
+			int stringWidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(l_name);
+			
+			if (tMode == CC_ALIGN_CENTER)
+				startPosX = cFrameBox.iX + (cFrameBox.iWidth >> 1) - (stringWidth >> 1);
+		
+			g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(startPosX, cFrameBox.iY + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - i_w - 2*ICON_OFFSET - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET - timestr_len, l_name, COL_MENUHEAD);
 		}
 		else
 		{		
@@ -2418,7 +2426,13 @@ void ClistBox::paintHead()
 			}
 		
 			// head title
-			g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(cFrameBox.iX + BORDER_LEFT + i_w + 2*ICON_OFFSET, cFrameBox.iY + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), cFrameBox.iWidth - BORDER_RIGHT - BORDER_RIGHT - i_w - 2*ICON_OFFSET - timestr_len - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET, l_name.c_str(), COL_MENUHEAD, 0, true); // UTF-8
+			int startPosX = cFrameBox.iX + BORDER_LEFT + i_w + ICON_OFFSET;
+			int stringWidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(l_name);
+			
+			if (tMode == CC_ALIGN_CENTER)
+				startPosX = cFrameBox.iX + (cFrameBox.iWidth >> 1) - (stringWidth >> 1);
+				
+			g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(startPosX, cFrameBox.iY + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), cFrameBox.iWidth - BORDER_RIGHT - BORDER_RIGHT - i_w - 2*ICON_OFFSET - timestr_len - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET, l_name.c_str(), COL_MENUHEAD, 0, true); // UTF-8
 		}		
 	}	
 }

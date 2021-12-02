@@ -3065,6 +3065,7 @@ void CTestMenu::testCHeaders()
 	//headers->setColor(COL_BLUE);
 	//headers->setCorner();
 	//headers->setGradient(NOGRADIENT);
+	headers->setTitleMode(CC_ALIGN_CENTER);
 
 	footers = new CFooters(footBox);
 
@@ -3793,10 +3794,10 @@ void CTestMenu::testClistBox()
 
 	rightWidget = new ClistBox(&Box);
 	
-	//CHintBox loadBox("ClistBox", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
-	//loadBox.paint();
+	CHintBox loadBox("ClistBox", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	loadBox.paint();
 	loadMoviePlaylist();
-	//loadBox.hide();
+	loadBox.hide();
 
 	// load items
 	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
@@ -3833,6 +3834,7 @@ void CTestMenu::testClistBox()
 
 	// head
 	rightWidget->setTitle("ClistBox(standard)", NEUTRINO_ICON_MOVIE);
+	rightWidget->setTitleMode(CC_ALIGN_CENTER);
 	rightWidget->enablePaintHead();
 	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();

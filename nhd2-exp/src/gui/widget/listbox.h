@@ -543,6 +543,7 @@ class ClistBox : public CWidgetItem
 		button_label_list_t hbutton_labels;
 		bool paintDate;
 		bool paintTitle;
+		int tMode;
 
 		// foot
 		int fheight;
@@ -604,6 +605,7 @@ class ClistBox : public CWidgetItem
 		void enablePaintHead(){paintTitle = true;};
 		void enablePaintDate(void){paintDate = true;};
 		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
+		void setTitleMode(const int m){tMode = m;};
 		void setHeaderButtons(const struct button_label *_hbutton_label, const int _hbutton_count = 1);
 		void setHeadColor(fb_pixel_t col) {headColor = col;};
 		void setHeadCorner(int ra, int co){headRadius = ra; headCorner = co;};

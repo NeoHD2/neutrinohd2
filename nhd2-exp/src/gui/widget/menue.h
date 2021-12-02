@@ -125,6 +125,7 @@ class CMenuWidget : public CMenuTarget
 		int headRadius;
 		int headCorner;
 		int headGradient;
+		int tMode;
 		
 		// foot
 		int fheight;
@@ -223,6 +224,7 @@ class CMenuWidget : public CMenuTarget
 
 		// head
 		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
+		void setTitleMode(const int m){tMode = m;};
 		void setHeaderButtons(const struct button_label* _hbutton_label, const int _hbutton_count = 1);
 		void enablePaintDate(void){PaintDate = true;};
 		void setHeadColor(fb_pixel_t col) {headColor = col;};

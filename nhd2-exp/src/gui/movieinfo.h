@@ -133,7 +133,7 @@ typedef struct
 	int atype;
 	int selected;
 	int  epgAudioPid; 			 // epg audio pid nr, usually filled by VCR
-	std::string epgAudioPidName; // epg audio pid name, usually filled by VCR
+	std::string epgAudioPidName; 		// epg audio pid name, usually filled by VCR
 }EPG_AUDIO_PIDS;
 
 typedef struct
@@ -146,12 +146,12 @@ typedef struct
 	std::string epgChannel;			// Channel name, usually filled by EPG
 	std::string serieName;  		// user defines series name
 
-	time_t dateOfLastPlay; 			// last play date of movie in seconds since 1970
-	char dirItNr;  				// handle for quick directory path access only, this is not saved in xml, might be used by the owner of the movie info struct
+	time_t dateOfLastPlay; 		// last play date of movie in seconds since 1970
+	char dirItNr;  			// handle for quick directory path access only, this is not saved in xml, might be used by the owner of the movie info struct
 	int  genreMajor;            		// see showEPG class for more info, usually filled by EPG
 	char genreMinor;			// genreMinor not used so far			
 	int  length;                		// movie length in minutes, usually filled by EPG
-	int  quality;                 		// user classification (3 stars: classics, 2 stars: very good, 1 star: good, 0 stars: OK)
+	int  quality;                 	// user classification (3 stars: classics, 2 stars: very good, 1 star: good, 0 stars: OK)
 	int  productionDate;         		// user defined Country (not from EPG yet, but might be possible)
 	int  parentalLockAge;        		// used for age rating(0:never,6,12,16,18 years,99:always), usually filled by EPG (if available)
 	char format;				// currently not used
@@ -202,7 +202,6 @@ class CMovieInfo
 		MI_MOVIE_INFO loadMovieInfo(const char *file);		
  		// load movie information for the given .xml filename. If there is no filename, the filename (ts) from movie_info is converted to xml and used instead
 		bool encodeMovieInfoXml(std::string* extMessage, MI_MOVIE_INFO * movie_info); 	// encode the movie_info structure to xml string
-		bool encodeMovieInfoXml(std::string* extMessage, const char* fileName, std::string title = "", std::string info1 = "", std::string info2 = ""); 	// encode the movie_info structure to xml string
 		bool saveMovieInfo(MI_MOVIE_INFO& movie_info, CFile* file = NULL ); 		// encode the movie_info structure to xml and save it to the given .xml filename. If there is no filename, the filename (ts) from movie_info is converted to xml and used instead
 		bool saveMovieInfo(const char* fileName, std::string title = "", std::string info1 = "", std::string info2 = "" ,CFile* file = NULL);
 		void showMovieInfo(MI_MOVIE_INFO& movie_info); // open a CIntbox and show the movie info
@@ -235,8 +234,8 @@ class CMovieInfoWidget : public CMenuTarget
 		int exec(CMenuTarget *parent, const std::string &actionKey);
 
 		void setMovie(MI_MOVIE_INFO& file);
-		void setMovie(const CFile& file, std::string title = "", std::string info1 = "", std::string info2 = "", std::string tfile = "", int duration = 0, int rating = 0);
-		void setMovie(const char* fileName, std::string title = "", std::string info1 = "", std::string info2 = "", std::string tfile = "", int duration = 0, int rating = 0);
+		void setMovie(const CFile& file, std::string title = "", std::string info1 = "", std::string info2 = "", std::string tfile = "", std::string duration = "", std::string rating = "");
+		void setMovie(const char* fileName, std::string title = "", std::string info1 = "", std::string info2 = "", std::string tfile = "", std::string duration = "", std::string rating = "");
 };
 
 #endif /*MOVIEINFO_H_*/

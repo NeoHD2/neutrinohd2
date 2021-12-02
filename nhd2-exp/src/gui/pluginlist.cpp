@@ -121,9 +121,9 @@ void CPluginList::showMenu()
 	plist->setWidgetMode(MODE_LISTBOX);
 	plist->setWidgetType(WIDGET_TYPE_CLASSIC);
 	plist->enableShrinkMenu();
-	//plist->enableItemShadow();
 
 	// head
+	plist->setTitleMode(CC_ALIGN_CENTER);
 	plist->enablePaintDate();
 	plist->setHeaderButtons(&CPluginListHeadButtons, 1);
 

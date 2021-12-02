@@ -129,6 +129,12 @@ int CMediaPortal::exec(CMenuTarget * parent, const std::string & actionKey)
 
 		return RETURN_REPAINT;
 	}
+	else if(actionKey == "plutotv")
+	{
+		g_PluginList->startPlugin("plutotv");
+
+		return RETURN_REPAINT;
+	}
 
 	showMenu();
 	
@@ -203,6 +209,11 @@ void CMediaPortal::showMenu(void)
 	// netzkino_hd
 	item = new ClistBoxItem("Netzkino HD", true, NULL, this, "netzkino_hd", RC_nokey, NULL, PLUGINDIR "/netzkino_hd/netzkino.png");
 	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("netzkino_hd")).c_str());
+	mediaPortal->addItem(item);
+	
+	// plutotv
+	item = new ClistBoxItem("Pluto TV VOD", true, NULL, this, "plutotv", RC_nokey, NULL, PLUGINDIR "/plutotv/plutotv.png");
+	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("plutotv")).c_str());
 	mediaPortal->addItem(item);
 
 	mediaPortal->exec(NULL, "");

@@ -667,6 +667,8 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 	paintDate = false;
 	hbutton_count	= 0;
 	hbutton_labels.clear();
+	
+	tMode = CC_ALIGN_LEFT;
 
 	itemType = WIDGET_ITEM_HEAD;
 }
@@ -686,6 +688,8 @@ CHeaders::CHeaders(CBox position, const char * const title, const char * const i
 	paintDate = false;
 	hbutton_count	= 0;
 	hbutton_labels.clear();
+	
+	tMode = CC_ALIGN_LEFT;
 
 	itemType = WIDGET_ITEM_HEAD;
 }
@@ -759,9 +763,15 @@ void CHeaders::paint()
 	
 		g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->RenderString(startx - timestr_len, itemBox.iY + (itemBox.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight(), timestr_len + 1, timestr.c_str(), COL_MENUHEAD, 0, true); 
 	}
+	
+	int startPosX = itemBox.iX + BORDER_LEFT + i_w + ICON_OFFSET;
+	int stringWidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(htitle);
+	
+	if (tMode == CC_ALIGN_CENTER)
+		startPosX = itemBox.iX + (itemBox.iWidth >> 1) - (stringWidth >> 1);
 
 	// title
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(itemBox.iX + BORDER_LEFT + i_w + ICON_OFFSET, itemBox.iY + (itemBox.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), itemBox.iWidth - BORDER_LEFT - BORDER_RIGHT - i_w - 2*ICON_OFFSET - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET - timestr_len, htitle, COL_MENUHEAD);
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(startPosX, itemBox.iY + (itemBox.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), itemBox.iWidth - BORDER_LEFT - BORDER_RIGHT - i_w - 2*ICON_OFFSET - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET - timestr_len, htitle, COL_MENUHEAD);
 }
 
 void CHeaders::hide()
