@@ -1226,7 +1226,7 @@ void CTestMenu::testSingleWidget()
 	headFrame->setIconName(NEUTRINO_ICON_MOVIE);
 	headFrame->setTitle("single Widget");
 	headFrame->enablePaintDate();
-	headFrame->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	headFrame->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	headFrame->setActive(false);
 
 	frameBoxWidget->addFrame(headFrame);
@@ -1234,7 +1234,7 @@ void CTestMenu::testSingleWidget()
 	frameBoxWidget->enablePaintHead();
 	frameBoxWidget->setTitle("CFrameBox", NEUTRINO_ICON_MOVIE);
 	frameBoxWidget->enablePaintDate();
-	frameBoxWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	frameBoxWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 
 	// artFrame
 	CFrame * artFrame = new CFrame();
@@ -1336,13 +1336,13 @@ void CTestMenu::testSingleWidget()
 	CFrame *footFrame = new CFrame();
 	footFrame->setMode(FRAME_FOOT);
 	footFrame->setPosition(box.iX, box.iY + box.iHeight - 40, box.iWidth, 40);
-	footFrame->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	footFrame->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	footFrame->setActive(false);
 
 	frameBoxWidget->addFrame(footFrame);
 	*/
 	frameBoxWidget->enablePaintFoot();
-	frameBoxWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	frameBoxWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	//testWidget->addItem(frameBoxWidget);
 
@@ -1738,10 +1738,10 @@ void CTestMenu::testClistBoxWidget()
 	rightWidget->setSelected(selected);
 	rightWidget->enablePaintHead();
 	rightWidget->setTitle("CWidget(ClistBox)", NEUTRINO_ICON_MP3);
-	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 	rightWidget->enablePaintFoot();
-	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	rightWidget->enablePaintFootInfo();
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 	rightWidget->enableShrinkMenu();
@@ -3836,12 +3836,12 @@ void CTestMenu::testClistBox()
 	rightWidget->setTitle("ClistBox(standard)", NEUTRINO_ICON_MOVIE);
 	rightWidget->setTitleMode(CC_ALIGN_CENTER);
 	rightWidget->enablePaintHead();
-	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 
 	// footer
 	rightWidget->enablePaintFoot();
-	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
 	rightWidget->enablePaintFootInfo(80);
@@ -3980,12 +3980,12 @@ void CTestMenu::testClistBox2()
 	// head
 	rightWidget->setTitle("ClistBox(classic)", NEUTRINO_ICON_MOVIE);
 	rightWidget->enablePaintHead();
-	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 
 	// footer
 	rightWidget->enablePaintFoot();
-	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
 	rightWidget->enablePaintFootInfo(80);
@@ -4124,12 +4124,12 @@ void CTestMenu::testClistBox3()
 	// head
 	rightWidget->setTitle("ClistBox(extended)", NEUTRINO_ICON_MOVIE);
 	rightWidget->enablePaintHead();
-	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 
 	// footer
 	rightWidget->enablePaintFoot();
-	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
 	rightWidget->enablePaintFootInfo(80);
@@ -4406,12 +4406,12 @@ void CTestMenu::testClistBox5()
 	// head
 	rightWidget->setTitle("ClistBox(DL_INFO)", NEUTRINO_ICON_MOVIE);
 	rightWidget->enablePaintHead();
-	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 
 	// footer
 	rightWidget->enablePaintFoot();
-	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
 	rightWidget->enablePaintFootInfo(80);
@@ -4564,12 +4564,12 @@ void CTestMenu::testClistBox6()
 	// head
 	rightWidget->setTitle("ClistBox(DL_HINT)", NEUTRINO_ICON_MOVIE);
 	rightWidget->enablePaintHead();
-	rightWidget->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 
 	// footer
 	rightWidget->enablePaintFoot();
-	rightWidget->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
 	rightWidget->enablePaintFootInfo(80);
@@ -5561,10 +5561,10 @@ void CTestMenu::testCMenuWidget()
 
 	// head
 	listMenu->enablePaintDate();
-	listMenu->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	listMenu->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 
 	// foot
-	listMenu->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	listMenu->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
 	// footInfo
 	listMenu->enablePaintFootInfo(80);
@@ -5618,10 +5618,10 @@ void CTestMenu::testCMenuWidget1()
 
 	// head
 	listMenu->enablePaintDate();
-	listMenu->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	listMenu->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 
 	// foot
-	listMenu->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	listMenu->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// foot info in menu mode are always enabled
 	listMenu->enablePaintFootInfo();

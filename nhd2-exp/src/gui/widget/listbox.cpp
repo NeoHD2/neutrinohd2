@@ -281,7 +281,7 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 	else if (!active)
 	{
 		color = COL_MENUCONTENTINACTIVE;
-		bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
+		//bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
 	}
 	
 	// paint item
@@ -482,7 +482,7 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 	else if (!active)
 	{
 		color = COL_MENUCONTENTINACTIVE;
-		bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
+		//bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
 	}
 	
 	// paint item
@@ -695,7 +695,7 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
 	else if (!active) 
 	{
 		color = COL_MENUCONTENTINACTIVE;
-		bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
+		//bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
 	}
 	
 	// paint item
@@ -1144,7 +1144,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 	else if (!active)
 	{
 		color = COL_MENUCONTENTINACTIVE;
-		bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
+		//bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
 	}
 
 	if(widgetType == WIDGET_TYPE_FRAME)
@@ -1502,7 +1502,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 	else if (!active)
 	{
 		color = COL_MENUCONTENTINACTIVE;
-		bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
+		//bgcolor = COL_MENUCONTENTINACTIVE_PLUS_0;
 	}
 
 	if(widgetType == WIDGET_TYPE_FRAME)
@@ -1567,7 +1567,9 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 		}
 		else
+		{
 			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+		}
 			
 	
 		// icon (left)
@@ -2515,7 +2517,7 @@ void ClistBox::paintFoot()
 	}
 }
 
-void ClistBox::setHeaderButtons(const struct button_label *_hbutton_labels, const int _hbutton_count)
+void ClistBox::setHeadButtons(const struct button_label *_hbutton_labels, const int _hbutton_count)
 {
 	if(paintTitle)
 	{
@@ -2531,7 +2533,7 @@ void ClistBox::setHeaderButtons(const struct button_label *_hbutton_labels, cons
 	}
 }
 
-void ClistBox::setFooterButtons(const struct button_label* _fbutton_labels, const int _fbutton_count, const int _fbutton_width)
+void ClistBox::setFootButtons(const struct button_label* _fbutton_labels, const int _fbutton_count, const int _fbutton_width)
 {
 	if(paint_Foot)
 	{

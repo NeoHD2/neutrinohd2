@@ -321,8 +321,8 @@ void CMP3Player::showMenu()
 
 	alist->setSelected(selected);
 
-	alist->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	alist->setFooterButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
+	alist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	alist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 	
 	alist->enablePaintFootInfo();
 	alist->enablePaintDate();

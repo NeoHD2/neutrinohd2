@@ -849,7 +849,7 @@ void CFileBrowser::paint()
 	listBox->enablePaintHead();
 	listBox->setTitle(l_name);
 	listBox->enablePaintDate();
-	listBox->setHeaderButtons(HButtons, 2);
+	listBox->setHeadButtons(HButtons, 2);
 
 	// foot
 	listBox->enablePaintFoot();
@@ -866,7 +866,7 @@ void CFileBrowser::paint()
 	Button[3].locale = (Filter != NULL)? (use_filter)?LOCALE_FILEBROWSER_FILTER_INACTIVE : LOCALE_FILEBROWSER_FILTER_ACTIVE : NONEXISTANT_LOCALE;
 	Button[3].localename = NULL;
 
-	listBox->setFooterButtons(Button, 4);
+	listBox->setFootButtons(Button, 4);
 
 	//
 	listBox->setSelected(selected);

@@ -540,11 +540,11 @@ void CBouquetList::paint()
 	listBox->enablePaintDate();
 
 	if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
-		listBox->setHeaderButtons(&HButton, 1);
+		listBox->setHeadButtons(&HButton, 1);
 
 	// foot
 	listBox->enablePaintFoot();
-	listBox->setFooterButtons(CBouquetListButtons, 4);
+	listBox->setFootButtons(CBouquetListButtons, 4);
 
 	//
 	listBox->setSelected(selected);

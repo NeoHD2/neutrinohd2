@@ -211,8 +211,8 @@ function cat_menu(_id)
 	green.locale = neutrino.NONEXISTANT_LOCALE
 	green.localename = "Info"
 	
-	cm:setFooterButtons(red)
-	cm:setFooterButtons(green)
+	cm:setFootButtons(red)
+	cm:setFootButtons(green)
 	
 	cm:addKey(neutrino.RC_red, null, "rec")
 	cm:addKey(neutrino.RC_green, null, "info")
@@ -380,8 +380,8 @@ function episode_menu(s)
 	green.locale = neutrino.NONEXISTANT_LOCALE
 	green.localename = "Info"
 	
-	em:setFooterButtons(red)
-	em:setFooterButtons(green)
+	em:setFootButtons(red)
+	em:setFootButtons(green)
 	
 	em:addKey(neutrino.RC_red, null, "rec")
 	em:addKey(neutrino.RC_green, null, "info")
@@ -506,7 +506,7 @@ function main()
 	red.locale = neutrino.NONEXISTANT_LOCALE
 	red.localename = "Update Channels"
 	
-	m:setFooterButtons(red)
+	m:setFootButtons(red)
 	
 	m:addKey(neutrino.RC_red, null, "update")
 	

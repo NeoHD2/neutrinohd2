@@ -196,8 +196,8 @@ void CPicViewer::showMenu()
 	plist->setSelected(selected);
 	plist->enableSaveScreen();
 
-	plist->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	plist->setFooterButtons(PictureViewerButtons, FOOT_BUTTONS_COUNT);
+	plist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	plist->setFootButtons(PictureViewerButtons, FOOT_BUTTONS_COUNT);
 	
 	plist->enablePaintDate();
 

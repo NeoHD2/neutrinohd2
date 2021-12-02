@@ -132,7 +132,7 @@ void CBEBouquetWidget::paint()
 	listBox->setTitle(g_Locale->getText(LOCALE_BOUQUETLIST_HEAD));
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
-	listBox->setHeaderButtons(&HButton, 1);
+	listBox->setHeadButtons(&HButton, 1);
 
 	// foot
 	listBox->enablePaintFoot();
@@ -161,7 +161,7 @@ void CBEBouquetWidget::paint()
 			break;
 	}
 
-	listBox->setFooterButtons(Button, 4);
+	listBox->setFootButtons(Button, 4);
 
 	//
 	listBox->setSelected(selected);

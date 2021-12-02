@@ -313,12 +313,12 @@ function get_movies_menu(_id)
 	m_movies:setItemsPerPage(6, 2)
 	m_movies:enableCenterPos()
 	m_movies:enableCenterPos()
-	m_movies:setFooterButtons(red)
-	m_movies:setFooterButtons(green)
-	m_movies:setFooterButtons(yellow)
-	m_movies:setFooterButtons(blue)
-	m_movies:setHeaderButtons(info)
-	m_movies:setHeaderButtons(rec)
+	m_movies:setFootButtons(red)
+	m_movies:setFootButtons(green)
+	m_movies:setFootButtons(yellow)
+	m_movies:setFootButtons(blue)
+	m_movies:setHeadButtons(info)
+	m_movies:setHeadButtons(rec)
 	
 	local item = nil
 	for _id, movie_detail in pairs(movies) do

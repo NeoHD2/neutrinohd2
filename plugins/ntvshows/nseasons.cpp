@@ -188,7 +188,7 @@ void CNSeasons::showMenu()
 	listBox->enablePaintDate();
 	listBox->enablePaintFootInfo();
 
-	listBox->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	listBox->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 
 	listBox->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
 

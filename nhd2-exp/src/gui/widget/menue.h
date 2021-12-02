@@ -164,6 +164,7 @@ class CMenuWidget : public CMenuTarget
 		bool shrinkMenu;
 		int widgetMode;
 		bool MenuPos;
+		bool headLine;
 
 		// for lua
 		std::string actionKey;
@@ -217,18 +218,18 @@ class CMenuWidget : public CMenuTarget
 		neutrino_msg_t getKey(){return msg;};
 
 		// foot
-		void setFooterButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1, const int _fbutton_width = 0);
+		void setFootButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1, const int _fbutton_width = 0);
 		void setFootColor(fb_pixel_t col) {footColor = col;};
-		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};
+		void setFootCorner(int ra, int co = CORNER_BOTTOM){footRadius = ra; footCorner = co;};
 		void setFootGradient(int grad){footGradient = grad;};
 
 		// head
 		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
 		void setTitleMode(const int m){tMode = m;};
-		void setHeaderButtons(const struct button_label* _hbutton_label, const int _hbutton_count = 1);
+		void setHeadButtons(const struct button_label* _hbutton_label, const int _hbutton_count = 1);
 		void enablePaintDate(void){PaintDate = true;};
 		void setHeadColor(fb_pixel_t col) {headColor = col;};
-		void setHeadCorner(int ra, int co){headRadius = ra; headCorner = co;};
+		void setHeadCorner(int ra, int co = CORNER_TOP){headRadius = ra; headCorner = co;};
 		void setHeadGradient(int grad){headGradient = grad;};
 
 		// footInfo
@@ -250,6 +251,7 @@ class CMenuWidget : public CMenuTarget
 		//
 		void enableShrinkMenu(){shrinkMenu = true;};
 		void enableMenuPosition(){MenuPos = true;};
+		void enableHeadLine(){headLine = true;};
 
 		virtual std::string& getString(void) { if (hasItem())return items[selected]->itemName; };
 		virtual CMenuItem *getSelectedItem(void){if (hasItem()) return items[selected];};

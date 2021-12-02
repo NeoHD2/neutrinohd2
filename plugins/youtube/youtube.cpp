@@ -198,8 +198,8 @@ void CYTBrowser::showMenu()
 	moviesMenu->setItemsPerPage(3, 2);
 	moviesMenu->enablePaintFootInfo();
 
-	moviesMenu->setHeaderButtons(YTHeadButtons, YT_HEAD_BUTTONS_COUNT);
-	moviesMenu->setFooterButtons(YTFootButtons, YT_FOOT_BUTTONS_COUNT);
+	moviesMenu->setHeadButtons(YTHeadButtons, YT_HEAD_BUTTONS_COUNT);
+	moviesMenu->setFootButtons(YTFootButtons, YT_FOOT_BUTTONS_COUNT);
 
 	moviesMenu->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
 	moviesMenu->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));

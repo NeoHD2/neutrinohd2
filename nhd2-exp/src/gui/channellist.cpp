@@ -1624,9 +1624,9 @@ void CChannelList::paint()
 	listBox->enableCenterPos();
 
 	if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
-		listBox->setHeaderButtons(new_mode_active? HeadWEBTVNewModeButtons : HeadWEBTVModeButtons, 2); 
+		listBox->setHeadButtons(new_mode_active? HeadWEBTVNewModeButtons : HeadWEBTVModeButtons, 2); 
 	else
-		listBox->setHeaderButtons(new_mode_active? HeadNewModeButtons : HeadButtons, HEAD_BUTTONS_COUNT);
+		listBox->setHeadButtons(new_mode_active? HeadNewModeButtons : HeadButtons, HEAD_BUTTONS_COUNT);
 
 	// foot
 	listBox->enablePaintFoot();
@@ -1640,7 +1640,7 @@ void CChannelList::paint()
 		CChannelListButtons[1].locale = LOCALE_INFOVIEWER_NEXT;
 	}
 
-	listBox->setFooterButtons(CChannelListButtons, NUM_LIST_BUTTONS);
+	listBox->setFootButtons(CChannelListButtons, NUM_LIST_BUTTONS);
 
 	// itemInfo
 	listBox->enablePaintFootInfo();

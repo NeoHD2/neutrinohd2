@@ -712,8 +712,8 @@ void CIceCast::showMenu()
 	//ilist->setTimeOut(g_settings.timing[SNeutrinoSettings::TIMING_CHANLIST]);
 	ilist->setSelected(selected);
 
-	ilist->setHeaderButtons(&HeadButtons);
-	ilist->setFooterButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
+	ilist->setHeadButtons(&HeadButtons);
+	ilist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 	
 	ilist->enablePaintFootInfo();
 	ilist->enablePaintDate();

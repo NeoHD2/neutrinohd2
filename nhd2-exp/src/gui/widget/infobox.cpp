@@ -264,10 +264,12 @@ void CInfoBox::refreshFoot(void)
 //////////////////////////////////////////////////////////////////////
 bool CInfoBox::hide(void)
 {
+/*
 	if(m_pcTextBox != NULL)
 	{
 		m_pcTextBox->hide();
 	}
+*/	
 
 	// hide title
 	frameBuffer->paintBackgroundBoxRel(m_cBoxFrame.iX, m_cBoxFrame.iY, m_cBoxFrame.iWidth, m_cBoxFrame.iHeight);

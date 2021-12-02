@@ -125,10 +125,19 @@ void CPluginList::showMenu()
 	// head
 	plist->setTitleMode(CC_ALIGN_CENTER);
 	plist->enablePaintDate();
-	plist->setHeaderButtons(&CPluginListHeadButtons, 1);
+	plist->setHeadButtons(&CPluginListHeadButtons, 1);
+	
+	////
+	plist->enableHeadLine();
+	plist->setHeadColor(COL_MENUCONTENT_PLUS_0);
+	plist->setHeadGradient(NOGRADIENT);
+	plist->setHeadCorner(RADIUS_LARGE);
+	plist->setFootColor(COL_MENUCONTENT_PLUS_0);
+	plist->setFootGradient(NOGRADIENT);
+	plist->setFootCorner(RADIUS_LARGE);
 
 	// footer
-	plist->setFooterButtons(CPluginListButtons, NUM_LIST_BUTTONS);
+	plist->setFootButtons(CPluginListButtons, NUM_LIST_BUTTONS);
 
 	//
 	plist->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));

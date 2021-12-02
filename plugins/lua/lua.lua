@@ -977,14 +977,14 @@ function movieBrowser()
 	info.button = neutrino.NEUTRINO_ICON_BUTTON_HELP
 	info.locale = neutrino.NONEXISTANT_LOCALE
 	info.localename = ""
-	menu:setHeaderButtons(info)
+	menu:setHeadButtons(info)
 
 	btn = neutrino.button_label_struct()
 
 	btn.button = neutrino.NEUTRINO_ICON_BUTTON_MUTE_SMALL
 	btn.locale = neutrino.NONEXISTANT_LOCALE
 	btn.localename = ""
-	menu:setHeaderButtons(btn)
+	menu:setHeadButtons(btn)
 
 	-- foot
 	btnRed = neutrino.button_label_struct()
@@ -992,14 +992,14 @@ function movieBrowser()
 	btnRed.button = neutrino.NEUTRINO_ICON_BUTTON_RED
 	btnRed.locale = neutrino.NONEXISTANT_LOCALE
 	btnRed.localename = "delete all"
-	menu:setFooterButtons(btnRed)
+	menu:setFootButtons(btnRed)
 
 	btnGreen = neutrino.button_label_struct()
 
 	btnGreen.button = neutrino.NEUTRINO_ICON_BUTTON_GREEN
 	btnGreen.locale = neutrino.NONEXISTANT_LOCALE
 	btnGreen.localename = "Add"
-	menu:setFooterButtons(btnGreen)
+	menu:setFootButtons(btnGreen)
 
 	if selected < 0 then
 		selected = 0

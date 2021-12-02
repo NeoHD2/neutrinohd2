@@ -133,7 +133,7 @@ void CBEChannelWidget::paint()
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
 	listBox->enablePaintFoot();
-	listBox->setFooterButtons(CBEChannelWidgetButtons, BUTTONS_COUNT);
+	listBox->setFootButtons(CBEChannelWidgetButtons, BUTTONS_COUNT);
 	listBox->enablePaintFootInfo();
 
 	//

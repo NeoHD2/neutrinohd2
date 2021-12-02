@@ -787,11 +787,11 @@ void CTimerList::paint()
 	listBox->setTitle(g_Locale->getText(LOCALE_TIMERLIST_NAME), NEUTRINO_ICON_TIMER);
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
-	listBox->setHeaderButtons(&CTimerListHeadButtons, 1);
+	listBox->setHeadButtons(&CTimerListHeadButtons, 1);
 
 	// foot
 	listBox->enablePaintFoot();
-	listBox->setFooterButtons(TimerListButtons, 4);
+	listBox->setFootButtons(TimerListButtons, 4);
 
 	//
 	listBox->setSelected(selected);

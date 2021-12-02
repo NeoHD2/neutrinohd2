@@ -692,7 +692,7 @@ void EventList::paint(t_channel_id channel_id)
 	listBox->enablePaintHead();
 	listBox->setTitle(name.c_str(), logo.c_str());
 	listBox->enablePaintDate();
-	listBox->setHeaderButtons(HeadButtons, 3);
+	listBox->setHeadButtons(HeadButtons, 3);
 
 	// foot
 	listBox->enablePaintFoot();
@@ -702,7 +702,7 @@ void EventList::paint(t_channel_id channel_id)
 	else
 		FootButtons[3].locale = LOCALE_EVENTLISTBAR_EVENTSORTTIME;
 
-	listBox->setFooterButtons(FootButtons, NUM_LIST_BUTTONS);
+	listBox->setFootButtons(FootButtons, NUM_LIST_BUTTONS);
 
 	//
 	listBox->setSelected(selected);

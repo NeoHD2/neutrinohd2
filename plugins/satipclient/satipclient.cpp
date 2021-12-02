@@ -166,7 +166,7 @@ void CSatIPClient::showMenu()
 	satIPClientMenu->setWidgetMode(MODE_SETUP);
 	satIPClientMenu->enableShrinkMenu();
 
-	satIPClientMenu->setFooterButtons(&FButtons, 1);
+	satIPClientMenu->setFootButtons(&FButtons, 1);
 	satIPClientMenu->addKey(RC_red, this, "savesettings");
 
 	satIPClientMenu->setSelected(selected);

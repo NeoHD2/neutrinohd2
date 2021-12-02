@@ -321,8 +321,8 @@ void CTVShows::showMenu()
 	mlist->enablePaintDate();
 	mlist->enablePaintFootInfo();
 
-	mlist->setHeaderButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	mlist->setFooterButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	mlist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	mlist->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	mlist->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
 	mlist->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));

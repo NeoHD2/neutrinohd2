@@ -1369,7 +1369,7 @@ void CAudioPlayerGui::showPlaylist()
 	alist->enablePaintDate();
 	
 	alist->enablePaintFoot();
-	alist->setFooterButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
+	alist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 	
 	alist->enablePaintFootInfo();
 	

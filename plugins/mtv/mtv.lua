@@ -736,7 +736,7 @@ function mtv_liste(id)
 	btn.locale = neutrino.NONEXISTANT_LOCALE
 	btn.localename = "spiele die ganze Liste"
 
-	menu:setFooterButtons(btn, 1)
+	menu:setFootButtons(btn, 1)
 	menu:addKey(neutrino.RC_red, null, "playlist")
 
 	btn2 = neutrino.button_label_struct()
@@ -745,7 +745,7 @@ function mtv_liste(id)
 	btn2.locale = neutrino.NONEXISTANT_LOCALE
 	btn2.localename = nil
 
-	menu:setHeaderButtons(btn2, 1)
+	menu:setHeadButtons(btn2, 1)
 	menu:addKey(neutrino.RC_record, null, "record")
 
 	local item = nil
@@ -1020,7 +1020,7 @@ function searchliste(id)
 	btn.locale = neutrino.NONEXISTANT_LOCALE
 	btn.localename = "spiele die ganze Liste"
 
-	menu:setFooterButtons(btn, 1)
+	menu:setFootButtons(btn, 1)
 	menu:addKey(neutrino.RC_red, null, "playlist")
 
 	btn2 = neutrino.button_label_struct()
@@ -1029,7 +1029,7 @@ function searchliste(id)
 	btn2.locale = neutrino.NONEXISTANT_LOCALE
 	btn2.localename = nil
 
-	menu:setHeaderButtons(btn2, 1)
+	menu:setHeadButtons(btn2, 1)
 	menu:addKey(neutrino.RC_record, null, "record")
 
 	local item = nil

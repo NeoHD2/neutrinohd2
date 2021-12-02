@@ -851,7 +851,7 @@ void CFrameBox::paintHead()
 	}
 }
 
-void CFrameBox::setHeaderButtons(const struct button_label *_hbutton_labels, const int _hbutton_count)
+void CFrameBox::setHeadButtons(const struct button_label *_hbutton_labels, const int _hbutton_count)
 {
 	if(paintTitle)
 	{
@@ -904,7 +904,7 @@ void CFrameBox::paintFoot()
 	}
 }
 
-void CFrameBox::setFooterButtons(const struct button_label* _fbutton_labels, const int _fbutton_count, const int _fbutton_width)
+void CFrameBox::setFootButtons(const struct button_label* _fbutton_labels, const int _fbutton_count, const int _fbutton_width)
 {
 	if(paint_Foot)
 	{
