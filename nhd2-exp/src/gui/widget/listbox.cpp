@@ -2073,6 +2073,7 @@ void ClistBox::initFrames()
 			}
 		}
 
+		heightFirstPage = std::max(heightCurrPage, heightFirstPage); //FIXME:
 		page_start.push_back(items.size());
 
 		// icon offset
@@ -2090,12 +2091,14 @@ void ClistBox::initFrames()
 		// recalculate height
 		if(shrinkMenu)
 		{
-			listmaxshow = (cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight)/item_height;
-			cFrameBox.iHeight = hheight + listmaxshow*item_height + fheight + cFrameFootInfo.iHeight;
+			//listmaxshow = (cFrameBox.iHeight - hheight - fheight - cFrameFootInfo.iHeight)/item_height;
+			//cFrameBox.iHeight = hheight + listmaxshow*item_height + fheight + cFrameFootInfo.iHeight;
+			if (hasItem())
+				cFrameBox.iHeight = std::min(cFrameBox.iHeight, hheight + heightFirstPage + fheight + cFrameFootInfo.iHeight); //FIXME:
 		}
 		
 		//
-		full_height = cFrameBox.iHeight;  //FIXME:
+		full_height = cFrameBox.iHeight;
 		full_width = cFrameBox.iWidth;
 
 		// sanity check

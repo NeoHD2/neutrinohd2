@@ -1620,7 +1620,7 @@ void CChannelList::paint()
 	listBox->setTitle(name.c_str());
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
-	listBox->enableShrinkMenu();
+	//listBox->enableShrinkMenu();
 	listBox->enableCenterPos();
 
 	if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
