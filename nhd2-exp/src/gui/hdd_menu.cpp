@@ -52,19 +52,18 @@
 #include <global.h>
 #include <neutrino.h>
 #include <gui/widget/icons.h>
-#include "gui/widget/menue.h"
-#include "gui/widget/stringinput.h"
-#include "gui/widget/messagebox.h"
-#include "gui/widget/hintbox.h"
-#include "gui/widget/progresswindow.h"
+#include <gui/widget/menue.h>
+#include <gui/widget/stringinput.h>
+#include <gui/widget/messagebox.h>
+#include <gui/widget/hintbox.h>
+#include <gui/widget/progresswindow.h>
 #include <gui/widget/infobox.h>
 
-#include "system/setting_helpers.h"
-#include "system/settings.h"
-#include "system/debug.h"
+#include <system/setting_helpers.h>
+#include <system/settings.h>
+#include <system/debug.h>
 #include <system/helpers.h>
 
-//#include <driver/audioplay.h>
 #include <pictureviewer.h>
 #include <movieplayer.h>
 

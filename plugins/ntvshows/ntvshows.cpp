@@ -420,12 +420,10 @@ int CTVShows::exec(CMenuTarget* parent, const std::string& actionKey)
 
 void plugin_init(void)
 {
-	dprintf(DEBUG_NORMAL, "CTVShows: plugin_init\n");
 }
 
 void plugin_del(void)
 {
-	dprintf(DEBUG_NORMAL, "CTVShows: plugin_del\n");
 }
 
 void plugin_exec(void)

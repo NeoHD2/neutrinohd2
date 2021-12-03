@@ -36,8 +36,6 @@
 #include <driver/audiometadata.h>
 #include <string>
 
-#include <driver/audiodec/netfile.h>
-
 
 class CAudioPlayer
 {

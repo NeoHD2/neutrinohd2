@@ -1683,6 +1683,12 @@ void CTestMenu::testClistBoxWidget()
 	rightBox.iHeight = frameBuffer->getScreenHeight();
 	rightBox.iX = frameBuffer->getScreenX();
 	rightBox.iY = frameBuffer->getScreenY();
+	
+	if (rightWidget)
+	{
+		delete rightWidget;
+		rightWidget = NULL;
+	}
 
 	rightWidget = new ClistBox(&rightBox);
 
@@ -3751,6 +3757,12 @@ void CTestMenu::testClistBox()
 
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
+	
+	if (rightWidget)
+	{
+		delete rightWidget;
+		rightWidget = NULL;
+	}
 
 	rightWidget = new ClistBox(&Box);
 	
@@ -3808,8 +3820,9 @@ void CTestMenu::testClistBox()
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 
 	rightWidget->setSelected(selected);
-	rightWidget->paint();
 	
+	//
+	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 
 	// loop
@@ -3896,6 +3909,12 @@ void CTestMenu::testClistBox2()
 
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
+	
+	if (rightWidget)
+	{
+		delete rightWidget;
+		rightWidget = NULL;
+	}
 
 	rightWidget = new ClistBox(&Box);
 
@@ -3952,8 +3971,9 @@ void CTestMenu::testClistBox2()
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 
 	rightWidget->setSelected(selected);
-	rightWidget->paint();
 	
+	//
+	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 
 	// loop
@@ -4040,6 +4060,12 @@ void CTestMenu::testClistBox3()
 
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
+	
+	if (rightWidget)
+	{
+		delete rightWidget;
+		rightWidget = NULL;
+	}
 
 	rightWidget = new ClistBox(&Box);
 
@@ -4095,8 +4121,9 @@ void CTestMenu::testClistBox3()
 	rightWidget->enablePaintFootInfo(80);
 
 	rightWidget->setSelected(selected);
-	rightWidget->paint();
 	
+	//
+	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 
 	// loop
@@ -4183,6 +4210,12 @@ void CTestMenu::testClistBox4()
 
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
+	
+	if (rightWidget)
+	{
+		delete rightWidget;
+		rightWidget = NULL;
+	}
 
 	rightWidget = new ClistBox(&Box);
 
@@ -4225,8 +4258,9 @@ void CTestMenu::testClistBox4()
 	rightWidget->disablePaintFrame();	
 
 	rightWidget->setSelected(selected);
-	rightWidget->paint();
 	
+	//
+	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 
 	// loop
@@ -4313,6 +4347,12 @@ void CTestMenu::testClistBox5()
 
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
+	
+	if (rightWidget)
+	{
+		delete rightWidget;
+		rightWidget = NULL;
+	}
 
 	rightWidget = new ClistBox(&Box);
 
@@ -4377,8 +4417,9 @@ void CTestMenu::testClistBox5()
 	rightWidget->setFootInfoMode(FOOT_INFO_MODE);
 
 	rightWidget->setSelected(selected);
+	
+	//
 	rightWidget->paint();
-
 	CFrameBuffer::getInstance()->blit();
 
 	// loop
@@ -4469,6 +4510,12 @@ void CTestMenu::testClistBox6()
 
 	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
 	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
+	
+	if (rightWidget)
+	{
+		delete rightWidget;
+		rightWidget = NULL;
+	}
 
 	rightWidget = new ClistBox(&Box);
 
@@ -4533,12 +4580,11 @@ void CTestMenu::testClistBox6()
 	// footinfo
 	rightWidget->enablePaintFootInfo(80);
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
-	
-	//rightWidget->enableItemShadow();
 
 	rightWidget->setSelected(selected);
-	rightWidget->paint();
 	
+	//
+	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 
 	// loop
@@ -7564,12 +7610,10 @@ void CTestMenu::showMenu()
 
 void plugin_init(void)
 {
-	dprintf(DEBUG_NORMAL, "test: plugin_init\n");
 }
 
 void plugin_del(void)
 {
-	dprintf(DEBUG_NORMAL, "test: plugin_del\n");
 }
 
 void plugin_exec(void)

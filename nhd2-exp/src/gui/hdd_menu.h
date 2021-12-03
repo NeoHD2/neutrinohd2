@@ -25,8 +25,8 @@
 #define __hdd_menu__
 
 
-#include "widget/menue.h"
-#include "gui/filebrowser.h"
+#include <gui/widget/menue.h>
+#include <gui/filebrowser.h>
 
 
 using namespace std;

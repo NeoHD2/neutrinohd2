@@ -122,9 +122,13 @@ class CMenuWidget : public CMenuTarget
 		bool PaintDate;
 		int timestr_len;
 		fb_pixel_t headColor;
+		bool def_headColor;
 		int headRadius;
+		bool def_headRadius;
 		int headCorner;
+		bool def_headCorner;
 		int headGradient;
+		bool def_headGradient;
 		int tMode;
 		
 		// foot
@@ -133,9 +137,13 @@ class CMenuWidget : public CMenuTarget
 		int fbutton_width;
 		button_label_list_t fbutton_labels;
 		fb_pixel_t footColor;
+		bool def_footColor;
 		int footRadius;
+		bool def_footRadius;
 		int footCorner;
+		bool def_footCorner;
 		int footGradient;
+		bool def_footGradient;
 
 		// itemInfo
 		bool paintFootInfo;
@@ -219,18 +227,18 @@ class CMenuWidget : public CMenuTarget
 
 		// foot
 		void setFootButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1, const int _fbutton_width = 0);
-		void setFootColor(fb_pixel_t col) {footColor = col;};
-		void setFootCorner(int ra, int co = CORNER_BOTTOM){footRadius = ra; footCorner = co;};
-		void setFootGradient(int grad){footGradient = grad;};
+		void setFootColor(fb_pixel_t col) {footColor = col; def_footColor = false;};
+		void setFootCorner(int ra, int co = CORNER_BOTTOM){footRadius = ra; footCorner = co; def_footRadius = false; def_footCorner = false;};
+		void setFootGradient(int grad){footGradient = grad; def_footGradient = false;};
 
 		// head
 		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
 		void setTitleMode(const int m){tMode = m;};
 		void setHeadButtons(const struct button_label* _hbutton_label, const int _hbutton_count = 1);
 		void enablePaintDate(void){PaintDate = true;};
-		void setHeadColor(fb_pixel_t col) {headColor = col;};
-		void setHeadCorner(int ra, int co = CORNER_TOP){headRadius = ra; headCorner = co;};
-		void setHeadGradient(int grad){headGradient = grad;};
+		void setHeadColor(fb_pixel_t col) {headColor = col; def_headColor = false;};
+		void setHeadCorner(int ra, int co = CORNER_TOP){headRadius = ra; headCorner = co; def_headRadius = false; def_headCorner = false;};
+		void setHeadGradient(int grad){headGradient = grad; def_headGradient = false;};
 
 		// footInfo
 		void enablePaintFootInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh; /*initFrames();*/};
