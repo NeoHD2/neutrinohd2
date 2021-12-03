@@ -2443,7 +2443,7 @@ void ClistBox::paintFoot()
 {
 	if(paint_Foot)
 	{
-		dprintf(DEBUG_INFO, "ClistBox::paintFoot:\n");
+		dprintf(DEBUG_NORMAL, "ClistBox::paintFoot:\n");
 		
 		if(widgetType == WIDGET_TYPE_FRAME)
 		{

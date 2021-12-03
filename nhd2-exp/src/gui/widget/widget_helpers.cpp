@@ -709,6 +709,8 @@ void CHeaders::setButtons(const struct button_label* _hbutton_labels, const int 
 
 void CHeaders::paint()
 {
+	dprintf(DEBUG_INFO, "CHeaders::paint:\n");
+	
 	// box
 	CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
 
@@ -776,6 +778,8 @@ void CHeaders::paint()
 
 void CHeaders::hide()
 {
+	dprintf(DEBUG_NORMAL, "CHeaders::hide:\n");
+	
 	CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
 }
 
@@ -828,6 +832,8 @@ void CFooters::setButtons(const struct button_label *button_label, const int but
 
 void CFooters::paint()
 {
+	dprintf(DEBUG_NORMAL, "CFooters::paint:\n");
+	
 	// box
 	CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, fbgcolor, fradius, fcorner, fgradient);
 
@@ -865,6 +871,8 @@ void CFooters::paint()
 
 void CFooters::hide()
 {
+	dprintf(DEBUG_NORMAL, "CFooters::hide:\n");
+	
 	CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
 }
 

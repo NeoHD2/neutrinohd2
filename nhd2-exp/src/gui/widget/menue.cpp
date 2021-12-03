@@ -226,6 +226,8 @@ bool CMenuWidget::hasItem()
 
 void CMenuWidget::initFrames()
 {
+	dprintf(DEBUG_NORMAL, "CMenuWidget::initFrames:\n");
+	
 	// reinit
 	width = wanted_width;
 	height = wanted_height;
@@ -416,6 +418,8 @@ void CMenuWidget::initFrames()
 
 void CMenuWidget::paintHead()
 {
+	dprintf(DEBUG_DEBUG, "CMenuWidget::paintHead:\n");
+	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		// headBoxox
@@ -654,6 +658,8 @@ void CMenuWidget::paint()
 // paint items
 void CMenuWidget::paintItems()
 {
+	dprintf(DEBUG_NORMAL, "CMenuWidget::paintItems:\n");
+	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		// items background
@@ -1056,6 +1062,8 @@ void CMenuWidget::paintItemInfo(int pos)
 
 void CMenuWidget::hideItemInfo()
 {
+	dprintf(DEBUG_NORMAL, "CMenuWidget::hideItemInfo:\n");
+	
 	if((widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC) && paintFootInfo)
 	{
 		itemsLine.clear(x, y, width + CONNECTLINEBOX_WIDTH, height, cFrameFootInfo.iHeight);
@@ -1064,6 +1072,8 @@ void CMenuWidget::hideItemInfo()
 
 void CMenuWidget::setFootButtons(const struct button_label *_fbutton_labels, const int _fbutton_count, const int _fbutton_width)
 {
+	dprintf(DEBUG_NORMAL, "CMenuWidget::setFootButtons:\n");
+	
 	if (_fbutton_count)
 	{
 		for (unsigned int i = 0; i < _fbutton_count; i++)
@@ -1078,6 +1088,8 @@ void CMenuWidget::setFootButtons(const struct button_label *_fbutton_labels, con
 
 void CMenuWidget::setHeadButtons(const struct button_label* _hbutton_labels, const int _hbutton_count)
 {
+	dprintf(DEBUG_NORMAL, "CMenuWidget::setHeadButtons:\n");
+	
 	if (_hbutton_count)
 	{
 		for (unsigned int i = 0; i < _hbutton_count; i++)
@@ -1091,12 +1103,16 @@ void CMenuWidget::setHeadButtons(const struct button_label* _hbutton_labels, con
 
 void CMenuWidget::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
 {
+	dprintf(DEBUG_NORMAL, "CMenuWidget::addKey:\n");
+	
 	keyActionMap[key].menue = menue;
 	keyActionMap[key].action = action;
 }
 
 void CMenuWidget::saveScreen()
 {
+	dprintf(DEBUG_NORMAL, "CMenuWidget::saveScreen:\n");
+	
 	if(!savescreen)
 		return;
 
@@ -1116,6 +1132,8 @@ void CMenuWidget::saveScreen()
 
 void CMenuWidget::restoreScreen()
 {
+	dprintf(DEBUG_NORMAL, "CMenuWidget::restoreScreen:\n");
+	
 	if(background) 
 	{
 		if(savescreen)
@@ -1125,6 +1143,8 @@ void CMenuWidget::restoreScreen()
 
 void CMenuWidget::enableSaveScreen()
 {
+	dprintf(DEBUG_NORMAL, "CMenuWidget::enableSaveScreen:\n");
+	
 	savescreen = true;
 	
 	if(!savescreen && background) 
@@ -1156,6 +1176,8 @@ void CMenuWidget::hide()
 
 void CMenuWidget::integratePlugins(CPlugins::i_type_t integration, const unsigned int shortcut, bool enabled)
 {
+	dprintf(DEBUG_NORMAL, "CMenuWidget::integratePlugin:\n");
+	
 	unsigned int number_of_plugins = (unsigned int) g_PluginList->getNumberOfPlugins();
 
 	std::string IconName;

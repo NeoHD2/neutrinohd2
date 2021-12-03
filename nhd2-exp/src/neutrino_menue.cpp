@@ -114,7 +114,6 @@ void CNeutrinoApp::mainMenu(void)
 	nMenu->addItem( new CMenuForwarder(LOCALE_MESSAGEBOX_INFO, true, NULL, new CInfo(), NULL, RC_info, NEUTRINO_ICON_BUTTON_HELP, NEUTRINO_ICON_MENUITEM_BOXINFO, LOCALE_HELPTEXT_BOXINFO));
 
 	nMenu->exec(NULL, "");
-	nMenu->hide();
 	delete nMenu;
 	nMenu = NULL;
 }

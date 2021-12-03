@@ -435,12 +435,12 @@ void CDBoxInfoWidget::showInfo()
 //
 CInfo::CInfo()
 {
-	dprintf(DEBUG_NORMAL, "CInfo::CInfo:\n");
+	dprintf(DEBUG_DEBUG, "CInfo::CInfo:\n");
 }
 
 CInfo::~CInfo()
 {
-	dprintf(DEBUG_NORMAL, "CInfo::~CInfo:\n");
+	dprintf(DEBUG_DEBUG, "CInfo::~CInfo:\n");
 }
 
 int CInfo::exec(CMenuTarget* parent, const std::string& actionKey)

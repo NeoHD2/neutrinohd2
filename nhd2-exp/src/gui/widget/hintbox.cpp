@@ -321,14 +321,14 @@ void CHintBox::paintHourGlass()
 		background = NULL;
 	}
 
-	background = new fb_pixel_t[(iw + 10)*(ih + 10)];
+	background = new fb_pixel_t[(iw)*(ih)];
 	
 	if(background)
 	{
-		CFrameBuffer::getInstance()->saveScreen(CFrameBuffer::getInstance()->getScreenX() + 15, CFrameBuffer::getInstance()->getScreenY() + 15, iw + 10, ih + 10, background);
+		CFrameBuffer::getInstance()->saveScreen(CFrameBuffer::getInstance()->getScreenX() + 10, CFrameBuffer::getInstance()->getScreenY() + 10, iw, ih, background);
 	}
 	
-	CFrameBuffer::getInstance()->paintIcon(filename, CFrameBuffer::getInstance()->getScreenX() + 20, CFrameBuffer::getInstance()->getScreenY() + 20);
+	CFrameBuffer::getInstance()->paintIcon(filename, CFrameBuffer::getInstance()->getScreenX() + 10, CFrameBuffer::getInstance()->getScreenY() + 10);
 }
 
 void CHintBox::hideHourGlass()
@@ -342,10 +342,13 @@ void CHintBox::hideHourGlass()
 	
 	if(background) 
 	{
-		CFrameBuffer::getInstance()->restoreScreen(CFrameBuffer::getInstance()->getScreenX() + 15, CFrameBuffer::getInstance()->getScreenY() + 15, iw + 10, ih + 10, background);
+		CFrameBuffer::getInstance()->restoreScreen(CFrameBuffer::getInstance()->getScreenX() + 10, CFrameBuffer::getInstance()->getScreenY() + 10, iw, ih, background);
+		
+		delete[] background;
+		background = NULL;
 	}
-	
-	//CFrameBuffer::getInstance()->paintBackgroundBoxRel(CFrameBuffer::getInstance()->getScreenX() + 20, CFrameBuffer::getInstance()->getScreenY() + 20, 48, 48);
+	//else FIXME:
+	CFrameBuffer::getInstance()->paintBackgroundBoxRel(CFrameBuffer::getInstance()->getScreenX() + 10, CFrameBuffer::getInstance()->getScreenY() + 10, iw, ih);
 }
 
 int CHintBox::exec(int timeout)
@@ -360,8 +363,8 @@ int CHintBox::exec(int timeout)
 
 	paint();
 	
-	if (paintHG)
-		paintHourGlass();
+	//if (paintHG)
+	//	paintHourGlass();
 		
 	CFrameBuffer::getInstance()->blit();
 
@@ -371,7 +374,10 @@ int CHintBox::exec(int timeout)
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd( timeout );
 
 	while ( ! ( res & ( messages_return::cancel_info | messages_return::cancel_all ) ) )
-	{	
+	{
+		if (paintHG)
+			paintHourGlass();
+					
 		g_RCInput->getMsgAbsoluteTimeout( &msg, &data, &timeoutEnd );
 
 		if ((msg == RC_timeout) || (msg == RC_home) || (msg == RC_ok))
@@ -392,8 +398,8 @@ int CHintBox::exec(int timeout)
 		}
 		else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			if (paintHG)
-				paintHourGlass();
+			//if (paintHG)
+			//	paintHourGlass();
 		}
 		else
 		{
