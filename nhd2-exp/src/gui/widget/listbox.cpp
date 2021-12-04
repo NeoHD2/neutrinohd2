@@ -43,7 +43,6 @@
 
 
 extern CPlugins * g_PluginList;    // defined in neutrino.cpp
-//static CTextBox * textBox = NULL;
 
 // CMenuItem
 CMenuItem::CMenuItem()
@@ -2095,8 +2094,8 @@ void ClistBox::initFrames()
 		}
 		
 		//
-		full_height = itemBox.iHeight;
-		full_width = itemBox.iWidth;
+		//full_height = itemBox.iHeight;
+		//full_width = itemBox.iWidth;
 
 		// sanity check
 		if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight()))

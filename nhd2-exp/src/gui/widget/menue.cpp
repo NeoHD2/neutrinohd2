@@ -375,8 +375,8 @@ void CMenuWidget::initFrames()
 		}
 
 		//
-		full_width = width;
-		full_height = height;
+		//full_width = width;
+		//full_height = height;
 		
 		if(paintFootInfo)
 		{
@@ -492,7 +492,6 @@ void CMenuWidget::paintHead()
 	else
 	{
 		// headBox
-		//frameBuffer->paintBoxRel(x, y, width, hheight, headColor, headRadius, headCorner, headGradient);
 		frameBuffer->paintBoxRel(x, y, width, hheight, def_headColor? COL_MENUHEAD_PLUS_0 : headColor, def_headRadius? RADIUS_MID : headRadius, def_headCorner? CORNER_TOP : headCorner, def_headGradient? g_settings.Head_gradient : headGradient);
 		
 		// paint horizontal line top
@@ -600,8 +599,7 @@ void CMenuWidget::paintFoot()
 	else
 	{
 		// footBox	
-		//frameBuffer->paintBoxRel(x, y + height - cFrameFootInfo.iHeight - fheight, width, fheight, footColor, footRadius, footCorner, footGradient);
-		frameBuffer->paintBoxRel(x, y + height - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+		frameBuffer->paintBoxRel(x, y + height - cFrameFootInfo.iHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
 		
 		// paint horizontal line buttom
 		if (headLine)
@@ -845,8 +843,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					CMenuItem* item = items[pos];
 
 					// refresh box
-					//frameBuffer->paintBoxRel(x, y + height - fheight - cFrameFootInfo.iHeight, width, fheight, footColor, footRadius, footCorner, footGradient);
-					frameBuffer->paintBoxRel(x, y + height - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+					frameBuffer->paintBoxRel(x, y + height - cFrameFootInfo.iHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
 					// paint horizontal line buttom
 					if (headLine)
 						frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight - cFrameFootInfo.iHeight + 2, COL_MENUCONTENT_PLUS_5);
@@ -911,8 +908,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					CMenuItem* item = items[pos];
 
 					// refresh box
-					//frameBuffer->paintBoxRel(x, y + height - fheight - cFrameFootInfo.iHeight, width, fheight, footColor, footRadius, footCorner, footGradient);
-					frameBuffer->paintBoxRel(x, y + height - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+					frameBuffer->paintBoxRel(x, y + height - cFrameFootInfo.iHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
 					// paint horizontal line buttom
 					if (headLine)
 						frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight - cFrameFootInfo.iHeight + 2, COL_MENUCONTENT_PLUS_5);
@@ -979,7 +975,6 @@ void CMenuWidget::paintItemInfo(int pos)
 				if(paintFootInfo)
 				{
 					// refresh box
-					//frameBuffer->paintBoxRel(x, y + height - fheight, width, fheight, footColor, footRadius, footCorner, footGradient);
 					frameBuffer->paintBoxRel(x, y + height - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
 					// paint horizontal line buttom
 					if (headLine)
