@@ -82,6 +82,7 @@ CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const
 	m_pcTextBox = new CTextBox();
 	
 	m_pcTextBox->setPosition(&m_cBoxFrameText);
+	//m_pcTextBox->setCorner(RADIUS_MID, CORNER_BOTTOM);
 
 	if(_mode & AUTO_WIDTH || _mode & AUTO_HIGH)
 	{
@@ -97,7 +98,7 @@ CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const
 	if(_mode & CENTER)
 	{
 		m_cBoxFrame.iX = g_settings.screen_StartX + ((g_settings.screen_EndX - g_settings.screen_StartX - m_cBoxFrame.iWidth) >>1);
-		m_cBoxFrame.iY = g_settings.screen_StartY + ((g_settings.screen_EndY - g_settings.screen_StartY - m_cBoxFrame.iHeight) >>2);
+		m_cBoxFrame.iY = g_settings.screen_StartY + ((g_settings.screen_EndY - g_settings.screen_StartY - m_cBoxFrame.iHeight) >>1);
 	}
 }
 
@@ -138,7 +139,7 @@ CInfoBox::CInfoBox()
 	if(m_nMode & CENTER)
 	{
 		m_cBoxFrame.iX = g_settings.screen_StartX + ((g_settings.screen_EndX - g_settings.screen_StartX - m_cBoxFrame.iWidth) >>1);
-		m_cBoxFrame.iY = g_settings.screen_StartY + ((g_settings.screen_EndY - g_settings.screen_StartY - m_cBoxFrame.iHeight) >>2);
+		m_cBoxFrame.iY = g_settings.screen_StartY + ((g_settings.screen_EndY - g_settings.screen_StartY - m_cBoxFrame.iHeight) >>1);
 	}
 }
 
@@ -182,7 +183,7 @@ void CInfoBox::initVar(void)
 	// set the main frame to default
 	m_cBoxFrame.iX = g_settings.screen_StartX + ((g_settings.screen_EndX - g_settings.screen_StartX - MIN_WINDOW_WIDTH) >>1);
 	m_cBoxFrame.iWidth = MIN_WINDOW_WIDTH;
-	m_cBoxFrame.iY = g_settings.screen_StartY + ((g_settings.screen_EndY - g_settings.screen_StartY - MIN_WINDOW_HEIGHT) >>2);
+	m_cBoxFrame.iY = g_settings.screen_StartY + ((g_settings.screen_EndY - g_settings.screen_StartY - MIN_WINDOW_HEIGHT) >>1);
 	m_cBoxFrame.iHeight = MIN_WINDOW_HEIGHT;
 
 	frameBuffer = CFrameBuffer::getInstance();
@@ -213,7 +214,7 @@ void CInfoBox::initFramesRel(void)
 	// init the text frame
 	m_cBoxFrameText.iY		= m_cBoxFrame.iY + m_cBoxFrameTitleRel.iHeight;
 	m_cBoxFrameText.iX		= m_cBoxFrame.iX;
-	m_cBoxFrameText.iHeight		= m_cBoxFrame.iHeight - m_cBoxFrameTitleRel.iHeight - m_cBoxFrameFootRel.iHeight;
+	m_cBoxFrameText.iHeight	= m_cBoxFrame.iHeight - m_cBoxFrameTitleRel.iHeight - m_cBoxFrameFootRel.iHeight;
 	m_cBoxFrameText.iWidth		= m_cBoxFrame.iWidth;	
 }
 
@@ -344,6 +345,12 @@ void CInfoBox::setBigFonts()
 bool CInfoBox::paint(void)
 {
 	dprintf(DEBUG_DEBUG, "CInfoBox::paint\n");
+	
+	// bg
+	CWindow bg(&m_cBoxFrame);
+	
+	bg.setCorner(RADIUS_MID, CORNER_ALL);
+	bg.paint();
 
 	// title
 	refreshTitle();

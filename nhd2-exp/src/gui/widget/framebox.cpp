@@ -60,6 +60,8 @@ CFrame::CFrame()
 	radius = RADIUS_MID;
 	corner = NO_RADIUS;
 	gradient = NOGRADIENT;
+	
+	halign = CC_ALIGN_LEFT;
 
 	// init
 	window.setPosition(-1, -1, -1, -1);
@@ -383,8 +385,15 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 			
 			if (c_w > window.getWindowsPos().iWidth)
 				c_w = window.getWindowsPos().iWidth;
+				
+			int startPosX = window.getWindowsPos().iX;
 			
-			captionFont->RenderString(window.getWindowsPos().iX + (window.getWindowsPos().iWidth - c_w)/2, window.getWindowsPos().iY + captionFont->getHeight() + (window.getWindowsPos().iHeight - captionFont->getHeight())/2, c_w, caption.c_str(), color);
+			if (halign == CC_ALIGN_CENTER)
+				startPosX = window.getWindowsPos().iX + (window.getWindowsPos().iWidth >> 1) - (c_w >> 1);
+			else if (halign == CC_ALIGN_RIGHT)
+				startPosX = window.getWindowsPos().iX + window.getWindowsPos().iWidth - c_w;
+			
+			captionFont->RenderString(startPosX, window.getWindowsPos().iY + captionFont->getHeight() + (window.getWindowsPos().iHeight - captionFont->getHeight())/2, c_w, caption.c_str(), color);
 		}
 	}	
 	else if (mode == FRAME_PIG)

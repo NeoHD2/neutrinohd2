@@ -36,7 +36,7 @@ class CThemes : public CMenuTarget, CChangeObserver
 		CColorSetupNotifier * notifier;
 
 		int Show();
-		void readThemes(CMenuWidget &);
+		void readThemes(CMenuWidget&);
 
 	public:
 		CThemes();

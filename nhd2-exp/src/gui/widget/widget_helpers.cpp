@@ -491,10 +491,29 @@ CLabel::CLabel()
 	font = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
 	height = font->getHeight();
 	width = 0;
+	halign = CC_ALIGN_LEFT;
 	
 	cc_type = CC_LABEL;
 }
 
+void CLabel::paint()
+{
+	int stringWidth = font->getRenderWidth(label);
+	
+	if (stringWidth > cCBox.iWidth)
+		stringWidth = cCBox.iWidth;
+		
+	int startPosX = cCBox.iX;
+	
+	if (halign == CC_ALIGN_CENTER)
+		startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (stringWidth >> 1);
+	else if (halign == CC_ALIGN_RIGHT)
+		startPosX = cCBox.iX + cCBox.iWidth - stringWidth;
+	
+	font->RenderString(startPosX, cCBox.iY + height + (cCBox.iHeight - height)/2, cCBox.iWidth, label, color, 0, utf8, paintBG);
+}
+
+//
 CText::CText()
 {
 	font = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];

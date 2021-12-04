@@ -88,7 +88,8 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 
 			nameInput->exec(NULL, "");
 			
-			if(!nameInput->getString().empty())
+			//if(!nameInput->getString().empty())
+			if (!nameInput->getExitPressed())
 			{
 				HintBox(LOCALE_COLORTHEMEMENU_SAVE, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
 

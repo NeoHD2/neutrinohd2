@@ -156,11 +156,10 @@ class CListFrame : public CWidgetItem
 		void 	scrollLineUp(const int lines = 1);
 		bool	setLines(LF_LINES* lines);
 		bool	setTitle(const char* title = "", const std::string& icon = NULL);
-		bool    setSelectedLine(int selection = 0);
+		bool	setSelectedLine(int selection = 0);
 		void	hide(void);
 		void	paint(void);
 
-		//inline	CBox	getWindowsPos(void)		{return(m_cFrame);};
 		inline	int	getMaxLineWidth(void)		{return(m_nMaxLineWidth);};
 		inline  int     getSelectedLine(void)		{return(m_nSelectedLine);};
 		inline  int     getLines(void)			{return(m_nNrOfLines);};

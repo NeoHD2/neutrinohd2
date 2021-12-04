@@ -176,7 +176,7 @@ class CImage : public CComponent
 		//
 		void paint()
 		{
-			frameBuffer->displayImage(imageName.c_str(), cCBox.iX + (cCBox.iWidth - iWidth)/2, cCBox.iY + (cCBox.iHeight - iHeight)/2, cCBox.iWidth, cCBox.iHeight);
+			frameBuffer->displayImage(imageName.c_str(), cCBox.iX /*+ (cCBox.iWidth - iWidth)/2*/, cCBox.iY /*+ (cCBox.iHeight - iHeight)/2*/, cCBox.iWidth, cCBox.iHeight);
 		};
 };
 
@@ -364,6 +364,7 @@ class CLabel : public CComponent
 		std::string label;
 		bool paintBG;
 		bool utf8;
+		int halign;
 		
 		//
 		CLabel();
@@ -374,15 +375,36 @@ class CLabel : public CComponent
 		void setFont(CFont *f){font = f;};
 		void setText(const char* text){label = text;};
 		void enablePaintBG(){paintBG = true;};
+		void setHAlign(int h){halign = h;};
 		
 		//
-		void paint()
-		{
-			font->RenderString(cCBox.iX, cCBox.iY + height + (cCBox.iHeight - height)/2, cCBox.iWidth, label, color, 0, utf8, paintBG);
-		};
+		void paint();
 		
+		//
 		int getHeight(){return height;};
-		int getWidth(){if (!label.empty()) return font->getRenderWidth(label); return 0;};
+		int getWidth(){return font->getRenderWidth(label);};
+};
+
+//CText
+class CText : public CComponent
+{
+	public:
+		//
+		CFont* font;
+		int mode;
+		std::string Text;
+		
+		//
+		CText();
+		~CText(){};
+		
+		//
+		void setFont(CFont* f){font = f;};
+		void setMode(int m){mode = m;};
+		void setText(const char* const text){Text = text;};
+		
+		//
+		void paint();
 };
 
 //
@@ -426,28 +448,6 @@ class CPig : public CComponent
 
 		void paint();
 		void hide();
-};
-
-//CText
-class CText : public CComponent
-{
-	public:
-		//
-		CFont* font;
-		int mode;
-		std::string Text;
-		
-		//
-		CText();
-		~CText(){};
-		
-		//
-		void setFont(CFont* f){font = f;};
-		void setMode(int m){mode = m;};
-		void setText(const char* const text){Text = text;};
-		
-		//
-		void paint();
 };
 
 // CWidgetItem

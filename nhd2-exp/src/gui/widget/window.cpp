@@ -201,6 +201,17 @@ void CWindow::hide()
 	else
 		frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
 		
+	//
+	if (hasItem())
+	{
+		for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
+		{
+			CComponent *CCItem = CCItems[count];
+
+			CCItem->hide();
+		}
+	}
+		
 	CFrameBuffer::getInstance()->blit();
 }
 

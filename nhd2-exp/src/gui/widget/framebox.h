@@ -76,6 +76,8 @@ class CFrame
 		bool paintFrame;
 		bool pluginOrigName;
 		
+		int halign;
+		
 		//
 		fb_pixel_t fcolor;
 		int radius;
@@ -99,6 +101,8 @@ class CFrame
 		virtual void setOption(const char *text){if (text != NULL) option = text;};
 		virtual void setPlugin(const char * const pluginName);
 		virtual void showPluginName(){pluginOrigName = true;};
+		
+		virtual void setHAlign(int h){halign = h;};
 
 		//
 		virtual void setActionKey(CMenuTarget *Target, const char *const ActionKey){jumpTarget = Target; actionKey = ActionKey;};

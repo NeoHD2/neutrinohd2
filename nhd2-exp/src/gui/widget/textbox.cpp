@@ -115,7 +115,9 @@ void CTextBox::initVar(void)
 	m_nMaxWidth = MAX_WINDOW_WIDTH;
 	
 	m_textBackgroundColor = COL_MENUCONTENT_PLUS_0;
-	tColor = COL_MENUCONTENT;
+	m_textColor = COL_MENUCONTENT;
+	m_textRadius = RADIUS_MID;
+	m_textCorner = CORNER_NONE;
 
 	m_cLineArray.clear();
 	
@@ -441,6 +443,8 @@ void CTextBox::refreshText(void)
 	{
 		m_cBoxWindow.setPosition(&itemBox);
 		m_cBoxWindow.setColor(m_textBackgroundColor);
+		m_cBoxWindow.setCorner(m_textRadius, m_textCorner);
+		
 		m_cBoxWindow.paint();
 	}
 	
@@ -478,7 +482,7 @@ void CTextBox::refreshText(void)
 			}
 		}
 
-		m_pcFontText->RenderString(m_cFrameTextRel.iX + x_start, y, m_cFrameTextRel.iWidth, m_cLineArray[i].c_str(), tColor, 0, true); // UTF-8
+		m_pcFontText->RenderString(m_cFrameTextRel.iX + x_start, y, m_cFrameTextRel.iWidth, m_cLineArray[i].c_str(), m_textColor, 0, true); // UTF-8
 	}
 }
 
