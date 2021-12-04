@@ -73,11 +73,8 @@ class CTextBox : public CWidgetItem
 	public:
 
 	private:
-		CBox itemBox;
 		CBox m_cFrameTextRel;
 		CBox m_cFrameScrollRel;
-
-		CWindow m_cBoxWindow;
 
 		int m_nMaxHeight;
 		int m_nMaxWidth;

@@ -142,7 +142,7 @@ class CFrameBox : public CWidgetItem
 {
 	private:
 		CFrameBuffer* frameBuffer;
-		//CWindow cFrameWindow;
+
 		int selected;
 		int pos;
 
@@ -157,10 +157,8 @@ class CFrameBox : public CWidgetItem
 		fb_pixel_t bgcolor;
 		int radius;
 		int corner;
-		//bool shadow;
 		
 		//
-		//bool screen;
 		fb_pixel_t * background;
 		bool savescreen;
 		void saveScreen();

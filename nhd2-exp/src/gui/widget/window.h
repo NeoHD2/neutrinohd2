@@ -38,21 +38,21 @@ class CWindow : public CWidgetItem
 {
 	private:
 		CFrameBuffer* frameBuffer;
-		CBox itemBox;
 
-		fb_pixel_t * background;
-
+		//
 		int radius;
 		int corner;
 		fb_pixel_t bgcolor;
 		int gradient;
-
-		bool enableshadow;
 		
+		//
+		fb_pixel_t * background;
 		bool savescreen;
 		void saveScreen();
 		void restoreScreen();
 
+		//
+		bool enableshadow;
 		bool centerPos;
 		
 		//

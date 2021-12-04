@@ -1387,6 +1387,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 									}
 									break;
 								}
+								
 								pos--;
 							}
 						} 
@@ -1415,6 +1416,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 									}
 									break;
 								}
+								
 								pos++;
 							}
 						}

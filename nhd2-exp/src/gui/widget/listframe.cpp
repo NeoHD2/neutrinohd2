@@ -263,7 +263,7 @@ void CListFrame::initFramesRel(void)
 
 	m_cFrameListRel.iX = 0;
 	m_cFrameListRel.iY = m_cFrameHeaderListRel.iHeight + m_cFrameTitleRel.iHeight;
-	m_cFrameListRel.iHeight	= itemBox.iHeight - m_cFrameHeaderListRel.iHeight - m_cFrameTitleRel.iHeight;
+	m_cFrameListRel.iHeight = itemBox.iHeight - m_cFrameHeaderListRel.iHeight - m_cFrameTitleRel.iHeight;
 
 	if(m_nMode & SCROLL)
 	{
@@ -349,7 +349,7 @@ void CListFrame::refreshTitle(void)
 	if( frameBuffer == NULL) 
 		return;
 
-	frameBuffer->paintBoxRel(m_cFrameTitleRel.iX + itemBox.iX, m_cFrameTitleRel.iY + itemBox.iY, m_cFrameTitleRel.iWidth, m_cFrameTitleRel.iHeight, TITLE_BACKGROUND_COLOR/*, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient*/);
+	frameBuffer->paintBoxRel(m_cFrameTitleRel.iX + itemBox.iX, m_cFrameTitleRel.iY + itemBox.iY, m_cFrameTitleRel.iWidth, m_cFrameTitleRel.iHeight, TITLE_BACKGROUND_COLOR);
 	
 	int iw = 0;
 	int ih = 0;

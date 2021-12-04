@@ -441,11 +441,7 @@ void CTextBox::refreshText(void)
 	// paint text background
 	if(paintBG)
 	{
-		m_cBoxWindow.setPosition(&itemBox);
-		m_cBoxWindow.setColor(m_textBackgroundColor);
-		m_cBoxWindow.setCorner(m_textRadius, m_textCorner);
-		
-		m_cBoxWindow.paint();
+		CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, m_textBackgroundColor, m_textRadius, m_textCorner);
 	}
 	
 	// paint thumbnail (paint picture only on first page)
@@ -644,8 +640,7 @@ void CTextBox::hide(void)
 		m_pcFontText->setSize((int)(m_pcFontText->getSize() / BIG_FONT_FAKTOR));
 	}
 	
-	m_cBoxWindow.setPosition(&itemBox);
-	m_cBoxWindow.hide();
+	CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
 	
 	CFrameBuffer::getInstance()->blit();
 

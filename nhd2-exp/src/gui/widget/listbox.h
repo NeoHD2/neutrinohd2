@@ -487,7 +487,6 @@ class ClistBox : public CWidgetItem
 	private:
 		CFrameBuffer* frameBuffer;
 
-		CBox cFrameBox;
 		CBox cFrameFootInfo;
 		
 		int wanted_height;
@@ -641,7 +640,6 @@ class ClistBox : public CWidgetItem
 		int getCurrentPage()const{return current_page;};
 		int getTotalPages()const{return total_pages;};
 		int getSelected(){return selected;};
-		inline CBox getWindowsPos(void){return(cFrameBox);};
 		int getTitleHeight(){return hheight;};
 		int getFootHeight(){return fheight;};
 		int getItemHeight(){return item_height;};

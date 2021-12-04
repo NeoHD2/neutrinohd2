@@ -550,8 +550,6 @@ void CFrameBox::initFrames()
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::initFrames:\n");
 	
-	//cFrameWindow.setPosition(&itemBox);
-	
 	// head
 	if(paintTitle)
 	{
@@ -678,8 +676,6 @@ void CFrameBox::hide()
 	{
 		frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
 	}
-
-	//cFrameWindow.hide();
 	
 	frameBuffer->blit();
 }
