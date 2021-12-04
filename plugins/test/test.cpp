@@ -797,7 +797,7 @@ void CTestMenu::loadTMDBPlaylist(const char *txt, const char *list, const int se
 ////
 void CTestMenu::testCWidget()
 {
-	dprintf(DEBUG_NORMAL, "\nCTestMenu:testCWidget:\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu:testCWidget(CFrameBox/ClistBox):\n");
 	
 	testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
@@ -812,7 +812,7 @@ void CTestMenu::testCWidget()
 	headBox.iX = frameBuffer->getScreenX();
 	headBox.iY = frameBuffer->getScreenY();
 
-	headers = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(Multi Widget)", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(CFrameBox/ClistBox)", NEUTRINO_ICON_MP3);
 
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	headers->enablePaintDate();
@@ -922,7 +922,7 @@ void CTestMenu::testCWidget()
 	rightWidget->enablePaintFootInfo();
 
 	// loadPlaylist
-	CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("CWidget(CFrameBox/ClistBox)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 	
 	loadTMDBPlaylist();
@@ -1010,7 +1010,7 @@ void CTestMenu::testCWindowWidget()
 	windowWidget->setCorner(RADIUS_MID, CORNER_ALL);
 	
 	// heades
-	CHeaders head(Box.iX, Box.iY, Box.iWidth, 40, "CComponents", NEUTRINO_ICON_COLORS);
+	CHeaders head(Box.iX, Box.iY, Box.iWidth, 40, "CWidget(CWindow)", NEUTRINO_ICON_COLORS);
 	head.enablePaintDate();
 	
 	// footers
@@ -1394,7 +1394,7 @@ void CTestMenu::testCFrameBoxWidget()
 	testWidget = new CWidget(&box);
 	//testWidget->enablePaintMainFrame();
 	
-	headers = new CHeaders(box.iX, box.iY, box.iWidth, 40, "CWidget(Fire TV)", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(box.iX, box.iY, box.iWidth, 40, "testCFrameBoxWidget", NEUTRINO_ICON_MP3);
 
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	headers->enablePaintDate();
@@ -1403,7 +1403,7 @@ void CTestMenu::testCFrameBoxWidget()
 	frameBoxWidget = new CFrameBox(&box);
 	frameBoxWidget->setCorner(RADIUS_MID, CORNER_ALL);
 
-	CHintBox loadBox("FireTV", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("testCFrameBoxWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 	
 	loadMoviePlaylist();
@@ -1418,6 +1418,7 @@ void CTestMenu::testCFrameBoxWidget()
 	int h_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 	homeFrame->setPosition(box.iX + 10, box.iY + 40, h_w + 10, h_h);
 	homeFrame->setTitle("Home");
+	homeFrame->setHAlign(CC_ALIGN_CENTER);
 	//homeFrame->disablePaintFrame();
 	homeFrame->setActionKey(this, "home");
 
@@ -1431,6 +1432,7 @@ void CTestMenu::testCFrameBoxWidget()
 	int s_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 	setupFrame->setPosition(box.iX + 10 + 5 + h_w + 20, box.iY + 40, s_w + 10, h_h);
 	setupFrame->setTitle("Setup");
+	setupFrame->setHAlign(CC_ALIGN_CENTER);
 	//setupFrame->disablePaintFrame();
 	setupFrame->setActionKey(this, "setup");
 
@@ -1444,6 +1446,7 @@ void CTestMenu::testCFrameBoxWidget()
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_INFO, &i_w, &i_h);
 	helpFrame->setPosition(box.iX + 10 + 5 + h_w + 10 + s_w + 40, box.iY + 40, i_w + 4, h_h);
 	helpFrame->setTitle("?");
+	helpFrame->setHAlign(CC_ALIGN_CENTER);
 	//helpFrame->disablePaintFrame();
 	helpFrame->setActionKey(this, "help");
 
@@ -1771,7 +1774,7 @@ void CTestMenu::testMultiWidget()
 	footBox.iY = mainBox.iY + mainBox.iHeight - footBox.iHeight;
 	footBox.iWidth = mainBox.iWidth;
 
-	headers = new CHeaders(headBox, "multiWidget", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(headBox, "CWidget(ClistBox/CWindow)", NEUTRINO_ICON_MP3);
 
 	headers->enablePaintDate();
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
@@ -1843,9 +1846,9 @@ void CTestMenu::testMultiWidget()
 	Box.iX = mainBox.iX + leftBox.iWidth;
 	Box.iY = mainBox.iY + headBox.iHeight;
 	
-	int currentPage = 0;
-	int NrOfPages = 4;
-	int pcr = 25;
+	//int currentPage = 0;
+	//int NrOfPages = 4;
+	//int pcr = 25;
 	
 	loadMoviePlaylist();
 	
@@ -1949,7 +1952,7 @@ void CTestMenu::testMultiWidget()
 	windowWidget = NULL;
 }
 
-// test
+//
 void CTestMenu::testCWidgetItem()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCWidgetItem\n");
@@ -1972,7 +1975,7 @@ void CTestMenu::testCWidgetItem()
 	footBox.iY = mainBox.iY + mainBox.iHeight - footBox.iHeight;
 	footBox.iWidth = mainBox.iWidth;
 
-	headers = new CHeaders(headBox, "Movie Trailer", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(headBox, "testCWidgetItem", NEUTRINO_ICON_MP3);
 
 	headers->enablePaintDate();
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
@@ -2095,7 +2098,7 @@ DOFILM:
 	fileHelper.removeDir(thumbnail_dir.c_str());
 	fileHelper.createDir(thumbnail_dir.c_str(), 0755);
 
-	CHintBox loadBox("TEST", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("testCWidgetItem", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 
 	tmdb->clearMovieList();
@@ -2170,19 +2173,14 @@ DOFILM:
 		rightWidget->addItem(item);
 	}
 
-REPAINT:
 	// background
 	bool usedBackground = CFrameBuffer::getInstance()->getuseBackground();
 	if (usedBackground)
-	{
-		//CFrameBuffer::getInstance()->saveBackgroundImage();
-
-		std::string fname = PLUGINDIR "/test/ard_mediathek.jpg";
-		//CFrameBuffer::getInstance()->loadBackgroundPic(fname);
-
-		CFrameBuffer::getInstance()->setBackgroundColor(COL_RED);
-		CFrameBuffer::getInstance()->paintBackground();
-	}
+		CFrameBuffer::getInstance()->saveBackgroundImage();
+		
+	CFrameBuffer::getInstance()->loadBackgroundPic(DATADIR "/neutrino/icons/mp3.jpg");
+	
+REPAINT:
 
 	// paint all widget
 	headers->paint();
@@ -2580,10 +2578,13 @@ REPAINT:
 	//restore previous background
 	if (usedBackground)
 	{
-		//CFrameBuffer::getInstance()->restoreBackgroundImage();
-		//CFrameBuffer::getInstance()->useBackground(usedBackground);
-		CFrameBuffer::getInstance()->setBackgroundColor(COL_BACKGROUND);
+		CFrameBuffer::getInstance()->restoreBackgroundImage();
+		CFrameBuffer::getInstance()->useBackground(usedBackground);
 	}
+
+	// hide background image
+	CFrameBuffer::getInstance()->paintBackground();
+	CFrameBuffer::getInstance()->blit();	
 
 	hide();
 
@@ -2712,19 +2713,19 @@ void CTestMenu::testCComponent()
 	CFooters foot(Box.iX, Box.iY + Box.iHeight - 40, Box.iWidth, 40);
 	foot.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
-	// icon
-	CIcon testIcon;
-	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
-	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
-	
-	windowWidget->addCCItem(&testIcon);
-	
 	// image
 	CImage testImage;
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
 	testImage.setPosition(Box.iX, Box.iY + 40, Box.iWidth, Box.iHeight - 80);
 	
 	windowWidget->addCCItem(&testImage);
+	
+	// icon
+	CIcon testIcon;
+	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
+	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
+	
+	windowWidget->addCCItem(&testIcon);
 	
 	// label
 	CLabel testLabel;
