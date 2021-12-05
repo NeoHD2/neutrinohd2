@@ -2584,11 +2584,11 @@ int CNeutrinoApp::run(int argc, char **argv)
 	// timerd thread
 	pthread_create(&timer_thread, NULL, timerd_main_thread, (void *) NULL);
 
-	// nhttpd thread
-	pthread_create(&nhttpd_thread, NULL, nhttpd_main_thread, (void *) NULL);	
+	// nhttpd thread FIXME:
+	//pthread_create(&nhttpd_thread, NULL, nhttpd_main_thread, (void *) NULL);	
 
-	// streamts thread
-	pthread_create(&stream_thread, NULL, streamts_main_thread, (void *) NULL);	
+	// streamts thread FIXME:
+	//pthread_create(&stream_thread, NULL, streamts_main_thread, (void *) NULL);	
 
 	// sectionsd thread
 	pthread_create(&sections_thread, NULL, sectionsd_main_thread, (void *) NULL);
@@ -5252,14 +5252,16 @@ void stop_daemons()
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::stop_daemons\n");
 
 	// stop nhttpd		
-	dprintf(DEBUG_NORMAL, "stop_daemons: httpd shutdown\n");
-	pthread_cancel(nhttpd_thread);
-	pthread_join(nhttpd_thread, NULL);
-	dprintf(DEBUG_NORMAL, "stop_daemons: httpd shutdown done\n");		
+	//dprintf(DEBUG_NORMAL, "stop_daemons: httpd shutdown\n");
+	//pthread_cancel(nhttpd_thread);
+	//pthread_join(nhttpd_thread, NULL);
+	//dprintf(DEBUG_NORMAL, "stop_daemons: httpd shutdown done\n");		
 
-	// stop streamts	
+	// stop streamts
+	//dprintf(DEBUG_NORMAL, "stop_daemons: streamts shutdown\n");	
 	streamts_stop = 1;
-	pthread_join(stream_thread, NULL);	
+	//pthread_join(stream_thread, NULL);
+	//dprintf(DEBUG_NORMAL, "stop_daemons: streamts shutdown done\n");	
 
 	// stop timerd	  
 	dprintf(DEBUG_NORMAL, "stop_daemons: timerd shutdown\n");

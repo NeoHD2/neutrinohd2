@@ -516,9 +516,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 
 	// get CN epg
 	getCurrentNextEPG(channel_id, new_chan, _epgpos);
-	
-	// show_data
-	//show_Data();
 
 #if ENABLE_LCD
 	showLcdPercentOver();
@@ -558,9 +555,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 		showIcon_SubT();
 		showIcon_Resolution();
 	}
-	
-	//
-	show_Data();
 	
 	frameBuffer->blit();
 
