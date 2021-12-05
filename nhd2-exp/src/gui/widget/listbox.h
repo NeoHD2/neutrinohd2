@@ -502,8 +502,6 @@ class ClistBox : public CWidgetItem
 		std::vector<unsigned int> page_start;
 		unsigned int current_page;
 		unsigned int total_pages;
-		int item_height;
-		int item_width;
 		int sb_width;
 		int listmaxshow;
 		int iconOffset;
@@ -523,6 +521,8 @@ class ClistBox : public CWidgetItem
 		int itemsPerX;
 		int itemsPerY;
 		int maxItemsPerPage;
+		int item_height;
+		int item_width;
 
 		// widget type
 		int widgetType;

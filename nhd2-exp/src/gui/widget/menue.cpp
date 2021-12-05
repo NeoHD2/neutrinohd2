@@ -375,8 +375,8 @@ void CMenuWidget::initFrames()
 		}
 
 		//
-		//full_width = width;
-		//full_height = height;
+		full_width = width;
+		full_height = height;
 		
 		if(paintFootInfo)
 		{

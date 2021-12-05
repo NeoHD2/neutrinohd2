@@ -1843,6 +1843,8 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	item_height = 0;
 	item_width = 0;
 	iconOffset = 0;
+	items_width = 0;
+	items_height = 0;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -1931,9 +1933,12 @@ ClistBox::ClistBox(CBox* position)
 	//
 	MenuPos = false;
 	
+	//
 	item_height = 0;
 	item_width = 0;
 	iconOffset = 0;
+	items_width = 0;
+	items_height = 0;
 }
 
 ClistBox::~ClistBox()
@@ -2094,8 +2099,8 @@ void ClistBox::initFrames()
 		}
 		
 		//
-		//full_height = itemBox.iHeight;
-		//full_width = itemBox.iWidth;
+		full_height = itemBox.iHeight;
+		full_width = itemBox.iWidth;
 
 		// sanity check
 		if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight()))
@@ -2198,7 +2203,7 @@ void ClistBox::paintItems()
 				{
 					CMenuItem * item = items[count];
 					
-					item->init(itemBox.iX + _x*item_width, item_start_y + _y*item_height, item_width, iconOffset);
+					item->init(itemBox.iX + _x*item_width, item_start_y + _y*item_height, items_width, iconOffset);
 
 					if((item->isSelectable()) && (selected == -1)) 
 					{
