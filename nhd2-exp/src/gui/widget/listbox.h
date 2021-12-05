@@ -487,8 +487,7 @@ class ClistBox : public CWidgetItem
 	private:
 		CFrameBuffer* frameBuffer;
 
-		CBox cFrameFootInfo;
-		
+		//		
 		int wanted_height;
 		int wanted_width;
 		int start_x;
@@ -556,6 +555,7 @@ class ClistBox : public CWidgetItem
 		bool paint_Foot;
 
 		// footInfo
+		int cFrameFootInfoHeight;
 		int footInfoHeight;
 		CItems2DetailsLine itemsLine;
 		int connectLineWidth;

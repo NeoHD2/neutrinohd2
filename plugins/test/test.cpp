@@ -714,6 +714,8 @@ void CTestMenu::loadTMDBPlaylist(const char *txt, const char *list, const int se
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu:loadTMDBPlaylist:\n");
 	
+	m_vMovieInfo.clear();
+	
 	thumbnail_dir = "/tmp/nfilm";
 	page = seite;
 	plist = list;
@@ -743,8 +745,6 @@ void CTestMenu::loadTMDBPlaylist(const char *txt, const char *list, const int se
 
 	if (mvlist.empty())
 		return;
-
-	m_vMovieInfo.clear();
 	
 	// fill our structure
 	for(unsigned int i = 0; i < mvlist.size(); i++)
@@ -3816,7 +3816,7 @@ void CTestMenu::testClistBox()
 	rightWidget->enablePaintFootInfo(80);
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 
-	rightWidget->setSelected(selected);
+	//rightWidget->setSelected(selected);
 	
 	//
 	rightWidget->paint();
@@ -3967,7 +3967,7 @@ void CTestMenu::testClistBox2()
 	rightWidget->enablePaintFootInfo(80);
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 
-	rightWidget->setSelected(selected);
+	//rightWidget->setSelected(selected);
 	
 	//
 	rightWidget->paint();
@@ -4117,7 +4117,7 @@ void CTestMenu::testClistBox3()
 	// footinfo
 	rightWidget->enablePaintFootInfo(80);
 
-	rightWidget->setSelected(selected);
+	//rightWidget->setSelected(selected);
 	
 	//
 	rightWidget->paint();
@@ -4254,7 +4254,7 @@ void CTestMenu::testClistBox4()
 
 	rightWidget->disablePaintFrame();	
 
-	rightWidget->setSelected(selected);
+	//rightWidget->setSelected(selected);
 	
 	//
 	rightWidget->paint();
@@ -4413,7 +4413,7 @@ void CTestMenu::testClistBox5()
 	rightWidget->enablePaintFootInfo(80);
 	rightWidget->setFootInfoMode(FOOT_INFO_MODE);
 
-	rightWidget->setSelected(selected);
+	//rightWidget->setSelected(selected);
 	
 	//
 	rightWidget->paint();
@@ -4578,7 +4578,7 @@ void CTestMenu::testClistBox6()
 	rightWidget->enablePaintFootInfo(80);
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 
-	rightWidget->setSelected(selected);
+	//rightWidget->setSelected(selected);
 	
 	//
 	rightWidget->paint();
@@ -5559,7 +5559,7 @@ void CTestMenu::testCMenuWidget()
 	menuWidget->setItemsPerPage(6, 2);
 	menuWidget->enableShrinkMenu();
 
-	menuWidget->setSelected(selected);
+	//menuWidget->setSelected(selected);
 
 	// head
 	menuWidget->enablePaintDate();
@@ -5616,7 +5616,7 @@ void CTestMenu::testCMenuWidget1()
 	menuWidget->enableWidgetChange();
 	menuWidget->enableShrinkMenu();
 
-	menuWidget->setSelected(selected);
+	//menuWidget->setSelected(selected);
 
 	// head
 	menuWidget->enablePaintDate();

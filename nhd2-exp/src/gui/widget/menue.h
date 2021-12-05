@@ -147,7 +147,7 @@ class CMenuWidget : public CMenuTarget
 
 		// itemInfo
 		bool paintFootInfo;
-		CBox cFrameFootInfo;
+		int cFrameFootInfoHeight;
 		int footInfoHeight;
 		int connectLineWidth;
 		int footInfoMode;
