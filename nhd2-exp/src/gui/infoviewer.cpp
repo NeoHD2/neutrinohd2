@@ -578,15 +578,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 		{
 			g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd);
 
-			//sigscale->reset(); 
-			//snrscale->reset(); 
-			//timescale->reset();
-
-			//
-			//showTitle(_ChanNum, ChannelName, _satellitePosition);
-			//show_Data();
-			//showSNR();
-
 			if ((msg == RC_sat) || (msg == RC_favorites) || (msg == RC_setup) || (msg == RC_red) || (msg == RC_green) || (msg == RC_yellow) || (msg == RC_blue) || (msg == RC_ok) || (msg == RC_text) || (msg == RC_epg) || (msg == RC_record) || (msg == RC_play) || (msg == RC_pause) || (msg == RC_dvbsub) || (msg == RC_mode))
 			{
 				g_RCInput->postMsg(msg, 0);
@@ -613,19 +604,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				// radiotext		
 				if ((g_settings.radiotext_enable) && (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio))
 					showRadiotext();			
-
-				/*
-				showIcon_16_9();
-				showIcon_Resolution();
-				*/
-				
-				//test
-				//sigscale->reset(); 
-				//snrscale->reset(); 
-				//timescale->reset();
-				//showPercent();
-				//show_Data();
-				//showSNR();
 			} 
 			else if ( g_settings.virtual_zap_mode && ((msg == RC_right) || msg == RC_left)) 
 			{
@@ -1415,8 +1393,6 @@ void CInfoViewer::showButton_SubServices()
 void CInfoViewer::getEPG(const t_channel_id for_channel_id, CSectionsdClient::CurrentNextInfo &info)
 {
 	dprintf(DEBUG_NORMAL, "CInfoViewer::getEPG: channel_id:0x%llx\n", for_channel_id);
-	
-/*
 
 	// to clear the oldinfo for channels without epg, call getEPG() with for_channel_id = 0
 	if (for_channel_id == 0)
@@ -1456,8 +1432,7 @@ void CInfoViewer::getEPG(const t_channel_id for_channel_id, CSectionsdClient::Cu
 
 		//
 		g_RCInput->postMsg(msg, (const neutrino_msg_data_t)p, false); // data is pointer to allocated memory
-	}
-*/	
+	}	
 }
 
 void CInfoViewer::showSNR()

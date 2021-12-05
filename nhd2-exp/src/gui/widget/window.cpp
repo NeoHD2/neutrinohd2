@@ -105,9 +105,6 @@ void CWindow::init()
 void CWindow::saveScreen()
 {
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
-	
-	if(!savescreen)
-		return;
 
 	if(background)
 	{
@@ -129,8 +126,7 @@ void CWindow::restoreScreen()
 	
 	if(background) 
 	{
-		if(savescreen)
-			frameBuffer->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+		frameBuffer->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
 	}
 
 	delete[] background;

@@ -226,20 +226,16 @@ class CScrollBar : public CComponent
 class CProgressBar : public CComponent
 {
 	private:
-		short width;
-		short height;
 		unsigned char percent;
 		short red, green, yellow;
 		bool inverse;
 
 	public:
 		//
-		CProgressBar(/*int w, int h,*/ int r = 40, int g = 100, int b = 70, bool inv = true);
+		CProgressBar(int r = 40, int g = 100, int b = 70, bool inv = true);
 		
 		//
 		void setPosition(const int x, const int y, const int w, const int h);
-		
-		//
 		void paintPCR(unsigned char pcr);
 		void reset();
 		int getPercent() { return percent; };

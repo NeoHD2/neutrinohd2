@@ -42,16 +42,11 @@ CProgressBar::CProgressBar(/*int w, int h,*/ int r, int g, int b, bool inv)
 {
 	frameBuffer = CFrameBuffer::getInstance();
 	
-	double div;
-	//width = w;
-	//height = h;
 	inverse = inv;
 	
-	div = (double) 100 / (double) width;
-
-	red = (double) r / (double) div;
-	green = (double) g / (double) div;
-	yellow = (double) b / (double) div;
+	red = (double) r;
+	green = (double) g;
+	yellow = (double) b;
 	
 	percent = 255;
 	
@@ -64,9 +59,17 @@ void CProgressBar::setPosition(const int x, const int y, const int w, const int 
 	cCBox.iHeight = h;
 	cCBox.iX = x;
 	cCBox.iY = y;
+	
+	double div = (double) 100;
+	
+	if (cCBox.iWidth)
+		div = (double) 100 / (double) cCBox.iWidth;
+
+	red = (double) red / (double) div;
+	green = (double) green / (double) div;
+	yellow = (double) yellow / (double) div;
 }
 
-//void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 void CProgressBar::paintPCR(unsigned char pcr)
 {
 	int i, siglen;
