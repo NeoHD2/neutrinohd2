@@ -309,24 +309,10 @@ void CHintBox::paintHourGlass()
 		
 	count = (count + 1) % 9;
 	
-	//hideHourGlass();
 	int ih = 0;
 	int iw = 0;
 	
 	CFrameBuffer::getInstance()->getIconSize("hourglass0", &iw, &ih);
-	
-	if(background)
-	{
-		delete[] background;
-		background = NULL;
-	}
-
-	background = new fb_pixel_t[(iw)*(ih)];
-	
-	if(background)
-	{
-		CFrameBuffer::getInstance()->saveScreen(CFrameBuffer::getInstance()->getScreenX() + 10, CFrameBuffer::getInstance()->getScreenY() + 10, iw, ih, background);
-	}
 	
 	CFrameBuffer::getInstance()->paintIcon(filename, CFrameBuffer::getInstance()->getScreenX() + 10, CFrameBuffer::getInstance()->getScreenY() + 10);
 }
@@ -347,8 +333,8 @@ void CHintBox::hideHourGlass()
 		delete[] background;
 		background = NULL;
 	}
-	//else FIXME:
-	CFrameBuffer::getInstance()->paintBackgroundBoxRel(CFrameBuffer::getInstance()->getScreenX() + 10, CFrameBuffer::getInstance()->getScreenY() + 10, iw, ih);
+	else //FIXME:
+		CFrameBuffer::getInstance()->paintBackgroundBoxRel(CFrameBuffer::getInstance()->getScreenX() + 10, CFrameBuffer::getInstance()->getScreenY() + 10, iw, ih);
 }
 
 int CHintBox::exec(int timeout)
@@ -363,8 +349,26 @@ int CHintBox::exec(int timeout)
 
 	paint();
 	
-	//if (paintHG)
-	//	paintHourGlass();
+	if (paintHG)
+	{
+		int ih = 0;
+		int iw = 0;
+		
+		CFrameBuffer::getInstance()->getIconSize("hourglass0", &iw, &ih);
+		
+		if(background)
+		{
+			delete[] background;
+			background = NULL;
+		}
+
+		background = new fb_pixel_t[iw*ih];
+		
+		if(background)
+		{
+			CFrameBuffer::getInstance()->saveScreen(CFrameBuffer::getInstance()->getScreenX() + 10, CFrameBuffer::getInstance()->getScreenY() + 10, iw, ih, background);
+		}
+	}
 		
 	CFrameBuffer::getInstance()->blit();
 
@@ -421,7 +425,9 @@ int CHintBox::exec(int timeout)
 	hide();
 	
 	if (paintHG)
+	{
 		hideHourGlass();
+	}
 		
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
