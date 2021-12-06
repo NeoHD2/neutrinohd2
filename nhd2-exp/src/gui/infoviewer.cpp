@@ -632,7 +632,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				{
 					// Handle anyway!
 					neutrino->handleMsg(msg, data);
-					//g_RCInput->postMsg (NeutrinoMessages::SHOW_INFOBAR, 0);
+					g_RCInput->postMsg (NeutrinoMessages::SHOW_INFOBAR, 0);
 					
 					res = messages_return::cancel_all;
 				} 

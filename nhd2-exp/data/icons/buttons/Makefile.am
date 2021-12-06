@@ -10,7 +10,7 @@ install_DATA = \
 	info_small.png \
 	menu.png menu_small.png \
 	mounted.png not_mounted.png \
-	mute_small.png mute_zap_gray.png mute_zap_green.png \
+	mute.png mute_small.png mute_zap_gray.png mute_zap_green.png \
 	ok.png \
 	softupdate_small.png \
 	volume.png \

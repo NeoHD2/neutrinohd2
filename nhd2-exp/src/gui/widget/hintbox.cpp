@@ -408,7 +408,8 @@ int CHintBox::exec(int timeout)
 		else
 		{
 			res = CNeutrinoApp::getInstance()->handleMsg(msg, data);
-/*
+			
+			/*
 			if (res & messages_return::unhandled)
 			{
 				dprintf(DEBUG_NORMAL, "CHintBox::exec: message unhandled\n");
@@ -416,7 +417,7 @@ int CHintBox::exec(int timeout)
 				res = messages_return::cancel_info;
 				g_RCInput->postMsg(msg, data);
 			}
-*/
+			*/
 		}
 
 		CFrameBuffer::getInstance()->blit();	

@@ -95,9 +95,6 @@ void CWindow::init()
 		itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - itemBox.iHeight) >> 1 );
 	}
 	
-	if(savescreen) 
-		saveScreen();
-	
 	//
 	itemType = WIDGET_ITEM_WINDOW;
 }
@@ -106,6 +103,8 @@ void CWindow::saveScreen()
 {
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 
+	if (savescreen)
+	{
 	if(background)
 	{
 		delete[] background;
@@ -117,6 +116,7 @@ void CWindow::saveScreen()
 	if(background)
 	{
 		frameBuffer->saveScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+	}
 	}
 }
 
@@ -139,11 +139,7 @@ void CWindow::enableSaveScreen()
 	
 	savescreen = true;
 	
-	if(!savescreen && background) 
-	{
-		delete[] background;
-		background = NULL;
-	}
+	saveScreen();
 }
 
 void CWindow::setPosition(const int x, const int y, const int dx, const int dy)
@@ -154,6 +150,8 @@ void CWindow::setPosition(const int x, const int y, const int dx, const int dy)
 	itemBox.iY = y;
 	itemBox.iWidth = dx;
 	itemBox.iHeight = dy;
+	
+	init();
 }
 
 void CWindow::setPosition(CBox* position)
@@ -161,14 +159,13 @@ void CWindow::setPosition(CBox* position)
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
 	itemBox = *position;
+	
+	init();
 }
 
 void CWindow::paint()
 {
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
-	
-	if(savescreen) 
-		saveScreen();
 
 	if(enableshadow)
 	{

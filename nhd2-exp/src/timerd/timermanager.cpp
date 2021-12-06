@@ -91,7 +91,8 @@ void CTimerManager::Init(void)
 
 CTimerManager * CTimerManager::getInstance()
 {
-	static CTimerManager *instance=NULL;
+	static CTimerManager* instance = NULL;
+	
 	if(!instance)
 		instance = new CTimerManager;
 
@@ -103,8 +104,8 @@ void* CTimerManager::timerThread(void *arg)
 	pthread_mutex_t dummy_mutex = PTHREAD_MUTEX_INITIALIZER;
 	pthread_cond_t dummy_cond = PTHREAD_COND_INITIALIZER;
 	struct timespec wait;
-
-	CTimerManager *timerManager = (CTimerManager*) arg;
+	
+	CTimerManager *timerManager = (CTimerManager *) arg;
 
 	int sleeptime = 10;
 
@@ -147,7 +148,8 @@ void* CTimerManager::timerThread(void *arg)
 				
 				event->printEvent();
 
-				if(event->announceTime > 0 && event->eventState == CTimerd::TIMERSTATE_SCHEDULED ) // if event wants to be announced
+				// if event wants to be announced
+				if(event->announceTime > 0 && event->eventState == CTimerd::TIMERSTATE_SCHEDULED ) 
 				{
 					if( event->announceTime <= now )	// check if event announcetime has come
 					{
@@ -986,13 +988,19 @@ void CTimerEvent::Reschedule()
 
 void CTimerEvent::printEvent(void)
 {
+//FIXME: _GI_localtime (t=0x30) at localtime.c:54
+#if 0
 	struct tm *alarmtime, *announcetime;
+	
 	dprintf(DEBUG_DEBUG, "CTimerEvent::printEvent: eventID: %03d type: %d state: %d repeat: %d ,repeatCount %d\n",eventID,eventType,eventState,((int)eventRepeat)&0x1FF,repeatCount);
 	
 	announcetime = localtime(&announceTime);
-	dprintf(DEBUG_DEBUG, " CTimerEvent::printEvent: announce: %u %02d.%02d. %02d:%02d:%02d\n",(uint) announceTime,announcetime->tm_mday,announcetime->tm_mon+1,announcetime->tm_hour,announcetime->tm_min,announcetime->tm_sec);
+	
+	dprintf(DEBUG_DEBUG, " CTimerEvent::printEvent: announce: %u %02d.%02d. %02d:%02d:%02d\n",(uint) announceTime, announcetime->tm_mday,announcetime->tm_mon + 1, announcetime->tm_hour, announcetime->tm_min, announcetime->tm_sec);
+	
 	alarmtime = localtime(&alarmTime);
-	dprintf(DEBUG_DEBUG, " CTimerEvent::printEvent: alarm: %u %02d.%02d. %02d:%02d:%02d\n",(uint) alarmTime,alarmtime->tm_mday,alarmtime->tm_mon+1,alarmtime->tm_hour,alarmtime->tm_min,alarmtime->tm_sec);
+	
+	dprintf(DEBUG_DEBUG, " CTimerEvent::printEvent: alarm: %u %02d.%02d. %02d:%02d:%02d\n",(uint) alarmTime, alarmtime->tm_mday, alarmtime->tm_mon + 1, alarmtime->tm_hour, alarmtime->tm_min,alarmtime->tm_sec);
 	
 	switch(eventType)
 	{
@@ -1022,7 +1030,9 @@ void CTimerEvent::printEvent(void)
 		default:
 			;
 	}
+	
 	dprintf(DEBUG_DEBUG, "\n");
+#endif	
 }
 
 void CTimerEvent::saveToConfig(CConfigFile *config)
@@ -1214,12 +1224,14 @@ void CTimerEvent_Record::announceEvent()
 void CTimerEvent_Record::stopEvent()
 {
 	CTimerd::RecordingStopInfo stopinfo;
+	
 	// Set EPG-ID if not set
 	stopinfo.eventID = eventID;
 	CTimerManager::getInstance()->getEventServer()->sendEvent(CTimerdClient::EVT_RECORD_STOP,
 								  CEventServer::INITID_TIMERD,
 								  &stopinfo,
 								  sizeof(CTimerd::RecordingStopInfo));
+								  
 	// Programmiere shutdown timer, wenn in wakeup state und kein record/zapto timer in 10 min
 	CTimerManager::getInstance()->shutdownOnWakeup(eventID);
 	

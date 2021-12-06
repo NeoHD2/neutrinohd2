@@ -98,7 +98,7 @@ class CMessageBox
 		void refresh();
 
 		void init(const char* const Caption, const int Width, const char * const Icon);
-		void resizeFrame(void);
+		void initFrames(void);
 
 		bool has_scrollbar(void);
 		void scroll_up(void);

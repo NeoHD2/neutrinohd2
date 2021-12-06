@@ -149,8 +149,6 @@ bool cRecord::Stop(void)
 	if (record_thread_running)
 		pthread_join(record_thread, NULL);
 
-	printf("RECORD STOPPED 1\n\n");
-
 	record_thread_running = false;
 
 	if (dmx)
@@ -160,23 +158,17 @@ bool cRecord::Stop(void)
 		dmx = NULL;
 	}
 
-	printf("RECORD STOPPED 2\n\n");
-
 	if (file_fd != -1)
 	{
 		close(file_fd);
 		file_fd = -1;
 	}
 
-	printf("RECORD STOPPED 3\n\n");
-
 	if(fp != NULL)
 	{
 		fclose(fp);
 		fp = NULL;
 	}
-
-	printf("RECORD STOPPED 4\n\n");
 	
 	return true;
 }

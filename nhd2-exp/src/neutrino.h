@@ -218,7 +218,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		void unlockPlayBack(void);
 		
 		// 0 - restart 
-		// 1 - halt
+		// 1 - shutdown
 		// 2 - reboot
 		enum {
 			RESTART = 0,

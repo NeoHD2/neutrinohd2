@@ -3882,7 +3882,7 @@ _repeat:
 			if(((CTimerd::RecordingStopInfo*)data)->eventID == nextRecordingInfo->eventID) 
 			{
 				delete[] (unsigned char *) nextRecordingInfo;
-				nextRecordingInfo=NULL;
+				nextRecordingInfo = NULL;
 			}
 		}
 		
@@ -4454,9 +4454,6 @@ void CNeutrinoApp::AudioMute( int newValue, bool isEvent )
 	int dx = 32;
 	int dy = 32;
 	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_MUTE, &dx, &dy);
-	int offset = (dx/4);
-	dx += offset;
-	dy += offset;
 
 	int x = g_settings.screen_EndX - 10 - dx;
 	int y = g_settings.screen_StartY + 10;
@@ -4478,16 +4475,18 @@ void CNeutrinoApp::AudioMute( int newValue, bool isEvent )
 	{
 		if( current_muted ) 
 		{
-			if(!mute_pixbuf)
+			if(mute_pixbuf == NULL)
+			{
 				mute_pixbuf = new fb_pixel_t[dx*dy];
+			}
 			
 			if(mute_pixbuf)
 			{
 				frameBuffer->saveScreen(x, y, dx, dy, mute_pixbuf);		
 			}
 		
-			frameBuffer->paintBoxRel(x, y, dx, dy, COL_MENUCONTENT_PLUS_0);
-			frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_MUTE, x + offset/2, y + offset/2 );
+			//frameBuffer->paintBoxRel(x, y, dx, dy, COL_MENUCONTENT_PLUS_0);
+			frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_MUTE, x, y);
 		}
 		else
 		{
@@ -4496,6 +4495,7 @@ void CNeutrinoApp::AudioMute( int newValue, bool isEvent )
 				frameBuffer->restoreScreen(x, y, dx, dy, mute_pixbuf);
 	
 				delete [] mute_pixbuf;
+				mute_pixbuf = NULL;
 			}
 			else
 				frameBuffer->paintBackgroundBoxRel(x, y, dx, dy);
@@ -4567,7 +4567,7 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 		if(pixbuf != NULL)
 		{
 			frameBuffer->saveScreen(x, y, dx, dy, pixbuf);
-			frameBuffer->blit();				
+			//frameBuffer->blit();				
 		}
 
 		// background box
@@ -4631,7 +4631,7 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 			if (current_muted && msg == RC_plus)
 				AudioMute(0, true);
 
-			timeoutEnd = CRCInput::calcTimeoutEnd(nowait ? 1 : 3);
+			timeoutEnd = CRCInput::calcTimeoutEnd(nowait ? 5 : 10);
 		}
 		else if (msg == NeutrinoMessages::EVT_VOLCHANGED) 
 		{

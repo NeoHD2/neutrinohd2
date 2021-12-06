@@ -49,6 +49,8 @@
 
 CMessageBox::CMessageBox(const neutrino_locale_t Caption, const char * const Text, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
 {
+	dprintf(DEBUG_NORMAL, "CMessageBox::CMessageBox\n");
+	
 	m_message = strdup(Text);
 
 	char *begin   = m_message;
@@ -76,10 +78,14 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, const char * const Tex
 
 	result = Default;
 
-	//showbuttons = ShowButtons;
-
 	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(g_Locale->getText(LOCALE_MESSAGEBOX_CANCEL), true); // UTF-8
-	int ButtonWidth = 20 + 33 + MaxButtonTextWidth + 5;
+	
+	int ih = 0;
+	int iw = 0;
+	
+	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_HOME, &iw, &ih);
+	
+	int ButtonWidth = BORDER_LEFT + BORDER_RIGHT + iw + MaxButtonTextWidth + ICON_OFFSET;
 	int num = 0;
 
 	if (showbuttons & mbNone)
@@ -94,16 +100,18 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, const char * const Tex
 	if (showbuttons & (mbCancel | mbBack | mbOk))
 		num++;
 	
-	int new_width = 15 + num*ButtonWidth;
+	int new_width = BORDER_LEFT + BORDER_RIGHT + num*ButtonWidth;
 	if(new_width > m_width)
 		m_width = new_width;
 		
-	// resizeFrame
-	resizeFrame();
+	// initFrames
+	initFrames();
 }
 
 CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
 {
+	dprintf(DEBUG_NORMAL, "CMessageBox::CMessageBox\n");
+	
 	m_message = NULL;
 	m_lines = Lines;
 	
@@ -118,9 +126,15 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, c
 
 	result = Default;
 
-	//showbuttons = ShowButtons;
 	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(g_Locale->getText(LOCALE_MESSAGEBOX_CANCEL), true); // UTF-8
-	int ButtonWidth = 20 + 33 + MaxButtonTextWidth + 5;
+	
+	int ih = 0;
+	int iw = 0;
+	
+	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_HOME, &iw, &ih);
+	
+	int ButtonWidth = BORDER_LEFT + BORDER_RIGHT + iw + MaxButtonTextWidth + ICON_OFFSET;
+	
 	int num = 0;
 
 	if (showbuttons & mbNone)
@@ -135,16 +149,18 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, c
 	if (showbuttons & (mbCancel | mbBack | mbOk))
 		num++;
 	
-	int new_width = 15 + num*ButtonWidth;
+	int new_width = BORDER_LEFT + BORDER_RIGHT + num*ButtonWidth;
 	if(new_width > m_width)
 		m_width = new_width;
 		
-	// resizeFrame
-	resizeFrame();
+	// initFrames
+	initFrames();
 }
 
 CMessageBox::CMessageBox(const char* const Caption, const char * const Text, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
 {
+	dprintf(DEBUG_NORMAL, "CMessageBox::CMessageBox\n");
+	
 	m_message = strdup(Text);
 
 	char *begin   = m_message;
@@ -172,10 +188,15 @@ CMessageBox::CMessageBox(const char* const Caption, const char * const Text, con
 
 	result = Default;
 
-	//showbuttons = ShowButtons;
-
 	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(g_Locale->getText(LOCALE_MESSAGEBOX_CANCEL), true); // UTF-8
-	int ButtonWidth = 20 + 33 + MaxButtonTextWidth + 5;
+
+	int ih = 0;
+	int iw = 0;
+	
+	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_HOME, &iw, &ih);
+	
+	int ButtonWidth = BORDER_LEFT + BORDER_RIGHT + iw + MaxButtonTextWidth + ICON_OFFSET;
+	
 	int num = 0;
 
 	if (showbuttons & mbNone)
@@ -190,16 +211,18 @@ CMessageBox::CMessageBox(const char* const Caption, const char * const Text, con
 	if (showbuttons & (mbCancel | mbBack | mbOk))
 		num++;
 	
-	int new_width = 15 + num*ButtonWidth;
+	int new_width = BORDER_LEFT + BORDER_RIGHT + num*ButtonWidth;
 	if(new_width > m_width)
 		m_width = new_width;
 		
-	// resizeFrame
-	resizeFrame();
+	// initFrames
+	initFrames();
 }
 
 CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
 {
+	dprintf(DEBUG_NORMAL, "CMessageBox::CMessageBox\n");
+	
 	m_message = NULL;
 	m_lines = Lines;
 	
@@ -214,9 +237,15 @@ CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const i
 
 	result = Default;
 
-	//showbuttons = ShowButtons;
 	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(g_Locale->getText(LOCALE_MESSAGEBOX_CANCEL), true); // UTF-8
-	int ButtonWidth = 20 + 33 + MaxButtonTextWidth + 5;
+	
+	int ih = 0;
+	int iw = 0;
+	
+	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_HOME, &iw, &ih);
+	
+	int ButtonWidth = BORDER_LEFT + BORDER_RIGHT + iw + MaxButtonTextWidth + ICON_OFFSET;
+	
 	int num = 0;
 
 	if (showbuttons & mbNone)
@@ -235,8 +264,8 @@ CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const i
 	if(new_width > m_width)
 		m_width = new_width;
 		
-	// resizeFrame
-	resizeFrame();
+	// initFrames
+	initFrames();
 }
 
 CMessageBox::~CMessageBox(void)
@@ -247,8 +276,7 @@ CMessageBox::~CMessageBox(void)
 	{
 		free(m_message);
 
-		// content has been set using "m_message" so we are responsible to 
-		// delete it
+		// content has been set using "m_message" so we are responsible to delete it
 		for (ContentLines::iterator it = m_lines.begin(); it != m_lines.end(); it++)
 		{
 			for (std::vector<Drawable*>::iterator it2 = it->begin(); it2 != it->end(); it2++)
@@ -257,13 +285,12 @@ CMessageBox::~CMessageBox(void)
 			}
 		}
 	}
-
-	// hack to hide helpBox FIXME:???
-	hide();
 }
 
 void CMessageBox::init(const char * const Caption, const int Width, const char * const Icon)
 {
+	dprintf(DEBUG_NORMAL, "CMessageBox::init\n");
+	
 	m_width = Width;
 	int nw = 0;
 	m_theight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
@@ -391,8 +418,10 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 		m_width = nw;
 }
 
-void CMessageBox::resizeFrame(void)
+void CMessageBox::initFrames(void)
 {
+	dprintf(DEBUG_NORMAL, "CMessageBox::initFrames\n");
+	
 	cFrameBox.iWidth = m_width;
 	cFrameBox.iHeight = m_height;
 	cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1);
@@ -414,6 +443,8 @@ void CMessageBox::paint(void)
 
 void CMessageBox::refresh()
 {
+	dprintf(DEBUG_NORMAL, "CMessageBox::refresh\n");
+	
 	// mainBox
 	m_cBoxWindow->paint();
 
@@ -491,6 +522,8 @@ void CMessageBox::returnDefaultValueOnTimeout(bool returnDefault)
 
 void CMessageBox::paintButtons()
 {
+	dprintf(DEBUG_NORMAL, "CMessageBox::paintButtons\n");
+	
 	//
 	uint8_t    color;
 	fb_pixel_t bgcolor;
