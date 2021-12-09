@@ -35,10 +35,6 @@
 #include <channel.h>
 #include <frontend_c.h>
 
-#include <client/zapittypes.h>
-
-#include <global.h>
-
 
 #define TS_SIZE 	188
 #define IN_SIZE         (TS_SIZE * 362)
@@ -50,15 +46,28 @@
 #define PACKET_SIZE	7*TS_SIZE
 
 extern CFrontend * live_fe;
-CZapitChannel * pids2Channel(unsigned short pmtPid, unsigned short videoPid, unsigned short audioPid);
-CZapitChannel * find_channel_tozap(const t_channel_id channel_id, bool in_nvod);
 
 static unsigned char exit_flag = 0;
 static unsigned int writebuf_size = 0;
 static unsigned char writebuf[PACKET_SIZE];
 
+#ifdef SYNC_TS
+static int sync_byte_offset(const unsigned char * buf, const unsigned int len)
+{
+
+	unsigned int i;
+
+	for (i = 0; i < len; i++)
+		if (buf[i] == 0x47)
+			return i;
+
+	return -1;
+}
+#endif
+
 void packet_stdout(int fd, unsigned char * buf, int count, void *)
 {
+
 	unsigned int size;
 	unsigned char * bp;
 	ssize_t written;
@@ -240,7 +249,6 @@ void * streamts_file_thread(void *data)
 			break;
 		}
 		else
-		{
 			if ((bp[i] == '%') && (bp[i + 1] == '2') && (bp[i + 2] == '0'))
 			{
 				tsfile[j++] = ' ';
@@ -248,7 +256,6 @@ void * streamts_file_thread(void *data)
 			}
 			else
 				tsfile[j++] = bp[i++];
-		}
 	}
 	
 	tsfilelen = strlen(tsfile);
@@ -358,49 +365,22 @@ void * streamts_live_thread(void * data)
 		return 0;
 	}
 
-	t_channel_id stream_channel_id = 0;
-	CZapitChannel * stream_channel = NULL;
+	// parse stdin / url path, start dmx filters
+	do {
+		int res = sscanf(bp, "%x", &pid);
 
-	bp = &cbuf[5];
-	if (sscanf(bp, "id=%llx", &stream_channel_id) == 1) 
-	{
-		if(g_Zapit->zapTo_record(stream_channel_id) == 0)
+		if(res == 1) 
 		{
-			stream_channel = find_channel_tozap(stream_channel_id, false);
-
-			pids[0] = 0;
-
-			if(stream_channel != NULL)
-			{
-				pids[1] = stream_channel->getPmtPid();
-				pids[2] = stream_channel->getVideoPid();
-				pids[3] = stream_channel->getPreAudioPid();
-			}
-			else
-				return 0;
+			dprintf(DEBUG_NORMAL, "streamts_live_thread: New pid: 0x%x\n", pid);
+			pids[demuxfd_count++] = pid;
 		}
-		else
-			return 0;
 	}
-	else
+	while ((bp = strchr(bp, ',')) && (bp++) && (demuxfd_count < MAXPIDS));
+
+	if(demuxfd_count == 0) 
 	{
-		// parse stdin / url path, start dmx filters
-		do {
-			int res = sscanf(bp, "%x", &pid);
-
-			if(res == 1) 
-			{
-				dprintf(DEBUG_NORMAL, "streamts_live_thread: New pid: 0x%x\n", pid);
-				pids[demuxfd_count++] = pid;
-			}
-		}
-		while ((bp = strchr(bp, ',')) && (bp++) && (demuxfd_count < MAXPIDS));
-
-		if(demuxfd_count == 0) 
-		{
-			dprintf(DEBUG_NORMAL, "streamts_live_thread: No pids!\n");
-			return 0;
-		}
+		dprintf(DEBUG_NORMAL, "streamts_live_thread: No pids!\n");
+		return 0;
 	}
 
 	buf = (unsigned char *) malloc(IN_SIZE);
@@ -423,6 +403,10 @@ void * streamts_live_thread(void * data)
 		dmx->addPid(pids[i]);
 
 	ssize_t r;
+
+#ifdef SYNC_TS
+	int offset = 0;
+#endif
 
 	while (!exit_flag) 
 	{

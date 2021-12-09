@@ -293,8 +293,8 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 	
 	m_width = Width;
 	int nw = 0;
-	m_theight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
-	m_fheight = (showbuttons & mbNone)? 0 : g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
+	m_theight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
+	m_fheight = (showbuttons & mbNone)? 0 : g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 	m_iheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
 	m_height  = m_theight + m_fheight;
 	m_maxEntriesPerPage = 0;
@@ -345,6 +345,7 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 				maxWidth = MESSAGEBOX_MAX_WIDTH - 20;
 		}
 		*/
+		
 		if (lineWidth > m_width)
 			maxWidth = lineWidth;
 		else if (lineWidth > (MESSAGEBOX_MAX_WIDTH - 20))
@@ -479,7 +480,7 @@ void CMessageBox::refresh()
 	{
 		yPos = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_theight;
 
-		scrollBar.paint(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + m_width - 1 - SCROLLBAR_WIDTH, yPos, m_maxEntriesPerPage*m_fheight, m_pages, m_currentPage);
+		scrollBar.paint(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + m_width - 1 - SCROLLBAR_WIDTH, yPos, m_height - m_theight - m_fheight, m_pages, m_currentPage);
 	}
 }
 
@@ -530,7 +531,10 @@ void CMessageBox::paintButtons()
 
 	if (showbuttons & mbNone)
 		return;
-
+	
+	// horizontal line separator	
+	CFrameBuffer::getInstance()->paintHLineRel(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + BORDER_LEFT, m_width - BORDER_LEFT - BORDER_RIGHT, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height - m_fheight, COL_MENUCONTENT_PLUS_5);
+		
 	//irgendwann alle vergleichen - aber cancel ist sicher der l�ngste
 	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(g_Locale->getText(LOCALE_MESSAGEBOX_CANCEL), true); // UTF-8
 
@@ -544,7 +548,8 @@ void CMessageBox::paintButtons()
 
 	int xpos = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + BORDER_LEFT;
 	int fh = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-	const int noname = 20;
+	
+	//const int noname = 10;
 	
 	// yes
 	if (showbuttons & mbYes)
@@ -561,12 +566,12 @@ void CMessageBox::paintButtons()
 		}
 		
 
-		CFrameBuffer::getInstance()->paintBoxRel(xpos, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height - m_fheight - noname, ButtonWidth, m_fheight, bgcolor);
+		CFrameBuffer::getInstance()->paintBoxRel(xpos, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height - m_fheight + 5, ButtonWidth, m_fheight - 10, bgcolor);
 
 		CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &iw, &ih);
-		CFrameBuffer::getInstance()->paintIcon(NEUTRINO_ICON_BUTTON_RED, xpos + BORDER_LEFT + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height - m_fheight - noname, m_fheight);
+		CFrameBuffer::getInstance()->paintIcon(NEUTRINO_ICON_BUTTON_RED, xpos + BORDER_LEFT + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height - m_fheight + 5, m_fheight - 10);
 
-		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(xpos + BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + (m_height - noname) - (m_fheight - fh)/2, ButtonWidth - (BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET + BORDER_LEFT), g_Locale->getText(LOCALE_MESSAGEBOX_YES), color, 0, true); // UTF-8
+		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(xpos + BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + (m_height) - (m_fheight - fh)/2, ButtonWidth - (BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET + BORDER_LEFT), g_Locale->getText(LOCALE_MESSAGEBOX_YES), color, 0, true); // UTF-8
 		
 		xpos += ButtonWidth + ButtonSpacing;
 	}
@@ -585,11 +590,11 @@ void CMessageBox::paintButtons()
 			bgcolor = COL_INFOBAR_SHADOW_PLUS_0;
 		}
 
-		CFrameBuffer::getInstance()->paintBoxRel(xpos, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height - m_fheight-noname, ButtonWidth, m_fheight, bgcolor);
+		CFrameBuffer::getInstance()->paintBoxRel(xpos, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height - m_fheight + 5, ButtonWidth, m_fheight - 10, bgcolor);
 
-		CFrameBuffer::getInstance()->paintIcon(NEUTRINO_ICON_BUTTON_GREEN, xpos + BORDER_LEFT + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height - m_fheight - noname, m_fheight);
+		CFrameBuffer::getInstance()->paintIcon(NEUTRINO_ICON_BUTTON_GREEN, xpos + BORDER_LEFT + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height - m_fheight + 5, m_fheight - 10);
 
-		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(xpos + BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + (m_height - noname)-(m_fheight-fh)/2, ButtonWidth - (BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET + BORDER_LEFT), g_Locale->getText(LOCALE_MESSAGEBOX_NO), color, 0, true); // UTF-8		
+		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(xpos + BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + (m_height) - (m_fheight - fh)/2, ButtonWidth - (BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET + BORDER_LEFT), g_Locale->getText(LOCALE_MESSAGEBOX_NO), color, 0, true); // UTF-8		
 	
 		xpos += ButtonWidth + ButtonSpacing;
 	}
@@ -608,11 +613,11 @@ void CMessageBox::paintButtons()
 			bgcolor = COL_INFOBAR_SHADOW_PLUS_0;
 		}
 
-		CFrameBuffer::getInstance()->paintBoxRel(xpos, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height-m_fheight-noname, ButtonWidth, m_fheight, bgcolor);
+		CFrameBuffer::getInstance()->paintBoxRel(xpos, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height - m_fheight + 5, ButtonWidth, m_fheight - 10, bgcolor);
 
-		CFrameBuffer::getInstance()->paintIcon(NEUTRINO_ICON_BUTTON_HOME, xpos + BORDER_LEFT + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height-m_fheight - noname, m_fheight);
+		CFrameBuffer::getInstance()->paintIcon(NEUTRINO_ICON_BUTTON_HOME, xpos + BORDER_LEFT + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + m_height - m_fheight + 5, m_fheight - 10);
 
-		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(xpos + BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + (m_height - noname) - (m_fheight - fh)/2, ButtonWidth - (BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET + BORDER_LEFT), g_Locale->getText((showbuttons & mbCancel) ? LOCALE_MESSAGEBOX_CANCEL : (showbuttons & mbOk) ? LOCALE_MESSAGEBOX_OK : LOCALE_MESSAGEBOX_BACK), color, 0, true); // UTF-8	
+		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(xpos + BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + (m_height) - (m_fheight - fh)/2, ButtonWidth - (BORDER_LEFT + ICON_OFFSET + iw + ICON_OFFSET + BORDER_LEFT), g_Locale->getText((showbuttons & mbCancel) ? LOCALE_MESSAGEBOX_CANCEL : (showbuttons & mbOk) ? LOCALE_MESSAGEBOX_OK : LOCALE_MESSAGEBOX_BACK), color, 0, true); // UTF-8	
 	}	
 }
 
