@@ -131,6 +131,8 @@ void CTextBox::initVar(void)
 	painted = false;
 	paintBG = true;
 	enableFrame = false;
+	paintShadow = false;
+	useBG = false;
 	
 	itemType = WIDGET_ITEM_TEXTBOX;
 }
@@ -441,14 +443,25 @@ void CTextBox::refreshText(void)
 	// paint text background
 	if(paintBG)
 	{
-		CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, m_textBackgroundColor, m_textRadius, m_textCorner);
+		if (paintShadow)
+		{
+			// shadow
+			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+			
+			//
+			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, m_textBackgroundColor);
+		}
+		else
+		{
+			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, m_textBackgroundColor, m_textRadius, m_textCorner);
+		}
 	}
 	
 	// paint thumbnail (paint picture only on first page)
 	if(m_nCurrentPage == 0 && !access(thumbnail.c_str(), F_OK) )
 	{
 		if (enableFrame)
-			CFrameBuffer::getInstance()->paintFrameBox(lx, ly, tw, th, COL_WHITE);
+			CFrameBuffer::getInstance()->paintFrameBox(lx, ly, tw, th, COL_WHITE_PLUS_0);
 		
 		// picture
 		CFrameBuffer::getInstance()->displayImage(thumbnail.c_str(), lx + THUMBNAIL_OFFSET, ly + THUMBNAIL_OFFSET, tw - THUMBNAIL_OFFSET, th - THUMBNAIL_OFFSET);
@@ -478,7 +491,7 @@ void CTextBox::refreshText(void)
 			}
 		}
 
-		m_pcFontText->RenderString(m_cFrameTextRel.iX + x_start, y, m_cFrameTextRel.iWidth, m_cLineArray[i].c_str(), m_textColor, 0, true); // UTF-8
+		m_pcFontText->RenderString(m_cFrameTextRel.iX + x_start, y, m_cFrameTextRel.iWidth, m_cLineArray[i].c_str(), m_textColor, 0, true, useBG); // UTF-8
 	}
 }
 
@@ -539,12 +552,13 @@ void CTextBox::refresh(void)
 	refreshScroll();	
 }
 
-bool CTextBox::setText(const char * const newText, const char * const _thumbnail, int _tw, int _th, int _tmode, bool enable_frame)
+bool CTextBox::setText(const char * const newText, const char * const _thumbnail, int _tw, int _th, int _tmode, bool enable_frame, const bool useBackground)
 {
 	dprintf(DEBUG_DEBUG, "CTextBox::setText:\r\n");
 
 	m_tMode = _tmode;
 	enableFrame = enable_frame;
+	useBG = useBackground;
 
 	// thumbnail
 	thumbnail = "";

@@ -66,11 +66,11 @@ enum {
 	CC_FRAMELINE,
 	CC_PIG,
 	CC_GRID,
+	//CC_SLIDER,
+	//CC_TIME
 	CC_SCROLLBAR,
 	CC_PROGRESSBAR,
-	CC_DETAILSLINE,
-	CC_SLIDER,
-	CC_TIME
+	CC_DETAILSLINE
 };
 
 enum {
@@ -86,6 +86,8 @@ class CComponent
 		CFrameBuffer *frameBuffer;
 		int cc_type;
 		CBox cCBox;
+		int halign;
+		int valign;
 		
 		//
 		CComponent(){frameBuffer = CFrameBuffer::getInstance();};
@@ -190,18 +192,25 @@ typedef struct button_label
 
 typedef std::vector<button_label_struct> button_label_list_t;
 
+enum {
+	BUTTON,
+	FRAME
+};
+
 // CButtons
 class CButtons : public CComponent
 {
 	private:
 		button_label_list_t buttons;
 		unsigned int count;
+		int mode;
 	public:
 		//
-		CButtons(){frameBuffer = CFrameBuffer::getInstance(); buttons.clear(); count = 0; cc_type = CC_BUTTON;};
+		CButtons(){frameBuffer = CFrameBuffer::getInstance(); buttons.clear(); count = 0; mode = BUTTON; cc_type = CC_BUTTON;};
 		
 		//
 		void setButtons(const struct button_label *button_label, const int button_count = 1);
+		void setMode(int m){mode = m;};
 		void paint();
 
 		//
@@ -360,7 +369,6 @@ class CLabel : public CComponent
 		std::string label;
 		bool paintBG;
 		bool utf8;
-		int halign;
 		
 		//
 		CLabel();

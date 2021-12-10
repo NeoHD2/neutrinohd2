@@ -565,7 +565,7 @@ void CGrid::init()
 {
 	frameBuffer = CFrameBuffer::getInstance();
 
-	rgb = COL_LIGHT_GRAY;
+	rgb = COL_NOBEL;
 	inter_frame = 15;
 	
 	//

@@ -417,6 +417,11 @@ void CMenuWidget::paintHead()
 {
 	dprintf(DEBUG_DEBUG, "CMenuWidget::paintHead:\n");
 	
+	if(name == NONEXISTANT_LOCALE)
+		l_name = nameString.c_str();
+	else
+        	l_name = g_Locale->getText(name);
+	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		// headBoxox

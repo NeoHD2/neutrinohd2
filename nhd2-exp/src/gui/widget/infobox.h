@@ -58,22 +58,29 @@ class CInfoBox
 		CFrameBuffer * frameBuffer;
 
 		CBox	m_cBoxFrame;
-		CBox	m_cBoxFrameText;
-		CBox	m_cBoxFrameTitleRel;
-		CBox	m_cBoxFrameFootRel;
 
-		// variables
+		// head
+		CBox	m_cBoxFrameTitleRel;
 		std::string m_cIcon;
 		std::string m_cTitle;
-
-		int m_nMode;
-
-		CFont *m_pcFontTitle;
-		int m_nFontTitleHeight;
-
-		CFont* m_pcFontText;
-
+		fb_pixel_t headColor;
+		int headRadius;
+		int headCorner;
+		int headGradient;
+		
+		// text
+		CBox	m_cBoxFrameText;
 		CTextBox *m_pcTextBox;
+		CFont* m_pcFontText;
+		int m_nMode;
+		bool paintShadow;
+		
+		// foot
+		CBox	m_cBoxFrameFootRel;
+		fb_pixel_t footColor;
+		int footRadius;
+		int footCorner;
+		int footGradient;
 		
 		//
 		bool hide(void);
@@ -98,14 +105,29 @@ class CInfoBox
 				   const int mode, 
 				   const CBox* position, 
 				   const char * title,
-				   CFont *fontTitle = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_TITLE],
 				   const char * icon = NEUTRINO_ICON_INFO);
 
-		// 
+		// head
 		void setTitle(const char *title){m_cTitle = title;};
 		void setIcon(const char *icon){m_cIcon = icon;};
-		bool setText(const char * const newText, const char * const _thumbnail = NULL, int _tw = 0, int _th = 0, int tmode = TOP_RIGHT);
+		void setHeadColor(fb_pixel_t col) {headColor = col;};
+		void setHeadCorner(int ra, int co){headRadius = ra; headCorner = co;};
+		void setHeadGradient(int grad){headGradient = grad;};
+		
+		// text
+		bool setText(const char * const newText, const char * const _thumbnail = NULL, int _tw = 0, int _th = 0, int tmode = TOP_RIGHT, bool enable_frame = false, const bool useBackground = false);
+		void setMode(const int mode){m_nMode = mode;};
+		void setBackgroundColor(fb_pixel_t col);
+		void setTextColor(uint8_t col);
+		void setFontText(CFont * font_text);
+		void enableShadow(){paintShadow = true;};
+		
+		// foot
+		void setFootColor(fb_pixel_t col) {footColor = col;};
+		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};
+		void setFootGradient(int grad){footGradient = grad;};
 
+		//
 		int exec(int timeout = -1);
 };
 

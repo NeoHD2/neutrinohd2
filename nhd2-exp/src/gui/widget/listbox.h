@@ -158,6 +158,8 @@ class CMenuItem
 		//
 		bool paintFrame;
 		bool itemShadow;
+		
+		//
 		ClistBox* parent;
 
 		CMenuItem();

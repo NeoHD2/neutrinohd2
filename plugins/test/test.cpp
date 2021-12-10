@@ -803,8 +803,6 @@ void CTestMenu::testCWidget()
 
 	testWidget->enableSaveScreen();
 	testWidget->setSelected(selected);
-	//testWidget->setBackgroundColor(COL_RED);
-	//testWidget->enablePaintMainFrame();
 
 	// head
 	headBox.iWidth = frameBuffer->getScreenWidth();
@@ -837,7 +835,6 @@ void CTestMenu::testCWidget()
 	top_selected = 0;
 
 	frameBoxWidget = new CFrameBox(&topBox);
-	//frameBoxWidget->setBackgroundColor(COL_DARK_TURQUOISE);
 	frameBoxWidget->setOutFocus();
 
 	CFrame * frame = NULL;
@@ -1034,7 +1031,7 @@ void CTestMenu::testCWindowWidget()
 	// label
 	CLabel testLabel;
 	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
-	testLabel.setColor(COL_ORANGE0);
+	testLabel.setColor(COL_ORANGE);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponent label test :-)");
 	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
@@ -1079,7 +1076,7 @@ void CTestMenu::testCWindowWidget()
 	// grid
 	CGrid testGrid;
 	testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
-	testGrid.setColor(COL_PURPLE);
+	testGrid.setColor(COL_PURPLE_PLUS_0);
 	
 	windowWidget->addCCItem(&testGrid);
 	
@@ -1540,8 +1537,6 @@ void CTestMenu::testCListFrameWidget()
 	
 	testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
-	//testWidget->setBackgroundColor(COL_DARK_TURQUOISE);
-
 	// head
 	headBox.iWidth = frameBuffer->getScreenWidth();
 	headBox.iHeight = 40;
@@ -1778,14 +1773,12 @@ void CTestMenu::testMultiWidget()
 
 	headers->enablePaintDate();
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	//headers->setColor(COL_DARK_TURQUOISE);
 	//headers->setCorner();
 	//headers->setGradient(NOGRADIENT);
 
 	footers = new CFooters(footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	//footers->setColor(COL_DARK_TURQUOISE);
 	//footers->setCorner();
 	//footers->setGradient(NOGRADIENT);
 	
@@ -1878,7 +1871,7 @@ void CTestMenu::testMultiWidget()
 	// label
 	CLabel testLabel;
 	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
-	testLabel.setColor(COL_GREEN0);
+	testLabel.setColor(COL_GREEN);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponent label test :-)");
 	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
@@ -1923,7 +1916,7 @@ void CTestMenu::testMultiWidget()
 	// grid
 	CGrid testGrid;
 	testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
-	testGrid.setColor(COL_PURPLE);
+	testGrid.setColor(COL_PURPLE_PLUS_0);
 	
 	windowWidget->addCCItem(&testGrid);
 	
@@ -1979,14 +1972,12 @@ void CTestMenu::testCWidgetItem()
 
 	headers->enablePaintDate();
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	//headers->setColor(COL_DARK_TURQUOISE);
 	//headers->setCorner();
 	//headers->setGradient(NOGRADIENT);
 
 	footers = new CFooters(footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	//footers->setColor(COL_DARK_TURQUOISE);
 	//footers->setCorner();
 	//footers->setGradient(NOGRADIENT);
 
@@ -2035,8 +2026,6 @@ void CTestMenu::testCWidgetItem()
 	leftWidget->setSelected(left_selected);
 	leftWidget->setOutFocus();
 
-	//leftWidget->setBackgroundColor(COL_DARK_RED);
-
 	ClistBoxItem *item1 = new ClistBoxItem("In den Kinos");
 	ClistBoxItem *item2 = new ClistBoxItem("Am");
 	item2->setOption("populärsten");
@@ -2074,7 +2063,6 @@ void CTestMenu::testCWidgetItem()
 	rightWidget->setWidgetType(WIDGET_TYPE_FRAME);
 	rightWidget->setItemsPerPage(6,2);
 	rightWidget->setSelected(right_selected);
-	//rightWidget->setBackgroundColor(COL_LIGHT_BLUE);
 	rightWidget->enablePaintFootInfo();
 
 	enum {
@@ -2730,7 +2718,7 @@ void CTestMenu::testCComponent()
 	// label
 	CLabel testLabel;
 	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
-	testLabel.setColor(COL_GREEN0);
+	testLabel.setColor(COL_GREEN);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponet label test :-)");
 	testLabel.setPosition(Box.iX + 10, Box.iY + 50, Box.iWidth, testLabel.getHeight());
@@ -2789,7 +2777,7 @@ void CTestMenu::testCComponent()
 	// grid
 	CGrid testGrid;
 	testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
-	testGrid.setColor(COL_PURPLE);
+	testGrid.setColor(COL_PURPLE_PLUS_0);
 	
 	windowWidget->addCCItem(&testGrid);
 	
@@ -2983,7 +2971,7 @@ void CTestMenu::testCWindowCustomColor()
 	//
 	CWindow* window = new CWindow(&Box);
 
-	window->setColor(COL_ORANGE);
+	window->setColor(COL_ORANGE_PLUS_0);
 	window->setCorner(RADIUS_MID, CORNER_ALL);
 	window->enableShadow();
 	window->enableSaveScreen();
@@ -3023,7 +3011,6 @@ void CTestMenu::testCHeaders()
 
 	headers->enablePaintDate();
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	//headers->setColor(COL_BLUE);
 	//headers->setCorner();
 	//headers->setGradient(NOGRADIENT);
 	headers->setTitleMode(CC_ALIGN_CENTER);
@@ -3031,7 +3018,6 @@ void CTestMenu::testCHeaders()
 	footers = new CFooters(footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	//headers->setColor(COL_BLUE);
 	//headers->setCorner();
 	//headers->setGradient(NOGRADIENT);
 
@@ -3237,30 +3223,38 @@ void CTestMenu::testCInfoBox()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCInfoBox\n");
 
-	std::string buffer;
+	loadMoviePlaylist();
 	
-	// prepare print buffer  
-	buffer = "CInfoBox";
+	std::string buffer;
+	buffer = m_vMovieInfo[0].epgInfo1;
 	buffer += "\n";
-	buffer += "testing CInfoBox";
-	buffer += "\n";
-
-	// thumbnail
-	std::string tname = PLUGINDIR "/netzkino/netzkino.png";
+	buffer += m_vMovieInfo[0].epgInfo2;
 	
 	// scale pic
 	int p_w = 0;
 	int p_h = 0;
 
-	scaleImage(tname, &p_w, &p_h);
-		
+	scaleImage(m_vMovieInfo[0].tfile, &p_w, &p_h);
 	
 	CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	
-	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, "CInfoBox", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_TITLE], NEUTRINO_ICON_INFO);
-
-	infoBox->setText(buffer.c_str(), tname.c_str(), p_w, p_h);
+	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, "CInfoBox", NEUTRINO_ICON_INFO);	
+	
+	infoBox->enableShadow();
+	infoBox->setBackgroundColor(/*make16color(0xBEBEBE)*/COL_SILVER_PLUS_0);
+	infoBox->setText(buffer.c_str(), m_vMovieInfo[0].tfile.c_str(), p_w, p_h, TOP_LEFT, true, true);
+	infoBox->setTextColor(COL_LIME);
+	
+	infoBox->setHeadColor(COL_NOBEL_PLUS_0);
+	infoBox->setHeadCorner(NO_RADIUS, CORNER_NONE);
+	infoBox->setHeadGradient(NOGRADIENT);
+	
+	infoBox->setFootColor(COL_NOBEL_PLUS_0);
+	infoBox->setFootCorner(NO_RADIUS, CORNER_NONE);
+	infoBox->setFootGradient(NOGRADIENT);
+	
 	infoBox->exec();
+	
 	delete infoBox;
 	infoBox = NULL;
 }
@@ -3328,10 +3322,11 @@ void CTestMenu::testCHelpBox()
 	helpBox->addLine("helpBox");
 
 	// icon|text
-	helpBox->addLine(NEUTRINO_ICON_BUTTON_RED, "Huhu :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_RED0, true);
+	helpBox->addLine(NEUTRINO_ICON_BUTTON_RED, "Huhu :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], 
+	COL_RED, true);
 
 	//
-	helpBox->addLine(NEUTRINO_ICON_BUTTON_GREEN, "Huhu :-)", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_BLUE0, true);
+	helpBox->addLine(NEUTRINO_ICON_BUTTON_GREEN, "Huhu :-)", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_BLUE, true);
 
 	helpBox->addSeparator();
 
@@ -3342,10 +3337,10 @@ void CTestMenu::testCHelpBox()
 	//
 	helpBox->addSeparator();
 	
-	helpBox->add2Line("Gui: ", "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENTINACTIVE, true, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_BLUE0, true);
+	helpBox->add2Line("Gui: ", "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_MENUCONTENTINACTIVE, true, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_BLUE, true);
 
 	// icon
-	helpBox->addLine(NEUTRINO_ICON_BUTTON_YELLOW, "Huhu :-P", g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_GREEN0, true);
+	helpBox->addLine(NEUTRINO_ICON_BUTTON_YELLOW, "Huhu :-P", g_Font[SNeutrinoSettings::FONT_TYPE_MENU], COL_GREEN, true);
 
 	helpBox->addSeparator();
 
@@ -3353,13 +3348,13 @@ void CTestMenu::testCHelpBox()
 	helpBox->addLine("Huhu :-)");
 
 	//
-	helpBox->addLine(NEUTRINO_ICON_BUTTON_BLUE, "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_YELLOW0, true);
+	helpBox->addLine(NEUTRINO_ICON_BUTTON_BLUE, "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_YELLOW, true);
 
 	helpBox->addSeparator();
 		
-	helpBox->addLine(NEUTRINO_ICON_MENUITEM_HDDSETTINGS, "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_YELLOW0, true);
+	helpBox->addLine(NEUTRINO_ICON_MENUITEM_HDDSETTINGS, "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_YELLOW, true);
 		
-	helpBox->addLine(NEUTRINO_ICON_MENUITEM_SCANSETTINGS, "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_YELLOW0, true);
+	helpBox->addLine(NEUTRINO_ICON_MENUITEM_SCANSETTINGS, "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_YELLOW, true);
 
 	helpBox->show(LOCALE_MESSAGEBOX_INFO, HELPBOX_WIDTH, -1, mbrBack, mbNone);
 	
@@ -3382,7 +3377,6 @@ void CTestMenu::testCTextBox()
 	textBoxWidget = new CTextBox();
 
 	textBoxWidget->setPosition(&Box);
-	textBoxWidget->setBackgroundColor(COL_BLACK);
 	
 	loadMoviePlaylist();
 	
@@ -4674,7 +4668,7 @@ void CTestMenu::testCFrameBox()
 
 	frameBoxWidget = new CFrameBox(&topBox);
 	frameBoxWidget->enableSaveScreen();
-	frameBoxWidget->setColor(/*COL_DARK_BLUE*/0);
+	frameBoxWidget->setColor(0);
 
 	CFrame * frame = NULL;
 
@@ -4684,7 +4678,7 @@ void CTestMenu::testCFrameBox()
 	frame->setIconName(NEUTRINO_ICON_MOVIE);
 	frame->setOption("in allen Kinos");
 	frame->setActionKey(this, "help");
-	frame->setColor(COL_RED);
+	frame->setColor(COL_RED_PLUS_0);
 	frame->setGradient(DARK2LIGHT2DARK);
 	frameBoxWidget->addFrame(frame);
 	
@@ -4692,7 +4686,7 @@ void CTestMenu::testCFrameBox()
 	frame->setPosition(topBox.iX + 10, topBox.iY + 10 + 60 + 10, topBox.iWidth - 20, 60);
 	frame->setTitle("Im Kino");
 	frame->setActionKey(this, "help");
-	frame->setColor(COL_GREEN);
+	frame->setColor(COL_GREEN_PLUS_0);
 	frame->setGradient(LIGHT2DARK);
 	//frame->setCorner(RADIUS_LARGE, CORNER_ALL);
 	//frame->disableShadow();
@@ -4703,7 +4697,7 @@ void CTestMenu::testCFrameBox()
 	frame->setTitle("Am populärsten");
 	frame->setOption("(2019)");
 	frame->setActionKey(this, "help");
-	frame->setColor(COL_LIGHT_GRAY);
+	frame->setColor(COL_NOBEL_PLUS_0);
 	frameBoxWidget->addFrame(frame);
 	
 	// pic
@@ -4719,7 +4713,7 @@ void CTestMenu::testCFrameBox()
 	frame->setTitle("Exit");
 	frame->setActionKey(this, "exit");
 	frame->setGradient(LIGHT2DARK);
-	frame->setColor(COL_BLUE);
+	frame->setColor(COL_BLUE_PLUS_0);
 	//frame->setCorner(RADIUS_LARGE, CORNER_ALL);
 	//frame->disableShadow();
 	frameBoxWidget->addFrame(frame);
@@ -5196,7 +5190,7 @@ void CTestMenu::testShowActuellEPG()
 	
 	CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	
-	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, title.c_str(), g_Font[SNeutrinoSettings::FONT_TYPE_EPG_TITLE], NULL);
+	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, title.c_str(), NULL);
 
 	infoBox->setText(buffer.c_str());
 	

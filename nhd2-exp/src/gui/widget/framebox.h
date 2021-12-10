@@ -47,13 +47,18 @@ enum {
 	FRAME_PLUGIN,
 	FRAME_HLINE,
 	FRAME_VLINE,
-	FRAME_PIG
+	FRAME_PIG,
+	//FRAME_TIME,
+	//FRAME_SLIDER
 };
 
 class CFrame
 {
 	public:
 		CWindow window;
+		
+		int halign;
+		int valign;
 		
 		std::string iconName;
 		std::string caption;
@@ -75,8 +80,6 @@ class CFrame
 		bool shadow;
 		bool paintFrame;
 		bool pluginOrigName;
-		
-		int halign;
 		
 		//
 		fb_pixel_t fcolor;

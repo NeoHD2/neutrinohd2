@@ -97,6 +97,7 @@ class CTextBox : public CWidgetItem
 		// text
 		CFont* m_pcFontText;
 		unsigned int m_nFontTextHeight;
+		bool useBG;
 
 		// backgrond
 		fb_pixel_t m_textBackgroundColor;
@@ -109,11 +110,12 @@ class CTextBox : public CWidgetItem
 		int ly; 
 		int tw; 
 		int th;
+		bool enableFrame;
 
 		bool bigFonts;
 		bool painted;
 		bool paintBG;
-		bool enableFrame;
+		bool paintShadow;
 
 		CScrollBar scrollBar;
 
@@ -138,7 +140,7 @@ class CTextBox : public CWidgetItem
 		void scrollPageUp(const int pages = 1);
 
 		//				
-		bool setText(const char * const newText, const char * const _thumbnail = NULL, int _tw = 0, int _th = 0, int _tmode = TOP_RIGHT, bool enable_frame = false);
+		bool setText(const char * const newText, const char * const _thumbnail = NULL, int _tw = 0, int _th = 0, int _tmode = TOP_RIGHT, bool enable_frame = false, const bool useBackground = false);
 		
 		inline bool isPainted(void){return painted;};
 
@@ -156,6 +158,7 @@ class CTextBox : public CWidgetItem
 		void setFontText(CFont * font_text){m_pcFontText = font_text;};
 		void setMode(const int mode);
 		void disablePaintFrame(){paintBG = false;};
+		void enableShadow(){paintShadow = true;};
 
 		void paint(void);
 		void hide(void);

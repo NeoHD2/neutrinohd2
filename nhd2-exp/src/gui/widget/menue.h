@@ -232,7 +232,7 @@ class CMenuWidget : public CMenuTarget
 		void setFootGradient(int grad){footGradient = grad; def_footGradient = false;};
 
 		// head
-		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
+		void setTitle(const char* title = "", const char* icon = NULL){nameString = title; if(icon != NULL) iconfile = icon;};
 		void setTitleMode(const int m){tMode = m;};
 		void setHeadButtons(const struct button_label* _hbutton_label, const int _hbutton_count = 1);
 		void enablePaintDate(void){PaintDate = true;};

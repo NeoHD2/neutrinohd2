@@ -41,26 +41,25 @@
 
 
 // font common colors
-#define COL_TRANSPARENT0			0x01
-#define COL_DARK_RED0	 			0x02
-#define COL_DARK_GREEN0	 		0x03
-#define COL_DARK_OLIVE0	 		0x04
-#define COL_DARK_BLUE0	 			0x05
-#define COL_DARK_PURPLE0	 		0x06
-#define COL_DARK_TURQUOISE0	 		0x07
-#define COL_LIGHT_GRAY0	 		0x08
-#define COL_DARK_GRAY0	 			0x09
-#define COL_RED0	 			0x0A
-#define COL_GREEN0	 			0x0B
-#define COL_YELLOW0	 			0x0C
-#define COL_BLUE0	 			0x0D
-#define COL_PURPLE0	 			0x0E
-#define COL_LIGHT_BLUE0	 		0x0F
-#define COL_WHITE0	 			0x10
-#define COL_BLACK0	 			0x11
-#define COL_ORANGE0				0xBD
-#define COL_DARK_ORANGE0			0xBC
-#define COL_BACKGROUND0 			0xFF
+#define COL_MAROON	 			0x02
+#define COL_GREEN	 			0x03
+#define COL_OLIVE	 			0x04
+#define COL_NAVY	 			0x05
+#define COL_PURPLE		 		0x06
+#define COL_TEAL		 		0x07
+#define COL_NOBEL		 		0x08
+#define COL_MATTERHORN 			0x09
+#define COL_RED	 			0x0A
+#define COL_LIME	 			0x0B
+#define COL_YELLOW	 			0x0C
+#define COL_BLUE	 			0x0D
+#define COL_MAGENTA	 			0x0E
+#define COL_AQUA		 		0x0F
+#define COL_WHITE	 			0x10
+#define COL_BLACK	 			0x11
+#define COL_ORANGE				0x12
+#define COL_SILVER				0x13
+#define COL_BACKGROUND 			0xFF
 
 // neutrino font colors
 #define COL_MENUCONTENTINACTIVE		254-8*1
@@ -76,26 +75,26 @@
 #define COL_MENUFOOT_INFO			254-8*11
 
 // gui common colors
-#define COL_TRANSPARENT			CFrameBuffer::getInstance()->realcolor[COL_TRANSPENT0]
-#define COL_DARK_RED				CFrameBuffer::getInstance()->realcolor[COL_DARK_RED0]
-#define COL_DARK_GREEN				CFrameBuffer::getInstance()->realcolor[COL_DARK_GREEN0]
-#define COL_DARK_OLIVE				CFrameBuffer::getInstance()->realcolor[COL_DARK_OLIVE0]
-#define COL_DARK_BLUE				CFrameBuffer::getInstance()->realcolor[COL_DARK_BLUE0]
-#define COL_DARK_PURPLE			CFrameBuffer::getInstance()->realcolor[COL_DARK_PURPLE0]
-#define COL_DARK_TURQUOISE			CFrameBuffer::getInstance()->realcolor[COL_DARK_TURQUOISE0]
-#define COL_LIGHT_GRAY				CFrameBuffer::getInstance()->realcolor[COL_LIGHT_GRAY0]
-#define COL_DARK_GRAY				CFrameBuffer::getInstance()->realcolor[COL_DARK_GRAY0]
-#define COL_RED				CFrameBuffer::getInstance()->realcolor[COL_RED0]
-#define COL_GREEN				CFrameBuffer::getInstance()->realcolor[COL_GREEN0]
-#define COL_YELLOW				CFrameBuffer::getInstance()->realcolor[COL_YELLOW0]
-#define COL_BLUE                        	CFrameBuffer::getInstance()->realcolor[COL_BLUE0]
-#define COL_PURPLE 				CFrameBuffer::getInstance()->realcolor[COL_PURPLE0]
-#define COL_LIGHT_BLUE 			CFrameBuffer::getInstance()->realcolor[COL_LIGHT_BLUE0]
-#define COL_WHITE                       	CFrameBuffer::getInstance()->realcolor[COL_WHITE0]
-#define COL_BLACK                       	CFrameBuffer::getInstance()->realcolor[COL_BLACK0]
-#define COL_ORANGE				CFrameBuffer::getInstance()->realcolor[COL_ORANGE0]
-#define COL_DARK_ORANGE			CFrameBuffer::getInstance()->realcolor[COL_DARK_ORANGE0]
-#define COL_BACKGROUND           		CFrameBuffer::getInstance()->realcolor[COL_BACKGROUND0]
+#define COL_MAROON_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_MAROON]
+#define COL_GREEN_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_GREEN]
+#define COL_OLIVE_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_OLIVE]
+#define COL_NAVY_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_NAVY]
+#define COL_PURPLE_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_PURPLE]
+#define COL_TEAL_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_TEAL]
+#define COL_NOBEL_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_NOBEL]
+#define COL_MATTERHORN_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_MATTERHORN]
+#define COL_RED_PLUS_0				CFrameBuffer::getInstance()->realcolor[COL_RED]
+#define COL_LIME_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_LIME]
+#define COL_YELLOW_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_YELLOW]
+#define COL_BLUE_PLUS_0                       CFrameBuffer::getInstance()->realcolor[COL_BLUE]
+#define COL_MAGENTA_PLUS_0 			CFrameBuffer::getInstance()->realcolor[COL_MAGENTA]
+#define COL_AQUA_PLUS_0 			CFrameBuffer::getInstance()->realcolor[COL_AQUA]
+#define COL_WHITE_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_WHITE]
+#define COL_BLACK_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_BLACK]
+#define COL_ORANGE_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_ORANGE]
+#define COL_SILVER_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_SILVER + 0]
+
+#define COL_BACKGROUND_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_BACKGROUND]
 
 // neutrino gui colors
 // infoBar color
@@ -172,3 +171,5 @@ inline uint32_t make16color(__u32 rgb)
 }
 
 #endif
+
+

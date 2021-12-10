@@ -561,9 +561,6 @@ void CFrameBox::initFrames()
 	{
 		fheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 	}
-	
-	if(savescreen) 
-		saveScreen();
 }
 
 void CFrameBox::paintFrames()
@@ -648,6 +645,8 @@ void CFrameBox::enableSaveScreen()
 		delete[] background;
 		background = NULL;
 	}
+	
+	saveScreen();
 }
 
 void CFrameBox::hide()

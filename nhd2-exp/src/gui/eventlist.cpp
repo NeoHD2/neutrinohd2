@@ -499,7 +499,7 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 	
 							CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	
-							CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], ::SCROLL, &position, "", g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE], NEUTRINO_ICON_TMDB);
+							CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], ::SCROLL, &position, evtlist[selected].description.c_str(), NEUTRINO_ICON_TMDB);
 
 							infoBox->setText(buffer.c_str(), tname.c_str(), p_w, p_h);
 							infoBox->exec();

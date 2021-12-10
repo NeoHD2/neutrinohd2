@@ -133,8 +133,8 @@ CMenuOptionChooser::CMenuOptionChooser(const neutrino_locale_t OptionName, int *
 	
 	pulldown = Pulldown;
 
-	if (itemHint.empty())
-		itemHint = optionNameString;
+	//if (itemHint.empty())
+	//	itemHint = optionNameString;
 
 	itemType = ITEM_TYPE_OPTION_CHOOSER;
 }
@@ -159,8 +159,8 @@ CMenuOptionChooser::CMenuOptionChooser(const char * const OptionName, int* const
 	can_arrow = true;
 	pulldown = Pulldown;
 
-	if (itemHint.empty())
-		itemHint = optionNameString;
+	//if (itemHint.empty())
+	//	itemHint = optionNameString;
 
 	itemType = ITEM_TYPE_OPTION_CHOOSER;
 }
@@ -393,8 +393,8 @@ CMenuOptionNumberChooser::CMenuOptionNumberChooser(const neutrino_locale_t Name,
 	can_arrow = true;
 	observ = Observ;
 
-	if (itemHint.empty())
-		itemHint = nameString;
+	//if (itemHint.empty())
+	//	itemHint = nameString;
 
 	itemType = ITEM_TYPE_OPTION_NUMBER_CHOOSER;
 }
@@ -424,8 +424,8 @@ CMenuOptionNumberChooser::CMenuOptionNumberChooser(const char * const Name, int 
 	can_arrow = true;
 	observ = Observ;
 
-	if (itemHint.empty())
-		itemHint = nameString;
+	//if (itemHint.empty())
+	//	itemHint = nameString;
 
 	itemType = ITEM_TYPE_OPTION_NUMBER_CHOOSER;
 }
@@ -554,8 +554,8 @@ CMenuOptionStringChooser::CMenuOptionStringChooser(const neutrino_locale_t Name,
 	
 	pulldown = Pulldown;
 
-	if (itemHint.empty())
-		itemHint = nameString;
+	//if (itemHint.empty())
+	//	itemHint = nameString;
 
 	itemType = ITEM_TYPE_OPTION_STRING_CHOOSER;
 }
@@ -579,8 +579,8 @@ CMenuOptionStringChooser::CMenuOptionStringChooser(const char * const Name, char
 	
 	pulldown = Pulldown;
 
-	if (itemHint.empty())
-		itemHint = nameString;
+	//if (itemHint.empty())
+	//	itemHint = nameString;
 
 	itemType = ITEM_TYPE_OPTION_STRING_CHOOSER;
 }
@@ -774,8 +774,8 @@ CMenuOptionLanguageChooser::CMenuOptionLanguageChooser(char *Name, CChangeObserv
 	directKey = RC_nokey;
 	iconName = IconName ? IconName : "";
 
-	if (itemHint.empty())
-		itemHint = Name;
+	//if (itemHint.empty())
+	//	itemHint = Name;
 
 	itemType = ITEM_TYPE_OPTION_LANGUAGE_CHOOSER;
 }
@@ -1003,8 +1003,8 @@ CMenuForwarder::CMenuForwarder(const neutrino_locale_t Text, const bool Active, 
 	itemType = ITEM_TYPE_FORWARDER;
 	itemName = g_Locale->getText(Text);
 
-	if (itemHint.empty())
-		itemHint = itemName;
+	//if (itemHint.empty())
+	//	itemHint = itemName;
 
 	optionValueString = "";
 }
@@ -1028,8 +1028,8 @@ CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const
 	itemType = ITEM_TYPE_FORWARDER;
 	itemName = Text? Text : "";
 
-	if (itemHint.empty())
-		itemHint = itemName;
+	//if (itemHint.empty())
+	//	itemHint = itemName;
 
 	optionValueString = "";
 }
@@ -1349,8 +1349,8 @@ ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const cha
 	itemIcon = ItemIcon? ItemIcon : "";
 	itemName = Text? Text : "";
 
-	if (itemHint.empty())
-		itemHint = itemName;
+	//if (itemHint.empty())
+	//	itemHint = itemName;
 
 	itemType = ITEM_TYPE_LISTBOXITEM;
 }
@@ -2126,9 +2126,6 @@ void ClistBox::initFrames()
 			}
 		}
 	}
-	
-	if(savescreen) 
-		saveScreen();
 }
 
 void ClistBox::paint()
@@ -2682,11 +2679,11 @@ void ClistBox::saveScreen()
 		background = NULL;
 	}
 
-	background = new fb_pixel_t[full_width*full_height];
+	background = new fb_pixel_t[wanted_width*wanted_height];
 	
 	if(background)
 	{
-		frameBuffer->saveScreen(itemBox.iX, itemBox.iY, full_width, full_height, background);
+		frameBuffer->saveScreen(itemBox.iX, itemBox.iY, wanted_width, wanted_height, background);
 	}
 }
 
@@ -2697,7 +2694,7 @@ void ClistBox::restoreScreen()
 	if(background) 
 	{
 		if(savescreen)
-			frameBuffer->restoreScreen(itemBox.iX, itemBox.iY, full_width, full_height, background);
+			frameBuffer->restoreScreen(itemBox.iX, itemBox.iY, wanted_width, wanted_height, background);
 	}
 }
 
@@ -2712,6 +2709,8 @@ void ClistBox::enableSaveScreen()
 		delete[] background;
 		background = NULL;
 	}
+	
+	saveScreen();
 }
 
 void ClistBox::hide()

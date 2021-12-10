@@ -225,24 +225,26 @@ void CFrameBuffer::init(const char * const fbDevice)
 #endif /* USE_OPENGL */
 	
 	// set colors
-	paletteSetColor(COL_TRANSPARENT0, 0x010101, 0xFF);
-        paletteSetColor(COL_DARK_RED0, 0x800000, 0xFF);
-        paletteSetColor(COL_DARK_GREEN0, 0x008000, 0xFF);
-	paletteSetColor(COL_DARK_OLIVE0, 0x808000, 0xFF);
-        paletteSetColor(COL_DARK_BLUE0, 0x000080, 0xFF);
-        paletteSetColor(COL_DARK_PURPLE0, 0x800080, 0xFF);
-        paletteSetColor(COL_DARK_TURQUOISE0, 0x008080, 0xFF);
-        paletteSetColor(COL_LIGHT_GRAY0, 0xA0A0A0, 0xFF);
-        paletteSetColor(COL_DARK_GRAY0, 0x505050, 0xFF);
-        paletteSetColor(COL_RED0, 0xFF0000, 0xFF);
-        paletteSetColor(COL_GREEN0, 0x00FF00, 0xFF);
-        paletteSetColor(COL_YELLOW0, 0xFFFF00, 0xFF);
-        paletteSetColor(COL_BLUE0, 0x0000FF, 0xFF);
-        paletteSetColor(COL_PURPLE0, 0xFF00FF, 0xFF);
-        paletteSetColor(COL_LIGHT_BLUE0, 0x00FFFF, 0xFF);
-        paletteSetColor(COL_WHITE0, 0xFFFFFF, 0xFF);
-        paletteSetColor(COL_BLACK0, 0x000000, 0xFF);
-        paletteSetColor(COL_BACKGROUND0, 0x000000, 0x0);
+        paletteSetColor(COL_MAROON, 0x800000, 0xFF);
+        paletteSetColor(COL_GREEN, 0x008000, 0xFF);
+	paletteSetColor(COL_OLIVE, 0x808000, 0xFF);
+        paletteSetColor(COL_NAVY, 0x000080, 0xFF);
+        paletteSetColor(COL_PURPLE, 0x800080, 0xFF);
+        paletteSetColor(COL_TEAL, 0x008080, 0xFF);
+        paletteSetColor(COL_NOBEL, 0xA0A0A0, 0xFF);
+        paletteSetColor(COL_MATTERHORN, 0x505050, 0xFF);
+        paletteSetColor(COL_RED, 0xFF0000, 0xFF);
+        paletteSetColor(COL_LIME, 0x00FF00, 0xFF);
+        paletteSetColor(COL_YELLOW, 0xFFFF00, 0xFF);
+        paletteSetColor(COL_BLUE, 0x0000FF, 0xFF);
+        paletteSetColor(COL_MAGENTA, 0xFF00FF, 0xFF);
+        paletteSetColor(COL_AQUA, 0x00FFFF, 0xFF);
+        paletteSetColor(COL_WHITE, 0xFFFFFF, 0xFF);
+        paletteSetColor(COL_BLACK, 0x000000, 0xFF);
+        paletteSetColor(COL_ORANGE, 0xFF5500, 0xFF);
+        paletteSetColor(COL_SILVER, 0xBEBEBE, 0xFF);
+        
+        paletteSetColor(COL_BACKGROUND, 0x000000, 0x0);
 
         paletteSet(&cmap);
 

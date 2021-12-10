@@ -55,15 +55,12 @@
 // Return:		
 // Notes:		
 //////////////////////////////////////////////////////////////////////
-CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const char * title, CFont *fontTitle, const char * icon)
+CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const char * title, const char * icon)
 {
 	initVar();
 
 	if(title != NULL)		
 		m_cTitle = title;
-	
-	if(fontTitle != NULL)	
-		m_pcFontTitle = fontTitle;
 
 	if(fontText != NULL)
 		m_pcFontText = fontText;
@@ -82,9 +79,10 @@ CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const
 	m_pcTextBox = new CTextBox();
 	
 	m_pcTextBox->setPosition(&m_cBoxFrameText);
-	//m_pcTextBox->setCorner(RADIUS_MID, CORNER_BOTTOM);
+	m_pcTextBox->setFontText(fontText);
+	m_pcTextBox->setMode(m_nMode);
 
-	if(_mode & AUTO_WIDTH || _mode & AUTO_HIGH)
+	if(m_nMode & AUTO_WIDTH || m_nMode & AUTO_HIGH)
 	{
 		// window might changed in size
 		m_cBoxFrameText = m_pcTextBox->getWindowsPos();
@@ -95,11 +93,9 @@ CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const
 		initFramesRel();
 	}
 
-	if(_mode & CENTER)
-	{
-		m_cBoxFrame.iX = g_settings.screen_StartX + ((g_settings.screen_EndX - g_settings.screen_StartX - m_cBoxFrame.iWidth) >>1);
-		m_cBoxFrame.iY = g_settings.screen_StartY + ((g_settings.screen_EndY - g_settings.screen_StartY - m_cBoxFrame.iHeight) >>1);
-	}
+	//
+	m_cBoxFrame.iX = g_settings.screen_StartX + ((g_settings.screen_EndX - g_settings.screen_StartX - m_cBoxFrame.iWidth) >>1);
+	m_cBoxFrame.iY = g_settings.screen_StartY + ((g_settings.screen_EndY - g_settings.screen_StartY - m_cBoxFrame.iHeight) >>1);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -136,7 +132,7 @@ CInfoBox::CInfoBox()
 		initFramesRel();
 	}
 
-	if(m_nMode & CENTER)
+	//if(m_nMode & CENTER)
 	{
 		m_cBoxFrame.iX = g_settings.screen_StartX + ((g_settings.screen_EndX - g_settings.screen_StartX - m_cBoxFrame.iWidth) >>1);
 		m_cBoxFrame.iY = g_settings.screen_StartY + ((g_settings.screen_EndY - g_settings.screen_StartY - m_cBoxFrame.iHeight) >>1);
@@ -170,15 +166,23 @@ CInfoBox::~CInfoBox()
 //////////////////////////////////////////////////////////////////////
 void CInfoBox::initVar(void)
 {
+	// head
 	m_cTitle = g_Locale->getText(LOCALE_MESSAGEBOX_INFO);
 	m_cIcon = NEUTRINO_ICON_INFO;
+	headColor = COL_MENUHEAD_PLUS_0;
+	headRadius = RADIUS_MID;
+	headCorner = CORNER_TOP;
+	headGradient = g_settings.Head_gradient;
+	
+	// text
 	m_nMode = SCROLL;
-
-	// set the title variables
-	m_pcFontTitle = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_TITLE];
-	m_nFontTitleHeight = m_pcFontTitle->getHeight();
-
 	m_pcFontText = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
+	
+	// foot
+	footColor = COL_MENUFOOT_PLUS_0;
+	footRadius = RADIUS_MID;
+	footCorner = CORNER_BOTTOM;
+	footGradient = g_settings.Foot_gradient;
 
 	// set the main frame to default
 	m_cBoxFrame.iX = g_settings.screen_StartX + ((g_settings.screen_EndX - g_settings.screen_StartX - MIN_WINDOW_WIDTH) >>1);
@@ -187,6 +191,8 @@ void CInfoBox::initVar(void)
 	m_cBoxFrame.iHeight = MIN_WINDOW_HEIGHT;
 
 	frameBuffer = CFrameBuffer::getInstance();
+	
+	paintShadow = false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -203,12 +209,12 @@ void CInfoBox::initFramesRel(void)
 	m_cBoxFrameTitleRel.iX		= m_cBoxFrame.iX;
 	m_cBoxFrameTitleRel.iY		= m_cBoxFrame.iY;
 	m_cBoxFrameTitleRel.iWidth	= m_cBoxFrame.iWidth;
-	m_cBoxFrameTitleRel.iHeight	= m_nFontTitleHeight + 6;
+	m_cBoxFrameTitleRel.iHeight	= g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 
 	// init the foot frame
 	m_cBoxFrameFootRel.iX		= m_cBoxFrame.iX;
 	m_cBoxFrameFootRel.iWidth	= m_cBoxFrame.iWidth;
-	m_cBoxFrameFootRel.iHeight	= m_nFontTitleHeight + 6;
+	m_cBoxFrameFootRel.iHeight	= g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 	m_cBoxFrameFootRel.iY		= m_cBoxFrame.iY + m_cBoxFrame.iHeight - m_cBoxFrameFootRel.iHeight;
 
 	// init the text frame
@@ -232,7 +238,11 @@ void CInfoBox::refreshTitle(void)
 {
 	CHeaders headers(m_cBoxFrameTitleRel, m_cTitle.c_str(), m_cIcon.c_str());
 
+	headers.setColor(headColor);
+	headers.setCorner(headRadius, headCorner);
+	headers.setGradient(headGradient);
 	headers.setButtons(&HButton, 1);
+	
 	headers.paint();
 }
 
@@ -247,6 +257,11 @@ void CInfoBox::refreshTitle(void)
 void CInfoBox::refreshFoot(void)
 {
 	CFooters footers(m_cBoxFrameFootRel);
+	
+	footers.setColor(footColor);
+	footers.setCorner(footRadius, footCorner);
+	footers.setGradient(footGradient);
+	
 	footers.paint();
 }
 
@@ -334,6 +349,27 @@ void CInfoBox::setBigFonts()
 	}
 }
 
+//
+void CInfoBox::setBackgroundColor(fb_pixel_t col)
+{
+	if(m_pcTextBox != NULL)
+		m_pcTextBox->setBackgroundColor(col);
+}
+
+//
+void CInfoBox::setTextColor(uint8_t col)
+{
+	if(m_pcTextBox != NULL)
+		m_pcTextBox->setTextColor(col);
+}
+
+//
+void CInfoBox::setFontText(CFont * font_text)
+{
+	if(m_pcTextBox != NULL)
+		m_pcTextBox->setFontText(font_text);
+}
+
 //////////////////////////////////////////////////////////////////////
 // Function Name:	Paint	
 // Description:		
@@ -358,6 +394,9 @@ bool CInfoBox::paint(void)
 	// textBox
 	if(m_pcTextBox != NULL)
 	{
+		if (paintShadow)
+			m_pcTextBox->enableShadow();
+			
 		// paint
 		m_pcTextBox->paint();
 	}
@@ -461,14 +500,14 @@ int CInfoBox::exec(int timeout)
 // Return:		
 // Notes:		
 //////////////////////////////////////////////////////////////////////
-bool CInfoBox::setText(const char * const newText, const char * const _thumbnail, int _tw, int _th, int tmode)
+bool CInfoBox::setText(const char * const newText, const char * const _thumbnail, int _tw, int _th, int tmode, bool enable_frame, const bool useBackground)
 {
 	bool _result = false;
 	
 	// update text in textbox if there is one
 	if(m_pcTextBox != NULL && newText != NULL)
 	{
-		_result = m_pcTextBox->setText(newText, _thumbnail, _tw, _th, tmode);
+		_result = m_pcTextBox->setText(newText, _thumbnail, _tw, _th, tmode, enable_frame, useBackground);
 	}
 	
 	return(_result);
@@ -479,7 +518,7 @@ void InfoBox(const char * const text, const char * const title, const char * con
 {
 	CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	
-	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, title, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_TITLE], icon);
+	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, title, icon);
 
 	infoBox->setText(text, thumbnail, tw, th, tmode);
 	infoBox->exec();
