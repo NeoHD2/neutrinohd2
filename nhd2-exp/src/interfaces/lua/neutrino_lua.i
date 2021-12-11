@@ -69,8 +69,8 @@
 #include <system/locals.h>
 #include <system/setting_helpers.h>
 #include <system/helpers.h>
-#include <system/tmdbparser.h>
-#include <system/ytparser.h>
+//#include <system/tmdbparser.h>
+//#include <system/ytparser.h>
 #include <system/httptool.h>
 #include <system/flashtool.h>
 
@@ -174,8 +174,8 @@
 %include <src/system/locals.h>
 %include <src/system/setting_helpers.h>
 %include <src/system/helpers.h>
-%include <src/system/tmdbparser.h>
-%include <src/system/ytparser.h>
+//%include <src/system/tmdbparser.h>
+//%include <src/system/ytparser.h>
 %include <src/system/httptool.h>
 %include <src/system/flashtool.h>
 

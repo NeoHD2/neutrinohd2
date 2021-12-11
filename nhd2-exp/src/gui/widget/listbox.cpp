@@ -84,6 +84,9 @@ CMenuItem::CMenuItem()
 	
 	paintFrame = true;
 	itemShadow = false;
+	itemGradient = NOGRADIENT;
+	
+	//
 	parent = NULL;
 }
 
@@ -1183,14 +1186,17 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 				// shadow
 				frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);	
 				// itemBox
-				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor); 
+				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
 			}
 			else
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 		}
 		else
 		{
-			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+			if (selected)
+				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
+			else
+				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 		}
 
 		// iconName
@@ -1544,14 +1550,17 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// shadow
 				frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);	
 				// itemBox
-				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor); 
+				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
 			}
 			else
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 		}
 		else
 		{
-			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+			if (selected)
+				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			else
+				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 		}
 			
 	
@@ -2085,6 +2094,14 @@ void ClistBox::initFrames()
 			if (hasItem())
 				itemBox.iHeight = std::min(itemBox.iHeight, hheight + heightFirstPage + fheight + cFrameFootInfoHeight); //FIXME:
 		}
+		
+		// sanity check
+		if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight()))
+			itemBox.iHeight = frameBuffer->getScreenHeight();
+
+		// sanity check
+		if(itemBox.iWidth > (int)frameBuffer->getScreenWidth())
+			itemBox.iWidth = frameBuffer->getScreenWidth();
 		
 		//
 		full_height = itemBox.iHeight;
@@ -2716,9 +2733,6 @@ void ClistBox::enableSaveScreen()
 void ClistBox::hide()
 {
 	dprintf(DEBUG_NORMAL, "ClistBox::hide: (%s)\n", l_name.c_str());
-	
-	//
-	//initFrames();
 
 	if( savescreen && background)
 		restoreScreen();

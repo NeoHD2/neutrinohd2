@@ -158,6 +158,7 @@ class CMenuItem
 		//
 		bool paintFrame;
 		bool itemShadow;
+		int itemGradient;
 		
 		//
 		ClistBox* parent;
@@ -216,6 +217,7 @@ class CMenuItem
 		virtual void setWidgetType(int type){widgetType = type;};
 		virtual void setWidgetMode(int mode){widgetMode = mode;};
 		virtual void enableItemShadow(){itemShadow = true;};
+		virtual void setItemGradient(int gr){itemGradient = gr;};
 
 		//
 		virtual void setDirectKey(neutrino_msg_t key){directKey = key;};

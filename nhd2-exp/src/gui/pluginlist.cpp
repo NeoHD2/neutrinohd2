@@ -114,6 +114,7 @@ void CPluginList::showMenu()
 
 		item->set2lines(); 
 		item->enableItemShadow();
+		item->setItemGradient(DARK2LIGHT2DARK);
 
 		plist->addItem(item);
 	}

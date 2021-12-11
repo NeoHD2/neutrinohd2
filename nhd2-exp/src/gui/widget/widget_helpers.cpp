@@ -346,6 +346,8 @@ CItems2DetailsLine::CItems2DetailsLine()
 
 void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_height, int iheight, int iy)
 {
+	dprintf(DEBUG_NORMAL, "\nCItems2DetailsLine::paint: x:%d y:%d width:%d height:%d info_height:%d iheight:%d iy:%d\n", x, y, width, height, info_height, iheight, iy);
+	
 	int xpos  = x - CONNECTLINEBOX_WIDTH;
 	int ypos1 = iy;
 	int ypos2 = y + height;

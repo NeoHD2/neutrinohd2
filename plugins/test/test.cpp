@@ -1535,13 +1535,13 @@ void CTestMenu::testCListFrameWidget()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestTMenu:testCListFrameWidget:\n");
 	
-	testWidget = new CWidget(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
+	testWidget = new CWidget(frameBuffer->getScreenX() + 50, frameBuffer->getScreenY() + 50, frameBuffer->getScreenWidth() - 100, frameBuffer->getScreenHeight() - 100);
 
 	// head
-	headBox.iWidth = frameBuffer->getScreenWidth();
+	headBox.iWidth = testWidget->getWindowsPos().iWidth;
 	headBox.iHeight = 40;
-	headBox.iX = frameBuffer->getScreenX();
-	headBox.iY = frameBuffer->getScreenY();
+	headBox.iX = testWidget->getWindowsPos().iX;
+	headBox.iY = testWidget->getWindowsPos().iY;
 
 	headers = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(ClistFrame)", NEUTRINO_ICON_MP3);
 
@@ -1549,10 +1549,10 @@ void CTestMenu::testCListFrameWidget()
 	headers->enablePaintDate();
 
 	// foot
-	footBox.iWidth = frameBuffer->getScreenWidth();
+	footBox.iWidth = testWidget->getWindowsPos().iWidth;
 	footBox.iHeight = 40;
-	footBox.iX = frameBuffer->getScreenX();
-	footBox.iY = frameBuffer->getScreenY() + frameBuffer->getScreenHeight() - footBox.iHeight;
+	footBox.iX = testWidget->getWindowsPos().iX;
+	footBox.iY = testWidget->getWindowsPos().iY + testWidget->getWindowsPos().iHeight - footBox.iHeight;
 
 	footers = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
 
@@ -1564,10 +1564,10 @@ void CTestMenu::testCListFrameWidget()
 	LF_LINES listFrameLines;
 	int selected = 0;
 	
-	listFrameBox.iX = frameBuffer->getScreenX();
-	listFrameBox.iY = frameBuffer->getScreenY() + headBox.iHeight;
-	listFrameBox.iWidth = frameBuffer->getScreenWidth();
-	listFrameBox.iHeight = frameBuffer->getScreenHeight() - headBox.iHeight - footBox.iHeight;
+	listFrameBox.iX = testWidget->getWindowsPos().iX;
+	listFrameBox.iY = testWidget->getWindowsPos().iY + headBox.iHeight;
+	listFrameBox.iWidth = testWidget->getWindowsPos().iWidth;
+	listFrameBox.iHeight = testWidget->getWindowsPos().iHeight - headBox.iHeight - footBox.iHeight;
 
 	//
 #define MAX_ROWS 		LF_MAX_ROWS //6
@@ -1599,9 +1599,6 @@ void CTestMenu::testCListFrameWidget()
 
 	listFrame = new CListFrame(&listFrameLines, NULL, CListFrame::CListFrame::HEADER_LINE | CListFrame::SCROLL, &listFrameBox);
 
-	// title
-	//listFrame->setTitle("CWidget(ClistFrame)", NEUTRINO_ICON_MOVIE);
-
 	CHintBox loadBox("ListFrame Widget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 	
@@ -1609,7 +1606,7 @@ void CTestMenu::testCListFrameWidget()
 	
 	loadBox.hide();
 
-	//
+	// fill lineArrays list
 	int count = 0;
 	for (unsigned int i = 0; i < AudioPlaylist.size(); i++)
 	{
@@ -1634,7 +1631,6 @@ void CTestMenu::testCListFrameWidget()
 		listFrameLines.lineArray[5].push_back(date);
 	}
 	
-	// fill lineArrays list
 	listFrame->setLines(&listFrameLines);
 
 	// set selected line
@@ -3447,8 +3443,7 @@ void CTestMenu::testCListFrame()
 	LF_LINES listFrameLines;
 	int selected = 0;
 	
-	listFrameBox.iX = g_settings.screen_StartX + 10;
-	listFrameBox.iY = g_settings.screen_StartY + 10;
+	//
 	listFrameBox.iWidth = w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 ));
 	listFrameBox.iHeight = h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 16), (CFrameBuffer::getInstance()->getScreenHeight() / 20));
 
@@ -4541,6 +4536,7 @@ void CTestMenu::testClistBox6()
 		
 		item->setWidgetMode(MODE_MENU);
 		item->enableItemShadow();
+		item->setItemGradient(LIGHT2DARK2LIGHT);
 		
 		rightWidget->addItem(item);
 	}
