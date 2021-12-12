@@ -529,7 +529,6 @@ class ClistBox : public CWidgetItem
 
 		// widget type
 		int widgetType;
-		bool widgetChange;
 		std::vector<int> widget;
 		int cnt;
 
@@ -659,9 +658,8 @@ class ClistBox : public CWidgetItem
 		// widget type
 		void setWidgetType(int type){widgetType = type; widget.push_back(widgetType);};
 		int getWidgetType(){return widgetType;};
-		void enableWidgetChange(){widgetChange = true;};
 		void addWidget(int wtype){widget.push_back(wtype);};
-		void changeWidgetType(int cnt = 0);
+		void changeWidgetType();
 
 		//
 		bool isSelectable(void){return true;};

@@ -77,10 +77,10 @@ void CNeutrinoApp::mainMenu(void)
 	CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
 	
 	nMenu->setWidgetMode(MODE_MENU);
-	nMenu->enableShrinkMenu();
-	nMenu->enableMenuPosition();
 	nMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	nMenu->enableWidgetChange();
+	nMenu->enableShrinkMenu();
+	nMenu->enableMenuPosition();
 	nMenu->enablePaintDate();
 	nMenu->enablePaintFootInfo();
 	  
@@ -241,9 +241,10 @@ bool CNeutrinoApp::showUserMenu(int button)
 
 	//
 	menu->setWidgetMode(MODE_MENU);
+	menu->setWidgetType(WIDGET_TYPE_CLASSIC);
+	menu->enableWidgetChange();
 	menu->enableShrinkMenu();
 	menu->enableMenuPosition();
-	menu->enableWidgetChange();
 	menu->enablePaintFootInfo();
 
 	menu->addKey(RC_blue, this, "plugins");

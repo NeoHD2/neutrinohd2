@@ -101,9 +101,10 @@ void CServiceSetup::showMenu(void)
 	CMenuWidget * service = new CMenuWidget(LOCALE_SERVICEMENU_HEAD, NEUTRINO_ICON_UPDATE);
 
 	service->setWidgetMode(MODE_MENU);
+	service->setWidgetType(WIDGET_TYPE_CLASSIC);
+	service->enableWidgetChange();
 	service->enableShrinkMenu();
 	service->enableMenuPosition();
-	service->enableWidgetChange();
 	service->enablePaintFootInfo();
 	service->enablePaintDate();
 	

@@ -1809,7 +1809,6 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
-	widgetChange = false;
 	cnt = 0;
 
 	itemType = WIDGET_ITEM_LISTBOX;
@@ -1910,7 +1909,6 @@ ClistBox::ClistBox(CBox* position)
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
-	widgetChange = false;
 	cnt = 0;
 
 	itemType = WIDGET_ITEM_LISTBOX;
@@ -3108,11 +3106,11 @@ void ClistBox::swipRight()
 	}
 }
 
-void ClistBox::changeWidgetType(int)
+void ClistBox::changeWidgetType()
 {
 	dprintf(DEBUG_NORMAL, "ClistBox::changeWidgetType:\n");
 
-	if(widgetChange && widget.size())
+	if(widget.size())
 	{
 		hide();
 
@@ -3176,7 +3174,7 @@ void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned i
 			neutrino_msg_t dk = (shortcut != RC_nokey) ? CRCInput::convertDigitToKey(sc++) : RC_nokey;
 
 			//FIXME: iconName
-			CMenuForwarder *fw_plugin = new CMenuForwarder(g_PluginList->getName(count), enabled, NULL, CPluginsExec::getInstance(), to_string(count).c_str(), dk, NULL, IconName.c_str());
+			CMenuForwarder *fw_plugin = new CMenuForwarder(g_PluginList->getName(count), enabled, NULL, CPluginsExec::getInstance(), g_PluginList->getFileName(count), dk, NULL, IconName.c_str());
 
 			fw_plugin->setHint(g_PluginList->getDescription(count).c_str());
 			fw_plugin->setWidgetMode(MODE_LISTBOX); //FIXME:

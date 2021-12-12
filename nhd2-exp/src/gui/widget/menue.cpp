@@ -174,6 +174,7 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
+	cnt = 0;
 	widgetChange = false;
 
 	// frame
@@ -182,7 +183,7 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	maxItemsPerPage = itemsPerX*itemsPerY;
 
 	shrinkMenu = false;
-	widgetMode = MODE_LISTBOX;
+	widgetMode = MODE_MENU;
 	MenuPos = false;
 	headLine = false;
 
@@ -1211,7 +1212,7 @@ void CMenuWidget::integratePlugins(CPlugins::i_type_t integration, const unsigne
 			neutrino_msg_t dk = (shortcut != RC_nokey) ? CRCInput::convertDigitToKey(sc++) : RC_nokey;
 
 			//FIXME: iconName
-			CMenuForwarder *fw_plugin = new CMenuForwarder(g_PluginList->getName(count), enabled, NULL, CPluginsExec::getInstance(), to_string(count).c_str(), dk, NULL, IconName.c_str());
+			CMenuForwarder *fw_plugin = new CMenuForwarder(g_PluginList->getName(count), enabled, NULL, CPluginsExec::getInstance(), g_PluginList->getFileName(count), dk, NULL, IconName.c_str());
 
 			fw_plugin->setHint(g_PluginList->getDescription(count).c_str());
 			fw_plugin->setWidgetMode(MODE_LISTBOX); //FIXME:
@@ -1222,6 +1223,28 @@ void CMenuWidget::integratePlugins(CPlugins::i_type_t integration, const unsigne
 	}
 }
 
+//
+void CMenuWidget::changeWidgetType()
+{
+	dprintf(DEBUG_NORMAL, "CMenuWidget::changeWidgetType:\n");
+
+	if(widget.size())
+	{
+		hide();
+
+		cnt++;
+
+		if(cnt >= (int)widget.size())
+		{
+			cnt = 0;
+		}
+			
+		widgetType = widget[cnt];
+
+		paint();
+	}
+}
+
 int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 {
 	dprintf(DEBUG_NORMAL, "CMenuWidget::exec: (%s)\n", l_name.c_str());
@@ -1229,7 +1252,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 	int retval = RETURN_REPAINT;
 
 	int pos = 0;
-	int cnt = 0;
+	//int cnt = 0;
 
 	if (parent)
 		parent->hide();
@@ -1758,51 +1781,6 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 						} 
 						else
 							msg = RC_timeout;
-					}
-					break;
-				//
-				case (RC_setup):
-					dprintf(DEBUG_NORMAL, "CMenuWidget::exec: (%s) changeWidgetType\n", l_name.c_str());
-
-					if(widgetMode == MODE_MENU)
-					{
-						if(widgetChange)
-						{
-							hide();
-
-							if(widgetType == WIDGET_TYPE_STANDARD)
-								widgetType = WIDGET_TYPE_CLASSIC;
-							else if(widgetType == WIDGET_TYPE_CLASSIC)
-								widgetType = WIDGET_TYPE_EXTENDED;
-							else if(widgetType == WIDGET_TYPE_EXTENDED)
-								widgetType = WIDGET_TYPE_FRAME;	
-							else if(widgetType == WIDGET_TYPE_FRAME)
-								widgetType = WIDGET_TYPE_STANDARD;
-
-							g_settings.menu_design = widgetType;
-
-							//
-							paint();
-						}
-					}
-					else if(widgetMode == MODE_LISTBOX)
-					{
-						if(widgetChange && widget.size())
-						{
-							hide();
-
-							cnt++;
-
-							if(cnt >= (int)widget.size())
-							{
-								cnt = WIDGET_TYPE_STANDARD;
-							}
-					
-							widgetType = widget[cnt];
-
-							//
-							paint();
-						}
 					}
 					break;
 

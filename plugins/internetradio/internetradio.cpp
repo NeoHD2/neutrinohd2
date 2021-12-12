@@ -686,6 +686,9 @@ void CInternetRadio::showMenu()
 
 		ilist->addItem(item);
 	}
+	
+	ilist->setWidgetMode(MODE_LISTBOX);
+	ilist->setWidgetType(WIDGET_TYPE_STANDARD);
 
 	//ilist->setTimeOut(g_settings.timing[SNeutrinoSettings::TIMING_CHANLIST]);
 	ilist->setSelected(selected);

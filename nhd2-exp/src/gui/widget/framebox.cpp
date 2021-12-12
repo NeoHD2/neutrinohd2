@@ -138,7 +138,7 @@ void CFrame::setPlugin(const char * const pluginName)
 			jumpTarget = CPluginsExec::getInstance();
 
 			// actionKey
-			actionKey = to_string(count).c_str();
+			actionKey = g_PluginList->getFileName(count);
 		}
 	}
 }

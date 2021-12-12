@@ -93,9 +93,10 @@ void COSDSettings::showMenu(void)
 	CMenuWidget * osdSettings = new CMenuWidget(LOCALE_MAINSETTINGS_OSD, NEUTRINO_ICON_COLORS );
 
 	osdSettings->setWidgetMode(MODE_MENU);
+	osdSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
+	osdSettings->enableWidgetChange();
 	osdSettings->enableShrinkMenu();
 	osdSettings->enableMenuPosition();
-	osdSettings->enableWidgetChange();
 	osdSettings->enablePaintFootInfo();
 	osdSettings->enablePaintDate();
 

@@ -38,7 +38,7 @@
 extern cVideo * videoDecoder;
 
 // progressbar
-CProgressBar::CProgressBar(/*int w, int h,*/ int r, int g, int b, bool inv)
+CProgressBar::CProgressBar(int r, int g, int b, bool inv)
 {
 	frameBuffer = CFrameBuffer::getInstance();
 	
@@ -113,9 +113,9 @@ void CProgressBar::paintPCR(unsigned char pcr)
 					step = 255/red;
 
 					if(inverse) 
-						rgb = COL_GREEN + ((unsigned char)(step*i) << 16); // adding red
+						rgb = COL_GREEN_PLUS_0 + ((unsigned char)(step*i) << 16); // adding red
 					else
-						rgb = COL_RED + ((unsigned char)(step*i) <<  8); // adding green
+						rgb = COL_RED_PLUS_0 + ((unsigned char)(step*i) <<  8); // adding green
 				
 					frameBuffer->paintBoxRel(posx + i, posy, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
@@ -126,9 +126,9 @@ void CProgressBar::paintPCR(unsigned char pcr)
 					step = 255/yellow/2;
 
 					if(inverse) 
-						rgb = COL_YELLOW - (((unsigned char)step*(b++)) <<  8); // removing green
+						rgb = COL_YELLOW_PLUS_0 - (((unsigned char)step*(b++)) <<  8); // removing green
 					else
-						rgb = COL_YELLOW - ((unsigned char)(step*(b++)) << 16); // removing red
+						rgb = COL_YELLOW_PLUS_0 - ((unsigned char)(step*(b++)) << 16); // removing red
 	
 					frameBuffer->paintBoxRel(posx + i, posy, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
@@ -139,9 +139,9 @@ void CProgressBar::paintPCR(unsigned char pcr)
 					step = 255/green;
 
 					if(inverse) 
-						rgb = COL_YELLOW - ((unsigned char) (step*(b++)) <<  8); // removing green
+						rgb = COL_YELLOW_PLUS_0 - ((unsigned char) (step*(b++)) <<  8); // removing green
 					else
-						rgb = COL_YELLOW - ((unsigned char) (step*(b++)) << 16); // removing red
+						rgb = COL_YELLOW_PLUS_0 - ((unsigned char) (step*(b++)) << 16); // removing red
 				
 					frameBuffer->paintBoxRel (posx + i, posy, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}

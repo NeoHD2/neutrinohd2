@@ -98,9 +98,10 @@ void CPowerMenu::showMenu(void)
 	CMenuWidget * powerMenu = new CMenuWidget(LOCALE_MAINMENU_POWERMENU, NEUTRINO_ICON_BUTTON_POWER);
 
 	powerMenu->setWidgetMode(MODE_MENU);
+	powerMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
+	powerMenu->enableWidgetChange();
 	powerMenu->enableShrinkMenu();
 	powerMenu->enableMenuPosition();
-	powerMenu->enableWidgetChange();
 	powerMenu->enablePaintFootInfo();
 	powerMenu->enablePaintDate();
 	

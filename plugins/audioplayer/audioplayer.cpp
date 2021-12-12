@@ -291,6 +291,7 @@ void CMP3Player::showMenu()
 		artist = playlist[i].MetaData.artist;
 		genre = playlist[i].MetaData.genre;	
 		date = playlist[i].MetaData.date;
+		std::string cover = playlist[i].MetaData.cover.empty()? DATADIR "/neutrino/icons/nopreview.jpg" : playlist[i].MetaData.cover;
 
 		snprintf(duration, 8, "(%ld:%02ld)", playlist[i].MetaData.total_time / 60, playlist[i].MetaData.total_time % 60);
 
@@ -315,9 +316,13 @@ void CMP3Player::showMenu()
 		tmp += date.c_str();
 
 		item->setHint(tmp.c_str());
+		item->setItemIcon(cover.c_str());
 
 		alist->addItem(item);
 	}
+	
+	alist->setWidgetMode(MODE_LISTBOX);
+	alist->setWidgetType(WIDGET_TYPE_STANDARD);
 
 	alist->setSelected(selected);
 

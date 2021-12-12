@@ -261,23 +261,23 @@ CPluginsExec* CPluginsExec::getInstance()
 	return pluginsExec;
 }
 
-int CPluginsExec::exec(CMenuTarget* parent, const std::string & actionKey)
+int CPluginsExec::exec(CMenuTarget* parent, const std::string& actionKey)
 {
 	if (actionKey.empty())
 		return RETURN_NONE;
 
 	dprintf(DEBUG_NORMAL, "CPluginsExec exec: %s\n", actionKey.c_str());
 
-	int sel = atoi(actionKey.c_str());
-
 	if (parent != NULL)
 		parent->hide();
 
-	if (sel >= 0)
-		g_PluginList->startPlugin(sel);
+	if (!actionKey.empty())
+		g_PluginList->startPlugin(actionKey.c_str());
 
-	if (g_PluginList->getIntegration(sel) == CPlugins::I_TYPE_DISABLED)
-		return RETURN_EXIT;
+	//int sel = atoi(actionKey.c_str());
+	
+	//if (g_PluginList->getIntegration(sel) == CPlugins::I_TYPE_DISABLED)
+	//	return RETURN_EXIT;
 
 	return RETURN_REPAINT;
 }

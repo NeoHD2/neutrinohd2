@@ -1683,7 +1683,7 @@ void CTestMenu::testClistBoxWidget()
 	rightWidget->addWidget(WIDGET_TYPE_STANDARD);
 	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
 	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
-	rightWidget->enableWidgetChange();
+	//rightWidget->enableWidgetChange();
 	rightWidget->enableCenterPos();
 	rightWidget->setItemsPerPage(6,2);
 	rightWidget->setSelected(selected);
@@ -4384,7 +4384,7 @@ void CTestMenu::testClistBox5()
 	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
 	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
 	rightWidget->addWidget(WIDGET_TYPE_FRAME);
-	rightWidget->enableWidgetChange();
+	//rightWidget->enableWidgetChange();
 
 	rightWidget->setItemsPerPage(5, 2);
 
@@ -4550,7 +4550,7 @@ void CTestMenu::testClistBox6()
 	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
 	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
 	rightWidget->addWidget(WIDGET_TYPE_FRAME);
-	rightWidget->enableWidgetChange();
+	//rightWidget->enableWidgetChange();
 
 	rightWidget->setItemsPerPage(5, 2);
 
@@ -5545,7 +5545,7 @@ void CTestMenu::testCMenuWidget()
 	menuWidget->addWidget(WIDGET_TYPE_CLASSIC);
 	menuWidget->addWidget(WIDGET_TYPE_EXTENDED);
 	menuWidget->addWidget(WIDGET_TYPE_FRAME);
-	menuWidget->enableWidgetChange();
+	//menuWidget->enableWidgetChange();
 	menuWidget->setItemsPerPage(6, 2);
 	menuWidget->enableShrinkMenu();
 
@@ -5603,7 +5603,7 @@ void CTestMenu::testCMenuWidget1()
 
 	menuWidget->setWidgetMode(MODE_MENU);
 	menuWidget->setItemsPerPage(6, 2);
-	menuWidget->enableWidgetChange();
+	//menuWidget->enableWidgetChange();
 	menuWidget->enableShrinkMenu();
 
 	//menuWidget->setSelected(selected);

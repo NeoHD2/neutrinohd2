@@ -163,10 +163,11 @@ class CMenuWidget : public CMenuTarget
 		int item_height;
 		int item_width;
 
-		// widgettype
+		//
 		int widgetType;
-		bool widgetChange;
 		std::vector<int> widget;
+		int cnt;
+		bool widgetChange;
 
 		//
 		bool shrinkMenu;
@@ -247,8 +248,9 @@ class CMenuWidget : public CMenuTarget
 		//
 		void setWidgetType(int type){widgetType = type; widget.push_back(widgetType);};
 		int getWidgetType(){return widgetType;};
-		void enableWidgetChange(){widgetChange = true;};
 		void addWidget(int wtype){widget.push_back(wtype);};
+		void enableWidgetChange(){widgetChange = true;};
+		void changeWidgetType();
 		void setWidgetMode(int mode){widgetMode = mode;};
 
 		//

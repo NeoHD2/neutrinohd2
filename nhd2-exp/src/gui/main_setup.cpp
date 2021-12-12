@@ -87,9 +87,10 @@ void CMainSetup::showMenu(void)
 	CMenuWidget * mainSettings = new CMenuWidget(LOCALE_MAINSETTINGS_HEAD, NEUTRINO_ICON_SETTINGS);
 
 	mainSettings->setWidgetMode(MODE_MENU);
+	mainSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
+	mainSettings->enableWidgetChange();
 	mainSettings->enableShrinkMenu();
 	mainSettings->enableMenuPosition();
-	mainSettings->enableWidgetChange();
 	mainSettings->enablePaintFootInfo();
 	mainSettings->enablePaintDate();
 

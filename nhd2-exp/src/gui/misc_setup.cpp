@@ -139,9 +139,10 @@ void CMiscSettings::showMenu(void)
 	CMenuWidget * miscSettings = new CMenuWidget(LOCALE_MISCSETTINGS_HEAD, NEUTRINO_ICON_SETTINGS);
 
 	miscSettings->setWidgetMode(MODE_MENU);
+	miscSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
+	miscSettings->enableWidgetChange();
 	miscSettings->enableShrinkMenu();
 	miscSettings->enableMenuPosition();
-	miscSettings->enableWidgetChange();
 	miscSettings->enablePaintFootInfo();
 	miscSettings->enablePaintDate();
 

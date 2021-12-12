@@ -462,6 +462,8 @@ void CInfo::showMenu()
 	infoMenu = new CMenuWidget("Information", NEUTRINO_ICON_INFO);
 	
 	infoMenu->setWidgetMode(MODE_MENU);
+	infoMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
+	infoMenu->enableWidgetChange();
 	infoMenu->enablePaintDate();
 	infoMenu->enableShrinkMenu();
 	
