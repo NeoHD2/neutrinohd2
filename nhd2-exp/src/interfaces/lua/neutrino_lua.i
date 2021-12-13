@@ -101,6 +101,8 @@
 #include <gui/plugins.h>
 //
 #include <gui/main_setup.h>
+#include <gui/power_menu.h>
+#include <gui/epg_menu.h>
 
 //testing
 #include <gui/audioplayer_setup.h>
@@ -206,6 +208,8 @@
 %include <src/gui/pictureviewer.h>
 %include <src/gui/filebrowser.h>
 %include <src/gui/plugins.h>
+%include <src/gui/power_menu.h>
+%include <src/gui/epg_menu.h>
 //
 //
 %include <src/gui/main_setup.h>

@@ -43,7 +43,6 @@
 
 #include <gui/filebrowser.h>
 #include <gui/osd_setup.h>
-
 #include <gui/themes.h>
 #include <gui/screensetup.h>
 #include <gui/alphasetup.h>
@@ -96,9 +95,12 @@ void COSDSettings::showMenu(void)
 	osdSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
 	osdSettings->enableWidgetChange();
 	osdSettings->enableShrinkMenu();
-	osdSettings->enableMenuPosition();
+	osdSettings->setMenuPosition(MENU_POSITION_LEFT);
 	osdSettings->enablePaintFootInfo();
 	osdSettings->enablePaintDate();
+	
+	// skin
+	osdSettings->addItem( new CMenuForwarder("Skin Auswahl", g_settings.use_skin, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 
 	// Themes
 	CThemes * osdSettings_Themes = new CThemes();
@@ -678,6 +680,7 @@ int COSDDiverses::exec(CMenuTarget* parent, const std::string& actionKey)
 }
 
 // widget type
+/*
 #define WIDGET_TYPE_OPTION_COUNT	4
 const keyval WIDGET_TYPE_OPTIONS[WIDGET_TYPE_OPTION_COUNT] =
 {
@@ -686,6 +689,7 @@ const keyval WIDGET_TYPE_OPTIONS[WIDGET_TYPE_OPTION_COUNT] =
 	{ WIDGET_TYPE_EXTENDED, NONEXISTANT_LOCALE, "Extended"},
 	{ WIDGET_TYPE_FRAME, NONEXISTANT_LOCALE, "Frame"}
 };
+*/
 
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
@@ -721,6 +725,7 @@ const keyval MENU_CORNERSETTINGS_TYPE_OPTIONS[MENU_CORNERSETTINGS_TYPE_OPTION_CO
 	{ ROUNDED, LOCALE_EXTRA_ROUNDED_CORNERS_ON, NULL }	
 };
 
+/*
 #define MENU_POSITION_OPTION_COUNT 3
 const keyval MENU_POSITION_OPTIONS[MENU_POSITION_OPTION_COUNT] =
 {
@@ -728,6 +733,7 @@ const keyval MENU_POSITION_OPTIONS[MENU_POSITION_OPTION_COUNT] =
 	{ SNeutrinoSettings::MENU_POSITION_CENTER, LOCALE_EXTRA_MENU_POSITION_CENTER, NULL },
 	{ SNeutrinoSettings::MENU_POSITION_RIGHT, LOCALE_EXTRA_MENU_POSITION_RIGHT, NULL }
 };
+*/
 
 #define INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT 4
 const keyval  INFOBAR_SUBCHAN_DISP_POS_OPTIONS[INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT]=
@@ -742,11 +748,10 @@ void COSDDiverses::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "COSDTimingSettings::showMenu:\n");
 	
-	CMenuWidget osdDiverseSettings(LOCALE_COLORMENU_TIMING, NEUTRINO_ICON_SETTINGS);
+	CMenuWidget osdDiverseSettings(LOCALE_MAINSETTINGS_MISC, NEUTRINO_ICON_SETTINGS);
 
 	osdDiverseSettings.setWidgetMode(MODE_SETUP);
 	osdDiverseSettings.enableShrinkMenu();
-	osdDiverseSettings.enableMenuPosition();
 	
 	// intros
 	osdDiverseSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
@@ -756,10 +761,13 @@ void COSDDiverses::showMenu()
 	osdDiverseSettings.addItem(new CMenuSeparator(LINE));
 	
 	// widget type
-	osdDiverseSettings.addItem(new CMenuOptionChooser("Menu Design", &g_settings.menu_design, WIDGET_TYPE_OPTIONS, WIDGET_TYPE_OPTION_COUNT, true));
+	//osdDiverseSettings.addItem(new CMenuOptionChooser("Menu Design", &g_settings.menu_design, WIDGET_TYPE_OPTIONS, WIDGET_TYPE_OPTION_COUNT, true));
 
 	// menu position
-	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_MENU_POSITION, &g_settings.menu_position, MENU_POSITION_OPTIONS, MENU_POSITION_OPTION_COUNT, true));
+	//osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_MENU_POSITION, &g_settings.menu_position, MENU_POSITION_OPTIONS, MENU_POSITION_OPTION_COUNT, true));
+	
+	// use skin?
+	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SAT_DISPLAY, &g_settings.use_skin, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 	// corners
 	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_ROUNDED_CORNERS, &g_settings.rounded_corners, MENU_CORNERSETTINGS_TYPE_OPTIONS, MENU_CORNERSETTINGS_TYPE_OPTION_COUNT, true));
@@ -798,6 +806,47 @@ void COSDDiverses::showMenu()
 
 	osdDiverseSettings.exec(NULL, "");
 	osdDiverseSettings.hide();
+}
+
+// skin
+void CSkinManager::showMenu()
+{
+	dprintf(DEBUG_NORMAL, "CSkinManager::showMenu:\n");
+	
+/*
+	CMenuWidget* skinMenu = new CMenuWidget("Skin Auswahl", NEUTRINO_ICON_COLORS);
+	
+	skinMenu->exec(NULL, "");
+	
+	delete skinMenu;
+	skinMenu = NULL;
+*/
+	CFileBrowser skinBrowser;
+	
+	skinBrowser.Dir_Mode = true;
+	skinBrowser.Dirs_Selectable= true;
+	
+	std::string skinDir = CONFIGDIR "/skin";
+	
+	if (skinBrowser.exec(skinDir.c_str()))
+		//strncpy(g_settings.network_nfs_picturedir, b.getSelectedFile()->Name.c_str(), sizeof(g_settings.network_nfs_picturedir)-1);
+		g_settings.preferred_skin = skinBrowser.getSelectedFile()->getFileName().c_str();
+		
+	CNeutrinoApp::getInstance()->loadSkin(g_settings.preferred_skin);
+}
+
+int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
+{
+	dprintf(DEBUG_NORMAL, "CSkinManager::exec: actionKey:%s\n", actionKey.c_str());
+	
+	int ret = RETURN_REPAINT;
+	
+	if (parent)
+		parent->hide();
+		
+	showMenu();
+	
+	return RETURN_EXIT;
 }
 
 

@@ -101,7 +101,7 @@ void CPowerMenu::showMenu(void)
 	powerMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	powerMenu->enableWidgetChange();
 	powerMenu->enableShrinkMenu();
-	powerMenu->enableMenuPosition();
+	powerMenu->setMenuPosition(MENU_POSITION_LEFT);
 	powerMenu->enablePaintFootInfo();
 	powerMenu->enablePaintDate();
 	

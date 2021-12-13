@@ -262,15 +262,8 @@ struct SNeutrinoSettings
 	
 	int volume_pos;
 	int rounded_corners;
-	int menu_design;
-
-	enum MENU_POSITION {
-		MENU_POSITION_LEFT = 0,
-		MENU_POSITION_CENTER = 1,
-		MENU_POSITION_RIGHT = 2
-	};
-
-	int menu_position;
+	std::string preferred_skin;
+	int use_skin;	
 	// END OSD
 
 	// KEYS
@@ -461,9 +454,6 @@ struct SNeutrinoSettings
 	std::string epg_serverbox_ip;
 	int epg_serverbox_type;
 	int epg_serverbox_gui;
-
-	// MODE
-	//int mode;
 
 	// tmdb
 	std::string tmdbkey;

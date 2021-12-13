@@ -102,7 +102,8 @@ libneutrino_gui_a_SOURCES = \
 	channel_select.cpp \
 	hdd_menu.cpp \
 	dvbsub_select.cpp \
-	timerlist.cpp
+	timerlist.cpp \
+	epg_menu.cpp
 
 libneutrino_gui2_a_SOURCES = \
 	motorcontrol.cpp \

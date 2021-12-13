@@ -32,6 +32,10 @@ else
 AM_CPPFLAGS += -I$(top_srcdir)/lib/libeplayer3/include
 endif
 
+if ENABLE_LUA
+AM_CPPFLAGS += @LUA_INCLUDE@
+endif
+
 AM_CPPFLAGS += -fno-rtti -fno-exceptions
 
 bin_PROGRAMS = neutrino
@@ -67,6 +71,8 @@ neutrino_LDADD = \
 	gui/psisetup.o \
 	gui/alphasetup.o \
 	gui/main_setup.o \
+	gui/power_menu.o \
+	gui/epg_menu.o \
 	gui/widget/window.o \
 	gui/widget/listbox.o \
 	gui/widget/listframe.o \

@@ -135,13 +135,20 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		CNeutrinoApp();
 
 	public:
+		
+		//
 		void saveSetup(const char * fname);
 		int loadSetup(const char * fname);
 		void SetupTiming();
 		void SetupFonts(const char* font_file);
 		
 		//
+		std::vector<CPlugins::plugin> skin_list;
+		
 		void loadSkin(std::string skinName);
+		void unloadSkin();
+		void startSkin(const char* const filename);
+		bool skin_exists(const char* const filename);
 		
 		//
 		void mainMenu(void);
@@ -178,7 +185,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		int run(int argc, char **argv);
 
 		//callback stuff only....
-		int exec(CMenuTarget * parent, const std::string & actionKey);
+		int exec(CMenuTarget* parent, const std::string& actionKey);
 
 		//onchange
 		bool changeNotify(const neutrino_locale_t OptionName, void *);

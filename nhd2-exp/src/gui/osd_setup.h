@@ -130,4 +130,17 @@ class COSDDiverses : public CMenuTarget
 		int exec(CMenuTarget* parent, const std::string& actionKey);
 };
 
+// skin
+class CSkinManager : public CMenuTarget
+{
+	private:
+		void showMenu();
+		
+	public:
+		CSkinManager(){};
+		~CSkinManager(){};
+		
+		int exec(CMenuTarget* parent, const std::string& actionKey);
+};
+
 #endif //__osd_setup__

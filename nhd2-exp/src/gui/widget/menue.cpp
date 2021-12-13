@@ -184,8 +184,9 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 
 	shrinkMenu = false;
 	widgetMode = MODE_MENU;
-	MenuPos = false;
 	headLine = false;
+	
+	menu_position = MENU_POSITION_CENTER;
 
 	actionKey = "";
 
@@ -243,10 +244,12 @@ void CMenuWidget::initFrames()
 	connectLineWidth = 0;
 	
 	// widget type
+	/*
 	if(widgetChange && widgetMode == MODE_MENU)
 	{
 		widgetType = g_settings.menu_design;
 	}
+	*/
 
 	// widgettype forwarded to item 
 	for (unsigned int count = 0; count < items.size(); count++) 
@@ -390,23 +393,20 @@ void CMenuWidget::initFrames()
 		y = offy + frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
 
 		// menu position
-		if (MenuPos)
+		if(menu_position == MENU_POSITION_CENTER)
 		{
-			if(g_settings.menu_position == SNeutrinoSettings::MENU_POSITION_CENTER)
-			{
-				x = offx + frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - full_width ) >> 1 );
-				y = offy + frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
-			}
-			else if(g_settings.menu_position == SNeutrinoSettings::MENU_POSITION_LEFT)
-			{
-				x = offx + frameBuffer->getScreenX() + connectLineWidth;
-				y = offy + frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
-			}
-			else if(g_settings.menu_position == SNeutrinoSettings::MENU_POSITION_RIGHT)
-			{
-				x = offx + frameBuffer->getScreenX() + frameBuffer->getScreenWidth() - full_width - connectLineWidth;
-				y = offy + frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
-			}
+			x = offx + frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - full_width ) >> 1 );
+			y = offy + frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
+		}
+		else if(menu_position == MENU_POSITION_LEFT)
+		{
+			x = offx + frameBuffer->getScreenX() + connectLineWidth;
+			y = offy + frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
+		}
+		else if(menu_position == MENU_POSITION_RIGHT)
+		{
+			x = offx + frameBuffer->getScreenX() + frameBuffer->getScreenWidth() - full_width - connectLineWidth;
+			y = offy + frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
 		}
 	}
 	

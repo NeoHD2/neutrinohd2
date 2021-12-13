@@ -94,11 +94,7 @@ class CPlugins
 			I_TYPE_USER		= 0x40
 		}
 		i_type_t;
-
-	private:
-
-		CFrameBuffer	*frameBuffer;
-
+		
 		struct plugin
 		{
 			std::string filename;
@@ -117,6 +113,31 @@ class CPlugins
 				return this->filename < a.filename ;
 			}
 		};
+
+	private:
+
+		CFrameBuffer	*frameBuffer;
+
+		/*
+		struct plugin
+		{
+			std::string filename;
+			std::string cfgfile;
+			std::string pluginfile;
+			std::string name;
+			std::string description;
+			std::string version;
+			CPlugins::p_type_t type;
+			CPlugins::i_type_t integration;
+			std::string icon;
+			bool hide;
+			
+			bool operator< (const plugin& a) const
+			{
+				return this->filename < a.filename ;
+			}
+		};
+		*/
 
 		int number_of_plugins;
 

@@ -73,7 +73,7 @@ void CMediaPlayerMenu::showMenu()
 	MediaPlayer->setWidgetType(WIDGET_TYPE_CLASSIC);
 	MediaPlayer->enableWidgetChange();
 	MediaPlayer->enableShrinkMenu();
-	MediaPlayer->enableMenuPosition();
+	MediaPlayer->setMenuPosition(MENU_POSITION_LEFT);
 	MediaPlayer->enablePaintDate();
 	MediaPlayer->enablePaintFootInfo();
 

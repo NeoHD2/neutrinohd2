@@ -173,6 +173,10 @@
 
 #include <playback_cs.h>
 
+#if ENABLE_LUA
+#include <interfaces/lua/neutrino_lua.h>
+#endif
+
 
 cPlayback* playback = NULL;
 
@@ -712,9 +716,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.screen_yres = configfile.getInt32("screen_yres", 100);
 	
 	g_settings.rounded_corners = configfile.getInt32("rounded_corners", NO_RADIUS);
-	
-	g_settings.menu_design = configfile.getInt32("menu_design", WIDGET_TYPE_CLASSIC);
-	g_settings.menu_position = configfile.getInt32("menu_position", SNeutrinoSettings::MENU_POSITION_LEFT);
+	g_settings.use_skin = configfile.getBool("use_skin", false);
+	g_settings.preferred_skin = configfile.getString("preferred_skin", "default");
 
 	// keysbinding
 	strcpy(g_settings.repeat_blocker, configfile.getString("repeat_blocker", "250").c_str());
@@ -1182,9 +1185,8 @@ void CNeutrinoApp::saveSetup(const char * fname)
 		configfile.setInt32(locale_real_names[timing_setting_name[i]], g_settings.timing[i]);
 	
 	configfile.setInt32("rounded_corners", g_settings.rounded_corners);
-	
-	configfile.setInt32("menu_design", g_settings.menu_design);
-	configfile.setInt32("menu_position", g_settings.menu_position);
+	configfile.setBool("use_skin", g_settings.use_skin);
+	configfile.setString("preferred_skin", g_settings.preferred_skin);
 	// END OSD
 
 	// KEYS
@@ -1412,11 +1414,11 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 	int i = 0;
 
 	i = scandir(skinPath.c_str(), &namelist, 0, 0);
-	if(i < 0)
-	{
-		return;
-	}
+	
+	printf("\nloadskin:%d\n\n", i);
 
+	if (i >= 0)
+	{
 	while(i--)
 	{
 		if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
@@ -1428,7 +1430,24 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 			std::string extension = getFileExt(filename);
 			
 			if ( strcasecmp("lua", extension.c_str()) == 0)
-				g_PluginList->addPlugin(filename);
+			{
+				//g_PluginList->addPlugin(filename);
+				CPlugins::plugin new_skin;
+	
+				if (!filename.empty())
+				{
+					dprintf(DEBUG_NORMAL, "CNeutrinoApp::add: %s\n", filename.c_str());
+					
+					new_skin.pluginfile = filename;
+					new_skin.type = CPlugins::P_TYPE_LUA;
+					new_skin.hide = true;
+					
+					new_skin.filename = getBaseName(filename);
+					trim(new_skin.filename, ".lua");
+				
+					skin_list.push_back(new_skin);
+				}
+			}
 				
 			if ( strcasecmp("ttf", extension.c_str()) == 0)
 				fontFileName = filename;
@@ -1437,53 +1456,127 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		}
 		free(namelist[i]);
 	}
-	
 	free(namelist);
-	
-	// setup font
-	std::string fontPath = skinPath.c_str();
-	fontPath += "/fonts";
-	
-	i = scandir(fontPath.c_str(), &namelist, 0, 0);
-	if(i < 0)
-	{
-		return;
 	}
+	
+	if (CNeutrinoApp::getInstance()->skin_exists(skinName.c_str()))
+	{
+		// setup font
+		std::string fontPath = skinPath.c_str();
+		fontPath += "/fonts";
+		
+		i = scandir(fontPath.c_str(), &namelist, 0, 0);
 
-	while(i--)
-	{
-		if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
+		if (i >= 0)
 		{
-			std::string filename = fontPath.c_str();
-			filename += "/";
-			filename += namelist[i]->d_name;
-			
-			std::string extension = getFileExt(filename);
+		while(i--)
+		{
+			if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
+			{
+				std::string filename = fontPath.c_str();
+				filename += "/";
+				filename += namelist[i]->d_name;
 				
-			if ( strcasecmp("ttf", extension.c_str()) == 0)
-				fontFileName = filename;
-			
-			filename.clear();			
+				std::string extension = getFileExt(filename);
+					
+				if ( strcasecmp("ttf", extension.c_str()) == 0)
+					fontFileName = filename;
+				
+				filename.clear();			
+			}
+			free(namelist[i]);
 		}
-		free(namelist[i]);
+		free(namelist);
+		}
+		 
+		strcpy( g_settings.font_file, fontFileName.c_str() );
+		
+		CNeutrinoApp::getInstance()->SetupFonts(g_settings.font_file);
+		
+		// setIconPath
+		std::string iconsDir = CONFIGDIR "/skin/";
+		iconsDir += skinName.c_str();
+		iconsDir += "/icons/";
+		
+		// check if not empty
+		i = scandir(iconsDir.c_str(), &namelist, 0, 0);
+		if(i < 0)
+		{
+			g_settings.icons_dir = DATADIR "/neutrino/icons/"; //fallback to default if empty
+		}
+		else
+		{
+			g_settings.icons_dir = iconsDir;
+			free(namelist);
+		}
+		
+		frameBuffer->setIconBasePath(g_settings.icons_dir);
+		
+		// setup colors / corners / position
+		skinPath += "/";
+		skinPath += skinName.c_str();
+		skinPath += ".config";
+		
+		CThemes* themes = new CThemes();
+		themes->readFile(skinPath.c_str());
+	}
+	else // if changed from last skin fallback to default
+	{
+		strcpy( g_settings.font_file, DATADIR "/neutrino/fonts/arial.ttf");
+		
+		CNeutrinoApp::getInstance()->SetupFonts(DATADIR "/neutrino/fonts/arial.ttf");
+		
+		g_settings.icons_dir = DATADIR "/neutrino/icons/";
+		
+		frameBuffer->setIconBasePath(DATADIR "/neutrino/icons/");
+	}
+}
+
+void CNeutrinoApp::startSkin(const char * const filename)
+{
+	dprintf(DEBUG_NORMAL, "CNeutrinoApp::startSkin: %s\n", filename);
+	
+	int skinnr = -1;
+	
+	for (int i = 0; i <  (int) skin_list.size(); i++)
+	{
+		if ( strcasecmp(filename, skin_list[i].filename.c_str()) == 0)
+			skinnr = i;
 	}
 	
-	CNeutrinoApp::getInstance()->SetupFonts((char *)fontFileName.c_str());
+	if (skinnr > -1)
+	{
+		// LUA
+		neutrinoLua* luaInvoker = new neutrinoLua();
+
+		luaInvoker->execFile(skin_list[skinnr].pluginfile.c_str());
+
+		delete luaInvoker;
+		luaInvoker = NULL;
+	}
+	else
+	{
+		dprintf(DEBUG_NORMAL, "CPlugins::startPlugin: could not find %s\n", filename);
+		
+		std::string hint = filename;
+		hint += " ";
+		hint += g_Locale->getText(LOCALE_PLUGINS_NOT_INSTALLED);
+		
+		HintBox(LOCALE_MESSAGEBOX_INFO, hint.c_str());
+	}
+}
+
+bool CNeutrinoApp::skin_exists(const char* const filename)
+{
+	dprintf(DEBUG_NORMAL, "CNeutrinoApp::startSkin: %s\n", filename);
 	
-	// setIconPath
-	std::string iconsDir = CONFIGDIR "/skin/";
-	iconsDir += skinName.c_str();
-	iconsDir += "/icons/";
+	for (int i = 0; i <  (int) skin_list.size(); i++)
+	{
+		if ( strcasecmp(filename, skin_list[i].filename.c_str()) == 0)
+			return true;
+	}
 	
-	frameBuffer->setIconBasePath(iconsDir.c_str());
-	
-	// setup colors / corners
-	skinPath += "/";
-	skinPath += skinName.c_str();
-	skinPath += ".config";
-	
-	CThemes* themes = new CThemes();
-	themes->readFile(skinPath.c_str());
+	return false;
 }
 
 // firstChannel, get the initial channel
@@ -2607,7 +2700,7 @@ int CNeutrinoApp::run(int argc, char **argv)
 	g_PluginList->loadPlugins();
 	
 	// FIXME:TEST
-	loadSkin("default");
+	loadSkin(g_settings.preferred_skin);
 	
 	// zapit	
 	Z_start_arg ZapStart_arg;

@@ -1,11 +1,6 @@
 /*
 	Neutrino-GUI  -   DBoxII-Project
 
-	$id: power_menu.h 2016.01.29 17:19:30 mohousch $
-	
-	Copyright (C) 2001 Steffen Hehn 'McClean'
-	and some other guys
-	Homepage: http://dbox.cyberphoria.org/
 
 	License: GPL
 
@@ -22,28 +17,26 @@
 	You should have received a copy of the GNU General Public License
 	along with this program; if not, write to the Free Software
 	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-*/ 
+*/
 
-#ifndef __power_menu__
-#define __power_menu__
+
+#ifndef __epg_menu__
+#define __epg_menu__
+
 
 #include <gui/widget/menue.h>
 
-#include <string>
 
 
-class CPowerMenu : public CMenuTarget
+using namespace std;
+
+class CEPGMenuHandler : public CMenuTarget
 {
-	private:
-		void showMenu(void);
-		
 	public:
-		CPowerMenu();
-		~CPowerMenu();
-		
-		int exec(CMenuTarget* parent, const std::string& actionKey);
+		int  exec( CMenuTarget* parent,  const std::string &actionkey);
+		int  doMenu();
 };
 
-#endif //__power_setup__
 
+#endif
 

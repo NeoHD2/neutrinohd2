@@ -518,7 +518,6 @@ class ClistBox : public CWidgetItem
 		//
 		bool enableCenter;
 		bool shrinkMenu;
-		bool MenuPos;
 
 		// frame
 		int itemsPerX;
@@ -674,8 +673,6 @@ class ClistBox : public CWidgetItem
 		std::string getActionKey(void){return actionKey;}; // lua
 		
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
-		
-		void enableMenuPosition(){MenuPos = true;};
 };
 
 #endif // LISTBOX_H_

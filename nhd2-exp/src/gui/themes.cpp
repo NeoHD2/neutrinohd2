@@ -217,6 +217,8 @@ int CThemes::Show()
 
 void CThemes::readFile(const char* themename)
 {
+	dprintf(DEBUG_NORMAL, "CThemes::readFile: %s\n", themename);
+	
 	if(themefile.loadConfig(themename))
 	{
 		g_settings.menu_Head_alpha = themefile.getInt32( "menu_Head_alpha", 15);
@@ -293,6 +295,9 @@ void CThemes::readFile(const char* themename)
 		g_settings.menu_FootInfo_Text_red = themefile.getInt32( "menu_FootInfo_Text_red", 85);
 		g_settings.menu_FootInfo_Text_green = themefile.getInt32( "menu_FootInfo_Text_green", 85);
 		g_settings.menu_FootInfo_Text_blue = themefile.getInt32( "menu_FootInfo_Text_blue", 85);
+		
+		//FIXME: DIRTY HACK
+		g_settings.rounded_corners = themefile.getInt32("rounded_corners", NO_RADIUS);
 
 		notifier = new CColorSetupNotifier;
 		notifier->changeNotify(NONEXISTANT_LOCALE, NULL);
@@ -305,6 +310,8 @@ void CThemes::readFile(const char* themename)
 
 void CThemes::saveFile(const char * themename)
 {
+	dprintf(DEBUG_NORMAL, "CThemes::saveFile: %s\n", themename);
+	
 	themefile.setInt32( "menu_Head_alpha", g_settings.menu_Head_alpha );
 	themefile.setInt32( "menu_Head_red", g_settings.menu_Head_red );
 	themefile.setInt32( "menu_Head_green", g_settings.menu_Head_green );

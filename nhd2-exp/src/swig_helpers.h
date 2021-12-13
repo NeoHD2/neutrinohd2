@@ -79,6 +79,9 @@ class CSwigHelpers
 		void addTimer(uint64_t Interval, bool oneshot = true, bool correct_time = true );
 		void killTimer(uint32_t id);
 		int getRCData(int timeout = 10);
+		
+		//
+		int run(const char* actionKey){return CNeutrinoApp::getInstance()->exec(NULL, actionKey);};
 };
 
 #endif

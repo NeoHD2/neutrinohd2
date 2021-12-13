@@ -1825,9 +1825,6 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
 	
-	//
-	MenuPos = false;
-	
 	item_height = 0;
 	item_width = 0;
 	iconOffset = 0;
@@ -1924,9 +1921,6 @@ ClistBox::ClistBox(CBox* position)
 	bgcolor = COL_MENUCONTENT_PLUS_0;
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
-	
-	//
-	MenuPos = false;
 	
 	//
 	item_height = 0;
@@ -2119,26 +2113,6 @@ void ClistBox::initFrames()
 		{
 			itemBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - itemBox.iWidth ) >> 1 );
 			itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - itemBox.iHeight) >> 1 );
-		}
-		
-		// menu position
-		if (MenuPos)
-		{
-			if(g_settings.menu_position == SNeutrinoSettings::MENU_POSITION_CENTER)
-			{
-				itemBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - full_width ) >> 1 );
-				itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
-			}
-			else if(g_settings.menu_position == SNeutrinoSettings::MENU_POSITION_LEFT)
-			{
-				itemBox.iX = frameBuffer->getScreenX() + connectLineWidth;
-				itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
-			}
-			else if(g_settings.menu_position == SNeutrinoSettings::MENU_POSITION_RIGHT)
-			{
-				itemBox.iX = frameBuffer->getScreenX() + frameBuffer->getScreenWidth() - full_width - connectLineWidth;
-				itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
-			}
 		}
 	}
 }

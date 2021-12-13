@@ -54,6 +54,12 @@
 #include <gui/widget/listbox.h>
 
 
+enum {
+	MENU_POSITION_LEFT = 0,
+	MENU_POSITION_CENTER = 1,
+	MENU_POSITION_RIGHT = 2
+};
+	
 /// CMenuWidget
 class CMenuWidget : public CMenuTarget
 {
@@ -172,7 +178,7 @@ class CMenuWidget : public CMenuTarget
 		//
 		bool shrinkMenu;
 		int widgetMode;
-		bool MenuPos;
+		int menu_position;
 		bool headLine;
 
 		// for lua
@@ -252,6 +258,7 @@ class CMenuWidget : public CMenuTarget
 		void enableWidgetChange(){widgetChange = true;};
 		void changeWidgetType();
 		void setWidgetMode(int mode){widgetMode = mode;};
+		void setMenuPosition(int p){menu_position = p;};
 
 		//
 		void setItemsPerPage(int itemsX = 6, int itemsY = 3){itemsPerX = itemsX; itemsPerY = itemsY; maxItemsPerPage = itemsPerX*itemsPerY;};
@@ -260,7 +267,6 @@ class CMenuWidget : public CMenuTarget
 
 		//
 		void enableShrinkMenu(){shrinkMenu = true;};
-		void enableMenuPosition(){MenuPos = true;};
 		void enableHeadLine(){headLine = true;};
 
 		virtual std::string& getString(void) { if (hasItem())return items[selected]->itemName; };

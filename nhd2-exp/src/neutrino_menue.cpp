@@ -75,17 +75,17 @@ void CNeutrinoApp::mainMenu(void)
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::mainMenu:\n");
 	
-#if 1
-	g_PluginList->startPlugin("default");
-#else	
-
+	if ( g_settings.use_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
+		CNeutrinoApp::getInstance()->startSkin(g_settings.preferred_skin.c_str());
+	else	
+	{
 	CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
 	
 	nMenu->setWidgetMode(MODE_MENU);
 	nMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	nMenu->enableWidgetChange();
 	nMenu->enableShrinkMenu();
-	nMenu->enableMenuPosition();
+	nMenu->setMenuPosition(MENU_POSITION_LEFT);
 	nMenu->enablePaintDate();
 	nMenu->enablePaintFootInfo();
 	  
@@ -121,7 +121,7 @@ void CNeutrinoApp::mainMenu(void)
 	nMenu->exec(NULL, "");
 	delete nMenu;
 	nMenu = NULL;
-#endif	
+	}	
 }
 
 // User menu
@@ -250,7 +250,7 @@ bool CNeutrinoApp::showUserMenu(int button)
 	menu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	menu->enableWidgetChange();
 	menu->enableShrinkMenu();
-	menu->enableMenuPosition();
+	menu->setMenuPosition(MENU_POSITION_LEFT);
 	menu->enablePaintFootInfo();
 
 	menu->addKey(RC_blue, this, "plugins");
