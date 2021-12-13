@@ -76,7 +76,7 @@ class CPlugins
 		{
 			P_TYPE_DISABLED = 0x1,
 			P_TYPE_SCRIPT   = 0x2,
-			P_TYPE_LEGACY = 0x4,
+			P_TYPE_LEGACY   = 0x4,
 			P_TYPE_PYTHON   = 0x8,
 			P_TYPE_LUA      = 0x10
 		}
@@ -85,7 +85,7 @@ class CPlugins
 		//
 		typedef enum i_type
 		{
-			I_TYPE_DISABLED		= 0x1,
+			I_TYPE_DISABLED	= 0x1,
 			I_TYPE_MAIN		= 0x2,
 			I_TYPE_MULTIMEDIA	= 0x4,
 			I_TYPE_SETTING		= 0x8,
@@ -104,12 +104,12 @@ class CPlugins
 			std::string filename;
 			std::string cfgfile;
 			std::string pluginfile;
-			std::string name;               // UTF-8 encoded
-			std::string description;        // UTF-8 encoded
+			std::string name;
+			std::string description;
 			std::string version;
 			CPlugins::p_type_t type;
 			CPlugins::i_type_t integration;
-			std::string icon;		// Icon
+			std::string icon;
 			bool hide;
 			
 			bool operator< (const plugin& a) const
@@ -124,17 +124,21 @@ class CPlugins
 		std::string plugin_dir;
 
 		bool parseCfg(plugin *plugin_data);
-		void addPlugin(const char *dir);
 	
 	public:
 
 		~CPlugins();
 		
+		//
+		void setPluginDir(const std::string& dir) { plugin_dir = dir; }
+		void addPlugin(const char *dir);
+		void addPlugin(std::string filename);
+		void loadPlugins();
+		
+		//
+		int find_plugin(const std::string & filename);
 		bool pluginfile_exists(const std::string & filename);
 		bool plugin_exists(const std::string & filename);
-		void loadPlugins();
-		void setPluginDir(const std::string & dir) { plugin_dir = dir; }
-		int find_plugin(const std::string & filename);
 
 		// get methods
 		inline int getNumberOfPlugins(void) const { return plugin_list.size(); }
@@ -146,6 +150,7 @@ class CPlugins
 		inline int getType(const int number) const { return plugin_list[number].type; }
 		inline int getIntegration(const int number) const { return plugin_list[number].integration; }
 		inline const char* getIcon(const int number) const { return plugin_list[number].icon.c_str();}
+		inline bool isHidden(const int number) {return plugin_list[number].hide;};
 
 		CPlugins::p_type_t getPluginType(int type);
 		CPlugins::i_type_t getPluginIntegration(int integration);

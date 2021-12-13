@@ -42,8 +42,8 @@ class CThemes : public CMenuTarget, CChangeObserver
 		CThemes();
 
 		void setupDefaultColors();
-		void readFile(char* themename);
-		void saveFile(char* themename);
+		void readFile(const char* themename);
+		void saveFile(const char* themename);
 
 		int exec(CMenuTarget* parent, const std::string & actionKey);
 };

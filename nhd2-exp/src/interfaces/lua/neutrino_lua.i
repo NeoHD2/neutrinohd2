@@ -99,6 +99,8 @@
 #include <gui/pictureviewer.h>
 #include <gui/filebrowser.h>
 #include <gui/plugins.h>
+//
+#include <gui/main_setup.h>
 
 //testing
 #include <gui/audioplayer_setup.h>
@@ -204,6 +206,9 @@
 %include <src/gui/pictureviewer.h>
 %include <src/gui/filebrowser.h>
 %include <src/gui/plugins.h>
+//
+//
+%include <src/gui/main_setup.h>
 
 //testing
 %include <src/gui/audioplayer_setup.h>

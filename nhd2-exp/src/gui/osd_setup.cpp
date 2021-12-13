@@ -458,7 +458,7 @@ int CFontSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 	if(actionKey == "savesettings")
 	{
-		CNeutrinoApp::getInstance()->SetupFonts();
+		CNeutrinoApp::getInstance()->SetupFonts(g_settings.font_file);
 		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
 		
 		return ret;
@@ -475,7 +475,7 @@ int CFontSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 			strcpy(g_settings.font_file, fileBrowser.getSelectedFile()->Name.c_str());
 			dprintf(DEBUG_NORMAL, "COSDSettings::exec: new font file %s\n", fileBrowser.getSelectedFile()->Name.c_str());
 			
-			CNeutrinoApp::getInstance()->SetupFonts();
+			CNeutrinoApp::getInstance()->SetupFonts(g_settings.font_file);
 			CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
 		}
 		

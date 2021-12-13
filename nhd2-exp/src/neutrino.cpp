@@ -137,6 +137,7 @@
 #include <gui/vfdcontroler.h>
 #include <gui/dvbsub_select.h>
 #include <gui/movieinfo.h>
+#include <gui/themes.h>
 
 #include <system/setting_helpers.h>
 #include <system/settings.h>
@@ -1396,6 +1397,95 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	}
 }
 
+//
+void CNeutrinoApp::loadSkin(std::string skinName)
+{
+	dprintf(DEBUG_NORMAL, "CNeutrinoApp::loadSkin: %s\n", skinName.c_str());
+	
+	std::string skinPath = CONFIGDIR "/skin/";
+	skinPath += skinName.c_str();
+	
+	std::string fontFileName;
+	
+	// load skin
+	struct dirent **namelist;
+	int i = 0;
+
+	i = scandir(skinPath.c_str(), &namelist, 0, 0);
+	if(i < 0)
+	{
+		return;
+	}
+
+	while(i--)
+	{
+		if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
+		{
+			std::string filename = skinPath.c_str();
+			filename += "/";
+			filename += namelist[i]->d_name;
+			
+			std::string extension = getFileExt(filename);
+			
+			if ( strcasecmp("lua", extension.c_str()) == 0)
+				g_PluginList->addPlugin(filename);
+				
+			if ( strcasecmp("ttf", extension.c_str()) == 0)
+				fontFileName = filename;
+			
+			filename.clear();			
+		}
+		free(namelist[i]);
+	}
+	
+	free(namelist);
+	
+	// setup font
+	std::string fontPath = skinPath.c_str();
+	fontPath += "/fonts";
+	
+	i = scandir(fontPath.c_str(), &namelist, 0, 0);
+	if(i < 0)
+	{
+		return;
+	}
+
+	while(i--)
+	{
+		if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
+		{
+			std::string filename = fontPath.c_str();
+			filename += "/";
+			filename += namelist[i]->d_name;
+			
+			std::string extension = getFileExt(filename);
+				
+			if ( strcasecmp("ttf", extension.c_str()) == 0)
+				fontFileName = filename;
+			
+			filename.clear();			
+		}
+		free(namelist[i]);
+	}
+	
+	CNeutrinoApp::getInstance()->SetupFonts((char *)fontFileName.c_str());
+	
+	// setIconPath
+	std::string iconsDir = CONFIGDIR "/skin/";
+	iconsDir += skinName.c_str();
+	iconsDir += "/icons/";
+	
+	frameBuffer->setIconBasePath(iconsDir.c_str());
+	
+	// setup colors / corners
+	skinPath += "/";
+	skinPath += skinName.c_str();
+	skinPath += ".config";
+	
+	CThemes* themes = new CThemes();
+	themes->readFile(skinPath.c_str());
+}
+
 // firstChannel, get the initial channel
 void CNeutrinoApp::firstChannel()
 {
@@ -1802,7 +1892,7 @@ void CNeutrinoApp::SetupFrameBuffer()
 }
 
 // setup fonts
-void CNeutrinoApp::SetupFonts()
+void CNeutrinoApp::SetupFonts(const char* font_file)
 {
 	const char * style[3];
 
@@ -1814,9 +1904,9 @@ void CNeutrinoApp::SetupFonts()
 	if(font.filename != NULL)
 		free((void *)font.filename);
 
-	dprintf(DEBUG_NORMAL, "CNeutrinoApp::SetupFonts: settings font file %s\n", g_settings.font_file);
+	dprintf(DEBUG_NORMAL, "CNeutrinoApp::SetupFonts: settings font file %s\n", /*g_settings.*/font_file);
 
-	if(access(g_settings.font_file, F_OK)) 
+	if(access(/*g_settings.*/font_file, F_OK)) 
 	{
 		if(!access(DATADIR "/neutrino/fonts/arial.ttf", F_OK))
 		{
@@ -1831,17 +1921,17 @@ void CNeutrinoApp::SetupFonts()
 	}
 	else
 	{
-		font.filename = strdup(g_settings.font_file);
+		font.filename = strdup(/*g_settings.*/font_file);
 		
 		// check??? (use only true type fonts or fallback to arial.ttf
 		if( !strstr(font.filename, ".ttf") )
 		{
-			dprintf(DEBUG_NORMAL, "CNeutrinoApp::SetupFonts: font file %s not ok falling back to arial.ttf\n", g_settings.font_file);
+			dprintf(DEBUG_NORMAL, "CNeutrinoApp::SetupFonts: font file %s not ok falling back to arial.ttf\n", /*g_settings.*/font_file);
 			
 			if(!access(DATADIR "/neutrino/fonts/arial.ttf", F_OK))
 			{
 				font.filename = strdup(DATADIR "/neutrino/fonts/arial.ttf");
-				strcpy(g_settings.font_file, font.filename);
+				strcpy(/*g_settings.*/(char *)font_file, font.filename);
 			}
 			else
 			{
@@ -2480,7 +2570,7 @@ int CNeutrinoApp::run(int argc, char **argv)
 	frameBuffer->setIconBasePath(g_settings.icons_dir);
 
 	// setup fonts
-	SetupFonts();
+	SetupFonts(g_settings.font_file);
 	
 	// setup menue timing
 	SetupTiming();
@@ -2515,6 +2605,9 @@ int CNeutrinoApp::run(int argc, char **argv)
 
 	// load Pluginlist before main menu (only show script menu if at least one script is available
 	g_PluginList->loadPlugins();
+	
+	// FIXME:TEST
+	loadSkin("default");
 	
 	// zapit	
 	Z_start_arg ZapStart_arg;

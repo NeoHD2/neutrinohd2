@@ -215,7 +215,7 @@ int CThemes::Show()
 	return res;
 }
 
-void CThemes::readFile(char* themename)
+void CThemes::readFile(const char* themename)
 {
 	if(themefile.loadConfig(themename))
 	{
@@ -303,7 +303,7 @@ void CThemes::readFile(char* themename)
 		printf("[neutrino theme] %s not found\n", themename);
 }
 
-void CThemes::saveFile(char * themename)
+void CThemes::saveFile(const char * themename)
 {
 	themefile.setInt32( "menu_Head_alpha", g_settings.menu_Head_alpha );
 	themefile.setInt32( "menu_Head_red", g_settings.menu_Head_red );

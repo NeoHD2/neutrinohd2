@@ -109,14 +109,18 @@ void CPluginList::showMenu()
 		IconName += g_PluginList->getIcon(count);
 
 		bool enabled = g_PluginList->getType(count) != CPlugins::P_TYPE_DISABLED;
-			
-		item = new CMenuForwarder(g_PluginList->getName(count), enabled, g_PluginList->getDescription(count).c_str(), CPluginsExec::getInstance(), to_string(count).c_str(), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
+		
+		// skip hidden plugins
+		if (!g_PluginList->isHidden(count))
+		{	
+			item = new CMenuForwarder(g_PluginList->getName(count), enabled, g_PluginList->getDescription(count).c_str(), CPluginsExec::getInstance(), to_string(count).c_str(), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
 
-		item->set2lines(); 
-		item->enableItemShadow();
-		item->setItemGradient(DARK2LIGHT2DARK);
+			item->set2lines(); 
+			item->enableItemShadow();
+			item->setItemGradient(DARK2LIGHT2DARK);
 
-		plist->addItem(item);
+			plist->addItem(item);
+		}
 	}
 
 	plist->setWidgetMode(MODE_LISTBOX);

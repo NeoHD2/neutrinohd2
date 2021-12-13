@@ -165,6 +165,7 @@
 #include <gui/misc_setup.h>
 #include <gui/hdd_menu.h>
 #include <gui/vfdcontroler.h>
+#include <gui/themes.h>
 
 #include <system/localize.h>
 #include <system/settings.h>

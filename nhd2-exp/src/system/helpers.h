@@ -63,6 +63,7 @@ int check_dir(const char * dir, bool allow_tmp = false);
 bool get_fs_usage(const char * dir, uint64_t &btotal, uint64_t &bused, long *bsize=NULL);
 bool get_mem_usage(unsigned long &total, unsigned long &free);
 
+//
 std::string getPathName(std::string &path);
 std::string getBaseName(std::string &path);
 std::string getFileName(std::string &file);
@@ -70,6 +71,8 @@ std::string getFileExt(std::string &file);
 std::string getNowTimeStr(const char* format);
 std::string trim(std::string &str, const std::string &trimChars = " \n\r\t");
 std::string replace_all(const std::string &in, const std::string &entity, const std::string &symbol);
+
+//
 unsigned long long getcurrenttime();
 void strReplace(std::string & orig, const char *fstr, const std::string rstr);
 std::string& htmlEntityDecode(std::string& text, bool removeTags = false);

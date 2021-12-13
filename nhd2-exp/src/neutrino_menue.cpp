@@ -47,7 +47,6 @@
 #include <gui/widget/menue.h>
 #include <gui/widget/textbox.h>
 #include <gui/widget/icons.h>
-
 #include <gui/mediaplayer.h>
 #include <gui/service_setup.h>
 #include <gui/main_setup.h>
@@ -67,12 +66,18 @@
 #include <driver/encoding.h>
 
 
+extern CPlugins * g_PluginList;    /* neutrino.cpp */
+
 // mainmenu
 void CNeutrinoApp::mainMenu(void)
 {
 	int shortcut = 1;
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::mainMenu:\n");
+	
+#if 1
+	g_PluginList->startPlugin("default");
+#else	
 
 	CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
 	
@@ -116,6 +121,7 @@ void CNeutrinoApp::mainMenu(void)
 	nMenu->exec(NULL, "");
 	delete nMenu;
 	nMenu = NULL;
+#endif	
 }
 
 // User menu
