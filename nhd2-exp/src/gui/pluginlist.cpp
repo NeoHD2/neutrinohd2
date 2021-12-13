@@ -132,14 +132,14 @@ void CPluginList::showMenu()
 	plist->enablePaintDate();
 	plist->setHeadButtons(&CPluginListHeadButtons, 1);
 	
-	////
+	//
 	plist->enableHeadLine();
 	plist->setHeadColor(COL_MENUCONTENT_PLUS_0);
 	plist->setHeadGradient(NOGRADIENT);
-	plist->setHeadCorner(8);
+	//plist->setHeadCorner(8);
 	plist->setFootColor(COL_MENUCONTENT_PLUS_0);
 	plist->setFootGradient(NOGRADIENT);
-	plist->setFootCorner(8);
+	//plist->setFootCorner(8);
 
 	// footer
 	plist->setFootButtons(CPluginListButtons, NUM_LIST_BUTTONS);
