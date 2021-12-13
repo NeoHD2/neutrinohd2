@@ -6,7 +6,7 @@ SUBDIRS = \
 	youtube \
 	systeminfo \
 	tuxcom \
-	mediaplayer \
+	fileplayer \
 	fileexplorer \
 	mediaportal \
 	icecast \

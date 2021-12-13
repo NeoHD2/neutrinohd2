@@ -43,7 +43,7 @@ netzkino/Makefile
 youtube/Makefile
 systeminfo/Makefile
 tuxcom/Makefile
-mediaplayer/Makefile
+fileplayer/Makefile
 tuxcal/Makefile
 tuxcal/daemon/Makefile
 fileexplorer/Makefile
