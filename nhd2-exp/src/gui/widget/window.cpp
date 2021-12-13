@@ -165,7 +165,7 @@ void CWindow::setPosition(CBox* position)
 
 void CWindow::paint()
 {
-	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
 
 	if(enableshadow)
 	{

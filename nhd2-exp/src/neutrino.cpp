@@ -1404,6 +1404,10 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::loadSkin: %s\n", skinName.c_str());
 	
+	// unload
+	unloadSkin();
+	
+	//
 	std::string skinPath = CONFIGDIR "/skin/";
 	skinPath += skinName.c_str();
 	

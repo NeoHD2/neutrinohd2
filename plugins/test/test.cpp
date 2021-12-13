@@ -1392,7 +1392,6 @@ void CTestMenu::testCFrameBoxWidget()
 	int pic_w = box.iWidth/6;
 
 	testWidget = new CWidget(&box);
-	//testWidget->enablePaintMainFrame();
 	
 	headers = new CHeaders(box.iX, box.iY, box.iWidth, 40, "testCFrameBoxWidget", NEUTRINO_ICON_MP3);
 
@@ -1419,7 +1418,6 @@ void CTestMenu::testCFrameBoxWidget()
 	homeFrame->setPosition(box.iX + 10, box.iY + 40, h_w + 10, h_h);
 	homeFrame->setTitle("Home");
 	homeFrame->setHAlign(CC_ALIGN_CENTER);
-	//homeFrame->disablePaintFrame();
 	homeFrame->setActionKey(this, "home");
 
 	frameBoxWidget->addFrame(homeFrame);
@@ -1433,7 +1431,6 @@ void CTestMenu::testCFrameBoxWidget()
 	setupFrame->setPosition(box.iX + 10 + 5 + h_w + 20, box.iY + 40, s_w + 10, h_h);
 	setupFrame->setTitle("Setup");
 	setupFrame->setHAlign(CC_ALIGN_CENTER);
-	//setupFrame->disablePaintFrame();
 	setupFrame->setActionKey(this, "setup");
 
 	frameBoxWidget->addFrame(setupFrame);
@@ -1447,7 +1444,6 @@ void CTestMenu::testCFrameBoxWidget()
 	helpFrame->setPosition(box.iX + 10 + 5 + h_w + 10 + s_w + 40, box.iY + 40, i_w + 4, h_h);
 	helpFrame->setTitle("?");
 	helpFrame->setHAlign(CC_ALIGN_CENTER);
-	//helpFrame->disablePaintFrame();
 	helpFrame->setActionKey(this, "help");
 
 	frameBoxWidget->addFrame(helpFrame);
@@ -3012,7 +3008,7 @@ void CTestMenu::testCHeaders()
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	//headers->setCorner();
 	//headers->setGradient(NOGRADIENT);
-	headers->setTitleMode(CC_ALIGN_CENTER);
+	headers->setMode(CC_ALIGN_CENTER);
 
 	footers = new CFooters(footBox);
 

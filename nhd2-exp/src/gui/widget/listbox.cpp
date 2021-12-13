@@ -2141,7 +2141,8 @@ void ClistBox::paintItems()
 		items_width = itemBox.iWidth;
 
 		// items background
-		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight, paintFrame? bgcolor : 0, radius, corner);
+		if (paintFrame)
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight, bgcolor, radius, corner);
 
 		// item not currently on screen
 		if (selected >= 0)
@@ -2226,6 +2227,7 @@ void ClistBox::paintItems()
 		}
 
 		// paint items background
+		if (paintFrame)
 		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, items_height, bgcolor, radius, corner);
 	
 		// paint right scrollBar if we have more then one page

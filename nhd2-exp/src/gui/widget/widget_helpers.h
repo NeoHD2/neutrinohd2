@@ -538,8 +538,8 @@ class CHeaders : public CWidgetItem
 		virtual ~CHeaders(){};
 
 		void setTitle(const char * const title){htitle = title;};
-		void setTitleIcon(const char * const icon){hicon = icon;};
-		void setTitleMode(const int m){tMode = m;};
+		void setIcon(const char * const icon){hicon = icon;};
+		void setMode(const int m){tMode = m;};
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setCorner(int ra = NO_RADIUS, int co = CORNER_NONE){radius = ra; corner = co;};
 		void setGradient(int grad){gradient = grad;};

@@ -82,6 +82,7 @@ class CSwigHelpers
 		
 		//
 		int run(const char* actionKey){return CNeutrinoApp::getInstance()->exec(NULL, actionKey);};
+		void startSkin(const char* const filename){CNeutrinoApp::getInstance()->startSkin(filename);};
 };
 
 #endif

@@ -146,7 +146,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		std::vector<CPlugins::plugin> skin_list;
 		
 		void loadSkin(std::string skinName);
-		void unloadSkin();
+		void unloadSkin(){skin_list.clear();};
 		void startSkin(const char* const filename);
 		bool skin_exists(const char* const filename);
 		
