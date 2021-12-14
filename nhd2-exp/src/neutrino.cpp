@@ -1384,10 +1384,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("epg_serverbox_gui", g_settings.epg_serverbox_gui);
 
 	// icons dir
-	configfile.setString("icons_dir", g_settings.icons_dir);
-
-	// mode
-	//configfile.setInt32("mode", mode);	
+	configfile.setString("icons_dir", g_settings.icons_dir);	
 
 	if(strcmp(fname, NEUTRINO_SETTINGS_FILE))
 		configfile.saveConfig(fname);
@@ -1418,49 +1415,47 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 	int i = 0;
 
 	i = scandir(skinPath.c_str(), &namelist, 0, 0);
-	
-	printf("\nloadskin:%d\n\n", i);
 
-	if (i >= 0)
+	if (i > 0)
 	{
-	while(i--)
-	{
-		if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
+		while(i--)
 		{
-			std::string filename = skinPath.c_str();
-			filename += "/";
-			filename += namelist[i]->d_name;
-			
-			std::string extension = getFileExt(filename);
-			
-			if ( strcasecmp("lua", extension.c_str()) == 0)
+			if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
 			{
-				//g_PluginList->addPlugin(filename);
-				CPlugins::plugin new_skin;
-	
-				if (!filename.empty())
+				std::string filename = skinPath.c_str();
+				filename += "/";
+				filename += namelist[i]->d_name;
+				
+				std::string extension = getFileExt(filename);
+				
+				if ( strcasecmp("lua", extension.c_str()) == 0)
 				{
-					dprintf(DEBUG_NORMAL, "CNeutrinoApp::add: %s\n", filename.c_str());
+					CPlugins::plugin new_skin;
+		
+					if (!filename.empty())
+					{
+						dprintf(DEBUG_INFO, "CNeutrinoApp::loadskin: add: %s\n", filename.c_str());
+						
+						new_skin.pluginfile = filename;
+						new_skin.type = CPlugins::P_TYPE_LUA;
+						new_skin.hide = true;
+						
+						new_skin.filename = getBaseName(filename);
+						//trim(new_skin.filename, ".lua");
+						new_skin.filename = removeExtension(new_skin.filename);
 					
-					new_skin.pluginfile = filename;
-					new_skin.type = CPlugins::P_TYPE_LUA;
-					new_skin.hide = true;
-					
-					new_skin.filename = getBaseName(filename);
-					trim(new_skin.filename, ".lua");
-				
-					skin_list.push_back(new_skin);
+						skin_list.push_back(new_skin);
+					}
 				}
-			}
+					
+				if ( strcasecmp("ttf", extension.c_str()) == 0)
+					fontFileName = filename;
 				
-			if ( strcasecmp("ttf", extension.c_str()) == 0)
-				fontFileName = filename;
-			
-			filename.clear();			
+				filename.clear();			
+			}
+			free(namelist[i]);
 		}
-		free(namelist[i]);
-	}
-	free(namelist);
+		free(namelist);
 	}
 	
 	if (CNeutrinoApp::getInstance()->skin_exists(skinName.c_str()))
@@ -1471,26 +1466,26 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		
 		i = scandir(fontPath.c_str(), &namelist, 0, 0);
 
-		if (i >= 0)
+		if (i > 0)
 		{
-		while(i--)
-		{
-			if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
+			while(i--)
 			{
-				std::string filename = fontPath.c_str();
-				filename += "/";
-				filename += namelist[i]->d_name;
-				
-				std::string extension = getFileExt(filename);
+				if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
+				{
+					std::string filename = fontPath.c_str();
+					filename += "/";
+					filename += namelist[i]->d_name;
 					
-				if ( strcasecmp("ttf", extension.c_str()) == 0)
-					fontFileName = filename;
-				
-				filename.clear();			
+					std::string extension = getFileExt(filename);
+						
+					if ( strcasecmp("ttf", extension.c_str()) == 0)
+						fontFileName = filename;
+					
+					filename.clear();			
+				}
+				free(namelist[i]);
 			}
-			free(namelist[i]);
-		}
-		free(namelist);
+			free(namelist);
 		}
 		 
 		strcpy( g_settings.font_file, fontFileName.c_str() );
@@ -1545,7 +1540,9 @@ void CNeutrinoApp::startSkin(const char * const filename)
 	for (int i = 0; i <  (int) skin_list.size(); i++)
 	{
 		if ( strcasecmp(filename, skin_list[i].filename.c_str()) == 0)
+		{
 			skinnr = i;
+		}
 	}
 	
 	if (skinnr > -1)
@@ -1560,7 +1557,7 @@ void CNeutrinoApp::startSkin(const char * const filename)
 	}
 	else
 	{
-		dprintf(DEBUG_NORMAL, "CPlugins::startPlugin: could not find %s\n", filename);
+		dprintf(DEBUG_NORMAL, "CPlugins::startSkin: could not find %s\n", filename);
 		
 		std::string hint = filename;
 		hint += " ";
@@ -1589,8 +1586,6 @@ void CNeutrinoApp::firstChannel()
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::firstChannel\n");
 
 	g_Zapit->getLastChannel(firstchannel.channelNumber, firstchannel.mode);
-
-	//dprintf(DEBUG_NORMAL, "CNeutrinoApp::firstChannel: TEST: number:%d\n", firstchannel.channelNumber);
 }
 
 // CNeutrinoApp -  channelsInit, get the Channellist from zapit

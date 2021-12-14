@@ -118,29 +118,7 @@ class CPlugins
 
 		CFrameBuffer	*frameBuffer;
 
-		/*
-		struct plugin
-		{
-			std::string filename;
-			std::string cfgfile;
-			std::string pluginfile;
-			std::string name;
-			std::string description;
-			std::string version;
-			CPlugins::p_type_t type;
-			CPlugins::i_type_t integration;
-			std::string icon;
-			bool hide;
-			
-			bool operator< (const plugin& a) const
-			{
-				return this->filename < a.filename ;
-			}
-		};
-		*/
-
 		int number_of_plugins;
-
 		std::vector<plugin> plugin_list;
 		std::string plugin_dir;
 
