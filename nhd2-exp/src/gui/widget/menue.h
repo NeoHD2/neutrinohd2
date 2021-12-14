@@ -180,6 +180,10 @@ class CMenuWidget : public CMenuTarget
 		int widgetMode;
 		int menu_position;
 		bool headLine;
+		
+		//
+		fb_pixel_t bgcolor;
+		bool def_color;
 
 		// for lua
 		std::string actionKey;
@@ -231,6 +235,9 @@ class CMenuWidget : public CMenuTarget
 		//
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 		neutrino_msg_t getKey(){return msg;};
+		
+		//
+		void setColor(fb_pixel_t col){bgcolor = col; def_color = false;};
 
 		// foot
 		void setFootButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1, const int _fbutton_width = 0);

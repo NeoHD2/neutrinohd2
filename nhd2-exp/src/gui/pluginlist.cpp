@@ -133,11 +133,12 @@ void CPluginList::showMenu()
 	plist->setHeadButtons(&CPluginListHeadButtons, 1);
 	
 	//
+	//plist->setColor(COL_SILVER_PLUS_0);
 	plist->enableHeadLine();
-	plist->setHeadColor(COL_MENUCONTENT_PLUS_0);
+	plist->setHeadColor(COL_NOBEL_PLUS_0);
 	plist->setHeadGradient(NOGRADIENT);
 	//plist->setHeadCorner(8);
-	plist->setFootColor(COL_MENUCONTENT_PLUS_0);
+	plist->setFootColor(COL_NOBEL_PLUS_0);
 	plist->setFootGradient(NOGRADIENT);
 	//plist->setFootCorner(8);
 

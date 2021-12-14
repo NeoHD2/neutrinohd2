@@ -130,6 +130,9 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	//
 	savescreen = false;
 	background = NULL;
+	
+	bgcolor = COL_MENUCONTENT_PLUS_0;
+	def_color = true;
 
 	//
 	fbutton_count	= 0;
@@ -652,7 +655,7 @@ void CMenuWidget::paint()
 		item_start_y = y + hheight + 10;
 
 	// paint background
-	frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight - fheight - cFrameFootInfoHeight, COL_MENUCONTENT_PLUS_0);
+	frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight - fheight - cFrameFootInfoHeight, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
 
 	//
 	paintItems();
@@ -666,7 +669,7 @@ void CMenuWidget::paintItems()
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		// items background
-		frameBuffer->paintBoxRel(x, item_start_y, width, height - hheight - cFrameFootInfoHeight - (fbutton_count != 0? fheight : 0) - 20, COL_MENUCONTENT_PLUS_0);
+		frameBuffer->paintBoxRel(x, item_start_y, width, height - hheight - cFrameFootInfoHeight - (fbutton_count != 0? fheight : 0) - 20, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
 
 		// item not currently on screen
 		if (selected >= 0)
@@ -754,7 +757,7 @@ void CMenuWidget::paintItems()
 		}
 	
 		// paint items background
-		frameBuffer->paintBoxRel(x, item_start_y, width, items_height, COL_MENUCONTENT_PLUS_0);
+		frameBuffer->paintBoxRel(x, item_start_y, width, items_height, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
 
 		if(widgetType == WIDGET_TYPE_EXTENDED && widgetMode == MODE_MENU)
 		{

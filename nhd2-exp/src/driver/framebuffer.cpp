@@ -66,15 +66,6 @@ void add_format(int (*picsize)(const char *,int *,int*,int,int),int (*picread)(c
 //
 static uint32_t * virtual_fb = NULL;
 
-inline uint32_t make16color(uint16_t r, uint16_t g, uint16_t b, uint16_t t,
-				  uint32_t  /*rl*/ = 0, uint32_t  /*ro*/ = 0,
-				  uint32_t  /*gl*/ = 0, uint32_t  /*go*/ = 0,
-				  uint32_t  /*bl*/ = 0, uint32_t  /*bo*/ = 0,
-				  uint32_t  /*tl*/ = 0, uint32_t  /*to*/ = 0)
-{
-	return ((t << 24) & 0xFF000000) | ((r << 8) & 0xFF0000) | ((g << 0) & 0xFF00) | (b >> 8 & 0xFF);
-}
-
 CFrameBuffer::CFrameBuffer()
 : active ( true )
 {
@@ -570,7 +561,7 @@ void CFrameBuffer::paletteSet(struct fb_cmap *map)
 
 	for (int i = 0; i < 256; i++)
 	{
-		realcolor[i] = make16color(cmap.red[i], cmap.green[i], cmap.blue[i], cmap.transp[i], rl, ro, gl, go, bl, bo, tl, to);
+		realcolor[i] = make16Color(cmap.red[i], cmap.green[i], cmap.blue[i], cmap.transp[i], rl, ro, gl, go, bl, bo, tl, to);
 	}
 }
 
@@ -679,6 +670,7 @@ void CFrameBuffer::paintHLineRelInternal2Buf(const int& x, const int& dx, const 
 {
 	uint8_t * pos = ((uint8_t *)buf) + x * sizeof(fb_pixel_t) + box_dx * sizeof(fb_pixel_t) * y;
 	fb_pixel_t * dest = (fb_pixel_t *)pos;
+	
 	for (int i = 0; i < dx; i++)
 		*(dest++) = col;
 }
@@ -820,6 +812,7 @@ void CFrameBuffer::paintHLine(int xa, int xb, int y, const fb_pixel_t col)
 
 	int dx = xb - xa;
 	fb_pixel_t * dest = (fb_pixel_t *)pos;
+	
 	for (int i = 0; i < dx; i++)
 		*(dest++) = col;	
 }
