@@ -99,12 +99,28 @@
 #include <gui/pictureviewer.h>
 #include <gui/filebrowser.h>
 #include <gui/plugins.h>
-//
+#include <gui/eventlist.h>
+#include <gui/epgplus.h>
+#include <gui/epgview.h>
+#include <gui/bouquetlist.h>
+#include <gui/channellist.h>
+#include <gui/dboxinfo.h>
+#include <gui/audio_select.h>
+#include <gui/channel_select.h>
+#include <gui/sleeptimer.h>
+#include <gui/streaminfo2.h>
+#include <gui/timerlist.h>
+#include <gui/imageinfo.h>
+#include <gui/pluginlist.h>
+
+//FIXME:
 #include <gui/main_setup.h>
 #include <gui/power_menu.h>
 #include <gui/epg_menu.h>
+//
 
-//testing
+
+//FIXME: testing
 #include <gui/audioplayer_setup.h>
 
 // zapit
@@ -208,13 +224,28 @@
 %include <src/gui/pictureviewer.h>
 %include <src/gui/filebrowser.h>
 %include <src/gui/plugins.h>
+%include <src/gui/eventlist.h>
+%include <src/gui/epgplus.h>
+%include <src/gui/epgview.h>
+%include <src/gui/bouquetlist.h>
+%include <src/gui/channellist.h>
+%include <src/gui/dboxinfo.h>
+%include <src/gui/audio_select.h>
+%include <src/gui/channel_select.h>
+%include <src/gui/sleeptimer.h>
+%include <src/gui/streaminfo2.h>
+%include <src/gui/timerlist.h>
+%include <src/gui/imageinfo.h>
+%include <src/gui/pluginlist.h>
+
+//FIXME:
 %include <src/gui/power_menu.h>
 %include <src/gui/epg_menu.h>
 //
 //
 %include <src/gui/main_setup.h>
 
-//testing
+//FIXME:testing
 %include <src/gui/audioplayer_setup.h>
 
 // zapit

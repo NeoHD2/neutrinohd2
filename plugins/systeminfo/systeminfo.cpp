@@ -71,6 +71,8 @@ void CSysInfoWidget::paint()
 
 	// settext
 	textBox->setText(buffer.c_str());
+	
+	textBox->refresh();
 }
 
 // paint head
@@ -231,6 +233,9 @@ int CSysInfoWidget::exec(CMenuTarget* parent, const std::string& /*actionKey*/)
 		{
 			mode = SYSINFO;
 			sysinfo();
+			
+			if (textBox)
+				textBox->refresh();
 
 			paintHead();
 			paint();

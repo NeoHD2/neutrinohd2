@@ -221,13 +221,15 @@ void CWidget::hide()
 {
 	dprintf(DEBUG_NORMAL, "CWidget:: hide\n");
 
+/*
 	if (hasItem())
 	{
 		for(unsigned int i = 0; i < items.size(); i++)
 		{
 			items[i]->hide();
 		}
-	}		
+	}
+*/		
 
 	if( savescreen && background)
 	{
