@@ -138,6 +138,7 @@
 #include <gui/dvbsub_select.h>
 #include <gui/movieinfo.h>
 #include <gui/themes.h>
+#include <gui/epg_menu.h>
 
 #include <system/setting_helpers.h>
 #include <system/settings.h>
@@ -3328,6 +3329,7 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				// event list
+				/*
 				CMenuWidget redMenu(LOCALE_INFOVIEWER_EVENTLIST, NEUTRINO_ICON_FEATURES);
 
 				redMenu.setWidgetMode(MODE_MENU);
@@ -3352,6 +3354,14 @@ void CNeutrinoApp::RealRun(void)
 				
 				redMenu.exec(NULL, "");
 				redMenu.hide();
+				*/
+				
+				CEPGMenuHandler* redMenu = new CEPGMenuHandler();
+				
+				redMenu->exec(NULL, "");
+				
+				delete redMenu;
+				redMenu = NULL;
 
 				//
 				StartSubtitles();

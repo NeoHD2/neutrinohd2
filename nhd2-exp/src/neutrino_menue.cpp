@@ -211,6 +211,11 @@ bool CNeutrinoApp::showUserMenu(int button)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::showUserMenu\n");
 	
+	if ( g_settings.use_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
+		CNeutrinoApp::getInstance()->startSkin("usermenu");
+	else	
+	{
+	
         if(button < 0 || button >= SNeutrinoSettings::BUTTON_MAX)
                 return false;
 
@@ -337,6 +342,7 @@ bool CNeutrinoApp::showUserMenu(int button)
 
         if(menu)
 		delete menu;
+	}
 
 	return 0;
 }

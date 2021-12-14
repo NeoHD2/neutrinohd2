@@ -61,6 +61,8 @@ class CColorSetupNotifier : public CChangeObserver
 class CSubtitleChangeExec : public CMenuTarget
 {
 	public:
+		CSubtitleChangeExec(){};
+		~CSubtitleChangeExec(){};
 		int exec(CMenuTarget* parent, const std::string & actionKey);
 };
 
@@ -68,6 +70,8 @@ class CSubtitleChangeExec : public CMenuTarget
 class CNVODChangeExec : public CMenuTarget
 {
 	public:
+		CNVODChangeExec(){};
+		~CNVODChangeExec(){};
 		int exec(CMenuTarget* parent, const std::string & actionKey);
 };
 
@@ -75,6 +79,8 @@ class CNVODChangeExec : public CMenuTarget
 class CTuxtxtChangeExec : public CMenuTarget
 {
 	public:
+		CTuxtxtChangeExec(){};
+		~CTuxtxtChangeExec(){};
 		int exec(CMenuTarget* parent, const std::string & actionKey);
 };
 
@@ -86,6 +92,7 @@ class CUserMenuMenu : public CMenuTarget
                 neutrino_locale_t local;
         public:
                 CUserMenuMenu(neutrino_locale_t _local, int _button){local = _local; button = _button;};
+                ~CUserMenuMenu(){};
                 int exec(CMenuTarget* parent, const std::string & actionKey);
 };
 

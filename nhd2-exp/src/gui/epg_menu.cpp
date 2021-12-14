@@ -69,11 +69,15 @@ int CEPGMenuHandler::exec(CMenuTarget* parent, const std::string &)
 
 int CEPGMenuHandler::doMenu()
 {
+	if ( g_settings.use_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
+		CNeutrinoApp::getInstance()->startSkin("epgmenu");
+	else	
+	{
 	CMenuWidget redMenu(LOCALE_EPGMENU_HEAD, NEUTRINO_ICON_BUTTON_EPG);
 
 	redMenu.setWidgetMode(MODE_MENU);
-	//redMenu.enableShrinkMenu();
-	//redMenu.enableSaveScreen();
+	redMenu.enableShrinkMenu();
+	redMenu.enableSaveScreen();
 
 	// intros
 	redMenu.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
@@ -92,6 +96,7 @@ int CEPGMenuHandler::doMenu()
 	redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_STREAMINFO, true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
 				
 	return redMenu.exec(NULL, "");
+	}
 }
 
 

@@ -74,6 +74,8 @@
 #include <system/httptool.h>
 #include <system/flashtool.h>
 
+#include <system/setting_helpers.h>
+
 // widget
 #include <gui/widget/icons.h>
 #include <gui/widget/drawable.h>
@@ -214,6 +216,8 @@
 //%include <src/system/ytparser.h>
 %include <src/system/httptool.h>
 %include <src/system/flashtool.h>
+
+%include <src/system/setting_helpers.h>
 
 // widget
 %include <src/gui/widget/icons.h>

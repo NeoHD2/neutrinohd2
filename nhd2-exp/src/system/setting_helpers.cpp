@@ -296,6 +296,7 @@ int CUserMenuMenu::exec(CMenuTarget *parent, const std::string &/*actionKey*/)
         menu.addItem(new CMenuSeparator(LINE));
 
         char text[10];
+        
         for(int item = 0; item < SNeutrinoSettings::ITEM_MAX; item++)
         {
                 snprintf(text, 10, "%d:", item);
