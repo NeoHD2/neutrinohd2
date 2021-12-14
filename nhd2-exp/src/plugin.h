@@ -148,7 +148,7 @@
 #include <gui/psisetup.h>
 #include <gui/rc_lock.h>
 #include <gui/mediaplayer.h>
-#include <gui/service_setup.h>
+#include <gui/service_menu.h>
 #include <gui/main_setup.h>
 #include <gui/power_menu.h>
 #include <gui/audio_setup.h>

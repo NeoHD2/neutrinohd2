@@ -82,7 +82,7 @@ libneutrino_gui_a_SOURCES = \
 	zapit_setup.cpp \
 	proxyserver_setup.cpp \
 	themes.cpp \
-	service_setup.cpp \
+	service_menu.cpp \
 	video_setup.cpp \
 	audio_setup.cpp \
 	parentallock_setup.cpp \

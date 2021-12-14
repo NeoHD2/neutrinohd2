@@ -48,7 +48,7 @@
 #include <gui/widget/textbox.h>
 #include <gui/widget/icons.h>
 #include <gui/mediaplayer.h>
-#include <gui/service_setup.h>
+#include <gui/service_menu.h>
 #include <gui/main_setup.h>
 #include <gui/timerlist.h>
 #include <gui/sleeptimer.h>
@@ -75,8 +75,8 @@ void CNeutrinoApp::mainMenu(void)
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::mainMenu:\n");
 	
-	if ( g_settings.use_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
-		CNeutrinoApp::getInstance()->startSkin(g_settings.preferred_skin.c_str());
+	if ( g_settings.use_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
+		CNeutrinoApp::getInstance()->startSkin("mainmenu");
 	else	
 	{
 	CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);

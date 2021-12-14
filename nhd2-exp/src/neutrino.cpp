@@ -120,7 +120,7 @@
 #include <gui/scan_setup.h>
 #include <gui/audio_video_select.h>
 #include <gui/mediaplayer.h>
-#include <gui/service_setup.h>
+#include <gui/service_menu.h>
 #include <gui/main_setup.h>
 #include <gui/audio_setup.h>
 #include <gui/video_setup.h>
@@ -1434,14 +1434,13 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		
 					if (!filename.empty())
 					{
-						dprintf(DEBUG_INFO, "CNeutrinoApp::loadskin: add: %s\n", filename.c_str());
+						dprintf(DEBUG_NORMAL, "CNeutrinoApp::loadskin: add: %s\n", filename.c_str());
 						
 						new_skin.pluginfile = filename;
 						new_skin.type = CPlugins::P_TYPE_LUA;
 						new_skin.hide = true;
 						
 						new_skin.filename = getBaseName(filename);
-						//trim(new_skin.filename, ".lua");
 						new_skin.filename = removeExtension(new_skin.filename);
 					
 						skin_list.push_back(new_skin);
@@ -1569,7 +1568,7 @@ void CNeutrinoApp::startSkin(const char * const filename)
 
 bool CNeutrinoApp::skin_exists(const char* const filename)
 {
-	dprintf(DEBUG_NORMAL, "CNeutrinoApp::startSkin: %s\n", filename);
+	dprintf(DEBUG_NORMAL, "CNeutrinoApp::skin_exists: %s\n", filename);
 	
 	for (int i = 0; i <  (int) skin_list.size(); i++)
 	{

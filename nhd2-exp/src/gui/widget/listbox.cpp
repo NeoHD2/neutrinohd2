@@ -1824,6 +1824,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	bgcolor = COL_MENUCONTENT_PLUS_0;
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
+	def_color = false;
 	
 	item_height = 0;
 	item_width = 0;
@@ -1921,6 +1922,7 @@ ClistBox::ClistBox(CBox* position)
 	bgcolor = COL_MENUCONTENT_PLUS_0;
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
+	def_color = false;
 	
 	//
 	item_height = 0;
@@ -2142,7 +2144,7 @@ void ClistBox::paintItems()
 
 		// items background
 		if (paintFrame)
-		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight, bgcolor, radius, corner);
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor, radius, corner);
 
 		// item not currently on screen
 		if (selected >= 0)
@@ -2228,7 +2230,7 @@ void ClistBox::paintItems()
 
 		// paint items background
 		if (paintFrame)
-		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, items_height, bgcolor, radius, corner);
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, items_height, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor, radius, corner);
 	
 		// paint right scrollBar if we have more then one page
 		if(total_pages > 1)

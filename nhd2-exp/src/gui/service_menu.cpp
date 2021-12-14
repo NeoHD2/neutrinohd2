@@ -41,7 +41,8 @@
 
 #include <gui/widget/hintbox.h>
 
-#include <gui/service_setup.h>
+#include <gui/service_menu.h>
+
 #include <gui/scan_setup.h>
 #include <gui/widget/icons.h>
 #include <gui/update.h>

@@ -112,15 +112,31 @@
 #include <gui/timerlist.h>
 #include <gui/imageinfo.h>
 #include <gui/pluginlist.h>
+#include <gui/bedit/bouqueteditor_bouquets.h>
+#include <gui/update.h>
+#include <gui/cam_menu.h>
+#include <gui/hdd_menu.h>
+#include <gui/rc_lock.h>
+#include <gui/themes.h>
+#include <gui/vfdcontroler.h>
 
-//FIXME:
+//gui/setup
+#include <gui/scan_setup.h>
 #include <gui/main_setup.h>
-#include <gui/power_menu.h>
-#include <gui/epg_menu.h>
-//
-
-
-//FIXME: testing
+#include <gui/audio_setup.h>
+#include <gui/video_setup.h>
+#include <gui/lcd_setup.h>
+#include <gui/misc_setup.h>
+#include <gui/movieplayer_setup.h>
+#include <gui/network_setup.h>
+#include <gui/osd_setup.h>
+#include <gui/parentallock_setup.h>
+#include <gui/pictureviewer_setup.h>
+#include <gui/psisetup.h>
+#include <gui/rc_setup.h>
+#include <gui/recording_setup.h>
+#include <gui/screensetup.h>
+#include <gui/zapit_setup.h>
 #include <gui/audioplayer_setup.h>
 
 // zapit
@@ -237,15 +253,31 @@
 %include <src/gui/timerlist.h>
 %include <src/gui/imageinfo.h>
 %include <src/gui/pluginlist.h>
+%include <src/gui/bedit/bouqueteditor_bouquets.h>
+%include <src/gui/update.h>
+%include <src/gui/cam_menu.h>
+%include <src/gui/hdd_menu.h>
+%include <src/gui/rc_lock.h>
+%include <src/gui/themes.h>
+%include <src/gui/vfdcontroler.h>
 
-//FIXME:
-%include <src/gui/power_menu.h>
-%include <src/gui/epg_menu.h>
-//
-//
+//gui/setup
+%include <src/gui/scan_setup.h>
 %include <src/gui/main_setup.h>
-
-//FIXME:testing
+%include <src/gui/audio_setup.h>
+%include <src/gui/video_setup.h>
+%include <src/gui/lcd_setup.h>
+%include <src/gui/misc_setup.h>
+%include <src/gui/movieplayer_setup.h>
+%include <src/gui/network_setup.h>
+%include <src/gui/osd_setup.h>
+%include <src/gui/parentallock_setup.h>
+%include <src/gui/pictureviewer_setup.h>
+%include <src/gui/psisetup.h>
+%include <src/gui/rc_setup.h>
+%include <src/gui/recording_setup.h>
+%include <src/gui/screensetup.h>
+%include <src/gui/zapit_setup.h>
 %include <src/gui/audioplayer_setup.h>
 
 // zapit
