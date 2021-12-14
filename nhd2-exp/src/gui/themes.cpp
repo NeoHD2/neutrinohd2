@@ -298,6 +298,8 @@ void CThemes::readFile(const char* themename)
 		
 		//FIXME: DIRTY HACK
 		g_settings.rounded_corners = themefile.getInt32("rounded_corners", NO_RADIUS);
+		g_settings.Head_gradient = themefile.getInt32("Head_gradient", DARK2LIGHT2DARK);
+		g_settings.Foot_gradient = themefile.getInt32("Foot_gradient", DARK2LIGHT2DARK);
 
 		notifier = new CColorSetupNotifier;
 		notifier->changeNotify(NONEXISTANT_LOCALE, NULL);

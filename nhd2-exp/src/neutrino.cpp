@@ -1458,7 +1458,7 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		free(namelist);
 	}
 	
-	if (CNeutrinoApp::getInstance()->skin_exists(skinName.c_str()))
+	if (CNeutrinoApp::getInstance()->skin_exists("mainmenu"))
 	{
 		// setup font
 		std::string fontPath = skinPath.c_str();

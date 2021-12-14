@@ -109,17 +109,8 @@ void CServiceSetup::showMenu(void)
 	service->enablePaintFootInfo();
 	service->enablePaintDate();
 	
-	// scan setup
-	if(FrontendCount > 1)
-	{
-		// scan settings
-		service->addItem(new CMenuForwarder(LOCALE_SERVICEMENU_SCANTS, true, NULL, new CTunerSetup(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SCANSETTINGS, LOCALE_HELPTEXT_SCANSETUP));
-	}
-	else
-	{
-		// scan settings
-		service->addItem(new CMenuForwarder(LOCALE_SERVICEMENU_SCANTS, true, NULL, new CScanSetup(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SCANSETTINGS, LOCALE_HELPTEXT_SCANSETUP));
-	}
+	// tuner/scan setup
+	service->addItem(new CMenuForwarder(LOCALE_SERVICEMENU_SCANTS, true, NULL, new CTunerSetup(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SCANSETTINGS, LOCALE_HELPTEXT_SCANSETUP));
 
 	// reload Channels
 	service->addItem(new CMenuForwarder(LOCALE_SERVICEMENU_RELOAD, true, NULL, this, "reloadchannels", RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_RELOADCHANNELS, LOCALE_HELPTEXT_RELOADCHANNELS));
