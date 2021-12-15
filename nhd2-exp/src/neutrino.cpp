@@ -5405,6 +5405,17 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 
 		HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
 	}
+	else if(actionKey == "features")
+	{
+		if(parent)
+			parent->hide();
+		
+		StopSubtitles();
+		showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
+		StartSubtitles();
+				
+		return RETURN_REPAINT;	
+	}
 	if(actionKey == "plugins")
 	{
 		if(parent)

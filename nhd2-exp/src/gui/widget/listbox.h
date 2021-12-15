@@ -583,6 +583,7 @@ class ClistBox : public CWidgetItem
 		bool def_color;
 		int radius;
 		int corner;
+		bool scrolling;
 		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -631,6 +632,7 @@ class ClistBox : public CWidgetItem
 		void disablePaintFrame(void){paintFrame = false;};
 		void setColor(fb_pixel_t col){bgcolor = col; def_color = true;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
+		void disableScrollBar(){scrolling = false;};
 
 		virtual void scrollLineDown(const int lines = 1);
 		virtual void scrollLineUp(const int lines = 1);

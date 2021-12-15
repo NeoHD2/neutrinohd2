@@ -95,7 +95,7 @@ void CPluginList::showMenu()
 
 
 	// widget
-	plist = new CMenuWidget(LOCALE_USERMENU_ITEM_PLUGINS, NEUTRINO_ICON_SHELL, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+	plist = new CMenuWidget(LOCALE_USERMENU_ITEM_PLUGINS, NEUTRINO_ICON_FEATURES, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 
 	//
 	for(unsigned int count = 0; count < (unsigned int)g_PluginList->getNumberOfPlugins(); count++)
@@ -116,8 +116,8 @@ void CPluginList::showMenu()
 			item = new CMenuForwarder(g_PluginList->getName(count), enabled, g_PluginList->getDescription(count).c_str(), CPluginsExec::getInstance(), to_string(count).c_str(), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
 
 			item->set2lines(); 
-			item->enableItemShadow();
-			item->setItemGradient(DARK2LIGHT2DARK);
+			//item->enableItemShadow();
+			//item->setItemGradient(DARK2LIGHT2DARK);
 
 			plist->addItem(item);
 		}
@@ -134,12 +134,12 @@ void CPluginList::showMenu()
 	
 	//
 	//plist->setColor(COL_SILVER_PLUS_0);
-	plist->enableHeadLine();
-	plist->setHeadColor(COL_NOBEL_PLUS_0);
-	plist->setHeadGradient(NOGRADIENT);
+	//plist->enableHeadLine();
+	//plist->setHeadColor(COL_NOBEL_PLUS_0);
+	//plist->setHeadGradient(NOGRADIENT);
 	//plist->setHeadCorner(8);
-	plist->setFootColor(COL_NOBEL_PLUS_0);
-	plist->setFootGradient(NOGRADIENT);
+	//plist->setFootColor(COL_NOBEL_PLUS_0);
+	//plist->setFootGradient(NOGRADIENT);
 	//plist->setFootCorner(8);
 
 	// footer

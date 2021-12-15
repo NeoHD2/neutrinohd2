@@ -193,7 +193,7 @@ int CMenuOptionChooser::exec(CMenuTarget *parent)
 	{
 		int select = -1;
 
-		CMenuWidget *menu = new CMenuWidget(optionNameString.c_str(), NEUTRINO_ICON_SETTINGS);
+		CMenuWidget *menu = new CMenuWidget(optionNameString.c_str());
 
 		menu->setWidgetMode(MODE_SETUP);
 		menu->enableShrinkMenu();
@@ -613,7 +613,7 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 	{
 		int select = -1;
 		
-		CMenuWidget * menu = new CMenuWidget(nameString.c_str(), NEUTRINO_ICON_SETTINGS);
+		CMenuWidget * menu = new CMenuWidget(nameString.c_str());
 		
 		//if(parent) 
 		//	menu->move(20, 0);
@@ -1825,6 +1825,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
 	def_color = false;
+	scrolling = true;
 	
 	item_height = 0;
 	item_width = 0;
@@ -1923,6 +1924,7 @@ ClistBox::ClistBox(CBox* position)
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
 	def_color = false;
+	scrolling = true;
 	
 	//
 	item_height = 0;
@@ -2208,7 +2210,7 @@ void ClistBox::paintItems()
 		sb_width = 0;
 	
 		if(total_pages > 1)
-			sb_width = SCROLLBAR_WIDTH;
+			sb_width = scrolling? SCROLLBAR_WIDTH : 0;
 
 		items_width = itemBox.iWidth - sb_width;
 
@@ -2235,10 +2237,13 @@ void ClistBox::paintItems()
 		// paint right scrollBar if we have more then one page
 		if(total_pages > 1)
 		{
-			if(widgetType == WIDGET_TYPE_EXTENDED)
-				scrollBar.paint(itemBox.iX + 2*(itemBox.iWidth/3) - SCROLLBAR_WIDTH, itemBox.iY + hheight, itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight, total_pages, current_page);
-			else
-				scrollBar.paint(itemBox.iX + itemBox.iWidth - SCROLLBAR_WIDTH, itemBox.iY + hheight, itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight, total_pages, current_page);
+			if (scrolling)
+			{
+				if(widgetType == WIDGET_TYPE_EXTENDED)
+					scrollBar.paint(itemBox.iX + 2*(itemBox.iWidth/3) - SCROLLBAR_WIDTH, itemBox.iY + hheight, itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight, total_pages, current_page);
+				else
+					scrollBar.paint(itemBox.iX + itemBox.iWidth - SCROLLBAR_WIDTH, itemBox.iY + hheight, itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight, total_pages, current_page);
+			}
 		}
 
 		// paint items
