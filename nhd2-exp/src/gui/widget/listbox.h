@@ -675,7 +675,7 @@ class ClistBox : public CWidgetItem
 		std::string getName(){return l_name;};
 		std::string getActionKey(void){return actionKey;}; // lua
 		
-		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
+		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true, bool nlines = false);
 };
 
 #endif // LISTBOX_H_
