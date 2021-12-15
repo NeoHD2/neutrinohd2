@@ -3107,11 +3107,13 @@ void CNeutrinoApp::RealRun(void)
 
 				StartSubtitles();
 			}
-			else if( msg == (neutrino_msg_t) g_settings.key_tvradio_mode && (mode != mode_webtv)) 
+			else if( msg == (neutrino_msg_t) g_settings.key_tvradio_mode /*&& (mode != mode_webtv)*/) //FIXME:
 			{
 				if( mode == mode_tv )
 					radioMode();
 				else if( mode == mode_radio )
+					webtvMode();
+				else if( mode == mode_webtv )
 					tvMode();
 			}
 			else if(( msg == (neutrino_msg_t) g_settings.key_quickzap_up ) || ( msg == (neutrino_msg_t) g_settings.key_quickzap_down ))

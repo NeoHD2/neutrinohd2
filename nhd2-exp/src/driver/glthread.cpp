@@ -79,6 +79,7 @@ void GLThreadObj::initKeys()
 	mSpecialMap[GLUT_KEY_F9] = RC_forward;
 	mSpecialMap[GLUT_KEY_F10] = RC_loop;
 	mSpecialMap[GLUT_KEY_F11] = RC_record;
+	mSpecialMap[GLUT_KEY_F12] = RC_mode;
 
 	mSpecialMap[GLUT_KEY_PAGE_UP]   = RC_page_up;
 	mSpecialMap[GLUT_KEY_PAGE_DOWN] = RC_page_down;
