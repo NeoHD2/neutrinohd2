@@ -839,6 +839,8 @@ void CFrameBuffer::paintFrameBox(const int x, const int y, const int dx, const i
 
 void CFrameBuffer::setIconBasePath(const std::string & iconPath)
 {
+	dprintf(DEBUG_NORMAL, "CFrameBuffer::setIconBasePath: %s\n", iconPath.c_str());
+	
 	iconBasePath = iconPath;
 }
 

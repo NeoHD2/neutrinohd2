@@ -1518,6 +1518,9 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		
 		CThemes* themes = new CThemes();
 		themes->readFile(skinPath.c_str());
+		
+		delete themes;
+		themes = NULL;
 	}
 	else // if changed from last skin fallback to default
 	{
@@ -1578,6 +1581,28 @@ bool CNeutrinoApp::skin_exists(const char* const filename)
 	}
 	
 	return false;
+}
+
+void CNeutrinoApp::unloadSkin()
+{
+	// clearb cache
+	skin_list.clear();
+	
+	// set font to arial
+	strcpy( g_settings.font_file, DATADIR "/neutrino/fonts/arial.ttf");
+		
+	CNeutrinoApp::getInstance()->SetupFonts(DATADIR "/neutrino/fonts/arial.ttf");
+		
+	g_settings.icons_dir = DATADIR "/neutrino/icons/";
+		
+	frameBuffer->setIconBasePath(DATADIR "/neutrino/icons/");
+	
+	// set colors to default
+	CThemes* themes = new CThemes();
+	themes->exec(NULL, "theme_default");
+	
+	delete themes;
+	themes = NULL;
 }
 
 // firstChannel, get the initial channel

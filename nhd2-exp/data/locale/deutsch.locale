@@ -1633,4 +1633,7 @@ audiomenu.volumebar_audiosteps Lautstärke Schrittweite
 
 tmdb.tmdb_info TMDB Infos
 
-
+skin.enable erlaube SKin Auswahl
+skin.skin Skin Auswahl
+	
+	

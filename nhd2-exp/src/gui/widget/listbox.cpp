@@ -1196,6 +1196,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 			if (selected)
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
 			else
+				if (paintFrame)//FIXME:TEST
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 		}
 
@@ -1465,9 +1466,30 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 
 	uint8_t color = COL_MENUCONTENT;
 	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_1 : COL_MENUCONTENT_PLUS_0;
+	
+	///FIXME: TEST
+	fb_pixel_t* buff = NULL;
+	
+	if (!selected)
+	if (!paintFrame)
+	{
+		if (buff)
+		{
+			delete [] buff;
+			buff = NULL;
+		}
+					
+		buff = new fb_pixel_t[dx*height];
+		
+		if (buff)
+		{
+			frameBuffer->saveScreen(x, y, dx, height, buff);
+		}
+	}
 
 	if (selected)
 	{
+		
 		// FIXME:
 		if (parent)
 		{
@@ -1558,9 +1580,25 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		else
 		{
 			if (selected)
-				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			{
+				if (paintFrame) //FIXME: TEST
+					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			}
 			else
-				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+			{
+				if (paintFrame) //FIXME: TEST
+					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+				else
+				{
+					if (buff)
+					{
+						frameBuffer->restoreScreen(x, y, dx, height, buff);
+						
+						delete [] buff;
+						buff = NULL;
+					}
+				}
+			}
 		}
 			
 	

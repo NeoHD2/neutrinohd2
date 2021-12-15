@@ -131,9 +131,9 @@ void CDBoxInfoWidget::showInfo()
 	// head
 	CHeaders* head = new CHeaders(Box.iX, yPos, Box.iWidth, 40, "Box Info", NEUTRINO_ICON_INFO);
 	head->enablePaintDate();
-	head->setCorner(NO_RADIUS, CORNER_ALL);
-	head->setGradient(NOGRADIENT);
-	head->setColor(COL_INFOBAR_SHADOW_PLUS_1);
+	//head->setCorner(NO_RADIUS, CORNER_ALL);
+	//head->setGradient(NOGRADIENT);
+	//head->setColor(COL_INFOBAR_SHADOW_PLUS_1);
 
 	int i = 0;
 
@@ -471,7 +471,7 @@ void CInfo::showMenu()
 	
 	infoMenu->addItem(new CMenuForwarder(LOCALE_SERVICEMENU_IMAGEINFO,  true, NULL, new CImageInfo(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_IMAGEINFO, LOCALE_HELPTEXT_IMAGEINFO), false);
 	
-	infoMenu->addItem(new CMenuForwarder(LOCALE_EPGMENU_STREAMINFO, true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	infoMenu->addItem(new CMenuForwarder(LOCALE_EPGMENU_STREAMINFO, true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO));
 	
 	infoMenu->integratePlugins(CPlugins::I_TYPE_MAIN);
 	

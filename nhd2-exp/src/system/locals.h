@@ -1643,7 +1643,11 @@ typedef enum {
 	LOCALE_AUDIOMENU_VOLUMEBAR_AUDIOSTEPS,
 
 	// tmdb
-	LOCALE_TMDB_INFO
+	LOCALE_TMDB_INFO,
+	
+	//
+	LOCALE_SKIN_ENABLE,
+	LOCALE_SKIN_SKIN
 } neutrino_locale_t;
 
 #endif

@@ -100,7 +100,7 @@ void COSDSettings::showMenu(void)
 	osdSettings->enablePaintDate();
 	
 	// skin
-	osdSettings->addItem( new CMenuForwarder("Skin Auswahl", g_settings.use_skin, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
+	osdSettings->addItem( new CMenuForwarder(LOCALE_SKIN_SKIN, g_settings.use_skin, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 
 	// Themes
 	CThemes * osdSettings_Themes = new CThemes();
@@ -766,8 +766,10 @@ void COSDDiverses::showMenu()
 	// menu position
 	//osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_MENU_POSITION, &g_settings.menu_position, MENU_POSITION_OPTIONS, MENU_POSITION_OPTION_COUNT, true));
 	
+	CSkinNotifier skinNotifier;
+	
 	// use skin?
-	osdDiverseSettings.addItem(new CMenuOptionChooser("enable User Skin:", &g_settings.use_skin, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_SKIN_ENABLE, &g_settings.use_skin, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, &skinNotifier));
 
 	// corners
 	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_ROUNDED_CORNERS, &g_settings.rounded_corners, MENU_CORNERSETTINGS_TYPE_OPTIONS, MENU_CORNERSETTINGS_TYPE_OPTION_COUNT, true));
@@ -821,6 +823,10 @@ void CSkinManager::showMenu()
 	delete skinMenu;
 	skinMenu = NULL;
 */
+	// unload
+	CNeutrinoApp::getInstance()->unloadSkin();
+	
+	//
 	CFileBrowser skinBrowser;
 	
 	skinBrowser.Dir_Mode = true;
@@ -829,10 +835,13 @@ void CSkinManager::showMenu()
 	std::string skinDir = CONFIGDIR "/skin";
 	
 	if (skinBrowser.exec(skinDir.c_str()))
-		//strncpy(g_settings.network_nfs_picturedir, b.getSelectedFile()->Name.c_str(), sizeof(g_settings.network_nfs_picturedir)-1);
+	{
 		g_settings.preferred_skin = skinBrowser.getSelectedFile()->getFileName().c_str();
 		
-	CNeutrinoApp::getInstance()->loadSkin(g_settings.preferred_skin);
+		CNeutrinoApp::getInstance()->loadSkin(g_settings.preferred_skin);
+	
+		CNeutrinoApp::getInstance()->exec(NULL, "restart");
+	}
 }
 
 int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
@@ -848,6 +857,26 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 	
 	return RETURN_EXIT;
 }
+
+// skinnotifier
+bool CSkinNotifier::changeNotify(const neutrino_locale_t OptionName, void *)
+{
+	dprintf(DEBUG_NORMAL, "CSkinNotifier::changeNotify:\n");
+		
+	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_SKIN_ENABLE))
+	{
+		if (!g_settings.use_skin)
+		{
+			CNeutrinoApp::getInstance()->unloadSkin();
+			CNeutrinoApp::getInstance()->exec(NULL, "restart");
+		}
+			
+		return true;
+	}
+
+	return false;
+}
+
 
 
 

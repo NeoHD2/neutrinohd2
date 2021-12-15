@@ -1642,7 +1642,11 @@ const char * locale_real_names[] = {
 	"audiomenu.volumebar_audiosteps",
 	
 	// tmdb
-	"tmdb.tmdb_info"
+	"tmdb.tmdb_info",
+	
+	//
+	"skin.enable",
+	"skin.skin",
 };
 
 #endif

@@ -493,7 +493,7 @@ CLabel::CLabel()
 	color = COL_MENUCONTENT;
 	paintBG = false; 
 	utf8 = true; 
-	font = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
+	font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE];
 	height = font->getHeight();
 	width = 0;
 	halign = CC_ALIGN_LEFT;

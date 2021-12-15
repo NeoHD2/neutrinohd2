@@ -391,6 +391,8 @@ void CThemes::saveFile(const char * themename)
 // setup default Colors
 void CThemes::setupDefaultColors()
 {
+	dprintf(DEBUG_NORMAL, "CThemes::setupDefaultColors\n");
+	
 	g_settings.menu_Head_alpha = 15;
 	g_settings.menu_Head_red = 15;
 	g_settings.menu_Head_green = 15;

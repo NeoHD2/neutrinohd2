@@ -54,6 +54,7 @@ class CWindow : public CWidgetItem
 		//
 		bool enableshadow;
 		bool centerPos;
+		bool paintFrame;
 		
 		//
 		std::vector<CComponent*> CCItems;
@@ -73,6 +74,7 @@ class CWindow : public CWidgetItem
 		void enableSaveScreen();
 
 		void enableCenterPos(){centerPos = true; init();};
+		void disablePaintFrame(){paintFrame = false;};
 
 		void paint();
 		void hide();

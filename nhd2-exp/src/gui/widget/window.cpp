@@ -77,6 +77,7 @@ void CWindow::init()
 	gradient = NOGRADIENT;
 
 	enableshadow = false;
+	paintFrame = true;
 
 	savescreen = false;
 	background = NULL;
@@ -105,18 +106,18 @@ void CWindow::saveScreen()
 
 	if (savescreen)
 	{
-	if(background)
-	{
-		delete[] background;
-		background = NULL;
-	}
+		if(background)
+		{
+			delete[] background;
+			background = NULL;
+		}
 
-	background = new fb_pixel_t[itemBox.iWidth*itemBox.iHeight];
-	
-	if(background)
-	{
-		frameBuffer->saveScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
-	}
+		background = new fb_pixel_t[itemBox.iWidth*itemBox.iHeight];
+		
+		if(background)
+		{
+			frameBuffer->saveScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+		}
 	}
 }
 
@@ -167,16 +168,21 @@ void CWindow::paint()
 {
 	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
 
-	if(enableshadow)
+	if (paintFrame)
 	{
-		// shadow
-		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+		if(enableshadow)
+		{
+			// shadow
+			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
 
-		// window Box
-		frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, NO_RADIUS, CORNER_NONE, gradient);
+			// window Box
+			frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, NO_RADIUS, CORNER_NONE, gradient);
+		}
+		else
+		{
+			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
+		}
 	}
-	else
-		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
 		
 	//CCItems
 	if (hasItem())
