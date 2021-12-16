@@ -1468,25 +1468,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_1 : COL_MENUCONTENT_PLUS_0;
 	
 	///FIXME: TEST	
-	/*
-	fb_pixel_t* buff = NULL;
-	
-	if (!paintFrame)
-	{
-		if (buff)
-		{
-			delete [] buff;
-			buff = NULL;
-		}
-					
-		buff = new fb_pixel_t[dx*height];
-		
-		if (buff)
-		{
-			frameBuffer->saveScreen(x, y, dx, height, buff);
-		}
-	}
-	*/	
+	fb_pixel_t* buff = NULL;	
 
 	if (selected)
 	{
@@ -1581,25 +1563,37 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		{
 			if (selected)
 			{
+				
+				if (buff)
+				{
+					delete [] buff;
+					buff = NULL;
+				}
+								
+				buff = new fb_pixel_t[dx*height];
+					
+				if (buff)
+				{
+					frameBuffer->saveScreen(x, y, dx, height, buff);
+				}	
+	
 				//if (paintFrame) //FIXME: TEST
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
 			}
 			else
 			{
-				//if (paintFrame) //FIXME: TEST
-					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, NOGRADIENT);
-				
-				/*
+				if (buff)
 				{
-					if (buff)
-					{
-						frameBuffer->restoreScreen(x, y, dx, height, buff);
+					frameBuffer->restoreScreen(x, y, dx, height, buff);
 						
-						delete [] buff;
-						buff = NULL;
-					}
+					delete [] buff;
+					buff = NULL;
 				}
-				*/
+				else
+				{
+					//if (paintFrame) //FIXME: TEST
+					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, NOGRADIENT);
+				}
 			}
 		}
 			
@@ -2182,12 +2176,12 @@ void ClistBox::paintItems()
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		item_start_y = itemBox.iY + hheight + 10;
-		items_height = itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight; 
+		items_height = itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight - 20;  //TEST
 		items_width = itemBox.iWidth;
 
 		// items background
-		if (paintFrame)
-		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, itemBox.iHeight - hheight - fheight /*- cFrameFootInfoHeight*/, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor, radius, corner); // bad if items.size() == 0
+		//if (paintFrame)
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, itemBox.iHeight - hheight - fheight, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor, radius, corner);
 
 		// item not currently on screen
 		if (selected >= 0)
@@ -2246,6 +2240,7 @@ void ClistBox::paintItems()
 	}
 	else
 	{
+		item_start_y = itemBox.iY + hheight;
 		items_height = itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight; 
 
 		sb_width = 0;

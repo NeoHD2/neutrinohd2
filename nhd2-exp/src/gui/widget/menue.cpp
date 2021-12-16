@@ -639,13 +639,13 @@ void CMenuWidget::paint()
 	paintFoot();
 
 	//
-	item_start_y = y + hheight;
+	//item_start_y = y + hheight;
 
-	if(widgetType == WIDGET_TYPE_FRAME)
-		item_start_y = y + hheight + 10;
+	//if(widgetType == WIDGET_TYPE_FRAME)
+	//	item_start_y = y + hheight + 10;
 
 	// paint background
-	frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight - fheight - cFrameFootInfoHeight, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
+	//frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight - fheight - cFrameFootInfoHeight, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
 
 	//
 	paintItems();
@@ -658,8 +658,12 @@ void CMenuWidget::paintItems()
 	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
+		item_start_y = y + hheight + 10;
+		items_height = height - hheight - fheight - cFrameFootInfoHeight - 20;  //TEST
+		items_width = width;
+		
 		// items background
-		frameBuffer->paintBoxRel(x, item_start_y, width, height - hheight - cFrameFootInfoHeight - (fbutton_count != 0? fheight : 0) - 20, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
+		frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight - fheight, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
 
 		// item not currently on screen
 		if (selected >= 0)
@@ -719,6 +723,8 @@ void CMenuWidget::paintItems()
 	}
 	else
 	{
+		item_start_y = y + hheight;
+		
 		// items height
 		items_height = height - hheight - fheight - cFrameFootInfoHeight;
 	
@@ -749,6 +755,9 @@ void CMenuWidget::paintItems()
 		// paint items background
 		frameBuffer->paintBoxRel(x, item_start_y, width, items_height, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
 
+		//TEST
+		//frameBuffer->paintVLineRel(x + items_width, y + hheight + 10, items_height - 20, COL_MENUCONTENTDARK_PLUS_0);
+		
 		if(widgetType == WIDGET_TYPE_EXTENDED && widgetMode == MODE_MENU)
 		{
 			frameBuffer->paintBoxRel(x + items_width, item_start_y, width - items_width, items_height, COL_MENUCONTENTDARK_PLUS_0);

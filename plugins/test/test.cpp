@@ -221,9 +221,6 @@ class CTestMenu : public CMenuTarget
 		// channel/bouquet list
 		void testCChannellist();
 		void testCBouquetlist();
-		
-		// skin
-		void testCSkin();
 
 	public:
 		CTestMenu();
@@ -5686,67 +5683,6 @@ void CTestMenu::testCBouquetlist()
 	webTVBouquetList->exec(true); // with zap
 }
 
-//
-void CTestMenu::testCSkin()
-{
-
-	dprintf(DEBUG_NORMAL, "CTestMenu::testCSkin\n");
-	
-	// load skin
-	struct dirent **namelist;
-	int i = 0;
-	std::string skinPath;
-	std::string selectedSkin = "default";
-
-	i = scandir(CONFIGDIR "/skin/default", &namelist, 0, 0);
-	if(i < 0)
-	{
-		return;
-	}
-
-	while(i--)
-	{
-		if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
-		{
-			skinPath += CONFIGDIR "/skin/default";
-			skinPath += "/";
-			skinPath += namelist[i]->d_name;
-			
-			printf("\nskin:%s\n", skinPath.c_str());
-			
-			std::string extension = getFileExt(skinPath);
-			
-			if( strcasecmp("lua", extension.c_str()) == 0)
-				g_PluginList->addPlugin(skinPath);
-			
-			////
-			skinPath.clear();			
-		}
-		free(namelist[i]);
-	}
-	
-	free(namelist);
-	
-	// setIconPath
-	
-	// loadThems
-	CThemes* themes = new CThemes();
-	themes->readFile(CONFIGDIR "/skin/default/default.config");
-	
-	//
-	testWidget = new CWidget();
-	
-	testWidget->addKey(RC_setup, this, "skin_setup");
-	
-	testWidget->exec(NULL, "");
-	
-	delete testWidget;
-	testWidget = NULL;
-	
-	delete themes;
-	themes = NULL;	
-}
-
 // exec
 int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 {
@@ -7498,18 +7434,6 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		
 		return RETURN_REPAINT;
 	}
-	else if (actionKey == "skin")
-	{
-		testCSkin();
-		
-		return RETURN_REPAINT;
-	}
-	else if (actionKey == "skin_setup")
-	{
-		g_PluginList->startPlugin("default");
-		
-		return RETURN_REPAINT;
-	}
 
 	showMenu();
 	
@@ -7543,9 +7467,6 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CWidget(CFrameBox)", true, NULL, this, "firetv"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox|CWindow)", true, NULL, this, "multiwidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistBox|CFrameBox)", true, NULL, this, "widget"));
-	
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget(CSkin)"));
-	mainMenu->addItem(new CMenuForwarder("CWidget(CSkin)", true, NULL, this, "skin"));
 
 	//
 	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CMenuItem(ClistBox)"));
