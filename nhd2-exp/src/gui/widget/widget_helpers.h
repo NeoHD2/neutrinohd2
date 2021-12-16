@@ -273,7 +273,7 @@ class CItems2DetailsLine : public CComponent
 		
 		//
 		CItems2DetailsLine();
-		virtual ~CItems2DetailsLine(){};
+		virtual ~CItems2DetailsLine();
 		
 		//
 		void disablePaintLines(){paintLines = false;};
@@ -474,7 +474,7 @@ class CWidgetItem
 
 		int itemType;
 		bool inFocus;
-		bool paintDate;
+		//bool paintDate;
 		std::string actionKey; // lua
 		
 		//
@@ -486,6 +486,7 @@ class CWidgetItem
 
 		virtual bool isSelectable(void){return false;}
 		virtual bool hasItem(){return false;};
+		virtual bool update(){return false;};
 
 		virtual void paint(){painted = true;};
 		virtual void hide(){painted = false;};
@@ -503,10 +504,11 @@ class CWidgetItem
 		virtual inline CBox getWindowsPos(void){return (itemBox);};
 
 		virtual int getWidgetType(){return (4);};
-		virtual void enablePaintDate(void){paintDate = true;};
+		//virtual void enablePaintDate(void){paintDate = true;};
 
 		virtual int oKKeyPressed(CMenuTarget *parent){return 0;};
 		virtual void homeKeyPressed(){};
+		//virtual void onDirectKeyPressed(neutrino_msg_t msg);
 		
 		//
 		virtual std::string getActionKey(void){ return actionKey;}; // lua
@@ -549,6 +551,7 @@ class CHeaders : public CWidgetItem
 		//
 		void paint();
 		void hide();
+		bool update() const {return paintDate;};
 };
 
 // CFooters

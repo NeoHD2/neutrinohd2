@@ -332,6 +332,15 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 				frameBuffer->blit();
 				continue;
 			}
+			
+			////TEST
+			/*
+			if(hasItem() && selected >= 0)
+				if (items[selected]->hasItem() && items[selected]->isSelectable())
+				{
+					items[selected]->onDirectKeyPressed(msg);
+				}
+			*/
 		}
 
 		if (!handled) 
@@ -341,7 +350,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 				// update time
 				for (unsigned int i = 0; i < items.size(); i++)
 				{
-					if( (items[i]->itemType == WIDGET_ITEM_HEAD) /*&& (items[i]->paintDate)*/ )
+					if (items[i]->update())
 					{
 						items[i]->paint();
 					}

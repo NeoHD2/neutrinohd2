@@ -124,7 +124,7 @@ void CDBoxInfoWidget::showInfo()
 	dboxInfo = new CWidget(&Box);
 	
 	m_window = new CWindow(&Box);
-	m_window->setCorner(NO_RADIUS, CORNER_ALL);
+	m_window->setCorner(RADIUS_MID, CORNER_ALL);
 	
 	int yPos = Box.iY;
 	
@@ -463,7 +463,7 @@ void CInfo::showMenu()
 	
 	infoMenu->setWidgetMode(MODE_MENU);
 	infoMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
-	infoMenu->enableWidgetChange();
+	infoMenu->setMenuPosition(MENU_POSITION_LEFT);
 	infoMenu->enablePaintDate();
 	infoMenu->enableShrinkMenu();
 	
@@ -471,7 +471,7 @@ void CInfo::showMenu()
 	
 	infoMenu->addItem(new CMenuForwarder(LOCALE_SERVICEMENU_IMAGEINFO,  true, NULL, new CImageInfo(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_IMAGEINFO, LOCALE_HELPTEXT_IMAGEINFO), false);
 	
-	infoMenu->addItem(new CMenuForwarder(LOCALE_EPGMENU_STREAMINFO, true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO));
+	infoMenu->addItem(new CMenuForwarder(LOCALE_STREAMINFO_HEAD, true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO));
 	
 	infoMenu->integratePlugins(CPlugins::I_TYPE_MAIN);
 	

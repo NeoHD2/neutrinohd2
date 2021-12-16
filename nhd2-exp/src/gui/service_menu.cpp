@@ -103,7 +103,6 @@ void CServiceSetup::showMenu(void)
 
 	service->setWidgetMode(MODE_MENU);
 	service->setWidgetType(WIDGET_TYPE_CLASSIC);
-	service->enableWidgetChange();
 	service->enableShrinkMenu();
 	service->setMenuPosition(MENU_POSITION_LEFT);
 	service->enablePaintFootInfo();

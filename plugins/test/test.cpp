@@ -5547,11 +5547,8 @@ void CTestMenu::testCMenuWidget()
 	menuWidget->addWidget(WIDGET_TYPE_CLASSIC);
 	menuWidget->addWidget(WIDGET_TYPE_EXTENDED);
 	menuWidget->addWidget(WIDGET_TYPE_FRAME);
-	//menuWidget->enableWidgetChange();
 	menuWidget->setItemsPerPage(6, 2);
 	menuWidget->enableShrinkMenu();
-
-	//menuWidget->setSelected(selected);
 
 	// head
 	menuWidget->enablePaintDate();
@@ -5565,6 +5562,7 @@ void CTestMenu::testCMenuWidget()
 	menuWidget->setFootInfoMode(FOOT_HINT_MODE);
 
 	menuWidget->addKey(RC_info, this, "minfo");
+	menuWidget->addKey(RC_setup, this, "lsetup");
 
 	menuWidget->exec(NULL, "");
 
@@ -5604,11 +5602,12 @@ void CTestMenu::testCMenuWidget1()
 	}
 
 	menuWidget->setWidgetMode(MODE_MENU);
+	menuWidget->setWidgetType(WIDGET_TYPE_STANDARD);
+	menuWidget->addWidget(WIDGET_TYPE_CLASSIC);
+	menuWidget->addWidget(WIDGET_TYPE_EXTENDED);
+	menuWidget->addWidget(WIDGET_TYPE_FRAME);
 	menuWidget->setItemsPerPage(6, 2);
-	//menuWidget->enableWidgetChange();
 	menuWidget->enableShrinkMenu();
-
-	//menuWidget->setSelected(selected);
 
 	// head
 	menuWidget->enablePaintDate();
@@ -5622,6 +5621,7 @@ void CTestMenu::testCMenuWidget1()
 	menuWidget->setFootInfoMode(FOOT_HINT_MODE);
 
 	menuWidget->addKey(RC_info, this, "minfo");
+	menuWidget->addKey(RC_setup, this, "lsetup");
 
 	menuWidget->exec(NULL, "");
 
@@ -6731,6 +6731,8 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	{
 		if (rightWidget)
 			rightWidget->changeWidgetType();
+		else if (menuWidget)
+			menuWidget->changeWidgetType();
 
 		return RETURN_NONE;
 	}

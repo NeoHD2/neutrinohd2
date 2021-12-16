@@ -173,7 +173,6 @@ class CMenuWidget : public CMenuTarget
 		int widgetType;
 		std::vector<int> widget;
 		int cnt;
-		bool widgetChange;
 
 		//
 		bool shrinkMenu;
@@ -262,7 +261,6 @@ class CMenuWidget : public CMenuTarget
 		void setWidgetType(int type){widgetType = type; widget.push_back(widgetType);};
 		int getWidgetType(){return widgetType;};
 		void addWidget(int wtype){widget.push_back(wtype);};
-		void enableWidgetChange(){widgetChange = true;};
 		void changeWidgetType();
 		void setWidgetMode(int mode){widgetMode = mode;};
 		void setMenuPosition(int p){menu_position = p;};

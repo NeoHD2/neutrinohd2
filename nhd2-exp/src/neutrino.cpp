@@ -1397,7 +1397,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	}
 }
 
-//
+// skin
 void CNeutrinoApp::loadSkin(std::string skinName)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::loadSkin: %s\n", skinName.c_str());
@@ -1512,15 +1512,15 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		frameBuffer->setIconBasePath(g_settings.icons_dir);
 		
 		// setup colors / corners / position
-		skinPath += "/";
-		skinPath += skinName.c_str();
-		skinPath += ".config";
+		//skinPath += "/";
+		//skinPath += skinName.c_str();
+		//skinPath += ".config";
 		
-		CThemes* themes = new CThemes();
-		themes->readFile(skinPath.c_str());
+		//CThemes* themes = new CThemes();
+		readSkinConfig(skinName.c_str());
 		
-		delete themes;
-		themes = NULL;
+		//delete themes;
+		//themes = NULL;
 	}
 	else // if changed from last skin fallback to default
 	{
@@ -1603,6 +1603,205 @@ void CNeutrinoApp::unloadSkin()
 	
 	delete themes;
 	themes = NULL;
+}
+
+//
+void CNeutrinoApp::readSkinConfig(const char* const filename)
+{
+	dprintf(DEBUG_NORMAL, "CNeutrinpApp::readSkinConfig %s\n", filename);
+	
+	CConfigFile* skinConfig = new CConfigFile(',');
+	
+	// fetch skin config file
+	std::string skinPath = CONFIGDIR "/skin/";
+	skinPath += filename;
+	skinPath += "/";
+	skinPath += filename;
+	skinPath += ".config";
+	
+	if(skinConfig->loadConfig(skinPath.c_str()))
+	{
+		g_settings.menu_Head_alpha = skinConfig->getInt32( "menu_Head_alpha", 15);
+		g_settings.menu_Head_red = skinConfig->getInt32( "menu_Head_red", 15);
+		g_settings.menu_Head_green = skinConfig->getInt32( "menu_Head_green", 15);
+		g_settings.menu_Head_blue = skinConfig->getInt32( "menu_Head_blue", 15);
+
+		g_settings.menu_Head_Text_alpha = skinConfig->getInt32( "menu_Head_Text_alpha", 0);
+		g_settings.menu_Head_Text_red = skinConfig->getInt32( "menu_Head_Text_red", 100 );
+		g_settings.menu_Head_Text_green = skinConfig->getInt32( "menu_Head_Text_green", 100 );
+		g_settings.menu_Head_Text_blue = skinConfig->getInt32( "menu_Head_Text_blue", 100 );
+	
+		g_settings.menu_Content_alpha = skinConfig->getInt32( "menu_Content_alpha", 20);
+		g_settings.menu_Content_red = skinConfig->getInt32( "menu_Content_red", 25);
+		g_settings.menu_Content_green = skinConfig->getInt32( "menu_Content_green", 25);
+		g_settings.menu_Content_blue = skinConfig->getInt32( "menu_Content_blue", 25);
+		
+		g_settings.menu_Content_Text_alpha = skinConfig->getInt32( "menu_Content_Text_alpha", 0);
+		g_settings.menu_Content_Text_red = skinConfig->getInt32( "menu_Content_Text_red", 85 );
+		g_settings.menu_Content_Text_green = skinConfig->getInt32( "menu_Content_Text_green", 85 );
+		g_settings.menu_Content_Text_blue = skinConfig->getInt32( "menu_Content_Text_blue", 85 );
+	
+		g_settings.menu_Content_Selected_alpha = skinConfig->getInt32( "menu_Content_Selected_alpha", 20);
+		g_settings.menu_Content_Selected_red = skinConfig->getInt32( "menu_Content_Selected_red", 75);
+		g_settings.menu_Content_Selected_green = skinConfig->getInt32( "menu_Content_Selected_green", 75);
+		g_settings.menu_Content_Selected_blue = skinConfig->getInt32( "menu_Content_Selected_blue", 75);
+		
+		g_settings.menu_Content_Selected_Text_alpha = skinConfig->getInt32( "menu_Content_Selected_Text_alpha", 0);
+		g_settings.menu_Content_Selected_Text_red = skinConfig->getInt32( "menu_Content_Selected_Text_red", 25 );
+		g_settings.menu_Content_Selected_Text_green = skinConfig->getInt32( "menu_Content_Selected_Text_green", 25 );
+		g_settings.menu_Content_Selected_Text_blue = skinConfig->getInt32( "menu_Content_Selected_Text_blue", 25 );
+	
+		g_settings.menu_Content_inactive_alpha = skinConfig->getInt32( "menu_Content_inactive_alpha", 20);
+		g_settings.menu_Content_inactive_red = skinConfig->getInt32( "menu_Content_inactive_red", 25);
+		g_settings.menu_Content_inactive_green = skinConfig->getInt32( "menu_Content_inactive_green", 25);
+		g_settings.menu_Content_inactive_blue = skinConfig->getInt32( "menu_Content_inactive_blue", 25);
+		
+		g_settings.menu_Content_inactive_Text_alpha = skinConfig->getInt32( "menu_Content_inactive_Text_alpha", 0);
+		g_settings.menu_Content_inactive_Text_red = skinConfig->getInt32( "menu_Content_inactive_Text_red", 55);
+		g_settings.menu_Content_inactive_Text_green = skinConfig->getInt32( "menu_Content_inactive_Text_green", 55);
+		g_settings.menu_Content_inactive_Text_blue = skinConfig->getInt32( "menu_Content_inactive_Text_blue", 55);
+
+		g_settings.infobar_alpha = skinConfig->getInt32( "infobar_alpha", 20);
+		g_settings.infobar_red = skinConfig->getInt32( "infobar_red", 25);
+		g_settings.infobar_green = skinConfig->getInt32( "infobar_green", 25);
+		g_settings.infobar_blue = skinConfig->getInt32( "infobar_blue", 25);
+		
+		g_settings.infobar_Text_alpha = skinConfig->getInt32( "infobar_Text_alpha", 0);
+		g_settings.infobar_Text_red = skinConfig->getInt32( "infobar_Text_red", 100);
+		g_settings.infobar_Text_green = skinConfig->getInt32( "infobar_Text_green", 100);
+		g_settings.infobar_Text_blue = skinConfig->getInt32( "infobar_Text_blue", 100);
+		
+		g_settings.infobar_colored_events_alpha = skinConfig->getInt32( "infobar_colored_events_alpha", 0);
+		g_settings.infobar_colored_events_red = skinConfig->getInt32( "infobar_colored_events_red", 95);
+		g_settings.infobar_colored_events_green = skinConfig->getInt32( "infobar_colored_events_green", 70);
+		g_settings.infobar_colored_events_blue = skinConfig->getInt32( "infobar_colored_events_blue", 0);
+	
+		g_settings.menu_Foot_alpha = skinConfig->getInt32( "menu_Foot_alpha", 15);
+		g_settings.menu_Foot_red = skinConfig->getInt32( "menu_Foot_red", 15);
+		g_settings.menu_Foot_green = skinConfig->getInt32( "menu_Foot_green", 15);
+		g_settings.menu_Foot_blue = skinConfig->getInt32( "menu_Foot_blue", 15);
+		
+		g_settings.menu_Foot_Text_alpha = skinConfig->getInt32( "menu_Foot_Text_alpha", 0);
+		g_settings.menu_Foot_Text_red = skinConfig->getInt32( "menu_Foot_Text_red", 100);
+		g_settings.menu_Foot_Text_green = skinConfig->getInt32( "menu_Foot_Text_green", 100);
+		g_settings.menu_Foot_Text_blue = skinConfig->getInt32( "menu_Foot_Text_blue", 100);
+
+		g_settings.menu_FootInfo_alpha = skinConfig->getInt32( "menu_FootInfo_alpha", 20);
+		g_settings.menu_FootInfo_red = skinConfig->getInt32( "menu_FootInfo_red", 25);
+		g_settings.menu_FootInfo_green = skinConfig->getInt32( "menu_FootInfo_green", 25);
+		g_settings.menu_FootInfo_blue = skinConfig->getInt32( "menu_FootInfo_blue", 25);
+		
+		g_settings.menu_FootInfo_Text_alpha = skinConfig->getInt32( "menu_FootInfo_Text_alpha", 0);
+		g_settings.menu_FootInfo_Text_red = skinConfig->getInt32( "menu_FootInfo_Text_red", 85);
+		g_settings.menu_FootInfo_Text_green = skinConfig->getInt32( "menu_FootInfo_Text_green", 85);
+		g_settings.menu_FootInfo_Text_blue = skinConfig->getInt32( "menu_FootInfo_Text_blue", 85);
+		
+		//
+		g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
+		g_settings.Head_gradient = skinConfig->getInt32("Head_gradient", DARK2LIGHT2DARK);
+		g_settings.Foot_gradient = skinConfig->getInt32("Foot_gradient", DARK2LIGHT2DARK);
+		
+		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
+
+		colorSetupNotifier = new CColorSetupNotifier;
+		colorSetupNotifier->changeNotify(NONEXISTANT_LOCALE, NULL);
+		
+		delete colorSetupNotifier;
+	}
+	else
+		printf("CNeutrinoApp::readSkinConfig: %s not found\n", skinPath.c_str());
+}
+
+void CNeutrinoApp::saveSkinConfig(const char * const filename)
+{
+	dprintf(DEBUG_NORMAL, "CNeutrinoApp::saveFile: %s\n", filename);
+	
+	CConfigFile* skinConfig = new CConfigFile(',');;
+	
+	// fetch skin config file
+	std::string skinPath = CONFIGDIR "/skin/";
+	skinPath += filename;
+	skinPath += "/";
+	skinPath += filename;
+	skinPath += ".config";
+	
+	skinConfig->setInt32( "menu_Head_alpha", g_settings.menu_Head_alpha );
+	skinConfig->setInt32( "menu_Head_red", g_settings.menu_Head_red );
+	skinConfig->setInt32( "menu_Head_green", g_settings.menu_Head_green );
+	skinConfig->setInt32( "menu_Head_blue", g_settings.menu_Head_blue );
+	skinConfig->setInt32( "menu_Head_Text_alpha", g_settings.menu_Head_Text_alpha );
+	skinConfig->setInt32( "menu_Head_Text_red", g_settings.menu_Head_Text_red );
+	skinConfig->setInt32( "menu_Head_Text_green", g_settings.menu_Head_Text_green );
+	skinConfig->setInt32( "menu_Head_Text_blue", g_settings.menu_Head_Text_blue );
+
+	skinConfig->setInt32( "menu_Content_alpha", g_settings.menu_Content_alpha );
+	skinConfig->setInt32( "menu_Content_red", g_settings.menu_Content_red );
+	skinConfig->setInt32( "menu_Content_green", g_settings.menu_Content_green );
+	skinConfig->setInt32( "menu_Content_blue", g_settings.menu_Content_blue );
+	skinConfig->setInt32( "menu_Content_Text_alpha", g_settings.menu_Content_Text_alpha );
+	skinConfig->setInt32( "menu_Content_Text_red", g_settings.menu_Content_Text_red );
+	skinConfig->setInt32( "menu_Content_Text_green", g_settings.menu_Content_Text_green );
+	skinConfig->setInt32( "menu_Content_Text_blue", g_settings.menu_Content_Text_blue );
+
+	skinConfig->setInt32( "menu_Content_Selected_alpha", g_settings.menu_Content_Selected_alpha );
+	skinConfig->setInt32( "menu_Content_Selected_red", g_settings.menu_Content_Selected_red );
+	skinConfig->setInt32( "menu_Content_Selected_green", g_settings.menu_Content_Selected_green );
+	skinConfig->setInt32( "menu_Content_Selected_blue", g_settings.menu_Content_Selected_blue );
+	skinConfig->setInt32( "menu_Content_Selected_Text_alpha", g_settings.menu_Content_Selected_Text_alpha );
+	skinConfig->setInt32( "menu_Content_Selected_Text_red", g_settings.menu_Content_Selected_Text_red );
+	skinConfig->setInt32( "menu_Content_Selected_Text_green", g_settings.menu_Content_Selected_Text_green );
+	skinConfig->setInt32( "menu_Content_Selected_Text_blue", g_settings.menu_Content_Selected_Text_blue );
+
+	skinConfig->setInt32( "menu_Content_inactive_alpha", g_settings.menu_Content_inactive_alpha );
+	skinConfig->setInt32( "menu_Content_inactive_red", g_settings.menu_Content_inactive_red );
+	skinConfig->setInt32( "menu_Content_inactive_green", g_settings.menu_Content_inactive_green );
+	skinConfig->setInt32( "menu_Content_inactive_blue", g_settings.menu_Content_inactive_blue );
+	skinConfig->setInt32( "menu_Content_inactive_Text_alpha", g_settings.menu_Content_inactive_Text_alpha );
+	skinConfig->setInt32( "menu_Content_inactive_Text_red", g_settings.menu_Content_inactive_Text_red );
+	skinConfig->setInt32( "menu_Content_inactive_Text_green", g_settings.menu_Content_inactive_Text_green );
+	skinConfig->setInt32( "menu_Content_inactive_Text_blue", g_settings.menu_Content_inactive_Text_blue );
+
+	skinConfig->setInt32( "infobar_alpha", g_settings.infobar_alpha );
+	skinConfig->setInt32( "infobar_red", g_settings.infobar_red );
+	skinConfig->setInt32( "infobar_green", g_settings.infobar_green );
+	skinConfig->setInt32( "infobar_blue", g_settings.infobar_blue );
+	skinConfig->setInt32( "infobar_Text_alpha", g_settings.infobar_Text_alpha );
+	skinConfig->setInt32( "infobar_Text_red", g_settings.infobar_Text_red );
+	skinConfig->setInt32( "infobar_Text_green", g_settings.infobar_Text_green );
+	skinConfig->setInt32( "infobar_Text_blue", g_settings.infobar_Text_blue );
+	
+	skinConfig->setInt32( "infobar_colored_events_alpha", g_settings.infobar_colored_events_alpha );
+	skinConfig->setInt32( "infobar_colored_events_red", g_settings.infobar_colored_events_red );
+	skinConfig->setInt32( "infobar_colored_events_green", g_settings.infobar_colored_events_green );
+	skinConfig->setInt32( "infobar_colored_events_blue", g_settings.infobar_colored_events_blue );
+	
+	skinConfig->setInt32( "menu_Foot_alpha", g_settings.menu_Foot_alpha );
+	skinConfig->setInt32( "menu_Foot_red", g_settings.menu_Foot_red );
+	skinConfig->setInt32( "menu_Foot_green", g_settings.menu_Foot_green );
+	skinConfig->setInt32( "menu_Foot_blue", g_settings.menu_Foot_blue );
+	skinConfig->setInt32( "menu_Foot_Text_alpha", g_settings.menu_Foot_Text_alpha );
+	skinConfig->setInt32( "menu_Foot_Text_red", g_settings.menu_Foot_Text_red );
+	skinConfig->setInt32( "menu_Foot_Text_green", g_settings.menu_Foot_Text_green );
+	skinConfig->setInt32( "menu_Foot_Text_blue", g_settings.menu_Foot_Text_blue );
+
+	skinConfig->setInt32( "menu_FootInfo_alpha", g_settings.menu_FootInfo_alpha );
+	skinConfig->setInt32( "menu_FootInfo_red", g_settings.menu_FootInfo_red );
+	skinConfig->setInt32( "menu_FootInfo_green", g_settings.menu_FootInfo_green );
+	skinConfig->setInt32( "menu_FootInfo_blue", g_settings.menu_FootInfo_blue );
+	skinConfig->setInt32( "menu_FootInfo_Text_alpha", g_settings.menu_FootInfo_Text_alpha );
+	skinConfig->setInt32( "menu_FootInfo_Text_red", g_settings.menu_FootInfo_Text_red );
+	skinConfig->setInt32( "menu_FootInfo_Text_green", g_settings.menu_FootInfo_Text_green );
+	skinConfig->setInt32( "menu_FootInfo_Text_blue", g_settings.menu_FootInfo_Text_blue );
+	
+	//
+	skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
+	skinConfig->setInt32("Head_gradient", g_settings.rounded_corners);
+	skinConfig->setInt32("Foot_gradient", g_settings.rounded_corners);
+		
+	skinConfig->setString("font_file", g_settings.font_file);
+
+	if (!skinConfig->saveConfig(skinPath.c_str()))
+		printf("CNeutrinoApp::saveSkinConfig %s write error\n", filename);
 }
 
 // firstChannel, get the initial channel
@@ -2723,8 +2922,9 @@ int CNeutrinoApp::run(int argc, char **argv)
 	// load Pluginlist before main menu (only show script menu if at least one script is available
 	g_PluginList->loadPlugins();
 	
-	// FIXME:TEST
-	loadSkin(g_settings.preferred_skin);
+	// FIXME:
+	if (g_settings.use_skin)
+		loadSkin(g_settings.preferred_skin);
 	
 	// zapit	
 	Z_start_arg ZapStart_arg;
@@ -5424,6 +5624,10 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	else if(actionKey == "savesettings") 
 	{
 		saveSetup(NEUTRINO_SETTINGS_FILE);
+		
+		//
+		//if (g_settings.use_skin)
+		//	saveSkinConfig(g_settings.preferred_skin.c_str());
 
 		tuxtxt_close();
 		

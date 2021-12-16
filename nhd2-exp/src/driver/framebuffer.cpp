@@ -735,7 +735,7 @@ fb_pixel_t* CFrameBuffer::paintBoxRel2Buf(const int dx, const int dy, const fb_p
 
 //
 
-void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius, int type, int mode)
+void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius, int type, int mode, bool tr)
 {
 	if (!getActive())
 		return;
@@ -768,7 +768,7 @@ void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int
 		}
 	}
 
-	blit2FB(boxBuf, dx, dy, x, y);
+	blit2FB(boxBuf, dx, dy, x, y, 0, 0, tr ? true : false);
 
 	free(boxBuf);
 }

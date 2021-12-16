@@ -99,7 +99,6 @@ void CPowerMenu::showMenu(void)
 
 	powerMenu->setWidgetMode(MODE_MENU);
 	powerMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
-	powerMenu->enableWidgetChange();
 	powerMenu->enableShrinkMenu();
 	powerMenu->setMenuPosition(MENU_POSITION_LEFT);
 	powerMenu->enablePaintFootInfo();

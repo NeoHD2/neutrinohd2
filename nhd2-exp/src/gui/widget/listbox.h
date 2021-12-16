@@ -668,14 +668,16 @@ class ClistBox : public CWidgetItem
 
 		int oKKeyPressed(CMenuTarget *parent);
 		void homeKeyPressed(){selected = -1;};
+		//void onDirectKeyPressed(neutrino_msg_t msg);
 
+		//
 		void enableSaveScreen();
 
 		//
 		std::string getName(){return l_name;};
 		std::string getActionKey(void){return actionKey;}; // lua
 		
-		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true, bool nlines = false);
+		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true, int wtype = WIDGET_TYPE_STANDARD);
 };
 
 #endif // LISTBOX_H_

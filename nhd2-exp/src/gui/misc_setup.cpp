@@ -140,7 +140,6 @@ void CMiscSettings::showMenu(void)
 
 	miscSettings->setWidgetMode(MODE_MENU);
 	miscSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
-	miscSettings->enableWidgetChange();
 	miscSettings->enableShrinkMenu();
 	miscSettings->setMenuPosition(MENU_POSITION_LEFT);
 	miscSettings->enablePaintFootInfo();

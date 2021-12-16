@@ -93,7 +93,6 @@ void COSDSettings::showMenu(void)
 
 	osdSettings->setWidgetMode(MODE_MENU);
 	osdSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
-	osdSettings->enableWidgetChange();
 	osdSettings->enableShrinkMenu();
 	osdSettings->setMenuPosition(MENU_POSITION_LEFT);
 	osdSettings->enablePaintFootInfo();
@@ -815,33 +814,46 @@ void CSkinManager::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CSkinManager::showMenu:\n");
 	
-/*
-	CMenuWidget* skinMenu = new CMenuWidget("Skin Auswahl", NEUTRINO_ICON_COLORS);
+	CMenuItem* item = NULL;
+	CMenuWidget* skinMenu = new CMenuWidget(LOCALE_SKIN_SKIN, NEUTRINO_ICON_COLORS, 720, 500);
+	skinMenu->setWidgetMode(MODE_MENU);
+	skinMenu->setWidgetType(WIDGET_TYPE_EXTENDED);
+	skinMenu->enablePaintFootInfo();
+	
+	std::string skinPath = CONFIGDIR "/skin";
+	
+	struct dirent **namelist;
+	int i = 0;
+
+	i = scandir(skinPath.c_str(), &namelist, 0, 0);
+
+	if (i > 0)
+	{
+		while(i--)
+		{
+			if(namelist[i]->d_type == DT_DIR && !strstr(namelist[i]->d_name, ".") && !strstr(namelist[i]->d_name, ".."))
+			{	
+				item = new ClistBoxItem(namelist[i]->d_name);
+				
+				item->setActionKey(this, namelist[i]->d_name);
+				
+				std::string hint = skinPath;
+				hint += "/";
+				hint += namelist[i]->d_name;
+				hint += "/prev.png";
+				item->setItemIcon(hint.c_str());
+				
+				skinMenu->addItem(item);	
+			}
+			free(namelist[i]);
+		}
+		free(namelist);
+	}
 	
 	skinMenu->exec(NULL, "");
 	
 	delete skinMenu;
-	skinMenu = NULL;
-*/
-	// unload
-	CNeutrinoApp::getInstance()->unloadSkin();
-	
-	//
-	CFileBrowser skinBrowser;
-	
-	skinBrowser.Dir_Mode = true;
-	skinBrowser.Dirs_Selectable= true;
-	
-	std::string skinDir = CONFIGDIR "/skin";
-	
-	if (skinBrowser.exec(skinDir.c_str()))
-	{
-		g_settings.preferred_skin = skinBrowser.getSelectedFile()->getFileName().c_str();
-		
-		CNeutrinoApp::getInstance()->loadSkin(g_settings.preferred_skin);
-	
-		CNeutrinoApp::getInstance()->exec(NULL, "restart");
-	}
+	skinMenu = NULL;	
 }
 
 int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
@@ -852,6 +864,17 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 	
 	if (parent)
 		parent->hide();
+		
+	if (!actionKey.empty())
+	{
+		CNeutrinoApp::getInstance()->unloadSkin();
+		
+		g_settings.preferred_skin = actionKey;
+		
+		CNeutrinoApp::getInstance()->loadSkin(g_settings.preferred_skin);
+	
+		CNeutrinoApp::getInstance()->exec(NULL, "restart");
+	}
 		
 	showMenu();
 	
@@ -865,7 +888,7 @@ bool CSkinNotifier::changeNotify(const neutrino_locale_t OptionName, void *)
 		
 	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_SKIN_ENABLE))
 	{
-		if (!g_settings.use_skin)
+		//if (!g_settings.use_skin) // alyaws restart
 		{
 			CNeutrinoApp::getInstance()->unloadSkin();
 			CNeutrinoApp::getInstance()->exec(NULL, "restart");

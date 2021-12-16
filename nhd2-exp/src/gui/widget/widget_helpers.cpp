@@ -344,9 +344,19 @@ CItems2DetailsLine::CItems2DetailsLine()
 	cc_type = CC_DETAILSLINE;
 }
 
+CItems2DetailsLine::~CItems2DetailsLine()
+{
+	info1.clear();
+	option_info1.clear();
+	info2.clear();
+	option_info2.clear();
+	hint.clear();
+	icon.clear();
+}
+
 void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_height, int iheight, int iy)
 {
-	dprintf(DEBUG_NORMAL, "\nCItems2DetailsLine::paint: x:%d y:%d width:%d height:%d info_height:%d iheight:%d iy:%d\n", x, y, width, height, info_height, iheight, iy);
+	dprintf(DEBUG_INFO, "\nCItems2DetailsLine::paint: x:%d y:%d width:%d height:%d info_height:%d iheight:%d iy:%d\n", x, y, width, height, info_height, iheight, iy);
 	
 	int xpos  = x - CONNECTLINEBOX_WIDTH;
 	int ypos1 = iy;

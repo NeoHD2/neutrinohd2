@@ -519,7 +519,7 @@ void CStreamInfo2::paint(int /*mode*/)
 	if (paint_mode == 0) 
 	{
 		// -- tech Infos, PIG, small signal graph
-		head_string = g_Locale->getText (LOCALE_STREAMINFO_HEAD);
+		head_string = g_Locale->getText(LOCALE_STREAMINFO_HEAD);
 
 		CVFD::getInstance ()->setMode (CVFD::MODE_MENU_UTF8, head_string);
 
