@@ -196,7 +196,7 @@ void CYTBrowser::showMenu()
 	moviesMenu->setWidgetMode(MODE_LISTBOX);
 	moviesMenu->setWidgetType(WIDGET_TYPE_FRAME);
 	moviesMenu->setItemsPerPage(3, 2);
-	moviesMenu->enablePaintFootInfo();
+	moviesMenu->enablePaintFootInfo(); // never mind
 
 	moviesMenu->setHeadButtons(YTHeadButtons, YT_HEAD_BUTTONS_COUNT);
 	moviesMenu->setFootButtons(YTFootButtons, YT_FOOT_BUTTONS_COUNT);

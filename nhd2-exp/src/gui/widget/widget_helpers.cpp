@@ -492,7 +492,7 @@ CVline::CVline()
 CFrameLine::CFrameLine()
 {
 	frameBuffer = CFrameBuffer::getInstance();
-	color = COL_WHITE; 
+	color = COL_WHITE_PLUS_0; 
 	cc_type = CC_FRAMELINE;
 }
 
@@ -577,7 +577,7 @@ void CGrid::init()
 {
 	frameBuffer = CFrameBuffer::getInstance();
 
-	rgb = COL_NOBEL;
+	rgb = COL_NOBEL_PLUS_0;
 	inter_frame = 15;
 	
 	//

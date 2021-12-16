@@ -286,8 +286,7 @@ void CMenuWidget::initFrames()
 		hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 	
 		// foot height
-		if (fbutton_count)
-			fheight = hheight;
+		fheight = fbutton_count? hheight : 0;
 		
 		// footInfoHeight
 		//if(paintFootInfo)
@@ -295,7 +294,7 @@ void CMenuWidget::initFrames()
 
 		//
 		item_width = width/itemsPerX;
-		item_height = (height - hheight - cFrameFootInfoHeight - (fbutton_count != 0? fheight : 0) - 20)/itemsPerY; // 10 pixels for hlines top 10 pixels bottom
+		item_height = (height - hheight - cFrameFootInfoHeight - (fbutton_count? fheight : 0) - 20)/itemsPerY; // 10 pixels for hlines top 10 pixels bottom
 
 		for (unsigned int count = 0; count < items.size(); count++) 
 		{
@@ -646,7 +645,7 @@ void CMenuWidget::paint()
 		item_start_y = y + hheight + 10;
 
 	// paint background
-	frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight - fheight - cFrameFootInfoHeight, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
+	frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight - fheight /*- cFrameFootInfoHeight*/, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor); // looking bad if items.size() == 0
 
 	//
 	paintItems();
@@ -1036,10 +1035,10 @@ void CMenuWidget::paintItemInfo(int pos)
 		//if(paintFootInfo)
 		//{
 		// refresh footInfo Box
-		frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - (fbutton_count != 0? fheight : 0), width, cFrameFootInfoHeight, COL_MENUCONTENT_PLUS_0);
+		frameBuffer->paintBoxRel(x, y + height - fheight - cFrameFootInfoHeight, width, cFrameFootInfoHeight, COL_MENUCONTENT_PLUS_0);
 
 		// refresh horizontal line buttom
-		frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - cFrameFootInfoHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
+		frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight - cFrameFootInfoHeight + 2, COL_MENUCONTENT_PLUS_5);
 
 		if(items.size() > 0)
 		{

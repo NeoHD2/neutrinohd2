@@ -1196,7 +1196,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 			if (selected)
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
 			else
-				if (paintFrame)//FIXME:TEST
+				//if (paintFrame)//FIXME:TEST
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 		}
 
@@ -1519,7 +1519,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		// refresh
-		frameBuffer->paintBoxRel(x, y, item_width, item_height, paintFrame? COL_MENUCONTENT_PLUS_0 : 0);
+		frameBuffer->paintBoxRel(x, y, item_width, item_height, /*paintFrame?*/ COL_MENUCONTENT_PLUS_0 /*: 0*/); //FIXME:
 
 		if(!itemIcon.empty())
 			frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);
@@ -1538,7 +1538,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				}
 				else
 				{
-					frameBuffer->paintBoxRel(x, y, item_width, item_height, paintFrame? COL_MENUCONTENT_PLUS_0 : 0);
+					frameBuffer->paintBoxRel(x, y, item_width, item_height, /*paintFrame?*/ COL_MENUCONTENT_PLUS_0 /*: 0*/); //FIXME:
 
 					if(!itemIcon.empty())
 						frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);
@@ -1581,12 +1581,12 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		{
 			if (selected)
 			{
-				if (paintFrame) //FIXME: TEST
+				//if (paintFrame) //FIXME: TEST
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
 			}
 			else
 			{
-				if (paintFrame) //FIXME: TEST
+				//if (paintFrame) //FIXME: TEST
 					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, NOGRADIENT);
 				
 				/*
@@ -2187,7 +2187,7 @@ void ClistBox::paintItems()
 
 		// items background
 		if (paintFrame)
-		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor, radius, corner);
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, itemBox.iHeight - hheight - fheight /*- cFrameFootInfoHeight*/, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor, radius, corner); // bad if items.size() == 0
 
 		// item not currently on screen
 		if (selected >= 0)
@@ -2272,7 +2272,7 @@ void ClistBox::paintItems()
 		}
 
 		// paint items background
-		if (paintFrame)
+		//if (paintFrame) //FIXME:
 		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, items_height, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor, radius, corner);
 	
 		// paint right scrollBar if we have more then one page
