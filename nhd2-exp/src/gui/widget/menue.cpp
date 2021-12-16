@@ -645,7 +645,7 @@ void CMenuWidget::paint()
 		item_start_y = y + hheight + 10;
 
 	// paint background
-	frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight - fheight /*- cFrameFootInfoHeight*/, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor); // looking bad if items.size() == 0
+	frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight - fheight - cFrameFootInfoHeight, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
 
 	//
 	paintItems();
