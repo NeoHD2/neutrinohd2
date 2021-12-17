@@ -51,7 +51,8 @@ enum
 	ITEM_TYPE_SEPARATOR,
 	ITEM_TYPE_FORWARDER,
 	ITEM_TYPE_LOCKED_FORWARDER,
-	ITEM_TYPE_LISTBOXITEM
+	ITEM_TYPE_LISTBOXITEM,
+	ITEM_TYPE_PLUGINITEM
 };
 
 enum
@@ -486,6 +487,32 @@ class ClistBoxItem : public CMenuItem
 		bool isSelectable(void) const {return active;}
 };
 
+// CMenulistBoxItem
+class CPluginItem : public CMenuItem
+{
+	std::string optionValueString;
+
+	protected:
+		//
+		std::string textString;
+
+		//
+		virtual const char *getName(void);
+		virtual const char *getOption(void);
+
+	public:
+		CPluginItem(const char* const pluginName, const bool Active = true, const neutrino_msg_t DirectKey = RC_nokey, const char* const Icon = NULL);
+		
+		~CPluginItem(){};
+		
+		int paint(bool selected = false, bool AfterPulldown = false);
+		int getHeight(void) const;
+		int getWidth(void) const;
+
+		int exec(CMenuTarget* parent);
+		bool isSelectable(void) const {return active;}
+};
+
 //
 class ClistBox : public CWidgetItem
 {
@@ -587,6 +614,7 @@ class ClistBox : public CWidgetItem
 		int radius;
 		int corner;
 		bool scrolling;
+		fb_pixel_t* items_background;
 		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -680,7 +708,7 @@ class ClistBox : public CWidgetItem
 		std::string getName(){return l_name;};
 		std::string getActionKey(void){return actionKey;}; // lua
 		
-		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true, int wtype = WIDGET_TYPE_STANDARD);
+		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true, int imode = MODE_MENU, int itype = WIDGET_TYPE_STANDARD, bool i2lines = false, bool iShadow = false);
 };
 
 #endif // LISTBOX_H_
