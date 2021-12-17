@@ -162,6 +162,9 @@ class CMenuItem
 		
 		//
 		ClistBox* parent;
+		
+		//
+		fb_pixel_t* background;
 
 		CMenuItem();
 		virtual ~CMenuItem(){};

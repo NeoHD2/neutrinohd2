@@ -2963,7 +2963,7 @@ void CTestMenu::testCWindowCustomColor()
 	//
 	CWindow* window = new CWindow(&Box);
 
-	window->setColor(COL_ORANGE_PLUS_0);
+	window->setColor(COL_ORANGE_PLUS_0); // or use like make16color(0x76A5AF)
 	window->setCorner(RADIUS_MID, CORNER_ALL);
 	window->enableShadow();
 	window->enableSaveScreen();

@@ -134,8 +134,8 @@
 //
 int convertSetupColor2RGB(unsigned char r, unsigned char g, unsigned char b);
 int convertSetupAlpha2Alpha(unsigned char alpha);
-uint8_t limitChar(int c);
 
+//
 typedef struct {
 	uint8_t r;
 	uint8_t g;
@@ -148,14 +148,12 @@ typedef struct {
 	float v;
 } HsvColor;
 
+uint8_t limitChar(int c);
 uint8_t getBrightnessRGB(fb_pixel_t color);
-
 fb_pixel_t changeBrightnessRGBRel(fb_pixel_t color, int br, bool transp=true);
 fb_pixel_t changeBrightnessRGB(fb_pixel_t color, uint8_t br, bool transp=true);
-
 fb_pixel_t Hsv2SysColor(HsvColor *hsv, uint8_t tr=0xFF);
 uint8_t SysColor2Hsv(fb_pixel_t color, HsvColor *hsv);
-
 void Hsv2Rgb(HsvColor *hsv, RgbColor *rgb);
 void Rgb2Hsv(RgbColor *rgb, HsvColor *hsv);
 
@@ -165,18 +163,29 @@ fb_pixel_t* gradientOneColor(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize,
 
 fb_pixel_t* gradientColorToColor(fb_pixel_t start_col, fb_pixel_t end_col, fb_pixel_t *gradientBuf, int bSize, int mode, int intensity = INT_LIGHT);
 
+//
 inline uint32_t make16color(__u32 rgb)
 {
         return 0xFF000000 | rgb;
 }
 
-inline uint32_t make16Color(uint16_t r, uint16_t g, uint16_t b, uint16_t t,
-				  uint32_t  /*rl*/ = 0, uint32_t  /*ro*/ = 0,
-				  uint32_t  /*gl*/ = 0, uint32_t  /*go*/ = 0,
-				  uint32_t  /*bl*/ = 0, uint32_t  /*bo*/ = 0,
-				  uint32_t  /*tl*/ = 0, uint32_t  /*to*/ = 0)
+// for lua until 
+inline uint32_t make16Color(unsigned int rgb)
 {
-	return ((t << 24) & 0xFF000000) | ((r << 8) & 0xFF0000) | ((g << 0) & 0xFF00) | (b >> 8 & 0xFF);
+        return 0xFF000000 | (__u32)rgb;
+}
+
+inline uint32_t convertSetupColor2Color(unsigned char r, unsigned char g, unsigned char b, unsigned char alpha)
+{
+	int color = convertSetupColor2RGB(r, g, b);
+	int tAlpha = (alpha ? (convertSetupAlpha2Alpha(alpha)) : 0);
+
+	if(!alpha) 
+		tAlpha = 0xFF;
+
+	fb_pixel_t col = ((tAlpha << 24) & 0xFF000000) | color;
+	
+	return col;
 }
 
 #endif

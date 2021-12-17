@@ -88,6 +88,9 @@ CMenuItem::CMenuItem()
 	
 	//
 	parent = NULL;
+	
+	//
+	background = NULL;
 }
 
 void CMenuItem::init(const int X, const int Y, const int DX, const int OFFX)
@@ -1466,9 +1469,6 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 
 	uint8_t color = COL_MENUCONTENT;
 	fb_pixel_t bgcolor = marked? COL_MENUCONTENTSELECTED_PLUS_1 : COL_MENUCONTENT_PLUS_0;
-	
-	///FIXME: TEST	
-	fb_pixel_t* buff = NULL;	
 
 	if (selected)
 	{
@@ -1551,48 +1551,78 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		{
 			if (selected)
 			{
+				if (!paintFrame)
+				{
+					if (background)
+					{
+						delete [] background;
+						background = NULL;
+					}
+									
+					background = new fb_pixel_t[dx*height];
+						
+					if (background)
+					{
+						frameBuffer->saveScreen(x, y, dx, height, background);
+					}
+				}	
+				
 				// shadow
 				frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);	
 				// itemBox
 				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
 			}
 			else
-				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+			{
+				if (paintFrame)
+					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+				else
+				{
+					if (background)
+					{
+						frameBuffer->restoreScreen(x, y, dx, height, background);
+							
+						delete [] background;
+						background = NULL;
+					}
+				}
+			}
 		}
 		else
 		{
 			if (selected)
 			{
-				
-				if (buff)
+				if (!paintFrame)
 				{
-					delete [] buff;
-					buff = NULL;
-				}
-								
-				buff = new fb_pixel_t[dx*height];
-					
-				if (buff)
-				{
-					frameBuffer->saveScreen(x, y, dx, height, buff);
+					if (background)
+					{
+						delete [] background;
+						background = NULL;
+					}
+									
+					background = new fb_pixel_t[dx*height];
+						
+					if (background)
+					{
+						frameBuffer->saveScreen(x, y, dx, height, background);
+					}
 				}	
-	
-				//if (paintFrame) //FIXME: TEST
+
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
 			}
 			else
 			{
-				if (buff)
-				{
-					frameBuffer->restoreScreen(x, y, dx, height, buff);
-						
-					delete [] buff;
-					buff = NULL;
-				}
+				if (paintFrame) //FIXME: TEST
+					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, NOGRADIENT);
 				else
 				{
-					//if (paintFrame) //FIXME: TEST
-					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, NOGRADIENT);
+					if (background)
+					{
+						frameBuffer->restoreScreen(x, y, dx, height, background);
+							
+						delete [] background;
+						background = NULL;
+					}
 				}
 			}
 		}
@@ -2267,7 +2297,7 @@ void ClistBox::paintItems()
 		}
 
 		// paint items background
-		//if (paintFrame) //FIXME:
+		if (paintFrame) //FIXME:
 		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, items_height, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor, radius, corner);
 	
 		// paint right scrollBar if we have more then one page

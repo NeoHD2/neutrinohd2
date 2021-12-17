@@ -66,6 +66,15 @@ void add_format(int (*picsize)(const char *,int *,int*,int,int),int (*picread)(c
 //
 static uint32_t * virtual_fb = NULL;
 
+inline uint32_t make16color(uint16_t r, uint16_t g, uint16_t b, uint16_t t,
+				  uint32_t  /*rl*/ = 0, uint32_t  /*ro*/ = 0,
+				  uint32_t  /*gl*/ = 0, uint32_t  /*go*/ = 0,
+				  uint32_t  /*bl*/ = 0, uint32_t  /*bo*/ = 0,
+				  uint32_t  /*tl*/ = 0, uint32_t  /*to*/ = 0)
+{
+	return ((t << 24) & 0xFF000000) | ((r << 8) & 0xFF0000) | ((g << 0) & 0xFF00) | (b >> 8 & 0xFF);
+}
+
 CFrameBuffer::CFrameBuffer()
 : active ( true )
 {
@@ -216,6 +225,7 @@ void CFrameBuffer::init(const char * const fbDevice)
 #endif /* USE_OPENGL */
 	
 	// set colors
+	paletteSetColor(0x1, 0x010101, 0xFF);
         paletteSetColor(COL_MAROON, 0x800000, 0xFF);
         paletteSetColor(COL_GREEN, 0x008000, 0xFF);
 	paletteSetColor(COL_OLIVE, 0x808000, 0xFF);
@@ -561,7 +571,7 @@ void CFrameBuffer::paletteSet(struct fb_cmap *map)
 
 	for (int i = 0; i < 256; i++)
 	{
-		realcolor[i] = make16Color(cmap.red[i], cmap.green[i], cmap.blue[i], cmap.transp[i], rl, ro, gl, go, bl, bo, tl, to);
+		realcolor[i] = make16color(cmap.red[i], cmap.green[i], cmap.blue[i], cmap.transp[i], rl, ro, gl, go, bl, bo, tl, to);
 	}
 }
 
