@@ -218,6 +218,7 @@ void CWindow::hide()
 void CWindow::addCCItem(CComponent* CCItem)
 {
 	CCItems.push_back(CCItem);
+	CCItem->setParent(this);
 }
 
 void CWindow::paintCCItems()
@@ -231,6 +232,18 @@ void CWindow::paintCCItems()
 		CCItem->paint();
 	}
 }
+
+void CWindow::refresh(void)
+{
+	for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
+	{
+		if (CCItems[count]->update())
+		{
+			CCItems[count]->refresh();
+		}
+	}
+}
+
 
 
 

@@ -36,6 +36,7 @@ extern CLocaleManager* g_Locale; // for DL
 class CMenuTarget;
 class CWidgetItem;
 class CWidget;
+class CWindow;
 
 // dimension helper
 class CBox
@@ -67,12 +68,14 @@ enum {
 	CC_PIG,
 	CC_GRID,
 	//CC_SLIDER,
-	//CC_TIME
+	CC_TIME,
+	// not to be added with addCCItem method.
 	CC_SCROLLBAR,
 	CC_PROGRESSBAR,
 	CC_DETAILSLINE
 };
 
+// halign and we assume all CCItems are valigned
 enum {
 	CC_ALIGN_LEFT,
 	CC_ALIGN_CENTER,
@@ -90,14 +93,21 @@ class CComponent
 		int valign;
 		
 		//
-		CComponent(){frameBuffer = CFrameBuffer::getInstance();};
+		bool rePaint;
+		
+		CWindow* parent;
+		
+		//
+		CComponent(){frameBuffer = CFrameBuffer::getInstance(); rePaint = false;};
 		virtual ~CComponent(){};
 		
-		virtual bool isSelectable(void){return false;}
+		virtual bool isSelectable(void){return false;};
+		virtual bool update() const{return false;};
 		
 		//
 		virtual void paint(void){};
 		virtual void hide(void){};
+		virtual void refresh(void){};
 		
 		//
 		virtual int getCCType(){return cc_type;};
@@ -115,6 +125,9 @@ class CComponent
 		
 		//
 		virtual inline CBox getWindowsPos(void){return (cCBox);};
+		
+		// 
+		void setParent(CWindow* p){parent = p;};
 };
 
 class CIcon : public CComponent
@@ -454,6 +467,37 @@ class CPig : public CComponent
 		void hide();
 };
 
+// CLabel
+class CCTime : public CComponent
+{
+	public:
+		//
+		uint8_t color;
+		CFont* font;
+		char* format;
+		
+		fb_pixel_t* background;
+		
+		//
+		CCTime();
+		virtual ~CCTime(){delete [] background; background = NULL;};
+		
+		//
+		void setColor(uint8_t col){color = col;};
+		void setFont(CFont *f){font = f;};
+		void setFormat(char* f){format = f;};
+		//void enablePaintBG(){paintBG = true;};
+		void setHAlign(int h){halign = h;};
+		
+		//
+		void paint();
+		void hide(){delete [] background; background = NULL;};
+		void refresh();
+		
+		void enableRepaint(){rePaint = true;};
+		bool update() const {return rePaint;};
+};
+
 // CWidgetItem
 enum {
 	WIDGET_ITEM_WINDOW,
@@ -474,22 +518,23 @@ class CWidgetItem
 
 		int itemType;
 		bool inFocus;
-		//bool paintDate;
+		bool rePaint;
 		std::string actionKey; // lua
 		
 		//
 		bool painted;
 		CWidget* parent;
 
-		CWidgetItem(){inFocus = true; actionKey = ""; parent = NULL;};
+		CWidgetItem(){inFocus = true; actionKey = ""; parent = NULL; rePaint = false;};
 		virtual ~CWidgetItem(){};
 
 		virtual bool isSelectable(void){return false;}
 		virtual bool hasItem(){return false;};
-		virtual bool update(){return false;};
+		virtual bool update() const{return false;};
 
-		virtual void paint(){painted = true;};
-		virtual void hide(){painted = false;};
+		virtual void paint(void){painted = true;};
+		virtual void hide(void){painted = false;};
+		virtual void refresh(void){};
 
 		virtual void scrollLineDown(const int lines = 1){};
 		virtual void scrollLineUp(const int lines = 1){};
@@ -504,7 +549,6 @@ class CWidgetItem
 		virtual inline CBox getWindowsPos(void){return (itemBox);};
 
 		virtual int getWidgetType(){return (4);};
-		//virtual void enablePaintDate(void){paintDate = true;};
 
 		virtual int oKKeyPressed(CMenuTarget *parent){return 0;};
 		virtual void homeKeyPressed(){};
@@ -516,7 +560,7 @@ class CWidgetItem
 		//
 		virtual void setParent(CWidget* w_parent){parent = w_parent;};
 		
-		inline bool isPainted(void){return painted;};
+		virtual inline bool isPainted(void){return painted;};
 };
 
 // CHeaders
@@ -527,12 +571,17 @@ class CHeaders : public CWidgetItem
 		int radius;
 		int corner;
 		int gradient;
-		bool paintDate;
+
 		int hbutton_count;
 		button_label_list_t hbutton_labels;
+		
 		const char *htitle;
 		const char *hicon;
 		int tMode;
+		
+		bool paintDate;
+		char* format;
+		CCTime* timer;
 	
 	public:
 		CHeaders(const int x, const int y, const int dx, const int dy, const char * const title = NULL, const char * const icon = NULL);
@@ -547,10 +596,14 @@ class CHeaders : public CWidgetItem
 		void setGradient(int grad){gradient = grad;};
 		void setButtons(const struct button_label* _hbutton_labels, const int _hbutton_count = 1);
 		void enablePaintDate(void){paintDate = true;};
+		void setFormat(char* f){format = f;};
 
 		//
 		void paint();
 		void hide();
+		void refresh(void){/*paint();*/if (paintDate) timer->refresh();};
+		
+		//
 		bool update() const {return paintDate;};
 };
 

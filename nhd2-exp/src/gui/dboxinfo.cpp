@@ -131,9 +131,7 @@ void CDBoxInfoWidget::showInfo()
 	// head
 	CHeaders* head = new CHeaders(Box.iX, yPos, Box.iWidth, 40, "Box Info", NEUTRINO_ICON_INFO);
 	head->enablePaintDate();
-	//head->setCorner(NO_RADIUS, CORNER_ALL);
-	//head->setGradient(NOGRADIENT);
-	//head->setColor(COL_INFOBAR_SHADOW_PLUS_1);
+	head->setFormat("%d.%m.%Y %H:%M:%S");
 
 	int i = 0;
 

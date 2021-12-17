@@ -333,14 +333,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 				continue;
 			}
 			
-			////TEST
-			/*
-			if(hasItem() && selected >= 0)
-				if (items[selected]->hasItem() && items[selected]->isSelectable())
-				{
-					items[selected]->onDirectKeyPressed(msg);
-				}
-			*/
+			// handle directKey
 		}
 
 		if (!handled) 
@@ -352,7 +345,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 				{
 					if (items[i]->update())
 					{
-						items[i]->paint();
+						items[i]->refresh();
 					}
 				}
 			} 

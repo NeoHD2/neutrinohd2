@@ -3002,6 +3002,7 @@ void CTestMenu::testCHeaders()
 	headers = new CHeaders(headBox, "test CHeaders", NEUTRINO_ICON_MP3);
 
 	headers->enablePaintDate();
+	headers->setFormat("%d.%m.%Y %H:%M:%S");
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	//headers->setCorner();
 	//headers->setGradient(NOGRADIENT);
@@ -3036,8 +3037,7 @@ void CTestMenu::testCHeaders()
 
 		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			//headers->paintHead(headBox, "test CHeaders", NEUTRINO_ICON_MP3);
-			headers->paint();
+			headers->refresh();
 		} 
 		else if (msg == RC_home) 
 		{

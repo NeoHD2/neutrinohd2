@@ -173,9 +173,11 @@ void CInfoViewer::Init()
 	channel_id = live_channel_id;
 	
 	// init progressbar
-	sigscale = new CProgressBar(RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	snrscale = new CProgressBar(RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	timescale = new CProgressBar();	//5? see in code
+	sigscale = NULL;
+	snrscale = NULL;
+	timescale = NULL;	//5? see in code
+	
+	timer = NULL;
 }
 
 CInfoViewer::~CInfoViewer()
@@ -279,6 +281,7 @@ void CInfoViewer::initFrames(void)
 void CInfoViewer::start()
 {
 	dprintf(DEBUG_NORMAL, "CInfoViewer::start\n");
+	
 #if defined (ENABLE_LCD)	
 	lcdUpdateTimer = g_RCInput->addTimer(LCD_UPDATE_TIME_TV_MODE, false, true);
 #endif	
@@ -293,18 +296,16 @@ void CInfoViewer::paintTime(int posx, int posy, CFont* timeFont)
 	int time_width = 2*time_left_width + time_dot_width;
 	int time_height = timeFont->getHeight();
 
-	int timestr_len = timeFont->getRenderWidth("00:00");
+	int timestr_len = timeFont->getRenderWidth("00:00:00");
 	
 	if (gotTime && is_visible) 
 	{
-		char timestr[10];
-		struct timeb tm;
-	
-		ftime (&tm);
-		strftime ((char *) &timestr, 20, "%H:%M", localtime (&tm.time));
-
-		timeFont->RenderString(posx - BORDER_RIGHT - timestr_len, posy + time_height, timestr_len, timestr, COL_INFOBAR);
-	
+		timer = new CCTime();
+		timer->setPosition(posx - BORDER_RIGHT - timestr_len, posy, timestr_len, time_height);
+		timer->setFont(timeFont);
+		timer->setFormat("%H:%M:%S");
+		timer->enableRepaint();
+		timer->paint();		
 	}
 }
 
@@ -477,6 +478,10 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	
 	initFrames();
 	
+	sigscale = new CProgressBar(RED_BAR, GREEN_BAR, YELLOW_BAR, false);
+	snrscale = new CProgressBar(RED_BAR, GREEN_BAR, YELLOW_BAR, false);
+	timescale = new CProgressBar();	//5? see in code
+	
 	sigscale->reset(); 
 	snrscale->reset(); 
 	timescale->reset();
@@ -602,6 +607,9 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 			{
 				showRecordIcon(show_dot);
 				show_dot = !show_dot;
+				
+				//
+				timer->refresh();
 					
 				// radiotext		
 				if ((g_settings.radiotext_enable) && (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio))
@@ -1853,9 +1861,12 @@ void CInfoViewer::killTitle()
 			killRadiotext();
 		}
 
-		frameBuffer->blit();
+		if (timer)
+		{
+			delete timer;
+			timer = NULL;
+		}
 
-/*
 		if(sigscale)
 		{
 			delete sigscale;
@@ -1873,7 +1884,8 @@ void CInfoViewer::killTitle()
 			delete timescale;
 			timescale = NULL;
 		}
-*/		
+
+		frameBuffer->blit();		
   	}
 }
 

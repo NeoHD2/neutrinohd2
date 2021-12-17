@@ -214,7 +214,7 @@ bool CNeutrinoApp::showUserMenu(int button)
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::showUserMenu\n");
 	
 	if ( g_settings.use_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-		CNeutrinoApp::getInstance()->startSkin("usermenu");
+		CNeutrinoApp::getInstance()->startSkin("blue");
 	else	
 	{
 		if(button < 0 || button >= SNeutrinoSettings::BUTTON_MAX)

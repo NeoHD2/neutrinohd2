@@ -143,6 +143,7 @@ CEpgData::CEpgData()
 	epgBuffer.clear();
 
 	textBox = NULL;
+	headers = NULL;
 
 	start();
 }
@@ -412,13 +413,13 @@ void CEpgData::showHead(const t_channel_id channel_id)
 
 	logo = CChannellogo::getInstance()->getLogoName(channel_id);
 
-	CHeaders headers(cHeadBox, text1.c_str(), logo.c_str());
+	headers = new CHeaders(cHeadBox, text1.c_str(), logo.c_str());
 
-	headers.enablePaintDate();
-	headers.setButtons(&HButton, 1);
-	headers.setCorner(RADIUS_MID, CORNER_TOP);
+	headers->enablePaintDate();
+	headers->setButtons(&HButton, 1);
+	headers->setCorner(RADIUS_MID, CORNER_TOP);
 
-	headers.paint();
+	headers->paint();
 }
 
 int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_startzeit, bool doLoop )
@@ -666,7 +667,8 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 			if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 			{
 				// head
-				showHead(channel_id);
+				//showHead(channel_id);
+				headers->refresh();
 
 				//
 				GetEPGData(channel_id, id, &startzeit, false);
@@ -848,6 +850,12 @@ void CEpgData::hide()
 		textBox->hide();
 		delete textBox;
 		textBox = NULL;
+	}
+	
+	if (headers)
+	{
+		delete headers;
+		headers = NULL;
 	}
 
 	epgBuffer.clear();

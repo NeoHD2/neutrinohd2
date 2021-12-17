@@ -31,6 +31,7 @@
 
 #include <gui/widget/widget_helpers.h>
 #include <gui/widget/textbox.h>
+#include <gui/widget/window.h>
 
 #include <video_cs.h>
 
@@ -681,6 +682,55 @@ void CPig::hide()
 	CFrameBuffer::getInstance()->blit();
 }
 
+// CCTime
+CCTime::CCTime()
+{
+	font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE];
+	color = COL_MENUHEAD;
+	
+	background = NULL;
+	
+	format = "%d.%m.%Y %H:%M";
+	
+	cc_type = CC_TIME;
+}
+
+void CCTime::paint()
+{
+	//
+	background = new fb_pixel_t[cCBox.iWidth*cCBox.iHeight];
+	
+	if (background)
+	{
+		frameBuffer->saveScreen(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, background);
+	}
+	
+	//
+	std::string timestr = getNowTimeStr(format);
+		
+	int timestr_len = font->getRenderWidth(timestr.c_str(), true); // UTF-8
+	
+	if (timestr_len > cCBox.iWidth)
+		timestr_len = cCBox.iWidth;
+	
+	font->RenderString(cCBox.iX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), timestr_len + 1, timestr.c_str(), color, 0, true);
+}
+
+void CCTime::refresh()
+{
+	if (background)
+	{
+		frameBuffer->restoreScreen(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, background);
+	}
+	
+	//
+	std::string timestr = getNowTimeStr(format);
+		
+	int timestr_len = font->getRenderWidth(timestr.c_str(), true); // UTF-8
+	
+	font->RenderString(cCBox.iX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), /*timestr_len + 1*/cCBox.iWidth, timestr.c_str(), color, 0, true);
+}
+
 //// widget items
 // headers
 CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const char * const title, const char * const icon)
@@ -699,6 +749,9 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 	gradient = g_settings.Head_gradient;
 
 	paintDate = false;
+	format = "%d.%m.%Y %H:%M";
+	timer = NULL;
+	
 	hbutton_count	= 0;
 	hbutton_labels.clear();
 	
@@ -720,6 +773,9 @@ CHeaders::CHeaders(CBox position, const char * const title, const char * const i
 	gradient = g_settings.Head_gradient;
 
 	paintDate = false;
+	format = "%d.%m.%Y %H:%M";
+	timer = NULL;
+	
 	hbutton_count	= 0;
 	hbutton_labels.clear();
 	
@@ -743,7 +799,7 @@ void CHeaders::setButtons(const struct button_label* _hbutton_labels, const int 
 
 void CHeaders::paint()
 {
-	dprintf(DEBUG_INFO, "CHeaders::paint:\n");
+	dprintf(DEBUG_NORMAL, "CHeaders::paint:\n");
 	
 	// box
 	CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
@@ -793,11 +849,16 @@ void CHeaders::paint()
 	int timestr_len = 0;
 	if(paintDate)
 	{
-		std::string timestr = getNowTimeStr("%d.%m.%Y %H:%M");
+		std::string timestr = getNowTimeStr(format);
 		
 		timestr_len = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(timestr.c_str(), true); // UTF-8
 	
-		g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->RenderString(startx - timestr_len, itemBox.iY + (itemBox.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight(), timestr_len + 1, timestr.c_str(), COL_MENUHEAD, 0, true); 
+		timer = new CCTime();
+		timer->setPosition(startx - timestr_len, itemBox.iY, timestr_len, itemBox.iHeight);
+		timer->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+		timer->setFormat(format);
+		timer->enableRepaint();
+		timer->paint();
 	}
 	
 	int startPosX = itemBox.iX + BORDER_LEFT + i_w + ICON_OFFSET;

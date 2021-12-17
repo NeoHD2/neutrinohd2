@@ -73,6 +73,8 @@ class CEpgData
 		CBox cHeadBox;
 		CBox cFootBox;
 
+		CHeaders* headers;
+		
 		CBox cTextBox;
 		CTextBox *textBox;
 

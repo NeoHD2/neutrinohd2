@@ -46,6 +46,7 @@
 #include <system/settings.h>
 
 #include <gui/widget/menue.h>
+#include <gui/widget/widget_helpers.h>
 
 
 class CInfoViewer
@@ -56,7 +57,11 @@ class CInfoViewer
 
 		CFrameBuffer *frameBuffer;
 		
+		//
 		bool gotTime;
+		CCTime* timer;
+		
+		//
 		bool recordModeActive;
 		bool CA_Status;
 		bool showButtonBar;

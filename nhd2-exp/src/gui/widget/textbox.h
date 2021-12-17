@@ -135,7 +135,6 @@ class CTextBox : public CWidgetItem
 		virtual ~CTextBox();
 
 		// Functions
-		void refresh(void);
 		void scrollPageDown(const int pages = 1);
 		void scrollPageUp(const int pages = 1);
 
@@ -162,6 +161,7 @@ class CTextBox : public CWidgetItem
 
 		void paint(void);
 		void hide(void);
+		void refresh(void);
 
 		void setBigFonts();
 

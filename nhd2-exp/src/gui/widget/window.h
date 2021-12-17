@@ -30,6 +30,7 @@
 #include <driver/framebuffer.h>
 #include <system/settings.h>
 #include <driver/color.h>
+
 #include <gui/widget/widget_helpers.h>
 
 
@@ -76,8 +77,9 @@ class CWindow : public CWidgetItem
 		void enableCenterPos(){centerPos = true; init();};
 		void disablePaintFrame(){paintFrame = false;};
 
-		void paint();
-		void hide();
+		void paint(void);
+		void hide(void);
+		void refresh(void);
 		
 		inline CBox getWindowsPos(void){return (itemBox);};
 		
@@ -86,6 +88,9 @@ class CWindow : public CWidgetItem
 		bool hasItem(){return !CCItems.empty();};
 		void clearCCItems(){CCItems.clear();};
 		void paintCCItems();
+		
+		void enableRepaint(){rePaint = true;};
+		bool update() const {return rePaint;};
 };
 
 #endif
