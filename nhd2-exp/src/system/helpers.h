@@ -122,9 +122,9 @@ size_t WriteMemoryCallback(void *ptr, size_t size, size_t nmemb, void *data);
 std::string encodeUrl(std::string txt);
 std::string decodeUrl(std::string url);
 
-bool getUrl(std::string &url, std::string &answer, std::string userAgent = "", unsigned int timeout = 30);
-bool downloadUrl(std::string url, std::string file, std::string userAgent = "", unsigned int timeout = 30);
-std::string getUrlAnswer(std::string url, std::string userAgent = "", unsigned int timeout = 30);
+bool getUrl(std::string &url, std::string &answer, std::string userAgent = "", unsigned int timeout = 10);
+bool downloadUrl(std::string url, std::string file, std::string userAgent = "", unsigned int timeout = 10);
+std::string getUrlAnswer(std::string url, std::string userAgent = "", unsigned int timeout = 10);
 
 //
 int _select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);

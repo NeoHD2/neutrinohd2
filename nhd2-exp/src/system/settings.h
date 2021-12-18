@@ -263,7 +263,7 @@ struct SNeutrinoSettings
 	int volume_pos;
 	int rounded_corners;
 	std::string preferred_skin;
-	int use_skin;	
+	int use_default_skin;	
 	// END OSD
 
 	// KEYS
@@ -467,11 +467,23 @@ struct SNeutrinoSettings
 	int progressbar_color;
 	int progressbar_gradient;
 
-	// gradient
+	// corner /radius
+	//head
 	int Head_gradient;
+	int Head_corner;
+	int Head_radius;
+	
+	// foot
 	int Foot_gradient;
+	int Foot_corner;
+	int Foot_radius;
+	
+	//
 	int Foot_Info_gradient;
 	int infobar_gradient;
+	
+	//
+	int use_shadow;
 
 	// icons dir
 	std::string icons_dir;

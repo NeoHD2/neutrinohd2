@@ -121,10 +121,11 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 	cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - cFrameBox.iWidth ) >> 1);
 	cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - cFrameBox.iHeight) >> 2);
 	
-	m_cBoxWindow = new CWindow(/*cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight*/&cFrameBox);
+	m_cBoxWindow = new CWindow(&cFrameBox);
 	m_cBoxWindow->enableSaveScreen();
-	//m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
-	m_cBoxWindow->enableShadow();
+
+	if (g_settings.use_shadow)
+		m_cBoxWindow->enableShadow();
 	
 	// HG
 	paintHG = true;
@@ -209,8 +210,8 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	// Box
 	m_cBoxWindow = new CWindow(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
 	m_cBoxWindow->enableSaveScreen();
-	//m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
-	m_cBoxWindow->enableShadow();
+	if (g_settings.use_shadow)
+		m_cBoxWindow->enableShadow();
 	
 	// HG
 	paintHG = true;
@@ -247,7 +248,9 @@ void CHintBox::refresh(void)
 	cFrameBoxTitle.iWidth = cFrameBox.iWidth - 2;
 
 	CHeaders headers(cFrameBoxTitle, caption.c_str(), iconfile.c_str());
-	headers.setCorner();
+	//headers.setCorner(NO_RADIUS, CORNER_NONE);
+	headers.setCorner(CORNER_NONE);
+	headers.setRadius(NO_RADIUS);
 	headers.paint();
 
 	// body text

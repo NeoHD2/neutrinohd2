@@ -461,8 +461,8 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 	iconfile = "";
 	logo = false;
 	headColor = COL_MENUHEAD_PLUS_0;
-	headRadius = RADIUS_MID;
-	headCorner = CORNER_TOP;
+	headRadius = g_settings.Head_radius;
+	headCorner = g_settings.Head_corner;
 	headGradient = g_settings.Head_gradient;
 	hbutton_count	= 0;
 	hbutton_labels.clear();
@@ -471,8 +471,8 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 	// foot
 	paint_Foot = false;
 	footColor = COL_MENUFOOT_PLUS_0;
-	footRadius = RADIUS_MID;
-	footCorner = CORNER_BOTTOM;
+	footRadius = g_settings.Foot_radius;
+	footCorner = g_settings.Foot_corner;
 	footGradient = g_settings.Foot_gradient;
 	fheight = 0;
 }
@@ -511,8 +511,8 @@ CFrameBox::CFrameBox(CBox* position)
 	iconfile = "";
 	logo = false;
 	headColor = COL_MENUHEAD_PLUS_0;
-	headRadius = RADIUS_MID;
-	headCorner = CORNER_TOP;
+	headRadius = g_settings.Head_radius;
+	headCorner = g_settings.Head_corner;
 	headGradient = g_settings.Head_gradient;
 	hbutton_count	= 0;
 	hbutton_labels.clear();
@@ -521,8 +521,8 @@ CFrameBox::CFrameBox(CBox* position)
 	// foot
 	paint_Foot = false;
 	footColor = COL_MENUFOOT_PLUS_0;
-	footRadius = RADIUS_MID;
-	footCorner = CORNER_BOTTOM;
+	footRadius = g_settings.Foot_radius;
+	footCorner = g_settings.Foot_corner;
 	footGradient = g_settings.Foot_gradient;
 	fheight = 0;
 }

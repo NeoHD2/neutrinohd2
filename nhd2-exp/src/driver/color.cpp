@@ -262,7 +262,6 @@ fb_pixel_t* gradientColorToTransparent(fb_pixel_t col, fb_pixel_t *gradientBuf, 
 
 fb_pixel_t* gradientOneColor(fb_pixel_t col, fb_pixel_t *gradientBuf, int bSize, int mode, int intensity, uint8_t v_min, uint8_t v_max, uint8_t s)
 {
-
 	if (gradientBuf == NULL) 
 	{
 		gradientBuf = (fb_pixel_t*) malloc(bSize * sizeof(fb_pixel_t));

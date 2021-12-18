@@ -69,7 +69,7 @@ class CWindow : public CWidgetItem
 		void setPosition(const int x, const int y, const int dx, const int dy);
 		void setPosition(CBox* position);
 		void setColor(fb_pixel_t col){bgcolor = col;};
-		void setCorner(int ra = NO_RADIUS, int co = CORNER_NONE){radius = ra; corner = co;};
+		void setCorner(int ra, int co){radius = ra; corner = co;};
 		void setGradient(int grad){gradient = grad;};
 		void enableShadow(void){enableshadow = true;};
 		void enableSaveScreen();

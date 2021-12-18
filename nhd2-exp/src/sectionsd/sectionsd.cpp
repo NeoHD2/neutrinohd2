@@ -3479,7 +3479,8 @@ static void commandWriteSI2XML(int connfd, char *data, const unsigned dataLength
 
 		MySIeventsOrderServiceUniqueKeyFirstStartTimeEventUniqueKey::iterator e =
 			mySIeventsOrderServiceUniqueKeyFirstStartTimeEventUniqueKey.begin();
-		if (e != mySIeventsOrderServiceUniqueKeyFirstStartTimeEventUniqueKey.end()) {
+		if (e != mySIeventsOrderServiceUniqueKeyFirstStartTimeEventUniqueKey.end()) 
+		{
 			onid = (*e)->original_network_id;
 			tsid = (*e)->transport_stream_id;
 			sid = (*e)->service_id;

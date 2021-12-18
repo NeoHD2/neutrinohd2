@@ -99,7 +99,7 @@ void COSDSettings::showMenu(void)
 	osdSettings->enablePaintDate();
 	
 	// skin
-	osdSettings->addItem( new CMenuForwarder(LOCALE_SKIN_SKIN, g_settings.use_skin, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
+	osdSettings->addItem( new CMenuForwarder(LOCALE_SKIN_SKIN, true, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 
 	// Themes
 	CThemes * osdSettings_Themes = new CThemes();
@@ -226,12 +226,18 @@ void COSDMenuColorSettings::showMenu()
 
 	// head
 	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_COLORMENUSETUP_MENUHEAD)));
+	
+	// head colr
 	OSDmenuColorsSettings.addItem( new CMenuForwarder(LOCALE_COLORMENU_BACKGROUND, true, NULL, chHeadcolor ));
-
+	
+	// head text
 	OSDmenuColorsSettings.addItem( new CMenuForwarder(LOCALE_COLORMENU_TEXTCOLOR, true, NULL, chHeadTextcolor ));
 
 	// head gradient
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(LOCALE_COLORMENU_GRADIENT, &g_settings.Head_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
+	// corner
+	// radius
 
 	// window content
 	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_COLORMENUSETUP_MENUCONTENT)));
@@ -765,10 +771,10 @@ void COSDDiverses::showMenu()
 	// menu position
 	//osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_MENU_POSITION, &g_settings.menu_position, MENU_POSITION_OPTIONS, MENU_POSITION_OPTION_COUNT, true));
 	
-	CSkinNotifier skinNotifier;
+	//CSkinNotifier skinNotifier;
 	
 	// use skin?
-	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_SKIN_ENABLE, &g_settings.use_skin, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, &skinNotifier));
+	//osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_SKIN_ENABLE, &g_settings.use_skin, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, &skinNotifier));
 
 	// corners
 	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_ROUNDED_CORNERS, &g_settings.rounded_corners, MENU_CORNERSETTINGS_TYPE_OPTIONS, MENU_CORNERSETTINGS_TYPE_OPTION_COUNT, true));
@@ -814,11 +820,16 @@ void CSkinManager::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CSkinManager::showMenu:\n");
 	
+	int count = 0;
+	int old_selected = 0;
+	
 	CMenuItem* item = NULL;
-	CMenuWidget* skinMenu = new CMenuWidget(LOCALE_SKIN_SKIN, NEUTRINO_ICON_COLORS, 720, 500);
-	skinMenu->setWidgetMode(MODE_MENU);
-	skinMenu->setWidgetType(WIDGET_TYPE_EXTENDED);
-	skinMenu->enablePaintFootInfo();
+	CMenuWidget* skinMenu = new CMenuWidget(LOCALE_SKIN_SKIN, NEUTRINO_ICON_COLORS, 800, 600);
+	skinMenu->setWidgetMode(MODE_LISTBOX);
+	skinMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
+	
+	// default
+	skinMenu->addItem( new ClistBoxItem(LOCALE_SKIN_DEFAULT, true, NULL, this, "neutrino_default", RC_nokey, NULL, DATADIR "/neutrino/icons/prev.jpg"), old_selected == count++);
 	
 	std::string skinPath = CONFIGDIR "/skin";
 	
@@ -843,7 +854,7 @@ void CSkinManager::showMenu()
 				hint += "/prev.png";
 				item->setItemIcon(hint.c_str());
 				
-				skinMenu->addItem(item);	
+				skinMenu->addItem(item, old_selected == count++);	
 			}
 			free(namelist[i]);
 		}
@@ -851,6 +862,7 @@ void CSkinManager::showMenu()
 	}
 	
 	skinMenu->exec(NULL, "");
+	old_selected = skinMenu->getSelected();
 	
 	delete skinMenu;
 	skinMenu = NULL;	
@@ -865,14 +877,19 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 	if (parent)
 		parent->hide();
 		
-	if (!actionKey.empty())
+		
+	if (actionKey == "neutrino_default")
 	{
+		g_settings.use_default_skin = true;
 		CNeutrinoApp::getInstance()->unloadSkin();
-		
+		CNeutrinoApp::getInstance()->exec(NULL, "restart");
+	}
+	else if (!actionKey.empty())
+	{
+		g_settings.use_default_skin = false;
+		CNeutrinoApp::getInstance()->unloadSkin();
 		g_settings.preferred_skin = actionKey;
-		
 		CNeutrinoApp::getInstance()->loadSkin(g_settings.preferred_skin);
-	
 		CNeutrinoApp::getInstance()->exec(NULL, "restart");
 	}
 		
@@ -886,9 +903,9 @@ bool CSkinNotifier::changeNotify(const neutrino_locale_t OptionName, void *)
 {
 	dprintf(DEBUG_NORMAL, "CSkinNotifier::changeNotify:\n");
 		
-	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_SKIN_ENABLE))
+	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_SKIN_DEFAULT))
 	{
-		//if (!g_settings.use_skin) // alyaws restart
+		//if (!g_settings.use_default_skin) // alyaws restart
 		{
 			CNeutrinoApp::getInstance()->unloadSkin();
 			CNeutrinoApp::getInstance()->exec(NULL, "restart");

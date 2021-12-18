@@ -120,7 +120,7 @@ class CWidget : public CMenuTarget
 
 		void enablePaintFrame(){paintFrame = true;};
 		void setColor(fb_pixel_t col) {backgroundColor = col;};
-		void setCorner(int ra = NO_RADIUS, int co = CORNER_NONE){radius = ra; corner = co;};
+		void setCorner(int ra, int co){radius = ra; corner = co;};
 
 		void enableSaveScreen();
 

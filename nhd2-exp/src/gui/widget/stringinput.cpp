@@ -492,8 +492,7 @@ void CStringInput::paint()
 	//box
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	//m_cBoxWindow.enableShadow();
+	m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);;
 	m_cBoxWindow.paint();
 
 	// head

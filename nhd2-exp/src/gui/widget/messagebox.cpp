@@ -431,8 +431,8 @@ void CMessageBox::initFrames(void)
 	m_cBoxWindow = new CWindow(&cFrameBox);
 
 	m_cBoxWindow->enableSaveScreen();
-	//m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
-	m_cBoxWindow->enableShadow();
+	if (g_settings.use_shadow)
+		m_cBoxWindow->enableShadow();
 }
 
 void CMessageBox::paint(void)
@@ -451,7 +451,8 @@ void CMessageBox::refresh()
 
 	// title
 	CHeaders headers(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + 1, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + 1, m_width - 2, m_theight - 2, m_caption.c_str(), m_iconfile.c_str());
-	headers.setCorner();
+	headers.setCorner(CORNER_NONE);
+	headers.setRadius(CORNER_NONE);
 	headers.paint();
 
 	//TextBody

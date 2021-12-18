@@ -824,7 +824,7 @@ void CTestMenu::testCWidget()
 	footers = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
-	footers->setCorner(RADIUS_MID, CORNER_BOTTOM);
+	//footers->setCorner(RADIUS_MID, CORNER_BOTTOM);
 	
 	// topwidget (frameBox)
 	topBox.iWidth = testWidget->getWindowsPos().iWidth;
@@ -1397,7 +1397,8 @@ void CTestMenu::testCFrameBoxWidget()
 
 	// frameBox
 	frameBoxWidget = new CFrameBox(&box);
-	frameBoxWidget->setCorner(RADIUS_MID, CORNER_ALL);
+	frameBoxWidget->setRadius(RADIUS_MID);
+	frameBoxWidget->setCorner(CORNER_ALL);
 
 	CHintBox loadBox("testCFrameBoxWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
@@ -1553,7 +1554,7 @@ void CTestMenu::testCListFrameWidget()
 	footers = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	footers->setCorner(RADIUS_MID, CORNER_BOTTOM);
+	//footers->setCorner(RADIUS_MID, CORNER_BOTTOM);
 
 	//
 	CBox listFrameBox;
@@ -1765,14 +1766,10 @@ void CTestMenu::testMultiWidget()
 
 	headers->enablePaintDate();
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	//headers->setCorner();
-	//headers->setGradient(NOGRADIENT);
 
 	footers = new CFooters(footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	//footers->setCorner();
-	//footers->setGradient(NOGRADIENT);
 	
 	// leftWidget
 	leftBox.iWidth = 200;
@@ -1964,14 +1961,10 @@ void CTestMenu::testCWidgetItem()
 
 	headers->enablePaintDate();
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	//headers->setCorner();
-	//headers->setGradient(NOGRADIENT);
 
 	footers = new CFooters(footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	//footers->setCorner();
-	//footers->setGradient(NOGRADIENT);
 
 	// top widget
 	CBox topBox;
@@ -2688,6 +2681,7 @@ void CTestMenu::testCComponent()
 	// heades
 	CHeaders head(Box.iX, Box.iY, Box.iWidth, 40, "CComponents", NEUTRINO_ICON_COLORS);
 	head.enablePaintDate();
+	head.setFormat("%d.%m.%Y %H:%M:%S");
 	
 	// footers
 	CFooters foot(Box.iX, Box.iY + Box.iHeight - 40, Box.iWidth, 40);
@@ -2811,7 +2805,7 @@ REPAINT:
 
 		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			head.paint();
+			head.refresh();
 		} 
 		else if (msg == RC_home) 
 		{
@@ -3004,18 +2998,12 @@ void CTestMenu::testCHeaders()
 	headers->enablePaintDate();
 	headers->setFormat("%d.%m.%Y %H:%M:%S");
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	//headers->setCorner();
-	//headers->setGradient(NOGRADIENT);
 	headers->setMode(CC_ALIGN_CENTER);
 
 	footers = new CFooters(footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	//headers->setCorner();
-	//headers->setGradient(NOGRADIENT);
-
-	//headers->paintHead(headBox, "test CHeaders", NEUTRINO_ICON_MP3);
-	//headers->paintFoot(footBox, FOOT_BUTTONS_COUNT, FootButtons);	
+		
 	headers->paint();
 	footers->paint();
 	CFrameBuffer::getInstance()->blit();
@@ -3611,7 +3599,7 @@ void CTestMenu::testCProgressBar()
 	CBox Box;
 	
 	Box.iX = g_settings.screen_StartX + 10;
-	Box.iY = g_settings.screen_StartY + 10;
+	Box.iY = g_settings.screen_StartY + 10 + (g_settings.screen_EndY - g_settings.screen_StartY - 20)/2;
 	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
 	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20)/40;
 	
@@ -4680,8 +4668,6 @@ void CTestMenu::testCFrameBox()
 	frame->setActionKey(this, "help");
 	frame->setColor(COL_GREEN_PLUS_0);
 	frame->setGradient(LIGHT2DARK);
-	//frame->setCorner(RADIUS_LARGE, CORNER_ALL);
-	//frame->disableShadow();
 	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
@@ -4706,8 +4692,6 @@ void CTestMenu::testCFrameBox()
 	frame->setActionKey(this, "exit");
 	frame->setGradient(LIGHT2DARK);
 	frame->setColor(COL_BLUE_PLUS_0);
-	//frame->setCorner(RADIUS_LARGE, CORNER_ALL);
-	//frame->disableShadow();
 	frameBoxWidget->addFrame(frame);
 
 	frameBoxWidget->setSelected(selected);

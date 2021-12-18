@@ -417,7 +417,6 @@ void CEpgData::showHead(const t_channel_id channel_id)
 
 	headers->enablePaintDate();
 	headers->setButtons(&HButton, 1);
-	headers->setCorner(RADIUS_MID, CORNER_TOP);
 
 	headers->paint();
 }
@@ -1032,7 +1031,6 @@ void CEpgData::showTimerEventBar(bool _show)
 
 	CFooters footers(cFootBox.iX, cFootBox.iY, cFootBox.iWidth, cFootBox.iHeight);
 	footers.setButtons(FButtons, 4);
-	footers.setCorner(RADIUS_MID, CORNER_BOTTOM);
 	footers.paint();
 }
 

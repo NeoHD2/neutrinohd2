@@ -1646,7 +1646,7 @@ typedef enum {
 	LOCALE_TMDB_INFO,
 	
 	//
-	LOCALE_SKIN_ENABLE,
+	LOCALE_SKIN_DEFAULT,
 	LOCALE_SKIN_SKIN
 } neutrino_locale_t;
 

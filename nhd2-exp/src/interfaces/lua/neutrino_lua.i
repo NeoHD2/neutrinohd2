@@ -124,7 +124,6 @@
 
 //gui/setup
 #include <gui/scan_setup.h>
-#include <gui/main_setup.h>
 #include <gui/audio_setup.h>
 #include <gui/video_setup.h>
 #include <gui/lcd_setup.h>
@@ -140,6 +139,13 @@
 #include <gui/screensetup.h>
 #include <gui/zapit_setup.h>
 #include <gui/audioplayer_setup.h>
+//
+#include <gui/main_setup.h>
+#include <gui/epg_menu.h>
+#include <gui/power_menu.h>
+#include <gui/dboxinfo.h>
+#include <gui/main_setup.h>
+#include <gui/mediaplayer.h>
 
 // zapit
 #include <zapit/include/zapit/bouquets.h>
@@ -267,7 +273,6 @@
 
 //gui/setup
 %include <src/gui/scan_setup.h>
-%include <src/gui/main_setup.h>
 %include <src/gui/audio_setup.h>
 %include <src/gui/video_setup.h>
 %include <src/gui/lcd_setup.h>
@@ -283,6 +288,13 @@
 %include <src/gui/screensetup.h>
 %include <src/gui/zapit_setup.h>
 %include <src/gui/audioplayer_setup.h>
+//
+%include <src/gui/main_setup.h>
+%include <src/gui/epg_menu.h>
+%include <src/gui/power_menu.h>
+%include <src/gui/dboxinfo.h>
+%include <src/gui/main_setup.h>
+%include <src/gui/mediaplayer.h>
 
 // zapit
 //%include <src/zapit/include/zapit/bouquets.h>

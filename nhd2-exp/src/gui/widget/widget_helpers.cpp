@@ -108,7 +108,7 @@ void CProgressBar::paintPCR(unsigned char pcr)
 		{
 			if(g_settings.progressbar_color == 0)
 			{
-				//red
+				// red / green
 				for (i = 0; (i < red) && (i < maxi); i++) 
 				{
 					step = 255/red;
@@ -134,7 +134,7 @@ void CProgressBar::paintPCR(unsigned char pcr)
 					frameBuffer->paintBoxRel(posx + i, posy, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 				}
 
-				//green
+				//green / red
 				for (; (i < green) && (i < maxi); i++) 
 				{
 					step = 255/green;
@@ -744,8 +744,8 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 	hicon = icon;
 
 	bgcolor = COL_MENUHEAD_PLUS_0;
-	radius = RADIUS_MID;
-	corner = CORNER_TOP;
+	radius = g_settings.Head_radius;
+	corner = g_settings.Head_corner;
 	gradient = g_settings.Head_gradient;
 
 	paintDate = false;
@@ -768,8 +768,8 @@ CHeaders::CHeaders(CBox position, const char * const title, const char * const i
 	hicon = icon;
 
 	bgcolor = COL_MENUHEAD_PLUS_0;
-	radius = RADIUS_MID;
-	corner = CORNER_TOP;
+	radius = g_settings.Head_radius;
+	corner = g_settings.Head_corner;
 	gradient = g_settings.Head_gradient;
 
 	paintDate = false;
@@ -890,8 +890,8 @@ CFooters::CFooters(int x, int y, int dx, int dy)
 	fcount = 0;
 
 	fbgcolor = COL_MENUFOOT_PLUS_0;
-	fradius = RADIUS_MID;
-	fcorner = CORNER_BOTTOM;
+	fradius = g_settings.Foot_radius;
+	fcorner = g_settings.Foot_corner;
 	fgradient = g_settings.Foot_gradient;
 
 	itemType = WIDGET_ITEM_FOOT;
@@ -905,8 +905,8 @@ CFooters::CFooters(CBox position)
 	fcount = 0;
 
 	fbgcolor = COL_MENUFOOT_PLUS_0;
-	fradius = RADIUS_MID;
-	fcorner = CORNER_BOTTOM;
+	fradius = g_settings.Foot_radius;
+	fcorner = g_settings.Foot_corner;
 	fgradient = g_settings.Foot_gradient;
 
 	itemType = WIDGET_ITEM_FOOT;

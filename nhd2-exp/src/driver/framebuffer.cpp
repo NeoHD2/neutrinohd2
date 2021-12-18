@@ -640,8 +640,12 @@ bool CFrameBuffer::calcCorners(int *ofs, int *ofl, int *ofr, const int& dy, cons
 #define MUL 32768
 	int scl, _ofs = 0;
 	bool ret = false;
-	if (ofl != NULL) *ofl = 0;
-	if (ofr != NULL) *ofr = 0;
+	
+	if (ofl != NULL) 
+		*ofl = 0;
+	if (ofr != NULL) 
+		*ofr = 0;
+		
 	int scf = (540 * MUL) / ((radius < 1) ? 1 : radius);
 
 	// one of the top corners
@@ -652,8 +656,11 @@ bool CFrameBuffer::calcCorners(int *ofs, int *ofl, int *ofr, const int& dy, cons
 		if ((scf * (radius - line) % MUL) >= (MUL / 2)) // round up
 			scl++;
 		_ofs =  radius - (q_circle[scl] * MUL / scf);
-		if (ofl != NULL) *ofl = corner_tl ? _ofs : 0;
-		if (ofr != NULL) *ofr = corner_tr ? _ofs : 0;
+		if (ofl != NULL) 
+			*ofl = corner_tl ? _ofs : 0;
+			
+		if (ofr != NULL) 
+			*ofr = corner_tr ? _ofs : 0;
 	}
 
 	// one of the bottom corners 
@@ -664,8 +671,11 @@ bool CFrameBuffer::calcCorners(int *ofs, int *ofl, int *ofr, const int& dy, cons
 		if ((scf * (radius - (dy - (line + 1))) % MUL) >= (MUL / 2)) // round up
 			scl++;
 		_ofs =  radius - (q_circle[scl] * MUL / scf);
-		if (ofl != NULL) *ofl = corner_bl ? _ofs : 0;
-		if (ofr != NULL) *ofr = corner_br ? _ofs : 0;
+		
+		if (ofl != NULL) 
+			*ofl = corner_bl ? _ofs : 0;
+		if (ofr != NULL) 
+			*ofr = corner_br ? _ofs : 0;
 	}
 	else
 		ret = true;
@@ -682,7 +692,7 @@ void CFrameBuffer::paintHLineRelInternal2Buf(const int& x, const int& dx, const 
 	fb_pixel_t * dest = (fb_pixel_t *)pos;
 	
 	for (int i = 0; i < dx; i++)
-		*(dest++) = col;
+		*(dest++) = col;		
 }
 
 fb_pixel_t* CFrameBuffer::paintBoxRel2Buf(const int dx, const int dy, const fb_pixel_t col, fb_pixel_t* buf, int radius, int type)
@@ -722,6 +732,7 @@ fb_pixel_t* CFrameBuffer::paintBoxRel2Buf(const int dx, const int dy, const fb_p
 				line++;
 				continue;
 			}
+
 			paintHLineRelInternal2Buf(ofl, dx - ofl - ofr, line, dx, col, pixBuf);
 			line++;
 		}
@@ -745,15 +756,16 @@ fb_pixel_t* CFrameBuffer::paintBoxRel2Buf(const int dx, const int dy, const fb_p
 
 //
 
-void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius, int type, int mode, bool tr)
+void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius, int type, int mode, int direction)
 {
 	if (!getActive())
 		return;
 
-#define MASK 0xFFFFFFFF
+	fb_pixel_t MASK = 0xFFFFFFFF;
 
 	// boxBuf
 	fb_pixel_t* boxBuf = paintBoxRel2Buf(dx, dy, (mode > NOGRADIENT)? MASK : col, NULL, radius, type);
+	
         if (!boxBuf)
                return;
 
@@ -766,19 +778,42 @@ void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int
 		fb_pixel_t *gra = gradientBuf;
 
 		// vertical
-		for (int pos = 0; pos < dx; pos++) 
+		if (direction == GRADIENT_VERTICAL)
 		{
-			for(int count = 0; count < dy; count++) 
+			for (int pos = 0; pos < dx; pos++) 
 			{
-				if (*(bp + pos) == MASK)
-					*(bp + pos) = (fb_pixel_t)(*(gra + count));
+				for(int count = 0; count < dy; count++) 
+				{
+					if (*(bp + pos) == MASK)
+						*(bp + pos) = (fb_pixel_t)(*(gra + count));
+					bp += dx;
+				}
+				bp = boxBuf;
+			}
+		}
+		else
+		{
+			// horizontal
+			for (int line = 0; line < dy; line++) 
+			{
+				int gra_pos = 0;
+				for (int pos = 0; pos < dx; pos++) 
+				{
+					if ((*(bp + pos) == MASK) && (pos >= 0) && (gra_pos < dx))
+					{
+						*(bp + pos) = (fb_pixel_t)(*(gra + gra_pos));
+						gra_pos++;
+					}
+				}
 				bp += dx;
 			}
-			bp = boxBuf;
 		}
 	}
 
-	blit2FB(boxBuf, dx, dy, x, y, 0, 0, tr ? true : false);
+	if(mode > NOGRADIENT)
+		blitBox2FB(boxBuf, dx, dy, x, y);
+	else
+		blit2FB(boxBuf, dx, dy, x, y);
 
 	free(boxBuf);
 }
@@ -1417,12 +1452,39 @@ void CFrameBuffer::clearFrameBuffer()
 	paintBackground();
 }
 
+// blitBox2FB
+void CFrameBuffer::blitBox2FB(const fb_pixel_t* boxBuf, const uint32_t& width, const uint32_t& height, const uint32_t& xoff, const uint32_t& yoff)
+{ 
+	uint32_t xc = (width > xRes) ? (uint32_t)xRes : width;
+	uint32_t yc = (height > yRes) ? (uint32_t)yRes : height;
+	
+	unsigned int swidth = stride / sizeof(fb_pixel_t);
+
+	fb_pixel_t *fbp = getFrameBufferPointer() + (swidth * yoff);
+	fb_pixel_t* data = (fb_pixel_t*)boxBuf;
+
+	uint32_t line = 0;
+	while (line < yc) 
+	{
+		fb_pixel_t *pixpos = &data[line * xc];
+		for (uint32_t pos = xoff; pos < xoff + xc; pos++) 
+		{
+			//don't paint backgroundcolor (*pixpos = 0x00000000)
+			if (*pixpos)
+				*(fbp + pos) = *pixpos;
+			pixpos++;
+		}
+		fbp += swidth;
+		line++;
+	}
+}
+
 // blit2FB
 void CFrameBuffer::blit2FB(void * fbbuff, uint32_t width, uint32_t height, uint32_t xoff, uint32_t yoff, uint32_t xp, uint32_t yp, bool transp )
 { 
 	int xc = (width > xRes) ? xRes : width;
 	int yc = (height > yRes) ? yRes : height;
-
+	
 	fb_pixel_t * data = (fb_pixel_t *) fbbuff;
 
 	uint8_t * d = ((uint8_t *)getFrameBufferPointer()) + xoff * sizeof(fb_pixel_t) + stride * yoff;
@@ -1442,7 +1504,15 @@ void CFrameBuffer::blit2FB(void * fbbuff, uint32_t width, uint32_t height, uint3
 			{
 				uint8_t *in = (uint8_t *)(pixpos + xp);
 				uint8_t *out = (uint8_t *)d2;
-				int a = in[3];	//TODO: big/little endian
+#if __BYTE_ORDER == __LITTLE_ENDIAN
+				int a = in[3];
+#elif __BYTE_ORDER == __BIG_ENDIAN
+				int a = in[0];
+				out++; 
+				in++;
+#else
+#error neither big nor little endian???
+#endif				
 				*out = (*out + ((*in - *out) * a) / 256);
 				in++; out++;
 				*out = (*out + ((*in - *out) * a) / 256);
@@ -1454,7 +1524,7 @@ void CFrameBuffer::blit2FB(void * fbbuff, uint32_t width, uint32_t height, uint3
 			pixpos++;
 		}
 		d += stride;
-	}
+	}	
 }
 
 //

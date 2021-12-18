@@ -69,9 +69,9 @@ int CEPGMenuHandler::exec(CMenuTarget* parent, const std::string &)
 
 int CEPGMenuHandler::doMenu()
 {
-	if ( g_settings.use_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-		CNeutrinoApp::getInstance()->startSkin("red");
-	else	
+	//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
+	//	CNeutrinoApp::getInstance()->startSkin("red");
+	//else	
 	{
 		CMenuWidget redMenu(LOCALE_EPGMENU_HEAD, NEUTRINO_ICON_BUTTON_EPG);
 

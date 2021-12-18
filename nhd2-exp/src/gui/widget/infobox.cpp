@@ -239,7 +239,8 @@ void CInfoBox::refreshTitle(void)
 	CHeaders headers(m_cBoxFrameTitleRel, m_cTitle.c_str(), m_cIcon.c_str());
 
 	headers.setColor(headColor);
-	headers.setCorner(headRadius, headCorner);
+	headers.setCorner(headCorner);
+	headers.setRadius(headRadius);
 	headers.setGradient(headGradient);
 	headers.setButtons(&HButton, 1);
 	
@@ -259,7 +260,8 @@ void CInfoBox::refreshFoot(void)
 	CFooters footers(m_cBoxFrameFootRel);
 	
 	footers.setColor(footColor);
-	footers.setCorner(footRadius, footCorner);
+	footers.setRadius(footRadius);
+	footers.setCorner(footCorner);
 	footers.setGradient(footGradient);
 	
 	footers.paint();

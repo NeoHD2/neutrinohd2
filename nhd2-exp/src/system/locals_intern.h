@@ -1645,7 +1645,7 @@ const char * locale_real_names[] = {
 	"tmdb.tmdb_info",
 	
 	//
-	"skin.enable",
+	"skin.default",
 	"skin.skin",
 };
 

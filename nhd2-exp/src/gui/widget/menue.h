@@ -241,7 +241,7 @@ class CMenuWidget : public CMenuTarget
 		// foot
 		void setFootButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1, const int _fbutton_width = 0);
 		void setFootColor(fb_pixel_t col) {footColor = col; def_footColor = false;};
-		void setFootCorner(int ra, int co = CORNER_BOTTOM){footRadius = ra; footCorner = co; def_footRadius = false; def_footCorner = false;};
+		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co; def_footRadius = false; def_footCorner = false;};
 		void setFootGradient(int grad){footGradient = grad; def_footGradient = false;};
 
 		// head
@@ -250,7 +250,7 @@ class CMenuWidget : public CMenuTarget
 		void setHeadButtons(const struct button_label* _hbutton_label, const int _hbutton_count = 1);
 		void enablePaintDate(void){PaintDate = true;};
 		void setHeadColor(fb_pixel_t col) {headColor = col; def_headColor = false;};
-		void setHeadCorner(int ra, int co = CORNER_TOP){headRadius = ra; headCorner = co; def_headRadius = false; def_headCorner = false;};
+		void setHeadCorner(int ra, int co){headRadius = ra; headCorner = co; def_headRadius = false; def_headCorner = false;};
 		void setHeadGradient(int grad){headGradient = grad; def_headGradient = false;};
 
 		// footInfo

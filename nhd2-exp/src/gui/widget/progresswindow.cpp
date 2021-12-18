@@ -184,9 +184,8 @@ void CProgressWindow::paint()
 
 	// box
 	m_cBoxWindow.enableSaveScreen();
-	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	m_cBoxWindow.enableShadow();
+	if (g_settings.use_shadow)
+		m_cBoxWindow.enableShadow();
 	m_cBoxWindow.paint();
 	
 	// title
@@ -199,7 +198,8 @@ void CProgressWindow::paint()
 			l_caption = captionString.c_str();
 
 		CHeaders headers(x + 2, y + 2, width - 4, hheight - 2, l_caption, NEUTRINO_ICON_INFO);
-		headers.setCorner();
+		headers.setCorner(CORNER_NONE);
+		headers.setRadius(NO_RADIUS);
 		headers.paint();
 	}
 

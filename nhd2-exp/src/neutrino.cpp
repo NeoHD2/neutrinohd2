@@ -717,8 +717,9 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.screen_yres = configfile.getInt32("screen_yres", 100);
 	
 	g_settings.rounded_corners = configfile.getInt32("rounded_corners", NO_RADIUS);
-	g_settings.use_skin = configfile.getBool("use_skin", false);
+	g_settings.use_default_skin = configfile.getBool("use_default_skin", true);
 	g_settings.preferred_skin = configfile.getString("preferred_skin", "default");
+	g_settings.use_shadow = configfile.getBool("use_shadow", true);
 
 	// keysbinding
 	strcpy(g_settings.repeat_blocker, configfile.getString("repeat_blocker", "250").c_str());
@@ -910,9 +911,17 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.progressbar_color = configfile.getInt32("progressbar_color", 0);
 	g_settings.progressbar_gradient = configfile.getInt32("progressbar_gradient", NOGRADIENT);
 
-	// gradient
-	g_settings.Head_gradient = configfile.getInt32("Head_gradient", LIGHT2DARK);
-	g_settings.Foot_gradient = configfile.getInt32("Foot_gradient", DARK2LIGHT);
+	// head
+	g_settings.Head_corner = configfile.getInt32("Head_corner", CORNER_TOP);
+	g_settings.Head_radius = configfile.getInt32("Head_gradient", RADIUS_MID);
+	g_settings.Head_gradient = configfile.getInt32("Head_gradient", DARK2LIGHT2DARK);
+	
+	//
+	g_settings.Foot_corner = configfile.getInt32("Foot_corner", CORNER_BOTTOM);
+	g_settings.Foot_radius = configfile.getInt32("Foot_radius", RADIUS_MID);
+	g_settings.Foot_gradient = configfile.getInt32("Foot_gradient", DARK2LIGHT2DARK);
+	
+	//
 	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
 	g_settings.infobar_gradient = configfile.getInt32("infobar_gradient", NOGRADIENT);
 	// END MISC OPTS
@@ -1186,8 +1195,9 @@ void CNeutrinoApp::saveSetup(const char * fname)
 		configfile.setInt32(locale_real_names[timing_setting_name[i]], g_settings.timing[i]);
 	
 	configfile.setInt32("rounded_corners", g_settings.rounded_corners);
-	configfile.setBool("use_skin", g_settings.use_skin);
+	configfile.setBool("use_default_skin", g_settings.use_default_skin);
 	configfile.setString("preferred_skin", g_settings.preferred_skin);
+	configfile.setBool("use_shadow", g_settings.use_shadow);
 	// END OSD
 
 	// KEYS
@@ -1343,8 +1353,17 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("progressbar_color", g_settings.progressbar_color);
 	configfile.setInt32("progressbar_gradient", g_settings.progressbar_gradient);
 
+	// 
+	configfile.setInt32("Head_corner", g_settings.Head_corner);
+	configfile.setInt32("Head_radius", g_settings.Head_radius);
 	configfile.setInt32("Head_gradient", g_settings.Head_gradient);
+	
+	//
+	configfile.setInt32("Foot_corner", g_settings.Foot_corner);
+	configfile.setInt32("Foot_radius", g_settings.Foot_radius);
 	configfile.setInt32("Foot_gradient", g_settings.Foot_gradient);
+	
+	//
 	configfile.setInt32("Foot_Info_gradient", g_settings.Foot_Info_gradient);
 	configfile.setInt32("infobar_gradient", g_settings.infobar_gradient);
 
@@ -1699,7 +1718,13 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		//
 		g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
 		g_settings.Head_gradient = skinConfig->getInt32("Head_gradient", DARK2LIGHT2DARK);
+		g_settings.Head_corner = skinConfig->getInt32("Head_corner", CORNER_TOP);
+		g_settings.Head_radius = skinConfig->getInt32("Head_radius", RADIUS_MID);
 		g_settings.Foot_gradient = skinConfig->getInt32("Foot_gradient", DARK2LIGHT2DARK);
+		g_settings.Foot_corner = skinConfig->getInt32("Foot_corner", CORNER_BOTTOM);
+		g_settings.Foot_radius = skinConfig->getInt32("Foot_radius", RADIUS_MID);
+		
+		g_settings.use_shadow = skinConfig->getBool("use_shadow", true);
 		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
 
@@ -1795,8 +1820,14 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	
 	//
 	skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
-	skinConfig->setInt32("Head_gradient", g_settings.rounded_corners);
-	skinConfig->setInt32("Foot_gradient", g_settings.rounded_corners);
+	skinConfig->setInt32("Head_gradient", g_settings.Head_gradient);
+	skinConfig->setInt32("Head_corner", g_settings.Head_corner);
+	skinConfig->setInt32("Head_radius", g_settings.Head_radius);
+	skinConfig->setInt32("Foot_gradient", g_settings.Foot_gradient);
+	skinConfig->setInt32("Foot_corner", g_settings.Foot_corner);
+	skinConfig->setInt32("Foot_radius", g_settings.Foot_radius);
+	
+	skinConfig->setBool("use_shadow", g_settings.use_shadow);
 		
 	skinConfig->setString("font_file", g_settings.font_file);
 
@@ -2711,7 +2742,7 @@ void CNeutrinoApp::InitZapper()
 	// init channel
 	channelsInit();
 
-	// mode ? tv:radio
+	// set mode
 	if(firstchannel.mode == 't') 
 	{
 		tvMode(false);
@@ -2730,12 +2761,13 @@ void CNeutrinoApp::InitZapper()
 		webtvMode(false);
 	} 
 
+	// zap / epg / autorecord / infoviewer
 	if(channelList->getSize() && live_channel_id)
 	{
 		// channellist adjust to channeliD
 		channelList->adjustToChannelID(live_channel_id);
 
-		// show service name in vfd (250hd has only 4 digit so we show service number)
+		// show service name in vfd
 		CVFD::getInstance()->showServicename(channelList->getActiveChannelName(), true, channelList->getActiveChannelNumber());
 		
 		// online epg
@@ -2906,7 +2938,7 @@ int CNeutrinoApp::run(int argc, char **argv)
 	CVFD::getInstance()->Clear();	
 
 	// show start up msg in vfd
-	CVFD::getInstance()->ShowText( (char *)"NHD2");	
+	CVFD::getInstance()->ShowText( (char *)"NHD2");
 
 	// rc 
 	g_RCInput = new CRCInput;
@@ -2922,8 +2954,8 @@ int CNeutrinoApp::run(int argc, char **argv)
 	// load Pluginlist before main menu (only show script menu if at least one script is available
 	g_PluginList->loadPlugins();
 	
-	// FIXME:
-	if (g_settings.use_skin)
+	// load selected skin
+	if (!g_settings.use_default_skin)
 		loadSkin(g_settings.preferred_skin);
 	
 	// zapit	
@@ -3070,7 +3102,7 @@ int CNeutrinoApp::run(int argc, char **argv)
 	initTimerdClient();
 
 	CVFD::getInstance()->setPower(g_settings.lcd_setting[SNeutrinoSettings::LCD_POWER]);
-	CVFD::getInstance()->setlcdparameter();	
+	CVFD::getInstance()->setlcdparameter();
 	
 	// start assistant
 	if(loadSettingsErg) 
@@ -3084,9 +3116,9 @@ int CNeutrinoApp::run(int argc, char **argv)
 		else if (tvmode == CZapitClient::MODE_WEBTV)
 			mode = NeutrinoMessages::mode_webtv;
 
-		// startup pic
-		frameBuffer->loadBackgroundPic("start.jpg");	
-		frameBuffer->blit();
+		// startup pic : FIXME
+		//frameBuffer->loadBackgroundPic("start.jpg");	
+		//frameBuffer->blit();
 	
 		// setup languages
 		CLanguageSettings languageSettings;
@@ -3325,7 +3357,11 @@ void CNeutrinoApp::RealRun(void)
 
 				StopSubtitles();
 
-				mainMenu();
+				//
+				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
+					CNeutrinoApp::getInstance()->startSkin("mainmenu");
+				else	
+					mainMenu();
 
 				// restore mute symbol
 				AudioMute(current_muted, true);
@@ -3555,40 +3591,18 @@ void CNeutrinoApp::RealRun(void)
 				//
 				StopSubtitles();
 
-				// event list
-				/*
-				CMenuWidget redMenu(LOCALE_INFOVIEWER_EVENTLIST, NEUTRINO_ICON_FEATURES);
-
-				redMenu.setWidgetMode(MODE_MENU);
-				redMenu.enableShrinkMenu();
-				redMenu.enableSaveScreen();
-
-				// intros
-				redMenu.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-				redMenu.addItem( new CMenuSeparator(LINE) );
-
-				// eventlist
-				redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_EVENTLIST, true, NULL, new CEventListHandler(), "", RC_red, NEUTRINO_ICON_BUTTON_RED));
-
-				// epg view
-				redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_EVENTINFO, true, NULL, new CEPGDataHandler(), "", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
-		
-			       // epgplus
-				redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_EPGPLUS, true, NULL, new CEPGplusHandler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
-
-				//tech info
-				redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_STREAMINFO, true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
-				
-				redMenu.exec(NULL, "");
-				redMenu.hide();
-				*/
-				
-				CEPGMenuHandler* redMenu = new CEPGMenuHandler();
-				
-				redMenu->exec(NULL, "");
-				
-				delete redMenu;
-				redMenu = NULL;
+				//
+				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
+					CNeutrinoApp::getInstance()->startSkin("red");
+				else
+				{					
+					CEPGMenuHandler* redMenu = new CEPGMenuHandler();
+					
+					redMenu->exec(NULL, "");
+					
+					delete redMenu;
+					redMenu = NULL;
+				}
 
 				//
 				StartSubtitles();
@@ -3644,7 +3658,10 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				// features
-				showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
+				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
+					CNeutrinoApp::getInstance()->startSkin("blue");
+				else
+					showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
 
 				StartSubtitles();
 			}
@@ -4748,7 +4765,6 @@ void CNeutrinoApp::ExitRun(int retcode)
 		if(retcode > RESTART)
 		{
 			frameBuffer->loadBackgroundPic("shutdown.jpg");
-		
 			frameBuffer->blit();
 		}
 
@@ -4869,10 +4885,13 @@ void CNeutrinoApp::saveEpg()
 			if (( msg == RC_timeout ) || (msg == NeutrinoMessages::EVT_SI_FINISHED)) 
 			{
 				//printf("Msg %x timeout %d EVT_SI_FINISHED %x\n", msg, RC_timeout, NeutrinoMessages::EVT_SI_FINISHED);
+				delete [] (unsigned char*) data;
 				break;
 			}
 		}
 	}
+	
+	dprintf(DEBUG_NORMAL, "CNeutrinoApp::saveEpg: Saving EPG to %s finished\n", g_settings.epg_dir.c_str());
 }
 
 // mute
@@ -5190,9 +5209,9 @@ void CNeutrinoApp::tvMode( bool rezap )
 	frameBuffer->blit();
 
 	g_RemoteControl->tvMode();
-	
 	SetChannelMode(g_settings.channel_mode, mode);
 
+	// rezap
 	if( rezap ) 
 	{
 		firstChannel();
@@ -5257,27 +5276,28 @@ void CNeutrinoApp::radioMode( bool rezap)
 		recordingstatus = 0;
 		timeshiftstatus = 0;
 	}
+	
+	//if (!g_settings.radiotext_enable)
+	{
+		frameBuffer->useBackground(false);
+		frameBuffer->loadBackgroundPic("radiomode.jpg");
+		frameBuffer->blit();
+	}
 
 	g_RemoteControl->radioMode();
 	SetChannelMode( g_settings.channel_mode, mode);
-
+	
+	if (g_settings.radiotext_enable) 
+	{
+		if(g_Radiotext == NULL)
+			g_Radiotext = new CRadioText;
+	}
+	
 	if( rezap ) 
 	{
 		firstChannel();
 		channelList->tuned = 0xfffffff;
 		channelList->zapTo( firstchannel.channelNumber - 1 );
-	}
-
-	if (!g_settings.radiotext_enable)
-	{
-		frameBuffer->loadBackgroundPic("radiomode.jpg");
-		frameBuffer->blit();
-	}
-
-	if (g_settings.radiotext_enable) 
-	{
-		if(g_Radiotext == NULL)
-			g_Radiotext = new CRadioText;
 	}	
 }
 
@@ -5354,7 +5374,6 @@ void CNeutrinoApp::webtvMode( bool rezap)
 	frameBuffer->blit();
 
 	g_RemoteControl->webTVMode();
-
 	SetChannelMode(g_settings.channel_mode, mode);
 
 	if(rezap) 
@@ -5626,7 +5645,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 		saveSetup(NEUTRINO_SETTINGS_FILE);
 		
 		//
-		//if (g_settings.use_skin)
+		//if (!g_settings.use_default_skin)
 		//	saveSkinConfig(g_settings.preferred_skin.c_str());
 
 		tuxtxt_close();
@@ -5860,6 +5879,7 @@ const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 
 bool CNeutrinoApp::getNVODMenu(CMenuWidget * menu)
 {
+//FIXME: rewrite
         if(menu == NULL)
                 return false;
 	

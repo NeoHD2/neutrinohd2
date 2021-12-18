@@ -75,7 +75,7 @@ typedef struct fb_var_screeninfo t_fb_var_screeninfo;
 #define DEFAULT_BPP		32	// 32 bit
 
 #define FH_ERROR_OK 0
-#define FH_ERROR_FILE 1		/* read/access error */
+#define FH_ERROR_FILE 1	/* read/access error */
 #define FH_ERROR_FORMAT 2	/* file format error */
 #define FH_ERROR_MALLOC 3	/* error during malloc */
 
@@ -93,6 +93,11 @@ enum {
 	INT_LIGHT,
 	INT_NORMAL,
 	INT_EXTENDED
+};
+
+enum {
+	GRADIENT_HORIZONTAL,
+	GRADIENT_VERTICAL
 };
 
 // transparency
@@ -227,19 +232,18 @@ class CFrameBuffer
 		};
 
 		//
-		fb_pixel_t* paintBoxRel2Buf(const int dx, const int dy, const fb_pixel_t col, fb_pixel_t* buf = NULL, int radius = 0, int type = CORNER_ALL);
-
-		void paintHLineRelInternal2Buf(const int& x, const int& dx, const int& y, const int& box_dx, const fb_pixel_t& col, fb_pixel_t* buf);
-
 		int  limitRadius(const int& dx, const int& dy, int& radius);
 		void setCornerFlags(const int& type);
 		void initQCircle();
 		inline int calcCornersOffset(const int& dy, const int& line, const int& radius, const int& type) { int ofs = 0; calcCorners(&ofs, NULL, NULL, dy, line, radius, type); return ofs; }
 		bool calcCorners(int *ofs, int *ofl, int *ofr, const int& dy, const int& line, const int& radius, const int& type);
+		void paintHLineRelInternal2Buf(const int& x, const int& dx, const int& y, const int& box_dx, const fb_pixel_t& col, fb_pixel_t* buf);
+		fb_pixel_t* paintBoxRel2Buf(const int dx, const int dy, const fb_pixel_t col, fb_pixel_t* buf = NULL, int radius = 0, int type = CORNER_ALL);
 
+		//
 		void paintPixel(const int x, const int y, const fb_pixel_t col);
 		
-		void paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius = 0, int type = CORNER_NONE, int mode = NOGRADIENT, bool tr = false);
+		void paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius = 0, int type = CORNER_NONE, int mode = NOGRADIENT, int direction = GRADIENT_VERTICAL);
 
 		inline void paintBox(int xa, int ya, int xb, int yb, const fb_pixel_t col) { paintBoxRel(xa, ya, xb - xa, yb - ya, col); }
 		inline void paintBox(int xa, int ya, int xb, int yb, const fb_pixel_t col, int radius, int type) { paintBoxRel(xa, ya, xb - xa, yb - ya, col, radius, type); }
@@ -254,13 +258,12 @@ class CFrameBuffer
 
 		void paintFrameBox(const int x, const int y, const int dx, const int dy, const fb_pixel_t col);
 
+		//
 		void setIconBasePath(const std::string & iconPath);
-		
+
 		void getIconSize(const char * const filename, int* width, int *height);
 		bool paintIcon(const std::string & filename, const int x, const int y, const int h = 0, bool paint = true, int width = 0, int height = 0);
 		bool paintHintIcon(const std::string& filename, int posx, int posy, int width , int height);
-		
-		// raw/pal icons
 		bool paintIcon8(const std::string & filename, const int x, const int y, const unsigned char offset = 0);
 		bool paintIconRaw(const std::string & filename, const int x, const int y, const int h = 0, const unsigned char offset = 1, bool paint = true);
 		void loadPal(const std::string & filename, const unsigned char offset = 0, const unsigned char endidx = 255);
@@ -268,7 +271,7 @@ class CFrameBuffer
 		// background
 		int getBackgroundColor() { return backgroundColor;}
 		void setBackgroundColor(const fb_pixel_t color);
-		void useBackground(bool);
+		void useBackground(bool ub);
 		bool getuseBackground(void);
 
 		void saveBackgroundImage(void);  // <- implies useBackground(false);
@@ -286,6 +289,8 @@ class CFrameBuffer
 
 		void clearFrameBuffer();
 
+		//
+		void blitBox2FB(const fb_pixel_t* boxBuf, const uint32_t& width, const uint32_t& height, const uint32_t& xoff, const uint32_t& yoff);
 		void blit2FB(void * fbbuff, uint32_t width, uint32_t height, uint32_t xoff, uint32_t yoff, uint32_t xp = 0, uint32_t yp = 0, bool transp = false);
 
 		// blit

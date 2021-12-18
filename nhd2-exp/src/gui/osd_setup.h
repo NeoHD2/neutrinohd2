@@ -134,6 +134,7 @@ class COSDDiverses : public CMenuTarget
 class CSkinManager : public CMenuTarget
 {
 	private:
+		//int selected_skin;
 		void showMenu();
 		
 	public:

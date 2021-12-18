@@ -75,9 +75,9 @@ void CNeutrinoApp::mainMenu(void)
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::mainMenu:\n");
 	
-	if ( g_settings.use_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-		CNeutrinoApp::getInstance()->startSkin("mainmenu");
-	else	
+	//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
+	//	CNeutrinoApp::getInstance()->startSkin("mainmenu");
+	//else	
 	{
 		CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
 		
@@ -213,9 +213,9 @@ bool CNeutrinoApp::showUserMenu(int button)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::showUserMenu\n");
 	
-	if ( g_settings.use_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-		CNeutrinoApp::getInstance()->startSkin("blue");
-	else	
+	//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
+	//	CNeutrinoApp::getInstance()->startSkin("blue");
+	//else	
 	{
 		if(button < 0 || button >= SNeutrinoSettings::BUTTON_MAX)
 		        return false;

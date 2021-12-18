@@ -244,7 +244,3 @@ void CWindow::refresh(void)
 	}
 }
 
-
-
-
-

@@ -225,7 +225,8 @@ class CFrameBox : public CWidgetItem
 		int getSelected(){return selected;};
 		void disablePaintFrame(void){paintFrame = false;};
 		void setColor(fb_pixel_t col){bgcolor = col;};
-		void setCorner(int ra, int co){radius = ra; corner = co;};
+		void setRadius(int ra){radius = ra;};
+		void setCorner(int co){corner = co;};
 		
 		//
 		void enableSaveScreen();
@@ -245,7 +246,8 @@ class CFrameBox : public CWidgetItem
 		void setTitle(const char* title = "", const char* icon = NULL, bool logo_ok = false){l_name = title; if(icon != NULL) iconfile = icon; logo = logo_ok;};
 		void setHeadButtons(const struct button_label *_hbutton_label, const int _hbutton_count = 1);
 		void setHeadColor(fb_pixel_t col) {headColor = col;};
-		void setHeadCorner(int ra, int co){headRadius = ra; headCorner = co;};
+		void setHeadRadius(int ra){headRadius = ra;};
+		void setHeadCorner(int co){headCorner = co;};
 		void setHeadGradient(int grad){headGradient = grad;};
 		
 		// foot
@@ -253,7 +255,8 @@ class CFrameBox : public CWidgetItem
 		void enablePaintFoot(){paint_Foot = true;};
 		void setFootButtons(const struct button_label *_fbutton_label, const int _fbutton_count = 1, const int _fbutton_width = 0);
 		void setFootColor(fb_pixel_t col) {footColor = col;};
-		void setFootCorner(int ra, int co){footRadius = ra; footCorner = co;};
+		void setFootRadius(int ra){footRadius = ra;};
+		void setFootCorner(int co){footCorner = co;};
 		void setFootGradient(int grad){footGradient = grad;};
 };
 
