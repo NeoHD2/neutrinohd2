@@ -480,7 +480,11 @@ struct SNeutrinoSettings
 	
 	//
 	int Foot_Info_gradient;
+	
+	// infobar
 	int infobar_gradient;
+	int infobar_corner;
+	int infobar_radius;
 	
 	//
 	int use_shadow;

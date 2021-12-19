@@ -126,6 +126,10 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 
 	if (g_settings.use_shadow)
 		m_cBoxWindow->enableShadow();
+	else
+	{
+		m_cBoxWindow->setCorner(RADIUS_MID, CORNER_ALL);
+	}
 	
 	// HG
 	paintHG = true;
@@ -212,6 +216,10 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	m_cBoxWindow->enableSaveScreen();
 	if (g_settings.use_shadow)
 		m_cBoxWindow->enableShadow();
+	else
+	{
+		m_cBoxWindow->setCorner(RADIUS_MID, CORNER_ALL);
+	}
 	
 	// HG
 	paintHG = true;
@@ -248,9 +256,16 @@ void CHintBox::refresh(void)
 	cFrameBoxTitle.iWidth = cFrameBox.iWidth - 2;
 
 	CHeaders headers(cFrameBoxTitle, caption.c_str(), iconfile.c_str());
-	//headers.setCorner(NO_RADIUS, CORNER_NONE);
-	headers.setCorner(CORNER_NONE);
-	headers.setRadius(NO_RADIUS);
+	if (g_settings.use_shadow)
+	{
+		headers.setCorner(CORNER_NONE);
+		headers.setRadius(NO_RADIUS);
+	}
+	else
+	{
+		headers.setCorner(CORNER_TOP);
+		headers.setRadius(RADIUS_MID);
+	}
 	headers.paint();
 
 	// body text

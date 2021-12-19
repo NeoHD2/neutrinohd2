@@ -525,6 +525,9 @@ class EpgPlus
 class CEPGplusHandler : public CMenuTarget
 {
 	public:
+		CEPGplusHandler(){};
+		~CEPGplusHandler(){};
+		
 		int exec(CMenuTarget* parent,  const std::string &actionKey);
 };
 

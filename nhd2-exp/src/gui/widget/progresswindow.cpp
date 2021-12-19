@@ -186,6 +186,8 @@ void CProgressWindow::paint()
 	m_cBoxWindow.enableSaveScreen();
 	if (g_settings.use_shadow)
 		m_cBoxWindow.enableShadow();
+	else
+		m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
 	m_cBoxWindow.paint();
 	
 	// title
@@ -198,8 +200,16 @@ void CProgressWindow::paint()
 			l_caption = captionString.c_str();
 
 		CHeaders headers(x + 2, y + 2, width - 4, hheight - 2, l_caption, NEUTRINO_ICON_INFO);
-		headers.setCorner(CORNER_NONE);
-		headers.setRadius(NO_RADIUS);
+		if (g_settings.use_shadow)
+		{
+			headers.setCorner(CORNER_NONE);
+			headers.setRadius(NO_RADIUS);
+		}
+		else
+		{
+			headers.setCorner(CORNER_TOP);
+			headers.setRadius(RADIUS_MID);
+		}
 		headers.paint();
 	}
 

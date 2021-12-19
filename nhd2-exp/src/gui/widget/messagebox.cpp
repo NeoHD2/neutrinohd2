@@ -433,6 +433,8 @@ void CMessageBox::initFrames(void)
 	m_cBoxWindow->enableSaveScreen();
 	if (g_settings.use_shadow)
 		m_cBoxWindow->enableShadow();
+	else
+		m_cBoxWindow->setCorner(RADIUS_MID, CORNER_ALL);
 }
 
 void CMessageBox::paint(void)
@@ -451,8 +453,16 @@ void CMessageBox::refresh()
 
 	// title
 	CHeaders headers(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + 1, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + 1, m_width - 2, m_theight - 2, m_caption.c_str(), m_iconfile.c_str());
-	headers.setCorner(CORNER_NONE);
-	headers.setRadius(CORNER_NONE);
+	if (g_settings.use_shadow)
+	{
+		headers.setCorner(CORNER_NONE);
+		headers.setRadius(NO_RADIUS);
+	}
+	else
+	{
+		headers.setCorner(CORNER_TOP);
+		headers.setRadius(RADIUS_MID);
+	}
 	headers.paint();
 
 	//TextBody

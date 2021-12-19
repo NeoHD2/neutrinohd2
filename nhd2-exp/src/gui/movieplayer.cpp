@@ -1543,7 +1543,7 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 		frameBuffer->paintBoxRel(cFrameBoxInfo.iX - 1, cFrameBoxInfo.iY - 1, cFrameBoxInfo.iWidth + 2, cFrameBoxInfo.iHeight + 2, COL_MENUCONTENT_PLUS_6);
 		
 	// paint info box
-	frameBuffer->paintBoxRel(cFrameBoxInfo.iX, cFrameBoxInfo.iY, cFrameBoxInfo.iWidth, cFrameBoxInfo.iHeight, COL_INFOBAR_PLUS_0/*, NO_RADIUS, CORNER_NONE, g_settings.infobar_gradient*/); 
+	frameBuffer->paintBoxRel(cFrameBoxInfo.iX, cFrameBoxInfo.iY, cFrameBoxInfo.iWidth, cFrameBoxInfo.iHeight, COL_INFOBAR_PLUS_0, g_settings.use_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.use_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient); 
 		
 	// bottum bar
 	frameBuffer->paintBoxRel(cFrameBoxButton.iX, cFrameBoxButton.iY, cFrameBoxButton.iWidth, cFrameBoxButton.iHeight, COL_INFOBAR_SHADOW_PLUS_1,  NO_RADIUS, CORNER_NONE); 

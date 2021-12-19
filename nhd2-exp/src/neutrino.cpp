@@ -922,8 +922,12 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.Foot_gradient = configfile.getInt32("Foot_gradient", DARK2LIGHT2DARK);
 	
 	//
-	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
+	g_settings.infobar_corner = configfile.getInt32("infobar_corner", CORNER_ALL);
+	g_settings.infobar_radius = configfile.getInt32("infobar_radius", RADIUS_MID);
 	g_settings.infobar_gradient = configfile.getInt32("infobar_gradient", NOGRADIENT);
+	
+	//
+	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
 	// END MISC OPTS
 
 	// HDD
@@ -1365,7 +1369,11 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	
 	//
 	configfile.setInt32("Foot_Info_gradient", g_settings.Foot_Info_gradient);
+	
+	//
 	configfile.setInt32("infobar_gradient", g_settings.infobar_gradient);
+	configfile.setInt32("infobar_corner", g_settings.infobar_corner);
+	configfile.setInt32("infobar_radius", g_settings.infobar_radius);
 
 	configfile.setString("tmdbkey", g_settings.tmdbkey);
 	configfile.setString("ytkey", g_settings.ytkey);
@@ -1717,12 +1725,21 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		
 		//
 		g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
+		
+		//
 		g_settings.Head_gradient = skinConfig->getInt32("Head_gradient", DARK2LIGHT2DARK);
 		g_settings.Head_corner = skinConfig->getInt32("Head_corner", CORNER_TOP);
 		g_settings.Head_radius = skinConfig->getInt32("Head_radius", RADIUS_MID);
+		
+		//
 		g_settings.Foot_gradient = skinConfig->getInt32("Foot_gradient", DARK2LIGHT2DARK);
 		g_settings.Foot_corner = skinConfig->getInt32("Foot_corner", CORNER_BOTTOM);
 		g_settings.Foot_radius = skinConfig->getInt32("Foot_radius", RADIUS_MID);
+		
+		//
+		g_settings.infobar_gradient = skinConfig->getInt32("infobar_gradient", NOGRADIENT);
+		g_settings.infobar_corner = skinConfig->getInt32("infobar_corner", CORNER_ALL);
+		g_settings.infobar_radius = skinConfig->getInt32("infobar_radius", RADIUS_MID);
 		
 		g_settings.use_shadow = skinConfig->getBool("use_shadow", true);
 		
@@ -1820,12 +1837,21 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	
 	//
 	skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
+	
+	//
 	skinConfig->setInt32("Head_gradient", g_settings.Head_gradient);
 	skinConfig->setInt32("Head_corner", g_settings.Head_corner);
 	skinConfig->setInt32("Head_radius", g_settings.Head_radius);
+	
+	//
 	skinConfig->setInt32("Foot_gradient", g_settings.Foot_gradient);
 	skinConfig->setInt32("Foot_corner", g_settings.Foot_corner);
 	skinConfig->setInt32("Foot_radius", g_settings.Foot_radius);
+	
+	//
+	skinConfig->setInt32("infobar_gradient", g_settings.infobar_gradient);
+	skinConfig->setInt32("infobar_corner", g_settings.infobar_corner);
+	skinConfig->setInt32("infobar_radius", g_settings.infobar_radius);
 	
 	skinConfig->setBool("use_shadow", g_settings.use_shadow);
 		
