@@ -864,13 +864,19 @@ void CMoviePlayerGui::PlayFile(void)
 			}
 			else
 			{
+				// clear frameBuffer if we played audio
+				if(playlist[selected].file.getType() == CFile::FILE_AUDIO)
+				{
+					frameBuffer->useBackground(false);
+					frameBuffer->paintBackground();
+				}
+		
+				//
 				if (m_loop)
-					g_RCInput->postMsg(RC_next, 0);
+					playNext();
 				else if((playlist.size() > 1) && (selected + 1 < playlist.size()))
-					//g_RCInput->postMsg(RC_next, 0);
 					playNext();
 				else
-					//g_RCInput->postMsg(RC_stop, 0);
 					stop();
 			}
 		}
