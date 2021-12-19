@@ -712,6 +712,8 @@ class ClistBox : public CWidgetItem
 		std::string getActionKey(void){return actionKey;}; // lua
 		
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true, int imode = MODE_MENU, int itype = WIDGET_TYPE_STANDARD, bool i2lines = false, bool iShadow = false);
+		
+		inline bool isPainted(void){return painted;};
 };
 
 #endif // LISTBOX_H_

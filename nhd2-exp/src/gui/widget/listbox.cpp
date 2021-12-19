@@ -2616,6 +2616,8 @@ void ClistBox::paint()
 	paintHead();
 	paintFoot();
 	paintItems();
+	
+	painted = true;
 }
 
 void ClistBox::paintItems()
@@ -3227,6 +3229,8 @@ void ClistBox::hide()
 	}
 	
 	CFrameBuffer::getInstance()->blit();	
+	
+	painted = false;
 }
 
 void ClistBox::scrollLineDown(const int)

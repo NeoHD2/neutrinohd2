@@ -583,6 +583,53 @@ MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 				tmdb = NULL;
 			}
 		}
+		else if(movie_info.file.getType() == CFile::FILE_AUDIO)
+		{
+			char duration[9] = "";
+		
+			CAudiofile audiofile(movie_info.file.Name, movie_info.file.getExtension());
+
+			CAudioPlayer::getInstance()->init();
+			int ret = CAudioPlayer::getInstance()->readMetaData(&audiofile, true);
+
+			if (!ret || (audiofile.MetaData.artist.empty() && audiofile.MetaData.title.empty() ))
+			{
+				//remove extension (.mp3)
+				std::string tmp = movie_info.file.getFileName().substr(movie_info.file.getFileName().rfind('/') + 1);
+				tmp = tmp.substr(0, tmp.length() - 4);	//remove extension (.mp3)
+
+				std::string::size_type i = tmp.rfind(" - ");
+		
+				if(i != std::string::npos)
+				{ 
+					audiofile.MetaData.title = tmp.substr(0, i);
+					audiofile.MetaData.artist = tmp.substr(i + 3);
+				}
+				else
+				{
+					i = tmp.rfind('-');
+					if(i != std::string::npos)
+					{
+						audiofile.MetaData.title = tmp.substr(0, i);
+						audiofile.MetaData.artist = tmp.substr(i + 1);
+					}
+					else
+						audiofile.MetaData.title = tmp;
+				}
+			}
+			
+			snprintf(duration, 8, "(%ld:%02ld)", audiofile.MetaData.total_time / 60, audiofile.MetaData.total_time % 60);
+			
+			movie_info.epgInfo1 = audiofile.MetaData.title;
+			movie_info.epgInfo1 += "\n";
+			movie_info.epgInfo1 += audiofile.MetaData.artist;
+			movie_info.epgInfo1 += "\n";
+			movie_info.epgInfo1 += audiofile.MetaData.genre;
+			movie_info.epgInfo1 += "\n";
+			movie_info.epgInfo1 += audiofile.MetaData.date;
+			movie_info.epgInfo1 += "\n";
+			movie_info.epgInfo1 += duration;
+		}
 
 		//grab for thumbnail
 		if (movie_info.tfile.empty())
@@ -595,6 +642,7 @@ MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 				{
 					CAudiofile audiofile(movie_info.file.Name, CFile::EXTENSION_MP3);
 
+					CAudioPlayer::getInstance()->init();
 					CAudioPlayer::getInstance()->readMetaData(&audiofile, true);
 
 					if (!audiofile.MetaData.cover.empty())

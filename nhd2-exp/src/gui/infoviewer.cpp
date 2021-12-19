@@ -458,7 +458,8 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(BoxEndX - BORDER_RIGHT - dateWidth, BoxStartY + (SAT_INFOBOX_HEIGHT - dateHeight)/2 + dateHeight, dateWidth, datestr.c_str(), COL_INFOBAR, 0, true); // UTF-8
 		
 	// botton bar
-	frameBuffer->paintBoxRel(buttonBarStartX, buttonBarStartY, BoxWidth, buttonBarHeight, COL_INFOBAR_BUTTONS_BACKGROUND, g_settings.use_shadow? NO_RADIUS : RADIUS_MID, g_settings.use_shadow? CORNER_NONE : CORNER_BOTTOM);
+	if (g_settings.infobar_buttonbar)
+		frameBuffer->paintBoxRel(buttonBarStartX, buttonBarStartY, BoxWidth, buttonBarHeight, COL_INFOBAR_BUTTONS_BACKGROUND, g_settings.use_shadow? NO_RADIUS : RADIUS_MID, g_settings.use_shadow? CORNER_NONE : CORNER_BOTTOM);
 
 	// blue button
 	// features

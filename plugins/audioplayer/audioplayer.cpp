@@ -140,13 +140,6 @@ void CMP3Player::loadPlaylist()
 			{
 				CAudiofile audiofile(files->Name, files->getExtension());
 
-				// refill
-				std::string title;
-				std::string artist;
-				std::string genre;
-				std::string date;
-				char duration[9] = "";
-
 				CAudioPlayer::getInstance()->init();
 
 				int ret = CAudioPlayer::getInstance()->readMetaData(&audiofile, true);
@@ -211,13 +204,6 @@ void CMP3Player::openFileBrowser()
 						playlist.erase(playlist.begin() + i); 
 				}
 
-				// refill
-				std::string title;
-				std::string artist;
-				std::string genre;
-				std::string date;
-				char duration[9] = "";
-
 				CAudioPlayer::getInstance()->init();
 
 				int ret = CAudioPlayer::getInstance()->readMetaData(&audiofile, true);
@@ -226,7 +212,7 @@ void CMP3Player::openFileBrowser()
 				{
 					//remove extension (.mp3)
 					std::string tmp = files->getFileName().substr(files->getFileName().rfind('/') + 1);
-					tmp = tmp.substr(0, tmp.length() - 4);	//remove extension (.mp3)
+					tmp = tmp.substr(0, tmp.length() - 4);
 
 					std::string::size_type i = tmp.rfind(" - ");
 		

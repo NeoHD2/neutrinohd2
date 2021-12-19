@@ -330,8 +330,8 @@ void CTSBrowser::onDeleteFile(MI_MOVIE_INFO& movieFile)
 
 	if (movieFile.file.Name.length() > 40)
 	{
-			msg += movieFile.file.Name.substr(0, 40);
-			msg += "...";
+		msg += movieFile.file.Name.substr(0, 40);
+		msg += "...";
 	}
 	else
 		msg += movieFile.file.Name;

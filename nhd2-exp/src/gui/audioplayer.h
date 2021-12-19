@@ -166,7 +166,6 @@ class CAudioPlayerGui : public CMenuTarget
 		//
 		ClistBox* alist;
 		CMenuItem* item;
-		int selected;
 		void showPlaylist();
 	
 	public:

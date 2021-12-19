@@ -118,22 +118,24 @@ class CMoviePlayerGui : public CMenuTarget
 		void showHelpTS(void);
 		void updateLcd(const std::string & lcd_filename);
 		int showStartPosSelectionMenu(void);
+		
+		void play(unsigned int pos);
+		void playNext();
+		void playPrev();
+		void stop();
 
-		//
+		//// infoViewer
 		uint32_t sec_timer_id;
 
 		void startMovieInfoViewer(void);
 		void killMovieInfoViewer(void);
 
-	// infoViewer	
-	private:
-		//
 		bool visible;
 
 		//
 		void initFrames();
 
-		// movie infoviewer
+		//
 		CBox cFrameBoxInfo;
 		CBox cFrameBoxButton;
 		int icon_w_aspect, icon_h_aspect;
@@ -149,6 +151,12 @@ class CMoviePlayerGui : public CMenuTarget
 
 		//
 		void show(std::string Title, std::string Info, short Percent, const unsigned int ac3state, const int speed, const int playstate, bool show_bookmark = false, bool m_loop = false);
+		
+		// playlist gui
+		ClistBox* mplist;
+		CMenuItem* item;
+		void showPlaylist();
+		void openMovieFileBrowser();
 		
 	public:
 		CMoviePlayerGui();

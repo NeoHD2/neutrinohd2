@@ -810,7 +810,7 @@ void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int
 		}
 	}
 
-	if(mode > NOGRADIENT)
+	if(mode > NOGRADIENT || (type && radius))
 		blitBox2FB(boxBuf, dx, dy, x, y);
 	else
 		blit2FB(boxBuf, dx, dy, x, y);

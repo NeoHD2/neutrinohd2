@@ -118,7 +118,8 @@ void CAudioPlayerGui::Init(void)
 	//
 	alist = NULL;
 	item = NULL;
-	selected = -1;
+	
+	//
 	update_t = true;
 }
 
@@ -371,8 +372,14 @@ void CAudioPlayerGui::playFile()
 		else if( ((msg == RC_setup) || (msg == RC_vfdmenu)))
 		{
 			hide();
-			showPlaylist();
-			update_t = false;					
+			//showPlaylist();
+			CAudioPlayerSettings * audioPlayerSettingsMenu = new CAudioPlayerSettings();
+
+			audioPlayerSettingsMenu->exec(this, "");
+			delete audioPlayerSettingsMenu;
+			audioPlayerSettingsMenu = NULL;
+			paintInfo(m_playlist[m_current]);
+			update_t = true;					
 		}
 		else if(msg == RC_down)
 		{
@@ -399,8 +406,14 @@ void CAudioPlayerGui::playFile()
 			if (alist && alist->isPainted())
 			{
 				alist->hide();
-				play(alist->getSelected());
+				play(alist->getSelected()); // implies paintInfo()
 				update_t = true;
+			}
+			else
+			{
+				hide();
+				showPlaylist();
+				update_t = false;
 			}
 		}
 		else if(msg == NeutrinoMessages::CHANGEMODE)
@@ -1314,7 +1327,8 @@ const struct button_label AudioPlayerButtons[FOOT_BUTTONS_COUNT] =
 
 void CAudioPlayerGui::showPlaylist()
 {
-	int selected = -1;
+	dprintf(DEBUG_NORMAL, "CAudioPlayerGui::showPlaylist:\n");
+	
 	CBox box;
 	box.iWidth = w_max ( (m_frameBuffer->getScreenWidth() / 20 * 17), (m_frameBuffer->getScreenWidth() / 20 ));
 	box.iHeight = h_max ( (m_frameBuffer->getScreenHeight() / 20 * 16), (m_frameBuffer->getScreenHeight() / 20));
@@ -1339,7 +1353,7 @@ void CAudioPlayerGui::showPlaylist()
 		snprintf(duration, 8, "(%ld:%02ld)", m_playlist[i].MetaData.total_time / 60, m_playlist[i].MetaData.total_time % 60);
 
 		//
-		item = new ClistBoxItem(title.c_str(), true, NULL, this, "aplay");
+		item = new ClistBoxItem(title.c_str());
 			
 		item->setOptionInfo(duration);
 		item->setNumber(i + 1);

@@ -61,6 +61,7 @@
 #include <driver/rcinput.h>
 #include <driver/vcrcontrol.h>
 #include <driver/color.h>
+#include <driver/file.h>
 
 #include <daemonc/remotecontrol.h>
 
@@ -72,6 +73,7 @@
 #include <gui/nfs.h>
 #include <gui/audio_video_select.h>
 #include <gui/movieplayer_setup.h>
+#include <gui/filebrowser.h>
 
 #include <gui/widget/widget_helpers.h>
 #include <gui/widget/icons.h>
@@ -116,6 +118,10 @@ CMoviePlayerGui::CMoviePlayerGui()
 	// infoViewer
 	visible = false;
 	initFrames();
+	
+	//
+	mplist = NULL;
+	item = NULL;
 }
 
 CMoviePlayerGui::~CMoviePlayerGui()
@@ -369,6 +375,244 @@ int CMoviePlayerGui::exec(CMenuTarget * parent, const std::string & actionKey)
 	return RETURN_EXIT;
 }
 
+void CMoviePlayerGui::play(unsigned int pos)
+{
+	dprintf(DEBUG_NORMAL, "CMoviePlayerGui::play:\n");
+	
+	if(!playlist.size())
+		return;
+
+	selected = pos;
+			
+	//
+	if(playback->playing)
+		playback->Close();
+
+	// init player
+#if defined (PLATFORM_COOLSTREAM)
+	if(playlist[pos].file.getExtension() != CFile::EXTENSION_TS)
+		is_file_player = true;
+
+	playback->Open(is_file_player ? PLAYMODE_FILE : PLAYMODE_TS);
+#else			
+	playback->Open();
+#endif			
+			
+	duration = 0;
+	if(playlist[pos].length != 0)
+		duration = playlist[pos].length * 60 * 1000;
+			  
+	// PlayBack Start
+#if defined (PLATFORM_COOLSTREAM)			  
+	if(!playback->Start((char *)playlist[pos].file.Name.c_str(), g_vpid, g_vtype, g_currentapid, g_currentac3, duration))
+#else
+	if(!playback->Start((char *)playlist[pos].file.Name.c_str()))
+#endif
+	{
+		dprintf(DEBUG_NORMAL, "CMoviePlayerGui::play: Starting Playback failed!\n");
+		playback->Close();
+		restoreNeutrino();
+	} 
+	else 
+	{
+		// set PlayState
+		playstate = CMoviePlayerGui::PLAY;
+
+		CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, true);
+				
+		// set position 
+		playback->SetPosition((int64_t)startposition);
+				
+		//
+#if defined (PLATFORM_COOLSTREAM)
+		playback->GetPosition(position, duration);
+#else
+		playback->GetPosition((int64_t &)position, (int64_t &)duration);
+#endif
+
+		// Infoviewer
+		//showMovieInfo();//FIXME:
+	}
+}
+
+void CMoviePlayerGui::playNext()
+{
+	dprintf(DEBUG_NORMAL, "CMoviePlayerGui::playNext:\n");
+	
+	if(!playlist.size())
+		return;
+	
+	//FIXME:
+	if(m_loop && playstate == CMoviePlayerGui::PLAY) // loop
+	{
+		//
+		update_lcd = true;
+		start_play = true;
+	}
+	else if(!playlist.empty() && selected + 1 < playlist.size() && playstate == CMoviePlayerGui::PLAY) 
+	{
+		selected++;
+
+		//
+		if(playlist[selected].ytid.empty())
+		{
+			if(!playlist[selected].audioPids.empty()) 
+			{
+				g_currentapid = playlist[selected].audioPids[0].epgAudioPid;
+				g_currentac3 = playlist[selected].audioPids[0].atype;
+
+				//
+				currentapid = g_currentapid;
+			}
+
+			for (int i = 0; i < (int)playlist[selected].audioPids.size(); i++) 
+			{
+						if (playlist[selected].audioPids[i].selected) 
+						{
+#if defined (PLATFORM_COOLSTREAM)
+							g_currentapid = playlist[selected].audioPids[i].epgAudioPid;
+#else
+							g_currentapid = i;
+#endif							
+							g_currentac3 = playlist[selected].audioPids[i].atype;
+
+							//
+#if defined (PLATFORM_COOLSTREAM)
+							currentapid = g_currentapid;
+							currentac3 = g_currentac3;
+#else
+							currentapid = 0;
+#endif
+						}
+			}
+
+			//
+			g_vpid = playlist[selected].epgVideoPid;
+			g_vtype = playlist[selected].VideoType;
+
+			// startposition			
+			startposition = 1000 * showStartPosSelectionMenu();
+
+			if(startposition < 0)
+				exit = true;
+		}
+				
+		//
+		update_lcd = true;
+		start_play = true;
+
+		//
+		if(playlist[selected].file.getType() == CFile::FILE_AUDIO)
+		{
+			if (!playlist[selected].tfile.empty())
+				frameBuffer->loadBackgroundPic(playlist[selected].tfile);
+		}
+	}
+}
+
+void CMoviePlayerGui::playPrev()
+{
+	dprintf(DEBUG_NORMAL, "CMoviePlayerGui::playPrev:\n");
+	
+	if(!playlist.size())
+		return;
+
+	//FIXME:
+	if(!playlist.empty() && selected > 0 && playstate == CMoviePlayerGui::PLAY) 
+	{
+		selected--;
+
+		//
+		if(playlist[selected].ytid.empty())
+		{
+			if(!playlist[selected].audioPids.empty()) 
+			{
+						g_currentapid = playlist[selected].audioPids[0].epgAudioPid;
+						g_currentac3 = playlist[selected].audioPids[0].atype;
+
+							//
+							currentapid = g_currentapid;
+			}
+
+			for (int i = 0; i < (int)playlist[selected].audioPids.size(); i++) 
+			{
+				if (playlist[selected].audioPids[i].selected) 
+				{
+#if defined (PLATFORM_COOLSTREAM)
+					g_currentapid = playlist[selected].audioPids[i].epgAudioPid;
+#else
+					g_currentapid = i;
+#endif
+					g_currentac3 = playlist[selected].audioPids[i].atype;
+
+					//
+#if defined (PLATFORM_COOLSTREAM)
+					currentapid = g_currentapid;
+					currentac3 = g_currentac3;
+#else
+					currentapid = 0;
+#endif
+				}
+			}
+
+			//
+			g_vpid = playlist[selected].epgVideoPid;
+			g_vtype = playlist[selected].VideoType;
+
+			// startposition			
+			startposition = 1000 * showStartPosSelectionMenu();
+
+			if(startposition < 0)
+				exit = true;
+		}
+
+		//
+		update_lcd = true;
+		start_play = true;
+
+		//
+		if(playlist[selected].file.getType() == CFile::FILE_AUDIO)
+		{
+			if (!playlist[selected].tfile.empty())
+				frameBuffer->loadBackgroundPic(playlist[selected].tfile);
+		}
+	}
+}
+
+void CMoviePlayerGui::stop()
+{
+	dprintf(DEBUG_NORMAL, "CMoviePlayerGui::stop\n");
+
+	//exit play
+	playstate = CMoviePlayerGui::STOPPED;
+			
+	if(playlist[selected].ytid == "timeshift")
+	{
+		// stop record if recording
+		if( CNeutrinoApp::getInstance()->recordingstatus) 
+		{
+			if(MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWN_RECODING_QUERY, mbrYes, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)
+			{
+				CVCRControl::getInstance()->Stop();
+				g_Timerd->stopTimerEvent(CNeutrinoApp::getInstance()->recording_id);
+				CVFD::getInstance()->ShowIcon(VFD_ICON_TIMESHIFT, false );
+
+				CNeutrinoApp::getInstance()->recording_id = 0;
+				CNeutrinoApp::getInstance()->recordingstatus = 0;
+				CNeutrinoApp::getInstance()->timeshiftstatus = 0;
+			}
+		} 
+	}
+			
+	if(m_loop)
+		m_loop = false;
+			
+	if(m_multiselect)
+		m_multiselect = false;
+			
+	exit = true;
+}
+
 //
 void CMoviePlayerGui::PlayFile(void)
 {
@@ -599,54 +843,7 @@ void CMoviePlayerGui::PlayFile(void)
 			start_play = false;
 			
 			//
-			if(playback->playing)
-				playback->Close();
-
-			// init player
-#if defined (PLATFORM_COOLSTREAM)
-			if(playlist[selected].file.getExtension() != CFile::EXTENSION_TS)
-				is_file_player = true;
-
-			playback->Open(is_file_player ? PLAYMODE_FILE : PLAYMODE_TS);
-#else			
-			playback->Open();
-#endif			
-			
-			duration = 0;
-			if(playlist[selected].length != 0)
-				duration = playlist[selected].length * 60 * 1000;
-			  
-			// PlayBack Start
-#if defined (PLATFORM_COOLSTREAM)			  
-			if(!playback->Start((char *)playlist[selected].file.Name.c_str(), g_vpid, g_vtype, g_currentapid, g_currentac3, duration))
-#else
-			if(!playback->Start((char *)playlist[selected].file.Name.c_str()))
-#endif
-			{
-				dprintf(DEBUG_NORMAL, "CMoviePlayerGui::PlayFile: Starting Playback failed!\n");
-				playback->Close();
-				restoreNeutrino();
-			} 
-			else 
-			{
-				// set PlayState
-				playstate = CMoviePlayerGui::PLAY;
-
-				CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, true);
-				
-				// set position 
-				playback->SetPosition((int64_t)startposition);
-				
-				//
-#if defined (PLATFORM_COOLSTREAM)
-				playback->GetPosition(position, duration);
-#else
-				playback->GetPosition((int64_t &)position, (int64_t &)duration);
-#endif
-
-				// Infoviewer
-				//showMovieInfo();//FIXME:
-			}
+			play(selected);
 		}
 
 		//get position/duration/speed/play next/stop
@@ -670,9 +867,11 @@ void CMoviePlayerGui::PlayFile(void)
 				if (m_loop)
 					g_RCInput->postMsg(RC_next, 0);
 				else if((playlist.size() > 1) && (selected + 1 < playlist.size()))
-					g_RCInput->postMsg(RC_next, 0);
+					//g_RCInput->postMsg(RC_next, 0);
+					playNext();
 				else
-					g_RCInput->postMsg(RC_stop, 0);
+					//g_RCInput->postMsg(RC_stop, 0);
+					stop();
 			}
 		}
 		
@@ -682,111 +881,103 @@ void CMoviePlayerGui::PlayFile(void)
 		if (msg == RC_stop) 
 		{
 			dprintf(DEBUG_NORMAL, "CMoviePlayerGui::PlayFile: stop (1)\n");
-
-			//exit play
-			playstate = CMoviePlayerGui::STOPPED;
 			
-			if(playlist[selected].ytid == "timeshift")
-			{
-				// stop record if recording
-				if( CNeutrinoApp::getInstance()->recordingstatus) 
-				{
-					if(MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWN_RECODING_QUERY, mbrYes, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)
-					{
-						CVCRControl::getInstance()->Stop();
-						g_Timerd->stopTimerEvent(CNeutrinoApp::getInstance()->recording_id);
-						CVFD::getInstance()->ShowIcon(VFD_ICON_TIMESHIFT, false );
-
-						CNeutrinoApp::getInstance()->recording_id = 0;
-						CNeutrinoApp::getInstance()->recordingstatus = 0;
-						CNeutrinoApp::getInstance()->timeshiftstatus = 0;
-					}
-				} 
-			}
-			
-			if(m_loop)
-				m_loop = false;
-			
-			if(m_multiselect)
-				m_multiselect = false;
-			
-			exit = true;
+			stop();
 		} 
 		else if (msg == RC_play) 
 		{
-			if (playstate >= CMoviePlayerGui::PLAY) 
+			if (mplist && mplist->isPainted())
 			{
-				playstate = CMoviePlayerGui::PLAY;
-				update_lcd = true;
-				CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, true);
-				CVFD::getInstance()->ShowIcon(VFD_ICON_PAUSE, false);
-				
-				speed = 1;
-				playback->SetSpeed(speed);
+				play(mplist->getSelected());
 			}
-
-			if (time_forced) 
+			else
 			{
-				time_forced = false;
-				
-				hide();
-			}
-			
-			if (IsVisible())
-			{ 
-				hide();
-			}
-
-			// movie title
-			if(playlist[selected].ytid != "timeshift")
-			{
-				if (IsVisible()) 
+				if (playstate >= CMoviePlayerGui::PLAY) 
 				{
-					showMovieInfo();//FIXME:
+					playstate = CMoviePlayerGui::PLAY;
+					update_lcd = true;
+					CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, true);
+					CVFD::getInstance()->ShowIcon(VFD_ICON_PAUSE, false);
+					
+					speed = 1;
+					playback->SetSpeed(speed);
 				}
-				else 
+
+				if (time_forced) 
 				{
-					showMovieInfo();//FIXME:
+					time_forced = false;
+					
+					hide();
+				}
+				
+				if (IsVisible())
+				{ 
+					hide();
+				}
+
+				// movie title
+				if(playlist[selected].ytid != "timeshift")
+				{
+					if (IsVisible()) 
+					{
+						showMovieInfo();//FIXME:
+					}
+					else 
+					{
+						showMovieInfo();//FIXME:
+					}
 				}
 			}
 		} 
 		else if ( msg == RC_pause) 
 		{
-			update_lcd = true;
-			
-			if (playstate == CMoviePlayerGui::PAUSE) 
+			if (mplist && !mplist->isPainted())
 			{
-				playstate = CMoviePlayerGui::PLAY;
-				CVFD::getInstance()->ShowIcon(VFD_ICON_PAUSE, false);
-				// show play icon
-				CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, true);
-				speed = 1;
-				playback->SetSpeed(speed);
-			} 
-			else 
-			{
-				playstate = CMoviePlayerGui::PAUSE;
-				CVFD::getInstance()->ShowIcon(VFD_ICON_PAUSE, true);
-				CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, false);
-				speed = 0;
-				playback->SetSpeed(speed);
-			}
-
-			//show MovieInfoBar
-			if(playlist[selected].ytid != "timeshift")
-			{
-				if (IsVisible()) 
+				update_lcd = true;
+				
+				if (playstate == CMoviePlayerGui::PAUSE) 
 				{
-					showMovieInfo();//FIXME:
-				}
+					playstate = CMoviePlayerGui::PLAY;
+					CVFD::getInstance()->ShowIcon(VFD_ICON_PAUSE, false);
+					// show play icon
+					CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, true);
+					speed = 1;
+					playback->SetSpeed(speed);
+				} 
 				else 
 				{
-					showMovieInfo();//FIXME:
+					playstate = CMoviePlayerGui::PAUSE;
+					CVFD::getInstance()->ShowIcon(VFD_ICON_PAUSE, true);
+					CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, false);
+					speed = 0;
+					playback->SetSpeed(speed);
+				}
+
+				//show MovieInfoBar
+				if(playlist[selected].ytid != "timeshift")
+				{
+					if (IsVisible()) 
+					{
+						showMovieInfo();//FIXME:
+					}
+					else 
+					{
+						showMovieInfo();//FIXME:
+					}
 				}
 			}
 		} 
 		else if (msg == RC_blue) 
 		{
+			if (mplist && mplist->isPainted())
+			{
+				mplist->hide();
+				openMovieFileBrowser();
+				//hide();
+				showPlaylist();
+			}
+			else
+			{
 			if (IsVisible())
 			{ 
 				hide();
@@ -879,416 +1070,440 @@ void CMoviePlayerGui::PlayFile(void)
 						cMovieInfo.saveMovieInfo(playlist[selected]);	//save immediately in xml file
 					}
 				}
+			}
 			}		
 		} 
 		else if ( msg == RC_audio || msg == RC_green) 
 		{
-			if (IsVisible())
-			{ 
-				hide();
+			if (mplist && mplist->isPainted())
+			{
+				mplist->scrollPageUp();
 			}
-			
-			CAVPIDSelectWidget * AVSelectHandler = new CAVPIDSelectWidget();
-			AVSelectHandler->exec(NULL, "");
-							
-			delete AVSelectHandler;
-			AVSelectHandler = NULL;
+			else
+			{
+				if (IsVisible())
+				{ 
+					hide();
+				}
+				
+				CAVPIDSelectWidget * AVSelectHandler = new CAVPIDSelectWidget();
+				AVSelectHandler->exec(NULL, "");
+								
+				delete AVSelectHandler;
+				AVSelectHandler = NULL;
+			}
 		} 
 		else if(msg == RC_yellow)
 		{
-			if (IsVisible())
-			{ 
+			if (mplist && mplist->isPainted())
+			{
+				playlist.clear();
 				hide();
+				showPlaylist();
 			}
-			
-			//show help
-			showHelpTS();
+			else
+			{
+				if (IsVisible())
+				{ 
+					hide();
+				}
+				
+				//show help
+				showHelpTS();
+			}
 		}
 		else if (msg == RC_info)
 		{
-			showMovieInfo();//FIXME:
+			if (mplist && mplist->isPainted())
+			{
+				mplist->hide();
+				cMovieInfo.showMovieInfo(playlist[mplist->getSelected()]);
+			}
+			else
+				showMovieInfo();//FIXME:
 		}
 		else if(msg == RC_setup)
 		{
-			CMoviePlayerSettings* moviePlayerSettings = new CMoviePlayerSettings();
+			if (mplist && !mplist->isPainted())
+			{
+				CMoviePlayerSettings* moviePlayerSettings = new CMoviePlayerSettings();
 
-			moviePlayerSettings->exec(NULL, "");
-			delete moviePlayerSettings;
-			moviePlayerSettings = NULL;
+				moviePlayerSettings->exec(NULL, "");
+				delete moviePlayerSettings;
+				moviePlayerSettings = NULL;
+			}
 		} 
 		else if (msg == RC_rewind) 
 		{
-			// backward
-			speed = (speed >= 0) ? -1 : speed - 1;
-						
-			if(speed < -15)
-				speed = -15;			
-			
-			// hide icons
-			CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, false);
-			CVFD::getInstance()->ShowIcon(VFD_ICON_PAUSE, false);
-
-			playback->SetSpeed(speed);
-			playstate = CMoviePlayerGui::REW;
-			update_lcd = true;
-
-			if (IsVisible()) 
+			if (mplist && !mplist->isPainted())
 			{
-				hide();
-			}
-			
-			// time
-			if (!IsVisible()) 
-			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+				// backward
+				speed = (speed >= 0) ? -1 : speed - 1;
+							
+				if(speed < -15)
+					speed = -15;			
+				
+				// hide icons
+				CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, false);
+				CVFD::getInstance()->ShowIcon(VFD_ICON_PAUSE, false);
+
+				playback->SetSpeed(speed);
+				playstate = CMoviePlayerGui::REW;
+				update_lcd = true;
+
+				if (IsVisible()) 
+				{
+					hide();
+				}
+				
+				// time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		}
 		else if (msg == RC_forward) 
-		{	// fast-forward
-			speed = (speed <= 0) ? 2 : speed + 1;
-						
-			if(speed > 15)
-				speed = 15;			
-			
-			// icons
-			CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, false);
-			CVFD::getInstance()->ShowIcon(VFD_ICON_PAUSE, false);
+		{	
+			if (mplist && !mplist->isPainted())
+			{
+				// fast-forward
+				speed = (speed <= 0) ? 2 : speed + 1;
+							
+				if(speed > 15)
+					speed = 15;			
+				
+				// icons
+				CVFD::getInstance()->ShowIcon(VFD_ICON_PLAY, false);
+				CVFD::getInstance()->ShowIcon(VFD_ICON_PAUSE, false);
 
-			playback->SetSpeed(speed);
+				playback->SetSpeed(speed);
 
-			update_lcd = true;
-			playstate = CMoviePlayerGui::FF;
+				update_lcd = true;
+				playstate = CMoviePlayerGui::FF;
 
-			if (IsVisible())
-			{ 
-				hide();
-			}
+				if (IsVisible())
+				{ 
+					hide();
+				}
 
-			// movie info viewer
-			if (!IsVisible()) 
-			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+				// movie info viewer
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		} 
 		else if (msg == RC_1) 
-		{	// Jump Backwards 1 minute
-			//update_lcd = true;
-			playback->SetPosition(-60 * 1000);
-			
-			// time
-			if (!IsVisible()) 
+		{
+			if (mplist && !mplist->isPainted())
 			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+				// Jump Backwards 1 minute
+				//update_lcd = true;
+				playback->SetPosition(-60 * 1000);
+				
+				// time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		} 
 		else if (msg == RC_3) 
-		{	// Jump Forward 1 minute
-			//update_lcd = true;
-			playback->SetPosition(60 * 1000);
-			
-			// time
-			if (!IsVisible()) 
+		{
+			if (mplist && !mplist->isPainted())
 			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+				// Jump Forward 1 minute
+				//update_lcd = true;
+				playback->SetPosition(60 * 1000);
+				
+				// time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		} 
 		else if (msg == RC_4) 
-		{	// Jump Backwards 5 minutes
-			playback->SetPosition(-5 * 60 * 1000);
-			
-			// time
-			if (!IsVisible()) 
-			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+		{	
+			if (mplist && !mplist->isPainted())
+			{
+				// Jump Backwards 5 minutes
+				playback->SetPosition(-5 * 60 * 1000);
+				
+				// time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		} 
 		else if (msg == RC_6) 
-		{	// Jump Forward 5 minutes
-			playback->SetPosition(5 * 60 * 1000);
-			
-			// time
-			if (!IsVisible()) 
-			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+		{	
+			if (mplist && !mplist->isPainted())
+			{
+				// Jump Forward 5 minutes
+				playback->SetPosition(5 * 60 * 1000);
+				
+				// time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		} 
 		else if (msg == RC_7) 
-		{	// Jump Backwards 10 minutes
-			playback->SetPosition(-10 * 60 * 1000);
-			
-			// time
-			if (!IsVisible()) 
+		{
+			if (mplist && !mplist->isPainted())
 			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+				// Jump Backwards 10 minutes
+				playback->SetPosition(-10 * 60 * 1000);
+				
+				// time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		} 
 		else if (msg == RC_9) 
-		{	// Jump Forward 10 minutes
-			playback->SetPosition(10 * 60 * 1000);
-			
-			// time
-			if (!IsVisible()) 
-			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+		{	
+			if (mplist && !mplist->isPainted())
+			{
+				// Jump Forward 10 minutes
+				playback->SetPosition(10 * 60 * 1000);
+				
+				// time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		} 
 		else if ( msg == RC_2 )
-		{	// goto start
-			playback->SetPosition((int64_t)startposition);
-			
-			// time
-			if (!IsVisible()) 
-			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+		{	
+			if (mplist && !mplist->isPainted())
+			{
+				// goto start
+				playback->SetPosition((int64_t)startposition);
+				
+				// time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		} 
 		else if ( msg == RC_loop )
 		{
-			if(m_loop)
-				m_loop = false;
-			else
-				m_loop = true;
-			
-			dprintf(DEBUG_NORMAL, "CMoviePlayerGui::PlayFile: Repeat Modus: [%s]\n", m_loop? "ON" : "OFF");
+			if (mplist && !mplist->isPainted())
+			{
+				if(m_loop)
+					m_loop = false;
+				else
+					m_loop = true;
+				
+				dprintf(DEBUG_NORMAL, "CMoviePlayerGui::PlayFile: Repeat Modus: [%s]\n", m_loop? "ON" : "OFF");
+			}
 		} 
 		else if (msg == RC_5) 
-		{	
-			// goto middle
-			playback->SetPosition((int64_t)duration/2);
-			
-			// time
-			if (!IsVisible()) 
-			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+		{
+			if (mplist && !mplist->isPainted())
+				{	
+				// goto middle
+				playback->SetPosition((int64_t)duration/2);
+				
+				// time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		} 
 		else if (msg == RC_8) 
-		{	
-			// goto end
-			playback->SetPosition((int64_t)duration - 60 * 1000);
-			
-			//time
-			if (!IsVisible()) 
+		{
+			if (mplist && !mplist->isPainted())
 			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+				// goto end
+				playback->SetPosition((int64_t)duration - 60 * 1000);
+				
+				//time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		} 
 		else if (msg == RC_page_up) 
 		{
-			playback->SetPosition(10 * 1000);
-			
-			// time
-			if (!IsVisible()) 
-			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+			if (mplist && mplist->isPainted())
+			{
+				mplist->scrollPageUp();
 			}
-
+			else
+			{
+				playback->SetPosition(10 * 1000);
+				
+				// time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
+			}
 		} 
 		else if (msg == RC_page_down) 
 		{
-			playback->SetPosition(-10 * 1000);
-			
-			// time
-			if (!IsVisible()) 
-			{	
-				time_forced = true;
-				showMovieInfo();//FIXME:
+			if (mplist && mplist->isPainted())
+			{
+				mplist->scrollPageDown();
+			}
+			else
+			{
+				playback->SetPosition(-10 * 1000);
+				
+				// time
+				if (!IsVisible()) 
+				{	
+					time_forced = true;
+					showMovieInfo();//FIXME:
+				}
 			}
 		} 
 		else if (msg == RC_0) 
 		{
-			// cancel bookmark
-			if (new_bookmark.pos != 0) 
+			if (mplist && !mplist->isPainted())
 			{
-				new_bookmark.pos = 0;	// stop current bookmark activity, TODO:  might bemoved to another key
-				if(newBackwordHintBox.isPainted())
-					newBackwordHintBox.hide();
+				// cancel bookmark
+				if (new_bookmark.pos != 0) 
+				{
+					new_bookmark.pos = 0;	// stop current bookmark activity, TODO:  might bemoved to another key
+					if(newBackwordHintBox.isPainted())
+						newBackwordHintBox.hide();
 
-				if(newForwardHintBox.isPainted())
-					newForwardHintBox.hide();
+					if(newForwardHintBox.isPainted())
+						newForwardHintBox.hide();
+				}
+				jump_not_until = (position / 1000) + 10;
 			}
-			jump_not_until = (position / 1000) + 10;
 		} 
 #if !defined (PLATFORM_COOLSTREAM)		
 		else if (msg == RC_slow) 
 		{
-			if (slow > 0)
-				slow = 0;
+			if (mplist && !mplist->isPainted())
+			{
+				if (slow > 0)
+					slow = 0;
+				
+				slow += 2;
 			
-			slow += 2;
-		
-			// set slow
-			playback->SetSlow(slow);
-			//update_lcd = true;
-			playstate = CMoviePlayerGui::SLOW;
-			update_lcd = true;
+				// set slow
+				playback->SetSlow(slow);
+				//update_lcd = true;
+				playstate = CMoviePlayerGui::SLOW;
+				update_lcd = true;
+			}
 		}
 #endif		
 		else if(msg == RC_red)
 		{
-			if (IsVisible())
-			{ 
-				hide();
+			if (mplist && mplist->isPainted())
+			{
+				mplist->scrollPageDown();
 			}
-			
-			cMovieInfo.showMovieInfo(playlist[selected]);
+			else
+			{
+				if (IsVisible())
+				{ 
+					hide();
+				}
+				
+				cMovieInfo.showMovieInfo(playlist[selected]);
+			}
 		}
 		else if(msg == RC_home)
 		{
-			if (IsVisible()) 
+			if (mplist && mplist->isPainted())
 			{
-				hide();
+				mplist->hide();
+				//paintInfo(m_playlist[m_current]);
+			}
+			else
+			{
+				if (IsVisible()) 
+				{
+					hide();
+				}
 			}
 		}
 		else if(msg == RC_left || msg == RC_prev)
 		{
-			//FIXME:
-			if(!playlist.empty() && selected > 0 && playstate == CMoviePlayerGui::PLAY) 
+			if (mplist && mplist->isPainted())
 			{
-				selected--;
-
-				//
-				if(playlist[selected].ytid.empty())
-				{
-					if(!playlist[selected].audioPids.empty()) 
-					{
-						g_currentapid = playlist[selected].audioPids[0].epgAudioPid;
-						g_currentac3 = playlist[selected].audioPids[0].atype;
-
-							//
-							currentapid = g_currentapid;
-					}
-
-					for (int i = 0; i < (int)playlist[selected].audioPids.size(); i++) 
-					{
-						if (playlist[selected].audioPids[i].selected) 
-						{
-#if defined (PLATFORM_COOLSTREAM)
-							g_currentapid = playlist[selected].audioPids[i].epgAudioPid;
-#else
-							g_currentapid = i;
-#endif
-							g_currentac3 = playlist[selected].audioPids[i].atype;
-
-							//
-#if defined (PLATFORM_COOLSTREAM)
-							currentapid = g_currentapid;
-							currentac3 = g_currentac3;
-#else
-							currentapid = 0;
-#endif
-						}
-					}
-
-					//
-					g_vpid = playlist[selected].epgVideoPid;
-					g_vtype = playlist[selected].VideoType;
-
-					// startposition			
-					startposition = 1000 * showStartPosSelectionMenu();
-
-					if(startposition < 0)
-						exit = true;
-				}
-
-				//
-				update_lcd = true;
-				start_play = true;
-
-				//
-				if(playlist[selected].file.getType() == CFile::FILE_AUDIO)
-				{
-					if (!playlist[selected].tfile.empty())
-						frameBuffer->loadBackgroundPic(playlist[selected].tfile);
-				}
+				mplist->swipLeft();
+			}
+			else
+			{
+				playPrev();
 			}
 		}
 		else if(msg == RC_right || msg == RC_next)
 		{
-			//FIXME:
-			if(m_loop && playstate == CMoviePlayerGui::PLAY) // loop
+			if (mplist && mplist->isPainted())
 			{
-				//
-				update_lcd = true;
-				start_play = true;
+				mplist->swipRight();
 			}
-			else if(!playlist.empty() && selected + 1 < playlist.size() && playstate == CMoviePlayerGui::PLAY) 
+			else
 			{
-				selected++;
-
-				//
-				if(playlist[selected].ytid.empty())
-				{
-					if(!playlist[selected].audioPids.empty()) 
-					{
-						g_currentapid = playlist[selected].audioPids[0].epgAudioPid;
-						g_currentac3 = playlist[selected].audioPids[0].atype;
-
-							//
-							currentapid = g_currentapid;
-					}
-
-					for (int i = 0; i < (int)playlist[selected].audioPids.size(); i++) 
-					{
-						if (playlist[selected].audioPids[i].selected) 
-						{
-#if defined (PLATFORM_COOLSTREAM)
-							g_currentapid = playlist[selected].audioPids[i].epgAudioPid;
-#else
-							g_currentapid = i;
-#endif							
-							g_currentac3 = playlist[selected].audioPids[i].atype;
-
-							//
-#if defined (PLATFORM_COOLSTREAM)
-							currentapid = g_currentapid;
-							currentac3 = g_currentac3;
-#else
-							currentapid = 0;
-#endif
-						}
-					}
-
-					//
-					g_vpid = playlist[selected].epgVideoPid;
-					g_vtype = playlist[selected].VideoType;
-
-					// startposition			
-					startposition = 1000 * showStartPosSelectionMenu();
-
-					if(startposition < 0)
-						exit = true;
-				}
-				
-				//
-				update_lcd = true;
-				start_play = true;
-
-				//
-				if(playlist[selected].file.getType() == CFile::FILE_AUDIO)
-				{
-					if (!playlist[selected].tfile.empty())
-						frameBuffer->loadBackgroundPic(playlist[selected].tfile);
-				}
+				playNext();
 			}
 		}
 		else if (msg == (neutrino_msg_t)g_settings.key_screenshot)
 		{
-         		if(MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SCREENSHOT_ANNOUNCE), mbrNo, mbYes | mbNo) == mbrYes) 
+			if (mplist && !mplist->isPainted())
 			{
-				CVCRControl::getInstance()->Screenshot(0, (char *)playlist[selected].file.Name.c_str());
+		 		if(MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SCREENSHOT_ANNOUNCE), mbrNo, mbYes | mbNo) == mbrYes) 
+				{
+					CVCRControl::getInstance()->Screenshot(0, (char *)playlist[selected].file.Name.c_str());
+				}
+			}
+		}
+		else if(msg == RC_ok)
+		{
+			if (mplist && mplist->isPainted())
+			{
+				mplist->hide();
+				play(mplist->getSelected());
+			}
+			else
+			{
+				hide();
+				showPlaylist();
+			}
+		}
+		else if(msg == RC_up)
+		{
+			if (mplist && mplist->isPainted())
+			{
+				mplist->scrollLineUp();
+			}
+		}
+		else if(msg == RC_down)
+		{
+			if (mplist && mplist->isPainted())
+			{
+				mplist->scrollLineDown();
 			}
 		}
 		else if ((msg == NeutrinoMessages::ANNOUNCE_RECORD) || msg == NeutrinoMessages::RECORD_START || msg == NeutrinoMessages::ZAPTO || msg == NeutrinoMessages::STANDBY_ON || msg == NeutrinoMessages::SHUTDOWN || msg == NeutrinoMessages::SLEEPTIMER) 
@@ -1546,7 +1761,8 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	frameBuffer->paintBoxRel(cFrameBoxInfo.iX, cFrameBoxInfo.iY, cFrameBoxInfo.iWidth, cFrameBoxInfo.iHeight, COL_INFOBAR_PLUS_0, g_settings.use_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.use_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient); 
 		
 	// bottum bar
-	frameBuffer->paintBoxRel(cFrameBoxButton.iX, cFrameBoxButton.iY, cFrameBoxButton.iWidth, cFrameBoxButton.iHeight, COL_INFOBAR_SHADOW_PLUS_1,  NO_RADIUS, CORNER_NONE); 
+	if (g_settings.infobar_buttonbar)
+		frameBuffer->paintBoxRel(cFrameBoxButton.iX, cFrameBoxButton.iY, cFrameBoxButton.iWidth, cFrameBoxButton.iHeight, COL_INFOBAR_SHADOW_PLUS_1, g_settings.use_shadow?NO_RADIUS : RADIUS_MID, g_settings.use_shadow? CORNER_NONE : CORNER_BOTTOM); 
 	
 	// show date/time
 	std::string datestr = getNowTimeStr("%d.%m.%Y %H:%M");
@@ -1694,5 +1910,147 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	moviescale.paintPCR(runningPercent);
 }
 
+//
+#define HEAD_BUTTONS_COUNT	2
+const struct button_label HeadButtons[HEAD_BUTTONS_COUNT] =
+{
+	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
+	{ NEUTRINO_ICON_BUTTON_MUTE_SMALL, NONEXISTANT_LOCALE, NULL}
+};
+
+#define FOOT_BUTTONS_COUNT	4
+const struct button_label FootButtons[FOOT_BUTTONS_COUNT] =
+{
+	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_FILEBROWSER_NEXTPAGE, NULL },
+	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_FILEBROWSER_PREVPAGE, NULL },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_AUDIOPLAYER_DELETEALL, NULL },
+	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_AUDIOPLAYER_ADD, NULL },
+};
+
+void CMoviePlayerGui::showPlaylist()
+{
+	dprintf(DEBUG_NORMAL, "CMoviePlayerGui::showPlaylist:\n");
+	
+	CBox box;
+	box.iWidth = frameBuffer->getScreenWidth();
+	box.iHeight = frameBuffer->getScreenHeight();
+	box.iX = frameBuffer->getScreenX();
+	box.iY = frameBuffer->getScreenY();
+	
+	mplist = new ClistBox(&box);
+
+	for(unsigned int i = 0; i < playlist.size(); i++)
+	{
+		item = new ClistBoxItem(playlist[i].epgTitle.c_str());
+
+		item->setOption(playlist[i].epgChannel.c_str());
+
+		item->setInfo1(playlist[i].epgInfo1.c_str());
+
+		item->setInfo2(playlist[i].epgInfo2.c_str());
+
+		item->setItemIcon(file_exists(playlist[i].tfile.c_str())? playlist[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+
+		item->set2lines();
+
+		std::string tmp = playlist[i].epgInfo1;
+		tmp += "\n";
+		tmp += playlist[i].epgInfo2;
+
+		item->setHint(tmp.c_str());
+
+		mplist->addItem(item);
+	}
+
+	mplist->setWidgetType(WIDGET_TYPE_EXTENDED);
+	mplist->setSelected(selected);
+	
+	mplist->enablePaintHead();
+	mplist->setTitle(g_Locale->getText(LOCALE_MOVIEPLAYER_HEAD), NEUTRINO_ICON_MOVIE);
+	mplist->enablePaintDate();
+	mplist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	
+	mplist->enablePaintFoot();
+	mplist->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	
+	mplist->paint();
+}
+
+//
+void CMoviePlayerGui::openMovieFileBrowser()
+{
+	dprintf(DEBUG_NORMAL, "CMoviePlayerGui::openMovieFileBrowser:\n");
+	
+	CFileFilter fileFilter;
+	CFileList filelist;
+	
+	CFileBrowser filebrowser((g_settings.filebrowser_denydirectoryleave) ? g_settings.network_nfs_recordingdir : "");
+
+	fileFilter.clear();
+	filelist.clear();
+
+	fileFilter.addFilter("ts");
+	fileFilter.addFilter("mpg");
+	fileFilter.addFilter("mpeg");
+	fileFilter.addFilter("divx");
+	fileFilter.addFilter("avi");
+	fileFilter.addFilter("mkv");
+	fileFilter.addFilter("asf");
+	fileFilter.addFilter("aiff");
+	fileFilter.addFilter("m2p");
+	fileFilter.addFilter("mpv");
+	fileFilter.addFilter("m2ts");
+	fileFilter.addFilter("vob");
+	fileFilter.addFilter("mp4");
+	fileFilter.addFilter("mov");	
+	fileFilter.addFilter("flv");	
+	fileFilter.addFilter("dat");
+	fileFilter.addFilter("trp");
+	fileFilter.addFilter("vdr");
+	fileFilter.addFilter("mts");
+	fileFilter.addFilter("wmv");
+	fileFilter.addFilter("wav");
+	fileFilter.addFilter("flac");
+	fileFilter.addFilter("mp3");
+	fileFilter.addFilter("wma");
+	fileFilter.addFilter("ogg");
+
+	filebrowser.Multi_Select = true;
+	filebrowser.Dirs_Selectable = true;
+	filebrowser.Filter = &fileFilter;
+
+	std::string Path = g_settings.network_nfs_recordingdir;
+
+	if (filebrowser.exec(Path.c_str()))
+	{
+		Path = filebrowser.getCurrentDir();
+
+		MI_MOVIE_INFO movieInfo;
+		cMovieInfo.clearMovieInfo(&movieInfo); // refresh structure
+
+		CFileList::const_iterator files = filebrowser.getSelectedFiles().begin();
+		for(; files != filebrowser.getSelectedFiles().end(); files++)
+		{
+			// filter them
+			MI_MOVIE_INFO movieInfo;
+			cMovieInfo.clearMovieInfo(&movieInfo); // refresh structure
+					
+			movieInfo.file.Name = files->Name;
+					
+			// load movie infos (from xml file)
+			cMovieInfo.loadMovieInfo(&movieInfo);
+
+			// skip duplicate
+			for (unsigned long i = 0; i < playlist.size(); i++)
+			{
+				if(playlist[i].file.getFileName() == movieInfo.file.getFileName())
+					playlist.erase(playlist.begin() + i); 
+			}
+					
+			// 
+			playlist.push_back(movieInfo);
+		}
+	}
+}
 
 
