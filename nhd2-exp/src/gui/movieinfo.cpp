@@ -245,7 +245,6 @@ bool CMovieInfo::encodeMovieInfoXml(std::string * extMessage, MI_MOVIE_INFO * mo
 	}
 
 	*extMessage += "\t\t</" MI_XML_TAG_BOOKMARK ">\n";
-	 //
 
 	// vote_average
 	XML_ADD_TAG_UNSIGNED(*extMessage, "vote_average", movie_info->vote_average);
@@ -425,6 +424,53 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 			tmdb = NULL;
 		}
 	}
+	else if(movie_info->file.getType() == CFile::FILE_AUDIO)
+	{
+		char duration[9] = "";
+		
+		CAudiofile audiofile(movie_info->file.Name, movie_info->file.getExtension());
+
+		CAudioPlayer::getInstance()->init();
+		int ret = CAudioPlayer::getInstance()->readMetaData(&audiofile, true);
+
+		if (!ret || (audiofile.MetaData.artist.empty() && audiofile.MetaData.title.empty() ))
+		{
+			//remove extension (.mp3)
+			std::string tmp = movie_info->file.getFileName().substr(movie_info->file.getFileName().rfind('/') + 1);
+			tmp = tmp.substr(0, tmp.length() - 4);	//remove extension (.mp3)
+
+			std::string::size_type i = tmp.rfind(" - ");
+		
+			if(i != std::string::npos)
+			{ 
+				audiofile.MetaData.title = tmp.substr(0, i);
+				audiofile.MetaData.artist = tmp.substr(i + 3);
+			}
+			else
+			{
+				i = tmp.rfind('-');
+				if(i != std::string::npos)
+				{
+					audiofile.MetaData.title = tmp.substr(0, i);
+					audiofile.MetaData.artist = tmp.substr(i + 1);
+				}
+				else
+					audiofile.MetaData.title = tmp;
+			}
+		}
+			
+		snprintf(duration, 8, "(%ld:%02ld)", audiofile.MetaData.total_time / 60, audiofile.MetaData.total_time % 60);
+			
+		movie_info->epgInfo1 = audiofile.MetaData.title;
+		movie_info->epgInfo1 += "\n";
+		movie_info->epgInfo1 += audiofile.MetaData.artist;
+		movie_info->epgInfo1 += "\n";
+		movie_info->epgInfo1 += audiofile.MetaData.genre;
+		movie_info->epgInfo1 += "\n";
+		movie_info->epgInfo1 += audiofile.MetaData.date;
+		movie_info->epgInfo1 += "\n";
+		movie_info->epgInfo1 += duration;
+	}
 
 	//grab for thumbnail
 	if (movie_info->tfile.empty())
@@ -432,6 +478,8 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 		// audio files
 		if(movie_info->file.getType() == CFile::FILE_AUDIO)
 		{
+			movie_info->tfile = DATADIR "/neutrino/icons/mp3.jpg";
+			
 			// mp3
 			if (getFileExt(movie_info->file.Name) == "mp3")
 			{
@@ -441,14 +489,12 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 
 				if (!audiofile.MetaData.cover.empty())
 					movie_info->tfile = audiofile.MetaData.cover;
-				else
-					movie_info->tfile = DATADIR "/neutrino/icons/mp3.jpg";
 			}
-			else
-				movie_info->tfile = DATADIR "/neutrino/icons/mp3.jpg";
 		}
 		else if(movie_info->file.getType() == CFile::FILE_VIDEO)
 		{
+			movie_info->tfile = DATADIR "/neutrino/icons/nopreview.jpg";
+			
 			std::string fname = "";
 			fname = movie_info->file.Name;
 			changeFileNameExt(fname, ".jpg");
@@ -480,12 +526,8 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 
 							if(!tname.empty())
 								movie_info->tfile = tname;
-							else
-								movie_info->tfile = DATADIR "/neutrino/icons/nopreview.jpg";
 						}
 					}
-					else
-						movie_info->tfile = DATADIR "/neutrino/icons/nopreview.jpg";
 
 					delete tmdb;
 					tmdb = NULL;
@@ -596,7 +638,7 @@ MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 			{
 				//remove extension (.mp3)
 				std::string tmp = movie_info.file.getFileName().substr(movie_info.file.getFileName().rfind('/') + 1);
-				tmp = tmp.substr(0, tmp.length() - 4);	//remove extension (.mp3)
+				tmp = tmp.substr(0, tmp.length() - 4);
 
 				std::string::size_type i = tmp.rfind(" - ");
 		
@@ -637,6 +679,8 @@ MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 			// audio files
 			if(movie_info.file.getType() == CFile::FILE_AUDIO)
 			{
+				movie_info.tfile = DATADIR "/neutrino/icons/mp3.jpg";
+				
 				// mp3
 				if (getFileExt(movie_info.file.Name) == "mp3")
 				{
@@ -647,14 +691,12 @@ MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 
 					if (!audiofile.MetaData.cover.empty())
 						movie_info.tfile = audiofile.MetaData.cover;
-					else
-						movie_info.tfile = DATADIR "/neutrino/icons/mp3.jpg";
 				}
-				else
-					movie_info.tfile = DATADIR "/neutrino/icons/mp3.jpg";
 			}
 			else if(movie_info.file.getType() == CFile::FILE_VIDEO)
 			{
+				movie_info.tfile = DATADIR "/neutrino/icons/nopreview.jpg";
+				
 				std::string fname = "";
 				fname = movie_info.file.Name;
 				changeFileNameExt(fname, ".jpg");
@@ -686,12 +728,8 @@ MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 
 								if(!tname.empty())
 									movie_info.tfile = tname;
-								else
-									movie_info.tfile = DATADIR "/neutrino/icons/nopreview.jpg";
 							}
 						}
-						else
-							movie_info.tfile = DATADIR "/neutrino/icons/nopreview.jpg";
 
 						delete tmdb;
 						tmdb = NULL;
