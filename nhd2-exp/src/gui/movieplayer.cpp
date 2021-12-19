@@ -432,6 +432,13 @@ void CMoviePlayerGui::play(unsigned int pos)
 
 		// Infoviewer
 		//showMovieInfo();//FIXME:
+		
+		//
+		if(playlist[selected].file.getType() == CFile::FILE_AUDIO)
+		{
+			if (!playlist[selected].tfile.empty())
+				frameBuffer->loadBackgroundPic(playlist[selected].tfile);
+		}
 	}
 }
 
@@ -1968,7 +1975,9 @@ void CMoviePlayerGui::showPlaylist()
 		mplist->addItem(item);
 	}
 
-	mplist->setWidgetType(WIDGET_TYPE_EXTENDED);
+	mplist->setWidgetType(WIDGET_TYPE_FRAME);
+	mplist->setItemsPerPage(6, 2);
+	
 	mplist->setSelected(selected);
 	
 	mplist->enablePaintHead();

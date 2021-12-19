@@ -112,6 +112,10 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 
 		CNVODChangeExec *NVODChanger;
 		CRCLock *rcLock;
+		
+		//
+		fb_pixel_t * mute_pixbuf;
+		fb_pixel_t * vol_pixbuf;
 
 		void firstChannel();
 		

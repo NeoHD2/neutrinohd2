@@ -358,6 +358,9 @@ CNeutrinoApp::CNeutrinoApp()
 #if defined (USE_PLAYBACK)
 	playbackstatus = 0;
 #endif
+
+	mute_pixbuf = NULL;
+	vol_pixbuf = NULL;
 }
 
 // CNeutrinoApp - Destructor
@@ -4935,7 +4938,12 @@ void CNeutrinoApp::AudioMute( int newValue, bool isEvent )
 	int y = g_settings.screen_StartY + 10;
 
 	//FIXME:
-	fb_pixel_t * mute_pixbuf = NULL;
+	if(mute_pixbuf == NULL)
+	{
+		mute_pixbuf = new fb_pixel_t[dx*dy];
+		
+		frameBuffer->saveScreen(x, y, dx, dy, mute_pixbuf);	
+	}
 
 #if ENABLE_LCD
 	CVFD::getInstance()->setMuted(newValue);
@@ -4951,17 +4959,6 @@ void CNeutrinoApp::AudioMute( int newValue, bool isEvent )
 	{
 		if( current_muted ) 
 		{
-			if(mute_pixbuf == NULL)
-			{
-				mute_pixbuf = new fb_pixel_t[dx*dy];
-			}
-			
-			if(mute_pixbuf)
-			{
-				frameBuffer->saveScreen(x, y, dx, dy, mute_pixbuf);		
-			}
-		
-			//frameBuffer->paintBoxRel(x, y, dx, dy, COL_MENUCONTENT_PLUS_0);
 			frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_MUTE, x, y);
 		}
 		else
@@ -4991,6 +4988,8 @@ void CNeutrinoApp::setvol(int vol)
 // set volume
 void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool nowait)
 {
+	dprintf(DEBUG_NORMAL, "CNeutrinoApp:setVolume:\n");
+	
 	neutrino_msg_t msg = key;
 
 	int dx = 296;	//256 (16*16) for vulme bar + 40 for volume digits
@@ -5034,20 +5033,20 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 			break;
 	}
 
-	fb_pixel_t * pixbuf = NULL;
-
 	if(bDoPaint) 
 	{
-		pixbuf = new fb_pixel_t[dx * dy];
-
-		if(pixbuf != NULL)
+		if (vol_pixbuf == NULL)
 		{
-			frameBuffer->saveScreen(x, y, dx, dy, pixbuf);
-			//frameBuffer->blit();				
-		}
+			vol_pixbuf = new fb_pixel_t[dx * dy];
 
+			if(vol_pixbuf != NULL)
+			{
+				frameBuffer->saveScreen(x, y, dx, dy, vol_pixbuf);			
+			}
+		}
+		
 		// background box
-		frameBuffer->paintBoxRel(x , y , dx, dy, COL_MENUCONTENT_PLUS_0, RADIUS_MID, CORNER_BOTH);
+		frameBuffer->paintBoxRel(x, y , dx, dy, COL_MENUCONTENT_PLUS_0, RADIUS_MID, CORNER_BOTH);
 		
 		// vol box aussen
 		frameBuffer->paintBoxRel(x + dy + dy/4 - 2, y + dy/4 - 2, dy*25/4 + 4, dy/2 + 4, COL_MENUCONTENT_PLUS_3);
@@ -5111,7 +5110,7 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 		}
 		else if (msg == NeutrinoMessages::EVT_VOLCHANGED) 
 		{
-			timeoutEnd = CRCInput::calcTimeoutEnd(3);
+			timeoutEnd = CRCInput::calcTimeoutEnd(5);
 		}
 		else if (handleMsg(msg, data) & messages_return::unhandled) 
 		{
@@ -5158,12 +5157,20 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 		frameBuffer->blit();	
 	} while (msg != RC_timeout);
 
-	if( (bDoPaint) && (pixbuf != NULL) ) 
+	if(bDoPaint) 
 	{
-		frameBuffer->restoreScreen(x, y, dx, dy, pixbuf);
+		if(vol_pixbuf != NULL) 
+		{
+			frameBuffer->restoreScreen(x, y, dx, dy, vol_pixbuf);
+		
+			delete [] vol_pixbuf;
+			vol_pixbuf = NULL;
+			
+		}
+		else
+			frameBuffer->paintBackgroundBoxRel(x, y, dx, dy);
+			
 		frameBuffer->blit();
-	
-		delete [] pixbuf;
 	}
 }
 
