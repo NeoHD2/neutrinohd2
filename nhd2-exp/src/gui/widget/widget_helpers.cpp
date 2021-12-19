@@ -712,8 +712,10 @@ void CCTime::paint()
 	
 	if (timestr_len > cCBox.iWidth)
 		timestr_len = cCBox.iWidth;
+		
+	int startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (timestr_len >> 1);
 	
-	font->RenderString(cCBox.iX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), timestr_len + 1, timestr.c_str(), color, 0, true);
+	font->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), timestr_len + 1, timestr.c_str(), color, 0, true);
 }
 
 void CCTime::refresh()
@@ -728,7 +730,12 @@ void CCTime::refresh()
 		
 	int timestr_len = font->getRenderWidth(timestr.c_str(), true); // UTF-8
 	
-	font->RenderString(cCBox.iX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), /*timestr_len + 1*/cCBox.iWidth, timestr.c_str(), color, 0, true);
+	if (timestr_len > cCBox.iWidth)
+		timestr_len = cCBox.iWidth;
+		
+	int startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (timestr_len >> 1);
+	
+	font->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), /*timestr_len + 1*/cCBox.iWidth, timestr.c_str(), color, 0, true);
 }
 
 //// widget items
@@ -903,6 +910,7 @@ CFooters::CFooters(CBox position)
 
 	fbuttons.clear();
 	fcount = 0;
+	fbutton_width = itemBox.iWidth;
 
 	fbgcolor = COL_MENUFOOT_PLUS_0;
 	fradius = g_settings.Foot_radius;
@@ -912,7 +920,7 @@ CFooters::CFooters(CBox position)
 	itemType = WIDGET_ITEM_FOOT;
 }
 
-void CFooters::setButtons(const struct button_label *button_label, const int button_count)
+void CFooters::setButtons(const struct button_label *button_label, const int button_count, const int _fbutton_width)
 {
 	if (button_count)
 	{
@@ -922,7 +930,8 @@ void CFooters::setButtons(const struct button_label *button_label, const int but
 		}
 	}
 
-	fcount = fbuttons.size();	
+	fcount = fbuttons.size();
+	fbutton_width = (_fbutton_width == 0)? itemBox.iWidth : _fbutton_width;	
 }
 
 void CFooters::paint()
@@ -938,7 +947,7 @@ void CFooters::paint()
 
 	if(fcount)
 	{
-		buttonWidth = (itemBox.iWidth - BORDER_LEFT - BORDER_RIGHT)/fcount;
+		buttonWidth = (fbutton_width - BORDER_LEFT - BORDER_RIGHT)/fcount;
 	
 		for (int i = 0; i < fcount; i++)
 		{

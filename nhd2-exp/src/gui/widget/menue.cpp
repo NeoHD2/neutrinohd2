@@ -559,7 +559,7 @@ void CMenuWidget::paintFoot()
 			// buttons
 			int buttonWidth = 0;
 
-			buttonWidth = (width - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
+			buttonWidth = (fbutton_width - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
 	
 			for (unsigned int i = 0; i < fbutton_count; i++)
 			{
@@ -598,7 +598,7 @@ void CMenuWidget::paintFoot()
 
 		if(fbutton_count)
 		{
-			buttonWidth = (width - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
+			buttonWidth = (fbutton_width - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
 	
 			for (unsigned int i = 0; i < fbutton_count; i++)
 			{

@@ -47,7 +47,6 @@ class CBox
 		int iY;
 		int iWidth;
 		int iHeight;
-		int iRadius;
 
 		//
 		inline CBox(){};
@@ -138,7 +137,7 @@ class CIcon : public CComponent
 		int iHeight;
 		std::string iconName;
 
-		CIcon(){frameBuffer = CFrameBuffer::getInstance(); iWidth = 0; iHeight = 0; cc_type = CC_ICON;};
+		CIcon(){frameBuffer = CFrameBuffer::getInstance(); iconName = ""; iWidth = 0; iHeight = 0; cc_type = CC_ICON;};
 		
 		void setIcon(const char* icon)
 		{
@@ -155,7 +154,7 @@ class CIcon : public CComponent
 			cc_type = CC_ICON;
 		};
 
-		//
+		// h/v aligned
 		void paint()
 		{
 			frameBuffer->paintIcon(iconName.c_str(), cCBox.iX + (cCBox.iWidth - iWidth)/2, cCBox.iY + (cCBox.iHeight - iHeight)/2);
@@ -171,7 +170,7 @@ class CImage : public CComponent
 		int iNbp;
 		std::string imageName;
 
-		CImage(){frameBuffer = CFrameBuffer::getInstance(); cc_type = CC_IMAGE;};
+		CImage(){frameBuffer = CFrameBuffer::getInstance(); imageName = ""; iWidth = 0; iHeight = 0; iNbp = 0; cc_type = CC_IMAGE;};
 
 		void setImage(const char* image)
 		{
@@ -181,17 +180,29 @@ class CImage : public CComponent
 
 		CImage(const char* image)
 		{
+			imageName = ""; 
+			iWidth = 0; 
+			iHeight = 0; 
+			iNbp = 0;
+			
 			frameBuffer = CFrameBuffer::getInstance();
+			
+			//
 			imageName = std::string(image); 
 			frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
 			
 			cc_type = CC_IMAGE;
 		};
 		
-		//
+		// h/v aligned
 		void paint()
 		{
-			frameBuffer->displayImage(imageName.c_str(), cCBox.iX /*+ (cCBox.iWidth - iWidth)/2*/, cCBox.iY /*+ (cCBox.iHeight - iHeight)/2*/, cCBox.iWidth, cCBox.iHeight);
+			if (iWidth > cCBox.iWidth) iWidth = cCBox.iWidth;
+			if (iHeight > cCBox.iHeight) iHeight = cCBox.iHeight;
+			
+			int startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (iWidth >> 1);
+			
+			frameBuffer->displayImage(imageName.c_str(), startPosX, cCBox.iY + (cCBox.iHeight - iHeight)/2, iWidth, iHeight);
 		};
 };
 
@@ -205,25 +216,19 @@ typedef struct button_label
 
 typedef std::vector<button_label_struct> button_label_list_t;
 
-enum {
-	BUTTON,
-	FRAME
-};
-
 // CButtons
 class CButtons : public CComponent
 {
 	private:
 		button_label_list_t buttons;
 		unsigned int count;
-		int mode;
+
 	public:
 		//
-		CButtons(){frameBuffer = CFrameBuffer::getInstance(); buttons.clear(); count = 0; mode = BUTTON; cc_type = CC_BUTTON;};
+		CButtons(){frameBuffer = CFrameBuffer::getInstance(); buttons.clear(); count = 0; cc_type = CC_BUTTON;};
 		
 		//
 		void setButtons(const struct button_label *button_label, const int button_count = 1);
-		void setMode(int m){mode = m;};
 		void paint();
 
 		//
@@ -467,7 +472,7 @@ class CPig : public CComponent
 		void hide();
 };
 
-// CLabel
+// CCTime
 class CCTime : public CComponent
 {
 	public:
@@ -612,6 +617,7 @@ class CFooters : public CWidgetItem
 {
 	private:
 		unsigned int fcount;
+		int fbutton_width;
 		button_label_list_t fbuttons;
 
 		fb_pixel_t fbgcolor;
@@ -628,7 +634,7 @@ class CFooters : public CWidgetItem
 		void setRadius(const int ra){fradius = ra;};
 		void setCorner(const int co){fcorner = co;};
 		void setGradient(const int grad){fgradient = grad;};
-		void setButtons(const struct button_label *button_label, const int button_count = 1);
+		void setButtons(const struct button_label *button_label, const int button_count = 1, const int _fbutton_width = 0);
 
 		void paint();
 		void hide();

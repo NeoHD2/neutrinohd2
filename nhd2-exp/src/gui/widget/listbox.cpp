@@ -2928,7 +2928,7 @@ void ClistBox::paintFoot()
 				// buttons
 				int buttonWidth = 0;
 
-				buttonWidth = (itemBox.iWidth - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
+				buttonWidth = (fbutton_width - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
 	
 				for (int i = 0; i < (int)fbutton_count; i++)
 				{
@@ -2961,7 +2961,7 @@ void ClistBox::paintFoot()
 			int buttonWidth = 0;
 
 			if (fbutton_count)
-				buttonWidth = (itemBox.iWidth - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
+				buttonWidth = (fbutton_width - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
 	
 			for (int i = 0; i < (int)fbutton_count; i++)
 			{
@@ -2982,7 +2982,7 @@ void ClistBox::paintFoot()
 					CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
 
 					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
-					}
+				}
 			}
 		}
 	}
