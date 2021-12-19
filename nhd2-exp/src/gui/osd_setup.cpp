@@ -827,6 +827,7 @@ void CSkinManager::showMenu()
 	CMenuWidget* skinMenu = new CMenuWidget(LOCALE_SKIN_SKIN, NEUTRINO_ICON_COLORS, 800, 600);
 	skinMenu->setWidgetMode(MODE_LISTBOX);
 	skinMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
+	skinMenu->enablePaintDate();
 	
 	// default
 	skinMenu->addItem( new ClistBoxItem(LOCALE_SKIN_DEFAULT, true, NULL, this, "neutrino_default", RC_nokey, NULL, DATADIR "/neutrino/icons/prev.jpg"), old_selected == count++);

@@ -194,7 +194,7 @@ EPGMenu.epgplus Eventlist overview
 EPGMenu.eventinfo Details current program
 EPGMenu.eventlist Eventlist current programm
 EPGMenu.head EPG - Program Information
-EPGMenu.streaminfo technical information
+EPGMenu.streaminfo Sender information
 EPGPlus.actions Actions
 EPGPlus.bybouquet_mode by bouquet
 EPGPlus.bypage_mode by page
@@ -1630,7 +1630,7 @@ keybinding.mb_truncate MB truncate key
 
 audiomenu.volumebar_audiosteps Volume Step Size
 
-tmdb.tmdb_info TMDB Infos
+tmdb.tmdb_info MediaDB
 
 skin.default Neutrino(intern)
 skin.skin Skin

@@ -194,7 +194,7 @@ EPGMenu.epgplus Vorschau Übersicht
 EPGMenu.eventinfo Info zur Sendung
 EPGMenu.eventlist Vorschau aktuelles Programm
 EPGMenu.head EPG - Programm Information
-EPGMenu.streaminfo technische Information
+EPGMenu.streaminfo Sender Information
 EPGPlus.actions Aktionen
 EPGPlus.bybouquet_mode bouquetweise
 EPGPlus.bypage_mode seitenweise
@@ -1290,7 +1290,7 @@ streaminfo.audiotype_unknown Audiotyp: unbekannt
 streaminfo.bitrate Bitrate
 streaminfo.framerate Bildrate
 streaminfo.framerate_unknown unbekannt
-streaminfo.head Tech. Information
+streaminfo.head Sender Information
 streaminfo.not_available nicht verfügbar
 streaminfo.mode Auflösung
 streaminfo.signal Empfangssignal
@@ -1631,7 +1631,7 @@ keybinding.mb_truncate MB kürzen Taste
 
 audiomenu.volumebar_audiosteps Lautstärke Schrittweite
 
-tmdb.tmdb_info TMDB Infos
+tmdb.tmdb_info MediaDB
 
 skin.default Neutrino (intern)
 skin.skin Skin Auswahl

@@ -229,6 +229,9 @@ void CAudioPlayerGui::playFile()
 		
 		if ((m_state != CAudioPlayerGui::STOP) && (CAudioPlayer::getInstance()->getState() == CBaseDec::STOP) && (!m_playlist.empty()))
 		{
+			m_frameBuffer->useBackground(false);
+			m_frameBuffer->paintBackground();
+			
 			// last track
 			if(m_current == ((int)m_playlist.size() - 1) && repeatMode != REPEAT_ALL)
 			{
