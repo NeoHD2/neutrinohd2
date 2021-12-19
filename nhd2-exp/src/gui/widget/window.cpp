@@ -83,12 +83,12 @@ void CWindow::init()
 	background = NULL;
 
 	// sanity check
-	if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight()))
-		itemBox.iHeight = frameBuffer->getScreenHeight();
+	if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight(true)))
+		itemBox.iHeight = frameBuffer->getScreenHeight(true);
 
 	// sanity check
-	if(itemBox.iWidth > (int)frameBuffer->getScreenWidth())
-		itemBox.iWidth = frameBuffer->getScreenWidth();
+	if(itemBox.iWidth > (int)frameBuffer->getScreenWidth(true))
+		itemBox.iWidth = frameBuffer->getScreenWidth(true);
 
 	if(centerPos)
 	{
