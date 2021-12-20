@@ -1637,6 +1637,10 @@ void CNeutrinoApp::unloadSkin()
 	CThemes* themes = new CThemes();
 	themes->exec(NULL, "theme_default");
 	
+	//
+	g_settings.use_shadow = true;
+	g_settings.infobar_buttonbar = true;
+	
 	delete themes;
 	themes = NULL;
 }
@@ -1754,7 +1758,6 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		*/
 		
 		g_settings.infobar_buttonbar = skinConfig->getBool("infobar_buttonbar", true);
-		
 		g_settings.use_shadow = skinConfig->getBool("use_shadow", true);
 		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );

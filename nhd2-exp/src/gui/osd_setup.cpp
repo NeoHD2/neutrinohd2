@@ -96,14 +96,13 @@ void COSDSettings::showMenu(void)
 	osdSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
 	osdSettings->enableShrinkMenu();
 	osdSettings->setMenuPosition(MENU_POSITION_LEFT);
-	//osdSettings->enablePaintFootInfo();
 	osdSettings->enablePaintDate();
 	
 	// skin
 	osdSettings->addItem( new CMenuForwarder(LOCALE_SKIN_SKIN, true, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 	
 	// skin sttings
-	osdSettings->addItem( new CMenuForwarder("Skin Settings", true, NULL, NULL, NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
+	osdSettings->addItem( new CMenuForwarder("Skin Settings", true, NULL, new CSkinSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 
 	// Themes
 	osdSettings->addItem( new CMenuForwarder(LOCALE_COLORMENU_THEMESELECT, true, NULL, new CThemes(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
@@ -893,7 +892,7 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 			g_settings.use_default_skin = false;
 			CNeutrinoApp::getInstance()->unloadSkin();
 			g_settings.preferred_skin = actionKey;
-			CNeutrinoApp::getInstance()->loadSkin(g_settings.preferred_skin);
+			//CNeutrinoApp::getInstance()->loadSkin(g_settings.preferred_skin);
 			CNeutrinoApp::getInstance()->exec(NULL, "restart");
 		}
 	}
@@ -922,7 +921,34 @@ bool CSkinNotifier::changeNotify(const neutrino_locale_t OptionName, void *)
 	return false;
 }
 
+// skinSettings
+void CSkinSettings::showMenu()
+{
+	dprintf(DEBUG_NORMAL, "CSkinSettings::showMenu:\n");
+	
+	CMenuItem* item = NULL;
+	CMenuWidget* skinSettings = new CMenuWidget("Skin Settings", NEUTRINO_ICON_COLORS, 800, 600);
+	skinSettings->setWidgetMode(MODE_SETUP);
+	//skinSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
+	skinSettings->enablePaintDate();
+	
+	skinSettings->exec(NULL, "");
+	
+	delete skinSettings;
+	skinSettings = NULL;
+}
 
-
-
+int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
+{
+	dprintf(DEBUG_NORMAL, "CSkinSettings::exec: actionKey:%s\n", actionKey.c_str());
+	
+	int ret = RETURN_REPAINT;
+	
+	if (parent)
+		parent->hide();
+		
+	showMenu();
+	
+	return RETURN_EXIT;
+}
 

@@ -1778,14 +1778,7 @@ void CTestMenu::testMultiWidget()
 	left_selected = 0;
 
 	leftWidget = new ClistBox(&leftBox);
-
-	//leftWidget->enableItemShadow();
-	//leftWidget->enablePaintHead();
-	//leftWidget->setTitle("leftWidget", NEUTRINO_ICON_MOVIE);
-	//leftWidget->setHeadGradient(NOGRADIENT);
-	//leftWidget->setHeadCorner(NO_RADIUS, CORNER_NONE);
 	leftWidget->setSelected(left_selected);
-	//leftWidget->setOutFocus();
 
 	ClistBoxItem *item1 = new ClistBoxItem("Item 1");
 	item1->enableItemShadow();
@@ -2998,8 +2991,12 @@ void CTestMenu::testCHeaders()
 	headers->setFormat("%d.%m.%Y %H:%M:%S");
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	headers->setMode(CC_ALIGN_CENTER);
+	headers->setRadius(4);
+	headers->setCorner(CORNER_TOP_LEFT|CORNER_BOTTOM_RIGHT);
 
 	footers = new CFooters(footBox);
+	footers->setRadius(4);
+	footers->setCorner(CORNER_TOP_RIGHT|CORNER_BOTTOM_LEFT);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 		

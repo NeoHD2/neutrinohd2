@@ -150,4 +150,16 @@ class CSkinNotifier : public CChangeObserver
 		bool changeNotify(const neutrino_locale_t OptionName, void *);
 };
 
+class CSkinSettings : public CMenuTarget
+{
+	private:
+		void showMenu();
+		
+	public:
+		CSkinSettings(){};
+		~CSkinSettings(){};
+		
+		int exec(CMenuTarget* parent, const std::string& actionKey);
+};
+
 #endif //__osd_setup__
