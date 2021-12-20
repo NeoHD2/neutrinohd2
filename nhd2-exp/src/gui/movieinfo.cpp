@@ -478,7 +478,7 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 		// audio files
 		if(movie_info->file.getType() == CFile::FILE_AUDIO)
 		{
-			movie_info->tfile = DATADIR "/neutrino/icons/mp3.jpg";
+			movie_info->tfile = DATADIR "/neutrino/icons/no_coverArt.png";
 			
 			// mp3
 			if (getFileExt(movie_info->file.Name) == "mp3")
@@ -679,7 +679,7 @@ MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 			// audio files
 			if(movie_info.file.getType() == CFile::FILE_AUDIO)
 			{
-				movie_info.tfile = DATADIR "/neutrino/icons/mp3.jpg";
+				movie_info.tfile = DATADIR "/neutrino/icons/no_coverArt.png";
 				
 				// mp3
 				if (getFileExt(movie_info.file.Name) == "mp3")
