@@ -169,8 +169,9 @@ class CImage : public CComponent
 		int iHeight;
 		int iNbp;
 		std::string imageName;
+		bool scale;
 
-		CImage(){frameBuffer = CFrameBuffer::getInstance(); imageName = ""; iWidth = 0; iHeight = 0; iNbp = 0; cc_type = CC_IMAGE;};
+		CImage(){frameBuffer = CFrameBuffer::getInstance(); imageName = ""; iWidth = 0; iHeight = 0; iNbp = 0; scale = false; cc_type = CC_IMAGE;};
 
 		void setImage(const char* image)
 		{
@@ -184,6 +185,7 @@ class CImage : public CComponent
 			iWidth = 0; 
 			iHeight = 0; 
 			iNbp = 0;
+			scale = false;
 			
 			frameBuffer = CFrameBuffer::getInstance();
 			
@@ -194,6 +196,8 @@ class CImage : public CComponent
 			cc_type = CC_IMAGE;
 		};
 		
+		void enableScaling(void){scale = true;};
+		
 		// h/v aligned
 		void paint()
 		{
@@ -202,7 +206,10 @@ class CImage : public CComponent
 			
 			int startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (iWidth >> 1);
 			
-			frameBuffer->displayImage(imageName.c_str(), startPosX, cCBox.iY + (cCBox.iHeight - iHeight)/2, iWidth, iHeight);
+			if (scale)
+				frameBuffer->displayImage(imageName.c_str(), cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
+			else
+				frameBuffer->displayImage(imageName.c_str(), startPosX, cCBox.iY + (cCBox.iHeight - iHeight)/2, iWidth, iHeight);
 		};
 };
 

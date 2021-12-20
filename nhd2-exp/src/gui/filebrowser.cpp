@@ -373,7 +373,6 @@ bool CFileBrowser::exec(const char * const dirname)
 	listBox = new ClistBox(&cFrameBox);
 
 	listBox->initFrames();
-	listBox->enableCenterPos();
 
 	name = dirname;
 	std::replace(name.begin(), name.end(), '\\', '/');

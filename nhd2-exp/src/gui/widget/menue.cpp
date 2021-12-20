@@ -134,7 +134,7 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	bgcolor = COL_MENUCONTENT_PLUS_0;
 	def_color = true;
 
-	//
+	// foot
 	fbutton_count	= 0;
 	fbutton_labels.clear();
 	fbutton_width = width;
@@ -148,7 +148,7 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	def_footCorner = true;
 	def_footGradient = true;
 
-	//
+	// head
 	PaintDate = false;
 	timestr_len = 0;
 	hbutton_count	= 0;
@@ -164,12 +164,11 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	def_headGradient = true;
 	tMode = CC_ALIGN_LEFT;
 
-	//
+	// footInfo
 	paintFootInfo = false;
 	footInfoHeight = 0;
 	connectLineWidth = 0;
 	cFrameFootInfoHeight = 0;
-
 	footInfoMode = FOOT_INFO_MODE;
 
 	timeout = 0;

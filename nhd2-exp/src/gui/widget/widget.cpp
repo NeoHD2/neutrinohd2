@@ -49,8 +49,6 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 	savescreen = false;
 	background = NULL;
 
-	enableCenter = false;
-
 	timeout = 0;
 	selected = -1;
 	sec_timer_interval = 1;
@@ -74,8 +72,6 @@ CWidget::CWidget(CBox *position)
 
 	savescreen = false;
 	background = NULL;
-
-	enableCenter = false;
 
 	timeout = 0;
 	selected = -1;
@@ -132,12 +128,6 @@ void CWidget::initFrames()
 	// sanity check
 	if(mainFrameBox.iWidth > (int)frameBuffer->getScreenWidth(true))
 		mainFrameBox.iWidth = frameBuffer->getScreenWidth(true);
-
-	if(enableCenter)
-	{
-		mainFrameBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - mainFrameBox.iWidth) >> 1 );
-		mainFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - mainFrameBox.iHeight) >> 1 );
-	}
 
 	if(savescreen) 
 		saveScreen();

@@ -2205,12 +2205,12 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	itemBox.iHeight = dy;
 	
 	// sanity check
-	if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight()))
-		itemBox.iHeight = frameBuffer->getScreenHeight();
+	if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight(true)))
+		itemBox.iHeight = frameBuffer->getScreenHeight(true);
 
 	// sanity check
-	if(itemBox.iWidth > (int)frameBuffer->getScreenWidth())
-		itemBox.iWidth = frameBuffer->getScreenWidth();
+	if(itemBox.iWidth > (int)frameBuffer->getScreenWidth(true))
+		itemBox.iWidth = frameBuffer->getScreenWidth(true);
 	
 	full_width = itemBox.iWidth;
 	full_height = itemBox.iHeight;
@@ -2219,21 +2219,20 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	wanted_width = dx;
 	start_x = x;
 	start_y = y;
+	
+	listmaxshow = 0;
 
-	hheight = 0;
-	fheight = 0;
+	// foot info
 	footInfoHeight = 0;
 	cFrameFootInfoHeight = 0;
 	connectLineWidth = 0;
 	footInfoMode = FOOT_INFO_MODE;
-	
-	listmaxshow = 0;
 
+	// head
+	hheight = 0;
+	
 	hbutton_count	= 0;
 	hbutton_labels.clear();
-	fbutton_count	= 0;
-	fbutton_labels.clear();
-	fbutton_width = itemBox.iWidth;
 
 	paintDate = false;
 	paintTitle = false;
@@ -2243,9 +2242,13 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	l_name = "";
 	iconfile = "";
 	tMode = CC_ALIGN_LEFT;
+	
+	headColor = COL_MENUHEAD_PLUS_0;
+	headRadius = RADIUS_MID;
+	headCorner = CORNER_TOP;
+	headGradient = LIGHT2DARK;
 
 	//
-	enableCenter = false;
 	inFocus = true;
 	shrinkMenu = false;
 
@@ -2254,17 +2257,18 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	itemsPerY = 3;
 	maxItemsPerPage = itemsPerX*itemsPerY;
 
-	// head
-	headColor = COL_MENUHEAD_PLUS_0;
-	headRadius = g_settings.Head_radius;
-	headCorner = g_settings.Head_corner;
-	headGradient = g_settings.Head_gradient;
 
 	// foot
+	fheight = 0;
+	
+	fbutton_count	= 0;
+	fbutton_labels.clear();
+	fbutton_width = itemBox.iWidth;
+	
 	footColor = COL_MENUFOOT_PLUS_0;
-	footRadius = g_settings.Foot_radius;
-	footCorner = g_settings.Foot_corner;
-	footGradient = g_settings.Foot_gradient;
+	footRadius = RADIUS_MID;
+	footCorner = CORNER_BOTTOM;
+	footGradient = DARK2LIGHT;
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
@@ -2305,12 +2309,12 @@ ClistBox::ClistBox(CBox* position)
 	itemBox = *position;
 	
 	// sanity check
-	if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight()))
-		itemBox.iHeight = frameBuffer->getScreenHeight();
+	if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight(true)))
+		itemBox.iHeight = frameBuffer->getScreenHeight(true);
 
 	// sanity check
-	if(itemBox.iWidth > (int)frameBuffer->getScreenWidth())
-		itemBox.iWidth = frameBuffer->getScreenWidth();
+	if(itemBox.iWidth > (int)frameBuffer->getScreenWidth(true))
+		itemBox.iWidth = frameBuffer->getScreenWidth(true);
 	
 	full_width = itemBox.iWidth;
 	full_height = itemBox.iHeight;
@@ -2345,7 +2349,6 @@ ClistBox::ClistBox(CBox* position)
 	tMode = CC_ALIGN_LEFT;
 
 	//
-	enableCenter = false;
 	inFocus = true;
 	shrinkMenu = false;
 
@@ -2356,15 +2359,15 @@ ClistBox::ClistBox(CBox* position)
 
 	// head
 	headColor = COL_MENUHEAD_PLUS_0;
-	headRadius = g_settings.Head_radius;
-	headCorner = g_settings.Head_corner;
-	headGradient = g_settings.Head_gradient;
+	headRadius = RADIUS_MID;
+	headCorner = CORNER_TOP;
+	headGradient = LIGHT2DARK;
 
 	// foot
 	footColor = COL_MENUFOOT_PLUS_0;
-	footRadius = g_settings.Foot_radius;
-	footCorner = g_settings.Foot_corner;
-	footGradient = g_settings.Foot_gradient;
+	footRadius = RADIUS_MID;
+	footCorner = CORNER_BOTTOM;
+	footGradient = DARK2LIGHT;
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
@@ -2433,6 +2436,14 @@ void ClistBox::initFrames()
 	itemBox.iY = start_y;
 	cFrameFootInfoHeight = 0;
 	connectLineWidth = 0;
+	
+	// sanity check
+	if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight(true)))
+		itemBox.iHeight = frameBuffer->getScreenHeight(true);
+
+	// sanity check
+	if(itemBox.iWidth > (int)frameBuffer->getScreenWidth(true))
+		itemBox.iWidth = frameBuffer->getScreenWidth(true);
 
 	// widgettype forwarded to item 
 	for (unsigned int count = 0; count < items.size(); count++) 
@@ -2559,12 +2570,12 @@ void ClistBox::initFrames()
 		}
 		
 		// sanity check
-		if(itemBox.iHeight > (int)frameBuffer->getScreenHeight() - 20)
-			itemBox.iHeight = frameBuffer->getScreenHeight() - 20;
+		if(itemBox.iHeight > (int)frameBuffer->getScreenHeight(true) - 20)
+			itemBox.iHeight = frameBuffer->getScreenHeight(true) - 20;
 
 		// sanity check
-		if(itemBox.iWidth > (int)frameBuffer->getScreenWidth() - 20)
-			itemBox.iWidth = frameBuffer->getScreenWidth() - 20;
+		if(itemBox.iWidth > (int)frameBuffer->getScreenWidth(true) - 20)
+			itemBox.iWidth = frameBuffer->getScreenWidth(true) - 20;
 		
 		//
 		full_height = itemBox.iHeight;
@@ -2576,15 +2587,8 @@ void ClistBox::initFrames()
 			if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC) )
 			{
 				itemBox.iWidth -= connectLineWidth; //*2 for sanity check
-				//itemBox.iX += connectLineWidth;
+				itemBox.iX += connectLineWidth;
 			}
-		}
-
-		// position xy
-		if(enableCenter)
-		{
-			itemBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - itemBox.iWidth ) >> 1 );
-			itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - itemBox.iHeight) >> 1 );
 		}
 	}
 }

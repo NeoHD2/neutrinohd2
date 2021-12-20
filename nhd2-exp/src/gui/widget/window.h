@@ -54,7 +54,6 @@ class CWindow : public CWidgetItem
 
 		//
 		bool enableshadow;
-		bool centerPos;
 		bool paintFrame;
 		
 		//
@@ -74,7 +73,6 @@ class CWindow : public CWidgetItem
 		void enableShadow(void){enableshadow = true;};
 		void enableSaveScreen();
 
-		void enableCenterPos(){centerPos = true; init();};
 		void disablePaintFrame(){paintFrame = false;};
 
 		void paint(void);

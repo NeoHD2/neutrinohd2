@@ -1482,6 +1482,8 @@ void CFrameBuffer::blitBox2FB(const fb_pixel_t* boxBuf, const uint32_t& width, c
 // blit2FB
 void CFrameBuffer::blit2FB(void * fbbuff, uint32_t width, uint32_t height, uint32_t xoff, uint32_t yoff, uint32_t xp, uint32_t yp, bool transp )
 { 
+	dprintf(DEBUG_DEBUG, "CFrameBuffer::blit2FB: width:%d height:%d xoff:%d yoff:%d xp:%d yp:%d\n", width, height, xoff, yoff, xp, yp);
+	
 	int xc = (width > xRes) ? xRes : width;
 	int yc = (height > yRes) ? yRes : height;
 	

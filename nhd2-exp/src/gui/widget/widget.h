@@ -40,11 +40,13 @@ enum
 class CMenuTarget
 {
 	protected:
+		CFrameBuffer *frameBuffer;
+		
 		std::string *valueString;
 		std::string valueStringTmp;
 
 	public:
-		CMenuTarget(){ valueStringTmp = std::string(); valueString = &valueStringTmp; };
+		CMenuTarget(){ frameBuffer = CFrameBuffer::getInstance(); valueStringTmp = std::string(); valueString = &valueStringTmp; };
 		virtual ~CMenuTarget(){};
 		virtual void hide(){valueString->clear();};
 		virtual int exec(CMenuTarget *parent, const std::string &actionKey) = 0;
@@ -56,7 +58,7 @@ class CWidget : public CMenuTarget
 	protected:
 		CFrameBuffer *frameBuffer;
 		CBox mainFrameBox;
-		bool enableCenter;
+		//bool enableCenter;
 
 		std::vector<CWidgetItem*> items;
 
@@ -104,7 +106,7 @@ class CWidget : public CMenuTarget
 		int getItemsCount();
 		virtual void clearItems(void);
 
-		void enableCenterPos(){enableCenter = true;};
+		//void enableCenterPos(){enableCenter = true;};
 
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
 		void setSecTimerInterval(int interval){sec_timer_interval = interval;};

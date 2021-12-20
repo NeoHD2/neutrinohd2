@@ -541,17 +541,20 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 	{
 		if (g_settings.enable_tmdb_infos) //grab from tmdb
 		{
-			CTmdb * tmdb = new CTmdb();
-
-			if(tmdb->getMovieInfo(movie_info->epgTitle))
+			if(movie_info->file.getType() == CFile::FILE_VIDEO)
 			{
-				std::vector<tmdbinfo>& minfo_list = tmdb->getMInfos();
+				CTmdb * tmdb = new CTmdb();
 
-				movie_info->vote_average = minfo_list[0].vote_average;
+				if(tmdb->getMovieInfo(movie_info->epgTitle))
+				{
+					std::vector<tmdbinfo>& minfo_list = tmdb->getMInfos();
+
+					movie_info->vote_average = minfo_list[0].vote_average;
+				}
+
+				delete tmdb;
+				tmdb = NULL;
 			}
-
-			delete tmdb;
-			tmdb = NULL;
 		}
 	}
 
@@ -743,17 +746,20 @@ MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 		{
 			if (g_settings.enable_tmdb_infos) //grab from tmdb
 			{
-				CTmdb * tmdb = new CTmdb();
-
-				if(tmdb->getMovieInfo(movie_info.epgTitle))
+				if(movie_info.file.getType() == CFile::FILE_VIDEO)
 				{
-					std::vector<tmdbinfo>& minfo_list = tmdb->getMInfos();
+					CTmdb * tmdb = new CTmdb();
 
-					movie_info.vote_average = minfo_list[0].vote_average;
+					if(tmdb->getMovieInfo(movie_info.epgTitle))
+					{
+						std::vector<tmdbinfo>& minfo_list = tmdb->getMInfos();
+
+						movie_info.vote_average = minfo_list[0].vote_average;
+					}
+
+					delete tmdb;
+					tmdb = NULL;
 				}
-
-				delete tmdb;
-				tmdb = NULL;
 			}
 		}
 	}

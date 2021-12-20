@@ -546,7 +546,7 @@ class ClistBox : public CWidgetItem
 		CScrollBar scrollBar;
 
 		//
-		bool enableCenter;
+		//bool enableCenter;
 		bool shrinkMenu;
 
 		// frame
@@ -658,7 +658,7 @@ class ClistBox : public CWidgetItem
 		void enablePaintFootInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh;};
 		void setFootInfoMode(int mode = FOOT_INFO_MODE){footInfoMode = mode;};
 
-		void enableCenterPos(){enableCenter = true;};
+		//void enableCenterPos(){enableCenter = true;};
 		void enableShrinkMenu(){shrinkMenu = true;};
 		
 		// body

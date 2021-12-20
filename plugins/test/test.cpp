@@ -1680,8 +1680,6 @@ void CTestMenu::testClistBoxWidget()
 	rightWidget->addWidget(WIDGET_TYPE_STANDARD);
 	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
 	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
-	//rightWidget->enableWidgetChange();
-	rightWidget->enableCenterPos();
 	rightWidget->setItemsPerPage(6,2);
 	rightWidget->setSelected(selected);
 	rightWidget->enablePaintHead();
@@ -2691,6 +2689,7 @@ void CTestMenu::testCComponent()
 	CImage testImage;
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
 	testImage.setPosition(Box.iX, Box.iY + 40, Box.iWidth, Box.iHeight - 80);
+	testImage.enableScaling();
 	
 	windowWidget->addCCItem(&testImage);
 	
@@ -3770,8 +3769,6 @@ void CTestMenu::testClistBox()
 
 	// mode
 	rightWidget->setWidgetType(WIDGET_TYPE_STANDARD);
-	//rightWidget->setWidgetMode(MODE_LISTBOX);
-	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
 	// head
@@ -3922,8 +3919,6 @@ void CTestMenu::testClistBox2()
 
 	// widgettype
 	rightWidget->setWidgetType(WIDGET_TYPE_CLASSIC);
-	//rightWidget->setWidgetMode(MODE_LISTBOX);
-	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
 	// head
@@ -4073,8 +4068,6 @@ void CTestMenu::testClistBox3()
 
 	// widgettype
 	rightWidget->setWidgetType(WIDGET_TYPE_EXTENDED);
-	//rightWidget->setWidgetMode(MODE_LISTBOX);
-	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
 	// head
@@ -4221,8 +4214,6 @@ void CTestMenu::testClistBox4()
 	// widgettype
 	rightWidget->setWidgetType(WIDGET_TYPE_FRAME);
 	rightWidget->setItemsPerPage(5,2);
-	//rightWidget->setWidgetMode(MODE_LISTBOX);
-	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
 	rightWidget->disablePaintFrame();	
@@ -4360,8 +4351,6 @@ void CTestMenu::testClistBox5()
 
 	// mode
 	rightWidget->setWidgetType(WIDGET_TYPE_STANDARD);
-	//rightWidget->setWidgetMode(MODE_MENU);
-	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
 	//
@@ -4527,14 +4516,12 @@ void CTestMenu::testClistBox6()
 
 	// mode
 	rightWidget->setWidgetType(WIDGET_TYPE_STANDARD);
-	rightWidget->enableCenterPos();
 	rightWidget->enableShrinkMenu();
 
 	//
 	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
 	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
 	rightWidget->addWidget(WIDGET_TYPE_FRAME);
-	//rightWidget->enableWidgetChange();
 
 	rightWidget->setItemsPerPage(5, 2);
 

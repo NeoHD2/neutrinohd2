@@ -127,8 +127,6 @@ void CBEBouquetWidget::paint()
 		}
 	}
 
-	listBox->enableCenterPos();
-
 	listBox->setTitle(g_Locale->getText(LOCALE_BOUQUETLIST_HEAD));
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();

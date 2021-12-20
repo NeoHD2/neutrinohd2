@@ -916,13 +916,15 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	// head
 	g_settings.Head_corner = configfile.getInt32("Head_corner", CORNER_TOP);
-	g_settings.Head_radius = configfile.getInt32("Head_gradient", RADIUS_MID);
+	g_settings.Head_radius = configfile.getInt32("Head_radius", RADIUS_MID);
 	g_settings.Head_gradient = configfile.getInt32("Head_gradient", DARK2LIGHT2DARK);
+	g_settings.Head_line = configfile.getInt32("Head_line", false);
 	
 	//
 	g_settings.Foot_corner = configfile.getInt32("Foot_corner", CORNER_BOTTOM);
 	g_settings.Foot_radius = configfile.getInt32("Foot_radius", RADIUS_MID);
 	g_settings.Foot_gradient = configfile.getInt32("Foot_gradient", DARK2LIGHT2DARK);
+	g_settings.Foot_line = configfile.getInt32("Foot_line", false);
 	
 	//
 	g_settings.infobar_corner = configfile.getInt32("infobar_corner", CORNER_ALL);
@@ -1361,15 +1363,17 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("progressbar_color", g_settings.progressbar_color);
 	configfile.setInt32("progressbar_gradient", g_settings.progressbar_gradient);
 
-	// 
+	// head
 	configfile.setInt32("Head_corner", g_settings.Head_corner);
 	configfile.setInt32("Head_radius", g_settings.Head_radius);
 	configfile.setInt32("Head_gradient", g_settings.Head_gradient);
+	configfile.setBool("Head_line", g_settings.Head_line);
 	
-	//
+	// foot
 	configfile.setInt32("Foot_corner", g_settings.Foot_corner);
 	configfile.setInt32("Foot_radius", g_settings.Foot_radius);
 	configfile.setInt32("Foot_gradient", g_settings.Foot_gradient);
+	configfile.setBool("Foot_line", g_settings.Foot_line);
 	
 	//
 	configfile.setInt32("Foot_Info_gradient", g_settings.Foot_Info_gradient);
@@ -1728,23 +1732,27 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.menu_FootInfo_Text_green = skinConfig->getInt32( "menu_FootInfo_Text_green", 85);
 		g_settings.menu_FootInfo_Text_blue = skinConfig->getInt32( "menu_FootInfo_Text_blue", 85);
 		
-		//
+		/*
 		g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
 		
-		//
+		// head
 		g_settings.Head_gradient = skinConfig->getInt32("Head_gradient", DARK2LIGHT2DARK);
 		g_settings.Head_corner = skinConfig->getInt32("Head_corner", CORNER_TOP);
 		g_settings.Head_radius = skinConfig->getInt32("Head_radius", RADIUS_MID);
+		g_settings.Head_line = skinConfig->getBool("Head_line", false);
 		
-		//
+		// foot
 		g_settings.Foot_gradient = skinConfig->getInt32("Foot_gradient", DARK2LIGHT2DARK);
 		g_settings.Foot_corner = skinConfig->getInt32("Foot_corner", CORNER_BOTTOM);
 		g_settings.Foot_radius = skinConfig->getInt32("Foot_radius", RADIUS_MID);
+		g_settings.Foot_line = skinConfig->getBool("Foot_line", false);
 		
-		//
+		// infobar
 		g_settings.infobar_gradient = skinConfig->getInt32("infobar_gradient", NOGRADIENT);
 		g_settings.infobar_corner = skinConfig->getInt32("infobar_corner", CORNER_ALL);
 		g_settings.infobar_radius = skinConfig->getInt32("infobar_radius", RADIUS_MID);
+		*/
+		
 		g_settings.infobar_buttonbar = skinConfig->getBool("infobar_buttonbar", true);
 		
 		g_settings.use_shadow = skinConfig->getBool("use_shadow", true);
@@ -1841,23 +1849,27 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	skinConfig->setInt32( "menu_FootInfo_Text_green", g_settings.menu_FootInfo_Text_green );
 	skinConfig->setInt32( "menu_FootInfo_Text_blue", g_settings.menu_FootInfo_Text_blue );
 	
-	//
+	/*
 	skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
 	
 	//
 	skinConfig->setInt32("Head_gradient", g_settings.Head_gradient);
 	skinConfig->setInt32("Head_corner", g_settings.Head_corner);
 	skinConfig->setInt32("Head_radius", g_settings.Head_radius);
+	skinConfig->setBool("Head_line", g_settings.Head_line);
 	
 	//
 	skinConfig->setInt32("Foot_gradient", g_settings.Foot_gradient);
 	skinConfig->setInt32("Foot_corner", g_settings.Foot_corner);
 	skinConfig->setInt32("Foot_radius", g_settings.Foot_radius);
+	skinConfig->setBool("Foot_line", g_settings.Foot_line);
 	
 	//
 	skinConfig->setInt32("infobar_gradient", g_settings.infobar_gradient);
 	skinConfig->setInt32("infobar_corner", g_settings.infobar_corner);
 	skinConfig->setInt32("infobar_radius", g_settings.infobar_radius);
+	*/
+	
 	skinConfig->setBool("infobar_buttonbar", g_settings.infobar_buttonbar);
 	
 	skinConfig->setBool("use_shadow", g_settings.use_shadow);
@@ -1974,7 +1986,6 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 		if ((it->second.getServiceType() == ST_DIGITAL_TELEVISION_SERVICE)) 
 		{
 			TVchannelList->addChannel(&(it->second), tvi++);
-			//tvi++;
 
 			if(it->second.isHD()) 
 			{
@@ -1986,12 +1997,10 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 		else if (it->second.getServiceType() == ST_DIGITAL_RADIO_SOUND_SERVICE) 
 		{
 			RADIOchannelList->addChannel(&(it->second), ri++);
-			//ri++;
 		}
 		else if(it->second.getServiceType() == ST_WEBTV)
 		{
 			WEBTVchannelList->addChannel(&(it->second), webtvi++);
-			//webtvi++;
 		}
 	}
 	
@@ -4766,7 +4775,7 @@ skip_message:
 }
 
 // exit run
-void CNeutrinoApp::ExitRun(int retcode)
+void CNeutrinoApp::ExitRun(int retcode, bool save)
 { 
 	// break silently autotimeshift
 	if(autoshift) 
@@ -4807,10 +4816,11 @@ void CNeutrinoApp::ExitRun(int retcode)
 		CNetworkSettings::getInstance()->networkConfig->commitConfig();
 		
 		// save neutrino.conf
-		saveSetup(NEUTRINO_SETTINGS_FILE);
+		if (save)
+			saveSetup(NEUTRINO_SETTINGS_FILE);
 
 		// save epg
-		if(g_settings.epg_save ) 
+		if(save && g_settings.epg_save ) 
 			saveEpg();
 
 		// stop dvbsub
@@ -4866,8 +4876,6 @@ void CNeutrinoApp::ExitRun(int retcode)
 			
 		if(g_Zapit)
 			delete g_Zapit;
-			
-		//delete CVFD::getInstance();
 			
 		if (frameBuffer != NULL)
 			delete frameBuffer;
@@ -5652,6 +5660,10 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	else if(actionKey == "restart") 
 	{		
 		ExitRun(RESTART);
+	}
+	else if(actionKey == "restart_dont_save") 
+	{		
+		ExitRun(RESTART, false);
 	}
 	else if(actionKey == "standby")
 	{

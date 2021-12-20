@@ -148,6 +148,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		
 		// skin
 		std::vector<CPlugins::plugin> skin_list;
+		SKIN_SETTINGS s_settings;
 		
 		void loadSkin(std::string skinName);
 		void unloadSkin();
@@ -242,7 +243,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 			REBOOT
 		};
 		
-		void ExitRun(int retcode = SHUTDOWN);
+		void ExitRun(int retcode = SHUTDOWN, bool save = true);
 };
 
 #endif

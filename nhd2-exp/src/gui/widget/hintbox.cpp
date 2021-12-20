@@ -386,6 +386,8 @@ int CHintBox::exec(int timeout)
 		{
 			CFrameBuffer::getInstance()->saveScreen(CFrameBuffer::getInstance()->getScreenX() + 10, CFrameBuffer::getInstance()->getScreenY() + 10, iw, ih, background);
 		}
+		
+		paintHourGlass();
 	}
 		
 	CFrameBuffer::getInstance()->blit();
@@ -397,8 +399,8 @@ int CHintBox::exec(int timeout)
 
 	while ( ! ( res & ( messages_return::cancel_info | messages_return::cancel_all ) ) )
 	{
-		if (paintHG)
-			paintHourGlass();
+		//if (paintHG)
+		//	paintHourGlass();
 					
 		g_RCInput->getMsgAbsoluteTimeout( &msg, &data, &timeoutEnd );
 
@@ -420,8 +422,8 @@ int CHintBox::exec(int timeout)
 		}
 		else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			//if (paintHG)
-			//	paintHourGlass();
+			if (paintHG)
+				paintHourGlass();
 		}
 		else
 		{

@@ -37,6 +37,7 @@
 #include <dirent.h>
 
 #include <gui/widget/hintbox.h>
+#include <gui/widget/messagebox.h>
 
 #include <gui/widget/colorchooser.h>
 #include <gui/widget/stringinput.h>
@@ -95,16 +96,17 @@ void COSDSettings::showMenu(void)
 	osdSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
 	osdSettings->enableShrinkMenu();
 	osdSettings->setMenuPosition(MENU_POSITION_LEFT);
-	osdSettings->enablePaintFootInfo();
+	//osdSettings->enablePaintFootInfo();
 	osdSettings->enablePaintDate();
 	
 	// skin
 	osdSettings->addItem( new CMenuForwarder(LOCALE_SKIN_SKIN, true, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
+	
+	// skin sttings
+	osdSettings->addItem( new CMenuForwarder("Skin Settings", true, NULL, NULL, NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 
 	// Themes
-	CThemes * osdSettings_Themes = new CThemes();
-	
-	osdSettings->addItem( new CMenuForwarder(LOCALE_COLORMENU_THEMESELECT, true, NULL, osdSettings_Themes, NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
+	osdSettings->addItem( new CMenuForwarder(LOCALE_COLORMENU_THEMESELECT, true, NULL, new CThemes(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 
 	// menu colors
 	osdSettings->addItem( new CMenuForwarder(LOCALE_COLORMENU_MENUCOLORS, true, NULL, new COSDMenuColorSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_MENUCOLORS, LOCALE_HELPTEXT_MENUCOLORS));
@@ -820,9 +822,6 @@ void CSkinManager::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CSkinManager::showMenu:\n");
 	
-	int count = 0;
-	int old_selected = 0;
-	
 	CMenuItem* item = NULL;
 	CMenuWidget* skinMenu = new CMenuWidget(LOCALE_SKIN_SKIN, NEUTRINO_ICON_COLORS, 800, 600);
 	skinMenu->setWidgetMode(MODE_LISTBOX);
@@ -830,7 +829,7 @@ void CSkinManager::showMenu()
 	skinMenu->enablePaintDate();
 	
 	// default
-	skinMenu->addItem( new ClistBoxItem(LOCALE_SKIN_DEFAULT, true, NULL, this, "neutrino_default", RC_nokey, NULL, DATADIR "/neutrino/icons/prev.jpg"), old_selected == count++);
+	skinMenu->addItem( new ClistBoxItem(LOCALE_SKIN_DEFAULT, true, NULL, this, "neutrino_default", RC_nokey, NULL, DATADIR "/neutrino/icons/prev.jpg"));
 	
 	std::string skinPath = CONFIGDIR "/skin";
 	
@@ -855,7 +854,7 @@ void CSkinManager::showMenu()
 				hint += "/prev.png";
 				item->setItemIcon(hint.c_str());
 				
-				skinMenu->addItem(item, old_selected == count++);	
+				skinMenu->addItem(item);	
 			}
 			free(namelist[i]);
 		}
@@ -863,10 +862,9 @@ void CSkinManager::showMenu()
 	}
 	
 	skinMenu->exec(NULL, "");
-	old_selected = skinMenu->getSelected();
 	
 	delete skinMenu;
-	skinMenu = NULL;	
+	skinMenu = NULL;
 }
 
 int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
@@ -881,17 +879,23 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 	if (actionKey == "neutrino_default")
 	{
-		g_settings.use_default_skin = true;
-		CNeutrinoApp::getInstance()->unloadSkin();
-		CNeutrinoApp::getInstance()->exec(NULL, "restart");
+		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RESTART, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		{
+			g_settings.use_default_skin = true;
+			CNeutrinoApp::getInstance()->unloadSkin();
+			CNeutrinoApp::getInstance()->exec(NULL, "restart");
+		}
 	}
 	else if (!actionKey.empty())
 	{
-		g_settings.use_default_skin = false;
-		CNeutrinoApp::getInstance()->unloadSkin();
-		g_settings.preferred_skin = actionKey;
-		CNeutrinoApp::getInstance()->loadSkin(g_settings.preferred_skin);
-		CNeutrinoApp::getInstance()->exec(NULL, "restart");
+		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RESTART, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		{
+			g_settings.use_default_skin = false;
+			CNeutrinoApp::getInstance()->unloadSkin();
+			g_settings.preferred_skin = actionKey;
+			CNeutrinoApp::getInstance()->loadSkin(g_settings.preferred_skin);
+			CNeutrinoApp::getInstance()->exec(NULL, "restart");
+		}
 	}
 		
 	showMenu();

@@ -327,9 +327,6 @@ void CExtendedInput::hide()
 void CExtendedInput::paint()
 {
 	dprintf(DEBUG_NORMAL, "CExtendedInput::paint\n");
-
-	//
-	//frameBuffer->paintBoxRel(x - 1, y - 1, width + 2, height + 2, COL_MENUCONTENT_PLUS_6);
 	
 	// headbox
 	frameBuffer->paintBoxRel(x, y, width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
