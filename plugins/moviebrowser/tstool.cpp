@@ -326,7 +326,7 @@ off64_t cut_movie(MI_MOVIE_INFO * minfo, CMovieInfo * cmovie)
 	CFrameBuffer * frameBuffer = CFrameBuffer::getInstance();
 
 	if(!timescale) 
-		timescale = new CProgressBar(0, 100, 0);
+		timescale = new CProgressBar(200, 15, 0, 100, 0);
 	
         int dx = 256;
         int x = (((g_settings.screen_EndX- g_settings.screen_StartX)- dx) / 2) + g_settings.screen_StartX;
@@ -334,8 +334,8 @@ off64_t cut_movie(MI_MOVIE_INFO * minfo, CMovieInfo * cmovie)
 	
 	frameBuffer->paintBoxRel (x + 40, y+12, 200, 15, COL_INFOBAR_PLUS_0);
 
-	timescale->setPosition(x + 41, y + 12, 200, 15);
-	timescale->paintPCR(percent);
+	//timescale->setPosition(x + 41, y + 12, 200, 15);
+	timescale->paint(x + 41, y + 12, percent);
 	
 	int len = minfo->length;
 	off64_t size = minfo->file.Size;
@@ -512,8 +512,8 @@ off64_t cut_movie(MI_MOVIE_INFO * minfo, CMovieInfo * cmovie)
 					spos += r - wptr;
 					percent = (int) ((float)(spos)/(float)(newsize)*100.);
 
-					timescale->setPosition(x + 41, y + 12, 200 , 15);
-					timescale->paintPCR(percent);
+					//timescale->setPosition(x + 41, y + 12, 200 , 15);
+					timescale->paint(x + 41, y + 12, percent);
 #if REAL_CUT
 					int wr = write(dstfd, &buf[wptr], r-wptr);
 					if(wr < (r-wptr)) 
@@ -630,14 +630,14 @@ off64_t copy_movie(MI_MOVIE_INFO * minfo, CMovieInfo * cmovie, bool onefile)
 
 	CFrameBuffer * frameBuffer = CFrameBuffer::getInstance();
 	if(!timescale)
-		timescale = new CProgressBar(0, 100, 0);
+		timescale = new CProgressBar(200, 15, 0, 100, 0);
         int dx = 256;
         int x = (((g_settings.screen_EndX- g_settings.screen_StartX)- dx) / 2) + g_settings.screen_StartX;
         int y = g_settings.screen_EndY - 50;
 	frameBuffer->paintBoxRel (x + 40, y+12, 200, 15, COL_INFOBAR_PLUS_0);
 
-	timescale->setPosition(x + 41, y + 12, 200, 15);
-	timescale->paintPCR(percent);
+	//timescale->setPosition(x + 41, y + 12, 200, 15);
+	timescale->paint(x + 41, y + 12, percent);
 
 	newsize = 0;
 	for(int book_nr = 0; book_nr < MI_MOVIE_BOOK_USER_MAX; book_nr++) 
@@ -781,8 +781,8 @@ next_file:
 				btotal += r;
 				percent = (int) ((float)(btotal)/(float)(newsize)*100.);
 
-				timescale->setPosition(x + 41, y + 12, 200, 15);
-				timescale->paintPCR(percent);
+				//timescale->setPosition(x + 41, y + 12, 200, 15);
+				timescale->paint(x + 41, y + 12, percent);
 #if REAL_CUT
 				int wr = write(dstfd, &buf[wptr], r-wptr);
 				if(wr < (r-wptr)) 

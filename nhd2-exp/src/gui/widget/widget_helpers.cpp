@@ -39,40 +39,30 @@
 extern cVideo * videoDecoder;
 
 // progressbar
-CProgressBar::CProgressBar(int r, int g, int b, bool inv)
+CProgressBar::CProgressBar(int w, int h, int r, int g, int b, bool inv)
 {
 	frameBuffer = CFrameBuffer::getInstance();
 	
+	double div;
+	cCBox.iWidth = w;
+	cCBox.iHeight = h;
 	inverse = inv;
 	
-	red = (double) r;
-	green = (double) g;
-	yellow = (double) b;
+	div = (double) 100 / (double) cCBox.iWidth;
+	red = (double) r / (double) div ;
+	green = (double) g / (double) div;
+	yellow = (double) b / (double) div;
 	
 	percent = 255;
 	
 	cc_type = CC_PROGRESSBAR;
 }
 
-void CProgressBar::setPosition(const int x, const int y, const int w, const int h)
+void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
 {
-	cCBox.iWidth = w;
-	cCBox.iHeight = h;
 	cCBox.iX = x;
 	cCBox.iY = y;
 	
-	double div = (double) 100;
-	
-	if (cCBox.iWidth)
-		div = (double) 100 / (double) cCBox.iWidth;
-
-	red = (double) red / (double) div;
-	green = (double) green / (double) div;
-	yellow = (double) yellow / (double) div;
-}
-
-void CProgressBar::paintPCR(unsigned char pcr)
-{
 	int i, siglen;
 	unsigned int posx;
 	unsigned int posy;
@@ -89,6 +79,7 @@ void CProgressBar::paintPCR(unsigned char pcr)
 	ypos = cCBox.iY;
 
 	// body
+	if(g_settings.progressbar_color != 0)
 	frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, COL_MENUCONTENT_PLUS_2, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);	//fill passive
 	
 	if (pcr != percent) 

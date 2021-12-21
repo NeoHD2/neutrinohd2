@@ -266,11 +266,10 @@ class CProgressBar : public CComponent
 
 	public:
 		//
-		CProgressBar(int r = 40, int g = 100, int b = 70, bool inv = true);
+		CProgressBar(int w, int h, int r = 40, int g = 100, int b = 70, bool inv = true);
 		
 		//
-		void setPosition(const int x, const int y, const int w, const int h);
-		void paintPCR(unsigned char pcr);
+		void paint(unsigned int x, unsigned int y, unsigned char pcr);
 		void reset();
 		int getPercent() { return percent; };
 		

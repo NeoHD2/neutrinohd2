@@ -1734,11 +1734,11 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			pBarWidth = 35;
 			int pBarHeight = height/5;
 
-			CProgressBar timescale;
-			timescale.setPosition(x + BORDER_LEFT + numwidth + ICON_OFFSET, y + (height - pBarHeight)/2, pBarWidth, pBarHeight);
+			CProgressBar timescale(pBarWidth, pBarHeight);
+			//timescale.setPosition(x + BORDER_LEFT + numwidth + ICON_OFFSET, y + (height - pBarHeight)/2, pBarWidth, pBarHeight);
 		
 			timescale.reset();
-			timescale.paintPCR(runningPercent);
+			timescale.paint(x + BORDER_LEFT + numwidth + ICON_OFFSET, y + (height - pBarHeight)/2, runningPercent);
 		}
 	
 		// locale|option text

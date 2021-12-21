@@ -2738,8 +2738,8 @@ void CTestMenu::testCComponent()
 	testDline.setIcon(m_vMovieInfo[0].tfile.c_str());
 	
 	// pb
-	CProgressBar testPB(40, 100, 70, true);
-	testPB.setPosition(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, Box.iWidth /3, 10);
+	CProgressBar testPB(Box.iWidth /3, 10, 40, 100, 70, true);
+	//testPB.setPosition(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, Box.iWidth /3, 10);
 	
 	// sb
 	CScrollBar testSB;
@@ -2774,7 +2774,7 @@ REPAINT:
 	head.paint();
 	foot.paint();
 	testDline.paint(Box.iX, Box.iY, Box.iWidth, Box.iHeight, 70, 35, Box.iY + 2*35);
-	testPB.paintPCR(pcr);
+	testPB.paint(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150,pcr);
 	testPB.paint();
 	testSB.paint(Box.iX + Box.iWidth - 10, Box.iY + 40, Box.iHeight - 80, NrOfPages, currentPage);
 	
@@ -3599,38 +3599,38 @@ void CTestMenu::testCProgressBar()
 	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
 	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20)/40;
 	
-	timescale = new CProgressBar();
-	timescale->setPosition(Box.iX, Box.iY, Box.iWidth, Box.iHeight);
+	timescale = new CProgressBar(Box.iWidth, Box.iHeight);
+	//timescale->setPosition(Box.iX, Box.iY, Box.iWidth, Box.iHeight);
 	timescale->reset();
 	
-	timescale->paintPCR(10);
+	timescale->paint(Box.iX, Box.iY, 10);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paintPCR(20);
+	timescale->paint(Box.iX, Box.iY, 20);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paintPCR(30);
+	timescale->paint(Box.iX, Box.iY, 30);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paintPCR(40);
+	timescale->paint(Box.iX, Box.iY, 40);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paintPCR(50);
+	timescale->paint(Box.iX, Box.iY, 50);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paintPCR(60);
+	timescale->paint(Box.iX, Box.iY, 60);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paintPCR(70);
+	timescale->paint(Box.iX, Box.iY, 70);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paintPCR(80);
+	timescale->paint(Box.iX, Box.iY, 80);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paintPCR(90);
+	timescale->paint(Box.iX, Box.iY, 90);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paintPCR(100);
+	timescale->paint(Box.iX, Box.iY, 100);
 	CFrameBuffer::getInstance()->blit();
 	
 	delete timescale;
