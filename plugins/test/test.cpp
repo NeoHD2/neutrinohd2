@@ -759,7 +759,7 @@ void CTestMenu::loadTMDBPlaylist(const char *txt, const char *list, const int se
 		movieInfo.vote_average = mvlist[i].vote_average;
 		movieInfo.vote_count = mvlist[i].vote_count;
 		movieInfo.original_title = mvlist[i].original_title;
-		movieInfo.release_date = mvlist[i].release_date;
+		movieInfo.productionDate = atoi(mvlist[i].release_date.substr(0,4));
 		movieInfo.media_type = mvlist[i].media_type;
 		movieInfo.length = mvlist[i].runtime;
 		movieInfo.runtimes = mvlist[i].runtimes;
@@ -2086,7 +2086,7 @@ DOFILM:
 		movieInfo.vote_average = mvlist[i].vote_average;
 		movieInfo.vote_count = mvlist[i].vote_count;
 		movieInfo.original_title = mvlist[i].original_title;
-		movieInfo.release_date = mvlist[i].release_date;
+		movieInfo.productionDate = atoi(mvlist[i].release_date.substr(0,4));
 		movieInfo.media_type = mvlist[i].media_type;
 		movieInfo.length = mvlist[i].runtime;
 		movieInfo.runtimes = mvlist[i].runtimes;

@@ -69,7 +69,7 @@ bool CTmdb::getMovieInfo(std::string text)
 
 	minfo.clear();
 
-	std::string url	= "http://api.themoviedb.org/3/";
+	std::string url = "http://api.themoviedb.org/3/";
 
 	url += "search/multi?api_key=" + key + "&language=" + lang + "&query=" + encodeUrl(text);
 
@@ -98,7 +98,7 @@ bool CTmdb::getMovieInfo(std::string text)
 
 	tmdbinfo tmp;
 
-	tmp.id = results[0].get("id", -1).asInt();
+	tmp.id = results[0].get("id", 0).asInt();
 	tmp.media_type = results[0].get("media_type", "").asString();
 	tmp.overview = results[0].get("overview", "").asString();
 	tmp.poster_path = results[0].get("poster_path", "").asString();
@@ -709,7 +709,7 @@ bool CTmdb::searchMovieInfo(std::string text)
 	{
 		tmdbinfo tmp;
 
-		tmp.id = results[i].get("id", -1).asInt();
+		tmp.id = results[i].get("id", 0).asInt();
 		tmp.media_type = results[i].get("media_type", "").asString();
 		tmp.overview = results[i].get("overview", "").asString();
 		tmp.poster_path = results[i].get("poster_path", "").asString();

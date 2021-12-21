@@ -222,7 +222,7 @@ void CNFilm::loadTMDBPlaylist(bool genre, const char *txt, const char *list, con
 			movieInfo.vote_average = mglist[i].vote_average;
 			movieInfo.vote_count = mglist[i].vote_count;
 			movieInfo.original_title = mglist[i].original_title;
-			movieInfo.release_date = mglist[i].release_date;
+			//movieInfo.release_date = mglist[i].release_date;
 			movieInfo.media_type = mglist[i].media_type;
 			movieInfo.length = mglist[i].runtime;
 			movieInfo.runtimes = mglist[i].runtimes;
@@ -285,7 +285,7 @@ void CNFilm::loadTMDBPlaylist(bool genre, const char *txt, const char *list, con
 			movieInfo.vote_average = mvlist[i].vote_average;
 			movieInfo.vote_count = mvlist[i].vote_count;
 			movieInfo.original_title = mvlist[i].original_title;
-			movieInfo.release_date = mvlist[i].release_date;
+			//movieInfo.release_date = mvlist[i].release_date;
 			movieInfo.media_type = mvlist[i].media_type;
 			movieInfo.length = mvlist[i].runtime;
 			movieInfo.runtimes = mvlist[i].runtimes;

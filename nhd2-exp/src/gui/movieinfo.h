@@ -64,7 +64,7 @@
 #define MI_XML_TAG_NEUTRINO 		"neutrino"
 #define MI_XML_TAG_RECORD 		"record"
 
-#define MI_XML_TAG_CHANNELNAME 		"channelname"
+#define MI_XML_TAG_CHANNELNAME 	"channelname"
 #define MI_XML_TAG_EPGTITLE 		"epgtitle"
 #define MI_XML_TAG_ID 			"id"
 #define MI_XML_TAG_INFO1 		"info1"
@@ -75,14 +75,14 @@
 #define MI_XML_TAG_VIDEOTYPE 		"videotype"
 #define MI_XML_TAG_AUDIOPIDS 		"audiopids"
 #define MI_XML_TAG_AUDIO 		"audio"
-#define MI_XML_TAG_PID 		        "pid"
-#define MI_XML_TAG_NAME		        "name"
+#define MI_XML_TAG_PID 		"pid"
+#define MI_XML_TAG_NAME		"name"
 #define MI_XML_TAG_ATYPE	        "audiotype"
 #define MI_XML_TAG_SELECTED	        "selected"
 #define MI_XML_TAG_VTXTPID	        "vtxtpid"
-#define MI_XML_TAG_GENRE_MAJOR 		"genremajor"
-#define MI_XML_TAG_GENRE_MINOR 		"genreminor"
-#define MI_XML_TAG_SERIE_NAME 		"seriename"
+#define MI_XML_TAG_GENRE_MAJOR 	"genremajor"
+#define MI_XML_TAG_GENRE_MINOR 	"genreminor"
+#define MI_XML_TAG_SERIE_NAME 	"seriename"
 #define MI_XML_TAG_LENGTH 		"length"
 #define MI_XML_TAG_PRODUCT_COUNTRY  	"productioncountry"
 #define MI_XML_TAG_PRODUCT_DATE 	"productiondate"
@@ -168,7 +168,7 @@ typedef struct
 
 	//
 	std::string original_title;
-	std::string release_date;
+	//std::string release_date;
 	float vote_average;
 	int vote_count;
 	std::string media_type;

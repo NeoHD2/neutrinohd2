@@ -300,8 +300,14 @@ void CTSBrowser::doTMDB(MI_MOVIE_INFO& movieFile)
 			if(tmdb->getBigCover(minfo_list[0].poster_path, tname)) 
 				movieFile.tfile = tname;
 
-			if(m_vMovieInfo[mlist->getSelected()].epgInfo2.empty())
-				movieFile.epgInfo2 = buffer;
+			if(m_vMovieInfo[mlist->getSelected()].epgInfo1.empty())
+				movieFile.epgInfo1 = buffer;
+				
+			if (m_vMovieInfo[mlist->getSelected()].productionDate == 0)
+				movieFile.productionDate = atoi(minfo_list[0].release_date.substr(0,4));
+				
+			if(m_vMovieInfo[mlist->getSelected()].genres.empty())
+				movieFile.genres = minfo_list[0].genres;
 
 			m_movieInfo.saveMovieInfo(movieFile);
 		}  

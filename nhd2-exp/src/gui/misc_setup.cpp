@@ -347,7 +347,7 @@ void CGeneralSettings::showMenu()
 	miscSettingsGeneral.addItem(new CMenuForwarder("TMDB:", true, tmdbkey.c_str(), tmdbkeyInput));
 
 	// prefer tmdb infos
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_PREFER_TMDB_INFO, &g_settings.enable_tmdb_infos, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_TMDB_INFO, &g_settings.enable_tmdb_infos, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 	// reset factory setup
 	miscSettingsGeneral.addItem(new CMenuSeparator(LINE));

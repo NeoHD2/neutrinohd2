@@ -248,6 +248,9 @@ bool CMovieInfo::encodeMovieInfoXml(std::string * extMessage, MI_MOVIE_INFO * mo
 
 	// vote_average
 	XML_ADD_TAG_UNSIGNED(*extMessage, "vote_average", movie_info->vote_average);
+	
+	// genres
+	XML_ADD_TAG_STRING(*extMessage, "genres", movie_info->genres);
 
 	*extMessage += "\t</" MI_XML_TAG_RECORD ">\n";
 	*extMessage += "</" MI_XML_TAG_NEUTRINO ">\n";
@@ -391,6 +394,25 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 		}
 	}
 	
+	if ((movie_info->productionDate == 0) && g_settings.enable_tmdb_infos)
+	{
+		if(movie_info->file.getType() == CFile::FILE_VIDEO)
+		{
+			CTmdb * tmdb = new CTmdb();
+
+			if(tmdb->getMovieInfo(movie_info->epgTitle))
+			{
+				if (!tmdb->getReleaseDate().empty())
+				{
+					movie_info->productionDate = atoi(tmdb->getReleaseDate().substr(0,4));
+				}
+			}
+
+			delete tmdb;
+			tmdb = NULL;
+		}
+	}
+	
 	// productionDate
 	if (movie_info->productionDate > 50 && movie_info->productionDate < 200)	// backwardcompaibility
 		movie_info->productionDate += 1900;
@@ -402,7 +424,7 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 
 		removeExtension(tmp_str);
 
-		movie_info->epgTitle = tmp_str;
+		movie_info->epgTitle = htmlEntityDecode(tmp_str);
 	}
 
 	//epgInfo1
@@ -410,18 +432,22 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 	{
 		if (movie_info->epgInfo1.empty() && g_settings.enable_tmdb_infos)
 		{
+			std::string epgInfo1 = "";
 			CTmdb * tmdb = new CTmdb();
 
 			if(tmdb->getMovieInfo(movie_info->epgTitle))
 			{
 				if ((!tmdb->getDescription().empty())) 
 				{
-					movie_info->epgInfo1 = tmdb->getDescription();
+					//movie_info->epgInfo1 = htmlEntityDecode(tmdb->getDescription().c_str());
+					epgInfo1 = tmdb->getDescription();
 				}
 			}
 
 			delete tmdb;
 			tmdb = NULL;
+			
+			movie_info->epgInfo1 = htmlEntityDecode(epgInfo1);
 		}
 	}
 	else if(movie_info->file.getType() == CFile::FILE_AUDIO)
@@ -557,6 +583,28 @@ bool CMovieInfo::loadMovieInfo(MI_MOVIE_INFO * movie_info, CFile * file)
 			}
 		}
 	}
+	
+	// genres
+	if (movie_info->genres.empty())
+	{
+		if (g_settings.enable_tmdb_infos) //grab from tmdb
+		{
+			if(movie_info->file.getType() == CFile::FILE_VIDEO)
+			{
+				CTmdb * tmdb = new CTmdb();
+
+				if(tmdb->getMovieInfo(movie_info->epgTitle))
+				{
+					std::vector<tmdbinfo>& minfo_list = tmdb->getMInfos();
+
+					movie_info->genres = minfo_list[0].genres;
+				}
+
+				delete tmdb;
+				tmdb = NULL;
+			}
+		}
+	}
 
 	return (result);
 }
@@ -606,7 +654,7 @@ MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 
 			removeExtension(tmp_str);
 
-			movie_info.epgTitle = tmp_str;
+			movie_info.epgTitle = htmlEntityDecode(tmp_str);
 		}
 
 		//epgInfo1
@@ -614,18 +662,22 @@ MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 		{
 			if (movie_info.epgInfo1.empty() && g_settings.enable_tmdb_infos)
 			{
+				std::string epgInfo1= "";
 				CTmdb * tmdb = new CTmdb();
 
 				if(tmdb->getMovieInfo(movie_info.epgTitle))
 				{
 					if ((!tmdb->getDescription().empty())) 
 					{
-						movie_info.epgInfo1 = tmdb->getDescription();
+						epgInfo1 = tmdb->getDescription();
+						//movie_info.epgInfo1 = htmlEntityDecode(tmdb->getDescription().c_str());
 					}
 				}
 
 				delete tmdb;
 				tmdb = NULL;
+				
+				movie_info.epgInfo1 = htmlEntityDecode(epgInfo1);
 			}
 		}
 		else if(movie_info.file.getType() == CFile::FILE_AUDIO)
@@ -762,6 +814,28 @@ MI_MOVIE_INFO CMovieInfo::loadMovieInfo(const char *file)
 				}
 			}
 		}
+		
+		// genres
+		if (movie_info.genres.empty())
+		{
+			if (g_settings.enable_tmdb_infos) //grab from tmdb
+			{
+				if(movie_info.file.getType() == CFile::FILE_VIDEO)
+				{
+					CTmdb * tmdb = new CTmdb();
+
+					if(tmdb->getMovieInfo(movie_info.epgTitle))
+					{
+						std::vector<tmdbinfo>& minfo_list = tmdb->getMInfos();
+
+						movie_info.genres = minfo_list[0].genres;
+					}
+
+					delete tmdb;
+					tmdb = NULL;
+				}
+			}
+		}
 	}
 
 	return movie_info;
@@ -858,20 +932,22 @@ bool CMovieInfo::parseXmlTree(char */*text*/, MI_MOVIE_INFO */*movie_info*/)
 	}
 
 	delete parser;
+	
+	//
 	strReplace(movie_info->epgTitle, "&quot;", "\"");
 	strReplace(movie_info->epgInfo1, "&quot;", "\"");
 	strReplace(movie_info->epgTitle, "&apos;", "'");
 	strReplace(movie_info->epgInfo1, "&apos;", "'");
+	strReplace(movie_info->epgInfo1, "&amp;", "&");
 	
-	if (movie_info->epgInfo2 == "") 
-	{
-		movie_info->epgInfo2 = movie_info->epgInfo1;
-	} 
-	else 
-	{
-		strReplace(movie_info->epgInfo2, "&quot;", "\"");
-		strReplace(movie_info->epgInfo2, "&apos;", "'");
-	}
+	htmlEntityDecode(movie_info->epgInfo1, true);
+	
+	//
+	strReplace(movie_info->epgInfo2, "&quot;", "\"");
+	strReplace(movie_info->epgInfo2, "&apos;", "'");
+	strReplace(movie_info->epgInfo2, "&amp;", "&");
+		
+	htmlEntityDecode(movie_info->epgInfo2, true);
 #endif /* XMLTREE_LIB */
 
 	return (true);
@@ -893,6 +969,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 		print_buffer += "\n";
 	}
 
+	// epgInfo1
 	if(!movie_info.epgInfo1.empty())
 	{
 		print_buffer += "\n";
@@ -900,24 +977,30 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 		print_buffer += "\n";
 	}
 
+	// genre // genre major|minor ???
 	if(!movie_info.genres.empty())
 	{
 		print_buffer += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_GENRE) + ": " + movie_info.genres;
 		print_buffer += "\n";
 	}
 
+	// orig title
 	if(!movie_info.original_title.empty())
 	{
 		print_buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ORIGINAL_TITLE) + " : " + movie_info.original_title;
 		print_buffer += "\n";
 	}
 
+	// release date
+	/*
 	if(!movie_info.release_date.empty())
 	{
 		print_buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_YEAR_OF_PRODUCTION) + " : " + movie_info.release_date.substr(0,4);
 		print_buffer += "\n";
 	}
+	*/
 
+	// cast
 	if (!movie_info.cast.empty())
 	{
 		print_buffer += "\n";
@@ -925,6 +1008,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 		print_buffer += "\n";
 	}
 	
+	// epgInfo2
 	if(!movie_info.epgInfo2.empty())
 	{
 		print_buffer += "\n";
@@ -932,17 +1016,29 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 		print_buffer += "\n";
 	}
 
-	if (movie_info.productionCountry.size() != 0 || movie_info.productionDate != 0) 
+	// production country
+	if (movie_info.productionCountry.size() != 0) 
 	{
 		print_buffer += "\n";
+		print_buffer += (std::string)g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_PRODCOUNTRY) + " : ";
 		print_buffer += movie_info.productionCountry;
-		print_buffer += " ";
-		snprintf(date_char, 12, "%4d", movie_info.productionDate + 1900);
-		print_buffer += date_char;
+
+		print_buffer += "\n";
+	}
+	
+	// production date
+	if (movie_info.productionDate != 0) 
+	{
+		print_buffer += "\n";
+		print_buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_YEAR_OF_PRODUCTION) + " : ";
+		//snprintf(date_char, 12, "%4d", movie_info.productionDate + 1900);
+		//print_buffer += date_char;
+		print_buffer += to_string(movie_info.productionDate);
 
 		print_buffer += "\n";
 	}
 
+	// serie name
 	if (!movie_info.serieName.empty()) 
 	{
 		print_buffer += "\n";
@@ -953,6 +1049,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 		print_buffer += "\n";
 	}
 	
+	// epgChannel
 	if (!movie_info.epgChannel.empty()) 
 	{
 		print_buffer += "\n";
@@ -963,6 +1060,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 		print_buffer += "\n";
 	}
 	
+	// quality
 	if (movie_info.quality != 0) 
 	{
 		print_buffer += "\n";
@@ -974,6 +1072,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 		print_buffer += "\n";
 	}
 	
+	// parental
 	if (movie_info.parentalLockAge != 0) 
 	{
 		print_buffer += "\n";
@@ -986,6 +1085,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 		print_buffer += "\n";
 	}
 	
+	// lenght
 	if (movie_info.length != 0) 
 	{
 		print_buffer += "\n";
@@ -997,6 +1097,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 		print_buffer += "\n";
 	}
 	
+	// audio pids
 	if (movie_info.audioPids.size() != 0) 
 	{
 		print_buffer += "\n";
@@ -1352,17 +1453,16 @@ bool CMovieInfo::parseXmlQuickFix(char *text, MI_MOVIE_INFO * movie_info)
 	strReplace(movie_info->epgInfo1, "&quot;", "\"");
 	strReplace(movie_info->epgTitle, "&apos;", "'");
 	strReplace(movie_info->epgInfo1, "&apos;", "'");
+	strReplace(movie_info->epgInfo1, "&amp;", "&");
 	
-	if (movie_info->epgInfo2 == "") 
-	{
-		movie_info->epgInfo2 = movie_info->epgInfo1;
-		//movie_info->epgInfo1 = "";
-	} 
-	else 
-	{
-		strReplace(movie_info->epgInfo2, "&quot;", "\"");
-		strReplace(movie_info->epgInfo2, "&apos;", "'");
-	}
+	htmlEntityDecode(movie_info->epgInfo1, true);
+	
+	//
+	strReplace(movie_info->epgInfo2, "&quot;", "\"");
+	strReplace(movie_info->epgInfo2, "&apos;", "'");
+	strReplace(movie_info->epgInfo2, "&amp;", "&");
+		
+	htmlEntityDecode(movie_info->epgInfo2, true);
 
 	return (true);
 #endif
@@ -1428,11 +1528,11 @@ void CMovieInfo::clearMovieInfo(MI_MOVIE_INFO * movie_info)
 	movie_info->dirItNr = 0;			// 
 	movie_info->genreMajor = 0;			//genreMajor;                           
 	movie_info->genreMinor = 0;			//genreMinor;                           
-	movie_info->length = 0;				// (minutes)
+	movie_info->length = 0;			// (minutes)
 	movie_info->quality = 0;			// (3 stars: classics, 2 stars: very good, 1 star: good, 0 stars: OK)
-	movie_info->productionDate = 0;			// (Year)  years since 1900
+	movie_info->productionDate = 0;		// (Year)  years since 1900
 	movie_info->parentalLockAge = 0;		// MI_PARENTAL_LOCKAGE (0,6,12,16,18)
-	movie_info->format = 0;				// MI_VIDEO_FORMAT(16:9, 4:3)
+	movie_info->format = 0;			// MI_VIDEO_FORMAT(16:9, 4:3)
 	movie_info->audio = 0;				// MI_AUDIO (AC3, Deutsch, Englisch)
 
 	movie_info->epgId = 0;
@@ -1467,7 +1567,7 @@ void CMovieInfo::clearMovieInfo(MI_MOVIE_INFO * movie_info)
 	movie_info->ytid = "";
 
 	movie_info->original_title = "";
-	movie_info->release_date = "";
+	movie_info->genres = "";
 	movie_info->media_type = "";
 	movie_info->vote_count = 0;
 	movie_info->vote_average = 0.0;
@@ -1481,7 +1581,7 @@ void CMovieInfo::clearMovieInfo(MI_MOVIE_INFO * movie_info)
 		
 }
 
-bool CMovieInfo::loadFile(CFile & file, char *buffer, int buffer_size)
+bool CMovieInfo::loadFile(CFile& file, char *buffer, int buffer_size)
 {
 	bool result = true;
 
@@ -1674,7 +1774,7 @@ void CMovieInfoWidget::funArt()
 	// textBox
 	CBox textBox;
 	textBox.iWidth = box.iWidth/2 - 20;
-	textBox.iHeight = box.iHeight - playBox.iHeight - starBox.iHeight - titleBox.iHeight - 4*10 - 100;
+	textBox.iHeight = box.iHeight - playBox.iHeight - starBox.iHeight - titleBox.iHeight - 3*10 - 100;
 	textBox.iX = box.iX + 10;
 	textBox.iY = starBox.iY + 10 + 60;
 	
@@ -1686,7 +1786,6 @@ void CMovieInfoWidget::funArt()
 	artBox.iY = box.iY + 10;
 
 	CFrameBox * testFrameBox = new CFrameBox(&box);
-	
 	CWidget * widget = new CWidget(&box);
 
 	// artFrame
@@ -1740,25 +1839,36 @@ void CMovieInfoWidget::funArt()
 	}
 	
 	// duration
+	std::string l_buffer = "";
 	if (movieFile.length != 0)
 	{
-		CFrame *lengthFrame = new CFrame();
-		lengthFrame->setMode(FRAME_LABEL);
-		
-		std::string buffer = to_string(movieFile.length);
-		buffer += " Min";
-		
-		int t_w = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth(buffer);
-			
-		lengthFrame->setPosition(titleBox.iX, starBox.iY + starBox.iHeight + 10, t_w, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight());
-		lengthFrame->disablePaintFrame();
-		
-		lengthFrame->setTitle(buffer.c_str());
-		lengthFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
-		lengthFrame->setActive(false);
-
-		testFrameBox->addFrame(lengthFrame);
+		l_buffer = to_string(movieFile.length);
+		l_buffer += " Min";
 	}
+	
+	if (movieFile.productionDate)
+	{
+		l_buffer += " " + to_string(movieFile.productionDate);
+	}
+	
+	if (!movieFile.genres.empty())
+	{
+		l_buffer += " (" + movieFile.genres + ")";
+	}
+	
+	CFrame *lengthFrame = new CFrame();
+	lengthFrame->setMode(FRAME_LABEL);
+		
+	int l_w = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth(l_buffer);
+			
+	lengthFrame->setPosition(titleBox.iX, starBox.iY + starBox.iHeight + 10, l_w, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight());
+	lengthFrame->disablePaintFrame();
+		
+	lengthFrame->setTitle(l_buffer.c_str());
+	lengthFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+	lengthFrame->setActive(false);
+
+	testFrameBox->addFrame(lengthFrame);
 
 	// text
 	CFrame *textFrame = new CFrame();

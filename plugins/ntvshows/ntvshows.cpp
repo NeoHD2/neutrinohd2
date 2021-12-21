@@ -205,7 +205,7 @@ void CTVShows::loadPlaylist()
 		movieInfo.vote_average = movieInfo_list[0].vote_average;
 		movieInfo.vote_count = movieInfo_list[0].vote_count;
 		movieInfo.original_title = movieInfo_list[0].original_title;
-		movieInfo.release_date = movieInfo_list[0].release_date;
+		//movieInfo.release_date = movieInfo_list[0].release_date;
 		movieInfo.media_type = movieInfo_list[0].media_type;
 		movieInfo.length = movieInfo_list[0].runtime;
 		movieInfo.runtimes = movieInfo_list[0].runtimes;

@@ -1029,8 +1029,8 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 						if(tmdb->getSmallCover(tmdb->getPosterPath(), tname)) 
 							m_movieSelectionHandler->tfile = tname;
 
-						if(m_movieSelectionHandler->epgInfo2.empty())
-							m_movieSelectionHandler->epgInfo2 = tmdb->getDescription();
+						if(m_movieSelectionHandler->epgInfo1.empty())
+							m_movieSelectionHandler->epgInfo1 = tmdb->getDescription();
 
 						m_movieInfo.saveMovieInfo( *m_movieSelectionHandler);
 					}  
@@ -1927,8 +1927,8 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 						if(tmdb->getSmallCover(tmdb->getPosterPath(), tname)) 
 							m_movieSelectionHandler->tfile = tname;
 
-						if(m_movieSelectionHandler->epgInfo2.empty())
-							m_movieSelectionHandler->epgInfo2 = tmdb->getDescription();
+						if(m_movieSelectionHandler->epgInfo1.empty())
+							m_movieSelectionHandler->epgInfo1 = tmdb->getDescription();
 
 						m_movieInfo.saveMovieInfo( *m_movieSelectionHandler);
 					}  
