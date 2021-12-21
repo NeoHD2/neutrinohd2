@@ -293,21 +293,28 @@ void CTSBrowser::doTMDB(MI_MOVIE_INFO& movieFile)
 
 		if(MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MOVIEBROWSER_PREFER_TMDB_INFO), mbrNo, mbYes | mbNo) == mbrYes) 
 		{
-			// rewrite tfile
+			// tfile
 			std::string tname = m_vMovieInfo[mlist->getSelected()].file.Name;
 			changeFileNameExt(tname, ".jpg");
 
 			if(tmdb->getBigCover(minfo_list[0].poster_path, tname)) 
 				movieFile.tfile = tname;
 
+			// epgInfo1
 			if(m_vMovieInfo[mlist->getSelected()].epgInfo1.empty())
 				movieFile.epgInfo1 = buffer;
-				
+			
+			// productionDate	
 			if (m_vMovieInfo[mlist->getSelected()].productionDate == 0)
 				movieFile.productionDate = atoi(minfo_list[0].release_date.substr(0,4));
-				
+			
+			// genres	
 			if(m_vMovieInfo[mlist->getSelected()].genres.empty())
 				movieFile.genres = minfo_list[0].genres;
+				
+			// average
+			if (m_vMovieInfo[mlist->getSelected()].vote_average == 0)
+				movieFile.vote_average = minfo_list[0].vote_average;
 
 			m_movieInfo.saveMovieInfo(movieFile);
 		}  

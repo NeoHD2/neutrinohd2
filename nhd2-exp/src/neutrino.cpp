@@ -1737,8 +1737,6 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.menu_FootInfo_Text_blue = skinConfig->getInt32( "menu_FootInfo_Text_blue", 85);
 		
 		/*
-		g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
-		
 		// head
 		g_settings.Head_gradient = skinConfig->getInt32("Head_gradient", DARK2LIGHT2DARK);
 		g_settings.Head_corner = skinConfig->getInt32("Head_corner", CORNER_TOP);
@@ -1757,6 +1755,8 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.infobar_radius = skinConfig->getInt32("infobar_radius", RADIUS_MID);
 		*/
 		
+		//
+		//g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
 		g_settings.infobar_buttonbar = skinConfig->getBool("infobar_buttonbar", true);
 		g_settings.use_shadow = skinConfig->getBool("use_shadow", true);
 		
@@ -1853,8 +1853,6 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	skinConfig->setInt32( "menu_FootInfo_Text_blue", g_settings.menu_FootInfo_Text_blue );
 	
 	/*
-	skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
-	
 	//
 	skinConfig->setInt32("Head_gradient", g_settings.Head_gradient);
 	skinConfig->setInt32("Head_corner", g_settings.Head_corner);
@@ -1873,8 +1871,8 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	skinConfig->setInt32("infobar_radius", g_settings.infobar_radius);
 	*/
 	
+	//skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
 	skinConfig->setBool("infobar_buttonbar", g_settings.infobar_buttonbar);
-	
 	skinConfig->setBool("use_shadow", g_settings.use_shadow);
 		
 	skinConfig->setString("font_file", g_settings.font_file);

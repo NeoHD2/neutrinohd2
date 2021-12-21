@@ -303,6 +303,7 @@ void CInfoViewer::paintTime(int posx, int posy, CFont* timeFont)
 		timer = new CCTime();
 		timer->setPosition(posx - BORDER_RIGHT - timestr_len, posy, timestr_len, time_height);
 		timer->setFont(timeFont);
+		timer->setColor(COL_INFOBAR);
 		timer->setFormat("%H:%M:%S");
 		timer->enableRepaint();
 		timer->paint();		
@@ -618,6 +619,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				
 				//
 				timer->refresh();
+				timescale->paintPCR(runningPercent);
 					
 				// radiotext		
 				if ((g_settings.radiotext_enable) && (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio))
