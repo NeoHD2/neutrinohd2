@@ -926,7 +926,10 @@ bool CMovieInfo::parseXmlTree(char */*text*/, MI_MOVIE_INFO */*movie_info*/)
 						XML_GET_DATA_INT(xam2, MI_XML_TAG_BOOKMARK_LAST, movie_info->bookmarks.lastPlayStop);
 					}
 				}
+				
 				//
+				XML_GET_DATA_INT(xam1, "vote_average", movie_info->vote_average);
+				XML_GET_DATA_STRING(xam1, "genres", movie_info->genres);
 			}
 		}
 	}
@@ -1307,6 +1310,8 @@ bool CMovieInfo::parseXmlQuickFix(char *text, MI_MOVIE_INFO * movie_info)
 		    GET_XML_DATA_INT(text, pos, MI_XML_TAG_PARENTAL_LOCKAGE, movie_info->parentalLockAge)
 		    GET_XML_DATA_INT(text, pos, MI_XML_TAG_QUALITY, movie_info->quality)
 		    GET_XML_DATA_INT(text, pos, MI_XML_TAG_DATE_OF_LAST_PLAY, movie_info->dateOfLastPlay)
+		    GET_XML_DATA_STRING(text, pos, "genres", movie_info->genres)
+		    GET_XML_DATA_INT(text, pos, "vote_average", movie_info->vote_average)
 		    if (strncmp(&text[pos], MI_XML_TAG_AUDIOPIDS, sizeof(MI_XML_TAG_AUDIOPIDS) - 1) == 0)
 			pos += sizeof(MI_XML_TAG_AUDIOPIDS);
 
@@ -1386,6 +1391,7 @@ bool CMovieInfo::parseXmlQuickFix(char *text, MI_MOVIE_INFO * movie_info)
 			//printf("MOVIE INFO: apid %d type %d name %s selected %d\n", audio_pids.epgAudioPid, audio_pids.atype, audio_pids.epgAudioPidName.c_str(), audio_pids.selected);
 			movie_info->audioPids.push_back(audio_pids);
 		}
+		
 		/* parse bookmarks */
 		GET_XML_DATA_INT(text, pos, MI_XML_TAG_BOOKMARK_START, movie_info->bookmarks.start)
 		    GET_XML_DATA_INT(text, pos, MI_XML_TAG_BOOKMARK_END, movie_info->bookmarks.end)
@@ -1680,6 +1686,10 @@ void CMovieInfo::copy(MI_MOVIE_INFO * src, MI_MOVIE_INFO * dst)
 		audio_pids.atype = src->audioPids[i].atype;
 		dst->audioPids.push_back(audio_pids);
 	}
+	
+	//
+	dst->vote_average = src->vote_average;
+	dst->genres = src->genres;
 }
 
 // CMovieInfoWidget
