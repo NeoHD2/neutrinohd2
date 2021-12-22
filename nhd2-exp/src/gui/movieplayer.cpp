@@ -857,7 +857,7 @@ void CMoviePlayerGui::PlayFile(void)
 		if (IsVisible()) 
 		{
 			//showMovieInfo();
-			moviescale->paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, (short)(duration <= 1? 0 : (position / (duration / 100))), false);
+			moviescale->paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, file_prozent, false);
 			
 			updateTime();
 		}
@@ -1730,7 +1730,7 @@ void CMoviePlayerGui::showMovieInfo()
 {
 	visible = true;
 
-	show(playlist[selected].epgTitle, (playlist[selected].epgInfo1.empty())? playlist[selected].epgInfo2 : playlist[selected].epgInfo1, (short)(duration <= 1? 1 : (position / (duration / 100))), ac3state, speed, playstate, (playlist[selected].ytid.empty())? true : false, m_loop); //FIXME:
+	show(playlist[selected].epgTitle, (playlist[selected].epgInfo1.empty())? playlist[selected].epgInfo2 : playlist[selected].epgInfo1, file_prozent, ac3state, speed, playstate, (playlist[selected].ytid.empty())? true : false, m_loop); //FIXME:
 
 	startMovieInfoViewer();
 }
@@ -1770,9 +1770,7 @@ void CMoviePlayerGui::hide()
 //showMovieInfo
 void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, const unsigned int ac3state, const int speed, const int playstate, bool show_bookmark, bool m_loop)
 {
-	//dprintf(DEBUG_NORMAL, "CMoviePlayerGui::showMovieInfo:\n");
-
-	//unsigned int runningPercent = 0;
+	dprintf(DEBUG_NORMAL, "CMoviePlayerGui::showMovieInfo:\n");
 	
 	// icons dimension
 	frameBuffer->getIconSize(NEUTRINO_ICON_16_9, &icon_w_aspect, &icon_h_aspect);
