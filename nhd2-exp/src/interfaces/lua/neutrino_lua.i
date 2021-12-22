@@ -144,7 +144,7 @@
 #include <gui/epg_menu.h>
 #include <gui/power_menu.h>
 #include <gui/dboxinfo.h>
-#include <gui/main_setup.h>
+#include <gui/service_menu.h>
 #include <gui/mediaplayer.h>
 
 // zapit
@@ -293,8 +293,8 @@
 %include <src/gui/epg_menu.h>
 %include <src/gui/power_menu.h>
 %include <src/gui/dboxinfo.h>
-%include <src/gui/main_setup.h>
 %include <src/gui/mediaplayer.h>
+%include <src/gui/service_menu.h>
 
 // zapit
 //%include <src/zapit/include/zapit/bouquets.h>

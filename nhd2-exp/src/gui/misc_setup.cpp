@@ -107,17 +107,9 @@ const keyval SECTIONSD_SCAN_OPTIONS[SECTIONSD_SCAN_OPTIONS_COUNT] =
 
 CMenuOptionStringChooser * tzSelect;
 
-CMiscSettings::CMiscSettings()
+int CMiscSettingsMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 {
-}
-
-CMiscSettings::~CMiscSettings()
-{
-}
-
-int CMiscSettings::exec(CMenuTarget* parent, const std::string& actionKey)
-{
-	dprintf(DEBUG_NORMAL, "CMiscSettings::exec: actionKey: %s\n", actionKey.c_str());
+	dprintf(DEBUG_NORMAL, "CMiscSettingsMenu::exec: actionKey: %s\n", actionKey.c_str());
 	
 	int ret = RETURN_REPAINT;
 	
@@ -130,9 +122,9 @@ int CMiscSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 }
 
 // showmenu
-void CMiscSettings::showMenu(void)
+void CMiscSettingsMenu::showMenu(void)
 {
-	dprintf(DEBUG_NORMAL, "CMiscSettings::showMenu:\n");
+	dprintf(DEBUG_NORMAL, "CMiscSettingsMenu::showMenu:\n");
 	
 	int shortcutMiscSettings = 1;
 

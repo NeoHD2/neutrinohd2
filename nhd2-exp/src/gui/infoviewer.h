@@ -160,7 +160,7 @@ class CInfoViewer
 
 		int timescale_posx;
 		int timescale_posy;
-		char runningPercent;
+		unsigned int runningPercent;
 
 		char aspectRatio;
 		uint32_t sec_timer_id;

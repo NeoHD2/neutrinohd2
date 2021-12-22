@@ -39,16 +39,7 @@
 #include <system/debug.h>
 
 
-CPowerMenu::CPowerMenu()
-{
-	dprintf(DEBUG_DEBUG, "CPowerMenu::CPowerMenu:\n");
-}
-
-CPowerMenu::~CPowerMenu()
-{
-	dprintf(DEBUG_DEBUG, "CPowerMenu::del\n");
-}
-
+//
 int CPowerMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 {
 	dprintf(DEBUG_NORMAL, "CPowerMenu::exec: actionKey: %s\n", actionKey.c_str());

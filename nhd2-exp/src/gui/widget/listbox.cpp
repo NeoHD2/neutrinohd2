@@ -65,7 +65,8 @@ CMenuItem::CMenuItem()
 	icon2 = "";
 
 	number = 0;
-	runningPercent = -1;
+	runningPercent = 0;
+	pb = false;
 
 	nameFont = g_Font[SNeutrinoSettings::FONT_TYPE_MENU];
 	optionFont = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER];
@@ -1727,16 +1728,14 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		int pBarWidth = 0;
 		int pb_offset = 0;
 		
-		if(runningPercent > -1)
+		if(pb)
 		{
 			pb_offset = ICON_OFFSET;
 			
 			pBarWidth = 35;
 			int pBarHeight = height/5;
 
-			CProgressBar timescale(pBarWidth, pBarHeight);
-			//timescale.setPosition(x + BORDER_LEFT + numwidth + ICON_OFFSET, y + (height - pBarHeight)/2, pBarWidth, pBarHeight);
-		
+			CProgressBar timescale(/*x + BORDER_LEFT + numwidth + ICON_OFFSET, y + (height - pBarHeight)/2,*/ pBarWidth, pBarHeight);
 			timescale.reset();
 			timescale.paint(x + BORDER_LEFT + numwidth + ICON_OFFSET, y + (height - pBarHeight)/2, runningPercent);
 		}

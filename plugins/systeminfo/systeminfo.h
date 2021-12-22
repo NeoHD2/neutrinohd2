@@ -41,8 +41,7 @@ class CSysInfoWidget : public CMenuTarget
 		CBox cFrameBoxText;
 		CBox cFrameBoxFoot;
 
-		CIcon titleIcon;
-
+		CCIcon titleIcon;
 		CTextBox* textBox;
 
 		std::string buffer;

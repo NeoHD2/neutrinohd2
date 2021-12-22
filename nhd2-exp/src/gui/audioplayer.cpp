@@ -121,11 +121,18 @@ void CAudioPlayerGui::Init(void)
 	
 	//
 	update_t = true;
+	background = NULL;
 }
 
 CAudioPlayerGui::~CAudioPlayerGui()
 {
 	m_playlist.clear();
+	
+	if (background)
+	{
+		delete [] background; 
+		background = NULL;
+	}
 }
 
 int CAudioPlayerGui::exec(CMenuTarget * parent, const std::string &actionKey)
@@ -607,6 +614,20 @@ void CAudioPlayerGui::paintInfo(CAudiofile& File)
 
 		int w1 = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(tot_time);
 		int w2 = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(tmp_time);
+		int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
+		
+		printf("TEST:%d\n",w1+w2);
+		
+		if(background)
+		{
+			delete[] background;
+			background = NULL;
+		}
+			
+		background = new fb_pixel_t[g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("00:00")*cFrameBox.iHeight];
+				
+		if (background)
+			m_frameBuffer->saveScreen(cFrameBox.iX + cFrameBox.iWidth - 4 - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("00:00") -2 - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("00:00"), cFrameBox.iY, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("00:00"), cFrameBox.iHeight, background);
 
 		if(m_time_total > 0)
 			g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(cFrameBox.iX + cFrameBox.iWidth - 4 - w1, cFrameBox.iY + 2 + cFrameBox.iHeight/3 + 2 + cFrameBox.iHeight/3, w1, tot_time, COL_INFOBAR);
@@ -842,8 +863,13 @@ void CAudioPlayerGui::updateMetaData()
 
 void CAudioPlayerGui::updateTimes(const bool force, bool paint)
 {
-	if (m_state != CAudioPlayerGui::STOP)
+	if (background)
 	{
+		m_frameBuffer->restoreScreen(cFrameBox.iX + cFrameBox.iWidth - 4 - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("00:00") -2 - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("00:00"), cFrameBox.iY, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("00:00"), cFrameBox.iHeight, background);
+	}
+			
+	if (m_state != CAudioPlayerGui::STOP)
+	{	
 		bool updateTotal = force;
 		bool updatePlayed = force;
 
@@ -880,11 +906,12 @@ void CAudioPlayerGui::updateTimes(const bool force, bool paint)
 
 		int w1 = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(tot_time);
 		int w2 = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(tmp_time);
+		int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
 		
 		// refreshBox
 		if (paint)
 		{
-			m_frameBuffer->paintBoxRel(cFrameBox.iX + cFrameBox.iWidth - 4 - w1 -2 - w2, cFrameBox.iY + 2 + cFrameBox.iHeight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()/2, w1 + w2, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), COL_INFOBAR_PLUS_0); 
+			//m_frameBuffer->paintBoxRel(cFrameBox.iX + cFrameBox.iWidth - 4 - w1 -2 - w2, cFrameBox.iY + 2 + cFrameBox.iHeight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()/2, w1 + w2, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), COL_INFOBAR_PLUS_0); 
 
 			if (updateTotal)
 			{

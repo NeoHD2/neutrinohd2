@@ -33,14 +33,14 @@
 
 
 // main settings
-class CMainSetup : public CMenuTarget
+class CMainSettingsMenu : public CMenuTarget
 {
 	private:
 		void showMenu(void);
 		
 	public:
-		CMainSetup();
-		~CMainSetup();
+		CMainSettingsMenu(){};
+		~CMainSettingsMenu(){};
 		
 		int exec(CMenuTarget* parent, const std::string& actionKey);
 };

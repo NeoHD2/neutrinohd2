@@ -1552,7 +1552,7 @@ void CChannelList::paint()
 		{
 			CChannelEvent * p_event = NULL;
 			time_t jetzt = time(NULL);
-			int runningPercent = 0;
+			unsigned int runningPercent = 0;
 
 			std::string desc = chanlist[i]->description;
 			char cSeit[50] = " ";

@@ -107,6 +107,10 @@ class CTestMenu : public CMenuTarget
 		// CMenuwidget
 		CMenuWidget* menuWidget;
 		CMenuItem* item;
+		
+		//
+		CProgressWindow * progressWindow;
+		CProgressBar* progressBar;
 
 		// helper functions
 		void loadTMDBPlaylist(const char *txt = "movie", const char *list = "popular", const int seite = 1, bool search = false);
@@ -281,6 +285,8 @@ CTestMenu::CTestMenu()
 	listFrame = NULL;
 	windowWidget = NULL;
 	textBoxWidget = NULL;
+	progressWindow = NULL;
+	progressBar = NULL;
 }
 
 CTestMenu::~CTestMenu()
@@ -1015,21 +1021,21 @@ void CTestMenu::testCWindowWidget()
 	foot.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
 	// icon
-	CIcon testIcon;
+	CCIcon testIcon;
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
 	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
 	
 	windowWidget->addCCItem(&testIcon);
 	
 	// image
-	CImage testImage;
+	CCImage testImage;
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
 	testImage.setPosition(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
 	
 	windowWidget->addCCItem(&testImage);
 	
 	// label
-	CLabel testLabel;
+	CCLabel testLabel;
 	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
 	testLabel.setColor(COL_ORANGE);
 	testLabel.enablePaintBG();
@@ -1039,7 +1045,7 @@ void CTestMenu::testCWindowWidget()
 	windowWidget->addCCItem(&testLabel);
 	
 	// CButtons
-	CButtons testButton;
+	CCButtons testButton;
 	int icon_w, icon_h;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
 	testButton.setPosition(Box.iX + 10, Box.iY + Box.iHeight - 100, Box.iWidth, 40);
@@ -1048,25 +1054,25 @@ void CTestMenu::testCWindowWidget()
 	windowWidget->addCCItem(&testButton);
 	
 	// Hline
-	CHline testHline;
+	CCHline testHline;
 	testHline.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10, 10);
 	
 	windowWidget->addCCItem(&testHline);
 	
 	// Vline
-	CVline testVline;
+	CCVline testVline;
 	testVline.setPosition(Box.iX + Box.iWidth - 20 - 15, Box.iY + 10, 10, Box.iHeight - 20);
 	
 	windowWidget->addCCItem(&testVline);
 	
-	// CFrameLine
-	CFrameLine testFrameLine;
+	// CCFrameLine
+	CCFrameLine testFrameLine;
 	testFrameLine.setPosition(Box.iX + 10, Box.iY + 140, testIcon.iWidth + 100, testIcon.iHeight + 20);
 	
 	windowWidget->addCCItem(&testFrameLine);
 	
 	// text
-	CText testText;
+	CCText testText;
 	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20, Box.iHeight/4);
 	testText.setMode(AUTO_WIDTH);
 	testText.setText(buffer.c_str());
@@ -1074,14 +1080,14 @@ void CTestMenu::testCWindowWidget()
 	windowWidget->addCCItem(&testText);
 
 	// grid
-	CGrid testGrid;
+	CCGrid testGrid;
 	testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
 	testGrid.setColor(COL_PURPLE_PLUS_0);
 	
 	windowWidget->addCCItem(&testGrid);
 	
 	// pig
-	CPig testPig;
+	CCPig testPig;
 	testPig.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20 + 200 + 10, Box.iY + 100, 300, 160);
 	
 	windowWidget->addCCItem(&testPig);
@@ -1835,21 +1841,21 @@ void CTestMenu::testMultiWidget()
 	windowWidget->setColor(COL_MENUCONTENT_PLUS_0);
 	
 	// icon
-	CIcon testIcon;
+	CCIcon testIcon;
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
 	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
 	
 	windowWidget->addCCItem(&testIcon);
 	
 	// image
-	CImage testImage;
+	CCImage testImage;
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
 	testImage.setPosition(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
 	
 	windowWidget->addCCItem(&testImage);
 	
 	// label
-	CLabel testLabel;
+	CCLabel testLabel;
 	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
 	testLabel.setColor(COL_GREEN);
 	testLabel.enablePaintBG();
@@ -1859,7 +1865,7 @@ void CTestMenu::testMultiWidget()
 	windowWidget->addCCItem(&testLabel);
 	
 	// CButtons
-	CButtons testButton;
+	CCButtons testButton;
 	int icon_w, icon_h;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
 	testButton.setPosition(Box.iX + 10, Box.iY + Box.iHeight - 100, Box.iWidth, 40);
@@ -1868,25 +1874,25 @@ void CTestMenu::testMultiWidget()
 	windowWidget->addCCItem(&testButton);
 	
 	// Hline
-	CHline testHline;
+	CCHline testHline;
 	testHline.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10, 10);
 	
 	windowWidget->addCCItem(&testHline);
 	
 	// Vline
-	CVline testVline;
+	CCVline testVline;
 	testVline.setPosition(Box.iX, Box.iY + 10, 10, Box.iHeight - 20);
 	
 	windowWidget->addCCItem(&testVline);
 	
-	// CFrameLine
-	CFrameLine testFrameLine;
+	// CCFrameLine
+	CCFrameLine testFrameLine;
 	testFrameLine.setPosition(Box.iX + 10, Box.iY + 140, testIcon.iWidth + 100, testIcon.iHeight + 20);
 	
 	windowWidget->addCCItem(&testFrameLine);
 	
 	// text
-	CText testText;
+	CCText testText;
 	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20, Box.iHeight/4);
 	testText.setMode(AUTO_WIDTH);
 	testText.setText(buffer.c_str());
@@ -1894,14 +1900,14 @@ void CTestMenu::testMultiWidget()
 	windowWidget->addCCItem(&testText);
 
 	// grid
-	CGrid testGrid;
+	CCGrid testGrid;
 	testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
 	testGrid.setColor(COL_PURPLE_PLUS_0);
 	
 	windowWidget->addCCItem(&testGrid);
 	
 	// pig
-	CPig testPig;
+	CCPig testPig;
 	testPig.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20 + 200 + 10, Box.iY + 100, 300, 160);
 	
 	windowWidget->addCCItem(&testPig);
@@ -2589,7 +2595,7 @@ void CTestMenu::testCIcon()
 	dprintf(DEBUG_NORMAL, "\ntestCIcon\n");
 
 	//CIcon testIcon(NEUTRINO_ICON_BUTTON_RED);
-	CIcon testIcon;
+	CCIcon testIcon;
 
 	// paint testIcon
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
@@ -2619,7 +2625,7 @@ void CTestMenu::testCImage()
 	dprintf(DEBUG_NORMAL, "\ntestCImage\n");
 
 	//
-	CImage testImage;
+	CCImage testImage;
 
 	// paint testImage
 	testImage.setImage(DATADIR "/neutrino/icons/nopreview.jpg");
@@ -2679,7 +2685,7 @@ void CTestMenu::testCComponent()
 	foot.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
 	// image
-	CImage testImage;
+	CCImage testImage;
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
 	testImage.setPosition(Box.iX, Box.iY + 40, Box.iWidth, Box.iHeight - 80);
 	testImage.enableScaling();
@@ -2687,14 +2693,14 @@ void CTestMenu::testCComponent()
 	windowWidget->addCCItem(&testImage);
 	
 	// icon
-	CIcon testIcon;
+	CCIcon testIcon;
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
 	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
 	
 	windowWidget->addCCItem(&testIcon);
 	
 	// label
-	CLabel testLabel;
+	CCLabel testLabel;
 	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
 	testLabel.setColor(COL_GREEN);
 	testLabel.enablePaintBG();
@@ -2704,7 +2710,7 @@ void CTestMenu::testCComponent()
 	windowWidget->addCCItem(&testLabel);
 	
 	// CButtons
-	CButtons testButton;
+	CCButtons testButton;
 	int icon_w, icon_h;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
 	testButton.setPosition(Box.iX + 10, Box.iY + Box.iHeight - 100, Box.iWidth, 40);
@@ -2713,19 +2719,19 @@ void CTestMenu::testCComponent()
 	windowWidget->addCCItem(&testButton);
 	
 	// Hline
-	CHline testHline;
+	CCHline testHline;
 	testHline.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10, 10);
 	
 	windowWidget->addCCItem(&testHline);
 	
 	// Vline
-	CVline testVline;
+	CCVline testVline;
 	testVline.setPosition(Box.iX + Box.iWidth - 20 - 15, Box.iY + 10, 10, Box.iHeight - 20);
 	
 	windowWidget->addCCItem(&testVline);
 	
-	// CFrameLine
-	CFrameLine testFrameLine;
+	// CCFrameLine
+	CCFrameLine testFrameLine;
 	testFrameLine.setPosition(Box.iX + 10, Box.iY + 140, testIcon.iWidth + 100, testIcon.iHeight + 20);
 	
 	windowWidget->addCCItem(&testFrameLine);
@@ -2745,7 +2751,7 @@ void CTestMenu::testCComponent()
 	CScrollBar testSB;
 	
 	// text
-	CText testText;
+	CCText testText;
 	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20, Box.iHeight/4);
 	testText.setMode(AUTO_WIDTH);
 	testText.setText(buffer.c_str());
@@ -2753,14 +2759,14 @@ void CTestMenu::testCComponent()
 	windowWidget->addCCItem(&testText);
 
 	// grid
-	CGrid testGrid;
+	CCGrid testGrid;
 	testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
 	testGrid.setColor(COL_PURPLE_PLUS_0);
 	
 	windowWidget->addCCItem(&testGrid);
 	
 	// pig
-	CPig testPig;
+	CCPig testPig;
 	testPig.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20 + 200 + 10, Box.iY + 100, 300, 160);
 	
 	windowWidget->addCCItem(&testPig);
@@ -2775,7 +2781,6 @@ REPAINT:
 	foot.paint();
 	testDline.paint(Box.iX, Box.iY, Box.iWidth, Box.iHeight, 70, 35, Box.iY + 2*35);
 	testPB.paint(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150,pcr);
-	testPB.paint();
 	testSB.paint(Box.iX + Box.iWidth - 10, Box.iY + 40, Box.iHeight - 80, NrOfPages, currentPage);
 	
 	CFrameBuffer::getInstance()->blit();
@@ -3589,8 +3594,6 @@ REPEAT:
 void CTestMenu::testCProgressBar()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCProgressBar\n");
-
-	CProgressBar *timescale = NULL;
 	
 	CBox Box;
 	
@@ -3599,44 +3602,86 @@ void CTestMenu::testCProgressBar()
 	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
 	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20)/40;
 	
-	timescale = new CProgressBar(Box.iWidth, Box.iHeight);
-	//timescale->setPosition(Box.iX, Box.iY, Box.iWidth, Box.iHeight);
-	timescale->reset();
+	progressBar = new CProgressBar(&Box);
 	
-	timescale->paint(Box.iX, Box.iY, 10);
+#if 0	
+	neutrino_msg_t msg;
+	neutrino_msg_data_t data;
+	
+	unsigned int percent = 0;
+	bool loop = true;
+
+	while(loop)
+	{
+		progressBar->paint(Box.iX, Box.iY, percent);
+		
+		g_RCInput->getMsg_ms(&msg, &data, 300); // 1 sec
+
+		if (msg == RC_right)
+		{
+			percent += 5;
+			
+			if (percent > 100)
+				percent = 100;
+				
+			progressBar->paint(Box.iX, Box.iY, percent);
+		}
+		else if (msg == RC_left)
+		{
+			percent -= 5;
+			
+			if (percent < 0)
+				percent = 0;
+				
+			progressBar->paint(Box.iX, Box.iY, percent);
+		}
+		
+		else if (msg == RC_home) 
+		{
+			loop = false;
+		}
+
+		CFrameBuffer::getInstance()->blit();
+	}
+	
+	hide();
+#else
+	progressBar->paint(Box.iX, Box.iY, 10);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 20);
+	progressBar->paint(Box.iX, Box.iY, 20);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 30);
+	progressBar->paint(Box.iX, Box.iY, 30);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 40);
+	progressBar->paint(Box.iX, Box.iY, 40);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 50);
+	progressBar->paint(Box.iX, Box.iY, 50);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 60);
+	progressBar->paint(Box.iX, Box.iY, 60);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 70);
+	progressBar->paint(Box.iX, Box.iY, 70);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 80);
+	progressBar->paint(Box.iX, Box.iY, 80);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 90);
+	progressBar->paint(Box.iX, Box.iY, 90);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	timescale->paint(Box.iX, Box.iY, 100);
+	progressBar->paint(Box.iX, Box.iY, 100);
 	CFrameBuffer::getInstance()->blit();
 	
-	delete timescale;
-	timescale = NULL;
+	delete progressBar;
+	progressBar = NULL;
+	
 	//
 	hide();
+#endif
 }
 
 // CProgressWindow
@@ -3644,53 +3689,52 @@ void CTestMenu::testCProgressWindow()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCProgressWindow\n");
 
-	CProgressWindow * progress = new CProgressWindow();
-	progress->setTitle("CProgressWindow");
-	progress->paint();
+	progressWindow = new CProgressWindow();
+	progressWindow->setTitle("CProgressWindow");
+	progressWindow->paint();
 	
-	progress->showStatusMessageUTF("testing CProgressWindow:0");
-	progress->showGlobalStatus(0);
+	progressWindow->showStatusMessageUTF("testing CProgressWindow:0");
+	progressWindow->showGlobalStatus(0);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progress->showGlobalStatus(10);
+	progressWindow->showGlobalStatus(10);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progress->showGlobalStatus(20);
+	progressWindow->showGlobalStatus(20);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progress->showStatusMessageUTF("testing CProgressWindow:30");
-	progress->showGlobalStatus(30);
+	progressWindow->showStatusMessageUTF("testing CProgressWindow:30");
+	progressWindow->showGlobalStatus(30);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progress->showGlobalStatus(40);
+	progressWindow->showGlobalStatus(40);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progress->showGlobalStatus(50);
+	progressWindow->showGlobalStatus(50);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progress->showStatusMessageUTF("testing CProgressWindow:60");
-	progress->showGlobalStatus(60);
+	progressWindow->showStatusMessageUTF("testing CProgressWindow:60");
+	progressWindow->showGlobalStatus(60);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progress->showGlobalStatus(70);
+	progressWindow->showGlobalStatus(70);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progress->showStatusMessageUTF("testing CProgressWindow:80");
-	progress->showGlobalStatus(80);
+	progressWindow->showStatusMessageUTF("testing CProgressWindow:80");
+	progressWindow->showGlobalStatus(80);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progress->showGlobalStatus(90);
+	progressWindow->showGlobalStatus(90);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progress->showStatusMessageUTF("testing CProgressWindow:100");
-	progress->showGlobalStatus(100);
+	progressWindow->showStatusMessageUTF("testing CProgressWindow:100");
+	progressWindow->showGlobalStatus(100);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
 	
-	progress->hide();
-	delete progress;
-	progress = NULL;
-        
+	progressWindow->hide();
+	delete progressWindow;
+	progressWindow = NULL;
 }
 
 // CButtons
@@ -3698,10 +3742,11 @@ void CTestMenu::testCButtons()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCButtons\n");
 	
-	CButtons buttons;
+	CCButtons buttons;
 
 	int icon_w, icon_h;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
+	
 	buttons.paintFootButtons(g_settings.screen_StartX + 50 + BORDER_LEFT, g_settings.screen_StartY + 50, (g_settings.screen_EndX - g_settings.screen_StartX - 100), icon_h, FOOT_BUTTONS_COUNT, FootButtons);
 
 	CFrameBuffer::getInstance()->blit();

@@ -55,17 +55,9 @@
 
 
 // main settings
-CMainSetup::CMainSetup()
+int CMainSettingsMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 {
-}
-
-CMainSetup::~CMainSetup()
-{
-}
-
-int CMainSetup::exec(CMenuTarget* parent, const std::string& actionKey)
-{
-	dprintf(DEBUG_NORMAL, "CMainSetup::exec: actionKey: %s\n", actionKey.c_str());
+	dprintf(DEBUG_NORMAL, "CMainSettingsMenu::exec: actionKey: %s\n", actionKey.c_str());
 	
 	int ret = RETURN_REPAINT;
 	
@@ -78,9 +70,9 @@ int CMainSetup::exec(CMenuTarget* parent, const std::string& actionKey)
 }
 
 // showmenu
-void CMainSetup::showMenu(void)
+void CMainSettingsMenu::showMenu(void)
 {
-	dprintf(DEBUG_NORMAL, "CMainSetup::showMenu:\n");
+	dprintf(DEBUG_NORMAL, "CMainSettingsMenu::showMenu:\n");
 	
 	int shortcutMainSettings = 1;
 
@@ -131,7 +123,7 @@ void CMainSetup::showMenu(void)
 	mainSettings->addItem(new CMenuForwarder(LOCALE_PICTUREVIEWERSETTINGS_GENERAL, true, NULL, new CPictureViewerSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_PICTUREVIEWERSETTINGS, LOCALE_HELPTEXT_PICTUREVIEWERSETTINGS));
 
 	// misc settings
-	mainSettings->addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_MISC, true, NULL, new CMiscSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_MISCSETTINGS, LOCALE_HELPTEXT_MISCSETTINGS));
+	mainSettings->addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_MISC, true, NULL, new CMiscSettingsMenu(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_MISCSETTINGS, LOCALE_HELPTEXT_MISCSETTINGS));
 
 	//HDD settings
 	mainSettings->addItem(new CMenuForwarder(LOCALE_HDD_SETTINGS, true, NULL, new CHDDMenuHandler(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_HDDSETTINGS, LOCALE_HELPTEXT_HDDSETTINGS));

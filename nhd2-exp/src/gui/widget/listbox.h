@@ -135,7 +135,8 @@ class CMenuItem
 		std::string icon1;
 		std::string icon2;
 		int number;
-		int runningPercent;
+		unsigned int runningPercent;
+		bool pb;
 
 		//
 		int itemType;
@@ -212,7 +213,7 @@ class CMenuItem
 		virtual void setIcon1(const char* const icon){icon1 = icon;};
 		virtual void setIcon2(const char* const icon){icon2 = icon;};
 		virtual void setNumber(int nr){number = nr;};
-		virtual void setPercent(int percent = -1){runningPercent = percent;};
+		virtual void setPercent(unsigned int percent){pb = true; runningPercent = percent;};
 
 		virtual void setNameFont(CFont* font){nameFont = font;};
 		virtual void setOptionFont(CFont* font){optionFont = font;};

@@ -148,7 +148,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		
 		// skin
 		std::vector<CPlugins::plugin> skin_list;
-		SKIN_SETTINGS s_settings;
+		//SKIN_SETTINGS s_settings;
 		
 		void loadSkin(std::string skinName);
 		void unloadSkin();

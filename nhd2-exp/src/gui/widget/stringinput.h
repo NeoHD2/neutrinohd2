@@ -80,7 +80,7 @@ class CStringInput : public CMenuTarget
 		bool exit_pressed;
 		CChangeObserver * observ;
 
-		CButtons buttons;
+		CCButtons buttons;
 
 		virtual void init();
 		virtual const char * getHint1(void);

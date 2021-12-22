@@ -58,7 +58,7 @@ CProgressWindow::CProgressWindow(int _x, int _y, int _width, int _height)
 	initFrames(_x, _y, _width, _height);
 
 	// progressbar
-	progressBar = new CProgressBar(width - BORDER_LEFT - BORDER_RIGHT - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("100%") - 10, 10);
+	progressBar = new CProgressBar(/*x + BORDER_LEFT, globalstatusY, */width - BORDER_LEFT - BORDER_RIGHT - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("100%") - 10, 10);
 
 	progressBar->reset();
 }

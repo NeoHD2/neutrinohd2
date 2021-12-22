@@ -146,11 +146,16 @@ class CMoviePlayerGui : public CMenuTarget
 		int icon_blue_w, icon_blue_h;
 
 		// infoViewer
+		CProgressBar* moviescale;
+		unsigned int runningPercent;
+		fb_pixel_t* background;
 		void showMovieInfo();
 		bool IsVisible() {return visible;};
 
 		//
 		void show(std::string Title, std::string Info, short Percent, const unsigned int ac3state, const int speed, const int playstate, bool show_bookmark = false, bool m_loop = false);
+		//void paintTime();
+		void updateTime();
 		
 		// playlist gui
 		ClistBox* mplist;

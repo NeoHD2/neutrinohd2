@@ -58,8 +58,8 @@ class CColorChooser : public CMenuTarget
 		CBox cFrameBoxItem;
 		CBox cFrameBoxColorPreview;
 
-		CIcon titleIcon;
-		CIcon volumeBodyIcon;
+		CCIcon titleIcon;
+		CCIcon volumeBodyIcon;
 
 		CWindow m_cBoxWindow;
 

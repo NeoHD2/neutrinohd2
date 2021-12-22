@@ -137,11 +137,11 @@ void CDBoxInfoWidget::showInfo()
 
 	//cpu
 	yPos += 40 + 10;
-	CIcon* cpuIcon = new CIcon(NEUTRINO_ICON_MENUITEM_IMAGEINFO);
+	CCIcon* cpuIcon = new CCIcon(NEUTRINO_ICON_MENUITEM_IMAGEINFO);
 	cpuIcon->setPosition(Box.iX + 10, yPos, cpuIcon->iWidth, cpuIcon->iHeight);
 	m_window->addCCItem(cpuIcon);
 	
-	CLabel* cpuLabel = new CLabel();
+	CCLabel* cpuLabel = new CCLabel();
 	cpuLabel->setText("CPU:");
 	cpuLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 	cpuLabel->setColor(COL_MENUHEAD);
@@ -176,7 +176,7 @@ void CDBoxInfoWidget::showInfo()
 					hw = ++p;
 				hw += " Info";
 				
-				CLabel* cpuLabel1 = new CLabel();
+				CCLabel* cpuLabel1 = new CCLabel();
 				cpuLabel1->setText(hw.c_str());
 				cpuLabel1->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
 				cpuLabel1->setColor(COL_MENUCONTENT);
@@ -192,7 +192,7 @@ void CDBoxInfoWidget::showInfo()
 			if (i > 4)
 				continue;
 				
-			CLabel* cpuLabel2 = new CLabel();
+			CCLabel* cpuLabel2 = new CCLabel();
 			cpuLabel2->setText(buffer);
 			cpuLabel2->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
 			cpuLabel2->setColor(COL_MENUCONTENT);
@@ -208,7 +208,7 @@ void CDBoxInfoWidget::showInfo()
 	}
 	
 	// separator
-	CHline* hLine = new CHline();
+	CCHline* hLine = new CCHline();
 	hLine->setPosition(Box.iX + 10,  yPos, Box.iWidth - 20, 10);
 	m_window->addCCItem(hLine);
 
@@ -252,7 +252,7 @@ void CDBoxInfoWidget::showInfo()
 
 	strcat(sbuf, ubuf);
 	
-	CLabel* upLabel = new CLabel();
+	CCLabel* upLabel = new CCLabel();
 	upLabel->setText(sbuf);
 	upLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
 	upLabel->setColor(COL_MENUCONTENTINACTIVE);
@@ -264,7 +264,7 @@ void CDBoxInfoWidget::showInfo()
 
 	yPos += upLabel->getHeight() + 10;
 	
-	CLabel* memLabel = new CLabel();
+	CCLabel* memLabel = new CCLabel();
 	memLabel->setText(ubuf);
 	memLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
 	memLabel->setColor(COL_MENUCONTENTINACTIVE);
@@ -274,12 +274,12 @@ void CDBoxInfoWidget::showInfo()
 	// separator
 	yPos += memLabel->getHeight() + 10;
 	
-	CHline* hLine2 = new CHline();
+	CCHline* hLine2 = new CCHline();
 	hLine2->setPosition(Box.iX + 10,  yPos, Box.iWidth - 20, 10);
 	m_window->addCCItem(hLine2);
     	
     	//hdd devices
-    	CIcon* hddIcon = new CIcon(NEUTRINO_ICON_MENUITEM_HDDSETTINGS);
+    	CCIcon* hddIcon = new CCIcon(NEUTRINO_ICON_MENUITEM_HDDSETTINGS);
     	
 	FILE * f;
 	int fd_hdd;
@@ -294,7 +294,7 @@ void CDBoxInfoWidget::showInfo()
 		hddIcon->setPosition(Box.iX + 10, yPos, hddIcon->iWidth, hddIcon->iHeight);
 		m_window->addCCItem(hddIcon);
 		
-		CLabel* hddLabel = new CLabel();
+		CCLabel* hddLabel = new CCLabel();
 		hddLabel->setText("HDD Devices:");
 		hddLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 		hddLabel->setColor(COL_MENUHEAD);
@@ -373,7 +373,7 @@ void CDBoxInfoWidget::showInfo()
 		
 		free(namelist[i1]);
 		
-		CLabel* hddLabel1 = new CLabel();
+		CCLabel* hddLabel1 = new CCLabel();
 		hddLabel1->setText(str);
 		hddLabel1->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
 		hddLabel1->setColor(COL_MENUCONTENT);
@@ -384,14 +384,14 @@ void CDBoxInfoWidget::showInfo()
 	}
 	
 	//frontend
-	CIcon* tunerIcon = new CIcon(NEUTRINO_ICON_MENUITEM_SCANSETTINGS);
+	CCIcon* tunerIcon = new CCIcon(NEUTRINO_ICON_MENUITEM_SCANSETTINGS);
 	
 	if (FrontendCount)
 	{
 		tunerIcon->setPosition(Box.iX + 10, yPos, tunerIcon->iWidth, tunerIcon->iHeight);
 		m_window->addCCItem(tunerIcon);
 		
-		CLabel* tunerLabel = new CLabel();
+		CCLabel* tunerLabel = new CCLabel();
 		tunerLabel->setText("Frontend:");
 		tunerLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 		tunerLabel->setColor(COL_MENUHEAD);
@@ -407,7 +407,7 @@ void CDBoxInfoWidget::showInfo()
 		
 		sprintf(tbuf, "Tuner-%d: %s", i2 + 1, fe->getInfo()->name);
 		
-		CLabel* tunerLabel1 = new CLabel();
+		CCLabel* tunerLabel1 = new CCLabel();
 		tunerLabel1->setText(tbuf);
 		tunerLabel1->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
 		tunerLabel1->setColor(COL_MENUCONTENT);
@@ -431,19 +431,9 @@ void CDBoxInfoWidget::showInfo()
 }
 
 //
-CInfo::CInfo()
+int CInfoMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 {
-	dprintf(DEBUG_DEBUG, "CInfo::CInfo:\n");
-}
-
-CInfo::~CInfo()
-{
-	dprintf(DEBUG_DEBUG, "CInfo::~CInfo:\n");
-}
-
-int CInfo::exec(CMenuTarget* parent, const std::string& actionKey)
-{
-	dprintf(DEBUG_NORMAL, "CInfo::exec: %s\n", actionKey.c_str());
+	dprintf(DEBUG_NORMAL, "CInfoMenu::exec: %s\n", actionKey.c_str());
 	
 	int ret = RETURN_REPAINT;
 	
@@ -455,7 +445,7 @@ int CInfo::exec(CMenuTarget* parent, const std::string& actionKey)
 	return ret;
 }
 
-void CInfo::showMenu()
+void CInfoMenu::showMenu()
 {
 	infoMenu = new CMenuWidget("Information", NEUTRINO_ICON_INFO);
 	

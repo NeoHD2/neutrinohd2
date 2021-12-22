@@ -305,7 +305,7 @@ class EpgPlus
 				int y;
 				int width;
 
-				CButtons buttons;
+				CCButtons buttons;
 
 				static CFont*  fontBouquetChannelName;
 				static CFont*  fontEventDescription;     

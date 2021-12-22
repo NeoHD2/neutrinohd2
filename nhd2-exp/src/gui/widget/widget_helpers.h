@@ -66,12 +66,13 @@ enum {
 	CC_FRAMELINE,
 	CC_PIG,
 	CC_GRID,
-	//CC_SLIDER,
 	CC_TIME,
+	//CC_COUNTER,
 	// not to be added with addCCItem method.
 	CC_SCROLLBAR,
 	CC_PROGRESSBAR,
-	CC_DETAILSLINE
+	CC_DETAILSLINE,
+	//CC_SLIDER,
 };
 
 // halign and we assume all CCItems are valigned
@@ -129,7 +130,7 @@ class CComponent
 		void setParent(CWindow* p){parent = p;};
 };
 
-class CIcon : public CComponent
+class CCIcon : public CComponent
 {
 	public:
 		//		
@@ -137,21 +138,14 @@ class CIcon : public CComponent
 		int iHeight;
 		std::string iconName;
 
-		CIcon(){frameBuffer = CFrameBuffer::getInstance(); iconName = ""; iWidth = 0; iHeight = 0; cc_type = CC_ICON;};
+		CCIcon(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		CCIcon(const char* icon, const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
 		
+		//
 		void setIcon(const char* icon)
 		{
 			iconName = std::string(icon); 
 			frameBuffer->getIconSize(iconName.c_str(), &iWidth, &iHeight);
-		};
-		
-		CIcon(const char* icon)
-		{
-			frameBuffer = CFrameBuffer::getInstance();
-			iconName = std::string(icon); 
-			frameBuffer->getIconSize(iconName.c_str(), &iWidth, &iHeight);
-			
-			cc_type = CC_ICON;
 		};
 
 		// h/v aligned
@@ -161,7 +155,7 @@ class CIcon : public CComponent
 		};
 };
 
-class CImage : public CComponent
+class CCImage : public CComponent
 {
 	public:
 		//
@@ -171,31 +165,15 @@ class CImage : public CComponent
 		std::string imageName;
 		bool scale;
 
-		CImage(){frameBuffer = CFrameBuffer::getInstance(); imageName = ""; iWidth = 0; iHeight = 0; iNbp = 0; scale = false; cc_type = CC_IMAGE;};
-
+		CCImage(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		CCImage(const char* image, const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		
+		//
 		void setImage(const char* image)
 		{
 			imageName = std::string(image); 
 			frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
 		};
-
-		CImage(const char* image)
-		{
-			imageName = ""; 
-			iWidth = 0; 
-			iHeight = 0; 
-			iNbp = 0;
-			scale = false;
-			
-			frameBuffer = CFrameBuffer::getInstance();
-			
-			//
-			imageName = std::string(image); 
-			frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
-			
-			cc_type = CC_IMAGE;
-		};
-		
 		void enableScaling(void){scale = true;};
 		
 		// h/v aligned
@@ -224,7 +202,7 @@ typedef struct button_label
 typedef std::vector<button_label_struct> button_label_list_t;
 
 // CButtons
-class CButtons : public CComponent
+class CCButtons : public CComponent
 {
 	private:
 		button_label_list_t buttons;
@@ -232,10 +210,12 @@ class CButtons : public CComponent
 
 	public:
 		//
-		CButtons(){frameBuffer = CFrameBuffer::getInstance(); buttons.clear(); count = 0; cc_type = CC_BUTTON;};
+		CCButtons(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
 		
 		//
 		void setButtons(const struct button_label *button_label, const int button_count = 1);
+		
+		//
 		void paint();
 
 		//
@@ -266,15 +246,14 @@ class CProgressBar : public CComponent
 
 	public:
 		//
-		CProgressBar(int w, int h, int r = 40, int g = 100, int b = 70, bool inv = true);
+		CProgressBar(/*int x, int y,*/ int w, int h, int r = 40, int g = 100, int b = 70, bool inv = true);
+		//CProgressBar(const int x, const int y, const int dx, const int dy);
+		CProgressBar(const CBox* psoition, int r = 40, int g = 100, int b = 70, bool inv = true);
 		
 		//
-		void paint(unsigned int x, unsigned int y, unsigned char pcr);
+		void paint(unsigned int x, unsigned int y, unsigned char pcr, bool paintBG = true);
 		void reset();
 		int getPercent() { return percent; };
-		
-		//
-		void paint(){};
 };
 
 // detailsLine
@@ -318,57 +297,51 @@ class CItems2DetailsLine : public CComponent
 };
 
 // CHline
-class CHline : public CComponent
+class CCHline : public CComponent
 {
 	public:
 		//
 		fb_pixel_t color;
 		
 		//
-		CHline();
-		virtual ~CHline(){};
+		CCHline(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		virtual ~CCHline(){};
 		
 		//
 		void setColor(fb_pixel_t col){color = col;};
 		
 		//
-		void paint()
-		{
-			frameBuffer->paintHLineRel(cCBox.iX, cCBox.iWidth, cCBox.iY, color);
-		};
+		void paint();
 };
 
 // CVline
-class CVline : public CComponent
+class CCVline : public CComponent
 {
 	public:
 		//
 		fb_pixel_t color;
 		
 		//
-		CVline();
-		virtual ~CVline(){};
+		CCVline(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		virtual ~CCVline(){};
 		
 		//
 		void setColor(fb_pixel_t col){color = col;};
 		
 		//
-		void paint()
-		{
-			frameBuffer->paintVLineRel(cCBox.iX, cCBox.iY, cCBox.iHeight, color);
-		};
+		void paint();
 };
 
 // CFrameline
-class CFrameLine : public CComponent
+class CCFrameLine : public CComponent
 {
 	public:
 		//
 		fb_pixel_t color;
 		
 		//
-		CFrameLine();
-		virtual ~CFrameLine(){};
+		CCFrameLine(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		virtual ~CCFrameLine(){};
 		
 		//
 		void setColor(fb_pixel_t col){color = col;};
@@ -381,7 +354,7 @@ class CFrameLine : public CComponent
 };
 
 // CLabel
-class CLabel : public CComponent
+class CCLabel : public CComponent
 {
 	public:
 		//
@@ -395,8 +368,8 @@ class CLabel : public CComponent
 		bool utf8;
 		
 		//
-		CLabel();
-		virtual ~CLabel(){};
+		CCLabel(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		virtual ~CCLabel(){};
 		
 		//
 		void setColor(uint8_t col){color = col;};
@@ -414,29 +387,33 @@ class CLabel : public CComponent
 };
 
 //CText
-class CText : public CComponent
+class CCText : public CComponent
 {
 	public:
 		//
 		CFont* font;
 		int mode;
 		std::string Text;
+		uint8_t color;
+		bool useBG;
 		
 		//
-		CText();
-		~CText(){};
+		CCText(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		~CCText(){};
 		
 		//
 		void setFont(CFont* f){font = f;};
 		void setMode(int m){mode = m;};
+		void setColor(uint8_t c){color = c;};
 		void setText(const char* const text){Text = text;};
+		void useBackground(void){useBG = true;};
 		
 		//
 		void paint();
 };
 
 //
-class CGrid : public CComponent
+class CCGrid : public CComponent
 {
 	private:
 		//
@@ -445,9 +422,9 @@ class CGrid : public CComponent
 
 	public:
 		//
-		CGrid(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
-		CGrid(CBox* position);
-		virtual ~CGrid(){};
+		CCGrid(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
+		CCGrid(CBox* position);
+		virtual ~CCGrid(){};
 
 		//
 		void init();
@@ -461,13 +438,13 @@ class CGrid : public CComponent
 };
 
 // pig
-class CPig : public CComponent
+class CCPig : public CComponent
 {
 	public:
 		//
-		CPig(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
-		CPig(CBox* position);
-		virtual ~CPig(){};
+		CCPig(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
+		CCPig(CBox* position);
+		virtual ~CCPig(){};
 
 		//
 		void init();
@@ -490,7 +467,7 @@ class CCTime : public CComponent
 		fb_pixel_t* background;
 		
 		//
-		CCTime();
+		CCTime(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
 		virtual ~CCTime(){delete [] background; background = NULL;};
 		
 		//

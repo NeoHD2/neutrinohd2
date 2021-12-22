@@ -58,7 +58,6 @@ class CWidget : public CMenuTarget
 	protected:
 		CFrameBuffer *frameBuffer;
 		CBox mainFrameBox;
-		//bool enableCenter;
 
 		std::vector<CWidgetItem*> items;
 
@@ -105,8 +104,6 @@ class CWidget : public CMenuTarget
 		bool hasItem();
 		int getItemsCount();
 		virtual void clearItems(void);
-
-		//void enableCenterPos(){enableCenter = true;};
 
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
 		void setSecTimerInterval(int interval){sec_timer_interval = interval;};

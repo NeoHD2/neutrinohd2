@@ -61,17 +61,9 @@ extern CCAMMenuHandler * g_CamHandler;		// defined neutrino.cpp
 extern int FrontendCount;			// defined in zapit.cpp
 
 //
-CServiceSetup::CServiceSetup()
+int CServiceMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 {
-}
-
-CServiceSetup::~CServiceSetup()
-{
-}
-
-int CServiceSetup::exec(CMenuTarget* parent, const std::string& actionKey)
-{
-	dprintf(DEBUG_NORMAL, "CServiceSetup::exec: actionKey:%s\n", actionKey.c_str());
+	dprintf(DEBUG_NORMAL, "CServiceMenu::exec: actionKey:%s\n", actionKey.c_str());
 	
 	int ret = RETURN_REPAINT;
 	
@@ -93,9 +85,9 @@ int CServiceSetup::exec(CMenuTarget* parent, const std::string& actionKey)
 }
 
 // showmenu
-void CServiceSetup::showMenu(void)
+void CServiceMenu::showMenu(void)
 {
-	dprintf(DEBUG_NORMAL, "CServiceSetup::showMenu\n");
+	dprintf(DEBUG_NORMAL, "CServiceMenu::showMenu\n");
 	
 	int shortcutService = 1;
 	

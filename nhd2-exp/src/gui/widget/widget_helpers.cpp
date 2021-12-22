@@ -38,17 +38,91 @@
 
 extern cVideo * videoDecoder;
 
-// progressbar
-CProgressBar::CProgressBar(int w, int h, int r, int g, int b, bool inv)
+// CCIcon
+CCIcon::CCIcon(const int x, const int y, const int dx, const int dy)
+{
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
+	
+	iconName = ""; 
+	iWidth = 0; 
+	iHeight = 0; 
+	
+	cc_type = CC_ICON;
+}
+
+CCIcon::CCIcon(const char* icon, const int x, const int y, const int dx, const int dy)
 {
 	frameBuffer = CFrameBuffer::getInstance();
 	
-	double div;
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
+	
+	iconName = std::string(icon); 
+	frameBuffer->getIconSize(iconName.c_str(), &iWidth, &iHeight);
+			
+	cc_type = CC_ICON;
+}
+
+// CCImage
+CCImage::CCImage(const int x, const int y, const int dx, const int dy)
+{
+	frameBuffer = CFrameBuffer::getInstance();
+	
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
+	 
+	imageName = ""; 
+	iWidth = 0; 
+	iHeight = 0; 
+	iNbp = 0; 
+	scale = false; 
+	
+	cc_type = CC_IMAGE;
+}
+
+CCImage::CCImage(const char* image, const int x, const int y, const int dx, const int dy)
+{
+	frameBuffer = CFrameBuffer::getInstance();
+	
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
+	
+	imageName = ""; 
+	iWidth = 0; 
+	iHeight = 0; 
+	iNbp = 0;
+	scale = false;
+			
+	//
+	imageName = std::string(image); 
+	frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
+			
+	cc_type = CC_IMAGE;
+}
+
+// progressbar
+CProgressBar::CProgressBar(/*int x, int y,*/ int w, int h, int r, int g, int b, bool inv)
+{
+	frameBuffer = CFrameBuffer::getInstance();
+	
+	//cCBox.iX = x;
+	//cCBox.iY = y;
 	cCBox.iWidth = w;
 	cCBox.iHeight = h;
 	inverse = inv;
 	
-	div = (double) 100 / (double) cCBox.iWidth;
+	double div = (double) 100 / (double) cCBox.iWidth;
 	red = (double) r / (double) div ;
 	green = (double) g / (double) div;
 	yellow = (double) b / (double) div;
@@ -58,42 +132,55 @@ CProgressBar::CProgressBar(int w, int h, int r, int g, int b, bool inv)
 	cc_type = CC_PROGRESSBAR;
 }
 
-void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr)
+CProgressBar::CProgressBar(const CBox* position, int r, int g, int b, bool inv)
+{
+	cCBox = *position;
+	inverse = inv;
+	
+	double div = (double) 100 / (double) cCBox.iWidth;
+	red = (double) r / (double) div ;
+	green = (double) g / (double) div;
+	yellow = (double) b / (double) div;
+	
+	percent = 255;
+	
+	cc_type = CC_PROGRESSBAR;
+}
+
+void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr, bool paintBG)
 {
 	cCBox.iX = x;
 	cCBox.iY = y;
 	
-	int i, siglen;
-	unsigned int posx;
-	unsigned int posy;
-	unsigned int xpos;
-	unsigned int ypos;
-
-	double div;
-	uint32_t rgb;
-	
+	int i= 0;
 	int b = 0;
 	
-	i = 0;
-	xpos = cCBox.iX;
-	ypos = cCBox.iY;
+	int siglen = 0;
+	unsigned int posx;
+	unsigned int posy;
+	
+	//
+	unsigned int xpos = cCBox.iX;
+	unsigned int ypos = cCBox.iY;
 
+	double div = (double) 100 / (double) cCBox.iWidth;
+	uint32_t rgb = COL_MENUCONTENT_PLUS_2;
+	
 	// body
-	if(g_settings.progressbar_color != 0)
-	frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, COL_MENUCONTENT_PLUS_2, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);	//fill passive
+	if (paintBG)
+		frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, COL_MENUCONTENT_PLUS_2, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);	//fill passive
 	
 	if (pcr != percent) 
 	{
 		if(percent == 255) 
 			percent = 0;
 
-		div = (double) 100 / (double) cCBox.iWidth;
 		siglen = (double) pcr / (double) div;
 		posx = xpos;
 		posy = ypos;
 		int maxi = siglen;
 		int total = cCBox.iWidth;
-		int step = 255/total;
+		int step = 100/total;
 
 		if (pcr > percent) 
 		{
@@ -156,8 +243,23 @@ void CProgressBar::reset()
   	percent = 255;
 }
 
-// CButtons
-void CButtons::setButtons(const struct button_label *button_label, const int button_count)
+// CCButtons
+CCButtons::CCButtons(const int x, const int y, const int dx, const int dy)
+{
+	frameBuffer = CFrameBuffer::getInstance();
+	
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy; 
+	
+	buttons.clear(); 
+	count = 0; 
+	
+	cc_type = CC_BUTTON;
+}
+
+void CCButtons::setButtons(const struct button_label *button_label, const int button_count)
 {
 	if (button_count)
 	{
@@ -170,7 +272,7 @@ void CButtons::setButtons(const struct button_label *button_label, const int but
 	count = buttons.size();	
 }
 
-void CButtons::paint()
+void CCButtons::paint()
 {
 	int buttonWidth = 0;
 
@@ -205,7 +307,7 @@ void CButtons::paint()
 }
 
 //
-void CButtons::paintFootButtons(const int x, const int y, const int dx, const int dy, const unsigned int count, const struct button_label * const content)
+void CCButtons::paintFootButtons(const int x, const int y, const int dx, const int dy, const unsigned int count, const struct button_label * const content)
 {
 	int iw, ih;
 
@@ -241,7 +343,7 @@ void CButtons::paintFootButtons(const int x, const int y, const int dx, const in
 }
 
 // head buttons (right)
-void CButtons::paintHeadButtons(const int x, const int y, const int dx, const int dy, const unsigned int count, const struct button_label * const content)
+void CCButtons::paintHeadButtons(const int x, const int y, const int dx, const int dy, const unsigned int count, const struct button_label * const content)
 {
 	int iw[count], ih[count];
 	int startx = x + dx - BORDER_RIGHT;
@@ -465,33 +567,69 @@ void CItems2DetailsLine::clear(int x, int y, int width, int height, int info_hei
 }
 
 // Hline
-CHline::CHline()
+CCHline::CCHline(const int x, const int y, const int dx, const int dy)
 {
 	frameBuffer = CFrameBuffer::getInstance();
+	
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
+	
 	color = COL_MENUCONTENTDARK_PLUS_0; 
 	cc_type = CC_HLINE;
 }
 
+void CCHline::paint()
+{
+	frameBuffer->paintHLineRel(cCBox.iX, cCBox.iWidth, cCBox.iY, color);
+	frameBuffer->paintHLineRel(cCBox.iX, cCBox.iWidth, cCBox.iY + 1, color);
+}
+
 // Vline
-CVline::CVline()
+CCVline::CCVline(const int x, const int y, const int dx, const int dy)
 {
 	frameBuffer = CFrameBuffer::getInstance();
+	
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
+	
 	color = COL_MENUCONTENTDARK_PLUS_0; 
 	cc_type = CC_VLINE;
 }
 
+void CCVline::paint()
+{
+	frameBuffer->paintVLineRel(cCBox.iX, cCBox.iY, cCBox.iHeight, color);
+	frameBuffer->paintVLineRel(cCBox.iX + 1, cCBox.iY, cCBox.iHeight, color);
+}
+
 // CFrameLine
-CFrameLine::CFrameLine()
+CCFrameLine::CCFrameLine(const int x, const int y, const int dx, const int dy)
 {
 	frameBuffer = CFrameBuffer::getInstance();
+	
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
+	
 	color = COL_WHITE_PLUS_0; 
 	cc_type = CC_FRAMELINE;
 }
 
 // CLabel
-CLabel::CLabel()
+CCLabel::CCLabel(const int x, const int y, const int dx, const int dy)
 {
 	frameBuffer = CFrameBuffer::getInstance();
+	
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
+	
 	color = COL_MENUCONTENT;
 	paintBG = false; 
 	utf8 = true; 
@@ -503,7 +641,7 @@ CLabel::CLabel()
 	cc_type = CC_LABEL;
 }
 
-void CLabel::paint()
+void CCLabel::paint()
 {
 	int stringWidth = font->getRenderWidth(label);
 	
@@ -521,15 +659,22 @@ void CLabel::paint()
 }
 
 //
-CText::CText()
+CCText::CCText(const int x, const int y, const int dx, const int dy)
 {
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
+	
 	font = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
 	mode = AUTO_WIDTH;
+	color = COL_MENUCONTENT;
+	useBG = false;
 	
 	cc_type = CC_TEXT;
 }
 
-void CText::paint()
+void CCText::paint()
 {
 	CTextBox textBox;
 	textBox.setPosition(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
@@ -537,18 +682,19 @@ void CText::paint()
 	textBox.disablePaintFrame();
 	textBox.setMode(mode);
 	textBox.setFontText(font);
+	textBox.setTextColor(color);
 
 	// caption
 	if(!Text.empty())
 	{
-		textBox.setText(Text.c_str());
+		textBox.setText(Text.c_str(), NULL, 0, 0, TOP_RIGHT, false, useBG);
 	}
 	
 	textBox.paint();
 }
 
 // grid
-CGrid::CGrid(const int x, const int y, const int dx, const int dy)
+CCGrid::CCGrid(const int x, const int y, const int dx, const int dy)
 {
 	cCBox.iX = x;
 	cCBox.iY = y;
@@ -558,14 +704,14 @@ CGrid::CGrid(const int x, const int y, const int dx, const int dy)
 	init();
 }
 
-CGrid::CGrid(CBox* position)
+CCGrid::CCGrid(CBox* position)
 {
 	cCBox = *position;
 
 	init();
 }
 
-void CGrid::init()
+void CCGrid::init()
 {
 	frameBuffer = CFrameBuffer::getInstance();
 
@@ -576,7 +722,7 @@ void CGrid::init()
 	cc_type = CC_GRID;
 }
 
-void CGrid::setPosition(const int x, const int y, const int dx, const int dy)
+void CCGrid::setPosition(const int x, const int y, const int dx, const int dy)
 {
 	dprintf(DEBUG_DEBUG, "CGrid::%s\n", __FUNCTION__);
 	
@@ -586,14 +732,14 @@ void CGrid::setPosition(const int x, const int y, const int dx, const int dy)
 	cCBox.iHeight = dy;
 }
 
-void CGrid::setPosition(CBox* position)
+void CCGrid::setPosition(CBox* position)
 {
 	dprintf(DEBUG_DEBUG, "CGrid::%s\n", __FUNCTION__);
 	
 	cCBox = *position;
 }
 
-void CGrid::paint()
+void CCGrid::paint()
 {
 	// hlines grid
 	for(int count = 0; count < cCBox.iHeight; count += inter_frame)
@@ -604,7 +750,7 @@ void CGrid::paint()
 		frameBuffer->paintVLine(cCBox.iX + count, cCBox.iY, cCBox.iY + cCBox.iHeight, rgb );
 }
 
-void CGrid::hide()
+void CCGrid::hide()
 {
 	frameBuffer->paintBackgroundBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
 	
@@ -612,7 +758,7 @@ void CGrid::hide()
 }
 
 // pig
-CPig::CPig(const int x, const int y, const int dx, const int dy)
+CCPig::CCPig(const int x, const int y, const int dx, const int dy)
 {
 	cCBox.iX = x;
 	cCBox.iY = y;
@@ -622,14 +768,14 @@ CPig::CPig(const int x, const int y, const int dx, const int dy)
 	init();
 }
 
-CPig::CPig(CBox* position)
+CCPig::CCPig(CBox* position)
 {
 	cCBox = *position;
 
 	init();
 }
 
-void CPig::init()
+void CCPig::init()
 {
 	frameBuffer = CFrameBuffer::getInstance();
 	
@@ -637,7 +783,7 @@ void CPig::init()
 	cc_type = CC_PIG;
 }
 
-void CPig::setPosition(const int x, const int y, const int dx, const int dy)
+void CCPig::setPosition(const int x, const int y, const int dx, const int dy)
 {
 	dprintf(DEBUG_DEBUG, "CPig::%s\n", __FUNCTION__);
 	
@@ -647,14 +793,14 @@ void CPig::setPosition(const int x, const int y, const int dx, const int dy)
 	cCBox.iHeight = dy;
 }
 
-void CPig::setPosition(CBox* position)
+void CCPig::setPosition(CBox* position)
 {
 	dprintf(DEBUG_DEBUG, "CPig::%s\n", __FUNCTION__);
 	
 	cCBox = *position;
 }
 
-void CPig::paint()
+void CCPig::paint()
 {
 	frameBuffer->paintBackgroundBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);	
 		
@@ -663,7 +809,7 @@ void CPig::paint()
 		videoDecoder->Pig(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);	
 }
 
-void CPig::hide()
+void CCPig::hide()
 {
 	if(videoDecoder)  
 		videoDecoder->Pig(-1, -1, -1, -1);
@@ -674,8 +820,13 @@ void CPig::hide()
 }
 
 // CCTime
-CCTime::CCTime()
+CCTime::CCTime(const int x, const int y, const int dx, const int dy)
 {
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
+	
 	font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE];
 	color = COL_MENUHEAD;
 	

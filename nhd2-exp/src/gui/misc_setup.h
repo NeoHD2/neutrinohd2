@@ -42,14 +42,14 @@ class CMiscNotifier : public CChangeObserver
 		bool changeNotify(const neutrino_locale_t, void *);
 };
 
-class CMiscSettings : public CMenuTarget, CChangeObserver
+class CMiscSettingsMenu : public CMenuTarget, CChangeObserver
 {
 	private:
 		void showMenu(void);
 		
 	public:
-		CMiscSettings();
-		~CMiscSettings();
+		CMiscSettingsMenu(){};
+		~CMiscSettingsMenu(){};
 		
 		int exec(CMenuTarget* parent, const std::string& actionKey);
 };

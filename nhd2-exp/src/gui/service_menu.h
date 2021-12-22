@@ -32,16 +32,18 @@
 #include <string>
 
 
-class CServiceSetup : public CMenuTarget
+class CServiceMenu : public CMenuTarget
 {
 	private:
 		void showMenu(void);
 		
 	public:
-		CServiceSetup();
-		~CServiceSetup();
+		CServiceMenu(){};
+		~CServiceMenu(){};
 		
 		int exec(CMenuTarget* parent, const std::string& actionKey);
 };
 
 #endif //__service__
+
+

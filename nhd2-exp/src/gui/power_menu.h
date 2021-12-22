@@ -38,8 +38,8 @@ class CPowerMenu : public CMenuTarget
 		void showMenu(void);
 		
 	public:
-		CPowerMenu();
-		~CPowerMenu();
+		CPowerMenu(){};
+		~CPowerMenu(){};
 		
 		int exec(CMenuTarget* parent, const std::string& actionKey);
 };

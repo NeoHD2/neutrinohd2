@@ -95,7 +95,7 @@
 
 // scripts
 #define MOVIEPLAYER_START_SCRIPT 	CONFIGDIR "/movieplayer.start" 
-#define MOVIEPLAYER_END_SCRIPT 		CONFIGDIR "/movieplayer.end"
+#define MOVIEPLAYER_END_SCRIPT 	CONFIGDIR "/movieplayer.end"
 
 // CMovieInfoViewer
 #define TIMEOSD_FONT 		SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME
@@ -122,11 +122,28 @@ CMoviePlayerGui::CMoviePlayerGui()
 	//
 	mplist = NULL;
 	item = NULL;
+	
+	moviescale = new CProgressBar(cFrameBoxInfo.iWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);
+	moviescale->reset();
+	runningPercent = 0;
+	background = NULL;
 }
 
 CMoviePlayerGui::~CMoviePlayerGui()
 {
 	playlist.clear();
+	
+	if (moviescale)
+	{
+		delete moviescale;
+		moviescale = NULL;
+	}
+	
+	if (background)
+	{
+		delete [] background; 
+		background = NULL;
+	}
 }
 
 void CMoviePlayerGui::cutNeutrino()
@@ -429,9 +446,6 @@ void CMoviePlayerGui::play(unsigned int pos)
 #else
 		playback->GetPosition((int64_t &)position, (int64_t &)duration);
 #endif
-
-		// Infoviewer
-		//showMovieInfo();//FIXME:
 		
 		//
 		if(playlist[selected].file.getType() == CFile::FILE_AUDIO)
@@ -439,6 +453,9 @@ void CMoviePlayerGui::play(unsigned int pos)
 			if (!playlist[selected].tfile.empty())
 				frameBuffer->loadBackgroundPic(playlist[selected].tfile);
 		}
+		
+		//
+		showMovieInfo();//FIXME:
 	}
 }
 
@@ -514,6 +531,9 @@ void CMoviePlayerGui::playNext()
 			if (!playlist[selected].tfile.empty())
 				frameBuffer->loadBackgroundPic(playlist[selected].tfile);
 		}
+		
+		//
+		showMovieInfo();//FIXME:
 	}
 }
 
@@ -734,6 +754,9 @@ void CMoviePlayerGui::PlayFile(void)
 	bookStartMenu.addItem(new CMenuForwarder(LOCALE_MOVIEBROWSER_BOOK_TYPE_BACKWARD));
 	bookStartMenu.addItem(new CMenuForwarder(LOCALE_MOVIEBROWSER_BOOK_MOVIESTART));
 	bookStartMenu.addItem(new CMenuForwarder(LOCALE_MOVIEBROWSER_BOOK_MOVIEEND));
+	
+	////FIXME:
+	//showMovieInfo();
 
 	// play loop
 	do {
@@ -839,7 +862,10 @@ void CMoviePlayerGui::PlayFile(void)
 		// timeosd
 		if (IsVisible()) 
 		{
-			showMovieInfo();
+			//showMovieInfo();
+			moviescale->paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, (short)(duration <= 1? 0 : (position / (duration / 100))), false);
+			
+			updateTime();
 		}
 
 		// start playing
@@ -933,11 +959,11 @@ void CMoviePlayerGui::PlayFile(void)
 				{
 					if (IsVisible()) 
 					{
-						showMovieInfo();//FIXME:
+						//showMovieInfo();//FIXME:
 					}
 					else 
 					{
-						showMovieInfo();//FIXME:
+						//showMovieInfo();//FIXME:
 					}
 				}
 			}
@@ -971,11 +997,11 @@ void CMoviePlayerGui::PlayFile(void)
 				{
 					if (IsVisible()) 
 					{
-						showMovieInfo();//FIXME:
+						//showMovieInfo();//FIXME:
 					}
 					else 
 					{
-						showMovieInfo();//FIXME:
+						//showMovieInfo();//FIXME:
 					}
 				}
 			}
@@ -1173,7 +1199,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		}
@@ -1205,7 +1231,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1221,7 +1247,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1237,7 +1263,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1252,7 +1278,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1267,7 +1293,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1282,7 +1308,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1297,7 +1323,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1312,7 +1338,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1339,7 +1365,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1354,7 +1380,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1372,7 +1398,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1390,7 +1416,7 @@ void CMoviePlayerGui::PlayFile(void)
 				if (!IsVisible()) 
 				{	
 					time_forced = true;
-					showMovieInfo();//FIXME:
+					//showMovieInfo();//FIXME:
 				}
 			}
 		} 
@@ -1749,7 +1775,7 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 {
 	//dprintf(DEBUG_NORMAL, "CMoviePlayerGui::showMovieInfo:\n");
 
-	int runningPercent = 0;
+	//unsigned int runningPercent = 0;
 	
 	// icons dimension
 	frameBuffer->getIconSize(NEUTRINO_ICON_16_9, &icon_w_aspect, &icon_h_aspect);
@@ -1761,11 +1787,6 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_YELLOW, &icon_yellow_w, &icon_yellow_h);
 	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_BLUE, &icon_blue_w, &icon_blue_h);
 	
-	// init progressbar
-	CProgressBar moviescale(cFrameBoxInfo.iWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);
-	
-	moviescale.reset();
-	
 	// shadow
 	if (g_settings.use_shadow)
 		frameBuffer->paintBoxRel(cFrameBoxInfo.iX - 1, cFrameBoxInfo.iY - 1, cFrameBoxInfo.iWidth + 2, cFrameBoxInfo.iHeight + 2, COL_MENUCONTENT_PLUS_6);
@@ -1775,7 +1796,14 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 		
 	// bottum bar
 	if (g_settings.infobar_buttonbar)
-		frameBuffer->paintBoxRel(cFrameBoxButton.iX, cFrameBoxButton.iY, cFrameBoxButton.iWidth, cFrameBoxButton.iHeight, COL_INFOBAR_SHADOW_PLUS_1, g_settings.use_shadow?NO_RADIUS : RADIUS_MID, g_settings.use_shadow? CORNER_NONE : CORNER_BOTTOM); 
+		frameBuffer->paintBoxRel(cFrameBoxButton.iX, cFrameBoxButton.iY, cFrameBoxButton.iWidth, cFrameBoxButton.iHeight, COL_INFOBAR_SHADOW_PLUS_1, g_settings.use_shadow?NO_RADIUS : RADIUS_MID, g_settings.use_shadow? CORNER_NONE : CORNER_BOTTOM);
+	else if(g_settings.infobar_buttonline)
+	{
+		CCHline hline(cFrameBoxButton.iX + BORDER_LEFT, cFrameBoxButton.iY, cFrameBoxButton.iWidth - BORDER_LEFT - BORDER_RIGHT, cFrameBoxButton.iHeight);
+		
+		hline.setColor(COL_INFOBAR_SHADOW_PLUS_1);
+		hline.paint();
+	}
 	
 	// show date/time
 	std::string datestr = getNowTimeStr("%d.%m.%Y %H:%M");
@@ -1892,6 +1920,16 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	
 	// Title	
 	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(InfoStartX, TitleHeight, InfoWidth - t_w, (char *)Title.c_str(), COL_INFOBAR, 0, true);
+	
+	//
+	int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight();
+	
+	background = new fb_pixel_t[t_w*t_h];
+	
+	if (background)
+	{
+		frameBuffer->saveScreen(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2, t_w, t_h, background);
+	}
 
 	// position/duration
 	time_t tDisplayTime = position/1000;
@@ -1911,16 +1949,40 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(InfoStartX, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight() + TitleHeight, InfoWidth, (char *)Info.c_str(), COL_INFOBAR, 0, true);
 	
 	// progressbar
+	if(Percent < 0)
+		Percent = 0;
+	
+	if(Percent > 100)
+		Percent = 100;
+		
 	runningPercent = Percent;
 	
-	if(Percent < 0)
-		runningPercent = 0;
+	moviescale->paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, runningPercent);
+}
+
+void CMoviePlayerGui::updateTime()
+{
+	int t_w = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth("00:00:00 / 00:00:00");
+	int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight();
 	
-	if(runningPercent > 100)
-		runningPercent = 100;
-	
-	//moviescale.setPosition(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, cFrameBoxInfo.iWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);
-	moviescale.paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, runningPercent);
+	if (background)
+	{
+		frameBuffer->restoreScreen(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2, t_w, t_h, background);
+	}
+
+	// position/duration
+	time_t tDisplayTime = position/1000;
+	time_t dDisplayTime = duration/1000;
+	char cDisplayTime[10];
+	char durationTime[11];
+	strftime(cDisplayTime, 11, "%T/", gmtime(&tDisplayTime));//FIXME
+	strftime(durationTime, 10, "%T", gmtime(&dDisplayTime));//FIXME
+
+	// diaplayTime
+	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight(), t_w/2, cDisplayTime, COL_INFOBAR);
+
+	// durationTime
+	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w/2, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight(), t_w/2 + 1, durationTime, COL_INFOBAR);
 }
 
 //

@@ -488,6 +488,7 @@ struct SNeutrinoSettings
 	int infobar_corner;
 	int infobar_radius;
 	int infobar_buttonbar;
+	int infobar_buttonline;
 	
 	//
 	int use_shadow;
@@ -582,6 +583,7 @@ const int PARENTALLOCK_PROMPT_ONSIGNAL       = 3;
 #define widest_number "2"
 #define ANNOUNCETIME (1 * 60)
 
+/*
 typedef struct {
 	//
 	unsigned char menu_Head_alpha;
@@ -702,5 +704,6 @@ typedef struct {
 	// icons dir
 	std::string icons_dir;
 }SKIN_SETTINGS;
+*/
 
 #endif

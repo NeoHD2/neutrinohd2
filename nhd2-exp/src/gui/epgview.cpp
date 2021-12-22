@@ -138,7 +138,8 @@ void reformatExtendedEvents(std::string strItem, std::string strLabel, bool bUse
 CEpgData::CEpgData()
 {
 	frameBuffer = CFrameBuffer::getInstance();
-	timescale = new CProgressBar(TIMESCALE_W, TIMESCALE_H);
+	//int pbx = cFrameBox.iX + BORDER_LEFT + widthl + 10 + ((cFrameBox.iWidth - TIMESCALE_W - 4 - widthr - widthl - 10 - 10 - 20)>>1);
+	timescale = new CProgressBar(/*pbx + 2, cFrameBox.iY + cFrameBox.iHeight - cFootBox.iHeight - cFollowScreeningBox.iHeight + (cFollowScreeningBox.iHeight - TIMESCALE_H)/2,*/ TIMESCALE_W, TIMESCALE_H);
 
 	epgBuffer.clear();
 

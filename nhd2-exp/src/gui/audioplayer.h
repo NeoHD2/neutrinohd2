@@ -114,6 +114,7 @@ class CAudioPlayerGui : public CMenuTarget
 		void GetMetaData(CAudiofile& File);
 		void updateMetaData();
 		void updateTimes(const bool force = false, bool paint = true);
+		fb_pixel_t* background;
 		
 		/**
 		* Appends the file information to the given string.

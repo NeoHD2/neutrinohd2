@@ -767,10 +767,13 @@ void CScanSetup::showScanService()
 	manualScan->addItem(new CMenuSeparator(LINE));
 		
 	// test signal
-	manualScan->addItem(new CMenuForwarder(LOCALE_SCANTS_TEST, true, NULL, scanTs, "test", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW) );
+	//manualScan->addItem(new CMenuForwarder(LOCALE_SCANTS_TEST, true, NULL, scanTs, "test", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW) );
 		
 	// scan
 	manualScan->addItem(new CMenuForwarder(LOCALE_SCANTS_STARTNOW, true, NULL, scanTs, "manual", RC_blue, NEUTRINO_ICON_BUTTON_BLUE) );
+	
+	// test
+	scansetup->addItem(new CMenuForwarder(LOCALE_SCANTS_TEST, true, NULL, scanTs, "test", CRCInput::convertDigitToKey(shortcut++)) );
 		
 	CMenuForwarder * manScan = new CMenuForwarder(LOCALE_SATSETUP_MANUAL_SCAN, (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, manualScan, "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW);
 	feModeNotifier->addItem(0, manScan);

@@ -931,6 +931,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.infobar_radius = configfile.getInt32("infobar_radius", NO_RADIUS);
 	g_settings.infobar_gradient = configfile.getInt32("infobar_gradient", NOGRADIENT);
 	g_settings.infobar_buttonbar = configfile.getBool("infobar_buttonbar", true);
+	g_settings.infobar_buttonline = configfile.getBool("infobar_buttonline", false);
 	
 	//
 	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
@@ -1383,6 +1384,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("infobar_corner", g_settings.infobar_corner);
 	configfile.setInt32("infobar_radius", g_settings.infobar_radius);
 	configfile.setBool("infobar_buttonbar", g_settings.infobar_buttonbar);
+	configfile.setBool("infobar_buttonline", g_settings.infobar_buttonline);
 
 	configfile.setString("tmdbkey", g_settings.tmdbkey);
 	configfile.setString("ytkey", g_settings.ytkey);
@@ -1639,7 +1641,12 @@ void CNeutrinoApp::unloadSkin()
 	
 	//
 	g_settings.use_shadow = true;
+	
+	//
+	g_settings.infobar_radius = 0;
+	g_settings.infobar_corner = CORNER_NONE;
 	g_settings.infobar_buttonbar = true;
+	g_settings.infobar_buttonline = false;
 	
 	delete themes;
 	themes = NULL;
@@ -1751,13 +1758,14 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		
 		// infobar
 		g_settings.infobar_gradient = skinConfig->getInt32("infobar_gradient", NOGRADIENT);
+		*/
 		g_settings.infobar_corner = skinConfig->getInt32("infobar_corner", CORNER_ALL);
 		g_settings.infobar_radius = skinConfig->getInt32("infobar_radius", RADIUS_MID);
-		*/
 		
 		//
 		//g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
 		g_settings.infobar_buttonbar = skinConfig->getBool("infobar_buttonbar", true);
+		g_settings.infobar_buttonline = skinConfig->getBool("infobar_buttonline", false);
 		g_settings.use_shadow = skinConfig->getBool("use_shadow", true);
 		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
@@ -1867,12 +1875,13 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	
 	//
 	skinConfig->setInt32("infobar_gradient", g_settings.infobar_gradient);
+	*/
 	skinConfig->setInt32("infobar_corner", g_settings.infobar_corner);
 	skinConfig->setInt32("infobar_radius", g_settings.infobar_radius);
-	*/
 	
 	//skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
 	skinConfig->setBool("infobar_buttonbar", g_settings.infobar_buttonbar);
+	skinConfig->setBool("infobar_buttonline", g_settings.infobar_buttonline);
 	skinConfig->setBool("use_shadow", g_settings.use_shadow);
 		
 	skinConfig->setString("font_file", g_settings.font_file);
@@ -3238,14 +3247,14 @@ int CNeutrinoApp::run(int argc, char **argv)
 		// misc settings
 		if(ret != RETURN_EXIT_ALL)
 		{
-			CMiscSettings miscSettings;
+			CMiscSettingsMenu miscSettings;
 			miscSettings.exec(NULL, "");
 		}
 		
 		// service settings
 		if(ret != RETURN_EXIT_ALL)
 		{
-			CServiceSetup service;
+			CServiceMenu service;
 			service.exec(NULL, "");
 		}
 
