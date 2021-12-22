@@ -210,9 +210,6 @@ void CTSBrowser::openFileBrowser()
 			// filter them
 			MI_MOVIE_INFO movieInfo;
 			m_movieInfo.clearMovieInfo(&movieInfo); // refresh structure
-
-			//
-			m_movieInfo.clearMovieInfo(&movieInfo); // refresh structure
 					
 			movieInfo.file.Name = files->Name;
 					

@@ -884,7 +884,8 @@ void CMoviePlayerGui::PlayFile(void)
 #else
 			if( playback->GetPosition((int64_t &)position, (int64_t &)duration) )
 #endif			
-			{					
+			{
+				// FIXME:					
 				if(duration > 100)
 					file_prozent = (unsigned char) (position / (duration / 100));
 
