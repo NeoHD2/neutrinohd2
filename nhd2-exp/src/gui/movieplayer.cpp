@@ -453,9 +453,6 @@ void CMoviePlayerGui::play(unsigned int pos)
 			if (!playlist[selected].tfile.empty())
 				frameBuffer->loadBackgroundPic(playlist[selected].tfile);
 		}
-		
-		//
-		showMovieInfo();//FIXME:
 	}
 }
 
@@ -531,9 +528,6 @@ void CMoviePlayerGui::playNext()
 			if (!playlist[selected].tfile.empty())
 				frameBuffer->loadBackgroundPic(playlist[selected].tfile);
 		}
-		
-		//
-		showMovieInfo();//FIXME:
 	}
 }
 
@@ -877,6 +871,9 @@ void CMoviePlayerGui::PlayFile(void)
 			
 			//
 			play(selected);
+			
+			//
+			showMovieInfo();
 		}
 
 		//get position/duration/speed/play next/stop
@@ -1733,7 +1730,7 @@ void CMoviePlayerGui::showMovieInfo()
 {
 	visible = true;
 
-	show(playlist[selected].epgTitle, (playlist[selected].epgInfo1.empty())? playlist[selected].epgInfo2 : playlist[selected].epgInfo1, (short)(duration <= 1? 0 : (position / (duration / 100))), ac3state, speed, playstate, (playlist[selected].ytid.empty())? true : false, m_loop); //FIXME:
+	show(playlist[selected].epgTitle, (playlist[selected].epgInfo1.empty())? playlist[selected].epgInfo2 : playlist[selected].epgInfo1, (short)(duration <= 1? 1 : (position / (duration / 100))), ac3state, speed, playstate, (playlist[selected].ytid.empty())? true : false, m_loop); //FIXME:
 
 	startMovieInfoViewer();
 }
