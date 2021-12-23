@@ -1648,6 +1648,9 @@ void CNeutrinoApp::unloadSkin()
 	g_settings.infobar_buttonbar = true;
 	g_settings.infobar_buttonline = false;
 	
+	g_settings.Head_gradient = LIGHT2DARK;
+	g_settings.Foot_gradient = DARK2LIGHT;
+	
 	delete themes;
 	themes = NULL;
 }
@@ -1743,7 +1746,6 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.menu_FootInfo_Text_green = skinConfig->getInt32( "menu_FootInfo_Text_green", 85);
 		g_settings.menu_FootInfo_Text_blue = skinConfig->getInt32( "menu_FootInfo_Text_blue", 85);
 		
-		/*
 		// head
 		g_settings.Head_gradient = skinConfig->getInt32("Head_gradient", DARK2LIGHT2DARK);
 		g_settings.Head_corner = skinConfig->getInt32("Head_corner", CORNER_TOP);
@@ -1758,7 +1760,6 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		
 		// infobar
 		g_settings.infobar_gradient = skinConfig->getInt32("infobar_gradient", NOGRADIENT);
-		*/
 		g_settings.infobar_corner = skinConfig->getInt32("infobar_corner", CORNER_ALL);
 		g_settings.infobar_radius = skinConfig->getInt32("infobar_radius", RADIUS_MID);
 		
@@ -1860,7 +1861,6 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	skinConfig->setInt32( "menu_FootInfo_Text_green", g_settings.menu_FootInfo_Text_green );
 	skinConfig->setInt32( "menu_FootInfo_Text_blue", g_settings.menu_FootInfo_Text_blue );
 	
-	/*
 	//
 	skinConfig->setInt32("Head_gradient", g_settings.Head_gradient);
 	skinConfig->setInt32("Head_corner", g_settings.Head_corner);
@@ -1875,13 +1875,12 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	
 	//
 	skinConfig->setInt32("infobar_gradient", g_settings.infobar_gradient);
-	*/
 	skinConfig->setInt32("infobar_corner", g_settings.infobar_corner);
 	skinConfig->setInt32("infobar_radius", g_settings.infobar_radius);
-	
-	//skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
 	skinConfig->setBool("infobar_buttonbar", g_settings.infobar_buttonbar);
 	skinConfig->setBool("infobar_buttonline", g_settings.infobar_buttonline);
+	
+	//skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
 	skinConfig->setBool("use_shadow", g_settings.use_shadow);
 		
 	skinConfig->setString("font_file", g_settings.font_file);

@@ -2212,7 +2212,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	headColor = COL_MENUHEAD_PLUS_0;
 	headRadius = RADIUS_MID;
 	headCorner = CORNER_TOP;
-	headGradient = LIGHT2DARK;
+	headGradient = g_settings.Head_gradient;
 
 	//
 	inFocus = true;
@@ -2234,7 +2234,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	footColor = COL_MENUFOOT_PLUS_0;
 	footRadius = RADIUS_MID;
 	footCorner = CORNER_BOTTOM;
-	footGradient = DARK2LIGHT;
+	footGradient = g_settings.Foot_gradient;;
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
@@ -2327,13 +2327,13 @@ ClistBox::ClistBox(CBox* position)
 	headColor = COL_MENUHEAD_PLUS_0;
 	headRadius = RADIUS_MID;
 	headCorner = CORNER_TOP;
-	headGradient = LIGHT2DARK;
+	headGradient = g_settings.Head_gradient;;
 
 	// foot
 	footColor = COL_MENUFOOT_PLUS_0;
 	footRadius = RADIUS_MID;
 	footCorner = CORNER_BOTTOM;
-	footGradient = DARK2LIGHT;
+	footGradient = g_settings.Foot_gradient;
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;

@@ -102,7 +102,7 @@ void COSDSettings::showMenu(void)
 	osdSettings->addItem( new CMenuForwarder(LOCALE_SKIN_SKIN, true, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 	
 	// skin sttings
-	osdSettings->addItem( new CMenuForwarder("Skin Settings", true, NULL, new CSkinSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
+	//osdSettings->addItem( new CMenuForwarder("Skin Settings", true, NULL, new CSkinSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 
 	// Themes
 	osdSettings->addItem( new CMenuForwarder(LOCALE_COLORMENU_THEMESELECT, true, NULL, new CThemes(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
