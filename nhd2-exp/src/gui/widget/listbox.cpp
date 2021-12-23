@@ -121,10 +121,7 @@ void CMenuItem::setMarked(const bool Marked)
 // CMenuOptionChooser
 CMenuOptionChooser::CMenuOptionChooser(const neutrino_locale_t OptionName, int *const OptionValue, const struct keyval* const Options, const unsigned Number_Of_Options, const bool Active, CChangeObserver* const Observ, const neutrino_msg_t DirectKey, const std::string& IconName, bool Pulldown)
 {
-	int iconName_w = 0;
-	int iconName_h = 0;
-	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &iconName_w, &iconName_h);
-	height = std::max(iconName_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 3;
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;	
 	
 	optionNameString = g_Locale->getText(OptionName);
 	optionName = OptionName;
@@ -140,18 +137,12 @@ CMenuOptionChooser::CMenuOptionChooser(const neutrino_locale_t OptionName, int *
 	
 	pulldown = Pulldown;
 
-	//if (itemHint.empty())
-	//	itemHint = optionNameString;
-
 	itemType = ITEM_TYPE_OPTION_CHOOSER;
 }
 
 CMenuOptionChooser::CMenuOptionChooser(const char * const OptionName, int* const OptionValue, const struct keyval *const Options, const unsigned Number_Of_Options, const bool Active, CChangeObserver* const Observ, const neutrino_msg_t DirectKey, const std::string & IconName, bool Pulldown)
 {
-	int iconName_w = 0;
-	int iconName_h = 0;
-	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &iconName_w, &iconName_h);
-	height = std::max(iconName_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 3;
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
 
 	optionNameString = OptionName;
 	optionName = NONEXISTANT_LOCALE;
@@ -165,9 +156,6 @@ CMenuOptionChooser::CMenuOptionChooser(const char * const OptionName, int* const
 	iconName = IconName;
 	can_arrow = true;
 	pulldown = Pulldown;
-
-	//if (itemHint.empty())
-	//	itemHint = optionNameString;
 
 	itemType = ITEM_TYPE_OPTION_CHOOSER;
 }
@@ -322,15 +310,15 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 	// paint icon (left)
 	int icon_w = 0;
 	int icon_h = 0;
-
-	// icons 
-	//frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
-		
+	
 	if (!(iconName.empty()))
 	{
 		frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
 		
-		frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + ((height - icon_h)/2) );
+		if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4)
+			icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+		
+		frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);	
 	}
 	else if (CRCInput::isNumeric(directKey))
 	{
@@ -344,10 +332,13 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 		{
 			frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
 			
-			frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y+ ((height - icon_h)/2) );
+			if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4)
+				icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+			
+			frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);
 		}
 		else
-			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT, y+ height, height, CRCInput::getKeyName(directKey), color, height);
+			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT, y + height, height, CRCInput::getKeyName(directKey), color, height);
         }
 
 	int stringwidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_option, true); // UTF-8
@@ -377,10 +368,7 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 //CMenuOptionNumberChooser
 CMenuOptionNumberChooser::CMenuOptionNumberChooser(const neutrino_locale_t Name, int * const OptionValue, const bool Active, const int min_value, const int max_value, CChangeObserver * const Observ, const int print_offset, const int special_value, const neutrino_locale_t special_value_name, const char * non_localized_name)
 {
-	int iconName_w = 0;
-	int iconName_h = 0;
-	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &iconName_w, &iconName_h);
-	height = std::max(iconName_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 3;
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
 
 	nameString  = g_Locale->getText(Name);
 	name = Name;
@@ -400,18 +388,12 @@ CMenuOptionNumberChooser::CMenuOptionNumberChooser(const neutrino_locale_t Name,
 	can_arrow = true;
 	observ = Observ;
 
-	//if (itemHint.empty())
-	//	itemHint = nameString;
-
 	itemType = ITEM_TYPE_OPTION_NUMBER_CHOOSER;
 }
 
 CMenuOptionNumberChooser::CMenuOptionNumberChooser(const char * const Name, int * const OptionValue, const bool Active, const int min_value, const int max_value, CChangeObserver * const Observ, const int print_offset, const int special_value, const neutrino_locale_t special_value_name, const char * non_localized_name)
 {
-	int iconName_w = 0;
-	int iconName_h = 0;
-	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &iconName_w, &iconName_h);
-	height = std::max(iconName_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 3;
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
 
 	nameString  = Name;
 	name = NONEXISTANT_LOCALE;
@@ -430,9 +412,6 @@ CMenuOptionNumberChooser::CMenuOptionNumberChooser(const char * const Name, int 
 	optionString = non_localized_name;
 	can_arrow = true;
 	observ = Observ;
-
-	//if (itemHint.empty())
-	//	itemHint = nameString;
 
 	itemType = ITEM_TYPE_OPTION_NUMBER_CHOOSER;
 }
@@ -544,10 +523,7 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 // CMenuOptionStringChooser
 CMenuOptionStringChooser::CMenuOptionStringChooser(const neutrino_locale_t Name, char * OptionValue, bool Active, CChangeObserver* Observ, const neutrino_msg_t DirectKey, const std::string & IconName, bool Pulldown)
 {
-	int iconName_w = 0;
-	int iconName_h = 0;
-	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &iconName_w, &iconName_h);
-	height = std::max(iconName_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 3;
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;	
 
 	nameString = g_Locale->getText(Name);
 	name = Name;
@@ -561,18 +537,12 @@ CMenuOptionStringChooser::CMenuOptionStringChooser(const neutrino_locale_t Name,
 	
 	pulldown = Pulldown;
 
-	//if (itemHint.empty())
-	//	itemHint = nameString;
-
 	itemType = ITEM_TYPE_OPTION_STRING_CHOOSER;
 }
 
 CMenuOptionStringChooser::CMenuOptionStringChooser(const char * const Name, char * OptionValue, bool Active, CChangeObserver* Observ, const neutrino_msg_t DirectKey, const std::string & IconName, bool Pulldown)
 {
-	int iconName_w = 0;
-	int iconName_h = 0;
-	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &iconName_w, &iconName_h);
-	height = std::max(iconName_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 3;
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
 
 	nameString = Name;
 	name = NONEXISTANT_LOCALE;
@@ -585,9 +555,6 @@ CMenuOptionStringChooser::CMenuOptionStringChooser(const char * const Name, char
 	can_arrow = true;
 	
 	pulldown = Pulldown;
-
-	//if (itemHint.empty())
-	//	itemHint = nameString;
 
 	itemType = ITEM_TYPE_OPTION_STRING_CHOOSER;
 }
@@ -710,15 +677,15 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
 	// paint icon
 	int icon_w = 0;
 	int icon_h = 0;
-
-	// icons 
-	//frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
 		
 	if (!(iconName.empty()))
 	{
 		frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
 		
-		frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + ((height - icon_h)/2) );	
+		if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4)
+			icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+		
+		frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);	
 	}
 	else if (CRCInput::isNumeric(directKey))
 	{
@@ -732,7 +699,10 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
 		{
 			frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
 			
-			frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + ((height - icon_h)/2) );
+			if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4)
+				icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+		
+			frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);	
 		}
 		else
 			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT, y + height, height, CRCInput::getKeyName(directKey), color, height);
@@ -773,16 +743,13 @@ CMenuOptionLanguageChooser::CMenuOptionLanguageChooser(char *Name, CChangeObserv
 	int iconName_w = 0;
 	int iconName_h = 0;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &iconName_w, &iconName_h);
-	height = std::max(iconName_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 3;
+	height = std::max(iconName_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 4;
 	
 	optionValue = Name;
 	observ = Observ;
 
 	directKey = RC_nokey;
 	iconName = IconName ? IconName : "";
-
-	//if (itemHint.empty())
-	//	itemHint = Name;
 
 	itemType = ITEM_TYPE_OPTION_LANGUAGE_CHOOSER;
 }
@@ -1010,9 +977,6 @@ CMenuForwarder::CMenuForwarder(const neutrino_locale_t Text, const bool Active, 
 	itemType = ITEM_TYPE_FORWARDER;
 	itemName = g_Locale->getText(Text);
 
-	//if (itemHint.empty())
-	//	itemHint = itemName;
-
 	optionValueString = "";
 }
 
@@ -1035,9 +999,6 @@ CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const
 	itemType = ITEM_TYPE_FORWARDER;
 	itemName = Text? Text : "";
 
-	//if (itemHint.empty())
-	//	itemHint = itemName;
-
 	optionValueString = "";
 }
 
@@ -1050,12 +1011,15 @@ int CMenuForwarder::getHeight(void) const
 	if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_EXTENDED))
 	{
 		ih = ITEM_ICON_H_MINI/2;
-		
+		/*
 		if (!iconName.empty())
 		{
 			CFrameBuffer::getInstance()->getIconSize(iconName.c_str(), &iw, &ih);
+			
+			if (ih >= ITEM_ICON_H_MINI/2)
+				ih = ITEM_ICON_H_MINI/2;
 		}
-		
+		*/
 	}
 	else if(widgetType == WIDGET_TYPE_CLASSIC)
 	{
@@ -1218,7 +1182,10 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 				
 				frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
 				
-				frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + (height - icon_h)/2, 0, true, icon_w, icon_h);
+				if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
+					icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+				
+				frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);
 			}
 			else if (CRCInput::isNumeric(directKey))
 			{
@@ -1234,8 +1201,11 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 					icon_h = ITEM_ICON_H_MINI/2;
 					
 					frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
+					
+					if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
+						icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
 			
-					frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + (height - icon_h)/2, 0, true, icon_w, icon_h);
+					frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);
 				}
 				else
 					g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT, y + height, height, CRCInput::getKeyName(directKey), color, height);
@@ -1336,9 +1306,6 @@ ClistBoxItem::ClistBoxItem(const neutrino_locale_t Text, const bool Active, cons
 	itemIcon = ItemIcon? ItemIcon : "";
 	itemName = g_Locale->getText(Text);
 
-	//if (itemHint.empty())
-	//	itemHint = itemName;
-
 	itemType = ITEM_TYPE_LISTBOXITEM;
 }
 
@@ -1358,9 +1325,6 @@ ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const cha
 	iconName = IconName ? IconName : "";
 	itemIcon = ItemIcon? ItemIcon : "";
 	itemName = Text? Text : "";
-
-	//if (itemHint.empty())
-	//	itemHint = itemName;
 
 	itemType = ITEM_TYPE_LISTBOXITEM;
 }
@@ -1388,8 +1352,8 @@ int ClistBoxItem::getHeight(void) const
 	{
 		ih = ITEM_ICON_H_MINI/2;
 		
-		if (!iconName.empty())
-			CFrameBuffer::getInstance()->getIconSize(iconName.c_str(), &iw, &ih);
+		//if (!iconName.empty())
+		//	CFrameBuffer::getInstance()->getIconSize(iconName.c_str(), &iw, &ih);
 			
 		if(nLinesItem)
 		{
@@ -1660,8 +1624,11 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				
 				//get icon size
 				frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
+				
+				if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
+					icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
 		
-				frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y + (height - icon_h)/2, 0, true, icon_w, icon_h);
+				frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);
 			}
 		}
 
@@ -1875,7 +1842,7 @@ int CPluginItem::getHeight(void) const
 		}
 	}
 
-	return std::max(ih, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 6;
+	return std::max(ih, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 4;
 }
 
 int CPluginItem::getWidth(void) const
