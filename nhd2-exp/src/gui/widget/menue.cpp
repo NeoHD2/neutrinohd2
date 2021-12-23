@@ -432,7 +432,7 @@ void CMenuWidget::paintHead()
 		if(i_h >= hheight)
 		{
 			i_h = hheight - 2;
-			i_w = i_h*1.67;
+			//i_w = i_h*1.67;
 		}
 				
 		frameBuffer->paintIcon(iconfile, x + BORDER_LEFT, y + (hheight - i_h)/2, 0, true, i_w, i_h);
@@ -449,10 +449,17 @@ void CMenuWidget::paintHead()
 				if (hbutton_labels[i].button != NULL)
 				{
 					frameBuffer->getIconSize(hbutton_labels[i].button, &iw[i], &ih[i]);
+					
+					// scale icon
+					if(ih[i] >= hheight)
+					{
+						ih[i] = hheight - 2;
+					}
+			
 					xstartPos -= (iw[i] + ICON_TO_ICON_OFFSET);
 					buttonWidth += iw[i];
 
-					CFrameBuffer::getInstance()->paintIcon(hbutton_labels[i].button, xstartPos, y + (hheight - ih[i])/2);
+					CFrameBuffer::getInstance()->paintIcon(hbutton_labels[i].button, xstartPos, y + (hheight - ih[i])/2, 0, true, iw[i], ih[i]);
 				}
 			}
 		}
@@ -495,7 +502,7 @@ void CMenuWidget::paintHead()
 		if(i_h >= hheight)
 		{
 			i_h = hheight - 2;
-			i_w = i_h*1.67;
+			//i_w = i_h*1.67;
 		}
 				
 		frameBuffer->paintIcon(iconfile, x + BORDER_LEFT, y + (hheight - i_h)/2, 0, true, i_w, i_h);
@@ -512,10 +519,17 @@ void CMenuWidget::paintHead()
 				if (hbutton_labels[i].button != NULL)
 				{
 					frameBuffer->getIconSize(hbutton_labels[i].button, &iw[i], &ih[i]);
+					
+					// scale icon
+					if(ih[i] >= hheight)
+					{
+						ih[i] = hheight - 2;
+					}
+					
 					xstartPos -= (iw[i] + ICON_TO_ICON_OFFSET);
 					buttonWidth += iw[i];
 
-					CFrameBuffer::getInstance()->paintIcon(hbutton_labels[i].button, xstartPos, y + (hheight - ih[i])/2);
+					CFrameBuffer::getInstance()->paintIcon(hbutton_labels[i].button, xstartPos, y + (hheight - ih[i])/2, 0, true, iw[i], ih[i]);
 				}
 			}
 		}
@@ -569,6 +583,12 @@ void CMenuWidget::paintFoot()
 						int ih = 0;
 
 						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw, &ih);
+						
+						if(ih >= fheight)
+						{
+							ih = fheight - 2;
+						}
+				
 						int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
 
 						if(fbutton_labels[i].localename != NULL)
@@ -576,7 +596,7 @@ void CMenuWidget::paintFoot()
 						else
 							l_option = g_Locale->getText(fbutton_labels[i].locale);
 		
-						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - fheight + (fheight - ih)/2);
+						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - fheight + (fheight - ih)/2, 0, true, iw, ih);
 
 						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, y + height - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
 				}
@@ -608,6 +628,12 @@ void CMenuWidget::paintFoot()
 						int ih = 0;
 
 						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw, &ih);
+						
+						if(ih >= fheight)
+						{
+							ih = fheight - 2;
+						}
+						
 						int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
 
 						if(fbutton_labels[i].localename != NULL)
@@ -615,7 +641,7 @@ void CMenuWidget::paintFoot()
 						else
 							l_option = g_Locale->getText(fbutton_labels[i].locale);
 		
-						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
+						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2, 0, true, iw, ih);
 
 						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, y + height - cFrameFootInfoHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
 				}

@@ -767,7 +767,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
         //-------------------------------------------
         // this is as the current neutrino usermen
         const char * usermenu_default[SNeutrinoSettings::BUTTON_MAX] = {
-                "1, 2, 3, 4",   	// BLUE
+                "1, 2, 3",   			// BLUE
 #if defined (ENABLE_FUNCTIONKEYS)
 		"0",				// F1
 		"0",				// F2

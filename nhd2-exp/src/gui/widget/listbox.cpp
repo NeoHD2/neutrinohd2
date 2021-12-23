@@ -2803,7 +2803,7 @@ void ClistBox::paintHead()
 			if(i_h >= hheight)
 			{
 				i_h = hheight - 2;
-				i_w = i_h*1.67;
+				//i_w = i_h*1.67;
 			}
 
 			CFrameBuffer::getInstance()->paintIcon(iconfile, itemBox.iX + BORDER_LEFT, itemBox.iY + (hheight - i_h)/2, 0, true, i_w, i_h);
@@ -2820,11 +2820,16 @@ void ClistBox::paintHead()
 					if (hbutton_labels[i].button != NULL)
 					{
 						frameBuffer->getIconSize(hbutton_labels[i].button, &iw[i], &ih[i]);
+						
+						if(ih[i] >= hheight)
+						{
+							ih[i] = hheight - 2;
+						}
 
 						xstartPos -= (iw[i] + ICON_TO_ICON_OFFSET);
 						buttonWidth += iw[i];
 
-						CFrameBuffer::getInstance()->paintIcon(hbutton_labels[i].button, xstartPos, itemBox.iY + (hheight - ih[i])/2);
+						CFrameBuffer::getInstance()->paintIcon(hbutton_labels[i].button, xstartPos, itemBox.iY + (hheight - ih[i])/2, 0, true, iw[i], ih[i]);
 					}
 				}
 			}
@@ -2865,7 +2870,7 @@ void ClistBox::paintHead()
 			if(i_h >= hheight)
 			{
 				i_h = hheight - 2;
-				i_w = i_h*1.67;
+				//i_w = i_h*1.67;
 			}
 
 			CFrameBuffer::getInstance()->paintIcon(iconfile, itemBox.iX + BORDER_LEFT, itemBox.iY + (hheight - i_h)/2, 0, true, i_w, i_h);
@@ -2882,10 +2887,16 @@ void ClistBox::paintHead()
 					if (hbutton_labels[i].button != NULL)
 					{
 						frameBuffer->getIconSize(hbutton_labels[i].button, &iw[i], &ih[i]);
+						
+						if(ih[i] >= hheight)
+						{
+							ih[i] = hheight - 2;
+						}
+					
 						xstartPos -= (iw[i] + ICON_TO_ICON_OFFSET);
 						buttonWidth += iw[i];
 
-						CFrameBuffer::getInstance()->paintIcon(hbutton_labels[i].button, xstartPos, itemBox.iY + (hheight - ih[i])/2);
+						CFrameBuffer::getInstance()->paintIcon(hbutton_labels[i].button, xstartPos, itemBox.iY + (hheight - ih[i])/2, 0, true, iw[i], ih[i]);
 					}
 				}
 			}
@@ -2942,6 +2953,12 @@ void ClistBox::paintFoot()
 						int ih = 0;
 
 						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw, &ih);
+						
+						if(ih >= fheight)
+						{
+							ih = fheight - 2;
+						}
+						
 						int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
 
 						if(fbutton_labels[i].localename != NULL)
@@ -2949,7 +2966,7 @@ void ClistBox::paintFoot()
 						else
 							l_option = g_Locale->getText(fbutton_labels[i].locale);
 		
-						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + (fheight - ih)/2);
+						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + (fheight - ih)/2, 0, true, iw, ih);
 
 						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
 					}
@@ -2975,6 +2992,12 @@ void ClistBox::paintFoot()
 					int ih = 0;
 
 					CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw, &ih);
+					
+					if(ih >= fheight)
+					{
+						ih = fheight - 2;
+					}
+						
 					int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
 
 					if(fbutton_labels[i].localename != NULL)
@@ -2982,7 +3005,7 @@ void ClistBox::paintFoot()
 					else
 						l_option = g_Locale->getText(fbutton_labels[i].locale);
 		
-					CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
+					CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + (fheight - ih)/2, 0, true, iw, ih);
 
 					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
 				}

@@ -315,6 +315,8 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 				{
 					selected = -1;
 					handled = true;
+					//FIXME: TEST
+					exit_pressed = true;
 
 					break;
 				}
