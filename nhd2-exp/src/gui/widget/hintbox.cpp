@@ -124,7 +124,7 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 	m_cBoxWindow = new CWindow(&cFrameBox);
 	m_cBoxWindow->enableSaveScreen();
 
-	if (g_settings.use_shadow)
+	if (g_settings.menu_shadow)
 		m_cBoxWindow->enableShadow();
 	else
 	{
@@ -214,7 +214,7 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	// Box
 	m_cBoxWindow = new CWindow(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
 	m_cBoxWindow->enableSaveScreen();
-	if (g_settings.use_shadow)
+	if (g_settings.menu_shadow)
 		m_cBoxWindow->enableShadow();
 	else
 	{
@@ -256,7 +256,7 @@ void CHintBox::refresh(void)
 	cFrameBoxTitle.iWidth = cFrameBox.iWidth - 2;
 
 	CHeaders headers(cFrameBoxTitle, caption.c_str(), iconfile.c_str());
-	if (g_settings.use_shadow)
+	if (g_settings.menu_shadow)
 	{
 		headers.setCorner(CORNER_NONE);
 		headers.setRadius(NO_RADIUS);

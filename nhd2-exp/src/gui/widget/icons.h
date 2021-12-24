@@ -258,6 +258,8 @@
 #define NEUTRINO_ICON_MENUITEM_NOPREVIEW			"hint_default"
 #define NEUTRINO_ICON_MENUITEM_VTXT				"hint_xmltv"
 
+#define NEUTRINO_ICON_MENUITEM_TVRADIO_SWITCH			"hint_tvradio_switch"
+
 // misc
 #define DUMMY_ICON						"dummy"
 

@@ -332,11 +332,11 @@ void CInfoViewer::showRecordIcon(const bool show)
 			if(!autoshift && !shift_timer) 
 			{
 				// shadow
-				if (g_settings.use_shadow)
+				if (g_settings.infobar_shadow)
 					frameBuffer->paintBoxRel(BoxStartX + BORDER_LEFT + icon_w_rec + ICON_OFFSET - 1, BoxStartY - 30 - 1, REC_INFOBOX_WIDTH + 2, REC_INFOBOX_HEIGHT + 2, COL_MENUCONTENT_PLUS_6);
 				
 				// rec info box
-				frameBuffer->paintBoxRel(BoxStartX + BORDER_LEFT + icon_w_rec + ICON_OFFSET, BoxStartY - 30, REC_INFOBOX_WIDTH, REC_INFOBOX_HEIGHT, COL_INFOBAR_PLUS_0, g_settings.use_shadow? NO_RADIUS : RADIUS_MID, g_settings.use_shadow? CORNER_NONE : CORNER_ALL);
+				frameBuffer->paintBoxRel(BoxStartX + BORDER_LEFT + icon_w_rec + ICON_OFFSET, BoxStartY - 30, REC_INFOBOX_WIDTH, REC_INFOBOX_HEIGHT, COL_INFOBAR_PLUS_0, g_settings.infobar_shadow? NO_RADIUS : RADIUS_MID, g_settings.infobar_shadow? CORNER_NONE : CORNER_ALL);
 
 				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString (BoxStartX + BORDER_LEFT + icon_w_rec + ICON_OFFSET + BORDER_LEFT, BoxStartY - 8, REC_INFOBOX_WIDTH, ext_channel_name.c_str(), COL_INFOBAR, 0, true);
 			} 
@@ -373,11 +373,11 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 	}
 	
 	// shadow
-	if (g_settings.use_shadow)
+	if (g_settings.infobar_shadow)
 		frameBuffer->paintBoxRel(BoxStartX - 1, BoxStartY - 1, BoxWidth + 2, BoxHeight + buttonBarHeight + 2, COL_MENUCONTENT_PLUS_6);
 	
 	// box
-	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight + buttonBarHeight, COL_INFOBAR_PLUS_0, g_settings.use_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.use_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient);
+	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight + buttonBarHeight, COL_INFOBAR_PLUS_0, g_settings.infobar_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.infobar_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient);
 
 	//time
 	paintTime(BoxEndX, ChanNameY, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]);
@@ -467,7 +467,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 		
 	// botton bar
 	if (g_settings.infobar_buttonbar)
-		frameBuffer->paintBoxRel(buttonBarStartX, buttonBarStartY, BoxWidth, buttonBarHeight, COL_INFOBAR_SHADOW_PLUS_1, g_settings.use_shadow? NO_RADIUS : RADIUS_MID, g_settings.use_shadow? CORNER_NONE : CORNER_BOTTOM);
+		frameBuffer->paintBoxRel(buttonBarStartX, buttonBarStartY, BoxWidth, buttonBarHeight, COL_INFOBAR_SHADOW_PLUS_1, g_settings.infobar_shadow? NO_RADIUS : RADIUS_MID, g_settings.infobar_shadow? CORNER_NONE : CORNER_BOTTOM);
 	else if(g_settings.infobar_buttonline)
 	{
 		CCHline hline(buttonBarStartX + BORDER_LEFT, buttonBarStartY, BoxWidth - BORDER_LEFT - BORDER_RIGHT, buttonBarHeight);
@@ -1177,10 +1177,10 @@ void CInfoViewer::showRadiotext()
 					sprintf(stext[0], g_Radiotext->RT_PTY == 0 ? "%s %s%s" : "%s (%s)%s", tr("Radiotext"), g_Radiotext->RT_PTY == 0 ? g_Radiotext->RDS_PTYN : g_Radiotext->ptynr2string(g_Radiotext->RT_PTY), ":");
 					
 					// shadow
-					if (g_settings.use_shadow)
+					if (g_settings.infobar_shadow)
 						frameBuffer->paintBoxRel(rt_x, rt_y, rt_dx, rt_dy, COL_MENUCONTENT_PLUS_6, NO_RADIUS, CORNER_NONE);
 
-					frameBuffer->paintBoxRel(rt_x + 1, rt_y + 1, rt_dx - 2, rt_dy - 2, COL_INFOBAR_PLUS_0, g_settings.use_shadow? NO_RADIUS : RADIUS_MID, g_settings.use_shadow? CORNER_NONE : CORNER_ALL);
+					frameBuffer->paintBoxRel(rt_x + 1, rt_y + 1, rt_dx - 2, rt_dy - 2, COL_INFOBAR_PLUS_0, g_settings.infobar_shadow? NO_RADIUS : RADIUS_MID, g_settings.infobar_shadow? CORNER_NONE : CORNER_ALL);
 					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(rt_x + 10, rt_y + 30, rt_dx - 20, stext[0], COL_INFOBAR, 0, RTisIsUTF); // UTF-8
 				}
 				yoff = 17;
@@ -1191,10 +1191,10 @@ void CInfoViewer::showRadiotext()
 			if (lines) 
 			{
 				// shadow
-				if (g_settings.use_shadow)
+				if (g_settings.infobar_shadow)
 					frameBuffer->paintBoxRel(rt_x, rt_y + rt_dy, rt_dx, 7 + rt_dy* g_Radiotext->S_RtOsdRows, COL_MENUCONTENT_PLUS_6, NO_RADIUS, CORNER_NONE);
 
-				frameBuffer->paintBoxRel(rt_x + 1, rt_y + rt_dy + 1, rt_dx - 2, 7 + rt_dy* g_Radiotext->S_RtOsdRows - 2, COL_INFOBAR_PLUS_0, g_settings.use_shadow? NO_RADIUS : RADIUS_MID, g_settings.use_shadow? CORNER_NONE : CORNER_ALL);
+				frameBuffer->paintBoxRel(rt_x + 1, rt_y + rt_dy + 1, rt_dx - 2, 7 + rt_dy* g_Radiotext->S_RtOsdRows - 2, COL_INFOBAR_PLUS_0, g_settings.infobar_shadow? NO_RADIUS : RADIUS_MID, g_settings.infobar_shadow? CORNER_NONE : CORNER_ALL);
 
 				// RT-Text roundloop
 				int ind = (g_Radiotext->RT_Index == 0) ? g_Radiotext->S_RtOsdRows - 1 : g_Radiotext->RT_Index - 1;

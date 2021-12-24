@@ -184,7 +184,7 @@ void CProgressWindow::paint()
 
 	// box
 	m_cBoxWindow.enableSaveScreen();
-	if (g_settings.use_shadow)
+	if (g_settings.menu_shadow)
 		m_cBoxWindow.enableShadow();
 	else
 		m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
@@ -200,7 +200,7 @@ void CProgressWindow::paint()
 			l_caption = captionString.c_str();
 
 		CHeaders headers(x + 2, y + 2, width - 4, hheight - 2, l_caption, NEUTRINO_ICON_INFO);
-		if (g_settings.use_shadow)
+		if (g_settings.menu_shadow)
 		{
 			headers.setCorner(CORNER_NONE);
 			headers.setRadius(NO_RADIUS);

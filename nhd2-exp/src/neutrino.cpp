@@ -722,7 +722,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.rounded_corners = configfile.getInt32("rounded_corners", NO_RADIUS);
 	g_settings.use_default_skin = configfile.getBool("use_default_skin", true);
 	g_settings.preferred_skin = configfile.getString("preferred_skin", "default");
-	g_settings.use_shadow = configfile.getBool("use_shadow", true);
+	g_settings.menu_shadow = configfile.getBool("menu_shadow", true);
 
 	// keysbinding
 	strcpy(g_settings.repeat_blocker, configfile.getString("repeat_blocker", "250").c_str());
@@ -932,6 +932,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.infobar_gradient = configfile.getInt32("infobar_gradient", NOGRADIENT);
 	g_settings.infobar_buttonbar = configfile.getBool("infobar_buttonbar", true);
 	g_settings.infobar_buttonline = configfile.getBool("infobar_buttonline", false);
+	g_settings.infobar_shadow = configfile.getBool("infobar_shadow", true);
 	
 	//
 	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
@@ -1208,7 +1209,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("rounded_corners", g_settings.rounded_corners);
 	configfile.setBool("use_default_skin", g_settings.use_default_skin);
 	configfile.setString("preferred_skin", g_settings.preferred_skin);
-	configfile.setBool("use_shadow", g_settings.use_shadow);
+	configfile.setBool("menu_shadow", g_settings.menu_shadow);
 	// END OSD
 
 	// KEYS
@@ -1385,6 +1386,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("infobar_radius", g_settings.infobar_radius);
 	configfile.setBool("infobar_buttonbar", g_settings.infobar_buttonbar);
 	configfile.setBool("infobar_buttonline", g_settings.infobar_buttonline);
+	configfile.setBool("infobar_shadow", g_settings.infobar_shadow);
 
 	configfile.setString("tmdbkey", g_settings.tmdbkey);
 	configfile.setString("ytkey", g_settings.ytkey);
@@ -1640,13 +1642,14 @@ void CNeutrinoApp::unloadSkin()
 	themes->exec(NULL, "theme_default");
 	
 	//
-	g_settings.use_shadow = true;
+	g_settings.menu_shadow = true;
 	
 	//
 	g_settings.infobar_radius = 0;
 	g_settings.infobar_corner = CORNER_NONE;
 	g_settings.infobar_buttonbar = true;
 	g_settings.infobar_buttonline = false;
+	g_settings.infobar_shadow = true;
 	
 	g_settings.Head_gradient = LIGHT2DARK;
 	g_settings.Foot_gradient = DARK2LIGHT;
@@ -1762,12 +1765,13 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.infobar_gradient = skinConfig->getInt32("infobar_gradient", NOGRADIENT);
 		g_settings.infobar_corner = skinConfig->getInt32("infobar_corner", CORNER_ALL);
 		g_settings.infobar_radius = skinConfig->getInt32("infobar_radius", RADIUS_MID);
+		g_settings.infobar_shadow = skinConfig->getBool("infobar_shadow", true);
+		g_settings.infobar_buttonbar = skinConfig->getBool("infobar_buttonbar", true);
+		g_settings.infobar_buttonline = skinConfig->getBool("infobar_buttonline", false);
 		
 		//
 		//g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
-		g_settings.infobar_buttonbar = skinConfig->getBool("infobar_buttonbar", true);
-		g_settings.infobar_buttonline = skinConfig->getBool("infobar_buttonline", false);
-		g_settings.use_shadow = skinConfig->getBool("use_shadow", true);
+		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", true);
 		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
 
@@ -1879,9 +1883,10 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	skinConfig->setInt32("infobar_radius", g_settings.infobar_radius);
 	skinConfig->setBool("infobar_buttonbar", g_settings.infobar_buttonbar);
 	skinConfig->setBool("infobar_buttonline", g_settings.infobar_buttonline);
+	skinConfig->setBool("infobar_shadow", g_settings.infobar_shadow);
 	
 	//skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
-	skinConfig->setBool("use_shadow", g_settings.use_shadow);
+	skinConfig->setBool("menu_shadow", g_settings.menu_shadow);
 		
 	skinConfig->setString("font_file", g_settings.font_file);
 
