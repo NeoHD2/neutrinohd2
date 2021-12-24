@@ -979,6 +979,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	// icons dir
 	g_settings.icons_dir = configfile.getString("icons_dir", DATADIR "/neutrino/icons/");
+	g_settings.hints_dir = configfile.getString("hints_dir", DATADIR "/neutrino/hints/");
+	g_settings.buttons_dir = configfile.getString("buttons_dir", DATADIR "/neutrino/buttons/");
 	
 	//set OSD resolution
 #define DEFAULT_X_OFF 35
@@ -1425,7 +1427,9 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("epg_serverbox_gui", g_settings.epg_serverbox_gui);
 
 	// icons dir
-	configfile.setString("icons_dir", g_settings.icons_dir);	
+	configfile.setString("icons_dir", g_settings.icons_dir);
+	configfile.setString("hints_dir", g_settings.hints_dir);	
+	configfile.setString("buttons_dir", g_settings.buttons_dir);
 
 	if(strcmp(fname, NEUTRINO_SETTINGS_FILE))
 		configfile.saveConfig(fname);
@@ -1551,16 +1555,46 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		
 		frameBuffer->setIconBasePath(g_settings.icons_dir);
 		
+		// setButtonPath
+		std::string buttonsDir = CONFIGDIR "/skin/";
+		buttonsDir += skinName.c_str();
+		buttonsDir += "/buttons/";
+		
+		// check if not empty
+		i = scandir(buttonsDir.c_str(), &namelist, 0, 0);
+		if(i < 0)
+		{
+			g_settings.buttons_dir = DATADIR "/neutrino/buttons/"; //fallback to default if empty
+		}
+		else
+		{
+			g_settings.buttons_dir = buttonsDir;
+			free(namelist);
+		}
+		
+		frameBuffer->setButtonBasePath(g_settings.buttons_dir);
+		
+		// setHintPath
+		std::string hintsDir = CONFIGDIR "/skin/";
+		hintsDir += skinName.c_str();
+		hintsDir += "/hints/";
+		
+		// check if not empty
+		i = scandir(hintsDir.c_str(), &namelist, 0, 0);
+		if(i < 0)
+		{
+			g_settings.hints_dir = DATADIR "/neutrino/hints/"; //fallback to default if empty
+		}
+		else
+		{
+			g_settings.hints_dir = hintsDir;
+			free(namelist);
+		}
+		
+		frameBuffer->setHintBasePath(g_settings.hints_dir);
+		
 		// setup colors / corners / position
-		//skinPath += "/";
-		//skinPath += skinName.c_str();
-		//skinPath += ".config";
-		
-		//CThemes* themes = new CThemes();
 		readSkinConfig(skinName.c_str());
-		
-		//delete themes;
-		//themes = NULL;
 	}
 	else // if changed from last skin fallback to default
 	{
@@ -1569,8 +1603,12 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		CNeutrinoApp::getInstance()->SetupFonts(DATADIR "/neutrino/fonts/arial.ttf");
 		
 		g_settings.icons_dir = DATADIR "/neutrino/icons/";
+		g_settings.buttons_dir = DATADIR "/neutrino/buttons/";
+		g_settings.hints_dir = DATADIR "/neutrino/hints/";
 		
 		frameBuffer->setIconBasePath(DATADIR "/neutrino/icons/");
+		frameBuffer->setButtonBasePath(DATADIR "/neutrino/buttons/");
+		frameBuffer->setHintBasePath(DATADIR "/neutrino/hints/");
 	}
 }
 
@@ -1634,8 +1672,12 @@ void CNeutrinoApp::unloadSkin()
 	CNeutrinoApp::getInstance()->SetupFonts(DATADIR "/neutrino/fonts/arial.ttf");
 		
 	g_settings.icons_dir = DATADIR "/neutrino/icons/";
+	g_settings.buttons_dir = DATADIR "/neutrino/buttons/";
+	g_settings.hints_dir = DATADIR "/neutrino/hints/";
 		
 	frameBuffer->setIconBasePath(DATADIR "/neutrino/icons/");
+	frameBuffer->setButtonBasePath(DATADIR "/neutrino/buttons/");
+	frameBuffer->setHintBasePath(DATADIR "/neutrino/hints/");
 	
 	// set colors to default
 	CThemes* themes = new CThemes();
@@ -1653,6 +1695,8 @@ void CNeutrinoApp::unloadSkin()
 	
 	g_settings.Head_gradient = LIGHT2DARK;
 	g_settings.Foot_gradient = DARK2LIGHT;
+	
+	g_settings.rounded_corners = 0;
 	
 	delete themes;
 	themes = NULL;
@@ -1770,7 +1814,7 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.infobar_buttonline = skinConfig->getBool("infobar_buttonline", false);
 		
 		//
-		//g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
+		g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
 		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", true);
 		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
@@ -1885,7 +1929,7 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	skinConfig->setBool("infobar_buttonline", g_settings.infobar_buttonline);
 	skinConfig->setBool("infobar_shadow", g_settings.infobar_shadow);
 	
-	//skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
+	skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
 	skinConfig->setBool("menu_shadow", g_settings.menu_shadow);
 		
 	skinConfig->setString("font_file", g_settings.font_file);
@@ -2970,8 +3014,10 @@ int CNeutrinoApp::run(int argc, char **argv)
 		loadLocale_ret = g_Locale->loadLocale(g_settings.language);
 	}
 
-	// icon path
+	// icons/buttons/hints path
 	frameBuffer->setIconBasePath(g_settings.icons_dir);
+	frameBuffer->setButtonBasePath(g_settings.buttons_dir);
+	frameBuffer->setHintBasePath(g_settings.hints_dir);
 
 	// setup fonts
 	SetupFonts(g_settings.font_file);

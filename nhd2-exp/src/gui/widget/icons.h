@@ -73,6 +73,7 @@
 
 #define NEUTRINO_ICON_NUMERIC_PAD			"numericpad"
 
+// icons
 // headers
 #define NEUTRINO_ICON_AUDIO				"audio"
 #define NEUTRINO_ICON_COLORS				"colors"
@@ -155,9 +156,6 @@
 #define NEUTRINO_ICON_FILE				"file"
 #define NEUTRINO_ICON_FOLDER				"folder"
 
-//
-//#define NEUTRINO_ICON_PLUGIN				"plugin"
-
 // radiotext
 #define NEUTRINO_ICON_RADIOTEXTOFF			"radiotextoff"
 #define NEUTRINO_ICON_RADIOTEXTGET			"radiotextget"
@@ -184,14 +182,11 @@
 
 // misc
 #define NEUTRINO_ICON_TMDB				"tmdb"
-//#define NEUTRINO_ICON_HDD	 			"hdd"
-//#define NEUTRINO_ICON_TUNER	 			"tuner"
 #define NEUTRINO_ICON_STAR_ON				"star-on"
 #define NEUTRINO_ICON_STAR_OFF			"star-off"
-//#define NEUTRINO_ICON_CPU				"cpu"
 
 
-// hint icons
+// hints
 // mainmenu
 #define NEUTRINO_ICON_MENUITEM_TV				"hint_tvmode"
 #define NEUTRINO_ICON_MENUITEM_RADIO			 	"hint_radiomode"

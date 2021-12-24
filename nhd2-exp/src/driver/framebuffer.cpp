@@ -889,6 +889,20 @@ void CFrameBuffer::setIconBasePath(const std::string & iconPath)
 	iconBasePath = iconPath;
 }
 
+void CFrameBuffer::setHintBasePath(const std::string & hintPath)
+{
+	dprintf(DEBUG_NORMAL, "CFrameBuffer::setHintBasePath: %s\n", hintPath.c_str());
+	
+	hintBasePath = hintPath;
+}
+
+void CFrameBuffer::setButtonBasePath(const std::string & buttonPath)
+{
+	dprintf(DEBUG_NORMAL, "CFrameBuffer::setButtonBasePath: %s\n", buttonPath.c_str());
+	
+	buttonBasePath = buttonPath;
+}
+
 // get icon size
 void CFrameBuffer::getIconSize(const char * const filename, int * width, int * height)
 {
@@ -901,6 +915,9 @@ void CFrameBuffer::getIconSize(const char * const filename, int * width, int * h
 	
 	if( !strstr(iconfile.c_str(), ".png"))
 		iconfile = iconBasePath + filename + ".png";
+		
+	if (!file_exists(iconfile.c_str()))
+		iconfile = buttonBasePath + filename + ".png";
 
 	icon_fd = open(iconfile.c_str(), O_RDONLY);
 
@@ -1090,6 +1107,7 @@ bool CFrameBuffer::paintIcon(const std::string& filename, const int x, const int
 	fb_pixel_t * data;
 	int  yy = y;
 
+	// check into iconBasePath
 	std::string newname = iconBasePath + filename.c_str() + ".png";
 		
 	if(width == 0 || height == 0)	
@@ -1099,14 +1117,25 @@ bool CFrameBuffer::paintIcon(const std::string& filename, const int x, const int
 		
 	if(!data) 
 	{
-		dprintf(DEBUG_DEBUG, "CFrameBuffer::paintIcon: %s\n", filename.c_str());
+		// check into buttunBasePath
+		newname = buttonBasePath +filename.c_str() + ".png";
 		
-		newname = filename;
-			
 		if(width == 0 || height == 0)	
 			getIconSize(newname.c_str(), &width, &height);
 
 		data = getImage(newname, width, height);
+		
+		if (!data)
+		{
+			dprintf(DEBUG_DEBUG, "CFrameBuffer::paintIcon: %s\n", filename.c_str());
+		
+			newname = filename;
+			
+			if(width == 0 || height == 0)	
+				getIconSize(newname.c_str(), &width, &height);
+
+			data = getImage(newname, width, height);
+		}
 	}
 
 	if(data) 
@@ -1144,7 +1173,7 @@ bool CFrameBuffer::paintHintIcon(const std::string& filename, int posx, int posy
 		return displayImage(filename, posx, posy, width, height);
 	else
 	{
-		std::string newname = iconBasePath + filename.c_str() + ".png";		
+		std::string newname = hintBasePath + filename.c_str() + ".png";		
 
 		return displayImage(newname, posx, posy, width, height);
 	}
