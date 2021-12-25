@@ -2738,7 +2738,7 @@ void CTestMenu::testCComponent()
 	
 	// DL
 	CItems2DetailsLine testDline;
-	testDline.disablePaintLines();
+	testDline.PaintLine(false);
 	testDline.setMode(DL_HINT);
 	testDline.setHint(buffer.c_str());
 	testDline.setIcon(m_vMovieInfo[0].tfile.c_str());
@@ -2886,7 +2886,7 @@ void CTestMenu::testCWindow()
 
 	window->setColor(COL_MENUCONTENT_PLUS_0);
 	window->setCorner(RADIUS_MID, CORNER_ALL);
-	window->setGradient(NOGRADIENT);
+	window->setGradient(LIGHT2DARK2LIGHT, GRADIENT_HORIZONTAL);
 
 	window->paint();
 	CFrameBuffer::getInstance()->blit();

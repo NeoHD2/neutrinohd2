@@ -723,6 +723,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.use_default_skin = configfile.getBool("use_default_skin", true);
 	g_settings.preferred_skin = configfile.getString("preferred_skin", "default");
 	g_settings.menu_shadow = configfile.getBool("menu_shadow", true);
+	g_settings.menu_details_line = configfile.getBool("menu_details_line", true);
 
 	// keysbinding
 	strcpy(g_settings.repeat_blocker, configfile.getString("repeat_blocker", "250").c_str());
@@ -1212,6 +1213,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setBool("use_default_skin", g_settings.use_default_skin);
 	configfile.setString("preferred_skin", g_settings.preferred_skin);
 	configfile.setBool("menu_shadow", g_settings.menu_shadow);
+	configfile.setBool("menu_details_line", g_settings.menu_details_line);
 	// END OSD
 
 	// KEYS
@@ -1594,7 +1596,13 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		frameBuffer->setHintBasePath(g_settings.hints_dir);
 		
 		// setup colors / corners / position
-		readSkinConfig(skinName.c_str());
+		std::string skinConfigFile = CONFIGDIR "/skin/";
+		skinConfigFile += skinName.c_str();
+		skinConfigFile += "/";
+		skinConfigFile += skinName.c_str();
+		skinConfigFile += ".config";
+		
+		readSkinConfig(skinConfigFile.c_str());
 	}
 	else // if changed from last skin fallback to default
 	{
@@ -1685,6 +1693,7 @@ void CNeutrinoApp::unloadSkin()
 	
 	//
 	g_settings.menu_shadow = true;
+	g_settings.menu_details_line = true;
 	
 	//
 	g_settings.infobar_radius = 0;
@@ -1710,13 +1719,15 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 	CConfigFile* skinConfig = new CConfigFile(',');
 	
 	// fetch skin config file
+	/*
 	std::string skinPath = CONFIGDIR "/skin/";
 	skinPath += filename;
 	skinPath += "/";
 	skinPath += filename;
 	skinPath += ".config";
+	*/
 	
-	if(skinConfig->loadConfig(skinPath.c_str()))
+	if(skinConfig->loadConfig(filename))
 	{
 		g_settings.menu_Head_alpha = skinConfig->getInt32( "menu_Head_alpha", 15);
 		g_settings.menu_Head_red = skinConfig->getInt32( "menu_Head_red", 15);
@@ -1816,6 +1827,7 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		//
 		g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
 		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", true);
+		g_settings.menu_details_line = skinConfig->getBool("menu_details_line", true);
 		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
 
@@ -1825,7 +1837,7 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		delete colorSetupNotifier;
 	}
 	else
-		printf("CNeutrinoApp::readSkinConfig: %s not found\n", skinPath.c_str());
+		printf("CNeutrinoApp::readSkinConfig: %s not found\n", filename);
 }
 
 void CNeutrinoApp::saveSkinConfig(const char * const filename)
@@ -1931,6 +1943,7 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	
 	skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
 	skinConfig->setBool("menu_shadow", g_settings.menu_shadow);
+	skinConfig->setBool("menu_details_line", g_settings.menu_details_line);
 		
 	skinConfig->setString("font_file", g_settings.font_file);
 

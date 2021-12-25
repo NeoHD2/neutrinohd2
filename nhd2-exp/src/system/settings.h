@@ -485,6 +485,7 @@ struct SNeutrinoSettings
 	
 	// infobar
 	int infobar_gradient;
+	//int infobar_gradient_direction;
 	int infobar_corner;
 	int infobar_radius;
 	int infobar_buttonbar;
@@ -493,6 +494,7 @@ struct SNeutrinoSettings
 	
 	//
 	int menu_shadow;
+	int menu_details_line;
 
 	// icons dir
 	std::string icons_dir;

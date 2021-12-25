@@ -71,6 +71,9 @@ void CWindow::init()
 	corner = CORNER_NONE;
 	bgcolor = COL_MENUCONTENT_PLUS_0;
 	gradient = NOGRADIENT;
+	grad_direction = GRADIENT_VERTICAL;
+	grad_intensity = INT_LIGHT;
+	grad_type = GRADIENT_ONECOLOR;
 
 	enableshadow = false;
 	paintFrame = true;
@@ -166,11 +169,11 @@ void CWindow::paint()
 			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
 
 			// window Box
-			frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, NO_RADIUS, CORNER_NONE, gradient);
+			frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, NO_RADIUS, CORNER_NONE, gradient, grad_direction, grad_intensity, grad_type);
 		}
 		else
 		{
-			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
+			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient, grad_direction, grad_intensity, grad_type);
 		}
 	}
 		

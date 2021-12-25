@@ -279,9 +279,6 @@ class CItems2DetailsLine : public CComponent
 		virtual ~CItems2DetailsLine();
 		
 		//
-		void disablePaintLines(){paintLines = false;};
-		
-		//
 		void paint(int x, int y, int width, int height, int info_height, int iheight, int iy);
 		void clear(int x, int y, int width, int height, int info_height);
 		
@@ -294,6 +291,7 @@ class CItems2DetailsLine : public CComponent
 		virtual void setHint(const char* const Text){hint =  Text;};
 		virtual void setHint(const neutrino_locale_t locale){hint = g_Locale->getText(locale); };
 		virtual void setIcon(const char* const ic){icon = ic;};
+		virtual void PaintLine(bool paint){paintLines = paint;};
 };
 
 // CHline

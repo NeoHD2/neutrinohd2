@@ -79,7 +79,7 @@ typedef struct fb_var_screeninfo t_fb_var_screeninfo;
 #define FH_ERROR_FORMAT 2	/* file format error */
 #define FH_ERROR_MALLOC 3	/* error during malloc */
 
-///gradient mode
+// gradient mode
 enum {
 	NOGRADIENT,
 	DARK2LIGHT,
@@ -88,16 +88,24 @@ enum {
 	LIGHT2DARK2LIGHT
 };
 
-///intensity
+// gradient intensity
 enum {
 	INT_LIGHT,
 	INT_NORMAL,
 	INT_EXTENDED
 };
 
+// gradient direction
 enum {
 	GRADIENT_HORIZONTAL,
 	GRADIENT_VERTICAL
+};
+
+// gradient type
+enum {
+	GRADIENT_COLOR2TRANSPARENT,
+	GRADIENT_ONECOLOR,
+	GRADIENT_COLOR2COLOR
 };
 
 // transparency
@@ -245,10 +253,9 @@ class CFrameBuffer
 		//
 		void paintPixel(const int x, const int y, const fb_pixel_t col);
 		
-		void paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius = 0, int type = CORNER_NONE, int mode = NOGRADIENT, int direction = GRADIENT_VERTICAL);
+		void paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius = 0, int type = CORNER_NONE, int mode = NOGRADIENT, int direction = GRADIENT_VERTICAL, int intensity = INT_LIGHT, int grad_type = GRADIENT_ONECOLOR);
 
-		inline void paintBox(int xa, int ya, int xb, int yb, const fb_pixel_t col) { paintBoxRel(xa, ya, xb - xa, yb - ya, col); }
-		inline void paintBox(int xa, int ya, int xb, int yb, const fb_pixel_t col, int radius, int type) { paintBoxRel(xa, ya, xb - xa, yb - ya, col, radius, type); }
+		inline void paintBox(int xa, int ya, int xb, int yb, const fb_pixel_t col, int radius = 0, int type = CORNER_NONE, int mode = NOGRADIENT, int direction = GRADIENT_VERTICAL, int intensity = INT_LIGHT, int grad_type = GRADIENT_ONECOLOR) { paintBoxRel(xa, ya, xb - xa, yb - ya, col, radius, type, mode, direction, intensity, grad_type); }
 
 		void paintLine(int xa, int ya, int xb, int yb, const fb_pixel_t col);
 

@@ -853,6 +853,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					icon = g_settings.hints_dir + item->itemIcon.c_str() + ".png";
 				
 				itemsLine.setMode(DL_HINT);
+				itemsLine.PaintLine(g_settings.menu_details_line);
 				itemsLine.setHint(item->itemHint.c_str());
 				itemsLine.setIcon(icon.c_str());
 					
@@ -899,6 +900,7 @@ void CMenuWidget::paintItemInfo(int pos)
 	
 					// 
 					itemsLine.setMode(DL_INFO);
+					itemsLine.PaintLine(g_settings.menu_details_line);
 					itemsLine.setInfo1(item->info1.c_str());
 					itemsLine.setOptionInfo1(item->option_info1.c_str());
 					itemsLine.setInfo2(item->info2.c_str());
@@ -912,6 +914,7 @@ void CMenuWidget::paintItemInfo(int pos)
 	
 					// detailslines|box
 					itemsLine.setMode(DL_HINT);
+					itemsLine.PaintLine(g_settings.menu_details_line);
 					itemsLine.setHint(item->itemHint.c_str());
 					itemsLine.setIcon(item->itemIcon.c_str());
 				
@@ -965,6 +968,7 @@ void CMenuWidget::paintItemInfo(int pos)
 	
 					// detailslines
 					itemsLine.setMode(DL_INFO);
+					itemsLine.PaintLine(g_settings.menu_details_line);
 					itemsLine.setInfo1(item->info1.c_str());
 					itemsLine.setOptionInfo1(item->option_info1.c_str());
 					itemsLine.setInfo2(item->info2.c_str());
@@ -978,6 +982,7 @@ void CMenuWidget::paintItemInfo(int pos)
 	
 					// detailslines
 					itemsLine.setMode(DL_HINT);
+					itemsLine.PaintLine(g_settings.menu_details_line);
 					itemsLine.setHint(item->itemHint.c_str());
 					itemsLine.setIcon(item->itemIcon.c_str());
 				

@@ -755,8 +755,7 @@ fb_pixel_t* CFrameBuffer::paintBoxRel2Buf(const int dx, const int dy, const fb_p
 }
 
 //
-
-void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius, int type, int mode, int direction)
+void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius, int type, int mode, int direction, int intensity, int grad_type)
 {
 	if (!getActive())
 		return;
@@ -772,7 +771,15 @@ void CFrameBuffer::paintBoxRel(const int x, const int y, const int dx, const int
 	// gradientBuf
 	if(mode > NOGRADIENT)
 	{
-		fb_pixel_t* gradientBuf = gradientOneColor(col, NULL, dy, mode);
+		// gradient mode / direction / type
+		fb_pixel_t* gradientBuf = NULL;
+		
+		if (grad_type == GRADIENT_ONECOLOR)
+			gradientBuf = gradientOneColor(col, NULL, (direction == GRADIENT_VERTICAL)? dy : dx, mode, intensity);
+		else if (grad_type == GRADIENT_COLOR2TRANSPARENT)
+			gradientBuf = gradientColorToTransparent(col, NULL, (direction == GRADIENT_VERTICAL)? dy : dx, mode, intensity);
+		else if (grad_type == GRADIENT_COLOR2COLOR)
+			gradientColorToColor(col, col, NULL, (direction == GRADIENT_VERTICAL)? dy : dx, mode, intensity);
 
 		fb_pixel_t *bp = boxBuf;
 		fb_pixel_t *gra = gradientBuf;
@@ -887,6 +894,7 @@ void CFrameBuffer::setIconBasePath(const std::string & iconPath)
 	dprintf(DEBUG_NORMAL, "CFrameBuffer::setIconBasePath: %s\n", iconPath.c_str());
 	
 	iconBasePath = iconPath;
+	g_settings.icons_dir = iconBasePath;
 }
 
 void CFrameBuffer::setHintBasePath(const std::string & hintPath)
@@ -894,6 +902,7 @@ void CFrameBuffer::setHintBasePath(const std::string & hintPath)
 	dprintf(DEBUG_NORMAL, "CFrameBuffer::setHintBasePath: %s\n", hintPath.c_str());
 	
 	hintBasePath = hintPath;
+	g_settings.hints_dir = hintBasePath;
 }
 
 void CFrameBuffer::setButtonBasePath(const std::string & buttonPath)
@@ -901,6 +910,7 @@ void CFrameBuffer::setButtonBasePath(const std::string & buttonPath)
 	dprintf(DEBUG_NORMAL, "CFrameBuffer::setButtonBasePath: %s\n", buttonPath.c_str());
 	
 	buttonBasePath = buttonPath;
+	g_settings.buttons_dir = buttonBasePath;
 }
 
 // get icon size

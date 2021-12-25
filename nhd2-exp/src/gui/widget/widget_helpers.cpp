@@ -474,7 +474,7 @@ CItems2DetailsLine::~CItems2DetailsLine()
 
 void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_height, int iheight, int iy)
 {
-	dprintf(DEBUG_INFO, "\nCItems2DetailsLine::paint: x:%d y:%d width:%d height:%d info_height:%d iheight:%d iy:%d\n", x, y, width, height, info_height, iheight, iy);
+	dprintf(DEBUG_INFO, "\nCItems2DetailsLine::paint: x:%d y:%d width:%d height:%d info_height:%d iheight:%d iy:%d\n icon:%s", x, y, width, height, info_height, iheight, iy, icon.c_str());
 	
 	int xpos  = x - CONNECTLINEBOX_WIDTH;
 	int ypos1 = iy;
@@ -575,6 +575,8 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		int bpp = 0;
 		
 		frameBuffer->getSize(icon.c_str(), &iw, &iw, &bpp);
+		
+		printf("CItems2DetailsLine::paint: FIXME: %s\n", icon.c_str());
 		
 		if (iw > 100)
 			iw = 100;
