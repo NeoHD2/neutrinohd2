@@ -67,6 +67,7 @@
 
 #include <system/settings.h>
 #include <system/helpers.h>
+#include <system/tmdbparser.h>
 
 #include <gui/eventlist.h>
 #include <gui/infoviewer.h>
@@ -1114,7 +1115,9 @@ void CMoviePlayerGui::PlayFile(void)
 		{
 			if (mplist && mplist->isPainted())
 			{
-				mplist->scrollPageUp();
+				mplist->hide();
+				doTMDB(playlist[mplist->getSelected()]);
+				showPlaylist();
 			}
 			else
 			{
@@ -1457,7 +1460,18 @@ void CMoviePlayerGui::PlayFile(void)
 		{
 			if (mplist && mplist->isPainted())
 			{
-				mplist->scrollPageDown();
+			// FIXME: segfault
+			/*
+				//mplist->scrollPageDown();
+				mplist->hide();
+				CMoviePlayList::iterator p = playlist.begin() + mplist->getSelected();
+				playlist.erase(p);
+
+				if (selected >= (int)playlist.size())
+					selected = playlist.size() - 1;
+			
+				showPlaylist();
+			*/
 			}
 			else
 			{
@@ -1992,8 +2006,8 @@ const struct button_label HeadButtons[HEAD_BUTTONS_COUNT] =
 #define FOOT_BUTTONS_COUNT	4
 const struct button_label FootButtons[FOOT_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_FILEBROWSER_NEXTPAGE, NULL },
-	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_FILEBROWSER_PREVPAGE, NULL },
+	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE/*LOCALE_AUDIOPLAYER_DELETE*/, NULL },
+	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_TMDB_INFO, NULL },
 	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_AUDIOPLAYER_DELETEALL, NULL },
 	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_AUDIOPLAYER_ADD, NULL },
 };
@@ -2126,4 +2140,99 @@ void CMoviePlayerGui::openMovieFileBrowser()
 	}
 }
 
+void CMoviePlayerGui::doTMDB(MI_MOVIE_INFO& movieFile)
+{
+	dprintf(DEBUG_NORMAL, "CMoviePlayerGui::CMoviePlayerGui::doTMDB:\n");
+	
+	//				
+	CTmdb * tmdb = new CTmdb();
+
+	tmdb->clearMInfo();
+
+	if(tmdb->getMovieInfo(movieFile.epgTitle))
+	{
+		std::vector<tmdbinfo>& minfo_list = tmdb->getMInfos();
+
+		std::string buffer;
+
+		buffer = movieFile.epgTitle;
+		buffer += "\n\n";
+	
+		// prepare print buffer  
+		buffer += "Vote: " + to_string(minfo_list[0].vote_average) + "/10 Votecount: " + to_string(minfo_list[0].vote_count);
+		buffer += "\n\n";
+		buffer += minfo_list[0].overview;
+		buffer += "\n";
+
+		buffer += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_LENGTH) + ": " + to_string(minfo_list[0].runtime);
+		buffer += "\n";
+
+		buffer += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_GENRE) + ": " + minfo_list[0].genres;
+		buffer += "\n";
+		buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ORIGINAL_TITLE) + " : " + minfo_list[0].original_title;
+		buffer += "\n";
+		buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_YEAR_OF_PRODUCTION) + " : " + minfo_list[0].release_date.substr(0,4);
+		buffer += "\n";
+
+		if (!minfo_list[0].cast.empty())
+			buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ACTORS) + ":\n" + minfo_list[0].cast;
+
+		// thumbnail
+		std::string tname = tmdb->getThumbnailDir();
+		tname += "/";
+		tname += movieFile.epgTitle;
+		tname += ".jpg";
+
+		tmdb->getSmallCover(minfo_list[0].poster_path, tname);
+		
+		// scale pic
+		int p_w = 0;
+		int p_h = 0;
+
+		scaleImage(tname, &p_w, &p_h);
+	
+		CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
+	
+		CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, movieFile.epgTitle.c_str(), NEUTRINO_ICON_TMDB);
+
+		infoBox->setText(buffer.c_str(), tname.c_str(), p_w, p_h);
+		infoBox->exec();
+		delete infoBox;
+
+		if(MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MOVIEBROWSER_PREFER_TMDB_INFO), mbrNo, mbYes | mbNo) == mbrYes) 
+		{
+			// tfile
+			std::string tname = movieFile.file.Name;
+			changeFileNameExt(tname, ".jpg");
+
+			if(tmdb->getBigCover(minfo_list[0].poster_path, tname)) 
+				movieFile.tfile = tname;
+
+			// epgInfo1
+			if(movieFile.epgInfo1.empty())
+				movieFile.epgInfo1 = buffer;
+			
+			// productionDate	
+			if (movieFile.productionDate == 0)
+				movieFile.productionDate = atoi(minfo_list[0].release_date.substr(0,4));
+			
+			// genres	
+			if(movieFile.genres.empty())
+				movieFile.genres = minfo_list[0].genres;
+				
+			// average
+			if (movieFile.vote_average == 0)
+				movieFile.vote_average = minfo_list[0].vote_average;
+
+			cMovieInfo.saveMovieInfo(movieFile);
+		}  
+	}
+	else
+	{
+		MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE), mbrBack, mbBack, NEUTRINO_ICON_INFO);
+	}
+
+	delete tmdb;
+	tmdb = NULL;
+}
 

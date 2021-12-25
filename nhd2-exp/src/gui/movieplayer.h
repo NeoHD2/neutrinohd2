@@ -162,6 +162,7 @@ class CMoviePlayerGui : public CMenuTarget
 		CMenuItem* item;
 		void showPlaylist();
 		void openMovieFileBrowser();
+		void doTMDB(MI_MOVIE_INFO& movieFile);
 		
 	public:
 		CMoviePlayerGui();

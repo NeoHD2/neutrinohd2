@@ -577,8 +577,6 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		
 		frameBuffer->getSize(icon.c_str(), &iw, &iw, &bpp);
 		
-		printf("CItems2DetailsLine::paint: FIXME: %s\n", icon.c_str());
-		
 		if (iw > 100)
 			iw = 100;
 			
