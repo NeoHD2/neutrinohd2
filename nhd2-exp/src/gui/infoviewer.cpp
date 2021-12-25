@@ -377,7 +377,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 		frameBuffer->paintBoxRel(BoxStartX - 1, BoxStartY - 1, BoxWidth + 2, BoxHeight + buttonBarHeight + 2, COL_MENUCONTENT_PLUS_6);
 	
 	// box
-	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight + buttonBarHeight, COL_INFOBAR_PLUS_0, g_settings.infobar_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.infobar_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient);
+	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight + buttonBarHeight, COL_INFOBAR_PLUS_0, g_settings.infobar_shadow? NO_RADIUS : /*g_settings.infobar_radius*/RADIUS_MID, g_settings.infobar_shadow? CORNER_NONE : /*g_settings.infobar_corner*/CORNER_ALL, g_settings.infobar_gradient);
 
 	//time
 	paintTime(BoxEndX, ChanNameY, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]);

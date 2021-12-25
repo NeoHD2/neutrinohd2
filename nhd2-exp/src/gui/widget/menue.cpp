@@ -850,7 +850,7 @@ void CMenuWidget::paintItemInfo(int pos)
 				if (item->isPlugin)
 					icon = item->itemIcon;
 				else				
-					icon = g_settings.icons_dir + item->itemIcon.c_str() + ".png";
+					icon = g_settings.hints_dir + item->itemIcon.c_str() + ".png";
 				
 				itemsLine.setMode(DL_HINT);
 				itemsLine.setHint(item->itemHint.c_str());

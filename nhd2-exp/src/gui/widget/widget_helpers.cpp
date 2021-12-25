@@ -569,11 +569,23 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		CTextBox Dline(DLx, DLy, DLwidth, DLheight);
 		Dline.disablePaintFrame();
 		Dline.setMode(AUTO_WIDTH);
+		
+		int iw = 100;
+		int ih = DLheight - 4;
+		int bpp = 0;
+		
+		frameBuffer->getSize(icon.c_str(), &iw, &iw, &bpp);
+		
+		if (iw > 100)
+			iw = 100;
+			
+		if (ih > (DLheight - 4))
+			ih = DLheight - 4;
 
 		// Hint
 		if(!hint.empty())
 		{
-			Dline.setText(hint.c_str(), !icon.empty()? icon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, 100, DLheight - 8, TOP_LEFT);
+			Dline.setText(hint.c_str(), !icon.empty()? icon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, iw, ih, TOP_LEFT);
 		}
 					
 		Dline.paint();
