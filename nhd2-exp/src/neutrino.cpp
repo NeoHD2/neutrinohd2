@@ -5749,6 +5749,15 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 		g_RCInput->postMsg( NeutrinoMessages::VCR_ON, 0 );
 		returnval = RETURN_EXIT_ALL;
 	}
+	else if (actionKey == "tvradioswitch")
+	{
+		if( mode == mode_tv )
+			radioMode();
+		else if( mode == mode_radio )
+			webtvMode();
+		else if( mode == mode_webtv )
+			tvMode();
+	}
 	else if(actionKey == "savesettings") 
 	{
 		saveSetup(NEUTRINO_SETTINGS_FILE);

@@ -123,7 +123,7 @@ void CBEChannelSelectWidget::paint()
 		// marked
 		std::string marked_icon = "";
 		if(isChannelInBouquet(count))
-			marked_icon = NEUTRINO_ICON_BUTTON_MARK;
+			marked_icon = NEUTRINO_ICON_MARK;
 
 		item->setIconName(marked_icon.c_str());
 

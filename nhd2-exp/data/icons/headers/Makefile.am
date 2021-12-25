@@ -14,7 +14,6 @@ install_DATA = \
 	mainmenue.png \
 	multimedia.png \
 	network.png \
-	power.png \
 	recording.png \
 	settings.png \
 	shell.png \

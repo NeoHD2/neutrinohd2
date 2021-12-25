@@ -556,7 +556,7 @@ void CAudioPlayerGui::paintInfo(CAudiofile& File)
 		case CAudioPlayerGui::PLAY: icon = NEUTRINO_ICON_PLAY; break;
 		case CAudioPlayerGui::REV: icon = NEUTRINO_ICON_REW; break;
 		case CAudioPlayerGui::FF: icon = NEUTRINO_ICON_FF; break;
-		case CAudioPlayerGui::STOP: icon = NEUTRINO_ICON_STOP_SMALL; break;
+		case CAudioPlayerGui::STOP: icon = NEUTRINO_ICON_BUTTON_STOP_SMALL; break;
 	}
 
 	switch(repeatMode)

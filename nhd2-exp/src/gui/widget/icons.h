@@ -23,7 +23,7 @@
  */
 
 
-// buttons
+// buttons / icons
 #define NEUTRINO_ICON_BUTTON_BLUE			"btn_blue"
 #define NEUTRINO_ICON_BUTTON_GREEN			"btn_green"
 #define NEUTRINO_ICON_BUTTON_RED			"btn_red"
@@ -38,6 +38,9 @@
 #define NEUTRINO_ICON_BUTTON_MUTE			"mute"
 #define NEUTRINO_ICON_BUTTON_MUTE_SMALL		"mute_small"
 #define NEUTRINO_ICON_BUTTON_POWER			"power"
+#define NEUTRINO_ICON_BUTTON_TIMER			"btn_timer"
+#define NEUTRINO_ICON_BUTTON_INFO			"info"
+#define NEUTRINO_ICON_BUTTON_INFO_SMALL		"info_small"
 
 #define NEUTRINO_ICON_BUTTON_OKAY			"ok"
 #define NEUTRINO_ICON_BUTTON_OKAY_SMALL		"ok_small"
@@ -60,20 +63,23 @@
 #define NEUTRINO_ICON_BUTTON_RIGHT			"right"
 #define NEUTRINO_ICON_BUTTON_LEFT			"left"
 #define NEUTRINO_ICON_BUTTON_EPG			"epg"
-#define NEUTRINO_ICON_BUTTON_MARK			"marker_dialog_ok"
 
-//
-#define NEUTRINO_ICON_NOT_MOUNTED			"not_mounted"
-#define NEUTRINO_ICON_HIDDEN				"marker_hidden"
-#define NEUTRINO_ICON_MOUNTED				"mounted"
-#define NEUTRINO_ICON_UPDATE_SMALL			"softupdate_small"
-#define NEUTRINO_ICON_VOLUME				"volume"
 #define NEUTRINO_ICON_BUTTON_MUTE_ZAP_ACTIVE 		"mute_zap_green"
 #define NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE 	"mute_zap_gray"
 
+#define NEUTRINO_ICON_BUTTON_PLAY_SMALL 		"btn_play"
+#define NEUTRINO_ICON_BUTTON_PAUSE_SMALL		"btn_pause"
+#define NEUTRINO_ICON_BUTTON_FF_SMALL 		"btn_forward"
+#define NEUTRINO_ICON_BUTTON_STOP_SMALL 		"btn_stop"
+#define NEUTRINO_ICON_BUTTON_REW_SMALL		"btn_backward"
+
+//
+#define NEUTRINO_ICON_NOT_MOUNTED			"not_mounted"
+#define NEUTRINO_ICON_MOUNTED				"mounted"
+#define NEUTRINO_ICON_UPDATE_SMALL			"softupdate_small"
+#define NEUTRINO_ICON_VOLUME				"volume"
 #define NEUTRINO_ICON_NUMERIC_PAD			"numericpad"
 
-// icons
 // headers
 #define NEUTRINO_ICON_AUDIO				"audio"
 #define NEUTRINO_ICON_COLORS				"colors"
@@ -143,23 +149,25 @@
 #define NEUTRINO_ICON_RESOLUTION_SD2			"res_sd"
 #define NEUTRINO_ICON_RESOLUTION_UHD2			"res_uhd"
 
+// radiotext
+#define NEUTRINO_ICON_RADIOTEXTOFF			"radiotextoff"
+#define NEUTRINO_ICON_RADIOTEXTGET			"radiotextget"
+#define NEUTRINO_ICON_RADIOTEXTWAIT			"radiotextwait"
+
 // channellist
 #define NEUTRINO_ICON_SCRAMBLED			"marker_scrambled"
 #define NEUTRINO_ICON_HD				"marker_hd"
 #define NEUTRINO_ICON_UHD				"marker_uhd"
+#define NEUTRINO_ICON_MARK				"marker_dialog_ok"
+#define NEUTRINO_ICON_HIDDEN				"marker_hidden"
 
 
-// filebrowser
+// filetypes
 #define NEUTRINO_ICON_MP3				"mp3"
 #define NEUTRINO_ICON_MOVIE				"movie"
 #define NEUTRINO_ICON_PICTURE				"picture"
 #define NEUTRINO_ICON_FILE				"file"
 #define NEUTRINO_ICON_FOLDER				"folder"
-
-// radiotext
-#define NEUTRINO_ICON_RADIOTEXTOFF			"radiotextoff"
-#define NEUTRINO_ICON_RADIOTEXTGET			"radiotextget"
-#define NEUTRINO_ICON_RADIOTEXTWAIT			"radiotextwait"
 
 // webtv
 #define NEUTRINO_ICON_WEBTV				"webtv"
@@ -173,14 +181,7 @@
 #define NEUTRINO_ICON_REPEAT_TRACK			"mp_play_repeat_track"
 #define NEUTRINO_ICON_REPEAT_ALL			"mp_play_repeat_all"
 
-//
-#define NEUTRINO_ICON_PLAY_SMALL 			"btn_play"
-#define NEUTRINO_ICON_PAUSE_SMALL			"btn_pause"
-#define NEUTRINO_ICON_FF_SMALL 			"btn_forward"
-#define NEUTRINO_ICON_STOP_SMALL 			"btn_stop"
-#define NEUTRINO_ICON_REW_SMALL			"btn_backward"
-
-// misc
+// various
 #define NEUTRINO_ICON_TMDB				"tmdb"
 #define NEUTRINO_ICON_STAR_ON				"star-on"
 #define NEUTRINO_ICON_STAR_OFF			"star-off"

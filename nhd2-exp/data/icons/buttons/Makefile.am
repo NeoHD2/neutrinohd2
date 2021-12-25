@@ -7,14 +7,12 @@ install_DATA = \
 	btn_backward.png btn_play.png btn_pause.png btn_forward.png btn_stop.png \
 	help.png help_small.png \
 	home.png \
-	info_small.png \
+	info.png info_small.png \
 	menu.png menu_small.png \
-	mounted.png not_mounted.png \
 	mute.png mute_small.png mute_zap_gray.png mute_zap_green.png \
 	ok.png \
-	softupdate_small.png \
-	volume.png \
 	epg.png \
-	webtv_small.png
+	btn_timer.png \
+	power.png
 	
 
