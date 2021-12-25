@@ -1604,7 +1604,7 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		
 		readSkinConfig(skinConfigFile.c_str());
 	}
-	else // if changed from last skin fallback to default
+	else // if mainmenu.lua not found fallback to default (neutrino intern)
 	{
 		strcpy( g_settings.font_file, DATADIR "/neutrino/fonts/arial.ttf");
 		

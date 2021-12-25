@@ -192,6 +192,13 @@ class CCImage : public CComponent
 };
 
 // buttons
+enum {
+	BUTTON_LABEL_RIGHT,
+	BUTTON_LABEL_TOP,
+	BUTTON_LABEL_COLORED,
+	BUTTON_LABEL_NOTCOLORED
+};
+
 typedef struct button_label
 {
 	const char * button;
@@ -207,6 +214,7 @@ class CCButtons : public CComponent
 	private:
 		button_label_list_t buttons;
 		unsigned int count;
+		int mode;
 
 	public:
 		//

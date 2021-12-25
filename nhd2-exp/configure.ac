@@ -244,6 +244,14 @@ data/themes/Makefile
 data/zapit/Makefile
 data/webtv/Makefile
 data/scripts/Makefile
+data/skin/Makefile
+data/skin/KravenHD/Makefile
+data/skin/KravenHD/background/Makefile
+data/skin/MetrixHD/Makefile
+data/skin/MetrixHD/buttons/Makefile
+data/skin/nmp/Makefile
+data/skin/nmp/hints/Makefile
+data/skin/titannit/Makefile
 src/sectionsd/Makefile
 src/timerd/Makefile
 src/zapit/Makefile

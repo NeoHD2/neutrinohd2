@@ -254,7 +254,8 @@ CCButtons::CCButtons(const int x, const int y, const int dx, const int dy)
 	cCBox.iHeight = dy; 
 	
 	buttons.clear(); 
-	count = 0; 
+	count = 0;
+	mode = BUTTON_LABEL_RIGHT;
 	
 	cc_type = CC_BUTTON;
 }

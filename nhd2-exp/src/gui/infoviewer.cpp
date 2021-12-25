@@ -1774,7 +1774,7 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 			  	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, duration1TextPos - ChanInfoX - 5, info_CurrentNext.current_name, COL_COLORED_EVENTS_INFOBAR, 0, true);
 			  	
 			  	// refresh
-			  	frameBuffer->paintBox(BoxEndX - 80, ChanInfoY, BoxEndX, ChanInfoY + CHANINFO_HEIGHT, COL_INFOBAR_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.infobar_gradient, GRADIENT_HORIZONTAL);//FIXME duration1TextPos not really good
+			  	//frameBuffer->paintBox(BoxEndX - 80, ChanInfoY, BoxEndX, ChanInfoY + CHANINFO_HEIGHT, COL_INFOBAR_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.infobar_gradient, GRADIENT_HORIZONTAL);//FIXME duration1TextPos not really good
 
 		  		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (duration1TextPos, ChanInfoY + ChanInfoHeight, duration1Width, runningRest, COL_COLORED_EVENTS_INFOBAR);
 
