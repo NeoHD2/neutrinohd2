@@ -251,10 +251,12 @@ class CProgressBar : public CComponent
 		unsigned char percent;
 		short red, green, yellow;
 		bool inverse;
+		uint32_t rgb;
+		double div;
 
 	public:
 		//
-		CProgressBar(/*int x, int y,*/ int w, int h, int r = 40, int g = 100, int b = 70, bool inv = true);
+		CProgressBar(/*int x, int y,*/ int w, int h, int r = 100, int g = 100, int b = 100, bool inv = false);
 		//CProgressBar(const int x, const int y, const int dx, const int dy);
 		CProgressBar(const CBox* psoition, int r = 40, int g = 100, int b = 70, bool inv = true);
 		
@@ -262,6 +264,9 @@ class CProgressBar : public CComponent
 		void paint(unsigned int x, unsigned int y, unsigned char pcr, bool paintBG = true);
 		void reset();
 		int getPercent() { return percent; };
+		
+		//
+		void setColor(uint32_t c){rgb = c;};
 };
 
 // detailsLine

@@ -101,7 +101,7 @@ extern t_channel_id live_channel_id; 			//defined in zapit.cpp
 #define LCD_UPDATE_TIME_TV_MODE (60 * 1000 * 1000)
 
 //
-#define RED_BAR 		40
+#define RED_BAR 		30
 #define YELLOW_BAR 		70
 #define GREEN_BAR 		100
 
@@ -176,7 +176,7 @@ void CInfoViewer::Init()
 	
 	sigscale = new CProgressBar(BAR_WIDTH, SIGSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
 	snrscale = new CProgressBar(BAR_WIDTH, SNRSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	timescale = new CProgressBar(BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);	//5? see in code
+	timescale = new CProgressBar(BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT, 30, 100, 70, true);	//5? see in code
 	
 	sigscale->reset(); 
 	snrscale->reset(); 

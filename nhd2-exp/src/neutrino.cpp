@@ -912,7 +912,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	strcpy( g_settings.audio_step, configfile.getString( "audio_step" , "5" ).c_str() );
 
 	// progressbar color
-	g_settings.progressbar_color = configfile.getInt32("progressbar_color", 0);
+	g_settings.progressbar_color = configfile.getInt32("progressbar_color", 1);
 	g_settings.progressbar_gradient = configfile.getInt32("progressbar_gradient", NOGRADIENT);
 
 	// head
@@ -3175,7 +3175,7 @@ int CNeutrinoApp::run(int argc, char **argv)
 	g_EventList = new EventList;
 	
 	// volume bar
-	g_volscale = new CProgressBar(200, 15, 50, 100, 80, true);
+	g_volscale = new CProgressBar(200, 15, 100, 100, 100, true);
 
 	// Ci Cam handler
 #if defined (ENABLE_CI)	

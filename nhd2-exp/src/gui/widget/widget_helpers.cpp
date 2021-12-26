@@ -41,6 +41,8 @@ extern cVideo * videoDecoder;
 // CCIcon
 CCIcon::CCIcon(const int x, const int y, const int dx, const int dy)
 {
+	dprintf(DEBUG_INFO, "CCIcon::CCIcon: x:%d y:%d dx:%d dy:%d\n", x, y, dx, dy);
+	
 	frameBuffer = CFrameBuffer::getInstance(); 
 	
 	cCBox.iX = x;
@@ -57,6 +59,8 @@ CCIcon::CCIcon(const int x, const int y, const int dx, const int dy)
 
 CCIcon::CCIcon(const char* icon, const int x, const int y, const int dx, const int dy)
 {
+	dprintf(DEBUG_INFO, "CCIcon::CCIcon: %s x:%d y:%d dx:%d dy:%d\n", icon, x, y, dx, dy);
+	
 	frameBuffer = CFrameBuffer::getInstance();
 	
 	cCBox.iX = x;
@@ -73,6 +77,8 @@ CCIcon::CCIcon(const char* icon, const int x, const int y, const int dx, const i
 // CCImage
 CCImage::CCImage(const int x, const int y, const int dx, const int dy)
 {
+	dprintf(DEBUG_INFO, "CCImage::CCImage: x:%d y:%d dx:%d dy:%d\n", x, y, dx, dy);
+	
 	frameBuffer = CFrameBuffer::getInstance();
 	
 	cCBox.iX = x;
@@ -91,6 +97,8 @@ CCImage::CCImage(const int x, const int y, const int dx, const int dy)
 
 CCImage::CCImage(const char* image, const int x, const int y, const int dx, const int dy)
 {
+	dprintf(DEBUG_INFO, "CCImage::CCImage: %s x:%d y:%d dx:%d dy:%d\n", image, x, y, dx, dy);
+	
 	frameBuffer = CFrameBuffer::getInstance();
 	
 	cCBox.iX = x;
@@ -114,6 +122,8 @@ CCImage::CCImage(const char* image, const int x, const int y, const int dx, cons
 // progressbar
 CProgressBar::CProgressBar(/*int x, int y,*/ int w, int h, int r, int g, int b, bool inv)
 {
+	dprintf(DEBUG_INFO, "CProgressBar::CProgressBar: dx:%d dy:%d\n", w, h);
+	
 	frameBuffer = CFrameBuffer::getInstance();
 	
 	//cCBox.iX = x;
@@ -122,10 +132,12 @@ CProgressBar::CProgressBar(/*int x, int y,*/ int w, int h, int r, int g, int b, 
 	cCBox.iHeight = h;
 	inverse = inv;
 	
-	double div = (double) 100 / (double) cCBox.iWidth;
-	red = (double) r / (double) div ;
-	green = (double) g / (double) div;
-	yellow = (double) b / (double) div;
+	//double div = (double) 100 / (double) cCBox.iWidth;
+	div = (double) cCBox.iWidth / (double) 100;
+	
+	red = (double) 40 * (double) div ;
+	green = (double) 100 * (double) div;
+	yellow = (double) 70 * (double) div;
 	
 	percent = 255;
 	
@@ -134,13 +146,19 @@ CProgressBar::CProgressBar(/*int x, int y,*/ int w, int h, int r, int g, int b, 
 
 CProgressBar::CProgressBar(const CBox* position, int r, int g, int b, bool inv)
 {
+	dprintf(DEBUG_INFO, "CProgressBar::CProgressBar: x:%d y:%d dx:%d dy:%d\n", position->iX, position->iY, position->iWidth, position->iHeight);
+	
 	cCBox = *position;
 	inverse = inv;
 	
-	double div = (double) 100 / (double) cCBox.iWidth;
-	red = (double) r / (double) div ;
-	green = (double) g / (double) div;
-	yellow = (double) b / (double) div;
+	//double div = (double) 100 / (double) cCBox.iWidth;
+	div = (double) cCBox.iWidth / (double) 100;
+	
+	red = (double) 40 * (double) div ;
+	green = (double) 100 * (double) div;
+	yellow = (double) 70 * (double) div;
+	
+	rgb = COL_MENUCONTENT_PLUS_6;
 	
 	percent = 255;
 	
@@ -152,86 +170,59 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr, bool
 	cCBox.iX = x;
 	cCBox.iY = y;
 	
-	int i= 0;
-	int b = 0;
+	int i = 0;
+	//int b = 0;
 	
 	int siglen = 0;
-	unsigned int posx;
-	unsigned int posy;
+	//unsigned int posx;
+	//unsigned int posy;
 	
 	//
-	unsigned int xpos = cCBox.iX;
-	unsigned int ypos = cCBox.iY;
+	//unsigned int xpos = cCBox.iX;
+	//unsigned int ypos = cCBox.iY;
 
-	double div = (double) 100 / (double) cCBox.iWidth;
-	uint32_t rgb = COL_MENUCONTENT_PLUS_2;
+	//double div = (double) 100 / (double) cCBox.iWidth;
+	//double div = (double) cCBox.iWidth / (double) 100;
+	//uint32_t rgb = COL_MENUCONTENT_PLUS_2;
 	
 	// body
 	if (paintBG)
-		frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, COL_MENUCONTENT_PLUS_2, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);	//fill passive
+		frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, COL_MENUCONTENT_PLUS_2, NO_RADIUS, CORNER_ALL, g_settings.progressbar_color? g_settings.progressbar_gradient : NOGRADIENT);	//fill passive
 	
 	if (pcr != percent) 
 	{
 		if(percent == 255) 
 			percent = 0;
 
-		siglen = (double) pcr / (double) div;
-		posx = xpos;
-		posy = ypos;
-		int maxi = siglen;
-		int total = cCBox.iWidth;
-		int step = 100/total;
+		//siglen = (double) pcr / (double) div;
+		siglen = (double) pcr * (double) div;
+		//posx = xpos;
+		//posy = ypos;
+		
+		//int maxi = siglen;
+		//int maxi = cCBox.iWidth;
+		//int total = cCBox.iWidth;
+		
+		//int step = 100/total;
+		int step = cCBox.iWidth/100;
 
-		if (pcr > percent) 
+		if(g_settings.progressbar_color)
 		{
-			if(g_settings.progressbar_color == 0)
+			for (i = 0; (i < green) && (i < siglen); i++) 
 			{
-				// red / green
-				for (i = 0; (i < red) && (i < maxi); i++) 
-				{
-					step = 255/red;
+				step = 255/green;
 
-					if(inverse) 
-						rgb = COL_GREEN_PLUS_0 + ((unsigned char)(step*i) << 16); // adding red
-					else
-						rgb = COL_RED_PLUS_0 + ((unsigned char)(step*i) <<  8); // adding green
+				if(inverse)
+					rgb = COL_YELLOW_PLUS_0 - ((unsigned char) (step*(i)) <<  8);
+				else
+					rgb = COL_YELLOW_PLUS_0 - ((unsigned char) (step*(i)) << 16); // removing red
 				
-					frameBuffer->paintBoxRel(posx + i, posy, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
-				}
-	
-				//yellow
-				for (; (i < yellow) && (i < maxi); i++) 
-				{
-					step = 255/yellow/2;
-
-					if(inverse) 
-						rgb = COL_YELLOW_PLUS_0 - (((unsigned char)step*(b++)) <<  8); // removing green
-					else
-						rgb = COL_YELLOW_PLUS_0 - ((unsigned char)(step*(b++)) << 16); // removing red
-	
-					frameBuffer->paintBoxRel(posx + i, posy, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
-				}
-
-				//green / red
-				for (; (i < green) && (i < maxi); i++) 
-				{
-					step = 255/green;
-
-					if(inverse) 
-						rgb = COL_YELLOW_PLUS_0 - ((unsigned char) (step*(b++)) <<  8); // removing green
-					else
-						rgb = COL_YELLOW_PLUS_0 - ((unsigned char) (step*(b++)) << 16); // removing red
-				
-					frameBuffer->paintBoxRel (posx + i, posy, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
-				}
+				frameBuffer->paintBoxRel (cCBox.iX + i, cCBox.iY, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 			}
-			else
-			{
-				for(; (i < maxi); i++) 
-				{
-					frameBuffer->paintBoxRel(posx + i, posy, 1, cCBox.iHeight, COL_MENUCONTENT_PLUS_6, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
-				}
-			}
+		}
+		else
+		{
+			frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, siglen, cCBox.iHeight, COL_MENUCONTENT_PLUS_6, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 		}
 		
 		percent = pcr;
@@ -246,6 +237,8 @@ void CProgressBar::reset()
 // CCButtons
 CCButtons::CCButtons(const int x, const int y, const int dx, const int dy)
 {
+	dprintf(DEBUG_INFO, "CCButtons::CCButtons: x:%d y:%d dx:%d dy:%d\n", x, y, dx, dy);
+	
 	frameBuffer = CFrameBuffer::getInstance();
 	
 	cCBox.iX = x;
