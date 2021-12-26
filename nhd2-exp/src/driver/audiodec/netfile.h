@@ -42,7 +42,6 @@ extern "C" {
 #include <ctype.h>
 #include <pthread.h>
 
-//#define dprintf if(debug) fprintf
 
 /* file access modes */
 #define ACC_RO		0

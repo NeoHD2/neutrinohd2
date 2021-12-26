@@ -67,22 +67,24 @@ CBaseDec::RetCode CBaseDec::DecoderBase(CAudiofile* const in)
 	
 	if(in->FileExtension == CFile::EXTENSION_URL)
 	{
-		fp = fopen( in->Filename.c_str(), "rc" );
+		fp = f_open( in->Filename.c_str(), "rc" );
 
 		if ( fp == NULL )
 		{
-			dprintf(DEBUG_DEBUG, "CBaseDec::DecoderBase: Error opening file %s for meta data reading.\n", in->Filename.c_str() );
+			dprintf(DEBUG_INFO, "CBaseDec::DecoderBase: Error opening file %s for meta data reading.\n", in->Filename.c_str() );
 
 			Status = INTERNAL_ERR;
+			
+			return Status;
 		}
 		else
 		{
 
-			if ( fstatus(fp, ShoutcastCallback) < 0 )
+			if ( f_status(fp, ShoutcastCallback) < 0 )
 				fprintf( stderr, "CBaseDec::DecoderBase:Error adding shoutcast callback: %s\n", err_txt );
 		}
 
-		if ( fclose( fp ) == EOF )
+		if ( f_close( fp ) == EOF )
 		{
 			fprintf( stderr, "CBaseDec::DecoderBase:Could not close file %s.\n", in->Filename.c_str() );
 		}
