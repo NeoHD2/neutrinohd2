@@ -67,20 +67,20 @@ extern "C" {
 #define RUNNING		3
 
 /* map all fopen() calls onto out f_open() function */
-#define fopen	f_open
-#define fclose	f_close
-#define fread	f_read
-#define ftell	f_tell
-#define rewind	f_rewind
-#define fseek	f_seek
+#define fopen		f_open
+#define fclose		f_close
+#define fread		f_read
+#define ftell		f_tell
+#define rewind		f_rewind
+#define fseek		f_seek
 #define fstatus	f_status
-#define ftype	f_type
+#define ftype		f_type
 
-extern FILE	*f_open(const char *, const char *);
+extern FILE*		f_open(const char *, const char *);
 extern int		f_close(FILE *);
-extern size_t	f_read (void *, size_t, size_t, FILE *);
-extern long	f_tell(FILE *);
-extern void	f_rewind(FILE *);
+extern size_t		f_read (void *, size_t, size_t, FILE *);
+extern long		f_tell(FILE *);
+extern void		f_rewind(FILE *);
 extern int		f_seek(FILE *, long, int);
 extern int		f_status(FILE *, void (*)(void*));
 extern const char	*f_type(FILE*, const char*);

@@ -63,6 +63,8 @@ class CProgressWindow : public CComponent
 		CProgressBar* progressBar;
 
 		bool paintHead;
+		bool paintCancelIcon;
+		
 		void initFrames(int _x = 0, int _y = 0, int _width = 0, int _height = 0);
 
 	public:
@@ -76,6 +78,7 @@ class CProgressWindow : public CComponent
 		void setTitle(const char* const title);
 		void showGlobalStatus(const unsigned int prog);
 		void showStatusMessageUTF(const std::string & text); // UTF-8
+		void enableCancelIcon(){paintCancelIcon = true;};
 
 		unsigned int getGlobalStatus(void){return global_progress;};
 };

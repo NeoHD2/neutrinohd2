@@ -311,6 +311,7 @@ void CIceCast::scanXmlData(_xmlDocPtr answer_parser, const char *nametag, const 
 			long listPos = 1;
 			
 			progress.setTitle(LOCALE_AUDIOPLAYER_READING_FILES);
+			progress.enableCancelIcon();
 			progress.paint();
 			
 			frameBuffer->blit();
@@ -696,6 +697,7 @@ void CIceCast::showMenu()
 
 		char duration[9];
 		snprintf(duration, 8, "%ldk", playlist[i].MetaData.total_time);
+		std::string cover = playlist[i].MetaData.cover.empty()? DATADIR "/neutrino/icons/no_coverArt.png" : playlist[i].MetaData.cover;
 
 		//
 		item = new ClistBoxItem(tmp.c_str(), true, NULL, this, "iplay");
@@ -705,12 +707,15 @@ void CIceCast::showMenu()
 
 		// details Box
 		item->setInfo1(tmp.c_str());
+		
+		item->setHint(tmp.c_str());
+		item->setItemIcon(cover.c_str());
 
 		ilist->addItem(item);
 	}
 	
 	ilist->setWidgetMode(MODE_LISTBOX);
-	ilist->setWidgetType(WIDGET_TYPE_STANDARD);
+	ilist->setWidgetType(WIDGET_TYPE_EXTENDED);
 
 	//ilist->setTimeOut(g_settings.timing[SNeutrinoSettings::TIMING_CHANLIST]);
 	ilist->setSelected(selected);

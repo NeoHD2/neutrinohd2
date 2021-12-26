@@ -49,6 +49,7 @@ CProgressWindow::CProgressWindow(int _x, int _y, int _width, int _height)
 	captionString = "";
 
 	paintHead = false;
+	paintCancelIcon = false;
 
 	global_progress = 0;
 	statusText = "";
@@ -193,6 +194,7 @@ void CProgressWindow::paint()
 	// title
 	if(paintHead)
 	{
+		const struct button_label cancelBtn = { NEUTRINO_ICON_BUTTON_HOME, NONEXISTANT_LOCALE, NULL };
 		const char * l_caption;
 		if (caption != NONEXISTANT_LOCALE)
 			l_caption = g_Locale->getText(caption);
@@ -210,6 +212,10 @@ void CProgressWindow::paint()
 			headers.setCorner(CORNER_TOP);
 			headers.setRadius(RADIUS_MID);
 		}
+		
+		if (paintCancelIcon)
+			headers.setButtons(&cancelBtn, 1);
+			
 		headers.paint();
 	}
 

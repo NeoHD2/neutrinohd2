@@ -616,8 +616,6 @@ void CAudioPlayerGui::paintInfo(CAudiofile& File)
 		int w2 = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(tmp_time);
 		int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
 		
-		printf("TEST:%d\n",w1+w2);
-		
 		if(background)
 		{
 			delete[] background;
@@ -1360,8 +1358,8 @@ void CAudioPlayerGui::showPlaylist()
 	dprintf(DEBUG_NORMAL, "CAudioPlayerGui::showPlaylist:\n");
 	
 	CBox box;
-	box.iWidth = w_max ( (m_frameBuffer->getScreenWidth() / 20 * 17), (m_frameBuffer->getScreenWidth() / 20 ));
-	box.iHeight = h_max ( (m_frameBuffer->getScreenHeight() / 20 * 16), (m_frameBuffer->getScreenHeight() / 20));
+	box.iWidth = frameBuffer->getScreenWidth() - 40;
+	box.iHeight = frameBuffer->getScreenHeight() - 40;
 	box.iX = m_frameBuffer->getScreenX() + ((m_frameBuffer->getScreenWidth() - box.iWidth ) >> 1 );
 	box.iY = m_frameBuffer->getScreenY() + ((m_frameBuffer->getScreenHeight() - box.iHeight) >> 1 );
 	
@@ -1379,6 +1377,7 @@ void CAudioPlayerGui::showPlaylist()
 		artist = m_playlist[i].MetaData.artist;
 		genre = m_playlist[i].MetaData.genre;	
 		date = m_playlist[i].MetaData.date;
+		std::string cover = m_playlist[i].MetaData.cover.empty()? DATADIR "/neutrino/icons/no_coverArt.png" : m_playlist[i].MetaData.cover;
 
 		snprintf(duration, 8, "(%ld:%02ld)", m_playlist[i].MetaData.total_time / 60, m_playlist[i].MetaData.total_time % 60);
 
@@ -1403,10 +1402,13 @@ void CAudioPlayerGui::showPlaylist()
 		tmp += date.c_str();
 
 		item->setHint(tmp.c_str());
+		item->setItemIcon(cover.c_str());
 
 		alist->addItem(item);
 	}
 
+	alist->setWidgetType(WIDGET_TYPE_EXTENDED);
+	
 	alist->setSelected(m_current);
 	
 	alist->enablePaintHead();

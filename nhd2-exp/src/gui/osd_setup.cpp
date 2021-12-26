@@ -669,13 +669,51 @@ int COSDDiverses::exec(CMenuTarget* parent, const std::string& actionKey)
 		{
 			g_settings.icons_dir = b.getSelectedFile()->Name + "/";
 
-			dprintf(DEBUG_NORMAL, "CMiscSettings::exec: new icons dir %s\n", g_settings.icons_dir.c_str());
+			dprintf(DEBUG_NORMAL, "COSDMiscSettings::exec: new icons dir %s\n", g_settings.icons_dir.c_str());
 
 			CFrameBuffer::getInstance()->setIconBasePath(g_settings.icons_dir);
 			//CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
 		}
 		
 		getString() = g_settings.icons_dir;
+		
+		return ret;
+	}
+	else if(actionKey == "select_buttons_dir")
+	{
+		CFileBrowser b;
+		b.Dir_Mode = true;
+		
+		if (b.exec(g_settings.buttons_dir.c_str())) 
+		{
+			g_settings.buttons_dir = b.getSelectedFile()->Name + "/";
+
+			dprintf(DEBUG_NORMAL, "COSDMiscSettings::exec: new buttons dir %s\n", g_settings.buttons_dir.c_str());
+
+			CFrameBuffer::getInstance()->setButtonBasePath(g_settings.buttons_dir);
+			//CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
+		}
+		
+		getString() = g_settings.buttons_dir;
+		
+		return ret;
+	}
+	else if(actionKey == "select_hints_dir")
+	{
+		CFileBrowser b;
+		b.Dir_Mode = true;
+		
+		if (b.exec(g_settings.hints_dir.c_str())) 
+		{
+			g_settings.hints_dir = b.getSelectedFile()->Name + "/";
+
+			dprintf(DEBUG_NORMAL, "COSDMiscSettings::exec: new hints dir %s\n", g_settings.hints_dir.c_str());
+
+			CFrameBuffer::getInstance()->setHintBasePath(g_settings.hints_dir);
+			//CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
+		}
+		
+		getString() = g_settings.hints_dir;
 		
 		return ret;
 	}
@@ -788,6 +826,12 @@ void COSDDiverses::showMenu()
 	
 	// icons dir
 	osdDiverseSettings.addItem(new CMenuForwarder("Icons Dir", true, g_settings.icons_dir.c_str(), this, "select_icons_dir"));
+	
+	// buttons dir
+	osdDiverseSettings.addItem(new CMenuForwarder("Buttons Dir", true, g_settings.buttons_dir.c_str(), this, "select_buttons_dir"));
+	
+	// hints dir
+	osdDiverseSettings.addItem(new CMenuForwarder("Hints Dir", true, g_settings.hints_dir.c_str(), this, "select_hints_dir"));
 	
 	// logos dir
 	osdDiverseSettings.addItem( new CMenuForwarder(LOCALE_MISCSETTINGS_LOGOSDIR, true, g_settings.logos_dir.c_str(), this, "logos_dir" ) );

@@ -263,7 +263,7 @@ void CMP3Player::showMenu()
 		alist = NULL;
 	}
 	
-	alist = new CMenuWidget(LOCALE_AUDIOPLAYER_HEAD, NEUTRINO_ICON_MP3, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
+	alist = new CMenuWidget(LOCALE_AUDIOPLAYER_HEAD, NEUTRINO_ICON_MP3, frameBuffer->getScreenWidth() - 40, frameBuffer->getScreenHeight() - 40);
 
 	for(unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 	{
@@ -277,7 +277,7 @@ void CMP3Player::showMenu()
 		artist = playlist[i].MetaData.artist;
 		genre = playlist[i].MetaData.genre;	
 		date = playlist[i].MetaData.date;
-		std::string cover = playlist[i].MetaData.cover.empty()? DATADIR "/neutrino/icons/nopreview.jpg" : playlist[i].MetaData.cover;
+		std::string cover = playlist[i].MetaData.cover.empty()? DATADIR "/neutrino/icons/no_coverArt.png" : playlist[i].MetaData.cover;
 
 		snprintf(duration, 8, "(%ld:%02ld)", playlist[i].MetaData.total_time / 60, playlist[i].MetaData.total_time % 60);
 
@@ -308,7 +308,7 @@ void CMP3Player::showMenu()
 	}
 	
 	alist->setWidgetMode(MODE_LISTBOX);
-	alist->setWidgetType(WIDGET_TYPE_STANDARD);
+	alist->setWidgetType(WIDGET_TYPE_EXTENDED);
 
 	alist->setSelected(selected);
 

@@ -301,6 +301,7 @@ void CInternetRadio::scanXmlData(_xmlDocPtr answer_parser, const char *nametag, 
 			long listPos = 1;
 			
 			progress.setTitle(LOCALE_AUDIOPLAYER_READING_FILES);
+			progress.enableCancelIcon();
 			progress.paint();
 			frameBuffer->blit();
 			
@@ -656,7 +657,7 @@ const struct button_label AudioPlayerButtons[FOOT_BUTTONS_COUNT] =
 
 void CInternetRadio::showMenu()
 {
-	ilist = new CMenuWidget("Internet Radio", NEUTRINO_ICON_MP3, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
+	ilist = new CMenuWidget("Internet Radio", NEUTRINO_ICON_MP3, frameBuffer->getScreenWidth() - 40, frameBuffer->getScreenHeight() - 40);
 
 	for(unsigned int i = 0; i < playlist.size(); i++)
 	{
@@ -674,6 +675,7 @@ void CInternetRadio::showMenu()
 
 		char duration[9];
 		snprintf(duration, 8, "%ldk", playlist[i].MetaData.total_time);
+		std::string cover = playlist[i].MetaData.cover.empty()? DATADIR "/neutrino/icons/no_coverArt.png" : playlist[i].MetaData.cover;
 
 		//
 		item = new ClistBoxItem(tmp.c_str(), true, NULL, this, "iplay");
@@ -684,11 +686,14 @@ void CInternetRadio::showMenu()
 		// details Box
 		item->setInfo1(tmp.c_str());
 
+		item->setHint(tmp.c_str());
+		item->setItemIcon(cover.c_str());
+
 		ilist->addItem(item);
 	}
 	
 	ilist->setWidgetMode(MODE_LISTBOX);
-	ilist->setWidgetType(WIDGET_TYPE_STANDARD);
+	ilist->setWidgetType(WIDGET_TYPE_EXTENDED);
 
 	//ilist->setTimeOut(g_settings.timing[SNeutrinoSettings::TIMING_CHANLIST]);
 	ilist->setSelected(selected);
@@ -721,11 +726,21 @@ int CInternetRadio::exec(CMenuTarget* parent, const std::string& actionKey)
 
 	if(actionKey == "iplay")
 	{
+	/*
 		selected = ilist->getSelected();
-
 		tmpAudioPlayerGui.addToPlaylist(playlist[selected]);
-
 		tmpAudioPlayerGui.setCurrent(0);
+	*/
+		selected = ilist->getSelected();
+		
+		for (unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
+		{
+			tmpAudioPlayerGui.addToPlaylist(playlist[i]);
+		}
+
+		tmpAudioPlayerGui.setCurrent(selected);
+		
+		tmpAudioPlayerGui.exec(NULL, "");
 		tmpAudioPlayerGui.setInetMode();
 		tmpAudioPlayerGui.exec(NULL, "");
 

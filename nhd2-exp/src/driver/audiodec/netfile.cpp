@@ -140,8 +140,6 @@ known bugs:
 #endif
 
 
-
-
 typedef struct
 {
 	const unsigned char mask[4];
@@ -178,11 +176,11 @@ char err_txt[2048];			/* human readable error message */
 char redirect_url[2048];		/* new url if we've been redirected (HTTP 301/302) */
 static int debug = 0;			/* print debugging output or not */
 static char logfile[255];		/* redirect errors from stderr */
-static int retry_num = 2 /*10*/;		/* number of retries for failed connections */
+static int retry_num = 2 /*10*/;	/* number of retries for failed connections */
 static int enable_metadata = 0;	/* allow shoutcast meta data streaming */
 static int got_opts = 0;		/* is set to 1 if getOpts() was executed */
 static int cache_size = 196608;	/* default cache size; can be overridden at */
-						/* runtime with an option in the options file */
+					/* runtime with an option in the options file */
 
 STATIC STREAM_CACHE cache[CACHEENTMAX];
 STATIC STREAM_TYPE stream_type[CACHEENTMAX];
@@ -201,9 +199,7 @@ static STREAM_FILTER *ShoutCAST_InitFilter(int);
 static void ShoutCAST_ParseMetaData(char *, CSTATE *);
 
 static void getOpts(void);
-
 static void parseURL_url(URL& url);
-
 static int  base64_encode(char *dest, const char *src);
 
 /***************************************/
@@ -217,7 +213,7 @@ void getOpts()
 	FILE *fd = NULL;
 
 	/* options which can be set from within neutrino */
-	enable_metadata = /*g_settings.audioplayer_enable_sc_metadata*/1;
+	enable_metadata = 0/*g_settings.audioplayer_enable_sc_metadata*/;
 
 	if (got_opts) /* prevent reading in options multiple times */
 		return;
@@ -314,13 +310,15 @@ int ConnectToServer(char *hostname, int port)
 	pfd.revents = 0;
 
 	int ret = poll(&pfd, 1, 5000);
-	if(ret != 1) {
+	if(ret != 1) 
+	{
 		strcpy(err_txt, strerror(errno));
 		//dprintf(stderr, "error connecting to %s: %s\n", hostname, err_txt);
 		close(fd);
 		return -1;
 	}
-	if ((pfd.revents & POLLOUT) == POLLOUT) {
+	if ((pfd.revents & POLLOUT) == POLLOUT) 
+	{
 		fcntl(fd, F_SETFL, flgs &~ O_NONBLOCK);
 		return fd;
 	}
@@ -357,7 +355,8 @@ int request_file(URL *url)
 	switch(url->proto_version)
 	{
 		/* send a HTTP/1.0 request */
-		case HTTP10:	{
+		case HTTP10:	
+			{
 				snprintf(str, sizeof(str)-1, "GET http://%s:%d%s\n", url->host, url->port, url->file);
 				//dprintf(stderr, "> %s", str);
 				send(url->fd, str, strlen(str), 0);
