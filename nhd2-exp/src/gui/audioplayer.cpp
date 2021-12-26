@@ -836,7 +836,7 @@ void CAudioPlayerGui::updateMetaData()
 
 void CAudioPlayerGui::updateTimes(const bool force, bool paint)
 {			
-	if (m_state != CAudioPlayerGui::STOP && paint)
+	if (m_state != CAudioPlayerGui::STOP && paint && !m_inetmode)
 	{	
 		bool updateTotal = force;
 		bool updatePlayed = force;
