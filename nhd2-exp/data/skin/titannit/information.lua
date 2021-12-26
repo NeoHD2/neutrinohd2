@@ -19,7 +19,7 @@ function main()
 	m:setCorner(neutrino.NO_RADIUS, neutrino.CORNER_NONE)
 	
 	local head = neutrino.CHeaders(box.iX + 30, box.iY + 50, box.iWidth - 60, 40, "Information", neutrino.NEUTRINO_ICON_BUTTON_EPG);
-	head:setMode(neutrino.CC_ALIGN_CENTER)
+	head:setHAlign(neutrino.CC_ALIGN_CENTER)
 	head:setRadius('8')
 	head:setCorner(neutrino.CORNER_ALL)
 	

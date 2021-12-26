@@ -20,7 +20,7 @@ function main()
 	m:setCorner(neutrino.NO_RADIUS, neutrino.CORNER_NONE)
 	
 	local head = neutrino.CHeaders(box.iX + 30, box.iY + 50, box.iWidth - 60, 40, neutrino.g_Locale:getText(neutrino.LOCALE_MAINMENU_HEAD), neutrino.NEUTRINO_ICON_BUTTON_SETUP);
-	--head:setMode(neutrino.CC_ALIGN_CENTER)
+	--head:setHAlign(neutrino.CC_ALIGN_CENTER)
 	head:enablePaintDate()
 	head:setFormat("%d.%m.%Y %H:%M:%S")
 	head:setRadius('8')

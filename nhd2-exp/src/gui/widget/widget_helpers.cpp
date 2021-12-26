@@ -917,10 +917,78 @@ void CCTime::refresh()
 	font->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), /*timestr_len + 1*/cCBox.iWidth, timestr.c_str(), color, 0, true);
 }
 
-//// widget items
+// CCCounter
+CCCounter::CCCounter(const int x, const int y, const int dx, const int dy)
+{
+	dprintf(DEBUG_INFO, "CCCounter::CCCounter: x:%d y:%d dx:%d dy:%d\n", x, y, dx, dy);
+	
+	cCBox.iX = x;
+	cCBox.iY = y;
+	cCBox.iWidth = dx;
+	cCBox.iHeight = dy;
+	
+	font = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO];
+	color = COL_INFOBAR;
+	
+	background = NULL;
+	
+	total_time = 0;
+	play_time = 0;
+	
+	//
+	cCBox.iWidth = font->getRenderWidth("00:00:00 / 00:00:00");
+	cCBox.iHeight = font->getHeight();
+	
+	cc_type = CC_COUNTER;
+}
+
+void CCCounter::paint()
+{
+	dprintf(DEBUG_INFO, "CCCounter::paint\n");
+	
+	//
+	background = new fb_pixel_t[cCBox.iWidth*cCBox.iHeight];
+	
+	if (background)
+	{
+		frameBuffer->saveScreen(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, background);
+	}
+	
+	// play_time
+	char playTime[11];
+	strftime(playTime, 11, "%T/", gmtime(&play_time));//FIXME
+	
+	font->RenderString(cCBox.iX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), cCBox.iWidth/2, playTime, color, 0, true);
+	
+	// total_time
+	char totalTime[10];
+	strftime(totalTime, 10, "%T", gmtime(&total_time));//FIXME
+	font->RenderString(cCBox.iX + cCBox.iWidth/2, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), cCBox.iWidth/2, totalTime, color, 0, true);
+}
+
+void CCCounter::refresh()
+{
+	if (background)
+	{
+		frameBuffer->restoreScreen(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, background);
+	}
+	
+	// play_time
+	char playTime[11];
+	strftime(playTime, 11, "%T/", gmtime(&play_time));//FIXME
+	font->RenderString(cCBox.iX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), cCBox.iWidth/2, playTime, color, 0, true);
+	
+	// total_time
+	char totalTime[10];
+	strftime(totalTime, 10, "%T", gmtime(&total_time));//FIXME
+	font->RenderString(cCBox.iX + cCBox.iWidth/2, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), cCBox.iWidth/2, totalTime, color, 0, true);
+}
+
 // headers
 CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const char * const title, const char * const icon)
 {
+	dprintf(DEBUG_INFO, "CHeaders::CHeaders: x:%d y:%d dx:%d dy:%d title:%s icon:%s\n", x, y, dx, dy, title, icon);
+	
 	itemBox.iX = x;
 	itemBox.iY = y;
 	itemBox.iWidth = dx;
@@ -941,13 +1009,15 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 	hbutton_count	= 0;
 	hbutton_labels.clear();
 	
-	tMode = CC_ALIGN_LEFT;
+	thalign = CC_ALIGN_LEFT;
 
 	itemType = WIDGET_ITEM_HEAD;
 }
 
 CHeaders::CHeaders(CBox position, const char * const title, const char * const icon)
 {
+	dprintf(DEBUG_INFO, "CHeaders::CHeaders: x:%d y:%d dx:%d dy:%d title:%s icon:%s\n", position.iX, position.iY, position.iWidth, position.iHeight, title, icon);
+	
 	itemBox = position;
 
 	htitle = title;
@@ -965,7 +1035,7 @@ CHeaders::CHeaders(CBox position, const char * const title, const char * const i
 	hbutton_count	= 0;
 	hbutton_labels.clear();
 	
-	tMode = CC_ALIGN_LEFT;
+	thalign = CC_ALIGN_LEFT;
 
 	itemType = WIDGET_ITEM_HEAD;
 }
@@ -985,7 +1055,7 @@ void CHeaders::setButtons(const struct button_label* _hbutton_labels, const int 
 
 void CHeaders::paint()
 {
-	dprintf(DEBUG_NORMAL, "CHeaders::paint:\n");
+	dprintf(DEBUG_INFO, "CHeaders::paint:\n");
 	
 	// box
 	CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
@@ -1056,7 +1126,7 @@ void CHeaders::paint()
 	int startPosX = itemBox.iX + BORDER_LEFT + i_w + ICON_OFFSET;
 	int stringWidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(htitle);
 	
-	if (tMode == CC_ALIGN_CENTER)
+	if (thalign == CC_ALIGN_CENTER)
 		startPosX = itemBox.iX + (itemBox.iWidth >> 1) - (stringWidth >> 1);
 
 	// title
@@ -1065,7 +1135,7 @@ void CHeaders::paint()
 
 void CHeaders::hide()
 {
-	dprintf(DEBUG_NORMAL, "CHeaders::hide:\n");
+	dprintf(DEBUG_INFO, "CHeaders::hide:\n");
 	
 	CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
 }
@@ -1073,6 +1143,8 @@ void CHeaders::hide()
 // footers
 CFooters::CFooters(int x, int y, int dx, int dy)
 {
+	dprintf(DEBUG_INFO, "CFooters::CFooters: x:%d y:%d dx:%d dy:%d\n", x, y, dx, dy);
+	
 	itemBox.iX = x;
 	itemBox.iY = y;
 	itemBox.iWidth = dx;
@@ -1091,6 +1163,8 @@ CFooters::CFooters(int x, int y, int dx, int dy)
 
 CFooters::CFooters(CBox position)
 {
+	dprintf(DEBUG_INFO, "CFooters::CFooters: x:%d y:%d dx:%d dy:%d title:%s icon:%s\n", position.iX, position.iY, position.iWidth, position.iHeight);
+	
 	itemBox = position;
 
 	fbuttons.clear();
@@ -1121,7 +1195,7 @@ void CFooters::setButtons(const struct button_label *button_label, const int but
 
 void CFooters::paint()
 {
-	dprintf(DEBUG_NORMAL, "CFooters::paint:\n");
+	dprintf(DEBUG_INFO, "CFooters::paint:\n");
 	
 	// box
 	CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, fbgcolor, fradius, fcorner, fgradient);
@@ -1167,7 +1241,7 @@ void CFooters::paint()
 
 void CFooters::hide()
 {
-	dprintf(DEBUG_NORMAL, "CFooters::hide:\n");
+	dprintf(DEBUG_INFO, "CFooters::hide:\n");
 	
 	CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
 }

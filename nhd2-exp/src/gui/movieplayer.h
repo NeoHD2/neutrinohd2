@@ -148,9 +148,9 @@ class CMoviePlayerGui : public CMenuTarget
 		// infoViewer
 		CProgressBar* moviescale;
 		unsigned int runningPercent;
-		fb_pixel_t* background;
 		void showMovieInfo();
 		bool IsVisible() {return visible;};
+		CCCounter* timeCounter;
 
 		//
 		void show(std::string Title, std::string Info, short Percent, const unsigned int ac3state, const int speed, const int playstate, bool show_bookmark = false, bool m_loop = false);

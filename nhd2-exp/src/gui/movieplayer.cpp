@@ -127,7 +127,8 @@ CMoviePlayerGui::CMoviePlayerGui()
 	moviescale = new CProgressBar(cFrameBoxInfo.iWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);
 	moviescale->reset();
 	runningPercent = 0;
-	background = NULL;
+	//background = NULL;
+	timeCounter = NULL;
 }
 
 CMoviePlayerGui::~CMoviePlayerGui()
@@ -140,10 +141,10 @@ CMoviePlayerGui::~CMoviePlayerGui()
 		moviescale = NULL;
 	}
 	
-	if (background)
+	if (timeCounter)
 	{
-		delete [] background; 
-		background = NULL;
+		delete timeCounter ;
+		timeCounter = NULL;
 	}
 }
 
@@ -1137,7 +1138,7 @@ void CMoviePlayerGui::PlayFile(void)
 		{
 			if (mplist && mplist->isPainted())
 			{
-				playlist.clear();
+				clearPlaylist();
 				hide();
 				showPlaylist();
 			}
@@ -1166,6 +1167,8 @@ void CMoviePlayerGui::PlayFile(void)
 		{
 			if (mplist && !mplist->isPainted())
 			{
+				hide();
+				
 				CMoviePlayerSettings* moviePlayerSettings = new CMoviePlayerSettings();
 
 				moviePlayerSettings->exec(NULL, "");
@@ -1934,27 +1937,18 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	//
 	int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight();
 	
-	background = new fb_pixel_t[t_w*t_h];
-	
-	if (background)
-	{
-		frameBuffer->saveScreen(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2, t_w, t_h, background);
-	}
+	//
+	timeCounter = new CCCounter(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2, t_w, t_h);
 
 	// position/duration
 	time_t tDisplayTime = position/1000;
 	time_t dDisplayTime = duration/1000;
-	char cDisplayTime[10];
-	char durationTime[11];
-	strftime(cDisplayTime, 11, "%T/", gmtime(&tDisplayTime));//FIXME
-	strftime(durationTime, 10, "%T", gmtime(&dDisplayTime));//FIXME
-
-	// diaplayTime
-	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight(), t_w/2, cDisplayTime, COL_INFOBAR);
-
-	// durationTime
-	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w/2, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight(), t_w/2 + 1, durationTime, COL_INFOBAR);	
-
+	
+	timeCounter->setTotalTime(dDisplayTime);
+	timeCounter->setPlayTime(tDisplayTime);
+	
+	timeCounter->paint();
+	
 	// Info
 	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(InfoStartX, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight() + TitleHeight, InfoWidth, (char *)Info.c_str(), COL_INFOBAR, 0, true);
 	
@@ -1972,36 +1966,17 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 
 void CMoviePlayerGui::updateTime()
 {
-	int t_w = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth("00:00:00 / 00:00:00");
-	int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight();
-	
-	if (background)
-	{
-		frameBuffer->restoreScreen(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2, t_w, t_h, background);
-	}
-
-	// position/duration
 	time_t tDisplayTime = position/1000;
 	time_t dDisplayTime = duration/1000;
-	char cDisplayTime[10];
-	char durationTime[11];
-	strftime(cDisplayTime, 11, "%T/", gmtime(&tDisplayTime));//FIXME
-	strftime(durationTime, 10, "%T", gmtime(&dDisplayTime));//FIXME
-
-	// diaplayTime
-	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight(), t_w/2, cDisplayTime, COL_INFOBAR);
-
-	// durationTime
-	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - 5 - t_w/2, cFrameBoxInfo.iY + 30 + TIMESCALE_BAR_HEIGHT + (cFrameBoxInfo.iHeight - (30 + TIMESCALE_BAR_HEIGHT + cFrameBoxButton.iHeight) -2*g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight(), t_w/2 + 1, durationTime, COL_INFOBAR);
+	
+	timeCounter->setTotalTime(dDisplayTime);
+	timeCounter->setPlayTime(tDisplayTime);
+	
+	timeCounter->refresh();
 }
 
 //
-#define HEAD_BUTTONS_COUNT	2
-const struct button_label HeadButtons[HEAD_BUTTONS_COUNT] =
-{
-	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_MUTE_SMALL, NONEXISTANT_LOCALE, NULL}
-};
+const struct button_label HeadButtons = { NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL} ;
 
 #define FOOT_BUTTONS_COUNT	4
 const struct button_label FootButtons[FOOT_BUTTONS_COUNT] =
@@ -2055,7 +2030,7 @@ void CMoviePlayerGui::showPlaylist()
 	mplist->enablePaintHead();
 	mplist->setTitle(g_Locale->getText(LOCALE_MOVIEPLAYER_HEAD), NEUTRINO_ICON_MOVIE);
 	mplist->enablePaintDate();
-	mplist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	mplist->setHeadButtons(&HeadButtons);
 	
 	mplist->enablePaintFoot();
 	mplist->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);

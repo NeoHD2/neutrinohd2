@@ -159,7 +159,7 @@ void CWindow::setPosition(CBox* position)
 
 void CWindow::paint()
 {
-	dprintf(DEBUG_NORMAL, "CWindow::%s\n", __FUNCTION__);
+	dprintf(DEBUG_INFO, "CWindow::%s\n", __FUNCTION__);
 
 	if (paintFrame)
 	{
@@ -216,7 +216,7 @@ void CWindow::addCCItem(CComponent* CCItem)
 
 void CWindow::paintCCItems()
 {
-	dprintf(DEBUG_NORMAL, "CWindow::paintCCItems:\n");
+	dprintf(DEBUG_INFO, "CWindow::paintCCItems:\n");
 
 	for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
 	{

@@ -594,7 +594,8 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 
 	CNeutrinoApp * neutrino = CNeutrinoApp::getInstance();
 
-	if (!_calledFromNumZap) 
+	//if (!_calledFromNumZap) 
+	printf("CInfoViewer::show: FIXME:\n");
 	{
 		bool hideIt = true;
 		virtual_zap_mode = false;
@@ -1597,39 +1598,38 @@ void CInfoViewer::showAktivTuner()
 	dprintf(DEBUG_NORMAL, "CInfoViewer::showAktivTuner:\n");
 	
 	/*
+	dprintf(DEBUG_NORMAL, "CInfoViewer::showAktivTuner:\n");
+	if(is_visible)
 	{
-		if(is_visible)
+		if (chanready) 
 		{
-			if (chanready) 
-			{
-				//show aktiv tuner
-				if( FrontendCount > 1 )
-				{	
-					char AktivTuner[255] = "T0";
+			//show aktiv tuner
+			if( FrontendCount > 1 )
+			{	
+				char AktivTuner[255] = "T0";
 					
-					int Index = 0;
+				int Index = 0;
 					
-					for(int i = 0; i < FrontendCount; i++)
-					{
-						CFrontend * fe = getFE(i);
+				for(int i = 0; i < FrontendCount; i++)
+				{
+					CFrontend * fe = getFE(i);
 						
-						if(live_fe != NULL)
-						{
-							if(fe->fenumber == live_fe->fenumber && fe->fe_adapter == live_fe->fe_adapter)
-								Index = i;
-						}
-						else
-							Index = 0;
-					}
-					
 					if(live_fe != NULL)
-						sprintf(AktivTuner, "T%d", (Index + 1));
-					
-					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(BoxEndX - (BORDER_RIGHT + BORDER_LEFT + icon_w_subt + 2 + icon_w_vtxt + 2 + icon_w_dd + 2 + icon_w_aspect + 2 + icon_w_sd + 2 + icon_w_reso + 2 + icon_w_ca + 2 + icon_w_rt + 2 + TunerNumWidth), buttonBarStartY + (buttonBarHeight - TunerNumHeight)/2 + TunerNumHeight, TunerNumWidth, AktivTuner, COL_INFOBAR_SHADOW, 0, true); // UTF-8
+					{
+						if(fe->fenumber == live_fe->fenumber && fe->fe_adapter == live_fe->fe_adapter)
+							Index = i;
+					}
+					else
+						Index = 0;
 				}
+					
+				if(live_fe != NULL)
+					sprintf(AktivTuner, "T%d", (Index + 1));
+					
+				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(BoxEndX - (BORDER_RIGHT + BORDER_LEFT + icon_w_subt + 2 + icon_w_vtxt + 2 + icon_w_dd + 2 + icon_w_aspect + 2 + icon_w_sd + 2 + icon_w_reso + 2 + icon_w_ca + 2 + icon_w_rt + 2 + TunerNumWidth), buttonBarStartY + (buttonBarHeight - TunerNumHeight)/2 + TunerNumHeight, TunerNumWidth, AktivTuner, COL_INFOBAR_SHADOW, 0, true); // UTF-8
 			}
 		}
-  	}	
+	}	
   	*/
 }
 
@@ -1639,7 +1639,6 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 	
   	char runningStart[10] = "";
   	char runningRest[20] = "";
-  	//runningPercent = 0;
   	unsigned int oldrunningPercent = 100;
 
   	char nextStart[10] = "";

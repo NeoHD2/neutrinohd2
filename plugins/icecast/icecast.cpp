@@ -794,6 +794,7 @@ int CIceCast::exec(CMenuTarget* parent, const std::string& actionKey)
 	else if(actionKey == "RC_yellow")
 	{
 		playlist.clear();
+		selected = 0;
 		showMenu();
 
 		return RETURN_EXIT_ALL;

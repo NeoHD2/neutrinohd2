@@ -574,7 +574,7 @@ class ClistBox : public CWidgetItem
 		button_label_list_t hbutton_labels;
 		bool paintDate;
 		bool paintTitle;
-		int tMode;
+		int thalign;
 
 		// foot
 		int fheight;
@@ -616,6 +616,7 @@ class ClistBox : public CWidgetItem
 		int corner;
 		bool scrolling;
 		fb_pixel_t* items_background;
+		bool itemShadow;
 		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -640,7 +641,7 @@ class ClistBox : public CWidgetItem
 		void enablePaintHead(){paintTitle = true;};
 		void enablePaintDate(void){paintDate = true;};
 		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
-		void setTitleMode(const int m){tMode = m;};
+		void setTitleHAlign(const int m){thalign = m;};
 		void setHeadButtons(const struct button_label *_hbutton_label, const int _hbutton_count = 1);
 		void setHeadColor(fb_pixel_t col) {headColor = col;};
 		void setHeadRadius(int ra){headRadius = ra;};
@@ -659,7 +660,6 @@ class ClistBox : public CWidgetItem
 		void enablePaintFootInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh;};
 		void setFootInfoMode(int mode = FOOT_INFO_MODE){footInfoMode = mode;};
 
-		//void enableCenterPos(){enableCenter = true;};
 		void enableShrinkMenu(){shrinkMenu = true;};
 		
 		// body
@@ -668,6 +668,7 @@ class ClistBox : public CWidgetItem
 		void setRadius(int ra){radius = ra;};
 		void setCorner(int co){corner = co;};
 		void disableScrollBar(){scrolling = false;};
+		void enableItemShadow(){itemShadow = true;};
 
 		virtual void scrollLineDown(const int lines = 1);
 		virtual void scrollLineUp(const int lines = 1);
@@ -686,7 +687,7 @@ class ClistBox : public CWidgetItem
 		int getFootInfoHeight(){return footInfoHeight;};
 		int getListMaxShow(void) const {return listmaxshow;};
 
-		//
+		// frame type
 		void setItemsPerPage(int itemsX = 6, int itemsY = 3){itemsPerX = itemsX; itemsPerY = itemsY; maxItemsPerPage = itemsPerX*itemsPerY;};
 		int getItemsPerX()const{return itemsPerX;};
 		int getItemsPerY()const{return itemsPerY;};

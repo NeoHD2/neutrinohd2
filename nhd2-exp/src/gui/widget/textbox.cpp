@@ -177,7 +177,7 @@ void CTextBox::setBigFonts()
 {
 	bigFonts = bigFonts? false : true;
 	
-	dprintf(DEBUG_NORMAL, "CTextBox::setBigFonts: %d\n", bigFonts? 1 : 0);
+	dprintf(DEBUG_INFO, "CTextBox::setBigFonts: %d\n", bigFonts? 1 : 0);
 
 	if(bigFonts)
 	{
@@ -638,7 +638,7 @@ bool CTextBox::setText(const char * const newText, const char * const _thumbnail
 
 void CTextBox::paint(void)
 {
-	dprintf(DEBUG_NORMAL, "CTextBox::paint:\n");
+	dprintf(DEBUG_INFO, "CTextBox::paint:\n");
 
 	painted = true;
 	refresh();
@@ -646,7 +646,7 @@ void CTextBox::paint(void)
 
 void CTextBox::hide(void)
 {
-	dprintf(DEBUG_NORMAL, "CTextBox::hide:\n");
+	dprintf(DEBUG_INFO, "CTextBox::hide:\n");
 
 	if (bigFonts) 
 	{

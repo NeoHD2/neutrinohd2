@@ -67,7 +67,7 @@ enum {
 	CC_PIG,
 	CC_GRID,
 	CC_TIME,
-	//CC_COUNTER,
+	CC_COUNTER,
 	// not to be added with addCCItem method.
 	CC_SCROLLBAR,
 	CC_PROGRESSBAR,
@@ -492,6 +492,41 @@ class CCTime : public CComponent
 		bool update() const {return rePaint;};
 };
 
+// CCCounter
+class CCCounter : public CComponent
+{
+	public:
+		//
+		uint8_t color;
+		CFont* font;
+		time_t total_time;
+		time_t play_time;
+		
+		fb_pixel_t* background;
+		
+		//
+		CCCounter(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		virtual ~CCCounter(){delete [] background; background = NULL;};
+		
+		//
+		void setColor(uint8_t col){color = col;};
+		void setFont(CFont *f){font = f;};
+		void setHAlign(int h){halign = h;};
+		void setTotalTime(time_t tot_time){total_time = tot_time;};
+		void setPlayTime(time_t p_time){play_time = p_time;};
+		
+		//
+		void paint();
+		void hide(){delete [] background; background = NULL;};
+		void refresh();
+		
+		void enableRepaint(){rePaint = true;};
+		bool update() const {return rePaint;};
+		
+		//
+		CFont* getFont(){return font;};
+};
+
 // CWidgetItem
 enum {
 	WIDGET_ITEM_WINDOW,
@@ -571,7 +606,7 @@ class CHeaders : public CWidgetItem
 		
 		const char *htitle;
 		const char *hicon;
-		int tMode;
+		int thalign;
 		
 		bool paintDate;
 		char* format;
@@ -585,7 +620,7 @@ class CHeaders : public CWidgetItem
 		//
 		void setTitle(const char * const title){htitle = title;};
 		void setIcon(const char * const icon){hicon = icon;};
-		void setMode(const int m){tMode = m;};
+		void setHAlign(const int m){thalign = m;};
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setRadius(const int ra){radius = ra;};
 		void setCorner(const int co){corner = co;};

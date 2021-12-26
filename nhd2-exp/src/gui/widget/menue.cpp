@@ -234,7 +234,7 @@ bool CMenuWidget::hasItem()
 
 void CMenuWidget::initFrames()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::initFrames:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::initFrames:\n");
 	
 	// reinit
 	width = wanted_width;
@@ -557,7 +557,7 @@ void CMenuWidget::paintHead()
 
 void CMenuWidget::paintFoot()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::paintFoot:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::paintFoot:\n");
 	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
@@ -679,7 +679,7 @@ void CMenuWidget::paint()
 // paint items
 void CMenuWidget::paintItems()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::paintItems:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::paintItems:\n");
 	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
@@ -834,7 +834,7 @@ void CMenuWidget::paintItems()
 
 void CMenuWidget::paintItemInfo(int pos)
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::paintItemInfo:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::paintItemInfo:\n");
 	
 	if(widgetType == WIDGET_TYPE_STANDARD)
 	{
@@ -1101,7 +1101,7 @@ void CMenuWidget::paintItemInfo(int pos)
 
 void CMenuWidget::hideItemInfo()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::hideItemInfo:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::hideItemInfo:\n");
 	
 	if (paintFootInfo)
 	{
@@ -1114,7 +1114,7 @@ void CMenuWidget::hideItemInfo()
 
 void CMenuWidget::setFootButtons(const struct button_label *_fbutton_labels, const int _fbutton_count, const int _fbutton_width)
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::setFootButtons:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::setFootButtons:\n");
 	
 	if (_fbutton_count)
 	{
@@ -1130,7 +1130,7 @@ void CMenuWidget::setFootButtons(const struct button_label *_fbutton_labels, con
 
 void CMenuWidget::setHeadButtons(const struct button_label* _hbutton_labels, const int _hbutton_count)
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::setHeadButtons:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::setHeadButtons:\n");
 	
 	if (_hbutton_count)
 	{
@@ -1145,7 +1145,7 @@ void CMenuWidget::setHeadButtons(const struct button_label* _hbutton_labels, con
 
 void CMenuWidget::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::addKey:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::addKey:\n");
 	
 	keyActionMap[key].menue = menue;
 	keyActionMap[key].action = action;
@@ -1153,7 +1153,7 @@ void CMenuWidget::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::stri
 
 void CMenuWidget::saveScreen()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::saveScreen:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::saveScreen:\n");
 	
 	if(!savescreen)
 		return;
@@ -1174,7 +1174,7 @@ void CMenuWidget::saveScreen()
 
 void CMenuWidget::restoreScreen()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::restoreScreen:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::restoreScreen:\n");
 	
 	if(background) 
 	{
@@ -1185,7 +1185,7 @@ void CMenuWidget::restoreScreen()
 
 void CMenuWidget::enableSaveScreen()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::enableSaveScreen:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::enableSaveScreen:\n");
 	
 	savescreen = true;
 	
@@ -1218,7 +1218,7 @@ void CMenuWidget::hide()
 
 void CMenuWidget::integratePlugins(CPlugins::i_type_t integration, const unsigned int shortcut, bool enabled)
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::integratePlugin:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::integratePlugin:\n");
 	
 	unsigned int number_of_plugins = (unsigned int) g_PluginList->getNumberOfPlugins();
 
@@ -1262,7 +1262,7 @@ void CMenuWidget::integratePlugins(CPlugins::i_type_t integration, const unsigne
 //
 void CMenuWidget::changeWidgetType()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::changeWidgetType:\n");
+	dprintf(DEBUG_INFO, "CMenuWidget::changeWidgetType:\n");
 
 	if(widget.size())
 	{

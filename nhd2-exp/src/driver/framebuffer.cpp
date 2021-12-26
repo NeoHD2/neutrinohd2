@@ -1931,6 +1931,8 @@ unsigned char * CFrameBuffer::resize(unsigned char * origin, int ox, int oy, int
 // convertRGB2FB
 void * CFrameBuffer::convertRGB2FB(unsigned char * rgbbuff, unsigned long x, unsigned long y, int transp, int m_transparent, bool alpha)
 {
+	dprintf(DEBUG_INFO, "CFrameBuffer::convertRGB2FB:\n");
+	
 	unsigned long i;
 	unsigned int * fbbuff;
 	unsigned long count = x*y;
@@ -1984,6 +1986,8 @@ void * CFrameBuffer::convertRGB2FB(unsigned char * rgbbuff, unsigned long x, uns
 // getImage
 fb_pixel_t * CFrameBuffer::getImage(const std::string &name, int width, int height, ScalingMode scaling)
 {
+	dprintf(DEBUG_INFO, "CFrameBuffer::getImage:\n");
+	
 	int x, y;
 	CFormathandler * fh;
 	unsigned char * buffer;
@@ -2101,6 +2105,8 @@ bool CFrameBuffer::displayImage(const std::string& name, int posx, int posy, int
 // display RGB (used in pictureviewer)
 void CFrameBuffer::displayRGB(unsigned char * rgbbuff, int x_size, int y_size, int x_pan, int y_pan, int x_offs, int y_offs, bool clearfb)
 {
+	dprintf(DEBUG_INFO, "CFrameBuffer::displayRGB\n");
+	
         void * fbbuff = NULL;
 
         if(rgbbuff == NULL)

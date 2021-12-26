@@ -2995,7 +2995,7 @@ void CTestMenu::testCHeaders()
 	headers->enablePaintDate();
 	headers->setFormat("%d.%m.%Y %H:%M:%S");
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	headers->setMode(CC_ALIGN_CENTER);
+	headers->setHAlign(CC_ALIGN_CENTER);
 	headers->setRadius(4);
 	headers->setCorner(CORNER_TOP_LEFT|CORNER_BOTTOM_RIGHT);
 
@@ -3817,7 +3817,7 @@ void CTestMenu::testClistBox()
 
 	// head
 	rightWidget->setTitle("ClistBox(standard)", NEUTRINO_ICON_MOVIE);
-	rightWidget->setTitleMode(CC_ALIGN_CENTER);
+	rightWidget->setTitleHAlign(CC_ALIGN_CENTER);
 	rightWidget->enablePaintHead();
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
