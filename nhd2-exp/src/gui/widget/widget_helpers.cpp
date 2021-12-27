@@ -132,12 +132,13 @@ CProgressBar::CProgressBar(/*int x, int y,*/ int w, int h, int r, int g, int b, 
 	cCBox.iHeight = h;
 	inverse = inv;
 	
-	//double div = (double) 100 / (double) cCBox.iWidth;
 	div = (double) cCBox.iWidth / (double) 100;
 	
-	red = (double) 40 * (double) div ;
+	red = (double) 100 * (double) div ;
 	green = (double) 100 * (double) div;
-	yellow = (double) 70 * (double) div;
+	yellow = (double) 100 * (double) div;
+	
+	rgb = COL_MENUCONTENT_PLUS_6;
 	
 	percent = 255;
 	
@@ -151,12 +152,11 @@ CProgressBar::CProgressBar(const CBox* position, int r, int g, int b, bool inv)
 	cCBox = *position;
 	inverse = inv;
 	
-	//double div = (double) 100 / (double) cCBox.iWidth;
 	div = (double) cCBox.iWidth / (double) 100;
 	
-	red = (double) 40 * (double) div ;
+	red = (double) 100 * (double) div ;
 	green = (double) 100 * (double) div;
-	yellow = (double) 70 * (double) div;
+	yellow = (double) 100 * (double) div;
 	
 	rgb = COL_MENUCONTENT_PLUS_6;
 	
@@ -167,23 +167,14 @@ CProgressBar::CProgressBar(const CBox* position, int r, int g, int b, bool inv)
 
 void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr, bool paintBG)
 {
+	dprintf(DEBUG_INFO, "CProgressBar::paint:\n");
+	
 	cCBox.iX = x;
 	cCBox.iY = y;
 	
 	int i = 0;
-	//int b = 0;
 	
 	int siglen = 0;
-	//unsigned int posx;
-	//unsigned int posy;
-	
-	//
-	//unsigned int xpos = cCBox.iX;
-	//unsigned int ypos = cCBox.iY;
-
-	//double div = (double) 100 / (double) cCBox.iWidth;
-	//double div = (double) cCBox.iWidth / (double) 100;
-	//uint32_t rgb = COL_MENUCONTENT_PLUS_2;
 	
 	// body
 	if (paintBG)
@@ -194,30 +185,35 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr, bool
 		if(percent == 255) 
 			percent = 0;
 
-		//siglen = (double) pcr / (double) div;
 		siglen = (double) pcr * (double) div;
-		//posx = xpos;
-		//posy = ypos;
-		
-		//int maxi = siglen;
-		//int maxi = cCBox.iWidth;
-		//int total = cCBox.iWidth;
-		
-		//int step = 100/total;
 		int step = cCBox.iWidth/100;
 
 		if(g_settings.progressbar_color)
 		{
+			/*
 			for (i = 0; (i < green) && (i < siglen); i++) 
 			{
 				step = 255/green;
 
 				if(inverse)
-					rgb = COL_YELLOW_PLUS_0 - ((unsigned char) (step*(i)) <<  8);
+					rgb = COL_YELLOW_PLUS_0 - ((unsigned char) (step*(i)) <<  8); // removig green
 				else
 					rgb = COL_YELLOW_PLUS_0 - ((unsigned char) (step*(i)) << 16); // removing red
 				
 				frameBuffer->paintBoxRel (cCBox.iX + i, cCBox.iY, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
+			}
+			*/
+			//red
+			for (i = 0; (i < red) && (i < siglen); i++) 
+			{
+					step = 255/red;
+
+					if(inverse) 
+						rgb = COL_GREEN_PLUS_0 + ((unsigned char)(step*i) << 16); // adding red
+					else
+						rgb = COL_RED_PLUS_0 + ((unsigned char)(step*i) <<  8); // adding green
+				
+					frameBuffer->paintBoxRel(cCBox.iX + i, cCBox.iY, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 			}
 		}
 		else
@@ -268,6 +264,8 @@ void CCButtons::setButtons(const struct button_label *button_label, const int bu
 
 void CCButtons::paint()
 {
+	dprintf(DEBUG_INFO, "CCButtons::CCButtons:paint:\n");
+	
 	int buttonWidth = 0;
 
 	count = buttons.size();
@@ -312,6 +310,8 @@ void CCButtons::paint()
 //
 void CCButtons::paintFootButtons(const int x, const int y, const int dx, const int dy, const unsigned int count, const struct button_label * const content)
 {
+	dprintf(DEBUG_INFO, "CCButtons::paintFootButtons: x:%d y:%d dx:%d dy:%d count:%d\n", x, y, dx, dy, count);
+	
 	int iw[count]; 
 	int ih[count];
 
@@ -357,6 +357,8 @@ void CCButtons::paintFootButtons(const int x, const int y, const int dx, const i
 // head buttons (right)
 void CCButtons::paintHeadButtons(const int x, const int y, const int dx, const int dy, const unsigned int count, const struct button_label * const content)
 {
+	dprintf(DEBUG_INFO, "CCButtons::paintHeadButtons: x:%d y:%d dx:%d dy:%d count:%d\n", x, y, dx, dy, count);
+	
 	int iw[count], ih[count];
 	int startx = x + dx - BORDER_RIGHT;
 	

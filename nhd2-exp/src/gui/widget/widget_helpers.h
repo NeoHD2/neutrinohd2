@@ -256,7 +256,7 @@ class CProgressBar : public CComponent
 
 	public:
 		//
-		CProgressBar(/*int x, int y,*/ int w, int h, int r = 100, int g = 100, int b = 100, bool inv = false);
+		CProgressBar(/*int x, int y,*/ int w, int h, int r = 100, int g = 100, int b = 100, bool inv = true);
 		//CProgressBar(const int x, const int y, const int dx, const int dy);
 		CProgressBar(const CBox* psoition, int r = 40, int g = 100, int b = 70, bool inv = true);
 		

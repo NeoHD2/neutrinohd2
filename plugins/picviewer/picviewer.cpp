@@ -188,10 +188,14 @@ void CPicViewer::showMenu()
 		
 		item->setNumber(i + 1);	
 		item->setOptionInfo(timestring);
+		
+		item->setItemIcon(playlist[i].Filename.c_str());
+		item->setHint(timestring);
 
 		plist->addItem(item);
 	}
 
+	plist->setWidgetType(WIDGET_TYPE_FRAME);
 	//plist->setTimeOut(g_settings.timing[SNeutrinoSettings::TIMING_CHANLIST]);
 	plist->setSelected(selected);
 	plist->enableSaveScreen();

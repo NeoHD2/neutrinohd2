@@ -126,9 +126,8 @@ CMoviePlayerGui::CMoviePlayerGui()
 	
 	moviescale = new CProgressBar(cFrameBoxInfo.iWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);
 	moviescale->reset();
-	runningPercent = 0;
-	//background = NULL;
 	timeCounter = NULL;
+	file_prozent = 0;
 }
 
 CMoviePlayerGui::~CMoviePlayerGui()
@@ -858,9 +857,10 @@ void CMoviePlayerGui::PlayFile(void)
 		// timeosd
 		if (IsVisible()) 
 		{
-			//showMovieInfo();
+			if(duration > 0)
+				file_prozent = (position / (duration / 100));
+				
 			moviescale->paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, file_prozent, false);
-			
 			updateTime();
 		}
 
@@ -878,7 +878,7 @@ void CMoviePlayerGui::PlayFile(void)
 			showMovieInfo();
 		}
 
-		//get position/duration/speed/play next/stop
+		//get position/duration/speed
 		if ( playstate >= CMoviePlayerGui::PLAY )
 		{
 #if defined (PLATFORM_COOLSTREAM)
@@ -887,13 +887,9 @@ void CMoviePlayerGui::PlayFile(void)
 			if( playback->GetPosition((int64_t &)position, (int64_t &)duration) )
 #endif			
 			{
-				// FIXME:					
-				if(duration > 100)
-					file_prozent = (unsigned char) (position / (duration / 100));
-
 				playback->GetSpeed(speed);
 								
-				dprintf(DEBUG_DEBUG, "CMoviePlayerGui::PlayFile: speed %d position %d duration %d percent(%d%%)\n", speed, position, duration, file_prozent);					
+				dprintf(DEBUG_DEBUG, "CMoviePlayerGui::PlayFile: speed %d position %d duration %d\n", speed, position, duration);					
 			}
 			else
 			{
@@ -1788,7 +1784,7 @@ void CMoviePlayerGui::hide()
 //showMovieInfo
 void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, const unsigned int ac3state, const int speed, const int playstate, bool show_bookmark, bool m_loop)
 {
-	dprintf(DEBUG_NORMAL, "CMoviePlayerGui::showMovieInfo:\n");
+	dprintf(DEBUG_INFO, "CMoviePlayerGui::showMovieInfo:\n");
 	
 	// icons dimension
 	frameBuffer->getIconSize(NEUTRINO_ICON_16_9, &icon_w_aspect, &icon_h_aspect);
@@ -1958,10 +1954,8 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	
 	if(Percent > 100)
 		Percent = 100;
-		
-	runningPercent = Percent;
 	
-	moviescale->paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, runningPercent);
+	moviescale->paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, Percent);
 }
 
 void CMoviePlayerGui::updateTime()

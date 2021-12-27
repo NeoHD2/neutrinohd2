@@ -74,9 +74,9 @@ class CMoviePlayerGui : public CMenuTarget
 		int playstate;
 		int speed;
 		int slow;
-		int position;
-		int duration;
-		int file_prozent;
+		unsigned int position;
+		unsigned int duration;
+		unsigned int file_prozent;
 		int startposition;
 		int g_jumpseconds;
 
@@ -147,7 +147,6 @@ class CMoviePlayerGui : public CMenuTarget
 
 		// infoViewer
 		CProgressBar* moviescale;
-		unsigned int runningPercent;
 		void showMovieInfo();
 		bool IsVisible() {return visible;};
 		CCCounter* timeCounter;

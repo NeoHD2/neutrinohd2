@@ -73,7 +73,7 @@ CBEBouquetWidget::CBEBouquetWidget()
 
 	// box	
 	cFrameBox.iWidth = w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 ));
-	cFrameBox.iHeight = h_max ( (frameBuffer->getScreenHeight() / 20 * 18), (frameBuffer->getScreenHeight() / 20));
+	cFrameBox.iHeight = h_max ( (frameBuffer->getScreenHeight() / 20 * 20), (frameBuffer->getScreenHeight() / 20));
 	
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
 	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
@@ -131,8 +131,6 @@ void CBEBouquetWidget::paint()
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
 	listBox->setHeadButtons(&HButton, 1);
-
-	// foot
 	listBox->enablePaintFoot();
 
 	struct button_label Button[4];
