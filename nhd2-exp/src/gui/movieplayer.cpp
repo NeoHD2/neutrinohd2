@@ -857,7 +857,7 @@ void CMoviePlayerGui::PlayFile(void)
 		// timeosd
 		if (IsVisible()) 
 		{
-			if(duration > 0)
+			if(duration > 100)
 				file_prozent = (position / (duration / 100));
 				
 			moviescale->paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, file_prozent, false);
@@ -1801,7 +1801,7 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 		frameBuffer->paintBoxRel(cFrameBoxInfo.iX - 1, cFrameBoxInfo.iY - 1, cFrameBoxInfo.iWidth + 2, cFrameBoxInfo.iHeight + 2, COL_MENUCONTENT_PLUS_6);
 		
 	// paint info box
-	frameBuffer->paintBoxRel(cFrameBoxInfo.iX, cFrameBoxInfo.iY, cFrameBoxInfo.iWidth, cFrameBoxInfo.iHeight, COL_INFOBAR_PLUS_0, g_settings.menu_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.menu_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient); 
+	frameBuffer->paintBoxRel(cFrameBoxInfo.iX, cFrameBoxInfo.iY, cFrameBoxInfo.iWidth, cFrameBoxInfo.iHeight, COL_INFOBAR_PLUS_0, g_settings.menu_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.menu_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient, g_settings.infobar_gradient_direction); 
 		
 	// bottum bar
 	if (g_settings.infobar_buttonbar)

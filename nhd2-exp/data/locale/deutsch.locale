@@ -138,8 +138,8 @@ colormenu.gradient Farbverlauf
 colormenu.gtx_alpha Transparenz
 colormenu.gain Farbe
 colormenu.head Farb-Einstellungen
-colormenu.menucolors Menü Farben
-colormenu.statusbar Infobar Farben
+colormenu.menucolors Menü
+colormenu.statusbar Infobar
 colormenu.textcolor Textfarbe
 colormenu.themeselect Theme auswählen
 colormenu.timing OSD Timeouts

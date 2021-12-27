@@ -514,7 +514,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	frameBuffer->paintBoxRel(x, ypos2, width, info_height, col1);
 
 	// infoBox
-	frameBuffer->paintBoxRel(x + 2, ypos2 + 2, width - 4, info_height - 4, COL_MENUFOOT_INFO_PLUS_0/*, NO_RADIUS, CORNER_NONE, g_settings.Foot_Info_gradient*/);
+	frameBuffer->paintBoxRel(x + 2, ypos2 + 2, width - 4, info_height - 4, COL_MENUFOOT_INFO_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.Foot_Info_gradient);
 	
 	//
 	int DLx = x +2;

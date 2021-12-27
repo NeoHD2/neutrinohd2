@@ -53,6 +53,13 @@
 #include <system/helpers.h>
 
 
+#define OPTIONS_OFF0_ON1_OPTION_COUNT 2
+const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
+{
+        { 0, LOCALE_OPTIONS_OFF, NULL },
+        { 1, LOCALE_OPTIONS_ON, NULL }
+};
+
 // osd settings
 COSDSettings::COSDSettings()
 {
@@ -101,7 +108,7 @@ void COSDSettings::showMenu(void)
 	// skin
 	osdSettings->addItem( new CMenuForwarder(LOCALE_SKIN_SKIN, true, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 	
-	// skin sttings
+	// skin settings
 	//osdSettings->addItem( new CMenuForwarder("Skin Settings", true, NULL, new CSkinSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 
 	// Themes
@@ -140,7 +147,7 @@ void COSDSettings::showMenu(void)
 }
 
 // osd menucolor settings
-#define COLOR_GRADIENT_TYPE_OPTION_COUNT 5
+#define COLOR_GRADIENT_TYPE_OPTION_COUNT	5
 const keyval COLOR_GRADIENT_TYPE_OPTIONS[COLOR_GRADIENT_TYPE_OPTION_COUNT] =
 {
 	{ NOGRADIENT, NONEXISTANT_LOCALE, "no gradient" },
@@ -148,6 +155,13 @@ const keyval COLOR_GRADIENT_TYPE_OPTIONS[COLOR_GRADIENT_TYPE_OPTION_COUNT] =
 	{ LIGHT2DARK, NONEXISTANT_LOCALE, "Light to Dark" },
 	{ DARK2LIGHT2DARK, NONEXISTANT_LOCALE, "Dark to Light to Dark" },
 	{ LIGHT2DARK2LIGHT, NONEXISTANT_LOCALE, "Light to Dark to Light" }
+};
+
+#define GRADIENT_DIRECTION_TYPE_OPTION_COUNT	2
+const keyval GRADIENT_DIRECTION_TYPE_OPTIONS[GRADIENT_DIRECTION_TYPE_OPTION_COUNT] =
+{
+	{ GRADIENT_HORIZONTAL, NONEXISTANT_LOCALE, "Horizontal" },
+	{ GRADIENT_VERTICAL, NONEXISTANT_LOCALE, "Vertical" }
 };
 
 #define CORNER_TYPE_OPTION_COUNT	10
@@ -169,7 +183,7 @@ const keyval CORNER_TYPE_OPTIONS[CORNER_TYPE_OPTION_COUNT] =
 const keyval RADIUS_TYPE_OPTIONS[RADIUS_TYPE_OPTION_COUNT] =
 {
 	{ RADIUS_SMALL, NONEXISTANT_LOCALE, "Small" },
-	{ RADIUS_MID, NONEXISTANT_LOCALE, "Midium" },
+	{ RADIUS_MID, NONEXISTANT_LOCALE, "Middle" },
 	{ RADIUS_LARGE, NONEXISTANT_LOCALE, "Large" },
 };
 
@@ -296,14 +310,20 @@ void COSDMenuColorSettings::showMenu()
 	// foot radius
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser("Foot Radius", &g_settings.Foot_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 
-	// foot info
+	// footInfo
 	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_COLORMENU_FOOT_TITLE)));
+	
+	// fontInfocolor
 	OSDmenuColorsSettings.addItem( new CMenuForwarder(LOCALE_COLORMENU_BACKGROUND, true, NULL, chFootInfoColor ));
 
+	// fontinfo text color
 	OSDmenuColorsSettings.addItem( new CMenuForwarder(LOCALE_COLORMENU_TEXTCOLOR, true, NULL, chFootInfoTextColor ));
 
-	// foot info gradient
-	//OSDmenuColorsSettings.addItem(new CMenuOptionChooser(LOCALE_COLORMENU_GRADIENT, &g_settings.Foot_Info_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	// footInfo gradient
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(LOCALE_COLORMENU_GRADIENT, &g_settings.Foot_Info_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
+	// footInfo detailsline
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser("Details line", &g_settings.menu_details_line, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 	
 	OSDmenuColorsSettings.exec(NULL, "");
 	OSDmenuColorsSettings.hide();
@@ -373,9 +393,27 @@ void COSDInfoBarColorSettings::showMenu()
 
 	// events text color
 	OSDinfobarColorSettings.addItem( new CMenuForwarder(LOCALE_MISCSETTINGS_INFOBAR_COLORED_EVENTS, true, NULL, chColored_Events ));
+	
+	// infobar shadow
+	OSDinfobarColorSettings.addItem(new CMenuOptionChooser("Infobar Shadow", &g_settings.infobar_shadow, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	
+	// infobar buttonbar
+	OSDinfobarColorSettings.addItem(new CMenuOptionChooser("Infobar Buttons Bar", &g_settings.infobar_buttonbar, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	
+	// infobar buttonline
+	OSDinfobarColorSettings.addItem(new CMenuOptionChooser("Infobar Buttons Line", &g_settings.infobar_buttonline, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 
 	// gradient
-	//OSDinfobarColorSettings.addItem(new CMenuOptionChooser(LOCALE_COLORMENU_GRADIENT, &g_settings.infobar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDinfobarColorSettings.addItem(new CMenuOptionChooser(LOCALE_COLORMENU_GRADIENT, &g_settings.infobar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
+	// gradient direction
+	OSDinfobarColorSettings.addItem(new CMenuOptionChooser("Gradient direction", &g_settings.infobar_gradient_direction, GRADIENT_DIRECTION_TYPE_OPTIONS, GRADIENT_DIRECTION_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
+	// corner
+	OSDinfobarColorSettings.addItem(new CMenuOptionChooser("InfoBar Corner", &g_settings.infobar_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
+	// radius
+	OSDinfobarColorSettings.addItem(new CMenuOptionChooser("InfoBar Radius", &g_settings.infobar_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 	
 	OSDinfobarColorSettings.exec(NULL, "");
 	OSDinfobarColorSettings.hide();
@@ -755,25 +793,6 @@ int COSDDiverses::exec(CMenuTarget* parent, const std::string& actionKey)
 	return ret;
 }
 
-// widget type
-/*
-#define WIDGET_TYPE_OPTION_COUNT	4
-const keyval WIDGET_TYPE_OPTIONS[WIDGET_TYPE_OPTION_COUNT] =
-{
-	{ WIDGET_TYPE_STANDARD, NONEXISTANT_LOCALE, "Standard"},
-	{ WIDGET_TYPE_CLASSIC, NONEXISTANT_LOCALE, "Classic"},
-	{ WIDGET_TYPE_EXTENDED, NONEXISTANT_LOCALE, "Extended"},
-	{ WIDGET_TYPE_FRAME, NONEXISTANT_LOCALE, "Frame"}
-};
-*/
-
-#define OPTIONS_OFF0_ON1_OPTION_COUNT 2
-const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
-{
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL }
-};
-
 // progressbar color
 #define PROGRESSBAR_COLOR_OPTION_COUNT 2
 const keyval PROGRESSBAR_COLOR_OPTIONS[PROGRESSBAR_COLOR_OPTION_COUNT] =
@@ -793,25 +812,6 @@ const keyval  VOLUMEBAR_DISP_POS_OPTIONS[VOLUMEBAR_DISP_POS_OPTIONS_COUNT]=
 	{ 4 , LOCALE_SETTINGS_POS_DEFAULT_CENTER, NULL },
 	{ 5 , LOCALE_SETTINGS_POS_HIGHER_CENTER, NULL }
 };
-
-/*
-#define MENU_CORNERSETTINGS_TYPE_OPTION_COUNT 2
-const keyval MENU_CORNERSETTINGS_TYPE_OPTIONS[MENU_CORNERSETTINGS_TYPE_OPTION_COUNT] =
-{
-	{ NO_RADIUS, LOCALE_EXTRA_ROUNDED_CORNERS_OFF, NULL },
-	{ ROUNDED, LOCALE_EXTRA_ROUNDED_CORNERS_ON, NULL }	
-};
-*/
-
-/*
-#define MENU_POSITION_OPTION_COUNT 3
-const keyval MENU_POSITION_OPTIONS[MENU_POSITION_OPTION_COUNT] =
-{
-	{ SNeutrinoSettings::MENU_POSITION_LEFT, LOCALE_EXTRA_MENU_POSITION_LEFT, NULL },
-	{ SNeutrinoSettings::MENU_POSITION_CENTER, LOCALE_EXTRA_MENU_POSITION_CENTER, NULL },
-	{ SNeutrinoSettings::MENU_POSITION_RIGHT, LOCALE_EXTRA_MENU_POSITION_RIGHT, NULL }
-};
-*/
 
 #define INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT 4
 const keyval  INFOBAR_SUBCHAN_DISP_POS_OPTIONS[INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT]=
@@ -837,20 +837,6 @@ void COSDDiverses::showMenu()
 
 	osdDiverseSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	osdDiverseSettings.addItem(new CMenuSeparator(LINE));
-	
-	// widget type
-	//osdDiverseSettings.addItem(new CMenuOptionChooser("Menu Design", &g_settings.menu_design, WIDGET_TYPE_OPTIONS, WIDGET_TYPE_OPTION_COUNT, true));
-
-	// menu position
-	//osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_MENU_POSITION, &g_settings.menu_position, MENU_POSITION_OPTIONS, MENU_POSITION_OPTION_COUNT, true));
-	
-	//CSkinNotifier skinNotifier;
-	
-	// use skin?
-	//osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_SKIN_ENABLE, &g_settings.use_skin, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, &skinNotifier));
-
-	// corners
-	//osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_ROUNDED_CORNERS, &g_settings.rounded_corners, MENU_CORNERSETTINGS_TYPE_OPTIONS, MENU_CORNERSETTINGS_TYPE_OPTION_COUNT, true));
 
 	// progressbar color
 	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_PROGRESSBAR_COLOR, &g_settings.progressbar_color, PROGRESSBAR_COLOR_OPTIONS, PROGRESSBAR_COLOR_OPTION_COUNT, true));
@@ -873,7 +859,7 @@ void COSDDiverses::showMenu()
 	// epgplus logos
 	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_EPGPLUS_SHOW_LOGOS, &g_settings.epgplus_show_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	
-	// infobar show channelname
+	// infobar channelname
 	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW_CHANNELNAME, &g_settings.show_channelname, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	
 	// sig/snr
@@ -970,7 +956,6 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 			g_settings.use_default_skin = false;
 			CNeutrinoApp::getInstance()->unloadSkin();
 			g_settings.preferred_skin = actionKey;
-			//CNeutrinoApp::getInstance()->loadSkin(g_settings.preferred_skin);
 			CNeutrinoApp::getInstance()->exec(NULL, "restart");
 		}
 	}

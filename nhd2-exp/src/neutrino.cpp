@@ -931,6 +931,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.infobar_corner = configfile.getInt32("infobar_corner", CORNER_ALL);
 	g_settings.infobar_radius = configfile.getInt32("infobar_radius", NO_RADIUS);
 	g_settings.infobar_gradient = configfile.getInt32("infobar_gradient", NOGRADIENT);
+	g_settings.infobar_gradient_direction = configfile.getInt32("infobar_gradient_direction", GRADIENT_HORIZONTAL);
 	g_settings.infobar_buttonbar = configfile.getBool("infobar_buttonbar", true);
 	g_settings.infobar_buttonline = configfile.getBool("infobar_buttonline", false);
 	g_settings.infobar_shadow = configfile.getBool("infobar_shadow", true);
@@ -1386,6 +1387,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	
 	//
 	configfile.setInt32("infobar_gradient", g_settings.infobar_gradient);
+	configfile.setInt32("infobar_gradient_direction", g_settings.infobar_gradient_direction);
 	configfile.setInt32("infobar_corner", g_settings.infobar_corner);
 	configfile.setInt32("infobar_radius", g_settings.infobar_radius);
 	configfile.setBool("infobar_buttonbar", g_settings.infobar_buttonbar);
@@ -1697,6 +1699,7 @@ void CNeutrinoApp::unloadSkin()
 	
 	// infobar
 	g_settings.infobar_gradient = NOGRADIENT;
+	g_settings.infobar_gradient_direction = GRADIENT_HORIZONTAL;
 	g_settings.infobar_radius = NO_RADIUS;
 	g_settings.infobar_corner = CORNER_NONE;
 	g_settings.infobar_buttonbar = true;
@@ -1824,6 +1827,7 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		
 		// infobar
 		g_settings.infobar_gradient = skinConfig->getInt32("infobar_gradient", NOGRADIENT);
+		g_settings.infobar_gradient_direction = skinConfig->getInt32("infobar_gradient_direction", GRADIENT_HORIZONTAL);
 		g_settings.infobar_corner = skinConfig->getInt32("infobar_corner", CORNER_ALL);
 		g_settings.infobar_radius = skinConfig->getInt32("infobar_radius", RADIUS_MID);
 		g_settings.infobar_shadow = skinConfig->getBool("infobar_shadow", true);
@@ -1940,6 +1944,7 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	
 	//
 	skinConfig->setInt32("infobar_gradient", g_settings.infobar_gradient);
+	skinConfig->setInt32("infobar_gradient_direction", g_settings.infobar_gradient_direction);
 	skinConfig->setInt32("infobar_corner", g_settings.infobar_corner);
 	skinConfig->setInt32("infobar_radius", g_settings.infobar_radius);
 	skinConfig->setBool("infobar_buttonbar", g_settings.infobar_buttonbar);

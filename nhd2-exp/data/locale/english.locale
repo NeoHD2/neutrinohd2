@@ -138,8 +138,8 @@ colormenu.gradient Gradient
 colormenu.gtx_alpha Transparency
 colormenu.gain Color gain
 colormenu.head Color Settings
-colormenu.menucolors Menu color
-colormenu.statusbar Infobar color
+colormenu.menucolors Menu
+colormenu.statusbar Infobar
 colormenu.textcolor Textcolor
 colormenu.themeselect Select theme
 colormenu.timing OSD Timing
@@ -148,7 +148,7 @@ colormenusetup.menucontent Window-Content
 colormenusetup.menucontent_inactive Window-Content inactive
 colormenusetup.menucontent_selected Window-Content selected
 colormenusetup.menuhead Menu Header
-colorstatusbar.head Infobar color
+colorstatusbar.head Infobar
 colorstatusbar.text Infobar
 colorthememenu.head Theme Selector
 colorthememenu.head2 Load themes

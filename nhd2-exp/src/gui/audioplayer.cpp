@@ -503,7 +503,7 @@ void CAudioPlayerGui::paintInfo(CAudiofile& File)
 		m_frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight, COL_MENUCONTENT_PLUS_6);
 	
 	// box	
-	m_frameBuffer->paintBoxRel(cFrameBox.iX + 1, cFrameBox.iY + 1 , cFrameBox.iWidth - 2, cFrameBox.iHeight - 2, COL_INFOBAR_PLUS_0, g_settings.menu_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.menu_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient); 
+	m_frameBuffer->paintBoxRel(cFrameBox.iX + 1, cFrameBox.iY + 1 , cFrameBox.iWidth - 2, cFrameBox.iHeight - 2, COL_INFOBAR_PLUS_0, g_settings.menu_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.menu_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient, g_settings.infobar_gradient_direction); 
 
 	// first line (Track number)
 	std::string tmp;
