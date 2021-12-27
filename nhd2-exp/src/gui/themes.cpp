@@ -295,11 +295,6 @@ void CThemes::readFile(const char* themename)
 		g_settings.menu_FootInfo_Text_red = themefile.getInt32( "menu_FootInfo_Text_red", 85);
 		g_settings.menu_FootInfo_Text_green = themefile.getInt32( "menu_FootInfo_Text_green", 85);
 		g_settings.menu_FootInfo_Text_blue = themefile.getInt32( "menu_FootInfo_Text_blue", 85);
-		
-		//FIXME: DIRTY HACK
-		g_settings.rounded_corners = themefile.getInt32("rounded_corners", NO_RADIUS);
-		g_settings.Head_gradient = themefile.getInt32("Head_gradient", DARK2LIGHT2DARK);
-		g_settings.Foot_gradient = themefile.getInt32("Foot_gradient", DARK2LIGHT2DARK);
 
 		notifier = new CColorSetupNotifier;
 		notifier->changeNotify(NONEXISTANT_LOCALE, NULL);

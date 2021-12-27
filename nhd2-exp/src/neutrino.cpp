@@ -719,7 +719,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.screen_xres = configfile.getInt32("screen_xres", 100);
 	g_settings.screen_yres = configfile.getInt32("screen_yres", 100);
 	
-	g_settings.rounded_corners = configfile.getInt32("rounded_corners", NO_RADIUS);
+	//
 	g_settings.use_default_skin = configfile.getBool("use_default_skin", true);
 	g_settings.preferred_skin = configfile.getString("preferred_skin", "default");
 	g_settings.menu_shadow = configfile.getBool("menu_shadow", true);
@@ -1209,7 +1209,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	for (int i = 0; i < TIMING_SETTING_COUNT; i++)
 		configfile.setInt32(locale_real_names[timing_setting_name[i]], g_settings.timing[i]);
 	
-	configfile.setInt32("rounded_corners", g_settings.rounded_corners);
+	//
 	configfile.setBool("use_default_skin", g_settings.use_default_skin);
 	configfile.setString("preferred_skin", g_settings.preferred_skin);
 	configfile.setBool("menu_shadow", g_settings.menu_shadow);
@@ -1691,26 +1691,27 @@ void CNeutrinoApp::unloadSkin()
 	CThemes* themes = new CThemes();
 	themes->exec(NULL, "theme_default");
 	
-	//
+	// menu
 	g_settings.menu_shadow = true;
 	g_settings.menu_details_line = true;
 	
-	//
+	// infobar
+	g_settings.infobar_gradient = NOGRADIENT;
 	g_settings.infobar_radius = NO_RADIUS;
 	g_settings.infobar_corner = CORNER_NONE;
 	g_settings.infobar_buttonbar = true;
 	g_settings.infobar_buttonline = false;
 	g_settings.infobar_shadow = true;
 	
+	// head
 	g_settings.Head_radius = RADIUS_MID;
 	g_settings.Head_corner = CORNER_TOP;
 	g_settings.Head_gradient = LIGHT2DARK;
 	
+	// foot
 	g_settings.Foot_radius = RADIUS_MID;
 	g_settings.Foot_corner = CORNER_BOTTOM;
 	g_settings.Foot_gradient = DARK2LIGHT;
-	
-	g_settings.rounded_corners = 0;
 	
 	delete themes;
 	themes = NULL;
@@ -1830,7 +1831,6 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.infobar_buttonline = skinConfig->getBool("infobar_buttonline", false);
 		
 		//
-		g_settings.rounded_corners = skinConfig->getInt32("rounded_corners", NO_RADIUS);
 		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", true);
 		g_settings.menu_details_line = skinConfig->getBool("menu_details_line", true);
 		
@@ -1946,7 +1946,7 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	skinConfig->setBool("infobar_buttonline", g_settings.infobar_buttonline);
 	skinConfig->setBool("infobar_shadow", g_settings.infobar_shadow);
 	
-	skinConfig->setInt32("rounded_corners", g_settings.rounded_corners);
+	//
 	skinConfig->setBool("menu_shadow", g_settings.menu_shadow);
 	skinConfig->setBool("menu_details_line", g_settings.menu_details_line);
 		

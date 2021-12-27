@@ -261,7 +261,6 @@ struct SNeutrinoSettings
 	int screen_yres;
 	
 	int volume_pos;
-	int rounded_corners;
 	std::string preferred_skin;
 	int use_default_skin;	
 	// END OSD
