@@ -150,6 +150,29 @@ const keyval COLOR_GRADIENT_TYPE_OPTIONS[COLOR_GRADIENT_TYPE_OPTION_COUNT] =
 	{ LIGHT2DARK2LIGHT, NONEXISTANT_LOCALE, "Light to Dark to Light" }
 };
 
+#define CORNER_TYPE_OPTION_COUNT	10
+const keyval CORNER_TYPE_OPTIONS[CORNER_TYPE_OPTION_COUNT] =
+{
+	{ CORNER_NONE, LOCALE_EXTRA_ROUNDED_CORNERS_OFF, NULL },
+	{ CORNER_TOP_LEFT, NONEXISTANT_LOCALE, "TOP LEFT" },
+	{ CORNER_TOP_RIGHT, NONEXISTANT_LOCALE, "TOP RIGHT" },
+	{ CORNER_TOP, NONEXISTANT_LOCALE, "TOP" },
+	{ CORNER_BOTTOM_RIGHT, NONEXISTANT_LOCALE, "BOTTOM RIGHT" },
+	{ CORNER_RIGHT, NONEXISTANT_LOCALE, "RIGHT" },
+	{ CORNER_BOTTOM_LEFT, NONEXISTANT_LOCALE, "BOTTOM LEFT" },
+	{ CORNER_LEFT, NONEXISTANT_LOCALE, "LEFT" },
+	{ CORNER_BOTTOM, NONEXISTANT_LOCALE, "BOTTOM" },
+	{ CORNER_ALL, LOCALE_EXTRA_ROUNDED_CORNERS_ON, NULL },
+};
+
+#define RADIUS_TYPE_OPTION_COUNT	3
+const keyval RADIUS_TYPE_OPTIONS[RADIUS_TYPE_OPTION_COUNT] =
+{
+	{ RADIUS_SMALL, NONEXISTANT_LOCALE, "Small" },
+	{ RADIUS_MID, NONEXISTANT_LOCALE, "Midium" },
+	{ RADIUS_LARGE, NONEXISTANT_LOCALE, "Large" },
+};
+
 COSDMenuColorSettings::COSDMenuColorSettings()
 {
 }
@@ -237,8 +260,11 @@ void COSDMenuColorSettings::showMenu()
 	// head gradient
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(LOCALE_COLORMENU_GRADIENT, &g_settings.Head_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 	
-	// corner
-	// radius
+	// head corner
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser("Head Corner", &g_settings.Head_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
+	// head radius
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser("Head Radius", &g_settings.Head_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 
 	// window content
 	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_COLORMENUSETUP_MENUCONTENT)));
@@ -263,6 +289,12 @@ void COSDMenuColorSettings::showMenu()
 
 	// foot gradient
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(LOCALE_COLORMENU_GRADIENT, &g_settings.Foot_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
+	// foot corner
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser("Foot Corner", &g_settings.Foot_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
+	// foot radius
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser("Foot Radius", &g_settings.Foot_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 
 	// foot info
 	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_COLORMENU_FOOT_TITLE)));
@@ -762,12 +794,14 @@ const keyval  VOLUMEBAR_DISP_POS_OPTIONS[VOLUMEBAR_DISP_POS_OPTIONS_COUNT]=
 	{ 5 , LOCALE_SETTINGS_POS_HIGHER_CENTER, NULL }
 };
 
+/*
 #define MENU_CORNERSETTINGS_TYPE_OPTION_COUNT 2
 const keyval MENU_CORNERSETTINGS_TYPE_OPTIONS[MENU_CORNERSETTINGS_TYPE_OPTION_COUNT] =
 {
 	{ NO_RADIUS, LOCALE_EXTRA_ROUNDED_CORNERS_OFF, NULL },
 	{ ROUNDED, LOCALE_EXTRA_ROUNDED_CORNERS_ON, NULL }	
 };
+*/
 
 /*
 #define MENU_POSITION_OPTION_COUNT 3
@@ -816,7 +850,7 @@ void COSDDiverses::showMenu()
 	//osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_SKIN_ENABLE, &g_settings.use_skin, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, &skinNotifier));
 
 	// corners
-	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_ROUNDED_CORNERS, &g_settings.rounded_corners, MENU_CORNERSETTINGS_TYPE_OPTIONS, MENU_CORNERSETTINGS_TYPE_OPTION_COUNT, true));
+	//osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_ROUNDED_CORNERS, &g_settings.rounded_corners, MENU_CORNERSETTINGS_TYPE_OPTIONS, MENU_CORNERSETTINGS_TYPE_OPTION_COUNT, true));
 
 	// progressbar color
 	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_PROGRESSBAR_COLOR, &g_settings.progressbar_color, PROGRESSBAR_COLOR_OPTIONS, PROGRESSBAR_COLOR_OPTION_COUNT, true));

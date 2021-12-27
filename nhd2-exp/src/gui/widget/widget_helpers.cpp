@@ -996,6 +996,7 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 	radius = g_settings.Head_radius;
 	corner = g_settings.Head_corner;
 	gradient = g_settings.Head_gradient;
+	head_line = g_settings.Head_line;
 
 	paintDate = false;
 	format = "%d.%m.%Y %H:%M";
@@ -1022,6 +1023,7 @@ CHeaders::CHeaders(CBox position, const char * const title, const char * const i
 	radius = g_settings.Head_radius;
 	corner = g_settings.Head_corner;
 	gradient = g_settings.Head_gradient;
+	head_line = g_settings.Head_line;
 
 	paintDate = false;
 	format = "%d.%m.%Y %H:%M";
@@ -1054,6 +1056,9 @@ void CHeaders::paint()
 	
 	// box
 	CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
+	
+	if (head_line)
+		CFrameBuffer::getInstance()->paintHLineRel(itemBox.iX + BORDER_LEFT, itemBox.iWidth - BORDER_LEFT - BORDER_RIGHT, itemBox.iY + itemBox.iHeight - 2, COL_MENUCONTENT_PLUS_5);
 
 	// left icon
 	int i_w = 0;
@@ -1152,6 +1157,7 @@ CFooters::CFooters(int x, int y, int dx, int dy)
 	fradius = g_settings.Foot_radius;
 	fcorner = g_settings.Foot_corner;
 	fgradient = g_settings.Foot_gradient;
+	foot_line = g_settings.Foot_line;
 
 	itemType = WIDGET_ITEM_FOOT;
 }
@@ -1170,6 +1176,7 @@ CFooters::CFooters(CBox position)
 	fradius = g_settings.Foot_radius;
 	fcorner = g_settings.Foot_corner;
 	fgradient = g_settings.Foot_gradient;
+	foot_line = g_settings.Foot_line;
 
 	itemType = WIDGET_ITEM_FOOT;
 }
@@ -1194,6 +1201,10 @@ void CFooters::paint()
 	
 	// box
 	CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, fbgcolor, fradius, fcorner, fgradient);
+	
+	// paint horizontal line buttom
+	if (foot_line)
+		CFrameBuffer::getInstance()->paintHLineRel(itemBox.iX + BORDER_LEFT, itemBox.iWidth - BORDER_LEFT - BORDER_RIGHT, itemBox.iY + itemBox.iHeight - itemBox.iHeight + 2, COL_MENUCONTENT_PLUS_5);
 
 	int buttonWidth = 0;
 

@@ -691,10 +691,16 @@ void EventList::paint(t_channel_id channel_id)
 	listBox->enablePaintHead();
 	listBox->setTitle(name.c_str(), logo.c_str());
 	listBox->enablePaintDate();
+	listBox->setHeadGradient(g_settings.Head_gradient);
+	listBox->setHeadRadius(g_settings.Head_radius);
+	listBox->setHeadLine(g_settings.Head_line);
 	listBox->setHeadButtons(HeadButtons, 3);
 
 	// foot
 	listBox->enablePaintFoot();
+	listBox->setFootGradient(g_settings.Foot_gradient);
+	listBox->setFootRadius(g_settings.Foot_radius);
+	listBox->setFootLine(g_settings.Foot_line);
 
 	if(sort_mode == SORT_DESCRIPTION)
 		FootButtons[3].locale = LOCALE_EVENTLISTBAR_EVENTSORTALPHA;

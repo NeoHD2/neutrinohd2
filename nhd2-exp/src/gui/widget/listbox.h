@@ -575,6 +575,7 @@ class ClistBox : public CWidgetItem
 		bool paintDate;
 		bool paintTitle;
 		int thalign;
+		bool head_line;
 
 		// foot
 		int fheight;
@@ -586,6 +587,7 @@ class ClistBox : public CWidgetItem
 		int fbutton_width;
 		button_label_list_t fbutton_labels;
 		bool paint_Foot;
+		bool foot_line;
 
 		// footInfo
 		int cFrameFootInfoHeight;
@@ -594,6 +596,7 @@ class ClistBox : public CWidgetItem
 		int connectLineWidth;
 		bool paintFootInfo;
 		int footInfoMode;
+		bool details_line;
 
 		// methods
 		virtual void paintItems();
@@ -647,6 +650,7 @@ class ClistBox : public CWidgetItem
 		void setHeadRadius(int ra){headRadius = ra;};
 		void setHeadCorner(int co){headCorner = co;};
 		void setHeadGradient(int grad){headGradient = grad;};
+		void setHeadLine(bool l){head_line = l;};
 		
 		// foot
 		void enablePaintFoot(){paint_Foot = true;};
@@ -655,14 +659,15 @@ class ClistBox : public CWidgetItem
 		void setFootRadius(int ra){footRadius = ra;};
 		void setFootCorner(int co){footCorner = co;};
 		void setFootGradient(int grad){footGradient = grad;};
+		void setFootLine(bool l){foot_line = l;};
 
-		// item footInfo
+		// footInfo
 		void enablePaintFootInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh;};
 		void setFootInfoMode(int mode = FOOT_INFO_MODE){footInfoMode = mode;};
+		void setDetailsLine(bool d){details_line = d;};
 
+		//
 		void enableShrinkMenu(){shrinkMenu = true;};
-		
-		// body
 		void disablePaintFrame(void){paintFrame = false;};
 		void setColor(fb_pixel_t col){bgcolor = col; def_color = true;};
 		void setRadius(int ra){radius = ra;};

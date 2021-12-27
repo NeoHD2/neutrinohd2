@@ -1620,7 +1620,9 @@ void CChannelList::paint()
 	listBox->setTitle(name.c_str());
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
-	//listBox->enableShrinkMenu();
+	listBox->setHeadGradient(g_settings.Head_gradient);
+	listBox->setHeadRadius(g_settings.Head_radius);
+	listBox->setHeadLine(g_settings.Head_line);
 
 	if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
 		listBox->setHeadButtons(new_mode_active? HeadWEBTVNewModeButtons : HeadWEBTVModeButtons, 2); 
@@ -1629,6 +1631,9 @@ void CChannelList::paint()
 
 	// foot
 	listBox->enablePaintFoot();
+	listBox->setFootGradient(g_settings.Foot_gradient);
+	listBox->setFootRadius(g_settings.Foot_radius);
+	listBox->setFootLine(g_settings.Foot_line);
 
 	if (displayNext) 
 	{
@@ -1641,8 +1646,9 @@ void CChannelList::paint()
 
 	listBox->setFootButtons(CChannelListButtons, NUM_LIST_BUTTONS);
 
-	// itemInfo
+	// footInfo
 	listBox->enablePaintFootInfo();
+	listBox->setDetailsLine(g_settings.menu_details_line);
 
 	//
 	listBox->setSelected(selected);

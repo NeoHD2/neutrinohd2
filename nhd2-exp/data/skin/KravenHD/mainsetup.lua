@@ -52,6 +52,7 @@ function main()
 	local list = neutrino.ClistBox(box.iX + 50, box.iY + 50, box.iWidth/2 - 100, box.iHeight - 100)
 	list:disablePaintFrame()
 	list:disableScrollBar()
+	list:enableItemShadow()
 
 	item1 = neutrino.ClistBoxItem(neutrino.LOCALE_MAINSETTINGS_VIDEO, true, "", neutrino.CVideoSettings(), "")
 	item1:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_VIDEOSETTINGS)

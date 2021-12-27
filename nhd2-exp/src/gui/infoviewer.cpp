@@ -377,7 +377,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 		frameBuffer->paintBoxRel(BoxStartX - 1, BoxStartY - 1, BoxWidth + 2, BoxHeight + buttonBarHeight + 2, COL_MENUCONTENT_PLUS_6);
 	
 	// box
-	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight + buttonBarHeight, COL_INFOBAR_PLUS_0, g_settings.infobar_shadow? NO_RADIUS : /*g_settings.infobar_radius*/RADIUS_MID, g_settings.infobar_shadow? CORNER_NONE : /*g_settings.infobar_corner*/CORNER_ALL, g_settings.infobar_gradient, GRADIENT_HORIZONTAL);
+	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight + buttonBarHeight, COL_INFOBAR_PLUS_0, g_settings.infobar_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.infobar_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient, GRADIENT_HORIZONTAL);
 
 	//time
 	paintTime(BoxEndX, ChanNameY, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]);
@@ -467,7 +467,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 		
 	// botton bar
 	if (g_settings.infobar_buttonbar)
-		frameBuffer->paintBoxRel(buttonBarStartX, buttonBarStartY, BoxWidth, buttonBarHeight, COL_INFOBAR_SHADOW_PLUS_1, g_settings.infobar_shadow? NO_RADIUS : RADIUS_MID, g_settings.infobar_shadow? CORNER_NONE : CORNER_BOTTOM);
+		frameBuffer->paintBoxRel(buttonBarStartX, buttonBarStartY, BoxWidth, buttonBarHeight, COL_INFOBAR_SHADOW_PLUS_1, g_settings.infobar_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.infobar_shadow? CORNER_NONE : g_settings.infobar_radius? CORNER_BOTTOM : CORNER_NONE);
 	else if(g_settings.infobar_buttonline)
 	{
 		CCHline hline(buttonBarStartX + BORDER_LEFT, buttonBarStartY, BoxWidth - BORDER_LEFT - BORDER_RIGHT, buttonBarHeight);
@@ -594,8 +594,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 
 	CNeutrinoApp * neutrino = CNeutrinoApp::getInstance();
 
-	//if (!_calledFromNumZap) 
-	printf("CInfoViewer::show: FIXME:\n");
+	if (!_calledFromNumZap) 
 	{
 		bool hideIt = true;
 		virtual_zap_mode = false;
@@ -1154,8 +1153,8 @@ void CInfoViewer::showRadiotext()
 		rt_dy = 25;
 		rt_x = BoxStartX;
 		rt_y = g_settings.screen_StartY + 10;
-		rt_h = rt_y + 7 + rt_dy*(g_Radiotext->S_RtOsdRows + 1)/*+SHADOW_OFFSET*/;
-		rt_w = rt_x+rt_dx /*+ SHADOW_OFFSET*/;
+		rt_h = rt_y + 7 + rt_dy*(g_Radiotext->S_RtOsdRows + 1);
+		rt_w = rt_x+rt_dx;
 		
 		int lines = 0;
 		for (int i = 0; i < g_Radiotext->S_RtOsdRows; i++) 

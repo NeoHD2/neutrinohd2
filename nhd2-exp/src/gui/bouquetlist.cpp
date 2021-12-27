@@ -538,12 +538,18 @@ void CBouquetList::paint()
 	listBox->setTitle(name.c_str());
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
+	listBox->setHeadGradient(g_settings.Head_gradient);
+	listBox->setHeadRadius(g_settings.Head_radius);
+	listBox->setHeadLine(g_settings.Head_line);
 
 	if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
 		listBox->setHeadButtons(&HButton, 1);
 
 	// foot
 	listBox->enablePaintFoot();
+	listBox->setFootGradient(g_settings.Foot_gradient);
+	listBox->setFootRadius(g_settings.Foot_radius);
+	listBox->setFootLine(g_settings.Foot_line);
 	listBox->setFootButtons(CBouquetListButtons, 4);
 
 	//

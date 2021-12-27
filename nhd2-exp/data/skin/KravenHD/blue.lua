@@ -52,6 +52,7 @@ function main()
 	
 	local list = neutrino.ClistBox(box.iX + 50, box.iY + 50, box.iWidth/2 - 100, box.iHeight - 100)
 	list:disablePaintFrame()
+	list:enableItemShadow()
 
 	item1 = neutrino.ClistBoxItem(neutrino.LOCALE_TIMERLIST_NAME, true, "", neutrino.CTimerList())
 	item1:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_TIMERLIST)

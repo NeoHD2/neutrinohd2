@@ -130,8 +130,15 @@ void CBEBouquetWidget::paint()
 	listBox->setTitle(g_Locale->getText(LOCALE_BOUQUETLIST_HEAD));
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
+	listBox->setHeadGradient(g_settings.Head_gradient);
+	listBox->setHeadRadius(g_settings.Head_radius);
+	listBox->setHeadLine(g_settings.Head_line);
 	listBox->setHeadButtons(&HButton, 1);
+	
 	listBox->enablePaintFoot();
+	listBox->setFootGradient(g_settings.Foot_gradient);
+	listBox->setFootRadius(g_settings.Foot_radius);
+	listBox->setFootLine(g_settings.Foot_line);
 
 	struct button_label Button[4];
 	Button[0] = CBEBouquetWidgetButtons[0];

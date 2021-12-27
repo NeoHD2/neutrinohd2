@@ -529,17 +529,16 @@ extern const neutrino_locale_t timing_setting_name[TIMING_SETTING_COUNT];
 
 // corners (osd)
 #define NO_RADIUS				0
-#define ROUNDED				1
+#define RADIUS_SMALL    			2
+#define RADIUS_MID      			4
+#define RADIUS_LARGE    			8
 
-#define RADIUS_LARGE    			(g_settings.rounded_corners ? 8 : NO_RADIUS)
-#define RADIUS_MID      			(g_settings.rounded_corners ? 4 : NO_RADIUS)
-#define RADIUS_SMALL    			(g_settings.rounded_corners ? 2 : NO_RADIUS)
-
+//
 #define BORDER_LEFT				10
 #define BORDER_RIGHT				10
 #define SCROLLBAR_WIDTH			10 // 15
-#define CONNECTLINEBOX_WIDTH    		10 //15
-#define ICON_OFFSET				5	// offset from left border
+#define CONNECTLINEBOX_WIDTH    		10 // 15
+#define ICON_OFFSET				5 // offset from left border
 #define ICON_TO_ICON_OFFSET			2
 
 // CMenuWidget
@@ -549,11 +548,11 @@ extern const neutrino_locale_t timing_setting_name[TIMING_SETTING_COUNT];
 #define ITEM_ICON_H_MINI			40 // 80
 
 // CHintBox
-#define HINTBOX_MAX_HEIGHT 			0.328*DEFAULT_XRES //420
+#define HINTBOX_MAX_HEIGHT 			0.4*DEFAULT_XRES
 #define HINTBOX_MAX_WIDTH  			(g_settings.screen_EndX - g_settings.screen_StartX )
 
 // CMessageBox
-#define MESSAGEBOX_MAX_HEIGHT 		0.328*DEFAULT_XRES //420
+#define MESSAGEBOX_MAX_HEIGHT 		0.4*DEFAULT_XRES
 #define MESSAGEBOX_MAX_WIDTH  		(g_settings.screen_EndX - g_settings.screen_StartX )
 
 // 

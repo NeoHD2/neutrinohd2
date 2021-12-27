@@ -55,8 +55,8 @@ function main()
 	local list = neutrino.ClistBox(box.iX + 50, box.iY + 50, box.iWidth/2 - 100, box.iHeight - 100)
 
 	list:disablePaintFrame()
-	list:enableShrinkMenu()
 	list:disableScrollBar()
+	list:enableItemShadow()
 	
 	list:integratePlugins(4, 0, true, neutrino.MODE_MENU, neutrino.WIDGET_TYPE_CLASSIC, true, true);
 	

@@ -128,7 +128,7 @@ void CPluginList::showMenu()
 	plist->enableShrinkMenu();
 
 	// head
-	plist->setTitleMode(CC_ALIGN_CENTER);
+	plist->setTitleHAlign(CC_ALIGN_CENTER);
 	plist->enablePaintDate();
 	plist->setHeadButtons(&CPluginListHeadButtons, 1);
 	

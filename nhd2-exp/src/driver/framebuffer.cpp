@@ -964,7 +964,7 @@ void CFrameBuffer::getIconSize(const char * const filename, int * width, int * h
 	}
 	else
 	{
-		CFormathandler * fh;
+		CFormathandler * fh = NULL;
 		int x, y;
 		
 		fh = fh_getsize(iconfile.c_str(), &x, &y, INT_MAX, INT_MAX); //uscaled
@@ -1731,7 +1731,7 @@ extern int fh_crw_id (const char *);
 
 void add_format (int (*picsize) (const char *, int *, int *, int, int), int (*picread) (const char *, unsigned char **, int *, int *), int (*id) (const char *))
 {
-	CFormathandler * fhn;
+	CFormathandler * fhn = NULL;
 	fhn = (CFormathandler *) malloc(sizeof (CFormathandler));
 	fhn->get_size = picsize;
 	fhn->get_pic = picread;
@@ -1760,7 +1760,7 @@ void init_handlers (void)
 
 CFormathandler * fh_getsize(const char *name, int *x, int *y, int width_wanted, int height_wanted)
 {
-	CFormathandler * fh;
+	CFormathandler * fh = NULL;
 	
 	for (fh = fh_root; fh != NULL; fh = fh->next) 
 	{
@@ -1772,15 +1772,16 @@ CFormathandler * fh_getsize(const char *name, int *x, int *y, int width_wanted, 
 	return (NULL);
 }
 
-void CFrameBuffer::getSize(const std::string &name, int * width, int * height, int * nbpp)
+void CFrameBuffer::getSize(const std::string& name, int* width, int* height, int* nbpp)
 {
-	dprintf(DEBUG_DEBUG, "CFrameBuffer::getSize: name:%s\n", name.c_str());
+	dprintf(DEBUG_INFO, "CFrameBuffer::getSize: name:%s\n", name.c_str());
 
-	unsigned char * rgbbuff;
-	int x, y;
+	unsigned char* rgbbuff;
+	int x = 0;
+	int y = 0;
 	int bpp = 0;
-	int load_ret;
-	CFormathandler * fh;
+	int load_ret = FH_ERROR_MALLOC;
+	CFormathandler * fh = NULL;
 
 	fh = fh_getsize(name.c_str(), &x, &y, INT_MAX, INT_MAX); // unscaled
 	
@@ -1988,11 +1989,12 @@ fb_pixel_t * CFrameBuffer::getImage(const std::string &name, int width, int heig
 {
 	dprintf(DEBUG_INFO, "CFrameBuffer::getImage:\n");
 	
-	int x, y;
-	CFormathandler * fh;
-	unsigned char * buffer;
+	int x = 0;
+	int y = 0;
+	CFormathandler * fh = NULL;
+	unsigned char * buffer = NULL;
 	fb_pixel_t * ret = NULL;
-	int load_ret;
+	int load_ret = FH_ERROR_MALLOC;
 	int _bpp = 0;
 
 	if (scaling == NONE)

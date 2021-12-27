@@ -135,7 +135,8 @@ class CMenuWidget : public CMenuTarget
 		bool def_headCorner;
 		int headGradient;
 		bool def_headGradient;
-		int tMode;
+		int thalign;
+		bool head_line;
 		
 		// foot
 		int fheight;
@@ -150,6 +151,7 @@ class CMenuWidget : public CMenuTarget
 		bool def_footCorner;
 		int footGradient;
 		bool def_footGradient;
+		bool foot_line;
 
 		// itemInfo
 		bool paintFootInfo;
@@ -178,7 +180,6 @@ class CMenuWidget : public CMenuTarget
 		bool shrinkMenu;
 		int widgetMode;
 		int menu_position;
-		bool headLine;
 		
 		//
 		fb_pixel_t bgcolor;
@@ -246,7 +247,7 @@ class CMenuWidget : public CMenuTarget
 
 		// head
 		void setTitle(const char* title = "", const char* icon = NULL){nameString = title; if(icon != NULL) iconfile = icon;};
-		void setTitleMode(const int m){tMode = m;};
+		void setTitleHAlign(const int m){thalign = m;};
 		void setHeadButtons(const struct button_label* _hbutton_label, const int _hbutton_count = 1);
 		void enablePaintDate(void){PaintDate = true;};
 		void setHeadColor(fb_pixel_t col) {headColor = col; def_headColor = false;};
@@ -272,7 +273,7 @@ class CMenuWidget : public CMenuTarget
 
 		//
 		void enableShrinkMenu(){shrinkMenu = true;};
-		void enableHeadLine(){headLine = true;};
+		//void enableHeadLine(){headLine = true;};
 
 		virtual std::string& getString(void) { if (hasItem())return items[selected]->itemName; };
 		virtual CMenuItem *getSelectedItem(void){if (hasItem()) return items[selected];};

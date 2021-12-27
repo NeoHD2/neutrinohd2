@@ -1696,13 +1696,18 @@ void CNeutrinoApp::unloadSkin()
 	g_settings.menu_details_line = true;
 	
 	//
-	g_settings.infobar_radius = 0;
+	g_settings.infobar_radius = NO_RADIUS;
 	g_settings.infobar_corner = CORNER_NONE;
 	g_settings.infobar_buttonbar = true;
 	g_settings.infobar_buttonline = false;
 	g_settings.infobar_shadow = true;
 	
+	g_settings.Head_radius = RADIUS_MID;
+	g_settings.Head_corner = CORNER_TOP;
 	g_settings.Head_gradient = LIGHT2DARK;
+	
+	g_settings.Foot_radius = RADIUS_MID;
+	g_settings.Foot_corner = CORNER_BOTTOM;
 	g_settings.Foot_gradient = DARK2LIGHT;
 	
 	g_settings.rounded_corners = 0;

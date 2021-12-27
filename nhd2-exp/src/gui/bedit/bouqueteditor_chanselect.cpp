@@ -152,10 +152,15 @@ void CBEChannelSelectWidget::paint()
 	listBox->setTitle(caption.c_str());
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
-	listBox->enablePaintFoot();
-	listBox->setFootButtons(Buttons, BUTTONS_COUNT);
+	listBox->setHeadGradient(g_settings.Head_gradient);
+	listBox->setHeadRadius(g_settings.Head_radius);
+	listBox->setHeadLine(g_settings.Head_line);
 	
-	//listBox->enablePaintFootInfo();
+	listBox->enablePaintFoot();
+	listBox->setFootGradient(g_settings.Foot_gradient);
+	listBox->setFootRadius(g_settings.Foot_radius);
+	listBox->setFootLine(g_settings.Foot_line);
+	listBox->setFootButtons(Buttons, BUTTONS_COUNT);
 
 	//
 	listBox->setSelected(selected);

@@ -559,7 +559,7 @@ class CWidgetItem
 		bool painted;
 		CWidget* parent;
 
-		CWidgetItem(){inFocus = true; actionKey = ""; parent = NULL; rePaint = false;};
+		CWidgetItem(){frameBuffer = CFrameBuffer::getInstance(); inFocus = true; actionKey = ""; parent = NULL; rePaint = false;};
 		virtual ~CWidgetItem(){};
 
 		virtual bool isSelectable(void){return false;}
@@ -605,6 +605,7 @@ class CHeaders : public CWidgetItem
 		int radius;
 		int corner;
 		int gradient;
+		bool head_line;
 
 		int hbutton_count;
 		button_label_list_t hbutton_labels;
@@ -633,6 +634,7 @@ class CHeaders : public CWidgetItem
 		void setButtons(const struct button_label* _hbutton_labels, const int _hbutton_count = 1);
 		void enablePaintDate(void){paintDate = true;};
 		void setFormat(char* f){format = f;};
+		void setHeadLine(bool l){head_line = l;};
 
 		//
 		void paint();
@@ -653,6 +655,7 @@ class CFooters : public CWidgetItem
 		int fradius;
 		int fcorner;
 		int fgradient;
+		bool foot_line;
 	
 	public:
 		CFooters(int x, int y, int dx, int dy);
@@ -664,6 +667,7 @@ class CFooters : public CWidgetItem
 		void setCorner(const int co){fcorner = co;};
 		void setGradient(const int grad){fgradient = grad;};
 		void setButtons(const struct button_label *button_label, const int button_count = 1, const int _fbutton_width = 0);
+		void setFootLine(bool l){foot_line = l;};
 
 		void paint();
 		void hide();

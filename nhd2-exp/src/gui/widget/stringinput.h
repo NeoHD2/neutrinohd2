@@ -104,8 +104,8 @@ class CStringInput : public CMenuTarget
 
 	public:
 
-		CStringInput(const neutrino_locale_t Name, const char * const Value, int Size = 10, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, const char* const Valid_Chars = (const char*) "0123456789. ", CChangeObserver* Observ = NULL, const char * const Icon = NULL);
-		CStringInput(const char * const Head, const char * const Value, int Size = 10, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, const char * const Valid_Chars= (const char*) "0123456789. ", CChangeObserver* Observ = NULL, const char * const Icon = NULL);
+		CStringInput(const neutrino_locale_t Name, const char * const Value, int Size = 10, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, const char* const Valid_Chars = (const char*) "0123456789. ", CChangeObserver* Observ = NULL, const char * const Icon = NEUTRINO_ICON_KEYBINDING);
+		CStringInput(const char * const Head, const char * const Value, int Size = 10, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, const char * const Valid_Chars= (const char*) "0123456789. ", CChangeObserver* Observ = NULL, const char * const Icon = NEUTRINO_ICON_KEYBINDING);
 		
 		~CStringInput();
 
@@ -137,9 +137,9 @@ class CStringInputSMS : public CStringInput
 		void initSMS(const char * const Valid_Chars);
 
 	public:
-		CStringInputSMS(const neutrino_locale_t Name, const char * const Value, int Size = MAX_INPUT_CHARS, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, const char* const Valid_Chars = "abcdefghijklmnopqrstuvwxyz0123456789 -_/()<>=+.,:!?\\'", CChangeObserver* Observ = NULL, const char * const Icon = NULL);
+		CStringInputSMS(const neutrino_locale_t Name, const char * const Value, int Size = MAX_INPUT_CHARS, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, const char* const Valid_Chars = "abcdefghijklmnopqrstuvwxyz0123456789 -_/()<>=+.,:!?\\'", CChangeObserver* Observ = NULL, const char * const Icon = NEUTRINO_ICON_KEYBINDING);
 		
-		CStringInputSMS(const char * const Head, const char * const Value, int Size = MAX_INPUT_CHARS, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, const char* const Valid_Chars = "abcdefghijklmnopqrstuvwxyz0123456789 -_/()<>=+.,:!?\\'", CChangeObserver* Observ = NULL, const char * const Icon = NULL);
+		CStringInputSMS(const char * const Head, const char * const Value, int Size = MAX_INPUT_CHARS, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, const char* const Valid_Chars = "abcdefghijklmnopqrstuvwxyz0123456789 -_/()<>=+.,:!?\\'", CChangeObserver* Observ = NULL, const char * const Icon = NEUTRINO_ICON_KEYBINDING);
 };
 
 class CPINInput : public CStringInput

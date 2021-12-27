@@ -417,6 +417,7 @@ void CEpgData::showHead(const t_channel_id channel_id)
 	headers = new CHeaders(cHeadBox, text1.c_str(), logo.c_str());
 
 	headers->enablePaintDate();
+	headers->setHeadLine(g_settings.Head_line);
 	headers->setButtons(&HButton, 1);
 
 	headers->paint();
@@ -439,7 +440,7 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 	start();
 	
 	// paint mainBox
-	cFrameWindow.paint();
+	//cFrameWindow.paint();
 
 	// getepg data
 	GetEPGData(channel_id, id, &startzeit);
@@ -1031,6 +1032,7 @@ void CEpgData::showTimerEventBar(bool _show)
 	}
 
 	CFooters footers(cFootBox.iX, cFootBox.iY, cFootBox.iWidth, cFootBox.iHeight);
+	footers.setFootLine(g_settings.Foot_line);
 	footers.setButtons(FButtons, 4);
 	footers.paint();
 }

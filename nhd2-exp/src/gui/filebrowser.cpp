@@ -848,10 +848,16 @@ void CFileBrowser::paint()
 	listBox->enablePaintHead();
 	listBox->setTitle(l_name);
 	listBox->enablePaintDate();
+	listBox->setHeadGradient(g_settings.Head_gradient);
+	listBox->setHeadRadius(g_settings.Head_radius);
+	listBox->setHeadLine(g_settings.Head_line);
 	listBox->setHeadButtons(HButtons, 2);
 
 	// foot
 	listBox->enablePaintFoot();
+	listBox->setFootGradient(g_settings.Foot_gradient);
+	listBox->setFootRadius(g_settings.Foot_radius);
+	listBox->setFootLine(g_settings.Foot_line);
 
 	struct button_label Button[4];
 	Button[0] = FileBrowserButtons[0];

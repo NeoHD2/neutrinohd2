@@ -134,20 +134,6 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	bgcolor = COL_MENUCONTENT_PLUS_0;
 	def_color = true;
 
-	// foot
-	fbutton_count	= 0;
-	fbutton_labels.clear();
-	fbutton_width = width;
-	fheight = 0;
-	footColor = COL_MENUFOOT_PLUS_0;
-	footRadius = RADIUS_MID;
-	footCorner = CORNER_BOTTOM;
-	footGradient = g_settings.Foot_gradient;
-	def_footColor = true;
-	def_footRadius = true;
-	def_footCorner = true;
-	def_footGradient = true;
-
 	// head
 	PaintDate = false;
 	timestr_len = 0;
@@ -155,14 +141,30 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	hbutton_labels.clear();
 	hheight = 0;
 	headColor = COL_MENUHEAD_PLUS_0;
-	headRadius = RADIUS_MID;
-	headCorner = CORNER_TOP;
+	headRadius = g_settings.Head_radius;
+	headCorner = g_settings.Head_corner;
 	headGradient = g_settings.Head_gradient;
 	def_headColor = true;
 	def_headRadius = true;
 	def_headCorner = true;
 	def_headGradient = true;
-	tMode = CC_ALIGN_LEFT;
+	thalign = CC_ALIGN_LEFT;
+	head_line = g_settings.Head_line;
+	
+	// foot
+	fbutton_count	= 0;
+	fbutton_labels.clear();
+	fbutton_width = width;
+	fheight = 0;
+	footColor = COL_MENUFOOT_PLUS_0;
+	footRadius = g_settings.Foot_radius;
+	footCorner = g_settings.Foot_corner;
+	footGradient = g_settings.Foot_gradient;
+	def_footColor = true;
+	def_footRadius = true;
+	def_footCorner = true;
+	def_footGradient = true;
+	foot_line = g_settings.Foot_line;
 
 	// footInfo
 	paintFootInfo = false;
@@ -185,7 +187,6 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 
 	shrinkMenu = false;
 	widgetMode = MODE_MENU;
-	headLine = false;
 	
 	menu_position = MENU_POSITION_CENTER;
 
@@ -418,7 +419,7 @@ void CMenuWidget::paintHead()
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		// headBoxox
-		frameBuffer->paintBoxRel(x, y, width, hheight, def_headColor? COL_MENUHEAD_PLUS_0 : headColor, def_headRadius? RADIUS_MID : headRadius, def_headCorner? CORNER_TOP : headCorner, def_headGradient? g_settings.Head_gradient : headGradient);
+		frameBuffer->paintBoxRel(x, y, width, hheight, def_headColor? COL_MENUHEAD_PLUS_0 : headColor/*, headRadius, headCorner, headGradient*/);
 
 		// paint horizontal line top
 		frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + hheight - 2, COL_MENUCONTENT_PLUS_5);
@@ -477,7 +478,7 @@ void CMenuWidget::paintHead()
 		int startPosX = x + BORDER_LEFT + i_w + ICON_OFFSET;
 		int stringWidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(l_name.c_str());
 	
-		if (tMode == CC_ALIGN_CENTER)
+		if (thalign == CC_ALIGN_CENTER)
 			startPosX = x + (width >> 1) - (stringWidth >> 1);
 
 		// title
@@ -486,10 +487,10 @@ void CMenuWidget::paintHead()
 	else
 	{
 		// headBox
-		frameBuffer->paintBoxRel(x, y, width, hheight, def_headColor? COL_MENUHEAD_PLUS_0 : headColor, def_headRadius? RADIUS_MID : headRadius, def_headCorner? CORNER_TOP : headCorner, def_headGradient? g_settings.Head_gradient : headGradient);
+		frameBuffer->paintBoxRel(x, y, width, hheight, def_headColor? COL_MENUHEAD_PLUS_0 : headColor, g_settings.Head_radius, g_settings.Head_corner, g_settings.Head_gradient);
 		
 		// paint horizontal line top
-		if (headLine)
+		if (head_line)
 			frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + hheight - 2, COL_MENUCONTENT_PLUS_5);
 	
 		//paint icon (left)
@@ -548,7 +549,7 @@ void CMenuWidget::paintHead()
 		int startPosX = x + BORDER_LEFT + i_w + ICON_OFFSET;
 		int stringWidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(l_name.c_str());
 	
-		if (tMode == CC_ALIGN_CENTER)
+		if (thalign == CC_ALIGN_CENTER)
 			startPosX = x + (width >> 1) - (stringWidth >> 1);
 			
 		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(startPosX, y + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), width - BORDER_RIGHT - BORDER_RIGHT - i_w - 2*ICON_OFFSET - timestr_len - buttonWidth - (hbutton_count - 1)*ICON_TO_ICON_OFFSET, l_name.c_str(), COL_MENUHEAD, 0, true); // UTF-8
@@ -564,7 +565,7 @@ void CMenuWidget::paintFoot()
 		if(fbutton_count)
 		{
 			//
-			frameBuffer->paintBoxRel(x, y + height - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+			frameBuffer->paintBoxRel(x, y + height - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor/*, footRadius, footCorner, footGradient*/);
 
 			// paint horizontal line buttom
 			frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight + 2, COL_MENUCONTENT_PLUS_5);
@@ -606,10 +607,10 @@ void CMenuWidget::paintFoot()
 	else
 	{
 		// footBox	
-		frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+		frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, g_settings.Foot_radius, g_settings.Foot_corner, g_settings.Foot_gradient);
 		
 		// paint horizontal line buttom
-		if (headLine)
+		if (foot_line)
 			frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - cFrameFootInfoHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
 		
 		// buttons
@@ -662,15 +663,6 @@ void CMenuWidget::paint()
 	//
 	paintHead();
 	paintFoot();
-
-	//
-	//item_start_y = y + hheight;
-
-	//if(widgetType == WIDGET_TYPE_FRAME)
-	//	item_start_y = y + hheight + 10;
-
-	// paint background
-	//frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight - fheight - cFrameFootInfoHeight, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
 
 	//
 	paintItems();
@@ -779,9 +771,6 @@ void CMenuWidget::paintItems()
 	
 		// paint items background
 		frameBuffer->paintBoxRel(x, item_start_y, width, items_height, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor);
-
-		//TEST
-		//frameBuffer->paintVLineRel(x + items_width, y + hheight + 10, items_height - 20, COL_MENUCONTENTDARK_PLUS_0);
 		
 		if(widgetType == WIDGET_TYPE_EXTENDED && widgetMode == MODE_MENU)
 		{
@@ -869,7 +858,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
 					
 					// paint horizontal line buttom
-					if (headLine)
+					if (foot_line)
 						frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight - cFrameFootInfoHeight + 2, COL_MENUCONTENT_PLUS_5);
 
 					// info icon
@@ -927,8 +916,6 @@ void CMenuWidget::paintItemInfo(int pos)
 	{
 		if(widgetMode == MODE_MENU)
 		{
-			//if(paintFootInfo)
-			//{
 			if(fbutton_count == 0)
 			{
 				CMenuItem* item = items[pos];
@@ -937,7 +924,7 @@ void CMenuWidget::paintItemInfo(int pos)
 				frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
 					
 				// paint horizontal line buttom
-				if (headLine)
+				if (foot_line)
 					frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight - cFrameFootInfoHeight + 2, COL_MENUCONTENT_PLUS_5);
 
 				// info icon
@@ -956,7 +943,6 @@ void CMenuWidget::paintItemInfo(int pos)
 					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + height - fheight - cFrameFootInfoHeight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
-			//}
 		}
 		else if(widgetMode == MODE_LISTBOX)
 		{
@@ -1002,13 +988,11 @@ void CMenuWidget::paintItemInfo(int pos)
 			// hint
 			if(fbutton_count == 0)
 			{
-				//if(paintFootInfo)
-				//{
 				// refresh box
 				frameBuffer->paintBoxRel(x, y + height - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
 				
 				// paint horizontal line buttom
-				if (headLine)
+				if (foot_line)
 					frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight + 2, COL_MENUCONTENT_PLUS_5);
 
 				// info icon
@@ -1043,8 +1027,6 @@ void CMenuWidget::paintItemInfo(int pos)
 		}
 		else if(widgetMode == MODE_LISTBOX)
 		{
-			//if(paintFootInfo)
-			//{
 			// scale pic
 			int p_w = 0;
 			int p_h = 0;
@@ -1066,13 +1048,10 @@ void CMenuWidget::paintItemInfo(int pos)
 			// hint
 			textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), p_w, p_h, TOP_CENTER);
 			textBox->paint();
-			//}
 		}
 	}
 	else if(widgetType == WIDGET_TYPE_FRAME)
 	{
-		//if(paintFootInfo)
-		//{
 		// refresh footInfo Box
 		frameBuffer->paintBoxRel(x, y + height - fheight - cFrameFootInfoHeight, width, cFrameFootInfoHeight, COL_MENUCONTENT_PLUS_0);
 
@@ -1095,7 +1074,6 @@ void CMenuWidget::paintItemInfo(int pos)
 				g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT, y + height - fheight, width - BORDER_LEFT - BORDER_RIGHT, item->itemHint.c_str(), COL_MENUFOOT_INFO);
 			}
 		}
-		//}
 	}
 }
 
