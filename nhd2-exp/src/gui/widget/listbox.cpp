@@ -1464,6 +1464,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
+	/*
 		int iw = 0;
 		int ih = 0;
 		int bpp = 0;
@@ -1480,6 +1481,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			if (ih > item_height)
 				ih = item_height;
 		}
+	*/
 		
 		//
 		if(selected)
@@ -1491,14 +1493,14 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 					frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
 
 					if(!itemIcon.empty())
-						frameBuffer->paintHintIcon(itemIcon, x + 2 + (item_width - iw)/2, y + 2 + (item_height - ih)/2, iw - 4, ih - 4);
+						frameBuffer->paintHintIcon(itemIcon, x + 2, y + 2, item_width - 4, item_height - 4);
 				}
 				else
 				{
 					frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENT_PLUS_0 ); //FIXME:
 
 					if(!itemIcon.empty())
-						frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET + (item_width - iw)/2, y + 4*ICON_OFFSET + (item_height - ih)/2, iw - 8*ICON_OFFSET, ih - 8*ICON_OFFSET);
+						frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);
 				}
 			}
 			else
@@ -1506,7 +1508,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
 
 				if(!itemIcon.empty())
-					frameBuffer->paintHintIcon(itemIcon, x + 2 + (item_width - iw)/2, y + 2 + (item_height - ih)/2, iw - 4, ih - 4);
+					frameBuffer->paintHintIcon(itemIcon, x + 2, y + 2, item_width - 4, item_height - 4);
 			}
 		}
 		else
@@ -1515,7 +1517,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENT_PLUS_0);
 
 			if(!itemIcon.empty())
-				frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET + (item_width - iw)/2, y + 4*ICON_OFFSET + (item_height - ih)/2, iw - 8*ICON_OFFSET, ih - 8*ICON_OFFSET);
+				frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);
 		}
 
 		// locale ???

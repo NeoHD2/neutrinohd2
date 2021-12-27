@@ -1093,7 +1093,6 @@ int CTimerList::newTimer()
 	CMenuForwarder *m9 = new CMenuForwarder(LOCALE_TIMERLIST_MESSAGE, false, timerNew.message, &timerSettings_msg );
 
 	// plugin
-	//CPluginChooser plugin_chooser(timerNew.pluginName);
 	plugin_chooser = new CPluginChooser(timerNew.pluginName);
 	CMenuForwarder *m10 = new CMenuForwarder(LOCALE_TIMERLIST_PLUGIN, false, timerNew.pluginName, plugin_chooser);
 
