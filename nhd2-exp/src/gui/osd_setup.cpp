@@ -994,10 +994,48 @@ void CSkinSettings::showMenu()
 	dprintf(DEBUG_NORMAL, "CSkinSettings::showMenu:\n");
 	
 	CMenuItem* item = NULL;
-	CMenuWidget* skinSettings = new CMenuWidget("Skin Settings", NEUTRINO_ICON_COLORS, 800, 600);
-	skinSettings->setWidgetMode(MODE_SETUP);
+	CMenuWidget* skinSettings = new CMenuWidget("Skin Style selection", NEUTRINO_ICON_COLORS, 800, 600);
+	skinSettings->setWidgetMode(MODE_MENU);
 	//skinSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
 	skinSettings->enablePaintDate();
+	
+	// load config files
+	std::string skinPath = CONFIGDIR "/skin/";
+	skinPath += g_settings.preferred_skin.c_str();
+	
+	struct dirent **namelist;
+	int i = 0;
+
+	i = scandir(skinPath.c_str(), &namelist, 0, 0);
+
+	if (i > 0)
+	{
+		while(i--)
+		{
+			if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
+			{
+				std::string filename = namelist[i]->d_name;
+				
+				std::string extension = getFileExt(filename);
+				
+				if ( strcasecmp("config", extension.c_str()) == 0)
+				{
+					if (!filename.empty())
+					{
+						item = new ClistBoxItem(removeExtension(filename).c_str());
+				
+						item->setActionKey(this, namelist[i]->d_name);
+						item->setHint("choose Skin Style.!");
+						
+						skinSettings->addItem(item);
+					}
+				}
+			}
+			free(namelist[i]);
+		}
+		free(namelist);
+	}
+	
 	
 	skinSettings->exec(NULL, "");
 	
@@ -1013,6 +1051,20 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	
 	if (parent)
 		parent->hide();
+		
+	if (!actionKey.empty())
+	{
+		if (MessageBox(LOCALE_MESSAGEBOX_INFO, "Skin Style selection", mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		{
+			std::string skinConfigFile = CONFIGDIR "/skin/";
+			skinConfigFile += g_settings.preferred_skin.c_str();
+			skinConfigFile += "/";
+			skinConfigFile += actionKey.c_str();
+			
+			CNeutrinoApp::getInstance()->readSkinConfig(skinConfigFile.c_str());
+			CNeutrinoApp::getInstance()->saveSkinConfig(g_settings.preferred_skin.c_str());
+		}
+	}
 		
 	showMenu();
 	

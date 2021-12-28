@@ -103,9 +103,9 @@ function main()
 	item9:setActionKey(neutrino.COSDDiverses(), "");
 	item9:set2lines()
 	
-	item10 = neutrino.ClistBoxItem("Skin default Settings")
+	item10 = neutrino.ClistBoxItem("Skin Style selection")
 	item10:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_OSDSETTINGS)
-	item10:setActionKey(None, "defaultskinsettings");
+	item10:setActionKey(neutrino.CSkinSettings(), "");
 	item10:set2lines()
 
 	list:addItem(item1)
@@ -136,10 +136,6 @@ function main()
 	selected = list:getSelected()
 	 
 	local actionKey = list:getActionKey()
-	
-	if actionKey == "defaultskinsettings" then
-		neutrino.CNeutrinoApp_getInstance():exec(None, "defaultskinsettings")
-	end
 	
 	if m:getExitPressed() ~= true and ret == neutrino.RETURN_REPAINT then
 		main()

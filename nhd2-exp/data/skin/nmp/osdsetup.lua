@@ -64,10 +64,10 @@ function main()
 	item9:setHint(neutrino.LOCALE_MAINSETTINGS_MISC)
 	item9:setDirectKey(neutrino.RC_5)
 	
-	item10 = neutrino.CMenuForwarder("Skin default Settings")
+	item10 = neutrino.CMenuForwarder("Skin Style selection")
 	item10:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_OSDSETTINGS)
-	item10:setActionKey(None, "defaultskinsettings");
-	item10:setHint("reset Skin Settings to default.!")
+	item10:setActionKey(neutrino.CSkinSettings(), "");
+	item10:setHint("choose Skin Style.!")
 	item10:setDirectKey(neutrino.RC_6)
 
 	m:addItem(item1)
@@ -92,10 +92,6 @@ function main()
 	selected = m:getSelected()
 	 
 	local actionKey = m:getActionKey()
-	
-	if actionKey == "defaultskinsettings" then
-		neutrino.CNeutrinoApp_getInstance():exec(None, "defaultskinsettings")
-	end
 	
 	if m:getExitPressed() ~= true and ret == neutrino.RETURN_REPAINT then
 		main()
