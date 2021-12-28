@@ -14,7 +14,7 @@ install_DATA = \
 	mainmenu.lua \
 	miscsetup.lua \
 	prev.png picon_default.png \
-	MetrixHD.config
+	MetrixHD.config default.config
 	
 
 

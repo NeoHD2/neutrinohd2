@@ -64,18 +64,11 @@ function main()
 	item9:setHint(neutrino.LOCALE_MAINSETTINGS_MISC)
 	item9:setDirectKey(neutrino.RC_5)
 	
-	still= ""
-	if nmp == "nmp" then
-		still = "nmp"
-	elseif nmp == "ddt" then
-		still = "ddt"
-	elseif nmp == "ni" then
-		still = "ni"
-	end
-	item10 = neutrino.CMenuForwarder("NMP Still:", true, still)
+	item10 = neutrino.CMenuForwarder("Skin default Settings")
 	item10:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_OSDSETTINGS)
-	item10:setActionKey(None, "nmp")
-	item10:setHint("select style: nmp, ddt or ni")
+	item10:setActionKey(None, "defaultskinsettings");
+	item10:setHint("reset Skin Settings to default.!")
+	item10:setDirectKey(neutrino.RC_6)
 
 	m:addItem(item1)
 	m:addItem(item2)
@@ -86,7 +79,6 @@ function main()
 	m:addItem(item7)
 	m:addItem(item8)
 	m:addItem(item9)
-	m:addItem(neutrino.CMenuSeparator(neutrino.LINE))
 	m:addItem(item10)
 	
 	if selected < 0 then
@@ -101,23 +93,8 @@ function main()
 	 
 	local actionKey = m:getActionKey()
 	
-	if actionKey == "nmp" then
-		if nmp == "nmp" then
-			nmp = "ddt"
-			neutrino.CFrameBuffer_getInstance():setIconBasePath("/home/mohousch/Downloads/ddt_icons/")
-			neutrino.CFrameBuffer_getInstance():setHintBasePath("/home/mohousch/Downloads/ddt_icons/")
-			neutrino.CNeutrinoApp_getInstance():readSkinConfig(neutrino.CONFIGDIR .. "/skin/nmp/nmp.config")
-		elseif nmp == "ddt" then
-			nmp = "ni"
-			neutrino.CFrameBuffer_getInstance():setIconBasePath("/home/mohousch/Downloads/ni_icons/")
-			neutrino.CFrameBuffer_getInstance():setHintBasePath("/home/mohousch/Downloads/ni_icons/")
-			neutrino.CNeutrinoApp_getInstance():readSkinConfig(neutrino.CONFIGDIR .. "/skin/nmp/ni.config")
-		elseif nmp == "ni" then
-			nmp = "nmp"
-			neutrino.CFrameBuffer_getInstance():setIconBasePath("/home/mohousch/Downloads/tuxbox_icons/")
-			neutrino.CFrameBuffer_getInstance():setHintBasePath("/home/mohousch/Downloads/tuxbox_icons/")
-			neutrino.CNeutrinoApp_getInstance():readSkinConfig(neutrino.CONFIGDIR .. "/skin/nmp/nmp.config")
-		end
+	if actionKey == "defaultskinsettings" then
+		neutrino.CNeutrinoApp_getInstance():exec(None, "defaultskinsettings")
 	end
 	
 	if m:getExitPressed() ~= true and ret == neutrino.RETURN_REPAINT then

@@ -47,12 +47,12 @@
 
 CHelpBox::CHelpBox()
 {
-	dprintf(DEBUG_NORMAL, "Helpbox::\n");
+	dprintf(DEBUG_INFO, "Helpbox::\n");
 }
 
 CHelpBox::~CHelpBox()
 {
-	dprintf(DEBUG_NORMAL, "~Helpbox::\n");
+	dprintf(DEBUG_INFO, "~Helpbox::\n");
 	
   	for (ContentLines::iterator it = m_lines.begin(); it != m_lines.end(); it++)
  	{

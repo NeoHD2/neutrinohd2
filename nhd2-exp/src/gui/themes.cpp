@@ -77,40 +77,46 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 	{
 		if(actionKey == "savesettings")
 		{
-			CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
+			if (g_settings.use_default_skin)
+				CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
+			else
+				CNeutrinoApp::getInstance()->exec(NULL, "saveskinsettings");
 
 			return res;
 		}
 		else if(actionKey == "saveCurrentTheme")
 		{
-			std::string file_name = "";
-			CStringInputSMS * nameInput = new CStringInputSMS(LOCALE_COLORTHEMEMENU_NAME, file_name.c_str());
-
-			nameInput->exec(NULL, "");
-			
-			//if(!nameInput->getString().empty())
-			if (!nameInput->getExitPressed())
+			if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_COLORTHEMEMENU_SAVE, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 			{
-				HintBox(LOCALE_COLORTHEMEMENU_SAVE, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
+				std::string file_name = "";
+				CStringInputSMS * nameInput = new CStringInputSMS(LOCALE_COLORTHEMEMENU_NAME, file_name.c_str());
 
-				saveFile((char*)((std::string)USERDIR + nameInput->getString().c_str() + FILE_PREFIX).c_str());
+				nameInput->exec(NULL, "");
+				
+				//if(!nameInput->getString().empty())
+				if (!nameInput->getExitPressed())
+				{
+					HintBox(LOCALE_COLORTHEMEMENU_SAVE, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
+
+					saveFile((char*)((std::string)USERDIR + nameInput->getString().c_str() + FILE_PREFIX).c_str());
+				}
+
+				file_name.clear();
+
+				delete nameInput;
+				nameInput = NULL;
+
+				Show();
 			}
-
-			file_name.clear();
-
-			delete nameInput;
-			nameInput = NULL;
-
-			Show();
 
 			return RETURN_EXIT;
 		}
 		else if (actionKey == "theme_default")
 		{
-			setupDefaultColors();
-			notifier = new CColorSetupNotifier();
-			notifier->changeNotify(NONEXISTANT_LOCALE, NULL);
-			delete notifier;
+			if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_COLORTHEMEMENU_DEFAULT_THEME, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+			{
+				setupDefaultColors();
+			}
 
 			return res;
 		}
@@ -300,6 +306,7 @@ void CThemes::readFile(const char* themename)
 		notifier->changeNotify(NONEXISTANT_LOCALE, NULL);
 		
 		delete notifier;
+		notifier = NULL;
 	}
 	else
 		printf("[neutrino theme] %s not found\n", themename);
@@ -462,6 +469,11 @@ void CThemes::setupDefaultColors()
 	g_settings.menu_FootInfo_Text_red = 85;
 	g_settings.menu_FootInfo_Text_green = 85;
 	g_settings.menu_FootInfo_Text_blue = 85;
+	
+	notifier = new CColorSetupNotifier();
+	notifier->changeNotify(NONEXISTANT_LOCALE, NULL);
+	delete notifier;
+	notifier = NULL;
 }
 
 

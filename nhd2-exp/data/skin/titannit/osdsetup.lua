@@ -73,6 +73,10 @@ function main()
 	item9 = neutrino.CMenuForwarder(neutrino.LOCALE_MAINSETTINGS_MISC)
 	item9:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_OSDSETTINGS)
 	item9:setActionKey(neutrino.COSDDiverses(), "");
+	
+	item10 = neutrino.CMenuForwarder("Skin default Settings")
+	item10:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_OSDSETTINGS)
+	item10:setActionKey(None, "defaultskinsettings");
 
 	list:addItem(item1)
 	list:addItem(item2)
@@ -83,6 +87,7 @@ function main()
 	list:addItem(item7)
 	list:addItem(item8)
 	list:addItem(item9)
+	list:addItem(item10)
 	
 	m:addItem(head)
 	m:addItem(list)
@@ -100,8 +105,8 @@ function main()
 	 
 	local actionKey = list:getActionKey()
 	
-	if actionKey == "miscsetup" then
-		neutrino.CNeutrinoApp_getInstance():startSkin("miscsetup")
+	if actionKey == "defaultskinsettings" then
+		neutrino.CNeutrinoApp_getInstance():exec(None, "defaultskinsettings")
 	end
 	
 	if m:getExitPressed() ~= true and ret == neutrino.RETURN_REPAINT then

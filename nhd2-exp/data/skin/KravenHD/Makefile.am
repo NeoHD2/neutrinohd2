@@ -14,7 +14,7 @@ install_DATA = \
 	mainmenu.lua \
 	miscsetup.lua \
 	prev.png \
-	KravenHD.config
+	KravenHD.config default.config
 	
 
 

@@ -2387,7 +2387,7 @@ ClistBox::ClistBox(CBox* position)
 
 ClistBox::~ClistBox()
 {
-	dprintf(DEBUG_NORMAL, "ClistBox:: del\n");
+	dprintf(DEBUG_INFO, "ClistBox:: del\n");
 
 	items.clear();
 	

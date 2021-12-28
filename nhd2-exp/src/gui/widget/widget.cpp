@@ -37,7 +37,7 @@
 
 CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 {
-	dprintf(DEBUG_NORMAL, "CWidget::\n");
+	dprintf(DEBUG_INFO, "CWidget::\n");
 	
 	frameBuffer = CFrameBuffer::getInstance();
 
@@ -64,7 +64,7 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 
 CWidget::CWidget(CBox *position)
 {
-	dprintf(DEBUG_NORMAL, "CWidget::\n");
+	dprintf(DEBUG_INFO, "CWidget::\n");
 	
 	frameBuffer = CFrameBuffer::getInstance();
 
@@ -88,7 +88,7 @@ CWidget::CWidget(CBox *position)
 
 CWidget::~CWidget()
 {
-	dprintf(DEBUG_NORMAL, "CWidget:: del\n");
+	dprintf(DEBUG_INFO, "CWidget:: del\n");
 
 	items.clear();
 }
@@ -119,7 +119,7 @@ void CWidget::clearItems(void)
 
 void CWidget::initFrames()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::initFrames\n");
+	dprintf(DEBUG_INFO, "CWidget::initFrames\n");
 	
 	// sanity check
 	if(mainFrameBox.iHeight > ((int)frameBuffer->getScreenHeight(true)))
@@ -135,7 +135,7 @@ void CWidget::initFrames()
 
 void CWidget::paintItems()
 {
-	dprintf(DEBUG_NORMAL, "CWidget:: paintItems\n");
+	dprintf(DEBUG_INFO, "CWidget:: paintItems\n");
 
 	for (int i = 0; i < items.size(); i++)
 	{
@@ -151,7 +151,7 @@ void CWidget::paintItems()
 
 void CWidget::paint()
 {
-	dprintf(DEBUG_NORMAL, "CWidget:: paint\n");
+	dprintf(DEBUG_INFO, "CWidget:: paint\n");
 	
 	//
 	initFrames();
@@ -166,7 +166,7 @@ void CWidget::paint()
 
 void CWidget::saveScreen()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::saveScreen\n");
+	dprintf(DEBUG_INFO, "CWidget::saveScreen\n");
 	
 	if(!savescreen)
 		return;
@@ -187,7 +187,7 @@ void CWidget::saveScreen()
 
 void CWidget::restoreScreen()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::restoreScreen\n");
+	dprintf(DEBUG_INFO, "CWidget::restoreScreen\n");
 	
 	if(background) 
 	{
@@ -209,7 +209,7 @@ void CWidget::enableSaveScreen()
 
 void CWidget::hide()
 {
-	dprintf(DEBUG_NORMAL, "CWidget:: hide\n");
+	dprintf(DEBUG_INFO, "CWidget:: hide\n");
 
 /*
 	if (hasItem())
@@ -436,7 +436,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 // events
 void CWidget::onOKKeyPressed()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::onOKKeyPressed\n");
+	dprintf(DEBUG_INFO, "CWidget::onOKKeyPressed\n");
 	
 	if(hasItem() && selected >= 0)
 	{
@@ -466,10 +466,10 @@ void CWidget::onOKKeyPressed()
 
 void CWidget::onHomeKeyPressed()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::onHomeKeyPressed\n");
+	dprintf(DEBUG_INFO, "CWidget::onHomeKeyPressed\n");
 	
 	exit_pressed = true;
-	dprintf(DEBUG_NORMAL, "CWidget::exec: exit_pressed\n");
+	dprintf(DEBUG_INFO, "CWidget::onHomeKeyPressed: exit_pressed\n");
 	msg = RC_timeout;
 	
 	if (hasItem())
@@ -485,7 +485,7 @@ void CWidget::onHomeKeyPressed()
 
 void CWidget::onYellowKeyPressed()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::onYellowKeyPressed\n");
+	dprintf(DEBUG_INFO, "CWidget::onYellowKeyPressed\n");
 	
 	if(hasItem())
 	{
@@ -513,7 +513,7 @@ void CWidget::onYellowKeyPressed()
 
 void CWidget::onUpKeyPressed()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::onUpKeyPressed\n");
+	dprintf(DEBUG_INFO, "CWidget::onUpKeyPressed\n");
 	
 	if(hasItem() && selected >= 0)
 	{
@@ -551,7 +551,7 @@ void CWidget::onUpKeyPressed()
 
 void CWidget::onDownKeyPressed()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::onDownKeyPressed\n");
+	dprintf(DEBUG_INFO, "CWidget::onDownKeyPressed\n");
 	
 	if(hasItem() && selected >= 0)
 	{
@@ -594,7 +594,7 @@ void CWidget::onDownKeyPressed()
 
 void CWidget::onRightKeyPressed()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::onRightKeyPressed\n");
+	dprintf(DEBUG_INFO, "CWidget::onRightKeyPressed\n");
 	
 	if(hasItem() && selected >= 0)
 	{
@@ -627,7 +627,7 @@ void CWidget::onRightKeyPressed()
 
 void CWidget::onLeftKeyPressed()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::onLeftKeyPressed\n");
+	dprintf(DEBUG_INFO, "CWidget::onLeftKeyPressed\n");
 	
 	if(hasItem() && selected >= 0)
 	{
@@ -660,7 +660,7 @@ void CWidget::onLeftKeyPressed()
 
 void CWidget::onPageUpKeyPressed()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::onPageUpKeyPressed\n");
+	dprintf(DEBUG_INFO, "CWidget::onPageUpKeyPressed\n");
 	
 	if(hasItem() && selected >= 0)
 	{
@@ -670,7 +670,7 @@ void CWidget::onPageUpKeyPressed()
 
 void CWidget::onPageDownKeyPressed()
 {
-	dprintf(DEBUG_NORMAL, "CWidget::onPageDownKeyPressed\n");
+	dprintf(DEBUG_INFO, "CWidget::onPageDownKeyPressed\n");
 	
 	if(hasItem() && selected >= 0)
 	{

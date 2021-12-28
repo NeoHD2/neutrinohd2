@@ -452,6 +452,8 @@ int CInfoBox::exec(int timeout)
 
 	if ( timeout == -1 )
 		timeout = g_settings.timing[SNeutrinoSettings::TIMING_EPG];
+		
+	dprintf(DEBUG_NORMAL, "CInfoBox::exec: timeout:%d\n", timeout);
 
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd( timeout );
 

@@ -89,7 +89,7 @@ function main()
 	local actionKey = list:getActionKey()
 	
 	if actionKey == "reloadchannels" then
-		neutrino.CNeutrinoApp_getInstance():exec(None, 'reloadchannels')
+		neutrino.CServiceMenu():exec(None, 'reloadchannels')
 	end
 
 	if m:getExitPressed() ~= true and ret == neutrino.RETURN_REPAINT then

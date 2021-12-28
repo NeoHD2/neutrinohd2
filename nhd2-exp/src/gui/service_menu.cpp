@@ -33,6 +33,8 @@
 #include <global.h>
 #include <neutrino.h>
 
+#include <gui/service_menu.h>
+
 #include <configfile.h>
 
 #include <system/debug.h>
@@ -40,8 +42,7 @@
 #include <system/flashtool.h>
 
 #include <gui/widget/hintbox.h>
-
-#include <gui/service_menu.h>
+#include <gui/widget/messagebox.h>
 
 #include <gui/scan_setup.h>
 #include <gui/widget/icons.h>
@@ -72,9 +73,11 @@ int CServiceMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 	
 	if(actionKey == "reloadchannels")
 	{
-		HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SERVICEMENU_RELOAD_HINT));
-
-		g_Zapit->reinitChannels();
+		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RELOAD, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		{
+			HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SERVICEMENU_RELOAD_HINT));
+			g_Zapit->reinitChannels();
+		}
 		
 		return ret;
 	}

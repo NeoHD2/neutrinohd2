@@ -230,7 +230,7 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 
 CHintBox::~CHintBox(void)
 {
-	dprintf(DEBUG_NORMAL, "CHintBox::del: (%s)\n", caption.c_str());
+	dprintf(DEBUG_INFO, "CHintBox::del: (%s)\n", caption.c_str());
 
 	free(message);
 	//hide();
@@ -357,6 +357,8 @@ void CHintBox::hideHourGlass()
 
 int CHintBox::exec(int timeout)
 {
+	dprintf(DEBUG_NORMAL, "CHintBox::exec: timeout:%d\n", timeout);
+	
 	int res = messages_return::none;
 
 	neutrino_msg_t msg;
@@ -394,6 +396,8 @@ int CHintBox::exec(int timeout)
 
 	if ( timeout == -1 )
 		timeout = g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR];
+		
+	dprintf(DEBUG_NORMAL, "CHintBox::exec: timeout:%d\n", timeout);
 
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd( timeout );
 

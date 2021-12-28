@@ -77,13 +77,6 @@ int COSDSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	
 	if(parent)
 		parent->hide();
-	
-	if(actionKey == "savesettings")
-	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		
-		return ret;
-	}
 
 	showMenu();
 	
@@ -206,7 +199,10 @@ int COSDMenuColorSettings::exec(CMenuTarget* parent, const std::string& actionKe
 	
 	if(actionKey == "savesettings")
 	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
+		if (g_settings.use_default_skin)
+			CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
+		else
+			CNeutrinoApp::getInstance()->exec(NULL, "saveskinsettings");
 		
 		return ret;
 	}
@@ -349,7 +345,10 @@ int COSDInfoBarColorSettings::exec(CMenuTarget* parent, const std::string& actio
 	
 	if(actionKey == "savesettings")
 	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
+		if (g_settings.use_default_skin)
+			CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
+		else
+			CNeutrinoApp::getInstance()->exec(NULL, "saveskinsettings");
 		
 		return ret;
 	}
@@ -537,7 +536,11 @@ int CFontSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(actionKey == "savesettings")
 	{
 		CNeutrinoApp::getInstance()->SetupFonts(g_settings.font_file);
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
+		
+		if (g_settings.use_default_skin)
+			CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
+		else
+			CNeutrinoApp::getInstance()->exec(NULL, "saveskinsettings");
 		
 		return ret;
 	}

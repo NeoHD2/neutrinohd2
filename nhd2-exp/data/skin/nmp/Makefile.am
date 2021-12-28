@@ -12,7 +12,7 @@ install_DATA = \
 	service.lua \
 	mainmenu.lua \
 	miscsetup.lua \
-	nmp.config \
+	nmp.config default.config \
 	ni.config
 	
 

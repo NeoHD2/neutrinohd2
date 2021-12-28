@@ -1013,7 +1013,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 // saveSetup, save the application-settings
 void CNeutrinoApp::saveSetup(const char * fname)
 {
-	dprintf(DEBUG_NORMAL, "CNeutrinoApp::saveSetup\n");
+	dprintf(DEBUG_NORMAL, "CNeutrinoApp::saveSetup:%s\n", fname);
 	
 	char cfg_key[81];
 
@@ -1691,7 +1691,8 @@ void CNeutrinoApp::unloadSkin()
 	
 	// set colors to default
 	CThemes* themes = new CThemes();
-	themes->exec(NULL, "theme_default");
+	//themes->exec(NULL, "theme_default");
+	themes->setupDefaultColors();
 	
 	// menu
 	g_settings.menu_shadow = true;
@@ -5783,18 +5784,49 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	}
 	else if(actionKey == "savesettings") 
 	{
-		saveSetup(NEUTRINO_SETTINGS_FILE);
-		
-		//
-		//if (!g_settings.use_default_skin)
-		//	saveSkinConfig(g_settings.preferred_skin.c_str());
+		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_MAINSETTINGS_SAVESETTINGSNOW, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		{
+			saveSetup(NEUTRINO_SETTINGS_FILE);
 
-		tuxtxt_close();
-		
-		zapitCfg.saveLastChannel = g_settings.uselastchannel;
-		setZapitConfig(&zapitCfg);
+			tuxtxt_close();
+			
+			zapitCfg.saveLastChannel = g_settings.uselastchannel;
+			setZapitConfig(&zapitCfg);
 
-		HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
+			HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
+		}
+	}
+	else if (actionKey == "saveskinsettings")
+	{
+		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_MAINSETTINGS_SAVESETTINGSNOW, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		{
+			if (!g_settings.use_default_skin)
+				saveSkinConfig(g_settings.preferred_skin.c_str());
+				
+			tuxtxt_close();
+				
+			HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
+		}
+	}
+	else if (actionKey == "defaultskinsettings")
+	{
+		if (MessageBox(LOCALE_MESSAGEBOX_INFO, "load default skin configuration!", mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		{
+			std::string skinDefaultConfigFile = CONFIGDIR "/skin/";
+			skinDefaultConfigFile += g_settings.preferred_skin.c_str();
+			skinDefaultConfigFile += "/";
+			skinDefaultConfigFile += "default.config";
+			
+			readSkinConfig(skinDefaultConfigFile.c_str());
+		}
+	}
+	if(actionKey == "reloadchannels")
+	{
+		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RELOAD, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		{
+			HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SERVICEMENU_RELOAD_HINT));
+			g_Zapit->reinitChannels();
+		}
 	}
 	else if(actionKey == "features")
 	{

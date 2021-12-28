@@ -49,7 +49,7 @@
 
 CMessageBox::CMessageBox(const neutrino_locale_t Caption, const char * const Text, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
 {
-	dprintf(DEBUG_NORMAL, "CMessageBox::CMessageBox\n");
+	dprintf(DEBUG_INFO, "CMessageBox::CMessageBox\n");
 	
 	m_message = strdup(Text);
 
@@ -110,7 +110,7 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, const char * const Tex
 
 CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
 {
-	dprintf(DEBUG_NORMAL, "CMessageBox::CMessageBox\n");
+	dprintf(DEBUG_INFO, "CMessageBox::CMessageBox\n");
 	
 	m_message = NULL;
 	m_lines = Lines;
@@ -159,7 +159,7 @@ CMessageBox::CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, c
 
 CMessageBox::CMessageBox(const char* const Caption, const char * const Text, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
 {
-	dprintf(DEBUG_NORMAL, "CMessageBox::CMessageBox\n");
+	dprintf(DEBUG_INFO, "CMessageBox::CMessageBox\n");
 	
 	m_message = strdup(Text);
 
@@ -221,7 +221,7 @@ CMessageBox::CMessageBox(const char* const Caption, const char * const Text, con
 
 CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const int Width, const char * const Icon, const result_ Default, const uint32_t ShowButtons)
 {
-	dprintf(DEBUG_NORMAL, "CMessageBox::CMessageBox\n");
+	dprintf(DEBUG_INFO, "CMessageBox::CMessageBox\n");
 	
 	m_message = NULL;
 	m_lines = Lines;
@@ -270,7 +270,7 @@ CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const i
 
 CMessageBox::~CMessageBox(void)
 {
-	dprintf(DEBUG_NORMAL, "CMessageBox::del:\n");
+	dprintf(DEBUG_INFO, "CMessageBox::del:\n");
 
 	if (m_message != NULL) 
 	{
@@ -289,7 +289,7 @@ CMessageBox::~CMessageBox(void)
 
 void CMessageBox::init(const char * const Caption, const int Width, const char * const Icon)
 {
-	dprintf(DEBUG_NORMAL, "CMessageBox::init\n");
+	dprintf(DEBUG_INFO, "CMessageBox::init\n");
 	
 	m_width = Width;
 	int nw = 0;
@@ -421,7 +421,7 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 
 void CMessageBox::initFrames(void)
 {
-	dprintf(DEBUG_NORMAL, "CMessageBox::initFrames\n");
+	dprintf(DEBUG_INFO, "CMessageBox::initFrames\n");
 	
 	cFrameBox.iWidth = m_width;
 	cFrameBox.iHeight = m_height;
@@ -439,14 +439,14 @@ void CMessageBox::initFrames(void)
 
 void CMessageBox::paint(void)
 {
-	dprintf(DEBUG_NORMAL, "CMessageBox::paint\n");
+	dprintf(DEBUG_INFO, "CMessageBox::paint\n");
 
 	refresh();
 }
 
 void CMessageBox::refresh()
 {
-	dprintf(DEBUG_NORMAL, "CMessageBox::refresh\n");
+	dprintf(DEBUG_INFO, "CMessageBox::refresh\n");
 	
 	// mainBox
 	m_cBoxWindow->paint();
@@ -520,7 +520,7 @@ void CMessageBox::scroll_down(void)
 
 void CMessageBox::hide(void)
 {
-	dprintf(DEBUG_NORMAL, "CMessageBox::hide:\n");
+	dprintf(DEBUG_INFO, "CMessageBox::hide:\n");
 
 	m_cBoxWindow->hide();
 
@@ -534,7 +534,7 @@ void CMessageBox::returnDefaultValueOnTimeout(bool returnDefault)
 
 void CMessageBox::paintButtons()
 {
-	dprintf(DEBUG_NORMAL, "CMessageBox::paintButtons\n");
+	dprintf(DEBUG_INFO, "CMessageBox::paintButtons\n");
 	
 	//
 	uint8_t    color;
@@ -661,6 +661,8 @@ int CMessageBox::exec(int timeout)
 
 	if ( timeout == -1 )
 		timeout = g_settings.timing[SNeutrinoSettings::TIMING_EPG];
+		
+	dprintf(DEBUG_NORMAL, "CMessageBox::exec: timeout:%d\n", timeout);
 
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout);
 

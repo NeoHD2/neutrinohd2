@@ -108,6 +108,12 @@ function main()
 	item9:setActionKey(neutrino.COSDDiverses(), "");
 	item9:set2lines()
 	item9:enableItemShadow()
+	
+	item10 = neutrino.ClistBoxItem("Skin default Settings")
+	item10:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_OSDSETTINGS)
+	item10:setActionKey(None, "defaultskinsettings");
+	item10:set2lines()
+	item10:enableItemShadow()
 
 	list:addItem(item1)
 	list:addItem(item2)
@@ -118,6 +124,7 @@ function main()
 	list:addItem(item7)
 	list:addItem(item8)
 	list:addItem(item9)
+	list:addItem(item10)
 	
 	m:addItem(w)
 	m:addItem(timeBox)
@@ -135,8 +142,8 @@ function main()
 	 
 	local actionKey = list:getActionKey()
 	
-	if actionKey == "miscsetup" then
-		neutrino.CNeutrinoApp_getInstance():startSkin("miscsetup")
+	if actionKey == "defaultskinsettings" then
+		neutrino.CNeutrinoApp_getInstance():exec(None, "defaultskinsettings")
 	end
 	
 	if m:getExitPressed() ~= true and ret == neutrino.RETURN_REPAINT then
