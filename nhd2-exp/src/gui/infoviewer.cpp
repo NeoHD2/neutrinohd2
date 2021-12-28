@@ -652,13 +652,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 
 					res = messages_return::cancel_info;
 				}
-				else if (msg == NeutrinoMessages::EVT_TIMESET) 
-				{
-					// Handle anyway!
-					neutrino->handleMsg(msg, data);
-					//g_RCInput->postMsg (NeutrinoMessages::SHOW_INFOBAR, 0);
-					//res = messages_return::cancel_all;
-				}
 				else 
 				{
 					if (msg == RC_standby) 
