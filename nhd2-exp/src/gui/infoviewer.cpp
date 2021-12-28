@@ -639,7 +639,11 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 			} 
 			else if (msg == NeutrinoMessages::EVT_TIMESET) 
 			{
-				res = neutrino->handleMsg (msg, data);
+				// Handle anyway!
+				neutrino->handleMsg(msg, data);
+				g_RCInput->postMsg (NeutrinoMessages::SHOW_INFOBAR, 0);
+				hideIt = false;
+				res = messages_return::cancel_all;
 			}
 			else if ( !CNeutrinoApp::getInstance()->timeshiftstatus) 
 			{

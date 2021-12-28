@@ -3994,9 +3994,6 @@ void CNeutrinoApp::RealRun(void)
 			}			
 			else if((msg == RC_info) || ( msg == NeutrinoMessages::SHOW_INFOBAR ))
 			{
-				if(g_InfoViewer->is_visible)
-					g_InfoViewer->killTitle();
-
 				bool show_info = ((msg != NeutrinoMessages::SHOW_INFOBAR) || (g_InfoViewer->is_visible || g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR] != 0));
 					
 				// turn on LCD display
