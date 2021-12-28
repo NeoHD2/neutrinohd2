@@ -495,14 +495,6 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	runningPercent = 0;
 	
 	initFrames();
-	
-	//sigscale = new CProgressBar(BAR_WIDTH, SIGSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	//snrscale = new CProgressBar(BAR_WIDTH, SNRSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	//timescale = new CProgressBar(BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);	//5? see in code
-	
-	//sigscale->reset(); 
-	//snrscale->reset(); 
-	//timescale->reset();
 
 	if (!gotTime)
 		gotTime = timeset;
@@ -537,7 +529,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	//
 	showTitle(_ChanNum, ChannelName, _satellitePosition);
 	
-	timescale->paint(timescale_posx, timescale_posy, runningPercent);
+	//timescale->paint(timescale_posx, timescale_posy, runningPercent);
 
 	// get CN epg
 	getCurrentNextEPG(channel_id, new_chan, _epgpos);
@@ -664,7 +656,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				{
 					// Handle anyway!
 					neutrino->handleMsg(msg, data);
-					g_RCInput->postMsg (NeutrinoMessages::SHOW_INFOBAR, 0);
+					//g_RCInput->postMsg (NeutrinoMessages::SHOW_INFOBAR, 0);
 					
 					res = messages_return::cancel_all;
 				} 
@@ -1231,7 +1223,7 @@ int CInfoViewer::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 
  	if ((msg == NeutrinoMessages::EVT_CURRENTNEXT_EPG) || (msg == NeutrinoMessages::EVT_NEXTPROGRAM)) 
 	{
-	  	//getEPG(*(t_channel_id *)data, info_CurrentNext);
+	  	getEPG(*(t_channel_id *)data, info_CurrentNext);
 	  	
 	  	if ( is_visible )
 			show_Data(true);
