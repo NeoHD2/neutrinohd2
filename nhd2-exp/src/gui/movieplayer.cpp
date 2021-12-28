@@ -874,8 +874,8 @@ void CMoviePlayerGui::PlayFile(void)
 			//
 			play(selected);
 			
-			//
-			showMovieInfo();
+			// FIXME:
+			//showMovieInfo();
 		}
 
 		//get position/duration/speed
@@ -1797,7 +1797,7 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_BLUE, &icon_blue_w, &icon_blue_h);
 	
 	// shadow
-	if (g_settings.menu_shadow)
+	if (g_settings.infobar_shadow)
 		frameBuffer->paintBoxRel(cFrameBoxInfo.iX - 1, cFrameBoxInfo.iY - 1, cFrameBoxInfo.iWidth + 2, cFrameBoxInfo.iHeight + 2, COL_MENUCONTENT_PLUS_6);
 		
 	// paint info box

@@ -92,7 +92,7 @@
 #define COL_WHITE_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_WHITE]
 #define COL_BLACK_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_BLACK]
 #define COL_ORANGE_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_ORANGE]
-#define COL_SILVER_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_SILVER + 0]
+#define COL_SILVER_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_SILVER]
 
 #define COL_BACKGROUND_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_BACKGROUND]
 
@@ -100,7 +100,7 @@
 // infoBar color
 #define COL_INFOBAR_PLUS_0              	CFrameBuffer::getInstance()->realcolor[COL_INFOBAR + 0]
 #define COL_INFOBAR_SHADOW_PLUS_0       	CFrameBuffer::getInstance()->realcolor[COL_INFOBAR_SHADOW + 0] // CMessageBox
-#define COL_INFOBAR_SHADOW_PLUS_1       	CFrameBuffer::getInstance()->realcolor[COL_INFOBAR_SHADOW + 2] // infobar buttons
+#define COL_INFOBAR_SHADOW_PLUS_1       	CFrameBuffer::getInstance()->realcolor[COL_INFOBAR_SHADOW + 1] // infobar buttons
 
 // head color
 #define COL_MENUHEAD_PLUS_0             	CFrameBuffer::getInstance()->realcolor[COL_MENUHEAD + 0]

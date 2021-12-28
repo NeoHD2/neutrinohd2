@@ -186,27 +186,14 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr, bool
 			percent = 0;
 
 		siglen = (double) pcr * (double) div;
-		int step = cCBox.iWidth/100;
+		int step = 0;
 
 		if(g_settings.progressbar_color)
 		{
-			/*
-			for (i = 0; (i < green) && (i < siglen); i++) 
-			{
-				step = 255/green;
-
-				if(inverse)
-					rgb = COL_YELLOW_PLUS_0 - ((unsigned char) (step*(i)) <<  8); // removig green
-				else
-					rgb = COL_YELLOW_PLUS_0 - ((unsigned char) (step*(i)) << 16); // removing red
-				
-				frameBuffer->paintBoxRel (cCBox.iX + i, cCBox.iY, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
-			}
-			*/
 			//red
 			for (i = 0; (i < red) && (i < siglen); i++) 
 			{
-					step = 255/red;
+					step = (double) (255/red);
 
 					if(inverse) 
 						rgb = COL_GREEN_PLUS_0 + ((unsigned char)(step*i) << 16); // adding red
