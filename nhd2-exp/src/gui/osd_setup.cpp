@@ -1018,9 +1018,13 @@ void CSkinSettings::showMenu()
 				
 				std::string extension = getFileExt(filename);
 				
+				// file to skip
+				std::string skipFile = g_settings.preferred_skin;
+				skipFile += ".config";
+				
 				if ( strcasecmp("config", extension.c_str()) == 0)
 				{
-					if (!filename.empty())
+					if (!filename.empty() && filename != skipFile.c_str())
 					{
 						item = new ClistBoxItem(removeExtension(filename).c_str());
 				
