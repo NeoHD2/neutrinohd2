@@ -331,7 +331,9 @@ class CMenuOptionStringChooser : public CMenuItem
 
 	public:
 		CMenuOptionStringChooser(const neutrino_locale_t Name, char* OptionValue, bool Active = false, CChangeObserver* Observ = NULL, const neutrino_msg_t DirectKey = RC_nokey, const std::string & IconName= "", bool Pulldown = false);
+		
 		CMenuOptionStringChooser(const char * Name, char * OptionValue, bool Active = false, CChangeObserver* Observ = NULL, const neutrino_msg_t DirectKey = RC_nokey, const std::string & IconName= "", bool Pulldown = false);
+		
 		~CMenuOptionStringChooser();
 
 		void addOption(const char * value);

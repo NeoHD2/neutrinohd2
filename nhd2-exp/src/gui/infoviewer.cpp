@@ -174,13 +174,9 @@ void CInfoViewer::Init()
 	snrscale = NULL;
 	timescale = NULL;	//5? see in code
 	
-	sigscale = new CProgressBar(BAR_WIDTH, SIGSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	snrscale = new CProgressBar(BAR_WIDTH, SNRSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	timescale = new CProgressBar(BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT, 30, 100, 70, true);	//5? see in code
-	
-	sigscale->reset(); 
-	snrscale->reset(); 
-	timescale->reset();
+	sigscale = new CProgressBar(BoxStartY + (SAT_INFOBOX_HEIGHT - satNameHeight)/2 + satNameHeight, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SIGSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
+	snrscale = new CProgressBar(BoxStartY + (SAT_INFOBOX_HEIGHT - satNameHeight)/2 + satNameHeight + 10 + g_SignalFont->getRenderWidth("SIG:000"), BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SNRSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
+	timescale = new CProgressBar(timescale_posx, timescale_posy, BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT, 30, 100, 70, true);	//5? see in code
 	
 	timer = NULL;
 	
@@ -529,12 +525,10 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	//
 	showTitle(_ChanNum, ChannelName, _satellitePosition);
 	
-	//timescale->paint(timescale_posx, timescale_posy, runningPercent);
+	timescale->paint(runningPercent);
 
 	// get CN epg
 	getCurrentNextEPG(channel_id, new_chan, _epgpos);
-	
-	timescale->paint(timescale_posx, timescale_posy, runningPercent);
 
 #if ENABLE_LCD
 	showLcdPercentOver();
@@ -624,8 +618,8 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 				
 				//
 				timer->refresh();
-				//timescale->paint(timescale_posx, timescale_posy, runningPercent);
-				//show_Data(_calledFromNumZap);
+				
+				show_Data(_calledFromNumZap);
 					
 				// radiotext		
 				if ((g_settings.radiotext_enable) && (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio))
@@ -1554,7 +1548,7 @@ void CInfoViewer::showSNR()
 					posx = freqStartX + freqWidth + 10;
 
 					//sigscale->setPosition(posx, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SIGSCALE_BAR_HEIGHT);
-					sigscale->paint(posx, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, sig);
+					sigscale->paint(/*BoxStartY + (SAT_INFOBOX_HEIGHT - satNameHeight)/2 + satNameHeight, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2,*/ sig);
 
 					sprintf (percent, "SIG:%d%%S", sig);
 					posx = posx + barwidth + 2;
@@ -1570,7 +1564,7 @@ void CInfoViewer::showSNR()
 					int snr_posx = posx + sw + 10;
 
 					//snrscale->setPosition(snr_posx, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SNRSCALE_BAR_HEIGHT);
-					snrscale->paint(snr_posx, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, snr);
+					snrscale->paint(/*BoxStartY + (SAT_INFOBOX_HEIGHT - satNameHeight)/2 + satNameHeight + 10 + g_SignalFont->getRenderWidth("SIG:000"), BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2,*/ snr);
 
 					sprintf (percent, "SNR:%d%%Q", snr);
 					snr_posx = snr_posx + barwidth + 2;
@@ -1704,6 +1698,10 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 		{
 			oldrunningPercent = 100;
 	  	}
+	  	
+	  	// paint percent
+	  	timescale->reset();
+		timescale->paint(/*timescale_posx, timescale_posy,*/ runningPercent);
 
 		int EPGTimeWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth("00:00:00"); //FIXME
 
@@ -1784,13 +1782,6 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 	  		}
 		}
   	}
-}
-
-void CInfoViewer::showPercent()
-{
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showPercent:\n");
-	
-	timescale->paint(timescale_posx, timescale_posy, runningPercent);
 }
 
 void CInfoViewer::showButton_Audio()

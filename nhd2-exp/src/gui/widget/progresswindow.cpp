@@ -59,7 +59,7 @@ CProgressWindow::CProgressWindow(int _x, int _y, int _width, int _height)
 	initFrames(_x, _y, _width, _height);
 
 	// progressbar
-	progressBar = new CProgressBar(/*x + BORDER_LEFT, globalstatusY, */width - BORDER_LEFT - BORDER_RIGHT - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("100%") - 10, 10);
+	progressBar = new CProgressBar(x + BORDER_LEFT, y + hheight + (mheight>>1) + 2*mheight, width - BORDER_LEFT - BORDER_RIGHT - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("100%") - 10, 10);
 
 	progressBar->reset();
 }
@@ -142,9 +142,7 @@ void CProgressWindow::showGlobalStatus(const unsigned int prog)
 	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + width - (w + 10), globalstatusY + 18, w, strProg, COL_MENUCONTENT, 0, true); // UTF-8
 
 	// progressBar
-	progressBar->paint(x + BORDER_LEFT, globalstatusY, global_progress);
-	//progressBar->setPosition(x + BORDER_LEFT, globalstatusY, width - BORDER_LEFT - BORDER_RIGHT - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("100%") - 10, 10);
-	//progressBar->paintPCR(global_progress);
+	progressBar->paint(/*x + BORDER_LEFT, globalstatusY,*/ global_progress);
 	
 	CFrameBuffer::getInstance()->blit();
 

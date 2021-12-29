@@ -150,8 +150,8 @@ int CStreamInfo2::doSignalStrengthLoop()
 #define BAR_WIDTH 150 
 #define BAR_HEIGHT 12 
 
-	sigscale = new CProgressBar(BAR_WIDTH, BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR);
-	snrscale = new CProgressBar(BAR_WIDTH, BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR);
+	sigscale = new CProgressBar(x + 10 - 1, yypos + (g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()/2), BAR_WIDTH, BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR);
+	snrscale = new CProgressBar(x + 10 - 1, yypos + 2*(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()/2) + 5, BAR_WIDTH, BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR);
 
 	neutrino_msg_t msg;
 	uint64_t maxb, minb, lastb, tmp_rate;
@@ -203,9 +203,8 @@ int CStreamInfo2::doSignalStrengthLoop()
 				cnt++;
 			int dheight = g_Font[font_info]->getHeight ();
 			int dx1 = x + 10;
-			//int dy = y+ height - dheight - 5;
 			
-			/**/
+			//
 			if (ret && (lastb != bit_s)) 
 			{
 				lastb = bit_s;
@@ -937,8 +936,7 @@ void CStreamInfo2::showSNR ()
 		sprintf(percent, "%d%% SIG", sig);
 		sw = g_Font[font_info]->getRenderWidth (percent);
 
-		//sigscale->setPosition(posx - 1, posy, BAR_WIDTH, BAR_HEIGHT);
-		sigscale->paint(posx - 1, posy, sig);
+		sigscale->paint(/*x + 10 - 1, yypos + (mheight/2),*/ sig);
 
 		posx = posx + barwidth + 3;
 		frameBuffer->paintBoxRel(posx, posy -1, sw, mheight-8, COL_MENUCONTENTDARK_PLUS_0);
@@ -952,8 +950,7 @@ void CStreamInfo2::showSNR ()
 		sprintf(percent, "%d%% SNR", snr);
 		sw = g_Font[font_info]->getRenderWidth (percent);
 
-		//snrscale->setPosition(posx - 1, posy + 2, BAR_WIDTH, BAR_HEIGHT);
-		snrscale->paint(posx - 1, posy + 2, snr);
+		snrscale->paint(/*x + 10 - 1, yypos + mheight + 4 + 2,*/ snr);
 
 		posx = posx + barwidth + 3;
 		frameBuffer->paintBoxRel(posx, posy - 1, sw, mheight-8, COL_MENUCONTENTDARK_PLUS_0, 0, true);

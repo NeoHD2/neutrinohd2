@@ -87,6 +87,7 @@ void reformatExtendedEvents(std::string strItem, std::string strLabel, bool bUse
 {
 	std::vector<std::string> & vecDescriptions = epgdata.itemDescriptions;
 	std::vector<std::string> & vecItems = epgdata.items;
+	
 	// Merge multiple events into 1 (Actor1-)
 	if (bUseRange) 
 	{
@@ -128,6 +129,7 @@ void reformatExtendedEvents(std::string strItem, std::string strLabel, bool bUse
 		// Single string event (e.g. Director)
 		// Look for matching items
 		int nPos = findItem(strItem, vecDescriptions);
+		
 		if (-1 != nPos) 
 		{
 			vecDescriptions[nPos] = strLabel;
@@ -138,18 +140,24 @@ void reformatExtendedEvents(std::string strItem, std::string strLabel, bool bUse
 CEpgData::CEpgData()
 {
 	frameBuffer = CFrameBuffer::getInstance();
-	//int pbx = cFrameBox.iX + BORDER_LEFT + widthl + 10 + ((cFrameBox.iWidth - TIMESCALE_W - 4 - widthr - widthl - 10 - 10 - 20)>>1);
-	timescale = new CProgressBar(/*pbx + 2, cFrameBox.iY + cFrameBox.iHeight - cFootBox.iHeight - cFollowScreeningBox.iHeight + (cFollowScreeningBox.iHeight - TIMESCALE_H)/2,*/ TIMESCALE_W, TIMESCALE_H);
+	
+	//
+	initFrames();
+	
+	//
+	timescale = new CProgressBar(cFrameBox.iX + (cFrameBox.iWidth - TIMESCALE_W)/2, cFrameBox.iY + cFrameBox.iHeight - cFootBox.iHeight - cFollowScreeningBox.iHeight + (cFollowScreeningBox.iHeight - TIMESCALE_H)/2, TIMESCALE_W, TIMESCALE_H);
 
 	epgBuffer.clear();
 
 	textBox = NULL;
 	headers = NULL;
+	
+	epg_done = -1;
 
 	start();
 }
 
-void CEpgData::start()
+void CEpgData::initFrames()
 {
 	// mainBox	
 	cFrameBox.iWidth = w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 ));
@@ -201,6 +209,12 @@ void CEpgData::start()
 	cTextBox.iY = cFrameBox.iY + cHeadBox.iHeight;
 	cTextBox.iWidth = cFrameBox.iWidth;
 	cTextBox.iHeight = cFrameBox.iHeight - cHeadBox.iHeight - cFootBox.iHeight - cFollowScreeningBox.iHeight;
+}
+
+void CEpgData::start()
+{
+	//
+	initFrames();
 
 	if(textBox == NULL)
 	{
@@ -438,9 +452,6 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 
 	// init frames
 	start();
-	
-	// paint mainBox
-	//cFrameWindow.paint();
 
 	// getepg data
 	GetEPGData(channel_id, id, &startzeit);
@@ -619,10 +630,10 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 	//show progressbar
 	if ( epg_done != -1 )
 	{
-		int pbx = cFrameBox.iX + BORDER_LEFT + widthl + 10 + ((cFrameBox.iWidth - TIMESCALE_W - 4 - widthr - widthl - 10 - 10 - 20)>>1);
+		//int pbx = cFrameBox.iX + BORDER_LEFT + widthl + 10 + ((cFrameBox.iWidth - TIMESCALE_W - 4 - widthr - widthl - 10 - 10 - 20)>>1);
 		timescale->reset();
 		//timescale->setPosition(pbx + 2, cFrameBox.iY + cFrameBox.iHeight - cFootBox.iHeight - cFollowScreeningBox.iHeight + (cFollowScreeningBox.iHeight - TIMESCALE_H)/2, TIMESCALE_W, TIMESCALE_H);
-		timescale->paint(pbx + 2, cFrameBox.iY + cFrameBox.iHeight - cFootBox.iHeight - cFollowScreeningBox.iHeight + (cFollowScreeningBox.iHeight - TIMESCALE_H)/2, epg_done);
+		timescale->paint(/*pbx + 2, cFrameBox.iY + cFrameBox.iHeight - cFootBox.iHeight - cFollowScreeningBox.iHeight + (cFollowScreeningBox.iHeight - TIMESCALE_H)/2,*/ epg_done);
 	}
 
 	// get prevnext epg data
@@ -673,13 +684,14 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 
 				//
 				GetEPGData(channel_id, id, &startzeit, false);
+				
 				if ( epg_done!= -1 ) 
 				{
 					int pbx = cFrameBox.iX + 10 + widthl + 10 + ((cFrameBox.iWidth - TIMESCALE_W- 4 - widthr - widthl - 10 - 10 - 20)>>1);
 					timescale->reset();
 					
 					//timescale->setPosition(pbx + 2, cFrameBox.iY + cFrameBox.iHeight - cFootBox.iHeight - cFollowScreeningBox.iHeight + (cFollowScreeningBox.iHeight - TIMESCALE_H)/2, TIMESCALE_W, TIMESCALE_H);
-					timescale->paint(pbx + 2, cFrameBox.iY + cFrameBox.iHeight - cFootBox.iHeight - cFollowScreeningBox.iHeight + (cFollowScreeningBox.iHeight - TIMESCALE_H)/2, epg_done);
+					timescale->paint(/*pbx + 2, cFrameBox.iY + cFrameBox.iHeight - cFootBox.iHeight - cFollowScreeningBox.iHeight + (cFollowScreeningBox.iHeight - TIMESCALE_H)/2,*/ epg_done);
 				}
 			} 
 
@@ -908,7 +920,7 @@ void CEpgData::GetEPGData(const t_channel_id channel_id, uint64_t id, time_t* st
 		strftime( temp, sizeof(temp), "%H:%M", pEndeZeit);
 		epg_end = temp;
 
-		epg_done= -1;
+		epg_done = -1;
 		if (( time(NULL)- (epgData.epg_times).startzeit )>= 0 )
 		{
 			unsigned nProcentagePassed=(unsigned)((float)(time(NULL) -(epgData.epg_times).startzeit)/(float)(epgData.epg_times).dauer*100.);

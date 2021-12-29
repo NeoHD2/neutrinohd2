@@ -82,9 +82,23 @@ CScanTs::CScanTs(int num)
 	radar = 0;
 	total = done = 0;
 	freqready = 0;
+	
+	// window size
+	int _iw, _ih;
+	frameBuffer->getIconSize(NEUTRINO_ICON_UPDATE, &_iw, &_ih);
+	hheight = std::max(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight(), _ih) + 6;
+	
+	//
+	mheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
+	
+	width = w_max(MENU_WIDTH + 100, 0);
+	height = h_max(hheight + (10 * mheight), 0); //9 lines
+	
+	x = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - width) / 2;
+	y = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - height) / 2;
 
-	sigscale = new CProgressBar(BAR_WIDTH, BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR);
-	snrscale = new CProgressBar(BAR_WIDTH, BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR);
+	sigscale = new CProgressBar(x + 20 - 1, y + height - mheight - 5 + 2, BAR_WIDTH, BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR);
+	snrscale = new CProgressBar(x + 20 + 260 - 1, y + height - mheight - 5 + 2, BAR_WIDTH, BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR);
 	
 	feindex = num;
 }
@@ -638,8 +652,7 @@ void CScanTs::showSNR()
 		sprintf(percent, "%d%% SIG", sig);
 		sw = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth ("100% SIG");
 
-		//sigscale->setPosition(posx - 1, posy + 2, BAR_WIDTH, BAR_HEIGHT);
-		sigscale->paint(posx - 1, posy + 2, sig);
+		sigscale->paint(/*x + 20 - 1, y + height - mheight - 5 + 2,*/ sig);
 
 		posx = posx + barwidth + 3;
 		sw = x + 247 - posx;
@@ -653,8 +666,7 @@ void CScanTs::showSNR()
 		sprintf(percent, "%d%% SNR", snr);
 		sw = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth ("100% SNR");
 		
-		//snrscale->setPosition(posx - 1, posy + 2, BAR_WIDTH, BAR_HEIGHT);
-		snrscale->paint(posx - 1, posy + 2, snr);
+		snrscale->paint(/*x + 20 + 260 - 1, y + height - mheight - 5 + 2,*/ snr);
 
 		posx = posx + barwidth + 3;
 		sw = x + width - posx;

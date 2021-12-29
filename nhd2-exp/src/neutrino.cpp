@@ -3184,9 +3184,6 @@ int CNeutrinoApp::run(int argc, char **argv)
 	
 	// event list
 	g_EventList = new EventList;
-	
-	// volume bar
-	g_volscale = new CProgressBar(200, 15, 100, 100, 100, true);
 
 	// Ci Cam handler
 #if defined (ENABLE_CI)	
@@ -5121,6 +5118,8 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 			y = sh - sh/15;
 			break;
 	}
+	
+	g_volscale = new CProgressBar(x + dy+ (dy/4), y +(dy/4), 200, 15);
 
 	if(bDoPaint) 
 	{
@@ -5149,7 +5148,7 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 		g_volscale->reset();
 
 		//g_volscale->setPosition(x + dy+ (dy/4), y +(dy/4), 200, 15);
-		g_volscale->paint(x + dy+ (dy/4), y +(dy/4), current_volume);
+		g_volscale->paint(/*x + dy+ (dy/4), y +(dy/4),*/ current_volume);
 
 		char p1[4]; // 3 digits + '\0'
 		sprintf(p1, "%3d", current_volume);
@@ -5216,7 +5215,7 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 				dprintf(DEBUG_NORMAL, "CNeutrinoApp::setVolume: current_volume %d\n", current_volume);
 
 				//g_volscale->setPosition(x + dy+ (dy/4), y +(dy/4), 200, 15);
-				g_volscale->paint(x + dy+ (dy/4), y +(dy/4), current_volume);
+				g_volscale->paint(/*x + dy+ (dy/4), y +(dy/4),*/ current_volume);
 
 				char p[4]; // 3 digits + '\0'
 				sprintf(p, "%3d", current_volume);
@@ -5261,6 +5260,9 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 			
 		frameBuffer->blit();
 	}
+	
+	delete g_volscale;
+	g_volscale = NULL;
 }
 
 // tv mode

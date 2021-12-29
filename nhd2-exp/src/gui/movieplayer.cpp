@@ -124,8 +124,8 @@ CMoviePlayerGui::CMoviePlayerGui()
 	mplist = NULL;
 	item = NULL;
 	
-	moviescale = new CProgressBar(cFrameBoxInfo.iWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);
-	moviescale->reset();
+	moviescale = new CProgressBar(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, cFrameBoxInfo.iWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);
+
 	timeCounter = NULL;
 	file_prozent = 0;
 }
@@ -859,8 +859,9 @@ void CMoviePlayerGui::PlayFile(void)
 		{
 			if(duration > 100)
 				file_prozent = (position / (duration / 100));
-				
-			moviescale->paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, file_prozent, false);
+			
+			moviescale->reset();	
+			moviescale->paint(/*cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30,*/ file_prozent, false);
 			updateTime();
 		}
 
@@ -1955,7 +1956,8 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	if(Percent > 100)
 		Percent = 100;
 	
-	moviescale->paint(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30, Percent);
+	moviescale->reset();
+	moviescale->paint(/*cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 30,*/ Percent);
 }
 
 void CMoviePlayerGui::updateTime()

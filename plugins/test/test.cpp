@@ -111,6 +111,7 @@ class CTestMenu : public CMenuTarget
 		//
 		CProgressWindow * progressWindow;
 		CProgressBar* progressBar;
+		CProgressBar* progressBar2;
 
 		// helper functions
 		void loadTMDBPlaylist(const char *txt = "movie", const char *list = "popular", const int seite = 1, bool search = false);
@@ -287,6 +288,7 @@ CTestMenu::CTestMenu()
 	textBoxWidget = NULL;
 	progressWindow = NULL;
 	progressBar = NULL;
+	progressBar2 = NULL;
 }
 
 CTestMenu::~CTestMenu()
@@ -1463,7 +1465,7 @@ void CTestMenu::testCFrameBoxWidget()
 		int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 		titleFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10, t_w, t_h);
 		titleFrame->setTitle((m_vMovieInfo[0].epgTitle.empty())? "" : m_vMovieInfo[0].epgTitle.c_str());
-		titleFrame->disablePaintFrame();
+		//titleFrame->disablePaintFrame();
 		titleFrame->setActive(false);
 
 		frameBoxWidget->addFrame(titleFrame);
@@ -1477,7 +1479,7 @@ void CTestMenu::testCFrameBoxWidget()
 		buffer += "\n";
 		buffer += m_vMovieInfo[0].epgInfo2;
 		textFrame->setTitle(buffer.c_str());
-		textFrame->disablePaintFrame();
+		//textFrame->disablePaintFrame();
 		textFrame->setActive(false);
 
 		frameBoxWidget->addFrame(textFrame);
@@ -1487,7 +1489,7 @@ void CTestMenu::testCFrameBoxWidget()
 		artFrame->setMode(FRAME_PICTURE);
 		artFrame->setPosition(box.iX + 10 + box.iWidth - 10 - pic_w - 20, box.iY + 40 + h_h + 10, pic_w - 20, 250);
 		artFrame->setIconName(m_vMovieInfo[0].tfile.c_str());
-		artFrame->disablePaintFrame();
+		//artFrame->disablePaintFrame();
 		artFrame->setActionKey(this, "fire1play");
 
 		frameBoxWidget->addFrame(artFrame);
@@ -1501,7 +1503,7 @@ void CTestMenu::testCFrameBoxWidget()
 		int o_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 		otherFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10 + 250 + 10, o_w + 10, o_h);
 		otherFrame->setTitle("andere Filme:");
-		otherFrame->disablePaintFrame();
+		//otherFrame->disablePaintFrame();
 		otherFrame->setActive(false);
 
 		frameBoxWidget->addFrame(otherFrame);
@@ -1512,9 +1514,9 @@ void CTestMenu::testCFrameBoxWidget()
 		{
 			art1Frame = new CFrame();
 			art1Frame->setMode(FRAME_PICTURE);
-			art1Frame->setPosition(box.iX + 10 + (i - 1)*((box.iWidth - 20)/6), box.iY + 40 + h_h + 10 + 250 + 10 + o_h + 10, (box.iWidth - 20)/6,box.iHeight - 40 - h_h - 10 - 250 - 10 - 40);
+			art1Frame->setPosition(box.iX + 10 + (i - 1)*((box.iWidth - 20)/6) + 5, box.iY + 40 + h_h + 10 + 250 + 10 + o_h + 10, (box.iWidth - 20)/6 - 10,box.iHeight - 40 - h_h - 10 - 250 - 10 - 40);
 			art1Frame->setIconName(m_vMovieInfo[i].tfile.c_str());
-			art1Frame->disablePaintFrame();
+			//art1Frame->disablePaintFrame();
 			art1Frame->setActionKey(this, "fireplay");
 			art1Frame->setTitle(m_vMovieInfo[i].epgTitle.c_str());
 
@@ -2780,7 +2782,7 @@ REPAINT:
 	head.paint();
 	foot.paint();
 	testDline.paint(Box.iX, Box.iY, Box.iWidth, Box.iHeight, 70, 35, Box.iY + 2*35);
-	testPB.paint(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150,pcr);
+	testPB.paint(/*Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150,*/pcr);
 	testSB.paint(Box.iX + Box.iWidth - 10, Box.iY + 40, Box.iHeight - 80, NrOfPages, currentPage);
 	
 	CFrameBuffer::getInstance()->blit();
@@ -3600,88 +3602,67 @@ void CTestMenu::testCProgressBar()
 	Box.iX = g_settings.screen_StartX + 10;
 	Box.iY = g_settings.screen_StartY + 10 + (g_settings.screen_EndY - g_settings.screen_StartY - 20)/2;
 	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
-	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 20)/40;
+	Box.iHeight = 10;
+	
+	CBox Box2;
+	
+	Box2.iX = g_settings.screen_StartX + 10;
+	Box2.iY = g_settings.screen_StartY + 50;
+	Box2.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
+	Box2.iHeight = 10;
 	
 	progressBar = new CProgressBar(&Box);
+	progressBar2 = new CProgressBar(&Box2, 40, 100, 70, false);
 	
-#if 0	
-	neutrino_msg_t msg;
-	neutrino_msg_data_t data;
-	
-	unsigned int percent = 0;
-	bool loop = true;
-
-	while(loop)
-	{
-		progressBar->paint(Box.iX, Box.iY, percent);
-		
-		g_RCInput->getMsg_ms(&msg, &data, 300); // 1 sec
-
-		if (msg == RC_right)
-		{
-			percent += 5;
-			
-			if (percent > 100)
-				percent = 100;
-				
-			progressBar->paint(Box.iX, Box.iY, percent);
-		}
-		else if (msg == RC_left)
-		{
-			percent -= 5;
-			
-			if (percent < 0)
-				percent = 0;
-				
-			progressBar->paint(Box.iX, Box.iY, percent);
-		}
-		
-		else if (msg == RC_home) 
-		{
-			loop = false;
-		}
-
-		CFrameBuffer::getInstance()->blit();
-	}
-	
-	hide();
-#else
-	progressBar->paint(Box.iX, Box.iY, 10);
+	//
+	progressBar->paint(10);
+	progressBar2->paint(10);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progressBar->paint(Box.iX, Box.iY, 20);
+	progressBar->paint(20);
+	progressBar2->paint(20);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progressBar->paint(Box.iX, Box.iY, 30);
+	progressBar->paint(30);
+	progressBar2->paint(30);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progressBar->paint(Box.iX, Box.iY, 40);
+	progressBar->paint(40);
+	progressBar2->paint(40);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progressBar->paint(Box.iX, Box.iY, 50);
+	progressBar->paint(50);
+	progressBar2->paint(50);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progressBar->paint(Box.iX, Box.iY, 60);
+	progressBar->paint(60);
+	progressBar2->paint(60);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progressBar->paint(Box.iX, Box.iY, 70);
+	progressBar->paint(70);
+	progressBar2->paint(70);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progressBar->paint(Box.iX, Box.iY, 80);
+	progressBar->paint(80);
+	progressBar2->paint(80);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progressBar->paint(Box.iX, Box.iY, 90);
+	progressBar->paint(90);
+	progressBar2->paint(90);
 	CFrameBuffer::getInstance()->blit();
 	usleep(1000000);
-	progressBar->paint(Box.iX, Box.iY, 100);
+	progressBar->paint(100);
+	progressBar2->paint(100);
 	CFrameBuffer::getInstance()->blit();
 	
 	delete progressBar;
 	progressBar = NULL;
 	
+	delete progressBar2;
+	progressBar2 = NULL;
+	
 	//
 	hide();
-#endif
 }
 
 // CProgressWindow

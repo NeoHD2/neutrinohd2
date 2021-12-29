@@ -120,25 +120,35 @@ CCImage::CCImage(const char* image, const int x, const int y, const int dx, cons
 }
 
 // progressbar
-CProgressBar::CProgressBar(/*int x, int y,*/ int w, int h, int r, int g, int b, bool inv)
+CProgressBar::CProgressBar(int x, int y, int w, int h, int r, int g, int b, bool inv)
 {
-	dprintf(DEBUG_INFO, "CProgressBar::CProgressBar: dx:%d dy:%d\n", w, h);
+	dprintf(DEBUG_INFO, "CProgressBar::CProgressBar: x:%d y;%d dx:%d dy:%d\n", x, y, w, h);
 	
 	frameBuffer = CFrameBuffer::getInstance();
 	
-	//cCBox.iX = x;
-	//cCBox.iY = y;
+	cCBox.iX = x;
+	cCBox.iY = y;
 	cCBox.iWidth = w;
 	cCBox.iHeight = h;
 	inverse = inv;
 	
 	div = (double) cCBox.iWidth / (double) 100;
 	
-	red = (double) 100 * (double) div ;
-	green = (double) 100 * (double) div;
-	yellow = (double) 100 * (double) div;
+	red = (double) r * (double) div ;
+	green = (double) g * (double) div;
+	yellow = (double) g * (double) div;
 	
-	rgb = COL_MENUCONTENT_PLUS_6;
+	while ((red + yellow + green) < cCBox.iWidth) 
+	{
+		if (green)
+			green++;
+		if (yellow && ((red + yellow + green) < cCBox.iWidth))
+			yellow++;
+		if (red && ((red + yellow + green) < cCBox.iWidth))
+			red++;
+	}
+	
+	rgb = 0xFF0000;
 	
 	percent = 255;
 	
@@ -154,26 +164,33 @@ CProgressBar::CProgressBar(const CBox* position, int r, int g, int b, bool inv)
 	
 	div = (double) cCBox.iWidth / (double) 100;
 	
-	red = (double) 100 * (double) div ;
-	green = (double) 100 * (double) div;
-	yellow = (double) 100 * (double) div;
+	red = (double) r * (double) div ;
+	green = (double) g * (double) div;
+	yellow = (double) g * (double) div;
 	
-	rgb = COL_MENUCONTENT_PLUS_6;
+	while ((red + yellow + green) < cCBox.iWidth) 
+	{
+		if (green)
+			green++;
+		if (yellow && ((red + yellow + green) < cCBox.iWidth))
+			yellow++;
+		if (red && ((red + yellow + green) < cCBox.iWidth))
+			red++;
+	}
+	
+	rgb = 0xFF0000;
 	
 	percent = 255;
 	
 	cc_type = CC_PROGRESSBAR;
 }
 
-void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr, bool paintBG)
+void CProgressBar::paint(unsigned char pcr, bool paintBG)
 {
-	dprintf(DEBUG_INFO, "CProgressBar::paint:\n");
-	
-	cCBox.iX = x;
-	cCBox.iY = y;
+	dprintf(DEBUG_INFO, "CProgressBar::paint: cr:%d\n", pcr);
 	
 	int i = 0;
-	
+	int b = 0;
 	int siglen = 0;
 	
 	// body
@@ -187,20 +204,56 @@ void CProgressBar::paint(unsigned int x, unsigned int y, unsigned char pcr, bool
 
 		siglen = (double) pcr * (double) div;
 		int step = 0;
+		uint32_t diff = 0;
 
 		if(g_settings.progressbar_color)
 		{
 			//red
 			for (i = 0; (i < red) && (i < siglen); i++) 
 			{
-					step = (double) (255/red);
+				diff = i * 255 / red;
 
-					if(inverse) 
-						rgb = COL_GREEN_PLUS_0 + ((unsigned char)(step*i) << 16); // adding red
-					else
-						rgb = COL_RED_PLUS_0 + ((unsigned char)(step*i) <<  8); // adding green
+				if(inverse) 
+					rgb = 0x00FF00 + (diff << 16); // adding red
+				else
+					rgb = 0xFF0000 + (diff << 8); // adding green
 				
-					frameBuffer->paintBoxRel(cCBox.iX + i, cCBox.iY, 1, cCBox.iHeight, rgb, NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
+					frameBuffer->paintBoxRel(cCBox.iX + i, cCBox.iY, 1, cCBox.iHeight, make16color(rgb), NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
+			}
+			
+			//yellow
+			step = yellow - red - 1;
+			if (step < 1)
+				step = 1;
+		
+			for (; (i < yellow) && (i < siglen); i++) 
+			{
+				diff = b++ * 255 / step / 2;
+
+				if(inverse) 
+					rgb = 0xFFFF00 - (diff << 8); // removing green
+				else
+					rgb = 0xFFFF00 - (diff << 16); // removing red
+	
+				frameBuffer->paintBoxRel(cCBox.iX + i, cCBox.iY, 1, cCBox.iHeight, make16color(rgb), NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
+			}
+
+			//green
+			int off = diff;
+			b = 0;
+			step = green - yellow - 1;
+			if (step < 1)
+				step = 1;
+			for (; (i < green) && (i < siglen); i++) 
+			{
+				diff = b++ * 255 / step / 2 + off;
+
+				if(inverse) 
+					rgb = 0xFFFF00 - (diff << 8); // removing green
+				else
+					rgb = 0xFFFF00 - (diff << 16); // removing red
+				
+				frameBuffer->paintBoxRel(cCBox.iX + i, cCBox.iY, 1, cCBox.iHeight, make16color(rgb), NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 			}
 		}
 		else

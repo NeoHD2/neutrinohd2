@@ -91,6 +91,8 @@ class CEpgData
 		time_t next_zeit;
 
 		std::string epgBuffer;
+		
+		void initFrames();
 
 		void GetEPGData(const t_channel_id channel_id, uint64_t id, time_t* startzeit, bool clear = true);
 		void GetPrevNextEPGData( uint64_t id, time_t* startzeit );
