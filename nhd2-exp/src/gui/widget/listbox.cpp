@@ -1305,6 +1305,8 @@ ClistBoxItem::ClistBoxItem(const neutrino_locale_t Text, const bool Active, cons
 	iconName = IconName ? IconName : "";
 	itemIcon = ItemIcon? ItemIcon : "";
 	itemName = g_Locale->getText(Text);
+	
+	runningPercent = 0;
 
 	itemType = ITEM_TYPE_LISTBOXITEM;
 }
@@ -1325,6 +1327,8 @@ ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const cha
 	iconName = IconName ? IconName : "";
 	itemIcon = ItemIcon? ItemIcon : "";
 	itemName = Text? Text : "";
+	
+	runningPercent = 0;
 
 	itemType = ITEM_TYPE_LISTBOXITEM;
 }
