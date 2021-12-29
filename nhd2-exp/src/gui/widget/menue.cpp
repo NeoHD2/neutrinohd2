@@ -199,6 +199,8 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	
 	items_width = 0;
 	items_height = 0;
+	
+	itemShadow = false;
 }
 
 void CMenuWidget::move(int xoff, int yoff)
@@ -252,6 +254,7 @@ void CMenuWidget::initFrames()
 
 		item->widgetType = widgetType;
 		item->widgetMode = widgetMode;
+		item->itemShadow = itemShadow;
 	} 
 
 	// init frames
@@ -831,6 +834,7 @@ void CMenuWidget::paintItemInfo(int pos)
 		{
 			if(paintFootInfo)
 			{
+				//
 				CMenuItem* item = items[pos];
 				
 				std::string icon;
@@ -847,6 +851,28 @@ void CMenuWidget::paintItemInfo(int pos)
 				itemsLine.setIcon(icon.c_str());
 					
 				itemsLine.paint(x, y, width, height - cFrameFootInfoHeight, cFrameFootInfoHeight, item->getHeight(), item->getYPosition());
+				
+				// info button
+				int iw, ih = 0;
+				
+				if(fbutton_count == 0)
+				{
+					// refresh box
+					frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+					
+					// paint horizontal line buttom
+					if (foot_line)
+						frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - cFrameFootInfoHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
+
+					// info icon
+					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
+						
+					// limit icon height
+					if(ih >= fheight)
+						ih = fheight;
+							
+					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
+				}
 			}
 			else 
 			{
@@ -859,7 +885,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					
 					// paint horizontal line buttom
 					if (foot_line)
-						frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight - cFrameFootInfoHeight + 2, COL_MENUCONTENT_PLUS_5);
+						frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - cFrameFootInfoHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
 
 					// info icon
 					int iw, ih;
@@ -869,7 +895,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					if(ih >= fheight)
 						ih = fheight;
 				
-					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - fheight - cFrameFootInfoHeight + (fheight - ih)/2);
+					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
 
 					// Hint
 					if(!item->itemHint.empty())
@@ -909,6 +935,58 @@ void CMenuWidget::paintItemInfo(int pos)
 				
 					itemsLine.paint(x, y, width, height - cFrameFootInfoHeight, cFrameFootInfoHeight, item->getHeight(), item->getYPosition());
 				}
+				
+				// info button
+				int iw, ih = 0;
+			
+				if(fbutton_count == 0)
+				{
+					// refresh box
+					frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+					
+					// paint horizontal line buttom
+					if (foot_line)
+						frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - cFrameFootInfoHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
+
+					// info icon
+					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
+						
+					// limit icon height
+					if(ih >= fheight)
+						ih = fheight;
+							
+					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
+				}
+			}
+			else 
+			{
+				if(fbutton_count == 0)
+				{
+					CMenuItem* item = items[pos];
+
+					// refresh box
+					frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+					
+					// paint horizontal line buttom
+					if (foot_line)
+						frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - cFrameFootInfoHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
+
+					// info icon
+					int iw, ih;
+					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
+					
+					// limit icon height
+					if(ih >= fheight)
+						ih = fheight;
+				
+					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
+
+					// Hint
+					if(!item->itemHint.empty())
+					{
+						g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + height - fheight - cFrameFootInfoHeight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					}
+				}
 			}
 		}
 	}
@@ -925,7 +1003,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					
 				// paint horizontal line buttom
 				if (foot_line)
-					frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight - cFrameFootInfoHeight + 2, COL_MENUCONTENT_PLUS_5);
+					frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - cFrameFootInfoHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
 
 				// info icon
 				int iw, ih;
@@ -935,12 +1013,12 @@ void CMenuWidget::paintItemInfo(int pos)
 				if(ih >= fheight)
 					ih = fheight;
 						
-				frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - fheight - cFrameFootInfoHeight + (fheight - ih)/2);
+				frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
 
 				// Hint
 				if(!item->itemHint.empty())
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + height - fheight - cFrameFootInfoHeight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + height - cFrameFootInfoHeight - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
 		}
@@ -974,6 +1052,58 @@ void CMenuWidget::paintItemInfo(int pos)
 				
 					itemsLine.paint(x, y, width, height - cFrameFootInfoHeight, cFrameFootInfoHeight, item->getHeight(), item->getYPosition());
 				}
+				
+				// info button
+				int iw, ih = 0;
+				
+				if(fbutton_count == 0)
+				{
+					// refresh box
+					frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+					
+					// paint horizontal line buttom
+					if (foot_line)
+						frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - cFrameFootInfoHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
+
+					// info icon
+					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
+						
+					// limit icon height
+					if(ih >= fheight)
+						ih = fheight;
+							
+					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
+				}
+			}
+			else 
+			{
+				if(fbutton_count == 0)
+				{
+					CMenuItem* item = items[pos];
+
+					// refresh box
+					frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+					
+					// paint horizontal line buttom
+					if (foot_line)
+						frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - cFrameFootInfoHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
+
+					// info icon
+					int iw, ih;
+					frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
+					
+					// limit icon height
+					if(ih >= fheight)
+						ih = fheight;
+				
+					frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
+
+					// Hint
+					if(!item->itemHint.empty())
+					{
+						g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + height - cFrameFootInfoHeight - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					}
+				}
 			}
 		}
 	}
@@ -985,15 +1115,15 @@ void CMenuWidget::paintItemInfo(int pos)
 		{
 			int iw, ih;
 
-			// hint
+			// info button
 			if(fbutton_count == 0)
 			{
 				// refresh box
-				frameBuffer->paintBoxRel(x, y + height - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+				frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
 				
 				// paint horizontal line buttom
 				if (foot_line)
-					frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - fheight + 2, COL_MENUCONTENT_PLUS_5);
+					frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - cFrameFootInfoHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
 
 				// info icon
 				frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
@@ -1002,14 +1132,13 @@ void CMenuWidget::paintItemInfo(int pos)
 				if(ih >= fheight)
 					ih = fheight;
 						
-				frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - fheight + (fheight - ih)/2);
+				frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
 
 				// itemHint
 				if(!item->itemHint.empty())
 				{
-					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + height - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET, y + height - cFrameFootInfoHeight - fheight + (fheight - g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight(), width - BORDER_LEFT - BORDER_RIGHT - iw, item->itemHint.c_str(), COL_MENUFOOT, 0, true); // UTF-8
 				}
-				//}
 			}
 
 			// item icon (right)
@@ -1048,6 +1177,28 @@ void CMenuWidget::paintItemInfo(int pos)
 			// hint
 			textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), p_w, p_h, TOP_CENTER);
 			textBox->paint();
+			
+			// info button
+			int iw, ih = 0;
+			
+			if(fbutton_count == 0)
+			{
+				// refresh box
+				frameBuffer->paintBoxRel(x, y + height - cFrameFootInfoHeight - fheight, width, fheight, def_footColor? COL_MENUFOOT_PLUS_0 : footColor, def_footRadius? RADIUS_MID : footRadius, def_footCorner? CORNER_BOTTOM : footCorner, def_footGradient? g_settings.Foot_gradient : footGradient);
+				
+				// paint horizontal line buttom
+				if (foot_line)
+					frameBuffer->paintHLineRel(x + BORDER_LEFT, width - BORDER_LEFT - BORDER_RIGHT, y + height - cFrameFootInfoHeight - fheight + 2, COL_MENUCONTENT_PLUS_5);
+
+				// info icon
+				frameBuffer->getIconSize(NEUTRINO_ICON_INFO, &iw, &ih);
+					
+				// limit icon height
+				if(ih >= fheight)
+					ih = fheight;
+						
+				frameBuffer->paintIcon(NEUTRINO_ICON_INFO, x + BORDER_LEFT, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2);
+			}
 		}
 	}
 	else if(widgetType == WIDGET_TYPE_FRAME)

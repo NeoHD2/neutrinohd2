@@ -5607,7 +5607,7 @@ void CTestMenu::testCMenuWidget1()
 	menuWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 
 	// foot
-	menuWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	//menuWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// foot info in menu mode are always enabled
 	menuWidget->enablePaintFootInfo();

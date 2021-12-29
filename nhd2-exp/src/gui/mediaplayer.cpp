@@ -38,14 +38,6 @@
 #include <gui/pictureviewer.h>
 
 
-CMediaPlayerMenu::CMediaPlayerMenu()
-{
-}
-
-CMediaPlayerMenu::~CMediaPlayerMenu()
-{
-}
-
 int CMediaPlayerMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 {
 	dprintf(DEBUG_NORMAL, "CMediaplayerMenu::exec: actionKey:%s\n", actionKey.c_str());

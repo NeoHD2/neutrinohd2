@@ -455,11 +455,11 @@ void CInfoMenu::showMenu()
 	infoMenu->enablePaintDate();
 	infoMenu->enableShrinkMenu();
 	
-	infoMenu->addItem( new CMenuForwarder(LOCALE_DBOXINFO, true, NULL, new CDBoxInfoWidget(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_BOXINFO, LOCALE_HELPTEXT_BOXINFO));
+	infoMenu->addItem( new ClistBoxItem(LOCALE_DBOXINFO, true, NULL, new CDBoxInfoWidget(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_BOXINFO, LOCALE_HELPTEXT_BOXINFO));
 	
-	infoMenu->addItem(new CMenuForwarder(LOCALE_SERVICEMENU_IMAGEINFO,  true, NULL, new CImageInfo(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_IMAGEINFO, LOCALE_HELPTEXT_IMAGEINFO), false);
+	infoMenu->addItem(new ClistBoxItem(LOCALE_SERVICEMENU_IMAGEINFO,  true, NULL, new CImageInfo(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_IMAGEINFO, LOCALE_HELPTEXT_IMAGEINFO), false);
 	
-	infoMenu->addItem(new CMenuForwarder(LOCALE_STREAMINFO_HEAD, true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO));
+	infoMenu->addItem(new ClistBoxItem(LOCALE_STREAMINFO_HEAD, true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO));
 	
 	infoMenu->integratePlugins(CPlugins::I_TYPE_MAIN);
 	

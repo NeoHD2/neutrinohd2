@@ -69,36 +69,27 @@ int CEPGMenuHandler::exec(CMenuTarget* parent, const std::string &)
 
 int CEPGMenuHandler::doMenu()
 {
-	//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-	//	CNeutrinoApp::getInstance()->startSkin("red");
-	//else	
-	{
-		CMenuWidget redMenu(LOCALE_EPGMENU_HEAD, NEUTRINO_ICON_BUTTON_EPG);
+	CMenuWidget redMenu(LOCALE_EPGMENU_HEAD, NEUTRINO_ICON_BUTTON_EPG);
 
-		redMenu.setWidgetMode(MODE_MENU);
-		redMenu.setWidgetType(WIDGET_TYPE_CLASSIC);
-		redMenu.setMenuPosition(MENU_POSITION_LEFT);
-		redMenu.enableShrinkMenu();
-		redMenu.enableSaveScreen();
+	redMenu.setWidgetMode(MODE_MENU);
+	redMenu.setWidgetType(WIDGET_TYPE_CLASSIC);
+	redMenu.setMenuPosition(MENU_POSITION_LEFT);
+	redMenu.enableShrinkMenu();
+	redMenu.enableSaveScreen();
 
-		// intros
-		//redMenu.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-		//redMenu.addItem( new CMenuSeparator(LINE) );
+	// eventlist
+	redMenu.addItem(new ClistBoxItem(LOCALE_EPGMENU_EVENTLIST, true, NULL, new CEventListHandler(), "", RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SLEEPTIMER));
 
-		// eventlist
-		redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_EVENTLIST, true, NULL, new CEventListHandler(), "", RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SLEEPTIMER));
-
-		// epg view
-		redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_EVENTINFO, true, NULL, new CEPGDataHandler(), "", RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_RESTART));
+	// epg view
+	redMenu.addItem(new ClistBoxItem(LOCALE_EPGMENU_EVENTINFO, true, NULL, new CEPGDataHandler(), "", RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_RESTART));
 			
-		// epgplus
-		redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_EPGPLUS, true, NULL, new CEPGplusHandler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_STANDBY));
+	// epgplus
+	redMenu.addItem(new ClistBoxItem(LOCALE_EPGMENU_EPGPLUS, true, NULL, new CEPGplusHandler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_STANDBY));
 
-		//tech info
-		redMenu.addItem(new CMenuForwarder(LOCALE_EPGMENU_STREAMINFO, true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_TIMERLIST));
+	//tech info
+	redMenu.addItem(new ClistBoxItem(LOCALE_EPGMENU_STREAMINFO, true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_TIMERLIST));
 					
-		return redMenu.exec(NULL, "");
-	}
+	return redMenu.exec(NULL, "");
 }
 
 

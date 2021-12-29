@@ -113,36 +113,25 @@ void CPluginList::showMenu()
 		// skip hidden plugins
 		if (!g_PluginList->isHidden(count))
 		{	
-			item = new CMenuForwarder(g_PluginList->getName(count), enabled, g_PluginList->getDescription(count).c_str(), CPluginsExec::getInstance(), to_string(count).c_str(), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
+			item = new ClistBoxItem(g_PluginList->getName(count), enabled, g_PluginList->getDescription(count).c_str(), CPluginsExec::getInstance(), to_string(count).c_str(), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
 
 			item->set2lines(); 
-			//item->enableItemShadow();
-			//item->setItemGradient(DARK2LIGHT2DARK);
 
 			plist->addItem(item);
 		}
 	}
 
-	plist->setWidgetMode(MODE_LISTBOX);
+	plist->setWidgetMode(MODE_MENU);
 	plist->setWidgetType(WIDGET_TYPE_CLASSIC);
 	plist->enableShrinkMenu();
+	plist->enableItemShadow();
 
 	// head
 	plist->setTitleHAlign(CC_ALIGN_CENTER);
 	plist->enablePaintDate();
 	plist->setHeadButtons(&CPluginListHeadButtons, 1);
-	
-	//
-	//plist->setColor(COL_SILVER_PLUS_0);
-	//plist->enableHeadLine();
-	//plist->setHeadColor(COL_NOBEL_PLUS_0);
-	//plist->setHeadGradient(NOGRADIENT);
-	//plist->setHeadCorner(8);
-	//plist->setFootColor(COL_NOBEL_PLUS_0);
-	//plist->setFootGradient(NOGRADIENT);
-	//plist->setFootCorner(8);
 
-	// footer
+	// foo
 	plist->setFootButtons(CPluginListButtons, NUM_LIST_BUTTONS);
 
 	//

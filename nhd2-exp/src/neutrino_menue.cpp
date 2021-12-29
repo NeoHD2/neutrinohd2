@@ -75,55 +75,50 @@ void CNeutrinoApp::mainMenu(void)
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::mainMenu:\n");
 	
-	//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-	//	CNeutrinoApp::getInstance()->startSkin("mainmenu");
-	//else	
-	{
-		CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
+	CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
 		
-		nMenu->setWidgetMode(MODE_MENU);
-		nMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
-		nMenu->enableShrinkMenu();
-		nMenu->setMenuPosition(MENU_POSITION_LEFT);
-		nMenu->enablePaintDate();
-		nMenu->enablePaintFootInfo();
+	nMenu->setWidgetMode(MODE_MENU);
+	nMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
+	nMenu->enableShrinkMenu();
+	nMenu->setMenuPosition(MENU_POSITION_LEFT);
+	nMenu->enablePaintDate();
+	nMenu->enablePaintFootInfo();
 		  
-		// tv modus
-		nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_TVMODE, true, NULL, this, "tv", RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_TV, LOCALE_HELPTEXT_TVMODE), true);
+	// tv modus
+	nMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_TVMODE, true, NULL, this, "tv", RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_TV, LOCALE_HELPTEXT_TVMODE), true);
 
-		// radio modus
-		nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_RADIOMODE, true, NULL, this, "radio", RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_RADIO, LOCALE_HELPTEXT_RADIOMODE));	
+	// radio modus
+	nMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_RADIOMODE, true, NULL, this, "radio", RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_RADIO, LOCALE_HELPTEXT_RADIOMODE));	
 		
-		// webtv
-		nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_WEBTVMODE, true, NULL, this, "webtv", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_WEBTV, LOCALE_HELPTEXT_WEBTVMODE));
+	// webtv
+	nMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_WEBTVMODE, true, NULL, this, "webtv", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_WEBTV, LOCALE_HELPTEXT_WEBTVMODE));
 		
-	#if defined (ENABLE_SCART)
-		// scart
-		nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_SCARTMODE, true, NULL, this, "scart", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_SCART, LOCALE_HELPTEXT_SCART));
-	#endif
+#if defined (ENABLE_SCART)
+	// scart
+	nMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_SCARTMODE, true, NULL, this, "scart", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_SCART, LOCALE_HELPTEXT_SCART));
+#endif
 
-		// mediaplayer
-		nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_MEDIAPLAYER, true, NULL, new CMediaPlayerMenu(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_MEDIAPLAYER, LOCALE_HELPTEXT_MEDIAPLAYER));
+	// mediaplayer
+	nMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_MEDIAPLAYER, true, NULL, new CMediaPlayerMenu(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_MEDIAPLAYER, LOCALE_HELPTEXT_MEDIAPLAYER));
 		
-		// main setting menu
-		nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_SETTINGS, true, NULL, new CMainSettingsMenu(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SETTINGS, LOCALE_HELPTEXT_MAINSETTINGS));
+	// main setting menu
+	nMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_SETTINGS, true, NULL, new CMainSettingsMenu(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SETTINGS, LOCALE_HELPTEXT_MAINSETTINGS));
 
-		// service
-		nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_SERVICE, true, NULL, new CServiceMenu(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SERVICE, LOCALE_HELPTEXT_SERVICE));
+	// service
+	nMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_SERVICE, true, NULL, new CServiceMenu(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SERVICE, LOCALE_HELPTEXT_SERVICE));
 		
-		// features
-		nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_FEATURES, true, NULL, this, "features", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_FEATURES, LOCALE_HELPTEXT_FEATURES ));
+	// features
+	nMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_FEATURES, true, NULL, this, "features", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_FEATURES, LOCALE_HELPTEXT_FEATURES ));
 
-		// power menu
-		nMenu->addItem(new CMenuForwarder(LOCALE_MAINMENU_POWERMENU, true, NULL, new CPowerMenu(), NULL, RC_standby, NEUTRINO_ICON_BUTTON_POWER, NEUTRINO_ICON_MENUITEM_POWERMENU, LOCALE_HELPTEXT_POWERMENU));
+	// power menu
+	nMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_POWERMENU, true, NULL, new CPowerMenu(), NULL, RC_standby, NEUTRINO_ICON_BUTTON_POWER, NEUTRINO_ICON_MENUITEM_POWERMENU, LOCALE_HELPTEXT_POWERMENU));
 
-		//box info
-		nMenu->addItem( new CMenuForwarder(LOCALE_MESSAGEBOX_INFO, true, NULL, new CInfoMenu(), NULL, RC_info, NEUTRINO_ICON_BUTTON_HELP, NEUTRINO_ICON_MENUITEM_BOXINFO, LOCALE_HELPTEXT_BOXINFO));
+	//box info
+	nMenu->addItem( new ClistBoxItem(LOCALE_MESSAGEBOX_INFO, true, NULL, new CInfoMenu(), NULL, RC_info, NEUTRINO_ICON_BUTTON_HELP, NEUTRINO_ICON_MENUITEM_BOXINFO, LOCALE_HELPTEXT_BOXINFO));
 
-		nMenu->exec(NULL, "");
-		delete nMenu;
-		nMenu = NULL;
-	}	
+	nMenu->exec(NULL, "");
+	delete nMenu;
+	nMenu = NULL;	
 }
 
 // User menu
@@ -213,136 +208,131 @@ bool CNeutrinoApp::showUserMenu(int button)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::showUserMenu\n");
 	
-	//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-	//	CNeutrinoApp::getInstance()->startSkin("blue");
-	//else	
+	if(button < 0 || button >= SNeutrinoSettings::BUTTON_MAX)
+		return false;
+
+	CMenuItem * menu_item = NULL;
+	CKeyHelper keyhelper;
+	neutrino_msg_t key = RC_nokey;
+	const char * icon = NULL;
+
+	//int menu_items = 0;
+	int menu_prev = -1;
+	static int selected[SNeutrinoSettings::BUTTON_MAX] = {
+		-1,
+#if defined (ENABLE_FUNCTIONKEYS) //FIXME:???
+		-1,
+		-1,
+		-1,
+		-1,
+#endif		
+	};
+
+	std::string txt = g_settings.usermenu_text[button];
+
+	if( button == SNeutrinoSettings::BUTTON_BLUE) 
 	{
-		if(button < 0 || button >= SNeutrinoSettings::BUTTON_MAX)
-		        return false;
+		if( txt.empty() )		                
+			txt = g_Locale->getText(LOCALE_MAINMENU_FEATURES);
+	}
 
-		CMenuItem * menu_item = NULL;
-		CKeyHelper keyhelper;
-		neutrino_msg_t key = RC_nokey;
-		const char * icon = NULL;
+	// other function keys
 
-		int menu_items = 0;
-		int menu_prev = -1;
-		static int selected[SNeutrinoSettings::BUTTON_MAX] = {
-			-1,
-	#if defined (ENABLE_FUNCTIONKEYS) //FIXME:???
-			-1,
-			-1,
-			-1,
-			-1,
-	#endif		
-		};
+	CMenuWidget * menu = new CMenuWidget(txt.c_str(), NEUTRINO_ICON_FEATURES);
+	if (menu == NULL)		       
+		return 0;
 
-		std::string txt = g_settings.usermenu_text[button];
+	//
+	menu->setWidgetMode(MODE_MENU);
+	menu->setWidgetType(WIDGET_TYPE_CLASSIC);
+	menu->enableShrinkMenu();
+	menu->setMenuPosition(MENU_POSITION_LEFT);
+	menu->enablePaintFootInfo();
 
-		if( button == SNeutrinoSettings::BUTTON_BLUE) 
+	menu->addKey(RC_blue, this, "plugins");
+
+	// go through any postition number
+	for(int pos = 0; pos < SNeutrinoSettings::ITEM_MAX ; pos++) 
+	{
+		// now compare pos with the position of any item. Add this item if position is the same
+		switch(g_settings.usermenu[button][pos]) 
 		{
-		        if( txt.empty() )
-		                txt = g_Locale->getText(LOCALE_MAINMENU_FEATURES);
-		}
-
-		// other function keys
-
-		CMenuWidget * menu = new CMenuWidget(txt.c_str(), NEUTRINO_ICON_FEATURES);
-		if (menu == NULL)
-		        return 0;
-
-		//
-		menu->setWidgetMode(MODE_MENU);
-		menu->setWidgetType(WIDGET_TYPE_CLASSIC);
-		menu->enableShrinkMenu();
-		menu->setMenuPosition(MENU_POSITION_LEFT);
-		menu->enablePaintFootInfo();
-
-		menu->addKey(RC_blue, this, "plugins");
-
-		// go through any postition number
-		for(int pos = 0; pos < SNeutrinoSettings::ITEM_MAX ; pos++) 
-		{
-			// now compare pos with the position of any item. Add this item if position is the same
-			switch(g_settings.usermenu[button][pos]) 
+			case SNeutrinoSettings::ITEM_NONE:
 			{
-				case SNeutrinoSettings::ITEM_NONE:
+				continue;
+			}
+
+			// timerlist
+			case SNeutrinoSettings::ITEM_TIMERLIST:
+				//menu_items++;
+				menu_prev = SNeutrinoSettings::ITEM_TIMERLIST;
+				keyhelper.get(&key, &icon, RC_yellow);
+				menu_item = new ClistBoxItem(LOCALE_TIMERLIST_NAME, true, NULL, new CTimerList, "-1", key, icon, NEUTRINO_ICON_MENUITEM_TIMERLIST, LOCALE_HELPTEXT_TIMERLIST);
+				menu->addItem(menu_item, false);
+				break;
+
+			// rclock
+			case SNeutrinoSettings::ITEM_REMOTE:
+				//menu_items++;
+				menu_prev = SNeutrinoSettings::ITEM_REMOTE;
+				keyhelper.get(&key, &icon);
+				menu_item = new ClistBoxItem(LOCALE_RCLOCK_MENUEADD, true, NULL, this->rcLock, "-1", key, icon, NEUTRINO_ICON_MENUITEM_PARENTALLOCKSETTINGS);
+				menu->addItem(menu_item, false);
+				break;
+				
+			// vtxt	
+			case SNeutrinoSettings::ITEM_VTXT:
+				if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
 				{
-					continue;
+					//menu_items++;
+					menu_prev = SNeutrinoSettings::ITEM_VTXT;
+					keyhelper.get(&key, &icon);
+					menu_item = new ClistBoxItem(LOCALE_USERMENU_ITEM_VTXT, true, NULL, new CTuxtxtChangeExec, "-1", key, icon, NEUTRINO_ICON_MENUITEM_VTXT);
+					menu->addItem(menu_item, false);
 				}
-
-				// timerlist
-			       case SNeutrinoSettings::ITEM_TIMERLIST:
-				        menu_items++;
-				        menu_prev = SNeutrinoSettings::ITEM_TIMERLIST;
-				        keyhelper.get(&key, &icon, RC_yellow);
-					menu_item = new CMenuForwarder(LOCALE_TIMERLIST_NAME, true, NULL, new CTimerList, "-1", key, icon, NEUTRINO_ICON_MENUITEM_TIMERLIST, LOCALE_HELPTEXT_TIMERLIST);
-				        menu->addItem(menu_item, false);
-				        break;
-
-				// rclock
-			       case SNeutrinoSettings::ITEM_REMOTE:
-				        menu_items++;
-				        menu_prev = SNeutrinoSettings::ITEM_REMOTE;
-				        keyhelper.get(&key, &icon);
-					menu_item = new CMenuForwarder(LOCALE_RCLOCK_MENUEADD, true, NULL, this->rcLock, "-1", key, icon, NEUTRINO_ICON_MENUITEM_PARENTALLOCKSETTINGS);
-				        menu->addItem(menu_item, false);
-				        break;
+				break;	
 				
-				// vtxt	
-				case SNeutrinoSettings::ITEM_VTXT:
-					if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
-					{
-						menu_items++;
-						menu_prev = SNeutrinoSettings::ITEM_VTXT;
-						keyhelper.get(&key, &icon);
-						menu_item = new CMenuForwarder(LOCALE_USERMENU_ITEM_VTXT, true, NULL, new CTuxtxtChangeExec, "-1", key, icon, NEUTRINO_ICON_MENUITEM_VTXT);
-						menu->addItem(menu_item, false);
-					}
-					break;	
-				
-				// plugins
-				case SNeutrinoSettings::ITEM_PLUGIN:
+			// plugins
+			case SNeutrinoSettings::ITEM_PLUGIN:
 				{
-					menu_item++;
+					//menu_items++;
 					menu_prev = SNeutrinoSettings::ITEM_PLUGIN;
 					keyhelper.get(&key, &icon, RC_blue);
-					menu_item = new CMenuForwarder(LOCALE_USERMENU_ITEM_PLUGINS, true, NULL, new CPluginList(), "-1", key, icon, NEUTRINO_ICON_MENUITEM_PLUGIN, LOCALE_HELPTEXT_FEATURES);
+					menu_item = new ClistBoxItem(LOCALE_USERMENU_ITEM_PLUGINS, true, NULL, new CPluginList(), "-1", key, icon, NEUTRINO_ICON_MENUITEM_PLUGIN, LOCALE_HELPTEXT_FEATURES);
 					menu->addItem(menu_item, false);
 				}
 				break;
 
-				default:
-					dprintf(DEBUG_NORMAL, "[neutrino] WARNING! menu wrong item!!\n");
-				        break;
-			}
+			default:
+				dprintf(DEBUG_NORMAL, "[neutrino] WARNING! menu wrong item!!\n");
+				break;
 		}
+	}
 
-		// integragte user plugins
-		if( button == SNeutrinoSettings::BUTTON_BLUE) 
-		{
+	// integragte user plugins
+	if( button == SNeutrinoSettings::BUTTON_BLUE) 
+	{
 			keyhelper.get(&key, &icon);
 			menu->integratePlugins(CPlugins::I_TYPE_USER, key);
-		}
-		
-		// start directly plugins if there is no items.
-		if(menu && menu->getItemsCount() == 0)
-		{
-			CPluginList * pluginList = new CPluginList();
-			pluginList->exec(NULL, "");
-			delete pluginList;
-			pluginList = NULL;
-		}
-		else
-		{
-			menu->setSelected(selected[button]);
-		        menu->exec(NULL, "");
-			selected[button] = menu->getSelected();
-		}
-
-		if(menu)
-			delete menu;
 	}
+		
+	// start directly plugins if there is no items.
+	if(menu && menu->getItemsCount() == 0)
+	{
+		CPluginList * pluginList = new CPluginList();
+		pluginList->exec(NULL, "");
+		delete pluginList;
+		pluginList = NULL;
+	}
+	else
+	{
+		menu->setSelected(selected[button]);
+		menu->exec(NULL, "");
+		selected[button] = menu->getSelected();
+	}
+
+	if(menu)
+		delete menu;
 
 	return 0;
 }

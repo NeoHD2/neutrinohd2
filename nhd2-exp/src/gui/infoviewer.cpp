@@ -101,7 +101,7 @@ extern t_channel_id live_channel_id; 			//defined in zapit.cpp
 #define LCD_UPDATE_TIME_TV_MODE (60 * 1000 * 1000)
 
 //
-#define RED_BAR 		30
+#define RED_BAR 		40
 #define YELLOW_BAR 		70
 #define GREEN_BAR 		100
 
@@ -174,9 +174,11 @@ void CInfoViewer::Init()
 	snrscale = NULL;
 	timescale = NULL;	//5? see in code
 	
-	sigscale = new CProgressBar(BoxStartY + (SAT_INFOBOX_HEIGHT - satNameHeight)/2 + satNameHeight, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SIGSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	snrscale = new CProgressBar(BoxStartY + (SAT_INFOBOX_HEIGHT - satNameHeight)/2 + satNameHeight + 10 + g_SignalFont->getRenderWidth("SIG:000"), BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SNRSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
-	timescale = new CProgressBar(timescale_posx, timescale_posy, BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT, 30, 100, 70, true);	//5? see in code
+	sigscale = new CProgressBar(BoxStartX + satNameWidth + 20 + g_SignalFont->getRenderWidth("FREQ:1000000MHZ") + 10, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SIGSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
+	
+	snrscale = new CProgressBar(BoxStartX + satNameWidth + 20 + g_SignalFont->getRenderWidth("FREQ:1000000MHZ") + 10 + g_SignalFont->getRenderWidth("SIG:100%") + 10, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SNRSCALE_BAR_HEIGHT, RED_BAR, GREEN_BAR, YELLOW_BAR, false);
+	
+	timescale = new CProgressBar(timescale_posx, timescale_posy, BoxWidth - BORDER_LEFT - BORDER_RIGHT, TIMESCALE_BAR_HEIGHT);	//5? see in code
 	
 	timer = NULL;
 	
@@ -1545,29 +1547,29 @@ void CInfoViewer::showSNR()
 				// therefore > sig- and snrscale always painting
 				//if (sigscale->getPercent() != sig) 
 				{
-					posx = freqStartX + freqWidth + 10;
+					posx = BoxStartX + satNameWidth + 20 + g_SignalFont->getRenderWidth(freq) + 10;
 
-					//sigscale->setPosition(posx, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SIGSCALE_BAR_HEIGHT);
-					sigscale->paint(/*BoxStartY + (SAT_INFOBOX_HEIGHT - satNameHeight)/2 + satNameHeight, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2,*/ sig);
+					//sigscale->reset();
+					//sigscale->paint( sig);
 
 					sprintf (percent, "SIG:%d%%S", sig);
-					posx = posx + barwidth + 2;
+					//posx = posx + barwidth + 2;
 					sw = g_SignalFont->getRenderWidth(percent);
 
-					g_SignalFont->RenderString (posx, posy, sw, percent, COL_INFOBAR );
+					g_SignalFont->RenderString(posx, posy, sw, percent, COL_INFOBAR );
 				}
 
 				// snr
 				// see comment at sig
 				//if (snrscale->getPercent() != snr) 
 				{
-					int snr_posx = posx + sw + 10;
+					int snr_posx = BoxStartX + satNameWidth + 20 + g_SignalFont->getRenderWidth(freq) + 10 + g_SignalFont->getRenderWidth(percent) + 10;
 
-					//snrscale->setPosition(snr_posx, BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2, BAR_WIDTH, SNRSCALE_BAR_HEIGHT);
-					snrscale->paint(/*BoxStartY + (SAT_INFOBOX_HEIGHT - satNameHeight)/2 + satNameHeight + 10 + g_SignalFont->getRenderWidth("SIG:000"), BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2,*/ snr);
+					//snrscale->reset();
+					//snrscale->paint(/*BoxStartY + (SAT_INFOBOX_HEIGHT - satNameHeight)/2 + satNameHeight + 10 + g_SignalFont->getRenderWidth("SIG:000"), BoxStartY + (SAT_INFOBOX_HEIGHT - SIGSCALE_BAR_HEIGHT)/2,*/ snr);
 
 					sprintf (percent, "SNR:%d%%Q", snr);
-					snr_posx = snr_posx + barwidth + 2;
+					//snr_posx = snr_posx + barwidth + 2;
 					sw = g_SignalFont->getRenderWidth(percent);
 					
 					g_SignalFont->RenderString (snr_posx, posy, sw, percent, COL_INFOBAR );

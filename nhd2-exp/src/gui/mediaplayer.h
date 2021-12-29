@@ -38,8 +38,8 @@ class CMediaPlayerMenu : public CMenuTarget
 		void showMenu(void);
 		
 	public:
-		CMediaPlayerMenu();
-		~CMediaPlayerMenu();
+		CMediaPlayerMenu(){};
+		~CMediaPlayerMenu(){};
 		
 		int exec(CMenuTarget* parent, const std::string& actionKey);
 };
