@@ -98,6 +98,7 @@ typedef struct keyval
 class CChangeObserver
 {
 	public:
+		CChangeObserver(){}
 		virtual ~CChangeObserver(){}
 		virtual bool changeNotify(const neutrino_locale_t, void *)
 		{
@@ -167,6 +168,10 @@ class CMenuItem
 		
 		//
 		fb_pixel_t* background;
+		
+		//
+		CChangeObserver* observ;
+		bool pulldown;
 
 		CMenuItem();
 		virtual ~CMenuItem(){};
@@ -230,6 +235,10 @@ class CMenuItem
 		
 		//
 		virtual void setParent(ClistBox* p){parent = p;};
+		
+		//
+		virtual void setChangeObserver(CChangeObserver* c){observ = c;};
+		virtual void enablePullDown(){pulldown = true;};
 };
 
 // CMenuOptionChooser
@@ -461,6 +470,7 @@ class CLockedMenuForwarder : public CMenuForwarder, public CPINProtection
 		virtual int exec(CMenuTarget* parent);
 };
 
+////
 // CMenulistBoxItem
 class ClistBoxItem : public CMenuItem
 {
@@ -490,7 +500,7 @@ class ClistBoxItem : public CMenuItem
 		bool isSelectable(void) const {return active;}
 };
 
-// CMenulistBoxItem
+// CPlugnItem
 class CPluginItem : public CMenuItem
 {
 	std::string optionValueString;

@@ -92,6 +92,10 @@ CMenuItem::CMenuItem()
 	
 	//
 	background = NULL;
+	
+	//
+	observ = NULL;
+	pulldown = false;
 }
 
 void CMenuItem::init(const int X, const int Y, const int DX, const int OFFX)

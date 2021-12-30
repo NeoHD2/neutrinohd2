@@ -216,7 +216,6 @@ bool CNeutrinoApp::showUserMenu(int button)
 	neutrino_msg_t key = RC_nokey;
 	const char * icon = NULL;
 
-	//int menu_items = 0;
 	int menu_prev = -1;
 	static int selected[SNeutrinoSettings::BUTTON_MAX] = {
 		-1,
@@ -264,7 +263,6 @@ bool CNeutrinoApp::showUserMenu(int button)
 
 			// timerlist
 			case SNeutrinoSettings::ITEM_TIMERLIST:
-				//menu_items++;
 				menu_prev = SNeutrinoSettings::ITEM_TIMERLIST;
 				keyhelper.get(&key, &icon, RC_yellow);
 				menu_item = new ClistBoxItem(LOCALE_TIMERLIST_NAME, true, NULL, new CTimerList, "-1", key, icon, NEUTRINO_ICON_MENUITEM_TIMERLIST, LOCALE_HELPTEXT_TIMERLIST);
@@ -273,7 +271,6 @@ bool CNeutrinoApp::showUserMenu(int button)
 
 			// rclock
 			case SNeutrinoSettings::ITEM_REMOTE:
-				//menu_items++;
 				menu_prev = SNeutrinoSettings::ITEM_REMOTE;
 				keyhelper.get(&key, &icon);
 				menu_item = new ClistBoxItem(LOCALE_RCLOCK_MENUEADD, true, NULL, this->rcLock, "-1", key, icon, NEUTRINO_ICON_MENUITEM_PARENTALLOCKSETTINGS);
@@ -284,7 +281,6 @@ bool CNeutrinoApp::showUserMenu(int button)
 			case SNeutrinoSettings::ITEM_VTXT:
 				if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
 				{
-					//menu_items++;
 					menu_prev = SNeutrinoSettings::ITEM_VTXT;
 					keyhelper.get(&key, &icon);
 					menu_item = new ClistBoxItem(LOCALE_USERMENU_ITEM_VTXT, true, NULL, new CTuxtxtChangeExec, "-1", key, icon, NEUTRINO_ICON_MENUITEM_VTXT);

@@ -284,7 +284,7 @@ CTimerList::~CTimerList()
 	delete plugin_chooser;
 }
 
-int CTimerList::exec(CMenuTarget *parent, const std::string &actionKey)
+int CTimerList::exec(CMenuTarget *parent, const std::string& actionKey)
 {
 	dprintf(DEBUG_NORMAL, "CTimerList::exec: actionKey:%s\n", actionKey.c_str());
 
@@ -465,6 +465,8 @@ int CTimerList::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 
 	int ret = show();
+	
+	dprintf(DEBUG_NORMAL, "CTimerList::exec: retval:%d\n", ret);
 
 	return ret;
 }
