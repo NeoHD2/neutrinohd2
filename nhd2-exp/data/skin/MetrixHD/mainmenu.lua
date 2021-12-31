@@ -15,18 +15,21 @@ function main()
 	box.iWidth = fb:getScreenWidth()
 	box.iHeight = fb:getScreenHeight()
 	
-	local m = neutrino.CWidget(box)
-	local w = neutrino.CWindow(box.iX + 60, box.iY + 50, box.iWidth/2 - 120, box.iHeight - 100)
-	w:setColor(neutrino.convertSetupColor2Color(15,15,15,0))
+	local config = neutrino.CConfigFile('\t')
+	config:loadConfig(neutrino.CONFIGDIR .. "/skin/MetrixHD/MetrixHD.config")
 	
+	local m = neutrino.CWidget(box)
+	
+	-- rightWindow / logo 
 	local w2 = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50, box.iWidth/2, box.iHeight/2)
-	w2:setColor(neutrino.convertSetupColor2Color(0,25,80,20))
+	w2:setColor(neutrino.convertSetupColor2Color(config:getInt32("menu_Content_Selected_red"),config:getInt32("menu_Content_Selected_green"),config:getInt32("menu_Content_Selected_blue"),config:getInt32("menu_Content_Selected_alpha")))
 	
 	-- title
 	title = neutrino.CCLabel()
 	title:setText(neutrino.g_Locale:getText(neutrino.LOCALE_MAINMENU_HEAD));
 	title:setPosition(box.iX + box.iWidth/2, box.iY + 50, box.iWidth/2, 50);
 	title:setHAlign(neutrino.CC_ALIGN_CENTER)
+	title:setColor(neutrino.COL_MENUHEAD)
 	
 	w2:addCCItem(title)
 	
@@ -38,16 +41,17 @@ function main()
 	
 	-- date
 	local dateBox = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50 + box.iHeight/2 + 50, box.iWidth/2, (box.iHeight/2 - 150)/2)
-	dateBox:setColor(neutrino.convertSetupColor2Color(15,15,15,15))
+	--dateBox:setColor(neutrino.convertSetupColor2Color(15,15,15,15))
 	
 	date = neutrino.CCTime(box.iX + box.iWidth/2, box.iY + 50 + box.iHeight/2 + 50, box.iWidth/2, (box.iHeight/2 - 150)/2)
 	date:setFormat("%A %d.%m.%Y")
+	date:setColor(neutrino.COL_MENUHEAD)
 	
 	dateBox:addCCItem(date)
 	
 	-- time
 	local timeBox = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50 + box.iHeight/2 + 50 + (box.iHeight/2 - 150)/2, box.iWidth/2, (box.iHeight/2 - 150)/2)
-	timeBox:setColor(neutrino.convertSetupColor2Color(15,15,15,15))
+	--timeBox:setColor(neutrino.convertSetupColor2Color(15,15,15,15))
 	timeBox:enableRepaint()
 	
 	time = neutrino.CCTime(box.iX + box.iWidth/2, box.iY + 50 + box.iHeight/2 + 50 + (box.iHeight/2 - 150)/2, box.iWidth/2, (box.iHeight/2 - 150)/2)
@@ -55,6 +59,9 @@ function main()
 	time:enableRepaint()
 	
 	timeBox:addCCItem(time)
+	
+	local w = neutrino.CWindow(box.iX + 60, box.iY + 50, box.iWidth/2 - 120, box.iHeight - 100)
+	--w:setColor(neutrino.convertSetupColor2Color(config:getInt32("menu_Content_red"),config:getInt32("menu_Content_green"),config:getInt32("menu_Content_blue"),config:getInt32("menu_Content_alpha")))
 	
 	local list = neutrino.ClistBox(box.iX + 50, box.iY + 60, box.iWidth/2 - 100, box.iHeight - 120)
 	list:disablePaintFrame()
