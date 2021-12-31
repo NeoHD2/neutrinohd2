@@ -1685,9 +1685,9 @@ void CTestMenu::testClistBoxWidget()
 	rightWidget = new ClistBox(&rightBox);
 
 	rightWidget->setWidgetType(WIDGET_TYPE_FRAME);
-	rightWidget->addWidget(WIDGET_TYPE_STANDARD);
-	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
-	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
+	rightWidget->addWidgetType(WIDGET_TYPE_STANDARD);
+	rightWidget->addWidgetType(WIDGET_TYPE_CLASSIC);
+	rightWidget->addWidgetType(WIDGET_TYPE_EXTENDED);
 	rightWidget->setItemsPerPage(6,2);
 	rightWidget->setSelected(selected);
 	rightWidget->enablePaintHead();
@@ -3796,6 +3796,7 @@ void CTestMenu::testClistBox()
 	// mode
 	rightWidget->setWidgetType(WIDGET_TYPE_STANDARD);
 	rightWidget->enableShrinkMenu();
+	rightWidget->addWidgetType(WIDGET_TYPE_FRAME);
 
 	// head
 	rightWidget->setTitle(_("ClistBox (standard)"), NEUTRINO_ICON_MOVIE);
@@ -3804,6 +3805,7 @@ void CTestMenu::testClistBox()
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 	rightWidget->setFormat("%d.%m.%Y %H:%M:%S");
+	rightWidget->addTimer();
 
 	// footer
 	rightWidget->enablePaintFoot();
@@ -3823,20 +3825,11 @@ void CTestMenu::testClistBox()
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
 	uint32_t sec_timer_id = 0;
-
-	// add sec timer
-	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
-
 	bool loop = true;
 
 	while(loop)
 	{
-		g_RCInput->getMsg_ms(&msg, &data, 10); // 1 sec
-
-		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
-		{
-			rightWidget->paintHead();
-		}
+		g_RCInput->getMsg_ms(&msg, &data, 10); // 1 sec		
 		
 		rightWidget->onButtonPress(msg, data); // whatever return???
 		
@@ -3846,8 +3839,19 @@ void CTestMenu::testClistBox()
 		}
 		else if(msg == RC_ok)
 		{
-			rightWidget->oKKeyPressed(this);
-			rightWidget->paint();
+			int rv = rightWidget->oKKeyPressed(this);
+			
+			switch ( rv ) 
+			{
+				case RETURN_EXIT_ALL:
+					//retval = RETURN_EXIT_ALL; //fall through
+				case RETURN_EXIT:
+					msg = RC_timeout;
+					break;
+				case RETURN_REPAINT:
+					rightWidget->paint();
+					break;
+			}
 		}
 		else if(msg == RC_info)
 		{
@@ -3858,12 +3862,13 @@ void CTestMenu::testClistBox()
 
 			rightWidget->paint();
 		}
+		else if (msg == RC_setup)
+		{
+			rightWidget->changeWidgetType();
+		}
 
 		CFrameBuffer::getInstance()->blit();
-	}
-
-	g_RCInput->killTimer(sec_timer_id);
-	sec_timer_id = 0;
+	}	
 #else
 	testWidget = new CWidget(&Box);
 	
@@ -4370,9 +4375,9 @@ void CTestMenu::testClistBox5()
 	rightWidget->enableShrinkMenu();
 
 	//
-	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
-	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
-	rightWidget->addWidget(WIDGET_TYPE_FRAME);
+	rightWidget->addWidgetType(WIDGET_TYPE_CLASSIC);
+	rightWidget->addWidgetType(WIDGET_TYPE_EXTENDED);
+	rightWidget->addWidgetType(WIDGET_TYPE_FRAME);
 	//rightWidget->enableWidgetChange();
 
 	rightWidget->setItemsPerPage(5, 2);
@@ -4535,9 +4540,9 @@ void CTestMenu::testClistBox6()
 	rightWidget->enableShrinkMenu();
 
 	//
-	rightWidget->addWidget(WIDGET_TYPE_CLASSIC);
-	rightWidget->addWidget(WIDGET_TYPE_EXTENDED);
-	rightWidget->addWidget(WIDGET_TYPE_FRAME);
+	rightWidget->addWidgetType(WIDGET_TYPE_CLASSIC);
+	rightWidget->addWidgetType(WIDGET_TYPE_EXTENDED);
+	rightWidget->addWidgetType(WIDGET_TYPE_FRAME);
 
 	rightWidget->setItemsPerPage(5, 2);
 
@@ -5528,9 +5533,9 @@ void CTestMenu::testCMenuWidget()
 
 	menuWidget->setWidgetMode(MODE_LISTBOX);
 	menuWidget->setWidgetType(WIDGET_TYPE_STANDARD);
-	menuWidget->addWidget(WIDGET_TYPE_CLASSIC);
-	menuWidget->addWidget(WIDGET_TYPE_EXTENDED);
-	menuWidget->addWidget(WIDGET_TYPE_FRAME);
+	menuWidget->addWidgetType(WIDGET_TYPE_CLASSIC);
+	menuWidget->addWidgetType(WIDGET_TYPE_EXTENDED);
+	menuWidget->addWidgetType(WIDGET_TYPE_FRAME);
 	menuWidget->setItemsPerPage(6, 2);
 	menuWidget->enableShrinkMenu();
 
@@ -5587,9 +5592,9 @@ void CTestMenu::testCMenuWidget1()
 
 	menuWidget->setWidgetMode(MODE_MENU);
 	menuWidget->setWidgetType(WIDGET_TYPE_STANDARD);
-	menuWidget->addWidget(WIDGET_TYPE_CLASSIC);
-	menuWidget->addWidget(WIDGET_TYPE_EXTENDED);
-	menuWidget->addWidget(WIDGET_TYPE_FRAME);
+	menuWidget->addWidgetType(WIDGET_TYPE_CLASSIC);
+	menuWidget->addWidgetType(WIDGET_TYPE_EXTENDED);
+	menuWidget->addWidgetType(WIDGET_TYPE_FRAME);
 	menuWidget->setItemsPerPage(6, 2);
 	menuWidget->enableShrinkMenu();
 

@@ -2294,6 +2294,9 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	
 	//
 	itemShadow = false;
+	
+	//
+	sec_timer_id = 0;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -2399,6 +2402,9 @@ ClistBox::ClistBox(CBox* position)
 	items_height = 0;
 	
 	itemShadow = false;
+	
+	//
+	sec_timer_id = 0;
 }
 
 ClistBox::~ClistBox()
@@ -3297,7 +3303,13 @@ void ClistBox::hide()
 		items_background = NULL;
 	}
 	
-	CFrameBuffer::getInstance()->blit();	
+	CFrameBuffer::getInstance()->blit();
+	
+	if (sec_timer_id)
+	{
+		g_RCInput->killTimer(sec_timer_id);
+		sec_timer_id = 0;
+	}	
 	
 	painted = false;
 }
@@ -3790,7 +3802,11 @@ bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 	
 	bool result = true;
 	
-	if (msg == RC_up)
+	if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
+	{
+		refresh();
+	} 
+	else if (msg == RC_up)
 	{
 		scrollLineUp();
 	}
@@ -3820,6 +3836,11 @@ bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 	}
 	
 	return result;
+}
+
+void ClistBox::addTimer(uint64_t sec)
+{
+	sec_timer_id = g_RCInput->addTimer(sec*1000*1000, false);
 }
 
 

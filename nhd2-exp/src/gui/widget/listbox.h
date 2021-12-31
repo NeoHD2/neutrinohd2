@@ -635,6 +635,9 @@ class ClistBox : public CWidgetItem
 		fb_pixel_t* items_background;
 		bool itemShadow;
 		
+		//
+		uint32_t sec_timer_id;
+		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		ClistBox(CBox* position);
@@ -720,7 +723,7 @@ class ClistBox : public CWidgetItem
 		// widget type
 		void setWidgetType(int type){widgetType = type; widget.push_back(widgetType);};
 		int getWidgetType(){return widgetType;};
-		void addWidget(int wtype){widget.push_back(wtype);};
+		void addWidgetType(int wtype){widget.push_back(wtype);};
 		void changeWidgetType();
 
 		//
@@ -730,6 +733,7 @@ class ClistBox : public CWidgetItem
 		void homeKeyPressed(){selected = -1;};
 		//void onDirectKeyPressed(neutrino_msg_t msg);
 		bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data);
+		void addTimer(uint64_t sec = 1);
 
 		//
 		void enableSaveScreen();

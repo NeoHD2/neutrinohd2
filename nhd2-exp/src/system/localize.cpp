@@ -116,17 +116,24 @@ CLocaleManager::loadLocale_ret_t CLocaleManager::loadLocale(const char * const l
 	initialize_iso639_map();
 	
 	//FIXME:
+	// set language
+	setenv("LANG", "ar", 1);
+	setenv("LANGUAGE", "ar", 1);	
+	setlocale(LC_MESSAGES, "ar");
+	
 	// initlocale
 	setlocale(LC_ALL, "");
-	if ( bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale") == NULL)
+	if ( bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale/") == NULL)
 		printf("cant bind localedir\n");
 	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
 	textdomain(PACKAGE_NAME);
 	
 	// set language
-	setenv("LANG", "ar_AR", 1);
-	setenv("LANGUAGE", "ar_AR", 1);	
-	setlocale(LC_ALL, "ar_AR");
+	/*
+	setenv("LANG", "ar", 1);
+	setenv("LANGUAGE", "ar", 1);	
+	setlocale(LC_MESSAGES, "ar");
+	*/
 	//
 
 	for (i = 0; i < 2; i++)

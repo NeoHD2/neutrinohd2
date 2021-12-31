@@ -6182,18 +6182,6 @@ int main(int argc, char *argv[])
 	dprintf(DEBUG_NORMAL, "main: gst initialized\n");
 #endif
 
-	char * buf = (char *)malloc(64);
-	int count;
-	if (buf && (count = readlink("/proc/self/exe", buf, 63)) >= 0) 
-	{
-		buf[count] = '\0';
-		printf("starting %s\n", buf);
-		free(buf);
-	}
-	
-	for(int i = 3; i < 256; i++)
-		close(i);
-
 	// set python path
 #if ENABLE_PYTHON
 	setenv("PYTHONPATH", DATADIR "/neutrino/python", 0);
