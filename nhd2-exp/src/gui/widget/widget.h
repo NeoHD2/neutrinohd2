@@ -93,39 +93,36 @@ class CWidget : public CMenuTarget
 		virtual ~CWidget();
 
 		virtual void initFrames();
-		virtual void paintItems();
-		virtual void paint();
-
-		//
-		virtual void hide();
-		virtual int exec(CMenuTarget *parent, const std::string &actionKey);
-		virtual int exec(CWidgetItem* wItem);
-
 		virtual void addItem(CWidgetItem *widgetItem, const bool defaultselected = false);
 		bool hasItem();
 		int getItemsCount();
 		virtual void clearItems(void);
+		virtual void paintItems();
+		
+		//
+		virtual void paint();
+		virtual void hide();
+		virtual int exec(CMenuTarget *parent, const std::string &actionKey);
+		virtual int exec(CWidgetItem* wItem);
 
+		//
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
 		void setSecTimerInterval(int interval){sec_timer_interval = interval;};
-
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
-		neutrino_msg_t getKey(){return msg;};
-
-		inline CBox getWindowsPos(void){return(mainFrameBox);};
-		bool getExitPressed(){return exit_pressed;};
-
 		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
-		int getSelected(){return exit_pressed ? -1 : selected;};
 
+		//
 		void enablePaintFrame(){paintFrame = true;};
 		void setColor(fb_pixel_t col) {backgroundColor = col;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
-
 		void enableSaveScreen();
 
-		// compatibility for lua
+		// compatibility
+		int getSelected(){return exit_pressed ? -1 : selected;};
 		std::string getActionKey(){return actionKey;};
+		neutrino_msg_t getKey(){return msg;};
+		inline CBox getWindowsPos(void){return(mainFrameBox);};
+		bool getExitPressed(){return exit_pressed;};
 
 		// events
 		virtual void onOKKeyPressed();
