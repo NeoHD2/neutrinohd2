@@ -130,16 +130,16 @@ class CWidget : public CMenuTarget
 		// events
 		virtual void onOKKeyPressed();
 		virtual void onHomeKeyPressed();
-
 		virtual void onUpKeyPressed();
 		virtual void onDownKeyPressed();
 		virtual void onRightKeyPressed();
 		virtual void onLeftKeyPressed();
-
 		virtual void onPageUpKeyPressed();
 		virtual void onPageDownKeyPressed();
-
 		virtual void onYellowKeyPressed();
+		
+		//
+		virtual bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data);
 };
 
 #endif // WIDGET_H_

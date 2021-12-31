@@ -258,11 +258,13 @@ void CInfoBox::refreshTitle(void)
 void CInfoBox::refreshFoot(void)
 {
 	CFooters footers(m_cBoxFrameFootRel);
+	struct button_label Button = { NEUTRINO_ICON_INFO, NONEXISTANT_LOCALE, NULL };
 	
 	footers.setColor(footColor);
 	footers.setRadius(footRadius);
 	footers.setCorner(footCorner);
 	footers.setGradient(footGradient);
+	footers.setButtons(&Button);
 	
 	footers.paint();
 }

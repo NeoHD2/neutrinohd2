@@ -256,13 +256,7 @@ const struct button_label AudioPlayerButtons[FOOT_BUTTONS_COUNT] =
 };
 
 void CMP3Player::showMenu()
-{
-	if (alist)
-	{
-		delete alist;
-		alist = NULL;
-	}
-	
+{	
 	alist = new CMenuWidget(LOCALE_AUDIOPLAYER_HEAD, NEUTRINO_ICON_MP3, frameBuffer->getScreenWidth() - 40, frameBuffer->getScreenHeight() - 40);
 
 	for(unsigned int i = 0; i < (unsigned int)playlist.size(); i++)

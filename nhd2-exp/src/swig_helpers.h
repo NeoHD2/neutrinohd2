@@ -75,14 +75,14 @@ class CSwigHelpers
 		int getHeight(int font_type);
 
 		// CRCInput
-		int getRCCode(int timeout = 10);
+		neutrino_msg_t getRCCode(uint64_t timeout);
 		void addTimer(uint64_t Interval, bool oneshot = true, bool correct_time = true );
 		void killTimer(uint32_t id);
-		int getRCData(int timeout = 10);
+		neutrino_msg_data_t getRCData(uint64_t timeout);
 		
 		//
-		int run(const char* actionKey){return CNeutrinoApp::getInstance()->exec(NULL, actionKey);};
-		void startSkin(const char* const filename){CNeutrinoApp::getInstance()->startSkin(filename);};
+		//int run(const char* actionKey){return CNeutrinoApp::getInstance()->exec(NULL, actionKey);};
+		//void startSkin(const char* const filename){CNeutrinoApp::getInstance()->startSkin(filename);};
 };
 
 #endif

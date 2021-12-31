@@ -1163,15 +1163,21 @@ int CMovieBrowser::exec(const char * path)
 
 	// update movie selection
 	updateMovieSelection();
+	
+	// on set guiwindow
+	onSetGUIWindow(m_settings.gui);
 
+/*
 	// refresh title
 	refreshTitle();
 	
 	// on set guiwindow
-	onSetGUIWindow(m_settings.gui);
+	//onSetGUIWindow(m_settings.gui);
 	
 	// browser paint 
 	m_pcBrowser->paint();
+*/
+	refresh();
 	
 	m_pcWindow->blit();
 
@@ -1252,14 +1258,14 @@ void CMovieBrowser::hide(void)
 	
 	if (m_pcLastPlay != NULL)
 	{
-		m_currentPlaySelection    = m_pcLastPlay->getSelectedLine();
+		m_currentPlaySelection = m_pcLastPlay->getSelectedLine();
 		delete m_pcLastPlay;
 		m_pcLastPlay = NULL;
 	}
 	
 	if (m_pcLastRecord != NULL) 
 	{
-		m_currentRecordSelection  = m_pcLastRecord->getSelectedLine();
+		m_currentRecordSelection = m_pcLastRecord->getSelectedLine();
 		delete m_pcLastRecord;
 		m_pcLastRecord = NULL;
 	}
@@ -1285,12 +1291,11 @@ int CMovieBrowser::paint(void)
 
 	m_pcFilter = new CListFrame(&m_FilterLines, NULL, CListFrame::SCROLL | CListFrame::TITLE, &m_cBoxFrameFilter, g_Locale->getText(LOCALE_MOVIEBROWSER_HEAD_FILTER), g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 
-	m_pcInfo = new CTextBox();
-	m_pcInfo->setPosition(&m_cBoxFrameInfo);	
+	m_pcInfo = new CTextBox(&m_cBoxFrameInfo);
+	//m_pcInfo->setPosition(&m_cBoxFrameInfo);	
 
 	if(m_pcBrowser == NULL || m_pcLastPlay == NULL || m_pcLastRecord == NULL || m_pcInfo == NULL || m_pcFilter == NULL)
 	{
-		//printf("[mb] paint, ERROR: not enought memory to allocate windows\n");
 		
 		if (m_pcFilter != NULL)
 			delete m_pcFilter;
@@ -2067,6 +2072,7 @@ bool CMovieBrowser::onButtonPressLastRecordList(neutrino_msg_t msg)
 	return (result);
 }
 
+/*
 bool CMovieBrowser::onButtonPressBookmarkList(neutrino_msg_t msg) 
 {
 	dprintf(DEBUG_DEBUG, "CMovieBrowser::onButtonPressBookmarkList: %d\r\n", msg);
@@ -2076,6 +2082,7 @@ bool CMovieBrowser::onButtonPressBookmarkList(neutrino_msg_t msg)
 	result = false;
 	return (result);
 }
+*/
 
 bool CMovieBrowser::onButtonPressFilterList(neutrino_msg_t msg) 
 {

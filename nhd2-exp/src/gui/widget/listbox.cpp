@@ -3783,4 +3783,44 @@ void ClistBox::onDirectKeyPressed(neutrino_msg_t msg)
 }
 */
 
+//
+bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
+{
+	dprintf(DEBUG_INFO, "ClistBox::onButtonPress: (msg:%d) (data:%d)\n", msg, data);
+	
+	bool result = true;
+	
+	if (msg == RC_up)
+	{
+		scrollLineUp();
+	}
+	else if (msg == RC_down)
+	{
+		scrollLineDown();
+	}
+	else if (msg == RC_left)
+	{
+		swipLeft();
+	}
+	else if (msg == RC_right)
+	{
+		swipRight();
+	}
+	else if (msg == RC_page_up)
+	{
+		scrollPageUp();
+	}
+	if (msg == RC_page_down)
+	{
+		scrollPageDown();
+	}
+	else
+	{
+		result = false;
+	}
+	
+	return result;
+}
+
+
 

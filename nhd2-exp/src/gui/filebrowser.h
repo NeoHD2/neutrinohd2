@@ -101,7 +101,6 @@ class CFileBrowser
 		bool Multi_Select;
 		bool Dirs_Selectable;
 		bool Dir_Mode;
-		bool Hide_records;
 		bool use_filter;
 		
 		CFileFilter * Filter;

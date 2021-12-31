@@ -3761,7 +3761,7 @@ void CTestMenu::testClistBox()
 
 	rightWidget = new ClistBox(&Box);
 	
-	CHintBox loadBox(_("ClistBox (standard)"), g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox(_("ClistBox (standard)"), _(g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES)));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -3815,7 +3815,7 @@ void CTestMenu::testClistBox()
 
 	//rightWidget->setSelected(selected);
 	
-	/*
+#if 1
 	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 
@@ -3836,32 +3836,11 @@ void CTestMenu::testClistBox()
 		if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
 			rightWidget->paintHead();
-		} 
-		else if (msg == RC_up)
-		{
-			rightWidget->scrollLineUp();
 		}
-		else if (msg == RC_down)
-		{
-			rightWidget->scrollLineDown();
-		}
-		else if (msg == RC_right)
-		{
-			rightWidget->swipRight();
-		}
-		else if (msg == RC_left)
-		{
-			rightWidget->swipLeft();
-		}
-		else if (msg == RC_page_up)
-		{
-			rightWidget->scrollPageUp();
-		}
-		else if (msg == RC_page_down)
-		{
-			rightWidget->scrollPageDown();
-		}
-		else if (msg == RC_home) 
+		
+		rightWidget->onButtonPress(msg, data); // whatever return???
+		
+		if (msg == RC_home) 
 		{
 			loop = false;
 		}
@@ -3882,21 +3861,23 @@ void CTestMenu::testClistBox()
 
 		CFrameBuffer::getInstance()->blit();
 	}
-	*/
-	
+
+	g_RCInput->killTimer(sec_timer_id);
+	sec_timer_id = 0;
+#else
 	testWidget = new CWidget(&Box);
+	
 	testWidget->addKey(RC_info, this, "linfo");
 	//testWidget->addKey(RC_setup, this, "lsetup");
 	testWidget->exec(rightWidget);
+	
 	delete testWidget;
 	testWidget = NULL;
+#endif	
 
 	rightWidget->hide();
 	delete rightWidget;
 	rightWidget = NULL;
-
-	//g_RCInput->killTimer(sec_timer_id);
-	//sec_timer_id = 0;
 }
 
 // ClistBox(classic)

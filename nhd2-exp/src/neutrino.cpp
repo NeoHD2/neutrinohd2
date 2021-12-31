@@ -634,10 +634,10 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.menu_Head_Text_green = configfile.getInt32( "menu_Head_Text_green", 100);
 	g_settings.menu_Head_Text_blue = configfile.getInt32( "menu_Head_Text_blue", 100);
 	
-	g_settings.menu_Content_alpha = configfile.getInt32( "menu_Content_alpha", 20);
-	g_settings.menu_Content_red = configfile.getInt32( "menu_Content_red", 25);
-	g_settings.menu_Content_green = configfile.getInt32( "menu_Content_green", 25);
-	g_settings.menu_Content_blue = configfile.getInt32( "menu_Content_blue", 25);
+	g_settings.menu_Content_alpha = configfile.getInt32( "menu_Content_alpha", 0);
+	g_settings.menu_Content_red = configfile.getInt32( "menu_Content_red", 15);
+	g_settings.menu_Content_green = configfile.getInt32( "menu_Content_green", 15);
+	g_settings.menu_Content_blue = configfile.getInt32( "menu_Content_blue", 15);
 	
 	g_settings.menu_Content_Text_alpha = configfile.getInt32( "menu_Content_Text_alpha", 0);
 	g_settings.menu_Content_Text_red = configfile.getInt32( "menu_Content_Text_red", 85);

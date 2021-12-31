@@ -29,7 +29,7 @@ extern "C" void plugin_del(void);
 class CFileExplorer : public CMenuTarget
 {
 	private:
-		CFileBrowser filebrowser;
+		CFileBrowser fileBrowser;
 		std::string Path_local;
 
 		CPictureViewerGui tmpPictureViewerGui;
@@ -42,33 +42,25 @@ class CFileExplorer : public CMenuTarget
 		void showMenu(void);
 
 	public:
-		CFileExplorer();
-		~CFileExplorer();
+		CFileExplorer(){};
+		~CFileExplorer(){};
 		int exec(CMenuTarget* parent, const std::string& actionKey);
 };
 
-CFileExplorer::CFileExplorer()
-{
-}
-
-CFileExplorer::~CFileExplorer()
-{
-}
-
+//
 void CFileExplorer::showMenu()
 {	
 	Path_local = "/media/hdd";
 	
-	
 BROWSER:	
-	if (filebrowser.exec(Path_local.c_str())) 
+	if (fileBrowser.exec(Path_local.c_str())) 
 	{
-		Path_local = filebrowser.getCurrentDir(); // remark path
+		Path_local = fileBrowser.getCurrentDir(); // remark path
 		
 		// get the current file name
 		CFile * file;
 
-		if ((file = filebrowser.getSelectedFile()) != NULL) 
+		if ((file = fileBrowser.getSelectedFile()) != NULL) 
 		{
 			// parse file extension
 			if(file->getType() == CFile::FILE_PICTURE)

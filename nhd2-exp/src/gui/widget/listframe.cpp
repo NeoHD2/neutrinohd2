@@ -438,6 +438,7 @@ void CListFrame::refreshLine(int line)
 	int rel_line = line - m_nCurrentLine;
 	int y = m_cFrameListRel.iY + TEXT_BORDER_WIDTH + (rel_line*m_nFontListHeight);
 
+	// itemBox
 	if(line == m_nSelectedLine && m_showSelection == true)
 	{
 		color = LIST_FONT_COLOR_SELECTED;
@@ -511,8 +512,11 @@ void CListFrame::scrollLineDown(const int lines)
 {
 	dprintf(DEBUG_DEBUG, "CListFrame::scrollLineDown \r\n");
 
-	if( !(m_nMode & SCROLL)) return;
-	if( m_nNrOfLines <= 1) return;
+	if( !(m_nMode & SCROLL)) 
+		return;
+		
+	if( m_nNrOfLines <= 1) 
+		return;
 	
 	if(m_nSelectedLine < m_nNrOfLines - 1) 
 	{
@@ -533,8 +537,7 @@ void CListFrame::scrollLineDown(const int lines)
 	else 
 	{
 		setSelectedLine(0);
-	}
-	
+	}	
 }
 
 void CListFrame::scrollLineUp(const int lines)

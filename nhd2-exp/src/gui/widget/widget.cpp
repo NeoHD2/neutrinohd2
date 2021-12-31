@@ -679,6 +679,25 @@ void CWidget::onPageDownKeyPressed()
 }
 
 //
+bool CWidget::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
+{
+	dprintf(DEBUG_INFO, "CWidget::onButtonPress: (msg:%d) (data:%d)\n", msg, data);
+	
+	bool result = true;
+	
+	if (msg == RC_yellow)
+	{
+		onYellowKeyPressed();
+	}
+	else
+	{
+		result = false;
+	}
+	
+	return result;
+}
+
+//
 int CWidget::exec(CWidgetItem* wItem)
 {
 	dprintf(DEBUG_NORMAL, "CWidget:: exec:\n");
@@ -687,10 +706,10 @@ int CWidget::exec(CWidgetItem* wItem)
 	pos = 0;
 	exit_pressed = false;
 
-	if (wItem)
-		wItem->paint();
+	//if (wItem)
+	//	wItem->paint();
 		
-	CFrameBuffer::getInstance()->blit();
+//	CFrameBuffer::getInstance()->blit();
 
 	// add sec timer
 	sec_timer_id = g_RCInput->addTimer(sec_timer_interval*1000*1000, false);
@@ -748,7 +767,7 @@ int CWidget::exec(CWidgetItem* wItem)
 				continue;
 			}
 			
-			// handle directKey
+			// directKey
 		}
 
 		if (!handled) 
@@ -761,6 +780,7 @@ int CWidget::exec(CWidgetItem* wItem)
 
 			switch (msg) 
 			{
+				/*
 				case (NeutrinoMessages::EVT_TIMER):
 					if ( CNeutrinoApp::getInstance()->handleMsg( msg, data ) & messages_return::cancel_all ) 
 					{
@@ -768,7 +788,8 @@ int CWidget::exec(CWidgetItem* wItem)
 						msg = RC_timeout;
 					}
 					break;
-
+				*/
+				
 				//
 				case (RC_up):
 					if (wItem)
@@ -853,7 +874,7 @@ int CWidget::exec(CWidgetItem* wItem)
 
 	dprintf(DEBUG_NORMAL, "CWidget: retval: (%d) selected:%d\n", retval, selected);
 	
-	hide();
+	//hide();
 
 	//
 	g_RCInput->killTimer(sec_timer_id);

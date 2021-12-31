@@ -729,6 +729,7 @@ class ClistBox : public CWidgetItem
 		int oKKeyPressed(CMenuTarget *parent);
 		void homeKeyPressed(){selected = -1;};
 		//void onDirectKeyPressed(neutrino_msg_t msg);
+		bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data);
 
 		//
 		void enableSaveScreen();

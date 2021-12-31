@@ -191,7 +191,6 @@ void CFileBrowser::commonInit()
 	Multi_Select = false;
 	Dirs_Selectable = false;
 	Dir_Mode = false;
-	Hide_records = false;
 	
 	selected = 0;
 	
@@ -280,22 +279,6 @@ void CFileBrowser::ChangeDir(const std::string& filename, int selection)
 			if(!Filter->matchFilter(file->Name))
 			{
 				continue;
-			}
-			
-			// ts filter
-			if(Hide_records) 
-			{
-				int ext_pos = file->Name.rfind('.');
-				if( ext_pos > 0) 
-				{
-					std::string extension = file->Name.substr(ext_pos + 1, name.length() - ext_pos);
-					if(strcasecmp(extension.c_str(), "ts") == 0) 
-					{
-						std::string fname = file->Name.substr(0, ext_pos) + ".xml";
-						if(access(fname.c_str(), F_OK) == 0)
-							continue;
-					}
-				}
 			}
 		}
 		
@@ -863,11 +846,13 @@ void CFileBrowser::paint()
 	Button[0] = FileBrowserButtons[0];
 	Button[1] = FileBrowserButtons[1];
 
-	Button[2].button = Multi_Select? NEUTRINO_ICON_BUTTON_YELLOW : NULL;
+	//Button[2].button = Multi_Select? NEUTRINO_ICON_BUTTON_YELLOW : NULL;
+	Button[2].button = NEUTRINO_ICON_BUTTON_YELLOW;
 	Button[2].locale = Multi_Select?LOCALE_FILEBROWSER_MARK : NONEXISTANT_LOCALE;
 	Button[2].localename = NULL;
 
-	Button[3].button = (Filter != NULL)? NEUTRINO_ICON_BUTTON_BLUE : NULL;
+	//Button[3].button = (Filter != NULL)? NEUTRINO_ICON_BUTTON_BLUE : NULL;
+	Button[3].button = NEUTRINO_ICON_BUTTON_BLUE;
 	Button[3].locale = (Filter != NULL)? (use_filter)?LOCALE_FILEBROWSER_FILTER_INACTIVE : LOCALE_FILEBROWSER_FILTER_ACTIVE : NONEXISTANT_LOCALE;
 	Button[3].localename = NULL;
 

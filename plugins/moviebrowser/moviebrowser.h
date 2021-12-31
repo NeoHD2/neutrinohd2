@@ -343,11 +343,9 @@ class CMovieBrowser : public CMenuTarget
 		bool onButtonPressLastPlayList(neutrino_msg_t msg); // P2
 		bool onButtonPressLastRecordList(neutrino_msg_t msg); // P2
 		bool onButtonPressFilterList(neutrino_msg_t msg); // P2
-		bool onButtonPressBookmarkList(neutrino_msg_t msg); // P3
 		bool onButtonPressMovieInfoList(neutrino_msg_t msg); // P2
 		void onSetFocus(MB_FOCUS new_focus); // P2
 		void onSetFocusNext(void); // P2
-		//void onSetFocusPrev(void); // P2
 		void onSetGUIWindow(MB_GUI gui);
 		void onSetGUIWindowNext(void);
 		void onSetGUIWindowPrev(void);

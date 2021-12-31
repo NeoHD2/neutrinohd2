@@ -431,10 +431,13 @@ class CRCInput
 		static int64_t calcTimeoutEnd_MS(const int timeout_in_milliseconds);
 		static int64_t calcTimeoutEnd(const int timeout_in_seconds);
 
+		//
 		void getMsgAbsoluteTimeout(neutrino_msg_t* msg, neutrino_msg_data_t * data, uint64_t* TimeoutEnd, bool bAllowRepeatLR = false);
-		void getMsg(neutrino_msg_t* msg, neutrino_msg_data_t * data, int Timeout, bool bAllowRepeatLR = false);          	//get message, timeout in 1/10 secs :)
-		void getMsg_ms(neutrino_msg_t* msg, neutrino_msg_data_t * data, int Timeout, bool bAllowRepeatLR = false);               //get message, timeout in msecs :)
-		void getMsg_us(neutrino_msg_t* msg, neutrino_msg_data_t * data, uint64_t Timeout, bool bAllowRepeatLR = false);		//get message, timeout in �secs :)
+		void getMsg(neutrino_msg_t* msg, neutrino_msg_data_t * data, int Timeout, bool bAllowRepeatLR = false);          //get message, timeout in 1/10 secs :)
+		void getMsg_ms(neutrino_msg_t* msg, neutrino_msg_data_t * data, int Timeout, bool bAllowRepeatLR = false);         //get message, timeout in msecs :)
+		void getMsg_us(neutrino_msg_t* msg, neutrino_msg_data_t * data, uint64_t Timeout, bool bAllowRepeatLR = false);	//get message, timeout in �secs :)
+		
+		//
 		void postMsg(const neutrino_msg_t msg, const neutrino_msg_data_t data, const bool Priority = true);  // push message back into buffer
 		void clearRCMsg();
 

@@ -134,7 +134,7 @@ int CSwigHelpers::getHeight(int font_type)
 }
 
 // CRCInput
-int CSwigHelpers::getRCCode(int timeout)
+neutrino_msg_t CSwigHelpers::getRCCode(uint64_t timeout)
 {
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
@@ -142,7 +142,7 @@ int CSwigHelpers::getRCCode(int timeout)
 	g_RCInput->getMsg_ms(&msg, &data, timeout);
 	
 	if (msg <= RC_MaxRC) 
-		return (int)msg;
+		return msg;
 	else 
 		return -1;
 }
@@ -157,7 +157,7 @@ void CSwigHelpers::killTimer(uint32_t id)
 	g_RCInput->killTimer(id);
 }
 
-int CSwigHelpers::getRCData(int timeout)
+neutrino_msg_data_t CSwigHelpers::getRCData(uint64_t timeout)
 {
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
@@ -165,7 +165,7 @@ int CSwigHelpers::getRCData(int timeout)
 	g_RCInput->getMsg_ms(&msg, &data, timeout);
 	
 	if (msg <= RC_MaxRC) 
-		return (int)data;
+		return data;
 	else 
 		return -1;
 }
