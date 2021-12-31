@@ -3291,7 +3291,8 @@ void CTestMenu::testCHintBoxInfo()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCHintBox\n");
 
-	HintBox(LOCALE_MESSAGEBOX_INFO, "testing CHintBoxInfo", HINTBOX_WIDTH, 10, NEUTRINO_ICON_INFO);
+	HintBox(LOCALE_MESSAGEBOX_INFO, _("\n"
+"<This tuner is configured automatically>"), HINTBOX_WIDTH, 10, NEUTRINO_ICON_INFO);
 }
 
 // CHelpBox
@@ -3760,7 +3761,7 @@ void CTestMenu::testClistBox()
 
 	rightWidget = new ClistBox(&Box);
 	
-	CHintBox loadBox("ClistBox", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox(_("ClistBox (standard)"), g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -3797,11 +3798,12 @@ void CTestMenu::testClistBox()
 	rightWidget->enableShrinkMenu();
 
 	// head
-	rightWidget->setTitle("ClistBox(standard)", NEUTRINO_ICON_MOVIE);
-	rightWidget->setTitleHAlign(CC_ALIGN_CENTER);
+	rightWidget->setTitle(_("ClistBox (standard)"), NEUTRINO_ICON_MOVIE);
+	//rightWidget->setTitleHAlign(CC_ALIGN_CENTER);
 	rightWidget->enablePaintHead();
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
+	rightWidget->setFormat("%d.%m.%Y %H:%M:%S");
 
 	// footer
 	rightWidget->enablePaintFoot();
@@ -3813,7 +3815,7 @@ void CTestMenu::testClistBox()
 
 	//rightWidget->setSelected(selected);
 	
-	//
+	/*
 	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 
@@ -3880,13 +3882,21 @@ void CTestMenu::testClistBox()
 
 		CFrameBuffer::getInstance()->blit();
 	}
+	*/
+	
+	testWidget = new CWidget(&Box);
+	testWidget->addKey(RC_info, this, "linfo");
+	//testWidget->addKey(RC_setup, this, "lsetup");
+	testWidget->exec(rightWidget);
+	delete testWidget;
+	testWidget = NULL;
 
 	rightWidget->hide();
 	delete rightWidget;
 	rightWidget = NULL;
 
-	g_RCInput->killTimer(sec_timer_id);
-	sec_timer_id = 0;
+	//g_RCInput->killTimer(sec_timer_id);
+	//sec_timer_id = 0;
 }
 
 // ClistBox(classic)
@@ -7449,7 +7459,7 @@ void CTestMenu::showMenu()
 
 	CMenuWidget * mainMenu = new CMenuWidget();
 
-	mainMenu->setTitle("testMenu", NEUTRINO_ICON_BUTTON_SETUP);
+	mainMenu->setTitle(_("<This tuner is configured automatically>"), NEUTRINO_ICON_BUTTON_SETUP);
 
 	mainMenu->setWidgetMode(MODE_MENU);
 	mainMenu->enableShrinkMenu(),

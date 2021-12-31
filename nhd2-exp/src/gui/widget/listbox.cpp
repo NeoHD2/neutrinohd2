@@ -2233,6 +2233,8 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	headCorner = g_settings.Head_corner;
 	headGradient = g_settings.Head_gradient;
 	head_line = g_settings.Head_line;
+	format = "%d.%m.%Y %H:%M";
+	timer = NULL;
 
 	// foot
 	paint_Foot = false;
@@ -2339,6 +2341,8 @@ ClistBox::ClistBox(CBox* position)
 	headCorner = g_settings.Head_corner;
 	headGradient = g_settings.Head_gradient;
 	head_line = g_settings.Head_line;
+	format = "%d.%m.%Y %H:%M";
+	timer = NULL;
 
 	// foot
 	paint_Foot = false;
@@ -2836,6 +2840,7 @@ void ClistBox::paintHead()
 			}
 
 			// paint time/date
+			/*
 			int timestr_len = 0;
 
 			if(paintDate)
@@ -2845,6 +2850,21 @@ void ClistBox::paintHead()
 				timestr_len = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(timestr.c_str(), true); // UTF-8
 	
 				g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->RenderString(xstartPos - timestr_len, itemBox.iY + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight(), timestr_len + 1, timestr.c_str(), COL_MENUHEAD, 0, true); 
+			}
+			*/
+			int timestr_len = 0;
+			if(paintDate)
+			{
+				std::string timestr = getNowTimeStr(format);
+				
+				timestr_len = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(timestr.c_str(), true); // UTF-8
+			
+				timer = new CCTime();
+				timer->setPosition( - timestr_len, itemBox.iY, timestr_len, hheight);
+				timer->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+				timer->setFormat(format);
+				timer->enableRepaint();
+				timer->paint();
 			}
 
 			// title
@@ -2907,6 +2927,7 @@ void ClistBox::paintHead()
 			}
 
 			// paint time/date
+			/*
 			int timestr_len = 0;
 			if(paintDate)
 			{
@@ -2915,6 +2936,21 @@ void ClistBox::paintHead()
 				timestr_len = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(timestr.c_str(), true); // UTF-8
 		
 				g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->RenderString(xstartPos - timestr_len, itemBox.iY + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight(), timestr_len + 1, timestr.c_str(), COL_MENUHEAD, 0, true); 
+			}
+			*/
+			int timestr_len = 0;
+			if(paintDate)
+			{
+				std::string timestr = getNowTimeStr(format);
+				
+				timestr_len = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(timestr.c_str(), true); // UTF-8
+			
+				timer = new CCTime();
+				timer->setPosition(xstartPos - timestr_len, itemBox.iY, timestr_len, hheight);
+				timer->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+				timer->setFormat(format);
+				timer->enableRepaint();
+				timer->paint();
 			}
 		
 			// head title

@@ -99,6 +99,7 @@ class CWidget : public CMenuTarget
 		//
 		virtual void hide();
 		virtual int exec(CMenuTarget *parent, const std::string &actionKey);
+		virtual int exec(CWidgetItem* wItem);
 
 		virtual void addItem(CWidgetItem *widgetItem, const bool defaultselected = false);
 		bool hasItem();

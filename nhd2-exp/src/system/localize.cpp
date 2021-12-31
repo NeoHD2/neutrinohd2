@@ -39,6 +39,7 @@
 
 #include <system/localize.h>
 #include <system/locals_intern.h>
+#include <system/debug.h>
 
 #include <cstring>
 #include <fstream>
@@ -107,10 +108,26 @@ const char * path[2] = {CONFIGDIR "/locale/", DATADIR "/neutrino/locale/"};
 
 CLocaleManager::loadLocale_ret_t CLocaleManager::loadLocale(const char * const locale)
 {
+	dprintf(DEBUG_NORMAL, "CLocaleManager::loadLocale: %s\n", locale);
+	
 	unsigned int i;
 	FILE * fd;
 
 	initialize_iso639_map();
+	
+	//FIXME:
+	// initlocale
+	setlocale(LC_ALL, "");
+	if ( bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale") == NULL)
+		printf("cant bind localedir\n");
+	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
+	textdomain(PACKAGE_NAME);
+	
+	// set language
+	setenv("LANG", "ar_AR", 1);
+	setenv("LANGUAGE", "ar_AR", 1);	
+	setlocale(LC_ALL, "ar_AR");
+	//
 
 	for (i = 0; i < 2; i++)
 	{

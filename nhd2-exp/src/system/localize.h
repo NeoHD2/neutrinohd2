@@ -36,10 +36,14 @@
 #include <string>
 
 #include <system/locals.h>
-#include <locale.h>
 #include <time.h>
+#include <locale.h>
+#include <libintl.h>
 
 #include <map>
+
+
+#define _(string) gettext(string)
 
 
 void initialize_iso639_map(void);

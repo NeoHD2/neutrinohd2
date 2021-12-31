@@ -588,6 +588,8 @@ class ClistBox : public CWidgetItem
 		bool paintTitle;
 		int thalign;
 		bool head_line;
+		char* format;
+		CCTime* timer;
 
 		// foot
 		int fheight;
@@ -651,6 +653,7 @@ class ClistBox : public CWidgetItem
 		virtual void paintFoot();
 		virtual void paintItemInfo(int pos);
 		virtual void hideItemInfo();
+		virtual void refresh(){if (paintDate) timer->refresh();};//FIXME add CC_TIME
 
 		// head
 		void enablePaintHead(){paintTitle = true;};
@@ -663,6 +666,7 @@ class ClistBox : public CWidgetItem
 		void setHeadCorner(int co){headCorner = co;};
 		void setHeadGradient(int grad){headGradient = grad;};
 		void setHeadLine(bool l){head_line = l;};
+		void setFormat(char* f){format = f;};
 		
 		// foot
 		void enablePaintFoot(){paint_Foot = true;};
@@ -703,6 +707,9 @@ class ClistBox : public CWidgetItem
 		int getItemHeight(){return item_height;};
 		int getFootInfoHeight(){return footInfoHeight;};
 		int getListMaxShow(void) const {return listmaxshow;};
+		std::string getItemName(){if (hasItem()) return items[selected]->itemName; else return "";};
+		std::string getItemHint(){if (hasItem()) return items[selected]->itemHint; else return "";};
+		std::string getItemIcon(){if (hasItem()) return items[selected]->itemIcon; else return "";};
 
 		// frame type
 		void setItemsPerPage(int itemsX = 6, int itemsY = 3){itemsPerX = itemsX; itemsPerY = itemsY; maxItemsPerPage = itemsPerX*itemsPerY;};

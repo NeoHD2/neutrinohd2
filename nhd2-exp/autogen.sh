@@ -1,6 +1,6 @@
 #!/bin/sh
 
-package="neutrinohd2"
+package="neutrino-hd2"
 
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
@@ -35,14 +35,14 @@ DIE=0
 	DIE=1
 }
 
-#(gettext --version) < /dev/null > /dev/null 2>&1 || {
-#	echo
-#	echo "You must have gettext installed to compile $package."
-#	echo "Download the appropriate package for your system,"
-#	echo "or get the source from one of the GNU ftp sites"
-#	echo "listed in http://www.gnu.org/order/ftp.html"
-#	DIE=1
-#}
+(gettext --version) < /dev/null > /dev/null 2>&1 || {
+	echo
+	echo "You must have gettext installed to compile $package."
+	echo "Download the appropriate package for your system,"
+	echo "or get the source from one of the GNU ftp sites"
+	echo "listed in http://www.gnu.org/order/ftp.html"
+	DIE=1
+}
 
 if test "$DIE" -eq 1; then
 	exit 1
