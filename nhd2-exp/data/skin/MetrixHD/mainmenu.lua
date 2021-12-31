@@ -23,7 +23,7 @@ function main()
 	-- rightWindow / logo 
 	local w2 = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50, box.iWidth/2, box.iHeight/2)
 	w2:setColor(neutrino.convertSetupColor2Color(config:getInt32("menu_Content_Selected_red"),config:getInt32("menu_Content_Selected_green"),config:getInt32("menu_Content_Selected_blue"),config:getInt32("menu_Content_Selected_alpha")))
-	
+	w2:setGradient(neutrino.DARK2LIGHT2DARK)
 	-- title
 	title = neutrino.CCLabel()
 	title:setText(neutrino.g_Locale:getText(neutrino.LOCALE_MAINMENU_HEAD));
@@ -42,6 +42,7 @@ function main()
 	-- date
 	local dateBox = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50 + box.iHeight/2 + 50, box.iWidth/2, (box.iHeight/2 - 150)/2)
 	--dateBox:setColor(neutrino.convertSetupColor2Color(15,15,15,15))
+	dateBox:setGradient(neutrino.DARK2LIGHT)
 	
 	date = neutrino.CCTime(box.iX + box.iWidth/2, box.iY + 50 + box.iHeight/2 + 50, box.iWidth/2, (box.iHeight/2 - 150)/2)
 	date:setFormat("%A %d.%m.%Y")
@@ -52,6 +53,7 @@ function main()
 	-- time
 	local timeBox = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50 + box.iHeight/2 + 50 + (box.iHeight/2 - 150)/2, box.iWidth/2, (box.iHeight/2 - 150)/2)
 	--timeBox:setColor(neutrino.convertSetupColor2Color(15,15,15,15))
+	timeBox:setGradient(neutrino.LIGHT2DARK)
 	timeBox:enableRepaint()
 	
 	time = neutrino.CCTime(box.iX + box.iWidth/2, box.iY + 50 + box.iHeight/2 + 50 + (box.iHeight/2 - 150)/2, box.iWidth/2, (box.iHeight/2 - 150)/2)
