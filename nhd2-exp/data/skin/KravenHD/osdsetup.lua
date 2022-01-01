@@ -139,8 +139,6 @@ function main()
 	ret = m:exec(None, "")
 	
 	selected = list:getSelected()
-	 
-	local actionKey = list:getActionKey()
 	
 	if m:getExitPressed() ~= true and ret == neutrino.RETURN_REPAINT then
 		main()

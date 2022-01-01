@@ -139,6 +139,14 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		CNeutrinoApp();
 
 	public:
+		~CNeutrinoApp();
+		static CNeutrinoApp* getInstance();
+		
+		//callback stuff only....
+		int exec(CMenuTarget* parent, const std::string& actionKey);
+		
+		//onchange
+		bool changeNotify(const neutrino_locale_t OptionName, void *);
 		
 		//
 		void saveSetup(const char * fname);
@@ -165,7 +173,6 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 
 		void AudioMute( int newValue, bool isEvent= false );
 		void setVolume(const neutrino_msg_t key, const bool bDoPaint = true, bool nowait = false);
-		~CNeutrinoApp();
 
 		// channellist
 		CChannelList* TVchannelList;
@@ -179,8 +186,6 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		
 		CColorSetupNotifier *colorSetupNotifier;
 
-		static CNeutrinoApp * getInstance();
-
 		//
 		void initSectionsdClient();
 		void initZapitClient();
@@ -190,13 +195,6 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		void saveEpg();
 
 		int run(int argc, char **argv);
-
-		//callback stuff only....
-		int exec(CMenuTarget* parent, const std::string& actionKey);
-
-		//onchange
-		bool changeNotify(const neutrino_locale_t OptionName, void *);
-
 		int handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data);
 
 		int getMode() { return mode; };

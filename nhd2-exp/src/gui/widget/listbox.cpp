@@ -3287,7 +3287,7 @@ void ClistBox::hide()
 	if( savescreen && background)
 		restoreScreen();
 	else
-		frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, full_width, full_height);
+		frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, wanted_width, wanted_height);
 
 	hideItemInfo(); 
 

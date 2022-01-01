@@ -38,7 +38,6 @@ function main()
 	selected = m:getSelected()
 	 
 	local actionKey = m:getActionKey()
-	local key = m:getActionKey()
 	
 	if actionKey == "plugins" then
 		neutrino.CNeutrinoApp_getInstance():exec(None, "plugins")

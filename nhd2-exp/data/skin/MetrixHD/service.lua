@@ -117,14 +117,8 @@ function main()
 	
 	local actionKey = list:getActionKey()
 	
-	if actionKey == "service" then
-		neutrino.CNeutrinoApp_getInstance():startSkin("service")
-	end
-	if actionKey == "mediaplayer" then
-		neutrino.CNeutrinoApp_getInstance():startSkin("mediaplayer")
-	end
-	if actionKey == "features" then
-		neutrino.CNeutrinoApp_getInstance():exec(None, "plugins")
+	if actionKey == "reloadchannels" then
+		neutrino.CServiceMenu():exec(None, 'reloadchannels')
 	end
 	
 	if m:getExitPressed() ~= true and ret == neutrino.RETURN_REPAINT then
