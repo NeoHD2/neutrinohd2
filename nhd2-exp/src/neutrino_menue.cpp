@@ -75,7 +75,7 @@ void CNeutrinoApp::mainMenu(void)
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::mainMenu:\n");
 	
-	CMenuWidget * nMenu = new CMenuWidget(/*LOCALE_MAINMENU_HEAD*/_("Main menu"), NEUTRINO_ICON_BUTTON_SETUP);
+	CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
 		
 	nMenu->setWidgetMode(MODE_MENU);
 	nMenu->setWidgetType(WIDGET_TYPE_CLASSIC);

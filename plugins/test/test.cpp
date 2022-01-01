@@ -7445,7 +7445,7 @@ void CTestMenu::showMenu()
 
 	CMenuWidget * mainMenu = new CMenuWidget();
 
-	mainMenu->setTitle(_("<This tuner is configured automatically>"), NEUTRINO_ICON_BUTTON_SETUP);
+	mainMenu->setTitle(_("Test Menu"), NEUTRINO_ICON_BUTTON_SETUP);
 
 	mainMenu->setWidgetMode(MODE_MENU);
 	mainMenu->enableShrinkMenu(),

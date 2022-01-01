@@ -1,0 +1,3 @@
+msgid "Main Menu"
+
+msgstr "Hauptmenü"
