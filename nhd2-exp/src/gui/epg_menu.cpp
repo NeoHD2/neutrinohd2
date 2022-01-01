@@ -70,6 +70,9 @@ int CEPGMenuHandler::exec(CMenuTarget* parent, const std::string &)
 int CEPGMenuHandler::doMenu()
 {
 	CMenuWidget redMenu(LOCALE_EPGMENU_HEAD, NEUTRINO_ICON_BUTTON_EPG);
+	
+	redMenu.widget_id = WIDGET_EPGTIMER;
+	redMenu.widget_name = "epgtimer";
 
 	redMenu.setWidgetMode(MODE_MENU);
 	redMenu.setWidgetType(WIDGET_TYPE_CLASSIC);
@@ -88,6 +91,10 @@ int CEPGMenuHandler::doMenu()
 
 	//tech info
 	redMenu.addItem(new ClistBoxItem(LOCALE_EPGMENU_STREAMINFO, true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_TIMERLIST));
+	
+	// timerlis
+	//tech info
+	redMenu.addItem(new ClistBoxItem(LOCALE_TIMERLIST_NAME, true, NULL, new CTimerList(), "", RC_1, NEUTRINO_ICON_BUTTON_1, NEUTRINO_ICON_MENUITEM_TIMERLIST));
 					
 	return redMenu.exec(NULL, "");
 }

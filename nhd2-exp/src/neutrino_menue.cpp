@@ -77,8 +77,8 @@ void CNeutrinoApp::mainMenu(void)
 	
 	CMenuWidget * nMenu = new CMenuWidget(LOCALE_MAINMENU_HEAD, NEUTRINO_ICON_BUTTON_SETUP);
 	
-	widget_id = WIDGET_MAINMENU;
-	widget_name = "mainmenu";
+	nMenu->widget_id = WIDGET_MAINMENU;
+	nMenu->widget_name = "mainmenu";
 		
 	nMenu->setWidgetMode(MODE_MENU);
 	nMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
@@ -243,6 +243,9 @@ bool CNeutrinoApp::showUserMenu(int button)
 	CMenuWidget * menu = new CMenuWidget(txt.c_str(), NEUTRINO_ICON_FEATURES);
 	if (menu == NULL)		       
 		return 0;
+		
+	menu->widget_id = WIDGET_FEATURES;
+	menu->widget_name = "features";		
 
 	//
 	menu->setWidgetMode(MODE_MENU);

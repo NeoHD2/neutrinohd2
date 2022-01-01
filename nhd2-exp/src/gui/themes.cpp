@@ -93,12 +93,23 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 
 				nameInput->exec(NULL, "");
 				
-				//if(!nameInput->getString().empty())
+				//
 				if (!nameInput->getExitPressed())
 				{
 					HintBox(LOCALE_COLORTHEMEMENU_SAVE, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
-
-					saveFile((char*)((std::string)USERDIR + nameInput->getString().c_str() + FILE_PREFIX).c_str());
+					
+					if (g_settings.use_default_skin)
+						saveFile((char*)((std::string)USERDIR + nameInput->getString().c_str() + FILE_PREFIX).c_str());
+					else 
+					{
+						std::string skinConfig = CONFIGDIR "/skin/";
+						skinConfig += g_settings.preferred_skin.c_str();
+						skinConfig += "/";
+						skinConfig += nameInput->getString().c_str();
+						skinConfig += ".config";
+				
+						CNeutrinoApp::getInstance()->saveSkinConfig(skinConfig.c_str());
+					}
 				}
 
 				file_name.clear();

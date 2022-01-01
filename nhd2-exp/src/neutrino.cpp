@@ -1857,11 +1857,13 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	CConfigFile* skinConfig = new CConfigFile(',');;
 	
 	// fetch skin config file
+/*
 	std::string skinPath = CONFIGDIR "/skin/";
 	skinPath += filename;
 	skinPath += "/";
 	skinPath += filename;
 	skinPath += ".config";
+*/
 	
 	skinConfig->setInt32( "menu_Head_alpha", g_settings.menu_Head_alpha );
 	skinConfig->setInt32( "menu_Head_red", g_settings.menu_Head_red );
@@ -1958,7 +1960,7 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 		
 	skinConfig->setString("font_file", g_settings.font_file);
 
-	if (!skinConfig->saveConfig(skinPath.c_str()))
+	if (!skinConfig->saveConfig(/*skinPath.c_str()*/filename))
 		printf("CNeutrinoApp::saveSkinConfig %s write error\n", filename);
 }
 
@@ -3715,9 +3717,9 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				//
-				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-					startSkin("red");
-				else
+				//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
+				//	startSkin("red");
+				//else
 				{					
 					CEPGMenuHandler* redMenu = new CEPGMenuHandler();
 					
@@ -3782,7 +3784,8 @@ void CNeutrinoApp::RealRun(void)
 
 				// features
 				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-					startSkin("blue");
+					//startSkin("blue");
+					showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
 				else
 					showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
 
@@ -5800,7 +5803,16 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_MAINSETTINGS_SAVESETTINGSNOW, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			if (!g_settings.use_default_skin)
-				saveSkinConfig(g_settings.preferred_skin.c_str());
+			{
+				// fetch skin config file
+				std::string skinConfig = CONFIGDIR "/skin/";
+				skinConfig += g_settings.preferred_skin.c_str();
+				skinConfig += "/";
+				skinConfig += g_settings.preferred_skin.c_str();
+				skinConfig += ".config";
+				
+				saveSkinConfig(/*g_settings.preferred_skin*/skinConfig.c_str());
+			}
 				
 			tuxtxt_close();
 				
@@ -6054,6 +6066,9 @@ bool CNeutrinoApp::getNVODMenu(CMenuWidget * menu)
 //FIXME: rewrite
         if(menu == NULL)
                 return false;
+                
+	menu->widget_id = WIDGET_NVOD;
+	menu->widget_name = "nvod";
 	
         if (g_RemoteControl->subChannels.empty())
                 return false;

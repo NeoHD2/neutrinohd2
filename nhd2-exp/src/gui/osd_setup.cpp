@@ -1061,13 +1061,22 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	{
 		if (MessageBox(LOCALE_MESSAGEBOX_INFO, "Skin Style selection", mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
+			//
 			std::string skinConfigFile = CONFIGDIR "/skin/";
 			skinConfigFile += g_settings.preferred_skin.c_str();
 			skinConfigFile += "/";
 			skinConfigFile += actionKey.c_str();
 			
 			CNeutrinoApp::getInstance()->readSkinConfig(skinConfigFile.c_str());
-			CNeutrinoApp::getInstance()->saveSkinConfig(g_settings.preferred_skin.c_str());
+			
+			//
+			std::string skinConfig = CONFIGDIR "/skin/";
+			skinConfig += g_settings.preferred_skin.c_str();
+			skinConfig += "/";
+			skinConfig += g_settings.preferred_skin.c_str();
+			skinConfig += ".config";
+			
+			CNeutrinoApp::getInstance()->saveSkinConfig(/*g_settings.preferred_skin*/skinConfig.c_str());
 		}
 	}
 		
