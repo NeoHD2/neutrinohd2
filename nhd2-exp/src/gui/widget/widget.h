@@ -29,7 +29,7 @@
 
 
 //
-typedef enum {
+enum {
 	//MENU
 	WIDGET_MAINMENU,
 	WIDGET_MAINSETTINGS,
@@ -117,7 +117,7 @@ typedef enum {
 	WIDGET_HTTPTOOL,
 	//
 	WIDGET_USER
-}widget_id_t;
+};
 
 //
 enum
@@ -144,7 +144,7 @@ class CMenuTarget
 		virtual std::string &getString(void) { return *valueString; };
 		
 		//
-		widget_id_t widget_id;
+		int widget_id;
 		const char* widget_name;
 };
 

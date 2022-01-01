@@ -19,11 +19,14 @@ function main()
 	config:loadConfig(neutrino.CONFIGDIR .. "/skin/MetrixHD/MetrixHD.config")
 	
 	local m = neutrino.CWidget(box)
+	m.widget_id = neutrino.WIDGET_MAINMENU
+	m.widget_name = "mainmenu"
 	
 	-- rightWindow / logo 
 	local w2 = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50, box.iWidth/2, box.iHeight/2)
 	w2:setColor(neutrino.convertSetupColor2Color(config:getInt32("menu_Content_Selected_red"),config:getInt32("menu_Content_Selected_green"),config:getInt32("menu_Content_Selected_blue"),config:getInt32("menu_Content_Selected_alpha")))
 	w2:setGradient(neutrino.DARK2LIGHT2DARK)
+	
 	-- title
 	title = neutrino.CCLabel()
 	title:setText(neutrino.g_Locale:getText(neutrino.LOCALE_MAINMENU_HEAD));
@@ -52,7 +55,6 @@ function main()
 	
 	-- time
 	local timeBox = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50 + box.iHeight/2 + 50 + (box.iHeight/2 - 150)/2, box.iWidth/2, (box.iHeight/2 - 150)/2)
-	--timeBox:setColor(neutrino.convertSetupColor2Color(15,15,15,15))
 	timeBox:setGradient(neutrino.LIGHT2DARK)
 	timeBox:enableRepaint()
 	
@@ -63,8 +65,6 @@ function main()
 	timeBox:addCCItem(time)
 	
 	local w = neutrino.CWindow(box.iX + 60, box.iY + 50, box.iWidth/2 - 120, box.iHeight - 100)
-	--w:setColor(neutrino.convertSetupColor2Color(config:getInt32("menu_Content_red"),config:getInt32("menu_Content_green"),config:getInt32("menu_Content_blue"),config:getInt32("menu_Content_alpha")))
-	
 	local list = neutrino.ClistBox(box.iX + 50, box.iY + 60, box.iWidth/2 - 100, box.iHeight - 120)
 	list:disablePaintFrame()
 
@@ -158,10 +158,6 @@ function main()
 	end
 	if actionKey == "mainsetup" then
 		neutrino.CNeutrinoApp_getInstance():startSkin("mainsetup")
-	end
-	
-	if actionKey == "RC_setup" then
-		exit = true
 	end
 	
 	if m:getExitPressed() ~= true then
