@@ -18,6 +18,8 @@
 
 ![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/KravenHD.png)
 
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/mainmenu_2.bmp)
+
 ## How to build neutrino-HD2 for PC (x86) ##
 
 * check preqs (debian):
