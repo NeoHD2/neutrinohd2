@@ -14,8 +14,6 @@
 
 ![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/movieinfowidget.bmp)
 
-![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/mainmenu_1.bmp)
-
 ![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/metrixhd.png)
 
 ![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/KravenHD.png)
