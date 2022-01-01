@@ -3482,7 +3482,7 @@ void CNeutrinoApp::RealRun(void)
 
 				//
 				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-					CNeutrinoApp::getInstance()->startSkin("mainmenu");
+					startSkin("mainmenu");
 				else	
 					mainMenu();
 
@@ -3716,7 +3716,7 @@ void CNeutrinoApp::RealRun(void)
 
 				//
 				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-					CNeutrinoApp::getInstance()->startSkin("red");
+					startSkin("red");
 				else
 				{					
 					CEPGMenuHandler* redMenu = new CEPGMenuHandler();
@@ -3782,7 +3782,7 @@ void CNeutrinoApp::RealRun(void)
 
 				// features
 				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-					CNeutrinoApp::getInstance()->startSkin("blue");
+					startSkin("blue");
 				else
 					showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
 
@@ -6063,57 +6063,57 @@ bool CNeutrinoApp::getNVODMenu(CMenuWidget * menu)
 
         for( CSubServiceListSorted::iterator e = g_RemoteControl->subChannels.begin(); e != g_RemoteControl->subChannels.end(); ++e)
         {
-                sprintf(nvod_id, "%d", count);
+		sprintf(nvod_id, "%d", count);
 
-                if( !g_RemoteControl->are_subchannels ) 
+		if( !g_RemoteControl->are_subchannels ) 
 		{
-                        char nvod_time_a[50], nvod_time_e[50], nvod_time_x[50];
-                        char nvod_s[100];
-                        struct  tm *tmZeit;
+			char nvod_time_a[50], nvod_time_e[50], nvod_time_x[50];
+			char nvod_s[100];
+			struct  tm *tmZeit;
 
-                        tmZeit = localtime(&e->startzeit);
-                        sprintf(nvod_time_a, "%02d:%02d", tmZeit->tm_hour, tmZeit->tm_min);
+			tmZeit = localtime(&e->startzeit);
+			sprintf(nvod_time_a, "%02d:%02d", tmZeit->tm_hour, tmZeit->tm_min);
 
-                        time_t endtime = e->startzeit + e->dauer;
-                        tmZeit = localtime(&endtime);
-                        sprintf(nvod_time_e, "%02d:%02d", tmZeit->tm_hour, tmZeit->tm_min);
+			time_t endtime = e->startzeit + e->dauer;
+			tmZeit = localtime(&endtime);
+			sprintf(nvod_time_e, "%02d:%02d", tmZeit->tm_hour, tmZeit->tm_min);
 
-                        time_t jetzt = time(NULL);
-                        if(e->startzeit > jetzt) 
+			time_t jetzt = time(NULL);
+			if(e->startzeit > jetzt) 
 			{
-                                int mins = (e->startzeit - jetzt)/ 60;
-                                sprintf(nvod_time_x, g_Locale->getText(LOCALE_NVOD_STARTING), mins);
-                        }
-                        else if( (e->startzeit <= jetzt) && (jetzt < endtime) ) 
+				int mins = (e->startzeit - jetzt)/ 60;
+				sprintf(nvod_time_x, g_Locale->getText(LOCALE_NVOD_STARTING), mins);
+			}
+			else if( (e->startzeit <= jetzt) && (jetzt < endtime) ) 
 			{
-                                int proz = (jetzt - e->startzeit)*100/ e->dauer;
-                                sprintf(nvod_time_x, g_Locale->getText(LOCALE_NVOD_PERCENTAGE), proz);
-                        }
-                        else
-                                nvod_time_x[0] = 0;
+				int proz = (jetzt - e->startzeit)*100/ e->dauer;
+				sprintf(nvod_time_x, g_Locale->getText(LOCALE_NVOD_PERCENTAGE), proz);
+			}
+			else
+				nvod_time_x[0] = 0;
 
-                        sprintf(nvod_s, "%s - %s %s", nvod_time_a, nvod_time_e, nvod_time_x);
-                        menu->addItem(new CMenuForwarder(nvod_s, true, NULL, NVODChanger, nvod_id), (count == g_RemoteControl->selected_subchannel));
-                } 
+			sprintf(nvod_s, "%s - %s %s", nvod_time_a, nvod_time_e, nvod_time_x);
+			menu->addItem(new CMenuForwarder(nvod_s, true, NULL, NVODChanger, nvod_id), (count == g_RemoteControl->selected_subchannel));
+		} 
 		else 
 		{
 			if (count == 0)
 				menu->addItem(new CMenuForwarder(Latin1_to_UTF8(e->subservice_name.c_str()).c_str(), true, NULL, NVODChanger, nvod_id, RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
 			else
 				menu->addItem(new CMenuForwarder(Latin1_to_UTF8(e->subservice_name.c_str()).c_str(), true, NULL, NVODChanger, nvod_id, CRCInput::convertDigitToKey(count)), (count == g_RemoteControl->selected_subchannel));
-                }
+		}
 
-                count++;
-        }
+		count++;
+	}
 
-        if( g_RemoteControl->are_subchannels ) 
+	if( g_RemoteControl->are_subchannels ) 
 	{
-                menu->addItem(new CMenuSeparator(LINE));
-                CMenuOptionChooser* oj = new CMenuOptionChooser(LOCALE_NVODSELECTOR_DIRECTORMODE, &g_RemoteControl->director_mode, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW);
-                menu->addItem(oj);
-        }
+		menu->addItem(new CMenuSeparator(LINE));
+		CMenuOptionChooser* oj = new CMenuOptionChooser(LOCALE_NVODSELECTOR_DIRECTORMODE, &g_RemoteControl->director_mode, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW);
+		menu->addItem(oj);
+	}
 
-        return true;
+	return true;
 }
 
 void CNeutrinoApp::lockPlayBack(void)
