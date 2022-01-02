@@ -196,6 +196,7 @@ void CPicViewer::showMenu()
 	}
 
 	plist->setWidgetType(WIDGET_TYPE_FRAME);
+	plist->setItemsPerPage(10, 6);
 	//plist->setTimeOut(g_settings.timing[SNeutrinoSettings::TIMING_CHANLIST]);
 	plist->setSelected(selected);
 	plist->enableSaveScreen();
