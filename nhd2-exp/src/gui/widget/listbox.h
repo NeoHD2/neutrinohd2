@@ -142,7 +142,7 @@ class CMenuItem
 		//
 		int itemType;
 		int widgetType;
-		int widgetMode;
+		//int widgetMode;
 		bool isPlugin;
 		
 		// HACK for FRAME_WIDGET_TYPE
@@ -225,7 +225,7 @@ class CMenuItem
 
 		virtual void set2lines(void){nLinesItem = true;};
 		virtual void setWidgetType(int type){widgetType = type;};
-		virtual void setWidgetMode(int mode){widgetMode = mode;};
+		//virtual void setWidgetMode(int mode){widgetMode = mode;};
 		virtual void enableItemShadow(){itemShadow = true;};
 		virtual void setItemGradient(int gr){itemGradient = gr;};
 
@@ -650,13 +650,16 @@ class ClistBox : public CWidgetItem
 		void setSelected(unsigned int _new) { selected = _new; };
 
 		virtual void initFrames();
-		virtual void paint();
-		virtual void hide();
 		virtual void paintHead();
 		virtual void paintFoot();
 		virtual void paintItemInfo(int pos);
 		virtual void hideItemInfo();
-		virtual void refresh(){if (paintDate) timer->refresh();};//FIXME add CC_TIME
+		
+		//
+		virtual void paint();
+		virtual void hide();
+		void refresh(){if (paintDate) timer->refresh();};
+		bool update() const {return paintDate;};
 
 		// head
 		void enablePaintHead(){paintTitle = true;};

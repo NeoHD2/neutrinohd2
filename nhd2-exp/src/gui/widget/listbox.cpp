@@ -74,7 +74,7 @@ CMenuItem::CMenuItem()
 	//
 	nLinesItem = false;
 	widgetType = WIDGET_TYPE_STANDARD;
-	widgetMode = MODE_LISTBOX;
+	//widgetMode = MODE_LISTBOX;
 	isPlugin = false;
 
 	active = true;
@@ -1017,7 +1017,7 @@ int CMenuForwarder::getHeight(void) const
 	if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_EXTENDED))
 	{
 		ih = ITEM_ICON_H_MINI/2;
-		/*
+		
 		if (!iconName.empty())
 		{
 			CFrameBuffer::getInstance()->getIconSize(iconName.c_str(), &iw, &ih);
@@ -1025,7 +1025,6 @@ int CMenuForwarder::getHeight(void) const
 			if (ih >= ITEM_ICON_H_MINI/2)
 				ih = ITEM_ICON_H_MINI/2;
 		}
-		*/
 	}
 	else if(widgetType == WIDGET_TYPE_CLASSIC)
 	{
@@ -1355,7 +1354,8 @@ int ClistBoxItem::getHeight(void) const
 	{
 		ih = ITEM_ICON_H_MINI;
 			
-		if (widgetMode == MODE_LISTBOX)
+		//if (widgetMode == MODE_LISTBOX)
+		if(nLinesItem)
 		{
 			ih = ITEM_ICON_H_MINI*2;
 		}
@@ -1364,8 +1364,13 @@ int ClistBoxItem::getHeight(void) const
 	{
 		ih = ITEM_ICON_H_MINI/2;
 		
-		//if (!iconName.empty())
-		//	CFrameBuffer::getInstance()->getIconSize(iconName.c_str(), &iw, &ih);
+		if (!iconName.empty())
+		{
+			CFrameBuffer::getInstance()->getIconSize(iconName.c_str(), &iw, &ih);
+		
+			if ( ih > ITEM_ICON_H_MINI/2)
+				ih = ITEM_ICON_H_MINI/2;	
+		}
 			
 		if(nLinesItem)
 		{
@@ -1477,6 +1482,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 	/*
+		// FIXME: pls review this
 		int iw = 0;
 		int ih = 0;
 		int bpp = 0;
@@ -1636,7 +1642,8 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			icon_h = ITEM_ICON_H_MINI;
 			icon_w = ITEM_ICON_W_MINI;
 			
-			if (widgetMode == MODE_LISTBOX)
+			//if (widgetMode == MODE_LISTBOX)
+			if(nLinesItem)
 			{
 				icon_h = ITEM_ICON_H_MINI*2;
 				icon_w = ITEM_ICON_W_MINI;
@@ -1855,7 +1862,8 @@ int CPluginItem::getHeight(void) const
 	{
 		ih = ITEM_ICON_H_MINI;
 			
-		if (widgetMode == MODE_LISTBOX)
+		//if (widgetMode == MODE_LISTBOX)
+		if(nLinesItem)
 		{
 			ih = ITEM_ICON_H_MINI*2;
 		}
@@ -2112,7 +2120,8 @@ int CPluginItem::paint(bool selected, bool /*AfterPulldown*/)
 			icon_h = ITEM_ICON_H_MINI;
 			icon_w = ITEM_ICON_W_MINI;
 			
-			if (widgetMode == MODE_LISTBOX)
+			//if (widgetMode == MODE_LISTBOX)
+			if(nLinesItem)
 			{
 				icon_h = ITEM_ICON_H_MINI*2;
 				icon_w = ITEM_ICON_W_MINI;
@@ -2418,6 +2427,12 @@ ClistBox::~ClistBox()
 		delete [] items_background;
 		items_background = NULL;
 	}
+	
+	if (sec_timer_id)
+	{
+		g_RCInput->killTimer(sec_timer_id);
+		sec_timer_id = 0;
+	}	
 }
 
 void ClistBox::addItem(CMenuItem * menuItem, const bool defaultselected)
@@ -3102,7 +3117,7 @@ void ClistBox::paintItemInfo(int pos)
 {
 	dprintf(DEBUG_INFO, "ClistBox::paintItemInfo:\n"); //FIXME:
 	
-	if(widgetType == WIDGET_TYPE_STANDARD)
+	if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC) )
 	{
 		if(paintFootInfo)
 		{
@@ -3128,43 +3143,14 @@ void ClistBox::paintItemInfo(int pos)
 				itemsLine.setMode(DL_HINT);
 				itemsLine.PaintLine(details_line);
 				itemsLine.setHint(item->itemHint.c_str());
-				itemsLine.setIcon(item->itemIcon.c_str());
+				
+				if (widgetType == WIDGET_TYPE_STANDARD)
+					itemsLine.setIcon(item->itemIcon.c_str());
 					
 				itemsLine.paint(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight - cFrameFootInfoHeight, cFrameFootInfoHeight, item->getHeight(), item->getYPosition());
 			}
 		}
-	}
-	else if(widgetType == WIDGET_TYPE_CLASSIC)
-	{
-		if(paintFootInfo)
-		{
-			if (footInfoMode == FOOT_INFO_MODE)
-			{
-				CMenuItem* item = items[pos];
-	
-				// detailslines
-				itemsLine.setMode(DL_INFO);
-				itemsLine.PaintLine(details_line);
-				itemsLine.setInfo1(item->info1.c_str());
-				itemsLine.setOptionInfo1(item->option_info1.c_str());
-				itemsLine.setInfo2(item->info2.c_str());
-				itemsLine.setOptionInfo2(item->option_info2.c_str());
-					
-				itemsLine.paint(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight - cFrameFootInfoHeight, cFrameFootInfoHeight, item->getHeight(), item->getYPosition());
-			}
-			else if (footInfoMode == FOOT_HINT_MODE)
-			{
-				CMenuItem* item = items[pos];
-	
-				// detailslines box
-				itemsLine.setMode(DL_HINT);
-				itemsLine.PaintLine(details_line);
-				itemsLine.setHint(item->itemHint.c_str());
-				//itemsLine.setIcon(item->itemIcon.c_str());
-				itemsLine.paint(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight - cFrameFootInfoHeight, cFrameFootInfoHeight, item->getHeight(), item->getYPosition());
-			}
-		}
-	}
+	}	
 	else if(widgetType == WIDGET_TYPE_EXTENDED)
 	{
 		CMenuItem* item = items[pos];
@@ -3304,12 +3290,6 @@ void ClistBox::hide()
 	}
 	
 	CFrameBuffer::getInstance()->blit();
-	
-	if (sec_timer_id)
-	{
-		g_RCInput->killTimer(sec_timer_id);
-		sec_timer_id = 0;
-	}	
 	
 	painted = false;
 }
@@ -3743,7 +3723,7 @@ void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned i
 			ClistBoxItem *fw_plugin = new ClistBoxItem(g_PluginList->getName(count), enabled, NULL, CPluginsExec::getInstance(), g_PluginList->getFileName(count), dk, NULL, IconName.c_str());
 
 			fw_plugin->setHint(g_PluginList->getDescription(count).c_str());
-			fw_plugin->setWidgetMode(imode); //FIXME:
+			//fw_plugin->setWidgetMode(imode); //FIXME:
 			fw_plugin->setWidgetType(itype);
 			if (i2lines)
 				fw_plugin->set2lines();
@@ -3804,7 +3784,8 @@ bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 	
 	if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 	{
-		refresh();
+		if (update())
+			refresh();
 	} 
 	else if (msg == RC_up)
 	{

@@ -115,6 +115,11 @@ enum {
 	WIDGET_PROGRESSWINDOW,
 	WIDGET_STRINGINPUT,
 	WIDGET_HTTPTOOL,
+	WIDGET_VOLUME,
+	WIDGET_MUTE,
+	//
+	WIDGET_PLUGIN,
+	WIDGET_USERMENU,
 	//
 	WIDGET_USER
 };
@@ -141,7 +146,7 @@ class CMenuTarget
 		virtual ~CMenuTarget(){};
 		virtual void hide(){valueString->clear();};
 		virtual int exec(CMenuTarget *parent, const std::string &actionKey) = 0;
-		virtual std::string &getString(void) { return *valueString; };
+		virtual std::string& getString(void) { return *valueString; };
 		
 		//
 		int widget_id;

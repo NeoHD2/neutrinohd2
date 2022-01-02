@@ -68,6 +68,11 @@ enum
 #define TOP_LEFT	1
 #define TOP_CENTER	2
 
+enum {
+	SHADOW_ALL,
+	SHADOW_LEFTRIGHT
+};
+
 class CTextBox : public CWidgetItem
 {
 	public:
@@ -116,6 +121,7 @@ class CTextBox : public CWidgetItem
 		bool painted;
 		bool paintBG;
 		bool paintShadow;
+		int shadowMode;
 
 		CScrollBar scrollBar;
 
@@ -158,7 +164,7 @@ class CTextBox : public CWidgetItem
 		void setFontText(CFont * font_text){m_pcFontText = font_text;};
 		void setMode(const int mode);
 		void disablePaintFrame(){paintBG = false;};
-		void enableShadow(){paintShadow = true;};
+		void enableShadow(int m = SHADOW_ALL){paintShadow = true; shadowMode = m;};
 
 		void paint(void);
 		void hide(void);

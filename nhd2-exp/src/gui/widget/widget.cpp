@@ -705,14 +705,6 @@ int CWidget::exec(CWidgetItem* wItem)
 	retval = RETURN_REPAINT;
 	pos = 0;
 	exit_pressed = false;
-
-	//if (wItem)
-	//	wItem->paint();
-		
-//	CFrameBuffer::getInstance()->blit();
-
-	// add sec timer
-	sec_timer_id = g_RCInput->addTimer(sec_timer_interval*1000*1000, false);
 	
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
 
@@ -772,54 +764,11 @@ int CWidget::exec(CWidgetItem* wItem)
 
 		if (!handled) 
 		{
-			if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
-			{
-				// refresh WidgetItem
-				wItem->refresh();
-			} 
-
+			if (wItem)
+				wItem->onButtonPress(msg, data); // whatever return???
+			
 			switch (msg) 
 			{
-				/*
-				case (NeutrinoMessages::EVT_TIMER):
-					if ( CNeutrinoApp::getInstance()->handleMsg( msg, data ) & messages_return::cancel_all ) 
-					{
-						retval = RETURN_EXIT_ALL;
-						msg = RC_timeout;
-					}
-					break;
-				*/
-				
-				//
-				case (RC_up):
-					if (wItem)
-						wItem->scrollLineUp();
-					break;
-
-				case (RC_down):
-					if (wItem)
-						wItem->scrollLineDown();
-					break;
-
-				case (RC_right):
-					if (wItem)
-						wItem->swipRight();
-					break;
-
-				case (RC_left):
-					onLeftKeyPressed();
-					break;
-
-				case (RC_page_up):
-					if (wItem)
-						wItem->swipLeft();
-					break;
-
-				case (RC_page_down):
-					if (wItem)
-						wItem->scrollPageUp();
-					break;
-
 				case (RC_home):
 					if (wItem)
 						wItem->homeKeyPressed();
@@ -873,21 +822,11 @@ int CWidget::exec(CWidgetItem* wItem)
 	while ( msg != RC_timeout );
 
 	dprintf(DEBUG_NORMAL, "CWidget: retval: (%d) selected:%d\n", retval, selected);
-	
-	//hide();
 
-	//
-	g_RCInput->killTimer(sec_timer_id);
-	sec_timer_id = 0;	
-
-	// vfd
-	//if(!parent)
-	{
-		if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
-			CVFD::getInstance()->setMode(CVFD::MODE_WEBTV);
-		else
-			CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
-	}
+	if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
+		CVFD::getInstance()->setMode(CVFD::MODE_WEBTV);
+	else
+		CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
 	
 	return retval;
 }

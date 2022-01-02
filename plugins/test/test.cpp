@@ -1730,7 +1730,7 @@ void CTestMenu::testClistBoxWidget()
 		item->setHint(tmp.c_str());
 		
 		item->enableItemShadow();
-		item->setWidgetMode(MODE_MENU);
+		//item->setWidgetMode(MODE_MENU);
 
 		rightWidget->addItem(item);
 	}
@@ -3782,7 +3782,7 @@ void CTestMenu::testClistBox()
 
 		item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
-		item->set2lines();
+		//item->set2lines();
 
 		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
@@ -3806,6 +3806,7 @@ void CTestMenu::testClistBox()
 	rightWidget->enablePaintDate();
 	rightWidget->setFormat("%d.%m.%Y %H:%M:%S");
 	rightWidget->addTimer();
+	//rightWidget->enableRepaint();
 
 	// footer
 	rightWidget->enablePaintFoot();
@@ -3814,13 +3815,11 @@ void CTestMenu::testClistBox()
 	// footinfo
 	rightWidget->enablePaintFootInfo(80);
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
-
-	//rightWidget->setSelected(selected);
 	
-#if 1
 	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 
+#if 0
 	// loop
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
@@ -3873,7 +3872,7 @@ void CTestMenu::testClistBox()
 	testWidget = new CWidget(&Box);
 	
 	testWidget->addKey(RC_info, this, "linfo");
-	//testWidget->addKey(RC_setup, this, "lsetup");
+	testWidget->addKey(RC_setup, this, "lsetup");
 	testWidget->exec(rightWidget);
 	
 	delete testWidget;
@@ -4076,7 +4075,7 @@ void CTestMenu::testClistBox3()
 
 		item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
-		item->set2lines();
+		//item->set2lines();
 
 		std::string tmp = m_vMovieInfo[i].epgInfo1;
 		tmp += "\n";
@@ -4237,7 +4236,7 @@ void CTestMenu::testClistBox4()
 	rightWidget->setItemsPerPage(5,2);
 	rightWidget->enableShrinkMenu();
 
-	rightWidget->disablePaintFrame();	
+	//rightWidget->disablePaintFrame();	
 
 	//rightWidget->setSelected(selected);
 	
@@ -4528,7 +4527,7 @@ void CTestMenu::testClistBox6()
 
 		item->setHint(tmp.c_str());
 		
-		item->setWidgetMode(MODE_MENU);
+		//item->setWidgetMode(MODE_MENU);
 		item->enableItemShadow();
 		item->setItemGradient(LIGHT2DARK2LIGHT);
 		

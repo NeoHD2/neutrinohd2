@@ -38,14 +38,16 @@ void CHTTPTool::setTitle(const neutrino_locale_t title)
 {
 	captionString = g_Locale->getText(title);
 	
-	statusViewer->setTitle(captionString.c_str());
+	if (statusViewer)
+		statusViewer->setTitle(captionString.c_str());
 }
 
 void CHTTPTool::setTitle(const char * const title)
 {
 	captionString = title;
 	
-	statusViewer->setTitle(captionString.c_str());
+	if (statusViewer)
+		statusViewer->setTitle(captionString.c_str());
 }
 
 int CHTTPTool::show_progress(void * clientp, double dltotal, double dlnow, double /*ultotal*/, double /*ulnow*/)

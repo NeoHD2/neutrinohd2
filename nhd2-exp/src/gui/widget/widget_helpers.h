@@ -102,12 +102,15 @@ class CComponent
 		virtual ~CComponent(){};
 		
 		virtual bool isSelectable(void){return false;};
-		virtual bool update() const{return false;};
 		
 		//
 		virtual void paint(void){};
 		virtual void hide(void){};
+		
+		//
 		virtual void refresh(void){};
+		virtual void enableRepaint(){rePaint = true;};
+		virtual bool update() const {return rePaint;};
 		
 		//
 		virtual int getCCType(){return cc_type;};
@@ -484,16 +487,14 @@ class CCTime : public CComponent
 		void setColor(uint8_t col){color = col;};
 		void setFont(CFont *f){font = f;};
 		void setFormat(char* f){format = f;};
-		//void enablePaintBG(){paintBG = true;};
 		void setHAlign(int h){halign = h;};
 		
 		//
 		void paint();
 		void hide(){delete [] background; background = NULL;};
-		void refresh();
 		
-		void enableRepaint(){rePaint = true;};
-		bool update() const {return rePaint;};
+		//
+		void refresh();
 };
 
 // CCCounter
@@ -522,10 +523,9 @@ class CCCounter : public CComponent
 		//
 		void paint();
 		void hide(){delete [] background; background = NULL;};
-		void refresh();
 		
-		void enableRepaint(){rePaint = true;};
-		bool update() const {return rePaint;};
+		//
+		void refresh();
 		
 		//
 		CFont* getFont(){return font;};
@@ -563,11 +563,15 @@ class CWidgetItem
 
 		virtual bool isSelectable(void){return false;}
 		virtual bool hasItem(){return false;};
-		virtual bool update() const{return false;};
 
+		//
 		virtual void paint(void){painted = true;};
 		virtual void hide(void){painted = false;};
+		
+		//
 		virtual void refresh(void){};
+		virtual void enableRepaint(){rePaint = true;};
+		virtual bool update() const {return rePaint;};
 
 		virtual void scrollLineDown(const int lines = 1){};
 		virtual void scrollLineUp(const int lines = 1){};
@@ -639,6 +643,8 @@ class CHeaders : public CWidgetItem
 		//
 		void paint();
 		void hide();
+		
+		//
 		void refresh(void){if (paintDate) timer->refresh();};
 		bool update() const {return paintDate;};
 };

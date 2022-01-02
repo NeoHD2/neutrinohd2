@@ -271,15 +271,17 @@ int CTuxtxtChangeExec::exec(CMenuTarget *parent, const std::string &actionKey)
 #define USERMENU_ITEM_OPTION_COUNT SNeutrinoSettings::ITEM_MAX
 const keyval USERMENU_ITEM_OPTIONS[USERMENU_ITEM_OPTION_COUNT] =
 {
-	{SNeutrinoSettings::ITEM_NONE, NONEXISTANT_LOCALE, NULL},  
-        {SNeutrinoSettings::ITEM_TIMERLIST, LOCALE_TIMERLIST_NAME, NULL},
-        {SNeutrinoSettings::ITEM_PLUGIN, LOCALE_USERMENU_ITEM_PLUGINS, NULL},
-        {SNeutrinoSettings::ITEM_VTXT, LOCALE_USERMENU_ITEM_VTXT, NULL},
-	{SNeutrinoSettings::ITEM_REMOTE, LOCALE_RCLOCK_MENUEADD, NULL}   
+	{ SNeutrinoSettings::ITEM_NONE, NONEXISTANT_LOCALE, NULL },  
+	{ SNeutrinoSettings::ITEM_TIMERLIST, LOCALE_TIMERLIST_NAME, NULL },
+	{ SNeutrinoSettings::ITEM_PLUGIN, LOCALE_USERMENU_ITEM_PLUGINS, NULL },
+	{ SNeutrinoSettings::ITEM_VTXT, LOCALE_USERMENU_ITEM_VTXT, NULL },
+	{ SNeutrinoSettings::ITEM_REMOTE, LOCALE_RCLOCK_MENUEADD, NULL }   
 };
 
-int CUserMenuMenu::exec(CMenuTarget *parent, const std::string &/*actionKey*/)
+int CUserMenuMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 {
+	dprintf(DEBUG_NORMAL , "%s::exec: %s\n", __FUNCTION__, actionKey.c_str());
+	
         if(parent)
                 parent->hide();
 
@@ -287,11 +289,9 @@ int CUserMenuMenu::exec(CMenuTarget *parent, const std::string &/*actionKey*/)
 
 	menu.setWidgetMode(MODE_SETUP);
 	menu.enableShrinkMenu();
-	
-        //menu.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-        //menu.addItem(new CMenuSeparator(LINE));
 
         CStringInputSMS name(LOCALE_USERMENU_NAME, g_settings.usermenu_text[button].c_str());
+        
         menu.addItem(new CMenuForwarder(LOCALE_USERMENU_NAME, true, g_settings.usermenu_text[button].c_str(), &name));
         menu.addItem(new CMenuSeparator(LINE));
 

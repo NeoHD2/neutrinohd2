@@ -133,6 +133,7 @@ void CTextBox::initVar(void)
 	enableFrame = false;
 	paintShadow = false;
 	useBG = false;
+	shadowMode = SHADOW_ALL;
 	
 	itemType = WIDGET_ITEM_TEXTBOX;
 }
@@ -232,7 +233,7 @@ void CTextBox::initFramesRel(void)
 
 	m_cFrameTextRel.iX = itemBox.iX + BORDER_LEFT;
 	m_cFrameTextRel.iY = itemBox.iY + 10;
-	m_cFrameTextRel.iHeight	= itemBox.iHeight - 20;
+	m_cFrameTextRel.iHeight = itemBox.iHeight - 20;
 	
 	if(m_nMode & SCROLL)
 	{
@@ -440,7 +441,7 @@ void CTextBox::refreshText(void)
 {
 	dprintf(DEBUG_DEBUG, "CTextBox::refreshText:\r\n");
 
-	// paint text background
+	// paint background
 	if(paintBG)
 	{
 		if (paintShadow)
@@ -449,7 +450,10 @@ void CTextBox::refreshText(void)
 			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
 			
 			//
-			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, m_textBackgroundColor);
+			if (shadowMode == SHADOW_ALL)
+				CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, m_textBackgroundColor);
+			else
+				CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY, itemBox.iWidth - 2, itemBox.iHeight, m_textBackgroundColor);
 		}
 		else
 		{

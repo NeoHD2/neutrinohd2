@@ -33,8 +33,8 @@ CSysInfoWidget::CSysInfoWidget(int m)
 	frameBuffer = CFrameBuffer::getInstance();
 	
 	// windows size
-	cFrameBox.iWidth  = w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 ));
-	cFrameBox.iHeight = h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20));
+	cFrameBox.iWidth  = frameBuffer->getScreenWidth() - 100;
+	cFrameBox.iHeight = frameBuffer->getScreenHeight() - 100;
 	
 	//head height
 	titleIcon.setIcon(NEUTRINO_ICON_SETTINGS);
@@ -55,8 +55,10 @@ CSysInfoWidget::CSysInfoWidget(int m)
 	cFrameBoxText.iWidth = cFrameBox.iWidth;
 	cFrameBoxText.iHeight = cFrameBox.iHeight - cFrameBoxTitle.iHeight - cFrameBoxFoot.iHeight;
 
-	textBox = new CTextBox();
-	textBox->setPosition(&cFrameBoxText);
+	textBox = new CTextBox(&cFrameBoxText);
+	//textBox->setPosition(&cFrameBoxText);
+	textBox->enableShadow(SHADOW_LEFTRIGHT);
+	textBox->setBackgroundColor(COL_BLACK_PLUS_0);
 }
 
 CSysInfoWidget::~CSysInfoWidget()

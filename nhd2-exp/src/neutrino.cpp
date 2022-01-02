@@ -1728,15 +1728,6 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 	
 	CConfigFile* skinConfig = new CConfigFile(',');
 	
-	// fetch skin config file
-	/*
-	std::string skinPath = CONFIGDIR "/skin/";
-	skinPath += filename;
-	skinPath += "/";
-	skinPath += filename;
-	skinPath += ".config";
-	*/
-	
 	if(skinConfig->loadConfig(filename))
 	{
 		g_settings.menu_Head_alpha = skinConfig->getInt32( "menu_Head_alpha", 15);
@@ -1856,15 +1847,6 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	
 	CConfigFile* skinConfig = new CConfigFile(',');;
 	
-	// fetch skin config file
-/*
-	std::string skinPath = CONFIGDIR "/skin/";
-	skinPath += filename;
-	skinPath += "/";
-	skinPath += filename;
-	skinPath += ".config";
-*/
-	
 	skinConfig->setInt32( "menu_Head_alpha", g_settings.menu_Head_alpha );
 	skinConfig->setInt32( "menu_Head_red", g_settings.menu_Head_red );
 	skinConfig->setInt32( "menu_Head_green", g_settings.menu_Head_green );
@@ -1960,7 +1942,7 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 		
 	skinConfig->setString("font_file", g_settings.font_file);
 
-	if (!skinConfig->saveConfig(/*skinPath.c_str()*/filename))
+	if (!skinConfig->saveConfig(filename))
 		printf("CNeutrinoApp::saveSkinConfig %s write error\n", filename);
 }
 
@@ -5811,7 +5793,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 				skinConfig += g_settings.preferred_skin.c_str();
 				skinConfig += ".config";
 				
-				saveSkinConfig(/*g_settings.preferred_skin*/skinConfig.c_str());
+				saveSkinConfig(skinConfig.c_str());
 			}
 				
 			tuxtxt_close();

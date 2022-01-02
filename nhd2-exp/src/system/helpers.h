@@ -193,6 +193,7 @@ class cTimeMs {
 
 //
 #ifndef SWIG
+std::string readFile(std::string file);
 bool parseJsonFromFile(std::string& jFile, Json::Value *root, std::string *errMsg);
 bool parseJsonFromString(std::string& jData, Json::Value *root, std::string *errMsg);
 #endif

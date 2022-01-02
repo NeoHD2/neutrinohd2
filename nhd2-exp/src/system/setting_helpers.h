@@ -63,7 +63,7 @@ class CSubtitleChangeExec : public CMenuTarget
 	public:
 		CSubtitleChangeExec(){};
 		~CSubtitleChangeExec(){};
-		int exec(CMenuTarget* parent, const std::string & actionKey);
+		int exec(CMenuTarget* parent, const std::string& actionKey);
 };
 
 // NVOD change notifier
@@ -72,7 +72,7 @@ class CNVODChangeExec : public CMenuTarget
 	public:
 		CNVODChangeExec(){};
 		~CNVODChangeExec(){};
-		int exec(CMenuTarget* parent, const std::string & actionKey);
+		int exec(CMenuTarget* parent, const std::string& actionKey);
 };
 
 // tuxtxt notifier
@@ -81,7 +81,7 @@ class CTuxtxtChangeExec : public CMenuTarget
 	public:
 		CTuxtxtChangeExec(){};
 		~CTuxtxtChangeExec(){};
-		int exec(CMenuTarget* parent, const std::string & actionKey);
+		int exec(CMenuTarget* parent, const std::string& actionKey);
 };
 
 // USERMENU
@@ -93,7 +93,7 @@ class CUserMenuMenu : public CMenuTarget
         public:
                 CUserMenuMenu(neutrino_locale_t _local, int _button){local = _local; button = _button;};
                 ~CUserMenuMenu(){};
-                int exec(CMenuTarget* parent, const std::string & actionKey);
+                int exec(CMenuTarget* parent, const std::string& actionKey);
 };
 
 #endif

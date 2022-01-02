@@ -253,7 +253,7 @@ void CMenuWidget::initFrames()
 		CMenuItem * item = items[count];
 
 		item->widgetType = widgetType;
-		item->widgetMode = widgetMode;
+		//item->widgetMode = widgetMode;
 		item->itemShadow = itemShadow;
 	} 
 
@@ -1380,7 +1380,7 @@ void CMenuWidget::integratePlugins(CPlugins::i_type_t integration, const unsigne
 			CMenuForwarder *fw_plugin = new CMenuForwarder(g_PluginList->getName(count), enabled, NULL, CPluginsExec::getInstance(), g_PluginList->getFileName(count), dk, NULL, IconName.c_str());
 
 			fw_plugin->setHint(g_PluginList->getDescription(count).c_str());
-			fw_plugin->setWidgetMode(MODE_LISTBOX); //FIXME:
+			//fw_plugin->setWidgetMode(MODE_LISTBOX); //FIXME:
 			fw_plugin->isPlugin = true;
 
 			addItem(fw_plugin);

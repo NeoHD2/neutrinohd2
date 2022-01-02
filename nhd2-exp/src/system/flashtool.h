@@ -47,7 +47,7 @@ class CFlashTool
 		std::string mtdDevice;
 		std::string ErrorMessage;
 
-		bool erase(int globalProgressEnd=-1);
+		bool erase(int globalProgressEnd = -1);
 
 	public:
 		CFlashTool();

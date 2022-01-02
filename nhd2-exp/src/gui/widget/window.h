@@ -75,23 +75,18 @@ class CWindow : public CWidgetItem
 		void setGradient(int grad, int direction = GRADIENT_VERTICAL, int intensity = INT_LIGHT, int type = GRADIENT_ONECOLOR){gradient = grad; grad_direction = direction; grad_intensity = intensity; grad_type = type;};
 		void enableShadow(void){enableshadow = true;};
 		void enableSaveScreen();
-
 		void disablePaintFrame(){paintFrame = false;};
 
+		//
 		void paint(void);
 		void hide(void);
 		void refresh(void);
-		
-		inline CBox getWindowsPos(void){return (itemBox);};
 		
 		//
 		void addCCItem(CComponent* CCItem);
 		bool hasItem(){return !CCItems.empty();};
 		void clearCCItems(){CCItems.clear();};
 		void paintCCItems();
-		
-		void enableRepaint(){rePaint = true;};
-		bool update() const {return rePaint;};
 };
 
 #endif

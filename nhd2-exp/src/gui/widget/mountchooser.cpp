@@ -99,14 +99,17 @@ int CMountChooser::exec(CMenuTarget* parent, const std::string& actionKey)
 	dprintf(DEBUG_NORMAL, "CMountChooser::exec: actionKey:%s\n", actionKey.c_str());
 
 	const char * key = actionKey.c_str();
+	
 	if (strncmp(key, "MID:", 4) == 0)
 	{
 		int mount_id = -1;
 		sscanf(&key[4],"%d",&mount_id);
+		
 		if ((mount_id > -1) && (mount_id < NETWORK_NFS_NR_OF_ENTRIES))
 		{
 			if (index)
 				*index = mount_id;
+				
 			if (localDir) 
 				strcpy(localDir,g_settings.network_nfs_local_dir[mount_id]);
 		}

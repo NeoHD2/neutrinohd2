@@ -894,7 +894,7 @@ void CSkinManager::showMenu()
 	
 	// default
 	item = new ClistBoxItem(LOCALE_SKIN_DEFAULT, true, NULL, this, "neutrino_default", RC_nokey, NULL, DATADIR "/neutrino/icons/prev.jpg");
-	item->setHint("Here you can select a skin from the following list.");
+	item->setHint("Here you can select a skin from the following list."); // FIXME: localize
 	
 	skinMenu->addItem(item);
 	
@@ -920,7 +920,8 @@ void CSkinManager::showMenu()
 				hint += namelist[i]->d_name;
 				hint += "/prev.png";
 				item->setItemIcon(hint.c_str());
-				item->setHint("Here you can select a skin from the following list.");
+				item->setHint("Here you can select a skin from the following list."); // FIXME: localize
+				item->set2lines();
 				
 				skinMenu->addItem(item);	
 			}
@@ -995,7 +996,7 @@ void CSkinSettings::showMenu()
 	dprintf(DEBUG_NORMAL, "CSkinSettings::showMenu:\n");
 	
 	CMenuItem* item = NULL;
-	CMenuWidget* skinSettings = new CMenuWidget("Skin Style selection", NEUTRINO_ICON_COLORS, 800, 600);
+	CMenuWidget* skinSettings = new CMenuWidget("Skin Style selection", NEUTRINO_ICON_COLORS, 800, 600);// FIXME: localize
 	skinSettings->setWidgetMode(MODE_MENU);
 	//skinSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
 	skinSettings->enablePaintDate();
@@ -1059,6 +1060,7 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 	if (!actionKey.empty())
 	{
+		// FIXME: localize
 		if (MessageBox(LOCALE_MESSAGEBOX_INFO, "Skin Style selection", mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			//

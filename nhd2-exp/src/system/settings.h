@@ -50,14 +50,10 @@ struct SNeutrinoSettings
 	// VIDEO
 	int video_Mode;
 	int analog_mode;	//scart
-
 	int hdmi_color_space;
-
 	int video_Ratio;
 	int video_Format;
-
 	int wss_mode;
-	
 	unsigned char contrast;
 	unsigned char saturation;
 	unsigned char brightness;
@@ -67,11 +63,8 @@ struct SNeutrinoSettings
 	// AUDIO
 	int audio_AnalogMode;
 	int audio_DolbyDigital;
-
 	int hdmi_dd;
-
 	int avsync;
-	
 	int ac3_delay;
 	int pcm_delay;
 	//
@@ -119,10 +112,8 @@ struct SNeutrinoSettings
 	int recording_audio_pids_std;
 	int recording_audio_pids_alt;
 	int recording_audio_pids_ac3;
-
 	int recording_epg_for_filename;
 	int recording_save_in_channeldir;
-	
 	int recording_screenshot;
 	// END RECORDING
 
@@ -132,9 +123,9 @@ struct SNeutrinoSettings
 
 	// OSD
 	unsigned char gtx_alpha;
-	
+	//
 	char language[25];
-
+	//
 	unsigned char menu_Head_alpha;
 	unsigned char menu_Head_red;
 	unsigned char menu_Head_green;
@@ -321,11 +312,11 @@ struct SNeutrinoSettings
         typedef enum
         {
 		ITEM_NONE = 0,
-                ITEM_TIMERLIST = 1,
-                ITEM_PLUGIN = 2,
-                ITEM_VTXT = 3,
+		ITEM_TIMERLIST = 1,
+		ITEM_PLUGIN = 2,
+		ITEM_VTXT = 3,
 		ITEM_REMOTE = 4,              
-                ITEM_MAX   // MUST be always the last in the list
+		ITEM_MAX   // MUST be always the last in the list
         }USER_ITEM;
 	
         std::string usermenu_text[BUTTON_MAX];
@@ -586,127 +577,6 @@ const int PARENTALLOCK_PROMPT_ONSIGNAL       = 3;
 #define widest_number "2"
 #define ANNOUNCETIME (1 * 60)
 
-/*
-typedef struct {
-	//
-	unsigned char menu_Head_alpha;
-	unsigned char menu_Head_red;
-	unsigned char menu_Head_green;
-	unsigned char menu_Head_blue;
-
-	unsigned char menu_Head_Text_alpha;
-	unsigned char menu_Head_Text_red;
-	unsigned char menu_Head_Text_green;
-	unsigned char menu_Head_Text_blue;
-
-	unsigned char menu_Content_alpha;
-	unsigned char menu_Content_red;
-	unsigned char menu_Content_green;
-	unsigned char menu_Content_blue;
-
-	unsigned char menu_Content_Text_alpha;
-	unsigned char menu_Content_Text_red;
-	unsigned char menu_Content_Text_green;
-	unsigned char menu_Content_Text_blue;
-
-	unsigned char menu_Content_Selected_alpha;
-	unsigned char menu_Content_Selected_red;
-	unsigned char menu_Content_Selected_green;
-	unsigned char menu_Content_Selected_blue;
-
-	unsigned char menu_Content_Selected_Text_alpha;
-	unsigned char menu_Content_Selected_Text_red;
-	unsigned char menu_Content_Selected_Text_green;
-	unsigned char menu_Content_Selected_Text_blue;
-
-	unsigned char menu_Content_inactive_alpha;
-	unsigned char menu_Content_inactive_red;
-	unsigned char menu_Content_inactive_green;
-	unsigned char menu_Content_inactive_blue;
-
-	unsigned char menu_Content_inactive_Text_alpha;
-	unsigned char menu_Content_inactive_Text_red;
-	unsigned char menu_Content_inactive_Text_green;
-	unsigned char menu_Content_inactive_Text_blue;
-
-	unsigned char infobar_alpha;
-	unsigned char infobar_red;
-	unsigned char infobar_green;
-	unsigned char infobar_blue;
-
-	unsigned char infobar_Text_alpha;
-	unsigned char infobar_Text_red;
-	unsigned char infobar_Text_green;
-	unsigned char infobar_Text_blue;
-	
-	unsigned char infobar_colored_events_alpha;
-	unsigned char infobar_colored_events_red;
-	unsigned char infobar_colored_events_green;
-	unsigned char infobar_colored_events_blue;
-	
-	unsigned char menu_Foot_alpha;
-	unsigned char menu_Foot_red;
-	unsigned char menu_Foot_green;
-	unsigned char menu_Foot_blue;
-	
-	unsigned char menu_Foot_Text_alpha;
-	unsigned char menu_Foot_Text_red;
-	unsigned char menu_Foot_Text_green;
-	unsigned char menu_Foot_Text_blue;
-
-	unsigned char menu_FootInfo_alpha;
-	unsigned char menu_FootInfo_red;
-	unsigned char menu_FootInfo_green;
-	unsigned char menu_FootInfo_blue;
-	
-	unsigned char menu_FootInfo_Text_alpha;
-	unsigned char menu_FootInfo_Text_red;
-	unsigned char menu_FootInfo_Text_green;
-	unsigned char menu_FootInfo_Text_blue;
-
-	//
-	char	font_file[100];
-	
-	//
-	int volume_pos;
-	int rounded_corners;
-	
-	//
-	int infobar_sat_display;
-	int infobar_subchan_disp_pos;
-	
-	// progressbar color
-	int progressbar_color;
-	int progressbar_gradient;
-
-	//head
-	int Head_gradient;
-	int Head_corner;
-	int Head_radius;
-	int Head_line;
-	
-	// foot
-	int Foot_gradient;
-	int Foot_corner;
-	int Foot_radius;
-	int Foot_line;
-	
-	//
-	int Foot_Info_gradient;
-	int Foot_Info_line;
-	
-	// infobar
-	int infobar_gradient;
-	int infobar_corner;
-	int infobar_radius;
-	int infobar_buttonbar;
-	
-	//
-	int use_shadow;
-
-	// icons dir
-	std::string icons_dir;
-}SKIN_SETTINGS;
-*/
-
 #endif
+
+
