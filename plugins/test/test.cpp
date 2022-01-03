@@ -2746,7 +2746,7 @@ void CTestMenu::testCComponent()
 	testDline.setIcon(m_vMovieInfo[0].tfile.c_str());
 	
 	// pb
-	CProgressBar testPB(Box.iWidth /3, 10, 40, 100, 70, true);
+	CProgressBar testPB(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, Box.iWidth /3, 10, 40, 100, 70, true);
 	//testPB.setPosition(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, Box.iWidth /3, 10);
 	
 	// sb
@@ -3747,11 +3747,11 @@ void CTestMenu::testClistBox()
 
 	CBox Box;
 	
-	Box.iWidth = g_settings.screen_EndX - g_settings.screen_StartX - 20;
+	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20)/2;
 	Box.iHeight = g_settings.screen_EndY - g_settings.screen_StartY - 20;
 
-	Box.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
-	Box.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
+	Box.iX = 50; //frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
+	Box.iY = 50; //frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
 	
 	if (rightWidget)
 	{
@@ -3794,14 +3794,14 @@ void CTestMenu::testClistBox()
 	}
 
 	// mode
-	rightWidget->setWidgetType(WIDGET_TYPE_STANDARD);
+	rightWidget->setWidgetType(WIDGET_TYPE_CLASSIC);
 	rightWidget->enableShrinkMenu();
-	rightWidget->addWidgetType(WIDGET_TYPE_FRAME);
+	//rightWidget->addWidgetType(WIDGET_TYPE_FRAME);
 
 	// head
 	rightWidget->setTitle(_("ClistBox (standard)"), NEUTRINO_ICON_MOVIE);
 	//rightWidget->setTitleHAlign(CC_ALIGN_CENTER);
-	rightWidget->enablePaintHead();
+	//rightWidget->enablePaintHead();
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 	rightWidget->setFormat("%d.%m.%Y %H:%M:%S");
@@ -3809,12 +3809,16 @@ void CTestMenu::testClistBox()
 	//rightWidget->enableRepaint();
 
 	// footer
-	rightWidget->enablePaintFoot();
+	//rightWidget->enablePaintFoot();
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	rightWidget->enablePaintFootInfo(80);
-	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
+	//rightWidget->enablePaintFootInfo(80);
+	rightWidget->setFootInfoMode(FOOT_CUSTOM_MODE);
+	rightWidget->setItemInfoPos(Box.iX + Box.iWidth + 150, Box.iY + 100, 400, 400);
+	rightWidget->enableItemInfoSaveScreen();
+	rightWidget->enableItemInfoShadow(SHADOW_ALL);
+	rightWidget->paintItemInfoFrame(false);
 	
 	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();

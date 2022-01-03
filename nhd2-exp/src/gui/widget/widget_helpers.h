@@ -30,6 +30,8 @@
 
 #include <driver/rcinput.h>
 
+//#include <gui/widget/textbox.h>
+
 
 extern CLocaleManager* g_Locale; // for DL
 
@@ -274,7 +276,8 @@ class CProgressBar : public CComponent
 // detailsLine
 enum {
 	DL_INFO,
-	DL_HINT
+	DL_HINT,
+	DL_CUSTOM
 };
 
 class CItems2DetailsLine : public CComponent
@@ -289,12 +292,19 @@ class CItems2DetailsLine : public CComponent
 		//
 		bool paintLines;
 		
+		// cutom mode
+		CFont* tFont;
+		bool paintShadow;
+		int shadowMode;
+		bool savescreen;
+		bool paintframe;
+		
 		//
 		CItems2DetailsLine();
 		virtual ~CItems2DetailsLine();
 		
 		//
-		void paint(int x, int y, int width, int height, int info_height, int iheight, int iy);
+		void paint(int x, int y, int width, int height, int info_height = 0, int iheight = 0, int iy = 0);
 		void clear(int x, int y, int width, int height, int info_height);
 		
 		//
@@ -307,6 +317,12 @@ class CItems2DetailsLine : public CComponent
 		virtual void setHint(const neutrino_locale_t locale){hint = g_Locale->getText(locale); };
 		virtual void setIcon(const char* const ic){icon = ic;};
 		virtual void PaintLine(bool paint){paintLines = paint;};
+		
+		// custom mode
+		void setFont(CFont* f){tFont = f;};
+		void enableShadow(int m){paintShadow = true; shadowMode = m;};
+		void enableSaveScreen(){savescreen = true;};
+		void paintFrame(bool p){paintframe = p;};
 };
 
 // CHline

@@ -76,9 +76,8 @@ CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const
 	// initialise the window frames first
 	initFramesRel();
 
-	m_pcTextBox = new CTextBox();
+	m_pcTextBox = new CTextBox(&m_cBoxFrameText);
 	
-	m_pcTextBox->setPosition(&m_cBoxFrameText);
 	m_pcTextBox->setFontText(fontText);
 	m_pcTextBox->setMode(m_nMode);
 

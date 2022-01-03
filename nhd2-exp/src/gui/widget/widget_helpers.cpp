@@ -495,6 +495,13 @@ CItems2DetailsLine::CItems2DetailsLine()
 	hint = "";
 	icon = "";
 	
+	// custom
+	tFont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
+	paintShadow = false;
+	shadowMode = SHADOW_ALL;
+	savescreen = false;
+	paintframe = true;
+	
 	cc_type = CC_DETAILSLINE;
 }
 
@@ -510,12 +517,18 @@ CItems2DetailsLine::~CItems2DetailsLine()
 
 void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_height, int iheight, int iy)
 {
-	dprintf(DEBUG_INFO, "\nCItems2DetailsLine::paint: x:%d y:%d width:%d height:%d info_height:%d iheight:%d iy:%d\n icon:%s", x, y, width, height, info_height, iheight, iy, icon.c_str());
+	dprintf(DEBUG_INFO, "\nCItems2DetailsLine::paint: x:%d y:%d width:%d height:%d\n", x, y, width, height);
+	
+	if  (mode != DL_CUSTOM)
+		dprintf(DEBUG_INFO, "\nCItems2DetailsLine::paint: info_height:%d iheight:%d iy:%d icon:%s", info_height, iheight, iy, icon.c_str());
 	
 	int xpos  = x - CONNECTLINEBOX_WIDTH;
+	
 	int ypos1 = iy;
-	int ypos2 = y + height;
 	int ypos1a = ypos1 + (iheight/2) - 2;
+	
+	//
+	int ypos2 = y + height;
 	int ypos2a = ypos2 + (info_height/2) - 2;
 	
 	fb_pixel_t col1 = COL_MENUCONTENT_PLUS_6;
@@ -523,7 +536,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 
 	if (paintLines)
 	{
-		// clear infoBox
+		// clear infolines
 		frameBuffer->paintBackgroundBoxRel(xpos, y, CONNECTLINEBOX_WIDTH, height + info_height);
 
 		//
@@ -550,14 +563,14 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		frameBuffer->paintBoxRel(xpos, ypos2a, 1, 4, col2);
 	}
 
-	// info box shadow
+	// shadow
 	frameBuffer->paintBoxRel(x, ypos2, width, info_height, col1);
 
 	// infoBox
 	frameBuffer->paintBoxRel(x + 2, ypos2 + 2, width - 4, info_height - 4, COL_MENUFOOT_INFO_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.Foot_Info_gradient);
 	
 	//
-	int DLx = x +2;
+	int DLx = x + 2;
 	int DLy = ypos2 + 2;
 	int DLwidth = width - 4;
 	int DLheight = info_height - 4;
@@ -625,17 +638,44 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		}
 					
 		Dline.paint();
+	}
+	else if (mode == DL_CUSTOM)
+	{
+		// check for psoition
+		
+		//
+		CTextBox Dline(x, y, width, height);
+		if (!paintframe) Dline.disablePaintFrame();
+		Dline.setMode(AUTO_WIDTH);
+		Dline.setFontText(tFont);
+		if (paintShadow) Dline.enableShadow(shadowMode);
+		if (savescreen) Dline.enableSaveScreen();
+		
+		// scale icon
+		int pw = 0;
+		int ph = 0;
+
+		::scaleImage(icon, &pw, &ph);
+
+		// Hint
+		Dline.setText(hint.c_str(), icon.c_str(), pw, ph, TOP_CENTER);
+					
+		Dline.paint();
 	}	
 }
 
 
 void CItems2DetailsLine::clear(int x, int y, int width, int height, int info_height)
-{ 
-	// lines
-	frameBuffer->paintBackgroundBoxRel(x - CONNECTLINEBOX_WIDTH, y, CONNECTLINEBOX_WIDTH, height + info_height);
+{
+	if (mode != DL_CUSTOM)
+	{ 
+		// lines
+		if (paintLines)
+			frameBuffer->paintBackgroundBoxRel(x - CONNECTLINEBOX_WIDTH, y, CONNECTLINEBOX_WIDTH, height + info_height);
 
-	// info box
-	frameBuffer->paintBackgroundBoxRel(x, y + height, width, info_height);
+		// info box
+		frameBuffer->paintBackgroundBoxRel(x, y + height, width, info_height);
+	}
 }
 
 // Hline

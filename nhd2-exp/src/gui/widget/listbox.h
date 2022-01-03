@@ -73,7 +73,8 @@ enum
 enum
 {
 	FOOT_INFO_MODE = 0,
-	FOOT_HINT_MODE
+	FOOT_HINT_MODE,
+	FOOT_CUSTOM_MODE
 };
 
 // line separator
@@ -611,6 +612,11 @@ class ClistBox : public CWidgetItem
 		bool paintFootInfo;
 		int footInfoMode;
 		bool details_line;
+		CBox itemInfoBox;
+		bool iteminfoshadow;
+		bool iteminfosavescreen;
+		int iteminfoshadowmode;
+		bool iteminfoframe;
 
 		// methods
 		virtual void paintItems();
@@ -658,7 +664,7 @@ class ClistBox : public CWidgetItem
 		//
 		virtual void paint();
 		virtual void hide();
-		void refresh(){if (paintDate) timer->refresh();};
+		void refresh(){if (paintDate && paintTitle) timer->refresh();};
 		bool update() const {return paintDate;};
 
 		// head
@@ -687,6 +693,10 @@ class ClistBox : public CWidgetItem
 		void enablePaintFootInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh;};
 		void setFootInfoMode(int mode = FOOT_INFO_MODE){footInfoMode = mode;};
 		void setDetailsLine(bool d){details_line = d;};
+		void setItemInfoPos(int x, int y, int dx, int dy){footInfoMode == FOOT_CUSTOM_MODE; itemInfoBox.iX = x; itemInfoBox.iY = y; itemInfoBox.iWidth = dx; itemInfoBox.iHeight = dy; paintFootInfo = true; footInfoHeight = 0;};
+		void enableItemInfoShadow(int m){iteminfoshadow = true; iteminfoshadowmode = m;};
+		void enableItemInfoSaveScreen(){iteminfosavescreen = true;};
+		void paintItemInfoFrame(bool p){iteminfoframe = p;};
 
 		//
 		void enableShrinkMenu(){shrinkMenu = true;};

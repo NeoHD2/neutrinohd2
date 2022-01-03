@@ -124,6 +124,10 @@ class CTextBox : public CWidgetItem
 		int shadowMode;
 
 		CScrollBar scrollBar;
+		
+		//
+		bool savescreen;
+		fb_pixel_t* background;
 
 		// Functions
 		void refreshTextLineArray(void);
@@ -165,6 +169,7 @@ class CTextBox : public CWidgetItem
 		void setMode(const int mode);
 		void disablePaintFrame(){paintBG = false;};
 		void enableShadow(int m = SHADOW_ALL){paintShadow = true; shadowMode = m;};
+		void enableSaveScreen(){savescreen = true;};
 
 		void paint(void);
 		void hide(void);

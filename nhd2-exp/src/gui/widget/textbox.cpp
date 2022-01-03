@@ -84,6 +84,19 @@ CTextBox::~CTextBox()
 	dprintf(DEBUG_DEBUG, "CTextBox::~CTextBox\r\n");
 	
 	m_cLineArray.clear();
+	
+	if (bigFonts) 
+	{
+		bigFonts = false;
+		m_pcFontText->setSize((int)(m_pcFontText->getSize() / BIG_FONT_FAKTOR));
+	}
+	
+	//
+	if (background)
+	{
+		delete [] background;
+		background = NULL;
+	}	
 }
 
 void CTextBox::initVar(void)
@@ -134,6 +147,10 @@ void CTextBox::initVar(void)
 	paintShadow = false;
 	useBG = false;
 	shadowMode = SHADOW_ALL;
+	
+	//
+	savescreen = false;
+	background = NULL;
 	
 	itemType = WIDGET_ITEM_TEXTBOX;
 }
@@ -253,6 +270,17 @@ void CTextBox::initFramesRel(void)
 	m_cFrameTextRel.iWidth = itemBox.iWidth - BORDER_LEFT - BORDER_RIGHT - m_cFrameScrollRel.iWidth;
 
 	m_nLinesPerPage = m_cFrameTextRel.iHeight/m_nFontTextHeight;
+	
+	//
+	if (savescreen)
+	{	
+		background = new fb_pixel_t[itemBox.iWidth*itemBox.iHeight];
+		
+		if (background)
+		{
+			CFrameBuffer::getInstance()->saveScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+		}
+	}
 }
 
 void CTextBox::refreshTextLineArray(void)
@@ -547,7 +575,7 @@ void CTextBox::scrollPageUp(const int pages)
 
 void CTextBox::refresh(void)
 {
-	dprintf(DEBUG_DEBUG, "CTextBox::Refresh:\r\n");
+	dprintf(DEBUG_DEBUG, "CTextBox::Refresh:\r\n");	
 
 	// paint text
 	refreshText();
@@ -643,9 +671,20 @@ bool CTextBox::setText(const char * const newText, const char * const _thumbnail
 void CTextBox::paint(void)
 {
 	dprintf(DEBUG_INFO, "CTextBox::paint:\n");
-
-	painted = true;
+	
+	//
 	refresh();
+	
+	//
+	if (savescreen)
+	{
+		if (background)
+		{
+			CFrameBuffer::getInstance()->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+		}
+	}	
+	
+	painted = true;
 }
 
 void CTextBox::hide(void)
@@ -658,7 +697,10 @@ void CTextBox::hide(void)
 		m_pcFontText->setSize((int)(m_pcFontText->getSize() / BIG_FONT_FAKTOR));
 	}
 	
-	CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	if (paintBG)
+	{
+		CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	}
 	
 	CFrameBuffer::getInstance()->blit();
 
