@@ -1295,8 +1295,8 @@ void CAudioPlayerGui::showPlaylist()
 	dprintf(DEBUG_NORMAL, "CAudioPlayerGui::showPlaylist:\n");
 	
 	CBox box;
-	box.iWidth = frameBuffer->getScreenWidth() - 40;
-	box.iHeight = frameBuffer->getScreenHeight() - 40;
+	box.iWidth = m_frameBuffer->getScreenWidth() - 40;
+	box.iHeight = m_frameBuffer->getScreenHeight() - 40;
 	box.iX = m_frameBuffer->getScreenX() + ((m_frameBuffer->getScreenWidth() - box.iWidth ) >> 1 );
 	box.iY = m_frameBuffer->getScreenY() + ((m_frameBuffer->getScreenHeight() - box.iHeight) >> 1 );
 	
@@ -1355,7 +1355,7 @@ void CAudioPlayerGui::showPlaylist()
 	alist->enablePaintFoot();
 	alist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 	
-	alist->enablePaintFootInfo();
+	alist->enablePaintFootInfo(70);
 	
 	alist->paint();
 }

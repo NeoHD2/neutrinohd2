@@ -823,6 +823,9 @@ void CFileBrowser::paint()
 
 		listBox->addItem(item);
 	}
+	
+	//
+	//listBox->enableShrinkMenu();
 
 	// head
 	char l_name[100];

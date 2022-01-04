@@ -120,7 +120,8 @@ void CPluginList::showMenu()
 			plist->addItem(item);
 		}
 	}
-
+	
+	//
 	plist->setWidgetMode(MODE_MENU);
 	plist->setWidgetType(WIDGET_TYPE_CLASSIC);
 	plist->enableShrinkMenu();
@@ -131,7 +132,7 @@ void CPluginList::showMenu()
 	plist->enablePaintDate();
 	plist->setHeadButtons(&CPluginListHeadButtons, 1);
 
-	// foo
+	// foot
 	plist->setFootButtons(CPluginListButtons, NUM_LIST_BUTTONS);
 
 	//

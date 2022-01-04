@@ -309,7 +309,7 @@ void CMP3Player::showMenu()
 	alist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	alist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 	
-	alist->enablePaintFootInfo();
+	alist->enablePaintFootInfo(70);
 	alist->enablePaintDate();
 
 	alist->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));

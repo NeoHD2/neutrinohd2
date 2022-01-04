@@ -924,7 +924,7 @@ void CTestMenu::testCWidget()
 	rightWidget->setWidgetType(WIDGET_TYPE_FRAME);
 	rightWidget->setItemsPerPage(6,2);
 	rightWidget->setSelected(right_selected);
-	rightWidget->enablePaintFootInfo();
+	rightWidget->enablePaintFootInfo(80);
 
 	// loadPlaylist
 	CHintBox loadBox("CWidget(CFrameBox/ClistBox)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
@@ -1696,7 +1696,7 @@ void CTestMenu::testClistBoxWidget()
 	rightWidget->enablePaintDate();
 	rightWidget->enablePaintFoot();
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	rightWidget->enablePaintFootInfo();
+	rightWidget->enablePaintFootInfo(80);
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 	rightWidget->enableShrinkMenu();
 
@@ -2047,7 +2047,7 @@ void CTestMenu::testCWidgetItem()
 	rightWidget->setWidgetType(WIDGET_TYPE_FRAME);
 	rightWidget->setItemsPerPage(6,2);
 	rightWidget->setSelected(right_selected);
-	rightWidget->enablePaintFootInfo();
+	rightWidget->enablePaintFootInfo(80);
 
 	enum {
 		WIDGET_TOP,
@@ -3813,12 +3813,12 @@ void CTestMenu::testClistBox()
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	//rightWidget->enablePaintFootInfo(80);
-	rightWidget->setFootInfoMode(FOOT_CUSTOM_MODE);
+	rightWidget->enablePaintFootInfo(70);
+	rightWidget->setFootInfoMode(FOOT_HINTHINT_MODE);
 	rightWidget->setItemInfoPos(Box.iX + Box.iWidth + 150, Box.iY + 100, 400, 400);
 	rightWidget->enableItemInfoSaveScreen();
 	rightWidget->enableItemInfoShadow(SHADOW_ALL);
-	rightWidget->paintItemInfoFrame(false);
+	rightWidget->paintItemInfoFrame(true);
 	
 	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
@@ -3956,7 +3956,7 @@ void CTestMenu::testClistBox2()
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	rightWidget->enablePaintFootInfo(80);
+	rightWidget->enablePaintFootInfo(70);
 	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 
 	//rightWidget->setSelected(selected);
@@ -5609,7 +5609,7 @@ void CTestMenu::testCMenuWidget1()
 	//menuWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// foot info in menu mode are always enabled
-	menuWidget->enablePaintFootInfo();
+	menuWidget->enablePaintFootInfo(80);
 	menuWidget->setFootInfoMode(FOOT_HINT_MODE);
 
 	menuWidget->addKey(RC_info, this, "minfo");

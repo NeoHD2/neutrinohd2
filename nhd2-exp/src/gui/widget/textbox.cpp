@@ -656,7 +656,7 @@ bool CTextBox::setText(const char * const newText, const char * const _thumbnail
 		
 	bool result = false;
 	
-	if (newText != NULL || thumbnail.empty())
+	if (newText != NULL /*|| thumbnail.empty()*/)
 	{
 		m_cText = newText;
 		

@@ -51,6 +51,7 @@ enum
 	ITEM_TYPE_SEPARATOR,
 	ITEM_TYPE_FORWARDER,
 	ITEM_TYPE_LOCKED_FORWARDER,
+	//
 	ITEM_TYPE_LISTBOXITEM,
 	ITEM_TYPE_PLUGINITEM
 };
@@ -74,7 +75,9 @@ enum
 {
 	FOOT_INFO_MODE = 0,
 	FOOT_HINT_MODE,
-	FOOT_CUSTOM_MODE
+	FOOT_HINTITEM_MODE,
+	FOOT_HINTICON_MODE,
+	FOOT_HINTHINT_MODE
 };
 
 // line separator
@@ -637,7 +640,7 @@ class ClistBox : public CWidgetItem
 		bool def_color;
 		int radius;
 		int corner;
-		bool scrolling;
+		bool scrollbar;
 		fb_pixel_t* items_background;
 		bool itemShadow;
 		
@@ -690,22 +693,35 @@ class ClistBox : public CWidgetItem
 		void setFootLine(bool l){foot_line = l;};
 
 		// footInfo
-		void enablePaintFootInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh;};
-		void setFootInfoMode(int mode = FOOT_INFO_MODE){footInfoMode = mode;};
+		void enablePaintFootInfo(int fh){paintFootInfo = true; footInfoHeight = fh;};
+		void setFootInfoMode(int mode){footInfoMode = mode;};
 		void setDetailsLine(bool d){details_line = d;};
-		void setItemInfoPos(int x, int y, int dx, int dy){footInfoMode == FOOT_CUSTOM_MODE; itemInfoBox.iX = x; itemInfoBox.iY = y; itemInfoBox.iWidth = dx; itemInfoBox.iHeight = dy; paintFootInfo = true; footInfoHeight = 0;};
+		void setItemInfoPos(int x, int y, int dx, int dy)
+		{
+			if ( (footInfoMode == FOOT_HINTITEM_MODE) || (footInfoMode == FOOT_HINTICON_MODE) || (footInfoMode == FOOT_HINTHINT_MODE))
+			{
+				itemInfoBox.iX = x; 
+				itemInfoBox.iY = y; 
+				itemInfoBox.iWidth = dx; 
+				itemInfoBox.iHeight = dy; 
+				paintFootInfo = true; 
+				footInfoHeight = 0;
+			}
+		};
 		void enableItemInfoShadow(int m){iteminfoshadow = true; iteminfoshadowmode = m;};
 		void enableItemInfoSaveScreen(){iteminfosavescreen = true;};
 		void paintItemInfoFrame(bool p){iteminfoframe = p;};
 
-		//
+		// mainFrame
 		void enableShrinkMenu(){shrinkMenu = true;};
-		void disablePaintFrame(void){paintFrame = false;};
+		void enableSaveScreen();
+		//
+		void paintMainFrame(bool p){paintFrame = p;};
 		void setColor(fb_pixel_t col){bgcolor = col; def_color = true;};
 		void setRadius(int ra){radius = ra;};
 		void setCorner(int co){corner = co;};
-		void disableScrollBar(){scrolling = false;};
-		void enableItemShadow(){itemShadow = true;};
+		void paintScrollBar(bool sb){scrollbar = sb;};
+		void paintItemShadow(bool s){itemShadow = s;};
 
 		virtual void scrollLineDown(const int lines = 1);
 		virtual void scrollLineUp(const int lines = 1);
@@ -727,7 +743,7 @@ class ClistBox : public CWidgetItem
 		std::string getItemHint(){if (hasItem()) return items[selected]->itemHint; else return "";};
 		std::string getItemIcon(){if (hasItem()) return items[selected]->itemIcon; else return "";};
 
-		// frame type
+		// frame type methods
 		void setItemsPerPage(int itemsX = 6, int itemsY = 3){itemsPerX = itemsX; itemsPerY = itemsY; maxItemsPerPage = itemsPerX*itemsPerY;};
 		int getItemsPerX()const{return itemsPerX;};
 		int getItemsPerY()const{return itemsPerY;};
@@ -744,12 +760,9 @@ class ClistBox : public CWidgetItem
 
 		int oKKeyPressed(CMenuTarget *parent);
 		void homeKeyPressed(){selected = -1;};
-		//void onDirectKeyPressed(neutrino_msg_t msg);
+		void onDirectKeyPressed(neutrino_msg_t msg);
 		bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data);
 		void addTimer(uint64_t sec = 1);
-
-		//
-		void enableSaveScreen();
 
 		//
 		std::string getName(){return l_name;};

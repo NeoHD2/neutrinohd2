@@ -1615,6 +1615,9 @@ void CChannelList::paint()
 			listBox->addItem(item);
 		}
 	}
+	
+	//
+	listBox->enableShrinkMenu();
 
 	// head
 	listBox->setTitle(name.c_str());
@@ -1647,7 +1650,7 @@ void CChannelList::paint()
 	listBox->setFootButtons(CChannelListButtons, NUM_LIST_BUTTONS);
 
 	// footInfo
-	listBox->enablePaintFootInfo();
+	listBox->enablePaintFootInfo(70);
 	listBox->setDetailsLine(g_settings.menu_details_line);
 
 	//

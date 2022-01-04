@@ -431,7 +431,7 @@ void CTSBrowser::showMenu()
 	mlist->setItemsPerPage(6, 2);
 	mlist->setSelected(selected);
 	mlist->enablePaintDate();
-	mlist->enablePaintFootInfo();
+	//mlist->enablePaintFootInfo();
 
 	mlist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	mlist->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);

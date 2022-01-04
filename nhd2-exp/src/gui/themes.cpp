@@ -471,10 +471,10 @@ void CThemes::setupDefaultColors()
 	g_settings.menu_Foot_Text_green = 100;
 	g_settings.menu_Foot_Text_blue = 100;
 
-	g_settings.menu_FootInfo_alpha = 20;
-	g_settings.menu_FootInfo_red = 25;
-	g_settings.menu_FootInfo_green = 25;
-	g_settings.menu_FootInfo_blue = 25;
+	g_settings.menu_FootInfo_alpha = 0;
+	g_settings.menu_FootInfo_red = 15;
+	g_settings.menu_FootInfo_green = 15;
+	g_settings.menu_FootInfo_blue = 15;
 		
 	g_settings.menu_FootInfo_Text_alpha = 0;
 	g_settings.menu_FootInfo_Text_red = 85;

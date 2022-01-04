@@ -54,7 +54,7 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 	sec_timer_interval = 1;
 
 	//
-	paintFrame = false;
+	paintframe = false;
 	backgroundColor = COL_MENUCONTENT_PLUS_0;
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
@@ -78,7 +78,7 @@ CWidget::CWidget(CBox *position)
 	sec_timer_interval = 1;
 
 	//
-	paintFrame = false;
+	paintframe = false;
 	backgroundColor = COL_MENUCONTENT_PLUS_0;
 	radius = RADIUS_MID;
 	corner = CORNER_ALL;
@@ -157,7 +157,7 @@ void CWidget::paint()
 	initFrames();
 
 	// paint mainFrame
-	if (paintFrame)
+	if (paintframe)
 		frameBuffer->paintBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight, backgroundColor, radius, corner);
 
 	// paint items
@@ -681,7 +681,7 @@ void CWidget::onPageDownKeyPressed()
 //
 bool CWidget::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 {
-	dprintf(DEBUG_INFO, "CWidget::onButtonPress: (msg:%d) (data:%d)\n", msg, data);
+	dprintf(DEBUG_INFO, "CWidget::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
 	
 	bool result = true;
 	
@@ -820,6 +820,8 @@ int CWidget::exec(CWidgetItem* wItem)
 		frameBuffer->blit();
 	}
 	while ( msg != RC_timeout );
+	
+	hide();
 
 	dprintf(DEBUG_NORMAL, "CWidget: retval: (%d) selected:%d\n", retval, selected);
 

@@ -28,12 +28,13 @@
 
 
 #include <string>
-#include <stdio.h>    /* printf       */
-#include <sys/time.h> /* gettimeofday */
-#include "driver/framebuffer.h"
+#include <stdio.h>
+#include <sys/time.h>
+
+#include <driver/framebuffer.h>
 
 // zapit types
-#include <client/zapittypes.h>
+//#include <client/zapittypes.h>
 
 
 class CPictureViewer

@@ -147,7 +147,7 @@ void CMediaPortal::showMenu(void)
 
 	mediaPortal->setWidgetMode(MODE_LISTBOX);
 	mediaPortal->setWidgetType(WIDGET_TYPE_FRAME);
-	mediaPortal->enablePaintFootInfo();
+	//mediaPortal->enablePaintFootInfo();
 	mediaPortal->enablePaintDate();
 
 	// youtube

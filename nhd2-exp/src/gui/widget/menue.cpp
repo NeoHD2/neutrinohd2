@@ -369,6 +369,9 @@ void CMenuWidget::initFrames()
 		{
 			if (hasItem())
 				height = std::min(height, hheight + heightFirstPage + fheight + cFrameFootInfoHeight);
+			// FIXME:
+			//int listmaxshow = (height - hheight - fheight - cFrameFootInfoHeight)/item_height;
+			//height = hheight + listmaxshow*item_height + fheight + cFrameFootInfoHeight;
 		}
 
 		//

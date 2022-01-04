@@ -277,7 +277,9 @@ class CProgressBar : public CComponent
 enum {
 	DL_INFO,
 	DL_HINT,
-	DL_CUSTOM
+	DL_HINTITEM,
+	DL_HINTICON,
+	DL_HINTHINT
 };
 
 class CItems2DetailsLine : public CComponent

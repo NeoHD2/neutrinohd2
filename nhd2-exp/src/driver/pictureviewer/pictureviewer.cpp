@@ -29,11 +29,12 @@
 
 #include <unistd.h>
 
+#include <config.h>
+
 #include <global.h>
 #include <neutrino.h>
+
 #include "pictureviewer.h"
-#include "config.h"
-#include "driver/framebuffer.h"
 
 #include <system/debug.h>
 #include <system/helpers.h>
@@ -92,7 +93,7 @@ bool CPictureViewer::decodeImage(const std::string & name, bool showBusySign)
 	// Show red block for "next ready" in view state
 	if (showBusySign)
 	{
-		showBusy(COL_RED);
+		showBusy(COL_RED_PLUS_0);
 	}
 	
 	CFormathandler * fh;
@@ -239,7 +240,7 @@ void CPictureViewer::zoom(float factor)
 {
 	dprintf(DEBUG_INFO, "CPictureViewer::zoom %f\n",factor);
 	
-	showBusy(COL_YELLOW);
+	showBusy(COL_YELLOW_PLUS_0);
 	
 	int oldx = m_Pic_X;
 	int oldy = m_Pic_Y;
@@ -283,7 +284,7 @@ void CPictureViewer::move(int dx, int dy)
 {
 	dprintf(DEBUG_INFO, "CPictureViewer::move %d %d\n", dx, dy);
 	
-	showBusy(COL_GREEN);
+	showBusy(COL_GREEN_PLUS_0);
 	
 	int xs, ys;
 	xs = CFrameBuffer::getInstance()->getScreenWidth(true);

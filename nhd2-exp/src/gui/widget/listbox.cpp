@@ -125,7 +125,7 @@ void CMenuItem::setMarked(const bool Marked)
 // CMenuOptionChooser
 CMenuOptionChooser::CMenuOptionChooser(const neutrino_locale_t OptionName, int *const OptionValue, const struct keyval* const Options, const unsigned Number_Of_Options, const bool Active, CChangeObserver* const Observ, const neutrino_msg_t DirectKey, const std::string& IconName, bool Pulldown)
 {
-	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;	
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;	
 	
 	optionNameString = g_Locale->getText(OptionName);
 	optionName = OptionName;
@@ -146,7 +146,7 @@ CMenuOptionChooser::CMenuOptionChooser(const neutrino_locale_t OptionName, int *
 
 CMenuOptionChooser::CMenuOptionChooser(const char * const OptionName, int* const OptionValue, const struct keyval *const Options, const unsigned Number_Of_Options, const bool Active, CChangeObserver* const Observ, const neutrino_msg_t DirectKey, const std::string & IconName, bool Pulldown)
 {
-	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;
 
 	optionNameString = OptionName;
 	optionName = NONEXISTANT_LOCALE;
@@ -372,7 +372,7 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 //CMenuOptionNumberChooser
 CMenuOptionNumberChooser::CMenuOptionNumberChooser(const neutrino_locale_t Name, int * const OptionValue, const bool Active, const int min_value, const int max_value, CChangeObserver * const Observ, const int print_offset, const int special_value, const neutrino_locale_t special_value_name, const char * non_localized_name)
 {
-	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;
 
 	nameString  = g_Locale->getText(Name);
 	name = Name;
@@ -397,7 +397,7 @@ CMenuOptionNumberChooser::CMenuOptionNumberChooser(const neutrino_locale_t Name,
 
 CMenuOptionNumberChooser::CMenuOptionNumberChooser(const char * const Name, int * const OptionValue, const bool Active, const int min_value, const int max_value, CChangeObserver * const Observ, const int print_offset, const int special_value, const neutrino_locale_t special_value_name, const char * non_localized_name)
 {
-	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;
 
 	nameString  = Name;
 	name = NONEXISTANT_LOCALE;
@@ -527,7 +527,7 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 // CMenuOptionStringChooser
 CMenuOptionStringChooser::CMenuOptionStringChooser(const neutrino_locale_t Name, char * OptionValue, bool Active, CChangeObserver* Observ, const neutrino_msg_t DirectKey, const std::string & IconName, bool Pulldown)
 {
-	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;	
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;	
 
 	nameString = g_Locale->getText(Name);
 	name = Name;
@@ -546,7 +546,7 @@ CMenuOptionStringChooser::CMenuOptionStringChooser(const neutrino_locale_t Name,
 
 CMenuOptionStringChooser::CMenuOptionStringChooser(const char * const Name, char * OptionValue, bool Active, CChangeObserver* Observ, const neutrino_msg_t DirectKey, const std::string & IconName, bool Pulldown)
 {
-	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;
 
 	nameString = Name;
 	name = NONEXISTANT_LOCALE;
@@ -747,7 +747,7 @@ CMenuOptionLanguageChooser::CMenuOptionLanguageChooser(char *Name, CChangeObserv
 	int iconName_w = 0;
 	int iconName_h = 0;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &iconName_w, &iconName_h);
-	height = std::max(iconName_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 4;
+	height = std::max(iconName_h, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()) + 6;
 	
 	optionValue = Name;
 	observ = Observ;
@@ -859,7 +859,7 @@ CMenuSeparator::CMenuSeparator(const int Type, const char * const Text)
 
 int CMenuSeparator::getHeight(void) const
 {
-	return (textString == NULL) ? 10 : g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();	
+	return g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;	
 }
 
 int CMenuSeparator::getWidth(void) const
@@ -1751,7 +1751,43 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		// local
 		if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)
 			l_text_width = dx - BORDER_LEFT - BORDER_RIGHT;
+			
+		if (widgetType == WIDGET_TYPE_CLASSIC)
+		{
+			if (nLinesItem)
+			{
+				// local
+				if(l_text != NULL)
+				{
+						nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+				}
+				
+				// option
+				if(option_text != NULL)
+				{
+						optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
+				}
+				
+				// info1
+				// info2
+			}
+			else
+			{
+				// local
+				if(l_text != NULL)
+				{
+						nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+				}
 
+				// option
+				if(option_text != NULL)
+				{
+						optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
+				}
+			}
+		}
+		else // standard / extended
+		{
 		if(nLinesItem)
 		{
 			// local
@@ -1783,6 +1819,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 
 				optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + optionFont->getHeight() + (height - optionFont->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, option_text, color, 0, true);
 			}
+		}
 		}
 		
 		// vfd
@@ -2215,6 +2252,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	start_x = x;
 	start_y = y;
 	
+	//
 	listmaxshow = 0;
 
 	// head
@@ -2252,7 +2290,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	cFrameFootInfoHeight = 0;
 	connectLineWidth = 0;
 	footInfoMode = FOOT_INFO_MODE;
-	details_line = true;
+	details_line = false;
 	itemInfoBox.iX = 0;
 	itemInfoBox.iY = 0;
 	itemInfoBox.iWidth = 0;
@@ -2260,6 +2298,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	iteminfoshadow = false;
 	iteminfosavescreen = false;
 	iteminfoshadowmode = SHADOW_ALL;
+	iteminfoframe = true;
 	
 	//
 	inFocus = true;
@@ -2288,7 +2327,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
 	def_color = false;
-	scrolling = true;
+	scrollbar = true;
 	items_background = NULL;
 	
 	item_height = 0;
@@ -2329,7 +2368,8 @@ ClistBox::ClistBox(CBox* position)
 	wanted_width = position->iWidth;
 	start_x = position->iX;
 	start_y = position->iY;
-
+	
+	//
 	listmaxshow = 0;
 
 	// head
@@ -2367,7 +2407,7 @@ ClistBox::ClistBox(CBox* position)
 	cFrameFootInfoHeight = 0;
 	connectLineWidth = 0;
 	footInfoMode = FOOT_INFO_MODE;
-	details_line = true;
+	details_line = false;
 	itemInfoBox.iX = 0;
 	itemInfoBox.iY = 0;
 	itemInfoBox.iWidth = 0;
@@ -2375,6 +2415,7 @@ ClistBox::ClistBox(CBox* position)
 	iteminfoshadow = false;
 	iteminfosavescreen = false;
 	iteminfoshadowmode = SHADOW_ALL;
+	iteminfoframe = true;
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
@@ -2403,7 +2444,7 @@ ClistBox::ClistBox(CBox* position)
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
 	def_color = false;
-	scrolling = true;
+	scrollbar = true;
 	items_background = NULL;
 	
 	//
@@ -2591,10 +2632,11 @@ void ClistBox::initFrames()
 		// recalculate height
 		if(shrinkMenu)
 		{
-			//listmaxshow = (itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight)/item_height;
-			//itemBox.iHeight = hheight + listmaxshow*item_height + fheight + cFrameFootInfoHeight;
-			if (hasItem())
-				itemBox.iHeight = std::min(itemBox.iHeight, hheight + heightFirstPage + fheight + cFrameFootInfoHeight); //FIXME:
+			listmaxshow = (itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight)/item_height;
+			itemBox.iHeight = hheight + listmaxshow*item_height + fheight + cFrameFootInfoHeight;
+			
+			//if (hasItem())
+			//	itemBox.iHeight = std::min(itemBox.iHeight, hheight + heightFirstPage + fheight + cFrameFootInfoHeight); //FIXME:
 		}
 		
 		// sanity check
@@ -2729,7 +2771,7 @@ void ClistBox::paintItems()
 		sb_width = 0;
 	
 		if(total_pages > 1)
-			sb_width = scrolling? SCROLLBAR_WIDTH : 0;
+			sb_width = scrollbar? SCROLLBAR_WIDTH : 0;
 
 		items_width = itemBox.iWidth - sb_width;
 
@@ -2763,7 +2805,7 @@ void ClistBox::paintItems()
 		// paint right scrollBar if we have more then one page
 		if(total_pages > 1)
 		{
-			if (scrolling)
+			if (scrollbar)
 			{
 				if(widgetType == WIDGET_TYPE_EXTENDED)
 					scrollBar.paint(itemBox.iX + 2*(itemBox.iWidth/3) - SCROLLBAR_WIDTH, itemBox.iY + hheight, itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight, total_pages, current_page);
@@ -3130,6 +3172,7 @@ void ClistBox::paintItemInfo(int pos)
 
 				// detailslines
 				itemsLine.setMode(DL_INFO);
+				//itemsLine.paintFrame(iteminfoframe);
 				itemsLine.PaintLine(details_line);
 				itemsLine.setInfo1(item->info1.c_str());
 				itemsLine.setOptionInfo1(item->option_info1.c_str());
@@ -3145,6 +3188,7 @@ void ClistBox::paintItemInfo(int pos)
 				// detailslines box
 				itemsLine.setMode(DL_HINT);
 				itemsLine.PaintLine(details_line);
+				//itemsLine.paintFrame(iteminfoframe);
 				itemsLine.setHint(item->itemHint.c_str());
 				
 				if (widgetType == WIDGET_TYPE_STANDARD)
@@ -3152,12 +3196,12 @@ void ClistBox::paintItemInfo(int pos)
 					
 				itemsLine.paint(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight - cFrameFootInfoHeight, cFrameFootInfoHeight, item->getHeight(), item->getYPosition());
 			}
-			else if (footInfoMode == FOOT_CUSTOM_MODE)
+			else if (footInfoMode == FOOT_HINTITEM_MODE)
 			{
 				CMenuItem* item = items[pos];
 	
 				// detailslines box
-				itemsLine.setMode(DL_CUSTOM);
+				itemsLine.setMode(DL_HINTITEM);
 				itemsLine.PaintLine(false);
 				if (iteminfoshadow) itemsLine.enableShadow(iteminfoshadowmode);
 				if (iteminfosavescreen) itemsLine.enableSaveScreen();
@@ -3167,13 +3211,41 @@ void ClistBox::paintItemInfo(int pos)
 					
 				itemsLine.paint(itemInfoBox.iX, itemInfoBox.iY, itemInfoBox.iWidth, itemInfoBox.iHeight);
 			}
+			else if (footInfoMode == FOOT_HINTICON_MODE)
+			{
+				CMenuItem* item = items[pos];
+	
+				// detailslines box
+				itemsLine.setMode(DL_HINTICON);
+				itemsLine.PaintLine(false);
+				if (iteminfoshadow) itemsLine.enableShadow(iteminfoshadowmode);
+				if (iteminfosavescreen) itemsLine.enableSaveScreen();
+				itemsLine.paintFrame(iteminfoframe);
+				itemsLine.setHint(item->itemHint.c_str());
+				itemsLine.setIcon(item->itemIcon.c_str());
+					
+				itemsLine.paint(itemInfoBox.iX, itemInfoBox.iY, itemInfoBox.iWidth, itemInfoBox.iHeight);
+			}
+			else if (footInfoMode == FOOT_HINTHINT_MODE)
+			{
+				CMenuItem* item = items[pos];
+	
+				// detailslines box
+				itemsLine.setMode(DL_HINTHINT);
+				itemsLine.PaintLine(false);
+				if (iteminfoshadow) itemsLine.enableShadow(iteminfoshadowmode);
+				if (iteminfosavescreen) itemsLine.enableSaveScreen();
+				itemsLine.paintFrame(iteminfoframe);
+				itemsLine.setHint(item->itemHint.c_str());
+				//itemsLine.setIcon(item->itemIcon.c_str());
+					
+				itemsLine.paint(itemInfoBox.iX, itemInfoBox.iY, itemInfoBox.iWidth, itemInfoBox.iHeight);
+			}
 		}
 	}	
 	else if(widgetType == WIDGET_TYPE_EXTENDED)
 	{
 		CMenuItem* item = items[pos];
-
-		//int iw, ih;
 
 		// scale pic
 		int p_w = 0;
@@ -3232,7 +3304,10 @@ void ClistBox::hideItemInfo()
 	{
 	    	if(widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC)
 		{
-			itemsLine.clear(itemBox.iX, itemBox.iY, itemBox.iWidth + CONNECTLINEBOX_WIDTH, itemBox.iHeight - cFrameFootInfoHeight, cFrameFootInfoHeight);
+			if ((footInfoMode == FOOT_INFO_MODE) || (footInfoMode == FOOT_HINT_MODE))
+				itemsLine.clear(itemBox.iX, itemBox.iY, itemBox.iWidth + CONNECTLINEBOX_WIDTH, itemBox.iHeight - cFrameFootInfoHeight, cFrameFootInfoHeight);
+			else
+				itemsLine.clear(itemInfoBox.iX, itemInfoBox.iY, itemInfoBox.iWidth, itemInfoBox.iHeight, 0);
 		} 
 	}	 
 }
@@ -3755,7 +3830,7 @@ void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned i
 	}
 }
 
-/*
+//
 void ClistBox::onDirectKeyPressed(neutrino_msg_t msg)
 {
 	// 
@@ -3779,24 +3854,18 @@ void ClistBox::onDirectKeyPressed(neutrino_msg_t msg)
 				paintItemInfo(selected);
 				pos = selected;
 				
-				//msg = RC_ok;
+				msg = RC_ok;
 				actionKey = titem->actionKey;
 			} 
-			else 
-			{
-				// swallow-key...
-				//handled = true;
-			}
 			break;
 		}
 	}
 }
-*/
 
 //
 bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 {
-	dprintf(DEBUG_INFO, "ClistBox::onButtonPress: (msg:%d) (data:%d)\n", msg, data);
+	dprintf(DEBUG_INFO, "ClistBox::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
 	
 	bool result = true;
 	

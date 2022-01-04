@@ -723,7 +723,7 @@ void CIceCast::showMenu()
 	ilist->setHeadButtons(&HeadButtons);
 	ilist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 	
-	ilist->enablePaintFootInfo();
+	ilist->enablePaintFootInfo(70);
 	ilist->enablePaintDate();
 
 	ilist->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));

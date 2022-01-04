@@ -133,16 +133,15 @@ enum
 	RETURN_EXIT_ALL 	= 4
 };
 
+//
 class CMenuTarget
 {
 	protected:
-		CFrameBuffer *frameBuffer;
-		
 		std::string *valueString;
 		std::string valueStringTmp;
 
 	public:
-		CMenuTarget(){ frameBuffer = CFrameBuffer::getInstance(); valueStringTmp = std::string(); valueString = &valueStringTmp; };
+		CMenuTarget(){ valueStringTmp = std::string(); valueString = &valueStringTmp; };
 		virtual ~CMenuTarget(){};
 		virtual void hide(){valueString->clear();};
 		virtual int exec(CMenuTarget *parent, const std::string &actionKey) = 0;
@@ -153,6 +152,7 @@ class CMenuTarget
 		const char* widget_name;
 };
 
+//
 class CWidget : public CMenuTarget
 {
 	protected:
@@ -182,7 +182,7 @@ class CWidget : public CMenuTarget
 		void restoreScreen();
 
 		//		
-		bool paintFrame;
+		bool paintframe;
 		fb_pixel_t backgroundColor;
 		int radius;
 		int corner;
@@ -208,11 +208,13 @@ class CWidget : public CMenuTarget
 		//
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
 		void setSecTimerInterval(int interval){sec_timer_interval = interval;};
-		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
+		
+		//
+		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 
 		//
-		void enablePaintFrame(){paintFrame = true;};
+		void disablePaintFrame(){paintframe = false;};
 		void setColor(fb_pixel_t col) {backgroundColor = col;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
 		void enableSaveScreen();
