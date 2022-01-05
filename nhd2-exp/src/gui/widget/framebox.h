@@ -127,7 +127,7 @@ class CFrame
 		}
 
 		virtual void disableShadow(void){shadow = false;};
-		virtual void disablePaintFrame(void){paintFrame = false;};
+		virtual void paintMainFrame(bool p){paintFrame = p;};
 		virtual void setPosition(int x, int y, int dx, int dy){window.setPosition(x, y, dx, dy);};
 		virtual void setPosition(CBox *position){window.setPosition(position);};
 		
@@ -223,7 +223,7 @@ class CFrameBox : public CWidgetItem
 		virtual void scrollLineUp(const int lines = 1);
 
 		int getSelected(){return selected;};
-		void disablePaintFrame(void){paintFrame = false;};
+		void paintMainFrame(bool p){paintFrame = p;};
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setRadius(int ra){radius = ra;};
 		void setCorner(int co){corner = co;};

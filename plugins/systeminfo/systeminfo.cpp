@@ -57,7 +57,7 @@ CSysInfoWidget::CSysInfoWidget(int m)
 
 	textBox = new CTextBox(&cFrameBoxText);
 	//textBox->setPosition(&cFrameBoxText);
-	textBox->enableShadow(SHADOW_LEFTRIGHT);
+	textBox->setShadowMode(SHADOW_LEFTRIGHT);
 	textBox->setBackgroundColor(COL_BLACK_PLUS_0);
 }
 

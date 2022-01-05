@@ -620,6 +620,7 @@ class ClistBox : public CWidgetItem
 		bool iteminfosavescreen;
 		int iteminfoshadowmode;
 		bool iteminfoframe;
+		CFont* iteminfofont;
 
 		// methods
 		virtual void paintItems();
@@ -708,9 +709,10 @@ class ClistBox : public CWidgetItem
 				footInfoHeight = 0;
 			}
 		};
-		void enableItemInfoShadow(int m){iteminfoshadow = true; iteminfoshadowmode = m;};
+		void paintItemInfoShadow(int m){iteminfoshadow = true; iteminfoshadowmode = m;};
 		void enableItemInfoSaveScreen(){iteminfosavescreen = true;};
 		void paintItemInfoFrame(bool p){iteminfoframe = p;};
+		void setItemInfoFont(CFont* f){iteminfofont = f;};
 
 		// mainFrame
 		void enableShrinkMenu(){shrinkMenu = true;};

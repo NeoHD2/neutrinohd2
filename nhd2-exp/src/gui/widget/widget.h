@@ -150,6 +150,7 @@ class CMenuTarget
 		//
 		int widget_id;
 		const char* widget_name;
+		virtual bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data){};
 };
 
 //

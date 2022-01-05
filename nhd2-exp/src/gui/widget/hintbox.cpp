@@ -123,13 +123,8 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 	
 	m_cBoxWindow = new CWindow(&cFrameBox);
 	m_cBoxWindow->enableSaveScreen();
-
-	if (g_settings.menu_shadow)
-		m_cBoxWindow->enableShadow();
-	else
-	{
-		m_cBoxWindow->setCorner(RADIUS_MID, CORNER_ALL);
-	}
+	m_cBoxWindow->setShadowMode(g_settings.menu_shadow? SHADOW_ALL : SHADOW_NO);
+	m_cBoxWindow->setCorner(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID, CORNER_ALL);
 	
 	// HG
 	paintHG = true;
@@ -214,12 +209,8 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	// Box
 	m_cBoxWindow = new CWindow(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
 	m_cBoxWindow->enableSaveScreen();
-	if (g_settings.menu_shadow)
-		m_cBoxWindow->enableShadow();
-	else
-	{
-		m_cBoxWindow->setCorner(RADIUS_MID, CORNER_ALL);
-	}
+	m_cBoxWindow->setShadowMode(g_settings.menu_shadow);
+	m_cBoxWindow->setCorner(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID, CORNER_ALL);
 	
 	// HG
 	paintHG = true;
@@ -256,16 +247,9 @@ void CHintBox::refresh(void)
 	cFrameBoxTitle.iWidth = cFrameBox.iWidth - 2;
 
 	CHeaders headers(cFrameBoxTitle, caption.c_str(), iconfile.c_str());
-	if (g_settings.menu_shadow)
-	{
-		headers.setCorner(CORNER_NONE);
-		headers.setRadius(NO_RADIUS);
-	}
-	else
-	{
-		headers.setCorner(CORNER_TOP);
-		headers.setRadius(RADIUS_MID);
-	}
+
+	headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
+	headers.setRadius(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID);
 	headers.paint();
 
 	// body text

@@ -75,7 +75,8 @@ void CWindow::init()
 	grad_intensity = INT_LIGHT;
 	grad_type = GRADIENT_ONECOLOR;
 
-	enableshadow = false;
+	//enableshadow = false;
+	shadowMode = SHADOW_NO;
 	paintFrame = true;
 
 	savescreen = false;
@@ -163,15 +164,20 @@ void CWindow::paint()
 
 	if (paintFrame)
 	{
-		if(enableshadow)
+		// shadow
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+			
+		if (shadowMode == SHADOW_ALL)
 		{
-			// shadow
-			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
-
 			// window Box
 			frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, NO_RADIUS, CORNER_NONE, gradient, grad_direction, grad_intensity, grad_type);
 		}
-		else
+		else if (shadowMode == SHADOW_LEFTRIGHT)
+		{
+			// window Box
+			frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY, itemBox.iWidth - 2, itemBox.iHeight, bgcolor, NO_RADIUS, CORNER_NONE, gradient, grad_direction, grad_intensity, grad_type);
+		}
+		else if (shadowMode == SHADOW_NO)
 		{
 			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient, grad_direction, grad_intensity, grad_type);
 		}

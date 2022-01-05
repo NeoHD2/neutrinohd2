@@ -681,7 +681,7 @@ void CWidget::onPageDownKeyPressed()
 //
 bool CWidget::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 {
-	dprintf(DEBUG_INFO, "CWidget::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
+	dprintf(DEBUG_DEBUG, "CWidget::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
 	
 	bool result = true;
 	

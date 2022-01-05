@@ -40,7 +40,7 @@ function main()
 	
 	-- time
 	local timeBox = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50 + 400, box.iWidth/2, 100)
-	timeBox:disablePaintFrame()
+	timeBox:paintMainFrame(false)
 	timeBox:enableRepaint()
 	
 	time = neutrino.CCTime()
@@ -51,8 +51,8 @@ function main()
 	timeBox:addCCItem(time)
 	
 	local list = neutrino.ClistBox(box.iX + 50, box.iY + 50, box.iWidth/2 - 100, box.iHeight - 100)
-	list:disablePaintFrame()
-	list:enableItemShadow()
+	list:paintMainFrame(false)
+	list:paintItemShadow(true)
 
 	item1 = neutrino.ClistBoxItem(neutrino.LOCALE_STREAMINFO_HEAD)
 	item1:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_SLEEPTIMER)

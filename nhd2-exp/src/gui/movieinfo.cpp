@@ -1814,7 +1814,7 @@ void CMovieInfoWidget::funArt()
 	if (t_w > box.iWidth)
 		t_w = box.iWidth;
 	titleFrame->setPosition(titleBox.iX, titleBox.iY, t_w, titleBox.iHeight);
-	titleFrame->disablePaintFrame();
+	titleFrame->paintMainFrame(false);
 	titleFrame->setTitle(movieFile.epgTitle.c_str());
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	titleFrame->setActive(false);
@@ -1828,7 +1828,7 @@ void CMovieInfoWidget::funArt()
 		starOffFrame->setMode(FRAME_ICON);
 		starOffFrame->setPosition(starBox.iX + i*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 		starOffFrame->setIconName(NEUTRINO_ICON_STAR_OFF);
-		starOffFrame->disablePaintFrame();
+		starOffFrame->paintMainFrame(false);
 		starOffFrame->setActive(false);
 
 		testFrameBox->addFrame(starOffFrame);
@@ -1842,7 +1842,7 @@ void CMovieInfoWidget::funArt()
 		starOnFrame->setMode(FRAME_ICON);
 		starOnFrame->setPosition(starBox.iX + i*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 		starOnFrame->setIconName(NEUTRINO_ICON_STAR_ON);
-		starOnFrame->disablePaintFrame();
+		starOnFrame->paintMainFrame(false);
 		starOnFrame->setActive(false);
 
 		testFrameBox->addFrame(starOnFrame);
@@ -1872,7 +1872,7 @@ void CMovieInfoWidget::funArt()
 	int l_w = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth(l_buffer);
 			
 	lengthFrame->setPosition(titleBox.iX, starBox.iY + starBox.iHeight + 10, l_w, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getHeight());
-	lengthFrame->disablePaintFrame();
+	lengthFrame->paintMainFrame(false);
 		
 	lengthFrame->setTitle(l_buffer.c_str());
 	lengthFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
@@ -1890,7 +1890,7 @@ void CMovieInfoWidget::funArt()
 	buffer += movieFile.epgInfo2;
 
 	textFrame->setTitle(buffer.c_str());
-	textFrame->disablePaintFrame();
+	textFrame->paintMainFrame(false);
 	textFrame->setActive(false);
 	
 	testFrameBox->addFrame(textFrame);

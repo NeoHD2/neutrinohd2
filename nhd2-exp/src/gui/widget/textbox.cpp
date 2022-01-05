@@ -144,9 +144,9 @@ void CTextBox::initVar(void)
 	painted = false;
 	paintBG = true;
 	enableFrame = false;
-	paintShadow = false;
+	//paintShadow = false;
 	useBG = false;
-	shadowMode = SHADOW_ALL;
+	shadowMode = SHADOW_NO;
 	
 	//
 	savescreen = false;
@@ -472,18 +472,18 @@ void CTextBox::refreshText(void)
 	// paint background
 	if(paintBG)
 	{
-		if (paintShadow)
-		{
-			// shadow
-			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+		// shadow
+		CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
 			
-			//
-			if (shadowMode == SHADOW_ALL)
-				CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, m_textBackgroundColor);
-			else
-				CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY, itemBox.iWidth - 2, itemBox.iHeight, m_textBackgroundColor);
+		if (shadowMode == SHADOW_LEFTRIGHT) //(paintShadow)
+		{
+			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY, itemBox.iWidth - 2, itemBox.iHeight, m_textBackgroundColor);
 		}
-		else
+		else if (shadowMode == SHADOW_ALL)
+		{
+				CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, m_textBackgroundColor);
+		}
+		else if (shadowMode == SHADOW_NO)
 		{
 			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, m_textBackgroundColor, m_textRadius, m_textCorner);
 		}

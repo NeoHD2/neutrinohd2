@@ -71,7 +71,7 @@ CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const
 	if(position != NULL)	
 		m_cBoxFrame = *position;
 	
-	m_nMode	= _mode;
+	m_nMode = _mode;
 
 	// initialise the window frames first
 	initFramesRel();
@@ -80,6 +80,7 @@ CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const
 	
 	m_pcTextBox->setFontText(fontText);
 	m_pcTextBox->setMode(m_nMode);
+	m_pcTextBox->setShadowMode(shadowMode);
 
 	if(m_nMode & AUTO_WIDTH || m_nMode & AUTO_HIGH)
 	{
@@ -169,7 +170,7 @@ void CInfoBox::initVar(void)
 	m_cTitle = g_Locale->getText(LOCALE_MESSAGEBOX_INFO);
 	m_cIcon = NEUTRINO_ICON_INFO;
 	headColor = COL_MENUHEAD_PLUS_0;
-	headRadius = RADIUS_MID;
+	headRadius = g_settings.Head_radius;
 	headCorner = CORNER_TOP;
 	headGradient = g_settings.Head_gradient;
 	
@@ -179,7 +180,7 @@ void CInfoBox::initVar(void)
 	
 	// foot
 	footColor = COL_MENUFOOT_PLUS_0;
-	footRadius = RADIUS_MID;
+	footRadius = g_settings.Foot_radius;
 	footCorner = CORNER_BOTTOM;
 	footGradient = g_settings.Foot_gradient;
 
@@ -191,7 +192,7 @@ void CInfoBox::initVar(void)
 
 	frameBuffer = CFrameBuffer::getInstance();
 	
-	paintShadow = false;
+	shadowMode = SHADOW_NO;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -290,7 +291,7 @@ bool CInfoBox::hide(void)
 	}
 */	
 
-	// hide title
+	// hide
 	frameBuffer->paintBackgroundBoxRel(m_cBoxFrame.iX, m_cBoxFrame.iY, m_cBoxFrame.iWidth, m_cBoxFrame.iHeight);
 	
 	frameBuffer->blit();
@@ -385,25 +386,22 @@ bool CInfoBox::paint(void)
 {
 	dprintf(DEBUG_DEBUG, "CInfoBox::paint\n");
 	
-	// bg
-	CWindow bg(&m_cBoxFrame);
-	
-	bg.setCorner(RADIUS_MID, CORNER_ALL);
-	bg.paint();
+	// bg / mainFrame
+	//CWindow bg(&m_cBoxFrame);
+	//bg.setCorner(RADIUS_MID, CORNER_ALL);
+	//bg.paint();
 
 	// title
 	refreshTitle();
 
 	// textBox
 	if(m_pcTextBox != NULL)
-	{
-		if (paintShadow)
-			m_pcTextBox->enableShadow();
-			
+	{	
 		// paint
 		m_pcTextBox->paint();
 	}
 
+	// foot
 	refreshFoot();
 	
 	return (true);

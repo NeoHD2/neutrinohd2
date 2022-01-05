@@ -2299,6 +2299,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	iteminfosavescreen = false;
 	iteminfoshadowmode = SHADOW_ALL;
 	iteminfoframe = true;
+	iteminfofont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
 	
 	//
 	inFocus = true;
@@ -2416,6 +2417,7 @@ ClistBox::ClistBox(CBox* position)
 	iteminfosavescreen = false;
 	iteminfoshadowmode = SHADOW_ALL;
 	iteminfoframe = true;
+	iteminfofont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
@@ -3203,9 +3205,10 @@ void ClistBox::paintItemInfo(int pos)
 				// detailslines box
 				itemsLine.setMode(DL_HINTITEM);
 				itemsLine.PaintLine(false);
-				if (iteminfoshadow) itemsLine.enableShadow(iteminfoshadowmode);
+				itemsLine.setShadowMode(iteminfoshadowmode);
 				if (iteminfosavescreen) itemsLine.enableSaveScreen();
 				itemsLine.paintFrame(iteminfoframe);
+				itemsLine.setFont(iteminfofont);
 				itemsLine.setHint(item->itemHint.c_str());
 				itemsLine.setIcon(item->itemIcon.c_str());
 					
@@ -3218,7 +3221,7 @@ void ClistBox::paintItemInfo(int pos)
 				// detailslines box
 				itemsLine.setMode(DL_HINTICON);
 				itemsLine.PaintLine(false);
-				if (iteminfoshadow) itemsLine.enableShadow(iteminfoshadowmode);
+				itemsLine.setShadowMode(iteminfoshadowmode);
 				if (iteminfosavescreen) itemsLine.enableSaveScreen();
 				itemsLine.paintFrame(iteminfoframe);
 				itemsLine.setHint(item->itemHint.c_str());
@@ -3233,9 +3236,10 @@ void ClistBox::paintItemInfo(int pos)
 				// detailslines box
 				itemsLine.setMode(DL_HINTHINT);
 				itemsLine.PaintLine(false);
-				if (iteminfoshadow) itemsLine.enableShadow(iteminfoshadowmode);
+				itemsLine.setShadowMode(iteminfoshadowmode);
 				if (iteminfosavescreen) itemsLine.enableSaveScreen();
 				itemsLine.paintFrame(iteminfoframe);
+				itemsLine.setFont(iteminfofont);
 				itemsLine.setHint(item->itemHint.c_str());
 				//itemsLine.setIcon(item->itemIcon.c_str());
 					
@@ -3865,9 +3869,9 @@ void ClistBox::onDirectKeyPressed(neutrino_msg_t msg)
 //
 bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 {
-	dprintf(DEBUG_INFO, "ClistBox::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
+	dprintf(DEBUG_DEBUG, "ClistBox::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
 	
-	bool result = true;
+	//bool result = true;
 	
 	if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 	{
@@ -3900,10 +3904,14 @@ bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 	}
 	else
 	{
-		result = false;
+		//result = false;
 	}
 	
-	return result;
+	//return result;
+	if (parent)
+	return parent->onButtonPress(msg, data);
+	else 
+	return false;
 }
 
 void ClistBox::addTimer(uint64_t sec)

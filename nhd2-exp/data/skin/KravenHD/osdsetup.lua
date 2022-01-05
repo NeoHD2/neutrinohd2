@@ -51,9 +51,9 @@ function main()
 	timeBox:addCCItem(time)
 	
 	local list = neutrino.ClistBox(box.iX + 50, box.iY + 50, box.iWidth/2 - 100, box.iHeight - 100)
-	list:disablePaintFrame()
-	list:disableScrollBar()
-	list:enableItemShadow()
+	list:paintMainFrame(false)
+	list:paintScrollBar(false)
+	list:paintItemShadow(true)
 
 
 	item1 = neutrino.ClistBoxItem(neutrino.LOCALE_SKIN_SKIN, true, "", neutrino.CSkinManager())

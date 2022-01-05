@@ -56,7 +56,7 @@ class CWindow : public CWidgetItem
 		void restoreScreen();
 
 		//
-		bool enableshadow;
+		bool shadowMode;
 		bool paintFrame;
 		
 		//
@@ -73,9 +73,11 @@ class CWindow : public CWidgetItem
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
 		void setGradient(int grad, int direction = GRADIENT_VERTICAL, int intensity = INT_LIGHT, int type = GRADIENT_ONECOLOR){gradient = grad; grad_direction = direction; grad_intensity = intensity; grad_type = type;};
-		void enableShadow(void){enableshadow = true;};
+		void setShadowMode(int sm){shadowMode = sm;};
+		//
+		void paintMainFrame(bool p){paintFrame = p;};
+		//
 		void enableSaveScreen();
-		void disablePaintFrame(){paintFrame = false;};
 
 		//
 		void paint(void);

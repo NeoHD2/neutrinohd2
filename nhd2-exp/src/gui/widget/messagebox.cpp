@@ -431,10 +431,8 @@ void CMessageBox::initFrames(void)
 	m_cBoxWindow = new CWindow(&cFrameBox);
 
 	m_cBoxWindow->enableSaveScreen();
-	if (g_settings.menu_shadow)
-		m_cBoxWindow->enableShadow();
-	else
-		m_cBoxWindow->setCorner(RADIUS_MID, CORNER_ALL);
+	m_cBoxWindow->setShadowMode(g_settings.menu_shadow? SHADOW_ALL : SHADOW_NO);
+	m_cBoxWindow->setCorner(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID, CORNER_ALL);
 }
 
 void CMessageBox::paint(void)
@@ -453,16 +451,10 @@ void CMessageBox::refresh()
 
 	// title
 	CHeaders headers(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + 1, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + 1, m_width - 2, m_theight - 2, m_caption.c_str(), m_iconfile.c_str());
-	if (g_settings.menu_shadow)
-	{
-		headers.setCorner(CORNER_NONE);
-		headers.setRadius(NO_RADIUS);
-	}
-	else
-	{
-		headers.setCorner(CORNER_TOP);
-		headers.setRadius(RADIUS_MID);
-	}
+	
+	headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
+	headers.setRadius(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID);
+	
 	headers.paint();
 
 	//TextBody

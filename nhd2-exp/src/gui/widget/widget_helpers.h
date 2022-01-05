@@ -296,7 +296,7 @@ class CItems2DetailsLine : public CComponent
 		
 		// cutom mode
 		CFont* tFont;
-		bool paintShadow;
+		//bool paintShadow;
 		int shadowMode;
 		bool savescreen;
 		bool paintframe;
@@ -322,7 +322,7 @@ class CItems2DetailsLine : public CComponent
 		
 		// custom mode
 		void setFont(CFont* f){tFont = f;};
-		void enableShadow(int m){paintShadow = true; shadowMode = m;};
+		void setShadowMode(int m){shadowMode = m;};
 		void enableSaveScreen(){savescreen = true;};
 		void paintFrame(bool p){paintframe = p;};
 };
@@ -574,7 +574,8 @@ class CWidgetItem
 		
 		//
 		bool painted;
-		CWidget* parent;
+		//CWidget* parent;
+		CMenuTarget* parent;
 
 		CWidgetItem(){frameBuffer = CFrameBuffer::getInstance(); inFocus = true; actionKey = ""; parent = NULL; rePaint = false;};
 		virtual ~CWidgetItem(){};
@@ -614,7 +615,8 @@ class CWidgetItem
 		virtual std::string getActionKey(void){ return actionKey;}; // lua
 		
 		//
-		virtual void setParent(CWidget* w_parent){parent = w_parent;};
+		//virtual void setParent(CWidget* w_parent){parent = w_parent;};
+		virtual void setParent(CMenuTarget* w_parent){parent = w_parent;};
 		
 		virtual inline bool isPainted(void){return painted;};
 };

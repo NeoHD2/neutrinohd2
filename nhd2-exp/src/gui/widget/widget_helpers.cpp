@@ -497,8 +497,8 @@ CItems2DetailsLine::CItems2DetailsLine()
 	
 	// hintitem / hinticon
 	tFont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
-	paintShadow = false;
-	shadowMode = SHADOW_ALL;
+	//paintShadow = false;
+	shadowMode = SHADOW_NO;
 	savescreen = false;
 	paintframe = true;
 	
@@ -618,7 +618,8 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	else if (mode == DL_HINT)
 	{	
 		CTextBox Dline(DLx, DLy, DLwidth, DLheight);
-		Dline.disablePaintFrame();
+		Dline.paintMainFrame(paintframe);
+		//Dline.setShadowMode(shadowMode);
 		Dline.setMode(AUTO_WIDTH);
 		
 		int iw = 100;
@@ -645,10 +646,10 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	{
 		//
 		CTextBox Dline(x, y, width, height);
-		if (!paintframe) Dline.disablePaintFrame();
+		Dline.paintMainFrame(paintframe);
 		Dline.setMode(AUTO_WIDTH);
 		Dline.setFontText(tFont);
-		if (paintShadow) Dline.enableShadow(shadowMode);
+		Dline.setShadowMode(shadowMode);
 		if (savescreen) Dline.enableSaveScreen();
 		
 		// scale icon
@@ -671,10 +672,10 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	else if (mode == DL_HINTHINT)
 	{
 		CTextBox Dline(x, y, width, height);
-		if (!paintframe) Dline.disablePaintFrame();
+		Dline.paintMainFrame(paintframe);
 		Dline.setMode(AUTO_WIDTH);
 		Dline.setFontText(tFont);
-		if (paintShadow) Dline.enableShadow(shadowMode);
+		Dline.setShadowMode(shadowMode);
 		if (savescreen) Dline.enableSaveScreen();
 
 		// Hint
@@ -815,7 +816,7 @@ void CCText::paint()
 	CTextBox textBox;
 	textBox.setPosition(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
 
-	textBox.disablePaintFrame();
+	textBox.paintMainFrame(false);
 	textBox.setMode(mode);
 	textBox.setFontText(font);
 	textBox.setTextColor(color);

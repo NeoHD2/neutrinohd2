@@ -183,10 +183,8 @@ void CProgressWindow::paint()
 
 	// box
 	m_cBoxWindow.enableSaveScreen();
-	if (g_settings.menu_shadow)
-		m_cBoxWindow.enableShadow();
-	else
-		m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
+	m_cBoxWindow.setShadowMode(g_settings.menu_shadow? SHADOW_ALL : SHADOW_NO);
+	m_cBoxWindow.setCorner(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID, CORNER_ALL);
 	m_cBoxWindow.paint();
 	
 	// title
@@ -200,16 +198,9 @@ void CProgressWindow::paint()
 			l_caption = captionString.c_str();
 
 		CHeaders headers(x + 2, y + 2, width - 4, hheight - 2, l_caption, NEUTRINO_ICON_INFO);
-		if (g_settings.menu_shadow)
-		{
-			headers.setCorner(CORNER_NONE);
-			headers.setRadius(NO_RADIUS);
-		}
-		else
-		{
-			headers.setCorner(CORNER_TOP);
-			headers.setRadius(RADIUS_MID);
-		}
+		
+		headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
+		headers.setRadius(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID);
 		
 		if (paintCancelIcon)
 			headers.setButtons(&cancelBtn, 1);

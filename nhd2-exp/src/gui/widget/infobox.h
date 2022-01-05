@@ -57,10 +57,11 @@ class CInfoBox
 	private:
 		CFrameBuffer * frameBuffer;
 
-		CBox	m_cBoxFrame;
+		// body
+		CBox m_cBoxFrame;
 
 		// head
-		CBox	m_cBoxFrameTitleRel;
+		CBox m_cBoxFrameTitleRel;
 		std::string m_cIcon;
 		std::string m_cTitle;
 		fb_pixel_t headColor;
@@ -69,14 +70,14 @@ class CInfoBox
 		int headGradient;
 		
 		// text
-		CBox	m_cBoxFrameText;
+		CBox m_cBoxFrameText;
 		CTextBox *m_pcTextBox;
 		CFont* m_pcFontText;
 		int m_nMode;
-		bool paintShadow;
+		int shadowMode;
 		
 		// foot
-		CBox	m_cBoxFrameFootRel;
+		CBox m_cBoxFrameFootRel;
 		fb_pixel_t footColor;
 		int footRadius;
 		int footCorner;
@@ -120,7 +121,7 @@ class CInfoBox
 		void setBackgroundColor(fb_pixel_t col);
 		void setTextColor(uint8_t col);
 		void setFontText(CFont * font_text);
-		void enableShadow(){paintShadow = true;};
+		void setShadowMode(int sm){shadowMode = sm;};
 		
 		// foot
 		void setFootColor(fb_pixel_t col) {footColor = col;};

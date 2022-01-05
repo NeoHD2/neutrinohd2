@@ -180,11 +180,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	// paint frameBackground
 	if (paintFrame)
 	{
-		if (shadow)
-		{
-			window.enableShadow();
-		}
-	
+		window.setShadowMode(shadow? SHADOW_ALL : SHADOW_NO);
 		window.setColor(bgcolor);
 		//window.setCorner(radius, corner); //FIXME:
 		window.setGradient(gradient);
@@ -336,7 +332,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 
 		textBox.setPosition(window.getWindowsPos().iX + 1, window.getWindowsPos().iY + 1, window.getWindowsPos().iWidth - 2, window.getWindowsPos().iHeight - 2);
 
-		textBox.disablePaintFrame();
+		textBox.paintMainFrame(false);
 		textBox.setMode(AUTO_WIDTH);
 		textBox.setFontText(captionFont);
 

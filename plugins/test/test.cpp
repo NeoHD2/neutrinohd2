@@ -1222,7 +1222,7 @@ void CTestMenu::testCFrameBox1()
 	CFrame *titleFrame = new CFrame();
 	titleFrame->setMode(FRAME_LABEL);
 	titleFrame->setPosition(&titleBox);
-	titleFrame->disablePaintFrame();
+	titleFrame->paintMainFrame(false);
 	titleFrame->setTitle(m_vMovieInfo[0].epgTitle.c_str());
 	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 	titleFrame->setActive(false);
@@ -1234,7 +1234,7 @@ void CTestMenu::testCFrameBox1()
 	star1Frame->setMode(FRAME_ICON);
 	star1Frame->setPosition(&starBox);
 	star1Frame->setIconName(NEUTRINO_ICON_STAR_ON);
-	star1Frame->disablePaintFrame();
+	star1Frame->paintMainFrame(false);
 	star1Frame->setActive(false);
 
 	frameBoxWidget->addFrame(star1Frame);
@@ -1244,7 +1244,7 @@ void CTestMenu::testCFrameBox1()
 	star2Frame->setMode(FRAME_ICON);
 	star2Frame->setPosition(starBox.iX + 25, starBox.iY, starBox.iWidth, starBox.iHeight);
 	star2Frame->setIconName(NEUTRINO_ICON_STAR_ON);
-	star2Frame->disablePaintFrame();
+	star2Frame->paintMainFrame(false);
 	star2Frame->setActive(false);
 
 	frameBoxWidget->addFrame(star2Frame);
@@ -1254,7 +1254,7 @@ void CTestMenu::testCFrameBox1()
 	star3Frame->setMode(FRAME_ICON);
 	star3Frame->setPosition(starBox.iX + 2*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 	star3Frame->setIconName(NEUTRINO_ICON_STAR_ON);
-	star3Frame->disablePaintFrame();
+	star3Frame->paintMainFrame(false);
 	star3Frame->setActive(false);
 
 	frameBoxWidget->addFrame(star3Frame);
@@ -1264,7 +1264,7 @@ void CTestMenu::testCFrameBox1()
 	star4Frame->setMode(FRAME_ICON);
 	star4Frame->setPosition(starBox.iX + 3*25, starBox.iY, starBox.iWidth, starBox.iHeight);
 	star4Frame->setIconName(NEUTRINO_ICON_STAR_OFF);
-	star4Frame->disablePaintFrame();
+	star4Frame->paintMainFrame(false);
 	star4Frame->setActive(false);
 
 	frameBoxWidget->addFrame(star4Frame);
@@ -1279,7 +1279,7 @@ void CTestMenu::testCFrameBox1()
 	buffer += m_vMovieInfo[0].epgInfo2;
 
 	textFrame->setTitle(buffer.c_str());
-	textFrame->disablePaintFrame();
+	textFrame->paintMainFrame(false);
 	textFrame->setActive(false);
 	
 	frameBoxWidget->addFrame(textFrame);
@@ -1465,7 +1465,7 @@ void CTestMenu::testCFrameBoxWidget()
 		int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 		titleFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10, t_w, t_h);
 		titleFrame->setTitle((m_vMovieInfo[0].epgTitle.empty())? "" : m_vMovieInfo[0].epgTitle.c_str());
-		//titleFrame->disablePaintFrame();
+		//titleFrame->paintMainFrame(false);
 		titleFrame->setActive(false);
 
 		frameBoxWidget->addFrame(titleFrame);
@@ -1479,7 +1479,7 @@ void CTestMenu::testCFrameBoxWidget()
 		buffer += "\n";
 		buffer += m_vMovieInfo[0].epgInfo2;
 		textFrame->setTitle(buffer.c_str());
-		//textFrame->disablePaintFrame();
+		//textFrame->paintMainFrame(false);
 		textFrame->setActive(false);
 
 		frameBoxWidget->addFrame(textFrame);
@@ -1489,7 +1489,7 @@ void CTestMenu::testCFrameBoxWidget()
 		artFrame->setMode(FRAME_PICTURE);
 		artFrame->setPosition(box.iX + 10 + box.iWidth - 10 - pic_w - 20, box.iY + 40 + h_h + 10, pic_w - 20, 250);
 		artFrame->setIconName(m_vMovieInfo[0].tfile.c_str());
-		//artFrame->disablePaintFrame();
+		//artFrame->paintMainFrame(false);
 		artFrame->setActionKey(this, "fire1play");
 
 		frameBoxWidget->addFrame(artFrame);
@@ -1503,7 +1503,7 @@ void CTestMenu::testCFrameBoxWidget()
 		int o_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 		otherFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10 + 250 + 10, o_w + 10, o_h);
 		otherFrame->setTitle("andere Filme:");
-		//otherFrame->disablePaintFrame();
+		//otherFrame->paintMainFrame(false);
 		otherFrame->setActive(false);
 
 		frameBoxWidget->addFrame(otherFrame);
@@ -1516,7 +1516,7 @@ void CTestMenu::testCFrameBoxWidget()
 			art1Frame->setMode(FRAME_PICTURE);
 			art1Frame->setPosition(box.iX + 10 + (i - 1)*((box.iWidth - 20)/6) + 5, box.iY + 40 + h_h + 10 + 250 + 10 + o_h + 10, (box.iWidth - 20)/6 - 10,box.iHeight - 40 - h_h - 10 - 250 - 10 - 40);
 			art1Frame->setIconName(m_vMovieInfo[i].tfile.c_str());
-			//art1Frame->disablePaintFrame();
+			//art1Frame->paintMainFrame(false);
 			art1Frame->setActionKey(this, "fireplay");
 			art1Frame->setTitle(m_vMovieInfo[i].epgTitle.c_str());
 
@@ -2923,7 +2923,7 @@ void CTestMenu::testCWindowShadow()
 
 	window->setColor(COL_MENUCONTENT_PLUS_0);
 	window->setCorner(RADIUS_MID, CORNER_ALL);
-	window->enableShadow();
+	window->setShadowMode(SHADOW_ALL);
 	window->enableSaveScreen();
 
 	window->paint();
@@ -2958,7 +2958,7 @@ void CTestMenu::testCWindowCustomColor()
 
 	window->setColor(COL_ORANGE_PLUS_0); // or use like make16color(0x76A5AF)
 	window->setCorner(RADIUS_MID, CORNER_ALL);
-	window->enableShadow();
+	window->setShadowMode(SHADOW_ALL);
 	window->enableSaveScreen();
 
 	window->paint();
@@ -3223,7 +3223,7 @@ void CTestMenu::testCInfoBox()
 	
 	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, "CInfoBox", NEUTRINO_ICON_INFO);	
 	
-	infoBox->enableShadow();
+	infoBox->setShadowMode(SHADOW_ALL);
 	infoBox->setBackgroundColor(/*make16color(0xBEBEBE)*/COL_SILVER_PLUS_0);
 	infoBox->setText(buffer.c_str(), m_vMovieInfo[0].tfile.c_str(), p_w, p_h, TOP_LEFT, true, true);
 	infoBox->setTextColor(COL_LIME);
@@ -3814,16 +3814,20 @@ void CTestMenu::testClistBox()
 
 	// footinfo
 	rightWidget->enablePaintFootInfo(70);
-	rightWidget->setFootInfoMode(FOOT_HINTHINT_MODE);
+	rightWidget->setFootInfoMode(FOOT_HINTITEM_MODE);
 	rightWidget->setItemInfoPos(Box.iX + Box.iWidth + 150, Box.iY + 100, 400, 400);
 	rightWidget->enableItemInfoSaveScreen();
-	rightWidget->enableItemInfoShadow(SHADOW_ALL);
+	rightWidget->paintItemInfoShadow(SHADOW_ALL);
 	rightWidget->paintItemInfoFrame(true);
+	rightWidget->setItemInfoFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
+	rightWidget->paintScrollBar(false);
+	
+	rightWidget->setParent(this);
 	
 	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 
-#if 0
+#if 1
 	// loop
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
@@ -4240,7 +4244,7 @@ void CTestMenu::testClistBox4()
 	rightWidget->setItemsPerPage(5,2);
 	rightWidget->enableShrinkMenu();
 
-	//rightWidget->disablePaintFrame();	
+	//rightWidget->paintMainFrame(false);	
 
 	//rightWidget->setSelected(selected);
 	
