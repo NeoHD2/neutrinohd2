@@ -67,16 +67,18 @@ class CWindow : public CWidgetItem
 		CWindow(CBox* position);
 		virtual ~CWindow(){};
 
+		//
 		void init();
 		void setPosition(const int x, const int y, const int dx, const int dy);
 		void setPosition(CBox* position);
+		
+		//
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
 		void setGradient(int grad, int direction = GRADIENT_VERTICAL, int intensity = INT_LIGHT, int type = GRADIENT_ONECOLOR){gradient = grad; grad_direction = direction; grad_intensity = intensity; grad_type = type;};
 		void setShadowMode(int sm){shadowMode = sm;};
 		//
 		void paintMainFrame(bool p){paintFrame = p;};
-		//
 		void enableSaveScreen();
 
 		//

@@ -39,7 +39,7 @@ function main()
 	
 	-- time
 	local timeBox = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50 + 400, box.iWidth/2, 100)
-	timeBox:disablePaintFrame()
+	timeBox:paintMainFrame(false)
 	timeBox:enableRepaint()
 	
 	time = neutrino.CCTime()
@@ -52,7 +52,7 @@ function main()
 	local list = neutrino.ClistBox(box.iX + 50, box.iY + 50, box.iWidth/2 - 100, box.iHeight - 100)
 	list:paintMainFrame(false)
 	list:paintScrollBar(false)
-	list:enableItemShadow()
+	list:paintItemShadow(true)
 
 	item1 = neutrino.ClistBoxItem(neutrino.LOCALE_MAINSETTINGS_VIDEO, true, "", neutrino.CVideoSettings(), "")
 	item1:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_VIDEOSETTINGS)

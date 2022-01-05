@@ -42,7 +42,7 @@ function main()
 	
 	-- time
 	local timeBox = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50 + 400, box.iWidth/2, 100)
-	timeBox:disablePaintFrame()
+	timeBox:paintMainFrame(false)
 	timeBox:enableRepaint()
 	
 	time = neutrino.CCTime()

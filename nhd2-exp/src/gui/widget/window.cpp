@@ -75,7 +75,7 @@ void CWindow::init()
 	grad_intensity = INT_LIGHT;
 	grad_type = GRADIENT_ONECOLOR;
 
-	//enableshadow = false;
+	//
 	shadowMode = SHADOW_NO;
 	paintFrame = true;
 
@@ -163,17 +163,20 @@ void CWindow::paint()
 	dprintf(DEBUG_INFO, "CWindow::%s\n", __FUNCTION__);
 
 	if (paintFrame)
-	{
-		// shadow
-		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
-			
+	{	
 		if (shadowMode == SHADOW_ALL)
 		{
+			// shadow
+			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+		
 			// window Box
 			frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, NO_RADIUS, CORNER_NONE, gradient, grad_direction, grad_intensity, grad_type);
 		}
 		else if (shadowMode == SHADOW_LEFTRIGHT)
 		{
+			// shadow
+			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+		
 			// window Box
 			frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY, itemBox.iWidth - 2, itemBox.iHeight, bgcolor, NO_RADIUS, CORNER_NONE, gradient, grad_direction, grad_intensity, grad_type);
 		}
@@ -220,6 +223,7 @@ void CWindow::addCCItem(CComponent* CCItem)
 	CCItem->setParent(this);
 }
 
+//
 void CWindow::paintCCItems()
 {
 	dprintf(DEBUG_INFO, "CWindow::paintCCItems:\n");
@@ -232,6 +236,7 @@ void CWindow::paintCCItems()
 	}
 }
 
+//
 void CWindow::refresh(void)
 {
 	for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
@@ -242,4 +247,6 @@ void CWindow::refresh(void)
 		}
 	}
 }
+
+
 

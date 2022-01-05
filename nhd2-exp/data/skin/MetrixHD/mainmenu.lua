@@ -66,7 +66,7 @@ function main()
 	
 	local w = neutrino.CWindow(box.iX + 60, box.iY + 50, box.iWidth/2 - 120, box.iHeight - 100)
 	local list = neutrino.ClistBox(box.iX + 50, box.iY + 60, box.iWidth/2 - 100, box.iHeight - 120)
-	list:disablePaintFrame()
+	list:paintMainFrame(false)
 
 	item1 = neutrino.ClistBoxItem("EPG / Timer")
 	item1:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_TIMERLIST)

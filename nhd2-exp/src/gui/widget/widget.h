@@ -150,7 +150,7 @@ class CMenuTarget
 		//
 		int widget_id;
 		const char* widget_name;
-		virtual bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data){};
+		virtual bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data){return true;};
 };
 
 //
@@ -215,9 +215,10 @@ class CWidget : public CMenuTarget
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 
 		//
-		void disablePaintFrame(){paintframe = false;};
+		void paintMainFrame(bool p){paintframe = p;};
 		void setColor(fb_pixel_t col) {backgroundColor = col;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
+		//
 		void enableSaveScreen();
 
 		// compatibility

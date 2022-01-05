@@ -15,7 +15,7 @@ function main()
 	box.iHeight = fb:getScreenHeight(true)
 	
 	local m = neutrino.CWidget(box)
-	m:enablePaintFrame()
+	m:paintMainFrame(true)
 	m:setCorner(neutrino.NO_RADIUS, neutrino.CORNER_NONE)
 	
 	local head = neutrino.CHeaders(box.iX + 30, box.iY + 50, box.iWidth - 60, 40, neutrino.g_Locale:getText(neutrino.LOCALE_MAINSETTINGS_OSD), neutrino.NEUTRINO_ICON_COLORS);
@@ -37,7 +37,7 @@ function main()
 	local list = neutrino.ClistBox(box.iX + 30, box.iY + 100, box.iWidth - 60, box.iHeight - 200)
 
 	list:setWidgetType(neutrino.WIDGET_TYPE_CLASSIC)
-	list:disableScrollBar()
+	list:paintScrollBar(false)
 
 	item1 = neutrino.CMenuForwarder(neutrino.LOCALE_SKIN_SKIN, true, "", neutrino.CSkinManager())
 	item1:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_THEMES)

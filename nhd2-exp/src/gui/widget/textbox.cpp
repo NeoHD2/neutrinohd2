@@ -471,17 +471,21 @@ void CTextBox::refreshText(void)
 
 	// paint background
 	if(paintBG)
-	{
-		// shadow
-		CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
-			
-		if (shadowMode == SHADOW_LEFTRIGHT) //(paintShadow)
+	{	
+		if (shadowMode == SHADOW_LEFTRIGHT)
 		{
+			// shadow
+			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+		
 			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY, itemBox.iWidth - 2, itemBox.iHeight, m_textBackgroundColor);
 		}
 		else if (shadowMode == SHADOW_ALL)
 		{
-				CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, m_textBackgroundColor);
+			// shadow
+			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+			
+			//
+			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, m_textBackgroundColor);
 		}
 		else if (shadowMode == SHADOW_NO)
 		{
