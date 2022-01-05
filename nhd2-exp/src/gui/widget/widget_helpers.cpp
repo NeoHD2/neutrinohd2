@@ -360,7 +360,7 @@ void CCButtons::paintFootButtons(const int x, const int y, const int dx, const i
 	if(count)
 	{
 		//
-		buttonWidth = (dx - BORDER_LEFT - BORDER_RIGHT)/count;
+		buttonWidth = (dx)/count;
 
 		for (int i = 0; i < count; i++)
 		{
@@ -1317,7 +1317,7 @@ void CFooters::paint()
 
 	if(fcount)
 	{
-		buttonWidth = (fbutton_width - BORDER_LEFT - BORDER_RIGHT)/fcount;
+		buttonWidth = (fbutton_width)/fcount;
 	
 		for (int i = 0; i < fcount; i++)
 		{

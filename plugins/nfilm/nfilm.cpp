@@ -380,12 +380,6 @@ void CNFilm::paintLeftWidgetItems(ClistBox *listBox, bool genre)
 	
 		listBox->addItem(new ClistBoxItem("Suche", true, tmdbsearch.c_str(), this, "search"));
 		listBox->addItem(new CMenuSeparator(LINE));
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator(LINE));
 		listBox->addItem(item1);
 		listBox->addItem(new CMenuSeparator(LINE));
 		listBox->addItem(item2);
@@ -394,25 +388,9 @@ void CNFilm::paintLeftWidgetItems(ClistBox *listBox, bool genre)
 		listBox->addItem(new CMenuSeparator(LINE));
 		listBox->addItem(item4);
 		listBox->addItem(new CMenuSeparator(LINE));
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator(LINE));
 		listBox->addItem(new ClistBoxItem("Genres", true, NULL, this, "genres"));
 		listBox->addItem(new CMenuSeparator(LINE));
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator());
-		listBox->addItem(new CMenuSeparator(LINE));
 		listBox->addItem(item5);
-		listBox->addItem(new CMenuSeparator(LINE));
 	}
 }
 

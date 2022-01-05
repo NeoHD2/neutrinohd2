@@ -292,7 +292,6 @@ void CMenuWidget::initFrames()
 		fheight = fbutton_count? hheight : 0;
 		
 		// footInfoHeight
-		//if(paintFootInfo)
 		cFrameFootInfoHeight = hheight;
 
 		//
@@ -578,22 +577,26 @@ void CMenuWidget::paintFoot()
 
 			// buttons
 			int buttonWidth = 0;
+			int iw[fbutton_count]; 
+			int ih[fbutton_count];
 
-			buttonWidth = (fbutton_width - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
+			buttonWidth = (fbutton_width)/fbutton_count;
+			
+			printf("CMenuWidget::paintFoot:%d\n\n", fbutton_count);
 	
 			for (unsigned int i = 0; i < fbutton_count; i++)
 			{
 				if (fbutton_labels[i].button != NULL)
 				{
 						const char * l_option = NULL;
-						int iw = 0;
-						int ih = 0;
+						iw[i] = 0;
+						ih[i] = 0;
 
-						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw, &ih);
+						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw[i], &ih[i]);
 						
-						if(ih >= fheight)
+						if(ih[i] >= fheight)
 						{
-							ih = fheight - 2;
+							ih[i] = fheight - 2;
 						}
 				
 						int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
@@ -603,9 +606,9 @@ void CMenuWidget::paintFoot()
 						else
 							l_option = g_Locale->getText(fbutton_labels[i].locale);
 		
-						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - fheight + (fheight - ih)/2, 0, true, iw, ih);
+						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - fheight + (fheight - ih[i])/2, 0, true, iw[i], ih[i]);
 
-						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, y + height - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
+						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, y + height - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
 		}
@@ -621,24 +624,26 @@ void CMenuWidget::paintFoot()
 		
 		// buttons
 		int buttonWidth = 0;
+		int iw[fbutton_count]; 
+		int ih[fbutton_count];
 
 		if(fbutton_count)
 		{
-			buttonWidth = (fbutton_width - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
+			buttonWidth = (fbutton_width)/fbutton_count;
 	
 			for (unsigned int i = 0; i < fbutton_count; i++)
 			{
 				if (fbutton_labels[i].button != NULL)
 				{
 						const char * l_option = NULL;
-						int iw = 0;
-						int ih = 0;
+						iw[i] = 0;
+						ih[i] = 0;
 
-						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw, &ih);
+						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw[i], &ih[i]);
 						
-						if(ih >= fheight)
+						if(ih[i] >= fheight)
 						{
-							ih = fheight - 2;
+							ih[i] = fheight - 2;
 						}
 						
 						int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
@@ -648,9 +653,9 @@ void CMenuWidget::paintFoot()
 						else
 							l_option = g_Locale->getText(fbutton_labels[i].locale);
 		
-						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - cFrameFootInfoHeight - fheight + (fheight - ih)/2, 0, true, iw, ih);
+						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - cFrameFootInfoHeight - fheight + (fheight - ih[i])/2, 0, true, iw[i], ih[i]);
 
-						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, y + height - cFrameFootInfoHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
+						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, y + height - cFrameFootInfoHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
 		}
@@ -1248,6 +1253,8 @@ void CMenuWidget::setFootButtons(const struct button_label *_fbutton_labels, con
 {
 	dprintf(DEBUG_INFO, "CMenuWidget::setFootButtons:\n");
 	
+	initFrames(); // to fix FRAME_TYPE_WIDGET
+	
 	if (_fbutton_count)
 	{
 		for (unsigned int i = 0; i < _fbutton_count; i++)
@@ -1257,7 +1264,7 @@ void CMenuWidget::setFootButtons(const struct button_label *_fbutton_labels, con
 	}
 
 	fbutton_count = fbutton_labels.size();	
-	fbutton_width = (_fbutton_width == 0)? width : _fbutton_width;
+	fbutton_width = (_fbutton_width == 0)? full_width : _fbutton_width;
 }
 
 void CMenuWidget::setHeadButtons(const struct button_label* _hbutton_labels, const int _hbutton_count)

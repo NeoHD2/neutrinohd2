@@ -58,7 +58,7 @@ function main()
 	timeBox:addCCItem(time)
 	
 	local list = neutrino.ClistBox(box.iX + 50, box.iY + 60, box.iWidth/2 - 100, box.iHeight - 120)
-	list:disablePaintFrame()
+	list:paintMainFrame(false)
 
 	item1 = neutrino.ClistBoxItem(neutrino.LOCALE_SERVICEMENU_SCANTS)
 	item1:setItemIcon(neutrino.NEUTRINO_ICON_MENUITEM_SCANSETTINGS)

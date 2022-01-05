@@ -3814,12 +3814,12 @@ void CTestMenu::testClistBox()
 
 	// footinfo
 	rightWidget->enablePaintFootInfo(70);
-	rightWidget->setFootInfoMode(FOOT_HINTITEM_MODE);
+	rightWidget->setFootInfoMode(FOOT_HINTICON_MODE);
 	rightWidget->setItemInfoPos(Box.iX + Box.iWidth + 150, Box.iY + 100, 400, 400);
 	rightWidget->enableItemInfoSaveScreen();
 	rightWidget->paintItemInfoShadow(SHADOW_ALL);
 	rightWidget->paintItemInfoFrame(true);
-	rightWidget->setItemInfoFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
+	rightWidget->setItemInfoFont(g_Font[SNeutrinoSettings::FONT_TYPE_GAMELIST_ITEMLARGE]);
 	rightWidget->paintScrollBar(false);
 	
 	rightWidget->setParent(this);

@@ -3051,7 +3051,7 @@ void ClistBox::paintFoot()
 				// buttons
 				int buttonWidth = 0;
 
-				buttonWidth = (fbutton_width - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
+				buttonWidth = (fbutton_width)/fbutton_count;
 	
 				for (int i = 0; i < (int)fbutton_count; i++)
 				{
@@ -3094,7 +3094,7 @@ void ClistBox::paintFoot()
 			int buttonWidth = 0;
 
 			if (fbutton_count)
-				buttonWidth = (fbutton_width - BORDER_LEFT - BORDER_RIGHT)/fbutton_count;
+				buttonWidth = (fbutton_width)/fbutton_count;
 	
 			for (int i = 0; i < (int)fbutton_count; i++)
 			{
