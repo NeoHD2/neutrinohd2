@@ -2908,18 +2908,6 @@ void ClistBox::paintHead()
 			}
 
 			// paint time/date
-			/*
-			int timestr_len = 0;
-
-			if(paintDate)
-			{
-				std::string timestr = getNowTimeStr("%d.%m.%Y %H:%M");
-		
-				timestr_len = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(timestr.c_str(), true); // UTF-8
-	
-				g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->RenderString(xstartPos - timestr_len, itemBox.iY + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight(), timestr_len + 1, timestr.c_str(), COL_MENUHEAD, 0, true); 
-			}
-			*/
 			int timestr_len = 0;
 			if(paintDate)
 			{
@@ -2928,7 +2916,7 @@ void ClistBox::paintHead()
 				timestr_len = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(timestr.c_str(), true); // UTF-8
 			
 				timer = new CCTime();
-				timer->setPosition( - timestr_len, itemBox.iY, timestr_len, hheight);
+				timer->setPosition(xstartPos - timestr_len, itemBox.iY, timestr_len, hheight);
 				timer->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
 				timer->setFormat(format);
 				timer->enableRepaint();
@@ -2995,17 +2983,6 @@ void ClistBox::paintHead()
 			}
 
 			// paint time/date
-			/*
-			int timestr_len = 0;
-			if(paintDate)
-			{
-				std::string timestr = getNowTimeStr("%d.%m.%Y %H:%M");
-			
-				timestr_len = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(timestr.c_str(), true); // UTF-8
-		
-				g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->RenderString(xstartPos - timestr_len, itemBox.iY + (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight(), timestr_len + 1, timestr.c_str(), COL_MENUHEAD, 0, true); 
-			}
-			*/
 			int timestr_len = 0;
 			if(paintDate)
 			{

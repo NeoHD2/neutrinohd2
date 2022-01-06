@@ -332,7 +332,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 		{
 			if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 			{
-				// update time
+				// refresh items
 				for (unsigned int i = 0; i < items.size(); i++)
 				{
 					if (items[i]->update())
@@ -341,6 +341,9 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 					}
 				}
 			} 
+			
+			//
+			onButtonPress(msg, data);
 
 			switch (msg) 
 			{
@@ -350,43 +353,6 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 						retval = RETURN_EXIT_ALL;
 						msg = RC_timeout;
 					}
-					break;
-
-				//
-				case (RC_up):
-					onUpKeyPressed();
-					break;
-
-				case (RC_down):
-					onDownKeyPressed();
-					break;
-
-				case (RC_right):
-					onRightKeyPressed();
-					break;
-
-				case (RC_left):
-					onLeftKeyPressed();
-					break;
-
-				case (RC_page_up):
-					onPageUpKeyPressed();
-					break;
-
-				case (RC_page_down):
-					onPageDownKeyPressed();
-					break;
-
-				case (RC_yellow):
-					onYellowKeyPressed();
-					break;
-
-				case (RC_home):
-					onHomeKeyPressed();
-					break;
-
-				case (RC_ok):
-					onOKKeyPressed();
 					break;
 					
 				case (RC_timeout):
@@ -685,151 +651,27 @@ bool CWidget::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 	
 	bool result = true;
 	
-	if (msg == RC_yellow)
-	{
+	if (msg == RC_up)
+		onUpKeyPressed();
+	else if (msg == RC_down)
+		onDownKeyPressed();
+	else if (msg == RC_right)
+		onRightKeyPressed();
+	else if (msg == RC_left)
+		onLeftKeyPressed();
+	else if (msg == RC_page_up)
+		onPageUpKeyPressed();
+	else if (msg == RC_page_down)
+		onPageDownKeyPressed();
+	else if (msg == RC_yellow)
 		onYellowKeyPressed();
-	}
+	else if (msg == RC_home)
+		onHomeKeyPressed();
+	else if (msg == RC_ok)
+		onOKKeyPressed();
 	else
-	{
 		result = false;
-	}
 	
 	return result;
-}
-
-//
-int CWidget::exec(CWidgetItem* wItem)
-{
-	dprintf(DEBUG_NORMAL, "CWidget:: exec:\n");
-
-	retval = RETURN_REPAINT;
-	pos = 0;
-	exit_pressed = false;
-	
-	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
-
-	//control loop
-	do {
-		g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd);
-		
-		int handled = false;
-
-		dprintf(DEBUG_DEBUG, "CWidget::exec: msg:%s\n", CRCInput::getSpecialKeyName(msg));
-
-		if ( msg <= RC_MaxRC ) 
-		{
-			timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
-
-			// keymap
-			std::map<neutrino_msg_t, keyAction>::iterator it = keyActionMap.find(msg);
-			
-			if (it != keyActionMap.end()) 
-			{
-				actionKey = it->second.action;
-
-				if (it->second.menue != NULL)
-				{
-					int rv = it->second.menue->exec(this, it->second.action);
-
-					//FIXME:review this
-					switch ( rv ) 
-					{
-						case RETURN_EXIT_ALL:
-							retval = RETURN_EXIT_ALL; //fall through
-						case RETURN_EXIT:
-							msg = RC_timeout;
-							break;
-						case RETURN_REPAINT:
-							if(wItem)
-								wItem->paint();
-							break;
-					}
-				}
-				else
-				{
-					selected = -1;
-					handled = true;
-					//FIXME: TEST
-					exit_pressed = true;
-
-					break;
-				}
-
-				frameBuffer->blit();
-				continue;
-			}
-			
-			// directKey
-		}
-
-		if (!handled) 
-		{
-			if (wItem)
-				wItem->onButtonPress(msg, data); // whatever return???
-			
-			switch (msg) 
-			{
-				case (RC_home):
-					if (wItem)
-						wItem->homeKeyPressed();
-					exit_pressed = true;
-					dprintf(DEBUG_INFO, "CWidget::onHomeKeyPressed: exit_pressed\n");
-					msg = RC_timeout;
-					break;
-
-				case (RC_ok):
-					if (wItem)
-					{
-						int rv = wItem->oKKeyPressed(this);
-
-						//FIXME:review this
-						switch ( rv ) 
-						{
-							case RETURN_EXIT_ALL:
-								retval = RETURN_EXIT_ALL; //fall through
-							case RETURN_EXIT:
-								msg = RC_timeout;
-								break;
-							case RETURN_REPAINT:
-								wItem->paint();
-								break;
-						}
-					}
-					break;
-					
-				case (RC_timeout):
-					exit_pressed = true;
-					selected = -1;
-					break;
-
-				default:
-					if ( CNeutrinoApp::getInstance()->handleMsg( msg, data ) & messages_return::cancel_all ) 
-					{
-						retval = RETURN_EXIT_ALL;
-						msg = RC_timeout;
-					}
-			}
-
-			if ( msg <= RC_MaxRC )
-			{
-				// recalculate timeout for RC-Tasten
-				timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);
-			}
-		}
-		
-		frameBuffer->blit();
-	}
-	while ( msg != RC_timeout );
-	
-	hide();
-
-	dprintf(DEBUG_NORMAL, "CWidget: retval: (%d) selected:%d\n", retval, selected);
-
-	if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
-		CVFD::getInstance()->setMode(CVFD::MODE_WEBTV);
-	else
-		CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
-	
-	return retval;
 }
 

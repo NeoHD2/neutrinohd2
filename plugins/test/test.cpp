@@ -3827,7 +3827,6 @@ void CTestMenu::testClistBox()
 	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 
-#if 1
 	// loop
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
@@ -3851,9 +3850,9 @@ void CTestMenu::testClistBox()
 			switch ( rv ) 
 			{
 				case RETURN_EXIT_ALL:
-					//retval = RETURN_EXIT_ALL; //fall through
+					loop = false;
 				case RETURN_EXIT:
-					msg = RC_timeout;
+					loop = false;
 					break;
 				case RETURN_REPAINT:
 					rightWidget->paint();
@@ -3875,17 +3874,7 @@ void CTestMenu::testClistBox()
 		}
 
 		CFrameBuffer::getInstance()->blit();
-	}	
-#else
-	testWidget = new CWidget(&Box);
-	
-	testWidget->addKey(RC_info, this, "linfo");
-	testWidget->addKey(RC_setup, this, "lsetup");
-	testWidget->exec(rightWidget);
-	
-	delete testWidget;
-	testWidget = NULL;
-#endif	
+	}		
 
 	rightWidget->hide();
 	delete rightWidget;
@@ -4243,6 +4232,15 @@ void CTestMenu::testClistBox4()
 	rightWidget->setWidgetType(WIDGET_TYPE_FRAME);
 	rightWidget->setItemsPerPage(5,2);
 	rightWidget->enableShrinkMenu();
+	
+	// head
+	rightWidget->setTitle(_("ClistBox (standard)"), NEUTRINO_ICON_MOVIE);
+	//rightWidget->setTitleHAlign(CC_ALIGN_CENTER);
+	rightWidget->enablePaintHead();
+	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	rightWidget->enablePaintDate();
+	rightWidget->setFormat("%d.%m.%Y %H:%M:%S");
+	rightWidget->addTimer();
 
 	//rightWidget->paintMainFrame(false);	
 

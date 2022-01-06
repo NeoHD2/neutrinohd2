@@ -636,6 +636,7 @@ void CRCInput::killTimer(uint32_t id)
 	dprintf(DEBUG_DEBUG, "killing timer %d\n", id);
 	
 	std::vector<timer>::iterator e;
+	
 	for ( e= timers.begin(); e!= timers.end(); ++e )
 	{
 		if ( e->id == id )
@@ -655,6 +656,7 @@ int CRCInput::checkTimers()
 	uint64_t timeNow = (uint64_t) tv.tv_usec + (uint64_t)((uint64_t) tv.tv_sec * (uint64_t) 1000000);
 
 	std::vector<timer>::iterator e;
+	
 	for ( e = timers.begin(); e != timers.end(); ++e )
 	{
 		if ( e->times_out< timeNow + 2000 )
@@ -719,7 +721,7 @@ void CRCInput::getMsgAbsoluteTimeout(neutrino_msg_t * msg, neutrino_msg_data_t *
 
 	uint64_t diff;
 
-	if ( *TimeoutEnd < timeNow+ 100 )
+	if ( *TimeoutEnd < timeNow + 100 )
 		diff = 100;  // Minimum Differenz...
 	else
 		diff = ( *TimeoutEnd - timeNow );
@@ -729,7 +731,6 @@ void CRCInput::getMsgAbsoluteTimeout(neutrino_msg_t * msg, neutrino_msg_data_t *
 	if ( *msg == NeutrinoMessages::EVT_TIMESET )
 	{
 		// recalculate timeout....
-		//uint64_t ta= *TimeoutEnd;
 		*TimeoutEnd = *TimeoutEnd + *(int64_t*) *data;
 	}
 }
@@ -812,7 +813,7 @@ void CRCInput::getMsg_us(neutrino_msg_t * msg, neutrino_msg_data_t * data, uint6
 		FD_SET(fd_pipe_high_priority[0], &rfds);
 		FD_SET(fd_pipe_low_priority[0], &rfds);
 
-		int status =  select(fd_max + 1, &rfds, NULL, NULL, &tvselect);
+		int status = select(fd_max + 1, &rfds, NULL, NULL, &tvselect);
 
 		if ( status == -1 )
 		{
@@ -991,7 +992,7 @@ void CRCInput::getMsg_us(neutrino_msg_t * msg, neutrino_msg_data_t * data, uint6
 				{
 					read_bytes= recv(fd_eventclient, p, emsg.dataSize, MSG_WAITALL);
 
-					/* nhttp event msg */
+					// nhttp event msg 
 					if ( emsg.initiatorID == CEventServer::INITID_HTTPD )
 					{					  
 						dprintf(DEBUG_DEBUG, "CRCInput::getMsg_us: event - from NHTTPD %x %x\n", emsg.eventID, *(unsigned*) p);					
@@ -1072,58 +1073,32 @@ void CRCInput::getMsg_us(neutrino_msg_t * msg, neutrino_msg_data_t * data, uint6
 						{
 							case CSectionsdClient::EVT_TIMESET:
 								{
-/*
-									struct timeval tv;
-									gettimeofday( &tv, NULL );
-									int64_t timeOld = (int64_t) tv.tv_usec + (int64_t)((int64_t) tv.tv_sec * (int64_t) 1000000);
+                                    					if ((int64_t)last_keypress > *(int64_t*)p)
+										last_keypress += *(int64_t *)p;
 
-									stime((time_t*) p);
-
-									gettimeofday( &tv, NULL );
-									int64_t timeNew = (int64_t) tv.tv_usec + (int64_t)((int64_t) tv.tv_sec * (int64_t) 1000000);
-
-									delete[] p;
-									p= new unsigned char[ sizeof(int64_t) ];
-									*(int64_t*) p = timeNew - timeOld;
-
-									if ((int64_t)last_keypress > *(int64_t*)p)
-										last_keypress += *(int64_t*)p;
-
-									// Timer anpassen
-									for(std::vector<timer>::iterator e = timers.begin(); e != timers.end(); ++e)
-										if (e->correct_time)
-											e->times_out+= *(int64_t*) p;
-
-									*msg          = NeutrinoMessages::EVT_TIMESET;
-									*data         = (neutrino_msg_data_t) p;
-									dont_delete_p = true;
-*/
-                                    if ((int64_t)last_keypress > *(int64_t*)p)
-									last_keypress += *(int64_t *)p;
-
-								    *msg          = NeutrinoMessages::EVT_TIMESET;
-								    *data         = (neutrino_msg_data_t) p;
-								    dont_delete_p = true;
+								    	*msg = NeutrinoMessages::EVT_TIMESET;
+								    	*data = (neutrino_msg_data_t) p;
+								   	 dont_delete_p = true;
 								}
 								break;
 								
 							case CSectionsdClient::EVT_GOT_CN_EPG:
-								*msg          = NeutrinoMessages::EVT_CURRENTNEXT_EPG;
-								*data         = (neutrino_msg_data_t) p;
+								*msg = NeutrinoMessages::EVT_CURRENTNEXT_EPG;
+								*data = (neutrino_msg_data_t) p;
 								dont_delete_p = true;
 								break;
 								
 							case CSectionsdClient::EVT_SERVICES_UPDATE:
-								*msg          = NeutrinoMessages::EVT_SERVICES_UPD;
-								*data         = 0;
+								*msg = NeutrinoMessages::EVT_SERVICES_UPD;
+								*data = 0;
 								break;
 								
 							case CSectionsdClient::EVT_BOUQUETS_UPDATE:
 								break;
 								
 							case CSectionsdClient::EVT_WRITE_SI_FINISHED:
-								*msg          = NeutrinoMessages::EVT_SI_FINISHED;
-								*data         = 0;
+								*msg = NeutrinoMessages::EVT_SI_FINISHED;
+								*data = 0;
 								break;
 								
 							default:
@@ -1282,7 +1257,7 @@ void CRCInput::getMsg_us(neutrino_msg_t * msg, neutrino_msg_data_t * data, uint6
 						
 						if (((*msg) >= RC_WithData) && ((*msg) < RC_WithData + 0x10000000))
 						{
-							*data         = (neutrino_msg_data_t) p;
+							*data = (neutrino_msg_data_t) p;
 							dont_delete_p = true;
 						}
 					}
@@ -1972,8 +1947,8 @@ SMSKeyInput::SMSKeyInput()
 unsigned char SMSKeyInput::handleMsg(const neutrino_msg_t msg)
 {
 	timeval keyTime;
-	gettimeofday(&keyTime,NULL);
-	bool timeoutNotReached = (keyTime.tv_sec*1000 + keyTime.tv_usec/1000 <= m_oldKeyTime.tv_sec*1000 +m_oldKeyTime.tv_usec/1000 + m_timeout);
+	gettimeofday(&keyTime, NULL);
+	bool timeoutNotReached = (keyTime.tv_sec*1000 + keyTime.tv_usec/1000 <= m_oldKeyTime.tv_sec*1000 + m_oldKeyTime.tv_usec/1000 + m_timeout);
 
 	unsigned char key = 0;
 	

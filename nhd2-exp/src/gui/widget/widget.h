@@ -182,7 +182,7 @@ class CWidget : public CMenuTarget
 		void saveScreen();
 		void restoreScreen();
 
-		//		
+		// mainframe		
 		bool paintframe;
 		fb_pixel_t backgroundColor;
 		int radius;
@@ -204,7 +204,6 @@ class CWidget : public CMenuTarget
 		virtual void paint();
 		virtual void hide();
 		virtual int exec(CMenuTarget *parent, const std::string &actionKey);
-		virtual int exec(CWidgetItem* wItem);
 
 		//
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
@@ -215,10 +214,10 @@ class CWidget : public CMenuTarget
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 
 		//
-		void paintMainFrame(bool p){paintframe = p;};
 		void setColor(fb_pixel_t col) {backgroundColor = col;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
 		//
+		void paintMainFrame(bool p){paintframe = p;};
 		void enableSaveScreen();
 
 		// compatibility

@@ -86,7 +86,7 @@
 
 // this values are token from cuberevo3000hd
 #ifndef KEY_PIP	
-#define KEY_PIP		0x041
+#define KEY_PIP	0x041
 #endif
 
 #ifndef KEY_PIPPOS	
@@ -102,7 +102,7 @@
 #endif
 
 #ifndef KEY_BOOKMARK	
-#define	KEY_BOOKMARK	0x03f
+#define KEY_BOOKMARK	0x03f
 #endif
 
 #ifndef KEY_MUSIC	
@@ -114,7 +114,7 @@
 #endif
 
 #ifndef KEY_REPEAT	
-#define	KEY_REPEAT	0x040
+#define KEY_REPEAT	0x040
 #endif
 
 #ifndef KEY_SLOW	
@@ -130,7 +130,7 @@
 #endif
 
 #ifndef KEY_NET
-#define KEY_NET		0x096
+#define KEY_NET	0x096
 #endif
 
 // VFD
@@ -295,9 +295,7 @@ class CRCInput
 		void open();
 		void close();
 		int translate(unsigned int code, int num);
-
 		void calculateMaxFd(void);
-
 		int checkTimers();
 
 	public:		
@@ -441,6 +439,7 @@ class CRCInput
 		void postMsg(const neutrino_msg_t msg, const neutrino_msg_data_t data, const bool Priority = true);  // push message back into buffer
 		void clearRCMsg();
 
+		//
 		int messageLoop( bool anyKeyCancels = false, int timeout= -1 );
 };
 
