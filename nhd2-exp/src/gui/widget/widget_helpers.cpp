@@ -191,7 +191,7 @@ CProgressBar::CProgressBar(const CBox* position, int r, int g, int b, bool inv)
 
 void CProgressBar::paint(unsigned char pcr, bool paintBG)
 {
-	dprintf(DEBUG_INFO, "CProgressBar::paint: cr:%d\n", pcr);
+	dprintf(DEBUG_DEBUG, "CProgressBar::paint: pcr:%d\n", pcr);
 	
 	int i = 0;
 	int b = 0;

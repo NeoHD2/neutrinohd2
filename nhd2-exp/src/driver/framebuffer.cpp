@@ -1932,7 +1932,7 @@ unsigned char * CFrameBuffer::resize(unsigned char * origin, int ox, int oy, int
 // convertRGB2FB
 void * CFrameBuffer::convertRGB2FB(unsigned char * rgbbuff, unsigned long x, unsigned long y, int transp, int m_transparent, bool alpha)
 {
-	dprintf(DEBUG_INFO, "CFrameBuffer::convertRGB2FB:\n");
+	dprintf(DEBUG_DEBUG, "CFrameBuffer::convertRGB2FB:\n");
 	
 	unsigned long i;
 	unsigned int * fbbuff;
@@ -1942,7 +1942,7 @@ void * CFrameBuffer::convertRGB2FB(unsigned char * rgbbuff, unsigned long x, uns
 	
 	if(fbbuff == NULL)
 	{
-		dprintf(DEBUG_INFO, "CFrameBuffer::convertRGB2FB: Error: malloc\n");
+		dprintf(DEBUG_DEBUG, "CFrameBuffer::convertRGB2FB: Error: malloc\n");
 		return NULL;
 	}
 	
@@ -1987,7 +1987,7 @@ void * CFrameBuffer::convertRGB2FB(unsigned char * rgbbuff, unsigned long x, uns
 // getImage
 fb_pixel_t * CFrameBuffer::getImage(const std::string &name, int width, int height, ScalingMode scaling)
 {
-	dprintf(DEBUG_INFO, "CFrameBuffer::getImage:\n");
+	dprintf(DEBUG_DEBUG, "CFrameBuffer::getImage:\n");
 	
 	int x = 0;
 	int y = 0;

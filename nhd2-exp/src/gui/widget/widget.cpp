@@ -343,7 +343,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 			} 
 			
 			//
-			onButtonPress(msg, data);
+			//onButtonPress(msg, data);
 
 			switch (msg) 
 			{
@@ -355,6 +355,44 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 					}
 					break;
 					
+				//
+				case (RC_up):
+					onUpKeyPressed();
+					break;
+
+				case (RC_down):
+					onDownKeyPressed();
+					break;
+
+				case (RC_right):
+					onRightKeyPressed();
+					break;
+
+				case (RC_left):
+					onLeftKeyPressed();
+					break;
+
+				case (RC_page_up):
+					onPageUpKeyPressed();
+					break;
+
+				case (RC_page_down):
+					onPageDownKeyPressed();
+					break;
+
+				case (RC_yellow):
+					onYellowKeyPressed();
+					break;
+
+				case (RC_home):
+					onHomeKeyPressed();
+					break;
+
+				case (RC_ok):
+					onOKKeyPressed();
+					break;
+				
+				//	
 				case (RC_timeout):
 					exit_pressed = true;
 					selected = -1;

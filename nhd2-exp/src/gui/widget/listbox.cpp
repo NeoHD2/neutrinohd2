@@ -1152,28 +1152,6 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 		int stringstartposX = x;	
 	
 		// paint item
-		/*
-		if (itemShadow)
-		{
-			if (selected)
-			{
-				// shadow
-				frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);	
-				// itemBox
-				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
-			}
-			else
-				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
-		}
-		else
-		{
-			if (selected)
-				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
-			else
-				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
-		}
-		*/
-		////
 		if (itemShadow)
 		{
 			if (selected)
@@ -1253,7 +1231,6 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 				}
 			}
 		}
-		////
 
 		// iconName
 		int icon_w = 0;
