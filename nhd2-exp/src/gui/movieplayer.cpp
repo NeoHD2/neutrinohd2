@@ -1156,6 +1156,7 @@ void CMoviePlayerGui::PlayFile(void)
 			{
 				mplist->hide();
 				cMovieInfo.showMovieInfo(playlist[mplist->getSelected()]);
+				showPlaylist();
 			}
 			else
 				showMovieInfo();//FIXME:
