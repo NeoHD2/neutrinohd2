@@ -76,11 +76,11 @@ enum {
 
 class CTextBox : public CWidgetItem
 {
-	public:
-
 	private:
 		CBox m_cFrameTextRel;
 		CBox m_cFrameScrollRel;
+		
+		CWindow textBox;
 
 		int m_nMaxHeight;
 		int m_nMaxWidth;
@@ -99,6 +99,8 @@ class CTextBox : public CWidgetItem
 		int m_nLinesPerPage;
 		int m_nCurrentLine;
 		int m_nCurrentPage;
+		
+		CScrollBar scrollBar;
 
 		// text
 		CFont* m_pcFontText;
@@ -120,14 +122,9 @@ class CTextBox : public CWidgetItem
 
 		bool bigFonts;
 		bool painted;
-		bool paintBG;
+		bool paintframe;
 		int shadowMode;
-
-		CScrollBar scrollBar;
-		
-		//
 		bool savescreen;
-		fb_pixel_t* background;
 
 		// Functions
 		void refreshTextLineArray(void);
@@ -165,9 +162,9 @@ class CTextBox : public CWidgetItem
 		void setCorner(int c){m_textCorner = c;};
 		void setBackgroundColor(fb_pixel_t col){m_textBackgroundColor = col;};
 		void setTextColor(uint8_t col){m_textColor = col;};
-		void setFontText(CFont * font_text){m_pcFontText = font_text;};
+		void setFont(CFont * font_text){m_pcFontText = font_text;};
 		void setMode(const int mode);
-		void paintMainFrame(bool p){paintBG = p;};
+		void paintMainFrame(bool p){paintframe = p;};
 		void setShadowMode(int m = SHADOW_ALL){shadowMode = m;};
 		void enableSaveScreen(){savescreen = true;};
 

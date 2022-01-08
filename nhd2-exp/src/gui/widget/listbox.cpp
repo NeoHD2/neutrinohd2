@@ -3927,7 +3927,7 @@ bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 {
 	dprintf(DEBUG_DEBUG, "ClistBox::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
 	
-	//bool result = true;
+	bool result = true;
 	
 	if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 	{
@@ -3960,14 +3960,10 @@ bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 	}
 	else
 	{
-		//result = false;
+		result = false;
 	}
 	
-	//return result;
-	if (parent)
-	return parent->onButtonPress(msg, data);
-	else 
-	return false;
+	return result;
 }
 
 void ClistBox::addTimer(uint64_t sec)

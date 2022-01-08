@@ -120,7 +120,7 @@ class CInfoBox
 		void setMode(const int mode){m_nMode = mode;};
 		void setBackgroundColor(fb_pixel_t col);
 		void setTextColor(uint8_t col);
-		void setFontText(CFont * font_text);
+		void setFont(CFont * font_text);
 		void setShadowMode(int sm){shadowMode = sm;};
 		
 		// foot

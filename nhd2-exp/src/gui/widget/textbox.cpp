@@ -47,7 +47,7 @@
 
 CTextBox::CTextBox(const int x, const int y, const int dx, const int dy)
 {
-	dprintf(DEBUG_DEBUG, "CTextBox::CTextBox:\r\n");
+	dprintf(DEBUG_INFO, "CTextBox::CTextBox:\r\n");
 	
 	initVar();
 
@@ -64,7 +64,7 @@ CTextBox::CTextBox(const int x, const int y, const int dx, const int dy)
 
 CTextBox::CTextBox(CBox* position)
 {
-	dprintf(DEBUG_DEBUG, "CTextBox::CTextBox:\r\n");
+	dprintf(DEBUG_INFO, "CTextBox::CTextBox:\r\n");
 	
 	initVar();
 
@@ -81,7 +81,7 @@ CTextBox::CTextBox(CBox* position)
 
 CTextBox::~CTextBox()
 {
-	dprintf(DEBUG_NORMAL, "CTextBox::~CTextBox\r\n");
+	dprintf(DEBUG_INFO, "CTextBox::~CTextBox\r\n");
 	
 	m_cLineArray.clear();
 	
@@ -90,15 +90,6 @@ CTextBox::~CTextBox()
 		bigFonts = false;
 		m_pcFontText->setSize((int)(m_pcFontText->getSize() / BIG_FONT_FAKTOR));
 	}
-	
-	//
-	if (savescreen && background)
-	{
-		CFrameBuffer::getInstance()->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
-	
-		delete [] background;
-		background = NULL;
-	}	
 }
 
 void CTextBox::initVar(void)
@@ -144,15 +135,11 @@ void CTextBox::initVar(void)
 
 	bigFonts = false;
 	painted = false;
-	paintBG = true;
+	paintframe = true;
 	enableFrame = false;
-	//paintShadow = false;
+	savescreen = false;
 	useBG = false;
 	shadowMode = SHADOW_NO;
-	
-	//
-	savescreen = false;
-	background = NULL;
 	
 	itemType = WIDGET_ITEM_TEXTBOX;
 }
@@ -272,6 +259,12 @@ void CTextBox::initFramesRel(void)
 	m_cFrameTextRel.iWidth = itemBox.iWidth - BORDER_LEFT - BORDER_RIGHT - m_cFrameScrollRel.iWidth;
 
 	m_nLinesPerPage = m_cFrameTextRel.iHeight/m_nFontTextHeight;
+	
+	//
+	textBox.setPosition(&itemBox);
+	textBox.paintMainFrame(paintframe);
+	if (savescreen) textBox.enableSaveScreen();
+	textBox.setShadowMode(shadowMode);
 }
 
 void CTextBox::refreshTextLineArray(void)
@@ -460,37 +453,13 @@ void CTextBox::refreshText(void)
 {
 	dprintf(DEBUG_DEBUG, "CTextBox::refreshText:\r\n");
 
-	// paint background
-	/*
-	if (savescreen && background)
+	// paint background	
+	if(paintframe)
 	{
-		CFrameBuffer::getInstance()->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+		textBox.paint();
 	}
-	*/	
-	
-	//
-	if(paintBG)
-	{	
-		if (shadowMode == SHADOW_LEFTRIGHT)
-		{
-			// shadow
-			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
-		
-			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY, itemBox.iWidth - 2, itemBox.iHeight, m_textBackgroundColor);
-		}
-		else if (shadowMode == SHADOW_ALL)
-		{
-			// shadow
-			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
-			
-			//
-			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, m_textBackgroundColor);
-		}
-		else if (shadowMode == SHADOW_NO)
-		{
-			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, m_textBackgroundColor, m_textRadius, m_textCorner);
-		}
-	}
+	else if (savescreen)
+		textBox.hide();
 	
 	// paint thumbnail (paint picture only on first page)
 	if(m_nCurrentPage == 0 && !access(thumbnail.c_str(), F_OK) )
@@ -676,23 +645,6 @@ void CTextBox::paint(void)
 	dprintf(DEBUG_INFO, "CTextBox::paint:\n");
 	
 	//
-	if (savescreen)
-	{
-		if (background)
-		{
-			delete [] background;
-			background = NULL;
-		}
-			
-		background = new fb_pixel_t[itemBox.iWidth*itemBox.iHeight];
-		
-		if (background)
-		{
-			CFrameBuffer::getInstance()->saveScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
-		}
-	}
-	
-	//
 	refresh();	
 	
 	painted = true;
@@ -708,10 +660,7 @@ void CTextBox::hide(void)
 		m_pcFontText->setSize((int)(m_pcFontText->getSize() / BIG_FONT_FAKTOR));
 	}
 	
-	if (paintBG)
-	{
-		CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
-	}
+	textBox.hide();
 	
 	CFrameBuffer::getInstance()->blit();
 

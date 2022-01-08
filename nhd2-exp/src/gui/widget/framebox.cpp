@@ -334,7 +334,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 
 		textBox.paintMainFrame(false);
 		textBox.setMode(AUTO_WIDTH);
-		textBox.setFontText(captionFont);
+		textBox.setFont(captionFont);
 
 		// caption
 		if(!caption.empty())

@@ -653,7 +653,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		CTextBox Dline(x, y, width, height);
 		Dline.paintMainFrame(paintframe);
 		Dline.setMode(AUTO_WIDTH);
-		Dline.setFontText(tFont);
+		Dline.setFont(tFont);
 		Dline.setShadowMode(shadowMode);
 		if (savescreen) Dline.enableSaveScreen();
 		Dline.setBackgroundColor(color);
@@ -682,7 +682,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		CTextBox Dline(x, y, width, height);
 		Dline.paintMainFrame(paintframe);
 		Dline.setMode(AUTO_WIDTH);
-		Dline.setFontText(tFont);
+		Dline.setFont(tFont);
 		Dline.setShadowMode(shadowMode);
 		if (savescreen) Dline.enableSaveScreen();
 		Dline.setBackgroundColor(color);
@@ -822,12 +822,12 @@ CCText::CCText(const int x, const int y, const int dx, const int dy)
 
 void CCText::paint()
 {
-	CTextBox textBox;
-	textBox.setPosition(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
+	CTextBox textBox(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
 
 	textBox.paintMainFrame(false);
+	//textBox.enableSaveScreen();
 	textBox.setMode(mode);
-	textBox.setFontText(font);
+	textBox.setFont(font);
 	textBox.setTextColor(color);
 
 	// caption

@@ -78,7 +78,7 @@ CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const
 
 	m_pcTextBox = new CTextBox(&m_cBoxFrameText);
 	
-	m_pcTextBox->setFontText(fontText);
+	m_pcTextBox->setFont(fontText);
 	m_pcTextBox->setMode(m_nMode);
 	m_pcTextBox->setShadowMode(shadowMode);
 
@@ -368,10 +368,10 @@ void CInfoBox::setTextColor(uint8_t col)
 }
 
 //
-void CInfoBox::setFontText(CFont * font_text)
+void CInfoBox::setFont(CFont * font_text)
 {
 	if(m_pcTextBox != NULL)
-		m_pcTextBox->setFontText(font_text);
+		m_pcTextBox->setFont(font_text);
 }
 
 //////////////////////////////////////////////////////////////////////
