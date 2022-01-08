@@ -341,9 +341,6 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 					}
 				}
 			} 
-			
-			//
-			//onButtonPress(msg, data);
 
 			switch (msg) 
 			{
@@ -680,36 +677,5 @@ void CWidget::onPageDownKeyPressed()
 	{
 		items[selected]->scrollPageDown();
 	}
-}
-
-//
-bool CWidget::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
-{
-	dprintf(DEBUG_DEBUG, "CWidget::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
-	
-	bool result = true;
-	
-	if (msg == RC_up)
-		onUpKeyPressed();
-	else if (msg == RC_down)
-		onDownKeyPressed();
-	else if (msg == RC_right)
-		onRightKeyPressed();
-	else if (msg == RC_left)
-		onLeftKeyPressed();
-	else if (msg == RC_page_up)
-		onPageUpKeyPressed();
-	else if (msg == RC_page_down)
-		onPageDownKeyPressed();
-	else if (msg == RC_yellow)
-		onYellowKeyPressed();
-	else if (msg == RC_home)
-		onHomeKeyPressed();
-	else if (msg == RC_ok)
-		onOKKeyPressed();
-	else
-		result = false;
-	
-	return result;
 }
 
