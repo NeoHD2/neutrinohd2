@@ -333,6 +333,7 @@ void CNFilm::showMovieInfo(MI_MOVIE_INFO& movie)
 
 void CNFilm::getMovieVideoUrl(MI_MOVIE_INFO& movie)
 {
+/*
 	ytparser.Cleanup();
 
 	// setregion
@@ -352,6 +353,9 @@ void CNFilm::getMovieVideoUrl(MI_MOVIE_INFO& movie)
 			movie.file.Name = ylist[j].GetUrl();
 		}
 	}
+*/
+	movie.file.Name = "https://www.youtube.com/watch?v=";
+	movie.file.Name += movie.vkey;
 }
 
 void CNFilm::paintLeftWidgetItems(ClistBox *listBox, bool genre)

@@ -13,6 +13,7 @@ install_DATA = \
 	ok.png \
 	epg.png \
 	btn_timer.png \
-	power.png
+	power.png \
+	information.png mediaplayer.png timerepg.png features.png mainsetup.png power.png service.png
 	
 
