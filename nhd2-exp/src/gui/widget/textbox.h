@@ -121,7 +121,6 @@ class CTextBox : public CWidgetItem
 		bool bigFonts;
 		bool painted;
 		bool paintBG;
-		//bool shadow;
 		int shadowMode;
 
 		CScrollBar scrollBar;

@@ -1152,6 +1152,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 		int stringstartposX = x;	
 	
 		// paint item
+		/*
 		if (itemShadow)
 		{
 			if (selected)
@@ -1171,6 +1172,88 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 			else
 				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 		}
+		*/
+		////
+		if (itemShadow)
+		{
+			if (selected)
+			{
+				if (!paintFrame)
+				{
+					if (background)
+					{
+						delete [] background;
+						background = NULL;
+					}
+									
+					background = new fb_pixel_t[dx*height];
+						
+					if (background)
+					{
+						frameBuffer->saveScreen(x, y, dx, height, background);
+					}
+				}	
+				
+				// shadow
+				frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);	
+				// itemBox
+				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
+			}
+			else
+			{
+				if (paintFrame)
+					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+				else
+				{
+					if (background)
+					{
+						frameBuffer->restoreScreen(x, y, dx, height, background);
+							
+						delete [] background;
+						background = NULL;
+					}
+				}
+			}
+		}
+		else
+		{
+			if (selected)
+			{
+				if (!paintFrame)
+				{
+					if (background)
+					{
+						delete [] background;
+						background = NULL;
+					}
+									
+					background = new fb_pixel_t[dx*height];
+						
+					if (background)
+					{
+						frameBuffer->saveScreen(x, y, dx, height, background);
+					}
+				}	
+
+				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			}
+			else
+			{
+				if (paintFrame) //FIXME: TEST
+					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, NOGRADIENT);
+				else
+				{
+					if (background)
+					{
+						frameBuffer->restoreScreen(x, y, dx, height, background);
+							
+						delete [] background;
+						background = NULL;
+					}
+				}
+			}
+		}
+		////
 
 		// iconName
 		int icon_w = 0;
@@ -1630,7 +1713,6 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			}
 		}
 			
-	
 		// icon (left)
 		int icon_w = 0;
 		int icon_h = 0;
@@ -1745,7 +1827,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			timescale.paint(runningPercent);
 		}
 	
-		// locale|option
+		// locale / option
 		int l_text_width = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_text, true);
 
 		// local
@@ -1759,19 +1841,45 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// local
 				if(l_text != NULL)
 				{
-						nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+						nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 				
 				// option
 				if(option_text != NULL)
 				{
-						optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
+						optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, option_text, color, 0, true);
 				}
 				
 				// info1
-				// info2
+				if (!info1.empty())
+				{
+					optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, info1.c_str(), color, 0, true);
+				}
+				
+				// info 2
+				if (!info2.empty())
+				{
+					optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height/2 + height/4, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, info2.c_str(), color, 0, true);
+				}
 			}
 			else
+			{
+				// local
+				if(l_text != NULL)
+				{
+						nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + nameFont->getHeight() + (height - nameFont->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+				}
+
+				// option
+				if(option_text != NULL)
+				{
+						optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + optionFont->getHeight() + (height - optionFont->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
+				}
+			}
+		}
+		else // standard / extended
+		{
+			if(nLinesItem)
 			{
 				// local
 				if(l_text != NULL)
@@ -1785,41 +1893,24 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 						optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
 				}
 			}
-		}
-		else // standard / extended
-		{
-		if(nLinesItem)
-		{
-			// local
-			if(l_text != NULL)
+			else
 			{
-					nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
-			}
+				// local
+				if(l_text != NULL)
+				{
+					nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + nameFont->getHeight() + (height - nameFont->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+				}
 
-			// option
-			if(option_text != NULL)
-			{
-					optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
-			}
-		}
-		else
-		{
-			// local
-			if(l_text != NULL)
-			{
-				nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + nameFont->getHeight() + (height - nameFont->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
-			}
+				// option
+				if(option_text != NULL)
+				{
+					int iw, ih;
+					//get icon size
+					frameBuffer->getIconSize(NEUTRINO_ICON_HD, &iw, &ih);
 
-			// option
-			if(option_text != NULL)
-			{
-				int iw, ih;
-				//get icon size
-				frameBuffer->getIconSize(NEUTRINO_ICON_HD, &iw, &ih);
-
-				optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + optionFont->getHeight() + (height - optionFont->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, option_text, color, 0, true);
+					optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + optionFont->getHeight() + (height - optionFont->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, option_text, color, 0, true);
+				}
 			}
-		}
 		}
 		
 		// vfd
@@ -2297,9 +2388,11 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	itemInfoBox.iHeight = 0;
 	iteminfoshadow = false;
 	iteminfosavescreen = false;
-	iteminfoshadowmode = SHADOW_ALL;
+	iteminfoshadowmode = SHADOW_NO;
 	iteminfoframe = true;
 	iteminfofont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
+	iteminfocolor = COL_MENUCONTENT_PLUS_0;
+	iteminfoscale = false;
 	
 	//
 	inFocus = true;
@@ -2415,9 +2508,11 @@ ClistBox::ClistBox(CBox* position)
 	itemInfoBox.iHeight = 0;
 	iteminfoshadow = false;
 	iteminfosavescreen = false;
-	iteminfoshadowmode = SHADOW_ALL;
+	iteminfoshadowmode = SHADOW_NO;
 	iteminfoframe = true;
 	iteminfofont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
+	iteminfocolor = COL_MENUCONTENT_PLUS_0;
+	iteminfoscale = false;
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
@@ -2672,6 +2767,7 @@ void ClistBox::paint()
 	//
 	initFrames();
 	
+	//
 	if (!paintFrame)
 	{
 		if (items_background)
@@ -3185,7 +3281,9 @@ void ClistBox::paintItemInfo(int pos)
 				itemsLine.setShadowMode(iteminfoshadowmode);
 				if (iteminfosavescreen) itemsLine.enableSaveScreen();
 				itemsLine.paintFrame(iteminfoframe);
+				itemsLine.setColor(iteminfocolor);
 				itemsLine.setFont(iteminfofont);
+				itemsLine.setScaling(iteminfoscale);
 				itemsLine.setHint(item->itemHint.c_str());
 				itemsLine.setIcon(item->itemIcon.c_str());
 					
@@ -3201,6 +3299,8 @@ void ClistBox::paintItemInfo(int pos)
 				itemsLine.setShadowMode(iteminfoshadowmode);
 				if (iteminfosavescreen) itemsLine.enableSaveScreen();
 				itemsLine.paintFrame(iteminfoframe);
+				itemsLine.setColor(iteminfocolor);
+				itemsLine.setScaling(iteminfoscale);
 				itemsLine.setHint(item->itemHint.c_str());
 				itemsLine.setIcon(item->itemIcon.c_str());
 					
@@ -3216,7 +3316,9 @@ void ClistBox::paintItemInfo(int pos)
 				itemsLine.setShadowMode(iteminfoshadowmode);
 				if (iteminfosavescreen) itemsLine.enableSaveScreen();
 				itemsLine.paintFrame(iteminfoframe);
+				itemsLine.setColor(iteminfocolor);
 				itemsLine.setFont(iteminfofont);
+				itemsLine.setScaling(iteminfoscale);
 				itemsLine.setHint(item->itemHint.c_str());
 				//itemsLine.setIcon(item->itemIcon.c_str());
 					

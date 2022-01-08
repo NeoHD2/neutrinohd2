@@ -90,7 +90,9 @@ CCImage::CCImage(const int x, const int y, const int dx, const int dy)
 	iWidth = 0; 
 	iHeight = 0; 
 	iNbp = 0; 
-	scale = false; 
+	scale = false;
+	color = COL_MENUCONTENT_PLUS_0;
+	paintframe = false; 
 	
 	cc_type = CC_IMAGE;
 }
@@ -111,6 +113,8 @@ CCImage::CCImage(const char* image, const int x, const int y, const int dx, cons
 	iHeight = 0; 
 	iNbp = 0;
 	scale = false;
+	color = COL_MENUCONTENT_PLUS_0;
+	paintframe = false;
 			
 	//
 	imageName = std::string(image); 
@@ -497,10 +501,11 @@ CItems2DetailsLine::CItems2DetailsLine()
 	
 	// hintitem / hinticon
 	tFont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
-	//paintShadow = false;
 	shadowMode = SHADOW_NO;
 	savescreen = false;
 	paintframe = true;
+	color = COL_MENUCONTENT_PLUS_0;
+	scale = false;
 	
 	cc_type = CC_DETAILSLINE;
 }
@@ -651,6 +656,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		Dline.setFontText(tFont);
 		Dline.setShadowMode(shadowMode);
 		if (savescreen) Dline.enableSaveScreen();
+		Dline.setBackgroundColor(color);
 		
 		// scale icon
 		int pw = 0;
@@ -666,7 +672,9 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	else if (mode == DL_HINTICON)	
 	{
 		CCImage DImage(icon.c_str(), x, y, width, height);
-		DImage.enableScaling();
+		DImage.setScaling(scale);
+		DImage.paintMainFrame(true);
+		DImage.setColor(color);
 		DImage.paint();
 	}
 	else if (mode == DL_HINTHINT)
@@ -677,6 +685,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		Dline.setFontText(tFont);
 		Dline.setShadowMode(shadowMode);
 		if (savescreen) Dline.enableSaveScreen();
+		Dline.setBackgroundColor(color);
 
 		// Hint
 		Dline.setText(hint.c_str());
@@ -685,7 +694,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	}
 }
 
-
+//
 void CItems2DetailsLine::clear(int x, int y, int width, int height, int info_height)
 {
 	if ( (mode == DL_INFO) ||(mode == DL_HINT) )

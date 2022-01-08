@@ -621,6 +621,8 @@ class ClistBox : public CWidgetItem
 		int iteminfoshadowmode;
 		bool iteminfoframe;
 		CFont* iteminfofont;
+		uint32_t iteminfocolor;
+		bool iteminfoscale;
 
 		// methods
 		virtual void paintItems();
@@ -705,7 +707,6 @@ class ClistBox : public CWidgetItem
 				itemInfoBox.iY = y; 
 				itemInfoBox.iWidth = dx; 
 				itemInfoBox.iHeight = dy; 
-				paintFootInfo = true; 
 				footInfoHeight = 0;
 			}
 		};
@@ -713,12 +714,14 @@ class ClistBox : public CWidgetItem
 		void enableItemInfoSaveScreen(){iteminfosavescreen = true;};
 		void paintItemInfoFrame(bool p){iteminfoframe = p;};
 		void setItemInfoFont(CFont* f){iteminfofont = f;};
+		void setItemInfoColor(uint32_t col){iteminfocolor = col;};
+		void setItemInfoScaling(bool s){iteminfoscale = s;};
 
 		// mainFrame
 		void enableShrinkMenu(){shrinkMenu = true;};
 		void enableSaveScreen();
-		//
 		void paintMainFrame(bool p){paintFrame = p;};
+		//
 		void setColor(fb_pixel_t col){bgcolor = col; def_color = true;};
 		void setRadius(int ra){radius = ra;};
 		void setCorner(int co){corner = co;};

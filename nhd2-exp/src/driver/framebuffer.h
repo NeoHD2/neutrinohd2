@@ -117,20 +117,20 @@ enum
 	TM_INI    = 3
 };
 		
-// three mode
-enum
-{
-	THREE_NONE = 0,
-	THREE_SIDE_BY_SIDE,
-	THREE_TOP_AND_BUTTOM
-};
-		
 // scaling mode
 enum ScalingMode
 {
 	NONE = 0,
 	SIMPLE = 1,
 	COLOR = 2
+};
+
+// three mode
+enum
+{
+	THREE_NONE = 0,
+	THREE_SIDE_BY_SIDE,
+	THREE_TOP_AND_BUTTOM
 };
 
 // png/jpg/bmp/gif/crw

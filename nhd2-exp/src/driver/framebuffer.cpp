@@ -1950,9 +1950,9 @@ void * CFrameBuffer::convertRGB2FB(unsigned char * rgbbuff, unsigned long x, uns
 	{
 		for(i = 0; i < count ; i++)
 			fbbuff[i] = ((rgbbuff[i*4 + 3] << 24) & 0xFF000000) | 
-			            ((rgbbuff[i*4]     << 16) & 0x00FF0000) | 
-		        	    ((rgbbuff[i*4 + 1] <<  8) & 0x0000FF00) | 
-			            ((rgbbuff[i*4 + 2])       & 0x000000FF);
+				((rgbbuff[i*4]     << 16) & 0x00FF0000) | 
+				((rgbbuff[i*4 + 1] <<  8) & 0x0000FF00) | 
+				((rgbbuff[i*4 + 2])       & 0x000000FF);
 	}
 	else
 	{
@@ -2024,8 +2024,6 @@ fb_pixel_t * CFrameBuffer::getImage(const std::string &name, int width, int heig
 			{
 				if(x != width || y != height)
 				{
-					// aspect ratio
-
 					// alpha
 					if(_bpp == 4)
 						buffer = resize(buffer, x, y, width, height, scaling, NULL, true);
@@ -2042,12 +2040,12 @@ fb_pixel_t * CFrameBuffer::getImage(const std::string &name, int width, int heig
 			{
 				// alpha
 				if (_bpp == 4)
-					ret = (fb_pixel_t *) convertRGB2FB(buffer, x, y, 0, TM_INI, true);
+					ret = (fb_pixel_t *) convertRGB2FB(buffer, x, y, 0, TM_INI, true); //FIXME: TM_INI ???
 				else
-					ret = (fb_pixel_t *)convertRGB2FB(buffer, x, y, convertSetupAlpha2Alpha(g_settings.infobar_alpha));
+					ret = (fb_pixel_t *)convertRGB2FB(buffer, x, y, convertSetupAlpha2Alpha(g_settings./*infobar_alpha*/menu_Content_alpha)); //FIXME:
 			}
 			else
-				ret = (fb_pixel_t *)convertRGB2FB(buffer, x, y, convertSetupAlpha2Alpha(g_settings.infobar_alpha), TM_NONE);
+				ret = (fb_pixel_t *)convertRGB2FB(buffer, x, y, convertSetupAlpha2Alpha(g_settings./*infobar_alpha*/menu_Content_alpha), TM_NONE); //TM_NONE
 			
 			free(buffer);
 		} 

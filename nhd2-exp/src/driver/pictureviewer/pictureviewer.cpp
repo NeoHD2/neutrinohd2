@@ -83,7 +83,7 @@ void CPictureViewer::setVisible (int startx, int endx, int starty, int endy)
 
 bool CPictureViewer::decodeImage(const std::string & name, bool showBusySign)
 {
-	dprintf(DEBUG_NORMAL, "CPictureViewer::decodeImage: %s\n", name.c_str()); 
+	dprintf(DEBUG_INFO, "CPictureViewer::decodeImage: %s\n", name.c_str()); 
 	
 	int x;
 	int y;
@@ -98,7 +98,7 @@ bool CPictureViewer::decodeImage(const std::string & name, bool showBusySign)
 	
 	CFormathandler * fh;
 
-	fh = fh_getsize(name.c_str (), &x, &y, m_endx - m_startx, m_endy - m_starty);
+	fh = fh_getsize(name.c_str(), &x, &y, m_endx - m_startx, m_endy - m_starty);
 
 	if (fh) 
 	{
@@ -112,7 +112,7 @@ bool CPictureViewer::decodeImage(const std::string & name, bool showBusySign)
 
 		if (m_Pic_Buffer == NULL) 
 		{
-			dprintf(DEBUG_NORMAL, "CPictureViewer::decodeImage: Error: malloc\n");
+			dprintf(DEBUG_INFO, "CPictureViewer::decodeImage: Error: malloc\n");
 			return false;
 		}
 
@@ -163,14 +163,14 @@ bool CPictureViewer::decodeImage(const std::string & name, bool showBusySign)
 		} 
 		else 
 		{
-			dprintf(DEBUG_NORMAL, "CPictureViewer::decodeImage: Unable to read file !\n");
+			dprintf(DEBUG_INFO, "CPictureViewer::decodeImage: Unable to read file !\n");
 
 			free (m_Pic_Buffer);
 			m_Pic_Buffer = (unsigned char *) malloc (3);
 
 			if (m_Pic_Buffer == NULL) 
 			{
-				dprintf(DEBUG_NORMAL, "CPictureViewer::decodeImage: Error: malloc\n");
+				dprintf(DEBUG_INFO, "CPictureViewer::decodeImage: Error: malloc\n");
 				return false;
 			}
 			memset(m_Pic_Buffer, 0, 3);
@@ -184,7 +184,7 @@ bool CPictureViewer::decodeImage(const std::string & name, bool showBusySign)
 	} 
 	else 
 	{
-		dprintf (DEBUG_NORMAL, "CPictureViewer::decodeImage: Unable to read file or format not recognized!\n");
+		dprintf (DEBUG_INFO, "CPictureViewer::decodeImage: Unable to read file or format not recognized!\n");
 		
 		if (m_Pic_Buffer != NULL) 
 		{
@@ -194,7 +194,7 @@ bool CPictureViewer::decodeImage(const std::string & name, bool showBusySign)
 		m_Pic_Buffer = (unsigned char *) malloc (3);
 		if (m_Pic_Buffer == NULL) 
 		{
-			dprintf(DEBUG_NORMAL, "CPictureViewer::decodeImage: Error: malloc\n");
+			dprintf(DEBUG_INFO, "CPictureViewer::decodeImage: Error: malloc\n");
 			return false;
 		}
 
@@ -215,7 +215,7 @@ bool CPictureViewer::decodeImage(const std::string & name, bool showBusySign)
 
 bool CPictureViewer::displayImage()
 {
-	dprintf(DEBUG_NORMAL, "CPictureViewer::displayImage\n");
+	dprintf(DEBUG_INFO, "CPictureViewer::displayImage\n");
 
   	if (m_Pic_Buffer != NULL)
 		CFrameBuffer::getInstance()->displayRGB(m_Pic_Buffer, m_Pic_X, m_Pic_Y, m_Pic_XPan, m_Pic_YPan, m_Pic_XPos, m_Pic_YPos);
@@ -223,9 +223,9 @@ bool CPictureViewer::displayImage()
   	return true;
 }
 
-bool CPictureViewer::showImage(const std::string & filename)
+bool CPictureViewer::showImage(const std::string& filename)
 {
-	dprintf(DEBUG_NORMAL, "CPictureViewer::showImage: %s\n", filename.c_str());
+	dprintf(DEBUG_INFO, "CPictureViewer::showImage: %s\n", filename.c_str());
 
 	// decode image
   	decodeImage(filename, true);

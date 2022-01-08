@@ -2690,7 +2690,7 @@ void CTestMenu::testCComponent()
 	CCImage testImage;
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
 	testImage.setPosition(Box.iX, Box.iY + 40, Box.iWidth, Box.iHeight - 80);
-	testImage.enableScaling();
+	testImage.setScaling(true);
 	
 	windowWidget->addCCItem(&testImage);
 	
@@ -3796,7 +3796,7 @@ void CTestMenu::testClistBox()
 	// mode
 	rightWidget->setWidgetType(WIDGET_TYPE_CLASSIC);
 	rightWidget->enableShrinkMenu();
-	//rightWidget->addWidgetType(WIDGET_TYPE_FRAME);
+	rightWidget->paintMainFrame(false);
 
 	// head
 	rightWidget->setTitle(_("ClistBox (standard)"), NEUTRINO_ICON_MOVIE);
@@ -3814,9 +3814,9 @@ void CTestMenu::testClistBox()
 
 	// footinfo
 	rightWidget->enablePaintFootInfo(70);
-	rightWidget->setFootInfoMode(FOOT_HINTICON_MODE);
+	rightWidget->setFootInfoMode(FOOT_HINTITEM_MODE);
 	rightWidget->setItemInfoPos(Box.iX + Box.iWidth + 150, Box.iY + 100, 400, 400);
-	rightWidget->enableItemInfoSaveScreen();
+	//rightWidget->enableItemInfoSaveScreen();
 	rightWidget->paintItemInfoShadow(SHADOW_ALL);
 	rightWidget->paintItemInfoFrame(true);
 	rightWidget->setItemInfoFont(g_Font[SNeutrinoSettings::FONT_TYPE_GAMELIST_ITEMLARGE]);
@@ -3949,8 +3949,8 @@ void CTestMenu::testClistBox2()
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	rightWidget->enablePaintFootInfo(70);
-	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
+	//rightWidget->enablePaintFootInfo(70);
+	//rightWidget->setFootInfoMode(FOOT_HINT_MODE);
 
 	//rightWidget->setSelected(selected);
 	

@@ -39,6 +39,7 @@ function main()
 	-- logo
 	logo = neutrino.CCImage(neutrino.CONFIGDIR .. "/skin/MetrixHD/picon_default.png")
 	logo:setPosition(box.iX + box.iWidth/2, box.iY + 50 + 50 + 20, box.iWidth/2, 240)
+	--logo:setColor(neutrino.convertSetupColor2Color(config:getInt32("menu_Content_Selected_red"),config:getInt32("menu_Content_Selected_green"),config:getInt32("menu_Content_Selected_blue"),config:getInt32("menu_Content_Selected_alpha")))
 	
 	w2:addCCItem(logo)
 	

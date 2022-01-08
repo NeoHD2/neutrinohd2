@@ -81,7 +81,7 @@ CTextBox::CTextBox(CBox* position)
 
 CTextBox::~CTextBox()
 {
-	dprintf(DEBUG_DEBUG, "CTextBox::~CTextBox\r\n");
+	dprintf(DEBUG_NORMAL, "CTextBox::~CTextBox\r\n");
 	
 	m_cLineArray.clear();
 	
@@ -92,8 +92,10 @@ CTextBox::~CTextBox()
 	}
 	
 	//
-	if (background)
+	if (savescreen && background)
 	{
+		CFrameBuffer::getInstance()->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+	
 		delete [] background;
 		background = NULL;
 	}	
@@ -270,17 +272,6 @@ void CTextBox::initFramesRel(void)
 	m_cFrameTextRel.iWidth = itemBox.iWidth - BORDER_LEFT - BORDER_RIGHT - m_cFrameScrollRel.iWidth;
 
 	m_nLinesPerPage = m_cFrameTextRel.iHeight/m_nFontTextHeight;
-	
-	//
-	if (savescreen)
-	{	
-		background = new fb_pixel_t[itemBox.iWidth*itemBox.iHeight];
-		
-		if (background)
-		{
-			CFrameBuffer::getInstance()->saveScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
-		}
-	}
 }
 
 void CTextBox::refreshTextLineArray(void)
@@ -470,6 +461,14 @@ void CTextBox::refreshText(void)
 	dprintf(DEBUG_DEBUG, "CTextBox::refreshText:\r\n");
 
 	// paint background
+	/*
+	if (savescreen && background)
+	{
+		CFrameBuffer::getInstance()->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+	}
+	*/	
+	
+	//
 	if(paintBG)
 	{	
 		if (shadowMode == SHADOW_LEFTRIGHT)
@@ -517,7 +516,7 @@ void CTextBox::refreshText(void)
 	{
 		y += m_nFontTextHeight;
 
-		// x_start		
+		// x_start FIXME:		
 		if( !access(thumbnail.c_str(), F_OK) && (m_nCurrentPage == 0))
 		{
 			if (m_tMode == TOP_LEFT)
@@ -677,16 +676,24 @@ void CTextBox::paint(void)
 	dprintf(DEBUG_INFO, "CTextBox::paint:\n");
 	
 	//
-	refresh();
-	
-	//
 	if (savescreen)
 	{
 		if (background)
 		{
-			CFrameBuffer::getInstance()->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+			delete [] background;
+			background = NULL;
 		}
-	}	
+			
+		background = new fb_pixel_t[itemBox.iWidth*itemBox.iHeight];
+		
+		if (background)
+		{
+			CFrameBuffer::getInstance()->saveScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
+		}
+	}
+	
+	//
+	refresh();	
 	
 	painted = true;
 }

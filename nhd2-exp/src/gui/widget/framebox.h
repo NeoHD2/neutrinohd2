@@ -223,12 +223,13 @@ class CFrameBox : public CWidgetItem
 		virtual void scrollLineUp(const int lines = 1);
 
 		int getSelected(){return selected;};
-		void paintMainFrame(bool p){paintFrame = p;};
+		
+		//
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setRadius(int ra){radius = ra;};
 		void setCorner(int co){corner = co;};
-		
 		//
+		void paintMainFrame(bool p){paintFrame = p;};
 		void enableSaveScreen();
 
 		//
