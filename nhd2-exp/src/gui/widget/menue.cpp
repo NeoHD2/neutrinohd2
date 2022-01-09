@@ -169,7 +169,6 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	// footInfo
 	paintFootInfo = false;
 	footInfoHeight = 0;
-	connectLineWidth = 0;
 	cFrameFootInfoHeight = 0;
 	footInfoMode = FOOT_INFO_MODE;
 
@@ -245,7 +244,6 @@ void CMenuWidget::initFrames()
 	hheight = 0;
 	fheight = 0;
 	cFrameFootInfoHeight = 0;
-	connectLineWidth = 0;
 
 	// widgettype forwarded to item 
 	for (unsigned int count = 0; count < items.size(); count++) 
@@ -314,7 +312,6 @@ void CMenuWidget::initFrames()
 			if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC && widgetMode == MODE_LISTBOX) )
 			{
 				cFrameFootInfoHeight = footInfoHeight;
-				connectLineWidth = CONNECTLINEBOX_WIDTH;
 			}
 		}
 
@@ -377,14 +374,6 @@ void CMenuWidget::initFrames()
 		full_width = width;
 		full_height = height;
 		
-		if(paintFootInfo)
-		{
-			if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC && widgetMode == MODE_LISTBOX) )
-			{
-				width -= connectLineWidth;
-			}
-		}
-		
 		// position
 		// default centered
 		x = offx + frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - full_width ) >> 1 );
@@ -398,12 +387,12 @@ void CMenuWidget::initFrames()
 		}
 		else if(menu_position == MENU_POSITION_LEFT)
 		{
-			x = offx + frameBuffer->getScreenX() + connectLineWidth;
+			x = offx + frameBuffer->getScreenX();
 			y = offy + frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
 		}
 		else if(menu_position == MENU_POSITION_RIGHT)
 		{
-			x = offx + frameBuffer->getScreenX() + frameBuffer->getScreenWidth() - full_width - connectLineWidth;
+			x = offx + frameBuffer->getScreenX() + frameBuffer->getScreenWidth() - full_width;
 			y = offy + frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
 		}
 	}
@@ -854,7 +843,6 @@ void CMenuWidget::paintItemInfo(int pos)
 					icon = g_settings.hints_dir + item->itemIcon.c_str() + ".png";
 				
 				itemsLine.setMode(DL_HINT);
-				itemsLine.PaintLine(g_settings.menu_details_line);
 				itemsLine.setHint(item->itemHint.c_str());
 				itemsLine.setIcon(icon.c_str());
 					
@@ -923,7 +911,6 @@ void CMenuWidget::paintItemInfo(int pos)
 	
 					// 
 					itemsLine.setMode(DL_INFO);
-					itemsLine.PaintLine(g_settings.menu_details_line);
 					itemsLine.setInfo1(item->info1.c_str());
 					itemsLine.setOptionInfo1(item->option_info1.c_str());
 					itemsLine.setInfo2(item->info2.c_str());
@@ -937,7 +924,6 @@ void CMenuWidget::paintItemInfo(int pos)
 	
 					// detailslines|box
 					itemsLine.setMode(DL_HINT);
-					itemsLine.PaintLine(g_settings.menu_details_line);
 					itemsLine.setHint(item->itemHint.c_str());
 					itemsLine.setIcon(item->itemIcon.c_str());
 				
@@ -1040,7 +1026,6 @@ void CMenuWidget::paintItemInfo(int pos)
 	
 					// detailslines
 					itemsLine.setMode(DL_INFO);
-					itemsLine.PaintLine(g_settings.menu_details_line);
 					itemsLine.setInfo1(item->info1.c_str());
 					itemsLine.setOptionInfo1(item->option_info1.c_str());
 					itemsLine.setInfo2(item->info2.c_str());
@@ -1054,7 +1039,6 @@ void CMenuWidget::paintItemInfo(int pos)
 	
 					// detailslines
 					itemsLine.setMode(DL_HINT);
-					itemsLine.PaintLine(g_settings.menu_details_line);
 					itemsLine.setHint(item->itemHint.c_str());
 					itemsLine.setIcon(item->itemIcon.c_str());
 				
@@ -1244,7 +1228,7 @@ void CMenuWidget::hideItemInfo()
 	{
 		if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC && widgetMode == MODE_LISTBOX) )
 		{
-			itemsLine.clear(x, y, width + CONNECTLINEBOX_WIDTH, height, cFrameFootInfoHeight);
+			itemsLine.clear(x, y, width, height, cFrameFootInfoHeight);
 		}
 	}  
 }
@@ -1253,7 +1237,7 @@ void CMenuWidget::setFootButtons(const struct button_label *_fbutton_labels, con
 {
 	dprintf(DEBUG_INFO, "CMenuWidget::setFootButtons:\n");
 	
-	initFrames(); // to fix FRAME_TYPE_WIDGET
+	initFrames(); // FIXME: HACK to fix FRAME_TYPE_WIDGET
 	
 	if (_fbutton_count)
 	{

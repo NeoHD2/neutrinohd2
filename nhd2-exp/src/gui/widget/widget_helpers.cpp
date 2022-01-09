@@ -490,7 +490,7 @@ void CScrollBar::paint(CBox* position, const int NrOfPages, const int CurrentPag
 CItems2DetailsLine::CItems2DetailsLine()
 {
 	frameBuffer = CFrameBuffer::getInstance(); 
-	paintLines = true; 
+	
 	mode = DL_INFO; 
 	info1 = "";
 	option_info1 = "";
@@ -524,10 +524,10 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 {
 	dprintf(DEBUG_INFO, "\nCItems2DetailsLine::paint: x:%d y:%d width:%d height:%d\n", x, y, width, height);
 	
-	int xpos  = x - CONNECTLINEBOX_WIDTH;
+	//int xpos  = x - CONNECTLINEBOX_WIDTH;
 	
-	int ypos1 = iy;
-	int ypos1a = ypos1 + (iheight/2) - 2;
+	//int ypos1 = iy;
+	//int ypos1a = ypos1 + (iheight/2) - 2;
 	
 	//
 	int ypos2 = y + height;
@@ -535,36 +535,6 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	
 	fb_pixel_t col1 = COL_MENUCONTENT_PLUS_6;
 	fb_pixel_t col2 = COL_MENUFOOT_INFO_PLUS_0;
-
-	// lines
-	if (paintLines && ( (mode == DL_INFO) || (mode == DL_HINT) ))
-	{
-		// clear infolines
-		frameBuffer->paintBackgroundBoxRel(xpos, y, CONNECTLINEBOX_WIDTH, height + info_height);
-
-		//
-		int fh = iheight > 10 ? iheight - 10 : 5;
-			
-		// vertical line connected to item	
-		frameBuffer->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos1 + 5, 4, fh, col1);
-		CFrameBuffer::getInstance()->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos1 + 5, 1, fh, col2);
-			
-		// vertical line connected to infobox	
-		frameBuffer->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos2 + 7, 4, info_height - 14, col1);
-		frameBuffer->paintBoxRel(xpos + CONNECTLINEBOX_WIDTH - 4, ypos2 + 7, 1, info_height - 14, col2);			
-
-		// vertical line
-		frameBuffer->paintBoxRel(xpos, ypos1a, 4, ypos2a - ypos1a, col1);
-		frameBuffer->paintBoxRel(xpos, ypos1a, 1, ypos2a - ypos1a + 4, col2);		
-
-		// Hline (item)
-		frameBuffer->paintBoxRel(xpos, ypos1a, 12, 4, col1);
-		frameBuffer->paintBoxRel(xpos, ypos1a, 1, 4, col2);
-			
-		// Hline (infobox)
-		frameBuffer->paintBoxRel(xpos, ypos2a, 12, 4, col1);
-		frameBuffer->paintBoxRel(xpos, ypos2a, 1, 4, col2);
-	}
 
 	// shadow / frame
 	if ( (mode == DL_INFO) || (mode == DL_HINT) )
@@ -699,10 +669,6 @@ void CItems2DetailsLine::clear(int x, int y, int width, int height, int info_hei
 {
 	if ( (mode == DL_INFO) ||(mode == DL_HINT) )
 	{ 
-		// lines
-		if (paintLines)
-			frameBuffer->paintBackgroundBoxRel(x - CONNECTLINEBOX_WIDTH, y, CONNECTLINEBOX_WIDTH, height + info_height);
-
 		// info box
 		frameBuffer->paintBackgroundBoxRel(x, y + height, width, info_height);
 	}

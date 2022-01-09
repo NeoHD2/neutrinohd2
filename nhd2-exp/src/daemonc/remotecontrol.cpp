@@ -893,6 +893,8 @@ void CRemoteControl::getEvents(t_channel_id chid)
 
 		evUrl += "&xml=true&details=true";
 	}
+	// rakutentv
+	// plutotv
 
 	insertEventsfromHttp(evUrl, GET_ORIGINAL_NETWORK_ID_FROM_CHANNEL_ID(chid), GET_TRANSPORT_STREAM_ID_FROM_CHANNEL_ID(chid), GET_SERVICE_ID_FROM_CHANNEL_ID(chid));
 }

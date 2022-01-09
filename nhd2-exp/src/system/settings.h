@@ -484,7 +484,6 @@ struct SNeutrinoSettings
 	
 	//
 	int menu_shadow;
-	int menu_details_line;
 
 	// icons dir
 	std::string icons_dir;
@@ -527,7 +526,6 @@ extern const neutrino_locale_t timing_setting_name[TIMING_SETTING_COUNT];
 #define BORDER_LEFT				10
 #define BORDER_RIGHT				10
 #define SCROLLBAR_WIDTH			10 // 15
-#define CONNECTLINEBOX_WIDTH    		10 // 15
 #define ICON_OFFSET				5 // offset from left border
 #define ICON_TO_ICON_OFFSET			2
 

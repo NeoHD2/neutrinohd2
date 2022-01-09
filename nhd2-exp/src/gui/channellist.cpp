@@ -1651,7 +1651,6 @@ void CChannelList::paint()
 
 	// footInfo
 	listBox->enablePaintFootInfo(70);
-	listBox->setDetailsLine(g_settings.menu_details_line);
 
 	//
 	listBox->setSelected(selected);

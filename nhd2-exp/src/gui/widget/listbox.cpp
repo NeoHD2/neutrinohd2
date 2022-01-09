@@ -2356,9 +2356,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	paintFootInfo = false;
 	footInfoHeight = 0;
 	cFrameFootInfoHeight = 0;
-	connectLineWidth = 0;
 	footInfoMode = FOOT_INFO_MODE;
-	details_line = false;
 	itemInfoBox.iX = 0;
 	itemInfoBox.iY = 0;
 	itemInfoBox.iWidth = 0;
@@ -2476,9 +2474,7 @@ ClistBox::ClistBox(CBox* position)
 	paintFootInfo = false;
 	footInfoHeight = 0;
 	cFrameFootInfoHeight = 0;
-	connectLineWidth = 0;
 	footInfoMode = FOOT_INFO_MODE;
-	details_line = false;
 	itemInfoBox.iX = 0;
 	itemInfoBox.iY = 0;
 	itemInfoBox.iWidth = 0;
@@ -2577,7 +2573,6 @@ void ClistBox::initFrames()
 	itemBox.iX = start_x;
 	itemBox.iY = start_y;
 	cFrameFootInfoHeight = 0;
-	connectLineWidth = 0;
 	
 	// sanity check
 	if(itemBox.iHeight > ((int)frameBuffer->getScreenHeight(true)))
@@ -2659,7 +2654,6 @@ void ClistBox::initFrames()
 			if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC) )
 			{
 				cFrameFootInfoHeight = footInfoHeight;
-				connectLineWidth = CONNECTLINEBOX_WIDTH;
 			}
 		}
 
@@ -2724,16 +2718,6 @@ void ClistBox::initFrames()
 		//
 		full_height = itemBox.iHeight;
 		full_width = itemBox.iWidth;
-
-		//
-		if(paintFootInfo)
-		{
-			if( (widgetType == WIDGET_TYPE_STANDARD) || (widgetType == WIDGET_TYPE_CLASSIC) )
-			{
-				itemBox.iWidth -= connectLineWidth; //*2 for sanity check
-				itemBox.iX += connectLineWidth;
-			}
-		}
 	}
 }
 
@@ -3224,8 +3208,6 @@ void ClistBox::paintItemInfo(int pos)
 
 				// detailslines
 				itemsLine.setMode(DL_INFO);
-				//itemsLine.paintFrame(iteminfoframe);
-				itemsLine.PaintLine(details_line);
 				itemsLine.setInfo1(item->info1.c_str());
 				itemsLine.setOptionInfo1(item->option_info1.c_str());
 				itemsLine.setInfo2(item->info2.c_str());
@@ -3239,8 +3221,6 @@ void ClistBox::paintItemInfo(int pos)
 	
 				// detailslines box
 				itemsLine.setMode(DL_HINT);
-				itemsLine.PaintLine(details_line);
-				//itemsLine.paintFrame(iteminfoframe);
 				itemsLine.setHint(item->itemHint.c_str());
 				
 				if (widgetType == WIDGET_TYPE_STANDARD)
@@ -3254,7 +3234,6 @@ void ClistBox::paintItemInfo(int pos)
 	
 				// detailslines box
 				itemsLine.setMode(DL_HINTITEM);
-				itemsLine.PaintLine(false);
 				itemsLine.setShadowMode(iteminfoshadowmode);
 				if (iteminfosavescreen) itemsLine.enableSaveScreen();
 				itemsLine.paintFrame(iteminfoframe);
@@ -3272,7 +3251,6 @@ void ClistBox::paintItemInfo(int pos)
 	
 				// detailslines box
 				itemsLine.setMode(DL_HINTICON);
-				itemsLine.PaintLine(false);
 				itemsLine.setShadowMode(iteminfoshadowmode);
 				if (iteminfosavescreen) itemsLine.enableSaveScreen();
 				itemsLine.paintFrame(iteminfoframe);
@@ -3289,7 +3267,6 @@ void ClistBox::paintItemInfo(int pos)
 	
 				// detailslines box
 				itemsLine.setMode(DL_HINTHINT);
-				itemsLine.PaintLine(false);
 				itemsLine.setShadowMode(iteminfoshadowmode);
 				if (iteminfosavescreen) itemsLine.enableSaveScreen();
 				itemsLine.paintFrame(iteminfoframe);
@@ -3365,7 +3342,7 @@ void ClistBox::hideItemInfo()
 	    	if(widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC)
 		{
 			if ((footInfoMode == FOOT_INFO_MODE) || (footInfoMode == FOOT_HINT_MODE))
-				itemsLine.clear(itemBox.iX, itemBox.iY, itemBox.iWidth + CONNECTLINEBOX_WIDTH, itemBox.iHeight - cFrameFootInfoHeight, cFrameFootInfoHeight);
+				itemsLine.clear(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight - cFrameFootInfoHeight, cFrameFootInfoHeight);
 			else
 				itemsLine.clear(itemInfoBox.iX, itemInfoBox.iY, itemInfoBox.iWidth, itemInfoBox.iHeight, 0);
 		} 

@@ -2740,7 +2740,6 @@ void CTestMenu::testCComponent()
 	
 	// DL
 	CItems2DetailsLine testDline;
-	testDline.PaintLine(false);
 	testDline.setMode(DL_HINT);
 	testDline.setHint(buffer.c_str());
 	testDline.setIcon(m_vMovieInfo[0].tfile.c_str());
@@ -3225,7 +3224,7 @@ void CTestMenu::testCInfoBox()
 	
 	infoBox->setShadowMode(SHADOW_ALL);
 	infoBox->setBackgroundColor(/*make16color(0xBEBEBE)*/COL_SILVER_PLUS_0);
-	infoBox->setText(buffer.c_str(), m_vMovieInfo[0].tfile.c_str(), p_w, p_h, TOP_LEFT, true, true);
+	infoBox->setText(buffer.c_str(), m_vMovieInfo[0].tfile.c_str(), p_w, p_h, TOP_RIGHT, true, true);
 	infoBox->setTextColor(COL_LIME);
 	
 	infoBox->setHeadColor(COL_NOBEL_PLUS_0);

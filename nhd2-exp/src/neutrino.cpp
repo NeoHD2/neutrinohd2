@@ -723,7 +723,6 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.use_default_skin = configfile.getBool("use_default_skin", true);
 	g_settings.preferred_skin = configfile.getString("preferred_skin", "default");
 	g_settings.menu_shadow = configfile.getBool("menu_shadow", true);
-	g_settings.menu_details_line = configfile.getBool("menu_details_line", false);
 
 	// keysbinding
 	strcpy(g_settings.repeat_blocker, configfile.getString("repeat_blocker", "250").c_str());
@@ -1214,7 +1213,6 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setBool("use_default_skin", g_settings.use_default_skin);
 	configfile.setString("preferred_skin", g_settings.preferred_skin);
 	configfile.setBool("menu_shadow", g_settings.menu_shadow);
-	configfile.setBool("menu_details_line", g_settings.menu_details_line);
 	// END OSD
 
 	// KEYS
@@ -1696,7 +1694,6 @@ void CNeutrinoApp::unloadSkin()
 	
 	// menu
 	g_settings.menu_shadow = true;
-	g_settings.menu_details_line = false;
 	
 	// infobar
 	g_settings.infobar_gradient = NOGRADIENT;
@@ -1828,7 +1825,6 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		
 		//
 		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", true);
-		g_settings.menu_details_line = skinConfig->getBool("menu_details_line", false);
 		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
 
@@ -1938,7 +1934,6 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	
 	//
 	skinConfig->setBool("menu_shadow", g_settings.menu_shadow);
-	skinConfig->setBool("menu_details_line", g_settings.menu_details_line);
 		
 	skinConfig->setString("font_file", g_settings.font_file);
 

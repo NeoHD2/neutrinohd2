@@ -611,10 +611,8 @@ class ClistBox : public CWidgetItem
 		int cFrameFootInfoHeight;
 		int footInfoHeight;
 		CItems2DetailsLine itemsLine;
-		int connectLineWidth;
 		bool paintFootInfo;
 		int footInfoMode;
-		bool details_line;
 		CBox itemInfoBox;
 		bool iteminfoshadow;
 		bool iteminfosavescreen;
@@ -698,7 +696,6 @@ class ClistBox : public CWidgetItem
 		// footInfo
 		void enablePaintFootInfo(int fh){paintFootInfo = true; footInfoHeight = fh;};
 		void setFootInfoMode(int mode){footInfoMode = mode;};
-		void setDetailsLine(bool d){details_line = d;};
 		void setItemInfoPos(int x, int y, int dx, int dy)
 		{
 			if ( (footInfoMode == FOOT_HINTITEM_MODE) || (footInfoMode == FOOT_HINTICON_MODE) || (footInfoMode == FOOT_HINTHINT_MODE))

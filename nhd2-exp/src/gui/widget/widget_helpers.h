@@ -306,9 +306,6 @@ class CItems2DetailsLine : public CComponent
 		std::string hint;
 		std::string icon;
 		int mode;
-
-		//
-		bool paintLines;
 		
 		// cutom mode
 		CFont* tFont;
@@ -335,7 +332,6 @@ class CItems2DetailsLine : public CComponent
 		virtual void setHint(const char* const Text){hint =  Text;};
 		virtual void setHint(const neutrino_locale_t locale){hint = g_Locale->getText(locale); };
 		virtual void setIcon(const char* const ic){icon = ic;};
-		virtual void PaintLine(bool paint){paintLines = paint;};
 		
 		// custom mode
 		void setFont(CFont* f){tFont = f;};
