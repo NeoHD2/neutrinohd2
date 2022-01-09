@@ -114,8 +114,8 @@ class CMenuWidget : public CMenuTarget
 		std::map<neutrino_msg_t, keyAction> keyActionMap;
 
 		uint32_t sec_timer_id;
-		unsigned long long int timeout;
-		int sec_timer_interval;
+		uint64_t timeout;
+		uint64_t sec_timer_interval;
 
 		// head
 		int hheight;
@@ -218,7 +218,7 @@ class CMenuWidget : public CMenuTarget
 		int getSelected(){return selected;};
 		
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
-		void setSecTimerInterval(int interval){sec_timer_interval = interval;};
+		void setSecTimerInterval(uint64_t interval){sec_timer_interval = interval;};
 
 		void move(int xoff, int yoff);
 		int getHeight(void) const {return height;}

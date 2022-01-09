@@ -284,7 +284,7 @@ CTimerList::~CTimerList()
 	delete plugin_chooser;
 }
 
-int CTimerList::exec(CMenuTarget *parent, const std::string& actionKey)
+int CTimerList::exec(CMenuTarget* parent, const std::string& actionKey)
 {
 	dprintf(DEBUG_NORMAL, "CTimerList::exec: actionKey:%s\n", actionKey.c_str());
 
@@ -519,7 +519,7 @@ int CTimerList::show()
 			paint();
 		}
 
-		g_RCInput->getMsgAbsoluteTimeout( &msg, &data, &timeoutEnd );
+		g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd);
 
 		if( msg <= RC_MaxRC )
 			timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_MENU] == 0 ? 0xFFFF : g_settings.timing[SNeutrinoSettings::TIMING_MENU]);

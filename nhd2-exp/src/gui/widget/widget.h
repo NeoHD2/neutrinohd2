@@ -144,7 +144,7 @@ class CMenuTarget
 		CMenuTarget(){ valueStringTmp = std::string(); valueString = &valueStringTmp; };
 		virtual ~CMenuTarget(){};
 		virtual void hide(){valueString->clear();};
-		virtual int exec(CMenuTarget *parent, const std::string &actionKey) = 0;
+		virtual int exec(CMenuTarget* parent, const std::string& actionKey) = 0;
 		virtual std::string& getString(void) { return *valueString; };
 		
 		//
@@ -170,9 +170,9 @@ class CWidget : public CMenuTarget
 		int pos;
 		struct keyAction { std::string action; CMenuTarget *menue; };
 		std::map<neutrino_msg_t, keyAction> keyActionMap;
-		unsigned long long int timeout;
+		uint64_t timeout;
 		uint32_t sec_timer_id;
-		int sec_timer_interval;
+		uint64_t sec_timer_interval;
 		std::string actionKey;
 		
 		// screen
@@ -206,7 +206,7 @@ class CWidget : public CMenuTarget
 
 		//
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
-		void setSecTimerInterval(int interval){sec_timer_interval = interval;};
+		void setSecTimerInterval(uint64_t interval){sec_timer_interval = interval;};
 		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
 		
 		//

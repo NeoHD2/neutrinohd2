@@ -3804,8 +3804,6 @@ void CTestMenu::testClistBox()
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 	rightWidget->setFormat("%d.%m.%Y %H:%M:%S");
-	rightWidget->addTimer();
-	//rightWidget->enableRepaint();
 
 	// footer
 	//rightWidget->enablePaintFoot();
@@ -4239,10 +4237,8 @@ void CTestMenu::testClistBox4()
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 	rightWidget->setFormat("%d.%m.%Y %H:%M:%S");
-	rightWidget->addTimer();
 
 	//rightWidget->paintMainFrame(false);	
-
 	//rightWidget->setSelected(selected);
 	
 	//

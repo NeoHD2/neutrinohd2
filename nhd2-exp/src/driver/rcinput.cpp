@@ -539,7 +539,7 @@ void CRCInput::restartInput()
 	open();
 }
 
-int CRCInput::messageLoop( bool anyKeyCancels, int timeout )
+int CRCInput::messageLoop(bool anyKeyCancels, int timeout)
 {
 	neutrino_msg_t      msg;
 	neutrino_msg_data_t data;
@@ -555,7 +555,7 @@ int CRCInput::messageLoop( bool anyKeyCancels, int timeout )
 
 	while (doLoop)
 	{
-		g_RCInput->getMsgAbsoluteTimeout( &msg, &data, &timeoutEnd );
+		g_RCInput->getMsgAbsoluteTimeout(&msg, &data, &timeoutEnd);
 
 		if ( ( msg == RC_timeout ) || ( msg == RC_home ) || ( msg == RC_ok ) )
 		{

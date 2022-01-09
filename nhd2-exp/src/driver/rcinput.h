@@ -440,7 +440,7 @@ class CRCInput
 		void clearRCMsg();
 
 		//
-		int messageLoop( bool anyKeyCancels = false, int timeout= -1 );
+		int messageLoop(bool anyKeyCancels = false, int timeout= -1);
 };
 
 // Converts input of numeric keys to SMS style char input

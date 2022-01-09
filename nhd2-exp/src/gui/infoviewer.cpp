@@ -208,7 +208,7 @@ CInfoViewer::~CInfoViewer()
 
 void CInfoViewer::initFrames(void)
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::initFrames:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::initFrames:\n");
 	
 	// icons dimension
 	frameBuffer->getIconSize(NEUTRINO_ICON_16_9, &icon_w_aspect, &icon_h_aspect);
@@ -294,7 +294,7 @@ void CInfoViewer::start()
 
 void CInfoViewer::paintTime(int posx, int posy, CFont* timeFont)
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::paintTime:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::paintTime:\n");
 	
 	int time_left_width = 2 * timeFont->getRenderWidth(widest_number);
 	int time_dot_width = timeFont->getRenderWidth(":");
@@ -321,7 +321,7 @@ void CInfoViewer::showRecordIcon(const bool show)
 
 	if (recordModeActive && is_visible) 
 	{
-		dprintf(DEBUG_NORMAL, "CInfoViewer::showRecordIcon:\n");
+		dprintf(DEBUG_INFO, "CInfoViewer::showRecordIcon:\n");
 		
 		if (show) 
 		{
@@ -697,7 +697,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 
 void CInfoViewer::getCurrentNextEPG(t_channel_id ChannelID, bool newChan, int EPGPos)
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::getCurrentNextEPG:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::getCurrentNextEPG:\n");
 	
 	sectionsd_getCurrentNextServiceKey(ChannelID&0xFFFFFFFFFFFFULL, info_CurrentNext);
 	
@@ -775,7 +775,7 @@ void CInfoViewer::getCurrentNextEPG(t_channel_id ChannelID, bool newChan, int EP
 
 void CInfoViewer::showSubchan()
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showSubchan:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showSubchan:\n");
 	
   	CNeutrinoApp *neutrino = CNeutrinoApp::getInstance();
 
@@ -907,7 +907,7 @@ void CInfoViewer::showSubchan()
 // radiotext
 void CInfoViewer::showIcon_RadioText(bool rt_available) const
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showIcon_RadioText:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showIcon_RadioText:\n");
 	
 	if (showButtonBar)
 	{
@@ -928,7 +928,7 @@ void CInfoViewer::showIcon_RadioText(bool rt_available) const
 
 void CInfoViewer::showIcon_16_9()
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showIcon_16_9:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showIcon_16_9:\n");
 				
 	const char * aspect_icon = NEUTRINO_ICON_16_9_GREY;
 			
@@ -951,7 +951,7 @@ void CInfoViewer::showIcon_VTXT() const
 
 void CInfoViewer::showIcon_Resolution() const
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showIcon_Resolution:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showIcon_Resolution:\n");
 	
 	int xres, yres, framerate;
 	const char *icon_name = NULL;
@@ -1074,7 +1074,7 @@ void CInfoViewer::showIcon_Resolution() const
 // dvbsub icon
 void CInfoViewer::showIcon_SubT() const
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showIcon_SubT:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showIcon_SubT:\n");
 	
         bool have_sub = false;
 
@@ -1092,14 +1092,14 @@ void CInfoViewer::showIcon_SubT() const
 
 void CInfoViewer::showFailure()
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showFailure:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showFailure:\n");
 	
   	HintBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText (LOCALE_INFOVIEWER_NOTAVAILABLE), 430);
 }
 
 void CInfoViewer::showMotorMoving (int duration)
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showMotorMoving:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showMotorMoving:\n");
 	
 	char text[256];
 	char buffer[10];
@@ -1116,14 +1116,14 @@ void CInfoViewer::showMotorMoving (int duration)
 // radiotext
 void CInfoViewer::killRadiotext()
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::killRadiotext:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::killRadiotext:\n");
 	
 	frameBuffer->paintBackgroundBox(rt_x, rt_y, rt_w, rt_h);
 }
 
 void CInfoViewer::showRadiotext()
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showRadiotext:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showRadiotext:\n");
 	
 	char stext[3][100];
 	int yoff = 8, ii = 0;
@@ -1331,7 +1331,7 @@ int CInfoViewer::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 		// show failure..!
 		CVFD::getInstance()->showServicename("(" + g_RemoteControl->getCurrentChannelName() + ')', true, g_RemoteControl->getCurrentChannelNumber());
 		
-		dprintf(DEBUG_NORMAL, "CInfoViewer::handleMsg: zap failed!\n");
+		dprintf(DEBUG_DEBUG, "CInfoViewer::handleMsg: zap failed!\n");
 		showFailure();
 
 #if ENABLE_LCD		
@@ -1355,7 +1355,7 @@ int CInfoViewer::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 	  		// show failure..!
 			CVFD::getInstance()->showServicename ("(" + g_RemoteControl->getCurrentChannelName() + ')', true, g_RemoteControl->getCurrentChannelNumber());
 			
-	  		dprintf(DEBUG_NORMAL, "CInfoViewer::handleMsg: zap failed!\n");
+	  		dprintf(DEBUG_DEBUG, "CInfoViewer::handleMsg: zap failed!\n");
 	  		showFailure();
 
 #if ENABLE_LCD			
@@ -1418,7 +1418,7 @@ void CInfoViewer::showButton_SubServices()
 {
   	if (!(g_RemoteControl->subChannels.empty ())) 
 	{
-		dprintf(DEBUG_NORMAL, "CInfoViewer::showButton_SubServices:\n");
+		dprintf(DEBUG_INFO, "CInfoViewer::showButton_SubServices:\n");
 		
 		int icon_w;
 		int icon_h;
@@ -1436,7 +1436,7 @@ void CInfoViewer::showButton_SubServices()
 
 void CInfoViewer::getEPG(const t_channel_id for_channel_id, CSectionsdClient::CurrentNextInfo &info)
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::getEPG: channel_id:0x%llx\n", for_channel_id);
+	dprintf(DEBUG_INFO, "CInfoViewer::getEPG: channel_id:0x%llx\n", for_channel_id);
 
 	// to clear the oldinfo for channels without epg, call getEPG() with for_channel_id = 0
 	if (for_channel_id == 0)
@@ -1481,7 +1481,7 @@ void CInfoViewer::getEPG(const t_channel_id for_channel_id, CSectionsdClient::Cu
 
 void CInfoViewer::showSNR()
 { 
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showSNR:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showSNR:\n");
 	
   	char percent[10];
   	uint16_t ssig = 0;
@@ -1582,10 +1582,10 @@ void CInfoViewer::showSNR()
 // aktiv tuner
 void CInfoViewer::showAktivTuner()
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showAktivTuner:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showAktivTuner:\n");
 	
 	/*
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showAktivTuner:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showAktivTuner:\n");
 	if(is_visible)
 	{
 		if (chanready) 
@@ -1622,7 +1622,7 @@ void CInfoViewer::showAktivTuner()
 
 void CInfoViewer::show_Data(bool calledFromEvent)
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::show_data:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::show_data:\n");
 	
   	char runningStart[10] = "";
   	char runningRest[20] = "";
@@ -1797,7 +1797,7 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 
 void CInfoViewer::showButton_Audio()
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showButton_Audio:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showButton_Audio:\n");
 	
   	// green, in case of several APIDs
   	uint32_t count = g_RemoteControl->current_PIDs.APIDs.size();
@@ -1904,7 +1904,7 @@ void CInfoViewer::killTitle()
 
 void CInfoViewer::Set_CA_Status(int Status)
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::Set_CA_Status:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::Set_CA_Status:\n");
 	
 	CA_Status = Status;
 	m_CA_Status = Status;
@@ -1938,7 +1938,7 @@ extern int pmt_caids[11];
 
 void CInfoViewer::showIcon_CA_Status(int notfirst)
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showIcon_CA_Status:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showIcon_CA_Status:\n");
 	
 	int i;
 	int caids[] = { 0x0600, 0x1700, 0x0100, 0x0500, 0x1800, 0x0B00, 0x0D00, 0x0900, 0x2600, 0x4a00, 0x0E00 };
@@ -1967,7 +1967,7 @@ void CInfoViewer::showIcon_CA_Status(int notfirst)
 
 void CInfoViewer::showEpgInfo()   //message on event change
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showEpgInfo:\n");
+	dprintf(DEBUG_INFO, "CInfoViewer::showEpgInfo:\n");
 	
 	int mode = CNeutrinoApp::getInstance()->getMode();
 	

@@ -592,7 +592,7 @@ class ClistBox : public CWidgetItem
 		bool paintTitle;
 		int thalign;
 		bool head_line;
-		char* format;
+		const char* format;
 		CCTime* timer;
 
 		// foot
@@ -645,9 +645,6 @@ class ClistBox : public CWidgetItem
 		fb_pixel_t* items_background;
 		bool itemShadow;
 		
-		//
-		uint32_t sec_timer_id;
-		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		ClistBox(CBox* position);
@@ -682,7 +679,7 @@ class ClistBox : public CWidgetItem
 		void setHeadCorner(int co){headCorner = co;};
 		void setHeadGradient(int grad){headGradient = grad;};
 		void setHeadLine(bool l){head_line = l;};
-		void setFormat(char* f){format = f;};
+		void setFormat(const char* f){format = f;};
 		
 		// foot
 		void enablePaintFoot(){paint_Foot = true;};
@@ -764,7 +761,6 @@ class ClistBox : public CWidgetItem
 		void homeKeyPressed(){selected = -1;};
 		void onDirectKeyPressed(neutrino_msg_t msg);
 		bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data);
-		void addTimer(uint64_t sec = 1);
 
 		//
 		std::string getName(){return l_name;};

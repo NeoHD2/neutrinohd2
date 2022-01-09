@@ -508,7 +508,7 @@ class CCTime : public CComponent
 		//
 		uint8_t color;
 		CFont* font;
-		char* format;
+		const char* format;
 		
 		fb_pixel_t* background;
 		
@@ -519,7 +519,7 @@ class CCTime : public CComponent
 		//
 		void setColor(uint8_t col){color = col;};
 		void setFont(CFont *f){font = f;};
-		void setFormat(char* f){format = f;};
+		void setFormat(const char* f){format = f;};
 		void setHAlign(int h){halign = h;};
 		
 		//
@@ -623,7 +623,7 @@ class CWidgetItem
 		virtual int oKKeyPressed(CMenuTarget *parent){return 0;};
 		virtual void homeKeyPressed(){};
 		virtual void onDirectKeyPressed(neutrino_msg_t msg){};
-		virtual bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data){return false;};
+		//virtual bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data){return false;};
 		
 		//
 		virtual std::string getActionKey(void){ return actionKey;}; // lua
@@ -652,7 +652,7 @@ class CHeaders : public CWidgetItem
 		int thalign;
 		
 		bool paintDate;
-		char* format;
+		const char* format;
 		CCTime* timer;
 	
 	public:
