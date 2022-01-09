@@ -19,13 +19,6 @@ AM_PROG_LIBTOOL
 
 AM_PROG_CC_C_O
 
-AC_PATH_PROG(MSGFMT, msgfmt, AC_MSG_ERROR(Could not find msgfmt))
-AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
-AC_PATH_PROG(MSGMERGE, msgmerge, AC_MSG_ERROR(Could not find msgmerge))
-AC_PATH_PROG(MSGUNIQ, msguniq, AC_MSG_ERROR(Could not find msguniq))
-AC_PATH_PROG(MSGATTRIB, msgattrib, AC_MSG_ERROR(Could not find msgattrib))
-AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
-
 PKG_CHECK_MODULES(CURL, libcurl)
 PKG_CHECK_MODULES(FREETYPE,freetype2)
 PKG_CHECK_MODULES(ID3TAG, id3tag)

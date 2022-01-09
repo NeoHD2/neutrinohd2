@@ -1,3 +1,0 @@
-msgid "Test Menu"
-
-msgstr "Testmenü"

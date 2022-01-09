@@ -3290,8 +3290,7 @@ void CTestMenu::testCHintBoxInfo()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCHintBox\n");
 
-	HintBox(LOCALE_MESSAGEBOX_INFO, _("\n"
-"<This tuner is configured automatically>"), HINTBOX_WIDTH, 10, NEUTRINO_ICON_INFO);
+	HintBox(LOCALE_MESSAGEBOX_INFO, "testCHintBoxInfo", HINTBOX_WIDTH, 10, NEUTRINO_ICON_INFO);
 }
 
 // CHelpBox
@@ -3760,7 +3759,7 @@ void CTestMenu::testClistBox()
 
 	rightWidget = new ClistBox(&Box);
 	
-	CHintBox loadBox(_("ClistBox (standard)"), _(g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES)));
+	CHintBox loadBox("testClistBox", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -3798,7 +3797,7 @@ void CTestMenu::testClistBox()
 	rightWidget->paintMainFrame(false);
 
 	// head
-	rightWidget->setTitle(_("ClistBox (standard)"), NEUTRINO_ICON_MOVIE);
+	rightWidget->setTitle("ClistBox (standard)", NEUTRINO_ICON_MOVIE);
 	//rightWidget->setTitleHAlign(CC_ALIGN_CENTER);
 	//rightWidget->enablePaintHead();
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
@@ -4231,7 +4230,7 @@ void CTestMenu::testClistBox4()
 	rightWidget->enableShrinkMenu();
 	
 	// head
-	rightWidget->setTitle(_("ClistBox (standard)"), NEUTRINO_ICON_MOVIE);
+	rightWidget->setTitle("ClistBox (standard)", NEUTRINO_ICON_MOVIE);
 	//rightWidget->setTitleHAlign(CC_ALIGN_CENTER);
 	rightWidget->enablePaintHead();
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
@@ -7445,7 +7444,7 @@ void CTestMenu::showMenu()
 
 	CMenuWidget * mainMenu = new CMenuWidget();
 
-	mainMenu->setTitle(_("Test Menu"), NEUTRINO_ICON_BUTTON_SETUP);
+	mainMenu->setTitle("Test Menu", NEUTRINO_ICON_BUTTON_SETUP);
 
 	mainMenu->setWidgetMode(MODE_MENU);
 	mainMenu->enableShrinkMenu(),

@@ -990,7 +990,7 @@ void CRCInput::getMsg_us(neutrino_msg_t * msg, neutrino_msg_data_t * data, uint6
 
 				if ( p != NULL )
 				{
-					read_bytes= recv(fd_eventclient, p, emsg.dataSize, MSG_WAITALL);
+					read_bytes = recv(fd_eventclient, p, emsg.dataSize, MSG_WAITALL);
 
 					// nhttp event msg 
 					if ( emsg.initiatorID == CEventServer::INITID_HTTPD )
@@ -1250,7 +1250,6 @@ void CRCInput::getMsg_us(neutrino_msg_t * msg, neutrino_msg_data_t * data, uint6
 								*data = (neutrino_msg_data_t) p;
 								break;
 							//
-							
 							default:
 								printf("CRCInput::getMsg_us: event INITID_ZAPIT - unknown eventID 0x%x\n",  emsg.eventID );
 						}
@@ -1506,6 +1505,7 @@ void CRCInput::getMsg_us(neutrino_msg_t * msg, neutrino_msg_data_t * data, uint6
 			gettimeofday( &tv, NULL );
 			int64_t getKeyNow = (int64_t) tv.tv_usec + (int64_t)((int64_t) tv.tv_sec * (int64_t) 1000000);
 			int64_t diff = (getKeyNow - getKeyBegin);
+			
 			if( Timeout <= (uint64_t) diff )
 			{
 				*msg = RC_timeout;

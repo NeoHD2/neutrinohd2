@@ -115,17 +115,7 @@ CLocaleManager::loadLocale_ret_t CLocaleManager::loadLocale(const char * const l
 
 	initialize_iso639_map();
 	
-	//FIXME:
-	// initlocale
-	setlocale(LC_ALL, "");
-	bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale");
-	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
-	textdomain(PACKAGE_NAME);
-	
-	// set language	
-	setlocale(LC_ALL, "de");
 	//
-
 	for (i = 0; i < 2; i++)
 	{
 		std::string filename = path[i];
