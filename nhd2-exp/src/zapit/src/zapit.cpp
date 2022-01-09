@@ -921,25 +921,6 @@ void saveZapitSettings(bool write, bool write_a)
 	{
 		int c = 0;
 
-#if 0
-		if(currentMode & RADIO_MODE)
-			c = g_bouquetManager->radioChannelsBegin().getLowestChannelNumberWithChannelID(live_channel->getChannelID());
-		else if(currentMode & TV_MODE)
-			c = g_bouquetManager->tvChannelsBegin().getLowestChannelNumberWithChannelID(live_channel->getChannelID());
-		else if(currentMode & WEBTV_MODE)
-			g_bouquetManager->webtvChannelsBegin().getLowestChannelNumberWithChannelID(live_channel->getChannelID());
-
-		if (c >= 0) 
-		{
-			if ((currentMode & RADIO_MODE))
-				lastChannelRadio = c;
-			else if ((currentMode & TV_MODE))
-				lastChannelTV = c;
-			else if ((currentMode & WEBTV_MODE))
-				lastChannelWEBTV = c;
-		}
-#else
-
 		c = live_channel->number;
 
 		if (c >= 0) 
@@ -951,7 +932,6 @@ void saveZapitSettings(bool write, bool write_a)
 			else if ((currentMode & WEBTV_MODE))
 				lastChannelWEBTV = c - 1;
 		}
-#endif
 	}
 
 	// write zapit config

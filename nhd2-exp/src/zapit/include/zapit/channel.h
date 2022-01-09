@@ -187,7 +187,9 @@ class CZapitChannel
 		std::string url;
 		std::string description;
 		bool isWebTV;
-
+		std::string alogo;
+		std::string xmltv;
+		std::string epgmap;
 
 		// constructor, desctructor
 		CZapitChannel(const std::string& p_name, t_service_id p_sid, t_transport_stream_id p_tsid, t_original_network_id p_onid, unsigned char p_service_type, t_satellite_position p_satellite_position, freq_id_t p_freq);
@@ -223,14 +225,18 @@ class CZapitChannel
 		unsigned short		getPreAudioPid(void)		{ return audioPid; }
 		bool			getPidsFlag(void)		{ return pidsFlag; }
 		CCaPmt *		getCaPmt(void)			{ return caPmt; }
-		unsigned char *		getRawPmt(int &len)		{ len = pmtLen; return rawPmt; };
-		unsigned short		getaitPid(void)			{return aitPid;};
-		std::string		getUrl(void)			{return url;};
-		std::string		getDescription(void)		{return description;};
+		unsigned char *	getRawPmt(int &len)		{ len = pmtLen; return rawPmt; };
+		unsigned short		getaitPid(void)		{return aitPid;};
+		//
+		std::string		getUrl(void)			{ return url;};
+		std::string		getDescription(void)		{ return description;};
+		std::string		getLogo(void)			{ return alogo;};
+		std::string		getXMLTV(void)			{ return xmltv;};
+		std::string		getEPGMap(void)		{ return epgmap;};
 
 		CZapitAudioChannel * 	getAudioChannel(unsigned char index = 0xFF);
-		unsigned short 		getAudioPid(unsigned char index = 0xFF);
-		unsigned char  		getAudioChannelIndex(void)	{ return currentAudioChannel; }
+		unsigned short 	getAudioPid(unsigned char index = 0xFF);
+		unsigned char  	getAudioChannelIndex(void)	{ return currentAudioChannel; }
 
 		int addAudioChannel(const unsigned short pid, const CZapitAudioChannel::ZapitAudioChannelType audioChannelType, const std::string & description, const unsigned char componentTag);
 
@@ -247,10 +253,14 @@ class CZapitChannel
 		void setAudioPid(unsigned short pAudioPid)		{ audioPid = pAudioPid; }
 		void setPrivatePid(unsigned short pPrivatePid)		{ privatePid = pPrivatePid; }
 		void setPidsFlag(void)					{ pidsFlag = true; }
-		void setCaPmt(CCaPmt * pCaPmt);				//{ caPmt = pCaPmt; }
+		void setCaPmt(CCaPmt * pCaPmt);
 		void setRawPmt(unsigned char * pmt, int len = 0);
 		void setaitPid(unsigned short aitPID)			{aitPid = aitPID;};
 		void setNumber(unsigned int num)			{number = num;};
+		//
+		void setLogo(const std::string logo)			{ alogo = logo;};
+		void setXMLTV(const std::string url)			{ xmltv = url;};
+		void setEPGMap(const std::string map)			{ epgmap = map;};
 		
 		/* cleanup methods */
 		void resetPids(void);

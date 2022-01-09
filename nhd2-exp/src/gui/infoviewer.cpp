@@ -1637,10 +1637,12 @@ void CInfoViewer::show_Data(bool calledFromEvent)
   	CWindow currentInfoBox(BoxStartX, ChanInfoY, BoxEndX - BoxStartX, CHANINFO_HEIGHT);
   	currentInfoBox.paintMainFrame(false);
   	currentInfoBox.enableSaveScreen();
+  	currentInfoBox.paint();
   	
   	CWindow nextInfoBox(BoxStartX, ChanInfoY + CHANINFO_HEIGHT, BoxEndX - BoxStartX, ChanInfoHeight);
   	nextInfoBox.paintMainFrame(false);
   	nextInfoBox.enableSaveScreen();
+  	nextInfoBox.paint();
 
   	if (is_visible) 
 	{
@@ -1733,7 +1735,7 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 		{
 			// noepg/waiting for time
 			// refresh box
-	  		nextInfoBox.hide(); // FIXME: stupid naming
+	  		nextInfoBox.hide();
 	  		
 	  		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(ChanInfoX, ChanInfoY + 2*ChanInfoHeight, BoxEndX - (BoxStartX + CHANNUMBER_WIDTH + 20), g_Locale->getText (gotTime ? LOCALE_INFOVIEWER_NOEPG : LOCALE_INFOVIEWER_WAITTIME), COL_INFOBAR, 0, true);	// UTF-8
 		} 
@@ -1750,12 +1752,12 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 			{
 				// current infos
 				//refresh box current
-				currentInfoBox.hide(); // FIXME: stupid naming
+				currentInfoBox.hide();
 				
 				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, BoxEndX - ChanInfoX, g_Locale->getText(LOCALE_INFOVIEWER_NOCURRENT), COL_COLORED_EVENTS_INFOBAR, 0, true);	// UTF-8
 
 				// next
-				nextInfoBox.hide(); // FIXME: stupid naming
+				nextInfoBox.hide();
 				
 				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(BoxStartX + BORDER_LEFT, ChanInfoY + 2*ChanInfoHeight, EPGTimeWidth, nextStart, COL_MENUCONTENTINACTIVE);
 
@@ -1766,7 +1768,7 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 			{
 				// current
 				// refresh box
-			  	currentInfoBox.hide(); // FIXME: stupid naming
+			  	currentInfoBox.hide();
 			  		
 			  	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (BoxStartX + 10, ChanInfoY + ChanInfoHeight, EPGTimeWidth, runningStart, COL_COLORED_EVENTS_INFOBAR);
 
@@ -1779,7 +1781,7 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 				if ((!is_nvod) && (info_CurrentNext.flags & CSectionsdClient::epgflags::has_next)) 
 				{
 					// refresh
-					nextInfoBox.hide(); // FIXME: stupid naming
+					nextInfoBox.hide();
 						
 					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (BoxStartX + BORDER_LEFT, ChanInfoY + 2*ChanInfoHeight, EPGTimeWidth, nextStart, COL_MENUCONTENTINACTIVE);
 

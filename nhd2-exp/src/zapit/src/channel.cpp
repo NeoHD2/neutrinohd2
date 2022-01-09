@@ -60,6 +60,9 @@ CZapitChannel::CZapitChannel(const std::string& p_name, t_channel_id p_chid, con
 	channel_id = p_chid;
 	url = p_url;
 	description = p_description;
+	alogo = "";
+	xmltv = "";
+	epgmap = "";
 
 	service_id = 0;
 	transport_stream_id = 0;

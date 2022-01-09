@@ -676,6 +676,10 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					const char * url;
 					const char * description;
 					t_channel_id id = 0;
+					const char* xmltv;
+					const char* logo;
+					const char* epgmap;
+					const char* epgid;
 					
 					// title
 					if(xmlGetNextOccurence(l1, "webtv"))
@@ -683,7 +687,10 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						title = xmlGetAttribute(l1, (const char *)"title");
 						url = xmlGetAttribute(l1, (const char *)"url");
 						description = xmlGetAttribute(l1, (const char *)"description");
-						const char *epgid = xmlGetAttribute(l1, "epgid");
+						epgid = xmlGetAttribute(l1, (const char*)"epgid");
+						xmltv = xmlGetAttribute(l1, (const char*)"xmltv");
+						logo = xmlGetAttribute(l1, (const char*)"logo");
+						epgmap = xmlGetAttribute(l1, (const char*)"epgmap");
 
 						if (epgid)
 							id = strtoull(epgid, NULL, 16);
@@ -712,6 +719,9 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						{
 							chan->setName(title);
 							chan->setDescription(description);
+							if (xmltv != NULL) chan->setXMLTV(xmltv);
+							if (epgmap != NULL) chan->setEPGMap(epgmap);
+							if (logo != NULL) chan->setLogo(logo);
 
 							newBouquet->addService(chan);
 

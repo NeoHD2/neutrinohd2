@@ -264,6 +264,7 @@ void CTextBox::initFramesRel(void)
 	textBox.setPosition(&itemBox);
 	textBox.paintMainFrame(paintframe);
 	if (savescreen) textBox.enableSaveScreen();
+	textBox.setColor(m_textBackgroundColor);
 	textBox.setShadowMode(shadowMode);
 }
 
@@ -459,7 +460,9 @@ void CTextBox::refreshText(void)
 		textBox.paint();
 	}
 	else if (savescreen)
+	{
 		textBox.hide();
+	}
 	
 	// paint thumbnail (paint picture only on first page)
 	if(m_nCurrentPage == 0 && !access(thumbnail.c_str(), F_OK) )

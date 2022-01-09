@@ -52,8 +52,6 @@ class CWindow : public CWidgetItem
 		//
 		fb_pixel_t * background;
 		bool savescreen;
-		void saveScreen();
-		void restoreScreen();
 
 		//
 		bool shadowMode;
@@ -65,7 +63,7 @@ class CWindow : public CWidgetItem
 	public:
 		CWindow(const int x = 0, const int y = 0, const int dx = DEFAULT_XRES, const int dy = DEFAULT_XRES);
 		CWindow(CBox* position);
-		virtual ~CWindow(){};
+		virtual ~CWindow();
 
 		//
 		void init();
@@ -80,6 +78,8 @@ class CWindow : public CWidgetItem
 		//
 		void paintMainFrame(bool p){paintFrame = p;};
 		void enableSaveScreen();
+		void saveScreen();
+		void restoreScreen();
 
 		//
 		void paint(void);

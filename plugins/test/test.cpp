@@ -3823,8 +3823,6 @@ void CTestMenu::testClistBox()
 	//
 	rightWidget->paintScrollBar(false);
 	
-	rightWidget->setParent(this);
-	
 	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 

@@ -61,6 +61,20 @@ CWindow::CWindow(CBox* position)
 	init();
 }
 
+CWindow::~CWindow()
+{
+	if(background)
+	{
+		delete[] background;
+		background = NULL;
+	}
+	
+	if (hasItem())
+	{
+		CCItems.clear();
+	}
+}
+
 void CWindow::init()
 {
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
@@ -119,13 +133,12 @@ void CWindow::restoreScreen()
 {
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
-	if(background) 
+	if(savescreen && background) 
 	{
 		frameBuffer->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
 	}
-
-	delete[] background;
-	background = NULL;
+	
+	CFrameBuffer::getInstance()->blit();
 }
 
 void CWindow::enableSaveScreen()
@@ -197,7 +210,7 @@ void CWindow::hide()
 {
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
-	if( savescreen && background)
+	if( savescreen)
 		restoreScreen();
 	else
 		frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);

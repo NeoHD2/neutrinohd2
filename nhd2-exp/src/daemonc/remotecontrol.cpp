@@ -850,8 +850,11 @@ void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_trans
 void CRemoteControl::getEvents(t_channel_id chid)
 {
 	dprintf(DEBUG_NORMAL, "CRemoteControl::getEvents\n");
+	
+	std::string evUrl;
 
-	std::string evUrl = "http://";
+#if 1
+	evUrl = "http://";
 	evUrl += g_settings.epg_serverbox_ip;
 
 	if(g_settings.epg_serverbox_gui == SNeutrinoSettings::SATIP_SERVERBOX_GUI_ENIGMA2)
@@ -893,8 +896,25 @@ void CRemoteControl::getEvents(t_channel_id chid)
 
 		evUrl += "&xml=true&details=true";
 	}
+#else
 	// rakutentv
 	// plutotv
+	/*
+	tallchans_iterator cit;
+	
+	cit = allchans.find(chid);
+
+	if (cit != allchans.end()) 
+	{
+		evUrl = cit->second.getXMLTV();
+	}
+	*/
+	for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
+	{
+		if (it->second.getChannelID() == chid)
+			evUrl = it->second.getXMLTV();
+	}
+#endif
 
 	insertEventsfromHttp(evUrl, GET_ORIGINAL_NETWORK_ID_FROM_CHANNEL_ID(chid), GET_TRANSPORT_STREAM_ID_FROM_CHANNEL_ID(chid), GET_SERVICE_ID_FROM_CHANNEL_ID(chid));
 }

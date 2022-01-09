@@ -589,8 +589,7 @@ class CWidgetItem
 		
 		//
 		bool painted;
-		//CWidget* parent;
-		CMenuTarget* parent;
+		CWidget* parent;
 
 		CWidgetItem(){frameBuffer = CFrameBuffer::getInstance(); inFocus = true; actionKey = ""; parent = NULL; rePaint = false;};
 		virtual ~CWidgetItem(){};
@@ -623,15 +622,14 @@ class CWidgetItem
 
 		virtual int oKKeyPressed(CMenuTarget *parent){return 0;};
 		virtual void homeKeyPressed(){};
-		//virtual void onDirectKeyPressed(neutrino_msg_t msg);
+		virtual void onDirectKeyPressed(neutrino_msg_t msg){};
 		virtual bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data){return false;};
 		
 		//
 		virtual std::string getActionKey(void){ return actionKey;}; // lua
 		
 		//
-		//virtual void setParent(CWidget* w_parent){parent = w_parent;};
-		virtual void setParent(CMenuTarget* w_parent){parent = w_parent;};
+		virtual void setParent(CWidget* w_parent){parent = w_parent;};
 		
 		virtual inline bool isPainted(void){return painted;};
 };

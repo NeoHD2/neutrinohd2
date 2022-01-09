@@ -2347,10 +2347,10 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	fbutton_labels.clear();
 	fbutton_width = itemBox.iWidth;
 	footColor = COL_MENUFOOT_PLUS_0;
-	footRadius = RADIUS_MID;
-	footCorner = CORNER_BOTTOM;
-	footGradient = DARK2LIGHT;
-	foot_line = false;
+	footRadius = g_settings.Foot_radius;
+	footCorner = g_settings.Foot_corner;
+	footGradient = g_settings.Foot_gradient;
+	foot_line = g_settings.Foot_line;
 	
 	// foot info
 	paintFootInfo = false;
@@ -2465,10 +2465,10 @@ ClistBox::ClistBox(CBox* position)
 	paint_Foot = false;
 	fheight = 0;
 	footColor = COL_MENUFOOT_PLUS_0;
-	footRadius = RADIUS_MID;
-	footCorner = CORNER_BOTTOM;
-	footGradient = DARK2LIGHT;
-	foot_line = false;
+	footRadius = g_settings.Foot_radius;
+	footCorner = g_settings.Foot_corner;
+	footGradient = g_settings.Foot_gradient;
+	foot_line = g_settings.Foot_line;
 	
 	// footInfo
 	paintFootInfo = false;
