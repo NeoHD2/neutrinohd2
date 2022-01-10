@@ -316,6 +316,9 @@ void COSDMenuColorSettings::showMenu()
 	// footInfo gradient
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(LOCALE_COLORMENU_GRADIENT, &g_settings.Foot_Info_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 	
+	// footinfo shadow
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser("Shadow", &g_settings.Foot_Info_shadow, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
 	OSDmenuColorsSettings.exec(NULL, "");
 	OSDmenuColorsSettings.hide();
 }
@@ -377,7 +380,7 @@ void COSDInfoBarColorSettings::showMenu()
 	// colored events
 	CColorChooser * chColored_Events = new CColorChooser(LOCALE_MISCSETTINGS_INFOBAR_COLORED_EVENTS, &g_settings.infobar_colored_events_red, &g_settings.infobar_colored_events_green, &g_settings.infobar_colored_events_blue, NULL, CNeutrinoApp::getInstance()->colorSetupNotifier);
 
-	OSDinfobarColorSettings.addItem( new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_COLORSTATUSBAR_TEXT)));
+	OSDinfobarColorSettings.addItem( new CMenuSeparator(LINE));
 
 	// bg color
 	OSDinfobarColorSettings.addItem( new CMenuForwarder(LOCALE_COLORMENU_BACKGROUND, true, NULL, chInfobarcolor ));
@@ -873,6 +876,9 @@ void COSDDiverses::showMenu()
 	CStringInput * audio_step = new CStringInput(LOCALE_AUDIOMENU_VOLUMEBAR_AUDIOSTEPS,g_settings.audio_step, 2, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, "0123456789 " );
 	CMenuForwarder *as = new CMenuForwarder(LOCALE_AUDIOMENU_VOLUMEBAR_AUDIOSTEPS, true, g_settings.audio_step, audio_step );
 	osdDiverseSettings.addItem(as);
+	
+	// menu_shadow
+	osdDiverseSettings.addItem(new CMenuOptionChooser("Menu Shadow", &g_settings.menu_shadow, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 	osdDiverseSettings.exec(NULL, "");
 	osdDiverseSettings.hide();

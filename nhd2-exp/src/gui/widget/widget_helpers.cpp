@@ -524,14 +524,8 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 {
 	dprintf(DEBUG_INFO, "\nCItems2DetailsLine::paint: x:%d y:%d width:%d height:%d\n", x, y, width, height);
 	
-	//int xpos  = x - CONNECTLINEBOX_WIDTH;
-	
-	//int ypos1 = iy;
-	//int ypos1a = ypos1 + (iheight/2) - 2;
-	
 	//
 	int ypos2 = y + height;
-	int ypos2a = ypos2 + (info_height/2) - 2;
 	
 	fb_pixel_t col1 = COL_MENUCONTENT_PLUS_6;
 	fb_pixel_t col2 = COL_MENUFOOT_INFO_PLUS_0;
@@ -540,10 +534,10 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	if ( (mode == DL_INFO) || (mode == DL_HINT) )
 	{
 		// shadow
-		frameBuffer->paintBoxRel(x, ypos2, width, info_height, col1);
+		if (g_settings.Foot_Info_shadow) frameBuffer->paintBoxRel(x, ypos2, width, info_height, col1);
 
 		// infoBox
-		frameBuffer->paintBoxRel(x + 2, ypos2 + 2, width - 4, info_height - 4, COL_MENUFOOT_INFO_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.Foot_Info_gradient);
+		frameBuffer->paintBoxRel(g_settings.Foot_Info_shadow? x + 2 : x, g_settings.Foot_Info_shadow? ypos2 + 2 : ypos2, g_settings.Foot_Info_shadow? width - 4 : width, g_settings.Foot_Info_shadow? info_height - 4 : info_height, COL_MENUFOOT_INFO_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.Foot_Info_gradient);
 	}
 	
 	//

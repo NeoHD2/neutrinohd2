@@ -471,7 +471,7 @@ struct SNeutrinoSettings
 	
 	//
 	int Foot_Info_gradient;
-	int Foot_Info_line;
+	int Foot_Info_shadow;
 	
 	// infobar
 	int infobar_gradient;

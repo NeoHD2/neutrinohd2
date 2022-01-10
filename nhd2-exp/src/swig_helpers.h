@@ -26,10 +26,6 @@
 #include <system/settings.h>
 
 
-// fonts
-extern CFont * g_Font[FONT_TYPE_COUNT];
-#define SWIG_FONT_TYPE_EPG_INFO1 g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]
-
 extern CPlugins* g_PluginList;
 
 class CSwigHelpers
@@ -38,35 +34,6 @@ class CSwigHelpers
 
 	public:
 		CSwigHelpers(){};
-
-		// frameBuffer stuff
-		unsigned int getScreenWidth(bool real = false){return CFrameBuffer::getInstance()->getScreenWidth(real);};
-		unsigned int getScreenHeight(bool real = false){return CFrameBuffer::getInstance()->getScreenHeight(real);}; 
-		unsigned int getScreenX(){return CFrameBuffer::getInstance()->getScreenX();};
-		unsigned int getScreenY(){return CFrameBuffer::getInstance()->getScreenY();};
-
-		void paintBoxRel(const int x, const int y, const int dx, const int dy, fb_pixel_t col, int radius = 0, int type = CORNER_NONE, int mode = NOGRADIENT);
-
-		bool paintIcon(const std::string & filename, const int x, const int y, const int h = 0, bool paint = true, int width = 0, int height = 0);
-
-		bool displayImage(const std::string & name, int posx = 0, int posy = 0, int width = DEFAULT_XRES, int height = DEFAULT_YRES, ScalingMode scaling = COLOR, int x_pan = 0, int y_pan = 0, bool clearfb = false);
-
-		void paintBackground();
-		void paintBackgroundBoxRel(int x, int y, int dx, int dy);
-		bool loadBackgroundPic(const std::string filename, bool show = true);
-		void saveBackgroundImage(void); 
-		void restoreBackgroundImage(void);
-		void saveScreen(int x, int y, int dx, int dy, fb_pixel_t * const memp);
-		void restoreScreen(int x, int y, int dx, int dy, fb_pixel_t * const memp);
-
-		void paintVLineRel(int x, int y, int dy, const fb_pixel_t col);
-		void paintHLineRel(int x, int dx, int y, const fb_pixel_t col);
-
-		void paintFrameBox(const int x, const int y, const int dx, const int dy, const fb_pixel_t col);
-		void blit(/*int mode3d = THREE_NONE*/);
-
-		int getIconHeight(const char * const filename);
-		int getIconWidth(const char * const filename);
 
 		// fontrenderer
 		void RenderString(int font_type, int x, int y, const int width, const char * text, const uint8_t color, const int boxheight = 0, bool utf8_encoded = true, const bool useBackground = false);
@@ -79,10 +46,6 @@ class CSwigHelpers
 		void addTimer(uint64_t Interval, bool oneshot = true, bool correct_time = true );
 		void killTimer(uint32_t id);
 		neutrino_msg_data_t getRCData(uint64_t timeout);
-		
-		//
-		//int run(const char* actionKey){return CNeutrinoApp::getInstance()->exec(NULL, actionKey);};
-		//void startSkin(const char* const filename){CNeutrinoApp::getInstance()->startSkin(filename);};
 };
 
 #endif
