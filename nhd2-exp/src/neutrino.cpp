@@ -1716,6 +1716,10 @@ void CNeutrinoApp::unloadSkin()
 	g_settings.Foot_corner = CORNER_BOTTOM;
 	g_settings.Foot_gradient = DARK2LIGHT;
 	
+	// itemInfo
+	g_settings.Foot_Info_shadow = configfile.getInt32("Foot_Info_shadow", true);
+	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
+	
 	delete themes;
 	themes = NULL;
 }
@@ -1828,6 +1832,10 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		//
 		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", true);
 		
+		// itemInfo
+		g_settings.Foot_Info_shadow = skinConfig->getInt32("Foot_Info_shadow", true);
+		g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", true);
+		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
 
 		colorSetupNotifier = new CColorSetupNotifier;
@@ -1936,6 +1944,10 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	
 	//
 	skinConfig->setBool("menu_shadow", g_settings.menu_shadow);
+	
+	// itemInfo
+	skinConfig->setBool("Foot_Info_shadow", g_settings.Foot_Info_shadow);
+	skinConfig->setInt32("Foot_Info_gradient", g_settings.Foot_Info_gradient);
 		
 	skinConfig->setString("font_file", g_settings.font_file);
 

@@ -176,27 +176,22 @@ void CWindow::paint()
 	dprintf(DEBUG_INFO, "CWindow::%s\n", __FUNCTION__);
 
 	if (paintFrame)
-	{	
-		if (shadowMode == SHADOW_ALL)
-		{
-			// shadow
-			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
-		
-			// window Box
-			frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY + 1, itemBox.iWidth - 2, itemBox.iHeight - 2, bgcolor, NO_RADIUS, CORNER_NONE, gradient, grad_direction, grad_intensity, grad_type);
-		}
-		else if (shadowMode == SHADOW_LEFTRIGHT)
-		{
-			// shadow
-			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
-		
-			// window Box
-			frameBuffer->paintBoxRel(itemBox.iX + 1, itemBox.iY, itemBox.iWidth - 2, itemBox.iHeight, bgcolor, NO_RADIUS, CORNER_NONE, gradient, grad_direction, grad_intensity, grad_type);
-		}
-		else if (shadowMode == SHADOW_NO)
-		{
-			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient, grad_direction, grad_intensity, grad_type);
-		}
+	{
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient, grad_direction, grad_intensity, grad_type);
+	}
+	
+	// shadow
+	if (shadowMode == SHADOW_ALL)
+	{
+		frameBuffer->paintFrameBox(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+	}
+	else if (shadowMode == SHADOW_LEFTRIGHT)
+	{
+		// left
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, 2, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+			
+		// right
+		frameBuffer->paintBoxRel(itemBox.iX + itemBox.iWidth - 2, itemBox.iY, 2, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
 	}
 		
 	//CCItems

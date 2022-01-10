@@ -58,7 +58,10 @@ CTextBox::CTextBox(const int x, const int y, const int dx, const int dy)
 	
 	m_nMaxHeight = itemBox.iHeight;
 	m_nMaxWidth = itemBox.iWidth;
-
+	
+	//
+	textBox = new CWindow(&itemBox);
+	
 	initFramesRel();
 }
 
@@ -75,7 +78,11 @@ CTextBox::CTextBox(CBox* position)
 		m_nMaxHeight = itemBox.iHeight;
 		m_nMaxWidth = itemBox.iWidth;
 	}
-
+	
+	//
+	textBox = new CWindow(&itemBox);
+	
+	//
 	initFramesRel();
 }
 
@@ -89,6 +96,12 @@ CTextBox::~CTextBox()
 	{
 		bigFonts = false;
 		m_pcFontText->setSize((int)(m_pcFontText->getSize() / BIG_FONT_FAKTOR));
+	}
+	
+	if (textBox)
+	{
+		delete textBox;
+		textBox = NULL;
 	}
 }
 
@@ -210,7 +223,7 @@ void CTextBox::reSizeMainFrameWidth(int textWidth)
 	if( iNewWindowWidth < MIN_WINDOW_WIDTH) 
 		iNewWindowWidth = MIN_WINDOW_WIDTH;
 
-	itemBox.iWidth	= iNewWindowWidth;
+	m_cFrameTextRel.iWidth	= iNewWindowWidth;
 
 	// Re-Init the children frames due to new main window
 	initFramesRel();
@@ -227,7 +240,7 @@ void CTextBox::reSizeMainFrameHeight(int textHeight)
 	if( iNewWindowHeight < MIN_WINDOW_HEIGHT) 
 		iNewWindowHeight = MIN_WINDOW_HEIGHT;
 
-	itemBox.iHeight = iNewWindowHeight;
+	m_cFrameTextRel.iHeight = iNewWindowHeight;
 
 	// reinit the children frames due to new main window
 	initFramesRel();
@@ -261,11 +274,17 @@ void CTextBox::initFramesRel(void)
 	m_nLinesPerPage = m_cFrameTextRel.iHeight/m_nFontTextHeight;
 	
 	//
-	textBox.setPosition(&itemBox);
-	textBox.paintMainFrame(paintframe);
-	if (savescreen) textBox.enableSaveScreen();
-	textBox.setColor(m_textBackgroundColor);
-	textBox.setShadowMode(shadowMode);
+	initFrames();
+}
+
+//
+void CTextBox::initFrames()
+{
+	//
+	textBox->paintMainFrame(paintframe);
+	if (savescreen) textBox->enableSaveScreen();
+	textBox->setColor(m_textBackgroundColor);
+	textBox->setShadowMode(shadowMode);
 }
 
 void CTextBox::refreshTextLineArray(void)
@@ -457,18 +476,17 @@ void CTextBox::refreshText(void)
 	// paint background	
 	if(paintframe)
 	{
-		textBox.paint();
+		textBox->paint();
 	}
 	else if (savescreen)
 	{
-		textBox.hide();
+		textBox->hide();
 	}
 	
 	// paint thumbnail (paint picture only on first page)
 	if(m_nCurrentPage == 0 && !access(thumbnail.c_str(), F_OK) )
 	{
-		if (enableFrame)
-			CFrameBuffer::getInstance()->paintFrameBox(lx, ly, tw, th, COL_WHITE_PLUS_0);
+		if (enableFrame) CFrameBuffer::getInstance()->paintFrameBox(lx, ly, tw, th, COL_WHITE_PLUS_0);
 		
 		// picture
 		CFrameBuffer::getInstance()->displayImage(thumbnail.c_str(), lx + THUMBNAIL_OFFSET, ly + THUMBNAIL_OFFSET, tw - THUMBNAIL_OFFSET, th - THUMBNAIL_OFFSET);
@@ -663,7 +681,7 @@ void CTextBox::hide(void)
 		m_pcFontText->setSize((int)(m_pcFontText->getSize() / BIG_FONT_FAKTOR));
 	}
 	
-	textBox.hide();
+	textBox->hide();
 	
 	CFrameBuffer::getInstance()->blit();
 

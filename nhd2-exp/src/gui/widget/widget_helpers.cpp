@@ -24,6 +24,7 @@
 #endif
 
 #include <global.h>
+#include <neutrino.h>
 
 #include <driver/color.h>
 #include <system/settings.h>
@@ -533,11 +534,11 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	// shadow / frame
 	if ( (mode == DL_INFO) || (mode == DL_HINT) )
 	{
-		// shadow
-		if (g_settings.Foot_Info_shadow) frameBuffer->paintBoxRel(x, ypos2, width, info_height, col1);
-
 		// infoBox
-		frameBuffer->paintBoxRel(g_settings.Foot_Info_shadow? x + 2 : x, g_settings.Foot_Info_shadow? ypos2 + 2 : ypos2, g_settings.Foot_Info_shadow? width - 4 : width, g_settings.Foot_Info_shadow? info_height - 4 : info_height, COL_MENUFOOT_INFO_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.Foot_Info_gradient);
+		frameBuffer->paintBoxRel(x, ypos2, width, info_height, COL_MENUFOOT_INFO_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.Foot_Info_gradient);
+		
+		// shadow
+		if (g_settings.Foot_Info_shadow) frameBuffer->paintFrameBox(x, ypos2, width, info_height, col1);
 	}
 	
 	//
@@ -1052,6 +1053,107 @@ void CCCounter::refresh()
 	strftime(totalTime, 10, "%T", gmtime(&total_time));//FIXME
 	font->RenderString(cCBox.iX + cCBox.iWidth/2, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), cCBox.iWidth/2, totalTime, color, 0, true);
 }
+
+// CWidgetItem
+bool CWidgetItem::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
+{
+	dprintf(DEBUG_DEBUG, "CWidgetItem::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
+	
+	bool ret = true;
+	
+	if (msg == RC_up)
+	{
+		scrollLineUp();
+	}
+	else if (msg == RC_down)
+	{
+		scrollLineDown();
+	}
+	else if (msg == RC_left)
+	{
+		swipLeft();
+	}
+	else if (msg == RC_right)
+	{
+		swipRight();
+	}
+	else if (msg == RC_page_up)
+	{
+		scrollPageUp();
+	}
+	else if (msg == RC_page_down)
+	{
+		scrollPageDown();
+	}
+	else if (msg == RC_ok)
+	{
+		int rv = oKKeyPressed(parent);
+			
+		switch ( rv ) 
+		{
+			case RETURN_EXIT_ALL:
+				ret = false;
+			case RETURN_EXIT:
+				ret = false;
+				break;
+			case RETURN_REPAINT:
+				ret = true;
+				paint();
+				break;
+		}
+	}
+	else if (msg == RC_home) 
+	{
+		ret = false;
+	}
+	else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
+	{
+		if (update())
+		{
+			refresh();
+		}
+	} 
+	else
+	{
+		std::map<neutrino_msg_t, keyAction>::iterator it = keyActionMap.find(msg);
+				
+		if (it != keyActionMap.end()) 
+		{
+			actionKey = it->second.action;
+
+			if (it->second.menue != NULL)
+			{
+				int rv = it->second.menue->exec(parent, it->second.action);
+
+				//FIXME:review this
+				switch ( rv ) 
+				{
+					case RETURN_EXIT_ALL:
+						ret = false; //fall through
+					case RETURN_EXIT:
+						ret = false;
+						break;
+					case RETURN_REPAINT:
+						ret = true;
+						paint();
+						break;
+					}
+				}
+		}
+	}
+	
+	return ret;
+}
+
+//
+void CWidgetItem::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
+{
+	dprintf(DEBUG_DEBUG, "CWidgetItem::addKey: %s\n", action.c_str());
+	
+	keyActionMap[key].menue = menue;
+	keyActionMap[key].action = action;
+}
+
 
 // headers
 CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const char * const title, const char * const icon)

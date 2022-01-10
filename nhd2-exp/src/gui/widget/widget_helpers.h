@@ -590,8 +590,15 @@ class CWidgetItem
 		//
 		bool painted;
 		CMenuTarget* parent;
+		
+		//
+		struct keyAction { std::string action; CMenuTarget *menue; };
+		std::map<neutrino_msg_t, keyAction> keyActionMap;
+		
+		uint32_t sec_timer_id;
 
-		CWidgetItem(){frameBuffer = CFrameBuffer::getInstance(); inFocus = true; actionKey = ""; parent = NULL; rePaint = false;};
+		//
+		CWidgetItem(){frameBuffer = CFrameBuffer::getInstance(); inFocus = true; actionKey = ""; parent = NULL; rePaint = false; sec_timer_id = 0;};
 		virtual ~CWidgetItem(){};
 
 		virtual bool isSelectable(void){return false;}
@@ -623,14 +630,18 @@ class CWidgetItem
 		virtual int oKKeyPressed(CMenuTarget *parent){return 0;};
 		virtual void homeKeyPressed(){};
 		virtual void onDirectKeyPressed(neutrino_msg_t msg){};
-		//virtual bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data){return false;};
 		
 		//
 		virtual std::string getActionKey(void){ return actionKey;}; // lua
 		
 		//
 		virtual void setParent(CMenuTarget* p){parent = p;};
+		//
+		virtual void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
+		virtual void setSecTimer(uint32_t sec){sec_timer_id = sec;};
+		virtual bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data);
 		
+		//
 		virtual inline bool isPainted(void){return painted;};
 };
 

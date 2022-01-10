@@ -80,7 +80,7 @@ class CTextBox : public CWidgetItem
 		CBox m_cFrameTextRel;
 		CBox m_cFrameScrollRel;
 		
-		CWindow textBox;
+		CWindow* textBox;
 
 		int m_nMaxHeight;
 		int m_nMaxWidth;
@@ -134,6 +134,7 @@ class CTextBox : public CWidgetItem
 		void refreshText(void);
 		void reSizeMainFrameWidth(int maxTextWidth);
 		void reSizeMainFrameHeight(int maxTextHeight);
+		void initFrames();
 
 	public:
 		CTextBox(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -158,15 +159,15 @@ class CTextBox : public CWidgetItem
 
 		void setPosition(const int x, const int y, const int dx, const int dy);
 		void setPosition(const CBox * position);
-		void setRadius(int r){m_textRadius = r;};
-		void setCorner(int c){m_textCorner = c;};
-		void setBackgroundColor(fb_pixel_t col){m_textBackgroundColor = col;};
-		void setTextColor(uint8_t col){m_textColor = col;};
+		void setRadius(int r){m_textRadius = r; initFrames();};
+		void setCorner(int c){m_textCorner = c; initFramesRel();};
+		void setBackgroundColor(fb_pixel_t col){m_textBackgroundColor = col; initFrames();};
+		void setTextColor(uint8_t col){m_textColor = col; initFrames();};
 		void setFont(CFont * font_text){m_pcFontText = font_text;};
 		void setMode(const int mode);
-		void paintMainFrame(bool p){paintframe = p;};
-		void setShadowMode(int m = SHADOW_ALL){shadowMode = m;};
-		void enableSaveScreen(){savescreen = true;};
+		void paintMainFrame(bool p){paintframe = p; initFrames();};
+		void setShadowMode(int m = SHADOW_ALL){shadowMode = m; initFrames();};
+		void enableSaveScreen(){savescreen = true; initFrames();};
 
 		void paint(void);
 		void hide(void);

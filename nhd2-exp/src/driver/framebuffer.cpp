@@ -884,9 +884,9 @@ void CFrameBuffer::paintHLineRel(int x, int dx, int y, const fb_pixel_t col)
 void CFrameBuffer::paintFrameBox(const int x, const int y, const int dx, const int dy, const fb_pixel_t col)
 {
 	paintVLineRel(x, y, dy, col);
-	paintVLineRel(x + dx, y, dy, col);
+	paintVLineRel(x + dx - 1, y, dy, col);
 	paintHLineRel(x, dx, y, col);
-	paintHLineRel(x, dx, y + dy, col);
+	paintHLineRel(x, dx, y + dy - 1, col);
 }
 
 void CFrameBuffer::setIconBasePath(const std::string & iconPath)

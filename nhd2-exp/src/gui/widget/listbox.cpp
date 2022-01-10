@@ -3893,7 +3893,7 @@ void ClistBox::onDirectKeyPressed(neutrino_msg_t msg)
 	}
 }
 
-//
+/*
 bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 {
 	dprintf(DEBUG_DEBUG, "ClistBox::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
@@ -3994,4 +3994,6 @@ void ClistBox::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string 
 	keyActionMap[key].menue = menue;
 	keyActionMap[key].action = action;
 }
+*/
+
 

@@ -2881,9 +2881,7 @@ void CTestMenu::testCWindow()
 	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 400);
 
 	//
-	CWindow* window = new CWindow();
-
-	window->setPosition(Box.iX, Box.iY, Box.iWidth, Box.iHeight);
+	CWindow* window = new CWindow(&Box);
 
 	window->setColor(COL_MENUCONTENT_PLUS_0);
 	window->setCorner(RADIUS_MID, CORNER_ALL);
@@ -2893,7 +2891,7 @@ void CTestMenu::testCWindow()
 	CFrameBuffer::getInstance()->blit();
 
 	// loop
-	testWidget = new CWidget();
+	testWidget = new CWidget(&Box);
 
 	testWidget->exec(NULL, "");
 
@@ -2928,7 +2926,7 @@ void CTestMenu::testCWindowShadow()
 	window->paint();
 	CFrameBuffer::getInstance()->blit();
 
-	testWidget = new CWidget();
+	testWidget = new CWidget(&Box);
 
 	testWidget->exec(NULL, "");
 
@@ -2963,7 +2961,7 @@ void CTestMenu::testCWindowCustomColor()
 	window->paint();
 	CFrameBuffer::getInstance()->blit();
 
-	testWidget = new CWidget();
+	testWidget = new CWidget(&Box);
 
 	testWidget->exec(NULL, "");
 
@@ -3793,7 +3791,7 @@ void CTestMenu::testClistBox()
 
 	// mode
 	rightWidget->setWidgetType(WIDGET_TYPE_CLASSIC);
-	rightWidget->enableShrinkMenu();
+	//rightWidget->enableShrinkMenu();
 	rightWidget->paintMainFrame(false);
 
 	// head
@@ -3808,7 +3806,7 @@ void CTestMenu::testClistBox()
 	rightWidget->enablePaintFoot();
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
-	// footinfo
+	// itemInfo
 	rightWidget->enablePaintFootInfo(70);
 	rightWidget->setFootInfoMode(FOOT_HINTITEM_MODE);
 	rightWidget->setItemInfoPos(Box.iX + Box.iWidth + 150, Box.iY + 100, 400, 400);
@@ -3818,7 +3816,7 @@ void CTestMenu::testClistBox()
 	rightWidget->setItemInfoFont(g_Font[SNeutrinoSettings::FONT_TYPE_GAMELIST_ITEMLARGE]);
 	
 	//
-	rightWidget->paintScrollBar(false);
+	rightWidget->paintScrollBar(true);
 	
 	rightWidget->setParent(this);
 	rightWidget->addKey(RC_info, this, "linfo");
