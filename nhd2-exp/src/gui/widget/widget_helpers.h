@@ -589,7 +589,7 @@ class CWidgetItem
 		
 		//
 		bool painted;
-		CWidget* parent;
+		CMenuTarget* parent;
 
 		CWidgetItem(){frameBuffer = CFrameBuffer::getInstance(); inFocus = true; actionKey = ""; parent = NULL; rePaint = false;};
 		virtual ~CWidgetItem(){};
@@ -629,7 +629,7 @@ class CWidgetItem
 		virtual std::string getActionKey(void){ return actionKey;}; // lua
 		
 		//
-		virtual void setParent(CWidget* w_parent){parent = w_parent;};
+		virtual void setParent(CMenuTarget* p){parent = p;};
 		
 		virtual inline bool isPainted(void){return painted;};
 };

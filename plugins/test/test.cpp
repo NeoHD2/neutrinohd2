@@ -3759,7 +3759,7 @@ void CTestMenu::testClistBox()
 
 	rightWidget = new ClistBox(&Box);
 	
-	CHintBox loadBox("testClistBox", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("testClistBox(standard)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -3799,13 +3799,13 @@ void CTestMenu::testClistBox()
 	// head
 	rightWidget->setTitle("ClistBox (standard)", NEUTRINO_ICON_MOVIE);
 	//rightWidget->setTitleHAlign(CC_ALIGN_CENTER);
-	//rightWidget->enablePaintHead();
+	rightWidget->enablePaintHead();
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 	rightWidget->setFormat("%d.%m.%Y %H:%M:%S");
 
 	// footer
-	//rightWidget->enablePaintFoot();
+	rightWidget->enablePaintFoot();
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
@@ -3820,54 +3820,28 @@ void CTestMenu::testClistBox()
 	//
 	rightWidget->paintScrollBar(false);
 	
+	rightWidget->setParent(this);
+	rightWidget->addKey(RC_info, this, "linfo");
+	rightWidget->addKey(RC_setup, this, "lsetup");
+	
 	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
 
 	// loop
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
-	uint32_t sec_timer_id = 0;
+	uint32_t sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
 	bool loop = true;
+	
+	rightWidget->setSecTimer(sec_timer_id);
 
 	while(loop)
 	{
 		g_RCInput->getMsg_ms(&msg, &data, 10); // 1 sec		
 		
-		rightWidget->onButtonPress(msg, data); // whatever return???
+		loop = rightWidget->onButtonPress(msg, data); // whatever return???
 		
-		if (msg == RC_home) 
-		{
-			loop = false;
-		}
-		else if(msg == RC_ok)
-		{
-			int rv = rightWidget->oKKeyPressed(this);
-			
-			switch ( rv ) 
-			{
-				case RETURN_EXIT_ALL:
-					loop = false;
-				case RETURN_EXIT:
-					loop = false;
-					break;
-				case RETURN_REPAINT:
-					rightWidget->paint();
-					break;
-			}
-		}
-		else if(msg == RC_info)
-		{
-			rightWidget->hide();
-
-			selected = rightWidget->getSelected();
-			m_movieInfo.showMovieInfo(m_vMovieInfo[selected]);
-
-			rightWidget->paint();
-		}
-		else if (msg == RC_setup)
-		{
-			rightWidget->changeWidgetType();
-		}
+		// forward msg / data to neutrino
 
 		CFrameBuffer::getInstance()->blit();
 	}		
@@ -3875,6 +3849,13 @@ void CTestMenu::testClistBox()
 	rightWidget->hide();
 	delete rightWidget;
 	rightWidget = NULL;
+	
+	if (sec_timer_id)
+	{
+		//
+		g_RCInput->killTimer(sec_timer_id);
+		sec_timer_id = 0;
+	}
 }
 
 // ClistBox(classic)

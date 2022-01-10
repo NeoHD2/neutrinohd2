@@ -2407,6 +2407,9 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	
 	//
 	itemShadow = false;
+	
+	//
+	sec_timer_id = 0;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -2522,6 +2525,9 @@ ClistBox::ClistBox(CBox* position)
 	items_height = 0;
 	
 	itemShadow = false;
+	
+	//
+	sec_timer_id = 0;
 }
 
 ClistBox::~ClistBox()
@@ -3892,7 +3898,7 @@ bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 {
 	dprintf(DEBUG_DEBUG, "ClistBox::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
 	
-	bool result = true;
+	bool ret = true;
 	
 	if (msg == RC_up)
 	{
@@ -3914,16 +3920,78 @@ bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 	{
 		scrollPageUp();
 	}
-	if (msg == RC_page_down)
+	else if (msg == RC_page_down)
 	{
 		scrollPageDown();
 	}
+	else if (msg == RC_ok)
+	{
+		int rv = oKKeyPressed(parent);
+			
+		switch ( rv ) 
+		{
+			case RETURN_EXIT_ALL:
+				ret = false;
+			case RETURN_EXIT:
+				ret = false;
+				break;
+			case RETURN_REPAINT:
+				ret = true;
+				paint();
+				break;
+		}
+	}
+	else if (msg == RC_home) 
+	{
+		ret = false;
+	}
+	else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
+	{
+		if (update())
+		{
+			refresh();
+		}
+	} 
 	else
 	{
-		result = false;
+		////// keymap
+		std::map<neutrino_msg_t, keyAction>::iterator it = keyActionMap.find(msg);
+				
+		if (it != keyActionMap.end()) 
+		{
+			actionKey = it->second.action;
+
+			if (it->second.menue != NULL)
+			{
+				int rv = it->second.menue->exec(parent, it->second.action);
+
+				//FIXME:review this
+				switch ( rv ) 
+				{
+					case RETURN_EXIT_ALL:
+						ret = false; //fall through
+					case RETURN_EXIT:
+						ret = false;
+						break;
+					case RETURN_REPAINT:
+						ret = true;
+						paint();
+						break;
+					}
+				}
+		}
 	}
+	////
 	
-	return result;
+	return ret;
 }
 
+//
+void ClistBox::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
+{
+	dprintf(DEBUG_DEBUG, "ClistBox::addKey: %s\n", action.c_str());
+	
+	keyActionMap[key].menue = menue;
+	keyActionMap[key].action = action;
+}
 
