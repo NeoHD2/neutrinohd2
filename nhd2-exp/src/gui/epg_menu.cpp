@@ -71,8 +71,8 @@ int CEPGMenuHandler::doMenu()
 {
 	CMenuWidget redMenu(LOCALE_EPGMENU_HEAD, NEUTRINO_ICON_BUTTON_EPG);
 	
-	redMenu.widget_id = WIDGET_EPGTIMER;
-	redMenu.widget_name = "epgtimer";
+	redMenu.id = WIDGET_EPGTIMER;
+	redMenu.name = "epgtimer";
 
 	redMenu.setWidgetMode(MODE_MENU);
 	redMenu.setWidgetType(WIDGET_TYPE_CLASSIC);

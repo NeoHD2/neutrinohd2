@@ -937,7 +937,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	
 	//
 	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
-	g_settings.Foot_Info_shadow = configfile.getInt32("Foot_Info_shadow", true);
+	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", true);
 	// END MISC OPTS
 
 	// HDD
@@ -1383,7 +1383,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	
 	//
 	configfile.setInt32("Foot_Info_gradient", g_settings.Foot_Info_gradient);
-	configfile.setInt32("Foot_Info_shadow", g_settings.Foot_Info_shadow);
+	configfile.setBool("Foot_Info_shadow", g_settings.Foot_Info_shadow);
 	
 	//
 	configfile.setInt32("infobar_gradient", g_settings.infobar_gradient);
@@ -1717,7 +1717,7 @@ void CNeutrinoApp::unloadSkin()
 	g_settings.Foot_gradient = DARK2LIGHT;
 	
 	// itemInfo
-	g_settings.Foot_Info_shadow = configfile.getInt32("Foot_Info_shadow", true);
+	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", true);
 	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
 	
 	delete themes;
@@ -1833,8 +1833,8 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", true);
 		
 		// itemInfo
-		g_settings.Foot_Info_shadow = skinConfig->getInt32("Foot_Info_shadow", true);
-		g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", true);
+		g_settings.Foot_Info_shadow = skinConfig->getBool("Foot_Info_shadow", true);
+		g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
 		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
 
@@ -6058,8 +6058,8 @@ bool CNeutrinoApp::getNVODMenu(CMenuWidget * menu)
         if(menu == NULL)
                 return false;
                 
-	menu->widget_id = WIDGET_NVOD;
-	menu->widget_name = "nvod";
+	menu->id = WIDGET_NVOD;
+	menu->name = "nvod";
 	
         if (g_RemoteControl->subChannels.empty())
                 return false;

@@ -31,8 +31,8 @@
 //
 enum {
 	//MENU
-	WIDGET_MAINMENU,	// setup
-	WIDGET_MAINSETTINGS,
+	WIDGET_MAINMENU,	// mainmenu
+	WIDGET_MAINSETTINGS,	
 	WIDGET_EPGTIMER,	// red
 	WIDGET_SERVICE,
 	WIDGET_INFORMATION,
@@ -148,8 +148,8 @@ class CMenuTarget
 		virtual std::string& getString(void) { return *valueString; };
 		
 		//
-		int widget_id;
-		const char* widget_name;
+		int id;
+		const char* name;
 };
 
 //
@@ -186,28 +186,34 @@ class CWidget : public CMenuTarget
 		fb_pixel_t backgroundColor;
 		int radius;
 		int corner;
+		
+		//
+		void initFrames();
+		void paintItems();
+		void paint();
 
 	public:
 		CWidget(const int x = 0, const int y = 0, const int dx = DEFAULT_XRES, const int dy = DEFAULT_YRES);
 		CWidget(CBox *position);
 		virtual ~CWidget();
 
-		virtual void initFrames();
+		//virtual void initFrames();
 		virtual void addItem(CWidgetItem *widgetItem, const bool defaultselected = false);
 		bool hasItem();
 		int getItemsCount();
 		virtual void clearItems(void);
-		virtual void paintItems();
+		//virtual void paintItems();
+		
+		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
 		
 		//
-		virtual void paint();
+		//virtual void paint();
 		virtual void hide();
 		virtual int exec(CMenuTarget *parent, const std::string &actionKey);
 
 		//
 		void setTimeOut(unsigned long long int to = 0){timeout = to;};
 		void setSecTimerInterval(uint64_t interval){sec_timer_interval = interval;};
-		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
 		
 		//
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
@@ -215,7 +221,6 @@ class CWidget : public CMenuTarget
 		//
 		void setColor(fb_pixel_t col) {backgroundColor = col;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
-		//
 		void paintMainFrame(bool p){paintframe = p;};
 		void enableSaveScreen();
 

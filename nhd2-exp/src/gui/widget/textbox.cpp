@@ -100,6 +100,8 @@ CTextBox::~CTextBox()
 	
 	if (textBox)
 	{
+		textBox->hide();
+		
 		delete textBox;
 		textBox = NULL;
 	}
@@ -664,6 +666,9 @@ bool CTextBox::setText(const char * const newText, const char * const _thumbnail
 void CTextBox::paint(void)
 {
 	dprintf(DEBUG_INFO, "CTextBox::paint:\n");
+	
+	//
+	initFramesRel();
 	
 	//
 	refresh();	

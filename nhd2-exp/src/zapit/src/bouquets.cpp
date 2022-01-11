@@ -681,7 +681,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					const char* epgmap;
 					const char* epgid;
 					
-					// title
+					// 
 					if(xmlGetNextOccurence(l1, "webtv"))
 					{
 						title = xmlGetAttribute(l1, (const char *)"title");

@@ -120,7 +120,7 @@ class CMenuWidget : public CMenuTarget
 		// head
 		int hheight;
 		std::string nameString;
-		neutrino_locale_t name;
+		neutrino_locale_t locale;
 		std::string l_name;
 		std::string iconfile;
 		int hbutton_count;

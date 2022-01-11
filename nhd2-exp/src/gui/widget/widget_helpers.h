@@ -676,19 +676,19 @@ class CHeaders : public CWidgetItem
 		void setIcon(const char * const icon){hicon = icon;};
 		void setHAlign(const int m){thalign = m;};
 		void setColor(fb_pixel_t col){bgcolor = col;};
+		void setGradient(const int grad){gradient = grad;};
 		void setRadius(const int ra){radius = ra;};
 		void setCorner(const int co){corner = co;};
-		void setGradient(const int grad){gradient = grad;};
-		void setButtons(const struct button_label* _hbutton_labels, const int _hbutton_count = 1);
 		void enablePaintDate(void){paintDate = true;};
-		void setFormat(char* f){format = f;};
+		void setFormat(const char* f){format = f;};
 		void setHeadLine(bool l){head_line = l;};
+		
+		//
+		void setButtons(const struct button_label* _hbutton_labels, const int _hbutton_count = 1);
 
 		//
 		void paint();
 		void hide();
-		
-		//
 		void refresh(void){if (paintDate) timer->refresh();};
 		bool update() const {return paintDate;};
 };
@@ -713,12 +713,15 @@ class CFooters : public CWidgetItem
 		virtual ~CFooters(){};
 
 		void setColor(fb_pixel_t col){fbgcolor = col;};
+		void setGradient(const int grad){fgradient = grad;};
 		void setRadius(const int ra){fradius = ra;};
 		void setCorner(const int co){fcorner = co;};
-		void setGradient(const int grad){fgradient = grad;};
-		void setButtons(const struct button_label *button_label, const int button_count = 1, const int _fbutton_width = 0);
 		void setFootLine(bool l){foot_line = l;};
-
+		
+		//
+		void setButtons(const struct button_label *button_label, const int button_count = 1, const int _fbutton_width = 0);
+		
+		//
 		void paint();
 		void hide();
 };
