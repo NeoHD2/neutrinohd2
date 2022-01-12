@@ -19,8 +19,8 @@ function main()
 	config:loadConfig(neutrino.CONFIGDIR .. "/skin/MetrixHD/MetrixHD.config")
 	
 	local m = neutrino.CWidget(box)
-	m.widget_id = neutrino.WIDGET_MAINMENU
-	m.widget_name = "mainmenu"
+	m.id = neutrino.WIDGET_MAINMENU
+	m.name = "mainmenu"
 	
 	-- rightWindow / logo 
 	local w2 = neutrino.CWindow(box.iX + box.iWidth/2, box.iY + 50, box.iWidth/2, box.iHeight/2)

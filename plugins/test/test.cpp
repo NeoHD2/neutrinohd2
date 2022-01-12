@@ -5665,7 +5665,7 @@ void CTestMenu::loadSkin()
 	//
 	_xmlDocPtr parser = NULL;
 	
-	std::string filename = CONFIGDIR "/skin/titannit/skin.xml";
+	std::string filename = CONFIGDIR "/skin/MetrixHD/skin.xml";
 
 	parser = parseXmlFile(filename.c_str());
 	
@@ -5687,10 +5687,12 @@ void CTestMenu::loadSkin()
 		{
 			char* name = xmlGetAttribute(search, (char*)"name");
 			unsigned int id = xmlGetSignedNumericAttribute(search, "id", 0);
+			
 			unsigned int x = xmlGetSignedNumericAttribute(search, "posx", 0);
 			unsigned int y = xmlGetSignedNumericAttribute(search, "posy", 0);
 			unsigned int dx = xmlGetSignedNumericAttribute(search, "width", 0);
 			unsigned int dy = xmlGetSignedNumericAttribute(search, "height", 0);
+			
 			unsigned int paintframe = xmlGetSignedNumericAttribute(search, "paintframe", 0);
 			unsigned int corner = xmlGetSignedNumericAttribute(search, "corner", 0);
 			unsigned int radius = xmlGetSignedNumericAttribute(search, "radius", 0);
@@ -5712,14 +5714,16 @@ void CTestMenu::loadSkin()
 			while ((node = xmlGetNextOccurence(node, "widgetitem")) != NULL) 
 			{
 				char* name = xmlGetAttribute(node, (char*)"name");
-				unsigned int wid = xmlGetSignedNumericAttribute(node, "id", 0);
-				unsigned int wx = xmlGetSignedNumericAttribute(node, "posx", 0);
-				unsigned int wy = xmlGetSignedNumericAttribute(node, "posy", 0);
-				unsigned int wdx = xmlGetSignedNumericAttribute(node, "width", 0);
-				unsigned int wdy = xmlGetSignedNumericAttribute(node, "height", 0);
+				unsigned int id = xmlGetSignedNumericAttribute(node, "id", 0);
 				
-				//neutrino_locale_t locale = xmlGetSignedNumericAttribute(node, (neutrino_locale_t)"locale", 0);
-				char* localename = xmlGetAttribute(node, (char*)"localename");
+				unsigned int x = xmlGetSignedNumericAttribute(node, "posx", 0);
+				unsigned int y = xmlGetSignedNumericAttribute(node, "posy", 0);
+				unsigned int dx = xmlGetSignedNumericAttribute(node, "width", 0);
+				unsigned int dy = xmlGetSignedNumericAttribute(node, "height", 0);
+				
+				/*
+				unsigned int locale = xmlGetSignedNumericAttribute(node, "locale", 0);
+				const char* title = xmlGetAttribute(node, (const char*)"localename");
 				unsigned int halign = xmlGetSignedNumericAttribute(node, "halign", 0);
 				char* icon = xmlGetAttribute(node, (char*)"icon");
 				unsigned int gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
@@ -5727,18 +5731,33 @@ void CTestMenu::loadSkin()
 				unsigned int radius = xmlGetSignedNumericAttribute(node, "radius", 0);
 				unsigned int line = xmlGetSignedNumericAttribute(node, "line", 0);
 				unsigned int paintdate = xmlGetSignedNumericAttribute(node, "paintdate", 0);
-				char* format = xmlGetAttribute(node, (char*)"format");
+				const char* format = xmlGetAttribute(node, (const char*)"format");
+				unsigned int type = xmlGetSignedNumericAttribute(node, "type", 0);
+				*/
 				
 				// CCitems/CMenuItems
 				subnode = node->xmlChildrenNode;
 				
-				if (wid == WIDGET_ITEM_HEAD)
+				if (id == WIDGET_ITEM_HEAD)
 				{
-					CHeaders* head = new CHeaders(wx, wy, wdx, wdy);
+					unsigned int locale = xmlGetSignedNumericAttribute(node, "locale", 0);
+					char* localename = xmlGetAttribute(node, (char*)"localename");
+					unsigned int halign = xmlGetSignedNumericAttribute(node, "halign", 0);
+					char* icon = xmlGetAttribute(node, (char*)"icon");
+					unsigned int gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
+					unsigned int corner = xmlGetSignedNumericAttribute(node, "corner", 0);
+					unsigned int radius = xmlGetSignedNumericAttribute(node, "radius", 0);
+					unsigned int line = xmlGetSignedNumericAttribute(node, "line", 0);
+					unsigned int paintdate = xmlGetSignedNumericAttribute(node, "paintdate", 0);
+					char* format = xmlGetAttribute(node, (char*)"format");
+				
+					CHeaders* head = NULL;
+					head = new CHeaders(x, y, dx, dy, localename, icon);
 					
-					head->setTitle(localename);
-					head->setIcon(icon);
-					head->setGradient(DARK2LIGHT);
+					//head->setTitle(localename);
+					head->setHAlign(halign);
+					//head->setIcon(icon);
+					//head->setGradient(DARK2LIGHT);
 					head->setCorner(corner);
 					head->setRadius(radius);
 					head->setHeadLine(line);
@@ -5747,43 +5766,48 @@ void CTestMenu::loadSkin()
 					
 					while ((subnode = xmlGetNextOccurence(subnode, "button")) != NULL) 
 					{
-						char* button = xmlGetAttribute(subnode, (char*)"name");
-						char* localename = xmlGetAttribute(subnode, (char*)"localename");
+						//char* button = xmlGetAttribute(subnode, (char*)"icon");
+						//char* localename = xmlGetAttribute(subnode, (char*)"localename");
 						//neutrino_locale_t locale = xmlGetSignedNumericAttribute(subnode, (neutrino_locale_t)"locale", 0);
 						
-						printf("BUTTON:%s\n\n", button);
-						
+						//printf("BUTTON:%s\n\n", button);
+						/*
 						button_label_struct btn;
 						btn.button = button;
 						btn.localename = localename;
 						btn.locale = NONEXISTANT_LOCALE;
 						
 						head->setButtons(&btn);
+						*/
 				
 						subnode = subnode->xmlNextNode;
 					}
 					
 					wdg->addItem(head);
 				}
-				else if (wid == WIDGET_ITEM_FOOT)
+				else if (id == WIDGET_ITEM_FOOT)
 				{
-					CFooters* foot = new CFooters(wx, wy, wdx, wdy);
-					foot->setGradient(LIGHT2DARK);
+					unsigned int gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
+					unsigned int corner = xmlGetSignedNumericAttribute(node, "corner", 0);
+					unsigned int radius = xmlGetSignedNumericAttribute(node, "radius", 0);
+					unsigned int line = xmlGetSignedNumericAttribute(node, "line", 0);
+						
+					CFooters* foot = NULL;
+					foot = new CFooters(x, y, dx, dy);
+					//foot->setGradient(LIGHT2DARK);
 					foot->setCorner(corner);
 					foot->setRadius(radius);
 					foot->setFootLine(line);
 					
 					while ((subnode = xmlGetNextOccurence(subnode, "button")) != NULL) 
 					{
-						char* button = xmlGetAttribute(subnode, (char*)"name");
+						char* button = xmlGetAttribute(subnode, (char*)"icon");
 						char* localename = xmlGetAttribute(subnode, (char*)"localename");
-						//neutrino_locale_t locale = xmlGetSignedNumericAttribute(subnode, (neutrino_locale_t)"locale", 0);
-						
-						printf("BUTTON:%s\n\n", button);
+						unsigned int locale = xmlGetSignedNumericAttribute(subnode, "locale", 0);
 						
 						button_label_struct btn;
 						btn.button = button;
-						btn.localename = localename;
+						btn.localename = "";
 						btn.locale = NONEXISTANT_LOCALE;
 						
 						foot->setButtons(&btn);
@@ -5793,22 +5817,44 @@ void CTestMenu::loadSkin()
 					
 					wdg->addItem(foot);
 				}
-				else if (wid == WIDGET_ITEM_LISTBOX)
+				else if (id == WIDGET_ITEM_LISTBOX)
 				{
-					ClistBox* listBox = new ClistBox(wx, wy, wdx, wdy);
+					unsigned int type = xmlGetSignedNumericAttribute(node, "type", 0);
+					unsigned int scrollbar = xmlGetSignedNumericAttribute(node, "scrollbar", 0);
+					unsigned int paintdate = xmlGetSignedNumericAttribute(node, "paintdate", 0);
+					
+					ClistBox* listBox = new ClistBox(x, y, dx, dy);
+					listBox->setWidgetType(type);
+					listBox->paintScrollBar(scrollbar);
+					listBox->paintMainFrame(paintframe);
 					
 					while ((subnode = xmlGetNextOccurence(subnode, "item")) != NULL) 
 					{
 						char* name = xmlGetAttribute(subnode, (char*)"name");
-						unsigned int wid = xmlGetSignedNumericAttribute(subnode, "id", 0);
+						unsigned int itemid = xmlGetSignedNumericAttribute(subnode, "id", 0);
+						
 						char* localename = xmlGetAttribute(subnode, (char*)"localename");
+						char* option = xmlGetAttribute(subnode, (char*)"option");
 						char* actionkey = xmlGetAttribute(subnode, (char*)"actionkey");
-						//CMenuTarget* target = xmlGetAttribute(subnode, (CMenuTarget*)"target");
+						char* target = xmlGetAttribute(subnode, (char*)"target");
+						char* itemIcon = xmlGetAttribute(subnode, (char*)"itemicon");
+						char* hint = xmlGetAttribute(subnode, (char*)"hint");
+						char* iconName = xmlGetAttribute(subnode, (char*)"iconname");
+						char* directkey = xmlGetAttribute(subnode, (char*)"directkey");
+						unsigned int lines = xmlGetSignedNumericAttribute(subnode, "lines", 0);
 						
 						CMenuItem* menuItem = NULL;
 						
-						menuItem = new CMenuForwarder(localename);
+						if (itemid == ITEM_TYPE_FORWARDER)
+							menuItem = new CMenuForwarder(localename);
+						else if (itemid == ITEM_TYPE_LISTBOXITEM)
+							menuItem = new ClistBoxItem(localename);
+							
 						menuItem->setActionKey(NULL, actionkey);
+							
+						menuItem->setHint(hint);
+						menuItem->setItemIcon(itemIcon);
+						if (lines) menuItem->set2lines();
 						
 						listBox->addItem(menuItem);
 				
@@ -5816,6 +5862,79 @@ void CTestMenu::loadSkin()
 					}
 					
 					wdg->addItem(listBox);
+				}
+				else if (id == WIDGET_ITEM_WINDOW)
+				{
+					unsigned int gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
+					unsigned int corner = xmlGetSignedNumericAttribute(node, "corner", 0);
+					unsigned int radius = xmlGetSignedNumericAttribute(node, "radius", 0);
+					
+					CWindow* window = new CWindow(x, y, dx, dy);
+					
+					while ((subnode = xmlGetNextOccurence(subnode, "ccitem")) != NULL) 
+					{
+						char* name = xmlGetAttribute(subnode, (char*)"name");
+						unsigned int id = xmlGetSignedNumericAttribute(subnode, "id", 0);
+				
+						unsigned int x = xmlGetSignedNumericAttribute(subnode, "posx", 0);
+						unsigned int y = xmlGetSignedNumericAttribute(subnode, "posy", 0);
+						unsigned int dx = xmlGetSignedNumericAttribute(subnode, "width", 0);
+						unsigned int dy = xmlGetSignedNumericAttribute(subnode, "height", 0);
+						
+						if (id == CC_LABEL)
+						{
+							char* text = xmlGetAttribute(subnode, (char*)"text");
+							unsigned int halign = xmlGetSignedNumericAttribute(subnode, "halign", 0);
+						
+							CCLabel* label = new CCLabel(x, y, dx, dy);
+							
+							label->setText(text);
+							label->setHAlign(halign);
+							
+							window->addCCItem(label);	
+						}
+						else if (id == CC_IMAGE)
+						{
+							char* image = xmlGetAttribute(subnode, (char*)"image");
+							//unsigned int halign = xmlGetSignedNumericAttribute(subnode, "halign", 0);
+						
+							CCImage* pic = new CCImage(x, y, dx, dy);
+							
+							std::string filename = CONFIGDIR "/skin/MetrixHD/";
+							filename += image;
+							
+							pic->setImage(filename.c_str());
+							//pic->setHAlign(halign);
+							
+							window->addCCItem(pic);	
+						}
+						else if (id == CC_TIME)
+						{
+							char* format = xmlGetAttribute(subnode, (char*)"format");
+							//unsigned int halign = xmlGetSignedNumericAttribute(subnode, "halign", 0);
+						
+							CCTime* time = new CCTime(x, y, dx, dy);
+							
+							time->setFormat(format);
+							//pic->setHAlign(halign);
+							
+							window->addCCItem(time);	
+						}
+				
+						subnode = subnode->xmlNextNode;
+					}
+					
+					wdg->addItem(window);
+				}
+				else if (id == WIDGET_ITEM_FRAMEBOX)
+				{
+					unsigned int gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
+					unsigned int corner = xmlGetSignedNumericAttribute(node, "corner", 0);
+					unsigned int radius = xmlGetSignedNumericAttribute(node, "radius", 0);
+					
+					CFrameBox* frameBox = new CFrameBox(x, y, dx, dy);
+					
+					wdg->addItem(frameBox);
 				}
 			
 				node = node->xmlNextNode;
