@@ -172,7 +172,9 @@ inline uint32_t make16color(__u32 rgb)
 // for lua until 
 inline uint32_t make16Color(unsigned int rgb)
 {
-        return 0xFF000000 | (__u32)rgb;
+	uint32_t col = 0xFF000000 | rgb;
+	
+        return col;
 }
 
 inline uint32_t convertSetupColor2Color(unsigned char r, unsigned char g, unsigned char b, unsigned char alpha)

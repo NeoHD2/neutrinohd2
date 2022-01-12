@@ -104,7 +104,6 @@
 #include <gui/widget/framebox.h>
 #include <gui/widget/widget_helpers.h>
 #include <gui/widget/widget.h>
-//#include <gui/widget/frame.h>
 
 #include <gui/bedit/bouqueteditor_bouquets.h>
 #include <gui/bedit/bouqueteditor_chanselect.h>
@@ -166,6 +165,8 @@
 #include <gui/hdd_menu.h>
 #include <gui/vfdcontroler.h>
 #include <gui/themes.h>
+//
+#include <gui/mediaplayer.h>
 
 #include <system/localize.h>
 #include <system/settings.h>
