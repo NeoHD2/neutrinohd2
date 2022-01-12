@@ -226,6 +226,9 @@ class CTestMenu : public CMenuTarget
 		// channel/bouquet list
 		void testCChannellist();
 		void testCBouquetlist();
+		
+		// skin
+		void loadSkin();
 
 	public:
 		CTestMenu();
@@ -5653,6 +5656,189 @@ void CTestMenu::testCBouquetlist()
 	webTVBouquetList->exec(true); // with zap
 }
 
+// skin
+void CTestMenu::loadSkin()
+{
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::loadSkin\n");
+	
+	std::vector<CWidget*> widgets;
+	//
+	_xmlDocPtr parser = NULL;
+	
+	std::string filename = CONFIGDIR "/skin/titannit/skin.xml";
+
+	parser = parseXmlFile(filename.c_str());
+	
+	if (parser == NULL)
+		return;
+		
+	_xmlNodePtr root = xmlDocGetRootElement(parser);
+	_xmlNodePtr search = root->xmlChildrenNode;
+	_xmlNodePtr node;
+	_xmlNodePtr subnode;
+	
+	if (search) 
+	{
+		printf("loadSkin():parse:%s\n", filename.c_str());
+		
+		CWidget* wdg = NULL;
+
+		while ((search = xmlGetNextOccurence(search, "widget")) != NULL) 
+		{
+			char* name = xmlGetAttribute(search, (char*)"name");
+			unsigned int id = xmlGetSignedNumericAttribute(search, "id", 0);
+			unsigned int x = xmlGetSignedNumericAttribute(search, "posx", 0);
+			unsigned int y = xmlGetSignedNumericAttribute(search, "posy", 0);
+			unsigned int dx = xmlGetSignedNumericAttribute(search, "width", 0);
+			unsigned int dy = xmlGetSignedNumericAttribute(search, "height", 0);
+			unsigned int paintframe = xmlGetSignedNumericAttribute(search, "paintframe", 0);
+			unsigned int corner = xmlGetSignedNumericAttribute(search, "corner", 0);
+			unsigned int radius = xmlGetSignedNumericAttribute(search, "radius", 0);
+			unsigned int savescreen = xmlGetSignedNumericAttribute(search, "savescreen", 0);
+			unsigned int timeout = xmlGetSignedNumericAttribute(search, "timeout", 0);
+			
+			//
+			wdg = new CWidget(x, y, dx, dy);
+			wdg->id = id;
+			wdg->name = name;
+			wdg->paintMainFrame(paintframe);
+			wdg->setCorner(corner, radius);
+			if (savescreen) wdg->enableSaveScreen();
+			wdg->setTimeOut(timeout);
+			
+			// widgetitem
+			node = search->xmlChildrenNode;
+			
+			while ((node = xmlGetNextOccurence(node, "widgetitem")) != NULL) 
+			{
+				char* name = xmlGetAttribute(node, (char*)"name");
+				unsigned int wid = xmlGetSignedNumericAttribute(node, "id", 0);
+				unsigned int wx = xmlGetSignedNumericAttribute(node, "posx", 0);
+				unsigned int wy = xmlGetSignedNumericAttribute(node, "posy", 0);
+				unsigned int wdx = xmlGetSignedNumericAttribute(node, "width", 0);
+				unsigned int wdy = xmlGetSignedNumericAttribute(node, "height", 0);
+				
+				//neutrino_locale_t locale = xmlGetSignedNumericAttribute(node, (neutrino_locale_t)"locale", 0);
+				char* localename = xmlGetAttribute(node, (char*)"localename");
+				unsigned int halign = xmlGetSignedNumericAttribute(node, "halign", 0);
+				char* icon = xmlGetAttribute(node, (char*)"icon");
+				unsigned int gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
+				unsigned int corner = xmlGetSignedNumericAttribute(node, "corner", 0);
+				unsigned int radius = xmlGetSignedNumericAttribute(node, "radius", 0);
+				unsigned int line = xmlGetSignedNumericAttribute(node, "line", 0);
+				unsigned int paintdate = xmlGetSignedNumericAttribute(node, "paintdate", 0);
+				char* format = xmlGetAttribute(node, (char*)"format");
+				
+				// CCitems/CMenuItems
+				subnode = node->xmlChildrenNode;
+				
+				if (wid == WIDGET_ITEM_HEAD)
+				{
+					CHeaders* head = new CHeaders(wx, wy, wdx, wdy);
+					
+					head->setTitle(localename);
+					head->setIcon(icon);
+					head->setGradient(DARK2LIGHT);
+					head->setCorner(corner);
+					head->setRadius(radius);
+					head->setHeadLine(line);
+					if (paintdate) head->enablePaintDate();
+					if (format) head->setFormat(format);
+					
+					while ((subnode = xmlGetNextOccurence(subnode, "button")) != NULL) 
+					{
+						char* button = xmlGetAttribute(subnode, (char*)"name");
+						char* localename = xmlGetAttribute(subnode, (char*)"localename");
+						//neutrino_locale_t locale = xmlGetSignedNumericAttribute(subnode, (neutrino_locale_t)"locale", 0);
+						
+						printf("BUTTON:%s\n\n", button);
+						
+						button_label_struct btn;
+						btn.button = button;
+						btn.localename = localename;
+						btn.locale = NONEXISTANT_LOCALE;
+						
+						head->setButtons(&btn);
+				
+						subnode = subnode->xmlNextNode;
+					}
+					
+					wdg->addItem(head);
+				}
+				else if (wid == WIDGET_ITEM_FOOT)
+				{
+					CFooters* foot = new CFooters(wx, wy, wdx, wdy);
+					foot->setGradient(LIGHT2DARK);
+					foot->setCorner(corner);
+					foot->setRadius(radius);
+					foot->setFootLine(line);
+					
+					while ((subnode = xmlGetNextOccurence(subnode, "button")) != NULL) 
+					{
+						char* button = xmlGetAttribute(subnode, (char*)"name");
+						char* localename = xmlGetAttribute(subnode, (char*)"localename");
+						//neutrino_locale_t locale = xmlGetSignedNumericAttribute(subnode, (neutrino_locale_t)"locale", 0);
+						
+						printf("BUTTON:%s\n\n", button);
+						
+						button_label_struct btn;
+						btn.button = button;
+						btn.localename = localename;
+						btn.locale = NONEXISTANT_LOCALE;
+						
+						foot->setButtons(&btn);
+				
+						subnode = subnode->xmlNextNode;
+					}
+					
+					wdg->addItem(foot);
+				}
+				else if (wid == WIDGET_ITEM_LISTBOX)
+				{
+					ClistBox* listBox = new ClistBox(wx, wy, wdx, wdy);
+					
+					while ((subnode = xmlGetNextOccurence(subnode, "item")) != NULL) 
+					{
+						char* name = xmlGetAttribute(subnode, (char*)"name");
+						unsigned int wid = xmlGetSignedNumericAttribute(subnode, "id", 0);
+						char* localename = xmlGetAttribute(subnode, (char*)"localename");
+						char* actionkey = xmlGetAttribute(subnode, (char*)"actionkey");
+						//CMenuTarget* target = xmlGetAttribute(subnode, (CMenuTarget*)"target");
+						
+						CMenuItem* menuItem = NULL;
+						
+						menuItem = new CMenuForwarder(localename);
+						menuItem->setActionKey(NULL, actionkey);
+						
+						listBox->addItem(menuItem);
+				
+						subnode = subnode->xmlNextNode;
+					}
+					
+					wdg->addItem(listBox);
+				}
+			
+				node = node->xmlNextNode;
+			}
+			
+			if (wdg)
+				widgets.push_back(wdg);
+						
+			//
+			search = search->xmlNextNode;		
+		}
+	}
+	
+	xmlFreeDoc(parser);
+	parser = NULL;
+	
+	for (unsigned int i = 0; i < (unsigned int )widgets.size(); i++)
+	{
+		if ( (widgets[i]) && (widgets[i]->id == WIDGET_MAINMENU) )
+			widgets[i]->exec(NULL, "");
+	}
+}
+
 // exec
 int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 {
@@ -7404,6 +7590,12 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		
 		return RETURN_REPAINT;
 	}
+	else if(actionKey == "skin")
+	{
+		loadSkin();
+		
+		return RETURN_REPAINT;
+	}
 
 	showMenu();
 	
@@ -7550,7 +7742,10 @@ void CTestMenu::showMenu()
 	//
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "Channellist") );
 	mainMenu->addItem(new CMenuForwarder("CChannelList:", true, NULL, this, "channellist"));
-	mainMenu->addItem(new CMenuForwarder("CBouquetList:", true, NULL, this, "bouquetlist"));		
+	mainMenu->addItem(new CMenuForwarder("CBouquetList:", true, NULL, this, "bouquetlist"));
+	
+	//		
+	mainMenu->addItem(new CMenuForwarder("SKIN", true, NULL, this, "skin"));
 	
 	mainMenu->exec(NULL, "");
 
