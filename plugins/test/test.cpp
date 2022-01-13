@@ -2992,8 +2992,11 @@ void CTestMenu::testCHeaders()
 	footBox.iY = g_settings.screen_EndY - 10 - footBox.iHeight;
 	footBox.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
 
-	headers = new CHeaders(headBox, "test CHeaders", NEUTRINO_ICON_MP3);
+	//headers = new CHeaders(headBox, "test CHeaders", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(headBox);
 
+	headers->setTitle("test CHeaders");
+	headers->setIcon(NEUTRINO_ICON_MP3);
 	headers->enablePaintDate();
 	headers->setFormat("%d.%m.%Y %H:%M:%S");
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
@@ -5666,7 +5669,9 @@ void CTestMenu::loadSkin()
 	//
 	_xmlDocPtr parser = NULL;
 	
-	std::string filename = CONFIGDIR "/skin/titannit/skin.xml";
+	std::string filename = CONFIGDIR "/skin/";
+	filename += g_settings.preferred_skin;
+	filename += "/skin.xml";
 
 	parser = parseXmlFile(filename.c_str());
 	
@@ -5695,7 +5700,6 @@ void CTestMenu::loadSkin()
 			unsigned int dx = xmlGetSignedNumericAttribute(search, "width", 0);
 			unsigned int dy = xmlGetSignedNumericAttribute(search, "height", 0);
 			
-			unsigned int color = xmlGetSignedNumericAttribute(search, "color", 0);
 			unsigned int corner = xmlGetSignedNumericAttribute(search, "corner", 0);
 			unsigned int radius = xmlGetSignedNumericAttribute(search, "radius", 0);
 			
@@ -5726,10 +5730,34 @@ void CTestMenu::loadSkin()
 				unsigned int dx = xmlGetSignedNumericAttribute(node, "width", 0);
 				unsigned int dy = xmlGetSignedNumericAttribute(node, "height", 0);
 				
-				unsigned int color = xmlGetSignedNumericAttribute(node, "color", 0);
+				char* color = xmlGetAttribute(node, (char*)"color");
 				unsigned int gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
 				unsigned int corner = xmlGetSignedNumericAttribute(node, "corner", 0);
 				unsigned int radius = xmlGetSignedNumericAttribute(node, "radius", 0);
+				
+				// parse color
+				unsigned int r = 0;
+				unsigned int g = 0;
+				unsigned int b = 0;
+				unsigned int a = 0;
+				
+				if (color != NULL)
+				{
+					if (color[0] == '#')
+					{
+						unsigned long col = 0;
+						
+						if (sscanf(color + 1, "%lx", &col) == 1)
+						{
+							r = (col>>24)&0xFF; 
+							g = (col>>16)&0xFF;
+							b = (col >> 8)&0xFF;
+							a = (col)&0xFF;
+						}
+					}
+				}
+				
+				uint32_t finalColor = convertSetupColor2Color(r, g, b, a); 
 				
 				// CCitems/CMenuItems
 				subnode = node->xmlChildrenNode;
@@ -5737,21 +5765,21 @@ void CTestMenu::loadSkin()
 				if (id == WIDGET_ITEM_HEAD)
 				{
 					//neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(node, "locale", 0);
-					char* localename = xmlGetAttribute(node, (char*)"localename");
+					const char* title = xmlGetAttribute(node, "localename");
 					unsigned int halign = xmlGetSignedNumericAttribute(node, "halign", 0);
-					char* icon = xmlGetAttribute(node, (char*)"icon");
+					const char* icon = xmlGetAttribute(node, "icon");
 					unsigned int line = xmlGetSignedNumericAttribute(node, "line", 0);
 					unsigned int paintdate = xmlGetSignedNumericAttribute(node, "paintdate", 0);
-					const char* format = xmlGetAttribute(node, (const char*)"format");
+					const char* format = xmlGetAttribute(node, "format");
 				
 					CHeaders* head = NULL;
 					head = new CHeaders(x, y, dx, dy);
 					
-					head->setTitle(localename);
+					head->setTitle(title); //FIXME: corrupted
 					head->setHAlign(halign);
-					head->setIcon(icon);
-					//head->setColor(color);
-					//head->setGradient(LIGHT2DARK);
+					head->setIcon(icon); //FIXME: corrupted
+					if(color) head->setColor(finalColor);
+					head->setGradient(gradient);
 					head->setCorner(corner);
 					head->setRadius(radius);
 					head->setHeadLine(line);
@@ -5762,14 +5790,14 @@ void CTestMenu::loadSkin()
 					{
 						char* button = xmlGetAttribute(subnode, (char*)"name");
 						char* localename = xmlGetAttribute(subnode, (char*)"localename");
-						neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(subnode, "locale", 0);
+						//neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(subnode, "locale", 0);
 						
 						button_label_struct btn;
 						btn.button = button;
 						btn.localename = localename;
 						btn.locale = NONEXISTANT_LOCALE;
 						
-						head->setButtons(&btn);
+						head->setButtons(&btn); //FIXME: corrupted
 				
 						subnode = subnode->xmlNextNode;
 					}
@@ -5783,8 +5811,8 @@ void CTestMenu::loadSkin()
 					CFooters* foot = NULL;
 					foot = new CFooters(x, y, dx, dy);
 					
-					//foot->setColor(color);
-					//foot->setGradient(LIGHT2DARK);
+					if (color) foot->setColor(finalColor);
+					foot->setGradient(gradient);
 					foot->setCorner(corner);
 					foot->setRadius(radius);
 					foot->setFootLine(line);
@@ -5792,7 +5820,7 @@ void CTestMenu::loadSkin()
 					while ((subnode = xmlGetNextOccurence(subnode, "button")) != NULL) 
 					{
 						char* button = xmlGetAttribute(subnode, (char*)"name");
-						neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(subnode, "locale", 0);
+						//neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(subnode, "locale", 0);
 						char* localename = xmlGetAttribute(subnode, "localename");
 						
 						button_label_struct btn;
@@ -5800,7 +5828,7 @@ void CTestMenu::loadSkin()
 						btn.locale = NONEXISTANT_LOCALE;
 						btn.localename = NULL;
 						
-						foot->setButtons(&btn);
+						foot->setButtons(&btn); //FIXME: corrupted
 				
 						subnode = subnode->xmlNextNode;
 					}
@@ -5811,6 +5839,7 @@ void CTestMenu::loadSkin()
 				{
 					unsigned int type = xmlGetSignedNumericAttribute(node, "type", 0);
 					unsigned int scrollbar = xmlGetSignedNumericAttribute(node, "scrollbar", 0);
+					unsigned int paintframe = xmlGetSignedNumericAttribute(node, "paintframe", 0);
 					
 					ClistBox* listBox = new ClistBox(x, y, dx, dy);
 					listBox->setWidgetType(type);
@@ -5867,7 +5896,7 @@ void CTestMenu::loadSkin()
 					
 					CWindow* window = new CWindow(x, y, dx, dy);
 					
-					window->setColor(make16Color(color));
+					if (color != NULL) window->setColor(finalColor);
 					if (refresh) window->enableRepaint();
 					
 					while ((subnode = xmlGetNextOccurence(subnode, "ccitem")) != NULL) 
@@ -5879,6 +5908,8 @@ void CTestMenu::loadSkin()
 						unsigned int y = xmlGetSignedNumericAttribute(subnode, "posy", 0);
 						unsigned int dx = xmlGetSignedNumericAttribute(subnode, "width", 0);
 						unsigned int dy = xmlGetSignedNumericAttribute(subnode, "height", 0);
+						
+						unsigned int refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
 						
 						if (id == CC_LABEL)
 						{
@@ -5914,8 +5945,8 @@ void CTestMenu::loadSkin()
 						
 							CCTime* time = new CCTime(x, y, dx, dy);
 							
-							if (format) time->setFormat(format);
-							//pic->setHAlign(halign);
+							//if (format) time->setFormat(format); //FIXME: corrupted
+							if (refresh) time->enableRepaint();
 							
 							window->addCCItem(time);	
 						}
@@ -5935,21 +5966,24 @@ void CTestMenu::loadSkin()
 				node = node->xmlNextNode;
 			}
 			
-			// widget subs
+			// key
 			subsearch = search->xmlChildrenNode;
 			
 			while ((subsearch = xmlGetNextOccurence(subsearch, "key")) != NULL) 
 			{
-				char* name = xmlGetAttribute(subsearch, (char*)"name");
+				neutrino_msg_t name = (neutrino_msg_t)xmlGetSignedNumericAttribute(subsearch, "name", 16);
 				char* actionkey = xmlGetAttribute(subsearch, (char*)"actionkey");
 				std::string target = xmlGetAttribute(subsearch, (char*)"target");
 				
 				CMenuTarget* parent = NULL;
 				
-				if (target == "neutrino")
-					parent = CNeutrinoApp::getInstance();
-				else if (target == "parent")
-					parent = this;
+				if (!target.empty())
+				{
+					if (target == "neutrino")
+						parent = CNeutrinoApp::getInstance();
+					else if (target == "parent")
+						parent = this;
+				}
 				
 				wdg->addKey((neutrino_msg_t)name, parent, actionkey);
 			
@@ -5967,6 +6001,7 @@ void CTestMenu::loadSkin()
 	xmlFreeDoc(parser);
 	parser = NULL;
 	
+	// exec widget
 	for (unsigned int i = 0; i < (unsigned int )widgets.size(); i++)
 	{
 		if ( (widgets[i]) && (widgets[i]->id == WIDGET_MAINMENU) )

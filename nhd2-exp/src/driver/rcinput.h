@@ -179,7 +179,7 @@ enum
 	RC_red		= KEY_RED,	    
 	RC_green	= KEY_GREEN,	    
 	RC_yellow	= KEY_YELLOW,	    
-	RC_blue		= KEY_BLUE,	    
+	RC_blue	= KEY_BLUE,	    
 
 	RC_audio	= KEY_AUDIO,		/* 0x188 */
 	RC_video	= KEY_VIDEO,		/* 0x189 */
