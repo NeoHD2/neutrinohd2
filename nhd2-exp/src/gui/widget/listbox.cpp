@@ -2717,7 +2717,7 @@ void ClistBox::initFrames()
 
 void ClistBox::paint()
 {
-	dprintf(DEBUG_NORMAL, "ClistBox::paint: (%s)\n", l_name.c_str());
+	dprintf(DEBUG_INFO, "ClistBox::paint: (%s)\n", l_name.c_str());
 
 	//
 	initFrames();
@@ -3392,7 +3392,7 @@ void ClistBox::enableSaveScreen()
 
 void ClistBox::hide()
 {
-	dprintf(DEBUG_NORMAL, "ClistBox::hide: (%s)\n", l_name.c_str());
+	dprintf(DEBUG_INFO, "ClistBox::hide: (%s)\n", l_name.c_str());
 
 	if( savescreen && background)
 		restoreScreen();
@@ -3892,108 +3892,5 @@ void ClistBox::onDirectKeyPressed(neutrino_msg_t msg)
 		}
 	}
 }
-
-/*
-bool ClistBox::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
-{
-	dprintf(DEBUG_DEBUG, "ClistBox::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
-	
-	bool ret = true;
-	
-	if (msg == RC_up)
-	{
-		scrollLineUp();
-	}
-	else if (msg == RC_down)
-	{
-		scrollLineDown();
-	}
-	else if (msg == RC_left)
-	{
-		swipLeft();
-	}
-	else if (msg == RC_right)
-	{
-		swipRight();
-	}
-	else if (msg == RC_page_up)
-	{
-		scrollPageUp();
-	}
-	else if (msg == RC_page_down)
-	{
-		scrollPageDown();
-	}
-	else if (msg == RC_ok)
-	{
-		int rv = oKKeyPressed(parent);
-			
-		switch ( rv ) 
-		{
-			case RETURN_EXIT_ALL:
-				ret = false;
-			case RETURN_EXIT:
-				ret = false;
-				break;
-			case RETURN_REPAINT:
-				ret = true;
-				paint();
-				break;
-		}
-	}
-	else if (msg == RC_home) 
-	{
-		ret = false;
-	}
-	else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
-	{
-		if (update())
-		{
-			refresh();
-		}
-	} 
-	else
-	{
-		////// keymap
-		std::map<neutrino_msg_t, keyAction>::iterator it = keyActionMap.find(msg);
-				
-		if (it != keyActionMap.end()) 
-		{
-			actionKey = it->second.action;
-
-			if (it->second.menue != NULL)
-			{
-				int rv = it->second.menue->exec(parent, it->second.action);
-
-				//FIXME:review this
-				switch ( rv ) 
-				{
-					case RETURN_EXIT_ALL:
-						ret = false; //fall through
-					case RETURN_EXIT:
-						ret = false;
-						break;
-					case RETURN_REPAINT:
-						ret = true;
-						paint();
-						break;
-					}
-				}
-		}
-	}
-	////
-	
-	return ret;
-}
-
-//
-void ClistBox::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string & action)
-{
-	dprintf(DEBUG_DEBUG, "ClistBox::addKey: %s\n", action.c_str());
-	
-	keyActionMap[key].menue = menue;
-	keyActionMap[key].action = action;
-}
-*/
 
 

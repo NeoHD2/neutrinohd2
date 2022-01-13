@@ -209,7 +209,7 @@ void CWidget::enableSaveScreen()
 
 void CWidget::hide()
 {
-	dprintf(DEBUG_INFO, "CWidget:: hide\n");
+	dprintf(DEBUG_NORMAL, "CWidget:: hide (%s)\n", name.c_str());
 
 /*
 	if (hasItem())
@@ -243,7 +243,7 @@ void CWidget::addKey(neutrino_msg_t key, CMenuTarget *menue, const std::string &
 
 int CWidget::exec(CMenuTarget *parent, const std::string &)
 {
-	dprintf(DEBUG_NORMAL, "CWidget:: exec:\n");
+	dprintf(DEBUG_NORMAL, "CWidget:: exec: (%s)\n", name.c_str());
 
 	retval = RETURN_REPAINT;
 	pos = 0;
@@ -414,7 +414,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 	}
 	while ( msg != RC_timeout );
 
-	dprintf(DEBUG_NORMAL, "CWidget: retval: (%d) selected:%d\n", retval, selected);
+	dprintf(DEBUG_INFO, "CWidget: retval: (%d) selected:%d\n", retval, selected);
 	
 	hide();
 

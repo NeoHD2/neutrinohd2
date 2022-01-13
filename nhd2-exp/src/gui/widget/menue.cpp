@@ -210,7 +210,7 @@ void CMenuWidget::move(int xoff, int yoff)
 
 CMenuWidget::~CMenuWidget()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget:: del (%s)\n", l_name.c_str());
+	dprintf(DEBUG_INFO, "CMenuWidget:: del (%s)\n", l_name.c_str());
 
 	items.clear();
 	page_start.clear();
@@ -653,7 +653,7 @@ void CMenuWidget::paintFoot()
 
 void CMenuWidget::paint()
 {
-	dprintf(DEBUG_NORMAL, "CMenuWidget::paint: (%s)\n", l_name.c_str());
+	dprintf(DEBUG_INFO, "CMenuWidget::paint: (%s)\n", l_name.c_str());
 
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8 );
 	

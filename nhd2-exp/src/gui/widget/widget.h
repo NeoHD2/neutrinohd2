@@ -149,7 +149,7 @@ class CMenuTarget
 		
 		//
 		int id;
-		const char* name;
+		std::string name;
 };
 
 //
@@ -242,6 +242,8 @@ class CWidget : public CMenuTarget
 		virtual void onPageDownKeyPressed();
 		virtual void onYellowKeyPressed();
 };
+
+typedef std::vector<CWidget*> CWIDGETLIST;
 
 #endif // WIDGET_H_
 
