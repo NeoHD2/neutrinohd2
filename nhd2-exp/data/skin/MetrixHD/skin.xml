@@ -1,0 +1,42 @@
+<skin>
+<widget name="mainmenu" id="0" posx="0" posy="0" width="1280" height="720" gradient="0" corner="15" radius="0" savescreen="0" timeout="0">
+	<widgetitem name="window" id="0" posx="60" posy="50" width="520" height="620" color="#0f0f0f00">
+	</widgetitem>
+	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="0" paintframe="0" scrollbar="0">
+		<item name="listboxitem" id="7" localename="EPG / Timer" itemicon="hint_timers" hint="Timer List" target="0" actionkey="epgmenu" lines="1">
+		</item>
+		<item name="listboxitem" id="7" localename="Features" itemicon="hint_plugin" hint="Timer List" target="0" actionkey="features" lines="1">
+		</item>
+		<item name="listboxitem" id="7" localename="Service" itemicon="hint_service" hint="Timer List" target="" actionkey="service" lines="1">
+		</item>
+		<item name="listboxitem" id="7" localename="Main Setup" itemicon="hint_settings" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="0" actionkey="mainsetup" lines="1">
+		</item>
+		<item name="listboxitem" id="7" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="0" actionkey="features" lines="1">
+		</item>
+		<item name="listboxitem" id="7" localename="Power Menu" itemicon="hint_shutdown" hint="Timer List" target="" actionkey="features" lines="1">
+		</item>
+		<item name="listboxitem" id="7" localename="Media Player" itemicon="hint_media" hint="Timer List" target="mediaplayer" actionkey="testing" lines="1">
+		</item>
+	</widgetitem>
+	<widgetitem name="window" id="0" posx="640" posy="50" width="640" height="360" color="#00195000">
+		<ccitem name="label" id="2" posx="640" posy="50" width="640" height="60" text="Main Menu" halign="1">
+		</ccitem>
+		<ccitem name="image" id="1" posx="640" posy="120" width="640" height="240" image="picon_default.png">
+		</ccitem>
+	</widgetitem>
+	<widgetitem name="window" id="0" posx="640" posy="440" width="640" height="230" color="#0f0f0f00" refresh="1">
+		<!-- <ccitem name="time" id="10" posx="640" posy="440" width="640" height="60">
+		</ccitem> -->
+		<ccitem name="time" id="10" posx="640" posy="540" width="640" height="60" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		</ccitem>
+	</widgetitem>
+<key name="0x191" target="parent" actionkey="features"> 
+</key>
+</widget>
+<widget name="mainsetup" id="1" posx="0" posy="0" width="700" height="720" paintframe="1" corner="0" radius="0" savescreen="0" timeout="0">
+</widget>
+<widget name="osdsetup" id="8" posx="0" posy="0" width="700" height="720" paintframe="1" corner="0" radius="0" savescreen="0" timeout="0">
+</widget>
+</skin>
+
+

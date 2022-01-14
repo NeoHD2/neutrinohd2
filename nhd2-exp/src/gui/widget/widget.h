@@ -29,6 +29,7 @@
 
 
 //
+#define WIDGET_COUNT	83
 enum {
 	//MENU
 	WIDGET_MAINMENU,	// mainmenu
@@ -120,8 +121,9 @@ enum {
 	//
 	WIDGET_PLUGIN,
 	WIDGET_USERMENU,
+	
 	//
-	WIDGET_USER
+	WIDGET_MAX
 };
 
 //

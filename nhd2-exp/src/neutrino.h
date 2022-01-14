@@ -156,13 +156,18 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		
 		// skin
 		WIDGETLIST widgets;
+		void parseSkin();
+		WIDGETLIST getWidgets(){return widgets;};
+		CWidget* getWidget(int id);
+		bool widget_exists(int id);
+		
 		std::vector<CPlugins::plugin> skin_list;
-		//SKIN_SETTINGS s_settings;
 		
 		void loadSkin(std::string skinName);
 		void unloadSkin();
 		void startSkin(const char* const filename);
 		bool skin_exists(const char* const filename);
+		
 		void readSkinConfig(const char* const filename);
 		void saveSkinConfig(const char* const filename);
 		

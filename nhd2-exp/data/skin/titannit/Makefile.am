@@ -12,7 +12,8 @@ install_DATA = \
 	mainmenu.lua \
 	miscsetup.lua \
 	prev.png \
-	titannit.config default.config
+	titannit.config default.config \
+	skin.xml
 	
 
 
