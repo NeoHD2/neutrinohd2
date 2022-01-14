@@ -645,13 +645,6 @@ class ClistBox : public CWidgetItem
 		fb_pixel_t* items_background;
 		bool itemShadow;
 		
-		/*
-		struct keyAction { std::string action; CMenuTarget *menue; };
-		std::map<neutrino_msg_t, keyAction> keyActionMap;
-		
-		uint32_t sec_timer_id;
-		*/
-		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		ClistBox(CBox* position);
@@ -773,12 +766,6 @@ class ClistBox : public CWidgetItem
 		std::string getActionKey(void){return actionKey;}; // lua
 		
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true, int imode = MODE_MENU, int itype = WIDGET_TYPE_STANDARD, bool i2lines = false, bool iShadow = false);
-		
-		/*
-		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
-		void setSecTimer(uint32_t sec){sec_timer_id = sec;};
-		bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data);
-		*/
 		
 		//
 		inline bool isPainted(void){return painted;};

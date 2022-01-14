@@ -196,7 +196,7 @@ void CKeyChooserItem::paint()
 	m_cTitle.iX = m_cBox.iX;
 	m_cTitle.iY = m_cBox.iY;
 
-	CHeaders headers(m_cTitle, name.c_str(), NEUTRINO_ICON_KEYBINDING);
+	CHeaders headers(&m_cTitle, name.c_str(), NEUTRINO_ICON_KEYBINDING);
 	headers.paint();
 
 	//paint msg...

@@ -1183,14 +1183,14 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 	
 	thalign = CC_ALIGN_LEFT;
 
-	itemType = WIDGET_ITEM_HEAD;
+	itemType = WIDGETITEM_HEAD;
 }
 
-CHeaders::CHeaders(CBox position, const char * const title, const char * const icon)
+CHeaders::CHeaders(CBox* position, const char * const title, const char * const icon)
 {
-	dprintf(DEBUG_INFO, "CHeaders::CHeaders: x:%d y:%d dx:%d dy:%d title:%s icon:%s\n", position.iX, position.iY, position.iWidth, position.iHeight, title, icon);
+	dprintf(DEBUG_INFO, "CHeaders::CHeaders: x:%d y:%d dx:%d dy:%d title:%s icon:%s\n", position->iX, position->iY, position->iWidth, position->iHeight, title, icon);
 	
-	itemBox = position;
+	itemBox = *position;
 
 	htitle = title;
 	hicon = icon;
@@ -1210,7 +1210,7 @@ CHeaders::CHeaders(CBox position, const char * const title, const char * const i
 	
 	thalign = CC_ALIGN_LEFT;
 
-	itemType = WIDGET_ITEM_HEAD;
+	itemType = WIDGETITEM_HEAD;
 }
 
 void CHeaders::setButtons(const struct button_label* _hbutton_labels, const int _hbutton_count)		
@@ -1335,14 +1335,14 @@ CFooters::CFooters(int x, int y, int dx, int dy)
 	fgradient = g_settings.Foot_gradient;
 	foot_line = g_settings.Foot_line;
 
-	itemType = WIDGET_ITEM_FOOT;
+	itemType = WIDGETITEM_FOOT;
 }
 
-CFooters::CFooters(CBox position)
+CFooters::CFooters(CBox* position)
 {
-	dprintf(DEBUG_INFO, "CFooters::CFooters: x:%d y:%d dx:%d dy:%d title:%s icon:%s\n", position.iX, position.iY, position.iWidth, position.iHeight);
+	dprintf(DEBUG_INFO, "CFooters::CFooters: x:%d y:%d dx:%d dy:%d title:%s icon:%s\n", position->iX, position->iY, position->iWidth, position->iHeight);
 	
-	itemBox = position;
+	itemBox = *position;
 
 	fbuttons.clear();
 	fcount = 0;
@@ -1354,7 +1354,7 @@ CFooters::CFooters(CBox position)
 	fgradient = g_settings.Foot_gradient;
 	foot_line = g_settings.Foot_line;
 
-	itemType = WIDGET_ITEM_FOOT;
+	itemType = WIDGETITEM_FOOT;
 }
 
 void CFooters::setButtons(const struct button_label *button_label, const int button_count, const int _fbutton_width)

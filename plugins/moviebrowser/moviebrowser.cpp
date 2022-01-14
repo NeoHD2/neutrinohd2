@@ -1701,7 +1701,7 @@ void CMovieBrowser::refreshTitle(void)
 	
 	title = g_Locale->getText(LOCALE_MOVIEBROWSER_HEAD);
 
-	CHeaders headers(m_cBoxFrameTitleRel, title.c_str(), NEUTRINO_ICON_MOVIE);
+	CHeaders headers(&m_cBoxFrameTitleRel, title.c_str(), NEUTRINO_ICON_MOVIE);
 	headers.enablePaintDate();
 	headers.setButtons(MBHeadButtons, MB_HEAD_BUTTONS_COUNT);
 	headers.paint();
@@ -1753,7 +1753,7 @@ void CMovieBrowser::refreshFoot(void)
 
 	MBFootButtons[2].locale = LOCALE_MOVIEBROWSER_NEXT_FOCUS;
 
-	CFooters footers(m_cBoxFrameFootRel);
+	CFooters footers(&m_cBoxFrameFootRel);
 
 	footers.setButtons(MBFootButtons, MB_FOOT_BUTTONS_COUNT);
 	footers.paint();

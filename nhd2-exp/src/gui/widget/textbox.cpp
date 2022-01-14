@@ -156,7 +156,7 @@ void CTextBox::initVar(void)
 	useBG = false;
 	shadowMode = SHADOW_NO;
 	
-	itemType = WIDGET_ITEM_TEXTBOX;
+	itemType = WIDGETITEM_TEXTBOX;
 }
 
 void CTextBox::setPosition(const int x, const int y, const int dx, const int dy)

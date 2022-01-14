@@ -246,7 +246,7 @@ void CHintBox::refresh(void)
 	cFrameBoxTitle.iY = cFrameBox.iY + 1;
 	cFrameBoxTitle.iWidth = cFrameBox.iWidth - 2;
 
-	CHeaders headers(cFrameBoxTitle, caption.c_str(), iconfile.c_str());
+	CHeaders headers(&cFrameBoxTitle, caption.c_str(), iconfile.c_str());
 
 	headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
 	headers.setRadius(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID);

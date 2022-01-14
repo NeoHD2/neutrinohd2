@@ -236,7 +236,7 @@ const struct button_label HButton = { NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOC
 
 void CInfoBox::refreshTitle(void)
 {
-	CHeaders headers(m_cBoxFrameTitleRel, m_cTitle.c_str(), m_cIcon.c_str());
+	CHeaders headers(&m_cBoxFrameTitleRel, m_cTitle.c_str(), m_cIcon.c_str());
 
 	headers.setColor(headColor);
 	headers.setCorner(headCorner);
@@ -257,7 +257,7 @@ void CInfoBox::refreshTitle(void)
 //////////////////////////////////////////////////////////////////////
 void CInfoBox::refreshFoot(void)
 {
-	CFooters footers(m_cBoxFrameFootRel);
+	CFooters footers(&m_cBoxFrameFootRel);
 	struct button_label Button = { NEUTRINO_ICON_INFO, NONEXISTANT_LOCALE, NULL };
 	
 	footers.setColor(footColor);

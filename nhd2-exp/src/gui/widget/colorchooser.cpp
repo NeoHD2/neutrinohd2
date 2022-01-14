@@ -322,7 +322,7 @@ void CColorChooser::paint()
 	cFrameBoxTitle.iY = cFrameBox.iY;
 	cFrameBoxTitle.iWidth = cFrameBox.iWidth;
 
-	CHeaders headers(cFrameBoxTitle, name.c_str(), titleIcon.iconName.c_str());
+	CHeaders headers(&cFrameBoxTitle, name.c_str(), titleIcon.iconName.c_str());
 
 	headers.paint();
 

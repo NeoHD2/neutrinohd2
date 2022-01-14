@@ -566,13 +566,13 @@ class CCCounter : public CComponent
 
 // CWidgetItem
 enum {
-	WIDGET_ITEM_WINDOW,
-	WIDGET_ITEM_HEAD,
-	WIDGET_ITEM_FOOT,
-	WIDGET_ITEM_LISTBOX,
-	WIDGET_ITEM_FRAMEBOX,
-	WIDGET_ITEM_LISTFRAME,
-	WIDGET_ITEM_TEXTBOX
+	WIDGETITEM_WINDOW,
+	WIDGETITEM_HEAD,
+	WIDGETITEM_FOOT,
+	WIDGETITEM_LISTBOX,
+	WIDGETITEM_FRAMEBOX,
+	WIDGETITEM_LISTFRAME,
+	WIDGETITEM_TEXTBOX
 };
 
 class CWidgetItem
@@ -668,7 +668,7 @@ class CHeaders : public CWidgetItem
 	
 	public:
 		CHeaders(const int x, const int y, const int dx, const int dy, const char * const title = NULL, const char * const icon = NULL);
-		CHeaders(CBox position, const char * const title = NULL, const char * const icon = NULL);
+		CHeaders(CBox* position, const char * const title = NULL, const char * const icon = NULL);
 		virtual ~CHeaders(){};
 
 		//
@@ -709,7 +709,7 @@ class CFooters : public CWidgetItem
 	
 	public:
 		CFooters(int x, int y, int dx, int dy);
-		CFooters(CBox position);
+		CFooters(CBox* position);
 		virtual ~CFooters(){};
 
 		void setColor(fb_pixel_t col){fbgcolor = col;};

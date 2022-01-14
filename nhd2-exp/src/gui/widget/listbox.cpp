@@ -2382,7 +2382,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	widgetType = WIDGET_TYPE_STANDARD;
 	cnt = 0;
 
-	itemType = WIDGET_ITEM_LISTBOX;
+	itemType = WIDGETITEM_LISTBOX;
 
 	savescreen = false;
 	background = NULL;
@@ -2500,7 +2500,7 @@ ClistBox::ClistBox(CBox* position)
 	itemsPerY = 3;
 	maxItemsPerPage = itemsPerX*itemsPerY;
 
-	itemType = WIDGET_ITEM_LISTBOX;
+	itemType = WIDGETITEM_LISTBOX;
 
 	savescreen = false;
 	background = NULL;

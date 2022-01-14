@@ -243,7 +243,7 @@ class CWidget : public CMenuTarget
 		virtual void onYellowKeyPressed();
 };
 
-typedef std::vector<CWidget*> CWIDGETLIST;
+typedef std::vector<CWidget*> WIDGETLIST;
 
 #endif // WIDGET_H_
 

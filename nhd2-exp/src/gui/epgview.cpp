@@ -428,7 +428,7 @@ void CEpgData::showHead(const t_channel_id channel_id)
 
 	logo = CChannellogo::getInstance()->getLogoName(channel_id);
 
-	headers = new CHeaders(cHeadBox, text1.c_str(), logo.c_str());
+	headers = new CHeaders(&cHeadBox, text1.c_str(), logo.c_str());
 
 	headers->enablePaintDate();
 	headers->setHeadLine(g_settings.Head_line);

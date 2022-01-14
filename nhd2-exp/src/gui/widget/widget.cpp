@@ -519,7 +519,7 @@ void CWidget::onUpKeyPressed()
 	if(hasItem() && selected >= 0)
 	{
 #if 0
-		if( ((items[selected]->itemType == WIDGET_ITEM_FRAMEBOX) ) /*|| ((items[selected]->itemType == WIDGET_ITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) )*/ )
+		if( ((items[selected]->itemType == WIDGETITEM_FRAMEBOX) ) /*|| ((items[selected]->itemType == WIDGETITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) )*/ )
 		{
 			for (unsigned int count = 1; count < items.size(); count++) 
 			{
@@ -557,7 +557,7 @@ void CWidget::onDownKeyPressed()
 	if(hasItem() && selected >= 0)
 	{
 #if 0
-		if( ((items[selected]->itemType == WIDGET_ITEM_FRAMEBOX) ) /*|| ((items[selected]->itemType == WIDGET_ITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) )*/ )
+		if( ((items[selected]->itemType == WIDGETITEM_FRAMEBOX) ) /*|| ((items[selected]->itemType == WIDGETITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) )*/ )
 		{
 			//onYellowKeyPressed();
 			for (unsigned int count = 1; count < items.size(); count++) 
@@ -599,7 +599,7 @@ void CWidget::onRightKeyPressed()
 	
 	if(hasItem() && selected >= 0)
 	{
-		if( (items[selected]->itemType == WIDGET_ITEM_LISTBOX) && ( (items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
+		if( (items[selected]->itemType == WIDGETITEM_LISTBOX) && ( (items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
 		{
 			for (unsigned int count = 1; count < items.size(); count++) 
 			{
@@ -632,7 +632,7 @@ void CWidget::onLeftKeyPressed()
 	
 	if(hasItem() && selected >= 0)
 	{
-		if( (items[selected]->itemType == WIDGET_ITEM_LISTBOX) && ((items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
+		if( (items[selected]->itemType == WIDGETITEM_LISTBOX) && ((items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
 		{
 			for (unsigned int count = 1; count < items.size(); count++) 
 			{

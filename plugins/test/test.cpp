@@ -821,7 +821,7 @@ void CTestMenu::testCWidget()
 	headBox.iX = frameBuffer->getScreenX();
 	headBox.iY = frameBuffer->getScreenY();
 
-	headers = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(CFrameBox/ClistBox)", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(&headBox, "CWidget(CFrameBox/ClistBox)", NEUTRINO_ICON_MP3);
 
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	headers->enablePaintDate();
@@ -832,7 +832,7 @@ void CTestMenu::testCWidget()
 	footBox.iX = frameBuffer->getScreenX();
 	footBox.iY = frameBuffer->getScreenY() + frameBuffer->getScreenHeight() - footBox.iHeight;
 
-	footers = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
+	footers = new CFooters(&footBox);
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	//footers->setCorner(RADIUS_MID, CORNER_BOTTOM);
@@ -1551,7 +1551,7 @@ void CTestMenu::testCListFrameWidget()
 	headBox.iX = testWidget->getWindowsPos().iX;
 	headBox.iY = testWidget->getWindowsPos().iY;
 
-	headers = new CHeaders(headBox.iX, headBox.iY, headBox.iWidth, headBox.iHeight, "CWidget(ClistFrame)", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(&headBox, "CWidget(ClistFrame)", NEUTRINO_ICON_MP3);
 
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	headers->enablePaintDate();
@@ -1562,7 +1562,7 @@ void CTestMenu::testCListFrameWidget()
 	footBox.iX = testWidget->getWindowsPos().iX;
 	footBox.iY = testWidget->getWindowsPos().iY + testWidget->getWindowsPos().iHeight - footBox.iHeight;
 
-	footers = new CFooters(footBox.iX, footBox.iY, footBox.iWidth, footBox.iHeight);
+	footers = new CFooters(&footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	//footers->setCorner(RADIUS_MID, CORNER_BOTTOM);
@@ -1771,12 +1771,12 @@ void CTestMenu::testMultiWidget()
 	footBox.iY = mainBox.iY + mainBox.iHeight - footBox.iHeight;
 	footBox.iWidth = mainBox.iWidth;
 
-	headers = new CHeaders(headBox, "CWidget(ClistBox/CWindow)", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(&headBox, "CWidget(ClistBox/CWindow)", NEUTRINO_ICON_MP3);
 
 	headers->enablePaintDate();
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 
-	footers = new CFooters(footBox);
+	footers = new CFooters(&footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
@@ -1959,12 +1959,12 @@ void CTestMenu::testCWidgetItem()
 	footBox.iY = mainBox.iY + mainBox.iHeight - footBox.iHeight;
 	footBox.iWidth = mainBox.iWidth;
 
-	headers = new CHeaders(headBox, "testCWidgetItem", NEUTRINO_ICON_MP3);
+	headers = new CHeaders(&headBox, "testCWidgetItem", NEUTRINO_ICON_MP3);
 
 	headers->enablePaintDate();
 	headers->setButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 
-	footers = new CFooters(footBox);
+	footers = new CFooters(&footBox);
 
 	footers->setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
@@ -2993,7 +2993,7 @@ void CTestMenu::testCHeaders()
 	footBox.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20);
 
 	//headers = new CHeaders(headBox, "test CHeaders", NEUTRINO_ICON_MP3);
-	headers = new CHeaders(headBox);
+	headers = new CHeaders(&headBox);
 
 	headers->setTitle("test CHeaders");
 	headers->setIcon(NEUTRINO_ICON_MP3);
@@ -3004,7 +3004,7 @@ void CTestMenu::testCHeaders()
 	headers->setRadius(4);
 	headers->setCorner(CORNER_TOP_LEFT|CORNER_BOTTOM_RIGHT);
 
-	footers = new CFooters(footBox);
+	footers = new CFooters(&footBox);
 	footers->setRadius(4);
 	footers->setCorner(CORNER_TOP_RIGHT|CORNER_BOTTOM_LEFT);
 
@@ -5664,7 +5664,7 @@ void CTestMenu::loadSkin()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::loadSkin\n");
 	
-	CWIDGETLIST widgets;
+	WIDGETLIST widgets;
 	
 	//
 	_xmlDocPtr parser = NULL;
@@ -5762,7 +5762,7 @@ void CTestMenu::loadSkin()
 				// CCitems/CMenuItems
 				subnode = node->xmlChildrenNode;
 				
-				if (id == WIDGET_ITEM_HEAD)
+				if (id == WIDGETITEM_HEAD)
 				{
 					//neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(node, "locale", 0);
 					const char* title = xmlGetAttribute(node, "localename");
@@ -5804,7 +5804,7 @@ void CTestMenu::loadSkin()
 					
 					wdg->addItem(head);
 				}
-				else if (id == WIDGET_ITEM_FOOT)
+				else if (id == WIDGETITEM_FOOT)
 				{
 					unsigned int line = xmlGetSignedNumericAttribute(node, "line", 0);
 						
@@ -5835,7 +5835,7 @@ void CTestMenu::loadSkin()
 					
 					wdg->addItem(foot);
 				}
-				else if (id == WIDGET_ITEM_LISTBOX)
+				else if (id == WIDGETITEM_LISTBOX)
 				{
 					unsigned int type = xmlGetSignedNumericAttribute(node, "type", 0);
 					unsigned int scrollbar = xmlGetSignedNumericAttribute(node, "scrollbar", 0);
@@ -5890,7 +5890,7 @@ void CTestMenu::loadSkin()
 					
 					wdg->addItem(listBox);
 				}
-				else if (id == WIDGET_ITEM_WINDOW)
+				else if (id == WIDGETITEM_WINDOW)
 				{
 					unsigned int refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
 					
@@ -5956,7 +5956,7 @@ void CTestMenu::loadSkin()
 					
 					wdg->addItem(window);
 				}
-				else if (id == WIDGET_ITEM_FRAMEBOX)
+				else if (id == WIDGETITEM_FRAMEBOX)
 				{
 					CFrameBox* frameBox = new CFrameBox(x, y, dx, dy);
 					

@@ -155,6 +155,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		void SetupFonts(const char* font_file);
 		
 		// skin
+		WIDGETLIST widgets;
 		std::vector<CPlugins::plugin> skin_list;
 		//SKIN_SETTINGS s_settings;
 		
