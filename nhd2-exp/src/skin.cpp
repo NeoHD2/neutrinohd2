@@ -143,7 +143,7 @@ CMenuTarget* CNeutrinoApp::getWidget(int id)
 	
 	for (unsigned int i = 0; i < (unsigned int )widgets.size(); i++)
 	{
-		if (widgets[i]->id == id)
+		if ( (widgets[i] != NULL) && (widgets[i]->id == id) )
 		{
 			ret = widgets[i];
 			break;
