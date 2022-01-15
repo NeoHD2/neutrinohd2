@@ -476,7 +476,6 @@ void CNeutrinoApp::parseSkin()
 			wdg->id = id;
 			if (name) wdg->name = name;
 			wdg->paintMainFrame(paintframe);
-			//wdg->setColor(color);
 			wdg->setCorner(corner, radius);
 			if (savescreen) wdg->enableSaveScreen();
 			wdg->setTimeOut(timeout);
@@ -488,18 +487,18 @@ void CNeutrinoApp::parseSkin()
 			
 			while ((node = xmlGetNextOccurence(node, "widgetitem")) != NULL) 
 			{
-				char* name = xmlGetAttribute(node, (char*)"name");
+				//char* name = xmlGetAttribute(node, (char*)"name");
 				unsigned int id = xmlGetSignedNumericAttribute(node, "id", 0);
 				
-				unsigned int x = xmlGetSignedNumericAttribute(node, "posx", 0);
-				unsigned int y = xmlGetSignedNumericAttribute(node, "posy", 0);
-				unsigned int dx = xmlGetSignedNumericAttribute(node, "width", 0);
-				unsigned int dy = xmlGetSignedNumericAttribute(node, "height", 0);
+				unsigned int posx = xmlGetSignedNumericAttribute(node, "posx", 0);
+				unsigned int posy = xmlGetSignedNumericAttribute(node, "posy", 0);
+				unsigned int width = xmlGetSignedNumericAttribute(node, "width", 0);
+				unsigned int height = xmlGetSignedNumericAttribute(node, "height", 0);
 				
 				char* color = xmlGetAttribute(node, (char*)"color");
-				unsigned int gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
-				unsigned int corner = xmlGetSignedNumericAttribute(node, "corner", 0);
-				unsigned int radius = xmlGetSignedNumericAttribute(node, "radius", 0);
+				unsigned int i_gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
+				unsigned int i_corner = xmlGetSignedNumericAttribute(node, "corner", 0);
+				unsigned int i_radius = xmlGetSignedNumericAttribute(node, "radius", 0);
 				
 				// parse color
 				uint32_t finalColor = 0;
@@ -511,25 +510,24 @@ void CNeutrinoApp::parseSkin()
 				
 				if (id == WIDGETITEM_HEAD)
 				{
-					neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(node, "locale", 0);
 					const char* title = xmlGetAttribute(node, "localename");
 					unsigned int halign = xmlGetSignedNumericAttribute(node, "halign", 0);
 					const char* icon = xmlGetAttribute(node, "icon");
-					unsigned int line = xmlGetSignedNumericAttribute(node, "line", 0);
+					unsigned int h_line = xmlGetSignedNumericAttribute(node, "line", 0);
 					unsigned int paintdate = xmlGetSignedNumericAttribute(node, "paintdate", 0);
 					const char* format = xmlGetAttribute(node, "format");
 				
 					CHeaders* head = NULL;
-					head = new CHeaders(x, y, dx, dy);
+					head = new CHeaders(posx, posy, width, height);
 					
 					if (title) head->setTitle(title); //FIXME: corrupted
 					head->setHAlign(halign);
 					if (icon) head->setIcon(icon); //FIXME: corrupted
 					if(color) head->setColor(finalColor);
-					head->setGradient(gradient);
-					head->setCorner(corner);
-					head->setRadius(radius);
-					head->setHeadLine(line);
+					head->setGradient(i_gradient);
+					head->setCorner(i_corner);
+					head->setRadius(i_radius);
+					head->setHeadLine(h_line);
 					if (paintdate) head->enablePaintDate();
 					if (format) head->setFormat(format); //FIXME: corrupted
 					
@@ -555,16 +553,16 @@ void CNeutrinoApp::parseSkin()
 				}
 				else if (id == WIDGETITEM_FOOT)
 				{
-					unsigned int line = xmlGetSignedNumericAttribute(node, "line", 0);
+					unsigned int f_line = xmlGetSignedNumericAttribute(node, "line", 0);
 						
 					CFooters* foot = NULL;
-					foot = new CFooters(x, y, dx, dy);
+					foot = new CFooters(posx, posy, width, height);
 					
 					if (color) foot->setColor(finalColor);
-					foot->setGradient(gradient);
-					foot->setCorner(corner);
-					foot->setRadius(radius);
-					foot->setFootLine(line);
+					foot->setGradient(i_gradient);
+					foot->setCorner(i_corner);
+					foot->setRadius(i_radius);
+					foot->setFootLine(f_line);
 					
 					while ((subnode = xmlGetNextOccurence(subnode, "button")) != NULL) 
 					{
@@ -590,26 +588,26 @@ void CNeutrinoApp::parseSkin()
 				{
 					unsigned int type = xmlGetSignedNumericAttribute(node, "type", 0);
 					unsigned int scrollbar = xmlGetSignedNumericAttribute(node, "scrollbar", 0);
-					unsigned int paintframe = xmlGetSignedNumericAttribute(node, "paintframe", 0);
+					unsigned int l_paintframe = xmlGetSignedNumericAttribute(node, "paintframe", 0);
 					
-					ClistBox* listBox = new ClistBox(x, y, dx, dy);
+					ClistBox* listBox = new ClistBox(posx, posy, width, height);
 					listBox->setWidgetType(type);
 					listBox->paintScrollBar(scrollbar);
-					listBox->paintMainFrame(paintframe);
+					listBox->paintMainFrame(l_paintframe);
 					
 					while ((subnode = xmlGetNextOccurence(subnode, "item")) != NULL) 
 					{
-						char* name = xmlGetAttribute(subnode, (char*)"name");
+						//char* itemname = xmlGetAttribute(subnode, (char*)"name");
 						unsigned int itemid = xmlGetSignedNumericAttribute(subnode, "id", 0);
 						
-						char* localename = xmlGetAttribute(subnode, (char*)"localename");
+						char* item_localename = xmlGetAttribute(subnode, (char*)"localename");
 						char* option = xmlGetAttribute(subnode, (char*)"option");
-						char* actionkey = xmlGetAttribute(subnode, (char*)"actionkey");
-						unsigned int target = xmlGetSignedNumericAttribute(subnode, "target", 0);
+						char* item_actionkey = xmlGetAttribute(subnode, (char*)"actionkey");
+						unsigned int item_target = xmlGetSignedNumericAttribute(subnode, "target", 0);
 						char* itemIcon = xmlGetAttribute(subnode, (char*)"itemicon");
 						char* hint = xmlGetAttribute(subnode, (char*)"hint");
 						char* iconName = xmlGetAttribute(subnode, (char*)"iconname");
-						char* directkey = xmlGetAttribute(subnode, (char*)"directkey");
+						//char* directkey = xmlGetAttribute(subnode, (char*)"directkey");
 						unsigned int lines = xmlGetSignedNumericAttribute(subnode, "lines", 0);
 						
 						CMenuItem* menuItem = NULL;
@@ -617,15 +615,15 @@ void CNeutrinoApp::parseSkin()
 						std::string actionKey = "";
 						std::string itemName = "";
 						
-						if (localename) itemName = localename;
+						if (item_localename) itemName = item_localename;
 						
 						if (itemid == ITEM_TYPE_FORWARDER)
 							menuItem = new CMenuForwarder(itemName.c_str());
 						else if (itemid == ITEM_TYPE_LISTBOXITEM)
 							menuItem = new ClistBoxItem(itemName.c_str());
 						
-						if (actionkey) actionKey = actionkey;	
-						parent = convertTarget(target);
+						if (item_actionkey) actionKey = item_actionkey;	
+						parent = convertTarget(item_target);
 							
 						menuItem->setActionKey(parent, actionKey.c_str());
 						
@@ -646,34 +644,32 @@ void CNeutrinoApp::parseSkin()
 				{
 					unsigned int refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
 					
-					CWindow* window = new CWindow(x, y, dx, dy);
+					CWindow* window = new CWindow(posx, posy, width, height);
 					
-					if (color != NULL) window->setColor(finalColor);
+					if (color) window->setColor(finalColor);
 					if (refresh) window->enableRepaint();
 					
 					while ((subnode = xmlGetNextOccurence(subnode, "ccitem")) != NULL) 
 					{
-						char* name = xmlGetAttribute(subnode, (char*)"name");
+						//char* name = xmlGetAttribute(subnode, (char*)"name");
 						unsigned int id = xmlGetSignedNumericAttribute(subnode, "id", 0);
 				
-						unsigned int x = xmlGetSignedNumericAttribute(subnode, "posx", 0);
-						unsigned int y = xmlGetSignedNumericAttribute(subnode, "posy", 0);
-						unsigned int dx = xmlGetSignedNumericAttribute(subnode, "width", 0);
-						unsigned int dy = xmlGetSignedNumericAttribute(subnode, "height", 0);
+						unsigned int cc_x = xmlGetSignedNumericAttribute(subnode, "posx", 0);
+						unsigned int cc_y = xmlGetSignedNumericAttribute(subnode, "posy", 0);
+						unsigned int cc_dx = xmlGetSignedNumericAttribute(subnode, "width", 0);
+						unsigned int cc_dy = xmlGetSignedNumericAttribute(subnode, "height", 0);
 						
-						unsigned int refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
+						unsigned int cc_refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
 						
 						if (id == CC_LABEL)
 						{
 							char* text = xmlGetAttribute(subnode, (char*)"text");
-							unsigned int halign = xmlGetSignedNumericAttribute(subnode, "halign", 0);
-							neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(node, "locale", 0);
-							printf("CCITEM:LABEL NODE: locale:%d\n", locale);
+							unsigned int l_halign = xmlGetSignedNumericAttribute(subnode, "halign", 0);
 						
-							CCLabel* label = new CCLabel(x, y, dx, dy);
+							CCLabel* label = new CCLabel(cc_x, cc_y, cc_dx, cc_dy);
 							
 							if (text) label->setText(text);
-							label->setHAlign(halign);
+							label->setHAlign(l_halign);
 							
 							window->addCCItem(label);	
 						}
@@ -681,7 +677,7 @@ void CNeutrinoApp::parseSkin()
 						{
 							char* image = xmlGetAttribute(subnode, (char*)"image");
 						
-							CCImage* pic = new CCImage(x, y, dx, dy);
+							CCImage* pic = new CCImage(cc_x, cc_y, cc_dx, cc_dy);
 							
 							std::string filename = CONFIGDIR "/skin/MetrixHD/";
 							filename += image;
@@ -692,12 +688,12 @@ void CNeutrinoApp::parseSkin()
 						}
 						else if (id == CC_TIME)
 						{
-							char* format = xmlGetAttribute(subnode, (char*)"format");
+							char* cc_format = xmlGetAttribute(subnode, (char*)"format");
 						
-							CCTime* time = new CCTime(x, y, dx, dy);
+							CCTime* time = new CCTime(cc_x, cc_y, cc_dx, cc_dy);
 							
-							if (format) time->setFormat(format); //FIXME: corrupted
-							if (refresh) time->enableRepaint();
+							if (cc_format) time->setFormat(cc_format); //FIXME: corrupted
+							if (cc_refresh) time->enableRepaint();
 							
 							window->addCCItem(time);	
 						}
@@ -709,7 +705,7 @@ void CNeutrinoApp::parseSkin()
 				}
 				else if (id == WIDGETITEM_FRAMEBOX)
 				{
-					CFrameBox* frameBox = new CFrameBox(x, y, dx, dy);
+					CFrameBox* frameBox = new CFrameBox(posx, posy, width, height);
 					
 					wdg->addItem(frameBox);
 				}
@@ -722,15 +718,15 @@ void CNeutrinoApp::parseSkin()
 			
 			while ((subsearch = xmlGetNextOccurence(subsearch, "key")) != NULL) 
 			{
-				neutrino_msg_t name = (neutrino_msg_t)xmlGetSignedNumericAttribute(subsearch, "name", 16);
-				char* actionkey = xmlGetAttribute(subsearch, (char*)"actionkey");
-				unsigned int target = xmlGetSignedNumericAttribute(subsearch, "target", 0);
+				neutrino_msg_t key_name = (neutrino_msg_t)xmlGetSignedNumericAttribute(subsearch, "name", 16);
+				char* key_actionkey = xmlGetAttribute(subsearch, (char*)"actionkey");
+				unsigned int key_target = xmlGetSignedNumericAttribute(subsearch, "target", 0);
 				
-				CMenuTarget* parent = NULL;
+				CMenuTarget* key_parent = NULL;
 				
-				parent = convertTarget(target);
+				key_parent = convertTarget(key_target);
 				
-				wdg->addKey((neutrino_msg_t)name, parent, actionkey);
+				wdg->addKey((neutrino_msg_t)key_name, key_parent, key_actionkey);
 			
 				subsearch = subsearch->xmlNextNode;
 			}

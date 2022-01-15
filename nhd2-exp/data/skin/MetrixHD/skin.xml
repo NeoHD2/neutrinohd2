@@ -20,7 +20,7 @@
 		</ccitem>
 	</widgetitem>
 	<widgetitem name="window" id="0" posx="640" posy="440" width="640" height="230" color="#0f0f0f00" refresh="1">
-		<ccitem name="time" id="10" posx="640" posy="540" width="640" height="60" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		<ccitem name="time" id="10" posx="640" posy="540" width="640" height="60" refresh="1">
 		</ccitem>
 	</widgetitem>
 </widget>
@@ -47,7 +47,7 @@
 		</ccitem>
 	</widgetitem>
 	<widgetitem name="window" id="0" posx="640" posy="440" width="640" height="230" color="#0f0f0f00" refresh="1">
-		<ccitem name="time" id="10" posx="640" posy="540" width="640" height="60" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		<ccitem name="time" id="10" posx="640" posy="540" width="640" height="60" refresh="1">
 		</ccitem>
 	</widgetitem>
 </widget>
@@ -78,7 +78,7 @@
 		</ccitem>
 	</widgetitem>
 	<widgetitem name="window" id="0" posx="640" posy="440" width="640" height="230" color="#0f0f0f00" refresh="1">
-		<ccitem name="time" id="10" posx="640" posy="540" width="640" height="60" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		<ccitem name="time" id="10" posx="640" posy="540" width="640" height="60" refresh="1">
 		</ccitem>
 	</widgetitem>
 </widget>
@@ -109,7 +109,7 @@
 		</ccitem>
 	</widgetitem>
 	<widgetitem name="window" id="0" posx="640" posy="440" width="640" height="230" color="#0f0f0f00" refresh="1">
-		<ccitem name="time" id="10" posx="640" posy="540" width="640" height="60" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		<ccitem name="time" id="10" posx="640" posy="540" width="640" height="60" refresh="1">
 		</ccitem>
 	</widgetitem>
 </widget>
@@ -140,7 +140,7 @@
 		</ccitem>
 	</widgetitem>
 	<widgetitem name="window" id="0" posx="640" posy="440" width="640" height="230" color="#0f0f0f00" refresh="1">
-		<ccitem name="time" id="10" posx="640" posy="540" width="640" height="60" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		<ccitem name="time" id="10" posx="640" posy="540" width="640" height="60" refresh="1">
 		</ccitem>
 	</widgetitem>
 <key name="0x191" target="43" actionkey="features"> 
