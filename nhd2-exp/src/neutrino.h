@@ -158,7 +158,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		WIDGETLIST widgets;
 		void parseSkin();
 		WIDGETLIST getWidgets(){return widgets;};
-		CMenuTarget* getWidget(int id);
+		CWidget* getWidget(int id);
 		bool widget_exists(int id);
 		bool hasWidgets(){return widgets.size();};
 		CMenuTarget* convertTarget(const int id);

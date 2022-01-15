@@ -367,9 +367,9 @@ neutrino_locale_t CNeutrinoApp::convertLocale(const int loc)
 }
 
 //
-CMenuTarget* CNeutrinoApp::getWidget(int id)
+CWidget* CNeutrinoApp::getWidget(int id)
 {
-	CMenuTarget* ret = NULL;
+	CWidget* ret = NULL;
 	
 	for (unsigned int i = 0; i < (unsigned int )widgets.size(); i++)
 	{
