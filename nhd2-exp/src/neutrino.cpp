@@ -2966,7 +2966,7 @@ void CNeutrinoApp::RealRun(void)
 				//
 				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
 				{
-					if (widget_exists(WIDGET_MAINMENU))
+					if (hasWidgets() && (widget_exists(WIDGET_MAINMENU)))
 						getWidget(WIDGET_MAINMENU)->exec(NULL, "");
 					else
 						startSkin("mainmenu");

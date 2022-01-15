@@ -160,6 +160,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		WIDGETLIST getWidgets(){return widgets;};
 		CMenuTarget* getWidget(int id);
 		bool widget_exists(int id);
+		bool hasWidgets(){return widgets.size();};
 		CMenuTarget* convertTarget(const int id);
 		uint32_t convertColor(const char* const rgba);
 		neutrino_locale_t convertLocale(const int loc);

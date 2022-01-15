@@ -786,7 +786,7 @@ void CCText::paint()
 	CTextBox textBox(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
 
 	textBox.paintMainFrame(false);
-	//textBox.enableSaveScreen();
+	textBox.enableSaveScreen();
 	textBox.setMode(mode);
 	textBox.setFont(font);
 	textBox.setTextColor(color);

@@ -328,13 +328,12 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 	}
 	else if (mode == FRAME_TEXT)
 	{
-		CTextBox textBox;
-
-		textBox.setPosition(window.getWindowsPos().iX + 1, window.getWindowsPos().iY + 1, window.getWindowsPos().iWidth - 2, window.getWindowsPos().iHeight - 2);
+		CTextBox textBox(window.getWindowsPos().iX + 1, window.getWindowsPos().iY + 1, window.getWindowsPos().iWidth - 2, window.getWindowsPos().iHeight - 2);
 
 		textBox.paintMainFrame(false);
 		textBox.setMode(AUTO_WIDTH);
 		textBox.setFont(captionFont);
+		textBox.enableSaveScreen();
 
 		// caption
 		if(!caption.empty())
