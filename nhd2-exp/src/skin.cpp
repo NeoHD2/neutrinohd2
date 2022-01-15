@@ -474,7 +474,7 @@ void CNeutrinoApp::parseSkin()
 			wdg = new CWidget(x, y, dx, dy);
 			
 			wdg->id = id;
-			wdg->name = name;
+			if (name) wdg->name = name;
 			wdg->paintMainFrame(paintframe);
 			//wdg->setColor(color);
 			wdg->setCorner(corner, radius);
@@ -502,14 +502,16 @@ void CNeutrinoApp::parseSkin()
 				unsigned int radius = xmlGetSignedNumericAttribute(node, "radius", 0);
 				
 				// parse color
-				uint32_t finalColor = convertColor(color);
+				uint32_t finalColor = 0;
+				
+				if (color) finalColor = convertColor(color);
 				
 				// CCitems/CMenuItems
 				subnode = node->xmlChildrenNode;
 				
 				if (id == WIDGETITEM_HEAD)
 				{
-					//neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(node, "locale", 0);
+					neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(node, "locale", 0);
 					const char* title = xmlGetAttribute(node, "localename");
 					unsigned int halign = xmlGetSignedNumericAttribute(node, "halign", 0);
 					const char* icon = xmlGetAttribute(node, "icon");
@@ -520,27 +522,29 @@ void CNeutrinoApp::parseSkin()
 					CHeaders* head = NULL;
 					head = new CHeaders(x, y, dx, dy);
 					
-					head->setTitle(title); //FIXME: corrupted
+					if (title) head->setTitle(title); //FIXME: corrupted
 					head->setHAlign(halign);
-					head->setIcon(icon); //FIXME: corrupted
+					if (icon) head->setIcon(icon); //FIXME: corrupted
 					if(color) head->setColor(finalColor);
 					head->setGradient(gradient);
 					head->setCorner(corner);
 					head->setRadius(radius);
 					head->setHeadLine(line);
 					if (paintdate) head->enablePaintDate();
-					if (format) head->setFormat(format);
+					if (format) head->setFormat(format); //FIXME: corrupted
 					
 					while ((subnode = xmlGetNextOccurence(subnode, "button")) != NULL) 
 					{
 						char* button = xmlGetAttribute(subnode, (char*)"name");
 						char* localename = xmlGetAttribute(subnode, (char*)"localename");
-						//neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(subnode, "locale", 0);
+						neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(subnode, "locale", 0);
 						
 						button_label_struct btn;
-						btn.button = button;
-						btn.localename = localename;
-						btn.locale = NONEXISTANT_LOCALE;
+						btn.button = NULL;
+						if (button) btn.button = button;
+						btn.localename = NULL;
+						if (localename) btn.localename = localename;
+						btn.locale = locale;
 						
 						head->setButtons(&btn); //FIXME: corrupted
 				
@@ -565,13 +569,15 @@ void CNeutrinoApp::parseSkin()
 					while ((subnode = xmlGetNextOccurence(subnode, "button")) != NULL) 
 					{
 						char* button = xmlGetAttribute(subnode, (char*)"name");
-						//neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(subnode, "locale", 0);
+						neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(subnode, "locale", 0);
 						char* localename = xmlGetAttribute(subnode, "localename");
 						
 						button_label_struct btn;
-						btn.button = button;
-						btn.locale = NONEXISTANT_LOCALE;
+						btn.button = NULL;
+						if (button) btn.button = button;
 						btn.localename = NULL;
+						if (localename) btn.localename = localename;
+						btn.locale = locale;
 						
 						foot->setButtons(&btn); //FIXME: corrupted
 				
@@ -608,17 +614,24 @@ void CNeutrinoApp::parseSkin()
 						
 						CMenuItem* menuItem = NULL;
 						CMenuTarget* parent = NULL;
+						std::string actionKey = "";
+						std::string itemName = "";
+						
+						if (localename) itemName = localename;
 						
 						if (itemid == ITEM_TYPE_FORWARDER)
-							menuItem = new CMenuForwarder(localename);
+							menuItem = new CMenuForwarder(itemName.c_str());
 						else if (itemid == ITEM_TYPE_LISTBOXITEM)
-							menuItem = new ClistBoxItem(localename);
-							
+							menuItem = new ClistBoxItem(itemName.c_str());
+						
+						if (actionkey) actionKey = actionkey;	
 						parent = convertTarget(target);
 							
-						menuItem->setActionKey(parent, actionkey);	
-						menuItem->setHint(hint);
-						menuItem->setItemIcon(itemIcon);
+						menuItem->setActionKey(parent, actionKey.c_str());
+						
+						if (iconName) menuItem->setIconName(iconName);	
+						if (hint) menuItem->setHint(hint);
+						if (itemIcon) menuItem->setItemIcon(itemIcon);
 						if (lines) menuItem->set2lines();
 						if (option) menuItem->setOption(option);
 						
@@ -659,7 +672,7 @@ void CNeutrinoApp::parseSkin()
 						
 							CCLabel* label = new CCLabel(x, y, dx, dy);
 							
-							label->setText(text);
+							if (text) label->setText(text);
 							label->setHAlign(halign);
 							
 							window->addCCItem(label);	
@@ -667,26 +680,23 @@ void CNeutrinoApp::parseSkin()
 						else if (id == CC_IMAGE)
 						{
 							char* image = xmlGetAttribute(subnode, (char*)"image");
-							//unsigned int halign = xmlGetSignedNumericAttribute(subnode, "halign", 0);
 						
 							CCImage* pic = new CCImage(x, y, dx, dy);
 							
 							std::string filename = CONFIGDIR "/skin/MetrixHD/";
 							filename += image;
 							
-							pic->setImage(filename.c_str());
-							//pic->setHAlign(halign);
+							if (image) pic->setImage(filename.c_str());
 							
 							window->addCCItem(pic);	
 						}
 						else if (id == CC_TIME)
 						{
 							char* format = xmlGetAttribute(subnode, (char*)"format");
-							//unsigned int halign = xmlGetSignedNumericAttribute(subnode, "halign", 0);
 						
 							CCTime* time = new CCTime(x, y, dx, dy);
 							
-							//if (format) time->setFormat(format); //FIXME: corrupted
+							if (format) time->setFormat(format); //FIXME: corrupted
 							if (refresh) time->enableRepaint();
 							
 							window->addCCItem(time);	
