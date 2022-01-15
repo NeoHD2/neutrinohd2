@@ -158,8 +158,11 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		WIDGETLIST widgets;
 		void parseSkin();
 		WIDGETLIST getWidgets(){return widgets;};
-		CWidget* getWidget(int id);
+		CMenuTarget* getWidget(int id);
 		bool widget_exists(int id);
+		CMenuTarget* convertTarget(const int id);
+		uint32_t convertColor(const char* const rgba);
+		neutrino_locale_t convertLocale(const int loc);
 		
 		std::vector<CPlugins::plugin> skin_list;
 		

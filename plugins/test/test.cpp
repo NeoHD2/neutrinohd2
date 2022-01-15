@@ -7579,7 +7579,7 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CBouquetList:", true, NULL, this, "bouquetlist"));
 	
 	//		
-	mainMenu->addItem(new CMenuForwarder("SKIN", true, NULL, this, "skin"));
+	mainMenu->addItem(new CMenuForwarder("SKIN", true, NULL, CNeutrinoApp::getInstance(), "plugins"));
 	
 	mainMenu->exec(NULL, "");
 

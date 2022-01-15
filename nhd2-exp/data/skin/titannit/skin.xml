@@ -1,5 +1,13 @@
 <skin>
-<widget name="mainmenu" id="0" posx="0" posy="0" width="700" height="720" paintframe="1" color="" corner="15" radius="0" savescreen="0" timeout="0">
+<!--
+<widget name="mainsetup" id="2" posx="0" posy="0" width="700" height="720" paintframe="1" corner="0" radius="0" color="" savescreen="0" timeout="0">
+</widget>
+
+<widget name="osdsetup" id="9" posx="0" posy="0" width="700" height="720" paintframe="1" corner="0" radius="0" color="" savescreen="0" timeout="0">
+</widget>
+-->
+
+<widget name="mainmenu" id="1" posx="0" posy="0" width="700" height="720" paintframe="1" color="" corner="15" radius="0" savescreen="0" timeout="0">
 	<widgetitem name="head" id = "1" posx="30" posy="50" width="640" height="40" color="" gradient="3" corner="15" radius="8" localename="Main Menu" halign="0" icon="menu" line="0" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 	</widgetitem>
 	<widgetitem name="listbox" id="3" posx="30" posy="100" width="640" height="520" type="1" scrollbar="0">
@@ -9,7 +17,7 @@
 		</item>
 		<item name="menuforwarder" id="5" localename="Service" itemicon="hint_service" hint="Timer List" target="0" actionkey="service">
 		</item>
-		<item name="menuforwarder" id="5" localename="Main Setup" itemicon="hint_settings" hint="test" target="0" actionkey="mainsetup">
+		<item name="menuforwarder" id="5" localename="Main Setup" itemicon="hint_settings" hint="test" target="2" actionkey="mainsetup">
 		</item>
 		<item name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="0" actionkey="features">
 		</item>
@@ -25,10 +33,7 @@
 <key name="0x191" target="parent" actionkey="features"> 
 </key>
 </widget>
-<widget name="mainsetup" id="1" posx="0" posy="0" width="700" height="720" paintframe="1" corner="0" radius="0" color="" savescreen="0" timeout="0">
-</widget>
-<widget name="osdsetup" id="8" posx="0" posy="0" width="700" height="720" paintframe="1" corner="0" radius="0" color="" savescreen="0" timeout="0">
-</widget>
+
 </skin>
 
 
