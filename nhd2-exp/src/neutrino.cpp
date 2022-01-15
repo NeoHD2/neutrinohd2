@@ -5325,6 +5325,12 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 			g_Zapit->reinitChannels();
 		}
 	}
+	else if (actionKey == "mainmenu")
+	{
+		mainMenu();
+		
+		return RETURN_REPAINT;
+	}
 	else if(actionKey == "features")
 	{
 		if(parent)

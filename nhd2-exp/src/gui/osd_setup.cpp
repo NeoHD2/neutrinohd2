@@ -971,7 +971,7 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 	showMenu();
 	
-	return RETURN_EXIT;
+	return ret;
 }
 
 // skinnotifier
@@ -1087,6 +1087,6 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 	showMenu();
 	
-	return RETURN_EXIT;
+	return ret;
 }
 

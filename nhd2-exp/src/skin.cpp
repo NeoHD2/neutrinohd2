@@ -55,6 +55,15 @@
 //
 #include <gui/main_setup.h>
 #include <gui/osd_setup.h>
+#include <gui/epg_menu.h>
+#include <gui/epgplus.h>
+#include <gui/timerlist.h>
+#include <gui/streaminfo2.h>
+#include <gui/service_menu.h>
+#include <gui/mediaplayer.h>
+#include <gui/misc_setup.h>
+#include <gui/dboxinfo.h>
+#include <gui/power_menu.h>
 
 #include <system/helpers.h>
 #include <system/debug.h>
@@ -74,10 +83,21 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 	switch(id)
 	{
 		case 0:
-			//parent = CNeutrinoApp::getInstance();
+			parent = this;
 			break;
 		
 		case 1:
+			{
+				if (widget_exists(WIDGET_MAINMENU))
+				{
+					parent = getWidget(WIDGET_MAINMENU);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = this;
+				}
+			}
 			break;
 			
 		case 2:
@@ -88,8 +108,92 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 				}
 				else
 				{
-					dprintf(DEBUG_NORMAL, "id: %d not found\n", id);
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
 					parent = new CMainSettingsMenu();
+				}
+			}
+			break;
+			
+		case 3:
+			{
+				if (widget_exists(WIDGET_EPGTIMER))
+				{
+					parent = getWidget(WIDGET_EPGTIMER);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CEPGMenuHandler();
+				}
+			}
+			break;
+			
+		case 4:
+			{
+				if (widget_exists(WIDGET_SERVICE))
+				{
+					parent = getWidget(WIDGET_SERVICE);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CServiceMenu();
+				}
+			}
+			break;
+			
+		case 5:
+			{
+				if (widget_exists(WIDGET_INFORMATION))
+				{
+					parent = getWidget(WIDGET_INFORMATION);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CInfoMenu();
+				}
+			}
+			break;
+			
+		case 6:
+			{
+				if (widget_exists(WIDGET_FEATURES))
+				{
+					parent = getWidget(WIDGET_FEATURES);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = this;
+				}
+			}
+			break;
+			
+		case 7:
+			{
+				if (widget_exists(WIDGET_POWERMENU))
+				{
+					parent = getWidget(WIDGET_POWERMENU);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CPowerMenu();
+				}
+			}
+			break;
+			
+		case 8:
+			{
+				if (widget_exists(WIDGET_MEDIAPLAYER))
+				{
+					parent = getWidget(WIDGET_MEDIAPLAYER);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CMediaPlayerMenu();
 				}
 			}
 			break;
@@ -102,8 +206,36 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 				}
 				else
 				{
-					dprintf(DEBUG_NORMAL, "id: %d not found\n", id);
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
 					parent = new COSDSettings();
+				}
+			}
+			break;
+			
+		case 10:
+			{
+				if (widget_exists(WIDGET_MISCSETTINGS))
+				{
+					parent = getWidget(WIDGET_MISCSETTINGS);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CMiscSettingsMenu();
+				}
+			}
+			break;
+			
+		case 11:
+			{
+				if (widget_exists(WIDGET_NVOD))
+				{
+					parent = getWidget(WIDGET_NVOD);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = this;
 				}
 			}
 			break;
@@ -116,8 +248,106 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 				}
 				else
 				{
-					dprintf(DEBUG_NORMAL, "id: %d not found\n", id);
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
 					parent = new CSkinManager();
+				}
+			}
+			break;
+			
+		case 34:
+			{
+				if (widget_exists(WIDGET_LANGUAGESETUP))
+				{
+					parent = getWidget(WIDGET_LANGUAGESETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CLanguageSettings();
+				}
+			}
+			break;
+			
+		case 43:
+			{
+				if (widget_exists(WIDGET_PLUINGSLIST))
+				{
+					parent = getWidget(WIDGET_PLUINGSLIST);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CPluginList();
+				}
+			}
+			break;
+			
+		case 44:
+			{
+				if (widget_exists(WIDGET_EPGVIEW))
+				{
+					parent = getWidget(WIDGET_EPGVIEW);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CEPGDataHandler();
+				}
+			}
+			break;
+			
+		case 45:
+			{
+				if (widget_exists(WIDGET_EVENTLIST))
+				{
+					parent = getWidget(WIDGET_EVENTLIST);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CEventListHandler();
+				}
+			}
+			break;
+			
+		case 46:
+			{
+				if (widget_exists(WIDGET_EPGPLUS))
+				{
+					parent = getWidget(WIDGET_EPGPLUS);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CEPGplusHandler();
+				}
+			}
+			break;
+			
+		case 47:
+			{
+				if (widget_exists(WIDGET_TIMERLIST))
+				{
+					parent = getWidget(WIDGET_TIMERLIST);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CTimerList();
+				}
+			}
+			break;
+			
+		case 67:
+			{
+				if (widget_exists(WIDGET_STREAMINFO))
+				{
+					parent = getWidget(WIDGET_STREAMINFO);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CStreamInfo2Handler();
 				}
 			}
 			break;
@@ -424,6 +654,8 @@ void CNeutrinoApp::parseSkin()
 						{
 							char* text = xmlGetAttribute(subnode, (char*)"text");
 							unsigned int halign = xmlGetSignedNumericAttribute(subnode, "halign", 0);
+							neutrino_locale_t locale = (neutrino_locale_t)xmlGetSignedNumericAttribute(node, "locale", 0);
+							printf("CCITEM:LABEL NODE: locale:%d\n", locale);
 						
 							CCLabel* label = new CCLabel(x, y, dx, dy);
 							
@@ -482,15 +714,11 @@ void CNeutrinoApp::parseSkin()
 			{
 				neutrino_msg_t name = (neutrino_msg_t)xmlGetSignedNumericAttribute(subsearch, "name", 16);
 				char* actionkey = xmlGetAttribute(subsearch, (char*)"actionkey");
-				std::string target = xmlGetAttribute(subsearch, (char*)"target");
+				unsigned int target = xmlGetSignedNumericAttribute(subsearch, "target", 0);
 				
 				CMenuTarget* parent = NULL;
 				
-				if (!target.empty())
-				{
-					if (target == "parent")
-						parent = this;
-				}
+				parent = convertTarget(target);
 				
 				wdg->addKey((neutrino_msg_t)name, parent, actionkey);
 			

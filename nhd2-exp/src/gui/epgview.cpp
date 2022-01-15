@@ -218,8 +218,7 @@ void CEpgData::start()
 
 	if(textBox == NULL)
 	{
-		textBox = new CTextBox();
-		textBox->setPosition(&cTextBox);
+		textBox = new CTextBox(&cTextBox);
 	}
 }
 
