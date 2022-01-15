@@ -590,7 +590,9 @@ void CNeutrinoApp::parseSkin()
 					unsigned int scrollbar = xmlGetSignedNumericAttribute(node, "scrollbar", 0);
 					unsigned int l_paintframe = xmlGetSignedNumericAttribute(node, "paintframe", 0);
 					
-					ClistBox* listBox = new ClistBox(posx, posy, width, height);
+					ClistBox* listBox = NULL;
+					
+					listBox = new ClistBox(posx, posy, width, height);
 					listBox->setWidgetType(type);
 					listBox->paintScrollBar(scrollbar);
 					listBox->paintMainFrame(l_paintframe);
@@ -644,7 +646,9 @@ void CNeutrinoApp::parseSkin()
 				{
 					unsigned int refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
 					
-					CWindow* window = new CWindow(posx, posy, width, height);
+					CWindow* window = NULL;
+					
+					window = new CWindow(posx, posy, width, height);
 					
 					if (color) window->setColor(finalColor);
 					if (refresh) window->enableRepaint();
@@ -666,7 +670,9 @@ void CNeutrinoApp::parseSkin()
 							char* text = xmlGetAttribute(subnode, (char*)"text");
 							unsigned int l_halign = xmlGetSignedNumericAttribute(subnode, "halign", 0);
 						
-							CCLabel* label = new CCLabel(cc_x, cc_y, cc_dx, cc_dy);
+							CCLabel* label = NULL;
+							
+							label = new CCLabel(cc_x, cc_y, cc_dx, cc_dy);
 							
 							if (text) label->setText(text);
 							label->setHAlign(l_halign);
@@ -677,7 +683,9 @@ void CNeutrinoApp::parseSkin()
 						{
 							char* image = xmlGetAttribute(subnode, (char*)"image");
 						
-							CCImage* pic = new CCImage(cc_x, cc_y, cc_dx, cc_dy);
+							CCImage* pic = NULL;
+							
+							pic = new CCImage(cc_x, cc_y, cc_dx, cc_dy);
 							
 							std::string filename = CONFIGDIR "/skin/MetrixHD/";
 							filename += image;
@@ -690,7 +698,9 @@ void CNeutrinoApp::parseSkin()
 						{
 							char* cc_format = xmlGetAttribute(subnode, (char*)"format");
 						
-							CCTime* time = new CCTime(cc_x, cc_y, cc_dx, cc_dy);
+							CCTime* time = NULL;
+							
+							time = new CCTime(cc_x, cc_y, cc_dx, cc_dy);
 							
 							if (cc_format) time->setFormat(cc_format); //FIXME: corrupted
 							if (cc_refresh) time->enableRepaint();
@@ -705,7 +715,9 @@ void CNeutrinoApp::parseSkin()
 				}
 				else if (id == WIDGETITEM_FRAMEBOX)
 				{
-					CFrameBox* frameBox = new CFrameBox(posx, posy, width, height);
+					CFrameBox* frameBox = NULL;
+					
+					frameBox = new CFrameBox(posx, posy, width, height);
 					
 					wdg->addItem(frameBox);
 				}
