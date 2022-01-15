@@ -7,10 +7,10 @@
 <widget name="features" id="6" posx="0" posy="0" width="1280" height="720" gradient="0" corner="15" radius="0" savescreen="0" timeout="0">
 	<widgetitem name="window" id="0" posx="60" posy="50" width="520" height="620" color="#0f0f0f00">
 	</widgetitem>
-	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="0" paintframe="0" scrollbar="0">
-		<item name="listboxitem" id="7" localename="Timerlist" itemicon="hint_timers" hint="Timer List" target="47" actionkey="" lines="1">
+	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="1" paintframe="0" scrollbar="0">
+		<item name="menuforwarder" id="5" localename="Timerlist" itemicon="" hint="Timer List" target="47" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Plugins" itemicon="hint_plugin" hint="Plugins List" target="43" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Plugins" itemicon="" hint="Plugins List" target="43" actionkey="" lines="1">
 		</item>
 	</widgetitem>
 	<widgetitem name="window" id="0" posx="640" posy="50" width="640" height="360" color="#00195000">
@@ -28,16 +28,16 @@
 <widget name="epgtimer" id="3" posx="0" posy="0" width="1280" height="720" gradient="0" corner="15" radius="0" savescreen="0" timeout="0">
 	<widgetitem name="window" id="0" posx="60" posy="50" width="520" height="620" color="#0f0f0f00">
 	</widgetitem>
-	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="0" paintframe="0" scrollbar="0">
-		<item name="listboxitem" id="7" localename="Events List" itemicon="hint_timers" hint="Timer List" target="45" actionkey="" lines="1">
+	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="1" paintframe="0" scrollbar="0">
+		<item name="menuforwarder" id="5" localename="Events List" itemicon="" hint="Timer List" target="45" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Eventinfo" itemicon="hint_plugin" hint="Timer List" target="44" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Eventinfo" itemicon="" hint="Timer List" target="44" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="EPG Plus" itemicon="hint_service" hint="Timer List" target="46" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="EPG Plus" itemicon="" hint="Timer List" target="46" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Stream Info" itemicon="hint_settings" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="67" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Stream Info" itemicon="" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="67" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Timerlist" itemicon="hint_dboxinfo" hint="Timer List" target="47" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Timerlist" itemicon="" hint="Timer List" target="47" actionkey="" lines="1">
 		</item>
 	</widgetitem>
 	<widgetitem name="window" id="0" posx="640" posy="50" width="640" height="360" color="#00195000">
@@ -55,20 +55,20 @@
 <widget name="osdsetup" id="9" posx="0" posy="0" width="1280" height="720" gradient="0" corner="15" radius="0" savescreen="0" timeout="0">
 	<widgetitem name="window" id="0" posx="60" posy="50" width="520" height="620" color="#0f0f0f00">
 	</widgetitem>
-	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="0" paintframe="0" scrollbar="0">
-		<item name="listboxitem" id="7" localename="Skin" itemicon="hint_timers" hint="Timer List" target="30" actionkey="" lines="1">
+	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="1" paintframe="0" scrollbar="0">
+		<item name="menuforwarder" id="5" localename="Skin" itemicon="" hint="Timer List" target="30" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Themes" itemicon="hint_plugin" hint="Timer List" target="0" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Themes" itemicon="" hint="Timer List" target="0" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Menu" itemicon="hint_service" hint="Timer List" target="" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Menu" itemicon="" hint="Timer List" target="" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Infobar" itemicon="hint_settings" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="0" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Infobar" itemicon="" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="0" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="launguages" itemicon="hint_dboxinfo" hint="Timer List" target="34" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="launguages" itemicon="" hint="Timer List" target="34" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Font" itemicon="hint_shutdown" hint="Timer List" target="" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Font" itemicon="" hint="Timer List" target="" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="OSD Timing" itemicon="hint_media" hint="Timer List" target="mediaplayer" actionkey="testing" lines="1">
+		<item name="menuforwarder" id="5" localename="OSD Timing" itemicon="" hint="Timer List" target="mediaplayer" actionkey="testing" lines="1">
 		</item>
 	</widgetitem>
 	<widgetitem name="window" id="0" posx="640" posy="50" width="640" height="360" color="#00195000">
@@ -86,20 +86,20 @@
 <widget name="mainsetup" id="2" posx="0" posy="0" width="1280" height="720" gradient="0" corner="15" radius="0" savescreen="0" timeout="0">
 	<widgetitem name="window" id="0" posx="60" posy="50" width="520" height="620" color="#0f0f0f00">
 	</widgetitem>
-	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="0" paintframe="0" scrollbar="0">
-		<item name="listboxitem" id="7" localename="Audio / Video" itemicon="hint_timers" hint="Timer List" target="0" actionkey="" lines="1">
+	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="1" paintframe="0" scrollbar="0">
+		<item name="menuforwarder" id="5" localename="Audio / Video" itemicon="" hint="Timer List" target="0" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Parental" itemicon="hint_plugin" hint="Timer List" target="0" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Parental" itemicon="" hint="Timer List" target="0" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Network" itemicon="hint_service" hint="Timer List" target="" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Network" itemicon="" hint="Timer List" target="" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="OSD" itemicon="hint_settings" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="9" actionkey="mainsetup" lines="1">
+		<item name="menuforwarder" id="5" localename="OSD" itemicon="" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="9" actionkey="mainsetup" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Movieplayer" itemicon="hint_dboxinfo" hint="Timer List" target="0" actionkey="features" lines="1">
+		<item name="menuforwarder" id="5" localename="Movieplayer" itemicon="" hint="Timer List" target="0" actionkey="features" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Audioplayer" itemicon="hint_shutdown" hint="Timer List" target="" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Audioplayer" itemicon="" hint="Timer List" target="" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Diverses" itemicon="hint_media" hint="Timer List" target="mediaplayer" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Diverses" itemicon="" hint="Timer List" target="mediaplayer" actionkey="" lines="1">
 		</item>
 	</widgetitem>
 	<widgetitem name="window" id="0" posx="640" posy="50" width="640" height="360" color="#00195000">
@@ -117,20 +117,20 @@
 <widget name="mainmenu" id="1" posx="0" posy="0" width="1280" height="720" gradient="0" corner="15" radius="0" savescreen="0" timeout="0">
 	<widgetitem name="window" id="0" posx="60" posy="50" width="520" height="620" color="#0f0f0f00">
 	</widgetitem>
-	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="0" paintframe="0" scrollbar="0">
-		<item name="listboxitem" id="7" localename="EPG / Timer" itemicon="hint_timers" hint="Timer List" target="3" actionkey="" lines="1">
+	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="1" paintframe="0" scrollbar="0">
+		<item name="menuforwarder" id="5" localename="EPG / Timer" target="3" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Features" itemicon="hint_plugin" hint="Timer List" target="6" actionkey="features" lines="1">
+		<item name="menuforwarder" id="5" localename="Features" itemicon="" hint="Timer List" target="6" actionkey="features" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Service" itemicon="hint_service" hint="Timer List" target="4" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Service" itemicon="" hint="Timer List" target="4" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Main Setup" itemicon="hint_settings" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="2" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Main Setup" itemicon="" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="2" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="5" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Information" itemicon="" hint="Timer List" target="5" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Power Menu" itemicon="hint_shutdown" hint="Timer List" target="7" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Power Menu" itemicon="" hint="Timer List" target="7" actionkey="" lines="1">
 		</item>
-		<item name="listboxitem" id="7" localename="Media Player" itemicon="hint_media" hint="Timer List" target="8" actionkey="" lines="1">
+		<item name="menuforwarder" id="5" localename="Media Player" itemicon="" hint="Timer List" target="8" actionkey="" lines="1">
 		</item>
 	</widgetitem>
 	<widgetitem name="window" id="0" posx="640" posy="50" width="640" height="360" color="#00195000">
