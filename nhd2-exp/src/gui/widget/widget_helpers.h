@@ -145,6 +145,7 @@ class CCIcon : public CComponent
 
 		CCIcon(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
 		CCIcon(const char* icon, const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		virtual ~CCIcon(){};
 		
 		//
 		void setIcon(const char* icon)
@@ -174,6 +175,7 @@ class CCImage : public CComponent
 
 		CCImage(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
 		CCImage(const char* image, const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		virtual ~CCImage(){};
 		
 		//
 		void setImage(const char* image)
@@ -240,6 +242,7 @@ class CCButtons : public CComponent
 	public:
 		//
 		CCButtons(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		virtual ~CCButtons(){};
 		
 		//
 		void setButtons(const struct button_label *button_label, const int button_count = 1);
@@ -279,6 +282,8 @@ class CProgressBar : public CComponent
 		//
 		CProgressBar(int x, int y, int w, int h, int r = 40, int g = 100, int b = 70, bool inv = true);
 		CProgressBar(const CBox* psoition, int r = 40, int g = 100, int b = 70, bool inv = true);
+		
+		virtual ~CProgressBar(){};
 		
 		//
 		void paint(unsigned char pcr, bool paintBG = true);
@@ -445,7 +450,7 @@ class CCText : public CComponent
 		
 		//
 		CCText(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
-		~CCText(){};
+		virtual ~CCText(){};
 		
 		//
 		void setFont(CFont* f){font = f;};

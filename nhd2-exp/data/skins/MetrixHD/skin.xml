@@ -130,7 +130,7 @@
 	</widgetitem>
 	
 	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="1">
-		<item name="menuforwarder" id="5" localename="EPG / Timer" target="3" actionkey="">
+		<item name="menuforwarder" id="5" localename="EPG / Timer" target="3">
 		</item>
 		<item name="menuforwarder" id="5" localename="Features" target="6">
 		</item>

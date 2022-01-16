@@ -1,6 +1,6 @@
 <skin>
 
-<!-- SKIN: MetrixHD -->
+<!-- SKIN: KravenHD -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 
@@ -116,8 +116,9 @@
 </widget>
 -->
 
-<widget name="mainmenu" id="1" posx="0" posy="0" width="1280" height="720" savescreen="0" timeout="0">
+<widget name="mainmenu" id="1" posx="0" posy="0" width="1280" height="720">
 
+	<!-- bg / title / logo -->
 	<widgetitem name="window" id="0" posx="0" posy="0" width="1280" height="720" paintframe="1">
 		<!-- title -->
 		<ccitem name="label" id="2" posx="640" posy="50" width="640" height="50" text="Main Menu" halign="1">
@@ -128,26 +129,28 @@
 		</ccitem>
 	</widgetitem>
 	
-	<widgetitem name="listbox" id="3" posx="50" posy="50" width="540" height="620" type="1" paintframe="0" scrollbar="0" shadow="1">
-		<item name="menuforwarder" id="5" localename="EPG / Timer" target="3" actionkey="">
+	<!-- date / time -->
+	<widgetitem name="window" id="0" posx="640" posy="450" width="640" height="100" refresh="1">
+		<ccitem name="time" id="10" posx="640" posy="450" width="640" height="100" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		</ccitem>
+	</widgetitem>
+	
+	<!-- listbox -->
+	<widgetitem name="listbox" id="3" posx="50" posy="50" width="540" height="620" type="1" shadow="1">
+		<item name="menuforwarder" id="5" localename="EPG / Timer" target="3">
 		</item>
-		<item name="menuforwarder" id="5" localename="Features" itemicon="" hint="Timer List" target="6" actionkey="features">
+		<item name="menuforwarder" id="5" localename="Features" target="6">
 		</item>
 		<item name="menuforwarder" id="5" localename="Service" itemicon="" hint="Timer List" target="4" actionkey="">
 		</item>
-		<item name="menuforwarder" id="5" localename="Main Setup" itemicon="" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="2" actionkey="">
+		<item name="menuforwarder" id="5" localename="Main Setup" target="2">
 		</item>
-		<item name="menuforwarder" id="5" localename="Information" itemicon="" hint="Timer List" target="5" actionkey="">
+		<item name="menuforwarder" id="5" localename="Information" target="5">
 		</item>
-		<item name="menuforwarder" id="5" localename="Power Menu" itemicon="" hint="Timer List" target="7" actionkey="">
+		<item name="menuforwarder" id="5" localename="Power Menu" target="7">
 		</item>
-		<item name="menuforwarder" id="5" localename="Media Player" itemicon="" hint="Timer List" target="8" actionkey="">
+		<item name="menuforwarder" id="5" localename="Media Player" target="8">
 		</item>
-	</widgetitem>
-	
-	<widgetitem name="window" id="0" posx="640" posy="450" width="640" height="100" paintframe="0" refresh="1">
-		<ccitem name="time" id="10" posx="640" posy="450" width="640" height="100" refresh="1" format="%d.%m.%Y %H:%M:%S">
-		</ccitem>
 	</widgetitem>
 	
 <key name="0x191" target="43" actionkey="features"> 

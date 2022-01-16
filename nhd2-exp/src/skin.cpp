@@ -505,7 +505,7 @@ void CNeutrinoApp::parseSkin()
 			wdg = new CWidget(x, y, dx, dy);
 			
 			wdg->id = id;
-			if (name) wdg->name = name;
+			if (name != NULL) wdg->name = name;
 			wdg->paintMainFrame(paintframe);
 			wdg->setColor(wColor);
 			wdg->setGradient(gradient);
@@ -573,17 +573,18 @@ void CNeutrinoApp::parseSkin()
 					CHeaders* head = NULL;
 					head = new CHeaders(posx, posy, width, height, title, icon);
 					
-					//if (title != NULL) head->setTitle(title); //FIXME: corrupted
+					//if (title != NULL) head->setTitle(title);
 					head->setHAlign(halign);
-					//if (icon != NULL) head->setIcon(icon); //FIXME: corrupted
+					//if (icon != NULL) head->setIcon(icon);
 					if(i_color != NULL) head->setColor(finalColor);
 					head->setGradient(i_gradient);
 					head->setCorner(i_corner);
 					head->setRadius(i_radius);
 					head->setHeadLine(h_line);
 					if (paintdate) head->enablePaintDate();
-					if (format != NULL) head->setFormat(format); //FIXME: corrupted
+					if (format != NULL) head->setFormat(format);
 					
+					//
 					head_node = node->xmlChildrenNode;
 					
 					while ((head_node = xmlGetNextOccurence(head_node, "button")) != NULL) 
@@ -594,6 +595,7 @@ void CNeutrinoApp::parseSkin()
 						button = xmlGetAttribute(head_node, (char*)"name");
 						localename = xmlGetAttribute(head_node, (char*)"localename");
 						
+						/*
 						button_label_struct btn;
 						btn.button = NULL;
 						if (button != NULL) btn.button = button;
@@ -602,6 +604,7 @@ void CNeutrinoApp::parseSkin()
 						btn.locale = NONEXISTANT_LOCALE;
 						
 						head->setButtons(&btn); //FIXME: corrupted
+						*/
 				
 						head_node = head_node->xmlNextNode;
 					}
@@ -632,6 +635,7 @@ void CNeutrinoApp::parseSkin()
 						button = xmlGetAttribute(foot_node, (char*)"name");
 						localename = xmlGetAttribute(foot_node, (char*)"localename");
 						
+						/*
 						button_label_struct btn;
 						btn.button = NULL;
 						if (button != NULL) btn.button = button;
@@ -640,6 +644,7 @@ void CNeutrinoApp::parseSkin()
 						btn.locale = NONEXISTANT_LOCALE;
 						
 						foot->setButtons(&btn); //FIXME: corrupted
+						*/
 				
 						foot_node = foot_node->xmlNextNode;
 					}

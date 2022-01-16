@@ -4,11 +4,12 @@
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 
-<widget name="mainmenu" id="1" posx="30" posy="50" width="640" height="640" paintframe="0" color="" corner="15" radius="0" savescreen="0" timeout="0">
+<widget name="mainmenu" id="1" posx="30" posy="50" width="640" height="640">
 	<widgetitem name="head" id = "1" posx="30" posy="50" width="640" height="40" localename="Main Menu" halign="0" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 	</widgetitem>
+	
 	<widgetitem name="listbox" id="3" posx="30" posy="90" width="640" height="560" paintframe="1" type="0" scrollbar="1">
-		<item name="menuforwarder" id="5" localename="EPG / Timer" itemicon="hint_timers" hint="Timer List" target="3" actionkey="">
+		<item name="menuforwarder" id="5" localename="EPG / Timer" target="3">
 		</item>
 		<item name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" iconname="red" target="6">
 		</item>
@@ -23,10 +24,12 @@
 		<item name="menuforwarder" id="5" localename="Media Player" itemicon="hint_media" hint="Timer List" target="8" actionkey="features">
 		</item>
 	</widgetitem>
+	
 	<widgetitem name="foot" id="2" posx="30" posy="630" width="640" height="40">
 		<button name="menu" localename="">
 		</button>
 	</widgetitem>
+	
 <key name="0x191" target="parent" actionkey="features"> 
 </key>
 </widget>
