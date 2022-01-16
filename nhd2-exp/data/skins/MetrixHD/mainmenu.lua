@@ -16,7 +16,7 @@ function main()
 	box.iHeight = fb:getScreenHeight()
 	
 	local config = neutrino.CConfigFile('\t')
-	config:loadConfig(neutrino.CONFIGDIR .. "/skin/MetrixHD/MetrixHD.config")
+	config:loadConfig(neutrino.CONFIGDIR .. "/skins/MetrixHD/MetrixHD.config")
 	
 	local m = neutrino.CWidget(box)
 	m.id = neutrino.WIDGET_MAINMENU
@@ -37,8 +37,8 @@ function main()
 	w2:addCCItem(title)
 	
 	-- logo
-	--logo = neutrino.CCImage(neutrino.CONFIGDIR .. "/skin/MetrixHD/picon_default.png")
-	logo = neutrino.CCImage(neutrino.CONFIGDIR .. "/skin/MetrixHD/buttons/menu_epg_refresh.png")
+	--logo = neutrino.CCImage(neutrino.CONFIGDIR .. "/skins/MetrixHD/picon_default.png")
+	logo = neutrino.CCImage(neutrino.CONFIGDIR .. "/skins/MetrixHD/buttons/menu_epg_refresh.png")
 	logo:setPosition(box.iX + box.iWidth/2, box.iY + 50 + 50 + 20, box.iWidth/2, 240)
 	
 	w2:addCCItem(logo)
@@ -76,13 +76,13 @@ function main()
 	
 
 	item1 = neutrino.ClistBoxItem("EPG / Timer")
-	item1:setItemIcon(neutrino.CONFIGDIR .. "/skin/MetrixHD/buttons/timerepg.png")
+	item1:setItemIcon(neutrino.CONFIGDIR .. "/skins/MetrixHD/buttons/timerepg.png")
 	item1:setHint(neutrino.LOCALE_HELPTEXT_TIMERLIST)
 	item1:set2lines()
 	item1:setActionKey(None, "red")
 
 	item2 = neutrino.ClistBoxItem(neutrino.LOCALE_MAINMENU_FEATURES)
-	item2:setItemIcon(neutrino.CONFIGDIR .. "/skin/MetrixHD/buttons/features.png")
+	item2:setItemIcon(neutrino.CONFIGDIR .. "/skins/MetrixHD/buttons/features.png")
 	item2:setHint(neutrino.LOCALE_HELPTEXT_FEATURES)
 	item2:setActionKey(None, "blue")
 	item2:set2lines()
@@ -94,25 +94,25 @@ function main()
 	item3:set2lines()
 
 	item4 = neutrino.ClistBoxItem(neutrino.LOCALE_MAINMENU_SETTINGS)
-	item4:setItemIcon(neutrino.CONFIGDIR .. "/skin/MetrixHD/buttons/mainsetup.png")
+	item4:setItemIcon(neutrino.CONFIGDIR .. "/skins/MetrixHD/buttons/mainsetup.png")
 	item4:setHint(neutrino.LOCALE_HELPTEXT_MAINSETTINGS)
 	item4:setActionKey(None, "mainsetup");
 	item4:set2lines()
 
 	item5 = neutrino.ClistBoxItem("Information")
-	item5:setItemIcon(neutrino.CONFIGDIR .. "/skin/MetrixHD/buttons/information.png")
+	item5:setItemIcon(neutrino.CONFIGDIR .. "/skins/MetrixHD/buttons/information.png")
 	item5:setHint(neutrino.LOCALE_HELPTEXT_BOXINFO)
 	item5:set2lines()
 	item5:setActionKey(None, "information")
 
 	item6 = neutrino.ClistBoxItem(neutrino.LOCALE_MAINMENU_POWERMENU)
-	item6:setItemIcon(neutrino.CONFIGDIR .. "/skin/MetrixHD/buttons/power.png")
+	item6:setItemIcon(neutrino.CONFIGDIR .. "/skins/MetrixHD/buttons/power.png")
 	item6:setHint(neutrino.LOCALE_HELPTEXT_POWERMENU)
 	item6:setActionKey(None, "powermenu");
 	item6:set2lines()
 	
 	item7 = neutrino.ClistBoxItem(neutrino.LOCALE_MAINMENU_MEDIAPLAYER)
-	item7:setItemIcon(neutrino.CONFIGDIR .. "/skin/MetrixHD/buttons/mediaplayer.png")
+	item7:setItemIcon(neutrino.CONFIGDIR .. "/skins/MetrixHD/buttons/mediaplayer.png")
 	item7:setHint(neutrino.LOCALE_HELPTEXT_POWERMENU)
 	item7:setActionKey(None, "mediaplayer");
 	item7:set2lines()

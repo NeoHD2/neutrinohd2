@@ -18,7 +18,7 @@ function main()
 	w:setGradient(neutrino.DARK2LIGHT2DARK)
 
 	-- bg
-	bg = neutrino.CCImage(neutrino.CONFIGDIR .. "/skin/KravenHD/background/bg_02.png")
+	bg = neutrino.CCImage(neutrino.CONFIGDIR .. "/skins/KravenHD/background/bg_02.png")
 	bg:setPosition(box)
 	
 	--w:addCCItem(bg)
@@ -32,7 +32,7 @@ function main()
 	w:addCCItem(title)
 	
 	-- logo
-	logo = neutrino.CCImage(neutrino.CONFIGDIR .. "/skin/KravenHD/background/logo.png")
+	logo = neutrino.CCImage(neutrino.CONFIGDIR .. "/skins/KravenHD/background/logo.png")
 	logo:setPosition(box.iX + box.iWidth/2, box.iY + 50 + 100, box.iWidth/2, 300)
 	
 	w:addCCItem(logo)

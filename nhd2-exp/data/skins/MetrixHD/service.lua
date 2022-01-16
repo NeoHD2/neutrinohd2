@@ -32,7 +32,7 @@ function main()
 	w2:addCCItem(title)
 	
 	-- logo
-	logo = neutrino.CCImage(neutrino.CONFIGDIR .. "/skin/MetrixHD/picon_default.png")
+	logo = neutrino.CCImage(neutrino.CONFIGDIR .. "/skins/MetrixHD/picon_default.png")
 	logo:setPosition(box.iX + box.iWidth/2, box.iY + 50 + 50 + 20, box.iWidth/2, 240)
 	
 	w2:addCCItem(logo)
