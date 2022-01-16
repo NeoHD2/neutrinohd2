@@ -115,6 +115,19 @@ CLocaleManager::loadLocale_ret_t CLocaleManager::loadLocale(const char * const l
 
 	initialize_iso639_map();
 	
+	//FIXME:
+	// initlocale
+	setlocale(LC_ALL, "");
+	if ( bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale") == NULL)
+		printf("cant bind localedir\n");
+	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
+	textdomain(PACKAGE_NAME);
+	
+	// set language
+	setenv("LANG", "de_DE", 1);
+	setenv("LANGUAGE", "de_DE", 1);	
+	setlocale(LC_ALL, "de_DE");
+	
 	//
 	for (i = 0; i < 2; i++)
 	{

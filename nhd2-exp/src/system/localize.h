@@ -41,6 +41,10 @@
 
 #include <map>
 
+#include <libintl.h>
+
+
+#define _(string) gettext(string)
 
 void initialize_iso639_map(void);
 const char * getISO639Description(const char * const iso);
