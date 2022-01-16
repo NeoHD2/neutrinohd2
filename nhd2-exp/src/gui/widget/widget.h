@@ -187,6 +187,7 @@ class CWidget : public CMenuTarget
 		// mainframe		
 		bool paintframe;
 		fb_pixel_t backgroundColor;
+		int gradient;
 		int radius;
 		int corner;
 		
@@ -200,17 +201,15 @@ class CWidget : public CMenuTarget
 		CWidget(CBox *position);
 		virtual ~CWidget();
 
-		//virtual void initFrames();
+		//
 		virtual void addItem(CWidgetItem *widgetItem, const bool defaultselected = false);
 		bool hasItem();
 		int getItemsCount();
 		virtual void clearItems(void);
-		//virtual void paintItems();
 		
 		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
 		
 		//
-		//virtual void paint();
 		virtual void hide();
 		virtual int exec(CMenuTarget *parent, const std::string &actionKey);
 
@@ -223,6 +222,7 @@ class CWidget : public CMenuTarget
 
 		//
 		void setColor(fb_pixel_t col) {backgroundColor = col;};
+		void setGradient(int gra){gradient = gra;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
 		void paintMainFrame(bool p){paintframe = p;};
 		void enableSaveScreen();

@@ -102,7 +102,7 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 						saveFile((char*)((std::string)USERDIR + nameInput->getString().c_str() + FILE_PREFIX).c_str());
 					else 
 					{
-						std::string skinConfig = CONFIGDIR "/skin/";
+						std::string skinConfig = CONFIGDIR "/skins/";
 						skinConfig += g_settings.preferred_skin.c_str();
 						skinConfig += "/";
 						skinConfig += nameInput->getString().c_str();

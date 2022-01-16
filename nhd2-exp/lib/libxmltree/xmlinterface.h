@@ -38,11 +38,12 @@
 
 #include <string>
 
+
 #ifdef USE_LIBXML
 #include <libxml/parser.h>
 #define xmlNextNode next
-inline char*      xmlGetAttribute     (xmlNodePtr cur, const char * s) { return (char *)xmlGetProp(cur, (const xmlChar *)s); };
-inline char*      xmlGetName          (xmlNodePtr cur)                 { return (char *)(cur->name); };
+inline char* xmlGetAttribute     (xmlNodePtr cur, const char * s) { return (char *)xmlGetProp(cur, (const xmlChar *)s); };
+inline char* xmlGetName          (xmlNodePtr cur)                 { return (char *)(cur->name); };
 
 #else  /* use libxmltree */
 #include "xmltree.h"

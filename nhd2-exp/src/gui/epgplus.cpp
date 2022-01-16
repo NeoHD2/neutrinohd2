@@ -116,7 +116,7 @@ void EpgPlus::Header::init ()
 
 void EpgPlus::Header::paint()
 {
-	this->frameBuffer->paintBoxRel(this->x, this->y, this->width, this->font->getHeight() + 10, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
+	this->frameBuffer->paintBoxRel(this->x, this->y, this->width, this->font->getHeight() + 10, COL_MENUHEAD_PLUS_0, g_settings.Head_radius, g_settings.Head_corner, g_settings.Head_gradient);
 	
 	// paint time/date
 	int timestr_len = 0;
@@ -538,7 +538,7 @@ struct button_label buttonLabels[] = {
 void EpgPlus::Footer::paintButtons(button_label * _buttonLabels, int numberOfButtons)
 {
 	// paint foot box
-	this->frameBuffer->paintBoxRel(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 14), this->width, this->fontButtons->getHeight() + 10, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
+	this->frameBuffer->paintBoxRel(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 14), this->width, this->fontButtons->getHeight() + 10, COL_MENUHEAD_PLUS_0, g_settings.Foot_radius, g_settings.Foot_corner, g_settings.Foot_gradient);
 	
 	buttons.paintFootButtons(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 14), this->width, this->fontButtons->getHeight() + 14, numberOfButtons, _buttonLabels);
 }

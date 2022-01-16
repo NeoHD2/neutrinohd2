@@ -1,0 +1,167 @@
+<skin>
+
+<!-- SKIN: MetrixHD -->
+<!-- AUTHOR: mohousch -->
+<!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+
+<widget name="features" id="6" posx="0" posy="0" width="1280" height="720">
+	<widgetitem name="window" id="0" posx="60" posy="50" width="520" height="620" paintframe="1" color="#0f0f0f00">
+	</widgetitem>
+	
+	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="1">
+		<item name="menuforwarder" id="5" localename="Timerlist" itemicon="" hint="Timer List" target="47" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Plugins" itemicon="" hint="Plugins List" target="43" actionkey="">
+		</item>
+	</widgetitem>
+	
+	<widgetitem name="window" id="0" posx="640" posy="50" width="590" height="360" paintframe="1" color="#00195000">
+		<ccitem name="label" id="2" posx="640" posy="50" width="590" height="60" locale="LOCALE_EPGPLUS_NEXT_BOUQUET" text="Features" halign="1">
+		</ccitem>
+		<ccitem name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png">
+		</ccitem>
+	</widgetitem>
+	
+	<widgetitem name="window" id="0" posx="640" posy="440" width="590" height="230" paintframe="1" color="#0f0f0f00" refresh="1">
+		<ccitem name="time" id="10" posx="640" posy="540" width="590" height="60" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		</ccitem>
+	</widgetitem>
+</widget>
+
+<widget name="epgtimer" id="3" posx="0" posy="0" width="1280" height="720">
+	<widgetitem name="window" id="0" posx="60" posy="50" width="520" height="620" paintframe="1" color="#0f0f0f00">
+	</widgetitem>
+	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="1">
+		<item name="menuforwarder" id="5" localename="Events List" itemicon="" hint="Timer List" target="45" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Eventinfo" itemicon="" hint="Timer List" target="44" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="EPG Plus" itemicon="" hint="Timer List" target="46" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Stream Info" itemicon="" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="67" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Timerlist" itemicon="" hint="Timer List" target="47" actionkey="">
+		</item>
+	</widgetitem>
+	<widgetitem name="window" id="0" posx="640" posy="50" width="590" height="360" paintframe="1" color="#00195000">
+		<ccitem name="label" id="2" posx="640" posy="50" width="590" height="60" locale="LOCALE_EPGPLUS_NEXT_BOUQUET" text="EPG / Timer" halign="1">
+		</ccitem>
+		<ccitem name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png">
+		</ccitem>
+	</widgetitem>
+	<widgetitem name="window" id="0" posx="640" posy="440" width="590" height="230" paintframe="1" color="#0f0f0f00" refresh="1">
+		<ccitem name="time" id="10" posx="640" posy="540" width="590" height="60" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		</ccitem>
+	</widgetitem>
+</widget>
+
+<widget name="osdsetup" id="9" posx="0" posy="0" width="1280" height="720">
+	<widgetitem name="window" id="0" posx="60" posy="50" width="520" height="620" paintframe="1" color="#0f0f0f00">
+	</widgetitem>
+	
+	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="1">
+		<item name="menuforwarder" id="5" localename="Skin" itemicon="" hint="Timer List" target="30" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Themes" itemicon="" hint="Timer List" target="0" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Menu" itemicon="" hint="Timer List" target="" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Infobar" itemicon="" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="0" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="launguages" itemicon="" hint="Timer List" target="34" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Font" itemicon="" hint="Timer List" target="" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="OSD Timing" itemicon="" hint="Timer List" target="mediaplayer" actionkey="testing">
+		</item>
+	</widgetitem>
+	
+	<widgetitem name="window" id="0" posx="640" posy="50" width="590" height="360" paintframe="1" color="#00195000">
+		<ccitem name="label" id="2" posx="640" posy="50" width="590" height="60" text="OSD Setup" halign="1">
+		</ccitem>
+		<ccitem name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png">
+		</ccitem>
+	</widgetitem>
+	
+	<widgetitem name="window" id="0" posx="640" posy="440" width="590" height="230" paintframe="1" color="#0f0f0f00" refresh="1">
+		<ccitem name="time" id="10" posx="640" posy="540" width="590" height="60" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		</ccitem>
+	</widgetitem>
+	
+</widget>
+
+<widget name="mainsetup" id="2" posx="0" posy="0" width="1280" height="720">
+	<widgetitem name="window" id="0" posx="60" posy="50" width="520" height="620" paintframe="1" color="#0f0f0f00">
+	</widgetitem>
+	
+	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="1">
+		<item name="menuforwarder" id="5" localename="Audio / Video" itemicon="" hint="Timer List" target="0" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Parental" itemicon="" hint="Timer List" target="0" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Network" itemicon="" hint="Timer List" target="" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="OSD" itemicon="" hint="LOCALE_HELPTEXT_MAINSETTINGS" target="9" actionkey="mainsetup">
+		</item>
+		<item name="menuforwarder" id="5" localename="Movieplayer" itemicon="" hint="Timer List" target="0" actionkey="features">
+		</item>
+		<item name="menuforwarder" id="5" localename="Audioplayer" itemicon="" hint="Timer List" target="" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Diverses" itemicon="" hint="Timer List" target="mediaplayer" actionkey="">
+		</item>
+	</widgetitem>
+	
+	<widgetitem name="window" id="0" posx="640" posy="50" width="590" height="360" paintframe="1" color="#00195000">
+		<ccitem name="label" id="2" posx="640" posy="50" width="590" height="60" text="Main Setup" halign="1">
+		</ccitem>
+		<ccitem name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png">
+		</ccitem>
+	</widgetitem>
+	
+	<widgetitem name="window" id="0" posx="640" posy="440" width="590" height="230" paintframe="1" color="#0f0f0f00" refresh="1">
+		<ccitem name="time" id="10" posx="640" posy="540" width="590" height="60" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		</ccitem>
+	</widgetitem>
+	
+</widget>
+
+<widget name="mainmenu" id="1" posx="0" posy="0" width="1280" height="720">
+	<widgetitem name="window" id="0" posx="60" posy="50" width="520" height="620" paintframe="1" color="#0f0f0f00">
+	</widgetitem>
+	
+	<widgetitem name="listbox" id="3" posx="50" posy="60" width="540" height="620" type="1">
+		<item name="menuforwarder" id="5" localename="EPG / Timer" target="3" actionkey="">
+		</item>
+		<item name="menuforwarder" id="5" localename="Features" target="6">
+		</item>
+		<item name="menuforwarder" id="5" localename="Service" target="4">
+		</item>
+		<item name="menuforwarder" id="5" localename="Main Setup" target="2">
+		</item>
+		<item name="menuforwarder" id="5" localename="Information" target="5">
+		</item>
+		<item name="menuforwarder" id="5" localename="Power Menu" target="7">
+		</item>
+		<item name="menuforwarder" id="5" localename="Media Player" target="8">
+		</item>
+	</widgetitem>
+	
+	<widgetitem name="window" id="0" posx="640" posy="50" width="590" height="360" paintframe="1" color="#00195000">
+		<ccitem name="label" id="2" posx="640" posy="50" width="590" height="60" text="Main Menu" halign="1">
+		</ccitem>
+		<ccitem name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png">
+		</ccitem>
+	</widgetitem>
+	
+	<widgetitem name="window" id="0" posx="640" posy="440" width="590" height="230" paintframe="1" color="#0f0f0f00" refresh="1">
+		<ccitem name="time" id="10" posx="640" posy="540" width="590" height="60" refresh="1" format="%d.%m.%Y %H:%M:%S">
+		</ccitem>
+	</widgetitem>
+	
+<key name="0x191" target="43" actionkey="features"> 
+</key>
+</widget>
+
+</skin>
+
+

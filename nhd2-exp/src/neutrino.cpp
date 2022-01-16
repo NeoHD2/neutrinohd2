@@ -5291,7 +5291,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 			if (!g_settings.use_default_skin)
 			{
 				// fetch skin config file
-				std::string skinConfig = CONFIGDIR "/skin/";
+				std::string skinConfig = CONFIGDIR "/skins/";
 				skinConfig += g_settings.preferred_skin.c_str();
 				skinConfig += "/";
 				skinConfig += g_settings.preferred_skin.c_str();
@@ -5309,7 +5309,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	{
 		if (MessageBox(LOCALE_MESSAGEBOX_INFO, "load default skin configuration!", mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
-			std::string skinDefaultConfigFile = CONFIGDIR "/skin/";
+			std::string skinDefaultConfigFile = CONFIGDIR "/skins/";
 			skinDefaultConfigFile += g_settings.preferred_skin.c_str();
 			skinDefaultConfigFile += "/";
 			skinDefaultConfigFile += "default.config";

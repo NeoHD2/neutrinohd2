@@ -901,7 +901,7 @@ void CSkinManager::showMenu()
 	
 	skinMenu->addItem(item);
 	
-	std::string skinPath = CONFIGDIR "/skin";
+	std::string skinPath = CONFIGDIR "/skins";
 	
 	struct dirent **namelist;
 	int i = 0;
@@ -1005,7 +1005,7 @@ void CSkinSettings::showMenu()
 	skinSettings->enablePaintDate();
 	
 	// load config files
-	std::string skinPath = CONFIGDIR "/skin/";
+	std::string skinPath = CONFIGDIR "/skins/";
 	skinPath += g_settings.preferred_skin.c_str();
 	
 	struct dirent **namelist;
@@ -1067,7 +1067,7 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		if (MessageBox(LOCALE_MESSAGEBOX_INFO, "Skin Style selection", mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			//
-			std::string skinConfigFile = CONFIGDIR "/skin/";
+			std::string skinConfigFile = CONFIGDIR "/skins/";
 			skinConfigFile += g_settings.preferred_skin.c_str();
 			skinConfigFile += "/";
 			skinConfigFile += actionKey.c_str();
@@ -1075,7 +1075,7 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 			CNeutrinoApp::getInstance()->readSkinConfig(skinConfigFile.c_str());
 			
 			//
-			std::string skinConfig = CONFIGDIR "/skin/";
+			std::string skinConfig = CONFIGDIR "/skins/";
 			skinConfig += g_settings.preferred_skin.c_str();
 			skinConfig += "/";
 			skinConfig += g_settings.preferred_skin.c_str();

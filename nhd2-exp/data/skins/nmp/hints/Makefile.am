@@ -1,4 +1,4 @@
-installdir = $(CONFIGDIR)/skin/nmp/hints
+installdir = $(CONFIGDIR)/skins/nmp/hints
 
 install_DATA = \
 	hint_a_pic.png \

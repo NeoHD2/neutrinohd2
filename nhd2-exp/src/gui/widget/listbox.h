@@ -44,7 +44,7 @@ extern CLocaleManager		*g_Locale;
 // item type
 enum 
 {
-	ITEM_TYPE_OPTION_CHOOSER,
+	ITEM_TYPE_OPTION_CHOOSER = 0,
 	ITEM_TYPE_OPTION_NUMBER_CHOOSER,
 	ITEM_TYPE_OPTION_STRING_CHOOSER,
 	ITEM_TYPE_OPTION_LANGUAGE_CHOOSER,
@@ -145,6 +145,8 @@ class CMenuItem
 
 		//
 		int itemType;
+		
+		//
 		int widgetType;
 		//int widgetMode;
 		bool isPlugin;
@@ -501,7 +503,9 @@ class ClistBoxItem : public CMenuItem
 		int getWidth(void) const;
 
 		int exec(CMenuTarget* parent);
-		bool isSelectable(void) const {return active;}
+		bool isSelectable(void) const {return active;};
+		
+		void setName(const char * const name){textString = name;};
 };
 
 // CPlugnItem
@@ -527,7 +531,9 @@ class CPluginItem : public CMenuItem
 		int getWidth(void) const;
 
 		int exec(CMenuTarget* parent);
-		bool isSelectable(void) const {return active;}
+		bool isSelectable(void) const {return active;};
+		
+		void setName(const char * const name){textString = name;};
 };
 
 //

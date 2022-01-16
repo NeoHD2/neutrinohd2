@@ -1,6 +1,6 @@
-SUBDIRS = hints
+SUBDIRS = background
 
-installdir = $(CONFIGDIR)/skin/nmp
+installdir = $(CONFIGDIR)/skins/KravenHD
 
 install_DATA = \
 	mainsetup.lua \
@@ -9,12 +9,13 @@ install_DATA = \
 	red.lua \
 	information.lua \
 	mediaplayer.lua \
+	powermenu.lua \
 	service.lua \
 	mainmenu.lua \
 	miscsetup.lua \
 	prev.png \
-	nmp.config default.config \
-	ni.config
+	KravenHD.config default.config \
+	skin.xml
 	
 
 

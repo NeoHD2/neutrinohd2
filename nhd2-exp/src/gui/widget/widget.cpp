@@ -56,6 +56,7 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 	//
 	paintframe = false;
 	backgroundColor = COL_MENUCONTENT_PLUS_0;
+	gradient = NOGRADIENT;
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
 
@@ -80,6 +81,7 @@ CWidget::CWidget(CBox *position)
 	//
 	paintframe = false;
 	backgroundColor = COL_MENUCONTENT_PLUS_0;
+	gradient = NOGRADIENT;
 	radius = RADIUS_MID;
 	corner = CORNER_ALL;
 
@@ -158,7 +160,7 @@ void CWidget::paint()
 
 	// paint mainFrame
 	if (paintframe)
-		frameBuffer->paintBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight, backgroundColor, radius, corner);
+		frameBuffer->paintBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight, backgroundColor, radius, corner, gradient);
 
 	// paint items
 	paintItems();

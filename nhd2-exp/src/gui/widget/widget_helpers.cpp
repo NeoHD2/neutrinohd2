@@ -955,7 +955,7 @@ void CCTime::paint()
 	}
 	
 	//
-	std::string timestr = getNowTimeStr(format);
+	std::string timestr = getNowTimeStr(format.c_str());
 		
 	int timestr_len = font->getRenderWidth(timestr.c_str(), true); // UTF-8
 	
@@ -975,7 +975,7 @@ void CCTime::refresh()
 	}
 	
 	//
-	std::string timestr = getNowTimeStr(format);
+	std::string timestr = getNowTimeStr(format.c_str());
 		
 	int timestr_len = font->getRenderWidth(timestr.c_str(), true); // UTF-8
 	
@@ -1165,8 +1165,8 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 	itemBox.iWidth = dx;
 	itemBox.iHeight = dy;
 
-	htitle = title;
-	hicon = icon;
+	htitle = title? title : "";
+	hicon = icon? icon : "";
 
 	bgcolor = COL_MENUHEAD_PLUS_0;
 	radius = g_settings.Head_radius;
@@ -1192,8 +1192,8 @@ CHeaders::CHeaders(CBox* position, const char * const title, const char * const 
 	
 	itemBox = *position;
 
-	htitle = title;
-	hicon = icon;
+	htitle = title? title : "";
+	hicon = icon? icon : "";
 
 	bgcolor = COL_MENUHEAD_PLUS_0;
 	radius = g_settings.Head_radius;
@@ -1228,7 +1228,7 @@ void CHeaders::setButtons(const struct button_label* _hbutton_labels, const int 
 
 void CHeaders::paint()
 {
-	dprintf(DEBUG_INFO, "CHeaders::paint:\n");
+	dprintf(DEBUG_INFO, "CHeaders::paint: (%s) (%s)\n", htitle.c_str(), hicon.c_str());
 	
 	// box
 	CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
@@ -1240,9 +1240,9 @@ void CHeaders::paint()
 	int i_w = 0;
 	int i_h = 0;
 
-	if(hicon != NULL)
+	if(!hicon.empty())
 	{
-		CFrameBuffer::getInstance()->getIconSize(hicon, &i_w, &i_h);
+		CFrameBuffer::getInstance()->getIconSize(hicon.c_str(), &i_w, &i_h);
 
 		// scale icon
 		if(i_h >= itemBox.iHeight)
@@ -1251,7 +1251,7 @@ void CHeaders::paint()
 			i_w = i_h*1.67;
 		}
 
-		CFrameBuffer::getInstance()->paintIcon(hicon, itemBox.iX + BORDER_LEFT, itemBox.iY + (itemBox.iHeight - i_h)/2, 0, true, i_w, i_h);
+		CFrameBuffer::getInstance()->paintIcon(hicon.c_str(), itemBox.iX + BORDER_LEFT, itemBox.iY + (itemBox.iHeight - i_h)/2, 0, true, i_w, i_h);
 	}
 
 	// right buttons
@@ -1287,14 +1287,14 @@ void CHeaders::paint()
 	int timestr_len = 0;
 	if(paintDate)
 	{
-		std::string timestr = getNowTimeStr(format);
+		std::string timestr = getNowTimeStr(format.c_str());
 		
 		timestr_len = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(timestr.c_str(), true); // UTF-8
 	
 		timer = new CCTime();
 		timer->setPosition(startx - timestr_len, itemBox.iY, timestr_len, itemBox.iHeight);
 		timer->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
-		timer->setFormat(format);
+		timer->setFormat(format.c_str());
 		timer->enableRepaint();
 		timer->paint();
 	}

@@ -1,6 +1,4 @@
-SUBDIRS = background
-
-installdir = $(CONFIGDIR)/skin/KravenHD
+installdir = $(CONFIGDIR)/skins/titan
 
 install_DATA = \
 	mainsetup.lua \
@@ -14,7 +12,8 @@ install_DATA = \
 	mainmenu.lua \
 	miscsetup.lua \
 	prev.png \
-	KravenHD.config default.config
+	titan.config default.config \
+	skin.xml
 	
 
 

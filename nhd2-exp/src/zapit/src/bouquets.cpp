@@ -437,6 +437,8 @@ void CBouquetManager::parseBouquetsXml(const char *fname, bool bUser)
 			newBouquet->bHidden = hidden ? (strcmp(hidden, "1") == 0) : false;
 			newBouquet->bLocked = locked ? (strcmp(locked, "1") == 0) : false;
 			newBouquet->bFav = (strcmp(name, "Favorites") == 0);
+			
+			//
 			channel_node = search->xmlChildrenNode;
 
 			while ((channel_node = xmlGetNextOccurence(channel_node, "S")) != NULL) 
@@ -472,6 +474,7 @@ void CBouquetManager::parseBouquetsXml(const char *fname, bool bUser)
 
 			if(!bUser)
 				newBouquet->sortBouquet();
+				
 			search = search->xmlNextNode;
 		}
 

@@ -508,7 +508,7 @@ class CCTime : public CComponent
 		//
 		uint8_t color;
 		CFont* font;
-		const char* format;
+		std::string format;
 		
 		fb_pixel_t* background;
 		
@@ -658,12 +658,12 @@ class CHeaders : public CWidgetItem
 		int hbutton_count;
 		button_label_list_t hbutton_labels;
 		
-		const char *htitle;
-		const char *hicon;
+		std::string htitle;
+		std::string hicon;
 		int thalign;
 		
 		bool paintDate;
-		const char* format;
+		std::string format;
 		CCTime* timer;
 	
 	public:

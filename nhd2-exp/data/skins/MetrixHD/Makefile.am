@@ -1,6 +1,6 @@
 SUBDIRS = buttons
 
-installdir = $(CONFIGDIR)/skin/MetrixHD
+installdir = $(CONFIGDIR)/skins/MetrixHD
 
 install_DATA = \
 	mainsetup.lua \

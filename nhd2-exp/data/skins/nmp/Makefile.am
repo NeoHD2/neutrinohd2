@@ -1,4 +1,6 @@
-installdir = $(CONFIGDIR)/skin/titannit
+SUBDIRS = hints
+
+installdir = $(CONFIGDIR)/skins/nmp
 
 install_DATA = \
 	mainsetup.lua \
@@ -7,12 +9,12 @@ install_DATA = \
 	red.lua \
 	information.lua \
 	mediaplayer.lua \
-	powermenu.lua \
 	service.lua \
 	mainmenu.lua \
 	miscsetup.lua \
 	prev.png \
-	titannit.config default.config \
+	nmp.config default.config \
+	ni.config \
 	skin.xml
 	
 
