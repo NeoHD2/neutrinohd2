@@ -1,3 +1,2 @@
-msgid "Test Menu"
-
-msgstr "Testmenü"
+msgid "Test Menu" msgstr "Testmenü"
+msgid "Main Menu" msgstr "Haupt Menü"

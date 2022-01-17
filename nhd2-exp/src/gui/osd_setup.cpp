@@ -437,6 +437,7 @@ int CLanguageSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(actionKey == "savesettings")
 	{
 		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
+		CNeutrinoApp::getInstance()->exec(NULL, "restart"); //FIXME:
 		
 		return ret;
 	}

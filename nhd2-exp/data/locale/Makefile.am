@@ -20,7 +20,7 @@ install_DATA = \
 	arabic.locale
 
 ###	
-LANGS = de
+LANGS = ru de
 
 LANGMO = $(LANGS:=.mo)
 LANGPO = $(LANGS:=.po)

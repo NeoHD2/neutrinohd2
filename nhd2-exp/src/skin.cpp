@@ -632,7 +632,7 @@ void CNeutrinoApp::parseSkin()
 				CHeaders* head = NULL;
 				head = new CHeaders(posx, posy, width, height);
 					
-				if (title != NULL) head->setTitle(title);
+				if (title != NULL) head->setTitle(_(title));
 				head->setHAlign(halign);
 				if (icon != NULL) head->setIcon(icon);
 				if(i_color != NULL) head->setColor(finalColor);
@@ -911,7 +911,7 @@ void CNeutrinoApp::parseSkin()
 							
 				label = new CCLabel(cc_x, cc_y, cc_dx, cc_dy);
 							
-				if (text != NULL) label->setText(text);
+				if (text != NULL) label->setText(_(text));
 				label->setHAlign(l_halign);
 							
 				wdg->addCCItem(label);	
@@ -997,7 +997,7 @@ void CNeutrinoApp::parseSkin()
 							
 				time = new CCTime(cc_x, cc_y, cc_dx, cc_dy);
 							
-				if (cc_format != NULL) time->setFormat(cc_format); //FIXME: corrupted
+				if (cc_format != NULL) time->setFormat(_(cc_format)); //FIXME: corrupted
 				if (cc_refresh) time->enableRepaint();
 							
 				wdg->addCCItem(time);	

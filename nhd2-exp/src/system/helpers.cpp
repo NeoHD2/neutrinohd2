@@ -656,6 +656,43 @@ std::string Lang2ISO639_1(std::string& lang)
 	return ret;
 }
 
+//
+std::string Lang2I18N(std::string lang)
+{
+	std::string ret = "en_EN";
+	
+	if ((lang == "deutsch") || (lang == "bayrisch") || (lang == "ch-baslerdeutsch") || (lang == "ch-berndeutsch"))
+		ret = "de_DE";
+	else if (lang == "english")
+		ret = "en_EN";
+	else if (lang == "nederlands")
+		ret = "nl_NL";
+	else if (lang == "slovak")
+		ret = "sk_SK";
+	else if (lang == "bosanski")
+		ret = "bs_BS";
+	else if (lang == "czech")
+		ret = "cs_CS";
+	else if (lang == "francais")
+		ret = "fr";
+	else if (lang == "italiano")
+		ret = "it_IT";
+	else if (lang == "polski")
+		ret = "pl_PL";
+	else if (lang == "portugues")
+		ret = "pt_PT";
+	else if (lang == "russkij")
+		ret = "ru_RU";
+	else if (lang == "suomi")
+		ret = "fi_FI";
+	else if (lang == "svenska")
+		ret = "sv_SV";
+	else if (lang == "arabic")
+		ret = "ar_AR";
+
+	return ret;
+}
+
 void splitString(std::string &str, std::string delim, std::vector<std::string> &strlist, int start)
 {
 	strlist.clear();

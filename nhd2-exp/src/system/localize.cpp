@@ -40,6 +40,7 @@
 #include <system/localize.h>
 #include <system/locals_intern.h>
 #include <system/debug.h>
+#include <system/helpers.h>
 
 #include <cstring>
 #include <fstream>
@@ -123,10 +124,12 @@ CLocaleManager::loadLocale_ret_t CLocaleManager::loadLocale(const char * const l
 	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
 	textdomain(PACKAGE_NAME);
 	
+	std::string lang = Lang2I18N(locale);
+	
 	// set language
-	setenv("LANG", "de_DE", 1);
-	setenv("LANGUAGE", "de_DE", 1);	
-	setlocale(LC_ALL, "de_DE");
+	setenv("LANG", lang.c_str(), 1);
+	setenv("LANGUAGE", lang.c_str(), 1);	
+	setlocale(LC_ALL, lang.c_str());
 	
 	//
 	for (i = 0; i < 2; i++)
