@@ -329,8 +329,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 							msg = RC_timeout;
 							break;
 						case RETURN_REPAINT:
-							//hide(); // for lua???
-							//initFrames();
+							hide();
 							paint();
 							break;
 					}
@@ -489,8 +488,7 @@ void CWidget::onOKKeyPressed()
 					msg = RC_timeout;
 					break;
 				case RETURN_REPAINT:
-					//hide(); // for lua???
-					//initFrames();
+					hide();
 					paint();
 					break;
 			}

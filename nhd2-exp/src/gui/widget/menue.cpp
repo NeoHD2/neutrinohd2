@@ -1457,7 +1457,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 							msg = RC_timeout;
 							break;
 						case RETURN_REPAINT:
-							//hide(); // for lua???
+							hide();
 							paint();
 							break;
 					}
@@ -1822,7 +1822,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 											break;
 									
 										case RETURN_REPAINT:
-											//hide(); // for lua???
+											hide();
 											paint();
 											break;	
 									}
@@ -1897,7 +1897,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 											break;
 									
 										case RETURN_REPAINT:
-											//hide(); // for lua ???
+											hide();
 											paint();
 											break;	
 									}
@@ -1933,7 +1933,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 									break;
 									
 								case RETURN_REPAINT:
-									//hide(); // for lua?
+									hide();
 									paint();
 									break;
 							}
