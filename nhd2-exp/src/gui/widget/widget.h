@@ -221,13 +221,14 @@ class CWidget : public CMenuTarget
 		void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 
 		//
+		void paintMainFrame(bool p){paintframe = p;};
 		void setColor(fb_pixel_t col) {backgroundColor = col;};
 		void setGradient(int gra){gradient = gra;};
 		void setCorner(int ra, int co){radius = ra; corner = co;};
-		void paintMainFrame(bool p){paintframe = p;};
+		//
 		void enableSaveScreen();
 
-		// compatibility
+		// lua compatibility
 		int getSelected(){return exit_pressed ? -1 : selected;};
 		std::string getActionKey(){return actionKey;};
 		neutrino_msg_t getKey(){return msg;};

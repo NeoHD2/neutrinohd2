@@ -9,20 +9,20 @@
 	<widgetitem name="head" id = "1" posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 	</widgetitem>
 	
-	<widgetitem name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="0">
-		<item name="menuforwarder" id="5" localename="EPG / Timer" itemicon="hint_timers" hint="Timer List" target="3" actionkey="">
+	<widgetitem name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1">
+		<item name="menuforwarder" id="5" localename="EPG / Timer" itemicon="hint_timers" hint="Timer List" target="3">
 		</item>
-		<item name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" hint="Timer List" target="6" actionkey="features">
+		<item name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" hint="Timer List" target="6">
 		</item>
-		<item name="menuforwarder" id="5" localename="Service" itemicon="hint_service" hint="Timer List" target="4" actionkey="service">
+		<item name="menuforwarder" id="5" localename="Service" itemicon="hint_service" hint="Timer List" target="4">
 		</item>
-		<item name="menuforwarder" id="5" localename="Main Setup" itemicon="hint_settings" hint="test" target="2" actionkey="mainsetup">
+		<item name="menuforwarder" id="5" localename="Main Setup" itemicon="hint_settings" hint="test" target="2">
 		</item>
-		<item name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="5" actionkey="features">
+		<item name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="5">
 		</item>
-		<item name="menuforwarder" id="5" localename="Power Menu" itemicon="hint_shutdown" hint="Timer List" target="7" actionkey="features">
+		<item name="menuforwarder" id="5" localename="Power Menu" itemicon="hint_shutdown" hint="Timer List" target="7">
 		</item>
-		<item name="menuforwarder" id="5" localename="Media Player" itemicon="hint_media" hint="Timer List" target="8" actionkey="features">
+		<item name="menuforwarder" id="5" localename="Media Player" itemicon="hint_media" hint="Timer List" target="8">
 		</item>
 	</widgetitem>
 	
