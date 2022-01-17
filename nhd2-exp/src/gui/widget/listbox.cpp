@@ -2395,7 +2395,6 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	bgcolor = COL_MENUCONTENT_PLUS_0;
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
-	def_color = false;
 	scrollbar = true;
 	items_background = NULL;
 	
@@ -2513,7 +2512,6 @@ ClistBox::ClistBox(CBox* position)
 	bgcolor = COL_MENUCONTENT_PLUS_0;
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;
-	def_color = false;
 	scrollbar = true;
 	items_background = NULL;
 	
@@ -2759,7 +2757,7 @@ void ClistBox::paintItems()
 
 		// items background
 		if (paintFrame)
-			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, itemBox.iHeight - hheight - fheight, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor, radius, corner);
+			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, itemBox.iHeight - hheight - fheight, bgcolor, radius, corner);
 
 		// item not currently on screen
 		if (selected >= 0)
@@ -2846,7 +2844,7 @@ void ClistBox::paintItems()
 
 		// paint items background
 		if (paintFrame) //FIXME:
-			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, items_height, def_color? COL_MENUCONTENT_PLUS_0 : bgcolor, radius, corner);
+			frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY + hheight, itemBox.iWidth, items_height, bgcolor, radius, corner);
 		else
 		{
 			if (items_background)

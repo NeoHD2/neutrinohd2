@@ -88,7 +88,8 @@ class CWindow : public CWidgetItem
 		
 		//
 		void addCCItem(CComponent* CCItem);
-		bool hasItem(){return !CCItems.empty();};
+		bool hasCCItem(){return !CCItems.empty();};
+		int getCCItemsCount(){return CCItems.size();};
 		void clearCCItems(){CCItems.clear();};
 		void paintCCItems();
 };

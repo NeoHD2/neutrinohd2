@@ -144,11 +144,13 @@ class CSkinManager : public CMenuTarget
 };
 
 // skin notifier
+/*
 class CSkinNotifier : public CChangeObserver
 {
 	public:
 		bool changeNotify(const neutrino_locale_t OptionName, void *);
 };
+*/
 
 class CSkinSettings : public CMenuTarget
 {

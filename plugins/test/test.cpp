@@ -1012,10 +1012,17 @@ void CTestMenu::testCWindowWidget()
 	buffer += "\n";
 	buffer += m_vMovieInfo[0].epgInfo2;
 	
+	//
+	testWidget = new CWidget(&Box);
+	
+	testWidget->paintMainFrame(true);
+	testWidget->setColor(COL_MENUCONTENT_PLUS_0);
+	testWidget->setCorner(RADIUS_MID, CORNER_ALL);
+	
 	// CWindow
-	windowWidget = new CWindow(&Box);
-	windowWidget->setColor(COL_MENUCONTENT_PLUS_0);
-	windowWidget->setCorner(RADIUS_MID, CORNER_ALL);
+	//windowWidget = new CWindow(&Box);
+	//windowWidget->setColor(COL_MENUCONTENT_PLUS_0);
+	//windowWidget->setCorner(RADIUS_MID, CORNER_ALL);
 	
 	// heades
 	CHeaders head(Box.iX, Box.iY, Box.iWidth, 40, "CWidget(CWindow)", NEUTRINO_ICON_COLORS);
@@ -1030,14 +1037,14 @@ void CTestMenu::testCWindowWidget()
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
 	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
 	
-	windowWidget->addCCItem(&testIcon);
+	testWidget->addCCItem(&testIcon);
 	
 	// image
 	CCImage testImage;
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
 	testImage.setPosition(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
 	
-	windowWidget->addCCItem(&testImage);
+	testWidget->addCCItem(&testImage);
 	
 	// label
 	CCLabel testLabel;
@@ -1047,7 +1054,7 @@ void CTestMenu::testCWindowWidget()
 	testLabel.setText("this is a CComponent label test :-)");
 	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
 	
-	windowWidget->addCCItem(&testLabel);
+	testWidget->addCCItem(&testLabel);
 	
 	// CButtons
 	CCButtons testButton;
@@ -1056,25 +1063,25 @@ void CTestMenu::testCWindowWidget()
 	testButton.setPosition(Box.iX + 10, Box.iY + Box.iHeight - 100, Box.iWidth, 40);
 	testButton.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
-	windowWidget->addCCItem(&testButton);
+	testWidget->addCCItem(&testButton);
 	
 	// Hline
 	CCHline testHline;
 	testHline.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10, 10);
 	
-	windowWidget->addCCItem(&testHline);
+	testWidget->addCCItem(&testHline);
 	
 	// Vline
 	CCVline testVline;
 	testVline.setPosition(Box.iX + Box.iWidth - 20 - 15, Box.iY + 10, 10, Box.iHeight - 20);
 	
-	windowWidget->addCCItem(&testVline);
+	testWidget->addCCItem(&testVline);
 	
 	// CCFrameLine
 	CCFrameLine testFrameLine;
 	testFrameLine.setPosition(Box.iX + 10, Box.iY + 140, testIcon.iWidth + 100, testIcon.iHeight + 20);
 	
-	windowWidget->addCCItem(&testFrameLine);
+	testWidget->addCCItem(&testFrameLine);
 	
 	// text
 	CCText testText;
@@ -1082,23 +1089,23 @@ void CTestMenu::testCWindowWidget()
 	testText.setMode(AUTO_WIDTH);
 	testText.setText(buffer.c_str());
 	
-	windowWidget->addCCItem(&testText);
+	testWidget->addCCItem(&testText);
 
 	// grid
 	CCGrid testGrid;
 	testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
 	testGrid.setColor(COL_PURPLE_PLUS_0);
 	
-	windowWidget->addCCItem(&testGrid);
+	testWidget->addCCItem(&testGrid);
 	
 	// pig
 	CCPig testPig;
 	testPig.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20 + 200 + 10, Box.iY + 100, 300, 160);
 	
-	windowWidget->addCCItem(&testPig);
+	testWidget->addCCItem(&testPig);
 	
-	testWidget = new CWidget();
-	testWidget->addItem(windowWidget);
+	//testWidget = new CWidget();
+	//testWidget->addItem(windowWidget);
 	testWidget->addItem(&head);
 	testWidget->addItem(&foot);
 	
@@ -1112,8 +1119,8 @@ void CTestMenu::testCWindowWidget()
 	delete testWidget;
 	testWidget = NULL;
 	
-	delete windowWidget;
-	windowWidget = NULL;
+	//delete windowWidget;
+	//windowWidget = NULL;
 }
 
 void CTestMenu::testCTextBoxWidget()

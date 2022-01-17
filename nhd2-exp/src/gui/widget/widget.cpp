@@ -92,7 +92,17 @@ CWidget::~CWidget()
 {
 	dprintf(DEBUG_INFO, "CWidget:: del\n");
 
-	items.clear();
+	// WIDGETITEMS
+	if (hasItem())
+	{
+		items.clear();
+	}
+		
+	// CCITEMS
+	if (hasCCItem())
+	{
+		CCItems.clear();
+	}
 }
 
 void CWidget::addItem(CWidgetItem *widgetItem, const bool defaultselected)
@@ -104,20 +114,25 @@ void CWidget::addItem(CWidgetItem *widgetItem, const bool defaultselected)
 	widgetItem->setParent(this);
 }
 
-bool CWidget::hasItem()
+////
+void CWidget::addCCItem(CComponent* CCItem)
 {
-	return !items.empty();
+	CCItems.push_back(CCItem);
+	//CCItem->setParent(this);
 }
 
-int CWidget::getItemsCount()
+void CWidget::paintCCItems()
 {
-	return items.size();
-}
+	dprintf(DEBUG_INFO, "CWidget::paintCCItems:\n");
 
-void CWidget::clearItems(void)
-{
-	return items.clear();
+	for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
+	{
+		CComponent *CCItem = CCItems[count];
+
+		CCItem->paint();
+	}
 }
+////
 
 void CWidget::initFrames()
 {
@@ -163,7 +178,11 @@ void CWidget::paint()
 		frameBuffer->paintBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight, backgroundColor, radius, corner, gradient);
 
 	// paint items
-	paintItems();
+	if (hasItem())
+		paintItems();
+		
+	if (hasCCItem())
+		paintCCItems();
 }
 
 void CWidget::saveScreen()
@@ -214,6 +233,7 @@ void CWidget::hide()
 	dprintf(DEBUG_NORMAL, "CWidget:: hide (%s)\n", name.c_str());
 
 /*
+	//
 	if (hasItem())
 	{
 		for(unsigned int i = 0; i < items.size(); i++)
@@ -221,6 +241,8 @@ void CWidget::hide()
 			items[i]->hide();
 		}
 	}
+	
+	// CCItem CC_PIG ???
 */		
 
 	if( savescreen && background)
@@ -340,6 +362,15 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 					if (items[i]->update())
 					{
 						items[i]->refresh();
+					}
+				}
+				
+				// refresh CCItems
+				for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
+				{
+					if (CCItems[count]->update())
+					{
+						CCItems[count]->refresh();
 					}
 				}
 			} 

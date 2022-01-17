@@ -975,6 +975,7 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 }
 
 // skinnotifier
+/*
 bool CSkinNotifier::changeNotify(const neutrino_locale_t OptionName, void *)
 {
 	dprintf(DEBUG_NORMAL, "CSkinNotifier::changeNotify:\n");
@@ -992,6 +993,7 @@ bool CSkinNotifier::changeNotify(const neutrino_locale_t OptionName, void *)
 
 	return false;
 }
+*/
 
 // skinSettings
 void CSkinSettings::showMenu()

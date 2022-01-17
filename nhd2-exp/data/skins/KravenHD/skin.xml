@@ -116,46 +116,45 @@
 </widget>
 -->
 
-<widget name="mainmenu" id="1" posx="0" posy="0" width="1280" height="720">
+<WIDGET name="mainmenu" id="1" posx="0" posy="0" width="1280" height="720" paintframe="1">
 
-	<!-- bg / title / logo -->
-	<widgetitem name="window" id="0" posx="0" posy="0" width="1280" height="720" paintframe="1">
-		<!-- title -->
-		<ccitem name="label" id="2" posx="640" posy="50" width="640" height="50" text="Main Menu" halign="1">
-		</ccitem>
-		
-		<!-- logo -->
-		<ccitem name="image" id="1" posx="640" posy="150" width="640" height="300" image="background/logo.png">
-		</ccitem>
-	</widgetitem>
+	<!-- title -->
+	<LABEL posx="640" posy="50" width="640" height="50" text="Main Menu" halign="1">
+	</LABEL>
 	
-	<!-- date / time -->
-	<widgetitem name="window" id="0" posx="640" posy="450" width="640" height="100" refresh="1">
-		<ccitem name="time" id="10" posx="640" posy="450" width="640" height="100" refresh="1" format="%d.%m.%Y %H:%M:%S">
-		</ccitem>
-	</widgetitem>
+	<!-- logo -->	
+	<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+	</IMAGE>
 	
-	<!-- listbox -->
-	<widgetitem name="listbox" id="3" posx="50" posy="50" width="540" height="620" type="1" shadow="1">
-		<item name="menuforwarder" id="5" localename="EPG / Timer" target="3">
-		</item>
-		<item name="menuforwarder" id="5" localename="Features" target="6">
-		</item>
-		<item name="menuforwarder" id="5" localename="Service" itemicon="" hint="Timer List" target="4" actionkey="">
-		</item>
-		<item name="menuforwarder" id="5" localename="Main Setup" target="2">
-		</item>
-		<item name="menuforwarder" id="5" localename="Information" target="5">
-		</item>
-		<item name="menuforwarder" id="5" localename="Power Menu" target="7">
-		</item>
-		<item name="menuforwarder" id="5" localename="Media Player" target="8">
-		</item>
-	</widgetitem>
+	<!-- date -->
+	<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+	</TIME>
 	
-<key name="0x191" target="43" actionkey="features"> 
-</key>
-</widget>
+	<!-- time -->
+	<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+	</TIME>
+	
+	<!-- menu -->
+	<LISTBOX posx="50" posy="50" width="540" height="620" type="1" shadow="1">
+		<ITEM name="menuforwarder" id="5" localename="EPG / Timer" target="3">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Features" target="0" actionkey="features">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Service" target="4">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Setup" target="2">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Information" target="5">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Power" target="7">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Mediaplayer" target="8">
+		</ITEM>
+	</LISTBOX>
+	
+<KEY name="0x191" target="43" actionkey="features"> 
+</KEY>
+</WIDGET>
 
 </skin>
 

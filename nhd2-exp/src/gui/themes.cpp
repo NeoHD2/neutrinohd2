@@ -141,6 +141,18 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 			} 
 			else
 				readFile((char*)((std::string)THEMEDIR + themeFile + FILE_PREFIX).c_str());
+			
+			//
+			if (!g_settings.use_default_skin)
+			{
+				if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RESTART, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+				{
+					CNeutrinoApp::getInstance()->exec(NULL, "saveskinsettings");
+					
+					CNeutrinoApp::getInstance()->unloadSkin();
+					CNeutrinoApp::getInstance()->exec(NULL, "restart");
+				}
+			}
 
 			return res;
 		}

@@ -585,6 +585,7 @@ class ClistBox : public CWidgetItem
 		int cnt;
 
 		// head
+		bool paintTitle;
 		std::string iconfile;
 		std::string l_name;
 		int hheight;
@@ -595,13 +596,13 @@ class ClistBox : public CWidgetItem
 		int hbutton_count;
 		button_label_list_t hbutton_labels;
 		bool paintDate;
-		bool paintTitle;
 		int thalign;
 		bool head_line;
 		const char* format;
 		CCTime* timer;
 
 		// foot
+		bool paint_Foot;
 		int fheight;
 		fb_pixel_t footColor;
 		int footRadius;
@@ -610,7 +611,6 @@ class ClistBox : public CWidgetItem
 		int fbutton_count;
 		int fbutton_width;
 		button_label_list_t fbutton_labels;
-		bool paint_Foot;
 		bool foot_line;
 
 		// footInfo
@@ -644,7 +644,6 @@ class ClistBox : public CWidgetItem
 		//
 		bool paintFrame;
 		fb_pixel_t bgcolor;
-		bool def_color;
 		int radius;
 		int corner;
 		bool scrollbar;
@@ -722,7 +721,7 @@ class ClistBox : public CWidgetItem
 		void enableSaveScreen();
 		void paintMainFrame(bool p){paintFrame = p;};
 		//
-		void setColor(fb_pixel_t col){bgcolor = col; def_color = true;};
+		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setRadius(int ra){radius = ra;};
 		void setCorner(int co){corner = co;};
 		void paintScrollBar(bool sb){scrollbar = sb;};

@@ -162,7 +162,10 @@ class CWidget : public CMenuTarget
 		CFrameBuffer *frameBuffer;
 		CBox mainFrameBox;
 
+		// 
 		std::vector<CWidgetItem*> items;
+		//
+		std::vector<CComponent*> CCItems;
 
 		//
 		neutrino_msg_t      msg;
@@ -193,7 +196,8 @@ class CWidget : public CMenuTarget
 		
 		//
 		void initFrames();
-		void paintItems();
+		
+		//
 		void paint();
 
 	public:
@@ -201,13 +205,21 @@ class CWidget : public CMenuTarget
 		CWidget(CBox *position);
 		virtual ~CWidget();
 
-		//
+		//WIDGETITEMS
 		virtual void addItem(CWidgetItem *widgetItem, const bool defaultselected = false);
-		bool hasItem();
-		int getItemsCount();
-		virtual void clearItems(void);
+		bool hasItem(){return !items.empty();};
+		int getItemsCount(){return items.size();};
+		virtual void clearItems(void){return items.clear();};
+		virtual void paintItems();
 		
 		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
+		
+		// CCITEMS
+		void addCCItem(CComponent* CCItem);
+		bool hasCCItem(){return !CCItems.empty();};
+		int getCCItemsCount(){return CCItems.size();};
+		void clearCCItems(){CCItems.clear();};
+		void paintCCItems();
 		
 		//
 		virtual void hide();

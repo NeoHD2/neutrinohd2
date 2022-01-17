@@ -69,7 +69,7 @@ CWindow::~CWindow()
 		background = NULL;
 	}
 	
-	if (hasItem())
+	if (hasCCItem())
 	{
 		CCItems.clear();
 	}
@@ -195,7 +195,7 @@ void CWindow::paint()
 	}
 		
 	//CCItems
-	if (hasItem())
+	if (hasCCItem())
 	{
 		paintCCItems();
 	}
@@ -210,14 +210,18 @@ void CWindow::hide()
 	else
 		frameBuffer->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
 		
-	//
-	if (hasItem())
+	// ??? CCPIG
+	if (hasCCItem())
 	{
 		for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
 		{
 			CComponent *CCItem = CCItems[count];
 
-			CCItem->hide();
+			if (CCItem->getCCType() == CC_PIG)
+			{
+				CCItem->hide();
+				break;
+			}
 		}
 	}
 		

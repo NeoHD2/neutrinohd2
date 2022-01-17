@@ -4,36 +4,36 @@
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 
-<widget name="mainmenu" id="1" posx="0" posy="0" width="700" height="720" paintframe="1">
+<WIDGET name="mainmenu" id="1" posx="0" posy="0" width="700" height="720" paintframe="1">
 
-	<widgetitem name="head" id = "1" posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
-	</widgetitem>
+	<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+	</HEAD>
 	
-	<widgetitem name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1">
-		<item name="menuforwarder" id="5" localename="EPG / Timer" itemicon="hint_timers" hint="Timer List" target="3">
-		</item>
-		<item name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" hint="Timer List" target="6">
-		</item>
-		<item name="menuforwarder" id="5" localename="Service" itemicon="hint_service" hint="Timer List" target="4">
-		</item>
-		<item name="menuforwarder" id="5" localename="Main Setup" itemicon="hint_settings" hint="test" target="2">
-		</item>
-		<item name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="5">
-		</item>
-		<item name="menuforwarder" id="5" localename="Power Menu" itemicon="hint_shutdown" hint="Timer List" target="7">
-		</item>
-		<item name="menuforwarder" id="5" localename="Media Player" itemicon="hint_media" hint="Timer List" target="8">
-		</item>
-	</widgetitem>
+	<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1">
+		<ITEM name="menuforwarder" id="5" localename="EPG / Timer" itemicon="hint_timers" hint="Timer List" target="3">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" hint="Timer List" target="6">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Service" itemicon="hint_service" hint="Timer List" target="4">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Setup" itemicon="hint_settings" hint="test" target="2">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="5">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Power Menu" itemicon="hint_shutdown" hint="Timer List" target="7">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Media Player" itemicon="hint_media" hint="Timer List" target="8">
+		</ITEM>
+	</LISTBOX>
 	
-	<widgetitem name="foot" id="2" posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-		<button name="menu" localename="">
-		</button>
-	</widgetitem>
+	<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+		<BUTTON name="menu" localename="">
+		</BUTTON>
+	</FOOT>
 	
-<key name="0x191" target="parent" actionkey="features"> 
-</key>
-</widget>
+<KEY name="0x191" target="parent" actionkey="features"> 
+</KEY>
+</WIDGET>
 
 </skin>
 
