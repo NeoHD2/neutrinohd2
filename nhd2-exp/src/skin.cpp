@@ -641,7 +641,7 @@ void CNeutrinoApp::parseSkin()
 				head->setRadius(i_radius);
 				head->setHeadLine(h_line);
 				if (paintdate) head->enablePaintDate();
-				if (format != NULL) head->setFormat(format);
+				if (format != NULL) head->setFormat(_(format));
 					
 				//
 				headbutton_node = head_node->xmlChildrenNode;
@@ -846,7 +846,7 @@ void CNeutrinoApp::parseSkin()
 					std::string actionKey = "";
 					std::string itemName = "";
 						
-					if (item_localename) itemName = item_localename;
+					if (item_localename) itemName = _(item_localename);
 						
 					if (itemid == ITEM_TYPE_FORWARDER)
 						menuItem = new CMenuForwarder(itemName.c_str());
@@ -1030,12 +1030,6 @@ void CNeutrinoApp::parseSkin()
 	
 	xmlFreeDoc(parser);
 	parser = NULL;
-	
-	//DEBUG
-	for (unsigned int i = 0; i < (unsigned int )widgets.size(); i++)
-	{
-		printf("SKIN:widgets: %d (%s)\n", widgets[i]->id, widgets[i]->name.c_str());
-	}
 }
 
 //

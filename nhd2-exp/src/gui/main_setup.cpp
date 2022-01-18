@@ -107,7 +107,7 @@ void CMainSettingsMenu::showMenu(void)
 	mainSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_STREAMING, true, NULL, new CMoviePlayerSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_MOVIEPLAYERSETTINGS, LOCALE_HELPTEXT_MOVIEPLAYERSETTINGS));
 
 	//OSD settings
-	mainSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_OSD, true, NULL, new COSDSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS, LOCALE_HELPTEXT_OSDSETTINGS));
+	mainSettings->addItem(new ClistBoxItem(/*LOCALE_MAINSETTINGS_OSD*/_("OSD Setup"), true, NULL, new COSDSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS, LOCALE_HELPTEXT_OSDSETTINGS));
 
 	// vfd/lcd settings
 	//if(CVFD::getInstance()->has_lcd)

@@ -1,0 +1,38 @@
+#
+msgid "Main Menu" msgstr "Main Menu"
+msgid "Features" msgstr "Features"
+msgid "Service" msgstr "Service"
+msgid "Main Setup" msgstr "Main Setup"
+msgid "Information" msgstr "Informatiom"
+msgid "Power Menu" msgstr "Power Menu"
+msgid "Media Player" msgstr "Media Player"
+
+# features
+msgid "Plugins" msgstr "Plugins"
+msgid "Timerlist" msgstr "Timerlist"
+
+# mainsetup
+# osdsetup
+msgid "OSD Setup" msgstr "OSD Setup"
+msgid "Skin Select" msgstr "Skin Select"
+msgid "Themes" msgstr "Themes"
+msgid "Menu" msgstr "Menu"
+msgid "Infobar" msgstr "Infobar"
+msgid "Language Setup" msgstr "Language Setup"
+msgid "Font" msgstr "Font"
+msgid "OSD Timing" msgstr "OSD Timing"
+msgid "Screen Setup" msgstr "Screen Setup"
+msgid "Alpha Setup" msgstr "Alpha Setup"
+msgid "OSD Diverses" msgstr "OSD Diverses"
+
+# skin select
+msgid "neutrino(default)" msgstr "neutrino (default)"
+msgid "Here you can select a skin from the following list." msgstr "Here you can select a skin from the following list."
+msgid "GUI Restart" msgstr "GUI Restart"
+msgid "Skin Style selection" msgstr "Skin Style selection"
+msgid "choose Skin Style." msgstr "choose Skin Style."
+
+# language setup
+#msgid "Language Setup" msgstr "Language Setup"
+msgid "back" msgstr "back"
+msgid "Save Settings" msgstr "Save Settings"

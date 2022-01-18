@@ -90,7 +90,7 @@ void COSDSettings::showMenu(void)
 	
 	int shortcutOSD = 1;
 	
-	CMenuWidget * osdSettings = new CMenuWidget(LOCALE_MAINSETTINGS_OSD, NEUTRINO_ICON_COLORS );
+	CMenuWidget * osdSettings = new CMenuWidget(/*LOCALE_MAINSETTINGS_OSD*/_("OSD Setup"), NEUTRINO_ICON_COLORS );
 
 	osdSettings->setWidgetMode(MODE_MENU);
 	osdSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
@@ -99,36 +99,36 @@ void COSDSettings::showMenu(void)
 	osdSettings->enablePaintDate();
 	
 	// skin
-	osdSettings->addItem( new ClistBoxItem(LOCALE_SKIN_SKIN, true, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
+	osdSettings->addItem( new ClistBoxItem(/*LOCALE_SKIN_SKIN*/_("Skin Select"), true, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 
 	// Themes
-	osdSettings->addItem( new ClistBoxItem(LOCALE_COLORMENU_THEMESELECT, true, NULL, new CThemes(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
+	osdSettings->addItem( new ClistBoxItem(/*LOCALE_COLORMENU_THEMESELECT*/_("Themes"), true, NULL, new CThemes(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
 
 	// menu colors
-	osdSettings->addItem( new ClistBoxItem(LOCALE_COLORMENU_MENUCOLORS, true, NULL, new COSDMenuColorSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_MENUCOLORS, LOCALE_HELPTEXT_MENUCOLORS));
+	osdSettings->addItem( new ClistBoxItem(/*LOCALE_COLORMENU_MENUCOLORS*/_("Menu"), true, NULL, new COSDMenuColorSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_MENUCOLORS, LOCALE_HELPTEXT_MENUCOLORS));
 
 	// infobar
-	osdSettings->addItem( new ClistBoxItem(LOCALE_COLORSTATUSBAR_HEAD, true, NULL, new COSDInfoBarColorSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_INFOBARCOLORS, LOCALE_HELPTEXT_INFOBARCOLORS));
+	osdSettings->addItem( new ClistBoxItem(/*LOCALE_COLORSTATUSBAR_HEAD*/_("Infobar"), true, NULL, new COSDInfoBarColorSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_INFOBARCOLORS, LOCALE_HELPTEXT_INFOBARCOLORS));
 
 	// language
-	osdSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_LANGUAGE, true, NULL, new CLanguageSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_LANGUAGE, LOCALE_HELPTEXT_LANGUAGE));
+	osdSettings->addItem(new ClistBoxItem(/*LOCALE_MAINSETTINGS_LANGUAGE*/_("Language Setup"), true, NULL, new CLanguageSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_LANGUAGE, LOCALE_HELPTEXT_LANGUAGE));
 	
 	// font
-	osdSettings->addItem(new ClistBoxItem(LOCALE_EPGPLUS_SELECT_FONT_NAME, true, NULL, new CFontSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_FONT, LOCALE_HELPTEXT_FONT));
+	osdSettings->addItem(new ClistBoxItem(/*LOCALE_EPGPLUS_SELECT_FONT_NAME*/_("Font"), true, NULL, new CFontSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_FONT, LOCALE_HELPTEXT_FONT));
 	
 	// osd timing
-	osdSettings->addItem(new ClistBoxItem(LOCALE_TIMING_HEAD, true, NULL, new COSDTimingSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_OSDTIMING, LOCALE_HELPTEXT_OSDTIMING));
+	osdSettings->addItem(new ClistBoxItem(/*LOCALE_TIMING_HEAD*/_("OSD Timing"), true, NULL, new COSDTimingSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_OSDTIMING, LOCALE_HELPTEXT_OSDTIMING));
 
 	// sceensetup
-	osdSettings->addItem(new ClistBoxItem(LOCALE_VIDEOMENU_SCREENSETUP, true, NULL, new CScreenSetup(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_SCREENSETUP, LOCALE_HELPTEXT_SCREENSETUP));
+	osdSettings->addItem(new ClistBoxItem(/*LOCALE_VIDEOMENU_SCREENSETUP*/_("Screen Setup"), true, NULL, new CScreenSetup(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_SCREENSETUP, LOCALE_HELPTEXT_SCREENSETUP));
 	
 	// alpha setup
 	//FIXME:
-	//CAlphaSetup * chAlphaSetup = new CAlphaSetup(LOCALE_COLORMENU_GTX_ALPHA, &g_settings.gtx_alpha);
+	//CAlphaSetup * chAlphaSetup = new CAlphaSetup(/*LOCALE_COLORMENU_GTX_ALPHA*/_("Alpha Setup"), &g_settings.gtx_alpha);
 	//osdSettings->addItem( new ClistBoxItem(LOCALE_COLORMENU_GTX_ALPHA, true, NULL, chAlphaSetup, NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_ALPHASETUP, LOCALE_HELPTEXT_ALPHA_SETUP));
 	
 	// diverses
-	osdSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_MISC, true, NULL, new COSDDiverses(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS, LOCALE_HELPTEXT_OSDSETTINGS));
+	osdSettings->addItem(new ClistBoxItem(/*LOCALE_MAINSETTINGS_MISC*/_("OSD Diverses"), true, NULL, new COSDDiverses(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS, LOCALE_HELPTEXT_OSDSETTINGS));
 	
 	osdSettings->exec(NULL, "");
 	osdSettings->hide();
@@ -437,7 +437,7 @@ int CLanguageSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(actionKey == "savesettings")
 	{
 		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		CNeutrinoApp::getInstance()->exec(NULL, "restart"); //FIXME:
+		//CNeutrinoApp::getInstance()->exec(NULL, "restart"); //FIXME:
 		
 		return ret;
 	}
@@ -451,16 +451,16 @@ void CLanguageSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CLanguageSettings::showMenu:\n");
 	
-	CMenuWidget languageSettings(LOCALE_LANGUAGESETUP_HEAD, NEUTRINO_ICON_LANGUAGE );
+	CMenuWidget languageSettings(/*LOCALE_LANGUAGESETUP_HEAD*/_("Language Setup"), NEUTRINO_ICON_LANGUAGE );
 
 	languageSettings.setWidgetMode(MODE_SETUP);
-	languageSettings.enableShrinkMenu();
+	//languageSettings.enableShrinkMenu();
 	
 	// intros
-	languageSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	languageSettings.addItem(new CMenuForwarder(/*LOCALE_MENU_BACK*/_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	languageSettings.addItem(new CMenuSeparator(LINE));
 
-	languageSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	languageSettings.addItem(new CMenuForwarder(/*LOCALE_MAINSETTINGS_SAVESETTINGSNOW*/_("Save Settings"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	languageSettings.addItem(new CMenuSeparator(LINE));
 
 	struct dirent **namelist;
@@ -474,6 +474,7 @@ void CLanguageSettings::showMenu()
 		
 		if(n > 0)
 		{
+			/*
 			for(int count = 0; count < n; count++) 
 			{
 				char * locale = strdup(namelist[count]->d_name);
@@ -492,6 +493,33 @@ void CLanguageSettings::showMenu()
 				free(namelist[count]);
 			}
 			free(namelist);
+			*/
+			while(n--)
+			{
+				if(namelist[n]->d_type == DT_DIR && !strstr(namelist[n]->d_name, ".") && !strstr(namelist[n]->d_name, ".."))
+				{
+				/*	
+					item = new ClistBoxItem(namelist[i]->d_name);
+					
+					item->setActionKey(this, namelist[i]->d_name);
+					
+					std::string hint = skinPath;
+					hint += "/";
+					hint += namelist[i]->d_name;
+					hint += "/prev.png";
+					item->setItemIcon(hint.c_str());
+					item->setHint("Here you can select a skin from the following list."); // FIXME: localize
+					item->set2lines();
+					
+					skinMenu->addItem(item);
+				*/
+					CMenuOptionLanguageChooser* oj = new CMenuOptionLanguageChooser(namelist[n]->d_name, this, /*namelist[n]->d_name*/"deutsch");
+					oj->addOption(/*namelist[n]->d_name*/"deutsch");
+					languageSettings.addItem( oj );	
+				}
+				free(namelist[n]);
+			}
+			free(namelist);
 		}
 	}
 	
@@ -501,11 +529,11 @@ void CLanguageSettings::showMenu()
 
 bool CLanguageSettings::changeNotify(const neutrino_locale_t OptionName, void */*data*/)
 {
-	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_LANGUAGESETUP_SELECT)) 
+	//if (ARE_LOCALES_EQUAL(OptionName, LOCALE_LANGUAGESETUP_SELECT)) 
 	{
 		dprintf(DEBUG_NORMAL, "CLanguageSettings::changeNotify: %s\n", g_settings.language);
 		
-		g_Locale->loadLocale(g_settings.language);
+		g_Locale->loadLocale(/*g_settings.language*/"deutsch");
 
 		return true;
 	}
@@ -828,7 +856,7 @@ void COSDDiverses::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "COSDTimingSettings::showMenu:\n");
 	
-	CMenuWidget osdDiverseSettings(LOCALE_MAINSETTINGS_MISC, NEUTRINO_ICON_SETTINGS);
+	CMenuWidget osdDiverseSettings(LOCALE_MAINSETTINGS_MISC, NEUTRINO_ICON_SETTINGS, 800, 600);
 
 	osdDiverseSettings.setWidgetMode(MODE_SETUP);
 	osdDiverseSettings.enableShrinkMenu();
@@ -891,14 +919,14 @@ void CSkinManager::showMenu()
 	dprintf(DEBUG_NORMAL, "CSkinManager::showMenu:\n");
 	
 	CMenuItem* item = NULL;
-	CMenuWidget* skinMenu = new CMenuWidget(LOCALE_SKIN_SKIN, NEUTRINO_ICON_COLORS, 800, 600);
+	CMenuWidget* skinMenu = new CMenuWidget(/*LOCALE_SKIN_SKIN*/_("Skin Select"), NEUTRINO_ICON_COLORS, 800, 600);
 	skinMenu->setWidgetMode(MODE_LISTBOX);
 	skinMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	skinMenu->enablePaintDate();
 	
 	// default
-	item = new ClistBoxItem(LOCALE_SKIN_DEFAULT, true, NULL, this, "neutrino_default", RC_nokey, NULL, DATADIR "/neutrino/icons/prev.jpg");
-	item->setHint("Here you can select a skin from the following list."); // FIXME: localize
+	item = new ClistBoxItem(/*LOCALE_SKIN_DEFAULT*/_("neutrino (default)"), true, NULL, this, "neutrino_default", RC_nokey, NULL, DATADIR "/neutrino/icons/prev.jpg");
+	item->setHint(_("Here you can select a skin from the following list."));
 	
 	skinMenu->addItem(item);
 	
@@ -924,7 +952,7 @@ void CSkinManager::showMenu()
 				hint += namelist[i]->d_name;
 				hint += "/prev.png";
 				item->setItemIcon(hint.c_str());
-				item->setHint("Here you can select a skin from the following list."); // FIXME: localize
+				item->setHint(_("Here you can select a skin from the following list.")); // FIXME: localize
 				item->set2lines();
 				
 				skinMenu->addItem(item);	
@@ -952,7 +980,7 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 	if (actionKey == "neutrino_default")
 	{
-		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RESTART, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(/*LOCALE_MESSAGEBOX_INFO*/_("Skin Select"), /*LOCALE_SERVICEMENU_RESTART*/_("GUI Restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			g_settings.use_default_skin = true;
 			CNeutrinoApp::getInstance()->unloadSkin();
@@ -961,7 +989,7 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 	}
 	else if (!actionKey.empty())
 	{
-		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RESTART, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(/*LOCALE_MESSAGEBOX_INFO*/_("Skin Select"), /*LOCALE_SERVICEMENU_RESTART*/_("GUI Restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			g_settings.use_default_skin = false;
 			CNeutrinoApp::getInstance()->unloadSkin();
@@ -975,34 +1003,13 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 	return ret;
 }
 
-// skinnotifier
-/*
-bool CSkinNotifier::changeNotify(const neutrino_locale_t OptionName, void *)
-{
-	dprintf(DEBUG_NORMAL, "CSkinNotifier::changeNotify:\n");
-		
-	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_SKIN_DEFAULT))
-	{
-		//if (!g_settings.use_default_skin) // alyaws restart
-		{
-			CNeutrinoApp::getInstance()->unloadSkin();
-			CNeutrinoApp::getInstance()->exec(NULL, "restart");
-		}
-			
-		return true;
-	}
-
-	return false;
-}
-*/
-
 // skinSettings
 void CSkinSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CSkinSettings::showMenu:\n");
 	
 	CMenuItem* item = NULL;
-	CMenuWidget* skinSettings = new CMenuWidget("Skin Style selection", NEUTRINO_ICON_COLORS, 800, 600);// FIXME: localize
+	CMenuWidget* skinSettings = new CMenuWidget(_("Skin Style selection"), NEUTRINO_ICON_COLORS, 800, 600);// FIXME: localize
 	skinSettings->setWidgetMode(MODE_MENU);
 	//skinSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
 	skinSettings->enablePaintDate();
@@ -1037,7 +1044,7 @@ void CSkinSettings::showMenu()
 						item = new ClistBoxItem(removeExtension(filename).c_str());
 				
 						item->setActionKey(this, namelist[i]->d_name);
-						item->setHint("choose Skin Style.");
+						item->setHint(_("choose Skin Style."));
 						
 						skinSettings->addItem(item);
 					}
@@ -1067,7 +1074,7 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if (!actionKey.empty())
 	{
 		// FIXME: localize
-		if (MessageBox(LOCALE_MESSAGEBOX_INFO, "Skin Style selection", mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(/*LOCALE_MESSAGEBOX_INFO*/_("Skin Style Selection"), _("Skin Style selection"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			//
 			std::string skinConfigFile = CONFIGDIR "/skins/";
@@ -1084,7 +1091,7 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 			skinConfig += g_settings.preferred_skin.c_str();
 			skinConfig += ".config";
 			
-			CNeutrinoApp::getInstance()->saveSkinConfig(/*g_settings.preferred_skin*/skinConfig.c_str());
+			CNeutrinoApp::getInstance()->saveSkinConfig(skinConfig.c_str());
 		}
 	}
 		

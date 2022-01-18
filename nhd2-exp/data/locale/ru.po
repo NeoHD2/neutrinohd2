@@ -1,2 +1,0 @@
-msgid "Test Menu" msgstr "SD разрешение"
-msgid "Main Menu" msgstr "Главное меню"
