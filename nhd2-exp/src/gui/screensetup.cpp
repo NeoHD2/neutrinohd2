@@ -111,7 +111,7 @@ int CScreenSetup::exec(CMenuTarget *parent, const std::string &)
 
 			case RC_home:
 				if ( ( ( g_settings.screen_StartX != x_coord[0] ) || ( g_settings.screen_EndX != x_coord[1] ) || ( g_settings.screen_StartY != y_coord[0] ) || ( g_settings.screen_EndY != y_coord[1] ) ) &&
-						(MessageBox(LOCALE_VIDEOMENU_SCREENSETUP, LOCALE_MESSAGEBOX_DISCARD, mbrYes, mbYes | mbCancel) == mbrCancel))
+						(MessageBox(/*LOCALE_VIDEOMENU_SCREENSETUP*/_("Screen Setup"), /*LOCALE_MESSAGEBOX_DISCARD*/_("Discard changes?"), mbrYes, mbYes | mbCancel) == mbrCancel))
 					break;
 
 			case RC_timeout:
@@ -126,8 +126,8 @@ int CScreenSetup::exec(CMenuTarget *parent, const std::string &)
 					frameBuffer->paintBoxRel(x, y, BoxWidth, BoxHeight/2, (selected == 0)? COL_MENUCONTENTSELECTED_PLUS_0 : COL_MENUCONTENT_PLUS_0);
 					frameBuffer->paintBoxRel(x, y + BoxHeight/2,  BoxWidth, BoxHeight/2, (selected == 1)? COL_MENUCONTENTSELECTED_PLUS_0 : COL_MENUCONTENT_PLUS_0);
 
-					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + 30, y + BoxHeight/2, BoxWidth, g_Locale->getText(LOCALE_SCREENSETUP_UPPERLEFT ), (selected == 0)?COL_MENUCONTENTSELECTED : COL_MENUCONTENT, 0, true); // UTF-8
-					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + 30, y + BoxHeight, BoxWidth, g_Locale->getText(LOCALE_SCREENSETUP_LOWERRIGHT), (selected == 1)?COL_MENUCONTENTSELECTED : COL_MENUCONTENT, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + 30, y + BoxHeight/2, BoxWidth, /*g_Locale->getText(LOCALE_SCREENSETUP_UPPERLEFT )*/_("Upper Left"), (selected == 0)?COL_MENUCONTENTSELECTED : COL_MENUCONTENT, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + 30, y + BoxHeight, BoxWidth, /*g_Locale->getText(LOCALE_SCREENSETUP_LOWERRIGHT)*/_("Lower Right"), (selected == 1)?COL_MENUCONTENTSELECTED : COL_MENUCONTENT, 0, true); // UTF-8
 
 					paintIcons();
 					break;
@@ -295,10 +295,10 @@ void CScreenSetup::paint()
         frameBuffer->paintBoxRel(x, y + BoxHeight/2, BoxWidth, BoxHeight/2, COL_MENUCONTENT_PLUS_0);
 
 	// upper
-        g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + 30, y+BoxHeight/2, BoxWidth, g_Locale->getText(LOCALE_SCREENSETUP_UPPERLEFT ), COL_MENUCONTENTSELECTED , 0, true); // UTF-8
+        g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + 30, y+BoxHeight/2, BoxWidth, /*g_Locale->getText(LOCALE_SCREENSETUP_UPPERLEFT )*/_("Upper Left"), COL_MENUCONTENTSELECTED , 0, true); // UTF-8
         
         // lower
-        g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + 30, y+BoxHeight, BoxWidth, g_Locale->getText(LOCALE_SCREENSETUP_LOWERRIGHT), COL_MENUCONTENT, 0, true); // UTF-8
+        g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + 30, y+BoxHeight, BoxWidth, /*g_Locale->getText(LOCALE_SCREENSETUP_LOWERRIGHT)*/_("Lower Right"), COL_MENUCONTENT, 0, true); // UTF-8
 
 	paintIcons();
 	paintBorderUL();

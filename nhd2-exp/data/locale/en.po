@@ -25,6 +25,11 @@ msgid "Screen Setup" msgstr "Screen Setup"
 msgid "Alpha Setup" msgstr "Alpha Setup"
 msgid "OSD Diverses" msgstr "OSD Diverses"
 
+# screensetup
+msgid "Discard changes?" msgstr "Discard changes?"
+msgid "Upper Left" msgstr "red = setup upper left"
+msgid "Lower Right" msgstr "green = setup lower right"
+
 # skin select
 msgid "neutrino(default)" msgstr "neutrino (default)"
 msgid "Here you can select a skin from the following list." msgstr "Here you can select a skin from the following list."

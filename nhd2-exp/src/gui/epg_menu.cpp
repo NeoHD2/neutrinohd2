@@ -69,7 +69,7 @@ int CEPGMenuHandler::exec(CMenuTarget* parent, const std::string &)
 
 int CEPGMenuHandler::doMenu()
 {
-	CMenuWidget redMenu(LOCALE_EPGMENU_HEAD, NEUTRINO_ICON_BUTTON_EPG);
+	CMenuWidget redMenu(_("EPG - Program Information"), NEUTRINO_ICON_BUTTON_EPG);
 	
 	redMenu.id = WIDGET_EPGTIMER;
 	redMenu.name = "epgtimer";
@@ -81,20 +81,20 @@ int CEPGMenuHandler::doMenu()
 	redMenu.enableSaveScreen();
 
 	// eventlist
-	redMenu.addItem(new ClistBoxItem(LOCALE_EPGMENU_EVENTLIST, true, NULL, new CEventListHandler(), "", RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SLEEPTIMER));
+	redMenu.addItem(new ClistBoxItem(_("Eventlist current programm"), true, NULL, new CEventListHandler(), "", RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SLEEPTIMER));
 
 	// epg view
-	redMenu.addItem(new ClistBoxItem(LOCALE_EPGMENU_EVENTINFO, true, NULL, new CEPGDataHandler(), "", RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_RESTART));
+	redMenu.addItem(new ClistBoxItem(_("Details current program"), true, NULL, new CEPGDataHandler(), "", RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_RESTART));
 			
 	// epgplus
-	redMenu.addItem(new ClistBoxItem(LOCALE_EPGMENU_EPGPLUS, true, NULL, new CEPGplusHandler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_STANDBY));
+	redMenu.addItem(new ClistBoxItem(_("Eventlist overview"), true, NULL, new CEPGplusHandler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_STANDBY));
 
 	//tech info
-	redMenu.addItem(new ClistBoxItem(LOCALE_EPGMENU_STREAMINFO, true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_TIMERLIST));
+	redMenu.addItem(new ClistBoxItem(_("Sender information"), true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_TIMERLIST));
 	
 	// timerlis
 	//tech info
-	redMenu.addItem(new ClistBoxItem(LOCALE_TIMERLIST_NAME, true, NULL, new CTimerList(), "", RC_1, NEUTRINO_ICON_BUTTON_1, NEUTRINO_ICON_MENUITEM_TIMERLIST));
+	redMenu.addItem(new ClistBoxItem(_("Timer list"), true, NULL, new CTimerList(), "", RC_1, NEUTRINO_ICON_BUTTON_1, NEUTRINO_ICON_MENUITEM_TIMERLIST));
 					
 	return redMenu.exec(NULL, "");
 }

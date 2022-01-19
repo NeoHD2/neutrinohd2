@@ -81,10 +81,10 @@ void CPluginList::hide()
 #define NUM_LIST_BUTTONS 4
 struct button_label CPluginListButtons[NUM_LIST_BUTTONS] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_PLUGINLIST_REMOVE_PLUGIN },
-	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_PLUGINLIST_START_PLUGIN },
+	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE, _("remove") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, /*LOCALE_PLUGINLIST_START_PLUGIN*/NONEXISTANT_LOCALE, _("start") },
 	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE },
-	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_SERVICEMENU_GETPLUGINS }
+	{ NEUTRINO_ICON_BUTTON_BLUE, /*LOCALE_SERVICEMENU_GETPLUGINS*/NONEXISTANT_LOCALE, _("Reload plugins")}
 };
 
 struct button_label CPluginListHeadButtons = {NEUTRINO_ICON_BUTTON_HELP_SMALL, NONEXISTANT_LOCALE, NULL};
@@ -113,7 +113,7 @@ void CPluginList::showMenu()
 		// skip hidden plugins
 		if (!g_PluginList->isHidden(count))
 		{	
-			item = new CMenuForwarder(g_PluginList->getName(count), enabled, g_PluginList->getDescription(count).c_str(), CPluginsExec::getInstance(), to_string(count).c_str(), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
+			item = new CMenuForwarder(_(g_PluginList->getName(count)), enabled, _(g_PluginList->getDescription(count).c_str()), CPluginsExec::getInstance(), to_string(count).c_str(), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
 
 			item->set2lines(); 
 
@@ -191,13 +191,13 @@ int CPluginList::exec(CMenuTarget * parent, const std::string& actionKey)
 		std::string buffer;
 
 		buffer = "Name: ";
-		buffer += g_PluginList->getName(selected);
+		buffer += _(g_PluginList->getName(selected));
 		buffer += "\n";
 
 		if(!g_PluginList->getDescription(selected).empty())
 		{
-			buffer += "Description: ";
-			buffer += g_PluginList->getDescription(selected);
+			buffer += _("Description: ");
+			buffer += _(g_PluginList->getDescription(selected).c_str());
 			buffer += "\n";
 		}
 
@@ -208,7 +208,7 @@ int CPluginList::exec(CMenuTarget * parent, const std::string& actionKey)
 			buffer += "\n";
 		}
 		
-		InfoBox(buffer.c_str(), g_Locale->getText(LOCALE_USERMENU_ITEM_PLUGINS), NEUTRINO_ICON_SHELL);
+		InfoBox(buffer.c_str(), /*g_Locale->getText(LOCALE_USERMENU_ITEM_PLUGINS)*/_("Plugins"), NEUTRINO_ICON_SHELL);
 		return RETURN_REPAINT;
 	}
 	else if(actionKey == "RC_ok")

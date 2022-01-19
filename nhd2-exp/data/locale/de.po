@@ -1,9 +1,16 @@
+#
+msgid "Error" msgstr "Fehler"
+msgid "Information" msgstr "Information"
+msgid "back" msgstr "zurück"
+msgid "Save Settings" msgstr "Einstellungen speichern"
+
+
 # mainmenu
 msgid "Main Menu" msgstr "Haupt Menü"
 msgid "Features" msgstr "Erweiterungen"
 msgid "Service" msgstr "Service"
 msgid "Main Setup" msgstr "Einstellungen"
-msgid "Information" msgstr "Informatiom"
+#msgid "Information" msgstr "Informatiom"
 msgid "Power Menu" msgstr "Power Menü"
 msgid "Media Player" msgstr "Media Player"
 
@@ -25,6 +32,11 @@ msgid "Screen Setup" msgstr "Bildschirm"
 msgid "Alpha Setup" msgstr "Alpha"
 msgid "OSD Diverses" msgstr "OSD Diverse Einstellungen"
 
+# screensetup
+msgid "Discard changes?" msgstr "Wollen Sie die Änderungen verwerfen?"
+msgid "Upper Left" msgstr "Bildrand oben, links"
+msgid "Lower Right" msgstr "Bildrand unten, rechts"
+
 # skin select
 msgid "neutrino(default)" msgstr "Neutrino (default)"
 msgid "Here you can select a skin from the following list." msgstr "Hier können Sie eine Skin aus der Liste wählen"
@@ -34,5 +46,75 @@ msgid "choose Skin Style." msgstr "wähle einen Skin Style."
 
 # language setup
 #msgid "Language Setup" msgstr "Sprache Einstellungen"
-msgid "back" msgstr "zurück"
-msgid "Save Settings" msgstr "Einstellungen speichern"
+#msgid "back" msgstr "zurück"
+#msgid "Save Settings" msgstr "Einstellungen speichern"
+
+# infobar
+msgid "EPG not available" msgstr "Keine EPG-Information verfügbar"
+msgid "waiting for EPG..." msgstr "Warte auf EPG-Informationen..."
+msgid "EPG not loaded..." msgstr "Informationen noch nicht geladen..."
+msgid "Waiting for time..." msgstr "Warte auf Uhrzeit..."
+msgid "Direct-Mode" msgstr "Bildregie-Modus"
+msgid "Antenna positioning" msgstr "Antennenpositionierung"
+msgid "Subservices" msgstr "Bildregie"
+msgid "Timeselection" msgstr "Startzeiten"
+msgid "Event-List" msgstr "Event-liste"
+msgid "No info for current program available" msgstr "Keine Info zu laufendem Programm"
+msgid "Audio" msgstr "Tonwahl"
+
+# channellist
+msgid "Now" msgstr "Jetzt"
+msgid "Next" msgstr "Später"
+msgid "Bouquets" msgstr "Bouquets"
+#msgid "Eventlist overview" msgstr "Vorschau Übersicht"
+msgid "since %02d:%02d" msgstr "seit %02d:%02d"
+msgid "starts %02d:%02d" msgstr "ab %02d:%02d"
+
+# plugins list
+msgid "remove" msgstr "löschen"
+msgid "start" msgstr "starten"
+msgid "Reload plugins" msgstr "Plugins neu laden"
+msgid "Description: " msgstr "Beschreibung: "
+
+# epgmenu
+msgid "EPG - Program Information" msgstr "EPG - Programm Information"
+msgid "Eventlist current programm" msgstr "Vorschau aktuelles Programm"
+msgid "Details current program" msgstr "Info zur Sendung"
+msgid "Eventlist overview" msgstr "Vorschau Übersicht"
+msgid "Sender information" msgstr "Sender Informationen"
+msgid "Timer list" msgstr "Timer Liste"
+
+
+#
+msgid "play records" msgstr "spielt Aufnahmen ab"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

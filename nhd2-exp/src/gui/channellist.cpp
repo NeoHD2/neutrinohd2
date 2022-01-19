@@ -1505,10 +1505,10 @@ bool CChannelList::canZap(CZapitChannel * channel)
 #define NUM_LIST_BUTTONS 4
 struct button_label CChannelListButtons[NUM_LIST_BUTTONS] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_INFOVIEWER_EVENTLIST, NULL},
-	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_INFOVIEWER_NEXT, NULL},
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_BOUQUETLIST_HEAD, NULL},
-	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_EPGMENU_EPGPLUS, NULL},
+	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE, _("Event-List")},
+	{ NEUTRINO_ICON_BUTTON_GREEN, NONEXISTANT_LOCALE, _("Next")},
+	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE, _("Bouquets")},
+	{ NEUTRINO_ICON_BUTTON_BLUE, NONEXISTANT_LOCALE, _("Eventlist overview")},
 };
 
 #define HEAD_BUTTONS_COUNT	3
@@ -1529,7 +1529,6 @@ const struct button_label HeadNewModeButtons[HEAD_BUTTONS_COUNT] =
 const struct button_label HeadWEBTVModeButtons[2] =
 {
 	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
-	//{ NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL },
 	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE, NONEXISTANT_LOCALE, NULL }
 };
 
@@ -1589,11 +1588,11 @@ void CChannelList::paint()
 				if (displayNext) 
 				{
 					sprintf(cNoch, "(%d min)", p_event->duration / 60);
-					sprintf(cSeit, g_Locale->getText(LOCALE_CHANNELLIST_START), pStartZeit->tm_hour, pStartZeit->tm_min);
+					sprintf(cSeit, /*g_Locale->getText(LOCALE_CHANNELLIST_START)*/_("starts %02d:%02d"), pStartZeit->tm_hour, pStartZeit->tm_min);
 				} 
 				else 
 				{
-					sprintf(cSeit, g_Locale->getText(LOCALE_CHANNELLIST_SINCE), pStartZeit->tm_hour, pStartZeit->tm_min);
+					sprintf(cSeit, /*g_Locale->getText(LOCALE_CHANNELLIST_SINCE)*/_("since %02d:%02d"), pStartZeit->tm_hour, pStartZeit->tm_min);
 					int noch = (p_event->startTime + p_event->duration - time(NULL)) / 60;
 					if ((noch < 0) || (noch >= 10000))
 						noch = 0;
@@ -1640,11 +1639,11 @@ void CChannelList::paint()
 
 	if (displayNext) 
 	{
-		CChannelListButtons[1].locale = LOCALE_INFOVIEWER_NOW;
+		CChannelListButtons[1].localename = /*LOCALE_INFOVIEWER_NOW*/_("Now");
 	} 
 	else 
 	{
-		CChannelListButtons[1].locale = LOCALE_INFOVIEWER_NEXT;
+		CChannelListButtons[1].localename = /*LOCALE_INFOVIEWER_NEXT*/_("Next");
 	}
 
 	listBox->setFootButtons(CChannelListButtons, NUM_LIST_BUTTONS);
