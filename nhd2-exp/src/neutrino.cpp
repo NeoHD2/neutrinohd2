@@ -2514,12 +2514,13 @@ int CNeutrinoApp::run(int argc, char **argv)
 
 	// check locale language
 	CLocaleManager::loadLocale_ret_t loadLocale_ret = g_Locale->loadLocale(g_settings.language);
-
+/*
 	if (loadLocale_ret == CLocaleManager::NO_SUCH_LOCALE)
 	{
-		strcpy(g_settings.language, "english");
+		strcpy(g_settings.language, "en");
 		loadLocale_ret = g_Locale->loadLocale(g_settings.language);
 	}
+*/ //FIXME:
 
 	// icons/buttons/hints path
 	frameBuffer->setIconBasePath(g_settings.icons_dir);
@@ -5272,7 +5273,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	}
 	else if(actionKey == "savesettings") 
 	{
-		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_MAINSETTINGS_SAVESETTINGSNOW, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(/*LOCALE_MESSAGEBOX_INFO*/_("Information"), /*LOCALE_MAINSETTINGS_SAVESETTINGSNOW*/_("Save Settings"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			saveSetup(NEUTRINO_SETTINGS_FILE);
 
@@ -5281,7 +5282,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 			zapitCfg.saveLastChannel = g_settings.uselastchannel;
 			setZapitConfig(&zapitCfg);
 
-			HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
+			HintBox(/*LOCALE_MESSAGEBOX_INFO*/_("Information"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save Settings"));
 		}
 	}
 	else if (actionKey == "saveskinsettings")

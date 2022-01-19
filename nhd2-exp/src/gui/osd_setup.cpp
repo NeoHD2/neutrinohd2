@@ -437,7 +437,34 @@ int CLanguageSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(actionKey == "savesettings")
 	{
 		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		//CNeutrinoApp::getInstance()->exec(NULL, "restart"); //FIXME:
+		if (MessageBox(_("Information"), _("GUI Restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		{
+			CNeutrinoApp::getInstance()->exec(NULL, "restart");
+		}
+		
+		return ret;
+	}
+	else if (actionKey == "en")
+	{
+		strcpy(g_settings.language, "en");
+		g_Locale->loadLocale(g_settings.language);
+		
+		if (MessageBox(_("Information"), _("GUI Restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		{
+			CNeutrinoApp::getInstance()->exec(NULL, "restart");
+		}
+		
+		return ret;
+	}
+	else if (actionKey == "de")
+	{
+		strcpy(g_settings.language, "de");
+		g_Locale->loadLocale(g_settings.language);
+		
+		if (MessageBox(_("Information"), _("GUI Restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		{
+			CNeutrinoApp::getInstance()->exec(NULL, "restart");
+		}
 		
 		return ret;
 	}
@@ -451,16 +478,16 @@ void CLanguageSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CLanguageSettings::showMenu:\n");
 	
-	CMenuWidget languageSettings(/*LOCALE_LANGUAGESETUP_HEAD*/_("Language Setup"), NEUTRINO_ICON_LANGUAGE );
+	CMenuWidget languageSettings(_("Language Setup"), NEUTRINO_ICON_LANGUAGE );
 
 	languageSettings.setWidgetMode(MODE_SETUP);
 	//languageSettings.enableShrinkMenu();
 	
 	// intros
-	languageSettings.addItem(new CMenuForwarder(/*LOCALE_MENU_BACK*/_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	languageSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	languageSettings.addItem(new CMenuSeparator(LINE));
 
-	languageSettings.addItem(new CMenuForwarder(/*LOCALE_MAINSETTINGS_SAVESETTINGSNOW*/_("Save Settings"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	languageSettings.addItem(new CMenuForwarder(_("Save Settings"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	languageSettings.addItem(new CMenuSeparator(LINE));
 
 	struct dirent **namelist;
@@ -513,8 +540,10 @@ void CLanguageSettings::showMenu()
 					
 					skinMenu->addItem(item);
 				*/
-					CMenuOptionLanguageChooser* oj = new CMenuOptionLanguageChooser(namelist[n]->d_name, this, /*namelist[n]->d_name*/"deutsch");
-					oj->addOption(/*namelist[n]->d_name*/"deutsch");
+					//CMenuOptionLanguageChooser* oj = new CMenuOptionLanguageChooser(namelist[n]->d_name, this, /*namelist[n]->d_name*/"deutsch");
+					//oj->addOption(/*namelist[n]->d_name*/"deutsch");
+					CMenuForwarder* oj = new CMenuForwarder(namelist[n]->d_name, true, NULL, this, namelist[n]->d_name);
+					oj->setIconName(namelist[n]->d_name);
 					languageSettings.addItem( oj );	
 				}
 				free(namelist[n]);

@@ -142,11 +142,11 @@
 		</ITEM>
 		<ITEM name="menuforwarder" id="5" localename="Service" target="4">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Setup" target="2">
+		<ITEM name="menuforwarder" id="5" localename="Main Setup" target="2">
 		</ITEM>
 		<ITEM name="menuforwarder" id="5" localename="Information" target="5">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Power" target="7">
+		<ITEM name="menuforwarder" id="5" localename="Power Menu" target="7">
 		</ITEM>
 		<ITEM name="menuforwarder" id="5" localename="Mediaplayer" target="8">
 		</ITEM>

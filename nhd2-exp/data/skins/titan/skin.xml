@@ -12,11 +12,11 @@
 	<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1">
 		<ITEM name="menuforwarder" id="5" localename="EPG / Timer" itemicon="hint_timers" hint="Timer List" target="3">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" hint="Timer List" target="6">
+		<ITEM name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" hint="Timer List" target="6" actionkey="features">
 		</ITEM>
 		<ITEM name="menuforwarder" id="5" localename="Service" itemicon="hint_service" hint="Timer List" target="4">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Setup" itemicon="hint_settings" hint="test" target="2">
+		<ITEM name="menuforwarder" id="5" localename="Main Setup" itemicon="hint_settings" hint="test" target="2">
 		</ITEM>
 		<ITEM name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="5">
 		</ITEM>

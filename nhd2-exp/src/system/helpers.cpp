@@ -661,9 +661,9 @@ std::string Lang2I18N(std::string lang)
 {
 	std::string ret = "en_EN";
 	
-	if ((lang == "deutsch") || (lang == "bayrisch") || (lang == "ch-baslerdeutsch") || (lang == "ch-berndeutsch"))
+	if ((lang == "de") || (lang == "bayrisch") || (lang == "ch-baslerdeutsch") || (lang == "ch-berndeutsch"))
 		ret = "de_DE";
-	else if (lang == "english")
+	else if (lang == "en")
 		ret = "C";
 	else if (lang == "nederlands")
 		ret = "nl_NL";

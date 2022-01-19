@@ -3,6 +3,11 @@ msgid "Error" msgstr "Fehler"
 msgid "Information" msgstr "Information"
 msgid "back" msgstr "zurück"
 msgid "Save Settings" msgstr "Einstellungen speichern"
+msgid "Yes" msgstr "Ja"
+msgid "No" msgstr "Nein"
+msgid "Cancel" msgstr "Abbruch"
+msgid "OK" msgstr "OK"
+msgid "Back" msgstr "Zurück"
 
 
 # mainmenu
@@ -87,6 +92,11 @@ msgid "Timer list" msgstr "Timer Liste"
 
 #
 msgid "play records" msgstr "spielt Aufnahmen ab"
+msgid "play music files" msgstr "spielt Musik Dateien ab"
+msgid "display pics" msgstr "zeigt Bilder Dateien"
+msgid "play and edit records and movies" msgstr "spielt / bearbeitet Aufnahmen und Filme"
+msgid "play media files" msgstr "spielt Media Dateien alle Art (Movie / Audio)"
+
 
 
 
