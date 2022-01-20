@@ -769,7 +769,7 @@ int EventList::findEvents(void)
 		}
 		else if(m_search_list == SEARCH_LIST_ALL)
 		{
-			CHintBox box(LOCALE_TIMING_EPG,g_Locale->getText(LOCALE_EVENTFINDER_SEARCHING));
+			CHintBox box(_("Event list"), _("Search for keyword in EPG..."));
 			box.paint();
 			int bouquet_nr = bouquetList->Bouquets.size();
 			

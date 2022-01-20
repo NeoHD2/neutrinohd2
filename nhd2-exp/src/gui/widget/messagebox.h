@@ -49,7 +49,7 @@
 #include <gui/widget/widget_helpers.h>
 
 
-#define MESSAGEBOX_WIDTH			550
+#define MESSAGEBOX_WIDTH			600
 
 typedef enum result_
 {

@@ -616,7 +616,7 @@ void CUpnpBrowserGui::loadDevices(bool hint)
 {
 	m_devices.clear();
 
-	CHintBox *scanBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_UPNPBROWSER_SCANNING)); // UTF-8
+	CHintBox *scanBox = new CHintBox(_("Information"), /*g_Locale->getText(LOCALE_UPNPBROWSER_SCANNING)*/_("Scanning for UPnP servers")); // UTF-8
 
 	if(hint)
 		scanBox->paint();

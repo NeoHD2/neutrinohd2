@@ -2253,7 +2253,7 @@ void CNeutrinoApp::startNextRecording()
 								strcat(msg, "\nDir: ");
 								strcat(msg, nextRecordingInfo->recordingDir);
 
-								HintBox(LOCALE_MESSAGEBOX_ERROR, msg); // UTF-8
+								HintBox(_("Error"), _(msg)); // UTF-8
 								doRecord = false;
 							}
 							break;
@@ -2815,7 +2815,7 @@ int CNeutrinoApp::run(int argc, char **argv)
 
 		dprintf(DEBUG_INFO, "config file or options missing\n");
 
-		HintBox(LOCALE_MESSAGEBOX_INFO, loadSettingsErg ==  1 ? g_Locale->getText(LOCALE_SETTINGS_NOCONFFILE) : g_Locale->getText(LOCALE_SETTINGS_MISSINGOPTIONSCONFFILE));
+		HintBox(_("Information"), loadSettingsErg ==  1 ? /*g_Locale->getText(LOCALE_SETTINGS_NOCONFFILE)*/_("No neutrino-settings found, Using defaults.") : /*g_Locale->getText(LOCALE_SETTINGS_MISSINGOPTIONSCONFFILE)*/_("The neutrino-settings have been updated.\nNew Options will be set to default."));
 		
 		configfile.setModifiedFlag(true);
 
@@ -3618,7 +3618,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 			if(true && (videoDecoder->getBlank() && videoDecoder->getPlayState())) 
 			{
 				const char * text = g_Locale->getText(LOCALE_SCRAMBLED_CHANNEL);
-				HintBox(LOCALE_MESSAGEBOX_INFO, text, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth (text, true) + 10, 5);
+				HintBox(_("Information"), _(text), g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth (text, true) + 10, 5);
 			}
 */
 
@@ -4031,7 +4031,7 @@ _repeat:
 
 				name += zAddData;
 			}
-			HintBox( LOCALE_MESSAGEBOX_INFO, name.c_str() );
+			HintBox(_("Information"), _(name.c_str()) );
 		}
 
 		return messages_return::handled;
@@ -4069,14 +4069,14 @@ _repeat:
 		delete[] (unsigned char*) data;
 		
 		if( mode != mode_scart )
-			HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_RECORDTIMER_ANNOUNCE));
+			HintBox(_("Information"), /*g_Locale->getText(LOCALE_RECORDTIMER_ANNOUNCE)*/_("Recording starts in a few minutes"));
 		
 		return messages_return::handled;
 	}
 	else if( msg == NeutrinoMessages::ANNOUNCE_SLEEPTIMER) 
 	{
 		if( mode != mode_scart )
-			HintBox( LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SLEEPTIMERBOX_ANNOUNCE) );
+			HintBox(_("Information"), /*g_Locale->getText(LOCALE_SLEEPTIMERBOX_ANNOUNCE)*/_("Sleeptimer in 1 min") );
 		
 		return messages_return::handled;
 	}
@@ -4162,7 +4162,7 @@ _repeat:
 	else if ( msg == NeutrinoMessages::EVT_POPUP ) 
 	{
 		if (mode != mode_scart)
-			HintBox(LOCALE_MESSAGEBOX_INFO, (const char *) data); // UTF-8
+			HintBox(_("Information"), (const char *) data); // UTF-8
 		
 		delete[] (unsigned char*) data;
 		
@@ -5303,7 +5303,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 				
 			tuxtxt_close();
 				
-			HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
+			HintBox(_("Information"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now"));
 		}
 	}
 	else if (actionKey == "defaultskinsettings")
@@ -5322,7 +5322,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	{
 		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RELOAD, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
-			HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SERVICEMENU_RELOAD_HINT));
+			HintBox(_("Information"), /*g_Locale->getText(LOCALE_SERVICEMENU_RELOAD_HINT)*/_("Reloading channel lists, please be patient."));
 			g_Zapit->reinitChannels();
 		}
 	}
@@ -5677,6 +5677,12 @@ int main(int argc, char *argv[])
         signal(SIGHUP, SIG_IGN);
 	signal(SIGHUP, sighandler);
 	signal(SIGPIPE, SIG_IGN);
+	
+	// initlocale
+	setlocale(LC_ALL, "");
+	bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale");
+	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
+	textdomain(PACKAGE_NAME);
 	
 	// set localtime
 	tzset();

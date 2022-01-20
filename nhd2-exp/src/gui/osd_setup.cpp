@@ -99,36 +99,36 @@ void COSDSettings::showMenu(void)
 	osdSettings->enablePaintDate();
 	
 	// skin
-	osdSettings->addItem( new ClistBoxItem(/*LOCALE_SKIN_SKIN*/_("Skin Select"), true, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
+	osdSettings->addItem( new ClistBoxItem(/*LOCALE_SKIN_SKIN*/_("Skin Select"), true, NULL, new CSkinManager(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, /*LOCALE_HELPTEXT_THEMES*/_("Here you can setup the GUI Skin\n")));
 
 	// Themes
-	osdSettings->addItem( new ClistBoxItem(/*LOCALE_COLORMENU_THEMESELECT*/_("Themes"), true, NULL, new CThemes(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, LOCALE_HELPTEXT_THEMES));
+	osdSettings->addItem( new ClistBoxItem(/*LOCALE_COLORMENU_THEMESELECT*/_("Themes"), true, NULL, new CThemes(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_THEMES, /*LOCALE_HELPTEXT_THEMES*/_("Here you can setup the GUI themes.\n")));
 
 	// menu colors
-	osdSettings->addItem( new ClistBoxItem(/*LOCALE_COLORMENU_MENUCOLORS*/_("Menu"), true, NULL, new COSDMenuColorSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_MENUCOLORS, LOCALE_HELPTEXT_MENUCOLORS));
+	osdSettings->addItem( new ClistBoxItem(/*LOCALE_COLORMENU_MENUCOLORS*/_("Menu"), true, NULL, new COSDMenuColorSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_MENUCOLORS));
 
 	// infobar
-	osdSettings->addItem( new ClistBoxItem(/*LOCALE_COLORSTATUSBAR_HEAD*/_("Infobar"), true, NULL, new COSDInfoBarColorSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_INFOBARCOLORS, LOCALE_HELPTEXT_INFOBARCOLORS));
+	osdSettings->addItem( new ClistBoxItem(/*LOCALE_COLORSTATUSBAR_HEAD*/_("Infobar"), true, NULL, new COSDInfoBarColorSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_INFOBARCOLORS/*, LOCALE_HELPTEXT_INFOBARCOLORS*/));
 
 	// language
-	osdSettings->addItem(new ClistBoxItem(/*LOCALE_MAINSETTINGS_LANGUAGE*/_("Language Setup"), true, NULL, new CLanguageSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_LANGUAGE, LOCALE_HELPTEXT_LANGUAGE));
+	osdSettings->addItem(new ClistBoxItem(/*LOCALE_MAINSETTINGS_LANGUAGE*/_("Language Setup"), true, NULL, new CLanguageSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_LANGUAGE/*, LOCALE_HELPTEXT_LANGUAGE*/));
 	
 	// font
-	osdSettings->addItem(new ClistBoxItem(/*LOCALE_EPGPLUS_SELECT_FONT_NAME*/_("Font"), true, NULL, new CFontSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_FONT, LOCALE_HELPTEXT_FONT));
+	osdSettings->addItem(new ClistBoxItem(/*LOCALE_EPGPLUS_SELECT_FONT_NAME*/_("Font"), true, NULL, new CFontSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_FONT/*, LOCALE_HELPTEXT_FONT*/));
 	
 	// osd timing
-	osdSettings->addItem(new ClistBoxItem(/*LOCALE_TIMING_HEAD*/_("OSD Timing"), true, NULL, new COSDTimingSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_OSDTIMING, LOCALE_HELPTEXT_OSDTIMING));
+	osdSettings->addItem(new ClistBoxItem(/*LOCALE_TIMING_HEAD*/_("OSD Timing"), true, NULL, new COSDTimingSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_OSDTIMING/*, LOCALE_HELPTEXT_OSDTIMING*/));
 
 	// sceensetup
-	osdSettings->addItem(new ClistBoxItem(/*LOCALE_VIDEOMENU_SCREENSETUP*/_("Screen Setup"), true, NULL, new CScreenSetup(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_SCREENSETUP, LOCALE_HELPTEXT_SCREENSETUP));
+	osdSettings->addItem(new ClistBoxItem(/*LOCALE_VIDEOMENU_SCREENSETUP*/_("Screen Setup"), true, NULL, new CScreenSetup(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_SCREENSETUP));
 	
 	// alpha setup
 	//FIXME:
 	//CAlphaSetup * chAlphaSetup = new CAlphaSetup(/*LOCALE_COLORMENU_GTX_ALPHA*/_("Alpha Setup"), &g_settings.gtx_alpha);
-	//osdSettings->addItem( new ClistBoxItem(LOCALE_COLORMENU_GTX_ALPHA, true, NULL, chAlphaSetup, NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_ALPHASETUP, LOCALE_HELPTEXT_ALPHA_SETUP));
+	//osdSettings->addItem( new ClistBoxItem(LOCALE_COLORMENU_GTX_ALPHA, true, NULL, chAlphaSetup, NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_ALPHASETUP));
 	
 	// diverses
-	osdSettings->addItem(new ClistBoxItem(/*LOCALE_MAINSETTINGS_MISC*/_("OSD Diverses"), true, NULL, new COSDDiverses(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS, LOCALE_HELPTEXT_OSDSETTINGS));
+	osdSettings->addItem(new ClistBoxItem(/*LOCALE_MAINSETTINGS_MISC*/_("OSD Diverses"), true, NULL, new COSDDiverses(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS));
 	
 	osdSettings->exec(NULL, "");
 	osdSettings->hide();

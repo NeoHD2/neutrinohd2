@@ -59,7 +59,7 @@ int CSleepTimerWidget::exec(CMenuTarget* parent, const std::string &)
 	int    res = RETURN_REPAINT;
 	int    shutdown_min = 0;
 	char   value[16];
-	CStringInput  * inbox;
+	CStringInput* inbox;
 
 	if (parent)
 		parent->hide();
@@ -73,13 +73,14 @@ int CSleepTimerWidget::exec(CMenuTarget* parent, const std::string &)
 	{
   		time_t jetzt=time(NULL);
   		int current_epg_zeit_dauer_rest = (info_CurrentNext.current_zeit.dauer + 150 - (jetzt - info_CurrentNext.current_zeit.startzeit ))/60 ;
+  		
   		if(shutdown_min == 0 && current_epg_zeit_dauer_rest > 0 && current_epg_zeit_dauer_rest < 1000)
   		{
   			sprintf(value,"%03d", current_epg_zeit_dauer_rest);
   		}
   	}
 
-	inbox = new CStringInput(LOCALE_SLEEPTIMERBOX_TITLE, value, 3, LOCALE_SLEEPTIMERBOX_HINT1, LOCALE_SLEEPTIMERBOX_HINT2, "0123456789 ");
+	inbox = new CStringInput(_("Sleep Timer"), value, 3, LOCALE_SLEEPTIMERBOX_HINT1, LOCALE_SLEEPTIMERBOX_HINT2, "0123456789 ");
 	inbox->exec (NULL, "");
 	inbox->hide ();
 

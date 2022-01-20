@@ -59,7 +59,6 @@
 #include <driver/stream2file.h>
 
 #include <gui/widget/messagebox.h>
-#include <gui/widget/hintbox.h>
 
 #include <daemonc/remotecontrol.h>
 
@@ -746,8 +745,10 @@ bool CVCRControl::CFileDevice::Record(const t_channel_id channel_id, int mode, c
 	}
 }
 
-bool CVCRControl::Screenshot(const t_channel_id channel_id, char * fname, bool msg) 
+bool CVCRControl::Screenshot(const t_channel_id channel_id, char * fname) 
 {
+	//FIXME:
+	
 	char filename[512]; // UTF-8
 	char cmd[512];
 	std::string channel_name;
@@ -840,23 +841,10 @@ bool CVCRControl::Screenshot(const t_channel_id channel_id, char * fname, bool m
 	
 	printf("Executing %s\n", cmd);
 	
-	CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SCREENSHOT_CREATING));
-
-	if(msg)
-		hintBox->paint();
-	
 	if(system(cmd))
 	{
-		if(msg)
-			hintBox->hide();
-
 		return false;
 	}
-	
-	if(msg)
-		hintBox->hide();
-	
-	delete hintBox;
 	
 	return true;
 }

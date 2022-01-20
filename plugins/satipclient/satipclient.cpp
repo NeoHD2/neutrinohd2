@@ -221,7 +221,7 @@ int CSatIPClient::exec(CMenuTarget* parent, const std::string &actionKey)
 	{
 		//SaveSettings();
 		if(this->SaveSettings())
-		 	HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
+		 	HintBox(_("Information"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now"));
 
 		return RETURN_REPAINT;
 	}

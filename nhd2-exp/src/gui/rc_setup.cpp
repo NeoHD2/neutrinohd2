@@ -250,7 +250,7 @@ int CKeysBindingSettings::exec(CMenuTarget* parent, const std::string& actionKey
 	}
 	else if(actionKey == "savekeymap")
 	{
-		CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_KEYBINDINGMENU_SAVEKEYMAP_HINT)); // UTF-8
+		CHintBox * hintBox = new CHintBox(_("Information"), /*g_Locale->getText(LOCALE_KEYBINDINGMENU_SAVEKEYMAP_HINT)*/_("Saving keymap, please wait...")); // UTF-8
 		hintBox->paint();
 		
 		g_RCInput->configfile.setModifiedFlag(true);

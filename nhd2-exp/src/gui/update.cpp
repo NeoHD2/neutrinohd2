@@ -246,7 +246,7 @@ bool CFlashUpdate::selectHttpImage(void)
 
 	if (urls.empty())
 	{
-		HintBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(LOCALE_FLASHUPDATE_GETINFOFILEERROR)); // UTF-8
+		HintBox(_("Error"), /*g_Locale->getText(LOCALE_FLASHUPDATE_GETINFOFILEERROR)*/_("can't get update list")); // UTF-8
 		return false;
 	}
 		
@@ -370,7 +370,7 @@ bool CFlashUpdate::checkVersion4Update()
 			
 			dprintf(DEBUG_NORMAL, "flash-file not found: %s\n", filename.c_str());
 			
-			HintBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(LOCALE_FLASHUPDATE_CANTOPENFILE)); // UTF-8
+			HintBox(_("Error"), /*g_Locale->getText(LOCALE_FLASHUPDATE_CANTOPENFILE)*/_("can't open file")); // UTF-8
 			return false;
 		}
 		
@@ -436,7 +436,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 		if(!getUpdateImage(newVersion)) 
 		{
 			hide();
-			HintBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(LOCALE_FLASHUPDATE_GETUPDATEFILEERROR)); // UTF-8
+			HintBox(_("Error"), /*g_Locale->getText(LOCALE_FLASHUPDATE_GETUPDATEFILEERROR)*/_("can't get update list")); // UTF-8
 			return RETURN_REPAINT;
 		}
 		
@@ -463,7 +463,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 		// remove flash/package
 		remove(filename.c_str());
 		progressWindow->hide();
-		HintBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText( (fileType < '3') ? LOCALE_FLASHUPDATE_FLASHMD5SUMERROR : LOCALE_FLASHUPDATE_PACKAGEMD5SUMERROR)); // UTF-8
+		HintBox(_("Error"), /*g_Locale->getText( (fileType < '3') ? LOCALE_FLASHUPDATE_FLASHMD5SUMERROR : LOCALE_FLASHUPDATE_PACKAGEMD5SUMERROR)*/(fileType < 3)? _("image has errors") : _("package has errors")); // UTF-8
 
 		return RETURN_REPAINT;
 	}
@@ -499,7 +499,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 			// remove flash if flashing failed
 			remove(filename.c_str());
 			progressWindow->hide();
-			HintBox(LOCALE_MESSAGEBOX_ERROR, ft.getErrorMessage().c_str()); // UTF-8
+			HintBox(_("Error"), _(ft.getErrorMessage().c_str())); // UTF-8
 
 			return RETURN_REPAINT;
 		}
@@ -514,7 +514,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 		nfs_mounted_once = false; /* needed by update.cpp to prevent removal of modules after flashing a new cramfs, since rmmod (busybox) might no longer be available */
 		CFSMounter::umount();
 
-		HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_FLASHUPDATE_FLASHREADYREBOOT)); // UTF-8
+		HintBox(_("Information"), /*g_Locale->getText(LOCALE_FLASHUPDATE_FLASHREADYREBOOT)*/_("The image was successfully flashed.\nThe box will be rebooted now.")); // UTF-8
 		
 		ft.reboot();
 		sleep(20000);
@@ -545,7 +545,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 		if( system(cmd) )
 		{
 			progressWindow->hide();
-			HintBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(LOCALE_FLASHUPDATE_INSTALLFAILED)); // UTF-8
+			HintBox(_("Error"), /*g_Locale->getText(LOCALE_FLASHUPDATE_INSTALLFAILED)*/_("package install failed")); // UTF-8
 
 			return RETURN_REPAINT;
 		}
@@ -554,7 +554,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 		progressWindow->showGlobalStatus(100);
 		
 		// show successfull msg :-)
-		HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_FLASHUPDATE_READY)); // UTF-8
+		HintBox(_("Information"), /*g_Locale->getText(LOCALE_FLASHUPDATE_READY)*/_("Package successfully installed")); // UTF-8
 	}
 	
 	progressWindow->hide();
@@ -604,7 +604,7 @@ void CFlashExpert::readmtd(int _readmtd)
 		sprintf(message, g_Locale->getText(LOCALE_FLASHUPDATE_SAVESUCCESS), filename.c_str());
 		sleep(1);
 		progressWindow->hide();
-		HintBox(LOCALE_MESSAGEBOX_INFO, message);
+		HintBox(_("Information"), _(message));
 	}
 }
 
@@ -641,7 +641,7 @@ void CFlashExpert::writemtd(const std::string & filename, int mtdNumber)
 		progressWindow->showStatusMessageUTF(g_Locale->getText(LOCALE_FLASHUPDATE_READY)); // UTF-8
 		sleep(1);
 		progressWindow->hide();
-		HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_FLASHUPDATE_FLASHREADYREBOOT)); // UTF-8
+		HintBox(_("Information"), /*g_Locale->getText(LOCALE_FLASHUPDATE_FLASHREADYREBOOT)*/_("The image was successfully flashed.\nThe box will be rebooted now.")); // UTF-8
 		ft.reboot();
 	}
 }

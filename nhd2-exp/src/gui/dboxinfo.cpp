@@ -129,7 +129,7 @@ void CDBoxInfoWidget::showInfo()
 	int yPos = Box.iY;
 	
 	// head
-	CHeaders* head = new CHeaders(Box.iX, yPos, Box.iWidth, 40, "Box Info", NEUTRINO_ICON_INFO);
+	CHeaders* head = new CHeaders(Box.iX, yPos, Box.iWidth, 40, _("Box Info"), NEUTRINO_ICON_INFO);
 	head->enablePaintDate();
 	head->setFormat("%d.%m.%Y %H:%M:%S");
 
@@ -142,7 +142,7 @@ void CDBoxInfoWidget::showInfo()
 	m_window->addCCItem(cpuIcon);
 	
 	CCLabel* cpuLabel = new CCLabel();
-	cpuLabel->setText("CPU:");
+	cpuLabel->setText(_("CPU:"));
 	cpuLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 	cpuLabel->setColor(COL_MENUHEAD);
 	cpuLabel->setPosition(Box.iX + 10 + cpuIcon->iWidth + 10, yPos, cpuLabel->getWidth(), cpuIcon->iHeight);
@@ -295,7 +295,7 @@ void CDBoxInfoWidget::showInfo()
 		m_window->addCCItem(hddIcon);
 		
 		CCLabel* hddLabel = new CCLabel();
-		hddLabel->setText("HDD Devices:");
+		hddLabel->setText(_("HDD Devices:"));
 		hddLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 		hddLabel->setColor(COL_MENUHEAD);
 		hddLabel->setPosition(Box.iX + 10 + hddIcon->iWidth + 10, yPos, hddLabel->getWidth(), hddIcon->iHeight);
@@ -384,6 +384,7 @@ void CDBoxInfoWidget::showInfo()
 	}
 	
 	//frontend
+	yPos += hddIcon->iHeight + 10;
 	CCIcon* tunerIcon = new CCIcon(NEUTRINO_ICON_MENUITEM_SCANSETTINGS);
 	
 	if (FrontendCount)
@@ -392,7 +393,7 @@ void CDBoxInfoWidget::showInfo()
 		m_window->addCCItem(tunerIcon);
 		
 		CCLabel* tunerLabel = new CCLabel();
-		tunerLabel->setText("Frontend:");
+		tunerLabel->setText(_("Frontend:"));
 		tunerLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 		tunerLabel->setColor(COL_MENUHEAD);
 		tunerLabel->setPosition(Box.iX + 10 + tunerIcon->iWidth + 10, yPos, tunerLabel->getWidth(), tunerIcon->iHeight);
@@ -455,11 +456,11 @@ void CInfoMenu::showMenu()
 	infoMenu->enablePaintDate();
 	infoMenu->enableShrinkMenu();
 	
-	infoMenu->addItem( new ClistBoxItem(LOCALE_DBOXINFO, true, NULL, new CDBoxInfoWidget(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_BOXINFO, LOCALE_HELPTEXT_BOXINFO));
+	infoMenu->addItem( new ClistBoxItem(_("Information"), true, NULL, new CDBoxInfoWidget(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Here you can get HW infos about your STB.\n")));
 	
-	infoMenu->addItem(new ClistBoxItem(LOCALE_SERVICEMENU_IMAGEINFO,  true, NULL, new CImageInfo(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_IMAGEINFO, LOCALE_HELPTEXT_IMAGEINFO), false);
+	infoMenu->addItem(new ClistBoxItem(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_IMAGEINFO, _("Here you can get infos about the software.\n")), false);
 	
-	infoMenu->addItem(new ClistBoxItem(LOCALE_STREAMINFO_HEAD, true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO));
+	infoMenu->addItem(new ClistBoxItem(_("Sender information"), true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Here you can get infos about the Channel.\n")));
 	
 	infoMenu->integratePlugins(CPlugins::I_TYPE_MAIN);
 	

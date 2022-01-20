@@ -96,7 +96,7 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 				//
 				if (!nameInput->getExitPressed())
 				{
-					HintBox(LOCALE_COLORTHEMEMENU_SAVE, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT));
+					HintBox(_("Save current theme"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now"));
 					
 					if (g_settings.use_default_skin)
 						saveFile((char*)((std::string)USERDIR + nameInput->getString().c_str() + FILE_PREFIX).c_str());

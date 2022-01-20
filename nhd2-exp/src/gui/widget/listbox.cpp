@@ -985,7 +985,7 @@ CMenuForwarder::CMenuForwarder(const neutrino_locale_t Text, const bool Active, 
 	itemType = ITEM_TYPE_FORWARDER;
 }
 
-CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const neutrino_locale_t Hint )
+CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const /*neutrino_locale_t*/char* const Hint )
 {
 	textString = Text? Text : "";
 	text = NONEXISTANT_LOCALE;
@@ -1000,7 +1000,7 @@ CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const
 	iconName = IconName ? IconName : "";
 	
 	itemIcon = ItemIcon ? ItemIcon : "";
-	itemHint = g_Locale->getText(Hint);
+	itemHint = Hint? Hint : "";//g_Locale->getText(Hint);
 	itemName = Text? Text : "";
 
 	optionValueString = "";
@@ -1354,6 +1354,7 @@ int CLockedMenuForwarder::exec(CMenuTarget * parent)
 }
 
 //ClistBoxItem
+/*
 ClistBoxItem::ClistBoxItem(const neutrino_locale_t Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, const neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const neutrino_locale_t Hint)
 {
 	text = Text;
@@ -1376,8 +1377,9 @@ ClistBoxItem::ClistBoxItem(const neutrino_locale_t Text, const bool Active, cons
 
 	itemType = ITEM_TYPE_LISTBOXITEM;
 }
+*/
 
-ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, const neutrino_msg_t DirectKey, const char * const IconName, const char* const ItemIcon, const neutrino_locale_t Hint)
+ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, const neutrino_msg_t DirectKey, const char * const IconName, const char* const ItemIcon, const /*neutrino_locale_t*/char* const Hint)
 {
 	text = NONEXISTANT_LOCALE;
 	textString = Text? Text : "";
@@ -1393,7 +1395,7 @@ ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const cha
 	iconName = IconName ? IconName : "";
 	itemIcon = ItemIcon? ItemIcon : "";
 	itemName = Text? Text : "";
-	itemHint = g_Locale->getText(Hint);
+	itemHint = Hint? Hint : "";//g_Locale->getText(Hint);
 	
 	runningPercent = 0;
 

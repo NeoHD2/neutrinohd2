@@ -662,7 +662,7 @@ void CIceCast::loadPlaylist(void)
 		scanXmlData(answer_parser, "server_name", "listen_url", "bitrate", true);
 	}
 	else
-		HintBox(LOCALE_MESSAGEBOX_INFO, "can't load icecast list");
+		HintBox(_("Information"), _("can't load icecast list"));
 }
 
 #define HEAD_BUTTONS_COUNT 2

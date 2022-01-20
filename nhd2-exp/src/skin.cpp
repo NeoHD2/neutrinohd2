@@ -1247,7 +1247,7 @@ void CNeutrinoApp::startSkin(const char * const filename)
 		hint += " ";
 		hint += g_Locale->getText(LOCALE_PLUGINS_NOT_INSTALLED);
 		
-		HintBox(LOCALE_MESSAGEBOX_INFO, hint.c_str());
+		HintBox(_("Information"), _(hint.c_str()));
 	}
 #endif	
 }

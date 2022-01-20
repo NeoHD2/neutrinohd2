@@ -194,11 +194,11 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 			hintBox = NULL;
 		}
 		
-		sprintf(str, "%s %d", g_Locale->getText(LOCACE_CAM_INSERTED), (int) data + 1);
+		sprintf(str, "%s %d", /*g_Locale->getText(LOCACE_CAM_INSERTED)*/_("CAM inserted in slot"), (int) data + 1);
 
 		dprintf(DEBUG_NORMAL, "CCAMMenuHandler::handleMsg: %s\n", str);
 		
-		hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, str);
+		hintBox = new CHintBox(_("Information"), str);
 
 		if(hintBox != NULL) 
 			hintBox->paint();
@@ -222,11 +222,11 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 			hintBox = NULL;
 		}
 
-		sprintf(str, "%s %d", g_Locale->getText(LOCALE_CAM_REMOVED), (int) data + 1);
+		sprintf(str, "%s %d", /*g_Locale->getText(LOCALE_CAM_REMOVED)*/_("CAM removed from slot"), (int) data + 1);
 
 		dprintf(DEBUG_NORMAL, "CCAMMenuHandler::handleMsg: %s\n", str);
 		
-		hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, str);
+		hintBox = new CHintBox(_("Information"), str);
 
 		if(hintBox != NULL) 
 			hintBox->paint();
@@ -251,11 +251,11 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 		char name[255] = "Unknown";
 		
 		ci->GetName((int) data, name);
-		sprintf(str, "%s %d: %s", g_Locale->getText(LOCALE_CAM_INIT_OK), (int) data+1, name);
+		sprintf(str, "%s %d: %s", /*g_Locale->getText(LOCALE_CAM_INIT_OK)*/_("CAM init complete"), (int) data+1, name);
 
 		dprintf(DEBUG_NORMAL, "CCAMMenuHandler::handleMsg: %s\n", str);
 		
-		hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, str);
+		hintBox = new CHintBox(_("Information"), str);
 
 		if(hintBox != NULL) 
 			hintBox->paint();
@@ -356,7 +356,7 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 				hintBox = NULL;
 			}
 
-			hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, convertDVBUTF8(_str, strlen(_str), 0).c_str());
+			hintBox = new CHintBox(_("Information"), _(convertDVBUTF8(_str, strlen(_str), 0).c_str()));
 			if(hintBox != NULL) 
 				hintBox->paint();
 
@@ -470,7 +470,7 @@ int CCAMMenuHandler::doMenu(int slot)
 				hintBox = NULL;
 			}
 			
-			hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_CAM_WAITING));
+			hintBox = new CHintBox(_("Information"), /*g_Locale->getText(LOCALE_CAM_WAITING)*/_("Waiting for CI answer"));
 
 			if(hintBox != NULL) 
 				hintBox->paint();
@@ -485,7 +485,7 @@ int CCAMMenuHandler::doMenu(int slot)
 					hintBox = NULL;
 				}
 
-				hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_CAM_TIMEOUT));
+				hintBox = new CHintBox(_("Information"), /*g_Locale->getText(LOCALE_CAM_TIMEOUT)*/_("Timeout waiting CI menu ready"));
 				
 				if(hintBox != NULL) 
 					hintBox->paint();

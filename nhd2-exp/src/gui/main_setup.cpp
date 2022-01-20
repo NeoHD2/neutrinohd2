@@ -76,7 +76,7 @@ void CMainSettingsMenu::showMenu(void)
 	
 	int shortcutMainSettings = 1;
 
-	CMenuWidget * mainSettings = new CMenuWidget(LOCALE_MAINSETTINGS_HEAD, NEUTRINO_ICON_SETTINGS);
+	CMenuWidget * mainSettings = new CMenuWidget(_("Main Settings"), NEUTRINO_ICON_SETTINGS);
 
 	mainSettings->setWidgetMode(MODE_MENU);
 	mainSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
@@ -86,47 +86,44 @@ void CMainSettingsMenu::showMenu(void)
 	mainSettings->enablePaintDate();
 
 	// video settings
-	mainSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_VIDEO, true, NULL, new CVideoSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_VIDEOSETTINGS, LOCALE_HELPTEXT_VIDEOSETTINGS));
+	mainSettings->addItem(new ClistBoxItem(_("Video Settings"), true, NULL, new CVideoSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_VIDEOSETTINGS));
 
 	// audio settings
-	mainSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_AUDIO, true, NULL, new CAudioSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_AUDIOSETTINGS, LOCALE_HELPTEXT_AUDIOSETTINGS));
+	mainSettings->addItem(new ClistBoxItem(_("Audio Settings"), true, NULL, new CAudioSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_AUDIOSETTINGS));
 
 	// parentallock
-	if(g_settings.parentallock_prompt)
-		mainSettings->addItem(new CLockedMenuForwarder(LOCALE_PARENTALLOCK_PARENTALLOCK, g_settings.parentallock_pincode, true, true, NULL, new CParentalLockSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_PARENTALLOCKSETTINGS, LOCALE_HELPTEXT_PARENTALLOCK));
-	else
-		mainSettings->addItem(new ClistBoxItem(LOCALE_PARENTALLOCK_PARENTALLOCK, true, NULL, new CParentalLockSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_PARENTALLOCKSETTINGS, LOCALE_HELPTEXT_PARENTALLOCK));
+	mainSettings->addItem(new ClistBoxItem(_("Parentallock settings"), true, NULL, new CParentalLockSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_PARENTALLOCKSETTINGS));
 
 	// network settings
-	mainSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_NETWORK, true, NULL,  CNetworkSettings::getInstance(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_NETWORKSETTINGS, LOCALE_HELPTEXT_NETWORKSETTINGS));
+	mainSettings->addItem(new ClistBoxItem(_("Network settings"), true, NULL,  CNetworkSettings::getInstance(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_NETWORKSETTINGS));
 
 	// recording settings
-	mainSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_RECORDING, true, NULL, new CRecordingSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_RECORDINGSETTINGS, LOCALE_HELPTEXT_RECORDINGSETTINGS));
+	mainSettings->addItem(new ClistBoxItem(_("Recording Settings"), true, NULL, new CRecordingSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_RECORDINGSETTINGS));
 
 	// movieplayer settings
-	mainSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_STREAMING, true, NULL, new CMoviePlayerSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_MOVIEPLAYERSETTINGS, LOCALE_HELPTEXT_MOVIEPLAYERSETTINGS));
+	mainSettings->addItem(new ClistBoxItem(_("Movie Player Settings"), true, NULL, new CMoviePlayerSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_MOVIEPLAYERSETTINGS));
 
 	//OSD settings
-	mainSettings->addItem(new ClistBoxItem(/*LOCALE_MAINSETTINGS_OSD*/_("OSD Setup"), true, NULL, new COSDSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS, LOCALE_HELPTEXT_OSDSETTINGS));
+	mainSettings->addItem(new ClistBoxItem(_("OSD Setup"), true, NULL, new COSDSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS));
 
 	// vfd/lcd settings
 	//if(CVFD::getInstance()->has_lcd)
-		mainSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_LCD, true, NULL, new CLCDSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_LCDSETTINGS, LOCALE_HELPTEXT_VFDSETTINGS));	
+		mainSettings->addItem(new ClistBoxItem(_("LCD Settings"), true, NULL, new CLCDSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_LCDSETTINGS));	
 
 	// remote control settings
-	mainSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_KEYBINDING, true, NULL, new CRemoteControlSettings(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_REMOTECONTROLSETTINGS, LOCALE_HELPTEXT_REMOTECONTROLSETTINGS));
+	mainSettings->addItem(new ClistBoxItem(_("Remote Control Settings"), true, NULL, new CRemoteControlSettings(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_REMOTECONTROLSETTINGS));
 
 	// audioplayer settings
-	mainSettings->addItem(new ClistBoxItem(LOCALE_AUDIOPLAYERSETTINGS_GENERAL, true, NULL, new CAudioPlayerSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_AUDIOPLAYERSETTINGS, LOCALE_HELPTEXT_AUDIOPLAYERSETTINGS));
+	mainSettings->addItem(new ClistBoxItem(_("Audio Player Settings"), true, NULL, new CAudioPlayerSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_AUDIOPLAYERSETTINGS));
 	
 	// pictureviewer settings
-	mainSettings->addItem(new ClistBoxItem(LOCALE_PICTUREVIEWERSETTINGS_GENERAL, true, NULL, new CPictureViewerSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_PICTUREVIEWERSETTINGS, LOCALE_HELPTEXT_PICTUREVIEWERSETTINGS));
+	mainSettings->addItem(new ClistBoxItem("Picture Viewer Settings", true, NULL, new CPictureViewerSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_PICTUREVIEWERSETTINGS));
 
 	// misc settings
-	mainSettings->addItem(new ClistBoxItem(LOCALE_MAINSETTINGS_MISC, true, NULL, new CMiscSettingsMenu(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_MISCSETTINGS, LOCALE_HELPTEXT_MISCSETTINGS));
+	mainSettings->addItem(new ClistBoxItem(_("Misc Settings"), true, NULL, new CMiscSettingsMenu(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_MISCSETTINGS));
 
 	//HDD settings
-	mainSettings->addItem(new ClistBoxItem(LOCALE_HDD_SETTINGS, true, NULL, new CHDDMenuHandler(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_HDDSETTINGS, LOCALE_HELPTEXT_HDDSETTINGS));
+	mainSettings->addItem(new ClistBoxItem(_("HDD Settings"), true, NULL, new CHDDMenuHandler(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_HDDSETTINGS));
 	
 	mainSettings->exec(NULL, "");
 	mainSettings->hide();

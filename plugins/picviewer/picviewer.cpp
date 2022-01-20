@@ -174,7 +174,7 @@ void CPicViewer::showMenu()
 {
 	plist = new CMenuWidget(LOCALE_PICTUREVIEWER_HEAD, NEUTRINO_ICON_PICTURE, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
 
-	for(unsigned int i = 0; i < playlist.size(); i++)
+	for(unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 	{
 		std::string tmp = playlist[i].Name;
 		tmp += " (";
@@ -281,7 +281,7 @@ int CPicViewer::exec(CMenuTarget* parent, const std::string& actionKey)
 	}
 	else if(actionKey == "RC_blue")
 	{
-		for (unsigned int i = 0; i < playlist.size(); i++)
+		for (unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 		{
 			tmpPictureViewerGui.addToPlaylist(playlist[i]);
 		}

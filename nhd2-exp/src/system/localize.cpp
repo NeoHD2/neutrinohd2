@@ -116,17 +116,9 @@ CLocaleManager::loadLocale_ret_t CLocaleManager::loadLocale(const char * const l
 
 	initialize_iso639_map();
 	
-	//FIXME:
-	// initlocale
-	setlocale(LC_ALL, "");
-	if ( bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale") == NULL)
-		printf("cant bind localedir\n");
-	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
-	textdomain(PACKAGE_NAME);
-	
+	// set language
 	std::string lang = Lang2I18N(locale);
 	
-	// set language
 	setenv("LANG", lang.c_str(), 1);
 	setenv("LANGUAGE", lang.c_str(), 1);	
 	setlocale(LC_ALL, lang.c_str());

@@ -45,6 +45,7 @@
 #include <gui/widget/hintbox.h>
 
 
+/*
 CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, const int Width, const char * const Icon)
 {
 	char * begin;
@@ -132,6 +133,7 @@ CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, con
 	sec_timer_id = 0;
 	background = NULL;
 }
+*/
 
 CHintBox::CHintBox(const char * Caption, const char * const Text, const int Width, const char * const Icon)
 {
@@ -386,10 +388,7 @@ int CHintBox::exec(int timeout)
 	uint64_t timeoutEnd = CRCInput::calcTimeoutEnd( timeout );
 
 	while ( ! ( res & ( messages_return::cancel_info | messages_return::cancel_all ) ) )
-	{
-		//if (paintHG)
-		//	paintHourGlass();
-					
+	{			
 		g_RCInput->getMsgAbsoluteTimeout( &msg, &data, &timeoutEnd );
 
 		if ((msg == RC_timeout) || (msg == RC_home) || (msg == RC_ok))
@@ -444,6 +443,7 @@ int CHintBox::exec(int timeout)
 	return res;
 }
 
+/*
 int HintBox(const neutrino_locale_t Caption, const char * const Text, const int Width, int timeout, const char * const Icon)
 {
 	int res = messages_return::none;
@@ -465,8 +465,9 @@ int HintBox(const neutrino_locale_t Caption, const neutrino_locale_t Text, const
 {
 	return HintBox(Caption, g_Locale->getText(Text), Width, timeout, Icon);
 }
+*/
 
-int HintBox(const char * Caption, const char * const Text, const int Width, int timeout, const char * const Icon)
+int HintBox(const char * const Caption, const char * const Text, const int Width, int timeout, const char * const Icon)
 {
 	int res = messages_return::none;
 
@@ -483,9 +484,11 @@ int HintBox(const char * Caption, const char * const Text, const int Width, int 
 	return res;
 }
 
+/*
 int HintBox(const char * Caption, const neutrino_locale_t Text, const int Width, int timeout, const char * const Icon)
 {
 	return HintBox(Caption, g_Locale->getText(Text), Width, timeout, Icon);
 }
+*/
 
 

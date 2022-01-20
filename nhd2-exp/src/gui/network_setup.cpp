@@ -156,7 +156,7 @@ int CNetworkSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		networkConfig->commitConfig();
 		networkConfig->startNetwork();
 
-		HintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_NETWORKMENU_SETUPNOW));
+		HintBox(_("Information"), /*g_Locale->getText(LOCALE_NETWORKMENU_SETUPNOW)*/_("Setup network now, please wait..."));
 		
 		return ret;
 	}

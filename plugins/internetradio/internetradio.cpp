@@ -506,7 +506,7 @@ bool CInternetRadio::openFileBrowser(void)
 #ifdef AUDIOPLAYER_CHECK_FOR_DUPLICATES
 								// Check for duplicates and remove (new entry has higher prio)
 								// this really needs some time :(
-								for (unsigned long i = 0; i < playlist.size(); i++)
+								for (unsigned long i = 0; i < (unsigned long)playlist.size(); i++)
 								{
 									if(playlist[i].Filename == filename)
 										//removeFromPlaylist(i);
@@ -659,7 +659,7 @@ void CInternetRadio::showMenu()
 {
 	ilist = new CMenuWidget("Internet Radio", NEUTRINO_ICON_MP3, frameBuffer->getScreenWidth() - 40, frameBuffer->getScreenHeight() - 40);
 
-	for(unsigned int i = 0; i < playlist.size(); i++)
+	for(unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 	{
 		//
 		if (playlist[i].FileExtension != CFile::EXTENSION_URL && !playlist[i].MetaData.bitrate)

@@ -613,7 +613,7 @@ void CMoviePlayerGui::stop()
 		// stop record if recording
 		if( CNeutrinoApp::getInstance()->recordingstatus) 
 		{
-			if(MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWN_RECODING_QUERY, mbrYes, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)
+			if(MessageBox(_("Information"), /*LOCALE_SHUTDOWN_RECODING_QUERY*/_("You really want to to stop record ?"), mbrYes, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)
 			{
 				CVCRControl::getInstance()->Stop();
 				g_Timerd->stopTimerEvent(CNeutrinoApp::getInstance()->recording_id);
@@ -725,12 +725,12 @@ void CMoviePlayerGui::PlayFile(void)
 	// backword hintbox
 	CTextBox newBackwordHintBox;
 	newBackwordHintBox.setPosition(&boxposition);
-	newBackwordHintBox.setText(g_Locale->getText(LOCALE_MOVIEBROWSER_HINT_NEWBOOK_BACKWARD));
+	newBackwordHintBox.setText(/*g_Locale->getText(LOCALE_MOVIEBROWSER_HINT_NEWBOOK_BACKWARD)*/_("New jump back\n 'blue' for endposition"));
 
 	// forward hintbox
 	CTextBox newForwardHintBox;
 	newForwardHintBox.setPosition(&boxposition);
-	newForwardHintBox.setText(g_Locale->getText(LOCALE_MOVIEBROWSER_HINT_NEWBOOK_FORWARD));
+	newForwardHintBox.setText(/*g_Locale->getText(LOCALE_MOVIEBROWSER_HINT_NEWBOOK_FORWARD)*/_("New jump forward\n 'blue' for endposition"));
 
 	//
 	int jump_not_until = 0;		// any jump shall be avoided until this time (in seconds from moviestart)
@@ -739,16 +739,16 @@ void CMoviePlayerGui::PlayFile(void)
 	new_bookmark.length = 0;
 
 	//
-	CMenuWidget bookStartMenu(LOCALE_MOVIEBROWSER_BOOK_NEW, NEUTRINO_ICON_MOVIE);
+	CMenuWidget bookStartMenu(_("Bookmarks"), NEUTRINO_ICON_MOVIE);
 
 	bookStartMenu.setWidgetMode(MODE_MENU);
 	bookStartMenu.enableShrinkMenu();
 
-	bookStartMenu.addItem(new CMenuForwarder(LOCALE_MOVIEBROWSER_BOOK_NEW));
-	bookStartMenu.addItem(new CMenuForwarder(LOCALE_MOVIEBROWSER_BOOK_TYPE_FORWARD));
-	bookStartMenu.addItem(new CMenuForwarder(LOCALE_MOVIEBROWSER_BOOK_TYPE_BACKWARD));
-	bookStartMenu.addItem(new CMenuForwarder(LOCALE_MOVIEBROWSER_BOOK_MOVIESTART));
-	bookStartMenu.addItem(new CMenuForwarder(LOCALE_MOVIEBROWSER_BOOK_MOVIEEND));
+	bookStartMenu.addItem(new CMenuForwarder(_("New Bookmark")));
+	bookStartMenu.addItem(new CMenuForwarder(_("Repeat")));
+	bookStartMenu.addItem(new CMenuForwarder(_("Jump over")));
+	bookStartMenu.addItem(new CMenuForwarder(_("Movie start:")));
+	bookStartMenu.addItem(new CMenuForwarder(_("Movie end:")));
 	
 	////FIXME:
 	//showMovieInfo();
@@ -1525,7 +1525,7 @@ void CMoviePlayerGui::PlayFile(void)
 		{
 			if (mplist && !mplist->isPainted())
 			{
-		 		if(MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SCREENSHOT_ANNOUNCE), mbrNo, mbYes | mbNo) == mbrYes) 
+		 		if(MessageBox(_("Information"), /*g_Locale->getText(LOCALE_SCREENSHOT_ANNOUNCE)*/_("create screenshot?"), mbrNo, mbYes | mbNo) == mbrYes) 
 				{
 					CVCRControl::getInstance()->Screenshot(0, (char *)playlist[selected].file.Name.c_str());
 				}
@@ -1619,29 +1619,29 @@ void CMoviePlayerGui::showHelpTS()
 {
 	CHelpBox helpbox;
 
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_RED, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP1));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_GREEN, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP2));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_YELLOW, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP3));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_BLUE, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP4));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_RED, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP1)*/_("Movie info"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_GREEN, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP2)*/_("Select audio track"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_YELLOW, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP3)*/_("Help"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_BLUE, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP4)*/_("Create bookmark"));
 	helpbox.addSeparator();
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_SETUP, "MoviePlayer setup");
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_HELP, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP15));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_0, " Markierungsaktion nicht ausführen");
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_1, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP6));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_2, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP12) );
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_3, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP7));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_4, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP8));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_5, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP13));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_6, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP9));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_7, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP10));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_8, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP14));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_9, g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP11));
-	helpbox.addSeparator();
-	helpbox.addLine("Version: $Revision: 3.0 $");
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_SETUP, _("MoviePlayer setup"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_HELP, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP15)*/_("show movie infoviewer"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_0, _("skip bookmark"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_1, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP6)*/_("approx. 1 minute back"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_2, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP12)*/_("goto start") );
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_3, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP7)*/_("skip approx. 1 minute"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_4, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP8)*/_("approx. 5 minutes back"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_5, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP13)*/_("goto middle"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_6, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP9)*/_("skip approx. 5 minutes"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_7, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP10)*/_("approx. 10 minutes back"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_8, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP14)*/_("goto end"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_9, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP11)*/_("skip approx. 10 minutes"));
+	//helpbox.addSeparator();
+	//helpbox.addLine("Version: $Revision: 3.0 $");
 
 	hide();
 
-	helpbox.show(LOCALE_MESSAGEBOX_INFO);
+	helpbox.show(_("Information"));
 }
 
 int CMoviePlayerGui::showStartPosSelectionMenu(void)
@@ -1667,7 +1667,7 @@ int CMoviePlayerGui::showStartPosSelectionMenu(void)
 	
 	char book[MI_MOVIE_BOOK_USER_MAX][20];
 
-	CMenuWidget startPosSelectionMenu(LOCALE_MOVIEBROWSER_START_HEAD, NEUTRINO_ICON_MOVIE);
+	CMenuWidget startPosSelectionMenu(_("Start movie from:"), NEUTRINO_ICON_MOVIE);
 	startPosSelectionMenu.enableSaveScreen();
 
 	startPosSelectionMenu.setWidgetMode(MODE_MENU);
@@ -1676,19 +1676,19 @@ int CMoviePlayerGui::showStartPosSelectionMenu(void)
 	// bookmark start
 	if(playlist[selected].bookmarks.start != 0)
 	{
-		startPosSelectionMenu.addItem(new CMenuForwarder(LOCALE_MOVIEBROWSER_BOOK_MOVIESTART, true, start_pos));
+		startPosSelectionMenu.addItem(new CMenuForwarder(/*LOCALE_MOVIEBROWSER_BOOK_MOVIESTART*/_("Movie start:"), true, start_pos));
 		position[menu_nr++] = playlist[selected].bookmarks.start;
 	}
 	
 	// bookmark laststop
 	if(playlist[selected].bookmarks.lastPlayStop != 0) 
 	{
-		startPosSelectionMenu.addItem(new CMenuForwarder(LOCALE_MOVIEBROWSER_BOOK_LASTMOVIESTOP, true, play_pos));
+		startPosSelectionMenu.addItem(new CMenuForwarder(/*OCALE_MOVIEBROWSER_BOOK_LASTMOVIESTOP*/_("Last play stop:"), true, play_pos));
 		position[menu_nr++] = playlist[selected].bookmarks.lastPlayStop;
 	}
 	
 	// movie start
-	startPosSelectionMenu.addItem(new CMenuForwarder(LOCALE_MOVIEBROWSER_START_RECORD_START, true, NULL));
+	startPosSelectionMenu.addItem(new CMenuForwarder(/*LOCALE_MOVIEBROWSER_START_RECORD_START*/_("Movie start"), true, NULL));
 
 	position[menu_nr++] = 0;
 
@@ -1839,13 +1839,13 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_GREEN, &icon_w, &icon_h);
 	frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_GREEN, cFrameBoxButton.iX + cFrameBoxButton.iWidth/5, cFrameBoxButton.iY + 1, 0, true, icon_w, cFrameBoxButton.iHeight - 2);
 
-	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(cFrameBoxButton.iX + (cFrameBoxButton.iWidth/5) + icon_w + ICON_OFFSET, cFrameBoxButton.iY + (cFrameBoxButton.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight(), cFrameBoxButton.iWidth/5, g_Locale->getText(LOCALE_INFOVIEWER_LANGUAGES), (COL_INFOBAR_SHADOW + 1), 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(cFrameBoxButton.iX + (cFrameBoxButton.iWidth/5) + icon_w + ICON_OFFSET, cFrameBoxButton.iY + (cFrameBoxButton.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight(), cFrameBoxButton.iWidth/5, _("Audio"), (COL_INFOBAR_SHADOW + 1), 0, true); // UTF-8
 		
 	// yellow (help)
 	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_YELLOW, &icon_w, &icon_h);
 	frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_YELLOW, cFrameBoxButton.iX + (cFrameBoxButton.iWidth/5)*2, cFrameBoxButton.iY + 1, 0, true, icon_w, - 2);
 
-		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(cFrameBoxButton.iX + (cFrameBoxButton.iWidth/5)*2 + icon_w + ICON_OFFSET, cFrameBoxButton.iY + (cFrameBoxButton.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight(), cFrameBoxButton.iWidth/5, (char *)"help", (COL_INFOBAR_SHADOW * 1), 0, true); // UTF-8
+		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(cFrameBoxButton.iX + (cFrameBoxButton.iWidth/5)*2 + icon_w + ICON_OFFSET, cFrameBoxButton.iY + (cFrameBoxButton.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight(), cFrameBoxButton.iWidth/5, _("Help"), (COL_INFOBAR_SHADOW * 1), 0, true); // UTF-8
 	
 	// blue (bookmark)
 	if (show_bookmark)
@@ -1853,7 +1853,7 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 		frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_BLUE, &icon_w, &icon_h);
 		frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_BLUE, cFrameBoxButton.iX + (cFrameBoxButton.iWidth/5)*3, cFrameBoxButton.iY + 1, 0, true, icon_w, cFrameBoxButton.iHeight - 2);
 
-		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(cFrameBoxButton.iX + (cFrameBoxButton.iWidth/5)*3 + icon_w + ICON_OFFSET, cFrameBoxButton.iY + (cFrameBoxButton.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight(), cFrameBoxButton.iWidth/5, g_Locale->getText(LOCALE_MOVIEPLAYER_BOOKMARK), (COL_INFOBAR_SHADOW + 1), 0, true); // UTF-8
+		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(cFrameBoxButton.iX + (cFrameBoxButton.iWidth/5)*3 + icon_w + ICON_OFFSET, cFrameBoxButton.iY + (cFrameBoxButton.iHeight - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight(), cFrameBoxButton.iWidth/5, _("Bookmarks"), (COL_INFOBAR_SHADOW + 1), 0, true); // UTF-8
 	}
 		
 	// ac3
@@ -1978,10 +1978,10 @@ const struct button_label HeadButtons = { NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT
 #define FOOT_BUTTONS_COUNT	4
 const struct button_label FootButtons[FOOT_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE/*LOCALE_AUDIOPLAYER_DELETE*/, NULL },
-	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_TMDB_INFO, NULL },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_AUDIOPLAYER_DELETEALL, NULL },
-	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_AUDIOPLAYER_ADD, NULL },
+	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE, _("Delete") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, NONEXISTANT_LOCALE, _("TMDB info") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE, _("Delete all") },
+	{ NEUTRINO_ICON_BUTTON_BLUE, NONEXISTANT_LOCALE, _("Add") },
 };
 
 void CMoviePlayerGui::showPlaylist()
@@ -2025,8 +2025,9 @@ void CMoviePlayerGui::showPlaylist()
 	mplist->setSelected(selected);
 	
 	mplist->enablePaintHead();
-	mplist->setTitle(g_Locale->getText(LOCALE_MOVIEPLAYER_HEAD), NEUTRINO_ICON_MOVIE);
+	mplist->setTitle(_("Movie Player"), NEUTRINO_ICON_MOVIE);
 	mplist->enablePaintDate();
+	mplist->setFormat("%d.%m.%Y %H:%M:%S");
 	mplist->setHeadButtons(&HeadButtons);
 	
 	mplist->enablePaintFoot();
@@ -2171,7 +2172,7 @@ void CMoviePlayerGui::doTMDB(MI_MOVIE_INFO& movieFile)
 		infoBox->exec();
 		delete infoBox;
 
-		if(MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MOVIEBROWSER_PREFER_TMDB_INFO), mbrNo, mbYes | mbNo) == mbrYes) 
+		if(MessageBox(_("Information"), /*g_Locale->getText(LOCALE_MOVIEBROWSER_PREFER_TMDB_INFO)*/_("Prefer TMDB Infos"), mbrNo, mbYes | mbNo) == mbrYes) 
 		{
 			// tfile
 			std::string tname = movieFile.file.Name;
@@ -2201,7 +2202,7 @@ void CMoviePlayerGui::doTMDB(MI_MOVIE_INFO& movieFile)
 	}
 	else
 	{
-		MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE), mbrBack, mbBack, NEUTRINO_ICON_INFO);
+		MessageBox(_("Information"), /*g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE)*/_("TMDB Infos are not available"), mbrBack, mbBack, NEUTRINO_ICON_INFO);
 	}
 
 	delete tmdb;

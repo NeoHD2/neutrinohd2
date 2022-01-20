@@ -930,7 +930,7 @@ void CTestMenu::testCWidget()
 	rightWidget->enablePaintFootInfo(80);
 
 	// loadPlaylist
-	CHintBox loadBox("CWidget(CFrameBox/ClistBox)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("CWidget(CFrameBox/ClistBox)", _("Scan for Movies ..."));
 	loadBox.paint();
 	
 	loadTMDBPlaylist();
@@ -1178,7 +1178,7 @@ void CTestMenu::testCFrameBox1()
 
 	frameBoxWidget = new CFrameBox(&box);
 
-	CHintBox loadBox("CFrameBox", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("CFrameBox", _("Scan for Movies ..."));
 	loadBox.paint();
 	
 	loadMoviePlaylist();
@@ -1418,7 +1418,7 @@ void CTestMenu::testCFrameBoxWidget()
 	frameBoxWidget->setRadius(RADIUS_MID);
 	frameBoxWidget->setCorner(CORNER_ALL);
 
-	CHintBox loadBox("testCFrameBoxWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("testCFrameBoxWidget", _("Scan for Movies ..."));
 	loadBox.paint();
 	
 	loadMoviePlaylist();
@@ -1614,7 +1614,7 @@ void CTestMenu::testCListFrameWidget()
 
 	listFrame = new CListFrame(&listFrameLines, NULL, CListFrame::CListFrame::HEADER_LINE | CListFrame::SCROLL, &listFrameBox);
 
-	CHintBox loadBox("ListFrame Widget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("ListFrame Widget", _("Scan for Movies ..."));
 	loadBox.paint();
 	
 	loadAudioPlaylist();
@@ -1711,7 +1711,7 @@ void CTestMenu::testClistBoxWidget()
 	rightWidget->enableShrinkMenu();
 
 	// loadPlaylist
-	CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 	loadBox.paint();
 	
 	loadMoviePlaylist();
@@ -2080,7 +2080,7 @@ DOFILM:
 	fileHelper.removeDir(thumbnail_dir.c_str());
 	fileHelper.createDir(thumbnail_dir.c_str(), 0755);
 
-	CHintBox loadBox("testCWidgetItem", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("testCWidgetItem", _("Scan for Movies ..."));
 	loadBox.paint();
 
 	tmdb->clearMovieList();
@@ -3288,7 +3288,7 @@ void CTestMenu::testCHintBox()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCHintBox\n");
 
-	CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, "testing CHintBox");
+	CHintBox * hintBox = new CHintBox(_("Information"), "testing CHintBox");
 	
 	hintBox->exec(10);
 
@@ -3301,7 +3301,7 @@ void CTestMenu::testCHintBoxInfo()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCHintBox\n");
 
-	HintBox(LOCALE_MESSAGEBOX_INFO, "testCHintBoxInfo", HINTBOX_WIDTH, 10, NEUTRINO_ICON_INFO);
+	HintBox(_("Information"), "testCHintBoxInfo", HINTBOX_WIDTH, 10, NEUTRINO_ICON_INFO);
 }
 
 // CHelpBox
@@ -3482,7 +3482,7 @@ void CTestMenu::testCListFrame()
 	listFrame->setTitle("listFrame (AudioPlayer)", NEUTRINO_ICON_MP3);
 	
 	// fill lineArrays list
-	CHintBox loadBox("listFrame", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("listFrame", _("Scan for Movies ..."));
 	loadBox.paint();
 	
 	loadAudioPlaylist();
@@ -3770,7 +3770,7 @@ void CTestMenu::testClistBox()
 
 	rightWidget = new ClistBox(&Box);
 	
-	CHintBox loadBox("testClistBox(standard)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("testClistBox(standard)", _("Scan for Movies ..."));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -3890,7 +3890,7 @@ void CTestMenu::testClistBox2()
 
 	rightWidget = new ClistBox(&Box);
 
-	CHintBox loadBox("ClistBox(classic)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("ClistBox(classic)", _("Scan for Movies ..."));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -4039,7 +4039,7 @@ void CTestMenu::testClistBox3()
 
 	rightWidget = new ClistBox(&Box);
 
-	CHintBox loadBox("ClistBox(extended)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("ClistBox(extended)", _("Scan for Movies ..."));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -4187,7 +4187,7 @@ void CTestMenu::testClistBox4()
 
 	rightWidget = new ClistBox(&Box);
 
-	CHintBox loadBox("ClistBox(frame)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("ClistBox(frame)", _("Scan for Movies ..."));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -4329,7 +4329,7 @@ void CTestMenu::testClistBox5()
 
 	rightWidget = new ClistBox(&Box);
 
-	CHintBox loadBox("ClistBox(DL_INFO)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("ClistBox(DL_INFO)", _("Scan for Movies ..."));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -4490,7 +4490,7 @@ void CTestMenu::testClistBox6()
 
 	rightWidget = new ClistBox(&Box);
 
-	CHintBox loadBox("ClistBox(DL_HINT)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("ClistBox(DL_HINT)", _("Scan for Movies ..."));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -5500,7 +5500,7 @@ void CTestMenu::testCMenuWidget()
 	menuWidget = new CMenuWidget("CMenuWidget(listBox Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 
 	//
-	CHintBox loadBox("CMenuWidget(listBox mode)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("CMenuWidget(listBox mode)", _("Scan for Movies ..."));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -5559,7 +5559,7 @@ void CTestMenu::testCMenuWidget1()
 	menuWidget = new CMenuWidget("CMenuWidget(Menu Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 
 	//
-	CHintBox loadBox("CMenuWidget(menu mode)", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox("CMenuWidget(menu mode)", _("Scan for Movies ..."));
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
@@ -6224,7 +6224,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 					plist = "now_playing";
 					page = 1;
 
-					CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+					CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 					loadBox.paint();
 					loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 					loadBox.hide();
@@ -6254,7 +6254,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 					plist = "popular";
 					page = 1;
 
-					CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+					CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 					loadBox.paint();
 					loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 					loadBox.hide();
@@ -6284,7 +6284,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 					plist = "top_rated";
 					page = 1;
 
-					CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+					CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 					loadBox.paint();
 					loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 					loadBox.hide();
@@ -6314,7 +6314,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 					plist = "upcoming";
 					page = 1;
 
-					CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+					CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 					loadBox.paint();
 					loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 					loadBox.hide();
@@ -6347,7 +6347,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 					plist = "airing_today";
 					page = 1;
 
-					CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+					CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 					loadBox.paint();
 					loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 					loadBox.hide();
@@ -6377,7 +6377,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 					plist = "on_the_air";
 					page = 1;
 
-					CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+					CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 					loadBox.paint();
 					loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 					loadBox.hide();
@@ -6407,7 +6407,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 					plist = "popular";
 					page = 1;
 
-					CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+					CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 					loadBox.paint();
 					loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 					loadBox.hide();
@@ -6437,7 +6437,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 					plist = "top_rated";
 					page = 1;
 
-					CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+					CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 					loadBox.paint();
 					loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 					loadBox.hide();
@@ -6513,7 +6513,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 				plist = "airing_today";
 				page = 1;
 
-				CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+				CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 				loadBox.paint();
 				loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 				loadBox.hide();
@@ -6575,7 +6575,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 				leftWidget->addItem(item9);
 				leftWidget->addItem(new CMenuSeparator(LINE));
 
-				CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+				CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 				loadBox.paint();
 				loadTMDBPlaylist();
 				loadBox.hide();
@@ -6676,7 +6676,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		plist = "now_playing";
 		page = 1;
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 		loadBox.hide();
@@ -6718,7 +6718,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		plist = "popular";
 		page = 1;
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 		loadBox.hide();
@@ -6760,7 +6760,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		plist = "top_rated";
 		page = 1;
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 		loadBox.hide();
@@ -6802,7 +6802,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		plist = "upcoming";
 		page = 1;
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 		loadBox.hide();
@@ -6844,7 +6844,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		plist = "airing_today";
 		page = 1;
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 		loadBox.hide();
@@ -6886,7 +6886,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		plist = "on_the_air";
 		page = 1;
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 		loadBox.hide();
@@ -6928,7 +6928,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		plist = "popular";
 		page = 1;
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 		loadBox.hide();
@@ -6970,7 +6970,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		plist = "top_rated";
 		page = 1;
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 		loadBox.hide();
@@ -7081,7 +7081,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		leftWidget->addItem(item9);
 		leftWidget->addItem(new CMenuSeparator(LINE));
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		loadTMDBPlaylist();
 		loadBox.hide();
@@ -7163,7 +7163,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		plist = "airing_today";
 		page = 1;
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		loadTMDBPlaylist(TVShows.c_str(), plist.c_str(), page);
 		loadBox.hide();
@@ -7206,7 +7206,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		right_selected = 0;
 		rightWidget->clearItems();
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		if(top_selected == 2) // search
 		{
@@ -7257,7 +7257,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		right_selected = 0;
 		rightWidget->clearItems();
 
-		CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 		loadBox.paint();
 		
 		if(top_selected == 2) // search
@@ -7312,7 +7312,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 		{
 			rightWidget->clearItems();
 
-			CHintBox loadBox("CWidget", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+			CHintBox loadBox("CWidget", _("Scan for Movies ..."));
 			loadBox.paint();
 			loadTMDBPlaylist(tmdbsearch.c_str(), "", 1, true);
 			loadBox.hide();

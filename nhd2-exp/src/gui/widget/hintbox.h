@@ -80,7 +80,7 @@ class CHintBox
 
 	public:
 		// Text is UTF-8 encoded
-		CHintBox(const neutrino_locale_t Caption, const char * const Text, const int Width = HINTBOX_WIDTH, const char * const Icon = NEUTRINO_ICON_INFO);
+		//CHintBox(const neutrino_locale_t Caption, const char * const Text, const int Width = HINTBOX_WIDTH, const char * const Icon = NEUTRINO_ICON_INFO);
 		CHintBox(const char * Caption, const char * const Text, const int Width = HINTBOX_WIDTH, const char * const Icon = NEUTRINO_ICON_INFO);
 		~CHintBox(void);
 
@@ -96,9 +96,9 @@ class CHintBox
 		int exec(int timeout = -1);
 };
 
-int HintBox(const neutrino_locale_t Caption, const char * const Text, const int Width = HINTBOX_WIDTH, int timeout = -1, const char * const Icon = NEUTRINO_ICON_INFO);
-int HintBox(const neutrino_locale_t Caption, const neutrino_locale_t Text, const int Width = HINTBOX_WIDTH, int timeout = -1, const char * const Icon = NEUTRINO_ICON_INFO);
-int HintBox(const char * Caption, const char * const Text, const int Width = HINTBOX_WIDTH, int timeout = -1, const char * const Icon = NEUTRINO_ICON_INFO);
-int HintBox(const char * Caption, const neutrino_locale_t Text, const int Width = HINTBOX_WIDTH, int timeout = -1, const char * const Icon = NEUTRINO_ICON_INFO);
+//int HintBox(const neutrino_locale_t Caption, const char * const Text, const int Width = HINTBOX_WIDTH, int timeout = -1, const char * const Icon = NEUTRINO_ICON_INFO);
+//int HintBox(const neutrino_locale_t Caption, const neutrino_locale_t Text, const int Width = HINTBOX_WIDTH, int timeout = -1, const char * const Icon = NEUTRINO_ICON_INFO);
+int HintBox(const char * const Caption, const char * const Text, const int Width = HINTBOX_WIDTH, int timeout = -1, const char * const Icon = NEUTRINO_ICON_INFO);
+//int HintBox(const char * Caption, const neutrino_locale_t Text, const int Width = HINTBOX_WIDTH, int timeout = -1, const char * const Icon = NEUTRINO_ICON_INFO);
 
 #endif

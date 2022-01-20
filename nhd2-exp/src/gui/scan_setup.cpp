@@ -285,7 +285,7 @@ int CScanSetup::exec(CMenuTarget * parent, const std::string &actionKey)
 	if(actionKey == "save_scansettings") 
 	{
 		// hint box
-		CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)); // UTF-8
+		CHintBox * hintBox = new CHintBox(_("Information"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now")); // UTF-8
 		hintBox->paint();
 		
 		// save scan.conf

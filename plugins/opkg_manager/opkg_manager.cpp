@@ -189,7 +189,7 @@ bool COPKGManager::showPkgMenu(const int pkg_content_id)
 	std::vector<std::string> urls;
 	CHintBox * loadingBox;
 
-	loadingBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, "Loading package list");	// UTF-8	
+	loadingBox = new CHintBox(_("Information"), _("Loading package list"));	// UTF-8	
 	loadingBox->paint();
 
 	// update list
@@ -197,7 +197,7 @@ bool COPKGManager::showPkgMenu(const int pkg_content_id)
 	{
 		loadingBox->hide();
 		delete loadingBox;
-		MessageBox(LOCALE_MESSAGEBOX_ERROR, "Update failed", mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+		MessageBox(LOCALE_MESSAGEBOX_ERROR, _("Update failed"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 
 		return false;
 	}
@@ -226,7 +226,7 @@ bool COPKGManager::showPkgMenu(const int pkg_content_id)
 	
 	if (urls.empty())
 	{
-		HintBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(LOCALE_FLASHUPDATE_GETINFOFILEERROR)); // UTF-8
+		HintBox(_("Error"), /*g_Locale->getText(LOCALE_FLASHUPDATE_GETINFOFILEERROR)*/_("can't get update list")); // UTF-8
 		delete loadingBox;
 		return false;
 	}

@@ -86,7 +86,7 @@ void CPowerMenu::showMenu(void)
 
 	int shortcut = 1;
 
-	CMenuWidget * powerMenu = new CMenuWidget(LOCALE_MAINMENU_POWERMENU, NEUTRINO_ICON_BUTTON_POWER);
+	CMenuWidget * powerMenu = new CMenuWidget(_("Power Menu"), NEUTRINO_ICON_BUTTON_POWER);
 
 	powerMenu->setWidgetMode(MODE_MENU);
 	powerMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
@@ -96,19 +96,19 @@ void CPowerMenu::showMenu(void)
 	powerMenu->enablePaintDate();
 	
 	// sleep timer
-	powerMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_SLEEPTIMER, true, NULL, new CSleepTimerWidget, NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SLEEPTIMER, LOCALE_HELPTEXT_SLEEPTIMER));
+	powerMenu->addItem(new ClistBoxItem(_("Sleep Timer"), true, NULL, new CSleepTimerWidget, NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SLEEPTIMER, _("Sleep Timer")));
 
 	// restart neutrino
-	powerMenu->addItem(new ClistBoxItem(LOCALE_SERVICEMENU_RESTART, true, NULL, this, "restart", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_RESTART, LOCALE_HELPTEXT_RESTART));
+	powerMenu->addItem(new ClistBoxItem(_("GUI Restart"), true, NULL, this, "restart", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_RESTART, _("Neutrino restart")));
 
 	// standby
-	powerMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_STANDBY, true, NULL, this, "standby", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_STANDBY, LOCALE_HELPTEXT_STANDBY));
+	powerMenu->addItem(new ClistBoxItem(_("Standby"), true, NULL, this, "standby", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_STANDBY, _("Standby")));
 
 	// reboot
-	powerMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_REBOOT, true, NULL, this, "reboot", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_REBOOT, LOCALE_HELPTEXT_REBOOT));
+	powerMenu->addItem(new ClistBoxItem(_("Reboot"), true, NULL, this, "reboot", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_REBOOT, _("Reboot")));
 
 	// shutdown
-	powerMenu->addItem(new ClistBoxItem(LOCALE_MAINMENU_SHUTDOWN, true, NULL, this, "shutdown", RC_standby, NEUTRINO_ICON_BUTTON_POWER, NEUTRINO_ICON_MENUITEM_SHUTDOWN, LOCALE_HELPTEXT_SHUTDOWN));
+	powerMenu->addItem(new ClistBoxItem(_("Shutdown"), true, NULL, this, "shutdown", RC_standby, NEUTRINO_ICON_BUTTON_POWER, NEUTRINO_ICON_MENUITEM_SHUTDOWN, _("Shutdown")));
 
 	powerMenu->integratePlugins(CPlugins::I_TYPE_POWER, shortcut++);
 	

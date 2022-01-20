@@ -793,7 +793,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 
 	if(actionKey == "loaddefault")
 	{
-		CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MOVIEBROWSER_LOAD_DEFAULT));
+		CHintBox * hintBox = new CHintBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MOVIEBROWSER_LOAD_DEFAULT)*/_("Load default settings"));
 		hintBox->paint();
 		
 		defaultSettings(&m_settings);
@@ -804,7 +804,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 	}
 	else if(actionKey == "save_options")
 	{
-		CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)); // UTF-8
+		CHintBox * hintBox = new CHintBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now")); // UTF-8
 
 		hintBox->paint();
 		
@@ -824,7 +824,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 		if(m_movieSelectionHandler != NULL)
 		{
 			//
-			CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)); // UTF-8
+			CHintBox * hintBox = new CHintBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("save settings now")); // UTF-8
 			hintBox->paint();
 		
 			m_movieInfo.saveMovieInfo( *m_movieSelectionHandler);
@@ -847,12 +847,12 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 				current_list = &m_vHandleRecordList ;
 			
 			//
-			CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)); // UTF-8
+			CHintBox * hintBox = new CHintBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now")); // UTF-8
 			hintBox->paint();
 
 			if(current_list != NULL)
 			{
-				CHintBox loadBox(LOCALE_MOVIEBROWSER_HEAD, g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_HEAD_UPDATE));
+				CHintBox loadBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_HEAD_UPDATE)*/_("Save changes in all movie info files"));
 				loadBox.paint();
 				
 				for(unsigned int i = 0; i< current_list->size();i++)
@@ -917,7 +917,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 		{
 			if(MessageBox(LOCALE_MESSAGEBOX_INFO, "Cut jumps from movie ?", mbrNo, mbYes | mbNo) == mbrYes) 
 			{
-				CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, "Cutting, please wait");
+				CHintBox * hintBox = new CHintBox(_("Moviebrowser"), _("Cutting, please wait"));
 				hintBox->paint();
 				sleep(1);
 				hintBox->hide();
@@ -928,7 +928,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 				off64_t res = cut_movie(m_movieSelectionHandler, &m_movieInfo);
 
 				if(res == 0)
-					MessageBox(LOCALE_MESSAGEBOX_ERROR, "Cut failed, is there jump bookmarks ? Or check free space.", mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+					MessageBox(_("Error"), _("Cut failed, is there jump bookmarks ? Or check free space."), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 			}
 		}
 	}
@@ -944,7 +944,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 			{
 				if(MessageBox(LOCALE_MESSAGEBOX_INFO, "Truncate movie ?", mbrNo, mbYes | mbNo) == mbrYes) 
 				{
-					CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, "Truncating, please wait");
+					CHintBox * hintBox = new CHintBox(_("Information"), _("Truncating, please wait"));
 					hintBox->paint();
 					off64_t res = truncate_movie(m_movieSelectionHandler);
 					hintBox->hide();
@@ -963,7 +963,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 
 			if(MessageBox(LOCALE_MESSAGEBOX_INFO, "Copy jumps from movie to new file ?", mbrNo, mbYes | mbNo) == mbrYes) 
 			{
-				CHintBox * hintBox = new CHintBox(LOCALE_MESSAGEBOX_INFO, "Coping, please wait");
+				CHintBox * hintBox = new CHintBox(_("Information"), _("Coping, please wait"));
 				hintBox->paint();
 				sleep(1);
 				hintBox->hide();
@@ -2903,7 +2903,7 @@ void CMovieBrowser::loadMovies(void)
 	m_pcWindow->paintBackground();
 	m_pcWindow->blit();	
 
-	CHintBox loadBox(LOCALE_MOVIEBROWSER_HEAD, g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES)*/_("Scan for Movies ..."));
 	
 	loadBox.paint();
 

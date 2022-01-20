@@ -90,12 +90,23 @@ msgid "Sender information" msgstr "Sender Informationen"
 msgid "Timer list" msgstr "Timer Liste"
 
 
-#
+# plugins
 msgid "play records" msgstr "spielt Aufnahmen ab"
 msgid "play music files" msgstr "spielt Musik Dateien ab"
 msgid "display pics" msgstr "zeigt Bilder Dateien"
 msgid "play and edit records and movies" msgstr "spielt / bearbeitet Aufnahmen und Filme"
 msgid "play media files" msgstr "spielt Media Dateien alle Art (Movie / Audio)"
+msgid "Test Menu" msgstr "Test Menü"
+msgid "sample API code for developer (v0.0.1)" msgstr "Beispiel Programme für die API"
+
+# powermenu
+msgid "Sleep Timer" msgstr "Sleep Timer"
+msgid "Standby" msgstr "Standby"
+msgid "Reboot" msgstr "Neustart"
+msgid "Shutdown" msgstr "Ausschalten"
+
+# information
+msgid "Image info" msgstr "Image-Info"
 
 
 

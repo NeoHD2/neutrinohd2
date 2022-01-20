@@ -571,7 +571,7 @@ std::string CBEBouquetWidget::inputName(const char * const defaultName, const ne
 
 void CBEBouquetWidget::saveChanges()
 {
-	CHintBox* hintBox= new CHintBox(LOCALE_BOUQUETEDITOR_NAME, g_Locale->getText(LOCALE_BOUQUETEDITOR_SAVINGCHANGES), 480); // UTF-8
+	CHintBox* hintBox= new CHintBox(_("Bouquet Editor"), _("Do you want to save the changes?"), 500); // UTF-8
 	hintBox->paint();
 	
 	g_Zapit->saveBouquets();
@@ -583,7 +583,7 @@ void CBEBouquetWidget::saveChanges()
 
 void CBEBouquetWidget::discardChanges()
 {
-	CHintBox* hintBox= new CHintBox(LOCALE_BOUQUETEDITOR_NAME, g_Locale->getText(LOCALE_BOUQUETEDITOR_DISCARDINGCHANGES), 480); // UTF-8
+	CHintBox* hintBox= new CHintBox(_("Bouquet Editor"), _("Discarding changes. Please be patient."), 500); // UTF-8
 	hintBox->paint();
 	
 	g_Zapit->restoreBouquets();
