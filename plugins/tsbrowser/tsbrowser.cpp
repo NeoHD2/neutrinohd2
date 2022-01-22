@@ -288,29 +288,29 @@ void CTSBrowser::doTMDB(MI_MOVIE_INFO& movieFile)
 		infoBox->exec();
 		delete infoBox;
 
-		if(MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MOVIEBROWSER_PREFER_TMDB_INFO), mbrNo, mbYes | mbNo) == mbrYes) 
+		if(MessageBox(_("Information"), _("Prefer TMDB infos ?"), mbrNo, mbYes | mbNo) == mbrYes) 
 		{
 			// tfile
-			std::string tname = /*m_vMovieInfo[mlist->getSelected()]*/movieFile.file.Name;
+			std::string tname = movieFile.file.Name;
 			changeFileNameExt(tname, ".jpg");
 
 			if(tmdb->getBigCover(minfo_list[0].poster_path, tname)) 
 				movieFile.tfile = tname;
 
 			// epgInfo1
-			if(/*m_vMovieInfo[mlist->getSelected()]*/movieFile.epgInfo1.empty())
+			if(movieFile.epgInfo1.empty())
 				movieFile.epgInfo1 = buffer;
 			
 			// productionDate	
-			if (/*m_vMovieInfo[mlist->getSelected()]*/movieFile.productionDate == 0)
+			if (movieFile.productionDate == 0)
 				movieFile.productionDate = atoi(minfo_list[0].release_date.substr(0,4));
 			
 			// genres	
-			if(/*m_vMovieInfo[mlist->getSelected()]*/movieFile.genres.empty())
+			if(movieFile.genres.empty())
 				movieFile.genres = minfo_list[0].genres;
 				
 			// average
-			if (/*m_vMovieInfo[mlist->getSelected()]*/movieFile.vote_average == 0)
+			if (movieFile.vote_average == 0)
 				movieFile.vote_average = minfo_list[0].vote_average;
 
 			m_movieInfo.saveMovieInfo(movieFile);
@@ -318,7 +318,7 @@ void CTSBrowser::doTMDB(MI_MOVIE_INFO& movieFile)
 	}
 	else
 	{
-		MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE), mbrBack, mbBack, NEUTRINO_ICON_INFO);
+		MessageBox(_("Information"), _("Not available"), mbrBack, mbBack, NEUTRINO_ICON_INFO);
 	}
 
 	delete tmdb;
@@ -347,9 +347,9 @@ void CTSBrowser::onDeleteFile(MI_MOVIE_INFO& movieFile)
 		msg += movieFile.file.Name;
 			
 	msg += "\r\n ";
-	msg += g_Locale->getText(LOCALE_FILEBROWSER_DODELETE2);
+	msg += _("?");
 
-	if (MessageBox(LOCALE_FILEBROWSER_DELETE, msg.c_str(), mbrNo, mbYes | mbNo) == mbrYes)
+	if (MessageBox(_("Delete"), msg.c_str(), mbrNo, mbYes | mbNo) == mbrYes)
 	{
 		delFile(movieFile.file);
 			

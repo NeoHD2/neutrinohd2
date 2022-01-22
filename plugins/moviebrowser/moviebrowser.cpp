@@ -915,7 +915,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 	{
 		if(m_movieSelectionHandler != NULL)
 		{
-			if(MessageBox(LOCALE_MESSAGEBOX_INFO, "Cut jumps from movie ?", mbrNo, mbYes | mbNo) == mbrYes) 
+			if(MessageBox(_("Information"), _("Cut jumps from movie ?"), mbrNo, mbYes | mbNo) == mbrYes) 
 			{
 				CHintBox * hintBox = new CHintBox(_("Moviebrowser"), _("Cutting, please wait"));
 				hintBox->paint();
@@ -937,12 +937,12 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 		if(m_movieSelectionHandler != NULL) 
 		{
 			if((m_movieSelectionHandler == playing_info) && (NeutrinoMessages::mode_ts == CNeutrinoApp::getInstance()->getMode()))
-				MessageBox(LOCALE_MESSAGEBOX_ERROR, "Impossible to truncate playing movie.", mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+				MessageBox(_("Error"), _("Impossible to truncate playing movie."), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 			else if(m_movieSelectionHandler->bookmarks.end == 0)
-				MessageBox(LOCALE_MESSAGEBOX_ERROR, "No End bookmark defined!", mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+				MessageBox(_("Error"), _("No End bookmark defined!"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 			else 
 			{
-				if(MessageBox(LOCALE_MESSAGEBOX_INFO, "Truncate movie ?", mbrNo, mbYes | mbNo) == mbrYes) 
+				if(MessageBox(_("Information"), _("Truncate movie ?"), mbrNo, mbYes | mbNo) == mbrYes) 
 				{
 					CHintBox * hintBox = new CHintBox(_("Information"), _("Truncating, please wait"));
 					hintBox->paint();
@@ -951,7 +951,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 					delete hintBox;
 
 					if(res == 0)
-						MessageBox(LOCALE_MESSAGEBOX_ERROR, "Truncate failed.", mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+						MessageBox(_("Error"), _("Truncate failed."), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 				}
 			}
 		}
@@ -961,7 +961,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 		if(m_movieSelectionHandler != NULL)
 		{
 
-			if(MessageBox(LOCALE_MESSAGEBOX_INFO, "Copy jumps from movie to new file ?", mbrNo, mbYes | mbNo) == mbrYes) 
+			if(MessageBox(_("Information"), _("Copy jumps from movie to new file ?"), mbrNo, mbYes | mbNo) == mbrYes) 
 			{
 				CHintBox * hintBox = new CHintBox(_("Information"), _("Coping, please wait"));
 				hintBox->paint();
@@ -974,7 +974,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 				off64_t res = copy_movie(m_movieSelectionHandler, &m_movieInfo, true);
 			
 				if(res == 0)
-					MessageBox(LOCALE_MESSAGEBOX_ERROR, "Copy failed, is there jump bookmarks ? Or check free space.", mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+					MessageBox(_("Information"), _("Copy failed, is there jump bookmarks ? Or check free space."), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 			}
 		}
 	}
@@ -1021,7 +1021,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 					infoBox->exec();
 					delete infoBox;
 
-					if(MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MOVIEBROWSER_PREFER_TMDB_INFO), mbrNo, mbYes | mbNo) == mbrYes) 
+					if(MessageBox(_("Information"), _("Prefer TMDB infos"), mbrNo, mbYes | mbNo) == mbrYes) 
 					{
 						// rewrite tfile
 						std::string tname = m_movieSelectionHandler->file.Name;
@@ -1037,12 +1037,12 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 				}
 				else
 				{
-					MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE), mbrBack, mbBack, NEUTRINO_ICON_INFO);
+					MessageBox(_("Information"), _("Not available"), mbrBack, mbBack, NEUTRINO_ICON_INFO);
 				}
 			}
 			else
 			{
-				MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE), mbrBack, mbBack, NEUTRINO_ICON_INFO);
+				MessageBox(_("Information"), _("Not available"), mbrBack, mbBack, NEUTRINO_ICON_INFO);
 			}
 
 			delete tmdb;
@@ -1053,7 +1053,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 	{
 		if (m_movieSelectionHandler != NULL) 
 		{
-                	if(MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SCREENSHOT_REMOVE), mbrNo, mbYes | mbNo) == mbrYes) 
+                	if(MessageBox(_("Information"), _("remove screenshot?"), mbrNo, mbYes | mbNo) == mbrYes) 
 			{
                         	std::string fname = m_movieSelectionHandler->file.Name;
 				
@@ -1924,7 +1924,7 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 					infoBox->exec();
 					delete infoBox;
 
-					if(MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_MOVIEBROWSER_PREFER_TMDB_INFO), mbrNo, mbYes | mbNo) == mbrYes) 
+					if(MessageBox("Information", _("Prefer TMBD infos ?"), mbrNo, mbYes | mbNo) == mbrYes) 
 					{
 						// rewrite tfile
 						std::string tname = m_movieSelectionHandler->file.Name;
@@ -1940,12 +1940,12 @@ bool CMovieBrowser::onButtonPressMainFrame(neutrino_msg_t msg)
 				}
 				else
 				{
-					MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE), mbrBack, mbBack, NEUTRINO_ICON_INFO);
+					MessageBox(_("Information"), _("Not available"), mbrBack, mbBack, NEUTRINO_ICON_INFO);
 				}
 			}
 			else
 			{
-				MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE), mbrBack, mbBack, NEUTRINO_ICON_INFO);
+				MessageBox(_("Information"), _("Not available"), mbrBack, mbBack, NEUTRINO_ICON_INFO);
 			}
 
 			delete tmdb;
@@ -2194,8 +2194,9 @@ void CMovieBrowser::onDeleteFile(MI_MOVIE_INFO& movieSelectionHandler)
 		msg += movieSelectionHandler.file.Name;
 			
 	msg += "\r\n ";
-	msg += g_Locale->getText(LOCALE_FILEBROWSER_DODELETE2);
-	if (MessageBox(LOCALE_FILEBROWSER_DELETE, msg.c_str(), mbrNo, mbYes | mbNo) == mbrYes)
+	msg += _("?");
+	
+	if (MessageBox(_("Delete"), msg.c_str(), mbrNo, mbYes | mbNo) == mbrYes)
 	{
 		delFile(movieSelectionHandler.file);
 			
@@ -3679,7 +3680,7 @@ int CMovieHelp::exec(CMenuTarget* /*parent*/, const std::string&/*actionKey*/)
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_SETUP, "Hauptmenü");
 	helpbox.addLine("'+/-'  Ansicht wechseln");
 
-	helpbox.show(LOCALE_MESSAGEBOX_INFO);
+	helpbox.show(_("Information"));
 
 	return RETURN_REPAINT;
 }

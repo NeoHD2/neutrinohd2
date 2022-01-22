@@ -317,7 +317,7 @@ bool CFlashUpdate::checkVersion4Update()
 		{
 			// check release cycle
 			if ((strncmp(RELEASE_CYCLE, versionInfo->getReleaseCycle(), 2) != 0) &&
-			(MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_FLASHUPDATE_WRONGBASE), mbrYes, mbYes | mbNo, NEUTRINO_ICON_UPDATE) != mbrYes))
+			(MessageBox(_("Information"), _("Your Release cycle differs.\nTo continue?"), mbrYes, mbYes | mbNo, NEUTRINO_ICON_UPDATE) != mbrYes))
 			{
 				delete versionInfo;
 				return false;
@@ -325,7 +325,7 @@ bool CFlashUpdate::checkVersion4Update()
 
 			// check if not release ask to install (beta + snapshot)
 			if ((strcmp(RELEASE_TYPE, versionInfo->getType()) != 0) &&
-		    	    (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_FLASHUPDATE_EXPERIMENTALIMAGE, mbrYes, mbYes | mbNo, NEUTRINO_ICON_UPDATE) != mbrYes))
+		    	    (MessageBox(_("Information"), _("The image you have selected is an untested version, this means\nyour box maybe fail to boot after update.\n\nDo you really want to update to this version?"), mbrYes, mbYes | mbNo, NEUTRINO_ICON_UPDATE) != mbrYes))
 			{
 				delete versionInfo;
 				return false;
@@ -398,7 +398,7 @@ bool CFlashUpdate::checkVersion4Update()
 		msg_body = (fileType < '3')? LOCALE_FLASHUPDATE_FLASHMSGBOX : LOCALE_FLASHUPDATE_PACKAGEMSGBOX;
 	}
 	
-	return ( (fileType == 'T')? true : MessageBox(LOCALE_MESSAGEBOX_INFO, msg, mbrYes, mbYes | mbNo, NEUTRINO_ICON_UPDATE) == mbrYes); // UTF-8
+	return ( (fileType == 'T')? true : MessageBox(_("Information"), msg, mbrYes, mbYes | mbNo, NEUTRINO_ICON_UPDATE) == mbrYes); // UTF-8
 }
 
 int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
@@ -463,7 +463,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 		// remove flash/package
 		remove(filename.c_str());
 		progressWindow->hide();
-		HintBox(_("Error"), /*g_Locale->getText( (fileType < '3') ? LOCALE_FLASHUPDATE_FLASHMD5SUMERROR : LOCALE_FLASHUPDATE_PACKAGEMD5SUMERROR)*/(fileType < 3)? _("image has errors") : _("package has errors")); // UTF-8
+		HintBox(_("Error"), (fileType < '3')? _("image has errors") : _("package has errors")); // UTF-8
 
 		return RETURN_REPAINT;
 	}
@@ -472,7 +472,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 	if(updateMode == UPDATEMODE_INTERNET) 
 	{ 
 		//internet-update
-		if ( MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText( (fileType < '3') ? LOCALE_FLASHUPDATE_DOWNLOADEDIMAGE : LOCALE_FLASHUPDATE_INSTALLPACKAGE ), mbrYes, mbYes | mbNo, NEUTRINO_ICON_UPDATE) != mbrYes) // UTF-8
+		if ( MessageBox(_("Information"), (fileType < '3')? _("image has errors") : _("package has errors"), mbrYes, mbYes | mbNo, NEUTRINO_ICON_UPDATE) != mbrYes) // UTF-8
 		{
 			// remove flash/package
 			remove(filename.c_str());
@@ -531,7 +531,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 			fread(buffer, filesize, 1, fd);
 			fclose(fd);
 			buffer[filesize] = 0;
-			MessageBox(LOCALE_MESSAGEBOX_INFO, buffer, mbrBack, mbBack); // UTF-8
+			MessageBox(_("Information"), buffer, mbrBack, mbBack); // UTF-8
 			free(buffer);
 		}
 	}
@@ -615,7 +615,7 @@ void CFlashExpert::writemtd(const std::string & filename, int mtdNumber)
 	sprintf(message,
 		g_Locale->getText(LOCALE_FLASHUPDATE_REALLYFLASHMTD), FILESYSTEM_ENCODING_TO_UTF8(std::string(filename).c_str()), CMTDInfo::getInstance()->getMTDName(mtdNumber).c_str());
 
-	if (MessageBox(LOCALE_MESSAGEBOX_INFO, message, mbrNo, mbYes | mbNo, NEUTRINO_ICON_UPDATE) != mbrYes) // UTF-8
+	if (MessageBox(_("Information"), message, mbrNo, mbYes | mbNo, NEUTRINO_ICON_UPDATE) != mbrYes) // UTF-8
 		return;
 
 #ifdef ENABLE_LCD

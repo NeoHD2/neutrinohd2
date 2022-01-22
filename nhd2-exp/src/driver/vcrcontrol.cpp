@@ -735,11 +735,7 @@ bool CVCRControl::CFileDevice::Record(const t_channel_id channel_id, int mode, c
 	{
 		RestoreNeutrino();
 
-		MessageBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(
-				      error_msg == STREAM2FILE_BUSY ? LOCALE_STREAMING_BUSY :
-				      error_msg == STREAM2FILE_INVALID_DIRECTORY ? LOCALE_STREAMING_DIR_NOT_WRITABLE :
-				      LOCALE_STREAMING_WRITE_ERROR_OPEN
-				      ), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+		MessageBox(_("Error"), error_msg == STREAM2FILE_BUSY ? _("One or several recording processes are active.\nIf you encounter this message and no recording is active, please restart Neutrino.") : error_msg == STREAM2FILE_INVALID_DIRECTORY ? _("The recording directory is not writable.\nRecording will not work.") : _("The recording was aborted,\nbecause the target file could not be opened."), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 
 		return false;
 	}

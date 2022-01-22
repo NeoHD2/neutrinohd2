@@ -275,7 +275,8 @@ static int get_input(bool * stop)
 	
 	if(msg == RC_home) 
 	{
-		if(MessageBox(LOCALE_MESSAGEBOX_INFO, "Cancel movie cut/split ?", mbrNo, mbYes | mbNo) == mbrYes) {
+		if(MessageBox(_("Information"), _("Cancel movie cut/split ?"), mbrNo, mbYes | mbNo) == mbrYes) 
+		{
 			* stop = true;
 		}
 	}

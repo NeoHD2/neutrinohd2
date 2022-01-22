@@ -319,7 +319,7 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 				if(manual && scanSettings->scan_mode)
 					continue;
 				
-				if (MessageBox(LOCALE_SCANTS_ABORT_HEADER, LOCALE_SCANTS_ABORT_BODY, mbrNo, mbYes | mbNo) == mbrYes) 
+				if (MessageBox(_("Abortion of channel scan"), _("Should the search really be aborted?"), mbrNo, mbYes | mbNo) == mbrYes) 
 				{
 					g_Zapit->stopScan();
 				}

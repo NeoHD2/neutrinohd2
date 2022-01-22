@@ -3257,7 +3257,7 @@ void CTestMenu::testCMessageBox()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCMessageBox\n");
 
-	CMessageBox * messageBox = new CMessageBox(LOCALE_MESSAGEBOX_INFO, "testing CMessageBox"/*, 600, NEUTRINO_ICON_INFO, mbrYes, mbNone*/);
+	CMessageBox * messageBox = new CMessageBox(_("Information"), "testing CMessageBox"/*, 600, NEUTRINO_ICON_INFO, mbrYes, mbNone*/);
 	
 	int res = messageBox->exec();
 
@@ -3272,7 +3272,7 @@ void CTestMenu::testCMessageBoxInfoMsg()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCMessageBox\n");
 
-	MessageBox(LOCALE_MESSAGEBOX_INFO, "testing CMessageBoxInfoMsg", mbrBack, mbBack, NEUTRINO_ICON_INFO);
+	MessageBox(_("Information"), "testing CMessageBoxInfoMsg", mbrBack, mbBack, NEUTRINO_ICON_INFO);
 }
 
 // MessageBox
@@ -3280,7 +3280,7 @@ void CTestMenu::testCMessageBoxErrorMsg()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCMessageBox\n");
 
-	MessageBox(LOCALE_MESSAGEBOX_ERROR, "testing CMessageBoxErrorMsg", mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+	MessageBox(_("Error"), "testing CMessageBoxErrorMsg", mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 }
 
 // CHintBox
@@ -3349,7 +3349,7 @@ void CTestMenu::testCHelpBox()
 		
 	helpBox->addLine(NEUTRINO_ICON_MENUITEM_SCANSETTINGS, "neutrinoHD2 the best GUI :-P", g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], COL_YELLOW, true);
 
-	helpBox->show(LOCALE_MESSAGEBOX_INFO, HELPBOX_WIDTH, -1, mbrBack, mbNone);
+	helpBox->show(_("Information"), HELPBOX_WIDTH, -1, mbrBack, mbNone);
 	
 	delete helpBox;
 	helpBox = NULL;
@@ -5710,13 +5710,13 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 	else if(actionKey == "menuforwarder")
 	{
-		MessageBox(LOCALE_MESSAGEBOX_INFO, "testing CMenuForwarder", mbrBack, mbBack, NEUTRINO_ICON_INFO);
+		MessageBox(_("Information"), "testing CMenuForwarder", mbrBack, mbBack, NEUTRINO_ICON_INFO);
 
 		return RETURN_REPAINT;
 	}
 	else if(actionKey == "listboxitem")
 	{
-		MessageBox(LOCALE_MESSAGEBOX_INFO, "testing ClistBoxItem", mbrBack, mbBack, NEUTRINO_ICON_INFO);
+		MessageBox(_("Information"), "testing ClistBoxItem", mbrBack, mbBack, NEUTRINO_ICON_INFO);
 
 		return RETURN_REPAINT;
 	}

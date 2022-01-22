@@ -73,9 +73,9 @@ int CServiceMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 	
 	if(actionKey == "reloadchannels")
 	{
-		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RELOAD, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("Reloading channel lists, please be patient."), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
-			HintBox(_("Information"), /*g_Locale->getText(LOCALE_SERVICEMENU_RELOAD_HINT)*/_("Reloading channel lists, please be patient."));
+			HintBox(_("Information"), _("Reloading channel lists, please be patient."));
 			g_Zapit->reinitChannels();
 		}
 		

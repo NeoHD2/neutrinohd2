@@ -1162,7 +1162,7 @@ void CAudioPlayerGui::savePlaylist()
 				g_Locale->getText(LOCALE_AUDIOPLAYER_PLAYLIST_FILEERROR_MSG),
 				absPlaylistFilename.c_str());
 
-			MessageBox(LOCALE_MESSAGEBOX_ERROR, msg, mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+			MessageBox(_("Error"), msg, mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 			// refresh view
 			std::cout << "CAudioPlayerGui: could not create play list file " 
 			<< absPlaylistFilename << std::endl;
@@ -1189,8 +1189,8 @@ bool CAudioPlayerGui::askToOverwriteFile(const std::string& filename)
 {
 	char msg[filename.length() + 127];
 	
-	snprintf(msg, filename.length() + 126, "%s\n%s", g_Locale->getText(LOCALE_AUDIOPLAYER_PLAYLIST_FILEOVERWRITE_MSG), filename.c_str());
-	bool res = (MessageBox(LOCALE_AUDIOPLAYER_PLAYLIST_FILEOVERWRITE_TITLE, msg, mbrYes, mbYes | mbNo) == mbrYes);
+	snprintf(msg, filename.length() + 126, "%s\n%s", _("Do you want to overwrite this file:"), filename.c_str());
+	bool res = (MessageBox(_("Overwrite?"), msg, mbrYes, mbYes | mbNo) == mbrYes);
 	
 	return res;
 }
@@ -1270,14 +1270,14 @@ void CAudioPlayerGui::showHelp()
 {
 	CHelpBox helpbox;
 
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_RED, "save playlist");
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_GREEN, "jump prev");
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_YELLOW, "jump ff");
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_BLUE, "shuffle playlist");
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_SETUP, "Audio Player Setup");
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_RED, _("save playlist"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_GREEN, _("jump prev"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_YELLOW, _("jump ff"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_BLUE, _("shuffle playlist"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_SETUP, _("Audio Player Setup"));
 
 	hide();
-	helpbox.show(LOCALE_MESSAGEBOX_INFO);
+	helpbox.show(_("Information"));
 }
 
 //

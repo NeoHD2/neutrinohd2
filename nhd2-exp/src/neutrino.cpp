@@ -3180,7 +3180,7 @@ void CNeutrinoApp::RealRun(void)
 				// stop record if recording
 				if( recordingstatus ) 
 				{
-					if(MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWN_RECODING_QUERY, mbrYes, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)
+					if(MessageBox(_("Information"), _("You really want to to stop record ?"), mbrYes, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)
 					{
 						g_Timerd->stopTimerEvent(recording_id);
 						recordingstatus = 0; //FIXME???
@@ -4121,7 +4121,7 @@ _repeat:
 	else if( msg == NeutrinoMessages::ANNOUNCE_SHUTDOWN) 
 	{
 		if( mode != mode_scart )
-			skipShutdownTimer = (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWNTIMER_ANNOUNCE, mbrNo, mbYes | mbNo, NULL, 450, 5) == mbrYes);
+			skipShutdownTimer = (MessageBox(_("Information"), _("Box will shutdown in 1 min.\nCancel Sutdown ?"), mbrNo, mbYes | mbNo, NULL, 450, 5) == mbrYes);
 	}
 	else if( msg == NeutrinoMessages::SHUTDOWN ) 
 	{
@@ -4171,7 +4171,8 @@ _repeat:
 	else if (msg == NeutrinoMessages::EVT_EXTMSG) 
 	{
 		if (mode != mode_scart)
-			MessageBox(LOCALE_MESSAGEBOX_INFO, (const char *) data, mbrBack, mbBack, NEUTRINO_ICON_INFO); // UTF-8
+			MessageBox(_("Information"), (const char *) data, mbrBack, mbBack, NEUTRINO_ICON_INFO); // UTF-8
+			
 		delete[] (unsigned char*) data;
 		return messages_return::handled;
 	}
@@ -4179,17 +4180,17 @@ _repeat:
 	{
 		if (mode != mode_scart) 
 		{
-			neutrino_locale_t msgbody;
+			std::string msgbody;
 			if ((* (stream2file_status2_t *) data).status == STREAM2FILE_STATUS_BUFFER_OVERFLOW)
-				msgbody = LOCALE_STREAMING_BUFFER_OVERFLOW;
+				msgbody = "The recording was aborted,\nsince the data could not be written fast enough.";
 			else if ((* (stream2file_status2_t *) data).status == STREAM2FILE_STATUS_WRITE_OPEN_FAILURE)
-				msgbody = LOCALE_STREAMING_WRITE_ERROR_OPEN;
+				msgbody = "The recording was aborted,\nbecause the target file could not be opened.";
 			else if ((* (stream2file_status2_t *) data).status == STREAM2FILE_STATUS_WRITE_FAILURE)
-				msgbody = LOCALE_STREAMING_WRITE_ERROR;
+				msgbody = "The recording was aborted,\nsince an error occured during the writing process.";
 			else
 				goto skip_message;
 
-			MessageBox(LOCALE_MESSAGEBOX_INFO, msgbody, mbrBack, mbBack, NEUTRINO_ICON_INFO, 450, 5);
+			MessageBox(_("Information"), _(msgbody.c_str()), mbrBack, mbBack, NEUTRINO_ICON_INFO, 450, 5);
 
 skip_message:
 			;
@@ -4216,7 +4217,7 @@ skip_message:
 		}
 		
 		if( mode != mode_scart )
-			MessageBox(LOCALE_TIMERLIST_TYPE_REMIND, text.c_str(), mbrBack, mbBack, NEUTRINO_ICON_INFO); // UTF-8
+			MessageBox(_("Reminder"), text.c_str(), mbrBack, mbBack, NEUTRINO_ICON_INFO); // UTF-8
 			
 		delete[] (unsigned char*) data;
 		
@@ -4354,7 +4355,7 @@ void CNeutrinoApp::ExitRun(int retcode, bool save)
 	}
 	
 	//
-	if (!recordingstatus || MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SHUTDOWN_RECODING_QUERY, mbrNo, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)  
+	if (!recordingstatus || MessageBox(_("Information"), _("You really want to to stop record ?"), mbrNo, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)  
 	{
 		// stop recording
 		if(recordingstatus) 
@@ -5273,7 +5274,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	}
 	else if(actionKey == "savesettings") 
 	{
-		if (MessageBox(/*LOCALE_MESSAGEBOX_INFO*/_("Information"), /*LOCALE_MAINSETTINGS_SAVESETTINGSNOW*/_("Save Settings"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("Save settings now"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			saveSetup(NEUTRINO_SETTINGS_FILE);
 
@@ -5282,12 +5283,12 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 			zapitCfg.saveLastChannel = g_settings.uselastchannel;
 			setZapitConfig(&zapitCfg);
 
-			HintBox(/*LOCALE_MESSAGEBOX_INFO*/_("Information"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save Settings"));
+			HintBox(_("Information"), _("Save settings now"));
 		}
 	}
 	else if (actionKey == "saveskinsettings")
 	{
-		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_MAINSETTINGS_SAVESETTINGSNOW, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("Save settings now"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			if (!g_settings.use_default_skin)
 			{
@@ -5308,7 +5309,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	}
 	else if (actionKey == "defaultskinsettings")
 	{
-		if (MessageBox(LOCALE_MESSAGEBOX_INFO, "load default skin configuration!", mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("load default skin configuration"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			std::string skinDefaultConfigFile = CONFIGDIR "/skins/";
 			skinDefaultConfigFile += g_settings.preferred_skin.c_str();
@@ -5320,9 +5321,9 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	}
 	if(actionKey == "reloadchannels")
 	{
-		if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RELOAD, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("Reloading channel lists, please be patient."), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
-			HintBox(_("Information"), /*g_Locale->getText(LOCALE_SERVICEMENU_RELOAD_HINT)*/_("Reloading channel lists, please be patient."));
+			HintBox(_("Information"), _("Reloading channel lists, please be patient."));
 			g_Zapit->reinitChannels();
 		}
 	}

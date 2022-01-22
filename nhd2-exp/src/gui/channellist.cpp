@@ -385,7 +385,7 @@ int CChannelList::doChannelMenu(void)
 		switch(select) 
 		{
 			case 0: //delete
-				result = MessageBox( LOCALE_BOUQUETEDITOR_DELETE, "Delete channel from bouquet?", mbrNo, mbYes | mbNo );
+				result = MessageBox(_("Delete"), "Delete channel from bouquet?", mbrNo, mbYes | mbNo );
 
 				if(result == mbrYes) 
 				{
@@ -1028,7 +1028,7 @@ void CChannelList::zapTo(int pos, bool /*forceStoreToLastChannels*/)
 	if (chanlist.empty()) 
 	{
 		if (FrontendCount >= 1) 
-			MessageBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(LOCALE_CHANNELLIST_NONEFOUND), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+			MessageBox(_("Error"), _("No channels were found!\nPlease execute a scan\n(MENU-key -> service)"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 		return;
 	}
 
@@ -1088,7 +1088,7 @@ int CChannelList::numericZap(int key)
 	if (chanlist.empty()) 
 	{
 		if (FrontendCount >= 1) 
-			MessageBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(LOCALE_CHANNELLIST_NONEFOUND), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+			MessageBox(_("Error"), _("No channels were found!\nPlease execute a scan\n(MENU-key -> service)"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 			
 		return res;
 	}
@@ -1350,7 +1350,7 @@ void CChannelList::virtual_zap_mode(bool up)
         if (chanlist.empty()) 
 	{
 		if (FrontendCount >= 1) 
-			MessageBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(LOCALE_CHANNELLIST_NONEFOUND), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+			MessageBox(_("No channels were found!\nPlease execute a scan\n(MENU-key -> service)"), _("No channels were found!\nPlease execute a scan\n(MENU-key -> service)"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 			
                 return;
         }

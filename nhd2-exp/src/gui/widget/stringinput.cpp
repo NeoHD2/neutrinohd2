@@ -408,8 +408,10 @@ int CStringInput::exec( CMenuTarget* parent, const std::string & )
 		}
 		else if ( (msg == RC_home) || (msg == RC_timeout) )
 		{
-			if ( ( strcmp(value, oldval) != 0) && (MessageBox(name, LOCALE_MESSAGEBOX_DISCARD, mbrYes, mbYes | mbCancel) == mbrCancel))
+			if ( ( strcmp(value, oldval) != 0) && (MessageBox(_("StringInput"), _("Discard changes?"), mbrYes, mbYes | mbCancel) == mbrCancel))
 				continue;
+				
+			// FIXME:
 
 			strncpy(value, oldval, size);
 			loop = false;

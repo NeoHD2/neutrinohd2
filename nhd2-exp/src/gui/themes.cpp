@@ -86,7 +86,7 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 		}
 		else if(actionKey == "saveCurrentTheme")
 		{
-			if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_COLORTHEMEMENU_SAVE, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+			if (MessageBox(_("Information"), _("Save current theme"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 			{
 				std::string file_name = "";
 				CStringInputSMS * nameInput = new CStringInputSMS(LOCALE_COLORTHEMEMENU_NAME, file_name.c_str());
@@ -124,7 +124,7 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 		}
 		else if (actionKey == "theme_default")
 		{
-			if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_COLORTHEMEMENU_DEFAULT_THEME, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+			if (MessageBox(_("Information"), _("Default theme"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 			{
 				setupDefaultColors();
 			}
@@ -145,7 +145,7 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 			//
 			if (!g_settings.use_default_skin)
 			{
-				if (MessageBox(LOCALE_MESSAGEBOX_INFO, LOCALE_SERVICEMENU_RESTART, mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+				if (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 				{
 					CNeutrinoApp::getInstance()->exec(NULL, "saveskinsettings");
 					

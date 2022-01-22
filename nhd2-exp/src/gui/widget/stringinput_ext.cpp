@@ -265,7 +265,7 @@ int CExtendedInput::exec( CMenuTarget* parent, const std::string & )
 		{
 			if(strcmp(value, oldval)!= 0)
 			{
-				int erg = MessageBox(name.c_str(), LOCALE_MESSAGEBOX_DISCARD, mbrYes, mbNo | mbYes | mbCancel);
+				int erg = MessageBox(name.c_str(), _("Discard changes?"), mbrYes, mbNo | mbYes | mbCancel);
 				 if(erg == mbrYes)
 				 {
 					strcpy(value, oldval);

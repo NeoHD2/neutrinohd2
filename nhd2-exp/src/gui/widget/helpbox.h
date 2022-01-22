@@ -43,28 +43,29 @@
 #include <gui/widget/messagebox.h>
 
 
-#define HELPBOX_WIDTH			550
+#define HELPBOX_WIDTH			600
 
 class CHelpBox
 {
+	private:
+		ContentLines m_lines;
+		
 	public:
 		CHelpBox();
 		~CHelpBox();
 
+		//
 		void addLine(std::string& text, CFont* font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU], uint8_t col = COL_MENUCONTENT, const bool bg = false);
-		void addLine(const char *text, CFont* font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU], uint8_t col = COL_MENUCONTENT, const bool bg = false);
+		void addLine(const char* const text, CFont* font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU], uint8_t col = COL_MENUCONTENT, const bool bg = false);
 		void addLine(std::string& icon, std::string& text, CFont* font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU], uint8_t col = COL_MENUCONTENT, const bool bg = false);
-		void addLine(const char *icon, const char *text, CFont* font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU], uint8_t col = COL_MENUCONTENT, const bool bg = false);
-		void add2Line(const char *text1, const char *text2, CFont* font1 = g_Font[SNeutrinoSettings::FONT_TYPE_MENU], uint8_t col1 = COL_MENUCONTENT, const bool bg1 = false, CFont* font2 = g_Font[SNeutrinoSettings::FONT_TYPE_MENU], uint8_t col2 = COL_MENUCONTENT, const bool bg2 = false);
+		void addLine(const char* const icon, const char* const text, CFont* font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU], uint8_t col = COL_MENUCONTENT, const bool bg = false);
+		void add2Line(const char* const text1, const char* const text2, CFont* font1 = g_Font[SNeutrinoSettings::FONT_TYPE_MENU], uint8_t col1 = COL_MENUCONTENT, const bool bg1 = false, CFont* font2 = g_Font[SNeutrinoSettings::FONT_TYPE_MENU], uint8_t col2 = COL_MENUCONTENT, const bool bg2 = false);
 		void addSeparator();
 		void addPagebreak();
 		
-		void show(const neutrino_locale_t Caption, const int Width = HELPBOX_WIDTH, int timeout = -1, const result_ Default = mbrBack, const uint32_t ShowButtons = mbBack);
+		//void show(const neutrino_locale_t Caption, const int Width = HELPBOX_WIDTH, int timeout = -1, const result_ Default = mbrBack, const uint32_t ShowButtons = mbBack);
 
 		void show(const char* const Caption, const int Width = HELPBOX_WIDTH, int timeout = -1, const result_ Default = mbrBack, const uint32_t ShowButtons = mbBack);
-		
-	private:
-		ContentLines m_lines;
 };
 
 #endif

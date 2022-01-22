@@ -202,8 +202,9 @@ int CAlphaSetup::exec(CMenuTarget * parent, const std::string &)
 			case RC_home:
 				if ( *alpha != alpha_alt)
 				{
-					if (MessageBox(name, LOCALE_MESSAGEBOX_DISCARD, mbrYes, mbYes | mbCancel) == mbrCancel)
+					if (MessageBox(_("Alpha Setup"), _("Discard changes?"), mbrYes, mbYes | mbCancel) == mbrCancel)
 					{
+						// FIXME:
 						break;
 					}
 				}

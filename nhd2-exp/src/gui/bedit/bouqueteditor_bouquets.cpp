@@ -216,7 +216,7 @@ int CBEBouquetWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 			{
 				if (bouquetsChanged)
 				{
-					int result = MessageBox(LOCALE_BOUQUETEDITOR_NAME, LOCALE_BOUQUETEDITOR_SAVECHANGES, mbrYes, mbAll);
+					int result = MessageBox(_("Bouquet Editor"), _("Do you want to save the changes?"), mbrYes, mbAll);
 
 					switch( result )
 					{
@@ -450,7 +450,7 @@ void CBEBouquetWidget::deleteBouquet()
 	if (selected >= Bouquets->size()) /* Bouquets->size() might be 0 */
 		return;
 
-	if (MessageBox(LOCALE_FILEBROWSER_DELETE, (*Bouquets)[selected]->bFav ? g_Locale->getText(LOCALE_FAVORITES_BOUQUETNAME) : (*Bouquets)[selected]->Name.c_str(), mbrNo, mbYes | mbNo) != mbrYes)
+	if (MessageBox(_("Delete"), (*Bouquets)[selected]->bFav ? _("Favorites") : (*Bouquets)[selected]->Name.c_str(), mbrNo, mbYes | mbNo) != mbrYes)
 	{
 		paint();
 		return;

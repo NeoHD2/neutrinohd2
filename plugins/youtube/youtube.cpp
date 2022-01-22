@@ -279,7 +279,7 @@ REPEAT:
 		else 
 		{
 			//FIXME show error
-			MessageBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_ERROR), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+			MessageBox(_("Error"), _("Failed to load youtube feed"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 			
 			//return;
 			if(mode == cYTFeedParser::PREV)

@@ -145,12 +145,12 @@ int COPKGManager::exec(CMenuTarget * parent, const std::string &actionKey)
 		{
 				success = getBlankPkgName(filename) + " successfull installed";
 				
-				MessageBox(LOCALE_MESSAGEBOX_INFO, success.c_str(), mbrBack, mbBack, NEUTRINO_ICON_INFO);
+				MessageBox(_("Information"), _(success.c_str()), mbrBack, mbBack, NEUTRINO_ICON_INFO);
 		}
 		else
 		{
 				success = getBlankPkgName(filename) + " install failed";
-				MessageBox(LOCALE_MESSAGEBOX_ERROR, success.c_str(), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+				MessageBox(_("Error"), _(success.c_str()), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 		}
 		
 		// remove filename.ipk
@@ -197,12 +197,12 @@ bool COPKGManager::showPkgMenu(const int pkg_content_id)
 	{
 		loadingBox->hide();
 		delete loadingBox;
-		MessageBox(LOCALE_MESSAGEBOX_ERROR, _("Update failed"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+		MessageBox(_("Error"), _("Update failed"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 
 		return false;
 	}
 		
-	CMenuWidget menu("OPKG-Manager", NEUTRINO_ICON_UPDATE, MENU_WIDTH + 50);
+	CMenuWidget menu(_("OPKG-Manager"), NEUTRINO_ICON_UPDATE, MENU_WIDTH + 50);
 	
 	if(!getPkgData(pkg_content_id))
 	{
@@ -454,7 +454,7 @@ bool COPKGManager::execCmd(const char * cmdstr)
 	
 	if(!system(cmd))
 	{
-		MessageBox(LOCALE_MESSAGEBOX_ERROR, "Command failed", mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+		MessageBox(_("Error"), _("Command failed"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 		sleep(2);
 		return false;
 	}

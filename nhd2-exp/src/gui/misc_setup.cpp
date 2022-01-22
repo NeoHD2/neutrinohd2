@@ -414,7 +414,7 @@ int CDataResetNotifier::exec(CMenuTarget */*parent*/, const std::string& actionK
 
 	if( actionKey == "factory") 
 	{
-		int result = MessageBox(LOCALE_RESET_SETTINGS, g_Locale->getText(LOCALE_RESET_CONFIRM), mbrNo, mbYes | mbNo);
+		int result = MessageBox(_("Reset settings to defaults"), _("Are you sure ?"), mbrNo, mbYes | mbNo);
 		if(result != mbrYes) 
 			return true;
 		
@@ -486,7 +486,7 @@ int CDataResetNotifier::exec(CMenuTarget */*parent*/, const std::string& actionK
 				system(fname);
 			} 
 			else
-				MessageBox(LOCALE_MESSAGEBOX_ERROR, g_Locale->getText(LOCALE_SETTINGS_BACKUP_FAILED), mbrBack, mbBack, NEUTRINO_ICON_ERROR);
+				MessageBox(_("Error"), _("Backup failed"), mbrBack, mbBack, NEUTRINO_ICON_ERROR);
 		}
 
 		return true;
@@ -497,7 +497,7 @@ int CDataResetNotifier::exec(CMenuTarget */*parent*/, const std::string& actionK
 		fileBrowser.Filter = &fileFilter;
 		if (fileBrowser.exec("/media") == true) 
 		{
-			int result = MessageBox(LOCALE_SETTINGS_RESTORE, g_Locale->getText(LOCALE_SETTINGS_RESTORE_WARN), mbrNo, mbYes | mbNo);
+			int result = MessageBox(_("Settings restore"), _("Do you want to restore the previous settings?"), mbrNo, mbYes | mbNo);
 			if(result == mbrYes) 
 			{
 				char  fname[256];
@@ -575,7 +575,7 @@ bool CChannelListSettings::changeNotify(const neutrino_locale_t OptionName, void
 	else if(ARE_LOCALES_EQUAL(OptionName, LOCALE_ZAPIT_SCANSDT))
 	{
 		setZapitConfig(&zapitCfg);
-		bool ret = (MessageBox(LOCALE_MESSAGEBOX_INFO, g_Locale->getText(LOCALE_SERVICEMENU_RESTART), mbrNo, mbNo | mbYes) == mbrYes);
+		bool ret = (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbNo | mbYes) == mbrYes);
 
 		if(ret)
 			CNeutrinoApp::getInstance()->ExitRun(CNeutrinoApp::RESTART);

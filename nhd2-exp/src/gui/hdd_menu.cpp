@@ -422,7 +422,7 @@ int CHDDInit::exec(CMenuTarget * /*parent*/, const std::string& actionKey)
 	
 	sprintf(src, "/dev/%s", actionKey.c_str());
 
-	res = MessageBox( LOCALE_HDD_FORMAT, g_Locale->getText(LOCALE_HDD_INIT_WARN), mbrNo, mbYes | mbNo );
+	res = MessageBox(_("Hdd Format"), _("Are you sure to init ?"), mbrNo, mbYes | mbNo );
 
 	if(res != mbrYes)
 		return 0;
@@ -613,7 +613,7 @@ int CHDDFmtExec::exec(CMenuTarget *parent, const std::string& actionKey)
 
 	sprintf(src, "/dev/%s", actionKey.c_str());
 
-	res = MessageBox(LOCALE_HDD_FORMAT, g_Locale->getText(LOCALE_HDD_FORMAT_WARN), mbrNo, mbYes | mbNo );
+	res = MessageBox(_("HDD Format"), _("Are you sure to format ? You will lost all data "), mbrNo, mbYes | mbNo );
 
 	if(res != mbrYes)
 		return 0;
