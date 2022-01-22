@@ -124,13 +124,13 @@ void CPictureViewerSettings::showMenu()
 	PicViewerSettings.addItem( new CMenuSeparator(LINE) );
 
 	// Pic Viewer Scaling
-	PicViewerSettings.addItem(new CMenuOptionChooser(LOCALE_PICTUREVIEWER_SCALING, &g_settings.picviewer_scaling, PICTUREVIEWER_SCALING_OPTIONS, PICTUREVIEWER_SCALING_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutPicViewer++),"", true ));
+	PicViewerSettings.addItem(new CMenuOptionChooser(_("Scaling"), &g_settings.picviewer_scaling, PICTUREVIEWER_SCALING_OPTIONS, PICTUREVIEWER_SCALING_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutPicViewer++),"", true ));
 
 	// slide Timeout
-	PicViewerSettings.addItem(new CMenuOptionNumberChooser(LOCALE_PICTUREVIEWER_SLIDE_TIME, &g_settings.picviewer_slide_time, true, 0, 999));
+	PicViewerSettings.addItem(new CMenuOptionNumberChooser(_("Slideshow display time"), &g_settings.picviewer_slide_time, true, 0, 999));
 
 	// Pic Viewer Default Dir
-	PicViewerSettings.addItem(new CMenuForwarder(LOCALE_PICTUREVIEWER_DEFDIR, true, g_settings.network_nfs_picturedir, this, "picturedir", CRCInput::convertDigitToKey(shortcutPicViewer++)));
+	PicViewerSettings.addItem(new CMenuForwarder(_("Start dir."), true, g_settings.network_nfs_picturedir, this, "picturedir", CRCInput::convertDigitToKey(shortcutPicViewer++)));
 	
 	PicViewerSettings.exec(NULL, "");
 	PicViewerSettings.hide();

@@ -268,7 +268,7 @@ int CBouquetList::doMenu()
 
 	if(!zapitBouquet->bUser) 
 	{
-		menu->addItem(new CMenuForwarder(LOCALE_FAVORITES_COPY, true, NULL, NULL, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE), old_selected == i ++);
+		menu->addItem(new CMenuForwarder(_("Copy bouquet to Favorites"), true, NULL, NULL, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE), old_selected == i ++);
 		ret = menu->exec(NULL, "");
 		select = menu->getSelected();
 		delete menu;
@@ -308,7 +308,7 @@ int CBouquetList::doMenu()
 	} 
 	else 
 	{
-		menu->addItem(new CMenuForwarder(LOCALE_BOUQUETEDITOR_DELETE, true, NULL, NULL, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE), old_selected == i ++);
+		menu->addItem(new CMenuForwarder(_("Delete"), true, NULL, NULL, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE), old_selected == i ++);
 		ret = menu->exec(NULL, "");
 		select = menu->getSelected();
 		delete menu;

@@ -128,7 +128,7 @@ void CAudioSelectMenuHandler::doMenu()
 		AudioSelector.addItem(new CMenuSeparator(LINE));
 
 	// analogue output
-	AudioSelector.addItem(new CMenuOptionChooser(LOCALE_AUDIOMENU_ANALOGOUT, &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, CAudioSettings::getInstance()->audioSetupNotifier, RC_red, NEUTRINO_ICON_BUTTON_RED));
+	AudioSelector.addItem(new CMenuOptionChooser(_("Analog Output"), &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, CAudioSettings::getInstance()->audioSetupNotifier, RC_red, NEUTRINO_ICON_BUTTON_RED));
 	
 	// ac3
 #if !defined (PLATFORM_COOLSTREAM)	
@@ -190,7 +190,7 @@ void CAudioSelectMenuHandler::doMenu()
 		if(sep_added) 
 		{
 			AudioSelector.addItem(new CMenuSeparator(LINE));
-			AudioSelector.addItem(new CMenuForwarder(LOCALE_SUBTITLES_STOP, true, NULL, &SubtitleChanger, "off", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW ));
+			AudioSelector.addItem(new CMenuForwarder(_("Stop subtitles"), true, NULL, &SubtitleChanger, "off", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW ));
 		}
 
 	}

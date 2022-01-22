@@ -292,7 +292,7 @@ int CUserMenuMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 
         CStringInputSMS name(LOCALE_USERMENU_NAME, g_settings.usermenu_text[button].c_str());
         
-        menu.addItem(new CMenuForwarder(LOCALE_USERMENU_NAME, true, g_settings.usermenu_text[button].c_str(), &name));
+        menu.addItem(new CMenuForwarder(_("Name"), true, g_settings.usermenu_text[button].c_str(), &name));
         menu.addItem(new CMenuSeparator(LINE));
 
         char text[10];

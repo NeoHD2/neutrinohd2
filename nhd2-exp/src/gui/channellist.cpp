@@ -363,13 +363,13 @@ int CChannelList::doChannelMenu(void)
 	menu->setWidgetMode(MODE_MENU);
 	menu->enableShrinkMenu();
 
-	menu->addItem(new CMenuForwarder(LOCALE_BOUQUETEDITOR_DELETE, true, NULL, NULL, NULL, RC_red, NEUTRINO_ICON_BUTTON_RED), old_selected == i++);
+	menu->addItem(new CMenuForwarder(_("delete"), true, NULL, NULL, NULL, RC_red, NEUTRINO_ICON_BUTTON_RED), old_selected == i++);
 
-	menu->addItem(new CMenuForwarder(LOCALE_BOUQUETEDITOR_MOVE, true, NULL, NULL, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN), old_selected == i++);
+	menu->addItem(new CMenuForwarder(_("Move"), true, NULL, NULL, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN), old_selected == i++);
 
-	menu->addItem(new CMenuForwarder(LOCALE_EXTRA_ADD_TO_BOUQUET, true, NULL, NULL, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW), old_selected == i++);
+	menu->addItem(new CMenuForwarder(_("Add to Bouquets"), true, NULL, NULL, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW), old_selected == i++);
 
-	menu->addItem(new CMenuForwarder(LOCALE_FAVORITES_MENUEADD, true, NULL, NULL, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE), old_selected == i++);
+	menu->addItem(new CMenuForwarder(_("add channel to my favorites"), true, NULL, NULL, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE), old_selected == i++);
 
 	menu->exec(NULL, "");
 	select = menu->getSelected();

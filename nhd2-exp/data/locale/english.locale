@@ -836,12 +836,12 @@ moviebrowser.book_movieend Movie end:
 moviebrowser.book_moviestart Movie start:
 moviebrowser.book_name Name:
 moviebrowser.book_new New Bookmark
-moviebrowser.book_position Position:
+moviebrowser.book_position 
 moviebrowser.book_type Jump (<0 back , >0 for):
 moviebrowser.book_type_backward Repeat
 moviebrowser.book_type_forward Jump over
 moviebrowser.browser_frame_high Browser hight [Pixel]
-moviebrowser.browser_row_head Row settings
+moviebrowser.browser_row_head 
 moviebrowser.browser_row_item Row item
 moviebrowser.browser_row_nr Number of rows
 moviebrowser.browser_row_width Row width
@@ -912,7 +912,7 @@ moviebrowser.menu_parental_lock_head Parental Lock
 moviebrowser.menu_parental_lock_rate_head Lock movies from
 moviebrowser.menu_save Save changes
 moviebrowser.menu_save_all Start update of movie info files
-moviebrowser.option_browser Browser Options
+moviebrowser.option_browser 
 moviebrowser.reload_at_start Reload movie info at start
 moviebrowser.remount_at_start Remount at start
 moviebrowser.next_focus next focus
@@ -1070,7 +1070,7 @@ options.off off
 options.on on
 options.on.without_messages Without msg
 options.serial serial
-parentallock.changepin Change PIN code
+parentallock.changepin 
 parentallock.changepin_hint1 Enter your new youth protection pin code here!
 parentallock.changetolocked on locked bouquets
 parentallock.head Enter Parental Lock PIN code
@@ -1344,7 +1344,7 @@ timerlist.alarmtime Alarm time
 timerlist.apids Audio PIDs
 timerlist.apids_dflt record default audio streams
 timerlist.bouquetselect choose bouquet
-timerlist.channel Channel
+timerlist.channel 
 timerlist.channelselect choose channel
 timerlist.delete Delete
 timerlist.menumodify Modify timer

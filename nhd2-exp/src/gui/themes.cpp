@@ -224,18 +224,18 @@ int CThemes::Show()
 	themes.enableShrinkMenu();
 
 	// intros
-	themes.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	themes.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	themes.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	themes.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	themes.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 
-	themes.addItem(new CMenuForwarder(LOCALE_COLORTHEMEMENU_SAVE, true , NULL, this, "saveCurrentTheme", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+	themes.addItem(new CMenuForwarder(_("Save current theme"), true , NULL, this, "saveCurrentTheme", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
 
 	themes.addItem( new CMenuSeparator(LINE) );
 	
 	//set default theme
-	themes.addItem(new CMenuForwarder(LOCALE_COLORTHEMEMENU_DEFAULT_THEME, true, NULL, this, "theme_default", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	themes.addItem(new CMenuForwarder(_("Default theme"), true, NULL, this, "theme_default", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
 	
 	readThemes(themes);
 

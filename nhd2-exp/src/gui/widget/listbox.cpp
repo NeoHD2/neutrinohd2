@@ -742,7 +742,7 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
 }
 
 // CMenuOptionLanguageChooser
-CMenuOptionLanguageChooser::CMenuOptionLanguageChooser(char *Name, CChangeObserver *Observ, const char * const IconName)
+CMenuOptionLanguageChooser::CMenuOptionLanguageChooser(char* Name, CChangeObserver *Observ, const char * const IconName)
 {
 	int iconName_w = 0;
 	int iconName_h = 0;
@@ -787,7 +787,7 @@ int CMenuOptionLanguageChooser::exec(CMenuTarget*)
 	paint(true);
 	
 	if(observ)
-		wantsRepaint = observ->changeNotify(LOCALE_LANGUAGESETUP_SELECT, optionValue);
+		wantsRepaint = observ->changeNotify(_("Select language"), optionValue);
 
 	//FIXME:	
 	if ( wantsRepaint )
@@ -962,6 +962,7 @@ bool CZapProtection::check()
 }
 
 // CMenuForwarder
+/*
 CMenuForwarder::CMenuForwarder(const neutrino_locale_t Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const neutrino_locale_t Hint )
 {
 	option = Option? Option : "";
@@ -984,8 +985,9 @@ CMenuForwarder::CMenuForwarder(const neutrino_locale_t Text, const bool Active, 
 	
 	itemType = ITEM_TYPE_FORWARDER;
 }
+*/
 
-CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const /*neutrino_locale_t*/char* const Hint )
+CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const char* const Hint )
 {
 	textString = Text? Text : "";
 	text = NONEXISTANT_LOCALE;
@@ -1000,7 +1002,7 @@ CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const
 	iconName = IconName ? IconName : "";
 	
 	itemIcon = ItemIcon ? ItemIcon : "";
-	itemHint = Hint? Hint : "";//g_Locale->getText(Hint);
+	itemHint = Hint? Hint : "";;
 	itemName = Text? Text : "";
 
 	optionValueString = "";
@@ -1379,7 +1381,7 @@ ClistBoxItem::ClistBoxItem(const neutrino_locale_t Text, const bool Active, cons
 }
 */
 
-ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, const neutrino_msg_t DirectKey, const char * const IconName, const char* const ItemIcon, const /*neutrino_locale_t*/char* const Hint)
+ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, const neutrino_msg_t DirectKey, const char * const IconName, const char* const ItemIcon, const char* const Hint)
 {
 	text = NONEXISTANT_LOCALE;
 	textString = Text? Text : "";
@@ -1395,7 +1397,7 @@ ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const cha
 	iconName = IconName ? IconName : "";
 	itemIcon = ItemIcon? ItemIcon : "";
 	itemName = Text? Text : "";
-	itemHint = Hint? Hint : "";//g_Locale->getText(Hint);
+	itemHint = Hint? Hint : "";
 	
 	runningPercent = 0;
 

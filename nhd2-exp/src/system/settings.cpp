@@ -42,14 +42,14 @@ const int default_timing[TIMING_SETTING_COUNT] =
 	3
 };
 
-const neutrino_locale_t timing_setting_name[TIMING_SETTING_COUNT] =
+const char* const timing_setting_name[TIMING_SETTING_COUNT] =
 {
-	LOCALE_TIMING_MENU,
-	LOCALE_TIMING_CHANLIST,
-	LOCALE_TIMING_EPG,
-	LOCALE_TIMING_INFOBAR,
-	LOCALE_TIMING_FILEBROWSER,
-	LOCALE_TIMING_NUMERICZAP
+	_("Menu"),
+	_("Channellist"),
+	_("EPG"),
+	_("Infobar"),
+	_("Filebrowser"),
+	_("Numeric Zap")
 };
 
 

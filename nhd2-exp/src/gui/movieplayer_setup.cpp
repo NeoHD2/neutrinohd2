@@ -92,15 +92,15 @@ void CMoviePlayerSettings::showMenu()
 	moviePlayerSettings.enableShrinkMenu();
 	
 	// intros
-	moviePlayerSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	moviePlayerSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	moviePlayerSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	moviePlayerSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	moviePlayerSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	moviePlayerSettings.addItem( new CMenuSeparator(LINE) );
 
 	// multiformat Dir
-	moviePlayerSettings.addItem(new CMenuForwarder(LOCALE_MOVIEPLAYER_DEFDIR, true, g_settings.network_nfs_moviedir, this, "moviedir") ); 
+	moviePlayerSettings.addItem(new CMenuForwarder(_("Start dir."), true, g_settings.network_nfs_moviedir, this, "moviedir") ); 
 	
 	moviePlayerSettings.exec(NULL, "");
 	moviePlayerSettings.hide();

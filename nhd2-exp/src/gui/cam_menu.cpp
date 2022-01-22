@@ -118,7 +118,7 @@ void CCAMMenuHandler::doMainMenu()
 	cammenu->enableShrinkMenu();
 	
 	// intros
-	cammenu->addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	cammenu->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 
 	CMenuWidget * tempMenu;
 	
@@ -140,7 +140,7 @@ void CCAMMenuHandler::doMainMenu()
 
 			cammenu->addItem(new CMenuSeparator(LINE));
 
-			cammenu->addItem(new CMenuForwarder(LOCALE_CAM_RESET, true, NULL, this, RESET, RC_nokey));
+			cammenu->addItem(new CMenuForwarder(_("CI cam reset"), true, NULL, this, RESET, RC_nokey));
 		} 
 		else 
 		{

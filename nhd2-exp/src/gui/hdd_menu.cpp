@@ -187,15 +187,15 @@ int CHDDMenuHandler::hddMenu()
 	hddmenu->setWidgetMode(MODE_SETUP);
 	hddmenu->enableShrinkMenu();
 	
-	hddmenu->addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	hddmenu->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	hddmenu->addItem(new CMenuSeparator(LINE));
 	
 	// save settings
-	hddmenu->addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savehddsettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	hddmenu->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savehddsettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	hddmenu->addItem( new CMenuSeparator(LINE) );
 	
 	// activate settings
-	hddmenu->addItem(new CMenuForwarder(LOCALE_HDD_ACTIVATE, true, NULL, this, "activateNow", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+	hddmenu->addItem(new CMenuForwarder(_("Activate settings"), true, NULL, this, "activateNow", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
 
 	// sleep time
 	hddmenu->addItem( new CMenuOptionChooser(LOCALE_HDD_SLEEP, &g_settings.hdd_sleep, HDD_SLEEP_OPTIONS, HDD_SLEEP_OPTION_COUNT, true, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, true));
@@ -304,11 +304,11 @@ int CHDDMenuHandler::hddMenu()
 		tempMenu[i]->setWidgetMode(MODE_MENU);
 		tempMenu[i]->enableShrinkMenu();
 		
-		tempMenu[i]->addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+		tempMenu[i]->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 		tempMenu[i]->addItem(new CMenuSeparator(LINE));
 		
 		//init hdd	
-		tempMenu[i]->addItem(new CMenuForwarder(LOCALE_HDD_INIT, enabled, "", new CHDDInit, namelist[i]->d_name, RC_red, NEUTRINO_ICON_BUTTON_RED));
+		tempMenu[i]->addItem(new CMenuForwarder(_("HDD Init"), enabled, "", new CHDDInit, namelist[i]->d_name, RC_red, NEUTRINO_ICON_BUTTON_RED));
 		tempMenu[i]->addItem(new CMenuSeparator(LINE));
 		
 		/* check for parts */
@@ -348,24 +348,24 @@ int CHDDMenuHandler::hddMenu()
 			PartMenu[j]->enableShrinkMenu();
 			
 
-			PartMenu[j]->addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+			PartMenu[j]->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 			PartMenu[j]->addItem(new CMenuSeparator(LINE));
 			
 			/* format part */
-			PartMenu[j]->addItem(new CMenuForwarder(LOCALE_HDD_FORMAT, true, NULL, new CHDDFmtExec, PART, RC_red, NEUTRINO_ICON_BUTTON_RED));
+			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Format"), true, NULL, new CHDDFmtExec, PART, RC_red, NEUTRINO_ICON_BUTTON_RED));
 			
 			/* fs check */
-			PartMenu[j]->addItem(new CMenuForwarder(LOCALE_HDD_CHECK, true, NULL, new CHDDChkExec, PART, RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+			PartMenu[j]->addItem(new CMenuForwarder(_("Check filesystem"), true, NULL, new CHDDChkExec, PART, RC_green, NEUTRINO_ICON_BUTTON_GREEN));
 			
 			/* mount part */
-			PartMenu[j]->addItem(new CMenuForwarder(LOCALE_HDD_MOUNT, true, NULL, new CHDDMountMSGExec, PART, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Mount"), true, NULL, new CHDDMountMSGExec, PART, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
 
 			/* umount part */
-			PartMenu[j]->addItem(new CMenuForwarder(LOCALE_HDD_UMOUNT, true, NULL, new CHDDuMountMSGExec, PART, RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
+			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Umount"), true, NULL, new CHDDuMountMSGExec, PART, RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
 			
 			// hdd explorer
 			PartMenu[j]->addItem(new CMenuSeparator(LINE));
-			PartMenu[j]->addItem(new CMenuForwarder(LOCALE_HDD_BROWSER, mounted, NULL, new CHDDBrowser(), DEVICE));
+			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Filexplorer"), mounted, NULL, new CHDDBrowser(), DEVICE));
 			
 			// part
 			tempMenu[i]->addItem(new CMenuForwarder(PART, true, mounted? g_Locale->getText(LOCALE_HDD_MOUNTED) : g_Locale->getText(LOCALE_HDD_UMOUNTED), PartMenu[j]));

@@ -147,19 +147,19 @@ void CLCDSettings::showMenu()
 	// LCD
 #if defined (ENABLE_LCD)
 	//option invert
-	CMenuOptionChooser* oj_inverse = new CMenuOptionChooser(LOCALE_LCDMENU_INVERSE, &g_settings.lcd_setting[SNeutrinoSettings::LCD_INVERSE], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, lcdnotifier, CRCInput::convertDigitToKey(shortcutVFD++) );
+	CMenuOptionChooser* oj_inverse = new CMenuOptionChooser(_("Invert"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_INVERSE], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, lcdnotifier, CRCInput::convertDigitToKey(shortcutVFD++) );
 	lcdSettings.addItem(oj_inverse);
 
 	//status display
-	CMenuOptionChooser* oj_status = new CMenuOptionChooser(LOCALE_LCDMENU_STATUSLINE, &g_settings.lcd_setting[SNeutrinoSettings::LCD_SHOW_VOLUME], LCDMENU_STATUSLINE_OPTIONS, LCDMENU_STATUSLINE_OPTION_COUNT, true);
+	CMenuOptionChooser* oj_status = new CMenuOptionChooser(_("Status line"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_SHOW_VOLUME], LCDMENU_STATUSLINE_OPTIONS, LCDMENU_STATUSLINE_OPTION_COUNT, true);
 	lcdSettings.addItem(oj_status);
 	
 	//lcd_epg
-	CMenuOptionChooser* oj_epg = new CMenuOptionChooser(LOCALE_LCDMENU_EPG, &g_settings.lcd_setting[SNeutrinoSettings::LCD_EPGMODE], LCDMENU_EPG_OPTIONS, LCDMENU_EPG_OPTION_COUNT, true);
+	CMenuOptionChooser* oj_epg = new CMenuOptionChooser(_("EPG"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_EPGMODE], LCDMENU_EPG_OPTIONS, LCDMENU_EPG_OPTION_COUNT, true);
 	lcdSettings.addItem(oj_epg);
 
 	//align
-	CMenuOptionChooser* oj_align = new CMenuOptionChooser(LOCALE_LCDMENU_EPGALIGN, &g_settings.lcd_setting[SNeutrinoSettings::LCD_EPGALIGN], LCDMENU_EPGALIGN_OPTIONS, LCDMENU_EPGALIGN_OPTION_COUNT, true);
+	CMenuOptionChooser* oj_align = new CMenuOptionChooser(_("LCD EPG Align"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_EPGALIGN], LCDMENU_EPGALIGN_OPTIONS, LCDMENU_EPGALIGN_OPTION_COUNT, true);
 	lcdSettings.addItem(oj_align);
 
 	//dump to png
@@ -167,7 +167,7 @@ void CLCDSettings::showMenu()
 	lcdSettings.addItem(oj_dumppng);
 	
 	// lcd controller
-	lcdSettings.addItem(new CMenuForwarder(LOCALE_LCDMENU_LCDCONTROLER, true, NULL, lcdsliders, NULL, CRCInput::convertDigitToKey(shortcutVFD++) ));
+	lcdSettings.addItem(new CMenuForwarder(_("Contrast / Brightness"), true, NULL, lcdsliders, NULL, CRCInput::convertDigitToKey(shortcutVFD++) ));
 #else	
 #if defined (PLATFORM_GIGABLUE)	
 	// led color
@@ -179,15 +179,15 @@ void CLCDSettings::showMenu()
 	
 	// dimm-time
 	CStringInput * dim_time = new CStringInput(LOCALE_LCDMENU_DIM_TIME, g_settings.lcd_setting_dim_time, 3, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE,"0123456789 ");
-	lcdSettings.addItem(new CMenuForwarder(LOCALE_LCDMENU_DIM_TIME,true, g_settings.lcd_setting_dim_time, dim_time, NULL, CRCInput::convertDigitToKey(shortcutVFD++)));
+	lcdSettings.addItem(new CMenuForwarder(_("Dim timeout"), true, g_settings.lcd_setting_dim_time, dim_time, NULL, CRCInput::convertDigitToKey(shortcutVFD++)));
 
 	// dimm brightness
 	//CStringInput * dim_brightness = new CStringInput(LOCALE_LCDMENU_DIM_BRIGHTNESS, g_settings.lcd_setting_dim_brightness, 3,NONEXISTANT_LOCALE, NONEXISTANT_LOCALE,"0123456789 ");
-	//lcdSettings.addItem(new CMenuForwarder(LOCALE_LCDMENU_DIM_BRIGHTNESS,true, g_settings.lcd_setting_dim_brightness, dim_brightness, NULL, CRCInput::convertDigitToKey(shortcutVFD++) ));
+	//lcdSettings.addItem(new CMenuForwarder(_("Brightness after dim timeout"), true, g_settings.lcd_setting_dim_brightness, dim_brightness, NULL, CRCInput::convertDigitToKey(shortcutVFD++) ));
 
 	// vfd controller
 	lcdSettings.addItem(new CMenuSeparator(LINE));
-	lcdSettings.addItem(new CMenuForwarder(LOCALE_LCDMENU_LCDCONTROLER, true, NULL, lcdsliders, NULL, CRCInput::convertDigitToKey(shortcutVFD++) ));	
+	lcdSettings.addItem(new CMenuForwarder(_("Contrast / Brightness"), true, NULL, lcdsliders, NULL, CRCInput::convertDigitToKey(shortcutVFD++) ));	
 #endif	
 #endif	
 	

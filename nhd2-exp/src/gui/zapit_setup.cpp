@@ -157,11 +157,11 @@ void CZapitSetup::showMenu()
 	int shortcut = 1;
 	
 	// intros
-	zapit->addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	zapit->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	zapit->addItem(new CMenuSeparator(LINE));
 	
 	// save settings
-	zapit->addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "save", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	zapit->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	zapit->addItem(new CMenuSeparator(LINE));
 
 	bool activTV = false;
@@ -178,13 +178,13 @@ void CZapitSetup::showMenu()
 		activWebTV = true;
 
 	// last TV channel
-	CMenuForwarder * m3 = new CMenuForwarder(LOCALE_ZAPITSETUP_LAST_TV, /*!g_settings.uselastchannel*/activTV, g_settings.StartChannelTV.c_str(), this, "tv", CRCInput::convertDigitToKey(shortcut++));
+	CMenuForwarder * m3 = new CMenuForwarder(_("TV Channel"), activTV, g_settings.StartChannelTV.c_str(), this, "tv", CRCInput::convertDigitToKey(shortcut++));
 
 	// last radio channel
-	CMenuForwarder * m4 = new CMenuForwarder(LOCALE_ZAPITSETUP_LAST_RADIO, /*!g_settings.uselastchannel*/activRadio, g_settings.StartChannelRadio.c_str(), this, "radio", CRCInput::convertDigitToKey(shortcut++));
+	CMenuForwarder * m4 = new CMenuForwarder(_("Radio Channel"), activRadio, g_settings.StartChannelRadio.c_str(), this, "radio", CRCInput::convertDigitToKey(shortcut++));
 
 	// last webtv channel
-	CMenuForwarder * m5 = new CMenuForwarder(LOCALE_ZAPITSETUP_LAST_WEBTV, /*!g_settings.uselastchannel*/activWebTV, g_settings.StartChannelWEBTV.c_str(), this, "webtv", CRCInput::convertDigitToKey(shortcut++));
+	CMenuForwarder * m5 = new CMenuForwarder(_("IPTV Channel"), activWebTV, g_settings.StartChannelWEBTV.c_str(), this, "webtv", CRCInput::convertDigitToKey(shortcut++));
 
 	// last mode
 	CZapitSetupModeNotifier zapitSetupModeNotifier((int *)&g_settings.lastChannelMode, m3, m4, m5);

@@ -69,13 +69,13 @@ int CProxySetup::showProxySetup()
 	mn->enableShrinkMenu();
 
 	CStringInputSMS * softUpdate_proxy = new CStringInputSMS(LOCALE_FLASHUPDATE_PROXYSERVER, g_settings.softupdate_proxyserver, MAX_INPUT_CHARS, LOCALE_FLASHUPDATE_PROXYSERVER_HINT1, LOCALE_FLASHUPDATE_PROXYSERVER_HINT2, "abcdefghijklmnopqrstuvwxyz0123456789-.: ");
-	mn->addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_PROXYSERVER, true, g_settings.softupdate_proxyserver, softUpdate_proxy, NULL, RC_red, NEUTRINO_ICON_BUTTON_RED));
+	mn->addItem(new CMenuForwarder(_("Hostname"), true, g_settings.softupdate_proxyserver, softUpdate_proxy, NULL, RC_red, NEUTRINO_ICON_BUTTON_RED));
 
 	CStringInputSMS * softUpdate_proxyuser = new CStringInputSMS(LOCALE_FLASHUPDATE_PROXYUSERNAME, g_settings.softupdate_proxyusername, MAX_INPUT_CHARS, LOCALE_FLASHUPDATE_PROXYUSERNAME_HINT1, LOCALE_FLASHUPDATE_PROXYUSERNAME_HINT2, "abcdefghijklmnopqrstuvwxyz0123456789!""§$%&/()=?-. ");
-	mn->addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_PROXYUSERNAME, true, g_settings.softupdate_proxyusername, softUpdate_proxyuser, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+	mn->addItem(new CMenuForwarder(_("Username"), true, g_settings.softupdate_proxyusername, softUpdate_proxyuser, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN));
 
 	CStringInputSMS * softUpdate_proxypass = new CStringInputSMS(LOCALE_FLASHUPDATE_PROXYPASSWORD, g_settings.softupdate_proxypassword, MAX_INPUT_CHARS, LOCALE_FLASHUPDATE_PROXYPASSWORD_HINT1, LOCALE_FLASHUPDATE_PROXYPASSWORD_HINT2, "abcdefghijklmnopqrstuvwxyz0123456789!""§$%&/()=?-. ");
-	mn->addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_PROXYPASSWORD, true, g_settings.softupdate_proxypassword, softUpdate_proxypass, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	mn->addItem(new CMenuForwarder(_("Password"), true, g_settings.softupdate_proxypassword, softUpdate_proxypass, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
 
 	int res = mn->exec(NULL, "");
 	mn->hide();

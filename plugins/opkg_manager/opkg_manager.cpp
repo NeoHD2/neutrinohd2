@@ -226,7 +226,7 @@ bool COPKGManager::showPkgMenu(const int pkg_content_id)
 	
 	if (urls.empty())
 	{
-		HintBox(_("Error"), /*g_Locale->getText(LOCALE_FLASHUPDATE_GETINFOFILEERROR)*/_("can't get update list")); // UTF-8
+		HintBox(_("Error"), _("can't get update list")); // UTF-8
 		delete loadingBox;
 		return false;
 	}
@@ -256,8 +256,8 @@ int COPKGManager::showMenu()
 	menu->setWidgetMode(MODE_SETUP);
 	menu->enableShrinkMenu();
 
-	menu->addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_UPDATEMODE_INTERNET, true, NULL, this, "internet" ));
-	menu->addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_UPDATEMODE_MANUAL, true, NULL, this, "manual" ));
+	menu->addItem(new CMenuForwarder(_("Online Software Manager"), true, NULL, this, "internet" ));
+	menu->addItem(new CMenuForwarder(_("Manuell(ftp) Software Manager"), true, NULL, this, "manual" ));
 
 	int res = menu->exec (NULL, "");
 	menu->hide ();

@@ -174,7 +174,7 @@ bool CFlashUpdate::selectHttpImage(void)
 	SelectionWidget.enableShrinkMenu();
 	
 	// intros
-	SelectionWidget.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	SelectionWidget.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 
 	std::ifstream urlFile(g_settings.softupdate_url_file);
 
@@ -236,7 +236,7 @@ bool CFlashUpdate::selectHttpImage(void)
 				if(!allow_flash && (versionInfo.snapshot < '3'))
 					enabled = false;
 
-				SelectionWidget.addItem(new CMenuForwarder(names[i].c_str(), enabled, descriptions[i].c_str(), new CUpdateMenuTarget(i, &selected), NULL, NULL, NEUTRINO_ICON_UPDATE_SMALL ));
+				SelectionWidget.addItem(new CMenuForwarder(names[i].c_str(), enabled, descriptions[i].c_str(), new CUpdateMenuTarget(i, &selected), NULL, RC_nokey, NEUTRINO_ICON_UPDATE_SMALL ));
 				i++;
 			}
 		}
@@ -655,7 +655,7 @@ void CFlashExpert::showMTDSelector(const std::string & actionkey)
 	mtdselector->enableShrinkMenu();
 	
 	// intros
-	mtdselector->addItem(new CMenuForwarder(LOCALE_MESSAGEBOX_CANCEL));
+	mtdselector->addItem(new CMenuForwarder(_("Cancel")));
 	mtdselector->addItem(new CMenuSeparator(LINE));
 	
 	CMTDInfo* mtdInfo =CMTDInfo::getInstance();
@@ -714,7 +714,7 @@ void CFlashExpert::showFileSelector(const std::string & actionkey)
 	fileselector->enableShrinkMenu();
 	
 	// intros
-	fileselector->addItem(new CMenuForwarder(LOCALE_MESSAGEBOX_CANCEL));
+	fileselector->addItem(new CMenuForwarder(_("Cancel")));
 	fileselector->addItem(new CMenuSeparator(LINE));
 
 	struct dirent **namelist;
@@ -866,11 +866,11 @@ void CUpdateSettings::showMenu()
 	updateSettings.enableShrinkMenu();
 		
 	// intros
-	updateSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	updateSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	updateSettings.addItem(new CMenuSeparator(LINE));
 	
 	// save settings
-	updateSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	updateSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	updateSettings.addItem( new CMenuSeparator(LINE) );
 
 	// expert-function for mtd read/write
@@ -880,31 +880,31 @@ void CUpdateSettings::showMenu()
 	mtdexpert->enableShrinkMenu();
 		
 	// intros
-	mtdexpert->addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	mtdexpert->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	mtdexpert->addItem(new CMenuSeparator(LINE));
 		
 	CFlashExpert * fe = new CFlashExpert();
 
 	// read mtd 
-	mtdexpert->addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_READFLASHMTD , true, NULL, fe, "readflashmtd" ));
+	mtdexpert->addItem(new CMenuForwarder(_("Read one partition"), true, NULL, fe, "readflashmtd" ));
 
 	// write mtd
-	mtdexpert->addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_WRITEFLASHMTD, true, NULL, fe, "writeflashmtd"));
+	mtdexpert->addItem(new CMenuForwarder(_("Write one partition"), true, NULL, fe, "writeflashmtd"));
 
 	// experten function
 	//FIXME: allow update only when the rootfs is jffs2/squashfs
-	updateSettings.addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_EXPERTFUNCTIONS, true, NULL, mtdexpert, "", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+	updateSettings.addItem(new CMenuForwarder(_("Expert-functions"), true, NULL, mtdexpert, "", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
 	updateSettings.addItem(new CMenuSeparator(LINE));
 		
 	// update dir
-	updateSettings.addItem( new CMenuForwarder(LOCALE_EXTRA_UPDATE_DIR, true, g_settings.update_dir , this, "update_dir") );
+	updateSettings.addItem( new CMenuForwarder(_(""), true, g_settings.update_dir , this, "update_dir") );
 	
 	// url
 	CStringInputSMS * updateSettings_url_file = new CStringInputSMS(LOCALE_FLASHUPDATE_URL_FILE, g_settings.softupdate_url_file);
-	updateSettings.addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_URL_FILE, true, g_settings.softupdate_url_file, updateSettings_url_file));
+	updateSettings.addItem(new CMenuForwarder(_("Software update URL"), true, g_settings.softupdate_url_file, updateSettings_url_file));
 
 	// show current version
-	updateSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_FLASHUPDATE_CURRENTVERSION_SEP)));
+	updateSettings.addItem(new CMenuSeparator(LINE | STRING, _("Current version")));
 
 	// get current version SBBB YYYY MM TT HH MM -- formatsting
 	//CConfigFile lconfigfile('\t');
@@ -916,27 +916,27 @@ void CUpdateSettings::showMenu()
 	//static CFlashVersionInfo versionInfo(versionString);
 
 	// release cycle
-	updateSettings.addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_CURRENTRELEASECYCLE, false, /*versionInfo.getReleaseCycle()*/ RELEASE_CYCLE));
+	updateSettings.addItem(new CMenuForwarder(_("Release cycle"), false, /*versionInfo.getReleaseCycle()*/ RELEASE_CYCLE));
 		
 	// date
-	updateSettings.addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_CURRENTVERSIONDATE, false, /*versionInfo.getDate()*/ __DATE__ ));
+	updateSettings.addItem(new CMenuForwarder(_("Date"), false, /*versionInfo.getDate()*/ __DATE__ ));
 		
 	// time
-	updateSettings.addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_CURRENTVERSIONTIME, false, /*versionInfo.getTime()*/ __TIME__));
+	updateSettings.addItem(new CMenuForwarder(_("Time"), false, /*versionInfo.getTime()*/ __TIME__));
 		
 	// type
 	// versionInfo.getType() returns const char * which is never deallocated
-	updateSettings.addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_CURRENTVERSIONSNAPSHOT, false, /*versionInfo.getType()*/ "Snapshot" ));
+	updateSettings.addItem(new CMenuForwarder(_("ImageType"), false, /*versionInfo.getType()*/ "Snapshot" ));
 
 	// check update
 	//FIXME: allow update only when the rootfs is jffs2/squashfs
 	updateSettings.addItem(new CMenuSeparator(LINE));
 	
 	// offline
-	updateSettings.addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_UPDATEMODE_MANUAL, false, NULL, new CFlashUpdate(CFlashUpdate::UPDATEMODE_MANUAL), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	updateSettings.addItem(new CMenuForwarder(_("Manuell(ftp) Software Manager"), false, NULL, new CFlashUpdate(CFlashUpdate::UPDATEMODE_MANUAL), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
 
 	// online
-	updateSettings.addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_UPDATEMODE_INTERNET, false, NULL, new CFlashUpdate(CFlashUpdate::UPDATEMODE_INTERNET), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
+	updateSettings.addItem(new CMenuForwarder(_("Online Software Manager"), false, NULL, new CFlashUpdate(CFlashUpdate::UPDATEMODE_INTERNET), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
 	
 	updateSettings.exec(NULL, "");
 	updateSettings.hide();

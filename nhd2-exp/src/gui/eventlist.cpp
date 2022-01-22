@@ -955,11 +955,11 @@ int CEventFinderMenu::showMenu(void)
 	
 	CStringInputSMS stringInput(LOCALE_EVENTFINDER_KEYWORD, m_search_keyword->c_str());
 	
-	CMenuForwarder * mf2 = new CMenuForwarder(LOCALE_EVENTFINDER_KEYWORD, true, m_search_keyword->c_str(), &stringInput, NULL, RC_1 );
+	CMenuForwarder * mf2 = new CMenuForwarder(_("Keyword"), true, m_search_keyword->c_str(), &stringInput, NULL, RC_1 );
 	CMenuOptionChooser * mo0 = new CMenuOptionChooser(LOCALE_EVENTFINDER_SEARCH_WITHIN_LIST, m_search_list, SEARCH_LIST_OPTIONS, SEARCH_LIST_OPTION_COUNT, true, NULL, RC_2);
 	CMenuForwarder * mf1 = new CMenuForwarder("", *m_search_list != EventList::SEARCH_LIST_ALL, m_search_channelname.c_str(), this, "3", RC_3 );
 	CMenuOptionChooser * mo1 = new CMenuOptionChooser(LOCALE_EVENTFINDER_SEARCH_WITHIN_EPG, m_search_epg_item, SEARCH_EPG_OPTIONS, SEARCH_EPG_OPTION_COUNT, true, NULL, RC_4);
-	CMenuForwarder * mf0 = new CMenuForwarder(LOCALE_EVENTFINDER_START_SEARCH, true, NULL, this, "1", RC_5 );
+	CMenuForwarder * mf0 = new CMenuForwarder(_("Start Search"), true, NULL, this, "1", RC_5 );
 	
 	CMenuWidget searchMenu(_("Search in EPG"), NEUTRINO_ICON_FEATURES);
 

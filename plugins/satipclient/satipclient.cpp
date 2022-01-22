@@ -166,39 +166,39 @@ void CSatIPClient::showMenu()
 
 	satIPClientMenu->setSelected(selected);
 
-	satIPClientMenu->addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	satIPClientMenu->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	satIPClientMenu->addItem(new CMenuSeparator(LINE));
-	satIPClientMenu->addItem(new CMenuForwarder("Einstellungen speichern", true, NULL, this, "save", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	satIPClientMenu->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	satIPClientMenu->addItem(new CMenuSeparator(LINE));
 
 	// enabled
-	satIPClientMenu->addItem(new CMenuOptionChooser("SatIP Client enabled", &SatIPEnabled, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL));
+	satIPClientMenu->addItem(new CMenuOptionChooser(_("SatIP Client enabled"), &SatIPEnabled, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL));
 	
 	// satipserver ip
 	CIPInput * SATIPSERVER_IP = new CIPInput("SatIP Server IP", SatIPServerIP);
-	satIPClientMenu->addItem(new CMenuForwarder("SatIP Server IP", true, SatIPServerIP.c_str(), SATIPSERVER_IP, NULL));
+	satIPClientMenu->addItem(new CMenuForwarder(_("SatIP Server IP"), true, SatIPServerIP.c_str(), SATIPSERVER_IP, NULL));
 	
 	// satipserver port
 	CStringInput * SATIPSERVER_PORT = new CStringInput("SatIP Server Port", SatIPServerPort.c_str());
-	satIPClientMenu->addItem(new CMenuForwarder("SatIP Server Port", false, SatIPServerPort.c_str(), SATIPSERVER_PORT, NULL));
+	satIPClientMenu->addItem(new CMenuForwarder(_("SatIP Server Port"), false, SatIPServerPort.c_str(), SATIPSERVER_PORT, NULL));
 	
 	// frontendtyp
-	satIPClientMenu->addItem(new CMenuOptionChooser("Tuner typ", &SatIPFrontendTyp, SATIP_FRONTEND_TYPE_OPTIONS, SATIP_FRONTEND_TYPE_OPTION_COUNT, true, NULL));
+	satIPClientMenu->addItem(new CMenuOptionChooser(_("Tuner typ"), &SatIPFrontendTyp, SATIP_FRONTEND_TYPE_OPTIONS, SATIP_FRONTEND_TYPE_OPTION_COUNT, true, NULL));
 
 	// vtuner device
 	CStringInputSMS * VTUNER_DEVICE = new CStringInputSMS((char *)"VTuner Device", (char *)SatIPVtunerDevice.c_str());
-	satIPClientMenu->addItem(new CMenuForwarder("VTuner Device", true, SatIPVtunerDevice.c_str(), VTUNER_DEVICE, NULL));
+	satIPClientMenu->addItem(new CMenuForwarder(_("VTuner Device"), true, SatIPVtunerDevice.c_str(), VTUNER_DEVICE, NULL));
 
 	// debug
-	satIPClientMenu->addItem(new CMenuOptionChooser("SatIP Client Debug", &SatIPDebug, SATIP_DEBUG_LEVEL_OPTIONS, SATIP_DEBUG_LEVEL_OPTION_COUNT, true, NULL));
+	satIPClientMenu->addItem(new CMenuOptionChooser(_("SatIP Client Debug"), &SatIPDebug, SATIP_DEBUG_LEVEL_OPTIONS, SATIP_DEBUG_LEVEL_OPTION_COUNT, true, NULL));
 
 	satIPClientMenu->addItem(new CMenuSeparator(LINE));
 
 	// start satipclient
-	satIPClientMenu->addItem(new CMenuForwarder("Start SatIP Client", SatIPEnabled, NULL, this, "start", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+	satIPClientMenu->addItem(new CMenuForwarder(_("Start SatIP Client"), SatIPEnabled, NULL, this, "start", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
 
 	// stop satipclient
-	satIPClientMenu->addItem(new CMenuForwarder("Stop SatIP Client", SatIPEnabled, NULL, this, "stop", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	satIPClientMenu->addItem(new CMenuForwarder(_("Stop SatIP Client"), SatIPEnabled, NULL, this, "stop", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
 
 	satIPClientMenu->exec(NULL, "");
 	satIPClientMenu->hide();

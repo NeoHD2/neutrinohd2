@@ -181,11 +181,11 @@ void CRemoteControlSettings::showMenu()
 	remoteControlSettings.enableShrinkMenu();
 	
 	// intros
-	remoteControlSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	remoteControlSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	remoteControlSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	remoteControlSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	remoteControlSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 
 	keySetupNotifier = new CKeySetupNotifier;
 	
@@ -199,27 +199,27 @@ void CRemoteControlSettings::showMenu()
 	remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_KEYBINDINGMENU_RC)));
 	
 	// repeat blocker
-	remoteControlSettings.addItem(new CMenuForwarder(LOCALE_KEYBINDINGMENU_REPEATBLOCK, true, g_settings.repeat_blocker, remoteControlSettings_repeatBlocker, NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
+	remoteControlSettings.addItem(new CMenuForwarder(_("Repeat delay"), true, g_settings.repeat_blocker, remoteControlSettings_repeatBlocker, NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
 	
 	// repeat generic blocker
- 	remoteControlSettings.addItem(new CMenuForwarder(LOCALE_KEYBINDINGMENU_REPEATBLOCKGENERIC, true, g_settings.repeat_genericblocker, remoteControlSettings_repeat_genericblocker, NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
+ 	remoteControlSettings.addItem(new CMenuForwarder(_("Generic delay"), true, g_settings.repeat_genericblocker, remoteControlSettings_repeat_genericblocker, NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
 
 	// keybinding menu
-	remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_KEYBINDINGMENU_HEAD)));
+	remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, _("Keybinding Setup")));
 	
-	remoteControlSettings.addItem(new CMenuForwarder(LOCALE_KEYBINDINGMENU_HEAD, true, NULL, new CKeysBindingSettings(), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
+	remoteControlSettings.addItem(new CMenuForwarder(_("Keybinding Setup"), true, NULL, new CKeysBindingSettings(), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
 
         // usermenu 
         remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_USERMENU_HEAD)));
 
 	// blue
-        remoteControlSettings.addItem(new CMenuForwarder(LOCALE_USERMENU_BUTTON_BLUE, true, NULL, new CUserMenuMenu(_("User menu blue"), 0), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++) ));
+        remoteControlSettings.addItem(new CMenuForwarder(_("User menu blue"), true, NULL, new CUserMenuMenu(_("User menu blue"), 0), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++) ));
 
 #if defined (ENABLE_FUNCTIONKEYS)	
-	remoteControlSettings.addItem(new CMenuForwarder(LOCALE_USERMENU_BUTTON_F1, true, NULL, new CUserMenuMenu(LOCALE_USERMENU_BUTTON_F1, 1) ));
-        remoteControlSettings.addItem(new CMenuForwarder(LOCALE_USERMENU_BUTTON_F2, true, NULL, new CUserMenuMenu(LOCALE_USERMENU_BUTTON_F2, 2) ));
-        remoteControlSettings.addItem(new CMenuForwarder(LOCALE_USERMENU_BUTTON_F3, true, NULL, new CUserMenuMenu(LOCALE_USERMENU_BUTTON_F3, 3) ));
-        remoteControlSettings.addItem(new CMenuForwarder(LOCALE_USERMENU_BUTTON_F4, true, NULL, new CUserMenuMenu(LOCALE_USERMENU_BUTTON_BLUE, 4) ));	
+	remoteControlSettings.addItem(new CMenuForwarder(_("User menu F1"), true, NULL, new CUserMenuMenu(_("User menu F1"), 1) ));
+        remoteControlSettings.addItem(new CMenuForwarder(_("User menu F2"), true, NULL, new CUserMenuMenu(_("User menu F2"), 2) ));
+        remoteControlSettings.addItem(new CMenuForwarder(_("User menu F3"), true, NULL, new CUserMenuMenu(_("User menu F3"), 3) ));
+        remoteControlSettings.addItem(new CMenuForwarder(_("User menu F4"), true, NULL, new CUserMenuMenu(_("User menu F4"), 4) ));	
 #endif
 	
 	remoteControlSettings.exec(NULL, "");
@@ -327,7 +327,7 @@ void CKeysBindingSettings::showMenu()
 	// save settings
 	bindSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 
-	bindSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_KEYBINDINGMENU_MODECHANGE)));
+	bindSettings.addItem(new CMenuSeparator(LINE | STRING, _("Modechange")));
 	
 	// tv/radio mode
 	bindSettings.addItem(new CMenuForwarder(keydescription[KEY_TV_RADIO_MODE], true, NULL, keychooser[KEY_TV_RADIO_MODE]));
@@ -356,7 +356,7 @@ void CKeysBindingSettings::showMenu()
 	bindSettings.addItem(new CMenuForwarder(keydescription[KEY_EXTRAS_SCREENSHOT], true, NULL, keychooser[KEY_EXTRAS_SCREENSHOT]));
 	
 	// save keymap
-	bindSettings.addItem(new CMenuForwarder(LOCALE_KEYBINDINGMENU_SAVEKEYMAP, true, NULL, this, "savekeymap" ) );
+	bindSettings.addItem(new CMenuForwarder(_("Save Keymap"), true, NULL, this, "savekeymap" ) );
 	
 	bindSettings.exec(NULL, "");
 	bindSettings.hide();

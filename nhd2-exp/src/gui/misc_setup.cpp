@@ -138,24 +138,24 @@ void CMiscSettingsMenu::showMenu(void)
 	miscSettings->enablePaintDate();
 
 	//miscSettings general
-	miscSettings->addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_GENERAL, true, NULL, new CGeneralSettings(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_GENERALSETTINGS, LOCALE_HELPTEXT_GENERALSETTINGS));
+	miscSettings->addItem(new CMenuForwarder(_("General Settings"), true, NULL, new CGeneralSettings(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_GENERALSETTINGS));
 	
 	//channellist settings
-	miscSettings->addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_CHANNELLIST, true, NULL, new CChannelListSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_CHANNELLISTSETTINGS, LOCALE_HELPTEXT_MISCSETTINGSCHANNELSETTINGS));
+	miscSettings->addItem(new CMenuForwarder(_("Channellist Settings"), true, NULL, new CChannelListSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_CHANNELLISTSETTINGS));
 
 	// epg settings
-	miscSettings->addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_EPG_HEAD, true, NULL, new CEPGSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_EPGSETTINGS, LOCALE_HELPTEXT_EPGSETTINGS));
+	miscSettings->addItem(new CMenuForwarder(_("EPG Settings"), true, NULL, new CEPGSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_EPGSETTINGS));
 
 	// filebrowser settings
-	miscSettings->addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_FILEBROWSER, true, NULL, new CFileBrowserSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_FILEBROWSERSETTINGS, LOCALE_HELPTEXT_FILEBROWSERSETTINGS));
+	miscSettings->addItem(new CMenuForwarder(_("Filebrowser Settings"), true, NULL, new CFileBrowserSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_FILEBROWSERSETTINGS));
 	
 	// zapit setup (start channel)
-	miscSettings->addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_ZAPIT, true, NULL, new CZapitSetup(), NULL, CRCInput::convertDigitToKey(shortcutMiscSettings++), NULL, NEUTRINO_ICON_MENUITEM_STARTCHANNELSETTINGS, LOCALE_HELPTEXT_STARTCHANNELSETTINGS));
+	miscSettings->addItem(new CMenuForwarder(_("Last Channel settings"), true, NULL, new CZapitSetup(), NULL, CRCInput::convertDigitToKey(shortcutMiscSettings++), NULL, NEUTRINO_ICON_MENUITEM_STARTCHANNELSETTINGS));
 	
 	// psi setup
 	//FIXME:	
 	//CPSISetup * chPSISetup = new CPSISetup(LOCALE_VIDEOMENU_PSISETUP, &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
-	//miscSettings->addItem( new CMenuForwarder(LOCALE_VIDEOMENU_PSISETUP, true, NULL, chPSISetup, NULL, CRCInput::convertDigitToKey(shortcutMiscSettings++), NULL, NEUTRINO_ICON_MENUITEM_PSISETTINGS, LOCALE_HELPTEXT_LOCALE_HELPTEXT_PSISETTINGS));
+	//miscSettings->addItem( new CMenuForwarder(_("PSI Setup"), true, NULL, chPSISetup, NULL, CRCInput::convertDigitToKey(shortcutMiscSettings++), NULL, NEUTRINO_ICON_MENUITEM_PSISETTINGS));
 	
 	miscSettings->exec(NULL, "");
 	miscSettings->hide();
@@ -261,11 +261,11 @@ void CGeneralSettings::showMenu()
 	miscSettingsGeneral.enableShrinkMenu();
 	
 	// intros
-	miscSettingsGeneral.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	miscSettingsGeneral.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	miscSettingsGeneral.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	miscSettingsGeneral.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	miscSettingsGeneral.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	miscSettingsGeneral.addItem( new CMenuSeparator(LINE) );
 
 	// rc delay
@@ -281,7 +281,7 @@ void CGeneralSettings::showMenu()
 
 	// delay counter
 	CStringInput * miscSettings_shutdown_count = new CStringInput(LOCALE_MISCSETTINGS_SHUTDOWN_COUNT, g_settings.shutdown_count, 3, LOCALE_MISCSETTINGS_SHUTDOWN_COUNT_HINT1, LOCALE_MISCSETTINGS_SHUTDOWN_COUNT_HINT2, "0123456789 ");
-	miscSettingsGeneral.addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_SHUTDOWN_COUNT, true, g_settings.shutdown_count, miscSettings_shutdown_count));
+	miscSettingsGeneral.addItem(new CMenuForwarder(_("switch off after"), true, g_settings.shutdown_count, miscSettings_shutdown_count));
 
 	// start to standby
 	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_EXTRA_STARTSTANDBY, &g_settings.power_standby, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
@@ -345,9 +345,9 @@ void CGeneralSettings::showMenu()
 	miscSettingsGeneral.addItem(new CMenuSeparator(LINE));
 	
 	CDataResetNotifier * resetNotifier = new CDataResetNotifier();
-	miscSettingsGeneral.addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_RESET, true, NULL, resetNotifier, "factory", RC_green, NEUTRINO_ICON_BUTTON_GREEN ));
-	miscSettingsGeneral.addItem(new CMenuForwarder(LOCALE_SETTINGS_BACKUP,  true, NULL, resetNotifier, "backup", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW ));
-	miscSettingsGeneral.addItem(new CMenuForwarder(LOCALE_SETTINGS_RESTORE, true, NULL, resetNotifier, "restore", RC_blue, NEUTRINO_ICON_BUTTON_BLUE ));
+	miscSettingsGeneral.addItem(new CMenuForwarder(_("Reset settings to defaults"), true, NULL, resetNotifier, "factory", RC_green, NEUTRINO_ICON_BUTTON_GREEN ));
+	miscSettingsGeneral.addItem(new CMenuForwarder(_("Settings backup"),  true, NULL, resetNotifier, "backup", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW ));
+	miscSettingsGeneral.addItem(new CMenuForwarder(_("Settings restore"), true, NULL, resetNotifier, "restore", RC_blue, NEUTRINO_ICON_BUTTON_BLUE ));
 	
 	miscSettingsGeneral.exec(NULL, "");
 	miscSettingsGeneral.hide();
@@ -596,11 +596,11 @@ void CChannelListSettings::showMenu()
 	int shortcutMiscChannel = 1;
 	
 	// intros
-	miscSettingsChannelList.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	miscSettingsChannelList.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	miscSettingsChannelList.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	miscSettingsChannelList.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	miscSettingsChannelList.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	miscSettingsChannelList.addItem( new CMenuSeparator(LINE) );
 	
 	// HD list
@@ -707,11 +707,11 @@ void CEPGSettings::showMenu()
 	int shortcutMiscEpg = 1;
 	
 	// intros
-	miscSettingsEPG.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	miscSettingsEPG.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	miscSettingsEPG.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	miscSettingsEPG.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	miscSettingsEPG.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	miscSettingsEPG.addItem( new CMenuSeparator(LINE) );
 
 	// read epg from xml
@@ -724,22 +724,22 @@ void CEPGSettings::showMenu()
 
 	// epg cache
         CStringInput * miscSettings_epg_cache = new CStringInput(LOCALE_MISCSETTINGS_EPG_CACHE, g_settings.epg_cache.c_str(), 2,LOCALE_MISCSETTINGS_EPG_CACHE_HINT1, LOCALE_MISCSETTINGS_EPG_CACHE_HINT2 , "0123456789 ", sectionsdConfigNotifier);
-        miscSettingsEPG.addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_EPG_CACHE, true, g_settings.epg_cache.c_str(), miscSettings_epg_cache, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+        miscSettingsEPG.addItem(new CMenuForwarder(_("EPG-Cache (Days)"), true, g_settings.epg_cache.c_str(), miscSettings_epg_cache, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// extended epg cache
         CStringInput * miscSettings_epg_cache_e = new CStringInput(LOCALE_MISCSETTINGS_EPG_EXTENDEDCACHE, g_settings.epg_extendedcache.c_str(), 3,LOCALE_MISCSETTINGS_EPG_EXTENDEDCACHE_HINT1, LOCALE_MISCSETTINGS_EPG_EXTENDEDCACHE_HINT2 , "0123456789 ", sectionsdConfigNotifier);
-        miscSettingsEPG.addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_EPG_EXTENDEDCACHE, true, g_settings.epg_extendedcache.c_str(), miscSettings_epg_cache_e, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++)));
+        miscSettingsEPG.addItem(new CMenuForwarder(_("EPG Long Description (hours)"), true, g_settings.epg_extendedcache.c_str(), miscSettings_epg_cache_e, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++)));
 
 	// old events
         CStringInput * miscSettings_epg_old_events = new CStringInput(LOCALE_MISCSETTINGS_EPG_OLD_EVENTS, g_settings.epg_old_events.c_str(), 2,LOCALE_MISCSETTINGS_EPG_OLD_EVENTS_HINT1, LOCALE_MISCSETTINGS_EPG_OLD_EVENTS_HINT2 , "0123456789 ", sectionsdConfigNotifier);
-        miscSettingsEPG.addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_EPG_OLD_EVENTS, true, g_settings.epg_old_events.c_str(), miscSettings_epg_old_events, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+        miscSettingsEPG.addItem(new CMenuForwarder(_("EPG remove after (std.)"), true, g_settings.epg_old_events.c_str(), miscSettings_epg_old_events, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// max epg events
         CStringInput * miscSettings_epg_max_events = new CStringInput(LOCALE_MISCSETTINGS_EPG_MAX_EVENTS, g_settings.epg_max_events.c_str(), 5,LOCALE_MISCSETTINGS_EPG_MAX_EVENTS_HINT1, LOCALE_MISCSETTINGS_EPG_MAX_EVENTS_HINT2 , "0123456789 ", sectionsdConfigNotifier);
-        miscSettingsEPG.addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_EPG_MAX_EVENTS, true, g_settings.epg_max_events.c_str(), miscSettings_epg_max_events, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+        miscSettingsEPG.addItem(new CMenuForwarder(_("Max. Events"), true, g_settings.epg_max_events.c_str(), miscSettings_epg_max_events, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// epg save dir
-        miscSettingsEPG.addItem(new CMenuForwarder(LOCALE_MISCSETTINGS_EPG_DIR, true, g_settings.epg_dir.c_str(), this, "epgdir", CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+        miscSettingsEPG.addItem(new CMenuForwarder(_("EPG save path"), true, g_settings.epg_dir.c_str(), this, "epgdir", CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 	
 	// epglang
 	miscSettingsEPG.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_MISCSETTINGS_PREF_EPGS_HEAD)));
@@ -904,11 +904,11 @@ void CFileBrowserSettings::showMenu()
 	int shortcutMiscFileBrowser = 1;
 	
 	// intros
-	miscSettingsFileBrowser.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	miscSettingsFileBrowser.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	miscSettingsFileBrowser.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	miscSettingsFileBrowser.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	miscSettingsFileBrowser.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	miscSettingsFileBrowser.addItem( new CMenuSeparator(LINE) );
 
 	// UTF 

@@ -496,7 +496,7 @@ struct SNeutrinoSettings
 
 //
 extern const int default_timing[TIMING_SETTING_COUNT];
-extern const neutrino_locale_t timing_setting_name[TIMING_SETTING_COUNT];
+extern const char* const timing_setting_name[TIMING_SETTING_COUNT];
 
 // lcdd
 #if defined(ENABLE_LCD) && (defined(PLATFORM_DREAMBOX) || defined(PLATFORM_GIGABLUE) || defined(PLATFORM_VUPLUS))

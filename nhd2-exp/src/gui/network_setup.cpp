@@ -241,23 +241,23 @@ void CNetworkSettings::showMenu()
         CStringInputSMS * networkSettings_NtpServer = new CStringInputSMS(LOCALE_NETWORKMENU_NTPSERVER, g_settings.network_ntpserver.c_str(), MAX_INPUT_CHARS, LOCALE_NETWORKMENU_NTPSERVER_HINT1, LOCALE_NETWORKMENU_NTPSERVER_HINT2, "abcdefghijklmnopqrstuvwxyz0123456789-. ", sectionsdConfigNotifier);
         CStringInput * networkSettings_NtpRefresh = new CStringInput(LOCALE_NETWORKMENU_NTPREFRESH, g_settings.network_ntprefresh.c_str(), 3, LOCALE_NETWORKMENU_NTPREFRESH_HINT1, LOCALE_NETWORKMENU_NTPREFRESH_HINT2 , "0123456789 ", sectionsdConfigNotifier);
 
-	CMenuForwarder * m0 = new CMenuForwarder(LOCALE_NETWORKMENU_SETUPNOW, true, NULL, this, "network", RC_green, NEUTRINO_ICON_BUTTON_GREEN);
+	CMenuForwarder * m0 = new CMenuForwarder(_("Setup network now, please wait..."), true, NULL, this, "network", RC_green, NEUTRINO_ICON_BUTTON_GREEN);
 
-	CMenuForwarder * m1 = new CMenuForwarder(LOCALE_NETWORKMENU_IPADDRESS, networkConfig->inet_static, networkConfig->address.c_str(), networkSettings_NetworkIP);
+	CMenuForwarder * m1 = new CMenuForwarder(_("IP address"), networkConfig->inet_static, networkConfig->address.c_str(), networkSettings_NetworkIP);
 
-	CMenuForwarder * m2 = new CMenuForwarder(LOCALE_NETWORKMENU_NETMASK, networkConfig->inet_static, networkConfig->netmask.c_str(), networkSettings_NetMask);
+	CMenuForwarder * m2 = new CMenuForwarder(_("Netmask"), networkConfig->inet_static, networkConfig->netmask.c_str(), networkSettings_NetMask);
 
-	CMenuForwarder * m3 = new CMenuForwarder(LOCALE_NETWORKMENU_BROADCAST, networkConfig->inet_static, networkConfig->broadcast.c_str(), networkSettings_Broadcast );
+	CMenuForwarder * m3 = new CMenuForwarder(_("Broadcast"), networkConfig->inet_static, networkConfig->broadcast.c_str(), networkSettings_Broadcast );
 
-	CMenuForwarder * m4 = new CMenuForwarder(LOCALE_NETWORKMENU_GATEWAY, networkConfig->inet_static, networkConfig->gateway.c_str(), networkSettings_Gateway   );
+	CMenuForwarder * m4 = new CMenuForwarder(_("Default gateway"), networkConfig->inet_static, networkConfig->gateway.c_str(), networkSettings_Gateway   );
 
-	CMenuForwarder * m5 = new CMenuForwarder(LOCALE_NETWORKMENU_NAMESERVER, networkConfig->inet_static, networkConfig->nameserver.c_str(), networkSettings_NameServer);
+	CMenuForwarder * m5 = new CMenuForwarder(_("Name server"), networkConfig->inet_static, networkConfig->nameserver.c_str(), networkSettings_NameServer);
 
-        CMenuForwarder * m6 = new CMenuForwarder( LOCALE_NETWORKMENU_NTPSERVER, true, g_settings.network_ntpserver.c_str(), networkSettings_NtpServer );
+        CMenuForwarder * m6 = new CMenuForwarder(_("NTP-Server"), true, g_settings.network_ntpserver.c_str(), networkSettings_NtpServer );
 
-        CMenuForwarder * m7 = new CMenuForwarder( LOCALE_NETWORKMENU_NTPREFRESH, true, g_settings.network_ntprefresh.c_str(), networkSettings_NtpRefresh );
+        CMenuForwarder * m7 = new CMenuForwarder(_("NTP/DVB-Refresh"), true, g_settings.network_ntprefresh.c_str(), networkSettings_NtpRefresh );
 	
-	CMenuForwarder * m8 = new CMenuForwarder(LOCALE_NETWORKMENU_HOSTNAME, true, network_hostname.c_str(), networkSettings_Hostname);
+	CMenuForwarder * m8 = new CMenuForwarder(_("Hostname"), true, network_hostname.c_str(), networkSettings_Hostname);
 
 	CDHCPNotifier * dhcpNotifier = new CDHCPNotifier(m1, m2, m3, m4, m5);
 
@@ -265,7 +265,7 @@ void CNetworkSettings::showMenu()
 	CMenuOptionChooser * oj = new CMenuOptionChooser(LOCALE_NETWORKMENU_SETUPONSTARTUP, &network_automatic_start, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 
 	// intros
-	networkSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	networkSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	networkSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
@@ -276,10 +276,10 @@ void CNetworkSettings::showMenu()
 	networkSettings.addItem( oj );
 
 	// test network now
-	networkSettings.addItem(new CMenuForwarder(LOCALE_NETWORKMENU_TEST, true, NULL, this, "networktest"));
+	networkSettings.addItem(new CMenuForwarder(_("Test network now"), true, NULL, this, "networktest"));
 
 	// show active network settings
-	networkSettings.addItem(new CMenuForwarder(LOCALE_NETWORKMENU_SHOW, true, NULL, this, "networkshow", RC_info, NEUTRINO_ICON_BUTTON_HELP_SMALL));
+	networkSettings.addItem(new CMenuForwarder(_("Show active network settings"), true, NULL, this, "networkshow", RC_info, NEUTRINO_ICON_BUTTON_HELP_SMALL));
 	
 	// setup network now
 	networkSettings.addItem( m0 );
@@ -325,11 +325,11 @@ void CNetworkSettings::showMenu()
 	{
 		//ssid
 		CStringInputSMS * networkSettings_ssid = new CStringInputSMS(LOCALE_NETWORKMENU_SSID, network_ssid.c_str());
-		CMenuForwarder * m9 = new CMenuForwarder(LOCALE_NETWORKMENU_SSID, networkConfig->wireless, network_ssid.c_str(), networkSettings_ssid );
+		CMenuForwarder * m9 = new CMenuForwarder(_("Network Name"), networkConfig->wireless, network_ssid.c_str(), networkSettings_ssid );
 
 		//key
 		CStringInputSMS *networkSettings_key = new CStringInputSMS(LOCALE_NETWORKMENU_PASSWORD, network_key.c_str());
-		CMenuForwarder *m10 = new CMenuForwarder(LOCALE_NETWORKMENU_PASSWORD, networkConfig->wireless, network_key.c_str(), networkSettings_key );
+		CMenuForwarder *m10 = new CMenuForwarder(_("Key"), networkConfig->wireless, network_key.c_str(), networkSettings_key );
 
 		wlanEnable[0] = m9;
 		wlanEnable[1] = m10;
@@ -360,14 +360,14 @@ void CNetworkSettings::showMenu()
 	
 	//proxyserver submenu
 	networkSettings.addItem(new CMenuSeparator(LINE));
-	networkSettings.addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_PROXYSERVER_SEP, true, NULL, new CProxySetup(), NULL, RC_nokey, NULL));
+	networkSettings.addItem(new CMenuForwarder(_("Proxyserver"), true, NULL, new CProxySetup(), NULL, RC_nokey, NULL));
 
 	// mount manager
-	networkSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_NETWORKMENU_MOUNT)));
+	networkSettings.addItem(new CMenuSeparator(LINE | STRING, _("Network Mount Manager")));
 
-	networkSettings.addItem(new CMenuForwarder(LOCALE_NFS_MOUNT , true, NULL, new CNFSMountGui(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	networkSettings.addItem(new CMenuForwarder(_("Mount Network volume"), true, NULL, new CNFSMountGui(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
 
-	networkSettings.addItem(new CMenuForwarder(LOCALE_NFS_UMOUNT, true, NULL, new CNFSUmountGui(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
+	networkSettings.addItem(new CMenuForwarder(_("Umount Network volume"), true, NULL, new CNFSUmountGui(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
 	
 	networkSettings.exec(NULL, "");
 	networkSettings.hide();

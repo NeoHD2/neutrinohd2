@@ -703,7 +703,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	// menue timing
 	for (int i = 0; i < TIMING_SETTING_COUNT; i++)
-		g_settings.timing[i] = configfile.getInt32(locale_real_names[timing_setting_name[i]], default_timing[i]);
+		g_settings.timing[i] = configfile.getInt32(timing_setting_name[i], default_timing[i]);
 
 	// screen setup
 	g_settings.screen_StartX = configfile.getInt32( "screen_StartX", 35 );	
@@ -1208,7 +1208,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 
 	// menue timing
 	for (int i = 0; i < TIMING_SETTING_COUNT; i++)
-		configfile.setInt32(locale_real_names[timing_setting_name[i]], g_settings.timing[i]);
+		configfile.setInt32(timing_setting_name[i], g_settings.timing[i]);
 	
 	//
 	configfile.setBool("use_default_skin", g_settings.use_default_skin);

@@ -937,36 +937,36 @@ int CTimerList::modifyTimer()
 	timerSettings.setWidgetMode(MODE_SETUP);
 	
 	// intros
-	timerSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	timerSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	timerSettings.addItem(new CMenuSeparator(LINE));
 	
 	//
-	timerSettings.addItem(new CMenuForwarder(LOCALE_TIMERLIST_SAVE, true, NULL, this, "modifytimer", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	timerSettings.addItem(new CMenuForwarder(_("Save Timer"), true, NULL, this, "modifytimer", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	timerSettings.addItem(new CMenuSeparator(LINE));
 
 	char type[80];
 	strcpy(type, convertTimerType2String(timer->eventType)); // UTF
-	CMenuForwarder *m0 = new CMenuForwarder(LOCALE_TIMERLIST_TYPE, false, type);
+	CMenuForwarder *m0 = new CMenuForwarder(_("Timer typ"), false, type);
 	timerSettings.addItem( m0);
 
 	CDateInput timerSettings_alarmTime(LOCALE_TIMERLIST_ALARMTIME, &timer->alarmTime , LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2);
-	CMenuForwarder *m1 = new CMenuForwarder(LOCALE_TIMERLIST_ALARMTIME, true, timerSettings_alarmTime.getValue(), &timerSettings_alarmTime );
+	CMenuForwarder *m1 = new CMenuForwarder(_("Alarm time"), true, timerSettings_alarmTime.getValue(), &timerSettings_alarmTime );
 	timerSettings.addItem( m1);
 
 	CDateInput timerSettings_stopTime(LOCALE_TIMERLIST_STOPTIME, &timer->stopTime , LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2);
 	if(timer->stopTime != 0)
 	{
-		CMenuForwarder *m2 = new CMenuForwarder(LOCALE_TIMERLIST_STOPTIME, true, timerSettings_stopTime.getValue(), &timerSettings_stopTime );
+		CMenuForwarder *m2 = new CMenuForwarder(_("Stop time"), true, timerSettings_stopTime.getValue(), &timerSettings_stopTime );
 		timerSettings.addItem( m2);
 	}
 
 	g_Timerd->setWeekdaysToStr(timer->eventRepeat, (char *)m_weekdaysStr.c_str());
 	timer->eventRepeat = (CTimerd::CTimerEventRepeat)(((int)timer->eventRepeat) & 0x1FF);
 	CStringInput timerSettings_weekdays(LOCALE_TIMERLIST_WEEKDAYS, (char *)m_weekdaysStr.c_str(), 7, LOCALE_TIMERLIST_WEEKDAYS_HINT_1, LOCALE_TIMERLIST_WEEKDAYS_HINT_2, "-X");
-	CMenuForwarder *m4 = new CMenuForwarder(LOCALE_TIMERLIST_WEEKDAYS, ((int)timer->eventRepeat) >= (int)CTimerd::TIMERREPEAT_WEEKDAYS, m_weekdaysStr.c_str(), &timerSettings_weekdays );
+	CMenuForwarder *m4 = new CMenuForwarder(_("on weekdays"), ((int)timer->eventRepeat) >= (int)CTimerd::TIMERREPEAT_WEEKDAYS, m_weekdaysStr.c_str(), &timerSettings_weekdays );
 	CIntInput timerSettings_repeatCount(LOCALE_TIMERLIST_REPEATCOUNT, (int&)timer->repeatCount,3, LOCALE_TIMERLIST_REPEATCOUNT_HELP1, LOCALE_TIMERLIST_REPEATCOUNT_HELP2);
 
-	CMenuForwarder *m5 = new CMenuForwarder(LOCALE_TIMERLIST_REPEATCOUNT, timer->eventRepeat != (int)CTimerd::TIMERREPEAT_ONCE, timerSettings_repeatCount.getValue(), &timerSettings_repeatCount);
+	CMenuForwarder *m5 = new CMenuForwarder(_("repeats"), timer->eventRepeat != (int)CTimerd::TIMERREPEAT_ONCE, timerSettings_repeatCount.getValue(), &timerSettings_repeatCount);
 
 	// repeat
 	CTimerListRepeatNotifier notifier((int *)&timer->eventRepeat, m4, m5);
@@ -985,7 +985,7 @@ int CTimerList::modifyTimer()
 	}
 	
 	bool recDirEnabled = recDirs.hasItem() && (timer->eventType == CTimerd::TIMER_RECORD) && (recDir != NULL);
-	CMenuForwarder *m6 = new CMenuForwarder(LOCALE_TIMERLIST_RECORDING_DIR, recDirEnabled, timer->recordingDir, &recDirs);
+	CMenuForwarder *m6 = new CMenuForwarder(_("Recording directory"), recDirEnabled, timer->recordingDir, &recDirs);
 
 	timerSettings.addItem(new CMenuSeparator(LINE));
 	timerSettings.addItem(m3);
@@ -1005,7 +1005,7 @@ int CTimerList::modifyTimer()
 	timer_apids_ac3 = (timer->apids & TIMERD_APIDS_AC3) ? 1 : 0 ;
 	timer_apids_alt = (timer->apids & TIMERD_APIDS_ALT) ? 1 : 0 ;
 
-	timerSettings_apids.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	timerSettings_apids.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	timerSettings_apids.addItem(new CMenuSeparator(LINE));
 	CMenuOptionChooser* ma1 = new CMenuOptionChooser(LOCALE_TIMERLIST_APIDS_DFLT, &timer_apids_dflt, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
 	timerSettings_apids.addItem(ma1);
@@ -1019,7 +1019,7 @@ int CTimerList::modifyTimer()
 
 	if(timer->eventType ==  CTimerd::TIMER_RECORD)
 	{  
-		timerSettings.addItem( new CMenuForwarder(LOCALE_TIMERLIST_APIDS, true, NULL, &timerSettings_apids ));
+		timerSettings.addItem( new CMenuForwarder(_("Audio PIDs"), true, NULL, &timerSettings_apids ));
 	}
 
 	return timerSettings.exec(this, "");
@@ -1044,28 +1044,28 @@ int CTimerList::newTimer()
 	timerSettings.setWidgetMode(MODE_SETUP);
 	
 	// intros
-	timerSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	timerSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	timerSettings.addItem(new CMenuSeparator(LINE));
 	
 	//
-	timerSettings.addItem(new CMenuForwarder(LOCALE_TIMERLIST_SAVE, true, NULL, this, "newtimer", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	timerSettings.addItem(new CMenuForwarder(_("Save timer"), true, NULL, this, "newtimer", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	timerSettings.addItem(new CMenuSeparator(LINE));
 
 	// alarm time
 	CDateInput timerSettings_alarmTime(LOCALE_TIMERLIST_ALARMTIME, &(timerNew.alarmTime) , LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2);
-	CMenuForwarder *m1 = new CMenuForwarder(LOCALE_TIMERLIST_ALARMTIME, true, timerSettings_alarmTime.getValue(), &timerSettings_alarmTime );
+	CMenuForwarder *m1 = new CMenuForwarder(_("Alarm time"), true, timerSettings_alarmTime.getValue(), &timerSettings_alarmTime );
 
 	// stop time
 	CDateInput timerSettings_stopTime(LOCALE_TIMERLIST_STOPTIME, &(timerNew.stopTime) , LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2);
-	CMenuForwarder *m2 = new CMenuForwarder(LOCALE_TIMERLIST_STOPTIME, true, timerSettings_stopTime.getValue(), &timerSettings_stopTime );
+	CMenuForwarder *m2 = new CMenuForwarder(_("Stop time"), true, timerSettings_stopTime.getValue(), &timerSettings_stopTime );
 
 	// weeks
 	CStringInput timerSettings_weekdays(LOCALE_TIMERLIST_WEEKDAYS, (char *)m_weekdaysStr.c_str(), 7, LOCALE_TIMERLIST_WEEKDAYS_HINT_1, LOCALE_TIMERLIST_WEEKDAYS_HINT_2, "-X");
-	CMenuForwarder *m4 = new CMenuForwarder(LOCALE_TIMERLIST_WEEKDAYS, false, m_weekdaysStr.c_str(), &timerSettings_weekdays);
+	CMenuForwarder *m4 = new CMenuForwarder(_("on weekdays"), false, m_weekdaysStr.c_str(), &timerSettings_weekdays);
 
 	// repeat count
 	CIntInput timerSettings_repeatCount(LOCALE_TIMERLIST_REPEATCOUNT, (int&)timerNew.repeatCount, 3, LOCALE_TIMERLIST_REPEATCOUNT_HELP1, LOCALE_TIMERLIST_REPEATCOUNT_HELP2);
-	CMenuForwarder *m5 = new CMenuForwarder(LOCALE_TIMERLIST_REPEATCOUNT, false, timerSettings_repeatCount.getValue(), &timerSettings_repeatCount);
+	CMenuForwarder *m5 = new CMenuForwarder(_("repeats"), false, timerSettings_repeatCount.getValue(), &timerSettings_repeatCount);
 
 	CTimerListRepeatNotifier notifier((int *)&timerNew.eventRepeat, m4, m5);
 	
@@ -1073,7 +1073,7 @@ int CTimerList::newTimer()
 	CMenuOptionChooser* m3 = new CMenuOptionChooser(LOCALE_TIMERLIST_REPEAT, (int *)&timerNew.eventRepeat, TIMERLIST_REPEAT_OPTIONS, TIMERLIST_REPEAT_OPTION_COUNT, true, &notifier, RC_nokey, "", true);
 	
 	// channel
-	CMenuForwarder *m6 = new CMenuForwarder(LOCALE_TIMERLIST_CHANNEL, true, timerNew_channel_name.c_str(), this, CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_tv? "tv" : CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio? "radio" : "webtv");
+	CMenuForwarder *m6 = new CMenuForwarder(_("Channel"), true, timerNew_channel_name.c_str(), this, CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_tv? "tv" : CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio? "radio" : "webtv");
 
 	// recording dir
 	CMountChooser recDirs(_("recording directory"), NEUTRINO_ICON_SETTINGS, NULL, timerNew.recordingDir, g_settings.network_nfs_recordingdir);
@@ -1083,20 +1083,18 @@ int CTimerList::newTimer()
 		dprintf(DEBUG_NORMAL, "CTimerList::modifyTimer: warning: no network devices available\n");
 	}
 
-	//CMenuForwarder* m7 = new CMenuForwarder(LOCALE_TIMERLIST_RECORDING_DIR, recDirs.hasItem(), timerNew.recordingDir, &recDirs);
-
-	CMenuForwarder* m7 = new CMenuForwarder(LOCALE_TIMERLIST_RECORDING_DIR, true, timerNew.recordingDir, this, "recording_dir");
+	CMenuForwarder* m7 = new CMenuForwarder(_("Recording directory"), true, timerNew.recordingDir, this, "recording_dir");
 
 	// sb
 	CMenuOptionChooser* m8 = new CMenuOptionChooser(LOCALE_TIMERLIST_STANDBY, &timerNew_standby_on, TIMERLIST_STANDBY_OPTIONS, TIMERLIST_STANDBY_OPTION_COUNT, false);
 
 	// message
 	CStringInputSMS timerSettings_msg(LOCALE_TIMERLIST_MESSAGE, timerNew.message);
-	CMenuForwarder *m9 = new CMenuForwarder(LOCALE_TIMERLIST_MESSAGE, false, timerNew.message, &timerSettings_msg );
+	CMenuForwarder *m9 = new CMenuForwarder(_("Message"), false, timerNew.message, &timerSettings_msg );
 
 	// plugin
 	plugin_chooser = new CPluginChooser(timerNew.pluginName);
-	CMenuForwarder *m10 = new CMenuForwarder(LOCALE_TIMERLIST_PLUGIN, false, timerNew.pluginName, plugin_chooser);
+	CMenuForwarder *m10 = new CMenuForwarder(_("Plugin"), false, timerNew.pluginName, plugin_chooser);
 
 	CTimerListNewNotifier notifier2((int *)&timerNew.eventType,
 					&timerNew.stopTime, m2, m6, m8, m9, m10, m7,
