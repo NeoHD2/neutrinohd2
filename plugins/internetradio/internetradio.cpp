@@ -657,7 +657,7 @@ const struct button_label AudioPlayerButtons[FOOT_BUTTONS_COUNT] =
 
 void CInternetRadio::showMenu()
 {
-	ilist = new CMenuWidget("Internet Radio", NEUTRINO_ICON_MP3, frameBuffer->getScreenWidth() - 40, frameBuffer->getScreenHeight() - 40);
+	ilist = new CMenuWidget(_("Internet Radio"), NEUTRINO_ICON_MP3, frameBuffer->getScreenWidth() - 40, frameBuffer->getScreenHeight() - 40);
 
 	for(unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 	{

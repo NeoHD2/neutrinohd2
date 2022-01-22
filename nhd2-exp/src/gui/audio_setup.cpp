@@ -152,7 +152,7 @@ void CAudioSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CAudioSettings::showMenu:\n");
 	
-	CMenuWidget audioSettings(LOCALE_AUDIOMENU_HEAD, NEUTRINO_ICON_AUDIO);
+	CMenuWidget audioSettings(_("Audio settings"), NEUTRINO_ICON_AUDIO);
 
 	audioSettings.setWidgetMode(MODE_SETUP);
 	audioSettings.enableShrinkMenu();
@@ -160,11 +160,11 @@ void CAudioSettings::showMenu()
 	int shortcutAudio = 1;
 	
 	// intros
-	audioSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	audioSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	audioSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	audioSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	audioSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	audioSettings.addItem( new CMenuSeparator(LINE) );
 
 	// analog output

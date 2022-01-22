@@ -185,7 +185,7 @@ void CNetworkSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CNetworkSettings::showMenu:\n");
 	
-	CMenuWidget networkSettings(LOCALE_NETWORKMENU_HEAD, NEUTRINO_ICON_NETWORK);
+	CMenuWidget networkSettings(_("Network settings"), NEUTRINO_ICON_NETWORK);
 
 	networkSettings.setWidgetMode(MODE_SETUP);
 	networkSettings.enableShrinkMenu();
@@ -269,7 +269,7 @@ void CNetworkSettings::showMenu()
 	networkSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	networkSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	networkSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	networkSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// setup network on start
@@ -360,7 +360,7 @@ void CNetworkSettings::showMenu()
 	
 	//proxyserver submenu
 	networkSettings.addItem(new CMenuSeparator(LINE));
-	networkSettings.addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_PROXYSERVER_SEP, true, NULL, new CProxySetup(LOCALE_FLASHUPDATE_PROXYSERVER_SEP), NULL, RC_nokey, NULL));
+	networkSettings.addItem(new CMenuForwarder(LOCALE_FLASHUPDATE_PROXYSERVER_SEP, true, NULL, new CProxySetup(), NULL, RC_nokey, NULL));
 
 	// mount manager
 	networkSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_NETWORKMENU_MOUNT)));

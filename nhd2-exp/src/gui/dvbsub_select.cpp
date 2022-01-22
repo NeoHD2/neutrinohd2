@@ -67,7 +67,7 @@ int CDVBSubSelectMenuHandler::doMenu()
 {
 	dprintf(DEBUG_NORMAL, "CDVBSubSelectMenuHandler::doMenu:\n");
 
-	CMenuWidget DVBSubSelector(LOCALE_SUBTITLES_HEAD, NEUTRINO_ICON_SUBT);
+	CMenuWidget DVBSubSelector(_("Subtitle Select"), NEUTRINO_ICON_SUBT);
 
 	DVBSubSelector.setWidgetMode(MODE_SETUP);
 	DVBSubSelector.enableShrinkMenu();

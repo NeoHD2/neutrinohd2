@@ -89,9 +89,9 @@ class CUserMenuMenu : public CMenuTarget
 {
         private:
                 int button;
-                neutrino_locale_t local;
+                std::string local;
         public:
-                CUserMenuMenu(neutrino_locale_t _local, int _button){local = _local; button = _button;};
+                CUserMenuMenu(const char* const _local, int _button){local = _local; button = _button;};
                 ~CUserMenuMenu(){};
                 int exec(CMenuTarget* parent, const std::string& actionKey);
 };

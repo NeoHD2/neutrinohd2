@@ -168,7 +168,7 @@ void CRecordingSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CRecordingSettings::showMenu:\n");
 	
-	CMenuWidget recordingSettings(LOCALE_RECORDINGMENU_HEAD, NEUTRINO_ICON_RECORDING );
+	CMenuWidget recordingSettings(_("Recording settings"), NEUTRINO_ICON_RECORDING );
 
 	recordingSettings.setWidgetMode(MODE_SETUP);
 	recordingSettings.enableShrinkMenu();

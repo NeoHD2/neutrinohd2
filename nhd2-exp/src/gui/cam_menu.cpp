@@ -112,7 +112,7 @@ void CCAMMenuHandler::doMainMenu()
 	char name[255];
 	char str[255];
 
-	CMenuWidget * cammenu = new CMenuWidget(LOCALE_CAM_SETTINGS, NEUTRINO_ICON_SETTINGS);
+	CMenuWidget * cammenu = new CMenuWidget(_("CI Cam settings"), NEUTRINO_ICON_SETTINGS);
 
 	cammenu->setWidgetMode(MODE_SETUP);
 	cammenu->enableShrinkMenu();

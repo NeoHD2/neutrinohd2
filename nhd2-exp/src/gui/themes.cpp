@@ -218,7 +218,7 @@ int CThemes::Show()
 {
 	dprintf(DEBUG_NORMAL, "CThemes::Show:\n");
 
-	CMenuWidget themes(LOCALE_COLORMENU_MENUCOLORS, NEUTRINO_ICON_SETTINGS);
+	CMenuWidget themes(_("Themes"), NEUTRINO_ICON_COLORS);
 
 	themes.setWidgetMode(MODE_MENU);
 	themes.enableShrinkMenu();

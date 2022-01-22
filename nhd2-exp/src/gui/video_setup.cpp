@@ -361,17 +361,17 @@ void CVideoSettings::showMenu()
 	
 	int shortcutVideo = 1;
 	
-	CMenuWidget videoSettings(LOCALE_VIDEOMENU_HEAD, NEUTRINO_ICON_VIDEO);
+	CMenuWidget videoSettings(_("Video Settings"), NEUTRINO_ICON_VIDEO);
 
 	videoSettings.setWidgetMode(MODE_SETUP);
 	videoSettings.enableShrinkMenu();
 	
 	// intros
-	videoSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	videoSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	videoSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	videoSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	videoSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	videoSettings.addItem( new CMenuSeparator(LINE) );
 
 	// video aspect ratio 4:3/16:9

@@ -107,7 +107,7 @@ void CPictureViewerSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CPicTureViewerSettings::showMenu:\n");
 	
-	CMenuWidget PicViewerSettings(LOCALE_PICTUREVIEWERSETTINGS_GENERAL, NEUTRINO_ICON_PICTURE);
+	CMenuWidget PicViewerSettings(_("Pictureviewer settings"), NEUTRINO_ICON_PICTURE);
 
 	PicViewerSettings.enableSaveScreen();
 	PicViewerSettings.setWidgetMode(MODE_SETUP);
@@ -116,11 +116,11 @@ void CPictureViewerSettings::showMenu()
 	int shortcutPicViewer = 1;
 	
 	// intros
-	PicViewerSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	PicViewerSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	PicViewerSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	PicViewerSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	PicViewerSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	PicViewerSettings.addItem( new CMenuSeparator(LINE) );
 
 	// Pic Viewer Scaling

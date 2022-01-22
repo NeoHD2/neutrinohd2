@@ -43,7 +43,7 @@
 
 #include <system/debug.h>
 
-
+/*
 CMountChooser::CMountChooser(const neutrino_locale_t Name, const std::string& Icon, int* chosenIndex, char * chosenLocalDir, const char * const selectedLocalDir, const int mwidth, const int mheight)
 	: CMenuWidget(Name, Icon, mwidth, mheight), index(chosenIndex), localDir(chosenLocalDir)
 {
@@ -68,6 +68,7 @@ CMountChooser::CMountChooser(const neutrino_locale_t Name, const std::string& Ic
 		}
 	}	
 }
+*/
 
 CMountChooser::CMountChooser(const char* const Name, const std::string& Icon, int* chosenIndex, char* chosenLocalDir, const char* const selectedLocalDir, const int mwidth, const int mheight)
 	: CMenuWidget(Name, Icon, mwidth, mheight), index(chosenIndex), localDir(chosenLocalDir)

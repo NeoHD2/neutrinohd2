@@ -188,7 +188,7 @@ int CNFSMountGui::exec( CMenuTarget *parent, const std::string &actionKey )
 
 int CNFSMountGui::menu()
 {
-	CMenuWidget mountMenuW(LOCALE_NFS_MOUNT, NEUTRINO_ICON_NETWORK, 720);
+	CMenuWidget mountMenuW(_("Mount Network volume"), NEUTRINO_ICON_NETWORK, 720);
 
 	mountMenuW.setWidgetMode(MODE_MENU);
 	mountMenuW.enableShrinkMenu();
@@ -277,7 +277,7 @@ int CNFSMountGui::menuEntry(int nr)
 	   (m_lufs_sup != CFSMounter::FS_UNSUPPORTED && *type != (int)CFSMounter::LUFS) ||
 	   (m_smbfs_sup != CFSMounter::FS_UNSUPPORTED && *type != (int)CFSMounter::SMBFS);
 
-	CMenuWidget mountMenuEntryW(LOCALE_NFS_MOUNT, NEUTRINO_ICON_NETWORK);
+	CMenuWidget mountMenuEntryW(_("Mount Network volume"), NEUTRINO_ICON_NETWORK);
 
 	mountMenuEntryW.setWidgetMode(MODE_SETUP);
 	mountMenuEntryW.enableShrinkMenu();
@@ -361,7 +361,7 @@ int CNFSUmountGui::menu()
 {
 	int count = 0;
 	CFSMounter::MountInfos infos;
-	CMenuWidget umountMenu(LOCALE_NFS_UMOUNT, NEUTRINO_ICON_NETWORK);
+	CMenuWidget umountMenu(_("Umount Network volume"), NEUTRINO_ICON_NETWORK);
 
 	umountMenu.setWidgetMode(MODE_MENU);
 	umountMenu.enableShrinkMenu();
@@ -407,7 +407,7 @@ int CNFSSmallMenu::exec( CMenuTarget* parent, const std::string & actionKey )
 
 	if (actionKey.empty())
 	{
-		CMenuWidget menu(LOCALE_NFSMENU_HEAD, NEUTRINO_ICON_NETWORK);
+		CMenuWidget menu(_("Network Mount Manager"), NEUTRINO_ICON_NETWORK);
 
 		menu.setWidgetMode(MODE_MENU);
 		menu.enableShrinkMenu();

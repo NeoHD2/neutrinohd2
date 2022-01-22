@@ -94,17 +94,17 @@ void CParentalLockSettings::showMenu()
 	
 	int shortcutLock = 1;
 	
-	CMenuWidget parentallockSettings(LOCALE_PARENTALLOCK_PARENTALLOCK, NEUTRINO_ICON_LOCK);
+	CMenuWidget parentallockSettings(_("Youth protection settings"), NEUTRINO_ICON_LOCK);
 
 	parentallockSettings.setWidgetMode(MODE_SETUP);
 	parentallockSettings.enableShrinkMenu();
 	
 	// intro
-	parentallockSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	parentallockSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	parentallockSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	parentallockSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	parentallockSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	parentallockSettings.addItem( new CMenuSeparator(LINE) );
 
 	// prompt

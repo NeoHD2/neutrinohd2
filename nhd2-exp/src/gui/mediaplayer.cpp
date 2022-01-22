@@ -59,7 +59,7 @@ void CMediaPlayerMenu::showMenu()
 
 	int shortcutMediaPlayer = 1;
 	
-	CMenuWidget * MediaPlayer = new CMenuWidget(/*LOCALE_MAINMENU_MEDIAPLAYER*/_("Media Player"), NEUTRINO_ICON_MULTIMEDIA);
+	CMenuWidget * MediaPlayer = new CMenuWidget(_("Media Player"), NEUTRINO_ICON_MULTIMEDIA);
 	
 	MediaPlayer->id = WIDGET_MEDIAPLAYER;
 	MediaPlayer->name = "mediaplayer";

@@ -119,8 +119,8 @@ class CMenuWidget : public CMenuTarget
 
 		// head
 		int hheight;
-		std::string nameString;
-		neutrino_locale_t locale;
+		//std::string nameString;
+		//neutrino_locale_t locale;
 		std::string l_name;
 		std::string iconfile;
 		int hbutton_count;
@@ -191,7 +191,7 @@ class CMenuWidget : public CMenuTarget
 	public:
 		CMenuWidget();
 		CMenuWidget(const char * const Name, const std::string& Icon = "", const int mwidth = MENU_WIDTH, const int mheight = MENU_HEIGHT);
-		CMenuWidget(const neutrino_locale_t Name, const std::string& Icon = "", const int mwidth = MENU_WIDTH, const int mheight = MENU_HEIGHT);
+		//CMenuWidget(const neutrino_locale_t Name, const std::string& Icon = "", const int mwidth = MENU_WIDTH, const int mheight = MENU_HEIGHT);
 		
 		~CMenuWidget();
 
@@ -246,7 +246,7 @@ class CMenuWidget : public CMenuTarget
 		void setFootGradient(int grad){footGradient = grad; def_footGradient = false;};
 
 		// head
-		void setTitle(const char* title = "", const char* icon = NULL){nameString = title; if(icon != NULL) iconfile = icon;};
+		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
 		void setTitleHAlign(const int m){thalign = m;};
 		void setHeadButtons(const struct button_label* _hbutton_label, const int _hbutton_count = 1);
 		void enablePaintDate(void){PaintDate = true;};

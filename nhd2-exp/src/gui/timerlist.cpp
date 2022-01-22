@@ -931,7 +931,7 @@ int CTimerList::modifyTimer()
 
 	CTimerd::responseGetTimer* timer = &timerlist[selected];
 
-	CMenuWidget timerSettings(LOCALE_TIMERLIST_MENUMODIFY, NEUTRINO_ICON_SETTINGS);
+	CMenuWidget timerSettings(_("Modify timer"), NEUTRINO_ICON_SETTINGS);
 	timerSettings.enablePaintDate();
 	timerSettings.enableShrinkMenu();
 	timerSettings.setWidgetMode(MODE_SETUP);
@@ -977,7 +977,7 @@ int CTimerList::modifyTimer()
 	if(!strlen(timer->recordingDir))
 		strncpy(timer->recordingDir, g_settings.network_nfs_recordingdir, sizeof(timer->recordingDir));
 
-	CMountChooser recDirs(LOCALE_TIMERLIST_RECORDING_DIR, NEUTRINO_ICON_SETTINGS, NULL, timer->recordingDir, g_settings.network_nfs_recordingdir);
+	CMountChooser recDirs(_("recording directory"), NEUTRINO_ICON_SETTINGS, NULL, timer->recordingDir, g_settings.network_nfs_recordingdir);
 
 	if (!recDirs.hasItem())
 	{
@@ -994,7 +994,7 @@ int CTimerList::modifyTimer()
 	timerSettings.addItem(new CMenuSeparator(LINE));
 	timerSettings.addItem(m6);
 
-	CMenuWidget timerSettings_apids(LOCALE_TIMERLIST_APIDS, NEUTRINO_ICON_SETTINGS);
+	CMenuWidget timerSettings_apids(_("Audio PIDs"), NEUTRINO_ICON_SETTINGS);
 
 	timerSettings_apids.setWidgetMode(MODE_SETUP);
 	timerSettings_apids.enableShrinkMenu();
@@ -1038,7 +1038,7 @@ int CTimerList::newTimer()
 	timerNew_standby_on = false;
 	strncpy(timerNew.recordingDir, g_settings.network_nfs_recordingdir, sizeof(timerNew.recordingDir));
 
-	CMenuWidget timerSettings(LOCALE_TIMERLIST_MENUNEW, NEUTRINO_ICON_SETTINGS);
+	CMenuWidget timerSettings(_("New timer"), NEUTRINO_ICON_SETTINGS);
 	timerSettings.enablePaintDate();
 	timerSettings.enableShrinkMenu();
 	timerSettings.setWidgetMode(MODE_SETUP);
@@ -1076,7 +1076,7 @@ int CTimerList::newTimer()
 	CMenuForwarder *m6 = new CMenuForwarder(LOCALE_TIMERLIST_CHANNEL, true, timerNew_channel_name.c_str(), this, CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_tv? "tv" : CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio? "radio" : "webtv");
 
 	// recording dir
-	CMountChooser recDirs(LOCALE_TIMERLIST_RECORDING_DIR,NEUTRINO_ICON_SETTINGS, NULL, timerNew.recordingDir, g_settings.network_nfs_recordingdir);
+	CMountChooser recDirs(_("recording directory"), NEUTRINO_ICON_SETTINGS, NULL, timerNew.recordingDir, g_settings.network_nfs_recordingdir);
 
 	if (!recDirs.hasItem())
 	{

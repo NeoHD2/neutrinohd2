@@ -52,19 +52,20 @@ class CKeyValue : public CMenuSeparator
 	public:
 		int         keyvalue;
 
-		CKeyValue() : CMenuSeparator(STRING, g_Locale->getText(LOCALE_KEYCHOOSERMENU_CURRENTKEY))
+		CKeyValue() : CMenuSeparator(STRING, _("Current key"))
 		{
 		};
 
 		virtual const char * getString(void)
 		{
-			the_text  = g_Locale->getText(LOCALE_KEYCHOOSERMENU_CURRENTKEY);
+			the_text  = _("Current key");
 			the_text += ": ";
 			the_text += CRCInput::getKeyName(keyvalue);
 			return the_text.c_str();
 		};
 };
 
+/*
 CKeyChooser::CKeyChooser(int * const Key, const neutrino_locale_t Title, const std::string & Icon) : CMenuWidget(Title, Icon)
 {
 	frameBuffer = CFrameBuffer::getInstance();
@@ -81,22 +82,23 @@ CKeyChooser::CKeyChooser(int * const Key, const neutrino_locale_t Title, const s
 	addItem(new CMenuForwarder(LOCALE_KEYCHOOSERMENU_SETNEW , true, NULL, keyChooser));
 	addItem(new CMenuForwarder(LOCALE_KEYCHOOSERMENU_SETNONE, true, NULL, keyDeleter));
 }
+*/
 
 CKeyChooser::CKeyChooser(int * const Key, const char * const Title, const std::string & Icon) : CMenuWidget(Title, Icon)
 {
 	frameBuffer = CFrameBuffer::getInstance();
 	key = Key;
-	keyChooser = new CKeyChooserItem(LOCALE_KEYCHOOSER_HEAD, key);
+	keyChooser = new CKeyChooserItem(_("Setup New Key"), key);
 	keyDeleter = new CKeyChooserItemNoKey(key);
 
 	enableShrinkMenu();
 
 	addItem(new CKeyValue());
 	addItem(new CMenuSeparator(LINE));
-	addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	addItem(new CMenuSeparator(LINE));
-	addItem(new CMenuForwarder(LOCALE_KEYCHOOSERMENU_SETNEW , true, NULL, keyChooser));
-	addItem(new CMenuForwarder(LOCALE_KEYCHOOSERMENU_SETNONE, true, NULL, keyDeleter));
+	addItem(new CMenuForwarder(_("Setup new key"), true, NULL, keyChooser));
+	addItem(new CMenuForwarder(_("No key"), true, NULL, keyDeleter));
 }
 
 CKeyChooser::~CKeyChooser()
@@ -112,11 +114,13 @@ void CKeyChooser::paint()
 	CMenuWidget::paint();
 }
 
+/*
 CKeyChooserItem::CKeyChooserItem(const neutrino_locale_t Name, int * Key)
 {
 	name = g_Locale->getText(Name);
 	key = Key;
 }
+*/
 
 CKeyChooserItem::CKeyChooserItem(const char * const Name, int * Key)
 {
@@ -200,7 +204,9 @@ void CKeyChooserItem::paint()
 	headers.paint();
 
 	//paint msg...
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(m_cBox.iX + BORDER_LEFT, m_cBox.iY + hheight + mheight, m_cBox.iWidth, g_Locale->getText(LOCALE_KEYCHOOSER_TEXT1), COL_MENUCONTENT, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(m_cBox.iX + BORDER_LEFT, m_cBox.iY + hheight + mheight, m_cBox.iWidth, _("Please press the new key"), COL_MENUCONTENT, 0, true); // UTF-8
 
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(m_cBox.iX + BORDER_LEFT, m_cBox.iY + hheight + mheight* 2, m_cBox.iWidth, g_Locale->getText(LOCALE_KEYCHOOSER_TEXT2), COL_MENUCONTENT, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(m_cBox.iX + BORDER_LEFT, m_cBox.iY + hheight + mheight* 2, m_cBox.iWidth, _("Wait a few seconds for abort"), COL_MENUCONTENT, 0, true); // UTF-8
 }
+
+

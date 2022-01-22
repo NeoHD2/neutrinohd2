@@ -285,7 +285,7 @@ int CUserMenuMenu::exec(CMenuTarget* parent, const std::string& actionKey)
         if(parent)
                 parent->hide();
 
-        CMenuWidget menu(local, NEUTRINO_ICON_KEYBINDING);
+        CMenuWidget menu(local.c_str(), NEUTRINO_ICON_KEYBINDING);
 
 	menu.setWidgetMode(MODE_SETUP);
 	menu.enableShrinkMenu();

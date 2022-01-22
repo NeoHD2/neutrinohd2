@@ -43,18 +43,6 @@
 #include <system/debug.h>
 
 
-CProxySetup::CProxySetup(const neutrino_locale_t title, const char * const IconName )
-{
-	menue_title = title;
-	menue_icon = IconName;
-
-	//width = w_max (MENU_WIDTH, 10);
-}
-
-CProxySetup::~CProxySetup()
-{
-}
-
 int CProxySetup::exec(CMenuTarget * parent, const std::string &/*actionKey*/)
 {
 	dprintf(DEBUG_DEBUG, "CProxySetup::exec\n");
@@ -75,7 +63,7 @@ int CProxySetup::showProxySetup()
 	dprintf(DEBUG_DEBUG, "CProxySetup::showProxySetup\n");
 
 	//init
-	CMenuWidget * mn = new CMenuWidget(menue_title, menue_icon);
+	CMenuWidget * mn = new CMenuWidget(_("Proxyserver"), NEUTRINO_ICON_NETWORK);
 
 	mn->setWidgetMode(MODE_SETUP);
 	mn->enableShrinkMenu();

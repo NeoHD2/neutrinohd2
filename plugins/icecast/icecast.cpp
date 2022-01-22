@@ -679,7 +679,7 @@ const struct button_label AudioPlayerButtons[FOOT_BUTTONS_COUNT] =
 
 void CIceCast::showMenu()
 {
-	ilist = new CMenuWidget("Ice Cast", NEUTRINO_ICON_ICECAST_SMALL, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
+	ilist = new CMenuWidget(_("ICE Cast"), NEUTRINO_ICON_ICECAST_SMALL, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
 
 	for(unsigned int i = 0; i < playlist.size(); i++)
 	{

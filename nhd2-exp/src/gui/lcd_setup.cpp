@@ -125,7 +125,7 @@ void CLCDSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CLCDSettings::showMenu:\n");
 	
-	CMenuWidget lcdSettings(LOCALE_LCDMENU_HEAD, NEUTRINO_ICON_LCD );
+	CMenuWidget lcdSettings(_("Display Settings"), NEUTRINO_ICON_LCD );
 
 	lcdSettings.setWidgetMode(MODE_SETUP);
 	lcdSettings.enableShrinkMenu();
@@ -133,11 +133,11 @@ void CLCDSettings::showMenu()
 	int shortcutVFD = 1;
 	
 	// intros
-	lcdSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	lcdSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	lcdSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	lcdSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	lcdSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	lcdSettings.addItem(new CMenuSeparator(LINE));
 	
 	CLcdNotifier * lcdnotifier = new CLcdNotifier();

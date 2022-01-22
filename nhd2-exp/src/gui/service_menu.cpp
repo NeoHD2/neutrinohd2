@@ -94,7 +94,7 @@ void CServiceMenu::showMenu(void)
 	
 	int shortcutService = 1;
 	
-	CMenuWidget * service = new CMenuWidget(LOCALE_SERVICEMENU_HEAD, NEUTRINO_ICON_UPDATE);
+	CMenuWidget * service = new CMenuWidget(_("Service"), NEUTRINO_ICON_UPDATE);
 
 	service->setWidgetMode(MODE_MENU);
 	service->setWidgetType(WIDGET_TYPE_CLASSIC);

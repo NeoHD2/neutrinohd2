@@ -92,7 +92,7 @@ void CAudioPlayerSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CAudioPlayerSettings::showMenu:\n");
 	
-	CMenuWidget audioPlayerSettings(LOCALE_AUDIOPLAYERSETTINGS_GENERAL, NEUTRINO_ICON_MP3);
+	CMenuWidget audioPlayerSettings(_("Audioplayer settings"), NEUTRINO_ICON_MP3);
 
 	audioPlayerSettings.setWidgetMode(MODE_SETUP);
 	audioPlayerSettings.enableShrinkMenu();
@@ -101,11 +101,11 @@ void CAudioPlayerSettings::showMenu()
 	int shortcutAudioPlayer = 1;
 	
 	// intros
-	audioPlayerSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	audioPlayerSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	audioPlayerSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	audioPlayerSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	audioPlayerSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	audioPlayerSettings.addItem( new CMenuSeparator(LINE) );
 
 	// high prio

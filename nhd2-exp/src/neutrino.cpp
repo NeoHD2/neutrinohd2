@@ -5539,7 +5539,7 @@ void CNeutrinoApp::SelectNVOD()
         if (!(g_RemoteControl->subChannels.empty()))
         {
                 // NVOD/SubService- Kanal!
-                CMenuWidget NVODSelector(g_RemoteControl->are_subchannels ? LOCALE_NVODSELECTOR_SUBSERVICE : LOCALE_NVODSELECTOR_HEAD, NEUTRINO_ICON_VIDEO);
+                CMenuWidget NVODSelector(g_RemoteControl->are_subchannels ? _("Select Subservice") : _("Select starting-time"), NEUTRINO_ICON_VIDEO);
 
 		
                 if(getNVODMenu(&NVODSelector))

@@ -143,7 +143,7 @@ int CMediaPortal::exec(CMenuTarget * parent, const std::string & actionKey)
 
 void CMediaPortal::showMenu(void)
 {
-	mediaPortal = new CMenuWidget("Media Portal", PLUGINDIR "/mediaportal/mp.png");
+	mediaPortal = new CMenuWidget(_("Media Portal"), PLUGINDIR "/mediaportal/mp.png");
 
 	mediaPortal->setWidgetMode(MODE_LISTBOX);
 	mediaPortal->setWidgetType(WIDGET_TYPE_FRAME);

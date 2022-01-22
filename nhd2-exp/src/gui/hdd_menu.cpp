@@ -182,7 +182,7 @@ int CHDDMenuHandler::hddMenu()
                 return RETURN_REPAINT;
         }
 
-	CMenuWidget * hddmenu = new CMenuWidget(LOCALE_HDD_SETTINGS, NEUTRINO_ICON_SETTINGS);
+	CMenuWidget * hddmenu = new CMenuWidget(_("HDD Settings"), NEUTRINO_ICON_SETTINGS);
 
 	hddmenu->setWidgetMode(MODE_SETUP);
 	hddmenu->enableShrinkMenu();

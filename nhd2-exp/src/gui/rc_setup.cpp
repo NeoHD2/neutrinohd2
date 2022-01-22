@@ -76,37 +76,38 @@ enum keynames {
 };
 
 #define KEYBINDS_COUNT 41
-const neutrino_locale_t keydescription_head[KEYBINDS_COUNT] =
+const char* const  keydescription[KEYBINDS_COUNT] =
 {
 	// zap
-	LOCALE_KEYBINDINGMENU_TVRADIOMODE,
-	LOCALE_KEYBINDINGMENU_PAGEUP,
-	LOCALE_KEYBINDINGMENU_PAGEDOWN,
-	LOCALE_EXTRA_KEY_LIST_START,
-	LOCALE_EXTRA_KEY_LIST_END,
-	LOCALE_KEYBINDINGMENU_CANCEL,
-	LOCALE_KEYBINDINGMENU_BOUQUETUP,
-	LOCALE_KEYBINDINGMENU_BOUQUETDOWN,
-	LOCALE_KEYBINDINGMENU_CHANNELUP,
-	LOCALE_KEYBINDINGMENU_CHANNELDOWN,
-	LOCALE_KEYBINDINGMENU_SUBCHANNELUP,
-	LOCALE_KEYBINDINGMENU_SUBCHANNELDOWN,
-	LOCALE_KEYBINDINGMENU_ZAPHISTORY,
-	LOCALE_KEYBINDINGMENU_LASTCHANNEL,
-	LOCALE_KEYBINDINGMENU_PIP,
+	_("TV/Radio-mode"),
+	_("Page Up"),
+	_("Page Down"),
+	_("List Start"),
+	_("List End"),
+	_("Cancel"),
+	_("Next bouquet"),
+	_("Bouquet back"),
+	_("Channel up"),
+	_("Channel down"),
+	_("Subchannel up"),
+	_("Subchannel down"),
+	_("Zapping History Bouquet"),
+	_("Last Channel"),
+	_("Same TP"),
 
 	// media
-	LOCALE_KEYBINDINGMENU_RECORDSBROWSER,
-	LOCALE_KEYBINDINGMENU_AUDIOPLAYER,
-	LOCALE_KEYBINDINGMENU_PICTUREVIEWER,
-	LOCALE_KEYBINDINGMENU_TIMERLIST,
-	LOCALE_KEYBINDINGMENU_INETRADIO,
-	LOCALE_KEYBINDINGMENU_MOVIEBROWSER,
-	LOCALE_KEYBINDINGMENU_FILEBROWSER,
-	LOCALE_KEYBINDINGMENU_WEBTV,
-	LOCALE_KEYBINDINGMENU_SCREENSHOT
+	_("Records browser"),
+	_("Audioplayer"),
+	_("Picture Viewer"),
+	_("Timerlist"),
+	_("Internet Radio"),
+	_("Movies Browser"),
+	_("Files Browser"),
+	_("IPTV"),
+	_("Screenshot")
 };
 
+/*
 const neutrino_locale_t keydescription[KEYBINDS_COUNT] =
 {
 	// zap
@@ -137,6 +138,7 @@ const neutrino_locale_t keydescription[KEYBINDS_COUNT] =
 	LOCALE_KEYBINDINGMENU_WEBTV,
 	LOCALE_KEYBINDINGMENU_SCREENSHOT
 };
+*/
 
 CRemoteControlSettings::CRemoteControlSettings()
 {
@@ -173,7 +175,7 @@ void CRemoteControlSettings::showMenu()
 	
 	int shortcutkeysettings = 1;
 	
-	CMenuWidget remoteControlSettings(LOCALE_MAINSETTINGS_KEYBINDING, NEUTRINO_ICON_KEYBINDING );
+	CMenuWidget remoteControlSettings(_("Keybinding Setup"), NEUTRINO_ICON_KEYBINDING );
 
 	remoteControlSettings.setWidgetMode(MODE_SETUP);
 	remoteControlSettings.enableShrinkMenu();
@@ -211,7 +213,7 @@ void CRemoteControlSettings::showMenu()
         remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_USERMENU_HEAD)));
 
 	// blue
-        remoteControlSettings.addItem(new CMenuForwarder(LOCALE_USERMENU_BUTTON_BLUE, true, NULL, new CUserMenuMenu(LOCALE_USERMENU_BUTTON_BLUE, 0), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++) ));
+        remoteControlSettings.addItem(new CMenuForwarder(LOCALE_USERMENU_BUTTON_BLUE, true, NULL, new CUserMenuMenu(_("User menu blue"), 0), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++) ));
 
 #if defined (ENABLE_FUNCTIONKEYS)	
 	remoteControlSettings.addItem(new CMenuForwarder(LOCALE_USERMENU_BUTTON_F1, true, NULL, new CUserMenuMenu(LOCALE_USERMENU_BUTTON_F1, 1) ));
@@ -310,20 +312,20 @@ void CKeysBindingSettings::showMenu()
 	CKeyChooser * keychooser[KEYBINDS_COUNT];
 
 	for (int i = 0; i < KEYBINDS_COUNT; i++)
-		keychooser[i] = new CKeyChooser(keyvalue_p[i], keydescription_head[i], NEUTRINO_ICON_SETTINGS);
+		keychooser[i] = new CKeyChooser(keyvalue_p[i], keydescription[i], NEUTRINO_ICON_SETTINGS);
 	
 	// keybinding menu
-	CMenuWidget bindSettings(LOCALE_KEYBINDINGMENU_HEAD, NEUTRINO_ICON_KEYBINDING );
+	CMenuWidget bindSettings(_("Keybinding Setup"), NEUTRINO_ICON_KEYBINDING );
 
 	bindSettings.setWidgetMode(MODE_SETUP);
 	bindSettings.enableShrinkMenu();
 	
 	// intros
-	bindSettings.addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	bindSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	bindSettings.addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	bindSettings.addItem(new CMenuForwarder(LOCALE_MAINSETTINGS_SAVESETTINGSNOW, true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	bindSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 
 	bindSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_KEYBINDINGMENU_MODECHANGE)));
 	
@@ -331,24 +333,24 @@ void CKeysBindingSettings::showMenu()
 	bindSettings.addItem(new CMenuForwarder(keydescription[KEY_TV_RADIO_MODE], true, NULL, keychooser[KEY_TV_RADIO_MODE]));
 
 	// channellist
-	bindSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_KEYBINDINGMENU_CHANNELLIST)));
+	bindSettings.addItem(new CMenuSeparator(LINE | STRING, _("Channellist")));
 
 	for (int i = KEY_PAGE_UP; i <= KEY_BOUQUET_DOWN; i++)
 		bindSettings.addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
 
 	// quick zap
-	bindSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_KEYBINDINGMENU_QUICKZAP)));
+	bindSettings.addItem(new CMenuSeparator(LINE | STRING, _("Quickzap")));
 
 	for (int i = KEY_CHANNEL_UP; i <= KEY_SAME_TP; i++)
 		bindSettings.addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
 	
 	// media
-	bindSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_MAINMENU_MEDIAPLAYER)));
+	bindSettings.addItem(new CMenuSeparator(LINE | STRING, _("Media")));
 	for (int i = KEY_EXTRAS_RECORDSBROWSER; i <= KEY_EXTRAS_WEBTV; i++)
 		bindSettings.addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
 
 	// misc
-	bindSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_MAINSETTINGS_MISC)));
+	bindSettings.addItem(new CMenuSeparator(LINE | STRING, _("Miscsettings")));
 	
 	// screenshot key
 	bindSettings.addItem(new CMenuForwarder(keydescription[KEY_EXTRAS_SCREENSHOT], true, NULL, keychooser[KEY_EXTRAS_SCREENSHOT]));

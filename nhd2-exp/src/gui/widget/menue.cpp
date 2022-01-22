@@ -62,17 +62,21 @@ extern CPlugins * g_PluginList;    // defined in neutrino.cpp
 /// CMenuWidget
 CMenuWidget::CMenuWidget()
 {
-        nameString = g_Locale->getText(NONEXISTANT_LOCALE);
-	locale = NONEXISTANT_LOCALE;
+        //nameString = g_Locale->getText(NONEXISTANT_LOCALE);
+	//locale = NONEXISTANT_LOCALE;
 
+	/*
 	if(locale == NONEXISTANT_LOCALE)
 		l_name = nameString.c_str();
 	else
         	l_name = g_Locale->getText(locale);
+        */
+        l_name = "";
 
 	Init("", MENU_WIDTH, MENU_HEIGHT);
 }
 
+/*
 CMenuWidget::CMenuWidget(const neutrino_locale_t Name, const std::string & Icon, const int mwidth, const int mheight)
 {
 	locale = Name;
@@ -85,16 +89,17 @@ CMenuWidget::CMenuWidget(const neutrino_locale_t Name, const std::string & Icon,
 
 	Init(Icon, mwidth, mheight);
 }
+*/
 
 CMenuWidget::CMenuWidget(const char* Name, const std::string & Icon, const int mwidth, const int mheight)
 {
-	locale = NONEXISTANT_LOCALE;
-        nameString = Name;
+	//locale = NONEXISTANT_LOCALE;
+        l_name = Name;
 
-	if(locale == NONEXISTANT_LOCALE)
-		l_name = nameString.c_str();
-	else
-        	l_name = g_Locale->getText(locale);
+	//if(locale == NONEXISTANT_LOCALE)
+	//	l_name = nameString.c_str();
+	//else
+        //	l_name = g_Locale->getText(locale);
 
 	Init(Icon, mwidth, mheight);
 }
@@ -405,10 +410,12 @@ void CMenuWidget::paintHead()
 {
 	dprintf(DEBUG_DEBUG, "CMenuWidget::paintHead:\n");
 	
+	/*
 	if(locale == NONEXISTANT_LOCALE)
 		l_name = nameString.c_str();
 	else
         	l_name = g_Locale->getText(locale);
+        */
 	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
