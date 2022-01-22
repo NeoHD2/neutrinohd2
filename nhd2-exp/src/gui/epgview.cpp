@@ -417,7 +417,7 @@ void sectionsd_getEventsServiceKey(t_channel_id serviceUniqueKey, CChannelEventL
 bool sectionsd_getComponentTagsUniqueKey(const event_id_t uniqueKey, CSectionsdClient::ComponentTagList& tags);
 
 // head
-struct button_label HButton = { NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE};
+struct button_label HButton = { NEUTRINO_ICON_BUTTON_HELP, "" };
 
 void CEpgData::showHead(const t_channel_id channel_id)
 {
@@ -1017,10 +1017,10 @@ int CEpgData::FollowScreenings (const t_channel_id /*channel_id*/, const std::st
 // foot
 struct button_label FButtons[4] =
 {
-	{ NULL, NONEXISTANT_LOCALE, NULL},
-	{ NULL, NONEXISTANT_LOCALE, NULL},
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_EVENTLISTBAR_CHANNELSWITCH, NULL},
-	{ NULL, NONEXISTANT_LOCALE, NULL}
+	{ "", "" },
+	{ "", ""},
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Schedule")},
+	{ "", "" }
 };
 
 void CEpgData::showTimerEventBar(bool _show)
@@ -1039,7 +1039,7 @@ void CEpgData::showTimerEventBar(bool _show)
 	if (recDir != NULL)
 	{
 		FButtons[0].button = NEUTRINO_ICON_BUTTON_RED;
-		FButtons[0].locale = LOCALE_EVENTLISTBAR_RECORDEVENT;
+		FButtons[0].localename = _("record");
 	}
 
 	CFooters footers(cFootBox.iX, cFootBox.iY, cFootBox.iWidth, cFootBox.iHeight);

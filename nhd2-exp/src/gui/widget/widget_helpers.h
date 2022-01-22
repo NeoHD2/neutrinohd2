@@ -224,9 +224,9 @@ enum {
 
 typedef struct button_label
 {
-	const char * button;
-	neutrino_locale_t locale;
-	const char * localename;
+	std::string button;
+	//neutrino_locale_t locale;
+	std::string localename;
 } button_label_struct;
 
 typedef std::vector<button_label_struct> button_label_list_t;

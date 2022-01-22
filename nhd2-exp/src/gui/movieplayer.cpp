@@ -1973,15 +1973,15 @@ void CMoviePlayerGui::updateTime()
 }
 
 //
-const struct button_label HeadButtons = { NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL} ;
+const struct button_label HeadButtons = { NEUTRINO_ICON_BUTTON_HELP, ""} ;
 
 #define FOOT_BUTTONS_COUNT	4
 const struct button_label FootButtons[FOOT_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE, _("Delete") },
-	{ NEUTRINO_ICON_BUTTON_GREEN, NONEXISTANT_LOCALE, _("TMDB info") },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE, _("Delete all") },
-	{ NEUTRINO_ICON_BUTTON_BLUE, NONEXISTANT_LOCALE, _("Add") },
+	{ NEUTRINO_ICON_BUTTON_RED, _("Delete") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("TMDB info") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Delete all") },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("Add") },
 };
 
 void CMoviePlayerGui::showPlaylist()

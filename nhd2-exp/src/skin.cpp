@@ -654,16 +654,13 @@ void CNeutrinoApp::parseSkin()
 					button = xmlGetAttribute(headbutton_node, (char*)"name");
 					localename = xmlGetAttribute(headbutton_node, (char*)"localename");
 						
-					/*
 					button_label_struct btn;
-					btn.button = NULL;
-					if (button != NULL) btn.button = button;
-					btn.localename = NULL;
-					if (localename != NULL) btn.localename = localename;
-					btn.locale = NONEXISTANT_LOCALE;
+					btn.button = "";
+					if (button) btn.button = button;
+					btn.localename = "";
+					if (localename) btn.localename = localename;
 						
-					head->setButtons(&btn); //FIXME: corrupted
-					*/
+					head->setButtons(&btn);
 				
 					headbutton_node = headbutton_node->xmlNextNode;
 				}
@@ -734,16 +731,13 @@ void CNeutrinoApp::parseSkin()
 					button = xmlGetAttribute(footbutton_node, (char*)"name");
 					localename = xmlGetAttribute(footbutton_node, (char*)"localename");
 						
-					/*
 					button_label_struct btn;
-					btn.button = NULL;
-					if (button != NULL) btn.button = button;
-					btn.localename = NULL;
-					if (localename != NULL) btn.localename = localename;
-					btn.locale = NONEXISTANT_LOCALE;
+					btn.button = "";
+					if (button) btn.button = button;
+					btn.localename = "";
+					if (localename) btn.localename = localename;
 						
-					foot->setButtons(&btn); //FIXME: corrupted
-					*/
+					foot->setButtons(&btn);
 				
 					footbutton_node = footbutton_node->xmlNextNode;
 				}

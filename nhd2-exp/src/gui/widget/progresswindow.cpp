@@ -45,7 +45,7 @@ CProgressWindow::CProgressWindow(int _x, int _y, int _width, int _height)
 {
 	frameBuffer = CFrameBuffer::getInstance();
 
-	caption = NONEXISTANT_LOCALE;
+	//caption = NONEXISTANT_LOCALE;
 	captionString = "";
 
 	paintHead = false;
@@ -91,6 +91,7 @@ void CProgressWindow::initFrames(int _x, int _y, int _width, int _height)
 	m_cBoxWindow.setPosition(x, y, width, height);
 }
 
+/*
 void CProgressWindow::setTitle(const neutrino_locale_t title)
 {
 	paintHead = true;
@@ -103,13 +104,14 @@ void CProgressWindow::setTitle(const neutrino_locale_t title)
 	CVFD::getInstance()->showProgressBar2(-1, NULL, -1, g_Locale->getText(caption)); // set global text in VFD
 #endif // VFD_UPDATE
 }
+*/
 
 void CProgressWindow::setTitle(const char * const title)
 {
 	paintHead = true;
 	initFrames();
 
-	caption = NONEXISTANT_LOCALE;
+	//caption = NONEXISTANT_LOCALE;
 	captionString = title;
 
 #ifdef LCD_UPDATE
@@ -190,11 +192,11 @@ void CProgressWindow::paint()
 	// title
 	if(paintHead)
 	{
-		const struct button_label cancelBtn = { NEUTRINO_ICON_BUTTON_HOME, NONEXISTANT_LOCALE, NULL };
+		const struct button_label cancelBtn = { NEUTRINO_ICON_BUTTON_HOME, "" };
 		const char * l_caption;
-		if (caption != NONEXISTANT_LOCALE)
-			l_caption = g_Locale->getText(caption);
-		else
+		//if (caption != NONEXISTANT_LOCALE)
+		//	l_caption = g_Locale->getText(caption);
+		//else
 			l_caption = captionString.c_str();
 
 		CHeaders headers(x + 2, y + 2, width - 4, hheight - 2, l_caption, NEUTRINO_ICON_INFO);

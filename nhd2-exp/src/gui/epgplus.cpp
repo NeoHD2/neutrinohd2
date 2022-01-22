@@ -529,10 +529,10 @@ void EpgPlus::Footer::paintEventDetails (const std::string & description, const 
 }
 
 struct button_label buttonLabels[] = {
-	{NEUTRINO_ICON_BUTTON_RED, LOCALE_EPGPLUS_ACTIONS },
-	{NEUTRINO_ICON_BUTTON_GREEN, LOCALE_EPGPLUS_PAGE_DOWN },
-	{NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_EPGPLUS_PAGE_UP },
-	{NEUTRINO_ICON_BUTTON_BLUE, LOCALE_EPGPLUS_OPTIONS }
+	{NEUTRINO_ICON_BUTTON_RED, _("Actions") },
+	{NEUTRINO_ICON_BUTTON_GREEN, _("page down") },
+	{NEUTRINO_ICON_BUTTON_YELLOW, _("page up") },
+	{NEUTRINO_ICON_BUTTON_BLUE, _("Options") }
 };
 
 void EpgPlus::Footer::paintButtons(button_label * _buttonLabels, int numberOfButtons)
@@ -1446,13 +1446,13 @@ EpgPlus::MenuOptionChooserSwitchSwapMode::~MenuOptionChooserSwitchSwapMode ()
 		switch (this->epgPlus->currentSwapMode) 
 		{
 			case SwapMode_ByPage:
-				buttonLabels[1].locale = LOCALE_EPGPLUS_PAGE_DOWN;
-				buttonLabels[2].locale = LOCALE_EPGPLUS_PAGE_UP;
+				buttonLabels[1].localename = _("page down");
+				buttonLabels[2].localename = _("page up");
 				break;
 
 			case SwapMode_ByBouquet:
-				buttonLabels[1].locale = LOCALE_EPGPLUS_PREV_BOUQUET;
-				buttonLabels[2].locale = LOCALE_EPGPLUS_NEXT_BOUQUET;
+				buttonLabels[1].localename = _("prev bouquet");
+				buttonLabels[2].localename = _("next bouquet");
 				break;
 		}
 

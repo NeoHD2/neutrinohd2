@@ -823,9 +823,9 @@ void CFrameBox::paintHead()
 		{
 			for (unsigned int i = 0; i < hbutton_count; i++)
 			{
-				if (hbutton_labels[i].button != NULL)
+				if (!hbutton_labels[i].button.empty())
 				{
-					frameBuffer->getIconSize(hbutton_labels[i].button, &iw[i], &ih[i]);
+					frameBuffer->getIconSize(hbutton_labels[i].button.c_str(), &iw[i], &ih[i]);
 					xstartPos -= (iw[i] + ICON_TO_ICON_OFFSET);
 					buttonWidth += iw[i];
 
@@ -881,23 +881,24 @@ void CFrameBox::paintFoot()
 	
 		for (unsigned int i = 0; i < fbutton_count; i++)
 		{
-			if (fbutton_labels[i].button != NULL)
+			if (!fbutton_labels[i].button.empty())
 			{
-				const char * l_option = NULL;
+				//const char * l_option = NULL;
 				int iw = 0;
 				int ih = 0;
 
-				CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw, &ih);
+				CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button.c_str(), &iw, &ih);
 				int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-
+				/*
 				if(fbutton_labels[i].localename != NULL)
 					l_option = fbutton_labels[i].localename;
 				else
 					l_option = g_Locale->getText(fbutton_labels[i].locale);
+				*/
 		
 				CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + (fheight - ih)/2);
 
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
+				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, fbutton_labels[i].localename, COL_MENUFOOT, 0, true); // UTF-8
 			}
 		}
 	}

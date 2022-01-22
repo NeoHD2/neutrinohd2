@@ -414,15 +414,15 @@ void CNFilm::paintRightWidgetItems(ClistBox *listBox)
 	}
 }
 	
-const struct button_label HeadButtons = { NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL };
+const struct button_label HeadButtons = { NEUTRINO_ICON_BUTTON_HELP, "" };
 
 #define FOOT_BUTTONS_COUNT	4
 const struct button_label FootButtons[FOOT_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_FILEBROWSER_NEXTPAGE, NULL },
-	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_FILEBROWSER_PREVPAGE, NULL },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE, "Focus" },
-	{ NEUTRINO_ICON_BUTTON_BLUE, NONEXISTANT_LOCALE, "Start Menu" }
+	{ NEUTRINO_ICON_BUTTON_RED, "Next Page" },
+	{ NEUTRINO_ICON_BUTTON_GREEN, "Next Page" },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("next focus") },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("Start Menu") }
 };
 
 void CNFilm::showMenu(bool genre)

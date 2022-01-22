@@ -45,7 +45,7 @@ class CProgressWindow : public CComponent
 
 		CWindow m_cBoxWindow;
 
-		neutrino_locale_t caption;
+		//neutrino_locale_t caption;
 		std::string captionString;
 
 		int x;
@@ -74,7 +74,7 @@ class CProgressWindow : public CComponent
 		void paint();
 		void hide();
 
-		void setTitle(const neutrino_locale_t title);
+		//void setTitle(const neutrino_locale_t title);
 		void setTitle(const char* const title);
 		void showGlobalStatus(const unsigned int prog);
 		void showStatusMessageUTF(const std::string & text); // UTF-8

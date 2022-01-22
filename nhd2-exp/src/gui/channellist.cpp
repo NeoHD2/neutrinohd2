@@ -1505,37 +1505,37 @@ bool CChannelList::canZap(CZapitChannel * channel)
 #define NUM_LIST_BUTTONS 4
 struct button_label CChannelListButtons[NUM_LIST_BUTTONS] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE, _("Event-List")},
-	{ NEUTRINO_ICON_BUTTON_GREEN, NONEXISTANT_LOCALE, _("Next")},
-	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE, _("Bouquets")},
-	{ NEUTRINO_ICON_BUTTON_BLUE, NONEXISTANT_LOCALE, _("Eventlist overview")},
+	{ NEUTRINO_ICON_BUTTON_RED, _("Event-List")},
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("Next")},
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Bouquets")},
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("Eventlist overview")},
 };
 
 #define HEAD_BUTTONS_COUNT	3
 const struct button_label HeadButtons[HEAD_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE, NONEXISTANT_LOCALE, NULL }
+	{ NEUTRINO_ICON_BUTTON_HELP, "" },
+	{ NEUTRINO_ICON_BUTTON_SETUP, "" },
+	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE, "" }
 };
 
 const struct button_label HeadNewModeButtons[HEAD_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_ACTIVE, NONEXISTANT_LOCALE, NULL }
+	{ NEUTRINO_ICON_BUTTON_HELP, "" },
+	{ NEUTRINO_ICON_BUTTON_SETUP, "" },
+	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_ACTIVE, "" }
 };
 
 const struct button_label HeadWEBTVModeButtons[2] =
 {
-	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE, NONEXISTANT_LOCALE, NULL }
+	{ NEUTRINO_ICON_BUTTON_HELP, "" },
+	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE, "" }
 };
 
 const struct button_label HeadWEBTVNewModeButtons[2] =
 {
-	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_ACTIVE, NONEXISTANT_LOCALE, NULL }
+	{ NEUTRINO_ICON_BUTTON_HELP, "" },
+	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_ACTIVE, "" }
 };
 
 bool sectionsd_getActualEPGServiceKey(const t_channel_id uniqueServiceKey, CEPGData * epgdata);
@@ -1639,11 +1639,11 @@ void CChannelList::paint()
 
 	if (displayNext) 
 	{
-		CChannelListButtons[1].localename = /*LOCALE_INFOVIEWER_NOW*/_("Now");
+		CChannelListButtons[1].localename = _("Now");
 	} 
 	else 
 	{
-		CChannelListButtons[1].localename = /*LOCALE_INFOVIEWER_NEXT*/_("Next");
+		CChannelListButtons[1].localename = _("Next");
 	}
 
 	listBox->setFootButtons(CChannelListButtons, NUM_LIST_BUTTONS);

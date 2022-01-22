@@ -696,16 +696,16 @@ void CFileBrowser::hide()
 
 const struct button_label FileBrowserButtons[4] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_FILEBROWSER_NEXTPAGE, NULL },
-	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_FILEBROWSER_PREVPAGE, NULL },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_FILEBROWSER_MARK, NULL },
-	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_FILEBROWSER_FILTER_INACTIVE, NULL },
+	{ NEUTRINO_ICON_BUTTON_RED, _("Next Page") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("Prev Page") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Mark") },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("Filter off") },
 };
 
 const struct button_label HButtons[2] =
 {
-	{ NEUTRINO_ICON_BUTTON_MUTE_SMALL, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
+	{ NEUTRINO_ICON_BUTTON_MUTE_SMALL, "" },
+	{ NEUTRINO_ICON_BUTTON_HELP, "" },
 };
 
 void CFileBrowser::paint()
@@ -849,15 +849,11 @@ void CFileBrowser::paint()
 	Button[0] = FileBrowserButtons[0];
 	Button[1] = FileBrowserButtons[1];
 
-	//Button[2].button = Multi_Select? NEUTRINO_ICON_BUTTON_YELLOW : NULL;
 	Button[2].button = NEUTRINO_ICON_BUTTON_YELLOW;
-	Button[2].locale = Multi_Select?LOCALE_FILEBROWSER_MARK : NONEXISTANT_LOCALE;
-	Button[2].localename = NULL;
+	Button[2].localename = Multi_Select? _("Mark") : "";
 
-	//Button[3].button = (Filter != NULL)? NEUTRINO_ICON_BUTTON_BLUE : NULL;
 	Button[3].button = NEUTRINO_ICON_BUTTON_BLUE;
-	Button[3].locale = (Filter != NULL)? (use_filter)?LOCALE_FILEBROWSER_FILTER_INACTIVE : LOCALE_FILEBROWSER_FILTER_ACTIVE : NONEXISTANT_LOCALE;
-	Button[3].localename = NULL;
+	Button[3].localename = (Filter != NULL)? (use_filter)? _("Filter off") : _("Filter on") : "";
 
 	listBox->setFootButtons(Button, 4);
 

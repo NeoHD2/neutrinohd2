@@ -157,17 +157,17 @@ void CPicViewer::openFileBrowser()
 #define HEAD_BUTTONS_COUNT	2
 const struct button_label HeadButtons[HEAD_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL }
+	{ NEUTRINO_ICON_BUTTON_SETUP, "" },
+	{ NEUTRINO_ICON_BUTTON_HELP, "" }
 };
 
 #define FOOT_BUTTONS_COUNT 4
 const struct button_label PictureViewerButtons[FOOT_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_AUDIOPLAYER_DELETE, NULL },
-	{ NEUTRINO_ICON_BUTTON_GREEN , LOCALE_AUDIOPLAYER_ADD, NULL },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_AUDIOPLAYER_DELETEALL, NULL },
-	{ NEUTRINO_ICON_BUTTON_BLUE  , LOCALE_PICTUREVIEWER_SLIDESHOW, NULL }
+	{ NEUTRINO_ICON_BUTTON_RED, _("Delete") },
+	{ NEUTRINO_ICON_BUTTON_GREEN , _("Add") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Delete all") },
+	{ NEUTRINO_ICON_BUTTON_BLUE  , _("Slideshow") }
 };
 
 void CPicViewer::showMenu()
@@ -259,7 +259,7 @@ int CPicViewer::exec(CMenuTarget* parent, const std::string& actionKey)
 		CPicturePlayList::iterator p = playlist.begin() + plist->getSelected();
 		playlist.erase(p);
 
-		if (selected >= playlist.size())
+		if (selected >= (unsigned int)playlist.size())
 			selected = playlist.size() - 1;
 
 		showMenu();

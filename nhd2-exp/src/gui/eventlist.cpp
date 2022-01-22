@@ -596,18 +596,18 @@ CTimerd::CTimerEventTypes EventList::isScheduled(t_channel_id channel_id, CChann
 #define NUM_LIST_BUTTONS 5
 struct button_label FootButtons[NUM_LIST_BUTTONS] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_EVENTLISTBAR_RECORDEVENT, NULL},
-	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_EVENTFINDER_SEARCH, NULL},
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_EVENTLISTBAR_CHANNELSWITCH, NULL},
-	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_EVENTLISTBAR_EVENTSORTTIME, NULL},
-	{ NEUTRINO_ICON_BUTTON_SETUP_SMALL, LOCALE_KEYBINDINGMENU_RELOAD, NULL}
+	{ NEUTRINO_ICON_BUTTON_RED, _("record") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("search") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("schedule") },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("sorting(Time)") },
+	{ NEUTRINO_ICON_BUTTON_SETUP_SMALL, _("Refresh EPG") }
 };
 
 struct button_label HeadButtons[3] = 
 {
-	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_EPG, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_0, NONEXISTANT_LOCALE, NULL }
+	{ NEUTRINO_ICON_BUTTON_HELP, "" },
+	{ NEUTRINO_ICON_BUTTON_EPG, "" },
+	{ NEUTRINO_ICON_BUTTON_0, "" }
 };
 
 void EventList::paint(t_channel_id channel_id)
@@ -703,9 +703,9 @@ void EventList::paint(t_channel_id channel_id)
 	listBox->setFootLine(g_settings.Foot_line);
 
 	if(sort_mode == SORT_DESCRIPTION)
-		FootButtons[3].locale = LOCALE_EVENTLISTBAR_EVENTSORTALPHA;
+		FootButtons[3].localename = "sorting(A..Z)";
 	else
-		FootButtons[3].locale = LOCALE_EVENTLISTBAR_EVENTSORTTIME;
+		FootButtons[3].localename = "sorting(Time)";
 
 	listBox->setFootButtons(FootButtons, NUM_LIST_BUTTONS);
 

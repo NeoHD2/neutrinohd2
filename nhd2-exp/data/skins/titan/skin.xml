@@ -27,7 +27,7 @@
 	</LISTBOX>
 	
 	<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-		<BUTTON name="menu" localename="">
+		<BUTTON name="info" localename="">
 		</BUTTON>
 	</FOOT>
 	

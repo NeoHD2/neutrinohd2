@@ -99,7 +99,7 @@ CFlashUpdate::CFlashUpdate(int uMode)
 
 	updateMode = uMode;
 	
-	progressWindow->setTitle(LOCALE_FLASHUPDATE_HEAD);
+	progressWindow->setTitle(("Software Update"));
 	
 	// check rootfs, allow flashing only when rootfs is jffs2/yaffs2/squashfs
 	struct statfs s;
@@ -583,7 +583,7 @@ void CFlashExpert::readmtd(int _readmtd)
 		_readmtd = MTD_OF_WHOLE_IMAGE;
 	}
 	
-	progressWindow->setTitle(LOCALE_FLASHUPDATE_TITLEREADFLASH);
+	progressWindow->setTitle(_("Reading Flash"));
 	progressWindow->paint();
 	progressWindow->showGlobalStatus(0);
 	progressWindow->showStatusMessageUTF((std::string(g_Locale->getText(LOCALE_FLASHUPDATE_ACTIONREADFLASH)) + " (" + CMTDInfo::getInstance()->getMTDName(_readmtd) + ')')); // UTF-8
@@ -623,7 +623,7 @@ void CFlashExpert::writemtd(const std::string & filename, int mtdNumber)
         CVFD::getInstance()->setMode(CLCD::MODE_PROGRESSBAR2);	
 #endif // VFD_UPDATE
 
-	progressWindow->setTitle(LOCALE_FLASHUPDATE_TITLEWRITEFLASH);
+	progressWindow->setTitle(_("Writing Flash"));
 	progressWindow->paint();
 	progressWindow->showGlobalStatus(0);
 	CFlashTool ft;

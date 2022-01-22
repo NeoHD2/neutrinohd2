@@ -107,10 +107,10 @@ void CSysInfoWidget::paintHead()
 // paint foot
 const struct button_label Buttons[4] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE, "info" },
-	{ NEUTRINO_ICON_BUTTON_GREEN, NONEXISTANT_LOCALE, "dmesg" },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE, "cpu/file" },
-	{ NEUTRINO_ICON_BUTTON_BLUE, NONEXISTANT_LOCALE, "ps" },
+	{ NEUTRINO_ICON_BUTTON_RED, _("info") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("dmesg") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("cpu/file") },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("ps") },
 	
 };
 

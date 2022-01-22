@@ -511,14 +511,14 @@ void CBouquetList::hide()
 	frameBuffer->blit();
 }
 
-const struct button_label HButton = {NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL };
+const struct button_label HButton = {NEUTRINO_ICON_BUTTON_SETUP, "" };
 
 const struct button_label CBouquetListButtons[4] =
 {
-        { NEUTRINO_ICON_BUTTON_RED, LOCALE_CHANNELLIST_FAVS},
-        { NEUTRINO_ICON_BUTTON_GREEN, LOCALE_CHANNELLIST_PROVS},
-        { NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_CHANNELLIST_SATS},
-        { NEUTRINO_ICON_BUTTON_BLUE, LOCALE_CHANNELLIST_HEAD}
+        { NEUTRINO_ICON_BUTTON_RED, _("Favorites") },
+        { NEUTRINO_ICON_BUTTON_GREEN, _("Providers")},
+        { NEUTRINO_ICON_BUTTON_YELLOW, _("Satellites")},
+        { NEUTRINO_ICON_BUTTON_BLUE, _("All Services")}
 };
 
 void CBouquetList::paint()

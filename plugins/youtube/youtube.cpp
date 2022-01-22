@@ -151,17 +151,17 @@ bool CYTBrowser::saveSettings(YTB_SETTINGS *settings)
 #define YT_HEAD_BUTTONS_COUNT	2
 const struct button_label YTHeadButtons[YT_HEAD_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL}
+	{ NEUTRINO_ICON_BUTTON_HELP, "" },
+	{ NEUTRINO_ICON_BUTTON_SETUP, "" }
 };
 
 #define YT_FOOT_BUTTONS_COUNT  4
 const struct button_label YTFootButtons[YT_FOOT_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE, /*g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_NEXT_RESULTS)*/"next results" },
-	{ NEUTRINO_ICON_BUTTON_GREEN, NONEXISTANT_LOCALE, /*g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_PREV_RESULTS)*/"prev results" },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_BLUE, NONEXISTANT_LOCALE, /*g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_MOST_POPULAR)*/"most popular"}
+	{ NEUTRINO_ICON_BUTTON_RED, _("next results") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("prev results") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, "" },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("most popular")}
 };
 
 void CYTBrowser::showMenu()

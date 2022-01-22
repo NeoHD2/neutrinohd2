@@ -310,7 +310,7 @@ void CIceCast::scanXmlData(_xmlDocPtr answer_parser, const char *nametag, const 
 
 			long listPos = 1;
 			
-			progress.setTitle(LOCALE_AUDIOPLAYER_READING_FILES);
+			progress.setTitle(_("Receiving list, please wait"));
 			progress.enableCancelIcon();
 			progress.paint();
 			
@@ -420,7 +420,7 @@ bool CIceCast::openFileBrowser(void)
 		
 		if (maxProgress > SHOW_FILE_LOAD_LIMIT)
 		{
-			progress.setTitle(LOCALE_AUDIOPLAYER_READING_FILES);	
+			progress.setTitle(_("Receiving list, please wait"));	
 			progress.paint();
 		}
 
@@ -666,15 +666,15 @@ void CIceCast::loadPlaylist(void)
 }
 
 #define HEAD_BUTTONS_COUNT 2
-const struct button_label HeadButtons{ NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL };
+const struct button_label HeadButtons{ NEUTRINO_ICON_BUTTON_SETUP, "" };
 
 #define FOOT_BUTTONS_COUNT 4
 const struct button_label AudioPlayerButtons[FOOT_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_AUDIOPLAYER_DELETE, NULL },
-	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_AUDIOPLAYER_ADD, NULL },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_AUDIOPLAYER_DELETEALL, NULL },
-	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_AUDIOPLAYER_SHUFFLE, NULL }
+	{ NEUTRINO_ICON_BUTTON_RED, _("Delete") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("Add") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Delete all") },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("Shuffle") }
 };
 
 void CIceCast::showMenu()

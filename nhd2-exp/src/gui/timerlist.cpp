@@ -650,13 +650,13 @@ bool sectionsd_getEPGid(const event_id_t epgID, const time_t startzeit, CEPGData
 
 const struct button_label TimerListButtons[4] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED   , LOCALE_TIMERLIST_DELETE },
-	{ NEUTRINO_ICON_BUTTON_GREEN , LOCALE_TIMERLIST_NEW    },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_TIMERLIST_RELOAD },
-	{ NEUTRINO_ICON_BUTTON_OKAY, LOCALE_TIMERLIST_MODIFY }
+	{ NEUTRINO_ICON_BUTTON_RED   , _("Delete") },
+	{ NEUTRINO_ICON_BUTTON_GREEN , _("New timer")    },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Reload") },
+	{ NEUTRINO_ICON_BUTTON_OKAY, _("Modify") }
 };
 
-struct button_label CTimerListHeadButtons = {NEUTRINO_ICON_BUTTON_HELP_SMALL, NONEXISTANT_LOCALE, NULL};
+struct button_label CTimerListHeadButtons = {NEUTRINO_ICON_BUTTON_HELP_SMALL, "" };
 
 void CTimerList::paint()
 {

@@ -441,9 +441,9 @@ void CMenuWidget::paintHead()
 		{
 			for (int i = 0; i < hbutton_count; i++)
 			{
-				if (hbutton_labels[i].button != NULL)
+				if (!hbutton_labels[i].button.empty())
 				{
-					frameBuffer->getIconSize(hbutton_labels[i].button, &iw[i], &ih[i]);
+					frameBuffer->getIconSize(hbutton_labels[i].button.c_str(), &iw[i], &ih[i]);
 					
 					// scale icon
 					if(ih[i] >= hheight)
@@ -511,9 +511,9 @@ void CMenuWidget::paintHead()
 		{
 			for (unsigned int i = 0; i < hbutton_count; i++)
 			{
-				if (hbutton_labels[i].button != NULL)
+				if (!hbutton_labels[i].button.empty())
 				{
-					frameBuffer->getIconSize(hbutton_labels[i].button, &iw[i], &ih[i]);
+					frameBuffer->getIconSize(hbutton_labels[i].button.c_str(), &iw[i], &ih[i]);
 					
 					// scale icon
 					if(ih[i] >= hheight)
@@ -575,13 +575,13 @@ void CMenuWidget::paintFoot()
 	
 			for (unsigned int i = 0; i < fbutton_count; i++)
 			{
-				if (fbutton_labels[i].button != NULL)
+				if (!fbutton_labels[i].button.empty())
 				{
-						const char * l_option = NULL;
+						//const char * l_option = NULL;
 						iw[i] = 0;
 						ih[i] = 0;
 
-						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw[i], &ih[i]);
+						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button.c_str(), &iw[i], &ih[i]);
 						
 						if(ih[i] >= fheight)
 						{
@@ -589,15 +589,16 @@ void CMenuWidget::paintFoot()
 						}
 				
 						int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-
+						/*
 						if(fbutton_labels[i].localename != NULL)
 							l_option = fbutton_labels[i].localename;
 						else
 							l_option = g_Locale->getText(fbutton_labels[i].locale);
+						*/
 		
 						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - fheight + (fheight - ih[i])/2, 0, true, iw[i], ih[i]);
 
-						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, y + height - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
+						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, y + height - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, fbutton_labels[i].localename, COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
 		}
@@ -622,13 +623,13 @@ void CMenuWidget::paintFoot()
 	
 			for (unsigned int i = 0; i < fbutton_count; i++)
 			{
-				if (fbutton_labels[i].button != NULL)
+				if (!fbutton_labels[i].button.empty())
 				{
-						const char * l_option = NULL;
+						//const char * l_option = NULL;
 						iw[i] = 0;
 						ih[i] = 0;
 
-						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button, &iw[i], &ih[i]);
+						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button.c_str(), &iw[i], &ih[i]);
 						
 						if(ih[i] >= fheight)
 						{
@@ -636,15 +637,16 @@ void CMenuWidget::paintFoot()
 						}
 						
 						int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-
+						/*
 						if(fbutton_labels[i].localename != NULL)
 							l_option = fbutton_labels[i].localename;
 						else
 							l_option = g_Locale->getText(fbutton_labels[i].locale);
+						*/
 		
 						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - cFrameFootInfoHeight - fheight + (fheight - ih[i])/2, 0, true, iw[i], ih[i]);
 
-						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, y + height - cFrameFootInfoHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, l_option, COL_MENUFOOT, 0, true); // UTF-8
+						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, y + height - cFrameFootInfoHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, fbutton_labels[i].localename, COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
 		}

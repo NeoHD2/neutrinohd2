@@ -4,11 +4,11 @@
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 
-<WIDGET name="mainmenu" id="1" posx="30" posy="50" width="640" height="640">
+<WIDGET name="mainmenu" id="1" posx="30" posy="50" width="640" height="620">
 	<HEAD posx="30" posy="50" width="640" height="40" localename="Main Menu" halign="0" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 	</HEAD>
 	
-	<LISTBOX posx="30" posy="90" width="640" height="560" paintframe="1" type="0" scrollbar="1">
+	<LISTBOX posx="30" posy="90" width="640" height="540" paintframe="1" type="0" scrollbar="1">
 		<ITEM name="menuforwarder" id="5" localename="EPG / Timer" target="3">
 		</ITEM>
 		<ITEM name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" iconname="red" target="0" actionkey="features">
@@ -26,7 +26,7 @@
 	</LISTBOX>
 	
 	<FOOT posx="30" posy="630" width="640" height="40">
-		<BUTTON name="menu" localename="">
+		<BUTTON name="info" localename="">
 		</BUTTON>
 	</FOOT>
 	

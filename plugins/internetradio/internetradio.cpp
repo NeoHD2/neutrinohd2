@@ -300,7 +300,7 @@ void CInternetRadio::scanXmlData(_xmlDocPtr answer_parser, const char *nametag, 
 			element = element_tmp;
 			long listPos = 1;
 			
-			progress.setTitle(LOCALE_AUDIOPLAYER_READING_FILES);
+			progress.setTitle(_("Receiving list, please wait"));
 			progress.enableCancelIcon();
 			progress.paint();
 			frameBuffer->blit();
@@ -408,7 +408,7 @@ bool CInternetRadio::openFileBrowser(void)
 		
 		if (maxProgress > SHOW_FILE_LOAD_LIMIT)
 		{
-			progress.setTitle(LOCALE_AUDIOPLAYER_READING_FILES);	
+			progress.setTitle(_("Receiving list, please wait"));	
 			progress.paint();
 		}
 
@@ -644,15 +644,15 @@ void CInternetRadio::loadPlaylist(void)
 	scanXmlFile(RADIO_STATION_XML_FILE);
 }
 
-const struct button_label HeadButtons{ NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL };
+const struct button_label HeadButtons{ NEUTRINO_ICON_BUTTON_SETUP, "" };
 
 #define FOOT_BUTTONS_COUNT 4
 const struct button_label AudioPlayerButtons[FOOT_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_AUDIOPLAYER_DELETE, NULL },
-	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_AUDIOPLAYER_ADD, NULL },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_AUDIOPLAYER_DELETEALL, NULL },
-	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_AUDIOPLAYER_SHUFFLE, NULL }
+	{ NEUTRINO_ICON_BUTTON_RED, _("Delete") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("Add") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Delete all") },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("Shuffle") }
 };
 
 void CInternetRadio::showMenu()

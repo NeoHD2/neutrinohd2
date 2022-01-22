@@ -82,10 +82,10 @@ extern "C" void plugin_del(void);
 
 const struct button_label RescanButton[4] = 
 {
-	{ NULL, NONEXISTANT_LOCALE, NULL },
-	{ NULL, NONEXISTANT_LOCALE, NULL },
-	{ NULL, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_BLUE  , LOCALE_UPNPBROWSER_RESCAN, NULL }
+	{ "", "" },
+	{ "", "" },
+	{ "", "" },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("Scan again") }
 };
 
 CUpnpBrowserGui::CUpnpBrowserGui(UPNP_GUI g)

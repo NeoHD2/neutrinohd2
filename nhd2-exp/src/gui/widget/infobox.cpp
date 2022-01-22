@@ -232,7 +232,7 @@ void CInfoBox::initFramesRel(void)
 // Return:		
 // Notes:		
 //////////////////////////////////////////////////////////////////////
-const struct button_label HButton = { NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE};
+const struct button_label HButton = { NEUTRINO_ICON_BUTTON_HELP, ""};
 
 void CInfoBox::refreshTitle(void)
 {
@@ -258,7 +258,7 @@ void CInfoBox::refreshTitle(void)
 void CInfoBox::refreshFoot(void)
 {
 	CFooters footers(&m_cBoxFrameFootRel);
-	struct button_label Button = { NEUTRINO_ICON_INFO, NONEXISTANT_LOCALE, NULL };
+	struct button_label Button = { NEUTRINO_ICON_INFO, "" };
 	
 	footers.setColor(footColor);
 	footers.setRadius(footRadius);

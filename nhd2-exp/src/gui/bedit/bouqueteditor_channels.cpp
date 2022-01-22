@@ -87,10 +87,10 @@ CBEChannelWidget::CBEChannelWidget(const std::string & Caption, unsigned int Bou
 #define BUTTONS_COUNT 4
 const struct button_label CBEChannelWidgetButtons[BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED   , LOCALE_BOUQUETEDITOR_DELETE, NULL     },
-	{ NEUTRINO_ICON_BUTTON_GREEN , LOCALE_BOUQUETEDITOR_ADD, NULL        },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_BOUQUETEDITOR_MOVE, NULL       },
-	{ NEUTRINO_ICON_BUTTON_BLUE  , LOCALE_BOUQUETEDITOR_SWITCHMODE, NULL }
+	{ NEUTRINO_ICON_BUTTON_RED   , _("Delete") },
+	{ NEUTRINO_ICON_BUTTON_GREEN , _("Add") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Move")},
+	{ NEUTRINO_ICON_BUTTON_BLUE  , _("TV/Radio")}
 };
 
 void CBEChannelWidget::paint()

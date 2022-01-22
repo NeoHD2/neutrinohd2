@@ -114,17 +114,17 @@ void CNKMovies::loadNKTitles(int mode, std::string search, int id)
 #define HEAD_BUTTONS_COUNT	2
 const struct button_label NKHeadButtons[HEAD_BUTTONS_COUNT] = 
 {
-	{NEUTRINO_ICON_REC, NONEXISTANT_LOCALE, NULL}, 
-	{NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL}
+	{NEUTRINO_ICON_REC, "" }, 
+	{NEUTRINO_ICON_BUTTON_HELP, "" }
 };
 
 #define FOOT_BUTTONS_COUNT	4
 const struct button_label FootButtons[FOOT_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE, "Neu bei Netzkino" },
-	{ NEUTRINO_ICON_BUTTON_GREEN, NONEXISTANT_LOCALE, "HD Kino" },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE, "Focus" },
-	{ NEUTRINO_ICON_BUTTON_BLUE, NONEXISTANT_LOCALE, "Highlight" }
+	{ NEUTRINO_ICON_BUTTON_RED, _("Neu by Netzkino") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("HD Kino") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("next focus") },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("Highlight") }
 };
 
 void CNKMovies::showMenu()

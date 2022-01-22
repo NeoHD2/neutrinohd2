@@ -87,12 +87,12 @@ CBEBouquetWidget::~CBEBouquetWidget()
 
 const struct button_label CBEBouquetWidgetButtons[BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, LOCALE_BOUQUETEDITOR_DELETE, NULL },
-	{ NEUTRINO_ICON_BUTTON_GREEN, LOCALE_BOUQUETEDITOR_ADD, NULL },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, LOCALE_BOUQUETEDITOR_MOVE, NULL }
+	{ NEUTRINO_ICON_BUTTON_RED, _("Delete")},
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("Add")},
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Move")}
 };
 
-const struct button_label HButton = {NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL };
+const struct button_label HButton = {NEUTRINO_ICON_BUTTON_SETUP, ""};
 
 void CBEBouquetWidget::paint()
 {
@@ -149,18 +149,15 @@ void CBEBouquetWidget::paint()
 	switch( blueFunction)
 	{
 		case beRename:
-			Button[3].locale = LOCALE_BOUQUETEDITOR_RENAME;
-			Button[3].localename = NULL;
+			Button[3].localename = "Rename";
 			break;
 			
 		case beHide:
-			Button[3].locale = LOCALE_BOUQUETEDITOR_HIDE;
-			Button[3].localename = NULL;
+			Button[3].localename = "Hide";
 			break;
 			
 		case beLock:
-			Button[3].locale = LOCALE_BOUQUETEDITOR_LOCK;
-			Button[3].localename = NULL;
+			Button[3].localename = "Lock";
 			break;
 	}
 

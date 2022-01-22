@@ -1684,10 +1684,10 @@ void CMovieBrowser::refreshBookmarkList(void) // P3
 #define MB_HEAD_BUTTONS_COUNT	4
 const struct button_label MBHeadButtons[MB_HEAD_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_0, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_HELP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_SETUP, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_MUTE_SMALL, NONEXISTANT_LOCALE, NULL },
+	{ NEUTRINO_ICON_BUTTON_0, "" },
+	{ NEUTRINO_ICON_BUTTON_HELP, "" },
+	{ NEUTRINO_ICON_BUTTON_SETUP, "" },
+	{ NEUTRINO_ICON_BUTTON_MUTE_SMALL, "" },
 };
 
 void CMovieBrowser::refreshTitle(void) 
@@ -1710,10 +1710,10 @@ void CMovieBrowser::refreshTitle(void)
 #define MB_FOOT_BUTTONS_COUNT	4
 struct button_label MBFootButtons[MB_FOOT_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_GREEN, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, NONEXISTANT_LOCALE, NULL },
-	{ NEUTRINO_ICON_BUTTON_BLUE, LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES, NULL },
+	{ NEUTRINO_ICON_BUTTON_RED, "" },
+	{ NEUTRINO_ICON_BUTTON_GREEN, "" },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, "" },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("scan for Movies ...") },
 	
 };
 
@@ -1724,19 +1724,19 @@ void CMovieBrowser::refreshFoot(void)
 	if (m_settings.gui != MB_GUI_LAST_PLAY && m_settings.gui != MB_GUI_LAST_RECORD)
 	{
 		// red
-		std::string sort_text = g_Locale->getText(LOCALE_MOVIEBROWSER_FOOT_SORT);
-		sort_text += g_Locale->getText(m_localizedItemName[m_settings.sorting.item]);
+		std::string sort_text = _("Filter:");
+		//sort_text += g_Locale->getText(m_localizedItemName[m_settings.sorting.item]); //FIXME:
 	
 		//MBFootButtons[0].localename = sort_text.c_str();
-		MBFootButtons[0].locale = /*LOCALE_MOVIEBROWSER_FOOT_SORT*/m_localizedItemName[m_settings.sorting.item];
+		MBFootButtons[0].localename = _("Filter:");
 		
 		
 		// green
-		std::string filter_text = g_Locale->getText(LOCALE_MOVIEBROWSER_FOOT_FILTER);
+		std::string filter_text = _("Filter:");
 		filter_text += m_settings.filter.optionString;
 
 		//MBFootButtons[1].localename = filter_text.c_str();
-		MBFootButtons[1].locale = LOCALE_MOVIEBROWSER_FOOT_FILTER;
+		MBFootButtons[1].localename = _("Filter:");
 	}
 
 	// yellow
@@ -1751,7 +1751,7 @@ void CMovieBrowser::refreshFoot(void)
 		next_text = g_Locale->getText(LOCALE_MOVIEBROWSER_NEXT_FOCUS);
 	}
 
-	MBFootButtons[2].locale = LOCALE_MOVIEBROWSER_NEXT_FOCUS;
+	MBFootButtons[2].localename = _("next focus");
 
 	CFooters footers(&m_cBoxFrameFootRel);
 
