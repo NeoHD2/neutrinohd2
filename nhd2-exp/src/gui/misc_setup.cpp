@@ -67,15 +67,15 @@ extern CFrontend * live_fe;
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL }
+        { 0, _("off") },
+        { 1, _("on") }
 };
 
 #define MESSAGEBOX_NO_YES_OPTION_COUNT 2
 const keyval MESSAGEBOX_NO_YES_OPTIONS[MESSAGEBOX_NO_YES_OPTION_COUNT] =
 {
-	{ 0, LOCALE_MESSAGEBOX_NO, NULL },
-	{ 1, LOCALE_MESSAGEBOX_YES, NULL }
+	{ 0, _("No") },
+	{ 1, _("Yes") }
 };
 
 // misc settings
@@ -87,22 +87,22 @@ void getZapitConfig(Zapit_config *Cfg);
 #define OPTIONS_OFF1_ON0_OPTION_COUNT 2
 const keyval OPTIONS_OFF1_ON0_OPTIONS[OPTIONS_OFF1_ON0_OPTION_COUNT] =
 {
-        { 1, LOCALE_OPTIONS_OFF, NULL },
-        { 0, LOCALE_OPTIONS_ON, NULL }
+        { 1, _("off") },
+        { 0, _("on") }
 };
 
 #define MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTION_COUNT 2
 const keyval MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTIONS[MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTION_COUNT] =
 {
-	{ 0, LOCALE_FILESYSTEM_IS_UTF8_OPTION_ISO8859_1, NULL },
-	{ 1, LOCALE_FILESYSTEM_IS_UTF8_OPTION_UTF8, NULL      }
+	{ 0, _("ISO-8859-1") },
+	{ 1, _("UTF-8") }
 };
 
 #define SECTIONSD_SCAN_OPTIONS_COUNT 2
 const keyval SECTIONSD_SCAN_OPTIONS[SECTIONSD_SCAN_OPTIONS_COUNT] =
 {
-	{ 0, LOCALE_OPTIONS_OFF, NULL },
-	{ 1, LOCALE_OPTIONS_ON, NULL }
+	{ 0, _("off") },
+	{ 1, _("on") }
 };
 
 CMenuOptionStringChooser * tzSelect;
@@ -269,22 +269,22 @@ void CGeneralSettings::showMenu()
 	miscSettingsGeneral.addItem( new CMenuSeparator(LINE) );
 
 	// rc delay
-	CMenuOptionChooser * m1 = new CMenuOptionChooser(LOCALE_MISCSETTINGS_SHUTDOWN_REAL_RCDELAY, &g_settings.shutdown_real_rcdelay, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, !g_settings.shutdown_real);
+	CMenuOptionChooser * m1 = new CMenuOptionChooser(_("Delayed shutdown"), &g_settings.shutdown_real_rcdelay, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, !g_settings.shutdown_real);
 
 	CMiscNotifier * miscNotifier = new CMiscNotifier( m1 );
 
 	// shutdown real
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_SHUTDOWN_REAL, &g_settings.shutdown_real, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, true, miscNotifier ));
+	miscSettingsGeneral.addItem(new CMenuOptionChooser(_("Enable standby"), &g_settings.shutdown_real, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, true, miscNotifier ));
 
 	// delayed shutdown
 	miscSettingsGeneral.addItem(m1);
 
 	// delay counter
-	CStringInput * miscSettings_shutdown_count = new CStringInput(LOCALE_MISCSETTINGS_SHUTDOWN_COUNT, g_settings.shutdown_count, 3, LOCALE_MISCSETTINGS_SHUTDOWN_COUNT_HINT1, LOCALE_MISCSETTINGS_SHUTDOWN_COUNT_HINT2, "0123456789 ");
+	CStringInput * miscSettings_shutdown_count = new CStringInput(_("switch off after"), g_settings.shutdown_count, 3, LOCALE_MISCSETTINGS_SHUTDOWN_COUNT_HINT1, LOCALE_MISCSETTINGS_SHUTDOWN_COUNT_HINT2, "0123456789 ");
 	miscSettingsGeneral.addItem(new CMenuForwarder(_("switch off after"), true, g_settings.shutdown_count, miscSettings_shutdown_count));
 
 	// start to standby
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_EXTRA_STARTSTANDBY, &g_settings.power_standby, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	miscSettingsGeneral.addItem(new CMenuOptionChooser(_("Startup to standby"), &g_settings.power_standby, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 	// timezone
 	_xmlDocPtr parser;
@@ -292,7 +292,7 @@ void CGeneralSettings::showMenu()
 	parser = parseXmlFile("/etc/timezone.xml");
 	if (parser != NULL) 
 	{	
-		tzSelect = new CMenuOptionStringChooser(LOCALE_MAINSETTINGS_TIMEZONE, g_settings.timezone, true, new CTZChangeNotifier(), RC_nokey, "", true);
+		tzSelect = new CMenuOptionStringChooser(_("Time Zone"), g_settings.timezone, true, new CTZChangeNotifier(), RC_nokey, "", true);
 
 		_xmlNodePtr search = xmlDocGetRootElement(parser)->xmlChildrenNode;
 		bool found = false;
@@ -323,7 +323,7 @@ void CGeneralSettings::showMenu()
 	}
 	
 	// radio text	
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_RADIOTEXT, &g_settings.radiotext_enable, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this ));
+	miscSettingsGeneral.addItem(new CMenuOptionChooser(_("Radio Text"), &g_settings.radiotext_enable, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this ));
 
 	// online key
 	miscSettingsGeneral.addItem(new CMenuSeparator(LINE));
@@ -339,7 +339,7 @@ void CGeneralSettings::showMenu()
 	miscSettingsGeneral.addItem(new CMenuForwarder("TMDB:", true, tmdbkey.c_str(), tmdbkeyInput));
 
 	// prefer tmdb infos
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(LOCALE_TMDB_INFO, &g_settings.enable_tmdb_infos, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	miscSettingsGeneral.addItem(new CMenuOptionChooser(_("TMDB"), &g_settings.enable_tmdb_infos, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 	// reset factory setup
 	miscSettingsGeneral.addItem(new CMenuSeparator(LINE));
@@ -604,25 +604,25 @@ void CChannelListSettings::showMenu()
 	miscSettingsChannelList.addItem( new CMenuSeparator(LINE) );
 	
 	// HD list
-	miscSettingsChannelList.addItem(new CMenuOptionChooser(LOCALE_CHANNELLIST_MAKE_HDLIST, &g_settings.make_hd_list, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
+	miscSettingsChannelList.addItem(new CMenuOptionChooser(_("Create list of HD channels"), &g_settings.make_hd_list, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
 	
 	// virtual zap
-	miscSettingsChannelList.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_VIRTUAL_ZAP_MODE, &g_settings.virtual_zap_mode, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
+	miscSettingsChannelList.addItem(new CMenuOptionChooser(_("Virtual zap"), &g_settings.virtual_zap_mode, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
 	
 	// zap cycle
-	miscSettingsChannelList.addItem(new CMenuOptionChooser(LOCALE_EXTRA_ZAP_CYCLE, &g_settings.zap_cycle, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
+	miscSettingsChannelList.addItem(new CMenuOptionChooser(_("Zap cycle"), &g_settings.zap_cycle, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
 	
 	// channellist ca
-	miscSettingsChannelList.addItem(new CMenuOptionChooser(LOCALE_CHANNELLIST_SHOWCA, &g_settings.channellist_ca, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
+	miscSettingsChannelList.addItem(new CMenuOptionChooser(_("Infobar Crypticons"), &g_settings.channellist_ca, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
 	
 	//
 	getZapitConfig(&zapitCfg);
 	
 	// other
-	miscSettingsChannelList.addItem(new CMenuOptionChooser(LOCALE_EXTRA_ZAPIT_MAKE_BOUQUET, (int *)&zapitCfg.makeRemainingChannelsBouquet, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
+	miscSettingsChannelList.addItem(new CMenuOptionChooser(_("Make Remaining Channels list"), (int *)&zapitCfg.makeRemainingChannelsBouquet, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
 
 	// scanSDT
-	miscSettingsChannelList.addItem( new CMenuOptionChooser(LOCALE_ZAPIT_SCANSDT, (int *)&zapitCfg.scanSDT, SECTIONSD_SCAN_OPTIONS, SECTIONSD_SCAN_OPTIONS_COUNT, true, this, CRCInput::convertDigitToKey(shortcutMiscChannel++)) );
+	miscSettingsChannelList.addItem( new CMenuOptionChooser(_("Scan SDT for updates"), (int *)&zapitCfg.scanSDT, SECTIONSD_SCAN_OPTIONS, SECTIONSD_SCAN_OPTIONS_COUNT, true, this, CRCInput::convertDigitToKey(shortcutMiscChannel++)) );
 	
 	miscSettingsChannelList.exec(NULL, "");
 	miscSettingsChannelList.hide();
@@ -682,17 +682,17 @@ int CEPGSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 #define EPG_SERVERBOX_TYPE_OPTION_COUNT 3
 const keyval EPG_SERVERBOX_TYPE_OPTIONS[EPG_SERVERBOX_TYPE_OPTION_COUNT] =
 {
-	{ DVB_C, NONEXISTANT_LOCALE, "Cable" },
-	{ DVB_S, NONEXISTANT_LOCALE, "Sat" },
-	{ DVB_T, NONEXISTANT_LOCALE, "Terrestrial" }
+	{ DVB_C, _("Cable") },
+	{ DVB_S, _("Sat") },
+	{ DVB_T, _("Terrestrial") }
 };
 
 #define EPG_SERVERBOX_GUI_OPTION_COUNT 3
 const keyval EPG_SERVERBOX_GUI_OPTIONS[EPG_SERVERBOX_GUI_OPTION_COUNT] =
 {
-	{ SNeutrinoSettings::SATIP_SERVERBOX_GUI_NHD2, NONEXISTANT_LOCALE, "neutrinoHD2" },
-	{ SNeutrinoSettings::SATIP_SERVERBOX_GUI_NMP, NONEXISTANT_LOCALE, "neutrinoMP" },
-	{ SNeutrinoSettings::SATIP_SERVERBOX_GUI_ENIGMA2, NONEXISTANT_LOCALE, "enigma2" }
+	{ SNeutrinoSettings::SATIP_SERVERBOX_GUI_NHD2, "neutrinoHD2" },
+	{ SNeutrinoSettings::SATIP_SERVERBOX_GUI_NMP, "neutrinoMP" },
+	{ SNeutrinoSettings::SATIP_SERVERBOX_GUI_ENIGMA2, "enigma2" }
 };
 
 void CEPGSettings::showMenu()
@@ -716,40 +716,40 @@ void CEPGSettings::showMenu()
 
 	// read epg from xml
 	CEPGConfigNotifier* epgConfigNotifier = new CEPGConfigNotifier;
-	miscSettingsEPG.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_EPG_READ, &g_settings.epg_read, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, epgConfigNotifier, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+	miscSettingsEPG.addItem(new CMenuOptionChooser(_("Restore EPG on boot"), &g_settings.epg_read, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, epgConfigNotifier, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// save epg
 	CSectionsdConfigNotifier* sectionsdConfigNotifier = new CSectionsdConfigNotifier;
-	miscSettingsEPG.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_EPG_SAVE, &g_settings.epg_save, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+	miscSettingsEPG.addItem(new CMenuOptionChooser(_("Save/Restore epg on reboot"), &g_settings.epg_save, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// epg cache
-        CStringInput * miscSettings_epg_cache = new CStringInput(LOCALE_MISCSETTINGS_EPG_CACHE, g_settings.epg_cache.c_str(), 2,LOCALE_MISCSETTINGS_EPG_CACHE_HINT1, LOCALE_MISCSETTINGS_EPG_CACHE_HINT2 , "0123456789 ", sectionsdConfigNotifier);
+        CStringInput * miscSettings_epg_cache = new CStringInput(_("EPG-Cache (Days)"), g_settings.epg_cache.c_str(), 2,LOCALE_MISCSETTINGS_EPG_CACHE_HINT1, LOCALE_MISCSETTINGS_EPG_CACHE_HINT2 , "0123456789 ", sectionsdConfigNotifier);
         miscSettingsEPG.addItem(new CMenuForwarder(_("EPG-Cache (Days)"), true, g_settings.epg_cache.c_str(), miscSettings_epg_cache, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// extended epg cache
-        CStringInput * miscSettings_epg_cache_e = new CStringInput(LOCALE_MISCSETTINGS_EPG_EXTENDEDCACHE, g_settings.epg_extendedcache.c_str(), 3,LOCALE_MISCSETTINGS_EPG_EXTENDEDCACHE_HINT1, LOCALE_MISCSETTINGS_EPG_EXTENDEDCACHE_HINT2 , "0123456789 ", sectionsdConfigNotifier);
+        CStringInput * miscSettings_epg_cache_e = new CStringInput(_("EPG Long Description (hours)"), g_settings.epg_extendedcache.c_str(), 3,LOCALE_MISCSETTINGS_EPG_EXTENDEDCACHE_HINT1, LOCALE_MISCSETTINGS_EPG_EXTENDEDCACHE_HINT2 , "0123456789 ", sectionsdConfigNotifier);
         miscSettingsEPG.addItem(new CMenuForwarder(_("EPG Long Description (hours)"), true, g_settings.epg_extendedcache.c_str(), miscSettings_epg_cache_e, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++)));
 
 	// old events
-        CStringInput * miscSettings_epg_old_events = new CStringInput(LOCALE_MISCSETTINGS_EPG_OLD_EVENTS, g_settings.epg_old_events.c_str(), 2,LOCALE_MISCSETTINGS_EPG_OLD_EVENTS_HINT1, LOCALE_MISCSETTINGS_EPG_OLD_EVENTS_HINT2 , "0123456789 ", sectionsdConfigNotifier);
+        CStringInput * miscSettings_epg_old_events = new CStringInput(_("EPG remove after (std.)"), g_settings.epg_old_events.c_str(), 2,LOCALE_MISCSETTINGS_EPG_OLD_EVENTS_HINT1, LOCALE_MISCSETTINGS_EPG_OLD_EVENTS_HINT2 , "0123456789 ", sectionsdConfigNotifier);
         miscSettingsEPG.addItem(new CMenuForwarder(_("EPG remove after (std.)"), true, g_settings.epg_old_events.c_str(), miscSettings_epg_old_events, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// max epg events
-        CStringInput * miscSettings_epg_max_events = new CStringInput(LOCALE_MISCSETTINGS_EPG_MAX_EVENTS, g_settings.epg_max_events.c_str(), 5,LOCALE_MISCSETTINGS_EPG_MAX_EVENTS_HINT1, LOCALE_MISCSETTINGS_EPG_MAX_EVENTS_HINT2 , "0123456789 ", sectionsdConfigNotifier);
+        CStringInput * miscSettings_epg_max_events = new CStringInput(_("Max. Events"), g_settings.epg_max_events.c_str(), 5,LOCALE_MISCSETTINGS_EPG_MAX_EVENTS_HINT1, LOCALE_MISCSETTINGS_EPG_MAX_EVENTS_HINT2 , "0123456789 ", sectionsdConfigNotifier);
         miscSettingsEPG.addItem(new CMenuForwarder(_("Max. Events"), true, g_settings.epg_max_events.c_str(), miscSettings_epg_max_events, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// epg save dir
         miscSettingsEPG.addItem(new CMenuForwarder(_("EPG save path"), true, g_settings.epg_dir.c_str(), this, "epgdir", CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 	
 	// epglang
-	miscSettingsEPG.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_MISCSETTINGS_PREF_EPGS_HEAD)));
+	miscSettingsEPG.addItem(new CMenuSeparator(LINE | STRING, _("Preferred EPG language")));
 	
 	CMenuOptionStringChooser * epglangSelect[3];
 	CEPGlangSelectNotifier * EPGlangNotifier = new CEPGlangSelectNotifier();
 	
 	for(int i = 0; i < 3; i++) 
 	{
-		epglangSelect[i] = new CMenuOptionStringChooser(LOCALE_MISCSETTINGS_PREF_EPGS, g_settings.pref_epgs[i], true, EPGlangNotifier, RC_nokey, "", true);
+		epglangSelect[i] = new CMenuOptionStringChooser(_("Preferred EPG language"), g_settings.pref_epgs[i], true, EPGlangNotifier, RC_nokey, "", true);
 		std::map<std::string, std::string>::const_iterator it;
 		
 		epglangSelect[i]->addOption("");
@@ -912,13 +912,13 @@ void CFileBrowserSettings::showMenu()
 	miscSettingsFileBrowser.addItem( new CMenuSeparator(LINE) );
 
 	// UTF 
-	miscSettingsFileBrowser.addItem(new CMenuOptionChooser(LOCALE_FILESYSTEM_IS_UTF8, &g_settings.filesystem_is_utf8, MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTIONS, MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscFileBrowser++), "", true ));
+	miscSettingsFileBrowser.addItem(new CMenuOptionChooser(_("File system"), &g_settings.filesystem_is_utf8, MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTIONS, MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscFileBrowser++), "", true ));
 
 	// show rights
-	miscSettingsFileBrowser.addItem(new CMenuOptionChooser(LOCALE_FILEBROWSER_SHOWRIGHTS, &g_settings.filebrowser_showrights, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscFileBrowser++) ));
+	miscSettingsFileBrowser.addItem(new CMenuOptionChooser(_("Show file rights"), &g_settings.filebrowser_showrights, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscFileBrowser++) ));
 
 	// deny dir
-	miscSettingsFileBrowser.addItem(new CMenuOptionChooser(LOCALE_FILEBROWSER_DENYDIRECTORYLEAVE, &g_settings.filebrowser_denydirectoryleave, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscFileBrowser++) ));
+	miscSettingsFileBrowser.addItem(new CMenuOptionChooser(_("Absolute start directory"), &g_settings.filebrowser_denydirectoryleave, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscFileBrowser++) ));
 	
 	miscSettingsFileBrowser.exec(NULL, "");
 	miscSettingsFileBrowser.hide();

@@ -55,7 +55,7 @@ class CYTBrowser : public CMenuTarget
 
 		cYTFeedParser ytparser;
 
-		neutrino_locale_t getFeedLocale(void);
+		std::string getFeedLocale(void);
 		void loadYTTitles(int mode, std::string search = "", std::string id = "", bool show_hint = true);
 		int showCategoriesMenu(void);
 

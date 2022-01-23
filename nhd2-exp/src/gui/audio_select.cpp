@@ -64,16 +64,16 @@ extern int tuxtx_subtitle_running(int * pid, int * page, int * running);
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL  }
+        { 0, _("Off") },
+        { 1, _("On") }
 }; 
 
 #define AUDIOMENU_ANALOGOUT_OPTION_COUNT 3
 const keyval AUDIOMENU_ANALOGOUT_OPTIONS[AUDIOMENU_ANALOGOUT_OPTION_COUNT] =
 {
-	{ 0, LOCALE_AUDIOMENU_STEREO, NULL   },
-	{ 1, LOCALE_AUDIOMENU_MONOLEFT, NULL  },
-	{ 2, LOCALE_AUDIOMENU_MONORIGHT, NULL }
+	{ 0, _("stereo")   },
+	{ 1, _("mono left") },
+	{ 2, _("mono right") }
 };
 
 // ac3
@@ -81,8 +81,8 @@ const keyval AUDIOMENU_ANALOGOUT_OPTIONS[AUDIOMENU_ANALOGOUT_OPTION_COUNT] =
 #define AC3_OPTION_COUNT 2
 const keyval AC3_OPTIONS[AC3_OPTION_COUNT] =
 {
-	{ AC3_PASSTHROUGH, NONEXISTANT_LOCALE, "passthrough" },
-	{ AC3_DOWNMIX, NONEXISTANT_LOCALE, "downmix" }
+	{ AC3_PASSTHROUGH, _("passthrough") },
+	{ AC3_DOWNMIX, _("downmix") }
 };
 #endif
 
@@ -132,7 +132,7 @@ void CAudioSelectMenuHandler::doMenu()
 	
 	// ac3
 #if !defined (PLATFORM_COOLSTREAM)	
-	AudioSelector.addItem(new CMenuOptionChooser(LOCALE_AUDIOMENU_HDMI_DD, &g_settings.hdmi_dd, AC3_OPTIONS, AC3_OPTION_COUNT, true, CAudioSettings::getInstance()->audioSetupNotifier, RC_green, NEUTRINO_ICON_BUTTON_GREEN ));
+	AudioSelector.addItem(new CMenuOptionChooser(_("Dolby Digital"), &g_settings.hdmi_dd, AC3_OPTIONS, AC3_OPTION_COUNT, true, CAudioSettings::getInstance()->audioSetupNotifier, RC_green, NEUTRINO_ICON_BUTTON_GREEN ));
 #endif
 
 	//dvb/tuxtxt subs
@@ -210,9 +210,9 @@ void CAudioSelectMenuHandler::doMenu()
 			AudioSelector.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_AUDIOMENU_VOLUME_ADJUST)));
 		}
 		
-		AudioSelector.addItem(new CMenuOptionNumberChooser(NONEXISTANT_LOCALE, &percent[count],
+		AudioSelector.addItem(new CMenuOptionNumberChooser("", &percent[count],
 			is_active,
-			0, 100, audioSetupNotifierVolPercent, 0, 0, NONEXISTANT_LOCALE,
+			0, 100, audioSetupNotifierVolPercent, 0, 0,
 			g_RemoteControl->current_PIDs.APIDs[count].desc));
 	}
 

@@ -58,22 +58,22 @@ extern "C" int pinghost( const char *hostname );
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL }
+        { 0, _("off") },
+        { 1, _("on") }
 };
 
 #define OPTIONS_NTPENABLE_OPTION_COUNT 2
 const keyval OPTIONS_NTPENABLE_OPTIONS[OPTIONS_NTPENABLE_OPTION_COUNT] =
 {
-	{ 0, NONEXISTANT_LOCALE, "DVB" },
-	{ 1, NONEXISTANT_LOCALE, "NTP" }
+	{ 0, "DVB" },
+	{ 1, "NTP" }
 };
 
 #define OPTIONS_WLAN_SECURITY_OPTION_COUNT 2
 const keyval OPTIONS_WLAN_SECURITY_OPTIONS[OPTIONS_WLAN_SECURITY_OPTION_COUNT] =
 {
-        { 0, NONEXISTANT_LOCALE, "WPA" },
-        { 1, NONEXISTANT_LOCALE, "WPA2"  }
+        { 0, "WPA" },
+        { 1, "WPA2"  }
 };
 
 static int my_filter(const struct dirent * dent)
@@ -195,7 +195,7 @@ void CNetworkSettings::showMenu()
 	//interface
 	int ifcount = scandir("/sys/class/net", &namelist, my_filter, alphasort);
 
-	CMenuOptionStringChooser * ifSelect = new CMenuOptionStringChooser(LOCALE_NETWORKMENU_SELECT_IF, g_settings.ifname, ifcount > 1, this, RC_nokey, "", true);
+	CMenuOptionStringChooser * ifSelect = new CMenuOptionStringChooser(_("Interface"), g_settings.ifname, ifcount > 1, this, RC_nokey, "", true);
 
 	bool found = false;
 
@@ -262,7 +262,7 @@ void CNetworkSettings::showMenu()
 	CDHCPNotifier * dhcpNotifier = new CDHCPNotifier(m1, m2, m3, m4, m5);
 
 	// setup network on startup
-	CMenuOptionChooser * oj = new CMenuOptionChooser(LOCALE_NETWORKMENU_SETUPONSTARTUP, &network_automatic_start, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
+	CMenuOptionChooser * oj = new CMenuOptionChooser(_("Setup network on startup"), &network_automatic_start, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 
 	// intros
 	networkSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
@@ -297,7 +297,7 @@ void CNetworkSettings::showMenu()
 	networkSettings.addItem(new CMenuSeparator(LINE));
 
 	// dhcp on/off
-	oj = new CMenuOptionChooser(LOCALE_NETWORKMENU_DHCP, &network_dhcp, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, dhcpNotifier);
+	oj = new CMenuOptionChooser(_("DHCP"), &network_dhcp, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, dhcpNotifier);
 	networkSettings.addItem(oj);
 
 	// hostname
@@ -342,15 +342,15 @@ void CNetworkSettings::showMenu()
 		networkSettings.addItem( m10);
 
 		//encryption
-		CMenuOptionChooser * m11 = new CMenuOptionChooser(LOCALE_NETWORKMENU_WLAN_SECURITY, &network_encryption, OPTIONS_WLAN_SECURITY_OPTIONS, OPTIONS_WLAN_SECURITY_OPTION_COUNT, true);
+		CMenuOptionChooser * m11 = new CMenuOptionChooser(_("Security"), &network_encryption, OPTIONS_WLAN_SECURITY_OPTIONS, OPTIONS_WLAN_SECURITY_OPTION_COUNT, true);
 		wlanEnable[2] = m11;
 		networkSettings.addItem( m11); //encryption
 	}
 	
 	// ntp
-	networkSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_NETWORKMENU_NTPTITLE)));
+	networkSettings.addItem(new CMenuSeparator(LINE | STRING, _("Time-Syncronisation")));
 
-	networkSettings.addItem(new CMenuOptionChooser(LOCALE_NETWORKMENU_NTPENABLE, &g_settings.network_ntpenable, OPTIONS_NTPENABLE_OPTIONS, OPTIONS_NTPENABLE_OPTION_COUNT, true, sectionsdConfigNotifier));
+	networkSettings.addItem(new CMenuOptionChooser(_("Syncronisation via"), &g_settings.network_ntpenable, OPTIONS_NTPENABLE_OPTIONS, OPTIONS_NTPENABLE_OPTION_COUNT, true, sectionsdConfigNotifier));
 
 	// ntp server
         networkSettings.addItem( m6);

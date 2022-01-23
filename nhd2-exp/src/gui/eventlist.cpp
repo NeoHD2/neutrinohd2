@@ -829,17 +829,17 @@ int EventList::findEvents(void)
 #define SEARCH_LIST_OPTION_COUNT 3
 const keyval SEARCH_LIST_OPTIONS[SEARCH_LIST_OPTION_COUNT] =
 {
-	{ EventList::SEARCH_LIST_CHANNEL, LOCALE_TIMERLIST_CHANNEL, NULL },
-	{ EventList::SEARCH_LIST_BOUQUET, LOCALE_BOUQUETLIST_HEAD, NULL },
-	{ EventList::SEARCH_LIST_ALL, LOCALE_CHANNELLIST_HEAD, NULL }
+	{ EventList::SEARCH_LIST_CHANNEL, _("Channel") },
+	{ EventList::SEARCH_LIST_BOUQUET, _("Bouquets") },
+	{ EventList::SEARCH_LIST_ALL, _("Channellist") }
 };
 
 #define SEARCH_EPG_OPTION_COUNT 3
 const keyval SEARCH_EPG_OPTIONS[SEARCH_EPG_OPTION_COUNT] =
 {
-	{ EventList::SEARCH_EPG_TITLE, LOCALE_FONTSIZE_EPG_TITLE, NULL },
-	{ EventList::SEARCH_EPG_INFO1, LOCALE_FONTSIZE_EPG_INFO1, NULL },
-	{ EventList::SEARCH_EPG_INFO2, LOCALE_FONTSIZE_EPG_INFO2, NULL }
+	{ EventList::SEARCH_EPG_TITLE, _("EPG Title") },
+	{ EventList::SEARCH_EPG_INFO1, _("EPG Info1") },
+	{ EventList::SEARCH_EPG_INFO2, _("EPG Info2") }
 };
 
 CEventFinderMenu::CEventFinderMenu(int * event, int * search_epg_item, std::string * search_keyword, int * search_list, t_channel_id * search_channel_id, t_bouquet_id * search_bouquet_id)
@@ -956,9 +956,9 @@ int CEventFinderMenu::showMenu(void)
 	CStringInputSMS stringInput(LOCALE_EVENTFINDER_KEYWORD, m_search_keyword->c_str());
 	
 	CMenuForwarder * mf2 = new CMenuForwarder(_("Keyword"), true, m_search_keyword->c_str(), &stringInput, NULL, RC_1 );
-	CMenuOptionChooser * mo0 = new CMenuOptionChooser(LOCALE_EVENTFINDER_SEARCH_WITHIN_LIST, m_search_list, SEARCH_LIST_OPTIONS, SEARCH_LIST_OPTION_COUNT, true, NULL, RC_2);
+	CMenuOptionChooser * mo0 = new CMenuOptionChooser(_("Search within"), m_search_list, SEARCH_LIST_OPTIONS, SEARCH_LIST_OPTION_COUNT, true, NULL, RC_2);
 	CMenuForwarder * mf1 = new CMenuForwarder("", *m_search_list != EventList::SEARCH_LIST_ALL, m_search_channelname.c_str(), this, "3", RC_3 );
-	CMenuOptionChooser * mo1 = new CMenuOptionChooser(LOCALE_EVENTFINDER_SEARCH_WITHIN_EPG, m_search_epg_item, SEARCH_EPG_OPTIONS, SEARCH_EPG_OPTION_COUNT, true, NULL, RC_4);
+	CMenuOptionChooser * mo1 = new CMenuOptionChooser(_("Search in EPG"), m_search_epg_item, SEARCH_EPG_OPTIONS, SEARCH_EPG_OPTION_COUNT, true, NULL, RC_4);
 	CMenuForwarder * mf0 = new CMenuForwarder(_("Start Search"), true, NULL, this, "1", RC_5 );
 	
 	CMenuWidget searchMenu(_("Search in EPG"), NEUTRINO_ICON_FEATURES);

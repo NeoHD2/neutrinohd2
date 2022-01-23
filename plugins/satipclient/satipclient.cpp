@@ -30,28 +30,28 @@ extern "C" void plugin_del(void);
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL }
+        { 0, _("off") },
+        { 1, _("on") }
 };
 
 // frontend typ
 #define SATIP_FRONTEND_TYPE_OPTION_COUNT 3
 const keyval SATIP_FRONTEND_TYPE_OPTIONS[SATIP_FRONTEND_TYPE_OPTION_COUNT] =
 {
-	{ 0, NONEXISTANT_LOCALE, "Sat" },
-	{ 1, NONEXISTANT_LOCALE, "Cable" },
-	{ 2, NONEXISTANT_LOCALE, "Terrestrial" }
+	{ 0, _("Sat") },
+	{ 1, _("Cable") },
+	{ 2, _("Terrestrial") }
 };
 
 // debug level
 #define SATIP_DEBUG_LEVEL_OPTION_COUNT 5
 const keyval SATIP_DEBUG_LEVEL_OPTIONS[SATIP_DEBUG_LEVEL_OPTION_COUNT] =
 {
-	{ 0, NONEXISTANT_LOCALE, "None" },
-	{ 1, NONEXISTANT_LOCALE, "Error" },
-	{ 2, NONEXISTANT_LOCALE, "Warn" },
-	{ 3, NONEXISTANT_LOCALE, "Info" },
-	{ 4, NONEXISTANT_LOCALE, "Debug" }
+	{ 0, _("None") },
+	{ 1, _("Error") },
+	{ 2, _("Warn") },
+	{ 3, _("Info") },
+	{ 4, _("Debug") }
 };
 
 CSatIPClient::CSatIPClient()

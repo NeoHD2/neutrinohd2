@@ -224,17 +224,17 @@ int CNFSMountGui::menu()
 #define MESSAGEBOX_NO_YES_OPTION_COUNT 2
 const keyval MESSAGEBOX_NO_YES_OPTIONS[MESSAGEBOX_NO_YES_OPTION_COUNT] =
 {
-	{ 0, LOCALE_MESSAGEBOX_NO, NULL  },
-	{ 1, LOCALE_MESSAGEBOX_YES, NULL }
+	{ 0, _("No")  },
+	{ 1, _("Yes") }
 };
 
 #define NFS_TYPE_OPTION_COUNT 4
 const keyval NFS_TYPE_OPTIONS[NFS_TYPE_OPTION_COUNT] =
 {
-	{ CFSMounter::NFS , LOCALE_NFS_TYPE_NFS, NULL  },
-	{ CFSMounter::CIFS, LOCALE_NFS_TYPE_CIFS, NULL },
-	{ CFSMounter::LUFS, LOCALE_NFS_TYPE_LUFS, NULL },
-	{ CFSMounter::SMBFS, LOCALE_NFS_TYPE_SMBFS, NULL }
+	{ CFSMounter::NFS , _("NFS")  },
+	{ CFSMounter::CIFS, _("CIFS") },
+	{ CFSMounter::LUFS, _("LUFS") },
+	{ CFSMounter::SMBFS, _("SMBFS") }
 };
 
 int CNFSMountGui::menuEntry(int nr)
@@ -293,7 +293,7 @@ int CNFSMountGui::menuEntry(int nr)
 	CStringInputSMS dirInput(LOCALE_NFS_DIR, dir);
 	
 	// automount
-	CMenuOptionChooser *automountInput= new CMenuOptionChooser(LOCALE_NFS_AUTOMOUNT, automount, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true);
+	CMenuOptionChooser *automountInput= new CMenuOptionChooser(_("mount on startup"), automount, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true);
 	
 	// option1
 	CStringInputSMS options1Input(LOCALE_NFS_MOUNT_OPTIONS, options1);
@@ -317,7 +317,7 @@ int CNFSMountGui::menuEntry(int nr)
 
 	CNFSMountGuiNotifier notifier(username_fwd, password_fwd, type);
 
-	mountMenuEntryW.addItem(new CMenuOptionChooser(LOCALE_NFS_TYPE, type, NFS_TYPE_OPTIONS, NFS_TYPE_OPTION_COUNT, typeEnabled, &notifier));
+	mountMenuEntryW.addItem(new CMenuOptionChooser(_("type"), type, NFS_TYPE_OPTIONS, NFS_TYPE_OPTION_COUNT, typeEnabled, &notifier));
 	mountMenuEntryW.addItem(new CMenuForwarder(_("Server IP"), true, g_settings.network_nfs_ip[nr].c_str(), &ipInput));
 	mountMenuEntryW.addItem(new CMenuForwarder(_("Dir"), true, dir, &dirInput));
 	mountMenuEntryW.addItem(new CMenuForwarder(_("local dir"), true, local_dir, this, cmd2));

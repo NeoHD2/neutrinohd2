@@ -5551,8 +5551,8 @@ void CNeutrinoApp::SelectNVOD()
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL }
+        { 0, _("off") },
+        { 1, _("on") }
 };
 
 bool CNeutrinoApp::getNVODMenu(CMenuWidget * menu)
@@ -5618,7 +5618,7 @@ bool CNeutrinoApp::getNVODMenu(CMenuWidget * menu)
 	if( g_RemoteControl->are_subchannels ) 
 	{
 		menu->addItem(new CMenuSeparator(LINE));
-		CMenuOptionChooser* oj = new CMenuOptionChooser(LOCALE_NVODSELECTOR_DIRECTORMODE, &g_RemoteControl->director_mode, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW);
+		CMenuOptionChooser* oj = new CMenuOptionChooser(_("Direct-Mode"), &g_RemoteControl->director_mode, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW);
 		menu->addItem(oj);
 	}
 

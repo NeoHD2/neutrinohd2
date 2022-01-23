@@ -75,16 +75,16 @@ unsigned int ac3state = CInfoViewer::NO_AC3;
 #define VIDEOMENU_VIDEORATIO_OPTION_COUNT 2
 const keyval VIDEOMENU_VIDEORATIO_OPTIONS[VIDEOMENU_VIDEORATIO_OPTION_COUNT] =
 {
-	{ ASPECTRATIO_43, LOCALE_VIDEOMENU_VIDEORATIO_43, NULL },
-	{ ASPECTRATIO_169, LOCALE_VIDEOMENU_VIDEORATIO_169, NULL }
+	{ ASPECTRATIO_43, "4:3" },
+	{ ASPECTRATIO_169, "16:9" }
 };
 #else
 #define VIDEOMENU_VIDEORATIO_OPTION_COUNT 3
 const keyval VIDEOMENU_VIDEORATIO_OPTIONS[VIDEOMENU_VIDEORATIO_OPTION_COUNT] =
 {
-	{ ASPECTRATIO_43, LOCALE_VIDEOMENU_VIDEORATIO_43, NULL },
-	{ ASPECTRATIO_169, LOCALE_VIDEOMENU_VIDEORATIO_169, NULL },
-	{ ASPECTRATIO_AUTO, NONEXISTANT_LOCALE, "Auto" }
+	{ ASPECTRATIO_43, "4:3" },
+	{ ASPECTRATIO_169, "16:9" },
+	{ ASPECTRATIO_AUTO, "Auto" }
 };
 #endif
 
@@ -99,10 +99,10 @@ bestfit
 #define VIDEOMENU_VIDEOFORMAT_OPTION_COUNT 4
 const keyval VIDEOMENU_VIDEOFORMAT_OPTIONS[VIDEOMENU_VIDEOFORMAT_OPTION_COUNT] = 
 {
-	{ VIDEOFORMAT_LETTERBOX, LOCALE_VIDEOMENU_LETTERBOX, NULL },
-	{ VIDEOFORMAT_PANSCAN, LOCALE_VIDEOMENU_PANSCAN, NULL },
-	{ VIDEOFORMAT_FULLSCREEN, LOCALE_VIDEOMENU_FULLSCREEN, NULL },
-	{ VIDEOFORMAT_PANSCAN2, LOCALE_VIDEOMENU_PANSCAN2, NULL }
+	{ VIDEOFORMAT_LETTERBOX, "Letterbox" },
+	{ VIDEOFORMAT_PANSCAN, "Panscan" },
+	{ VIDEOFORMAT_FULLSCREEN, "Fullscreen" },
+	{ VIDEOFORMAT_PANSCAN2, "Bestfit" }
 };
 #else
 // giga/generic
@@ -115,10 +115,10 @@ nonlinear
 #define VIDEOMENU_VIDEOFORMAT_OPTION_COUNT 4
 const keyval VIDEOMENU_VIDEOFORMAT_OPTIONS[VIDEOMENU_VIDEOFORMAT_OPTION_COUNT] = 
 {
-	{ VIDEOFORMAT_LETTERBOX, LOCALE_VIDEOMENU_LETTERBOX, NULL },
-	{ VIDEOFORMAT_PANSCAN, LOCALE_VIDEOMENU_PANSCAN, NULL },
-	{ VIDEOFORMAT_PANSCAN2, LOCALE_VIDEOMENU_PANSCAN2, NULL },
-	{ VIDEOFORMAT_FULLSCREEN, LOCALE_VIDEOMENU_FULLSCREEN, NULL }
+	{ VIDEOFORMAT_LETTERBOX, "Letterbox" },
+	{ VIDEOFORMAT_PANSCAN, "Panscan" },
+	{ VIDEOFORMAT_PANSCAN2, "Bestfit" },
+	{ VIDEOFORMAT_FULLSCREEN, "Fullscreen" }
 };
 #endif
 
@@ -126,8 +126,8 @@ const keyval VIDEOMENU_VIDEOFORMAT_OPTIONS[VIDEOMENU_VIDEOFORMAT_OPTION_COUNT] =
 #define AC3_OPTION_COUNT 2
 const keyval AC3_OPTIONS[AC3_OPTION_COUNT] =
 {
-	{ AC3_PASSTHROUGH, NONEXISTANT_LOCALE, "passthrough" },
-	{ AC3_DOWNMIX, NONEXISTANT_LOCALE, "downmix" }
+	{ AC3_PASSTHROUGH, "passthrough" },
+	{ AC3_DOWNMIX, "downmix" }
 };
 #endif
 
@@ -261,17 +261,17 @@ void CAVPIDSelectWidget::showAudioDialog(void)
 	
 	//ac3
 #if !defined (PLATFORM_COOLSTREAM)				
-	AVPIDSelector->addItem(new CMenuOptionChooser(LOCALE_AUDIOMENU_HDMI_DD, &g_settings.hdmi_dd, AC3_OPTIONS, AC3_OPTION_COUNT, true, CAudioSettings::getInstance()->audioSetupNotifier, RC_red, NEUTRINO_ICON_BUTTON_RED ));
+	AVPIDSelector->addItem(new CMenuOptionChooser(_("Dolby Digital"), &g_settings.hdmi_dd, AC3_OPTIONS, AC3_OPTION_COUNT, true, CAudioSettings::getInstance()->audioSetupNotifier, RC_red, NEUTRINO_ICON_BUTTON_RED ));
 #endif				
 				
 	// policy/aspect ratio
 	AVPIDSelector->addItem(new CMenuSeparator(LINE));
 				
 	// video aspect ratio 4:3/16:9
-	AVPIDSelector->addItem(new CMenuOptionChooser(LOCALE_VIDEOMENU_VIDEORATIO, &g_settings.video_Ratio, VIDEOMENU_VIDEORATIO_OPTIONS, VIDEOMENU_VIDEORATIO_OPTION_COUNT, true, CVideoSettings::getInstance()->videoSetupNotifier, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true));
+	AVPIDSelector->addItem(new CMenuOptionChooser(_("TV-System"), &g_settings.video_Ratio, VIDEOMENU_VIDEORATIO_OPTIONS, VIDEOMENU_VIDEORATIO_OPTION_COUNT, true, CVideoSettings::getInstance()->videoSetupNotifier, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true));
 	
 	// video format bestfit/letterbox/panscan/non
-	AVPIDSelector->addItem(new CMenuOptionChooser(LOCALE_VIDEOMENU_VIDEOFORMAT, &g_settings.video_Format, VIDEOMENU_VIDEOFORMAT_OPTIONS, VIDEOMENU_VIDEOFORMAT_OPTION_COUNT, true, CVideoSettings::getInstance()->videoSetupNotifier, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, true));
+	AVPIDSelector->addItem(new CMenuOptionChooser(_("Video Format"), &g_settings.video_Format, VIDEOMENU_VIDEOFORMAT_OPTIONS, VIDEOMENU_VIDEOFORMAT_OPTION_COUNT, true, CVideoSettings::getInstance()->videoSetupNotifier, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, true));
 	
 	AVPIDSelector->exec(NULL, "");
 	AVPIDSelector->hide();

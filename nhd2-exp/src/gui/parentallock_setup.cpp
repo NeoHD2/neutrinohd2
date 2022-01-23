@@ -46,17 +46,17 @@ extern bool parentallocked;			// defined neutrino.cpp
 #define PARENTALLOCK_PROMPT_OPTION_COUNT 3
 const keyval PARENTALLOCK_PROMPT_OPTIONS[PARENTALLOCK_PROMPT_OPTION_COUNT] =
 {
-	{ PARENTALLOCK_PROMPT_NEVER         , LOCALE_PARENTALLOCK_NEVER, NULL         },
-	{ PARENTALLOCK_PROMPT_CHANGETOLOCKED, LOCALE_PARENTALLOCK_CHANGETOLOCKED, NULL },
-	{ PARENTALLOCK_PROMPT_ONSIGNAL      , LOCALE_PARENTALLOCK_ONSIGNAL, NULL       }
+	{ PARENTALLOCK_PROMPT_NEVER         , _("never")         },
+	{ PARENTALLOCK_PROMPT_CHANGETOLOCKED, _("on locked bouquets") },
+	{ PARENTALLOCK_PROMPT_ONSIGNAL      , _("on broadcasted lock")      }
 };
 
 #define PARENTALLOCK_LOCKAGE_OPTION_COUNT 3
 const keyval PARENTALLOCK_LOCKAGE_OPTIONS[PARENTALLOCK_LOCKAGE_OPTION_COUNT] =
 {
-	{ 12, LOCALE_PARENTALLOCK_LOCKAGE12, NULL },
-	{ 16, LOCALE_PARENTALLOCK_LOCKAGE16, NULL },
-	{ 18, LOCALE_PARENTALLOCK_LOCKAGE18, NULL }
+	{ 12, _("from 12 years up") },
+	{ 16, _("from 16 years up") },
+	{ 18, _("from 18 years up") }
 };
 
 CParentalLockSettings::CParentalLockSettings()
@@ -108,13 +108,13 @@ void CParentalLockSettings::showMenu()
 	parentallockSettings.addItem( new CMenuSeparator(LINE) );
 
 	// prompt
-	parentallockSettings.addItem(new CMenuOptionChooser(LOCALE_PARENTALLOCK_PROMPT, &g_settings.parentallock_prompt, PARENTALLOCK_PROMPT_OPTIONS, PARENTALLOCK_PROMPT_OPTION_COUNT, !parentallocked, NULL, CRCInput::convertDigitToKey(shortcutLock++), "", true ));
+	parentallockSettings.addItem(new CMenuOptionChooser(_("Prompt for PIN"), &g_settings.parentallock_prompt, PARENTALLOCK_PROMPT_OPTIONS, PARENTALLOCK_PROMPT_OPTION_COUNT, !parentallocked, NULL, CRCInput::convertDigitToKey(shortcutLock++), "", true ));
 
 	// lockage
-	parentallockSettings.addItem(new CMenuOptionChooser(LOCALE_PARENTALLOCK_LOCKAGE, &g_settings.parentallock_lockage, PARENTALLOCK_LOCKAGE_OPTIONS, PARENTALLOCK_LOCKAGE_OPTION_COUNT, !parentallocked, NULL, CRCInput::convertDigitToKey(shortcutLock++), "", true ));
+	parentallockSettings.addItem(new CMenuOptionChooser(_("Lock program"), &g_settings.parentallock_lockage, PARENTALLOCK_LOCKAGE_OPTIONS, PARENTALLOCK_LOCKAGE_OPTION_COUNT, !parentallocked, NULL, CRCInput::convertDigitToKey(shortcutLock++), "", true ));
 
 	// Pin
-	CPINChangeWidget * pinChangeWidget = new CPINChangeWidget(LOCALE_PARENTALLOCK_CHANGEPIN, g_settings.parentallock_pincode, 4, LOCALE_PARENTALLOCK_CHANGEPIN_HINT1);
+	CPINChangeWidget * pinChangeWidget = new CPINChangeWidget(_("Change PIN code"), g_settings.parentallock_pincode, 4, LOCALE_PARENTALLOCK_CHANGEPIN_HINT1);
 	parentallockSettings.addItem( new CMenuForwarder(_("Change PIN code"), true, g_settings.parentallock_pincode, pinChangeWidget, NULL, CRCInput::convertDigitToKey(shortcutLock++) ));
 	
 	parentallockSettings.exec(NULL, "");

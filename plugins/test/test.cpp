@@ -7446,8 +7446,8 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 #define MESSAGEBOX_NO_YES_OPTION_COUNT 2
 const keyval MESSAGEBOX_NO_YES_OPTIONS[MESSAGEBOX_NO_YES_OPTION_COUNT] =
 {
-	{ 0, LOCALE_MESSAGEBOX_NO, NULL },
-	{ 1, LOCALE_MESSAGEBOX_YES, NULL }
+	{ 0, _("No") },
+	{ 1, _("Yes") }
 };
 
 void CTestMenu::showMenu()

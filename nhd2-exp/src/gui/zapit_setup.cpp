@@ -43,24 +43,24 @@ extern CBouquetManager * g_bouquetManager;	// defined in der zapit.cpp
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL  }
+        { 0, _("off") },
+        { 1, _("on") }
 };
 
 /* option off1 on0*/
 #define OPTIONS_OFF1_ON0_OPTION_COUNT 2
 const keyval OPTIONS_OFF1_ON0_OPTIONS[OPTIONS_OFF1_ON0_OPTION_COUNT] =
 {
-        { 1, LOCALE_OPTIONS_OFF, NULL },
-        { 0, LOCALE_OPTIONS_ON, NULL  }
+        { 1, _("off") },
+        { 0, _("on") }
 };
 
 #define OPTIONS_LASTMODE_OPTION_COUNT 3
 const keyval OPTIONS_LASTMODE_OPTIONS[OPTIONS_LASTMODE_OPTION_COUNT] =
 {
-	{ NeutrinoMessages::mode_tv, NONEXISTANT_LOCALE, "TV" },
-        { NeutrinoMessages::mode_radio, NONEXISTANT_LOCALE, "Radio" },
-	{ NeutrinoMessages::mode_webtv, NONEXISTANT_LOCALE, "WEBTV" }
+	{ NeutrinoMessages::mode_tv, "TV" },
+        { NeutrinoMessages::mode_radio, "Radio" },
+	{ NeutrinoMessages::mode_webtv, "WEBTV" }
 };
 
 CZapitSetup::CZapitSetup()
@@ -189,12 +189,12 @@ void CZapitSetup::showMenu()
 	// last mode
 	CZapitSetupModeNotifier zapitSetupModeNotifier((int *)&g_settings.lastChannelMode, m3, m4, m5);
 
-	CMenuOptionChooser * m2 = new CMenuOptionChooser(LOCALE_ZAPITSETUP_LAST_MODE, (int *)&g_settings.lastChannelMode, OPTIONS_LASTMODE_OPTIONS, OPTIONS_LASTMODE_OPTION_COUNT, !g_settings.uselastchannel, &zapitSetupModeNotifier, CRCInput::convertDigitToKey(shortcut++));
+	CMenuOptionChooser * m2 = new CMenuOptionChooser(_("Start Mode"), (int *)&g_settings.lastChannelMode, OPTIONS_LASTMODE_OPTIONS, OPTIONS_LASTMODE_OPTION_COUNT, !g_settings.uselastchannel, &zapitSetupModeNotifier, CRCInput::convertDigitToKey(shortcut++));
 	
 	// use lastchannel
 	CZapitSetupNotifier zapitSetupNotifier(m2, m3, m4, m5);
 
-	CMenuOptionChooser * m1 = new CMenuOptionChooser(LOCALE_MISCSETTINGS_ZAPIT, &g_settings.uselastchannel, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, true, &zapitSetupNotifier, CRCInput::convertDigitToKey(shortcut++));
+	CMenuOptionChooser * m1 = new CMenuOptionChooser(_("Start Channel settings"), &g_settings.uselastchannel, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, true, &zapitSetupNotifier, CRCInput::convertDigitToKey(shortcut++));
 	
 	zapit->addItem(m1);
 	zapit->addItem(m2);

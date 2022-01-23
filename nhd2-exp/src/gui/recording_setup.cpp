@@ -47,15 +47,15 @@
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL }
+        { 0, _("off") },
+        { 1, _("on") }
 };
 
 #define MESSAGEBOX_NO_YES_OPTION_COUNT 2
 const keyval MESSAGEBOX_NO_YES_OPTIONS[MESSAGEBOX_NO_YES_OPTION_COUNT] =
 {
-	{ 0, LOCALE_MESSAGEBOX_NO, NULL },
-	{ 1, LOCALE_MESSAGEBOX_YES, NULL }
+	{ 0, _("No") },
+	{ 1, _("Yes") }
 };
 
 // recording settings
@@ -199,19 +199,19 @@ void CRecordingSettings::showMenu()
 	CRecAPIDSettingsNotifier * an = new CRecAPIDSettingsNotifier;
 
 	//default
-	CMenuOptionChooser* aoj1 = new CMenuOptionChooser(LOCALE_RECORDINGMENU_APIDS_STD, &g_settings.recording_audio_pids_std, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, an);
+	CMenuOptionChooser* aoj1 = new CMenuOptionChooser(_("default audio streams"), &g_settings.recording_audio_pids_std, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, an);
 
 	//alt
-	CMenuOptionChooser* aoj2 = new CMenuOptionChooser(LOCALE_RECORDINGMENU_APIDS_ALT, &g_settings.recording_audio_pids_alt, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, an);
+	CMenuOptionChooser* aoj2 = new CMenuOptionChooser(_("Record alternative streams"), &g_settings.recording_audio_pids_alt, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, an);
 
 	//ac3
-	CMenuOptionChooser* aoj3 = new CMenuOptionChooser(LOCALE_RECORDINGMENU_APIDS_AC3, &g_settings.recording_audio_pids_ac3, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, an);
+	CMenuOptionChooser* aoj3 = new CMenuOptionChooser(_("Record AC3 streams"), &g_settings.recording_audio_pids_ac3, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, an);
 
 	//epg in name format
-	CMenuOptionChooser* oj11 = new CMenuOptionChooser(LOCALE_RECORDINGMENU_EPG_FOR_FILENAME, &g_settings.recording_epg_for_filename, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
+	CMenuOptionChooser* oj11 = new CMenuOptionChooser(_("Filenames (with EPG data)"), &g_settings.recording_epg_for_filename, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 
 	// save in channeldir
-	CMenuOptionChooser* oj13 = new CMenuOptionChooser(LOCALE_RECORDINGMENU_SAVE_IN_CHANNELDIR, &g_settings.recording_save_in_channeldir, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
+	CMenuOptionChooser* oj13 = new CMenuOptionChooser(_("Save in channel dir"), &g_settings.recording_save_in_channeldir, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 
 	//RecDir
 	CMenuForwarder* fRecDir = new CMenuForwarder(_("Recording directory"), true, g_settings.network_nfs_recordingdir, this, "recordingdir");
@@ -248,16 +248,16 @@ void CRecordingSettings::showMenu()
 	recordingSettings.addItem(fRecDir);
 	
 	// timeshift
-	recordingSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_EXTRA_TIMESHIFT)));
+	recordingSettings.addItem(new CMenuSeparator(LINE | STRING, _("Timeshift")));
 	
 	// record time
-	recordingSettings.addItem(new CMenuOptionNumberChooser(LOCALE_EXTRA_RECORD_TIME, &g_settings.record_hours, true, 1, 24, NULL) );
+	recordingSettings.addItem(new CMenuOptionNumberChooser(_("Fast/timeshift record time(hours)"), &g_settings.record_hours, true, 1, 24, NULL) );
 
 	// timeshift
 	if (recDir != NULL)
 	{
 		// permanent timeshift
-		recordingSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_AUTO_TIMESHIFT, &g_settings.auto_timeshift, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this));
+		recordingSettings.addItem(new CMenuOptionChooser(_("Permanent timeshift"), &g_settings.auto_timeshift, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this));
 	}
 	
 	recordingSettings.exec(NULL, "");

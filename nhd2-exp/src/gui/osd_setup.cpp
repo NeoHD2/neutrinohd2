@@ -56,8 +56,8 @@
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL }
+        { 0, _("off") },
+        { 1, _("on") }
 };
 
 // osd settings
@@ -140,42 +140,42 @@ void COSDSettings::showMenu(void)
 #define COLOR_GRADIENT_TYPE_OPTION_COUNT	5
 const keyval COLOR_GRADIENT_TYPE_OPTIONS[COLOR_GRADIENT_TYPE_OPTION_COUNT] =
 {
-	{ NOGRADIENT, NONEXISTANT_LOCALE, "no gradient" },
-	{ DARK2LIGHT, NONEXISTANT_LOCALE, "Dark to Light" },
-	{ LIGHT2DARK, NONEXISTANT_LOCALE, "Light to Dark" },
-	{ DARK2LIGHT2DARK, NONEXISTANT_LOCALE, "Dark to Light to Dark" },
-	{ LIGHT2DARK2LIGHT, NONEXISTANT_LOCALE, "Light to Dark to Light" }
+	{ NOGRADIENT, _("no gradient") },
+	{ DARK2LIGHT, _("Dark to Light") },
+	{ LIGHT2DARK, _("Light to Dark") },
+	{ DARK2LIGHT2DARK, _("Dark to Light to Dark") },
+	{ LIGHT2DARK2LIGHT, _("Light to Dark to Light") }
 };
 
 #define GRADIENT_DIRECTION_TYPE_OPTION_COUNT	2
 const keyval GRADIENT_DIRECTION_TYPE_OPTIONS[GRADIENT_DIRECTION_TYPE_OPTION_COUNT] =
 {
-	{ GRADIENT_HORIZONTAL, NONEXISTANT_LOCALE, "Horizontal" },
-	{ GRADIENT_VERTICAL, NONEXISTANT_LOCALE, "Vertical" }
+	{ GRADIENT_HORIZONTAL, _("Horizontal") },
+	{ GRADIENT_VERTICAL, _("Vertical") }
 };
 
 #define CORNER_TYPE_OPTION_COUNT	10
 const keyval CORNER_TYPE_OPTIONS[CORNER_TYPE_OPTION_COUNT] =
 {
-	{ CORNER_NONE, NONEXISTANT_LOCALE, "CORNER NONE" },
-	{ CORNER_TOP_LEFT, NONEXISTANT_LOCALE, "TOP LEFT" },
-	{ CORNER_TOP_RIGHT, NONEXISTANT_LOCALE, "TOP RIGHT" },
-	{ CORNER_TOP, NONEXISTANT_LOCALE, "TOP" },
-	{ CORNER_BOTTOM_RIGHT, NONEXISTANT_LOCALE, "BOTTOM RIGHT" },
-	{ CORNER_RIGHT, NONEXISTANT_LOCALE, "RIGHT" },
-	{ CORNER_BOTTOM_LEFT, NONEXISTANT_LOCALE, "BOTTOM LEFT" },
-	{ CORNER_LEFT, NONEXISTANT_LOCALE, "LEFT" },
-	{ CORNER_BOTTOM, NONEXISTANT_LOCALE, "BOTTOM" },
-	{ CORNER_ALL, NONEXISTANT_LOCALE, "CORNER ALL" },
+	{ CORNER_NONE, _("CORNER NONE") },
+	{ CORNER_TOP_LEFT, _("TOP LEFT") },
+	{ CORNER_TOP_RIGHT, _("TOP RIGHT") },
+	{ CORNER_TOP, _("TOP") },
+	{ CORNER_BOTTOM_RIGHT, _("BOTTOM RIGHT") },
+	{ CORNER_RIGHT, _("RIGHT") },
+	{ CORNER_BOTTOM_LEFT, _("BOTTOM LEFT") },
+	{ CORNER_LEFT, _("LEFT") },
+	{ CORNER_BOTTOM, _("BOTTOM") },
+	{ CORNER_ALL, _("CORNER ALL") },
 };
 
 #define RADIUS_TYPE_OPTION_COUNT	4
 const keyval RADIUS_TYPE_OPTIONS[RADIUS_TYPE_OPTION_COUNT] =
 {
-	{ NO_RADIUS, LOCALE_EXTRA_ROUNDED_CORNERS_OFF, NULL },
-	{ RADIUS_SMALL, NONEXISTANT_LOCALE, "Small" },
-	{ RADIUS_MID, NONEXISTANT_LOCALE, "Middle" },
-	{ RADIUS_LARGE, NONEXISTANT_LOCALE, "Large" },
+	{ NO_RADIUS, _("angular") },
+	{ RADIUS_SMALL, _("small") },
+	{ RADIUS_MID, _("middle") },
+	{ RADIUS_LARGE, _("large") },
 };
 
 COSDMenuColorSettings::COSDMenuColorSettings()
@@ -266,7 +266,7 @@ void COSDMenuColorSettings::showMenu()
 	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chHeadTextcolor ));
 
 	// head gradient
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(LOCALE_COLORMENU_GRADIENT, &g_settings.Head_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.Head_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 	
 	// head corner
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Corner"), &g_settings.Head_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
@@ -636,8 +636,8 @@ void CFontSettings::showMenu()
 	
 	// font scaling
 	fontSettings.addItem(new CMenuSeparator(LINE|STRING, g_Locale->getText(LOCALE_FONTMENU_HEAD)));
-	fontSettings.addItem(new CMenuOptionNumberChooser(LOCALE_FONTMENU_SCALING_X, &g_settings.screen_xres, true, 50, 200, NULL) );
-	fontSettings.addItem(new CMenuOptionNumberChooser(LOCALE_FONTMENU_SCALING_Y, &g_settings.screen_yres, true, 50, 200, NULL) );
+	fontSettings.addItem(new CMenuOptionNumberChooser(_("Horizontal (in %)"), &g_settings.screen_xres, true, 50, 200, NULL) );
+	fontSettings.addItem(new CMenuOptionNumberChooser(_("Vertikal (in %)"), &g_settings.screen_yres, true, 50, 200, NULL) );
 		
 	
 	fontSettings.exec(NULL, "");
@@ -845,29 +845,29 @@ int COSDDiverses::exec(CMenuTarget* parent, const std::string& actionKey)
 #define PROGRESSBAR_COLOR_OPTION_COUNT 2
 const keyval PROGRESSBAR_COLOR_OPTIONS[PROGRESSBAR_COLOR_OPTION_COUNT] =
 {
-	{ 0, NONEXISTANT_LOCALE, "monochrom" },
-	{ 1, NONEXISTANT_LOCALE, "colored" }
+	{ 0, _("monochrom") },
+	{ 1, _("colored") }
 };
 
 // volumebar position
 #define VOLUMEBAR_DISP_POS_OPTIONS_COUNT 6
 const keyval  VOLUMEBAR_DISP_POS_OPTIONS[VOLUMEBAR_DISP_POS_OPTIONS_COUNT]=
 {
-	{ 0 , LOCALE_SETTINGS_POS_TOP_RIGHT, NULL },
-	{ 1 , LOCALE_SETTINGS_POS_TOP_LEFT, NULL },
-	{ 2 , LOCALE_SETTINGS_POS_BOTTOM_LEFT, NULL },
-	{ 3 , LOCALE_SETTINGS_POS_BOTTOM_RIGHT, NULL },
-	{ 4 , LOCALE_SETTINGS_POS_DEFAULT_CENTER, NULL },
-	{ 5 , LOCALE_SETTINGS_POS_HIGHER_CENTER, NULL }
+	{ 0 , _("top right") },
+	{ 1 , _("top left") },
+	{ 2 , _("bottom left") },
+	{ 3 , _("bottom right") },
+	{ 4 , _("default center") },
+	{ 5 , _("higher center") }
 };
 
 #define INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT 4
 const keyval  INFOBAR_SUBCHAN_DISP_POS_OPTIONS[INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT]=
 {
-	{ 0 , LOCALE_SETTINGS_POS_TOP_RIGHT, NULL },
-	{ 1 , LOCALE_SETTINGS_POS_TOP_LEFT, NULL },
-	{ 2 , LOCALE_SETTINGS_POS_BOTTOM_LEFT, NULL },
-	{ 3 , LOCALE_SETTINGS_POS_BOTTOM_RIGHT, NULL }
+	{ 0 , _("top right") },
+	{ 1 , _("top left") },
+	{ 2 , _("bottom left") },
+	{ 3 , _("bottom right") }
 };
 
 void COSDDiverses::showMenu()
@@ -887,7 +887,7 @@ void COSDDiverses::showMenu()
 	osdDiverseSettings.addItem(new CMenuSeparator(LINE));
 
 	// progressbar color
-	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_PROGRESSBAR_COLOR, &g_settings.progressbar_color, PROGRESSBAR_COLOR_OPTIONS, PROGRESSBAR_COLOR_OPTION_COUNT, true));
+	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Progressbar Color"), &g_settings.progressbar_color, PROGRESSBAR_COLOR_OPTIONS, PROGRESSBAR_COLOR_OPTION_COUNT, true));
 	
 	// progressbar_gradient
 	osdDiverseSettings.addItem(new CMenuOptionChooser("ProgressBar Gradient", &g_settings.progressbar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
@@ -905,22 +905,22 @@ void COSDDiverses::showMenu()
 	osdDiverseSettings.addItem( new CMenuForwarder(_("logos Dir"), true, g_settings.logos_dir.c_str(), this, "logos_dir" ) );
 	
 	// epgplus logos
-	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_EPGPLUS_SHOW_LOGOS, &g_settings.epgplus_show_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Channel Logo(EPGPlus)"), &g_settings.epgplus_show_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	
 	// infobar channelname
-	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SHOW_CHANNELNAME, &g_settings.show_channelname, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Channel name"), &g_settings.show_channelname, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	
 	// sig/snr
-	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_MISCSETTINGS_INFOBAR_SAT_DISPLAY, &g_settings.infobar_sat_display, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Satellite display on infobar"), &g_settings.infobar_sat_display, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 	
 	// subchan pos
-	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_INFOVIEWER_SUBCHAN_DISP_POS, &g_settings.infobar_subchan_disp_pos, INFOBAR_SUBCHAN_DISP_POS_OPTIONS, INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT, true, NULL, RC_nokey, "", true));
+	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Subchannel display"), &g_settings.infobar_subchan_disp_pos, INFOBAR_SUBCHAN_DISP_POS_OPTIONS, INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT, true, NULL, RC_nokey, "", true));
 	
 	// volumebar position
-	osdDiverseSettings.addItem(new CMenuOptionChooser(LOCALE_EXTRA_VOLUME_POS, &g_settings.volume_pos, VOLUMEBAR_DISP_POS_OPTIONS, VOLUMEBAR_DISP_POS_OPTIONS_COUNT, true, NULL, RC_nokey, "", true ));
+	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Volumebar"), &g_settings.volume_pos, VOLUMEBAR_DISP_POS_OPTIONS, VOLUMEBAR_DISP_POS_OPTIONS_COUNT, true, NULL, RC_nokey, "", true ));
 
 	// volume bar steps
-	CStringInput * audio_step = new CStringInput(LOCALE_AUDIOMENU_VOLUMEBAR_AUDIOSTEPS,g_settings.audio_step, 2, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, "0123456789 " );
+	CStringInput * audio_step = new CStringInput(_("Volume Step Size"), g_settings.audio_step, 2, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, "0123456789 " );
 	CMenuForwarder *as = new CMenuForwarder(_("Volume Step Size"), true, g_settings.audio_step, audio_step );
 	osdDiverseSettings.addItem(as);
 	

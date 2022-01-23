@@ -883,46 +883,40 @@ std::string CTimerList::convertChannelId2String(const t_channel_id id) // UTF-8
 #define TIMERLIST_REPEAT_OPTION_COUNT 7
 const keyval TIMERLIST_REPEAT_OPTIONS[TIMERLIST_REPEAT_OPTION_COUNT] =
 {
-	{ CTimerd::TIMERREPEAT_ONCE       , LOCALE_TIMERLIST_REPEAT_ONCE, NULL       },
-	{ CTimerd::TIMERREPEAT_DAILY      , LOCALE_TIMERLIST_REPEAT_DAILY, NULL      },
-	{ CTimerd::TIMERREPEAT_WEEKLY     , LOCALE_TIMERLIST_REPEAT_WEEKLY, NULL     },
-	{ CTimerd::TIMERREPEAT_BIWEEKLY   , LOCALE_TIMERLIST_REPEAT_BIWEEKLY, NULL   },
-	{ CTimerd::TIMERREPEAT_FOURWEEKLY , LOCALE_TIMERLIST_REPEAT_FOURWEEKLY, NULL },
-	{ CTimerd::TIMERREPEAT_MONTHLY    , LOCALE_TIMERLIST_REPEAT_MONTHLY, NULL    },
-	{ CTimerd::TIMERREPEAT_WEEKDAYS   , LOCALE_TIMERLIST_REPEAT_WEEKDAYS, NULL   }
+	{ CTimerd::TIMERREPEAT_ONCE       , _("once")       },
+	{ CTimerd::TIMERREPEAT_DAILY      , _("daily")      },
+	{ CTimerd::TIMERREPEAT_WEEKLY     , _("weekly")     },
+	{ CTimerd::TIMERREPEAT_BIWEEKLY   , _("biweekly")   },
+	{ CTimerd::TIMERREPEAT_FOURWEEKLY , _("fourweekly") },
+	{ CTimerd::TIMERREPEAT_MONTHLY    , _("monthly")    },
+	{ CTimerd::TIMERREPEAT_WEEKDAYS   , _("on weekdays")  }
 };
 
 #define TIMERLIST_STANDBY_OPTION_COUNT 2
 const keyval TIMERLIST_STANDBY_OPTIONS[TIMERLIST_STANDBY_OPTION_COUNT] =
 {
-	{ 0 , LOCALE_TIMERLIST_STANDBY_OFF, NULL },
-	{ 1 , LOCALE_TIMERLIST_STANDBY_ON, NULL  }
+	{ 0 , _("Leave standby") },
+	{ 1 , _("Enter standby")  }
 };
 
-#if 1
 #define TIMERLIST_TYPE_OPTION_COUNT 7
-#else
-#define TIMERLIST_TYPE_OPTION_COUNT 8
-#endif
+
 const keyval TIMERLIST_TYPE_OPTIONS[TIMERLIST_TYPE_OPTION_COUNT] =
 {
-	{ CTimerd::TIMER_SHUTDOWN   , LOCALE_TIMERLIST_TYPE_SHUTDOWN, NULL    },
-#if 0
-	{ CTimerd::TIMER_NEXTPROGRAM, LOCALE_TIMERLIST_TYPE_NEXTPROGRAM, NULL },
-#endif
-	{ CTimerd::TIMER_ZAPTO      , LOCALE_TIMERLIST_TYPE_ZAPTO, NULL       },
-	{ CTimerd::TIMER_STANDBY    , LOCALE_TIMERLIST_TYPE_STANDBY, NULL     },
-	{ CTimerd::TIMER_RECORD     , LOCALE_TIMERLIST_TYPE_RECORD, NULL      },
-	{ CTimerd::TIMER_SLEEPTIMER , LOCALE_TIMERLIST_TYPE_SLEEPTIMER, NULL  },
-	{ CTimerd::TIMER_REMIND     , LOCALE_TIMERLIST_TYPE_REMIND, NULL      },
-	{ CTimerd::TIMER_EXEC_PLUGIN, LOCALE_TIMERLIST_TYPE_EXECPLUGIN, NULL  }
+	{ CTimerd::TIMER_SHUTDOWN   , _("Shutdown")   },
+	{ CTimerd::TIMER_ZAPTO      , _("Zap to")       },
+	{ CTimerd::TIMER_STANDBY    , _("Standby")     },
+	{ CTimerd::TIMER_RECORD     , _("Record")      },
+	{ CTimerd::TIMER_SLEEPTIMER , _("Sleeptimer")  },
+	{ CTimerd::TIMER_REMIND     , _("Remind")      },
+	{ CTimerd::TIMER_EXEC_PLUGIN, _("Execute plugin")  }
 };
 
 #define MESSAGEBOX_NO_YES_OPTION_COUNT 2
 const keyval MESSAGEBOX_NO_YES_OPTIONS[MESSAGEBOX_NO_YES_OPTION_COUNT] =
 {
-	{ 0, LOCALE_MESSAGEBOX_NO, NULL  },
-	{ 1, LOCALE_MESSAGEBOX_YES, NULL }
+	{ 0, _("No")  },
+	{ 1, _("Yes") }
 };
 
 int CTimerList::modifyTimer()
@@ -970,7 +964,7 @@ int CTimerList::modifyTimer()
 
 	// repeat
 	CTimerListRepeatNotifier notifier((int *)&timer->eventRepeat, m4, m5);
-	CMenuOptionChooser * m3 = new CMenuOptionChooser(LOCALE_TIMERLIST_REPEAT, (int *)&timer->eventRepeat, TIMERLIST_REPEAT_OPTIONS, TIMERLIST_REPEAT_OPTION_COUNT, true, &notifier);
+	CMenuOptionChooser * m3 = new CMenuOptionChooser(_("Repeat"), (int *)&timer->eventRepeat, TIMERLIST_REPEAT_OPTIONS, TIMERLIST_REPEAT_OPTION_COUNT, true, &notifier);
 
 	//printf("TIMER: rec dir %s len %s\n", timer->recordingDir, strlen(timer->recordingDir));
 
@@ -1007,13 +1001,13 @@ int CTimerList::modifyTimer()
 
 	timerSettings_apids.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	timerSettings_apids.addItem(new CMenuSeparator(LINE));
-	CMenuOptionChooser* ma1 = new CMenuOptionChooser(LOCALE_TIMERLIST_APIDS_DFLT, &timer_apids_dflt, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
+	CMenuOptionChooser* ma1 = new CMenuOptionChooser(_("Record default audio streams"), &timer_apids_dflt, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
 	timerSettings_apids.addItem(ma1);
-	CMenuOptionChooser* ma2 = new CMenuOptionChooser(LOCALE_RECORDINGMENU_APIDS_STD, &timer_apids_std, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
+	CMenuOptionChooser* ma2 = new CMenuOptionChooser(_("Record standard stream"), &timer_apids_std, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
 	timerSettings_apids.addItem(ma2);
-	CMenuOptionChooser* ma3 = new CMenuOptionChooser(LOCALE_RECORDINGMENU_APIDS_ALT, &timer_apids_alt, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
+	CMenuOptionChooser* ma3 = new CMenuOptionChooser(_("Record alternative streams"), &timer_apids_alt, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
 	timerSettings_apids.addItem(ma3);
-	CMenuOptionChooser* ma4 = new CMenuOptionChooser(LOCALE_RECORDINGMENU_APIDS_AC3, &timer_apids_ac3, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
+	CMenuOptionChooser* ma4 = new CMenuOptionChooser(_("Record AC3 streams"), &timer_apids_ac3, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
 	timerSettings_apids.addItem(ma4);
 	apid_notifier.setItems(ma1,ma2,ma3,ma4);
 
@@ -1070,7 +1064,7 @@ int CTimerList::newTimer()
 	CTimerListRepeatNotifier notifier((int *)&timerNew.eventRepeat, m4, m5);
 	
 	// repeat
-	CMenuOptionChooser* m3 = new CMenuOptionChooser(LOCALE_TIMERLIST_REPEAT, (int *)&timerNew.eventRepeat, TIMERLIST_REPEAT_OPTIONS, TIMERLIST_REPEAT_OPTION_COUNT, true, &notifier, RC_nokey, "", true);
+	CMenuOptionChooser* m3 = new CMenuOptionChooser(_("Repeat"), (int *)&timerNew.eventRepeat, TIMERLIST_REPEAT_OPTIONS, TIMERLIST_REPEAT_OPTION_COUNT, true, &notifier, RC_nokey, "", true);
 	
 	// channel
 	CMenuForwarder *m6 = new CMenuForwarder(_("Channel"), true, timerNew_channel_name.c_str(), this, CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_tv? "tv" : CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio? "radio" : "webtv");
@@ -1086,7 +1080,7 @@ int CTimerList::newTimer()
 	CMenuForwarder* m7 = new CMenuForwarder(_("Recording directory"), true, timerNew.recordingDir, this, "recording_dir");
 
 	// sb
-	CMenuOptionChooser* m8 = new CMenuOptionChooser(LOCALE_TIMERLIST_STANDBY, &timerNew_standby_on, TIMERLIST_STANDBY_OPTIONS, TIMERLIST_STANDBY_OPTION_COUNT, false);
+	CMenuOptionChooser* m8 = new CMenuOptionChooser(_("SB mode"), &timerNew_standby_on, TIMERLIST_STANDBY_OPTIONS, TIMERLIST_STANDBY_OPTION_COUNT, false);
 
 	// message
 	CStringInputSMS timerSettings_msg(LOCALE_TIMERLIST_MESSAGE, timerNew.message);
@@ -1099,7 +1093,7 @@ int CTimerList::newTimer()
 	CTimerListNewNotifier notifier2((int *)&timerNew.eventType,
 					&timerNew.stopTime, m2, m6, m8, m9, m10, m7,
 					timerSettings_stopTime.getValue());
-	CMenuOptionChooser *m0 = new CMenuOptionChooser(LOCALE_TIMERLIST_TYPE, (int *)&timerNew.eventType, TIMERLIST_TYPE_OPTIONS, TIMERLIST_TYPE_OPTION_COUNT, true, &notifier2);
+	CMenuOptionChooser *m0 = new CMenuOptionChooser(_("Timer typ"), (int *)&timerNew.eventType, TIMERLIST_TYPE_OPTIONS, TIMERLIST_TYPE_OPTION_COUNT, true, &notifier2);
 
 	timerSettings.addItem( m0);
 	timerSettings.addItem( m1);

@@ -1424,12 +1424,12 @@ int EpgPlus::MenuTargetRefreshEpg::exec(CMenuTarget */*parent*/, const std::stri
 }
 
 struct keyval menuOptionChooserSwitchSwapModes[] = {
-	{EpgPlus::SwapMode_ByPage, LOCALE_EPGPLUS_BYPAGE_MODE, NULL},
-	{EpgPlus::SwapMode_ByBouquet, LOCALE_EPGPLUS_BYBOUQUET_MODE, NULL}
+	{EpgPlus::SwapMode_ByPage, _("by page") },
+	{EpgPlus::SwapMode_ByBouquet, _("by bouquet")}
 };
 
 EpgPlus::MenuOptionChooserSwitchSwapMode::MenuOptionChooserSwitchSwapMode (EpgPlus * _epgPlus)
-:CMenuOptionChooser (LOCALE_EPGPLUS_SWAP_MODE, (int *) &_epgPlus->currentSwapMode, menuOptionChooserSwitchSwapModes, sizeof (menuOptionChooserSwitchSwapModes) / sizeof (keyval)
+:CMenuOptionChooser (_("swap mode"), (int *) &_epgPlus->currentSwapMode, menuOptionChooserSwitchSwapModes, sizeof (menuOptionChooserSwitchSwapModes) / sizeof (keyval)
 					  , true, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW) 
 {
 	this->epgPlus = _epgPlus;
@@ -1472,13 +1472,14 @@ int EpgPlus::MenuOptionChooserSwitchSwapMode::exec(CMenuTarget* parent)
 	return RETURN_REPAINT;
 }
 
-struct keyval menuOptionChooserSwitchViewModes[] = {
-  {EpgPlus::ViewMode_Scroll, LOCALE_EPGPLUS_STRETCH_MODE, NULL},
-  {EpgPlus::ViewMode_Stretch, LOCALE_EPGPLUS_SCROLL_MODE, NULL}
+struct keyval menuOptionChooserSwitchViewModes[] = 
+{
+  	{EpgPlus::ViewMode_Scroll, _("Stretch Mode")},
+  	{EpgPlus::ViewMode_Stretch, _("Scroll Mode")}
 };
 
 EpgPlus::MenuOptionChooserSwitchViewMode::MenuOptionChooserSwitchViewMode (EpgPlus * epgPlus)
-:CMenuOptionChooser (LOCALE_EPGPLUS_VIEW_MODE, (int *) &epgPlus->currentViewMode, menuOptionChooserSwitchViewModes, sizeof (menuOptionChooserSwitchViewModes) / sizeof (keyval)
+:CMenuOptionChooser (_("view mode"), (int *) &epgPlus->currentViewMode, menuOptionChooserSwitchViewModes, sizeof (menuOptionChooserSwitchViewModes) / sizeof (keyval)
 					  , true, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE) 
 {
   	this->oldTimingMenuSettings = g_settings.timing[SNeutrinoSettings::TIMING_MENU];

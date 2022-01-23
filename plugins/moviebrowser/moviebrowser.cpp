@@ -98,52 +98,52 @@ extern off64_t copy_movie(MI_MOVIE_INFO * minfo, CMovieInfo * cmovie, bool onefi
 #define MESSAGEBOX_BROWSER_ROW_ITEM_COUNT 20
 const keyval MESSAGEBOX_BROWSER_ROW_ITEM[MESSAGEBOX_BROWSER_ROW_ITEM_COUNT] =
 {
-	{ MB_INFO_FILENAME, LOCALE_MOVIEBROWSER_INFO_FILENAME, NULL },
-	{ MB_INFO_FILEPATH, LOCALE_MOVIEBROWSER_INFO_PATH, NULL },
-	{ MB_INFO_TITLE, LOCALE_MOVIEBROWSER_INFO_TITLE, NULL },
-	{ MB_INFO_SERIE, LOCALE_MOVIEBROWSER_INFO_SERIE, NULL },
-	{ MB_INFO_INFO1, LOCALE_MOVIEBROWSER_INFO_INFO1, NULL },
-	{ MB_INFO_MAJOR_GENRE, LOCALE_MOVIEBROWSER_INFO_GENRE_MAJOR, NULL },
-	{ MB_INFO_MINOR_GENRE, LOCALE_MOVIEBROWSER_INFO_GENRE_MINOR, NULL },
-	{ MB_INFO_PARENTAL_LOCKAGE, LOCALE_MOVIEBROWSER_INFO_PARENTAL_LOCKAGE, NULL },
-	{ MB_INFO_CHANNEL, LOCALE_MOVIEBROWSER_INFO_CHANNEL, NULL },
-	{ MB_INFO_QUALITY, LOCALE_MOVIEBROWSER_INFO_QUALITY, NULL },
-	{ MB_INFO_PREVPLAYDATE, LOCALE_MOVIEBROWSER_INFO_PREVPLAYDATE, NULL },
-	{ MB_INFO_RECORDDATE, LOCALE_MOVIEBROWSER_INFO_RECORDDATE, NULL },
-	{ MB_INFO_PRODDATE, LOCALE_MOVIEBROWSER_INFO_PRODYEAR, NULL },
-	{ MB_INFO_COUNTRY, LOCALE_MOVIEBROWSER_INFO_PRODCOUNTRY, NULL },
-	{ MB_INFO_GEOMETRIE, LOCALE_MOVIEBROWSER_INFO_VIDEOFORMAT, NULL },
-	{ MB_INFO_AUDIO, LOCALE_MOVIEBROWSER_INFO_AUDIO, NULL },
-	{ MB_INFO_LENGTH, LOCALE_MOVIEBROWSER_INFO_LENGTH, NULL },
-	{ MB_INFO_SIZE, LOCALE_MOVIEBROWSER_INFO_SIZE, NULL },
-	{ MB_INFO_BOOKMARK, LOCALE_MOVIEBROWSER_MENU_MAIN_BOOKMARKS, NULL },
-	{ MB_INFO_FILENAME, LOCALE_MOVIEBROWSER_INFO_FILENAME, NULL }
+	{ MB_INFO_FILENAME, _("Name") },
+	{ MB_INFO_FILEPATH, _("Path") },
+	{ MB_INFO_TITLE, _("Title") },
+	{ MB_INFO_SERIE, _("Serie") },
+	{ MB_INFO_INFO1, _("Info 1") },
+	{ MB_INFO_MAJOR_GENRE, _("Genre") },
+	{ MB_INFO_MINOR_GENRE, _("Genre") },
+	{ MB_INFO_PARENTAL_LOCKAGE, _("Age") },
+	{ MB_INFO_CHANNEL, _("Channel") },
+	{ MB_INFO_QUALITY, _("Quality") },
+	{ MB_INFO_PREVPLAYDATE, _("Last play date") },
+	{ MB_INFO_RECORDDATE, _("Date") },
+	{ MB_INFO_PRODDATE, _("Year") },
+	{ MB_INFO_COUNTRY, _("Country") },
+	{ MB_INFO_GEOMETRIE, _("Picture") },
+	{ MB_INFO_AUDIO, _("Audio") },
+	{ MB_INFO_LENGTH, _("Length (min") },
+	{ MB_INFO_SIZE, _("Size") },
+	{ MB_INFO_BOOKMARK, _("Bookmarks") },
+	{ MB_INFO_FILENAME, _("Name") }
  };
 
 #define MESSAGEBOX_YES_NO_OPTIONS_COUNT 2
 const keyval MESSAGEBOX_YES_NO_OPTIONS[MESSAGEBOX_YES_NO_OPTIONS_COUNT] =
 {
-	{ 0, LOCALE_MESSAGEBOX_NO, NULL },
-	{ 1, LOCALE_MESSAGEBOX_YES, NULL }
+	{ 0, _("No") },
+	{ 1, _("Yes") }
 };
 
 #define MESSAGEBOX_PARENTAL_LOCK_OPTIONS_COUNT 3
 const keyval MESSAGEBOX_PARENTAL_LOCK_OPTIONS[MESSAGEBOX_PARENTAL_LOCK_OPTIONS_COUNT] =
 {
-	{ 1, LOCALE_MOVIEBROWSER_MENU_PARENTAL_LOCK_ACTIVATED_YES, NULL },
-	{ 0, LOCALE_MOVIEBROWSER_MENU_PARENTAL_LOCK_ACTIVATED_NO, NULL },
-	{ 2, LOCALE_MOVIEBROWSER_MENU_PARENTAL_LOCK_ACTIVATED_NO_TEMP, NULL }
+	{ 1, _("yes") },
+	{ 0, _("no") },
+	{ 2, _("no (temporary)") }
 };
 
 #define MESSAGEBOX_PARENTAL_LOCKAGE_OPTION_COUNT 6
 const keyval MESSAGEBOX_PARENTAL_LOCKAGE_OPTIONS[MESSAGEBOX_PARENTAL_LOCKAGE_OPTION_COUNT] =
 {
-	{ 0,  LOCALE_MOVIEBROWSER_INFO_PARENTAL_LOCKAGE_0YEAR, NULL },
-	{ 6,  LOCALE_MOVIEBROWSER_INFO_PARENTAL_LOCKAGE_6YEAR, NULL },
-	{ 12, LOCALE_MOVIEBROWSER_INFO_PARENTAL_LOCKAGE_12YEAR, NULL },
-	{ 16, LOCALE_MOVIEBROWSER_INFO_PARENTAL_LOCKAGE_16YEAR, NULL },
-	{ 18, LOCALE_MOVIEBROWSER_INFO_PARENTAL_LOCKAGE_18YEAR, NULL },
-	{ 99, LOCALE_MOVIEBROWSER_INFO_PARENTAL_LOCKAGE_ALWAYS, NULL }
+	{ 0,  _("always") },
+	{ 6,  _("6 years") },
+	{ 12, _("12 years") },
+	{ 16, _("16 years") },
+	{ 18, _("18 years") },
+	{ 99, _("never") }
 };	
 
 #define TITLE_FONT 			g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]
@@ -1473,7 +1473,7 @@ void CMovieBrowser::refreshFilterList(void)
 		{
 			for(int i = 0; i < GENRE_ALL_COUNT; i++)
 			{
-				std::string _tmp = g_Locale->getText(GENRE_ALL[i].value);
+				std::string _tmp = GENRE_ALL[i].valname;
 				m_FilterLines.lineArray[0].push_back(_tmp);
 			}
 		}
@@ -2835,7 +2835,7 @@ void CMovieBrowser::updateFilterSelection(void)
 	}
 	else if(m_settings.filter.item == MB_INFO_MAJOR_GENRE)
 	{
-		m_settings.filter.optionString = g_Locale->getText(GENRE_ALL[selected_line].value);
+		m_settings.filter.optionString = GENRE_ALL[selected_line].valname;
 		m_settings.filter.optionVar = GENRE_ALL[selected_line].key;
 	}
 	else if(m_settings.filter.item == MB_INFO_SERIE)
@@ -3026,31 +3026,31 @@ void CMovieBrowser::showMovieInfoMenu(MI_MOVIE_INFO * movie_info)
         movieInfoMenuUpdate.addItem(new CMenuSeparator(LINE));
 
 	// save all
-        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_UPDATE_IF_DEST_EMPTY_ONLY, (&movieInfoUpdateAllIfDestEmptyOnly), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE ));
+        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(_("Copy if destination is empty only"), (&movieInfoUpdateAllIfDestEmptyOnly), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE ));
 
 	// title
         movieInfoMenuUpdate.addItem(new CMenuSeparator(LINE));
-        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_INFO_TITLE,             &movieInfoUpdateAll[MB_INFO_TITLE], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_1, NEUTRINO_ICON_BUTTON_1));
+        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(_("Titel"),             &movieInfoUpdateAll[MB_INFO_TITLE], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_1, NEUTRINO_ICON_BUTTON_1));
 
 	// epgInfo1
-        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_INFO_INFO1,             &movieInfoUpdateAll[MB_INFO_INFO1], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true, NULL, RC_2, NEUTRINO_ICON_BUTTON_2));
+        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(_("Info 1"),             &movieInfoUpdateAll[MB_INFO_INFO1], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true, NULL, RC_2, NEUTRINO_ICON_BUTTON_2));
 
 	// epgInfo2
-	movieInfoMenuUpdate.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_INFO_INFO2,             &movieInfoUpdateAll[MB_INFO_INFO2], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_3, NEUTRINO_ICON_BUTTON_3));
+	movieInfoMenuUpdate.addItem(new CMenuOptionChooser(_("Info 2"),             &movieInfoUpdateAll[MB_INFO_INFO2], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_3, NEUTRINO_ICON_BUTTON_3));
 
-        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_INFO_SERIE,             &movieInfoUpdateAll[MB_INFO_SERIE], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_4, NEUTRINO_ICON_BUTTON_4));
+        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(_("Serie"),             &movieInfoUpdateAll[MB_INFO_SERIE], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_4, NEUTRINO_ICON_BUTTON_4));
 
-        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_INFO_QUALITY,           &movieInfoUpdateAll[MB_INFO_QUALITY], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true , NULL, RC_5, NEUTRINO_ICON_BUTTON_5));
+        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(_("Quality"),           &movieInfoUpdateAll[MB_INFO_QUALITY], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true , NULL, RC_5, NEUTRINO_ICON_BUTTON_5));
 
-        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_INFO_PARENTAL_LOCKAGE,  &movieInfoUpdateAll[MB_INFO_PARENTAL_LOCKAGE], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_6, NEUTRINO_ICON_BUTTON_6 ));
+        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(_("Parental Lock"),  &movieInfoUpdateAll[MB_INFO_PARENTAL_LOCKAGE], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_6, NEUTRINO_ICON_BUTTON_6 ));
 
-        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_INFO_GENRE_MAJOR,       &movieInfoUpdateAll[MB_INFO_MAJOR_GENRE], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_7, NEUTRINO_ICON_BUTTON_7));
+        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(_("Genre"),       &movieInfoUpdateAll[MB_INFO_MAJOR_GENRE], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_7, NEUTRINO_ICON_BUTTON_7));
 
-        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_INFO_PRODYEAR,          &movieInfoUpdateAll[MB_INFO_PRODDATE], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_8, NEUTRINO_ICON_BUTTON_8));
+        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(_("Year"),          &movieInfoUpdateAll[MB_INFO_PRODDATE], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_8, NEUTRINO_ICON_BUTTON_8));
 
-        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_INFO_PRODCOUNTRY,       &movieInfoUpdateAll[MB_INFO_COUNTRY], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_9, NEUTRINO_ICON_BUTTON_9));
+        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(_("Country"),       &movieInfoUpdateAll[MB_INFO_COUNTRY], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true,NULL, RC_9, NEUTRINO_ICON_BUTTON_9));
 
-        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_INFO_LENGTH,            &movieInfoUpdateAll[MB_INFO_LENGTH], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true, NULL, RC_0, NEUTRINO_ICON_BUTTON_0));
+        movieInfoMenuUpdate.addItem(new CMenuOptionChooser(_("Length (min)"),            &movieInfoUpdateAll[MB_INFO_LENGTH], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true, NULL, RC_0, NEUTRINO_ICON_BUTTON_0));
 
 	// movieInfo Menu
 #define BUFFER_SIZE 100
@@ -3125,7 +3125,7 @@ void CMovieBrowser::showMovieInfoMenu(MI_MOVIE_INFO * movie_info)
 	movieInfoMenu.addItem(new CMenuOptionNumberChooser(_("Quality"), &movie_info->quality, true, 0, 3, NULL));
 
 	// parentallock
-	movieInfoMenu.addItem(new CMenuOptionChooser(LOCALE_MOVIEBROWSER_INFO_PARENTAL_LOCKAGE, &movie_info->parentalLockAge, MESSAGEBOX_PARENTAL_LOCKAGE_OPTIONS, MESSAGEBOX_PARENTAL_LOCKAGE_OPTION_COUNT, true, NULL, RC_6, NEUTRINO_ICON_BUTTON_6, true));
+	movieInfoMenu.addItem(new CMenuOptionChooser(_("Age"), &movie_info->parentalLockAge, MESSAGEBOX_PARENTAL_LOCKAGE_OPTIONS, MESSAGEBOX_PARENTAL_LOCKAGE_OPTION_COUNT, true, NULL, RC_6, NEUTRINO_ICON_BUTTON_6, true));
 
 	// prod date
 	movieInfoMenu.addItem(new CMenuForwarder(_("Year"), true, yearUserIntInput.getValue(), &yearUserIntInput, NULL, RC_7, NEUTRINO_ICON_BUTTON_7));
@@ -3198,9 +3198,9 @@ bool CMovieBrowser::showMenu()
 	parentalMenu.setWidgetMode(MODE_SETUP);
 	parentalMenu.enableShrinkMenu();
 	
-	parentalMenu.addItem( new CMenuOptionChooser(LOCALE_MOVIEBROWSER_MENU_PARENTAL_LOCK_ACTIVATED, (int*)(&m_parentalLock), MESSAGEBOX_PARENTAL_LOCK_OPTIONS, MESSAGEBOX_PARENTAL_LOCK_OPTIONS_COUNT, true ));
+	parentalMenu.addItem( new CMenuOptionChooser(_("activated"), (int*)(&m_parentalLock), MESSAGEBOX_PARENTAL_LOCK_OPTIONS, MESSAGEBOX_PARENTAL_LOCK_OPTIONS_COUNT, true ));
 
-	parentalMenu.addItem( new CMenuOptionChooser(LOCALE_MOVIEBROWSER_MENU_PARENTAL_LOCK_RATE_HEAD, (int*)(&m_settings.parentalLockAge), MESSAGEBOX_PARENTAL_LOCKAGE_OPTIONS, MESSAGEBOX_PARENTAL_LOCKAGE_OPTION_COUNT, true ));
+	parentalMenu.addItem( new CMenuOptionChooser(_("Lock movies from"), (int*)(&m_settings.parentalLockAge), MESSAGEBOX_PARENTAL_LOCKAGE_OPTIONS, MESSAGEBOX_PARENTAL_LOCKAGE_OPTION_COUNT, true ));
 
 	// optionsMenuDir
 	CMenuWidget optionsMenuDir(_("Additional paths"), NEUTRINO_ICON_MOVIE);
@@ -3208,13 +3208,13 @@ bool CMovieBrowser::showMenu()
 	optionsMenuDir.setWidgetMode(MODE_SETUP);
 	optionsMenuDir.enableShrinkMenu();
 	
-	optionsMenuDir.addItem( new CMenuOptionChooser(LOCALE_MOVIEBROWSER_USE_REC_DIR, (int*)(&m_settings.storageDirRecUsed), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
+	optionsMenuDir.addItem( new CMenuOptionChooser(_("Use record directory"), (int*)(&m_settings.storageDirRecUsed), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
 	optionsMenuDir.addItem( new CMenuForwarder(_("Path"), false ,g_settings.network_nfs_recordingdir));
 
-	optionsMenuDir.addItem( new CMenuOptionChooser(LOCALE_MOVIEBROWSER_USE_MOVIE_DIR, (int*)(&m_settings.storageDirMovieUsed), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
+	optionsMenuDir.addItem( new CMenuOptionChooser(_("Use movie directory"), (int*)(&m_settings.storageDirMovieUsed), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
 	optionsMenuDir.addItem( new CMenuForwarder (_("Path"), false , g_settings.network_nfs_moviedir));
 	
-	optionsMenuDir.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_MOVIEBROWSER_DIR_HEAD)));
+	optionsMenuDir.addItem(new CMenuSeparator(LINE | STRING, _("Paths")));
 	
 	CFileChooser * dirInput[MB_MAX_DIRS];
 	CMenuOptionChooser * chooser[MB_MAX_DIRS];
@@ -3226,7 +3226,7 @@ bool CMovieBrowser::showMenu()
 		dirInput[i] =  new CFileChooser(&m_settings.storageDir[i]);
 		forwarder[i] = new CMenuForwarder(_("Path"), m_settings.storageDirUsed[i], m_settings.storageDir[i].c_str(), dirInput[i]);
 		notifier[i] =  new COnOffNotifier(forwarder[i]);
-		chooser[i] =   new CMenuOptionChooser(LOCALE_MOVIEBROWSER_USE_DIR , &m_settings.storageDirUsed[i], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true, notifier[i]);
+		chooser[i] =   new CMenuOptionChooser(_("Use directory"), &m_settings.storageDirUsed[i], MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true, notifier[i]);
 		optionsMenuDir.addItem(chooser[i] );
 		optionsMenuDir.addItem(forwarder[i] );
 		
@@ -3257,7 +3257,7 @@ bool CMovieBrowser::showMenu()
 	
 	for(i = 0; i < MB_MAX_ROWS; i++)
 	{
-		optionsMenuBrowser.addItem( new CMenuOptionChooser(LOCALE_MOVIEBROWSER_BROWSER_ROW_ITEM, (int*)(&m_settings.browserRowItem[i]), MESSAGEBOX_BROWSER_ROW_ITEM, MESSAGEBOX_BROWSER_ROW_ITEM_COUNT, true ));
+		optionsMenuBrowser.addItem( new CMenuOptionChooser(_("Row item"), (int*)(&m_settings.browserRowItem[i]), MESSAGEBOX_BROWSER_ROW_ITEM, MESSAGEBOX_BROWSER_ROW_ITEM_COUNT, true ));
 		optionsMenuBrowser.addItem( new CMenuForwarder(_("Row width"),    true, browserRowWidthIntInput[i]->getValue(), browserRowWidthIntInput[i]));
 
 		if(i < MB_MAX_ROWS - 1)
@@ -3283,11 +3283,11 @@ bool CMovieBrowser::showMenu()
 		optionsMenu.addItem( new CMenuForwarder(_("Parental Lock"),   true, NULL, &parentalMenu, NULL, RC_nokey, NULL));
 	
 	optionsMenu.addItem( new CMenuSeparator(LINE));
-	optionsMenu.addItem( new CMenuOptionChooser(LOCALE_MOVIEBROWSER_RELOAD_AT_START, (int*)(&m_settings.reload), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
-	optionsMenu.addItem( new CMenuOptionChooser(LOCALE_MOVIEBROWSER_REMOUNT_AT_START, (int*)(&m_settings.remount), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
+	optionsMenu.addItem( new CMenuOptionChooser(_("Reload movie info at start"), (int*)(&m_settings.reload), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
+	optionsMenu.addItem( new CMenuOptionChooser(_("Remount at start"), (int*)(&m_settings.remount), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
 	optionsMenu.addItem( new CMenuSeparator(LINE));
-	optionsMenu.addItem( new CMenuOptionChooser(LOCALE_MOVIEBROWSER_HIDE_SERIES, (int*)(&m_settings.browser_serie_mode), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
-	optionsMenu.addItem( new CMenuOptionChooser(LOCALE_MOVIEBROWSER_SERIE_AUTO_CREATE, (int*)(&m_settings.serie_auto_create), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
+	optionsMenu.addItem( new CMenuOptionChooser(_("Hide series"), (int*)(&m_settings.browser_serie_mode), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
+	optionsMenu.addItem( new CMenuOptionChooser(_("Serie auto create"), (int*)(&m_settings.serie_auto_create), MESSAGEBOX_YES_NO_OPTIONS, MESSAGEBOX_YES_NO_OPTIONS_COUNT, true ));
  
 	// main menu
 	CMovieHelp * movieHelp = new CMovieHelp();

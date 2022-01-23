@@ -437,222 +437,222 @@ class CDirMenu : public CMenuWidget
 #define GENRE_ALL_COUNT 76
 const keyval GENRE_ALL[GENRE_ALL_COUNT] =
 {
-	{ 0x00, LOCALE_GENRE_UNKNOWN, NULL },
-	{ 0x10, LOCALE_GENRE_MOVIE_0, NULL },
-	{ 0x11, LOCALE_GENRE_MOVIE_1, NULL },
-	{ 0x12, LOCALE_GENRE_MOVIE_2, NULL },
-	{ 0x13, LOCALE_GENRE_MOVIE_3, NULL },
-	{ 0x14, LOCALE_GENRE_MOVIE_4, NULL },
-	{ 0x15, LOCALE_GENRE_MOVIE_5, NULL },
-	{ 0x16, LOCALE_GENRE_MOVIE_6, NULL },
-	{ 0x17, LOCALE_GENRE_MOVIE_7, NULL },
-	{ 0x18, LOCALE_GENRE_MOVIE_8, NULL },
-	{ 0x20, LOCALE_GENRE_NEWS_0, NULL },
-	{ 0x21, LOCALE_GENRE_NEWS_1, NULL },
-	{ 0x22, LOCALE_GENRE_NEWS_2, NULL },
-	{ 0x23, LOCALE_GENRE_NEWS_3, NULL },
-	{ 0x24, LOCALE_GENRE_NEWS_4, NULL },
-	{ 0x30, LOCALE_GENRE_SHOW_0, NULL },
-	{ 0x31, LOCALE_GENRE_SHOW_1, NULL },
-	{ 0x32, LOCALE_GENRE_SHOW_2, NULL },
-	{ 0x33, LOCALE_GENRE_SHOW_3, NULL },
-	{ 0x40, LOCALE_GENRE_SPORTS_0, NULL },
-	{ 0x41, LOCALE_GENRE_SPORTS_1, NULL },
-	{ 0x42, LOCALE_GENRE_SPORTS_2, NULL },
-	{ 0x43, LOCALE_GENRE_SPORTS_3, NULL },
-	{ 0x44, LOCALE_GENRE_SPORTS_4, NULL },
-	{ 0x45, LOCALE_GENRE_SPORTS_5, NULL },
-	{ 0x46, LOCALE_GENRE_SPORTS_6, NULL },
-	{ 0x47, LOCALE_GENRE_SPORTS_7, NULL },
-	{ 0x48, LOCALE_GENRE_SPORTS_8, NULL },
-	{ 0x49, LOCALE_GENRE_SPORTS_9, NULL },
-	{ 0x4A, LOCALE_GENRE_SPORTS_10, NULL },
-	{ 0x4B, LOCALE_GENRE_SPORTS_11, NULL },
-	{ 0x50, LOCALE_GENRE_CHILDRENS_PROGRAMMES_0, NULL },
-	{ 0x51, LOCALE_GENRE_CHILDRENS_PROGRAMMES_1, NULL },
-	{ 0x52, LOCALE_GENRE_CHILDRENS_PROGRAMMES_2, NULL },
-	{ 0x53, LOCALE_GENRE_CHILDRENS_PROGRAMMES_3, NULL },
-	{ 0x54, LOCALE_GENRE_CHILDRENS_PROGRAMMES_4, NULL },
-	{ 0x55, LOCALE_GENRE_CHILDRENS_PROGRAMMES_5, NULL },
-	{ 0x60, LOCALE_GENRE_MUSIC_DANCE_0, NULL },
-	{ 0x61, LOCALE_GENRE_MUSIC_DANCE_1, NULL },
-	{ 0x62, LOCALE_GENRE_MUSIC_DANCE_2, NULL },
-	{ 0x63, LOCALE_GENRE_MUSIC_DANCE_3, NULL },
-	{ 0x64, LOCALE_GENRE_MUSIC_DANCE_4, NULL },
-	{ 0x65, LOCALE_GENRE_MUSIC_DANCE_5, NULL },
-	{ 0x66, LOCALE_GENRE_MUSIC_DANCE_6, NULL },
-	{ 0x70, LOCALE_GENRE_ARTS_0, NULL },
-	{ 0x71, LOCALE_GENRE_ARTS_1, NULL },
-	{ 0x72, LOCALE_GENRE_ARTS_2, NULL },
-	{ 0x73, LOCALE_GENRE_ARTS_3, NULL },
-	{ 0x74, LOCALE_GENRE_ARTS_4, NULL },
-	{ 0x75, LOCALE_GENRE_ARTS_5, NULL },
-	{ 0x76, LOCALE_GENRE_ARTS_6, NULL },
-	{ 0x77, LOCALE_GENRE_ARTS_7, NULL },
-	{ 0x78, LOCALE_GENRE_ARTS_8, NULL },
-	{ 0x79, LOCALE_GENRE_ARTS_9, NULL },
-	{ 0x7A, LOCALE_GENRE_ARTS_10, NULL },
-	{ 0x7B, LOCALE_GENRE_ARTS_11, NULL },
-	{ 0x80, LOCALE_GENRE_SOCIAL_POLITICAL_0, NULL },
-	{ 0x81, LOCALE_GENRE_SOCIAL_POLITICAL_1, NULL },
-	{ 0x82, LOCALE_GENRE_SOCIAL_POLITICAL_2, NULL },
-	{ 0x83, LOCALE_GENRE_SOCIAL_POLITICAL_3, NULL },
-	{ 0x90, LOCALE_GENRE_DOCUS_MAGAZINES_0, NULL },
-	{ 0x91, LOCALE_GENRE_DOCUS_MAGAZINES_1, NULL },
-	{ 0x92, LOCALE_GENRE_DOCUS_MAGAZINES_2, NULL },
-	{ 0x93, LOCALE_GENRE_DOCUS_MAGAZINES_3, NULL },
-	{ 0x94, LOCALE_GENRE_DOCUS_MAGAZINES_4, NULL },
-	{ 0x95, LOCALE_GENRE_DOCUS_MAGAZINES_5, NULL },
-	{ 0x96, LOCALE_GENRE_DOCUS_MAGAZINES_6, NULL },
-	{ 0x97, LOCALE_GENRE_DOCUS_MAGAZINES_7, NULL },
-	{ 0xA0, LOCALE_GENRE_TRAVEL_HOBBIES_0, NULL },
-	{ 0xA1, LOCALE_GENRE_TRAVEL_HOBBIES_1, NULL },
-	{ 0xA2, LOCALE_GENRE_TRAVEL_HOBBIES_2, NULL },
-	{ 0xA3, LOCALE_GENRE_TRAVEL_HOBBIES_3, NULL },
-	{ 0xA4, LOCALE_GENRE_TRAVEL_HOBBIES_4, NULL },
-	{ 0xA5, LOCALE_GENRE_TRAVEL_HOBBIES_5, NULL },
-	{ 0xA6, LOCALE_GENRE_TRAVEL_HOBBIES_6, NULL },
-	{ 0xA7, LOCALE_GENRE_TRAVEL_HOBBIES_7, NULL }
+	{ 0x00, _("unknown") },
+	{ 0x10, _("movie/drama") },
+	{ 0x11, _("detective/thriller") },
+	{ 0x12, _("adventure/western/war") },
+	{ 0x13, _("science fiction/fantasy/horror") },
+	{ 0x14, _("comedy") },
+	{ 0x15, _("soap/melodrama/folkloric") },
+	{ 0x16, _("romance") },
+	{ 0x17, _("serious/classical/religious/historical movie/drama") },
+	{ 0x18, _("adult movie/drama") },
+	{ 0x20, _("news") },
+	{ 0x21, _("news/weather report") },
+	{ 0x22, _("news magazine") },
+	{ 0x23, _("documentary") },
+	{ 0x24, _("discussion/interview/debate") },
+	{ 0x30, _("Show / Gameshow") },
+	{ 0x31, _("game show/quiz/contest") },
+	{ 0x32, _("variety show") },
+	{ 0x33, _("talk show") },
+	{ 0x40, _("sports") },
+	{ 0x41, _("special events (Olympic Games,World Cup etc.)") },
+	{ 0x42, _("sports magazines") },
+	{ 0x43, _("football/soccer") },
+	{ 0x44, _("tennis/squash") },
+	{ 0x45, _("team sports (excluding football)") },
+	{ 0x46, _("athletics") },
+	{ 0x47, _("motor sports") },
+	{ 0x48, _("water sports") },
+	{ 0x49, _("winter sports") },
+	{ 0x4A, _("equestrian") },
+	{ 0x4B, _("martial sports") },
+	{ 0x50, _("children / juvenile program") },
+	{ 0x51, _("pre-school children's programmes") },
+	{ 0x52, _("entertainment programmes for 6 to 14") },
+	{ 0x53, _("entertainment programmes for 10 to 16") },
+	{ 0x54, _("informational/educational/school programmes") },
+	{ 0x55, _("cartoons/puppets") },
+	{ 0x60, _("music / ballet / dance") },
+	{ 0x61, _("rock/pop") },
+	{ 0x62, _("serious music/classical music") },
+	{ 0x63, _("folk/traditional music") },
+	{ 0x64, _("jazz") },
+	{ 0x65, _("musical/opera") },
+	{ 0x66, _("ballet") },
+	{ 0x70, _("arts / culture") },
+	{ 0x71, _("performing arts") },
+	{ 0x72, _("fine arts") },
+	{ 0x73, _("religion") },
+	{ 0x74, _("popular culture/traditional arts") },
+	{ 0x75, _("literature") },
+	{ 0x76, _("film/cinema") },
+	{ 0x77, _("experimental film/video") },
+	{ 0x78, _("broadcasting/press") },
+	{ 0x79, _("new media") },
+	{ 0x7A, _("arts/culture magazines") },
+	{ 0x7B, _("fashion") },
+	{ 0x80, _("social & politic events / business") },
+	{ 0x81, _("magazines/reports/documentary") },
+	{ 0x82, _("economics/social advisory") },
+	{ 0x83, _("remarkable people") },
+	{ 0x90, _("documentation / magazine") },
+	{ 0x91, _("nature/animals/environment") },
+	{ 0x92, _("technology/natural sciences") },
+	{ 0x93, _("medicine/physiology/psychology") },
+	{ 0x94, _("foreign countries/expeditions") },
+	{ 0x95, _("social/spiritual sciences") },
+	{ 0x96, _("further education") },
+	{ 0x97, _("languages") },
+	{ 0xA0, _("travel & recreation") },
+	{ 0xA1, _("tourism/travel") },
+	{ 0xA2, _("handicraft") },
+	{ 0xA3, _("motoring") },
+	{ 0xA4, _("fitness & health") },
+	{ 0xA5, _("cooking") },
+	{ 0xA6, _("advertisement/shopping") },
+	{ 0xA7, _("gardening") }
 };
 
 #define GENRE_MOVIE_COUNT 9
 const keyval genre_movie[GENRE_MOVIE_COUNT] =
 {
-	{ 0, LOCALE_GENRE_MOVIE_0, NULL },
-	{ 1, LOCALE_GENRE_MOVIE_1, NULL },
-	{ 2, LOCALE_GENRE_MOVIE_2, NULL },
-	{ 3, LOCALE_GENRE_MOVIE_3, NULL },
-	{ 4, LOCALE_GENRE_MOVIE_4, NULL },
-	{ 5, LOCALE_GENRE_MOVIE_5, NULL },
-	{ 6, LOCALE_GENRE_MOVIE_6, NULL },
-	{ 7, LOCALE_GENRE_MOVIE_7, NULL },
-	{ 8, LOCALE_GENRE_MOVIE_8, NULL }
+	{ 0, _("movie/drama") },
+	{ 1, _("detective/thriller") },
+	{ 2, _("adventure/western/war") },
+	{ 3, _("science fiction/fantasy/horror") },
+	{ 4, _("comedy") },
+	{ 5, _("soap/melodrama/folkloric") },
+	{ 6, _("romance") },
+	{ 7, _("serious/classical/religious/historical movie/drama") },
+	{ 8, _("adult movie/drama") }
 };
 
 #define GENRE_NEWS_COUNT 5
 const keyval genre_news[GENRE_NEWS_COUNT] =
 {
-	{ 0, LOCALE_GENRE_NEWS_0, NULL },
-	{ 1, LOCALE_GENRE_NEWS_1, NULL },
-	{ 2, LOCALE_GENRE_NEWS_2, NULL },
-	{ 3, LOCALE_GENRE_NEWS_3, NULL },
-	{ 4, LOCALE_GENRE_NEWS_4, NULL }
+	{ 0, _("news") },
+	{ 1, _("news/weather report") },
+	{ 2, _("news magazine") },
+	{ 3, _("documentary") },
+	{ 4, _("discussion/interview/debate") }
 };
 
 #define GENRE_SHOW_COUNT 4
 const keyval genre_show[GENRE_SHOW_COUNT] =
 {
-	{ 0, LOCALE_GENRE_SHOW_0, NULL },
-	{ 1, LOCALE_GENRE_SHOW_1, NULL },
-	{ 2, LOCALE_GENRE_SHOW_2, NULL },
-	{ 3, LOCALE_GENRE_SHOW_3, NULL }
+	{ 0, _("Show / Gameshow") },
+	{ 1, _("game show/quiz/contest") },
+	{ 2, _("variety show") },
+	{ 3, _("talk show") }
 };
 
 #define GENRE_SPORTS_COUNT 12
 const keyval genre_sports[GENRE_SPORTS_COUNT] =
 {
-	{ 0, LOCALE_GENRE_SPORTS_0, NULL },
-	{ 1, LOCALE_GENRE_SPORTS_1, NULL },
-	{ 2, LOCALE_GENRE_SPORTS_2, NULL },
-	{ 3, LOCALE_GENRE_SPORTS_3, NULL },
-	{ 4, LOCALE_GENRE_SPORTS_4, NULL },
-	{ 5, LOCALE_GENRE_SPORTS_5, NULL },
-	{ 6, LOCALE_GENRE_SPORTS_6, NULL },
-	{ 7, LOCALE_GENRE_SPORTS_7, NULL },
-	{ 8, LOCALE_GENRE_SPORTS_8, NULL },
-	{ 9, LOCALE_GENRE_SPORTS_9, NULL },
-	{10, LOCALE_GENRE_SPORTS_10, NULL },
-	{11, LOCALE_GENRE_SPORTS_11, NULL }
+	{ 0, _("sports") },
+	{ 1, _("special events (Olympic Games,World Cup etc.)") },
+	{ 2, _("sports magazines") },
+	{ 3, _("football/soccer") },
+	{ 4, _("tennis/squash") },
+	{ 5, _("team sports (excluding football)") },
+	{ 6, _("athletics") },
+	{ 7, _("motor sports") },
+	{ 8, _("water sports") },
+	{ 9, _("winter sports") },
+	{ 10, _("equestrian") },
+	{ 11, _("martial sports") },
 };
 
 #define GENRE_CHILDRENS_PROGRAMMES_COUNT 6
 const keyval genre_childrens_programmes[GENRE_CHILDRENS_PROGRAMMES_COUNT] =
 {
-	{ 0, LOCALE_GENRE_CHILDRENS_PROGRAMMES_0, NULL },
-	{ 1, LOCALE_GENRE_CHILDRENS_PROGRAMMES_1, NULL },
-	{ 2, LOCALE_GENRE_CHILDRENS_PROGRAMMES_2, NULL },
-	{ 3, LOCALE_GENRE_CHILDRENS_PROGRAMMES_3, NULL },
-	{ 4, LOCALE_GENRE_CHILDRENS_PROGRAMMES_4, NULL },
-	{ 5, LOCALE_GENRE_CHILDRENS_PROGRAMMES_5, NULL }
+	{ 0, _("children / juvenile program") },
+	{ 1, _("pre-school children's programmes") },
+	{ 2, _("entertainment programmes for 6 to 14") },
+	{ 3, _("entertainment programmes for 10 to 16") },
+	{ 4, _("informational/educational/school programmes") },
+	{ 5, _("cartoons/puppets") },
 };
 
 #define GENRE_MUSIC_DANCE_COUNT 7
 const keyval genre_music_dance[GENRE_MUSIC_DANCE_COUNT] =
 {
-	{ 0, LOCALE_GENRE_MUSIC_DANCE_0, NULL },
-	{ 1, LOCALE_GENRE_MUSIC_DANCE_1, NULL },
-	{ 2, LOCALE_GENRE_MUSIC_DANCE_2, NULL },
-	{ 3, LOCALE_GENRE_MUSIC_DANCE_3, NULL },
-	{ 4, LOCALE_GENRE_MUSIC_DANCE_4, NULL },
-	{ 5, LOCALE_GENRE_MUSIC_DANCE_5, NULL },
-	{ 6, LOCALE_GENRE_MUSIC_DANCE_6, NULL }
+	{ 0, _("music / ballet / dance") },
+	{ 1, _("rock/pop") },
+	{ 2, _("serious music/classical music") },
+	{ 3, _("folk/traditional music") },
+	{ 4, _("jazz") },
+	{ 5, _("musical/opera") },
+	{ 6, _("ballet") },
 };
 
 #define GENRE_ARTS_COUNT 12
 const keyval genre_arts_dance[GENRE_ARTS_COUNT] =
 {
-	{ 0, LOCALE_GENRE_ARTS_0, NULL },
-	{ 1, LOCALE_GENRE_ARTS_1, NULL },
-	{ 2, LOCALE_GENRE_ARTS_2, NULL },
-	{ 3, LOCALE_GENRE_ARTS_3, NULL },
-	{ 4, LOCALE_GENRE_ARTS_4, NULL },
-	{ 5, LOCALE_GENRE_ARTS_5, NULL },
-	{ 6, LOCALE_GENRE_ARTS_6, NULL },
-	{ 7, LOCALE_GENRE_ARTS_7, NULL },
-	{ 8, LOCALE_GENRE_ARTS_8, NULL },
-	{ 9, LOCALE_GENRE_ARTS_9, NULL },
-	{10, LOCALE_GENRE_ARTS_10, NULL },
-	{11, LOCALE_GENRE_ARTS_11, NULL }
+	{ 0, _("arts / culture") },
+	{ 1, _("performing arts") },
+	{ 2, _("fine arts") },
+	{ 3, _("religion") },
+	{ 4, _("popular culture/traditional arts") },
+	{ 5, _("literature") },
+	{ 6, _("film/cinema") },
+	{ 7, _("experimental film/video") },
+	{ 8, _("broadcasting/press") },
+	{ 9, _("new media") },
+	{ 10, _("arts/culture magazines") },
+	{ 11, _("fashion") },
 };
 
 #define GENRE_SOCIAL_POLITICAL_COUNT 4
 const keyval genre_social_political[GENRE_SOCIAL_POLITICAL_COUNT] =
 {
-	{ 0, LOCALE_GENRE_SOCIAL_POLITICAL_0, NULL },
-	{ 1, LOCALE_GENRE_SOCIAL_POLITICAL_1, NULL },
-	{ 2, LOCALE_GENRE_SOCIAL_POLITICAL_2, NULL },
-	{ 3, LOCALE_GENRE_SOCIAL_POLITICAL_3, NULL }
+	{ 0, _("social & politic events / business") },
+	{ 1, _("magazines/reports/documentary") },
+	{ 2, _("economics/social advisory") },
+	{ 3, _("remarkable people") },
 };
 
 #define GENRE_DOCUS_MAGAZINES_COUNT 8
 const keyval genre_docus_magazines[GENRE_DOCUS_MAGAZINES_COUNT] =
 {
-	{ 0, LOCALE_GENRE_DOCUS_MAGAZINES_0, NULL },
-	{ 1, LOCALE_GENRE_DOCUS_MAGAZINES_1, NULL },
-	{ 2, LOCALE_GENRE_DOCUS_MAGAZINES_2, NULL },
-	{ 3, LOCALE_GENRE_DOCUS_MAGAZINES_3, NULL },
-	{ 4, LOCALE_GENRE_DOCUS_MAGAZINES_4, NULL },
-	{ 5, LOCALE_GENRE_DOCUS_MAGAZINES_5, NULL },
-	{ 6, LOCALE_GENRE_DOCUS_MAGAZINES_6, NULL },
-	{ 7, LOCALE_GENRE_DOCUS_MAGAZINES_7, NULL }
+	{ 0, _("documentation / magazine") },
+	{ 1, _("nature/animals/environment") },
+	{ 2, _("technology/natural sciences") },
+	{ 3, _("medicine/physiology/psychology") },
+	{ 4, _("foreign countries/expeditions") },
+	{ 5, _("social/spiritual sciences") },
+	{ 6, _("further education") },
+	{ 7, _("languages") },
 };
 
 #define GENRE_TRAVEL_HOBBIES_COUNT 8
 const keyval genre_travel_hobbies[GENRE_TRAVEL_HOBBIES_COUNT] =
 {
-	{ 0, LOCALE_GENRE_TRAVEL_HOBBIES_0, NULL },
-	{ 1, LOCALE_GENRE_TRAVEL_HOBBIES_1, NULL },
-	{ 2, LOCALE_GENRE_TRAVEL_HOBBIES_2, NULL },
-	{ 3, LOCALE_GENRE_TRAVEL_HOBBIES_3, NULL },
-	{ 4, LOCALE_GENRE_TRAVEL_HOBBIES_4, NULL },
-	{ 5, LOCALE_GENRE_TRAVEL_HOBBIES_5, NULL },
-	{ 6, LOCALE_GENRE_TRAVEL_HOBBIES_6, NULL },
-	{ 7, LOCALE_GENRE_TRAVEL_HOBBIES_7, NULL }
+	{ 0, _("travel & recreation") },
+	{ 1, _("tourism/travel") },
+	{ 2, _("tourism/travel") },
+	{ 3, _("handicraft") },
+	{ 4, _("motoring") },
+	{ 5, _("fitness & health") },
+	{ 6, _("cooking") },
+	{ 7, _("gardening") }
 };
 
 #define GENRE_MAJOR_COUNT 10
 const keyval genre_major[GENRE_MAJOR_COUNT] =
 {
-	{ 1, LOCALE_GENRE_MOVIE_0, NULL },
-	{ 2, LOCALE_GENRE_NEWS_0, NULL },
-	{ 3, LOCALE_GENRE_SHOW_0, NULL },
-	{ 4, LOCALE_GENRE_SPORTS_0, NULL },
-	{ 5, LOCALE_GENRE_CHILDRENS_PROGRAMMES_0, NULL },
-	{ 6, LOCALE_GENRE_MUSIC_DANCE_0, NULL },
-	{ 7, LOCALE_GENRE_ARTS_0, NULL },
-	{ 8, LOCALE_GENRE_SOCIAL_POLITICAL_0, NULL },
-	{ 9, LOCALE_GENRE_DOCUS_MAGAZINES_0, NULL },
-	{ 10, LOCALE_GENRE_TRAVEL_HOBBIES_0, NULL }
+	{ 1, _("movie/drama") },
+	{ 2, _("news") },
+	{ 3, _("Show / Gameshow") },
+	{ 4, _("sports") },
+	{ 5, _("children / juvenile program") },
+	{ 6, _("music / ballet / dance") },
+	{ 7, _("arts / culture") },
+	{ 8, _("social & politic events / business") },
+	{ 9, _("documentation / magazine") },
+	{ 10, _("travel & recreation") }
 };
 
 // onoff notifier //needed by moviebrowser

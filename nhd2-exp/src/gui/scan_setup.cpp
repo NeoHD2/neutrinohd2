@@ -79,173 +79,173 @@ extern void setMode(fe_mode_t newmode, int feindex);
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL }
+        { 0, _("Off") },
+        { 1, _("On") }
 };
 
 // option off1 on0
 #define OPTIONS_OFF1_ON0_OPTION_COUNT 2
 const keyval OPTIONS_OFF1_ON0_OPTIONS[OPTIONS_OFF1_ON0_OPTION_COUNT] =
 {
-        { 1, LOCALE_OPTIONS_OFF, NULL },
-        { 0, LOCALE_OPTIONS_ON, NULL }
+        { 1, _("off") },
+        { 0, _("on") }
 };
 
 #define SCANTS_BOUQUET_OPTION_COUNT 4
 const keyval SCANTS_BOUQUET_OPTIONS[SCANTS_BOUQUET_OPTION_COUNT] =
 {
-	{ CZapitClient::BM_DELETEBOUQUETS, LOCALE_SCANTS_BOUQUET_ERASE, NULL    },
-	{ CZapitClient::BM_DONTTOUCHBOUQUETS, LOCALE_SCANTS_BOUQUET_LEAVE, NULL     },
-	{ CZapitClient::BM_UPDATEBOUQUETS, LOCALE_SCANTS_BOUQUET_UPDATE, NULL    },
-	{CZapitClient::BM_CREATESATELLITEBOUQUET, LOCALE_SCANTS_BOUQUET_SATELLITE, NULL}
+	{ CZapitClient::BM_DELETEBOUQUETS, _("erase all") },
+	{ CZapitClient::BM_DONTTOUCHBOUQUETS, _("leave current") },
+	{ CZapitClient::BM_UPDATEBOUQUETS, _("update") },
+	{CZapitClient::BM_CREATESATELLITEBOUQUET, _("Satellite-Bouquet") }
 };
 
 #define SCANTS_ZAPIT_SCANTYPE_COUNT 4
 const keyval SCANTS_ZAPIT_SCANTYPE[SCANTS_ZAPIT_SCANTYPE_COUNT] =
 {
-	{  CZapitClient::ST_TVRADIO, LOCALE_ZAPIT_SCANTYPE_TVRADIO, NULL },
-	{  CZapitClient::ST_TV, LOCALE_ZAPIT_SCANTYPE_TV, NULL },
-	{  CZapitClient::ST_RADIO, LOCALE_ZAPIT_SCANTYPE_RADIO, NULL },
-	{  CZapitClient::ST_ALL, LOCALE_ZAPIT_SCANTYPE_ALL, NULL }
+	{  CZapitClient::ST_TVRADIO, _("TV & Radio") },
+	{  CZapitClient::ST_TV, _("Only tv") },
+	{  CZapitClient::ST_RADIO, _("Only radio") },
+	{  CZapitClient::ST_ALL, _("All services") }
 };
 
 #define SATSETUP_DISEQC_OPTION_COUNT 8
 const keyval SATSETUP_DISEQC_OPTIONS[SATSETUP_DISEQC_OPTION_COUNT] =
 {
-	{ NO_DISEQC          , LOCALE_SATSETUP_NODISEQC,	NULL },
-	{ MINI_DISEQC        , LOCALE_SATSETUP_MINIDISEQC,	NULL },
-	{ DISEQC_1_0         , LOCALE_SATSETUP_DISEQC10,	NULL },
-	{ DISEQC_1_1         , LOCALE_SATSETUP_DISEQC11,	NULL },
-	{ DISEQC_ADVANCED    , LOCALE_SATSETUP_DISEQ_ADVANCED,	NULL },
-	{ DISEQC_UNICABLE    , LOCALE_SATSETUP_UNICABLE,	NULL },
-	{ DISEQC_UNICABLE2   , LOCALE_SATSETUP_UNICABLE2,	NULL },
-	{ SMATV_REMOTE_TUNING, LOCALE_SATSETUP_SMATVREMOTE,	NULL }
+	{ NO_DISEQC          , _("no DiSEqC") },
+	{ MINI_DISEQC        , _("Mini-DiSEqC") },
+	{ DISEQC_1_0         , _("DiSEqC 1.0") },
+	{ DISEQC_1_1         , _("DiSEqC 1.1") },
+	{ DISEQC_ADVANCED    , _("Advanced") },
+	{ DISEQC_UNICABLE    , _("Unicable") },
+	{ DISEQC_UNICABLE2   , _("Unicable2 (JESS)") },
+	{ SMATV_REMOTE_TUNING, _("SMATV Remote Tuning") }
 };
 
 #define SATSETUP_SCANTP_FEC_COUNT 24
 #define CABLESETUP_SCANTP_FEC_COUNT 6
 const keyval SATSETUP_SCANTP_FEC[SATSETUP_SCANTP_FEC_COUNT] =
 {
-	{ FEC_NONE, NONEXISTANT_LOCALE, "FEC_NONE" },
+	{ FEC_NONE, _("FEC_NONE") },
 	
-        { FEC_1_2, LOCALE_SCANTP_FEC_1_2, NULL },
-        { FEC_2_3, LOCALE_SCANTP_FEC_2_3, NULL },
-        { FEC_3_4, LOCALE_SCANTP_FEC_3_4, NULL },
-        { FEC_5_6, LOCALE_SCANTP_FEC_5_6, NULL },
-        { FEC_7_8, LOCALE_SCANTP_FEC_7_8, NULL },
+        { FEC_1_2, _("1/2") },
+        { FEC_2_3, "2/3" },
+        { FEC_3_4, "3/4" },
+        { FEC_5_6, "5/6" },
+        { FEC_7_8, "7/8" },
 
-        { FEC_S2_QPSK_1_2, LOCALE_FEC_S2_QPSK_1_2, NULL },
-        { FEC_S2_QPSK_2_3, LOCALE_FEC_S2_QPSK_2_3, NULL },
-        { FEC_S2_QPSK_3_4, LOCALE_FEC_S2_QPSK_3_4, NULL },
-        { FEC_S2_QPSK_5_6, LOCALE_FEC_S2_QPSK_5_6, NULL },
-        { FEC_S2_QPSK_7_8, LOCALE_FEC_S2_QPSK_7_8, NULL },
-        { FEC_S2_QPSK_8_9, LOCALE_FEC_S2_QPSK_8_9, NULL },
-        { FEC_S2_QPSK_3_5, LOCALE_FEC_S2_QPSK_3_5, NULL },
-        { FEC_S2_QPSK_4_5, LOCALE_FEC_S2_QPSK_4_5, NULL },
-        { FEC_S2_QPSK_9_10, LOCALE_FEC_S2_QPSK_9_10, NULL },
+        { FEC_S2_QPSK_1_2, "1/2 s2 qpsk" },
+        { FEC_S2_QPSK_2_3, "3/2 s2 qpsk" },
+        { FEC_S2_QPSK_3_4, "3/4 s2 qpsk" },
+        { FEC_S2_QPSK_5_6, "5/6 s2 qpsk" },
+        { FEC_S2_QPSK_7_8, "7/8 s2 qpsk" },
+        { FEC_S2_QPSK_8_9, "8/9 s2 qpsk" },
+        { FEC_S2_QPSK_3_5, "3/5 s2 qpsk" },
+        { FEC_S2_QPSK_4_5, "4/5 s2 qpsk" },
+        { FEC_S2_QPSK_9_10, "9/10 s2 qpsk" },
 
-        { FEC_S2_8PSK_1_2, LOCALE_FEC_S2_8PSK_1_2, NULL },
-        { FEC_S2_8PSK_2_3, LOCALE_FEC_S2_8PSK_2_3, NULL },
-        { FEC_S2_8PSK_3_4, LOCALE_FEC_S2_8PSK_3_4, NULL },
-        { FEC_S2_8PSK_5_6, LOCALE_FEC_S2_8PSK_5_6, NULL },
-        { FEC_S2_8PSK_7_8, LOCALE_FEC_S2_8PSK_7_8, NULL },
-        { FEC_S2_8PSK_8_9, LOCALE_FEC_S2_8PSK_8_9, NULL },
-        { FEC_S2_8PSK_3_5, LOCALE_FEC_S2_8PSK_3_5, NULL },
-        { FEC_S2_8PSK_4_5, LOCALE_FEC_S2_8PSK_4_5, NULL },
-        { FEC_S2_8PSK_9_10, LOCALE_FEC_S2_8PSK_9_10, NULL }
+        { FEC_S2_8PSK_1_2, "1/2 s2 8psk" },
+        { FEC_S2_8PSK_2_3, "3/2 s2 8psk" },
+        { FEC_S2_8PSK_3_4, "3/4 s2 8psk" },
+        { FEC_S2_8PSK_5_6, "5/6 s2 8psk" },
+        { FEC_S2_8PSK_7_8, "7/8 s2 8psk" },
+        { FEC_S2_8PSK_8_9, "8/9 s2 8psk" },
+        { FEC_S2_8PSK_3_5, "3/5 s2 8psk" },
+        { FEC_S2_8PSK_4_5, "4/5 s2 8psk" },
+        { FEC_S2_8PSK_9_10, "9/10 s2 8psk" }
 };
 
 #define CABLETERRESTRIALSETUP_SCANTP_MOD_COUNT 6
 const keyval CABLETERRESTRIALSETUP_SCANTP_MOD[CABLETERRESTRIALSETUP_SCANTP_MOD_COUNT] =
 {
 	// cable
-	{ QAM_16, LOCALE_SCANTP_MOD_16, NULL },
-	{ QAM_32, LOCALE_SCANTP_MOD_32, NULL },
-	{ QAM_64, LOCALE_SCANTP_MOD_64, NULL },
-	{ QAM_128, LOCALE_SCANTP_MOD_128, NULL },
-	{ QAM_256, LOCALE_SCANTP_MOD_256, NULL },
+	{ QAM_16, "QAM/16" },
+	{ QAM_32, "QAM/32" },
+	{ QAM_64, "QAM/64" },
+	{ QAM_128, "QAM/128" },
+	{ QAM_256, "QAM/256" },
 	
-	{ QAM_AUTO, NONEXISTANT_LOCALE, "QAM_AUTO" }
+	{ QAM_AUTO, "QAM_AUTO" }
 };
 
 #define SATSETUP_SCANTP_MOD_COUNT 2
 const keyval SATSETUP_SCANTP_MOD[SATSETUP_SCANTP_MOD_COUNT] =
 {
 	// sat
-	{ QPSK, NONEXISTANT_LOCALE, "QPSK" },
+	{ QPSK, "QPSK" },
 #if HAVE_DVB_API_VERSION >= 5
-	{ PSK_8, NONEXISTANT_LOCALE, "PSK_8" }
+	{ PSK_8, "PSK_8" }
 #else
-	{ PSK8, NONEXISTANT_LOCALE, "PSK8" }
+	{ PSK8, "PSK8" }
 #endif
 };
 
 #define SATSETUP_SCANTP_BAND_COUNT 4
 const keyval SATSETUP_SCANTP_BAND[SATSETUP_SCANTP_BAND_COUNT] =
 {
-	{ BANDWIDTH_8_MHZ, NONEXISTANT_LOCALE, "BAND_8" },
-	{ BANDWIDTH_7_MHZ, NONEXISTANT_LOCALE, "BAND_7" },
-	{ BANDWIDTH_6_MHZ, NONEXISTANT_LOCALE, "BAND_6" },
-	{ BANDWIDTH_AUTO, NONEXISTANT_LOCALE, "BAND_AUTO"}
+	{ BANDWIDTH_8_MHZ, "BAND_8" },
+	{ BANDWIDTH_7_MHZ, "BAND_7" },
+	{ BANDWIDTH_6_MHZ, "BAND_6" },
+	{ BANDWIDTH_AUTO, "BAND_AUTO"}
 };
 
 // transmition mode
 #define TERRESTRIALSETUP_TRANSMIT_MODE_COUNT 3
 const keyval TERRESTRIALSETUP_TRANSMIT_MODE[TERRESTRIALSETUP_TRANSMIT_MODE_COUNT] =
 {
-	{ TRANSMISSION_MODE_2K, NONEXISTANT_LOCALE, "2K" },
-	{ TRANSMISSION_MODE_8K, NONEXISTANT_LOCALE, "8K" },
-	{ TRANSMISSION_MODE_AUTO, NONEXISTANT_LOCALE, "AUTO" },
+	{ TRANSMISSION_MODE_2K, "2K" },
+	{ TRANSMISSION_MODE_8K, "8K" },
+	{ TRANSMISSION_MODE_AUTO, "AUTO" },
 };
 
 // guard interval
 #define TERRESTRIALSETUP_GUARD_INTERVAL_COUNT 5
 const keyval TERRESTRIALSETUP_GUARD_INTERVAL[TERRESTRIALSETUP_GUARD_INTERVAL_COUNT] =
 {
-	{ GUARD_INTERVAL_1_32, NONEXISTANT_LOCALE, "1_32" },
-	{ GUARD_INTERVAL_1_16, NONEXISTANT_LOCALE, "1_16" },
-	{ GUARD_INTERVAL_1_8, NONEXISTANT_LOCALE, "1_8" },
-	{ GUARD_INTERVAL_1_4, NONEXISTANT_LOCALE, "1_4"},
-	{ GUARD_INTERVAL_AUTO, NONEXISTANT_LOCALE, "AUTO"},
+	{ GUARD_INTERVAL_1_32, "1_32" },
+	{ GUARD_INTERVAL_1_16, "1_16" },
+	{ GUARD_INTERVAL_1_8, "1_8" },
+	{ GUARD_INTERVAL_1_4, "1_4"},
+	{ GUARD_INTERVAL_AUTO, "AUTO"},
 };
 
 // hierarchy
 #define TERRESTRIALSETUP_HIERARCHY_COUNT 5
 const keyval TERRESTRIALSETUP_HIERARCHY[TERRESTRIALSETUP_HIERARCHY_COUNT] =
 {
-	{ HIERARCHY_NONE, NONEXISTANT_LOCALE, "NONE" },
-	{ HIERARCHY_1, NONEXISTANT_LOCALE, "1" },
-	{ HIERARCHY_2, NONEXISTANT_LOCALE, "2" },
-	{ HIERARCHY_4, NONEXISTANT_LOCALE, "4"},
-	{ HIERARCHY_AUTO, NONEXISTANT_LOCALE, "AUTO"},
+	{ HIERARCHY_NONE, "NONE" },
+	{ HIERARCHY_1, "1" },
+	{ HIERARCHY_2, "2" },
+	{ HIERARCHY_4, "4"},
+	{ HIERARCHY_AUTO, "AUTO"},
 };
 
 #define SATSETUP_SCANTP_POL_COUNT 2
 const keyval SATSETUP_SCANTP_POL[SATSETUP_SCANTP_POL_COUNT] =
 {
-	{ 0, LOCALE_EXTRA_POL_H, NULL },
-	{ 1, LOCALE_EXTRA_POL_V, NULL }
+	{ 0, "H" },
+	{ 1, "V" }
 };
 
 #define DISEQC_ORDER_OPTION_COUNT 2
 const keyval DISEQC_ORDER_OPTIONS[DISEQC_ORDER_OPTION_COUNT] =
 {
-	{ COMMITED_FIRST, LOCALE_SATSETUP_DISEQC_COM_UNCOM, NULL },
-	{ UNCOMMITED_FIRST, LOCALE_SATSETUP_DISEQC_UNCOM_COM, NULL  }
+	{ COMMITED_FIRST, _("Commited/Uncommited") },
+	{ UNCOMMITED_FIRST, _("Uncommited/Commited") }
 };
 
 #define OPTIONS_SOUTH0_NORTH1_OPTION_COUNT 2
 const keyval OPTIONS_SOUTH0_NORTH1_OPTIONS[OPTIONS_SOUTH0_NORTH1_OPTION_COUNT] =
 {
-	{0, LOCALE_EXTRA_SOUTH, NULL},
-	{1, LOCALE_EXTRA_NORTH, NULL}
+	{0, _("South") },
+	{1, _("North") }
 };
 
 #define OPTIONS_EAST0_WEST1_OPTION_COUNT 2
 const keyval OPTIONS_EAST0_WEST1_OPTIONS[OPTIONS_EAST0_WEST1_OPTION_COUNT] =
 {
-	{0, LOCALE_EXTRA_EAST, NULL},
-	{1, LOCALE_EXTRA_WEST, NULL}
+	{0, _("East") },
+	{1, _("West") }
 };
 
 // 
@@ -253,9 +253,9 @@ const keyval OPTIONS_EAST0_WEST1_OPTIONS[OPTIONS_EAST0_WEST1_OPTION_COUNT] =
 #define FRONTEND_MODE_TWIN_OPTION_COUNT 3
 const keyval FRONTEND_MODE_OPTIONS[FRONTEND_MODE_TWIN_OPTION_COUNT] =
 {
-	{ (fe_mode_t)FE_SINGLE, LOCALE_SCANSETUP_FEMODE_CONNECTED, NULL },
-	{ (fe_mode_t)FE_NOTCONNECTED, LOCALE_SCANSETUP_FEMODE_NOTCONNECTED, NULL },
-	{ (fe_mode_t)FE_LOOP, LOCALE_SCANSETUP_FEMODE_LOOP, NULL },
+	{ (fe_mode_t)FE_SINGLE, _("direct connected") },
+	{ (fe_mode_t)FE_NOTCONNECTED, _("not connected") },
+	{ (fe_mode_t)FE_LOOP, _("loop") },
 };
 
 CScanSetup::CScanSetup(int num)
@@ -397,7 +397,7 @@ void CScanSetup::showScanService()
 	// scan setup SAT
 	if( getFE(feindex)->getInfo()->type == FE_QPSK) 
 	{
-		satSelect = new CMenuOptionStringChooser(LOCALE_SATSETUP_SATELLITE, scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
+		satSelect = new CMenuOptionStringChooser(_("Satellite"), scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
 			
 		satOnOff = new CMenuWidget(_("Satellite"), NEUTRINO_ICON_UPDATE);
 
@@ -432,19 +432,19 @@ void CScanSetup::showScanService()
 				CMenuOptionChooser * inuse = new CMenuOptionChooser(sit->second.name.c_str(),  &sit->second.use_in_scan, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 
 				// diseqc
-				CMenuOptionNumberChooser * diseqc = new CMenuOptionNumberChooser(LOCALE_SATSETUP_DISEQC_INPUT, &sit->second.diseqc, ((dmode != NO_DISEQC) && (dmode != DISEQC_ADVANCED)), -1, 15, NULL, 1, -1, LOCALE_OPTIONS_OFF);
+				CMenuOptionNumberChooser * diseqc = new CMenuOptionNumberChooser(_("Diseqc input"), &sit->second.diseqc, ((dmode != NO_DISEQC) && (dmode != DISEQC_ADVANCED)), -1, 15, NULL, 1, -1, _("Off"));
 
 				// commited input
-				CMenuOptionNumberChooser * comm = new CMenuOptionNumberChooser(LOCALE_SATSETUP_COMM_INPUT, &sit->second.commited, dmode == DISEQC_ADVANCED, -1, 15, NULL, 1, -1, LOCALE_OPTIONS_OFF);
+				CMenuOptionNumberChooser * comm = new CMenuOptionNumberChooser(_("Commited/Uncommited"), &sit->second.commited, dmode == DISEQC_ADVANCED, -1, 15, NULL, 1, -1, _("Off"));
 
 				// uncommited input
-				CMenuOptionNumberChooser * uncomm = new CMenuOptionNumberChooser(LOCALE_SATSETUP_UNCOMM_INPUT, &sit->second.uncommited, dmode == DISEQC_ADVANCED, -1, 15, NULL, 1, -1, LOCALE_OPTIONS_OFF);
+				CMenuOptionNumberChooser * uncomm = new CMenuOptionNumberChooser(_("Uncommited/Commited"), &sit->second.uncommited, dmode == DISEQC_ADVANCED, -1, 15, NULL, 1, -1, _("Off"));
 
 				// motor position
-				CMenuOptionNumberChooser * motor = new CMenuOptionNumberChooser(LOCALE_SATSETUP_MOTOR_POS, &sit->second.motor_position, true, 0, 64, NULL, 0, 0, LOCALE_OPTIONS_OFF);
+				CMenuOptionNumberChooser * motor = new CMenuOptionNumberChooser(_("Rotor position"), &sit->second.motor_position, true, 0, 64, NULL, 0, 0, _("Off"));
 
 				// usals
-				CMenuOptionChooser * usals = new CMenuOptionChooser(LOCALE_EXTRA_USE_GOTOXX,  &sit->second.use_usals, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
+				CMenuOptionChooser * usals = new CMenuOptionChooser(_("Use gotoXX"),  &sit->second.use_usals, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 
 				satNotify->addItem(1, diseqc);
 				satNotify->addItem(0, comm);
@@ -472,7 +472,7 @@ void CScanSetup::showScanService()
 	} 
 	else if ( getFE(feindex)->getInfo()->type == FE_QAM) 
 	{
-		satSelect = new CMenuOptionStringChooser(LOCALE_CABLESETUP_PROVIDER, (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
+		satSelect = new CMenuOptionStringChooser(_("Cable:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
 
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++) 
 		{
@@ -485,7 +485,7 @@ void CScanSetup::showScanService()
 	}
 	else if ( getFE(feindex)->getInfo()->type == FE_OFDM) 
 	{
-		satSelect = new CMenuOptionStringChooser(LOCALE_TERRESTRIALSETUP_PROVIDER, (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
+		satSelect = new CMenuOptionStringChooser(_("Provider:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
 
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++)
 		{
@@ -498,7 +498,7 @@ void CScanSetup::showScanService()
 	}
     	else if ( getFE(feindex)->getInfo()->type == FE_ATSC) 
 	{
-		satSelect = new CMenuOptionStringChooser(LOCALE_TERRESTRIALSETUP_PROVIDER, (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
+		satSelect = new CMenuOptionStringChooser(_("Provider:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
 
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++)
 		{
@@ -536,9 +536,9 @@ void CScanSetup::showScanService()
 
 		motorMenu->addItem(new CMenuSeparator(LINE));
 
-		motorMenu->addItem(new CMenuOptionNumberChooser(LOCALE_EXTRA_ZAPIT_ROTATION_SPEED, (int *)&getFE(feindex)->motorRotationSpeed, true, 0, 64, NULL) );
+		motorMenu->addItem(new CMenuOptionNumberChooser(_("moving speed (10 = 1deg/sec)"), (int *)&getFE(feindex)->motorRotationSpeed, true, 0, 64, NULL) );
 
-		motorMenu->addItem(new CMenuOptionChooser(LOCALE_EXTRA_USE_GOTOXX,  (int *)&getFE(feindex)->useGotoXX, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+		motorMenu->addItem(new CMenuOptionChooser(_("Use gotoXX"),  (int *)&getFE(feindex)->useGotoXX, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 		CStringInput * toff;
 		CStringInput * taff;
@@ -546,7 +546,7 @@ void CScanSetup::showScanService()
 		sprintf(zapit_long, "%3.6f", getFE(feindex)->gotoXXLongitude);
 
 		// gotoxxladirection
-		motorMenu->addItem(new CMenuOptionChooser(LOCALE_EXTRA_LADIR,  (int *)&getFE(feindex)->gotoXXLaDirection, OPTIONS_SOUTH0_NORTH1_OPTIONS, OPTIONS_SOUTH0_NORTH1_OPTION_COUNT, true));
+		motorMenu->addItem(new CMenuOptionChooser(_("LaDirection"),  (int *)&getFE(feindex)->gotoXXLaDirection, OPTIONS_SOUTH0_NORTH1_OPTIONS, OPTIONS_SOUTH0_NORTH1_OPTION_COUNT, true));
 
 		// latitude
 		toff = new CStringInput(LOCALE_EXTRA_LAT, (char *) zapit_lat, 10, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, "0123456789.");
@@ -560,10 +560,10 @@ void CScanSetup::showScanService()
 		motorMenu->addItem(new CMenuForwarder(_("Longitude"), true, zapit_long, taff));
 		
 		// usals repeat
-		motorMenu->addItem(new CMenuOptionNumberChooser(LOCALE_SATSETUP_USALS_REPEAT, (int *)&getFE(feindex)->repeatUsals, true, 0, 10, NULL, 0, 0, LOCALE_OPTIONS_OFF) );
+		motorMenu->addItem(new CMenuOptionNumberChooser(_("USALS command repeat"), (int *)&getFE(feindex)->repeatUsals, true, 0, 10, NULL, 0, 0, _("Off")) );
 		
 		// rotor swap east/west
-		motorMenu->addItem( new CMenuOptionChooser(LOCALE_EXTRA_ROTORSWAP, &g_settings.rotor_swap, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+		motorMenu->addItem( new CMenuOptionChooser(_("Swap rotor east/west"), &g_settings.rotor_swap, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	}
 	
 	// frontend mode
@@ -583,22 +583,22 @@ void CScanSetup::showScanService()
 		}
 	}
 	
-	scansetup->addItem(new CMenuOptionChooser(LOCALE_SCANSETUP_FEMODE,  (int *)&getFE(feindex)->mode, FRONTEND_MODE_OPTIONS, have_twin? FRONTEND_MODE_TWIN_OPTION_COUNT:FRONTEND_MODE_SINGLE_OPTION_COUNT, true, feModeNotifier, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true ));
+	scansetup->addItem(new CMenuOptionChooser(_("Tuner mode"),  (int *)&getFE(feindex)->mode, FRONTEND_MODE_OPTIONS, have_twin? FRONTEND_MODE_TWIN_OPTION_COUNT:FRONTEND_MODE_SINGLE_OPTION_COUNT, true, feModeNotifier, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true ));
 	
 	scansetup->addItem( new CMenuSeparator(LINE) );
 
 	// scan type
-	CMenuOptionChooser * ojScantype = new CMenuOptionChooser(LOCALE_ZAPIT_SCANTYPE, (int *)&scanSettings->scanType, SCANTS_ZAPIT_SCANTYPE, SCANTS_ZAPIT_SCANTYPE_COUNT, ((getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP)), NULL, CRCInput::convertDigitToKey(shortcut++), "", true);
+	CMenuOptionChooser * ojScantype = new CMenuOptionChooser(_("Scan for services"), (int *)&scanSettings->scanType, SCANTS_ZAPIT_SCANTYPE, SCANTS_ZAPIT_SCANTYPE_COUNT, ((getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP)), NULL, CRCInput::convertDigitToKey(shortcut++), "", true);
 	feModeNotifier->addItem(0, ojScantype);
 	scansetup->addItem(ojScantype);
 		
 	// bqts
-	CMenuOptionChooser * ojBouquets = new CMenuOptionChooser(LOCALE_SCANTS_BOUQUET, (int *)&scanSettings->bouquetMode, SCANTS_BOUQUET_OPTIONS, SCANTS_BOUQUET_OPTION_COUNT, ((getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP)), NULL, CRCInput::convertDigitToKey(shortcut++), "", true);
+	CMenuOptionChooser * ojBouquets = new CMenuOptionChooser(_("Bouquet"), (int *)&scanSettings->bouquetMode, SCANTS_BOUQUET_OPTIONS, SCANTS_BOUQUET_OPTION_COUNT, ((getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP)), NULL, CRCInput::convertDigitToKey(shortcut++), "", true);
 	feModeNotifier->addItem(0, ojBouquets);
 	scansetup->addItem(ojBouquets);
 	
 	// NIT
-	CMenuOptionChooser * useNit = new CMenuOptionChooser(LOCALE_SATSETUP_USE_NIT, (int *)&scanSettings->scan_mode, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, ( (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP) ), NULL, CRCInput::convertDigitToKey(shortcut++) );
+	CMenuOptionChooser * useNit = new CMenuOptionChooser(_("Use NIT"), (int *)&scanSettings->scan_mode, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, ( (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP) ), NULL, CRCInput::convertDigitToKey(shortcut++) );
 	feModeNotifier->addItem(0, useNit);
 	scansetup->addItem(useNit);
 		
@@ -614,11 +614,11 @@ void CScanSetup::showScanService()
 	if( getFE(feindex)->getInfo()->type == FE_QPSK )
 	{
 		// diseqc
-		ojDiseqc = new CMenuOptionChooser(LOCALE_SATSETUP_DISEQC, (int *)&getFE(feindex)->diseqcType, SATSETUP_DISEQC_OPTIONS, SATSETUP_DISEQC_OPTION_COUNT, ( (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != FE_LOOP) ), satNotify, CRCInput::convertDigitToKey(shortcut++), "", true);
+		ojDiseqc = new CMenuOptionChooser(_("DiSEqC"), (int *)&getFE(feindex)->diseqcType, SATSETUP_DISEQC_OPTIONS, SATSETUP_DISEQC_OPTION_COUNT, ( (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != FE_LOOP) ), satNotify, CRCInput::convertDigitToKey(shortcut++), "", true);
 		feModeNotifier->addItem(1, ojDiseqc);
 		
 		// diseqc repeat
-		ojDiseqcRepeats = new CMenuOptionNumberChooser(LOCALE_SATSETUP_DISEQCREPEAT, &getFE(feindex)->diseqcRepeats, (dmode != NO_DISEQC) && \
+		ojDiseqcRepeats = new CMenuOptionNumberChooser(_("DiSEqC-repeats"), &getFE(feindex)->diseqcRepeats, (dmode != NO_DISEQC) && \
 			(dmode < DISEQC_ADVANCED) && (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != FE_LOOP), 0, 2, NULL);
 		satNotify->addItem(4, ojDiseqcRepeats);
 		feModeNotifier->addItem(4, ojDiseqcRepeats);
@@ -725,7 +725,7 @@ void CScanSetup::showScanService()
 
 	// fec
 	int fec_count = ( getFE(feindex)->getInfo()->type == FE_QPSK) ? SATSETUP_SCANTP_FEC_COUNT : CABLESETUP_SCANTP_FEC_COUNT;
-	CMenuOptionChooser * fec = new CMenuOptionChooser(LOCALE_EXTRA_FEC, (int *)&scanSettings->TP_fec, SATSETUP_SCANTP_FEC, fec_count, true, NULL, RC_nokey, "", true);
+	CMenuOptionChooser * fec = new CMenuOptionChooser(_("FEC"), (int *)&scanSettings->TP_fec, SATSETUP_SCANTP_FEC, fec_count, true, NULL, RC_nokey, "", true);
 		
 	if( getFE(feindex)->getInfo()->type != FE_OFDM && getFE(feindex)->getInfo()->type != FE_ATSC)
 	{
@@ -740,34 +740,34 @@ void CScanSetup::showScanService()
 	if( getFE(feindex)->getInfo()->type == FE_OFDM)
 	{
 		// Band
-		CMenuOptionChooser * Band = new CMenuOptionChooser(LOCALE_EXTRA_BAND, (int *)&scanSettings->TP_band, SATSETUP_SCANTP_BAND, SATSETUP_SCANTP_BAND_COUNT, true, NULL, RC_nokey, "", true);
+		CMenuOptionChooser * Band = new CMenuOptionChooser(_("Bandwidth"), (int *)&scanSettings->TP_band, SATSETUP_SCANTP_BAND, SATSETUP_SCANTP_BAND_COUNT, true, NULL, RC_nokey, "", true);
 		manualScan->addItem(Band);
 
 		// HP
-		CMenuOptionChooser * HP = new CMenuOptionChooser(LOCALE_EXTRA_HP, (int *)&scanSettings->TP_HP, SATSETUP_SCANTP_FEC, fec_count, true, NULL, RC_nokey, "", true);
+		CMenuOptionChooser * HP = new CMenuOptionChooser(_("Code Rate HP"), (int *)&scanSettings->TP_HP, SATSETUP_SCANTP_FEC, fec_count, true, NULL, RC_nokey, "", true);
 		manualScan->addItem(HP);
 
 		// LP
-		CMenuOptionChooser * LP = new CMenuOptionChooser(LOCALE_EXTRA_LP, (int *)&scanSettings->TP_LP, SATSETUP_SCANTP_FEC, fec_count, true, NULL, RC_nokey, "", true);
+		CMenuOptionChooser * LP = new CMenuOptionChooser(_("Code Rate LP"), (int *)&scanSettings->TP_LP, SATSETUP_SCANTP_FEC, fec_count, true, NULL, RC_nokey, "", true);
 		manualScan->addItem(LP);
 		
 		// transmition mode
-		CMenuOptionChooser * TM = new CMenuOptionChooser(LOCALE_EXTRA_TM, (int *)&scanSettings->TP_trans, TERRESTRIALSETUP_TRANSMIT_MODE, TERRESTRIALSETUP_TRANSMIT_MODE_COUNT, true, NULL, RC_nokey, "", true);
+		CMenuOptionChooser * TM = new CMenuOptionChooser(_("Transmission mode"), (int *)&scanSettings->TP_trans, TERRESTRIALSETUP_TRANSMIT_MODE, TERRESTRIALSETUP_TRANSMIT_MODE_COUNT, true, NULL, RC_nokey, "", true);
 		manualScan->addItem(TM);
 		
 		// guard intervall
-		CMenuOptionChooser * GI = new CMenuOptionChooser(LOCALE_EXTRA_GI, (int *)&scanSettings->TP_guard, TERRESTRIALSETUP_GUARD_INTERVAL, TERRESTRIALSETUP_GUARD_INTERVAL_COUNT, true, NULL, RC_nokey, "", true);
+		CMenuOptionChooser * GI = new CMenuOptionChooser(_("Guard Interval"), (int *)&scanSettings->TP_guard, TERRESTRIALSETUP_GUARD_INTERVAL, TERRESTRIALSETUP_GUARD_INTERVAL_COUNT, true, NULL, RC_nokey, "", true);
 		manualScan->addItem(GI);
 		
 		// hierarchy
-		CMenuOptionChooser * HR = new CMenuOptionChooser(LOCALE_EXTRA_HR, (int *)&scanSettings->TP_hierarchy, TERRESTRIALSETUP_HIERARCHY, TERRESTRIALSETUP_HIERARCHY_COUNT, true, NULL, RC_nokey, "", true);
+		CMenuOptionChooser * HR = new CMenuOptionChooser(_("Hierarchy"), (int *)&scanSettings->TP_hierarchy, TERRESTRIALSETUP_HIERARCHY, TERRESTRIALSETUP_HIERARCHY_COUNT, true, NULL, RC_nokey, "", true);
 		manualScan->addItem(HR);
 	}	
 
 	manualScan->addItem(new CMenuSeparator(LINE));
 		
 	// test signal
-	//manualScan->addItem(new CMenuForwarder(LOCALE_SCANTS_TEST, true, NULL, scanTs, "test", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW) );
+	//manualScan->addItem(new CMenuForwarder(_("Test signal"), true, NULL, scanTs, "test", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW) );
 		
 	// scan
 	manualScan->addItem(new CMenuForwarder(_("Start scan"), true, NULL, scanTs, "manual", RC_blue, NEUTRINO_ICON_BUTTON_BLUE) );
@@ -853,8 +853,8 @@ int CScanSetup::showUnicableSetup()
 	uni_setup->addItem(new CMenuSeparator(LINE));
 
 	// uni_scr
-	CMenuOptionNumberChooser * uniscr = new CMenuOptionNumberChooser(LOCALE_SATSETUP_UNISCR, &getFE(feindex)->uni_scr, true, \
-		-1, dmode == DISEQC_UNICABLE ? 7 : 31, NULL, 0, -1, LOCALE_OPTIONS_OFF);
+	CMenuOptionNumberChooser * uniscr = new CMenuOptionNumberChooser(_("Unicable SCR address"), &getFE(feindex)->uni_scr, true, \
+		-1, dmode == DISEQC_UNICABLE ? 7 : 31, NULL, 0, -1, _("Off"));
 	uni_setup->addItem(uniscr);
 
 	// uni_qrg

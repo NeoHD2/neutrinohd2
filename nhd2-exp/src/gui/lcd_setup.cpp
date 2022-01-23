@@ -46,36 +46,36 @@
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL }
+        { 0, _("off") },
+        { 1, _("on") }
 };
 
 #if defined (ENABLE_LCD)
 #define LCDMENU_STATUSLINE_OPTION_COUNT 4
 const keyval LCDMENU_STATUSLINE_OPTIONS[LCDMENU_STATUSLINE_OPTION_COUNT] =
 {
-	{ 0, LOCALE_LCDMENU_STATUSLINE_PLAYTIME, NULL   },
-	{ 1, LOCALE_LCDMENU_STATUSLINE_VOLUME, NULL     },
-	{ 2, LOCALE_LCDMENU_STATUSLINE_BOTH, NULL       },
-	{ 3, LOCALE_LCDMENU_STATUSLINE_BOTH_AUDIO, NULL }
+	{ 0, _("Playtime")   },
+	{ 1, _("Volume")     },
+	{ 2, _("Volume / Playtime")       },
+	{ 3, _("Volume / Playtime / Audio") }
 };
 
 #define LCDMENU_EPG_OPTION_COUNT 6
 const keyval LCDMENU_EPG_OPTIONS[LCDMENU_EPG_OPTION_COUNT] =
 {
-	{ 1, LOCALE_LCDMENU_EPG_NAME, NULL		},
-	{ 2, LOCALE_LCDMENU_EPG_TITLE, NULL		},
-	{ 3, LOCALE_LCDMENU_EPG_NAME_TITLE, NULL	},
-	{ 7, LOCALE_LCDMENU_EPG_NAME_SEPLINE_TITLE, NULL },
-	{ 11, LOCALE_LCDMENU_EPG_NAMESHORT_TITLE, NULL },
-	{ 15, LOCALE_LCDMENU_EPG_NAMESHORT_SEPLINE_TITLE, NULL }
+	{ 1, _("Default (Channel)")		},
+	{ 2, _("Title")		},
+	{ 3, _("Channel / Title")	},
+	{ 7, _("Channel / Sep.-Line / Title") },
+	{ 11, _("Channel (short) / Title") },
+	{ 15, _("Channel (short) / Sep.-Line / Title") }
 };
 
 #define LCDMENU_EPGALIGN_OPTION_COUNT 2
 const keyval LCDMENU_EPGALIGN_OPTIONS[LCDMENU_EPGALIGN_OPTION_COUNT] =
 {
-	{ 0, LOCALE_LCDMENU_EPGALIGN_LEFT, NULL   },
-	{ 1, LOCALE_LCDMENU_EPGALIGN_CENTER, NULL }
+	{ 0, _("left")   },
+	{ 1, _("center") }
 };
 #endif
 
@@ -84,10 +84,10 @@ const keyval LCDMENU_EPGALIGN_OPTIONS[LCDMENU_EPGALIGN_OPTION_COUNT] =
 #define LCDMENU_LEDCOLOR_OPTION_COUNT 4
 const keyval LCDMENU_LEDCOLOR_OPTIONS[LCDMENU_LEDCOLOR_OPTION_COUNT] =
 {
-	{ CVFD::LED_OFF, LOCALE_OPTIONS_OFF, NULL },
-	{ CVFD::LED_BLUE, LOCALE_LCDMENU_LEDCOLOR_BLUE, NULL },
-	{ CVFD::LED_RED, LOCALE_LCDMENU_LEDCOLOR_RED, NULL },
-	{ CVFD::LED_PURPLE, LOCALE_LCDMENU_LEDCOLOR_PURPLE, NULL },
+	{ CVFD::LED_OFF, _("off") },
+	{ CVFD::LED_BLUE, _("blue") },
+	{ CVFD::LED_RED, _("red") },
+	{ CVFD::LED_PURPLE, _("purple") },
 };
 #endif
 #endif
@@ -163,7 +163,7 @@ void CLCDSettings::showMenu()
 	lcdSettings.addItem(oj_align);
 
 	//dump to png
-	CMenuOptionChooser* oj_dumppng = new CMenuOptionChooser(LOCALE_LCDMENU_DUMP_PNG, &g_settings.lcd_setting[SNeutrinoSettings::LCD_DUMP_PNG], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
+	CMenuOptionChooser* oj_dumppng = new CMenuOptionChooser(_("output to PNG"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_DUMP_PNG], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 	lcdSettings.addItem(oj_dumppng);
 	
 	// lcd controller
@@ -171,10 +171,10 @@ void CLCDSettings::showMenu()
 #else	
 #if defined (PLATFORM_GIGABLUE)	
 	// led color
-	lcdSettings.addItem(new CMenuOptionChooser(LOCALE_LCDMENU_LEDCOLOR, &g_settings.lcd_ledcolor, LCDMENU_LEDCOLOR_OPTIONS, LCDMENU_LEDCOLOR_OPTION_COUNT, true, lcdnotifier, CRCInput::convertDigitToKey(shortcutVFD++) ));	
+	lcdSettings.addItem(new CMenuOptionChooser(_("Led Color"), &g_settings.lcd_ledcolor, LCDMENU_LEDCOLOR_OPTIONS, LCDMENU_LEDCOLOR_OPTION_COUNT, true, lcdnotifier, CRCInput::convertDigitToKey(shortcutVFD++) ));	
 #elif !defined (PLATFORM_CUBEREVO_250HD) && !defined (PLATFORM_SPARK)
 	// vfd power
-	CMenuOptionChooser * oj2 = new CMenuOptionChooser(LOCALE_LCDMENU_POWER, &g_settings.lcd_setting[SNeutrinoSettings::LCD_POWER], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, lcdnotifier, CRCInput::convertDigitToKey(shortcutVFD++) );
+	CMenuOptionChooser * oj2 = new CMenuOptionChooser(_("LED-Power"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_POWER], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, lcdnotifier, CRCInput::convertDigitToKey(shortcutVFD++) );
 	lcdSettings.addItem(oj2);
 	
 	// dimm-time
@@ -182,7 +182,7 @@ void CLCDSettings::showMenu()
 	lcdSettings.addItem(new CMenuForwarder(_("Dim timeout"), true, g_settings.lcd_setting_dim_time, dim_time, NULL, CRCInput::convertDigitToKey(shortcutVFD++)));
 
 	// dimm brightness
-	//CStringInput * dim_brightness = new CStringInput(LOCALE_LCDMENU_DIM_BRIGHTNESS, g_settings.lcd_setting_dim_brightness, 3,NONEXISTANT_LOCALE, NONEXISTANT_LOCALE,"0123456789 ");
+	//CStringInput * dim_brightness = new CStringInput(_("brightness after dim timeout"), g_settings.lcd_setting_dim_brightness, 3,NONEXISTANT_LOCALE, NONEXISTANT_LOCALE,"0123456789 ");
 	//lcdSettings.addItem(new CMenuForwarder(_("Brightness after dim timeout"), true, g_settings.lcd_setting_dim_brightness, dim_brightness, NULL, CRCInput::convertDigitToKey(shortcutVFD++) ));
 
 	// vfd controller

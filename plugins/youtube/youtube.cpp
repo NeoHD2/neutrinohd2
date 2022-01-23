@@ -71,8 +71,8 @@ YTB_SETTINGS m_settings;
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL }
+        { 0, _("off") },
+        { 1, _("on") }
 };
  
 CYTBrowser::CYTBrowser(int mode): configfile ('\t')
@@ -173,10 +173,7 @@ void CYTBrowser::showMenu()
 	title = g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_YOUTUBE);
 	title += " : ";
 		
-	neutrino_locale_t loc = getFeedLocale();
-	title += g_Locale->getCustomText(loc);
-	if (loc == (neutrino_locale_t)LOCALE_YT_SEARCH)
-		title += " \"" + ytsearch + "\"";
+	title += getFeedLocale();
 
 	moviesMenu = new CMenuWidget(title.c_str(), NEUTRINO_ICON_YT_SMALL);
 	
@@ -317,38 +314,35 @@ REPEAT:
 
 const keyval YT_FEED_OPTIONS[] =
 {
-       	{ cYTFeedParser::MOST_POPULAR, (neutrino_locale_t)LOCALE_YT_MOST_POPULAR, NULL },
-        //{ cYTFeedParser::MOST_POPULAR_ALL_TIME, (neutrino_locale_t)LOCALE_YT_MOST_POPULAR_ALL_TIME, NULL },
-	//{ cYTFeedParser::NEXT, (neutrino_locale_t)LOCALE_YT_NEXT_RESULTS, NULL },
-	//{ cYTFeedParser::PREV, (neutrino_locale_t)LOCALE_YT_PREV_RESULTS, NULL }
+       { cYTFeedParser::MOST_POPULAR, _("Most popular today") },
 };
 
 #define YT_FEED_OPTION_COUNT (sizeof(YT_FEED_OPTIONS)/sizeof(keyval))
 
 const keyval YT_ORDERBY_OPTIONS[] =
 {
-        { cYTFeedParser::ORDERBY_PUBLISHED, (neutrino_locale_t)LOCALE_YT_ORDERBY_PUBLISHED, NULL },
-        { cYTFeedParser::ORDERBY_RELEVANCE, (neutrino_locale_t)LOCALE_YT_ORDERBY_RELEVANCE, NULL },
-        { cYTFeedParser::ORDERBY_VIEWCOUNT, (neutrino_locale_t)LOCALE_YT_ORDERBY_VIEWCOUNT, NULL },
-        { cYTFeedParser::ORDERBY_RATING, (neutrino_locale_t)LOCALE_YT_ORDERBY_RATING, NULL },
+        { cYTFeedParser::ORDERBY_PUBLISHED, _("publishing date") },
+        { cYTFeedParser::ORDERBY_RELEVANCE, _("relevance") },
+        { cYTFeedParser::ORDERBY_VIEWCOUNT, _("view count") },
+        { cYTFeedParser::ORDERBY_RATING, _("rating") },
 };
 
 #define YT_ORDERBY_OPTION_COUNT (sizeof(YT_ORDERBY_OPTIONS)/sizeof(keyval))
 
-neutrino_locale_t CYTBrowser::getFeedLocale(void)
+std::string CYTBrowser::getFeedLocale(void)
 {
-	neutrino_locale_t ret = (neutrino_locale_t)LOCALE_YT_MOST_POPULAR;
+	std::string ret = "Most popular today";
 
 	if (ytmode == cYTFeedParser::RELATED)
-		return (neutrino_locale_t)LOCALE_YT_RELATED;
+		ret = "Related videos";
 
 	if (ytmode == cYTFeedParser::SEARCH)
-		return (neutrino_locale_t)LOCALE_YT_SEARCH;
+		ret = "Search keyword";
 
 	for (unsigned i = 0; i < YT_FEED_OPTION_COUNT; i++) 
 	{
 		if (ytmode == YT_FEED_OPTIONS[i].key)
-			return YT_FEED_OPTIONS[i].value;
+			ret = YT_FEED_OPTIONS[i].valname;
 	}
 	
 	return ret;
@@ -360,27 +354,27 @@ int CYTBrowser::showCategoriesMenu(void)
 
 	int res = -1;
 
-	CMenuWidget mainMenu(g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_YOUTUBE), NEUTRINO_ICON_YT_SMALL);
+	CMenuWidget mainMenu(_("Youtube Player"), NEUTRINO_ICON_YT_SMALL);
 
 	mainMenu.enableSaveScreen();
 	mainMenu.setWidgetMode(MODE_MENU);
 	mainMenu.enableShrinkMenu();
 
-	mainMenu.addItem(new CMenuForwarder(g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_MOST_POPULAR), true, NULL, new CYTBrowser(cYTFeedParser::MOST_POPULAR), NULL));
+	mainMenu.addItem(new CMenuForwarder(_("Most popular today"), true, NULL, new CYTBrowser(cYTFeedParser::MOST_POPULAR), NULL));
 
 	mainMenu.addItem(new CMenuSeparator(LINE));
 	
 	// search
-	mainMenu.addItem(new CMenuForwarder(g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_SEARCH), true, ytsearch.c_str(), this, "search", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	mainMenu.addItem(new CMenuForwarder(_("Search keyword"), true, ytsearch.c_str(), this, "search", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	
 	// ytorder
-	mainMenu.addItem(new CMenuOptionChooser(g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_ORDERBY), &m_settings.ytorderby, YT_ORDERBY_OPTIONS, YT_ORDERBY_OPTION_COUNT, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true));
+	mainMenu.addItem(new CMenuOptionChooser(_("Order by"), &m_settings.ytorderby, YT_ORDERBY_OPTIONS, YT_ORDERBY_OPTION_COUNT, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true));
 
 	mainMenu.addItem(new CMenuSeparator(LINE));
 
 	char rstr[20];
 	sprintf(rstr, "%s", m_settings.ytregion.c_str());
-	CMenuOptionStringChooser * region = new CMenuOptionStringChooser(g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_REGION), rstr, true, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, true);
+	CMenuOptionStringChooser * region = new CMenuOptionStringChooser(_("Region"), rstr, true, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, true);
 	region->addOption("default");
 	region->addOption("DE");
 	region->addOption("PL");
@@ -395,7 +389,7 @@ int CYTBrowser::showCategoriesMenu(void)
 	mainMenu.addItem(new CMenuSeparator(LINE));
 
 	// autoplay
-	mainMenu.addItem(new CMenuOptionChooser(g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_AUTOPLAY), &m_settings.ytautoplay, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	mainMenu.addItem(new CMenuOptionChooser(_("Auto Play"), &m_settings.ytautoplay, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 	mainMenu.exec(NULL, "");
 	

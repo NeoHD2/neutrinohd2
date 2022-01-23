@@ -79,22 +79,22 @@
 #define HDD_NOISE_OPTION_COUNT 4
 const keyval HDD_NOISE_OPTIONS[HDD_NOISE_OPTION_COUNT] =
 {
-	{ 0,   LOCALE_OPTIONS_OFF, NULL },
-	{ 128, LOCALE_HDD_SLOW, NULL },
-	{ 190, LOCALE_HDD_MIDDLE, NULL },
-	{ 254, LOCALE_HDD_FAST, NULL }
+	{ 0,   _("off") },
+	{ 128, _("slow") },
+	{ 190, _("middle") },
+	{ 254, _("fast") }
 };
 
 #define HDD_SLEEP_OPTION_COUNT 7
 const keyval HDD_SLEEP_OPTIONS[HDD_SLEEP_OPTION_COUNT] =
 {
-	{0, LOCALE_OPTIONS_OFF, NULL},
-	{12, LOCALE_HDD_1MIN, NULL},
-	{60, LOCALE_HDD_5MIN, NULL},
-	{120, LOCALE_HDD_10MIN, NULL},
-	{240, LOCALE_HDD_20MIN, NULL},
-	{241, LOCALE_HDD_30MIN, NULL},
-	{242, LOCALE_HDD_60MIN, NULL}
+	{0, _("off")},
+	{12, "1 min."},
+	{60, "5 min."},
+	{120, "10 min."},
+	{240, "20 min."},
+	{241, "30 min."},
+	{242, "60 min."}
 };
 
 static int my_filter(const struct dirent * dent)
@@ -198,10 +198,10 @@ int CHDDMenuHandler::hddMenu()
 	hddmenu->addItem(new CMenuForwarder(_("Activate settings"), true, NULL, this, "activateNow", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
 
 	// sleep time
-	hddmenu->addItem( new CMenuOptionChooser(LOCALE_HDD_SLEEP, &g_settings.hdd_sleep, HDD_SLEEP_OPTIONS, HDD_SLEEP_OPTION_COUNT, true, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, true));
+	hddmenu->addItem( new CMenuOptionChooser(_("Sleep time"), &g_settings.hdd_sleep, HDD_SLEEP_OPTIONS, HDD_SLEEP_OPTION_COUNT, true, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, true));
 	
 	// noise
-	hddmenu->addItem( new CMenuOptionChooser(LOCALE_HDD_NOISE, &g_settings.hdd_noise, HDD_NOISE_OPTIONS, HDD_NOISE_OPTION_COUNT, true, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, true ));
+	hddmenu->addItem( new CMenuOptionChooser(_("Noise"), &g_settings.hdd_noise, HDD_NOISE_OPTIONS, HDD_NOISE_OPTION_COUNT, true, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, true ));
 	
 	// HDDs
 	hddmenu->addItem(new CMenuSeparator(LINE));

@@ -50,33 +50,33 @@ extern cAudio 		* audioDecoder;		//libcoolstream (audio_cs.cpp)
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL }
+        { 0, _("off") },
+        { 1, _("on") }
 };
 
 #define AUDIOMENU_ANALOGOUT_OPTION_COUNT 3
 const keyval AUDIOMENU_ANALOGOUT_OPTIONS[AUDIOMENU_ANALOGOUT_OPTION_COUNT] =
 {
-	{ 0, LOCALE_AUDIOMENU_STEREO, NULL },
-	{ 1, LOCALE_AUDIOMENU_MONOLEFT, NULL },
-	{ 2, LOCALE_AUDIOMENU_MONORIGHT, NULL }
+	{ 0, _("stereo") },
+	{ 1, _("mono left") },
+	{ 2, _("mono right") }
 };
 
 #if defined (PLATFORM_COOLSTREAM)
 #define AUDIOMENU_AVSYNC_OPTION_COUNT 3
 const keyval AUDIOMENU_AVSYNC_OPTIONS[AUDIOMENU_AVSYNC_OPTION_COUNT] =
 {
-        { 0, LOCALE_OPTIONS_OFF, NULL },
-        { 1, LOCALE_OPTIONS_ON, NULL },
-        { 2, LOCALE_AUDIOMENU_AVSYNC_AM, NULL }
+        { 0, _("off") },
+        { 1, _("on") },
+        { 2, _("Audio master") }
 };
 #else
 #define AUDIOMENU_AVSYNC_OPTION_COUNT 3
 const keyval AUDIOMENU_AVSYNC_OPTIONS[AUDIOMENU_AVSYNC_OPTION_COUNT] =
 {
-        { AVSYNC_OFF, LOCALE_OPTIONS_OFF, NULL },
-        { AVSYNC_ON, LOCALE_OPTIONS_ON, NULL },
-        { AVSYNC_AM, LOCALE_AUDIOMENU_AVSYNC_AM, NULL }
+        { AVSYNC_OFF, _("off") },
+        { AVSYNC_ON, _("on") },
+        { AVSYNC_AM, _("Audio master") }
 };
 #endif
 
@@ -85,22 +85,22 @@ const keyval AUDIOMENU_AVSYNC_OPTIONS[AUDIOMENU_AVSYNC_OPTION_COUNT] =
 #define AC3_OPTION_COUNT 2
 const keyval AC3_OPTIONS[AC3_OPTION_COUNT] =
 {
-	{ AC3_DOWNMIX, NONEXISTANT_LOCALE, "downmix" },
-	{ AC3_PASSTHROUGH, NONEXISTANT_LOCALE, "passthrough" }
+	{ AC3_DOWNMIX, "downmix" },
+	{ AC3_PASSTHROUGH, "passthrough" }
 };
 
 #define AUDIODELAY_OPTION_COUNT 9
 const keyval AUDIODELAY_OPTIONS[AUDIODELAY_OPTION_COUNT] =
 {
-	{ -1000, NONEXISTANT_LOCALE, "-1000" },
-	{ -750, NONEXISTANT_LOCALE, "-750" },
-	{ -500, NONEXISTANT_LOCALE, "-500" },
-	{ -250, NONEXISTANT_LOCALE, "-250" },
-	{ 0, NONEXISTANT_LOCALE, "0" },
-	{ 250, NONEXISTANT_LOCALE, "250" },
-	{ 500, NONEXISTANT_LOCALE, "500" },
-	{ 750, NONEXISTANT_LOCALE, "750" },
-	{ 1000, NONEXISTANT_LOCALE, "1000" }
+	{ -1000, "-1000" },
+	{ -750, "-750" },
+	{ -500, "-500" },
+	{ -250, "-250" },
+	{ 0, "0" },
+	{ 250, "250" },
+	{ 500, "500" },
+	{ 750, "750" },
+	{ 1000, "1000" }
 };
 #endif
 
@@ -168,36 +168,36 @@ void CAudioSettings::showMenu()
 	audioSettings.addItem( new CMenuSeparator(LINE) );
 
 	// analog output
-	audioSettings.addItem(new CMenuOptionChooser(LOCALE_AUDIOMENU_ANALOGOUT, &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++), "", true ));
+	audioSettings.addItem(new CMenuOptionChooser(_("Analog Output"), &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++), "", true ));
 
 #if !defined (PLATFORM_COOLSTREAM)	
 	// hdmi-dd
-	audioSettings.addItem(new CMenuOptionChooser(LOCALE_AUDIOMENU_HDMI_DD, &g_settings.hdmi_dd, AC3_OPTIONS, AC3_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++) ));	
+	audioSettings.addItem(new CMenuOptionChooser(_("Dolby Digital"), &g_settings.hdmi_dd, AC3_OPTIONS, AC3_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++) ));	
 #endif	
 
 	// A/V sync
-	audioSettings.addItem(new CMenuOptionChooser(LOCALE_AUDIOMENU_AVSYNC, &g_settings.avsync, AUDIOMENU_AVSYNC_OPTIONS, AUDIOMENU_AVSYNC_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++), "", true ));
+	audioSettings.addItem(new CMenuOptionChooser(_("A/V sync"), &g_settings.avsync, AUDIOMENU_AVSYNC_OPTIONS, AUDIOMENU_AVSYNC_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++), "", true ));
 	
 #if !defined (PLATFORM_COOLSTREAM)	
 	// ac3 delay
-	audioSettings.addItem(new CMenuOptionChooser(LOCALE_AUDIOMENU_AC3_DELAY, &g_settings.ac3_delay, AUDIODELAY_OPTIONS, AUDIODELAY_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++) ));
+	audioSettings.addItem(new CMenuOptionChooser(_("AC3 Delay"), &g_settings.ac3_delay, AUDIODELAY_OPTIONS, AUDIODELAY_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++) ));
 	
 	// pcm delay
-	audioSettings.addItem(new CMenuOptionChooser(LOCALE_AUDIOMENU_PCM_DELAY, &g_settings.pcm_delay, AUDIODELAY_OPTIONS, AUDIODELAY_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++) ));
+	audioSettings.addItem(new CMenuOptionChooser(_("PCM Delay"), &g_settings.pcm_delay, AUDIODELAY_OPTIONS, AUDIODELAY_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++) ));
 #endif	
 	
 	// pref sub/lang
-	audioSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_AUDIOMENU_PREF_LANG_HEAD)));
+	audioSettings.addItem(new CMenuSeparator(LINE | STRING, _("Audio language preferences")));
 	
 	// auto ac3 
-	CMenuOptionChooser * a1 = new CMenuOptionChooser(LOCALE_AUDIOMENU_DOLBYDIGITAL, &g_settings.audio_DolbyDigital, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, g_settings.auto_lang, audioSetupNotifier );
+	CMenuOptionChooser * a1 = new CMenuOptionChooser(_("Dolby Digital"), &g_settings.audio_DolbyDigital, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, g_settings.auto_lang, audioSetupNotifier );
 	
 	// audiolang
 	CMenuOptionStringChooser * audiolangSelect[3];
 	
 	for(int i = 0; i < 3; i++) 
 	{
-		audiolangSelect[i] = new CMenuOptionStringChooser(LOCALE_AUDIOMENU_PREF_LANG, g_settings.pref_lang[i], g_settings.auto_lang, NULL, RC_nokey, "", true);
+		audiolangSelect[i] = new CMenuOptionStringChooser(_("Preferred language"), g_settings.pref_lang[i], g_settings.auto_lang, NULL, RC_nokey, "", true);
 		
 		audiolangSelect[i]->addOption("");
 		std::map<std::string, std::string>::const_iterator it;
@@ -208,7 +208,7 @@ void CAudioSettings::showMenu()
 	CAutoAudioNotifier * autoAudioNotifier = new CAutoAudioNotifier(a1, audiolangSelect[0], audiolangSelect[1], audiolangSelect[2]);
 	
 	// auto lang
-	audioSettings.addItem(new CMenuOptionChooser(LOCALE_AUDIOMENU_AUTO_LANG, &g_settings.auto_lang, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, autoAudioNotifier));
+	audioSettings.addItem(new CMenuOptionChooser(_("Auto select audio"), &g_settings.auto_lang, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, autoAudioNotifier));
 	
 	// ac3
 	audioSettings.addItem(a1);
@@ -218,12 +218,12 @@ void CAudioSettings::showMenu()
 		audioSettings.addItem(audiolangSelect[i]);
 	
 	// sublang
-	audioSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_AUDIOMENU_PREF_SUBS_HEAD)));
+	audioSettings.addItem(new CMenuSeparator(LINE | STRING, _("Subtitle language preferences")));
 	
 	CMenuOptionStringChooser * sublangSelect[3];
 	for(int i = 0; i < 3; i++) 
 	{
-		sublangSelect[i] = new CMenuOptionStringChooser(LOCALE_AUDIOMENU_PREF_SUBS, g_settings.pref_subs[i], g_settings.auto_subs, NULL, RC_nokey, "", true);
+		sublangSelect[i] = new CMenuOptionStringChooser(_("Prefered subtitle language"), g_settings.pref_subs[i], g_settings.auto_subs, NULL, RC_nokey, "", true);
 		std::map<std::string, std::string>::const_iterator it;
 		
 		sublangSelect[i]->addOption("");
@@ -234,7 +234,7 @@ void CAudioSettings::showMenu()
 	CSubLangSelectNotifier * subLangSelectNotifier = new CSubLangSelectNotifier(sublangSelect[0], sublangSelect[1], sublangSelect[2]);
 	
 	// auto sublang
-	audioSettings.addItem(new CMenuOptionChooser(LOCALE_AUDIOMENU_AUTO_SUBS, &g_settings.auto_subs, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, subLangSelectNotifier));
+	audioSettings.addItem(new CMenuOptionChooser(_("Auto select subtitles"), &g_settings.auto_subs, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, subLangSelectNotifier));
 	
 	// sublang
 	for(int i = 0; i < 3; i++) 

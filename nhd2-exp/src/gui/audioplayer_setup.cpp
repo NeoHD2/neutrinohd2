@@ -45,8 +45,8 @@
 #define MESSAGEBOX_NO_YES_OPTION_COUNT 2
 const keyval MESSAGEBOX_NO_YES_OPTIONS[MESSAGEBOX_NO_YES_OPTION_COUNT] =
 {
-	{ 0, LOCALE_MESSAGEBOX_NO, NULL },
-	{ 1, LOCALE_MESSAGEBOX_YES, NULL }
+	{ 0, _("No") },
+	{ 1, _("Yes") }
 };
 
 CAudioPlayerSettings::CAudioPlayerSettings()
@@ -109,7 +109,7 @@ void CAudioPlayerSettings::showMenu()
 	audioPlayerSettings.addItem( new CMenuSeparator(LINE) );
 
 	// high prio
-	audioPlayerSettings.addItem(new CMenuOptionChooser(LOCALE_AUDIOPLAYER_HIGHPRIO, &g_settings.audioplayer_highprio, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutAudioPlayer++) ));
+	audioPlayerSettings.addItem(new CMenuOptionChooser(_("High decode priority"), &g_settings.audioplayer_highprio, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutAudioPlayer++) ));
 
 	// start dir
 	audioPlayerSettings.addItem(new CMenuForwarder(_("Start dir."), true, g_settings.network_nfs_audioplayerdir, this, "audioplayerdir", CRCInput::convertDigitToKey(shortcutAudioPlayer++)));
