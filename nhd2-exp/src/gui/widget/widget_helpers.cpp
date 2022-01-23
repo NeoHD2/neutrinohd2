@@ -223,7 +223,7 @@ void CProgressBar::paint(unsigned char pcr, bool paintBG)
 				else
 					rgb = 0xFF0000 + (diff << 8); // adding green
 				
-					frameBuffer->paintBoxRel(cCBox.iX + i, cCBox.iY, 1, cCBox.iHeight, make16color(rgb), NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
+				frameBuffer->paintBoxRel(cCBox.iX + i, cCBox.iY, 1, cCBox.iHeight, make16color(rgb), NO_RADIUS, CORNER_ALL, g_settings.progressbar_gradient);
 			}
 			
 			//yellow
@@ -298,7 +298,7 @@ void CCButtons::setButtons(const struct button_label *button_label, const int bu
 {
 	if (button_count)
 	{
-		for (int i = 0; i < button_count; i++)
+		for (unsigned int i = 0; i < (unsigned int)button_count; i++)
 		{
 			buttons.push_back(button_label[i]);
 		}
@@ -321,7 +321,7 @@ void CCButtons::paint()
 	{
 		buttonWidth = (cCBox.iWidth - BORDER_LEFT - BORDER_RIGHT)/count;
 	
-		for (int i = 0; i < count; i++)
+		for (unsigned int i = 0; i < count; i++)
 		{
 			if (!buttons[i].button.empty())
 			{
@@ -369,7 +369,7 @@ void CCButtons::paintFootButtons(const int x, const int y, const int dx, const i
 		//
 		buttonWidth = (dx)/count;
 
-		for (int i = 0; i < count; i++)
+		for (unsigned int i = 0; i < count; i++)
 		{
 			if(!content[i].button.empty())
 			{
@@ -410,7 +410,7 @@ void CCButtons::paintHeadButtons(const int x, const int y, const int dx, const i
 	int iw[count], ih[count];
 	int startx = x + dx - BORDER_RIGHT;
 	
-	for (int i = 0; i < count; i++)
+	for (unsigned int i = 0; i < count; i++)
 	{
 		if(!content[i].button.empty())
 		{
@@ -1220,7 +1220,7 @@ void CHeaders::setButtons(const struct button_label* _hbutton_labels, const int 
 {
 	if (_hbutton_count)
 	{
-		for (int i = 0; i < _hbutton_count; i++)
+		for (unsigned int i = 0; i < (unsigned int)_hbutton_count; i++)
 		{
 			hbutton_labels.push_back(_hbutton_labels[i]);
 		}
@@ -1266,7 +1266,7 @@ void CHeaders::paint()
 
 	if(hbutton_count)
 	{
-		for (int i = 0; i < hbutton_count; i++)
+		for (unsigned int i = 0; i < (unsigned int)hbutton_count; i++)
 		{
 			if (!hbutton_labels[i].button.empty())
 			{
@@ -1343,7 +1343,7 @@ CFooters::CFooters(int x, int y, int dx, int dy)
 
 CFooters::CFooters(CBox* position)
 {
-	dprintf(DEBUG_INFO, "CFooters::CFooters: x:%d y:%d dx:%d dy:%d title:%s icon:%s\n", position->iX, position->iY, position->iWidth, position->iHeight);
+	dprintf(DEBUG_INFO, "CFooters::CFooters: x:%d y:%d dx:%d dy:%d\n", position->iX, position->iY, position->iWidth, position->iHeight);
 	
 	itemBox = *position;
 
@@ -1364,7 +1364,7 @@ void CFooters::setButtons(const struct button_label *button_label, const int but
 {
 	if (button_count)
 	{
-		for (int i = 0; i < button_count; i++)
+		for (unsigned int i = 0; i < (unsigned int)button_count; i++)
 		{
 			fbuttons.push_back(button_label[i]);
 		}
@@ -1393,7 +1393,7 @@ void CFooters::paint()
 	{
 		buttonWidth = (fbutton_width)/fcount;
 	
-		for (int i = 0; i < fcount; i++)
+		for (unsigned int i = 0; i < fcount; i++)
 		{
 			if (!fbuttons[i].button.empty())
 			{

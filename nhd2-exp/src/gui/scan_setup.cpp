@@ -450,9 +450,9 @@ void CScanSetup::showScanService()
 				satNotify->addItem(0, comm);
 				satNotify->addItem(0, uncomm);
 
-				CIntInput* lofL = new CIntInput(LOCALE_SATSETUP_LOFL, (int&) sit->second.lnbOffsetLow, 5, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE);
-				CIntInput* lofH = new CIntInput(LOCALE_SATSETUP_LOFH, (int&) sit->second.lnbOffsetHigh, 5, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE);
-				CIntInput* lofS = new CIntInput(LOCALE_SATSETUP_LOFS, (int&) sit->second.lnbSwitch, 5, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE);
+				CIntInput* lofL = new CIntInput(_("LNB Low Offset"), (int&) sit->second.lnbOffsetLow, 5);
+				CIntInput* lofH = new CIntInput(_("LNB High Offset"), (int&) sit->second.lnbOffsetHigh, 5);
+				CIntInput* lofS = new CIntInput(_("LNB switch Offset"), (int&) sit->second.lnbSwitch, 5);
 
 				satOnOff->addItem(inuse);
 					
@@ -549,14 +549,14 @@ void CScanSetup::showScanService()
 		motorMenu->addItem(new CMenuOptionChooser(_("LaDirection"),  (int *)&getFE(feindex)->gotoXXLaDirection, OPTIONS_SOUTH0_NORTH1_OPTIONS, OPTIONS_SOUTH0_NORTH1_OPTION_COUNT, true));
 
 		// latitude
-		toff = new CStringInput(LOCALE_EXTRA_LAT, (char *) zapit_lat, 10, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, "0123456789.");
+		toff = new CStringInput(_("Latitude"), (char *) zapit_lat, 10, NULL, NULL, "0123456789.");
 		motorMenu->addItem(new CMenuForwarder(_("Latitude"), true, zapit_lat, toff));
 
 		// gotoxx lodirection
 		motorMenu->addItem(new CMenuOptionChooser(_("LoDirection"),  (int *)&getFE(feindex)->gotoXXLoDirection, OPTIONS_EAST0_WEST1_OPTIONS, OPTIONS_EAST0_WEST1_OPTION_COUNT, true));
 
 		// longitude
-		taff = new CStringInput(LOCALE_EXTRA_LONG, (char *) zapit_long, 10, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, "0123456789.");
+		taff = new CStringInput(_("Longitude"), (char *) zapit_long, 10, NULL, NULL, "0123456789.");
 		motorMenu->addItem(new CMenuForwarder(_("Longitude"), true, zapit_long, taff));
 		
 		// usals repeat
@@ -692,7 +692,7 @@ void CScanSetup::showScanService()
 	}
 	
 	//int freq_length = ( getFE(feindex)->getInfo()->type == FE_QPSK) ? 8 : 6;
-	CStringInput * freq = new CStringInput(LOCALE_EXTRA_FREQ, (char *) scanSettings->TP_freq, freq_length, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, "0123456789");
+	CStringInput * freq = new CStringInput(_("Frequency"), (char *) scanSettings->TP_freq, freq_length, NULL, NULL, "0123456789");
 	CMenuForwarder * Freq = new CMenuForwarder(_("Frequency"), true, scanSettings->TP_freq, freq, "", RC_nokey );
 		
 	manualScan->addItem(Freq);
@@ -720,7 +720,7 @@ void CScanSetup::showScanService()
 	manualScan->addItem(mod_pol);
 
 	// symbol rate
-	CStringInput * rate = new CStringInput(LOCALE_EXTRA_RATE, (char *) scanSettings->TP_rate, 8, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE, "0123456789");
+	CStringInput * rate = new CStringInput(_("Symbol rate"), (char *) scanSettings->TP_rate, 8, NULL, NULL, "0123456789");
 	CMenuForwarder * Rate = new CMenuForwarder(_("Symbol rate"), true, scanSettings->TP_rate, rate, "", RC_nokey );
 
 	// fec
@@ -858,7 +858,7 @@ int CScanSetup::showUnicableSetup()
 	uni_setup->addItem(uniscr);
 
 	// uni_qrg
-	CIntInput *uni_qrg = new CIntInput(LOCALE_SATSETUP_UNIQRG, (int&) getFE(feindex)->uni_qrg, 4, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE);
+	CIntInput *uni_qrg = new CIntInput(_("Unicable frequency"), (int&) getFE(feindex)->uni_qrg, 4);
 	CMenuForwarder * uniqrg = new CMenuForwarder(_("Unicable frequency"), true, uni_qrg->getValue(), uni_qrg);
 	uni_setup->addItem(uniqrg);
 

@@ -287,33 +287,33 @@ int CNFSMountGui::menuEntry(int nr)
 	mountMenuEntryW.addItem(new CMenuSeparator(LINE));
 	
 	// ip
-	CIPInput ipInput(LOCALE_NFS_IP, g_settings.network_nfs_ip[nr], LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2);
+	CIPInput ipInput(_("Server IP"), g_settings.network_nfs_ip[nr], _("Use 0..9, or use Up/Down,"), _("OK saves, HOME! aborts"));
 	
 	// dir
-	CStringInputSMS dirInput(LOCALE_NFS_DIR, dir);
+	CStringInputSMS dirInput(_("directory/share"), dir);
 	
 	// automount
 	CMenuOptionChooser *automountInput= new CMenuOptionChooser(_("mount on startup"), automount, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true);
 	
 	// option1
-	CStringInputSMS options1Input(LOCALE_NFS_MOUNT_OPTIONS, options1);
+	CStringInputSMS options1Input(_("Mount options"), options1);
 	CMenuForwarder *options1_fwd = new CMenuForwarder(_("Mount options"), true, options1, &options1Input);
 	
 	// option2
-	CStringInputSMS options2Input(LOCALE_NFS_MOUNT_OPTIONS, options2);
+	CStringInputSMS options2Input(_("Mount options"), options2);
 	CMenuForwarder *options2_fwd = new CMenuForwarder(_("Mount options"), true, options2, &options2Input);
 	
 	// username
-	CStringInputSMS userInput(LOCALE_NFS_USERNAME, username);
+	CStringInputSMS userInput(_("username"), username);
 	CMenuForwarder *username_fwd = new CMenuForwarder(_("username"), (*type==CFSMounter::CIFS || CFSMounter::LUFS), username, &userInput);
 	
 	// password
-	CStringInputSMS passInput(LOCALE_NFS_PASSWORD, password);
+	CStringInputSMS passInput(_("password"), password);
 	CMenuForwarder *password_fwd = new CMenuForwarder(_("password"), (*type==CFSMounter::CIFS || CFSMounter::LUFS), NULL, &passInput);
 	
 	// mac
-	CMACInput * macInput = new CMACInput(LOCALE_RECORDINGMENU_SERVER_MAC,  g_settings.network_nfs_mac[nr], LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2);
-	CMenuForwarder * macInput_fwd = new CMenuForwarder(_("MAC"), true, g_settings.network_nfs_mac[nr], macInput);
+	CMACInput * macInput = new CMACInput(_("MAC address"),  g_settings.network_nfs_mac[nr], _("Use 0..9, or use Up/Down,"), _("OK saves, HOME! aborts"));
+	CMenuForwarder * macInput_fwd = new CMenuForwarder(_("MAC address"), true, g_settings.network_nfs_mac[nr], macInput);
 
 	CNFSMountGuiNotifier notifier(username_fwd, password_fwd, type);
 

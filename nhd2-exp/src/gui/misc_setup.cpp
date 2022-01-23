@@ -280,7 +280,7 @@ void CGeneralSettings::showMenu()
 	miscSettingsGeneral.addItem(m1);
 
 	// delay counter
-	CStringInput * miscSettings_shutdown_count = new CStringInput(_("switch off after"), g_settings.shutdown_count, 3, LOCALE_MISCSETTINGS_SHUTDOWN_COUNT_HINT1, LOCALE_MISCSETTINGS_SHUTDOWN_COUNT_HINT2, "0123456789 ");
+	CStringInput * miscSettings_shutdown_count = new CStringInput(_("switch off after"), g_settings.shutdown_count, 3, _("time (in minutes) to switch from standby"), _("to deep standby (0 = off)."), "0123456789 ");
 	miscSettingsGeneral.addItem(new CMenuForwarder(_("switch off after"), true, g_settings.shutdown_count, miscSettings_shutdown_count));
 
 	// start to standby
@@ -330,13 +330,13 @@ void CGeneralSettings::showMenu()
 
 	std::string ytkey = g_settings.ytkey;
 	
-	CStringInputSMS* keyInput = new CStringInputSMS("youtube ID Key:", ytkey.c_str());
-	miscSettingsGeneral.addItem(new CMenuForwarder("YT:", true, ytkey.c_str(), keyInput));
+	CStringInputSMS* keyInput = new CStringInputSMS(_("youtube ID Key:"), ytkey.c_str());
+	miscSettingsGeneral.addItem(new CMenuForwarder(_("YT:"), true, ytkey.c_str(), keyInput));
 
 	std::string tmdbkey = g_settings.tmdbkey;
 
-	CStringInputSMS* tmdbkeyInput = new CStringInputSMS("TMDB Key:", tmdbkey.c_str());
-	miscSettingsGeneral.addItem(new CMenuForwarder("TMDB:", true, tmdbkey.c_str(), tmdbkeyInput));
+	CStringInputSMS* tmdbkeyInput = new CStringInputSMS(_("TMDB Key:"), tmdbkey.c_str());
+	miscSettingsGeneral.addItem(new CMenuForwarder(_("TMDB:"), true, tmdbkey.c_str(), tmdbkeyInput));
 
 	// prefer tmdb infos
 	miscSettingsGeneral.addItem(new CMenuOptionChooser(_("TMDB"), &g_settings.enable_tmdb_infos, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
@@ -723,19 +723,19 @@ void CEPGSettings::showMenu()
 	miscSettingsEPG.addItem(new CMenuOptionChooser(_("Save/Restore epg on reboot"), &g_settings.epg_save, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// epg cache
-        CStringInput * miscSettings_epg_cache = new CStringInput(_("EPG-Cache (Days)"), g_settings.epg_cache.c_str(), 2,LOCALE_MISCSETTINGS_EPG_CACHE_HINT1, LOCALE_MISCSETTINGS_EPG_CACHE_HINT2 , "0123456789 ", sectionsdConfigNotifier);
+        CStringInput * miscSettings_epg_cache = new CStringInput(_("EPG-Cache (Days)"), g_settings.epg_cache.c_str(), 2, _("How long will EPG-Data in the future cached?"), _("Set in days."), "0123456789 ", sectionsdConfigNotifier);
         miscSettingsEPG.addItem(new CMenuForwarder(_("EPG-Cache (Days)"), true, g_settings.epg_cache.c_str(), miscSettings_epg_cache, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// extended epg cache
-        CStringInput * miscSettings_epg_cache_e = new CStringInput(_("EPG Long Description (hours)"), g_settings.epg_extendedcache.c_str(), 3,LOCALE_MISCSETTINGS_EPG_EXTENDEDCACHE_HINT1, LOCALE_MISCSETTINGS_EPG_EXTENDEDCACHE_HINT2 , "0123456789 ", sectionsdConfigNotifier);
+        CStringInput * miscSettings_epg_cache_e = new CStringInput(_("EPG Long Description (hours)"), g_settings.epg_extendedcache.c_str(), 3, _("How long into the future will EPG extended descriptions"), _("be Cached? (Set in hours)"), "0123456789 ", sectionsdConfigNotifier);
         miscSettingsEPG.addItem(new CMenuForwarder(_("EPG Long Description (hours)"), true, g_settings.epg_extendedcache.c_str(), miscSettings_epg_cache_e, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++)));
 
 	// old events
-        CStringInput * miscSettings_epg_old_events = new CStringInput(_("EPG remove after (std.)"), g_settings.epg_old_events.c_str(), 2,LOCALE_MISCSETTINGS_EPG_OLD_EVENTS_HINT1, LOCALE_MISCSETTINGS_EPG_OLD_EVENTS_HINT2 , "0123456789 ", sectionsdConfigNotifier);
+        CStringInput * miscSettings_epg_old_events = new CStringInput(_("EPG remove after (std.)"), g_settings.epg_old_events.c_str(), 2, _("How long will EPG-Data be stored after they timed out?"), _("Set in hours"), "0123456789 ", sectionsdConfigNotifier);
         miscSettingsEPG.addItem(new CMenuForwarder(_("EPG remove after (std.)"), true, g_settings.epg_old_events.c_str(), miscSettings_epg_old_events, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// max epg events
-        CStringInput * miscSettings_epg_max_events = new CStringInput(_("Max. Events"), g_settings.epg_max_events.c_str(), 5,LOCALE_MISCSETTINGS_EPG_MAX_EVENTS_HINT1, LOCALE_MISCSETTINGS_EPG_MAX_EVENTS_HINT2 , "0123456789 ", sectionsdConfigNotifier);
+        CStringInput * miscSettings_epg_max_events = new CStringInput(_("Max. Events"), g_settings.epg_max_events.c_str(), 5, _("How many events should be stored?"), _("normaly 50000, 0 to disable limit"), "0123456789 ", sectionsdConfigNotifier);
         miscSettingsEPG.addItem(new CMenuForwarder(_("Max. Events"), true, g_settings.epg_max_events.c_str(), miscSettings_epg_max_events, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
 
 	// epg save dir
@@ -765,19 +765,19 @@ void CEPGSettings::showMenu()
 	miscSettingsEPG.addItem( new CMenuSeparator(LINE) );
 
 	// server box ip
-	CIPInput * epg_IP = new CIPInput(LOCALE_STREAMINGMENU_SERVER_IP, g_settings.epg_serverbox_ip);
-	CMenuForwarder* o1 = new CMenuForwarder("Server Box IP", g_settings.epg_enable_online_epg, g_settings.epg_serverbox_ip.c_str(), epg_IP, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++));
+	CIPInput * epg_IP = new CIPInput(_("Server Box IP"), g_settings.epg_serverbox_ip);
+	CMenuForwarder* o1 = new CMenuForwarder(_("Server Box IP"), g_settings.epg_enable_online_epg, g_settings.epg_serverbox_ip.c_str(), epg_IP, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++));
 
 	// server gui (neutrino/neutrinohd/enigma2)
-	CMenuOptionChooser* o2 = new CMenuOptionChooser("Server Box GUI", &g_settings.epg_serverbox_gui, EPG_SERVERBOX_GUI_OPTIONS, EPG_SERVERBOX_GUI_OPTION_COUNT, g_settings.epg_enable_online_epg, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++));
+	CMenuOptionChooser* o2 = new CMenuOptionChooser(_("Server Box GUI"), &g_settings.epg_serverbox_gui, EPG_SERVERBOX_GUI_OPTIONS, EPG_SERVERBOX_GUI_OPTION_COUNT, g_settings.epg_enable_online_epg, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++));
 
 	// server box type (sat/cable/terrestrial)
-	CMenuOptionChooser* o3 = new CMenuOptionChooser("Server Box type", &g_settings.epg_serverbox_type, EPG_SERVERBOX_TYPE_OPTIONS, EPG_SERVERBOX_TYPE_OPTION_COUNT, g_settings.epg_enable_online_epg, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++));
+	CMenuOptionChooser* o3 = new CMenuOptionChooser(_("Server Box type"), &g_settings.epg_serverbox_type, EPG_SERVERBOX_TYPE_OPTIONS, EPG_SERVERBOX_TYPE_OPTION_COUNT, g_settings.epg_enable_online_epg, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++));
 
 	// online EPG on/off
 	COnlineEPGNotifier* onlineEPGNotifier = new COnlineEPGNotifier(o1, o2, o3);
 
-	miscSettingsEPG.addItem(new CMenuOptionChooser("Online EPG", &g_settings.epg_enable_online_epg, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, onlineEPGNotifier, CRCInput::convertDigitToKey(shortcutMiscEpg++)));
+	miscSettingsEPG.addItem(new CMenuOptionChooser(_("Online EPG"), &g_settings.epg_enable_online_epg, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, onlineEPGNotifier, CRCInput::convertDigitToKey(shortcutMiscEpg++)));
 
 	miscSettingsEPG.addItem(o1);
 	miscSettingsEPG.addItem(o2);

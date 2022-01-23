@@ -89,14 +89,14 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 			if (MessageBox(_("Information"), _("Save current theme"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 			{
 				std::string file_name = "";
-				CStringInputSMS * nameInput = new CStringInputSMS(LOCALE_COLORTHEMEMENU_NAME, file_name.c_str());
+				CStringInputSMS * nameInput = new CStringInputSMS(_("Theme name"), file_name.c_str());
 
 				nameInput->exec(NULL, "");
 				
 				//
 				if (!nameInput->getExitPressed())
 				{
-					HintBox(_("Save current theme"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now"));
+					HintBox(_("Save current theme"), _("Save settings now"));
 					
 					if (g_settings.use_default_skin)
 						saveFile((char*)((std::string)USERDIR + nameInput->getString().c_str() + FILE_PREFIX).c_str());

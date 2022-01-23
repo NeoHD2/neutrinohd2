@@ -464,7 +464,7 @@ void CBEBouquetWidget::deleteBouquet()
 
 void CBEBouquetWidget::addBouquet()
 {
-	std::string newName = inputName("", LOCALE_BOUQUETEDITOR_BOUQUETNAME);
+	std::string newName = inputName("", _("Name of bouquets"));
 	if (!(newName.empty()))
 	{
 		g_bouquetManager->addBouquet(newName, true);
@@ -524,7 +524,7 @@ void CBEBouquetWidget::renameBouquet()
 	if ((*Bouquets)[selected]->bFav)
 		return;
 
-	std::string newName = inputName((*Bouquets)[selected]->Name.c_str(), LOCALE_BOUQUETEDITOR_NEWBOUQUETNAME);
+	std::string newName = inputName((*Bouquets)[selected]->Name.c_str(), _("Name of bouquets"));
 	if (newName != (*Bouquets)[selected]->Name)
 	{
 		g_bouquetManager->Bouquets[selected]->Name = newName;
@@ -552,7 +552,7 @@ void CBEBouquetWidget::switchLockBouquet()
 	paint();
 }
 
-std::string CBEBouquetWidget::inputName(const char * const defaultName, const neutrino_locale_t caption)
+std::string CBEBouquetWidget::inputName(const char * const defaultName, const char* const caption)
 {
 	//FIXME: max input it too long than bqt window width
 	char Name[MAX_INPUT_CHARS + 1];

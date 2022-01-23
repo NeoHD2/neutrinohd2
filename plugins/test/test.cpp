@@ -3146,7 +3146,7 @@ void CTestMenu::testCIPInput()
 	dprintf(DEBUG_NORMAL, "\ntestCIPInput\n");
 
 	std::string value;
-	CIPInput * ipInput = new CIPInput(LOCALE_STREAMINGMENU_SERVER_IP, value);
+	CIPInput * ipInput = new CIPInput(_("IP:"), value);
 	
 	ipInput->exec(NULL, "");
 	ipInput->hide();
@@ -3160,7 +3160,7 @@ void CTestMenu::testCMACInput()
 	dprintf(DEBUG_NORMAL, "\ntestCMACInput\n");
 
 	std::string value;
-	CMACInput * macInput = new CMACInput(LOCALE_RECORDINGMENU_SERVER_MAC, (char *)value.c_str());
+	CMACInput * macInput = new CMACInput(_("MAC address:"), (char *)value.c_str());
 	
 	macInput->exec(NULL, "");
 	macInput->hide();
@@ -3175,7 +3175,7 @@ void CTestMenu::testCDateInput()
 	dprintf(DEBUG_NORMAL, "\ntestCDateInput\n");
 
 	time_t value;
-	CDateInput * dateInput = new CDateInput(LOCALE_FILEBROWSER_SORT_DATE, &value);
+	CDateInput * dateInput = new CDateInput(_("Date:"), &value);
 	
 	dateInput->exec(NULL, "");
 	dateInput->hide();
@@ -3188,7 +3188,7 @@ void CTestMenu::testCTimeInput()
 	dprintf(DEBUG_NORMAL, "\ntestCTimeInput\n");
 
 	std::string value;
-	CTimeInput * timeInput = new CTimeInput(LOCALE_FILEBROWSER_SORT_DATE, (char *)value.c_str());
+	CTimeInput * timeInput = new CTimeInput(_("Time:"), (char *)value.c_str());
 	
 	timeInput->exec(NULL, "");
 	timeInput->hide();
@@ -3203,7 +3203,7 @@ void CTestMenu::testCIntInput()
 	dprintf(DEBUG_NORMAL, "\ntestCIntInput\n");
 
 	int value;
-	CIntInput * intInput = new CIntInput(LOCALE_FILEBROWSER_SORT_DATE, value);
+	CIntInput * intInput = new CIntInput(_("Test"), value);
 	
 	intInput->exec(NULL, "");
 	intInput->hide();
@@ -5252,7 +5252,7 @@ void CTestMenu::testAlphaSetupWidget()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testAlphaSetup\n");
 	
-	CAlphaSetup * alphaSetup = new CAlphaSetup(LOCALE_COLORMENU_GTX_ALPHA, &g_settings.gtx_alpha);
+	CAlphaSetup * alphaSetup = new CAlphaSetup(_("Alpha Setup"), &g_settings.gtx_alpha);
 	alphaSetup->exec(NULL, "");
 	delete alphaSetup;
 	alphaSetup = NULL;
@@ -5262,7 +5262,7 @@ void CTestMenu::testPSISetup()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testPSISetup\n");
 	
-	CPSISetup * psiSetup = new CPSISetup(LOCALE_VIDEOMENU_PSISETUP, &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
+	CPSISetup * psiSetup = new CPSISetup(_("PSI Setup"), &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
 	psiSetup->exec(NULL, "");
 	delete psiSetup;
 	psiSetup = NULL;
@@ -5325,7 +5325,7 @@ void CTestMenu::testVFDController()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testVFDController\n");
 	
-	CVfdControler * vfdControllerHandler = new CVfdControler(LOCALE_LCDMENU_HEAD, NULL);
+	CVfdControler * vfdControllerHandler = new CVfdControler(_("Display Settings"), NULL);
 	vfdControllerHandler->exec(NULL, "");
 	delete vfdControllerHandler;
 	vfdControllerHandler = NULL;
@@ -5335,7 +5335,7 @@ void CTestMenu::testColorChooser()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testColorChooser\n");
 	
-	CColorChooser * colorChooserHandler = new CColorChooser(LOCALE_COLORMENU_BACKGROUND, &g_settings.menu_Head_red, &g_settings.menu_Head_green, &g_settings.menu_Head_blue, &g_settings.menu_Head_alpha, CNeutrinoApp::getInstance()->colorSetupNotifier);
+	CColorChooser * colorChooserHandler = new CColorChooser(_("Background"), &g_settings.menu_Head_red, &g_settings.menu_Head_green, &g_settings.menu_Head_blue, &g_settings.menu_Head_alpha, CNeutrinoApp::getInstance()->colorSetupNotifier);
 
 	colorChooserHandler->exec(NULL, "");
 	//delete colorChooserHandler;
@@ -7305,7 +7305,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 		tmdbsearch.clear();
 
-		CStringInputSMS stringInput(LOCALE_EVENTFINDER_SEARCH, tmdbsearch.c_str());
+		CStringInputSMS stringInput(_("Search"), tmdbsearch.c_str());
 		stringInput.exec(NULL, "");
 
 		if(!stringInput.getExitPressed())

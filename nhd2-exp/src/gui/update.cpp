@@ -900,7 +900,7 @@ void CUpdateSettings::showMenu()
 	updateSettings.addItem( new CMenuForwarder(_(""), true, g_settings.update_dir , this, "update_dir") );
 	
 	// url
-	CStringInputSMS * updateSettings_url_file = new CStringInputSMS(LOCALE_FLASHUPDATE_URL_FILE, g_settings.softupdate_url_file);
+	CStringInputSMS * updateSettings_url_file = new CStringInputSMS(_("Software update URL"), g_settings.softupdate_url_file);
 	updateSettings.addItem(new CMenuForwarder(_("Software update URL"), true, g_settings.softupdate_url_file, updateSettings_url_file));
 
 	// show current version

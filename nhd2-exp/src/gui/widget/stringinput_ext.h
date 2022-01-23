@@ -63,14 +63,13 @@ class CExtendedInput : public CMenuTarget
 		int selectedChar;
 
 		std::string name;
-		neutrino_locale_t nameStringOption;
-		neutrino_locale_t hint_1;
-		neutrino_locale_t hint_2;
+		std::string hint_1;
+		std::string hint_2;
 
 		char * value;
 		std::string valueString;
 
-		CChangeObserver*   observ;
+		CChangeObserver* observ;
 		bool* cancel;
 
 		virtual void paint();
@@ -79,8 +78,8 @@ class CExtendedInput : public CMenuTarget
 
 	public:
 
-		CExtendedInput(const neutrino_locale_t Name, const char * const Value, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL, bool* cancel = NULL);
-		CExtendedInput(const char * const Name, const char * const Value, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL, bool* cancel = NULL);
+		//
+		CExtendedInput(const char* const Name, const char* const Value, const char* const Hint_1 = NULL, const char* const Hint_2 = NULL, CChangeObserver* Observ = NULL, bool* cancel = NULL);
 		~CExtendedInput();
 
 		void hide();
@@ -166,8 +165,7 @@ class CIPInput : public CExtendedInput
 		virtual void onAfterExec();
 
 	public:
-		CIPInput(const neutrino_locale_t Name, std::string & Value, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL);
-		CIPInput(const char * const Name, std::string & Value, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL);
+		CIPInput(const char * const Name, std::string & Value, const char* const Hint_1 = NULL, const char* const Hint_2 = NULL, CChangeObserver* Observ = NULL);
 };
 
 class CDateInput : public CExtendedInput
@@ -181,8 +179,7 @@ class CDateInput : public CExtendedInput
 		virtual void onAfterExec();
 
 	public:
-		CDateInput(const neutrino_locale_t Name, time_t* Time, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL);
-		CDateInput(const char * const Name, time_t* Time, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL);
+		CDateInput(const char * const Name, time_t* Time, const char* const Hint_1 = NULL, const char* const Hint_2 = NULL, CChangeObserver* Observ = NULL);
 		~CDateInput();
 		char* getValue() {return value;}
 };
@@ -194,8 +191,7 @@ class CMACInput : public CExtendedInput
 		virtual void onAfterExec();
 
 	public:
-		CMACInput(const neutrino_locale_t Name, char* Value, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL);
-		CMACInput(const char * const Name, char* Value, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL);
+		CMACInput(const char * const Name, char* Value, const char* const Hint_1 = NULL, const char* const Hint_2 = NULL, CChangeObserver* Observ = NULL);
 };
 
 class CTimeInput : public CExtendedInput
@@ -205,8 +201,7 @@ class CTimeInput : public CExtendedInput
 		virtual void onAfterExec();
 
 	public:
-		CTimeInput(const neutrino_locale_t Name, char* Value, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL, bool* cancel = NULL);
-		CTimeInput(const char * const Name, char* Value, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL, bool* cancel = NULL);
+		CTimeInput(const char * const Name, char* Value, const char* const Hint_1 = NULL, const char* const Hint_2 = NULL, CChangeObserver* Observ = NULL, bool* cancel = NULL);
 };
 
 class CIntInput : public CExtendedInput
@@ -226,8 +221,7 @@ class CIntInput : public CExtendedInput
 		/**
 		 *@param Size how many digits can be entered
 		 */
-		CIntInput(const neutrino_locale_t Name, int &Value, const unsigned int Size = MAX_CINTINPUT_SIZE, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL);
-		CIntInput(const char * const Name, int &Value, const unsigned int Size = MAX_CINTINPUT_SIZE, const neutrino_locale_t Hint_1 = NONEXISTANT_LOCALE, const neutrino_locale_t Hint_2 = NONEXISTANT_LOCALE, CChangeObserver* Observ = NULL);
+		CIntInput(const char * const Name, int &Value, const unsigned int Size = MAX_CINTINPUT_SIZE, const char* const Hint_1 = NULL, const char* const Hint_2 = NULL, CChangeObserver* Observ = NULL);
 		
 		char* getValue() 
 		{

@@ -479,7 +479,7 @@ int CYTBrowser::exec(CMenuTarget* parent, const std::string& actionKey)
 	{
 		ytmode = cYTFeedParser::SEARCH;
 
-		CStringInputSMS stringInput(g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_SEARCH), ytsearch.c_str());
+		CStringInputSMS stringInput(_("Search"), ytsearch.c_str());
 		int ret = stringInput.exec(NULL, "");
 
 		if(!stringInput.getExitPressed() /*&& !ytsearch.empty()*/) //FIXME:

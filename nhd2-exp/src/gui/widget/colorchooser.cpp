@@ -62,61 +62,19 @@ static const char * const iconnames[4] = {
 	NEUTRINO_ICON_VOLUMESLIDER2ALPHA
 };
 
-static const neutrino_locale_t colorchooser_names[4] =
+static const char* const colorchooser_names[4] =
 {
-	LOCALE_COLORCHOOSER_RED  ,
-	LOCALE_COLORCHOOSER_GREEN,
-	LOCALE_COLORCHOOSER_BLUE ,
-	LOCALE_COLORCHOOSER_ALPHA
+	_("red"),
+	_("green"),
+	_("blue"),
+	_("alpha")
 };
-
-CColorChooser::CColorChooser(const neutrino_locale_t Name, unsigned char *R, unsigned char *G, unsigned char *B, unsigned char* Alpha, CChangeObserver* Observer) // UTF-8
-{
-	observer = Observer;
-
-	nameStringOption = Name;
-	name = g_Locale->getText(Name);
-	
-	frameBuffer = CFrameBuffer::getInstance();
-
-	// Head
-	titleIcon.setIcon(NEUTRINO_ICON_COLORS);
-	cFrameBoxTitle.iHeight= std::max(titleIcon.iHeight, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight()) + 6;
-
-	// Item
-	cFrameBoxItem.iHeight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
-	
-	cFrameBox.iWidth = MENU_WIDTH;
-	cFrameBox.iHeight = cFrameBoxTitle.iHeight + cFrameBoxItem.iHeight*ITEMS_COUNT;
-
-	cFrameBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - cFrameBox.iWidth) >> 1);
-	cFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - cFrameBox.iHeight) >>1);
-
-	value[VALUE_R]     = R;
-	value[VALUE_G]     = G;
-	value[VALUE_B]     = B;
-	value[VALUE_ALPHA] = Alpha;
-	
-	// color preview
-	volumeBodyIcon.setIcon(NEUTRINO_ICON_VOLUMEBODY);
-	int a_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(colorchooser_names[3]));
-
-	cFrameBoxColorPreview.iHeight = cFrameBox.iHeight - cFrameBoxTitle.iHeight - cFrameBoxItem.iHeight;
-	cFrameBoxColorPreview.iWidth = cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - 2*ICON_OFFSET - /*volumeBodyIcon.iWidth*/150 - 2*ICON_OFFSET - a_w;
-	cFrameBoxColorPreview.iX = cFrameBox.iX + cFrameBox.iWidth - BORDER_RIGHT - cFrameBoxColorPreview.iWidth;
-	cFrameBoxColorPreview.iY = cFrameBox.iY + cFrameBoxTitle.iHeight + cFrameBoxItem.iHeight/2;
-
-	//
-	m_cBoxWindow.setPosition(&cFrameBox);
-	m_cBoxWindow.enableSaveScreen();
-}
 
 CColorChooser::CColorChooser(const char * const Name, unsigned char *R, unsigned char *G, unsigned char *B, unsigned char* Alpha, CChangeObserver* Observer) // UTF-8
 {
 	observer = Observer;
 
-	name = Name;
-	nameStringOption = NONEXISTANT_LOCALE;
+	name = Name? Name : "";
 	
 	frameBuffer = CFrameBuffer::getInstance();
 
@@ -140,7 +98,7 @@ CColorChooser::CColorChooser(const char * const Name, unsigned char *R, unsigned
 	
 	// ColorPreview Box
 	volumeBodyIcon.setIcon(NEUTRINO_ICON_VOLUMEBODY);
-	int a_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(colorchooser_names[3]));
+	int a_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(colorchooser_names[3]);
 
 	cFrameBoxColorPreview.iHeight = cFrameBox.iHeight - cFrameBoxTitle.iHeight - cFrameBoxItem.iHeight;
 	cFrameBoxColorPreview.iWidth = cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - 2*ICON_OFFSET - /*volumeBodyIcon.iWidth*/150 - 2*ICON_OFFSET - a_w;
@@ -299,7 +257,7 @@ int CColorChooser::exec(CMenuTarget *parent, const std::string &)
 	hide();
 
 	if(observer)
-		observer->changeNotify(nameStringOption, NULL);
+		observer->changeNotify(name, NULL);
 
 	return res;
 }
@@ -332,7 +290,7 @@ void CColorChooser::paint()
 
 	//color preview
 	volumeBodyIcon.setIcon(NEUTRINO_ICON_VOLUMEBODY);
-	int a_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(colorchooser_names[3]));
+	int a_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(colorchooser_names[3]);
 
 	cFrameBoxColorPreview.iHeight = cFrameBox.iHeight - cFrameBoxTitle.iHeight - cFrameBoxItem.iHeight;
 	cFrameBoxColorPreview.iWidth = cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - 2*ICON_OFFSET - /*volumeBodyIcon.iWidth*/150 - 2*ICON_OFFSET - a_w;
@@ -344,17 +302,17 @@ void CColorChooser::paint()
 	frameBuffer->paintBoxRel(cFrameBoxColorPreview.iX + 2, cFrameBoxColorPreview.iY + 2, cFrameBoxColorPreview.iWidth - 4, cFrameBoxColorPreview.iHeight - 4 - BORDER_LEFT, 254);
 }
 
-void CColorChooser::paintSlider(int _x, int _y, unsigned char *spos, const neutrino_locale_t text, const char * const iconname, const bool selected)
+void CColorChooser::paintSlider(int _x, int _y, unsigned char *spos, const char* const text, const char * const iconname, const bool selected)
 {
 	if (!spos)
 		return;
 
 	//
 	volumeBodyIcon.setIcon(NEUTRINO_ICON_VOLUMEBODY);
-	//int r_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(colorchooser_names[0]));
-	//int g_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(colorchooser_names[1]));
-	//int b_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(colorchooser_names[2]));
-	int a_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(colorchooser_names[3]));
+	//int r_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(colorchooser_names[0]);
+	//int g_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(colorchooser_names[1]);
+	//int b_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(colorchooser_names[2]);
+	int a_w = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(colorchooser_names[3]);
 	
 	// volumebox box
 	frameBuffer->paintBoxRel(_x + a_w + 2*ICON_OFFSET, _y, /*volumeBodyIcon.iWidth*/150, cFrameBoxItem.iHeight, COL_MENUCONTENT_PLUS_0);
@@ -365,6 +323,6 @@ void CColorChooser::paintSlider(int _x, int _y, unsigned char *spos, const neutr
 	// slider icon
 	frameBuffer->paintIcon(selected ? iconname : NEUTRINO_ICON_VOLUMESLIDER2, _x + a_w + 2*ICON_OFFSET + 3 + (*spos), _y + cFrameBoxItem.iHeight/ITEMS_COUNT);
 
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(_x, _y + cFrameBoxItem.iHeight, cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - /*volumeBodyIcon.iWidth*/150 - cFrameBoxColorPreview.iWidth, g_Locale->getText(text), COL_MENUCONTENT, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(_x, _y + cFrameBoxItem.iHeight, cFrameBox.iWidth - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - /*volumeBodyIcon.iWidth*/150 - cFrameBoxColorPreview.iWidth, text, COL_MENUCONTENT, 0, true); // UTF-8
 }
 

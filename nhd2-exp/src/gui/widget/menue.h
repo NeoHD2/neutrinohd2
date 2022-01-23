@@ -277,7 +277,7 @@ class CMenuWidget : public CMenuTarget
 		//void enableHeadLine(){headLine = true;};
 
 		virtual std::string& getString(void) { if (hasItem())return items[selected]->itemName; };
-		virtual CMenuItem *getSelectedItem(void){if (hasItem()) return items[selected];};
+		virtual CMenuItem *getSelectedItem(void){if (hasItem()) return items[selected]; else return NULL;};
 
 		//
 		std::string getName(void){ return l_name.c_str();};

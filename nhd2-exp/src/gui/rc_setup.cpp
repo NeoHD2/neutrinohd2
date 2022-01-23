@@ -190,13 +190,13 @@ void CRemoteControlSettings::showMenu()
 	keySetupNotifier = new CKeySetupNotifier;
 	
 	// repeat generic blocker
-	CStringInput * remoteControlSettings_repeat_genericblocker = new CStringInput(LOCALE_KEYBINDINGMENU_REPEATBLOCKGENERIC, g_settings.repeat_genericblocker, 3, LOCALE_REPEATBLOCKER_HINT_1, LOCALE_REPEATBLOCKER_HINT_2, "0123456789 ", keySetupNotifier);
+	CStringInput * remoteControlSettings_repeat_genericblocker = new CStringInput(_("Generic delay"), g_settings.repeat_genericblocker, 3, _("Shortest time (in ms) to recognize 2 keystrokes"), _("Enter 0 to switch of the blocker (red is space)"), "0123456789 ", keySetupNotifier);
 	
 	// repeat blocker
-	CStringInput * remoteControlSettings_repeatBlocker = new CStringInput(LOCALE_KEYBINDINGMENU_REPEATBLOCK, g_settings.repeat_blocker, 3, LOCALE_REPEATBLOCKER_HINT_1, LOCALE_REPEATBLOCKER_HINT_2, "0123456789 ", keySetupNotifier);
-	keySetupNotifier->changeNotify(NONEXISTANT_LOCALE, NULL);
+	CStringInput * remoteControlSettings_repeatBlocker = new CStringInput(_("Repeat delay"), g_settings.repeat_blocker, 3, _("Shortest time (in ms) to recognize 2 keystrokes"), _("Enter 0 to switch of the blocker (red is space)"), "0123456789 ", keySetupNotifier);
+	keySetupNotifier->changeNotify("", NULL);
 
-	remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_KEYBINDINGMENU_RC)));
+	remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, _("Key Repeat-blocker")));
 	
 	// repeat blocker
 	remoteControlSettings.addItem(new CMenuForwarder(_("Repeat delay"), true, g_settings.repeat_blocker, remoteControlSettings_repeatBlocker, NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
@@ -210,7 +210,7 @@ void CRemoteControlSettings::showMenu()
 	remoteControlSettings.addItem(new CMenuForwarder(_("Keybinding Setup"), true, NULL, new CKeysBindingSettings(), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
 
         // usermenu 
-        remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_USERMENU_HEAD)));
+        remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, _("User menu")));
 
 	// blue
         remoteControlSettings.addItem(new CMenuForwarder(_("User menu blue"), true, NULL, new CUserMenuMenu(_("User menu blue"), 0), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++) ));
@@ -252,7 +252,7 @@ int CKeysBindingSettings::exec(CMenuTarget* parent, const std::string& actionKey
 	}
 	else if(actionKey == "savekeymap")
 	{
-		CHintBox * hintBox = new CHintBox(_("Information"), /*g_Locale->getText(LOCALE_KEYBINDINGMENU_SAVEKEYMAP_HINT)*/_("Saving keymap, please wait...")); // UTF-8
+		CHintBox * hintBox = new CHintBox(_("Information"), _("Saving keymap, please wait...")); // UTF-8
 		hintBox->paint();
 		
 		g_RCInput->configfile.setModifiedFlag(true);
@@ -363,7 +363,7 @@ void CKeysBindingSettings::showMenu()
 }
 
 // key setup notifier
-bool CKeySetupNotifier::changeNotify(const neutrino_locale_t, void *)
+bool CKeySetupNotifier::changeNotify(const std::string&, void *)
 {
 	g_RCInput->setRepeat(atoi(g_settings.repeat_blocker), atoi(g_settings.repeat_genericblocker));
 

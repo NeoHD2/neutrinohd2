@@ -66,7 +66,7 @@
 
 extern cVideo * videoDecoder;
 
-CPSISetup::CPSISetup(const neutrino_locale_t Name, unsigned char *Contrast, unsigned char *Saturation, unsigned char *Brightness, unsigned char *Tint, CChangeObserver *Observer)
+CPSISetup::CPSISetup(const char* const Name, unsigned char *Contrast, unsigned char *Saturation, unsigned char *Brightness, unsigned char *Tint, CChangeObserver *Observer)
 {
 	frameBuffer = CFrameBuffer::getInstance();
 
@@ -83,7 +83,7 @@ CPSISetup::CPSISetup(const neutrino_locale_t Name, unsigned char *Contrast, unsi
 	mainWindow.setPosition(x, y, width, height);
 
 	observer = Observer;
-	name = Name;
+	name = Name? Name : "";
 
 	contrast = Contrast;
 	saturation = Saturation;
@@ -141,29 +141,29 @@ int CPSISetup::exec(CMenuTarget * parent, const std::string &)
 				{
 					if(selected < max)
 					{
-						paintSlider(x + BORDER_LEFT, y + hheight, contrast, LOCALE_PSISETUP_CONTRAST, NEUTRINO_ICON_VOLUMESLIDER2, false);
-						paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, LOCALE_PSISETUP_SATURATION, NEUTRINO_ICON_VOLUMESLIDER2     , false);
-						paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, LOCALE_PSISETUP_BRIGHTNESS, NEUTRINO_ICON_VOLUMESLIDER2     , false);
-						paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, LOCALE_PSISETUP_TINT, NEUTRINO_ICON_VOLUMESLIDER2     , false);
+						paintSlider(x + BORDER_LEFT, y + hheight, contrast, _("Contrast"), NEUTRINO_ICON_VOLUMESLIDER2, false);
+						paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, _("Saturation"), NEUTRINO_ICON_VOLUMESLIDER2     , false);
+						paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, _("Brightness"), NEUTRINO_ICON_VOLUMESLIDER2     , false);
+						paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, _("Tint"), NEUTRINO_ICON_VOLUMESLIDER2     , false);
 
 						selected++;
 
 						switch(selected)
 						{
 							case 0:
-								paintSlider(x + BORDER_LEFT, y + hheight, contrast, LOCALE_PSISETUP_CONTRAST, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight, contrast, _("Contrast"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 								break;
 								
 							case 1:
-								paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, LOCALE_PSISETUP_SATURATION, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, _("Saturation"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 								break;
 								
 							case 2:
-								paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, LOCALE_PSISETUP_BRIGHTNESS, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, _("Brightness"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 								break;
 								
 							case 3:
-								paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, LOCALE_PSISETUP_TINT, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, _("Tint"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 								break;
 						}
 					}
@@ -175,29 +175,29 @@ int CPSISetup::exec(CMenuTarget * parent, const std::string &)
 				{
 					if (selected > 0)
 					{
-						paintSlider(x + BORDER_LEFT, y + hheight, contrast, LOCALE_PSISETUP_CONTRAST, NEUTRINO_ICON_VOLUMESLIDER2, false);
-						paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, LOCALE_PSISETUP_SATURATION, NEUTRINO_ICON_VOLUMESLIDER2, false);
-						paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, LOCALE_PSISETUP_BRIGHTNESS, NEUTRINO_ICON_VOLUMESLIDER2, false);
-						paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, LOCALE_PSISETUP_TINT, NEUTRINO_ICON_VOLUMESLIDER2, false);
+						paintSlider(x + BORDER_LEFT, y + hheight, contrast, _("Contrast"), NEUTRINO_ICON_VOLUMESLIDER2, false);
+						paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, _("Saturation"), NEUTRINO_ICON_VOLUMESLIDER2, false);
+						paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, _("Brightness"), NEUTRINO_ICON_VOLUMESLIDER2, false);
+						paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, _("Tint"), NEUTRINO_ICON_VOLUMESLIDER2, false);
 
 						selected--;
 
 						switch(selected)
 						{
 							case 0:
-								paintSlider(x + BORDER_LEFT, y + hheight, contrast, LOCALE_PSISETUP_CONTRAST, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight, contrast, _("Contrast"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 								break;
 								
 							case 1:
-								paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, LOCALE_PSISETUP_SATURATION, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, _("Saturation"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 								break;
 								
 							case 2:
-								paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, LOCALE_PSISETUP_BRIGHTNESS, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, _("Brightness"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 								break;
 								
 							case 3:
-								paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, LOCALE_PSISETUP_TINT, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, _("Tint"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 								break;
 						}
 					}
@@ -217,7 +217,7 @@ int CPSISetup::exec(CMenuTarget * parent, const std::string &)
 								else
 									*contrast = 255;
 						
-								paintSlider(x + BORDER_LEFT, y + hheight, contrast, LOCALE_PSISETUP_CONTRAST, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight, contrast, _("Contrast"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 									
 								videoDecoder->setContrast(*contrast);
 							}
@@ -231,7 +231,7 @@ int CPSISetup::exec(CMenuTarget * parent, const std::string &)
 								else
 									*saturation = 255;
 								
-								paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, LOCALE_PSISETUP_SATURATION, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, _("Saturation"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 									
 								videoDecoder->setSaturation(*saturation);
 							}
@@ -245,7 +245,7 @@ int CPSISetup::exec(CMenuTarget * parent, const std::string &)
 								else
 									*brightness = 255;
 								
-								paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, LOCALE_PSISETUP_BRIGHTNESS, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, _("Brightness"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 									
 								videoDecoder->setBrightness(*brightness);
 							}
@@ -259,7 +259,7 @@ int CPSISetup::exec(CMenuTarget * parent, const std::string &)
 								else
 									*tint = 255;
 								
-								paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, LOCALE_PSISETUP_TINT, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, _("Tint"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 									
 								videoDecoder->setTint(*tint);
 							}
@@ -281,7 +281,7 @@ int CPSISetup::exec(CMenuTarget * parent, const std::string &)
 								else
 									*contrast = 0;
 						
-								paintSlider(x + BORDER_LEFT, y + hheight, contrast, LOCALE_PSISETUP_CONTRAST, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight, contrast, _("Contrast"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 									
 								videoDecoder->setContrast(*contrast);
 							}
@@ -295,7 +295,7 @@ int CPSISetup::exec(CMenuTarget * parent, const std::string &)
 								else
 									*saturation = 0;
 								
-								paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, LOCALE_PSISETUP_SATURATION, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, _("Saturation"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 									
 								videoDecoder->setSaturation(*saturation);
 							}
@@ -309,7 +309,7 @@ int CPSISetup::exec(CMenuTarget * parent, const std::string &)
 								else
 									*brightness = 0;
 								
-								paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, LOCALE_PSISETUP_BRIGHTNESS, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, _("Brightness"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 									
 								videoDecoder->setBrightness(*brightness);
 							}
@@ -323,7 +323,7 @@ int CPSISetup::exec(CMenuTarget * parent, const std::string &)
 								else
 									*tint = 0;
 								
-								paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, LOCALE_PSISETUP_TINT, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+								paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, _("Tint"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 									
 								videoDecoder->setTint(*tint);
 							}
@@ -390,24 +390,24 @@ void CPSISetup::paint()
 	mainWindow.paint();
 
 	// head
-	CHeaders headers(x, y, width, hheight, g_Locale->getText(name), NEUTRINO_ICON_COLORS);
+	CHeaders headers(x, y, width, hheight, name.c_str(), NEUTRINO_ICON_COLORS);
 	headers.paint();
 	
 	//paint slider
 	// contrast
-	paintSlider(x + BORDER_LEFT, y + hheight, contrast, LOCALE_PSISETUP_CONTRAST, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+	paintSlider(x + BORDER_LEFT, y + hheight, contrast, _("Contrast"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 	
 	// saturation
-	paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, LOCALE_PSISETUP_SATURATION, NEUTRINO_ICON_VOLUMESLIDER2, false);
+	paintSlider(x + BORDER_LEFT, y + hheight + mheight, saturation, _("Saturation"), NEUTRINO_ICON_VOLUMESLIDER2, false);
 	
 	// brightness
-	paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, LOCALE_PSISETUP_BRIGHTNESS, NEUTRINO_ICON_VOLUMESLIDER2, false);
+	paintSlider(x + BORDER_LEFT, y + hheight + 2*mheight, brightness, _("Brightness"), NEUTRINO_ICON_VOLUMESLIDER2, false);
 	
 	// tint
-	paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, LOCALE_PSISETUP_TINT, NEUTRINO_ICON_VOLUMESLIDER2, false);
+	paintSlider(x + BORDER_LEFT, y + hheight + 3*mheight, tint, _("Tint"), NEUTRINO_ICON_VOLUMESLIDER2, false);
 }
 
-void CPSISetup::paintSlider(const int _x, const int _y, const unsigned char * const spos, const neutrino_locale_t text, const char * const iconname, const bool /*selected*/) // UTF-8
+void CPSISetup::paintSlider(const int _x, const int _y, const unsigned char * const spos, const char* const text, const char * const iconname, const bool /*selected*/) // UTF-8
 {
 	if (!spos)
 		return;
@@ -429,7 +429,7 @@ void CPSISetup::paintSlider(const int _x, const int _y, const unsigned char * co
 	frameBuffer->paintIcon(NEUTRINO_ICON_VOLUMEBODY, _x + startx, _y + 2 + mheight / 4);
 	frameBuffer->paintIcon(iconname, _x + startx + 3 + sspos, _y + mheight / 4);
 
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(_x, _y + mheight, width, g_Locale->getText(text), COL_MENUCONTENT, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(_x, _y + mheight, width, text, COL_MENUCONTENT, 0, true); // UTF-8
 	
 	sprintf(wert, "%3d", sspos); // UTF-8 encoded
 

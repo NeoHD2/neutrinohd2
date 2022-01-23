@@ -518,7 +518,7 @@ bool CIceCast::openFileBrowser(void)
 #ifdef AUDIOPLAYER_CHECK_FOR_DUPLICATES
 								// Check for duplicates and remove (new entry has higher prio)
 								// this really needs some time :(
-								for (unsigned long i = 0; i < playlist.size(); i++)
+								for (unsigned long i = 0; i < (unsigned int)playlist.size(); i++)
 								{
 									if(playlist[i].Filename == filename)
 										//removeFromPlaylist(i);
@@ -681,7 +681,7 @@ void CIceCast::showMenu()
 {
 	ilist = new CMenuWidget(_("ICE Cast"), NEUTRINO_ICON_ICECAST_SMALL, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
 
-	for(unsigned int i = 0; i < playlist.size(); i++)
+	for(unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 	{
 		//
 		if (playlist[i].FileExtension != CFile::EXTENSION_URL && !playlist[i].MetaData.bitrate)
@@ -757,7 +757,7 @@ int CIceCast::exec(CMenuTarget* parent, const std::string& actionKey)
 		tmpAudioPlayerGui.setInetMode();
 		tmpAudioPlayerGui.exec(NULL, "");
 */
-		for (unsigned int i = 0; i < playlist.size(); i++)
+		for (unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 		{
 			tmpAudioPlayerGui.addToPlaylist(playlist[i]);
 		}
@@ -804,7 +804,7 @@ int CIceCast::exec(CMenuTarget* parent, const std::string& actionKey)
 		CAudioPlayList::iterator p = playlist.begin() + ilist->getSelected();
 		playlist.erase(p);
 
-		if (selected >= playlist.size())
+		if (selected >= (unsigned int)playlist.size())
 			selected = playlist.size() - 1;
 
 		showMenu();

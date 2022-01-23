@@ -104,11 +104,13 @@ class CChangeObserver
 	public:
 		CChangeObserver(){}
 		virtual ~CChangeObserver(){}
+		
+		/*
 		virtual bool changeNotify(const neutrino_locale_t, void *)
 		{
 			return false;
 		}
-
+		*/
 		virtual bool changeNotify(const std::string&, void *)
 		{
 			return false;
@@ -214,7 +216,7 @@ class CMenuItem
 
 		//
 		virtual void setHint(const char* const Text){itemHint =  Text;};
-		virtual void setHint(const neutrino_locale_t locale){itemHint = g_Locale->getText(locale); };
+		//virtual void setHint(const neutrino_locale_t locale){itemHint = g_Locale->getText(locale); };
 
 		//
 		virtual void setIconName(const char* const icon){iconName = icon;};
@@ -409,7 +411,7 @@ class CMenuForwarder : public CMenuItem
 
 	protected:
 		std::string textString;
-		neutrino_locale_t text;
+		//neutrino_locale_t text;
 
 		virtual const char *getName(void);
 		virtual const char *getOption(void);
@@ -482,7 +484,7 @@ class ClistBoxItem : public CMenuItem
 
 	protected:
 		//
-		neutrino_locale_t text;
+		//neutrino_locale_t text;
 		std::string textString;
 
 		//

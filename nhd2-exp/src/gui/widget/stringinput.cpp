@@ -54,39 +54,18 @@
 
 #define borderwidth 4
 
-
-CStringInput::CStringInput(const neutrino_locale_t Name, const char * const Value, int Size, const neutrino_locale_t Hint_1, const neutrino_locale_t Hint_2, const char * const Valid_Chars, CChangeObserver *Observ, const char * const Icon)
-{
-	frameBuffer = CFrameBuffer::getInstance();
-	name =  Name;
-	head = NULL;
-	value = (char *)Value;
-	valueString.clear();
-	size =  Size;
-
-	hint_1 = Hint_1;
-	hint_2 = Hint_2;
-	validchars = Valid_Chars;
-	iconfile = Icon ? Icon : "";
-
-	observ = Observ;
-
-	init();
-}
-
-CStringInput::CStringInput(const char * const Head, const char * const Value, int Size, const neutrino_locale_t Hint_1, const neutrino_locale_t Hint_2, const char * const Valid_Chars, CChangeObserver* Observ, const char * const Icon)
+CStringInput::CStringInput(const char * const Head, const char * const Value, int Size, const char* const Hint_1, const char* const Hint_2, const char * const Valid_Chars, CChangeObserver* Observ, const char* const Icon)
 {
         frameBuffer = CFrameBuffer::getInstance();
-        head = strdup(Head);
+        
+        name = Head? Head : "";
         value = (char *)Value;
         valueString.clear();
         size =  Size;
-
-        hint_1 = Hint_1;
-        hint_2 = Hint_2;
+        hint_1 = Hint_1? Hint_1 : "";
+        hint_2 = Hint_2? Hint_2 : "";
         validchars = Valid_Chars;
         iconfile = Icon ? Icon : "";
-
         observ = Observ;
 
         init();
@@ -94,19 +73,6 @@ CStringInput::CStringInput(const char * const Head, const char * const Value, in
 
 CStringInput::~CStringInput() 
 {
-/*
-	if (value != NULL) 
-	{
-		delete[] value;
-		value = NULL;
-	}
-*/
-	
-	if(head != NULL) 
-	{
-		free(head);
-	}
-
 	valueString.clear();
 }
 
@@ -118,12 +84,7 @@ void CStringInput::init()
 		width = 420;
 
 	int neededWidth;
-	if(head) 
-	{
-		neededWidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(head); // UTF-8
-	}
-	else
-		neededWidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(g_Locale->getText(name)); // UTF-8
+	neededWidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(name); // UTF-8
 
 	if (!(iconfile.empty()))
 		neededWidth += 28;
@@ -205,6 +166,7 @@ void CStringInput::keyBluePressed()
 	if (((value[selected] | 32) >= 'a') && ((value[selected] | 32) <= 'z'))
 	{
 		char newValue = value[selected] ^ 32;
+		
 		if (index(validchars, newValue) != NULL) 
 		{
 			value[selected] = newValue;
@@ -299,7 +261,7 @@ void CStringInput::keyPlusPressed()
 	paintChar(item);
 }
 
-int CStringInput::exec( CMenuTarget* parent, const std::string & )
+int CStringInput::exec(CMenuTarget* parent, const std::string& )
 {
 	dprintf(DEBUG_NORMAL, "CStringInput::exec\n");
 
@@ -408,10 +370,8 @@ int CStringInput::exec( CMenuTarget* parent, const std::string & )
 		}
 		else if ( (msg == RC_home) || (msg == RC_timeout) )
 		{
-			if ( ( strcmp(value, oldval) != 0) && (MessageBox(_("StringInput"), _("Discard changes?"), mbrYes, mbYes | mbCancel) == mbrCancel))
+			if ( ( strcmp(value, oldval) != 0) && (MessageBox(name.c_str(), _("Discard changes ?"), mbrYes, mbYes | mbCancel) == mbrCancel))
 				continue;
-				
-			// FIXME:
 
 			strncpy(value, oldval, size);
 			loop = false;
@@ -481,7 +441,7 @@ void CStringInput::hide()
 
 const char * CStringInput::getHint1(void)
 {
-	return g_Locale->getText(hint_1);
+	return hint_1.c_str();
 }
 
 void CStringInput::paint()
@@ -498,16 +458,17 @@ void CStringInput::paint()
 	m_cBoxWindow.paint();
 
 	// head
-	CHeaders headers(x, y, width, hheight, head ? head : g_Locale->getText(name), iconfile.c_str());
+	CHeaders headers(x, y, width, hheight, name.c_str(), iconfile.c_str());
 	headers.setRadius(RADIUS_MID);
 	headers.setCorner(CORNER_TOP);
 	headers.paint();
 
-	if (hint_1 != NONEXISTANT_LOCALE)
+	if (!hint_1.empty())
 	{
-		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_INFO]->RenderString(x + 20, y + hheight + mheight + iheight + 40, width - 20, getHint1(), COL_MENUCONTENT, 0, true); // UTF-8
-		if (hint_2 != NONEXISTANT_LOCALE)
-			g_Font[SNeutrinoSettings::FONT_TYPE_MENU_INFO]->RenderString(x + 20, y + hheight + mheight + iheight*2 + 40, width - 20, g_Locale->getText(hint_2), COL_MENUCONTENT, 0, true); // UTF-8
+		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_INFO]->RenderString(x + 20, y + hheight + mheight + iheight + 40, width - 20, hint_1, COL_MENUCONTENT, 0, true); // UTF-8
+		
+		if (!hint_2.empty())
+			g_Font[SNeutrinoSettings::FONT_TYPE_MENU_INFO]->RenderString(x + 20, y + hheight + mheight + iheight*2 + 40, width - 20, hint_2, COL_MENUCONTENT, 0, true); // UTF-8
 	}
 
 	// chars grid
@@ -553,13 +514,15 @@ void CStringInput::paintChar(int pos)
 }
 
 // CStringInputSMS
+/*
 CStringInputSMS::CStringInputSMS(const neutrino_locale_t Name, const char * const Value, int Size, const neutrino_locale_t Hint_1, const neutrino_locale_t Hint_2, const char * const Valid_Chars, CChangeObserver* Observ, const char * const Icon)
    		: CStringInput(Name, Value, Size, Hint_1, Hint_2, Valid_Chars, Observ, Icon)
 {
 	initSMS(Valid_Chars);
 }
+*/
 
-CStringInputSMS::CStringInputSMS(const char * const Head, const char * const Value, int Size, const neutrino_locale_t Hint_1, const neutrino_locale_t Hint_2, const char * const Valid_Chars, CChangeObserver* Observ, const char * const Icon)
+CStringInputSMS::CStringInputSMS(const char * const Head, const char * const Value, int Size, const char* const Hint_1, const char* const Hint_2, const char * const Valid_Chars, CChangeObserver* Observ, const char * const Icon)
    		: CStringInput(Head, Value, Size, Hint_1, Hint_2, Valid_Chars, Observ, Icon)
 {
 	initSMS(Valid_Chars);
@@ -842,12 +805,12 @@ const char * CPLPINInput::getHint1(void)
 {
 	if (fsk == 0x100)
 	{
-		hint_1 = LOCALE_PARENTALLOCK_LOCKEDCHANNEL;
+		hint_1 = _("Locked Channel");
 		return CStringInput::getHint1();
 	}
 	else
 	{
-		sprintf(hint, g_Locale->getText(LOCALE_PARENTALLOCK_LOCKEDPROGRAM), fsk);
+		sprintf(hint, _("Locked program (from %d years up)"), fsk);
 		return hint;
 	}
 }
@@ -886,3 +849,5 @@ int CPLPINInput::exec( CMenuTarget* parent, const std::string & )
 
 	return ( res );
 }
+
+

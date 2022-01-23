@@ -61,7 +61,7 @@
 #include <system/debug.h>
 
 
-CAlphaSetup::CAlphaSetup(const neutrino_locale_t Name, unsigned char * Alpha, CChangeObserver * Observer)
+CAlphaSetup::CAlphaSetup(const char* const Name, unsigned char * Alpha, CChangeObserver * Observer)
 {
 	frameBuffer = CFrameBuffer::getInstance();
 
@@ -77,7 +77,7 @@ CAlphaSetup::CAlphaSetup(const neutrino_locale_t Name, unsigned char * Alpha, CC
 	mainWindow.setPosition(&mainBox);
 
 	observer = Observer;
-	name = Name;
+	name = Name? Name : "";
 
 	alpha = Alpha;
 
@@ -138,12 +138,12 @@ int CAlphaSetup::exec(CMenuTarget * parent, const std::string &)
 				{
 					if(selected < max)
 					{
-						paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, LOCALE_GTXALPHA_ALPHA1, NEUTRINO_ICON_VOLUMESLIDER2, false);
+						paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, _("alpha"), NEUTRINO_ICON_VOLUMESLIDER2, false);
 						
 						selected++;
 
 						if(selected == 0)
-							paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, LOCALE_GTXALPHA_ALPHA1, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+							paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, _("alpha"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 					}
 					break;
 				}
@@ -152,12 +152,12 @@ int CAlphaSetup::exec(CMenuTarget * parent, const std::string &)
 				{
 					if (selected > 0)
 					{
-						paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, LOCALE_GTXALPHA_ALPHA1, NEUTRINO_ICON_VOLUMESLIDER2, false);
+						paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, _("alpha"), NEUTRINO_ICON_VOLUMESLIDER2, false);
 
 						selected--;
 
 						if(selected == 0)
-							paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, LOCALE_GTXALPHA_ALPHA1, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+							paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, _("alpha"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 					}
 					break;
 				}
@@ -173,7 +173,7 @@ int CAlphaSetup::exec(CMenuTarget * parent, const std::string &)
 							else
 								*alpha = 255;
 								
-							paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, LOCALE_GTXALPHA_ALPHA1, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+							paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, _("alpha"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 							frameBuffer->setBlendLevel(*alpha);
 						}
 					
@@ -192,7 +192,7 @@ int CAlphaSetup::exec(CMenuTarget * parent, const std::string &)
 							else
 								*alpha = 0;
 								
-							paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, LOCALE_GTXALPHA_ALPHA1, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+							paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, _("alpha"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 							frameBuffer->setBlendLevel(*alpha);
 						}
 					}
@@ -255,14 +255,14 @@ void CAlphaSetup::paint()
 	mainWindow.paint();
 
 	// head
-	CHeaders headers(mainBox.iX, mainBox.iY, mainBox.iWidth, hheight, g_Locale->getText(name), NEUTRINO_ICON_COLORS);
+	CHeaders headers(mainBox.iX, mainBox.iY, mainBox.iWidth, hheight, name.c_str(), NEUTRINO_ICON_COLORS);
 	headers.paint();
 
 	// slider
-	paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, LOCALE_GTXALPHA_ALPHA1, NEUTRINO_ICON_VOLUMESLIDER2RED, true );
+	paintSlider(mainBox.iX + BORDER_LEFT, mainBox.iY + hheight, alpha, _("alpha"), NEUTRINO_ICON_VOLUMESLIDER2RED, true );
 }
 
-void CAlphaSetup::paintSlider(const int _x, const int _y, const unsigned char * const spos, const neutrino_locale_t text, const char * const iconname, const bool /*selected*/) // UTF-8
+void CAlphaSetup::paintSlider(const int _x, const int _y, const unsigned char * const spos, const char* const text, const char * const iconname, const bool /*selected*/) // UTF-8
 {
 	if (!spos)
 		return;
@@ -284,7 +284,7 @@ void CAlphaSetup::paintSlider(const int _x, const int _y, const unsigned char * 
 	frameBuffer->paintIcon(NEUTRINO_ICON_VOLUMEBODY, _x + startx, _y + 2 + mheight / 4);
 	frameBuffer->paintIcon(iconname, _x + startx + 3 + sspos, _y + mheight / 4);
 
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(_x, _y + mheight, mainBox.iWidth, g_Locale->getText(text), COL_MENUCONTENT, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(_x, _y + mheight, mainBox.iWidth, text, COL_MENUCONTENT, 0, true); // UTF-8
 	
 	sprintf(wert, "%3d", sspos); // UTF-8 encoded
 

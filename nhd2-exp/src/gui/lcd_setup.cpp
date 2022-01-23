@@ -142,7 +142,7 @@ void CLCDSettings::showMenu()
 	
 	CLcdNotifier * lcdnotifier = new CLcdNotifier();
 	
-	CVfdControler * lcdsliders = new CVfdControler(LOCALE_LCDMENU_HEAD, NULL);
+	CVfdControler * lcdsliders = new CVfdControler(_("Display Settings"), NULL);
 	
 	// LCD
 #if defined (ENABLE_LCD)
@@ -178,11 +178,11 @@ void CLCDSettings::showMenu()
 	lcdSettings.addItem(oj2);
 	
 	// dimm-time
-	CStringInput * dim_time = new CStringInput(LOCALE_LCDMENU_DIM_TIME, g_settings.lcd_setting_dim_time, 3, NONEXISTANT_LOCALE, NONEXISTANT_LOCALE,"0123456789 ");
+	CStringInput * dim_time = new CStringInput(_("Dim timeout"), g_settings.lcd_setting_dim_time, 3, NULL, NULL, "0123456789 ");
 	lcdSettings.addItem(new CMenuForwarder(_("Dim timeout"), true, g_settings.lcd_setting_dim_time, dim_time, NULL, CRCInput::convertDigitToKey(shortcutVFD++)));
 
 	// dimm brightness
-	//CStringInput * dim_brightness = new CStringInput(_("brightness after dim timeout"), g_settings.lcd_setting_dim_brightness, 3,NONEXISTANT_LOCALE, NONEXISTANT_LOCALE,"0123456789 ");
+	//CStringInput * dim_brightness = new CStringInput(_("brightness after dim timeout"), g_settings.lcd_setting_dim_brightness, 3, NULL, NULL, "0123456789 ");
 	//lcdSettings.addItem(new CMenuForwarder(_("Brightness after dim timeout"), true, g_settings.lcd_setting_dim_brightness, dim_brightness, NULL, CRCInput::convertDigitToKey(shortcutVFD++) ));
 
 	// vfd controller

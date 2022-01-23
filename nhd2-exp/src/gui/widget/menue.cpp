@@ -516,7 +516,7 @@ void CMenuWidget::paintHead()
 
 		if (hbutton_count)
 		{
-			for (unsigned int i = 0; i < hbutton_count; i++)
+			for (unsigned int i = 0; i < (unsigned int)hbutton_count; i++)
 			{
 				if (!hbutton_labels[i].button.empty())
 				{
@@ -580,7 +580,7 @@ void CMenuWidget::paintFoot()
 			
 			printf("CMenuWidget::paintFoot:%d\n\n", fbutton_count);
 	
-			for (unsigned int i = 0; i < fbutton_count; i++)
+			for (unsigned int i = 0; i < (unsigned int)fbutton_count; i++)
 			{
 				if (!fbutton_labels[i].button.empty())
 				{
@@ -628,7 +628,7 @@ void CMenuWidget::paintFoot()
 		{
 			buttonWidth = (fbutton_width)/fbutton_count;
 	
-			for (unsigned int i = 0; i < fbutton_count; i++)
+			for (unsigned int i = 0; i < (unsigned int)fbutton_count; i++)
 			{
 				if (!fbutton_labels[i].button.empty())
 				{
@@ -1250,7 +1250,7 @@ void CMenuWidget::setFootButtons(const struct button_label *_fbutton_labels, con
 	
 	if (_fbutton_count)
 	{
-		for (unsigned int i = 0; i < _fbutton_count; i++)
+		for (unsigned int i = 0; i < (unsigned int)_fbutton_count; i++)
 		{
 			fbutton_labels.push_back(_fbutton_labels[i]);
 		}
@@ -1266,7 +1266,7 @@ void CMenuWidget::setHeadButtons(const struct button_label* _hbutton_labels, con
 	
 	if (_hbutton_count)
 	{
-		for (unsigned int i = 0; i < _hbutton_count; i++)
+		for (unsigned int i = 0; i < (unsigned int)_hbutton_count; i++)
 		{
 			hbutton_labels.push_back(_hbutton_labels[i]);
 		}

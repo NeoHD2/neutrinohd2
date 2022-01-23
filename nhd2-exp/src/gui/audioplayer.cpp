@@ -342,11 +342,11 @@ void CAudioPlayerGui::playFile()
 			{
 				// is no stream, so we do not have to test for this case
 				int seconds = 0;
-				CIntInput secondsInput(LOCALE_AUDIOPLAYER_JUMP_DIALOG_TITLE,
+				CIntInput secondsInput(_("Enter jump target"),
 							seconds,
 							5,
-							LOCALE_AUDIOPLAYER_JUMP_DIALOG_HINT1,
-							LOCALE_AUDIOPLAYER_JUMP_DIALOG_HINT2);
+							_("Please enter jump target"),
+							_("(relative, in seconds)"));
 							
 				int res = secondsInput.exec(NULL, "");
 					
@@ -360,11 +360,11 @@ void CAudioPlayerGui::playFile()
 			{
 				// if no stream, so we do not have to test for this case
 				int seconds = 0;
-				CIntInput secondsInput(LOCALE_AUDIOPLAYER_JUMP_DIALOG_TITLE,
+				CIntInput secondsInput(_("Enter jump target"),
 							seconds,
 							5,
-							LOCALE_AUDIOPLAYER_JUMP_DIALOG_HINT1,
-							LOCALE_AUDIOPLAYER_JUMP_DIALOG_HINT2);
+							_("Please enter jump target"),
+							_("(relative, in seconds)"));
 							
 				int res = secondsInput.exec(NULL, "");
 					
@@ -1113,11 +1113,11 @@ void CAudioPlayerGui::savePlaylist()
 		{
 			// query for filename
 			this->hide();
-			CStringInputSMS filenameInput(LOCALE_AUDIOPLAYER_PLAYLIST_NAME,
+			CStringInputSMS filenameInput(_("Filename of the play list"),
 							filename,
 							filenamesize - 1,
-							LOCALE_AUDIOPLAYER_PLAYLIST_NAME_HINT1,
-							LOCALE_AUDIOPLAYER_PLAYLIST_NAME_HINT2,
+							_("Please enter the filename of the playlist"),
+							_("The extension .m3u will be added automatically"),
 							"abcdefghijklmnopqrstuvwxyz0123456789-.,:!?/ ");
 
 			filenameInput.exec(NULL, "");

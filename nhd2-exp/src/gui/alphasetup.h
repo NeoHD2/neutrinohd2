@@ -59,15 +59,15 @@ class CAlphaSetup : public CMenuTarget
 		CWindow mainWindow;
 
 		unsigned char *alpha;
-		neutrino_locale_t name;
+		std::string name;
 		CChangeObserver *observer;
 
 		void paint();
 		void setAlpha();
-		void paintSlider(const int x, const int y, const unsigned char * const spos, const neutrino_locale_t text, const char * const iconname, const bool selected);
+		void paintSlider(const int x, const int y, const unsigned char * const spos, const char* const text, const char * const iconname, const bool selected);
 
 	public:
-		CAlphaSetup(const neutrino_locale_t Name, unsigned char * Alpha, CChangeObserver * Observer = NULL);
+		CAlphaSetup(const char* const Name, unsigned char * Alpha, CChangeObserver * Observer = NULL);
 		~CAlphaSetup();
 
 		void hide();

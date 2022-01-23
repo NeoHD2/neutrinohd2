@@ -94,7 +94,7 @@ class CBEBouquetWidget : public CMenuTarget
 		void saveChanges();
 		void discardChanges();
 
-		std::string inputName(const char* const defaultName, const neutrino_locale_t caption);
+		std::string inputName(const char* const defaultName, const char* const caption);
 
 	public:
 		CBEBouquetWidget();

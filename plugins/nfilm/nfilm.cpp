@@ -593,7 +593,7 @@ int CNFilm::exec(CMenuTarget *parent, const std::string& actionKey)
 	{
 		tmdbsearch.clear();
 
-		CStringInputSMS stringInput(LOCALE_EVENTFINDER_SEARCH, tmdbsearch.c_str());
+		CStringInputSMS stringInput(_("Search"), tmdbsearch.c_str());
 		stringInput.exec(NULL, "");
 
 		if(!stringInput.getExitPressed())

@@ -930,15 +930,15 @@ int CMenuSeparator::paint(bool /*selected*/, bool /*AfterPulldown*/)
 bool CPINProtection::check()
 {
 	char cPIN[5];
-	neutrino_locale_t hint = NONEXISTANT_LOCALE;
+	std::string hint = "";
 	
 	do
 	{
 		cPIN[0] = 0;
-		CPINInput * PINInput = new CPINInput(LOCALE_PINPROTECTION_HEAD, cPIN, 4, hint);
+		CPINInput * PINInput = new CPINInput(_("Youth protection"), cPIN, 4, hint.c_str());
 		PINInput->exec(getParent(), "");
 		delete PINInput;
-		hint = LOCALE_PINPROTECTION_WRONGCODE;
+		hint = "PIN-Code was wrong! Try again.";
 	} while ((strncmp(cPIN, validPIN, 4) != 0) && (cPIN[0] != 0));
 	
 	return ( strncmp(cPIN,validPIN, 4) == 0);
@@ -948,18 +948,18 @@ bool CZapProtection::check()
 {
 	int res;
 	char cPIN[5];
-	neutrino_locale_t hint2 = NONEXISTANT_LOCALE;
+	std::string hint2 = "";
 	
 	do
 	{
 		cPIN[0] = 0;
 
-		CPLPINInput* PINInput = new CPLPINInput(LOCALE_PARENTALLOCK_HEAD, cPIN, 4, hint2, fsk);
+		CPLPINInput* PINInput = new CPLPINInput(_("Youth protection"), cPIN, 4, hint2.c_str(), fsk);
 
 		res = PINInput->exec(getParent(), "");
 		delete PINInput;
 
-		hint2 = LOCALE_PINPROTECTION_WRONGCODE;
+		hint2 = "PIN-Code was wrong! Try again.";
 	} while ( (strncmp(cPIN,validPIN, 4) != 0) &&
 		  (cPIN[0] != 0) &&
 		  ( res == RETURN_REPAINT ) &&
@@ -998,7 +998,7 @@ CMenuForwarder::CMenuForwarder(const neutrino_locale_t Text, const bool Active, 
 CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const char* const Hint )
 {
 	textString = Text? Text : "";
-	text = NONEXISTANT_LOCALE;
+	//text = NONEXISTANT_LOCALE;
 
 	option = Option? Option : "";
 	
@@ -1083,10 +1083,10 @@ const char * CMenuForwarder::getName(void)
 {
 	const char * l_name;
 	
-	if(text == NONEXISTANT_LOCALE)
+	//if(text == NONEXISTANT_LOCALE)
 		l_name = textString.c_str();
-	else
-        	l_name = g_Locale->getText(text);
+	//else
+        //	l_name = g_Locale->getText(text);
 	
 	return l_name;
 }
@@ -1391,7 +1391,7 @@ ClistBoxItem::ClistBoxItem(const neutrino_locale_t Text, const bool Active, cons
 
 ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, const neutrino_msg_t DirectKey, const char * const IconName, const char* const ItemIcon, const char* const Hint)
 {
-	text = NONEXISTANT_LOCALE;
+	//text = NONEXISTANT_LOCALE;
 	textString = Text? Text : "";
 
 	option = Option? Option : "";
@@ -1492,10 +1492,10 @@ const char * ClistBoxItem::getName(void)
 {
 	const char * l_name;
 	
-	if(text == NONEXISTANT_LOCALE)
+	//if(text == NONEXISTANT_LOCALE)
 		l_name = textString.c_str();
-	else
-        	l_name = g_Locale->getText(text);
+	//else
+        //	l_name = g_Locale->getText(text);
 	
 	return l_name;
 }

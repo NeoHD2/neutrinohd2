@@ -62,18 +62,15 @@ class CVfdControler : public CMenuTarget
 		unsigned char brightness;
 		unsigned char brightnessstandby;
 
-		neutrino_locale_t nameStringOption;
 		std::string name;
 
 		CChangeObserver* observer;
 
 		void paint();
 		void setVfd();
-		void paintSlider(int x, int y, unsigned int spos, float factor, const neutrino_locale_t text, bool selected);
+		void paintSlider(int x, int y, unsigned int spos, float factor, const char* const text, bool selected);
 
 	public:
-
-		CVfdControler(const neutrino_locale_t Name, CChangeObserver* Observer = NULL);
 		CVfdControler(const char* const Name, CChangeObserver* Observer = NULL);
 
 		void hide();

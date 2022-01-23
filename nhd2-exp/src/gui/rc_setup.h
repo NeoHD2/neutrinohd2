@@ -36,7 +36,7 @@
 class CKeySetupNotifier : public CChangeObserver
 {
 	public:
-		bool changeNotify(const neutrino_locale_t, void *);
+		bool changeNotify(const std::string&, void *);
 };
 
 class CRemoteControlSettings : public CMenuTarget, CChangeObserver

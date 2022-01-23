@@ -290,7 +290,7 @@ int CUserMenuMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 	menu.setWidgetMode(MODE_SETUP);
 	menu.enableShrinkMenu();
 
-        CStringInputSMS name(LOCALE_USERMENU_NAME, g_settings.usermenu_text[button].c_str());
+        CStringInputSMS name(_("User menu"), g_settings.usermenu_text[button].c_str());
         
         menu.addItem(new CMenuForwarder(_("Name"), true, g_settings.usermenu_text[button].c_str(), &name));
         menu.addItem(new CMenuSeparator(LINE));

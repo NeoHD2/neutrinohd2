@@ -221,25 +221,25 @@ void CNetworkSettings::showMenu()
 	MyIPChanger = new CIPChangeNotifier;
 	
 	//eth id
-	CMenuForwarder * mac = new CMenuForwarder("MAC", false, mac_addr.c_str());
+	CMenuForwarder * mac = new CMenuForwarder("MAC address", false, mac_addr.c_str());
 	
-	CIPInput * networkSettings_NetworkIP = new CIPInput(LOCALE_NETWORKMENU_IPADDRESS, networkConfig->address, LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2, MyIPChanger);
+	CIPInput * networkSettings_NetworkIP = new CIPInput(_("IP address"), networkConfig->address, _("Use 0..9, or use Up/Down,"), _("OK saves, HOME! aborts"), MyIPChanger);
 
-	CIPInput * networkSettings_NetMask = new CIPInput(LOCALE_NETWORKMENU_NETMASK, networkConfig->netmask, LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2);
+	CIPInput * networkSettings_NetMask = new CIPInput(_("Netmask"), networkConfig->netmask, _("Use 0..9, or use Up/Down,"), _("OK saves, HOME! aborts"));
 
-	CIPInput * networkSettings_Broadcast = new CIPInput(LOCALE_NETWORKMENU_BROADCAST, networkConfig->broadcast, LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2);
+	CIPInput * networkSettings_Broadcast = new CIPInput(_("Broadcast"), networkConfig->broadcast, _("Use 0..9, or use Up/Down,"), _("OK saves, HOME! aborts"));
 
-	CIPInput * networkSettings_Gateway = new CIPInput(LOCALE_NETWORKMENU_GATEWAY, networkConfig->gateway, LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2);
+	CIPInput * networkSettings_Gateway = new CIPInput(_("Default gateway"), networkConfig->gateway, _("Use 0..9, or use Up/Down,"), _("OK saves, HOME! aborts"));
 
-	CIPInput * networkSettings_NameServer = new CIPInput(LOCALE_NETWORKMENU_NAMESERVER, networkConfig->nameserver, LOCALE_IPSETUP_HINT_1, LOCALE_IPSETUP_HINT_2);
+	CIPInput * networkSettings_NameServer = new CIPInput(_("Name server"), networkConfig->nameserver, _("Use 0..9, or use Up/Down,"), _("OK saves, HOME! aborts"));
 	
 	//hostname
-	CStringInputSMS * networkSettings_Hostname = new CStringInputSMS(LOCALE_NETWORKMENU_HOSTNAME, network_hostname.c_str());
+	CStringInputSMS * networkSettings_Hostname = new CStringInputSMS(_("Hostname"), network_hostname.c_str());
 
         CSectionsdConfigNotifier * sectionsdConfigNotifier = new CSectionsdConfigNotifier;
 	// ntp server
-        CStringInputSMS * networkSettings_NtpServer = new CStringInputSMS(LOCALE_NETWORKMENU_NTPSERVER, g_settings.network_ntpserver.c_str(), MAX_INPUT_CHARS, LOCALE_NETWORKMENU_NTPSERVER_HINT1, LOCALE_NETWORKMENU_NTPSERVER_HINT2, "abcdefghijklmnopqrstuvwxyz0123456789-. ", sectionsdConfigNotifier);
-        CStringInput * networkSettings_NtpRefresh = new CStringInput(LOCALE_NETWORKMENU_NTPREFRESH, g_settings.network_ntprefresh.c_str(), 3, LOCALE_NETWORKMENU_NTPREFRESH_HINT1, LOCALE_NETWORKMENU_NTPREFRESH_HINT2 , "0123456789 ", sectionsdConfigNotifier);
+        CStringInputSMS * networkSettings_NtpServer = new CStringInputSMS(_("NTP-Server"), g_settings.network_ntpserver.c_str(), MAX_INPUT_CHARS, _("NTP-Server example: ntp1.ptb.de"), _("need reboot or epg-reset"), "abcdefghijklmnopqrstuvwxyz0123456789-. ", sectionsdConfigNotifier);
+        CStringInput * networkSettings_NtpRefresh = new CStringInput(_("NTP/DVB-Refresh"), g_settings.network_ntprefresh.c_str(), 3, _("NTP/DVB-Time-Sync in minutes"), _("need reboot or epg-reset"), "0123456789 ", sectionsdConfigNotifier);
 
 	CMenuForwarder * m0 = new CMenuForwarder(_("Setup network now, please wait..."), true, NULL, this, "network", RC_green, NEUTRINO_ICON_BUTTON_GREEN);
 
@@ -324,11 +324,11 @@ void CNetworkSettings::showMenu()
 	if(ifcount > 1) // if there is only one, its probably wired
 	{
 		//ssid
-		CStringInputSMS * networkSettings_ssid = new CStringInputSMS(LOCALE_NETWORKMENU_SSID, network_ssid.c_str());
+		CStringInputSMS * networkSettings_ssid = new CStringInputSMS(_("Network Name"), network_ssid.c_str());
 		CMenuForwarder * m9 = new CMenuForwarder(_("Network Name"), networkConfig->wireless, network_ssid.c_str(), networkSettings_ssid );
 
 		//key
-		CStringInputSMS *networkSettings_key = new CStringInputSMS(LOCALE_NETWORKMENU_PASSWORD, network_key.c_str());
+		CStringInputSMS *networkSettings_key = new CStringInputSMS(_("Key"), network_key.c_str());
 		CMenuForwarder *m10 = new CMenuForwarder(_("Key"), networkConfig->wireless, network_key.c_str(), networkSettings_key );
 
 		wlanEnable[0] = m9;

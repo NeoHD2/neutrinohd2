@@ -80,7 +80,7 @@ int CSleepTimerWidget::exec(CMenuTarget* parent, const std::string &)
   		}
   	}
 
-	inbox = new CStringInput(_("Sleep Timer"), value, 3, LOCALE_SLEEPTIMERBOX_HINT1, LOCALE_SLEEPTIMERBOX_HINT2, "0123456789 ");
+	inbox = new CStringInput(_("Sleep Timer"), value, 3, _("Shutdown time in min. (000=off)"), _("The STB will shutdown after this time."), "0123456789 ");
 	inbox->exec (NULL, "");
 	inbox->hide ();
 

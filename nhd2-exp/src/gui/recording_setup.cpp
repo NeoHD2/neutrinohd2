@@ -184,11 +184,11 @@ void CRecordingSettings::showMenu()
 	CRecordingSafetyNotifier *RecordingSafetyNotifier = new CRecordingSafetyNotifier;
 
 	//safety time befor
-	CStringInput * timerBefore = new CStringInput(LOCALE_TIMERSETTINGS_RECORD_SAFETY_TIME_BEFORE, g_settings.record_safety_time_before, 2, LOCALE_TIMERSETTINGS_RECORD_SAFETY_TIME_BEFORE_HINT_1, LOCALE_TIMERSETTINGS_RECORD_SAFETY_TIME_BEFORE_HINT_2,"0123456789 ", RecordingSafetyNotifier);
+	CStringInput * timerBefore = new CStringInput(_("Record start time correction"), g_settings.record_safety_time_before, 2, _("Correction time in min. (00=off). This time"), _("will be deducted of every record timer."),"0123456789 ", RecordingSafetyNotifier);
 	CMenuForwarder *fTimerBefore = new CMenuForwarder(_("Record start time correction"), true, g_settings.record_safety_time_before, timerBefore);
 
 	//safety time after
-	CStringInput * timerAfter = new CStringInput(LOCALE_TIMERSETTINGS_RECORD_SAFETY_TIME_AFTER, g_settings.record_safety_time_after, 2, LOCALE_TIMERSETTINGS_RECORD_SAFETY_TIME_AFTER_HINT_1, LOCALE_TIMERSETTINGS_RECORD_SAFETY_TIME_AFTER_HINT_2,"0123456789 ", RecordingSafetyNotifier);
+	CStringInput * timerAfter = new CStringInput(_("Record stop time correction"), g_settings.record_safety_time_after, 2, _("Correction time in min. (00=off). This time"), _("will added to stop time of every record timer."),"0123456789 ", RecordingSafetyNotifier);
 	CMenuForwarder *fTimerAfter = new CMenuForwarder(_("Record stop time correction"), true, g_settings.record_safety_time_after, timerAfter);
 
 	//audiopids

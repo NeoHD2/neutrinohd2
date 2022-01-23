@@ -63,17 +63,17 @@ class CPSISetup : public CMenuTarget
 		unsigned char *brightness;
 		unsigned char *tint;
 
-		neutrino_locale_t name;
+		std::string name;
 
 		CChangeObserver *observer;
 
 		void paint();
 		
-		void paintSlider(const int x, const int y, const unsigned char * const spos, const neutrino_locale_t text, const char * const iconname, const bool selected);
+		void paintSlider(const int x, const int y, const unsigned char * const spos, const char* const text, const char * const iconname, const bool selected);
 
 	public:
 
-		CPSISetup(const neutrino_locale_t Name, unsigned char *Contrast, unsigned char *Saturation, unsigned char *Brightness, unsigned char *Tint, CChangeObserver *Observer = NULL);
+		CPSISetup(const char* const Name, unsigned char *Contrast, unsigned char *Saturation, unsigned char *Brightness, unsigned char *Tint, CChangeObserver *Observer = NULL);
 
 		void hide();
 		int exec(CMenuTarget *parent, const std::string &actionKey);

@@ -117,14 +117,10 @@ class CMessageBox
 		result_ result;
 		buttons_  buttons;
 		
-		// for CHelpBox
-		//CMessageBox(const neutrino_locale_t Caption, ContentLines& Lines, const int Width = MESSAGEBOX_WIDTH, const char * const Icon = NULL, const result_ Default = mbrYes, const uint32_t ShowButtons = mbAll);
-
+		//
 		CMessageBox(const char * const Caption, ContentLines& Lines, const int Width = MESSAGEBOX_WIDTH, const char * const Icon = NULL, const result_ Default = mbrYes, const uint32_t ShowButtons = mbAll);
 	
 		// Text & Caption are always UTF-8 encoded
-		//CMessageBox(const neutrino_locale_t Caption, const char * const Text, const int Width = MESSAGEBOX_WIDTH, const char * const Icon = NULL, const result_ Default = mbrYes, const uint32_t ShowButtons = mbAll);
-	
 		CMessageBox(const char * const Caption, const char * const Text, const int Width = MESSAGEBOX_WIDTH, const char * const Icon = NULL, const result_ Default = mbrYes, const uint32_t ShowButtons = mbAll);
 
 		~CMessageBox(void);
@@ -133,9 +129,6 @@ class CMessageBox
 		void returnDefaultValueOnTimeout(bool returnDefault);
 };
 
-//int MessageBox(const neutrino_locale_t Caption, const neutrino_locale_t Text, const result_ Default, const uint32_t ShowButtons, const char * const Icon = NULL, const int Width = MENU_WIDTH, const int timeout = -1, bool returnDefaultOnTimeout = false);
-//int MessageBox(const neutrino_locale_t Caption, const char * const Text, const result_ Default, const uint32_t ShowButtons, const char * const Icon = NULL, const int Width = MENU_WIDTH, const int timeout = -1, bool returnDefaultOnTimeout = false); // UTF-8
-//int MessageBox(const char * const Caption, const neutrino_locale_t Text, const result_ Default, const uint32_t ShowButtons, const char * const Icon = NULL, const int Width = MENU_WIDTH, const int timeout = -1, bool returnDefaultOnTimeout = false);
 int MessageBox(const char * const Caption, const char * const Text, const result_ Default, const uint32_t ShowButtons, const char * const Icon = NULL, const int Width = MENU_WIDTH, const int timeout = -1, bool returnDefaultOnTimeout = false); // UTF-8
 
 #endif
