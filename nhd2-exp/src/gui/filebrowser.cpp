@@ -161,13 +161,13 @@ bool (* const sortBy[FILEBROWSER_NUMBER_OF_SORT_VARIANTS])(const CFile& a, const
 	&sortBySize
 };
 
-const neutrino_locale_t sortByNames[FILEBROWSER_NUMBER_OF_SORT_VARIANTS] =
+const char* const sortByNames[FILEBROWSER_NUMBER_OF_SORT_VARIANTS] =
 {
-	LOCALE_FILEBROWSER_SORT_NAME,
-	LOCALE_FILEBROWSER_SORT_NAMEDIRSFIRST,
-	LOCALE_FILEBROWSER_SORT_TYPE,
-	LOCALE_FILEBROWSER_SORT_DATE,
-	LOCALE_FILEBROWSER_SORT_SIZE
+	_("(filename)"),
+	_("(filename2)"),
+	_("(type)"),
+	_("(Date)"),
+	_("(Size)")
 };
 
 CFileBrowser::CFileBrowser()
@@ -492,7 +492,7 @@ bool CFileBrowser::exec(const char * const dirname)
 			if(".." !=(filelist[selected].getFileName().substr(0, 2))) // do not delete that
 			{
 				std::stringstream _msg;
-				_msg << g_Locale->getText(LOCALE_FILEBROWSER_DODELETE1) << " ";
+				_msg << _("Delete") << " ";
 				if (filelist[selected].getFileName().length() > 25)
 				{
 					_msg << filelist[selected].getFileName().substr(0, 25) << "...";
@@ -500,7 +500,7 @@ bool CFileBrowser::exec(const char * const dirname)
 				else
 					_msg << filelist[selected].getFileName();
 
-				_msg << " " << g_Locale->getText(LOCALE_FILEBROWSER_DODELETE2);
+				_msg << " " << _("?");
 				if (MessageBox(_("Delete"), _msg.str().c_str(), mbrNo, mbYes|mbNo) == mbrYes)
 				{
 					recursiveDelete(filelist[selected].Name.c_str());
@@ -829,7 +829,7 @@ void CFileBrowser::paint()
 
 	// head
 	char l_name[100];
-	snprintf(l_name, sizeof(l_name), "%s %s", g_Locale->getText(LOCALE_FILEBROWSER_HEAD), FILESYSTEM_ENCODING_TO_UTF8(std::string(name).c_str())); // UTF-8
+	snprintf(l_name, sizeof(l_name), "%s %s", _("Filebrowser"), FILESYSTEM_ENCODING_TO_UTF8(std::string(name).c_str())); // UTF-8
 
 	listBox->enablePaintHead();
 	listBox->setTitle(l_name);

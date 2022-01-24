@@ -983,14 +983,14 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	// genre // genre major|minor ???
 	if(!movie_info.genres.empty())
 	{
-		print_buffer += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_GENRE) + ": " + movie_info.genres;
+		print_buffer += (std::string)_("Genre") + ": " + movie_info.genres;
 		print_buffer += "\n";
 	}
 
 	// orig title
 	if(!movie_info.original_title.empty())
 	{
-		print_buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ORIGINAL_TITLE) + " : " + movie_info.original_title;
+		print_buffer += (std::string)_("Original Title") + " : " + movie_info.original_title;
 		print_buffer += "\n";
 	}
 
@@ -998,7 +998,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	/*
 	if(!movie_info.release_date.empty())
 	{
-		print_buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_YEAR_OF_PRODUCTION) + " : " + movie_info.release_date.substr(0,4);
+		print_buffer += (std::string)_("Year of profuction") + " : " + movie_info.release_date.substr(0,4);
 		print_buffer += "\n";
 	}
 	*/
@@ -1007,7 +1007,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if (!movie_info.cast.empty())
 	{
 		print_buffer += "\n";
-		print_buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ACTORS) + ":\n" + movie_info.cast;
+		print_buffer += (std::string)_("Actors") + ":\n" + movie_info.cast;
 		print_buffer += "\n";
 	}
 	
@@ -1023,7 +1023,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if (movie_info.productionCountry.size() != 0) 
 	{
 		print_buffer += "\n";
-		print_buffer += (std::string)g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_PRODCOUNTRY) + " : ";
+		print_buffer += (std::string)_("Country") + " : ";
 		print_buffer += movie_info.productionCountry;
 
 		print_buffer += "\n";
@@ -1033,7 +1033,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if (movie_info.productionDate != 0) 
 	{
 		print_buffer += "\n";
-		print_buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_YEAR_OF_PRODUCTION) + " : ";
+		print_buffer += (std::string)_("Year of production") + " : ";
 		//snprintf(date_char, 12, "%4d", movie_info.productionDate + 1900);
 		//print_buffer += date_char;
 		print_buffer += to_string(movie_info.productionDate);
@@ -1045,7 +1045,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if (!movie_info.serieName.empty()) 
 	{
 		print_buffer += "\n";
-		print_buffer += g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_SERIE);
+		print_buffer += _("Serie");
 		print_buffer += ": ";
 		print_buffer += movie_info.serieName;
 
@@ -1056,7 +1056,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if (!movie_info.epgChannel.empty()) 
 	{
 		print_buffer += "\n";
-		print_buffer += g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_CHANNEL);
+		print_buffer += _("Channel");
 		print_buffer += ": ";
 		print_buffer += movie_info.epgChannel;
 
@@ -1067,7 +1067,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if (movie_info.quality != 0) 
 	{
 		print_buffer += "\n";
-		print_buffer += g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_QUALITY);
+		print_buffer += _("Quality");
 		print_buffer += ": ";
 		snprintf(date_char, 12, "%2d", movie_info.quality);
 		print_buffer += date_char;
@@ -1079,7 +1079,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if (movie_info.parentalLockAge != 0) 
 	{
 		print_buffer += "\n";
-		print_buffer += g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_PARENTAL_LOCKAGE);
+		print_buffer += _("Age");
 		print_buffer += ": ";
 		snprintf(date_char, 12, "%2d", movie_info.parentalLockAge);
 		print_buffer += date_char;
@@ -1092,7 +1092,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if (movie_info.length != 0) 
 	{
 		print_buffer += "\n";
-		print_buffer += g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_LENGTH);
+		print_buffer += _("Length (Min)");
 		print_buffer += ": ";
 		snprintf(date_char, 12, "%3d", movie_info.length);
 		print_buffer += date_char;
@@ -1104,7 +1104,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if (movie_info.audioPids.size() != 0) 
 	{
 		print_buffer += "\n";
-		print_buffer += g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_AUDIO);
+		print_buffer += _("Audio");
 		print_buffer += ": ";
 		for (unsigned int i = 0; i < movie_info.audioPids.size(); i++) 
 		{
@@ -1119,13 +1119,13 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if(movie_info.ytdate.empty())
 	{
 		print_buffer += "\n";
-		print_buffer += g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_PREVPLAYDATE);
+		print_buffer += _("Last play date");
 		print_buffer += ": ";
 		date_tm = localtime(&movie_info.dateOfLastPlay);
 		snprintf(date_char, 12, "%02d.%02d.%04d", date_tm->tm_mday, date_tm->tm_mon + 1, date_tm->tm_year + 1900);
 		print_buffer += date_char;
 		print_buffer += "\n";
-		print_buffer += g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_RECORDDATE);
+		print_buffer += _("Record date");
 		print_buffer += ": ";
 		date_tm = localtime(&movie_info.file.Time);
 		snprintf(date_char, 12, "%02d.%02d.%04d", date_tm->tm_mday, date_tm->tm_mon + 1, date_tm->tm_year + 1900);
@@ -1138,7 +1138,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if (movie_info.file.Size != 0) 
 	{
 		print_buffer += "\n";
-		print_buffer += g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_SIZE);
+		print_buffer += _("Size");
 		print_buffer += ": ";
 		//snprintf(date_char, 12,"%4llu",movie_info.file.Size>>20);
 		sprintf(date_char, "%llu", movie_info.file.Size >> 20);
@@ -1151,7 +1151,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	if(movie_info.ytdate.empty())
 	{
 		print_buffer += "\n";
-		print_buffer += g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_PATH);
+		print_buffer += _("Path");
 		print_buffer += ": ";
 		print_buffer += movie_info.file.Name;
 
@@ -1498,11 +1498,11 @@ bool CMovieInfo::addNewBookmark(MI_MOVIE_INFO * movie_info, MI_BOOKMARK & new_bo
 				if (movie_info->bookmarks.user[i].name.size() == 0) 
 				{
 					if (new_bookmark.length == 0)
-						movie_info->bookmarks.user[i].name = g_Locale->getText(LOCALE_MOVIEBROWSER_BOOK_NEW);
+						movie_info->bookmarks.user[i].name = _("New Bookmark");
 					if (new_bookmark.length < 0)
-						movie_info->bookmarks.user[i].name = g_Locale->getText(LOCALE_MOVIEBROWSER_BOOK_TYPE_BACKWARD);
+						movie_info->bookmarks.user[i].name = _("Repeat");
 					if (new_bookmark.length > 0)
-						movie_info->bookmarks.user[i].name = g_Locale->getText(LOCALE_MOVIEBROWSER_BOOK_TYPE_FORWARD);
+						movie_info->bookmarks.user[i].name = _("Jump over");
 				} 
 				else 
 				{

@@ -391,7 +391,7 @@ CNeutrinoApp * CNeutrinoApp::getInstance()
 
 typedef struct font_sizes
 {
-        const neutrino_locale_t name;
+        const char* const name;
         const unsigned int      defaultsize;
         const unsigned int      style;
         const unsigned int      size_offset;
@@ -400,32 +400,32 @@ typedef struct font_sizes
 // neutrino_font
 font_sizes_struct neutrino_font[FONT_TYPE_COUNT] =
 {
-        {LOCALE_FONTSIZE_MENU               ,  20, FONT_STYLE_BOLD   , 0},
-        {LOCALE_FONTSIZE_MENU_TITLE         ,  30, FONT_STYLE_BOLD   , 0},
-        {LOCALE_FONTSIZE_MENU_INFO          ,  16, FONT_STYLE_REGULAR, 0},
-        {LOCALE_FONTSIZE_EPG_TITLE          ,  25, FONT_STYLE_REGULAR, 1},
-        {LOCALE_FONTSIZE_EPG_INFO1          ,  17, FONT_STYLE_ITALIC , 2},
-        {LOCALE_FONTSIZE_EPG_INFO2          ,  17, FONT_STYLE_REGULAR, 2},
-        {LOCALE_FONTSIZE_EPG_DATE           ,  15, FONT_STYLE_REGULAR, 2},
-        {LOCALE_FONTSIZE_EVENTLIST_TITLE    ,  30, FONT_STYLE_REGULAR, 0},
-        {LOCALE_FONTSIZE_EVENTLIST_ITEMLARGE,  20, FONT_STYLE_BOLD   , 1},
-        {LOCALE_FONTSIZE_EVENTLIST_ITEMSMALL,  14, FONT_STYLE_REGULAR, 1},
-        {LOCALE_FONTSIZE_EVENTLIST_DATETIME ,  16, FONT_STYLE_REGULAR, 1},
-        {LOCALE_FONTSIZE_GAMELIST_ITEMLARGE ,  20, FONT_STYLE_BOLD   , 1},
-        {LOCALE_FONTSIZE_GAMELIST_ITEMSMALL ,  16, FONT_STYLE_REGULAR, 1},
-        {LOCALE_FONTSIZE_CHANNELLIST        ,  20, FONT_STYLE_BOLD   , 1},
-        {LOCALE_FONTSIZE_CHANNELLIST_DESCR  ,  20, FONT_STYLE_REGULAR, 1},
-        {LOCALE_FONTSIZE_CHANNELLIST_NUMBER ,  14, FONT_STYLE_BOLD   , 2},
-        {LOCALE_FONTSIZE_CHANNEL_NUM_ZAP    ,  40, FONT_STYLE_BOLD   , 0},
-        {LOCALE_FONTSIZE_INFOBAR_NUMBER     ,  30, FONT_STYLE_BOLD   , 0},
-        {LOCALE_FONTSIZE_INFOBAR_CHANNAME   ,  30, FONT_STYLE_BOLD   , 0},
-        {LOCALE_FONTSIZE_INFOBAR_INFO       ,  20, FONT_STYLE_REGULAR, 1},
-        {LOCALE_FONTSIZE_INFOBAR_SMALL      ,  14, FONT_STYLE_REGULAR, 1},
-        {LOCALE_FONTSIZE_FILEBROWSER_ITEM   ,  16, FONT_STYLE_BOLD   , 1}
+        {_("Menutext")               ,  20, FONT_STYLE_BOLD   , 0},
+        {_("Menu Title")         ,  30, FONT_STYLE_BOLD   , 0},
+        {_("Menu Info")          ,  16, FONT_STYLE_REGULAR, 0},
+        {_("EPG Title")          ,  25, FONT_STYLE_REGULAR, 1},
+        {_("EPG Info 1")          ,  17, FONT_STYLE_ITALIC , 2},
+        {_("EPG Info 2")          ,  17, FONT_STYLE_REGULAR, 2},
+        {_("EPG Date")           ,  15, FONT_STYLE_REGULAR, 2},
+        {_("Title")    ,  30, FONT_STYLE_REGULAR, 0},
+        {_("large"),  20, FONT_STYLE_BOLD   , 1},
+        {_("small"),  14, FONT_STYLE_REGULAR, 1},
+        {_("date / time") ,  16, FONT_STYLE_REGULAR, 1},
+        {_("large") ,  20, FONT_STYLE_BOLD   , 1},
+        {_("small") ,  16, FONT_STYLE_REGULAR, 1},
+        {_("Channellist")        ,  20, FONT_STYLE_BOLD   , 1},
+        {_("Description")  ,  20, FONT_STYLE_REGULAR, 1},
+        {_("Number") ,  14, FONT_STYLE_BOLD   , 2},
+        {_("direct selection")    ,  40, FONT_STYLE_BOLD   , 0},
+        {_("Number")     ,  30, FONT_STYLE_BOLD   , 0},
+        {_("Channel name")   ,  30, FONT_STYLE_BOLD   , 0},
+        {_("info")       ,  20, FONT_STYLE_REGULAR, 1},
+        {_("small")      ,  14, FONT_STYLE_REGULAR, 1},
+        {_("filebrowser item")   ,  16, FONT_STYLE_BOLD   , 1}
 };
 
 // signal font
-const font_sizes_struct signal_font = {LOCALE_FONTSIZE_INFOBAR_SMALL,  14, FONT_STYLE_REGULAR, 1};
+const font_sizes_struct signal_font = {_("small"),  14, FONT_STYLE_REGULAR, 1};
 
 // LCD settings
 typedef struct lcd_setting_t
@@ -1458,7 +1458,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit\n");
 
-	const char * fav_bouquetname = g_Locale->getText(LOCALE_FAVORITES_BOUQUETNAME);
+	const char * fav_bouquetname = _("My Favorites");
 
 	if(g_bouquetManager->existsUBouquet(fav_bouquetname, true) == -1)
 		g_bouquetManager->addBouquet(fav_bouquetname, true, true);
@@ -1504,34 +1504,34 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	if(WEBTVfavList)
 		delete WEBTVfavList;
 
-	TVchannelList = new CChannelList(g_Locale->getText(LOCALE_CHANNELLIST_HEAD));
-	RADIOchannelList = new CChannelList(g_Locale->getText(LOCALE_CHANNELLIST_HEAD));
+	TVchannelList = new CChannelList(_("All Services"));
+	RADIOchannelList = new CChannelList(_("All Services"));
 
-	TVbouquetList = new CBouquetList(g_Locale->getText(LOCALE_CHANNELLIST_PROVS));
+	TVbouquetList = new CBouquetList(_("Providers"));
 	TVbouquetList->orgChannelList = TVchannelList;
 
-	TVsatList = new CBouquetList(g_Locale->getText(LOCALE_CHANNELLIST_SATS));
+	TVsatList = new CBouquetList(_("Satellites"));
 	TVsatList->orgChannelList = TVchannelList;
 
-	TVfavList = new CBouquetList(g_Locale->getText(LOCALE_CHANNELLIST_FAVS));
+	TVfavList = new CBouquetList(_("Favorites"));
 	TVfavList->orgChannelList = TVchannelList;
 
-	RADIObouquetList = new CBouquetList(g_Locale->getText(LOCALE_CHANNELLIST_PROVS));
+	RADIObouquetList = new CBouquetList(_("Provider"));
 	RADIObouquetList->orgChannelList = RADIOchannelList;
 
-	RADIOsatList = new CBouquetList(g_Locale->getText(LOCALE_CHANNELLIST_SATS));
+	RADIOsatList = new CBouquetList(_("Satellites"));
 	RADIOsatList->orgChannelList = RADIOchannelList;
 
-	RADIOfavList = new CBouquetList(g_Locale->getText(LOCALE_CHANNELLIST_FAVS));
+	RADIOfavList = new CBouquetList(_("Favorites"));
 	RADIOfavList->orgChannelList = RADIOchannelList;
 
 	//
-	WEBTVchannelList = new CChannelList(g_Locale->getText(LOCALE_CHANNELLIST_HEAD));
+	WEBTVchannelList = new CChannelList(_("All Services"));
 
 	WEBTVbouquetList = new CBouquetList("WebTV");
 	WEBTVbouquetList->orgChannelList = WEBTVchannelList;
 
-	WEBTVfavList = new CBouquetList(g_Locale->getText(LOCALE_CHANNELLIST_FAVS));
+	WEBTVfavList = new CBouquetList(_("Favorites"));
 	WEBTVfavList->orgChannelList = WEBTVchannelList;
 
 	//
@@ -1577,22 +1577,22 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	CBouquet * tmp;
 
 	// tv all list
-	TVallList = new CBouquetList(g_Locale->getText(LOCALE_CHANNELLIST_HEAD));
-	tmp = TVallList->addBouquet(g_Locale->getText(LOCALE_CHANNELLIST_HEAD));
+	TVallList = new CBouquetList(_("All Services"));
+	tmp = TVallList->addBouquet(_("All Services"));
 	*(tmp->channelList) = *TVchannelList;
 	tmp->channelList->SortAlpha();
 	TVallList->orgChannelList = TVchannelList;
 
 	// radio all list
-	RADIOallList = new CBouquetList(g_Locale->getText(LOCALE_CHANNELLIST_HEAD));
-	tmp = RADIOallList->addBouquet(g_Locale->getText(LOCALE_CHANNELLIST_HEAD));
+	RADIOallList = new CBouquetList(_("All Services"));
+	tmp = RADIOallList->addBouquet(_("All Services"));
 	*(tmp->channelList) = *RADIOchannelList;
 	tmp->channelList->SortAlpha();
 	RADIOallList->orgChannelList = RADIOchannelList;
 
 	// webtv all list
-	WEBTVallList = new CBouquetList("WebTV");
-	tmp = WEBTVallList->addBouquet("WebTV");
+	WEBTVallList = new CBouquetList(_("WebTV"));
+	tmp = WEBTVallList->addBouquet(_("WebTV"));
 	*(tmp->channelList) = *WEBTVchannelList;
 	//tmp->channelList->SortAlpha();
 	WEBTVallList->orgChannelList = WEBTVchannelList;
@@ -2535,7 +2535,7 @@ int CNeutrinoApp::run(int argc, char **argv)
 	
 	// setup color
 	colorSetupNotifier = new CColorSetupNotifier;
-	colorSetupNotifier->changeNotify(NONEXISTANT_LOCALE, NULL);
+	colorSetupNotifier->changeNotify("", NULL);
 
 	// init vfd/lcd display
 #if ENABLE_LCD
@@ -2815,7 +2815,7 @@ int CNeutrinoApp::run(int argc, char **argv)
 
 		dprintf(DEBUG_INFO, "config file or options missing\n");
 
-		HintBox(_("Information"), loadSettingsErg ==  1 ? /*g_Locale->getText(LOCALE_SETTINGS_NOCONFFILE)*/_("No neutrino-settings found, Using defaults.") : /*g_Locale->getText(LOCALE_SETTINGS_MISSINGOPTIONSCONFFILE)*/_("The neutrino-settings have been updated.\nNew Options will be set to default."));
+		HintBox(_("Information"), loadSettingsErg ==  1 ? _("No neutrino-settings found, Using defaults.") : _("The neutrino-settings have been updated.\nNew Options will be set to default."));
 		
 		configfile.setModifiedFlag(true);
 
@@ -3617,7 +3617,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 /*
 			if(true && (videoDecoder->getBlank() && videoDecoder->getPlayState())) 
 			{
-				const char * text = g_Locale->getText(LOCALE_SCRAMBLED_CHANNEL);
+				const char * text = _("Scrambled channel");
 				HintBox(_("Information"), _(text), g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth (text, true) + 10, 5);
 			}
 */
@@ -3987,7 +3987,7 @@ _repeat:
 		
 		if( mode != mode_scart ) 
 		{
-			std::string name = g_Locale->getText(LOCALE_ZAPTOTIMER_ANNOUNCE);
+			std::string name = _("Zapto timer in one minute");
 
 			CTimerd::TimerList tmpTimerList;
 			CTimerdClient tmpTimerdClient;
@@ -4007,7 +4007,7 @@ _repeat:
 				std::string zAddData = Zapit.getChannelName( timer.channel_id ); // UTF-8
 				if( zAddData.empty()) 
 				{
-					zAddData = g_Locale->getText(LOCALE_TIMERLIST_PROGRAM_UNKNOWN);
+					zAddData = _("Program unknown");
 				}
 
 				if(timer.epgID != 0) 
@@ -4069,14 +4069,14 @@ _repeat:
 		delete[] (unsigned char*) data;
 		
 		if( mode != mode_scart )
-			HintBox(_("Information"), /*g_Locale->getText(LOCALE_RECORDTIMER_ANNOUNCE)*/_("Recording starts in a few minutes"));
+			HintBox(_("Information"), _("Recording starts in a few minutes"));
 		
 		return messages_return::handled;
 	}
 	else if( msg == NeutrinoMessages::ANNOUNCE_SLEEPTIMER) 
 	{
 		if( mode != mode_scart )
-			HintBox(_("Information"), /*g_Locale->getText(LOCALE_SLEEPTIMERBOX_ANNOUNCE)*/_("Sleeptimer in 1 min") );
+			HintBox(_("Information"), _("Sleeptimer in 1 min") );
 		
 		return messages_return::handled;
 	}
@@ -4200,7 +4200,7 @@ skip_message:
 		{
 			// restart recording
 			//FIXME doGuiRecord((*(stream2file_status2_t *) data).dir);
-			//changeNotify(LOCALE_MAINMENU_RECORDING_START, data);
+			//changeNotify(_("start"), data);
 		}
 
 		delete[] (unsigned char*) data;
@@ -5304,7 +5304,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 				
 			tuxtxt_close();
 				
-			HintBox(_("Information"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now"));
+			HintBox(_("Information"), _("Save settings now"));
 		}
 	}
 	else if (actionKey == "defaultskinsettings")
@@ -5365,15 +5365,15 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 }
 
 // changeNotify - features menu recording start / stop
-bool CNeutrinoApp::changeNotify(const neutrino_locale_t OptionName, void */*data*/)
+bool CNeutrinoApp::changeNotify(const std::string& OptionName, void */*data*/)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::changeNotify\n");
 
-	if ((ARE_LOCALES_EQUAL(OptionName, LOCALE_MAINMENU_RECORDING_START)) || (ARE_LOCALES_EQUAL(OptionName, LOCALE_MAINMENU_RECORDING)))
+	if ( (OptionName == _("start"))  || (OptionName == _("Recording")) )
 	{
 		if(g_RemoteControl->is_video_started) 
 		{
-			bool res = doGuiRecord(NULL, ARE_LOCALES_EQUAL(OptionName, LOCALE_MAINMENU_RECORDING));
+			bool res = doGuiRecord(NULL, (OptionName == _("Recording")));
 			return res;
 		}
 		else 
@@ -5591,12 +5591,12 @@ bool CNeutrinoApp::getNVODMenu(CMenuWidget * menu)
 			if(e->startzeit > jetzt) 
 			{
 				int mins = (e->startzeit - jetzt)/ 60;
-				sprintf(nvod_time_x, g_Locale->getText(LOCALE_NVOD_STARTING), mins);
+				sprintf(nvod_time_x, _("(starting in %d min)"), mins);
 			}
 			else if( (e->startzeit <= jetzt) && (jetzt < endtime) ) 
 			{
 				int proz = (jetzt - e->startzeit)*100/ e->dauer;
-				sprintf(nvod_time_x, g_Locale->getText(LOCALE_NVOD_PERCENTAGE), proz);
+				sprintf(nvod_time_x, _("(%d%% over)"), proz);
 			}
 			else
 				nvod_time_x[0] = 0;

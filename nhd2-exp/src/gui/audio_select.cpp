@@ -155,7 +155,7 @@ void CAudioSelectMenuHandler::doMenu()
 				if(!sep_added) 
 				{
 					sep_added = true;
-					AudioSelector.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_SUBTITLES_HEAD)));
+					AudioSelector.addItem(new CMenuSeparator(LINE | STRING, _("Subtitles")));
 				}
 				char spid[10];
 				//int pid = sd->pId;
@@ -174,7 +174,7 @@ void CAudioSelectMenuHandler::doMenu()
 				if(!sep_added) 
 				{
 					sep_added = true;
-					AudioSelector.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_SUBTITLES_HEAD)));
+					AudioSelector.addItem(new CMenuSeparator(LINE | STRING, _("Subtitles")));
 				}
 				char spid[64];
 				int page = ((sd->teletext_magazine_number & 0xFF) << 8) | sd->teletext_page_number;
@@ -207,7 +207,7 @@ void CAudioSelectMenuHandler::doMenu()
 		if(!sep_added) 
 		{
 			sep_added = true;
-			AudioSelector.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_AUDIOMENU_VOLUME_ADJUST)));
+			AudioSelector.addItem(new CMenuSeparator(LINE | STRING, _("Volume adjustment (in %)")));
 		}
 		
 		AudioSelector.addItem(new CMenuOptionNumberChooser("", &percent[count],
@@ -237,7 +237,7 @@ int CAPIDChangeExec::exec(CMenuTarget */*parent*/, const std::string & actionKey
 }
 
 // volume conf
-bool CAudioSetupNotifierVolPercent::changeNotify(const neutrino_locale_t OptionName __attribute__((unused)), void *data)
+bool CAudioSetupNotifierVolPercent::changeNotify(const std::string& OptionName __attribute__((unused)), void *data)
 {
 	int percent = *(int *) data;
 	

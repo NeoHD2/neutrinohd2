@@ -116,7 +116,7 @@ void CTSBrowser::loadPlaylist()
 	// recordingdir
 	Path = g_settings.network_nfs_recordingdir;
 
-	CHintBox loadBox("Movie Browser", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox(_("TS Browser"), _("Scan for Movies ..."));
 	loadBox.paint();
 	
 	//
@@ -201,7 +201,7 @@ void CTSBrowser::openFileBrowser()
 		MI_MOVIE_INFO movieInfo;
 		m_movieInfo.clearMovieInfo(&movieInfo); // refresh structure
 
-		CHintBox loadBox("Movie Browser", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox(_("TS Browser"), _("Scan for Movies ..."));
 		loadBox.paint();
 
 		CFileList::const_iterator files = filebrowser.getSelectedFiles().begin();
@@ -253,18 +253,18 @@ void CTSBrowser::doTMDB(MI_MOVIE_INFO& movieFile)
 		buffer += minfo_list[0].overview;
 		buffer += "\n";
 
-		buffer += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_LENGTH) + ": " + to_string(minfo_list[0].runtime);
+		buffer += (std::string)_("Length (Min)") + ": " + to_string(minfo_list[0].runtime);
 		buffer += "\n";
 
-		buffer += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_GENRE) + ": " + minfo_list[0].genres;
+		buffer += (std::string)_("Genre") + ": " + minfo_list[0].genres;
 		buffer += "\n";
-		buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ORIGINAL_TITLE) + " : " + minfo_list[0].original_title;
+		buffer += (std::string)_("Original Title") + " : " + minfo_list[0].original_title;
 		buffer += "\n";
-		buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_YEAR_OF_PRODUCTION) + " : " + minfo_list[0].release_date.substr(0,4);
+		buffer += (std::string)_("Year of production") + " : " + minfo_list[0].release_date.substr(0,4);
 		buffer += "\n";
 
 		if (!minfo_list[0].cast.empty())
-			buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ACTORS) + ":\n" + minfo_list[0].cast;
+			buffer += (std::string)_("Actors") + ":\n" + minfo_list[0].cast;
 
 		// thumbnail
 		std::string tname = tmdb->getThumbnailDir();
@@ -335,7 +335,7 @@ bool CTSBrowser::delFile(CFile& file)
 
 void CTSBrowser::onDeleteFile(MI_MOVIE_INFO& movieFile)
 {
-	std::string msg = g_Locale->getText(LOCALE_FILEBROWSER_DODELETE1);
+	std::string msg = _("Delete");
 	msg += "\r\n ";
 
 	if (movieFile.file.Name.length() > 40)

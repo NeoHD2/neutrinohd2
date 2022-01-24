@@ -152,29 +152,29 @@ const keyval MESSAGEBOX_PARENTAL_LOCKAGE_OPTIONS[MESSAGEBOX_PARENTAL_LOCKAGE_OPT
 CFont* CMovieBrowser::m_pcFontFoot = NULL;
 CFont* CMovieBrowser::m_pcFontTitle = NULL;
 
-const neutrino_locale_t m_localizedItemName[MB_INFO_MAX_NUMBER + 1] =
+const char* const m_localizedItemName[MB_INFO_MAX_NUMBER + 1] =
 {
-	LOCALE_MOVIEBROWSER_SHORT_FILENAME,
-	LOCALE_MOVIEBROWSER_SHORT_PATH,
-	LOCALE_MOVIEBROWSER_SHORT_TITLE ,
-	LOCALE_MOVIEBROWSER_SHORT_SERIE,
-	LOCALE_MOVIEBROWSER_SHORT_INFO1,
-	LOCALE_MOVIEBROWSER_SHORT_GENRE_MAJOR,
-	LOCALE_MOVIEBROWSER_SHORT_GENRE_MINOR,
-	LOCALE_MOVIEBROWSER_SHORT_INFO2,
-	LOCALE_MOVIEBROWSER_SHORT_PARENTAL_LOCKAGE	,
-	LOCALE_MOVIEBROWSER_SHORT_CHANNEL ,
-	LOCALE_MOVIEBROWSER_SHORT_BOOK,
-	LOCALE_MOVIEBROWSER_SHORT_QUALITY,
-	LOCALE_MOVIEBROWSER_SHORT_PREVPLAYDATE,
-	LOCALE_MOVIEBROWSER_SHORT_RECORDDATE,
-	LOCALE_MOVIEBROWSER_SHORT_PRODYEAR,
-	LOCALE_MOVIEBROWSER_SHORT_COUNTRY,
-	LOCALE_MOVIEBROWSER_SHORT_FORMAT ,
-	LOCALE_MOVIEBROWSER_SHORT_AUDIO ,
-	LOCALE_MOVIEBROWSER_SHORT_LENGTH,
-	LOCALE_MOVIEBROWSER_SHORT_SIZE, 
-	NONEXISTANT_LOCALE
+	_("Name"),
+	_("Path"),
+	_("Title"),
+	_("Serie"),
+	_("Info 1"),
+	_("Genre"),
+	_("Genre"),
+	_("Info 2"),
+	_("Age"),
+	_("Channel"),
+	_("Bookmark"),
+	_("Quality"),
+	_("Last play date"),
+	_("Record date"),
+	_("Year"),
+	_("Country"),
+	_("Format"),
+	_("Audio"),
+	_("Length (Min)"),
+	_("Size"), 
+	_("")
 };
 
 // default row size in pixel for any element
@@ -444,7 +444,7 @@ void CMovieBrowser::init(void)
 	
 	m_windowFocus = MB_FOCUS_BROWSER;
 	
-	m_textTitle = g_Locale->getText(LOCALE_MOVIEBROWSER_HEAD);
+	m_textTitle = _("Movie Browser");
 	
 	//
 	m_movieSelectionHandler = NULL;
@@ -793,7 +793,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 
 	if(actionKey == "loaddefault")
 	{
-		CHintBox * hintBox = new CHintBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MOVIEBROWSER_LOAD_DEFAULT)*/_("Load default settings"));
+		CHintBox * hintBox = new CHintBox(_("Moviebrowser"), _("Load default settings"));
 		hintBox->paint();
 		
 		defaultSettings(&m_settings);
@@ -804,7 +804,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 	}
 	else if(actionKey == "save_options")
 	{
-		CHintBox * hintBox = new CHintBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now")); // UTF-8
+		CHintBox * hintBox = new CHintBox(_("Moviebrowser"), _("Save settings now")); // UTF-8
 
 		hintBox->paint();
 		
@@ -824,7 +824,7 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 		if(m_movieSelectionHandler != NULL)
 		{
 			//
-			CHintBox * hintBox = new CHintBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("save settings now")); // UTF-8
+			CHintBox * hintBox = new CHintBox(_("Moviebrowser"), _("save settings now")); // UTF-8
 			hintBox->paint();
 		
 			m_movieInfo.saveMovieInfo( *m_movieSelectionHandler);
@@ -847,12 +847,12 @@ int CMovieBrowser::exec(CMenuTarget * parent, const std::string & actionKey)
 				current_list = &m_vHandleRecordList ;
 			
 			//
-			CHintBox * hintBox = new CHintBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now")); // UTF-8
+			CHintBox * hintBox = new CHintBox(_("Moviebrowser"), _("Save settings now")); // UTF-8
 			hintBox->paint();
 
 			if(current_list != NULL)
 			{
-				CHintBox loadBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_HEAD_UPDATE)*/_("Save changes in all movie info files"));
+				CHintBox loadBox(_("Moviebrowser"), _("Save changes in all movie info files"));
 				loadBox.paint();
 				
 				for(unsigned int i = 0; i< current_list->size();i++)
@@ -1086,7 +1086,7 @@ int CMovieBrowser::exec(const char * path)
 	neutrino_msg_t      msg;
 	neutrino_msg_data_t data;
 
-	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8, g_Locale->getText(LOCALE_MOVIEBROWSER_HEAD));
+	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8, _("Movie Browser"));
 	
 	// load settings
 	loadSettings(&m_settings);
@@ -1281,18 +1281,17 @@ int CMovieBrowser::paint(void)
 {
 	dprintf(DEBUG_NORMAL, "CMovieBrowser::Paint\r\n");
 
-	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8, g_Locale->getText(LOCALE_MOVIEBROWSER_HEAD));	
+	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8, _("Movie Browser"));	
 
 	m_pcBrowser = new CListFrame(&m_browserListLines, NULL, CListFrame::SCROLL | CListFrame::HEADER_LINE, &m_cBoxFrameBrowserList);
 
-	m_pcLastPlay = new CListFrame(&m_playListLines, NULL, CListFrame::SCROLL | CListFrame::HEADER_LINE | CListFrame::TITLE, &m_cBoxFrameLastPlayList, g_Locale->getText(LOCALE_MOVIEBROWSER_HEAD_PLAYLIST), g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+	m_pcLastPlay = new CListFrame(&m_playListLines, NULL, CListFrame::SCROLL | CListFrame::HEADER_LINE | CListFrame::TITLE, &m_cBoxFrameLastPlayList, _("Last played:"), g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 
-	m_pcLastRecord = new CListFrame(&m_recordListLines, NULL, CListFrame::SCROLL | CListFrame::HEADER_LINE | CListFrame::TITLE, &m_cBoxFrameLastRecordList, g_Locale->getText(LOCALE_MOVIEBROWSER_HEAD_RECORDLIST), g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+	m_pcLastRecord = new CListFrame(&m_recordListLines, NULL, CListFrame::SCROLL | CListFrame::HEADER_LINE | CListFrame::TITLE, &m_cBoxFrameLastRecordList, _("Last recorded:"), g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 
-	m_pcFilter = new CListFrame(&m_FilterLines, NULL, CListFrame::SCROLL | CListFrame::TITLE, &m_cBoxFrameFilter, g_Locale->getText(LOCALE_MOVIEBROWSER_HEAD_FILTER), g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+	m_pcFilter = new CListFrame(&m_FilterLines, NULL, CListFrame::SCROLL | CListFrame::TITLE, &m_cBoxFrameFilter, _("Filter movies by category:"), g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 
 	m_pcInfo = new CTextBox(&m_cBoxFrameInfo);
-	//m_pcInfo->setPosition(&m_cBoxFrameInfo);	
 
 	if(m_pcBrowser == NULL || m_pcLastPlay == NULL || m_pcLastRecord == NULL || m_pcInfo == NULL || m_pcFilter == NULL)
 	{
@@ -1434,18 +1433,18 @@ void CMovieBrowser::refreshFilterList(void)
 	if(m_settings.filter.item == MB_INFO_MAX_NUMBER)
 	{
 		// show Main List
-		string_item = g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_GENRE_MAJOR);
+		string_item = _("Genre");
 		m_FilterLines.lineArray[0].push_back(string_item);
-		string_item = g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_INFO1);
+		string_item = _("Info 1");
 		m_FilterLines.lineArray[0].push_back(string_item);
-		string_item = g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_PATH);
+		string_item = _("Path");
 		m_FilterLines.lineArray[0].push_back(string_item);
-		string_item = g_Locale->getText(LOCALE_MOVIEBROWSER_INFO_SERIE);
+		string_item = _("Serie");
 		m_FilterLines.lineArray[0].push_back(string_item);
 	}
 	else
 	{
-		std::string tmp = g_Locale->getText(LOCALE_MENU_BACK);
+		std::string tmp = _("back");
 		m_FilterLines.lineArray[0].push_back(tmp);
 		
 		 if(m_settings.filter.item == MB_INFO_FILEPATH)
@@ -1501,7 +1500,7 @@ void CMovieBrowser::refreshLastPlayList(void) //P2
 	{
 		m_playListLines.lineArray[row].clear();
 		m_playListLines.rowWidth[row] = m_settings.lastPlayRowWidth[row];
-		m_playListLines.lineHeader[row]= g_Locale->getText(m_localizedItemName[m_settings.lastPlayRow[row]]);
+		m_playListLines.lineHeader[row]= m_localizedItemName[m_settings.lastPlayRow[row]];
 	}
 	m_vHandlePlayList.clear();
 
@@ -1561,7 +1560,7 @@ void CMovieBrowser::refreshLastRecordList(void) //P2
 	{
 		m_recordListLines.lineArray[row].clear();
 		m_recordListLines.rowWidth[row] = m_settings.lastRecordRowWidth[row];
-		m_recordListLines.lineHeader[row]= g_Locale->getText(m_localizedItemName[m_settings.lastRecordRow[row]]);
+		m_recordListLines.lineHeader[row]= m_localizedItemName[m_settings.lastRecordRow[row]];
 	}
 	m_vHandleRecordList.clear();
 
@@ -1622,7 +1621,7 @@ void CMovieBrowser::refreshBrowserList(void) //P1
 	{
 		m_browserListLines.lineArray[row].clear();
 		m_browserListLines.rowWidth[row] = m_settings.browserRowWidth[row];
-		m_browserListLines.lineHeader[row]= g_Locale->getText(m_localizedItemName[m_settings.browserRowItem[row]]);
+		m_browserListLines.lineHeader[row]= m_localizedItemName[m_settings.browserRowItem[row]];
 	}
 
 	m_vHandleBrowserList.clear();
@@ -1699,7 +1698,7 @@ void CMovieBrowser::refreshTitle(void)
 	std::string title = m_textTitle.c_str();
 	std::string mb_icon = NEUTRINO_ICON_MOVIE;
 	
-	title = g_Locale->getText(LOCALE_MOVIEBROWSER_HEAD);
+	title = _("Movie Browser");
 
 	CHeaders headers(&m_cBoxFrameTitleRel, title.c_str(), NEUTRINO_ICON_MOVIE);
 	headers.enablePaintDate();
@@ -1725,7 +1724,7 @@ void CMovieBrowser::refreshFoot(void)
 	{
 		// red
 		std::string sort_text = _("Filter:");
-		//sort_text += g_Locale->getText(m_localizedItemName[m_settings.sorting.item]); //FIXME:
+		//sort_text += m_localizedItemName[m_settings.sorting.item]; //FIXME:
 	
 		//MBFootButtons[0].localename = sort_text.c_str();
 		MBFootButtons[0].localename = _("Filter:");
@@ -1740,7 +1739,7 @@ void CMovieBrowser::refreshFoot(void)
 	}
 
 	// yellow
-	std::string next_text = g_Locale->getText(LOCALE_MOVIEBROWSER_NEXT_FOCUS);
+	std::string next_text = _("Next focus");
 
 	if(m_settings.gui == MB_GUI_FILTER && m_windowFocus == MB_FOCUS_FILTER)
 	{
@@ -1748,7 +1747,7 @@ void CMovieBrowser::refreshFoot(void)
 	}
 	else
 	{
-		next_text = g_Locale->getText(LOCALE_MOVIEBROWSER_NEXT_FOCUS);
+		next_text = _("Next focus");
 	}
 
 	MBFootButtons[2].localename = _("next focus");
@@ -2183,7 +2182,7 @@ void CMovieBrowser::onDeleteFile(MI_MOVIE_INFO& movieSelectionHandler)
 {
 	dprintf(DEBUG_INFO, "CMovieBrowser::onDeleteFile:");
 
-	std::string msg = g_Locale->getText(LOCALE_FILEBROWSER_DODELETE1);
+	std::string msg = _("Delete");
 	msg += "\r\n ";
 	if (movieSelectionHandler.file.Name.length() > 40)
 	{
@@ -2904,7 +2903,7 @@ void CMovieBrowser::loadMovies(void)
 	m_pcWindow->paintBackground();
 	m_pcWindow->blit();	
 
-	CHintBox loadBox(_("Moviebrowser"), /*g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES)*/_("Scan for Movies ..."));
+	CHintBox loadBox(_("Moviebrowser"), _("Scan for Movies ..."));
 	
 	loadBox.paint();
 
@@ -3253,7 +3252,7 @@ bool CMovieBrowser::showMenu()
 	optionsMenuBrowser.addItem( new CMenuForwarder(_("Number of lines last play"), true, playMaxUserIntInput.getValue(),   &playMaxUserIntInput));
 	optionsMenuBrowser.addItem( new CMenuForwarder(_("Number of lines last record"), true, recMaxUserIntInput.getValue(), &recMaxUserIntInput));
 	optionsMenuBrowser.addItem( new CMenuForwarder(_("Browser hight [Pixel]"), true, browserFrameUserIntInput.getValue(), &browserFrameUserIntInput));
-	optionsMenuBrowser.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_MOVIEBROWSER_BROWSER_ROW_HEAD)));
+	optionsMenuBrowser.addItem(new CMenuSeparator(LINE | STRING, _("Row settings")));
 	optionsMenuBrowser.addItem( new CMenuForwarder(_("Row settings"), true, browserRowNrIntInput.getValue(), &browserRowNrIntInput));
 	
 	for(i = 0; i < MB_MAX_ROWS; i++)
@@ -3918,7 +3917,7 @@ COnOffNotifier::COnOffNotifier(int /*OffValue*/)
 	number = 0;
 }
 
-bool COnOffNotifier::changeNotify(const neutrino_locale_t, void *Data)
+bool COnOffNotifier::changeNotify(const std::string&, void *Data)
 {
 	if(*(int*)(Data) == 0)
 	{

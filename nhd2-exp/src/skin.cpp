@@ -359,6 +359,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 	return parent;
 }
 
+/*
 neutrino_locale_t CNeutrinoApp::convertLocale(const int loc)
 {
 	dprintf(DEBUG_INFO, "CNeutrinoApp::convertLocale: id: %d\n", loc);
@@ -367,6 +368,7 @@ neutrino_locale_t CNeutrinoApp::convertLocale(const int loc)
 	
 	return locale;
 }
+*/
 
 //
 CWidget* CNeutrinoApp::getWidget(int id)
@@ -1239,7 +1241,7 @@ void CNeutrinoApp::startSkin(const char * const filename)
 		
 		std::string hint = filename;
 		hint += " ";
-		hint += g_Locale->getText(LOCALE_PLUGINS_NOT_INSTALLED);
+		hint += _("is not installed please install again.");
 		
 		HintBox(_("Information"), _(hint.c_str()));
 	}
@@ -1427,7 +1429,7 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
 
 		colorSetupNotifier = new CColorSetupNotifier;
-		colorSetupNotifier->changeNotify(NONEXISTANT_LOCALE, NULL);
+		colorSetupNotifier->changeNotify("", NULL);
 		
 		delete colorSetupNotifier;
 	}

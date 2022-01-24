@@ -635,7 +635,7 @@ void CFontSettings::showMenu()
 	fontSettings.addItem(new CMenuForwarder(_("Font name"), true, g_settings.font_file, this, "select_font"));
 	
 	// font scaling
-	fontSettings.addItem(new CMenuSeparator(LINE|STRING, g_Locale->getText(LOCALE_FONTMENU_HEAD)));
+	fontSettings.addItem(new CMenuSeparator(LINE|STRING, _("Font")));
 	fontSettings.addItem(new CMenuOptionNumberChooser(_("Horizontal (in %)"), &g_settings.screen_xres, true, 50, 200, NULL) );
 	fontSettings.addItem(new CMenuOptionNumberChooser(_("Vertikal (in %)"), &g_settings.screen_yres, true, 50, 200, NULL) );
 		
@@ -943,7 +943,7 @@ void CSkinManager::showMenu()
 	skinMenu->enablePaintDate();
 	
 	// default
-	item = new ClistBoxItem(/*LOCALE_SKIN_DEFAULT*/_("neutrino (default)"), true, NULL, this, "neutrino_default", RC_nokey, NULL, DATADIR "/neutrino/icons/prev.jpg");
+	item = new ClistBoxItem(_("neutrino (default)"), true, NULL, this, "neutrino_default", RC_nokey, NULL, DATADIR "/neutrino/icons/prev.jpg");
 	item->setHint(_("Here you can select a skin from the following list."));
 	
 	skinMenu->addItem(item);
@@ -998,7 +998,7 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 	if (actionKey == "neutrino_default")
 	{
-		if (MessageBox(/*LOCALE_MESSAGEBOX_INFO*/_("Skin Select"), /*LOCALE_SERVICEMENU_RESTART*/_("GUI Restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Skin Select"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			g_settings.use_default_skin = true;
 			CNeutrinoApp::getInstance()->unloadSkin();
@@ -1007,7 +1007,7 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 	}
 	else if (!actionKey.empty())
 	{
-		if (MessageBox(/*LOCALE_MESSAGEBOX_INFO*/_("Skin Select"), /*LOCALE_SERVICEMENU_RESTART*/_("GUI Restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Skin Select"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			g_settings.use_default_skin = false;
 			CNeutrinoApp::getInstance()->unloadSkin();
@@ -1092,7 +1092,7 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if (!actionKey.empty())
 	{
 		// FIXME: localize
-		if (MessageBox(/*LOCALE_MESSAGEBOX_INFO*/_("Skin Style Selection"), _("Skin Style selection"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Skin Style Selection"), _("Skin Style selection"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			//
 			std::string skinConfigFile = CONFIGDIR "/skins/";

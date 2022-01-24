@@ -247,22 +247,21 @@ void CAudioSettings::showMenu()
 	delete autoAudioNotifier;
 }
 
-bool CAudioSetupNotifier::changeNotify(const neutrino_locale_t OptionName, void *)
+bool CAudioSetupNotifier::changeNotify(const std::string& OptionName, void *)
 {
 	dprintf(DEBUG_NORMAL, "CAudioSetupNotifier::changeNotify\n");
 
-	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_AUDIOMENU_ANALOGOUT)) 
+	if (OptionName == _("Analog Output")) 
 	{
-		//g_Zapit->setAudioMode(g_settings.audio_AnalogMode);
 		if(audioDecoder) 
 				audioDecoder->setChannel(g_settings.audio_AnalogMode);
 	} 
-	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_AUDIOMENU_HDMI_DD)) 
+	else if (OptionName == _("Dolby Digital")) 
 	{
 		if(audioDecoder)
 			audioDecoder->SetHdmiDD(g_settings.hdmi_dd );
 	}
-	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_AUDIOMENU_AVSYNC)) 
+	else if (OptionName == _("A/V sync")) 
 	{
 #if defined (PLATFORM_COOLSTREAM)
 		videoDecoder->SetSyncMode((AVSYNC_TYPE)g_settings.avsync);
@@ -279,12 +278,12 @@ bool CAudioSetupNotifier::changeNotify(const neutrino_locale_t OptionName, void 
 #endif			
 	}
 #if !defined (PLATFORM_COOLSTREAM)	
-	else if( ARE_LOCALES_EQUAL(OptionName, LOCALE_AUDIOMENU_AC3_DELAY) )
+	else if(OptionName == _("AC3 Delay"))
 	{
 		if(audioDecoder)
 			audioDecoder->setHwAC3Delay(g_settings.ac3_delay);
 	}
-	else if( ARE_LOCALES_EQUAL(OptionName, LOCALE_AUDIOMENU_PCM_DELAY) )
+	else if(OptionName == _("PCM Delay"))
 	{
 		if(audioDecoder)
 			audioDecoder->setHwPCMDelay(g_settings.pcm_delay);
@@ -302,7 +301,7 @@ CAutoAudioNotifier::CAutoAudioNotifier(CMenuItem * item1, CMenuItem * item2, CMe
 	toDisable[3] = item4;
 }
 
-bool CAutoAudioNotifier::changeNotify(const neutrino_locale_t, void *)
+bool CAutoAudioNotifier::changeNotify(const std::string&, void *)
 {
 	// only ac3
 	toDisable[0]->setActive(g_settings.auto_lang);
@@ -321,7 +320,7 @@ CSubLangSelectNotifier::CSubLangSelectNotifier(CMenuItem * item1, CMenuItem * it
 	toDisable[2] = item3;
 }
 
-bool CSubLangSelectNotifier::changeNotify(const neutrino_locale_t, void *)
+bool CSubLangSelectNotifier::changeNotify(const std::string&, void *)
 {
 	// only ac3
 	toDisable[0]->setActive(g_settings.auto_subs);

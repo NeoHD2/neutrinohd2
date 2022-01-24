@@ -78,7 +78,7 @@ CMessageBox::CMessageBox(const char* const Caption, const char * const Text, con
 
 	result = Default;
 
-	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(g_Locale->getText(LOCALE_MESSAGEBOX_CANCEL), true); // UTF-8
+	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(_("Cancel"), true); // UTF-8
 
 	int ih = 0;
 	int iw = 0;
@@ -127,7 +127,7 @@ CMessageBox::CMessageBox(const char* const Caption, ContentLines& Lines, const i
 
 	result = Default;
 
-	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(g_Locale->getText(LOCALE_MESSAGEBOX_CANCEL), true); // UTF-8
+	int MaxButtonTextWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getRenderWidth(_("Cancel"), true); // UTF-8
 	
 	int ih = 0;
 	int iw = 0;

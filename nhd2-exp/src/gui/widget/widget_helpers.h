@@ -225,7 +225,6 @@ enum {
 typedef struct button_label
 {
 	std::string button;
-	//neutrino_locale_t locale;
 	std::string localename;
 } button_label_struct;
 
@@ -335,7 +334,6 @@ class CItems2DetailsLine : public CComponent
 		virtual void setOptionInfo1(const char* const text){option_info1 = text;};
 		virtual void setOptionInfo2(const char* const text){option_info2 = text;};
 		virtual void setHint(const char* const Text){hint =  Text;};
-		virtual void setHint(const neutrino_locale_t locale){hint = g_Locale->getText(locale); };
 		virtual void setIcon(const char* const ic){icon = ic;};
 		
 		// custom mode

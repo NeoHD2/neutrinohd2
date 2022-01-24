@@ -69,7 +69,7 @@ CBouquetList::CBouquetList(const char* const Name)
 	selected    = 0;
 	
 	if(Name == NULL)
-		name = g_Locale->getText(LOCALE_BOUQUETLIST_HEAD);
+		name = _("Bouquets");
 	else
 		name = Name;
 
@@ -529,7 +529,7 @@ void CBouquetList::paint()
 
 	for (unsigned int count = 0; count < Bouquets.size(); count++)
 	{
-		item = new ClistBoxItem((Bouquets[count]->zapitBouquet && Bouquets[count]->zapitBouquet->bFav) ? g_Locale->getText(LOCALE_FAVORITES_BOUQUETNAME) : Bouquets[count]->channelList->getName());
+		item = new ClistBoxItem((Bouquets[count]->zapitBouquet && Bouquets[count]->zapitBouquet->bFav) ? _("My Favorites") : Bouquets[count]->channelList->getName());
 
 		item->setNumber(count + 1);
 		listBox->addItem(item);

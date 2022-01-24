@@ -222,20 +222,20 @@ std::string CTmdb::createInfoText()
 
 	if (minfo[0].media_type == "tv")
 	{
-		infoText += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_LENGTH) + ": " + minfo[0].runtimes;
+		infoText += (std::string)_("Length") + ": " + minfo[0].runtimes;
 	}
 	else
 	{
-		infoText += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_LENGTH) + ": " + to_string(minfo[0].runtime);
+		infoText += (std::string)_("Length") + ": " + to_string(minfo[0].runtime);
 	}
 
 	infoText += "\n";
 
-	infoText += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_GENRE) + ": " + minfo[0].genres;
+	infoText += (std::string)_("Genre") + ": " + minfo[0].genres;
 	infoText += "\n";
-	infoText += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ORIGINAL_TITLE) + " : " + minfo[0].original_title;
+	infoText += (std::string)_("Original Title") + " : " + minfo[0].original_title;
 	infoText += "\n";
-	infoText += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_YEAR_OF_PRODUCTION) + " : " + minfo[0].release_date.substr(0,4);
+	infoText += (std::string)_("Year of Production") + " : " + minfo[0].release_date.substr(0,4);
 	infoText += "\n";
 
 	if (minfo[0].media_type == "tv")
@@ -245,7 +245,7 @@ std::string CTmdb::createInfoText()
 	}
 
 	if (!minfo[0].cast.empty())
-		infoText += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ACTORS) + ":\n" + minfo[0].cast;
+		infoText += (std::string)_("Actors") + ":\n" + minfo[0].cast;
 
 	return infoText;
 }

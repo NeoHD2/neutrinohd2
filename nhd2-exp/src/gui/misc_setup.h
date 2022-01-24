@@ -39,7 +39,7 @@ class CMiscNotifier : public CChangeObserver
 		CMenuItem * toDisable[1];
 	public:
 		CMiscNotifier( CMenuItem * );
-		bool changeNotify(const neutrino_locale_t, void *);
+		bool changeNotify(const std::string&, void *);
 };
 
 class CMiscSettingsMenu : public CMenuTarget, CChangeObserver
@@ -66,7 +66,7 @@ class CDataResetNotifier : public CMenuTarget
 class CTZChangeNotifier : public CChangeObserver
 {
 	public:
-		bool changeNotify(const neutrino_locale_t, void * data);
+		bool changeNotify(const std::string&, void * data);
 };
 
 // general settings
@@ -75,7 +75,7 @@ class CGeneralSettings : public CMenuTarget, CChangeObserver
 	private:
 		void showMenu();
 		
-		bool changeNotify(const neutrino_locale_t OptionName, void *);
+		bool changeNotify(const std::string& OptionName, void *);
 		
 	public:
 		CGeneralSettings();
@@ -90,7 +90,7 @@ class CChannelListSettings : public CMenuTarget, CChangeObserver
 	private:
 		void showMenu();
 		
-		bool changeNotify(const neutrino_locale_t OptionName, void *);
+		bool changeNotify(const std::string& OptionName, void *);
 		
 	public:
 		CChannelListSettings();
@@ -104,7 +104,7 @@ class CChannelListSettings : public CMenuTarget, CChangeObserver
 class CEPGlangSelectNotifier : public CChangeObserver
 {	
 	public:
-		bool changeNotify(const neutrino_locale_t, void * /*data*/);
+		bool changeNotify(const std::string&, void * /*data*/);
 };
 
 // satip notifier
@@ -116,14 +116,14 @@ class COnlineEPGNotifier : public CChangeObserver
 		CMenuOptionChooser* item3;
         public:
 		COnlineEPGNotifier(CMenuForwarder* m1, CMenuOptionChooser* m2, CMenuOptionChooser* m3);
-                bool changeNotify(/*const std::string&*/const neutrino_locale_t, void *);
+                bool changeNotify(const std::string&, void *);
 };
 
 // epg config notifier
 class CEPGConfigNotifier : public CChangeObserver
 {
         public:
-                bool changeNotify(const neutrino_locale_t, void *);
+                bool changeNotify(const std::string&, void *);
 };
 
 // epg settings

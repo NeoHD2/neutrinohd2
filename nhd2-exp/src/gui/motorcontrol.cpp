@@ -514,41 +514,41 @@ void CMotorControl::paintStatus()
 	char buf2[256];
 	
 	int xpos1 = x + 10;
-	int xpos2 = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_INFO]->getRenderWidth((char *) g_Locale->getText(LOCALE_MOTORCONTROL_MOTOR_POS));
+	int xpos2 = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_INFO]->getRenderWidth(_("(a) Motor Position:"));
 	int width2 = width - (xpos2 - xpos1) - 10;
 	int width1 = width - 10;
 	
 	ypos = ypos_status;
-	paintSeparator(xpos1, &ypos, width, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_SETTINGS));
+	paintSeparator(xpos1, &ypos, width, _("Motor Setup"));
 	
-	paintLine(xpos1, &ypos, width1, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_MOTOR_POS));
+	paintLine(xpos1, &ypos, width1, _("(a) Motor Position:"));
 	sprintf(buf, "%d", motorPosition);
 	paintLine(xpos2, ypos, width2 , buf);
 	
-	paintLine(xpos1, &ypos, width1, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_MOVEMENT));
+	paintLine(xpos1, &ypos, width1, _("(b) Movement:"));
 	
 	switch(stepMode)
 	{
 		case STEP_MODE_ON:
-			strcpy(buf, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STEP_MODE));
+			strcpy(buf, _("Step Mode"));
 			break;
 			
 		case STEP_MODE_OFF:
-			strcpy(buf, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_DRIVE_MODE));
+			strcpy(buf, _("Drive Mode"));
 			break;
 			
 		case STEP_MODE_AUTO:
-			strcpy(buf, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_DRIVE_MODE_AUTO));
+			strcpy(buf, _("Drive Mode/auto stop"));
 			break;
 			
 		case STEP_MODE_TIMED:
-			strcpy(buf, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_TIMED_MODE));
+			strcpy(buf, _("Timed Step Mode"));
 			break;
 	}
 	
 	paintLine(xpos2, ypos, width2, buf);
 	
-	paintLine(xpos1, &ypos, width1, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STEP_SIZE));
+	paintLine(xpos1, &ypos, width1, _("(c) Step Size:"));
 	
 	switch(stepMode)
 	{
@@ -558,28 +558,28 @@ void CMotorControl::paintStatus()
 			
 		case STEP_MODE_AUTO:
 			if(moving)
-				strcpy(buf, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STOP_MOVING));
+				strcpy(buf, _("stop on good signal(moving)"));
 			else
-				strcpy(buf, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STOP_STOPPED));
+				strcpy(buf, _("stop on good signal(stopped)"));
 			break;
 			
 		case STEP_MODE_OFF:
-			strcpy(buf, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_NO_MODE));
+			strcpy(buf, _("don't care"));
 			break;
 			
 		case STEP_MODE_TIMED:
 			sprintf(buf, "%d ", stepSize * stepDelay);
-			strcat(buf, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_MSEC));
+			strcat(buf, _("milliseconds"));
 			break;
 	}
 	paintLine(xpos2, ypos, width2, buf);
 	
-	paintSeparator(xpos1, &ypos, width, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STATUS));
-	strcpy(buf, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_SAT_POS));
+	paintSeparator(xpos1, &ypos, width, _("Status"));
+	strcpy(buf, _("Satellite Position (Step Mode):"));
 	sprintf(buf2, "%d", satellitePosition);
 	strcat(buf, buf2);
 	paintLine(xpos1, &ypos, width1, buf);
-	paintSeparator(xpos1, &ypos, width, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_SETTINGS));
+	paintSeparator(xpos1, &ypos, width, _("Motor Control Settings"));
 }
 
 void CMotorControl::paint()
@@ -590,7 +590,7 @@ void CMotorControl::paint()
 	frameBuffer->paintBoxRel(x, ypos, width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
 	
 	// head title
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT, ypos + hheight, width - BORDER_LEFT - BORDER_RIGHT, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_HEAD), COL_MENUHEAD, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT, ypos + hheight, width - BORDER_LEFT - BORDER_RIGHT, _("Motor Setup"), COL_MENUHEAD, 0, true); // UTF-8
 	
 	// footer
 	frameBuffer->paintBoxRel(x, ypos + hheight, width, height - hheight, COL_MENUCONTENT_PLUS_0, RADIUS_MID, CORNER_BOTTOM );
@@ -610,58 +610,58 @@ void CMotorControl::paintMenu()
 
 	paintLine(xpos1, &ypos, width1, (char *) "(0/OK)");
 	if(installerMenue)
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_USER_MENU));
+		paintLine(xpos2, ypos, width2, _("User menu"));
 	else
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_INSTALL_MENU));
+		paintLine(xpos2, ypos, width2, _("Install menu"));
 
 	paintLine(xpos1, &ypos, width1, (char *) "(1/right)");
-	paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STEP_WEST));
+	paintLine(xpos2, ypos, width2, _("Step/Drive Motor West (b,c)"));
 	paintLine(xpos1, &ypos, width1, (char *) "(2/red)");
-	paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_HALT));
+	paintLine(xpos2, ypos, width2, _("Halt Motor"));
 	paintLine(xpos1, &ypos, width1, (char *) "(3/left)");
-	paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STEP_EAST));
+	paintLine(xpos2, ypos, width2, _("Step/Drive Motor East (b,c)"));
 
 	if (installerMenue)
 	{
 		paintLine(xpos1, &ypos, width1,(char *)  "(4)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_WEST_LIMIT));
+		paintLine(xpos2, ypos, width2, _("Set West (soft) Limit"));
 		paintLine(xpos1, &ypos, width1, (char *) "(5)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_DISABLE_LIMIT));
+		paintLine(xpos2, ypos, width2, _("Disable (soft) Limits"));
 		paintLine(xpos1, &ypos, width1, (char *) "(6)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_EAST_LIMIT));
+		paintLine(xpos2, ypos, width2, _("Set East (soft) Limit"));
 		paintLine(xpos1, &ypos, width1, (char *) "(7)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_REF_POSITION));
+		paintLine(xpos2, ypos, width2, _("Goto Reference Position"));
 		paintLine(xpos1, &ypos, width1, (char *) "(8)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_ENABLE_LIMIT));
+		paintLine(xpos2, ypos, width2, _("Enable (soft) Limits"));
 		paintLine(xpos1, &ypos, width1, (char *) "(9)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_CALC_POSITIONS));
+		paintLine(xpos2, ypos, width2, _("(Re)-Calculate Positions"));
 		paintLine(xpos1, &ypos, width1, (char *) "(+/up)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_POS_INCREASE));
+		paintLine(xpos2, ypos, width2, _("Increase Motor Position (a)"));
 		paintLine(xpos1, &ypos, width1, (char *) "(-/down)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_POS_DECREASE));
+		paintLine(xpos2, ypos, width2, _("Decrease Motor Position (a)"));
 		paintLine(xpos1, &ypos, width1,(char *)  "(blue)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STEP_DRIVE));
+		paintLine(xpos2, ypos, width2, _("Switch Step/Drive Mode (b)"));
 	}
 	else
 	{
 		paintLine(xpos1, &ypos, width1, (char *) "(4)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_NOTDEF));
+		paintLine(xpos2, ypos, width2, _("Not used"));
 		paintLine(xpos1, &ypos, width1, (char *) "(5/green)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STORE));
+		paintLine(xpos2, ypos, width2, _("Store Motor Position (a)"));
 		paintLine(xpos1, &ypos, width1,(char *)  "(6)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STEP_INCREASE));
+		paintLine(xpos2, ypos, width2, _("Increase Motor Position (a)"));
 		paintLine(xpos1, &ypos, width1, (char *) "(7/yellow)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_GOTO));
+		paintLine(xpos2, ypos, width2, _("Goto Motor Position (a)"));
 		paintLine(xpos1, &ypos, width1, (char *) "(8)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_NOTDEF));
+		paintLine(xpos2, ypos, width2, _("Not used"));
 		paintLine(xpos1, &ypos, width1, (char *) "(9)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STEP_DECREASE));
+		paintLine(xpos2, ypos, width2, _("Decrease Motor Position (a)"));
 		paintLine(xpos1, &ypos, width1, (char *) "(+/up)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_POS_INCREASE));
+		paintLine(xpos2, ypos, width2, _("Increase Motor Position (a)"));
 		paintLine(xpos1, &ypos, width1, (char *) "(-/down)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_POS_DECREASE));
+		paintLine(xpos2, ypos, width2, _("Decrease Motor Position (a)"));
 		paintLine(xpos1, &ypos, width1, (char *) "(blue)");
-		paintLine(xpos2, ypos, width2, (char *) g_Locale->getText(LOCALE_MOTORCONTROL_STEP_DRIVE));
+		paintLine(xpos2, ypos, width2, _("Switch Step/Drive Mode (b)"));
 	}
 	
 	ypos_status = ypos;

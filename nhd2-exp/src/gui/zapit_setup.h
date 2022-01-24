@@ -46,7 +46,7 @@ class CZapitSetupNotifier : public CChangeObserver
 		CMenuForwarder * zapit2, * zapit3, *zapit4;
 	public:
 		CZapitSetupNotifier(CMenuOptionChooser* m1, CMenuForwarder* m2, CMenuForwarder* m3, CMenuForwarder* m4);
-		bool changeNotify(const neutrino_locale_t, void * data);
+		bool changeNotify(const std::string&, void * data);
 };
 
 class CZapitSetupModeNotifier : public CChangeObserver
@@ -56,7 +56,7 @@ class CZapitSetupModeNotifier : public CChangeObserver
 		int *mode;
 	public:
 		CZapitSetupModeNotifier(int *zMode, CMenuItem *m1, CMenuItem *m2, CMenuItem *m3);
-		bool changeNotify(const neutrino_locale_t, void *);
+		bool changeNotify(const std::string&, void *);
 };
 
 #endif

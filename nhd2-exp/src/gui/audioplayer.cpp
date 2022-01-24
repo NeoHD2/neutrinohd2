@@ -214,7 +214,7 @@ void CAudioPlayerGui::playFile()
 	neutrino_msg_t      msg;
 	neutrino_msg_data_t data;
 
-	CVFD::getInstance()->setMode(CVFD::MODE_AUDIO, g_Locale->getText(m_inetmode? LOCALE_INETRADIO_NAME : LOCALE_AUDIOPLAYER_HEAD));
+	CVFD::getInstance()->setMode(CVFD::MODE_AUDIO, m_inetmode? _("internet Radio") : _("Audio Playlist"));
 		
 	paintLCD();		
 
@@ -327,7 +327,7 @@ void CAudioPlayerGui::playFile()
 				{
 					savePlaylist();
 
-					CVFD::getInstance()->setMode(CVFD::MODE_AUDIO, g_Locale->getText(m_inetmode? LOCALE_INETRADIO_NAME : LOCALE_AUDIOPLAYER_HEAD));
+					CVFD::getInstance()->setMode(CVFD::MODE_AUDIO, m_inetmode? _("Internet Radio") : _("Audio Playlist"));
 						
 					paintLCD();
 					
@@ -515,7 +515,7 @@ void CAudioPlayerGui::paintInfo(CAudiofile& File)
 	{
 		char sNr[20];
 		sprintf(sNr, ": %2d", m_current + 1);
-		tmp = g_Locale->getText(LOCALE_AUDIOPLAYER_PLAYING);
+		tmp = _("Current Track");
 		tmp += sNr ;
 	}
 
@@ -1159,7 +1159,7 @@ void CAudioPlayerGui::savePlaylist()
 			snprintf(msg,
 				msgsize,
 				"%s\n%s",
-				g_Locale->getText(LOCALE_AUDIOPLAYER_PLAYLIST_FILEERROR_MSG),
+				_("File could not be created:"),
 				absPlaylistFilename.c_str());
 
 			MessageBox(_("Error"), msg, mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
@@ -1349,7 +1349,7 @@ void CAudioPlayerGui::showPlaylist()
 	alist->setSelected(m_current);
 	
 	alist->enablePaintHead();
-	alist->setTitle(g_Locale->getText(LOCALE_AUDIOPLAYER_HEAD), NEUTRINO_ICON_MP3);
+	alist->setTitle(_("Audio Playlist"), NEUTRINO_ICON_MP3);
 	alist->enablePaintDate();
 	
 	alist->enablePaintFoot();

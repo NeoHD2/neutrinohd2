@@ -48,7 +48,7 @@ class CLCDSettings : public CMenuTarget
 class CLcdNotifier : public CChangeObserver
 {
 	public:
-		bool changeNotify(const neutrino_locale_t, void * Data);
+		bool changeNotify(const std::string&, void * Data);
 };
 
 #endif //__lcd_setup__

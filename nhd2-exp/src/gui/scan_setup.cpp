@@ -1197,7 +1197,7 @@ CSatelliteSetupNotifier::CSatelliteSetupNotifier(int num)
 // item3: auto scan all
 // item4: unicable
 // item5: diseqc repeats
-bool CSatelliteSetupNotifier::changeNotify(const neutrino_locale_t, void * Data)
+bool CSatelliteSetupNotifier::changeNotify(const std::string&, void * Data)
 {
 	std::vector<CMenuItem*>::iterator it;
 	int type = *((int*) Data);
@@ -1349,7 +1349,7 @@ CScanSetupNotifier::CScanSetupNotifier(int num)
 }
 
 /* items1 enabled for advanced diseqc settings, items2 for diseqc != NO_DISEQC, items3 disabled for NO_DISEQC */
-bool CScanSetupNotifier::changeNotify(const neutrino_locale_t, void * Data)
+bool CScanSetupNotifier::changeNotify(const std::string&, void * Data)
 {
 	std::vector<CMenuItem*>::iterator it;
 	int FeMode = *((int*) Data);

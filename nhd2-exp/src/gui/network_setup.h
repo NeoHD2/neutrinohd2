@@ -38,7 +38,7 @@
 class CIPChangeNotifier : public CChangeObserver
 {
 	public:
-		bool changeNotify(const neutrino_locale_t locale, void * Data);
+		bool changeNotify(const std::string& locale, void * Data);
 };
 
 class CNetworkSettings : public CMenuTarget, CChangeObserver
@@ -80,7 +80,7 @@ class CDHCPNotifier : public CChangeObserver
 		CMenuForwarder * toDisable[5];
 	public:
 		CDHCPNotifier( CMenuForwarder*, CMenuForwarder*, CMenuForwarder*, CMenuForwarder*, CMenuForwarder*);
-		bool changeNotify(const neutrino_locale_t, void * data);
+		bool changeNotify(const std::string&, void * data);
 };
 
 void testNetworkSettings(const char* ip, const char* netmask, const char* broadcast, const char* gateway, const char* nameserver, bool dhcp);

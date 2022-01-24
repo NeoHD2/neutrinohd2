@@ -401,13 +401,13 @@ void CVideoSettings::showMenu()
 // video setup notifier
 extern int prev_video_Mode;
 
-bool CVideoSetupNotifier::changeNotify(const neutrino_locale_t OptionName, void *)
+bool CVideoSetupNotifier::changeNotify(const std::string& OptionName, void *)
 {
 	dprintf(DEBUG_NORMAL, "CVideoSetupNotifier::changeNotify\n");
 	
 	CFrameBuffer *frameBuffer = CFrameBuffer::getInstance();
 
-	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_ANALOG_MODE))	/* video analoue mode */
+	if (OptionName == _("Analog Output"))	/* video analoue mode */
 	{
 		if(videoDecoder)
 #if defined (PLATFORM_COOLSTREAM)
@@ -416,12 +416,12 @@ bool CVideoSetupNotifier::changeNotify(const neutrino_locale_t OptionName, void 
 			videoDecoder->SetAnalogMode(g_settings.analog_mode);
 #endif			
 	}
-	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_VIDEORATIO) || ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_VIDEOFORMAT ))	// format aspect-ratio
+	else if ( (OptionName == _("TV-System") ) || (OptionName == _("Video Format")) )	// format aspect-ratio
 	{
 		if(videoDecoder)
 			videoDecoder->setAspectRatio(g_settings.video_Ratio, g_settings.video_Format);
 	}
-	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_VIDEOMODE))	// mode
+	else if (OptionName == _("Video Resolution"))	// mode
 	{
 		if(videoDecoder)
 			videoDecoder->SetVideoSystem(g_settings.video_Mode);
@@ -447,12 +447,12 @@ bool CVideoSetupNotifier::changeNotify(const neutrino_locale_t OptionName, void 
 		}
 	}
 #if !defined (PLATFORM_COOLSTREAM)	
-	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_HDMI_COLOR_SPACE)) 
+	else if (OptionName == _("HDMI Color Space")) 
 	{
 		if(videoDecoder)
 			videoDecoder->SetSpaceColour(g_settings.hdmi_color_space);
 	}
-	else if (ARE_LOCALES_EQUAL(OptionName, LOCALE_VIDEOMENU_WSS)) 
+	else if (OptionName == _("Wide Screen Auto")) 
 	{
 		if(videoDecoder)
 			videoDecoder->SetWideScreen(g_settings.wss_mode);

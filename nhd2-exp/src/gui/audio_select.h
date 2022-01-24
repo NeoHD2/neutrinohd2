@@ -48,7 +48,7 @@ class CAudioSetupNotifierVolPercent : public CChangeObserver
 		int apid;
 		t_channel_id channel_id;
 	public:
-		bool changeNotify(const neutrino_locale_t OptionName, void *);
+		bool changeNotify(const std::string& OptionName, void *);
 };
 
 #endif

@@ -65,7 +65,6 @@ class CColorChooser : public CMenuTarget
 
 		unsigned char * value[4]; // r, g, b, alpha
 
-		//neutrino_locale_t nameStringOption;
 		std::string name;
 
 		CChangeObserver* observer;
@@ -75,9 +74,7 @@ class CColorChooser : public CMenuTarget
 		void paintSlider(int x, int y, unsigned char *spos, const char* const text, const char * const iconname, const bool selected);
 
 	public:
-
-		//CColorChooser(const neutrino_locale_t Name, unsigned char *R, unsigned char *G, unsigned char *B, unsigned char* Alpha, CChangeObserver* Observer = NULL); // UTF-8
-		
+		//
 		CColorChooser(const char * const Name, unsigned char *R, unsigned char *G, unsigned char *B, unsigned char* Alpha, CChangeObserver* Observer = NULL); // UTF-8
 
 		void hide();

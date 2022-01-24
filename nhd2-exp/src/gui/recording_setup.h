@@ -37,7 +37,7 @@ class CRecordingSettings : public CMenuTarget, CChangeObserver
 	private:
 		void showMenu();
 		
-		bool changeNotify(const neutrino_locale_t OptionName, void *);
+		bool changeNotify(const std::string& OptionName, void *);
 		
 	public:
 		CRecordingSettings();
@@ -50,14 +50,14 @@ class CRecordingSettings : public CMenuTarget, CChangeObserver
 class CRecordingSafetyNotifier : public CChangeObserver
 {
 	public:
-		bool changeNotify(const neutrino_locale_t, void *);
+		bool changeNotify(const std::string&, void *);
 };
 
 // rec apids notifier
 class CRecAPIDSettingsNotifier : public CChangeObserver
 {
 	public:
-		bool changeNotify(const neutrino_locale_t OptionName, void*);
+		bool changeNotify(const std::string& OptionName, void*);
 };
 
 #endif // __recording_setup__

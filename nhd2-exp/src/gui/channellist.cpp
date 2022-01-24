@@ -452,11 +452,11 @@ int CChannelList::doChannelMenu(void)
 				break;
 				
 			case 3: // add to my favorites
-				bouquet_id = g_bouquetManager->existsUBouquet(g_Locale->getText(LOCALE_FAVORITES_BOUQUETNAME), true);
+				bouquet_id = g_bouquetManager->existsUBouquet(_("My Favorites"), true);
 				if(bouquet_id == -1) 
 				{
-					g_bouquetManager->addBouquet(g_Locale->getText(LOCALE_FAVORITES_BOUQUETNAME), true);
-					bouquet_id = g_bouquetManager->existsUBouquet(g_Locale->getText(LOCALE_FAVORITES_BOUQUETNAME), true);
+					g_bouquetManager->addBouquet(_("My Favorites"), true);
+					bouquet_id = g_bouquetManager->existsUBouquet(_("My Favorites"), true);
 				}
 				
 				if(!g_bouquetManager->existsChannelInBouquet(bouquet_id, channel_id)) 
@@ -1112,7 +1112,7 @@ int CChannelList::numericZap(int key)
 		if(!autoshift && CNeutrinoApp::getInstance()->recordingstatus) 
 		{
 			CChannelList * orgList = bouquetList->orgChannelList;
-			CChannelList * channelList = new CChannelList(g_Locale->getText(LOCALE_CHANNELLIST_CURRENT_TP), false, true);
+			CChannelList * channelList = new CChannelList(_("Current transponder"), false, true);
 			
 			t_channel_id recid = rec_channel_id >> 16;
 			
@@ -1143,7 +1143,7 @@ int CChannelList::numericZap(int key)
 		// -- zap history bouquet, similar to "0" quickzap, but shows a menue of last channels
 		if (this->lastChList.size() > 1) 
 		{
-			CChannelList * channelList = new CChannelList(g_Locale->getText(LOCALE_CHANNELLIST_HISTORY), true, true);
+			CChannelList * channelList = new CChannelList(_("History"), true, true);
 
 			for(unsigned int i = 1 ; i < this->lastChList.size() ; ++i) 
 			{
@@ -1174,7 +1174,7 @@ int CChannelList::numericZap(int key)
 	if(key == g_settings.key_pip )
 	{
 		CChannelList * orgList = bouquetList->orgChannelList;
-		CChannelList * channelList = new CChannelList(g_Locale->getText(LOCALE_CHANNELLIST_CURRENT_TP), false, true);
+		CChannelList * channelList = new CChannelList(_("Current transponder"), false, true);
 			
 		t_channel_id pipid = live_channel_id >> 16;
 			
@@ -1588,11 +1588,11 @@ void CChannelList::paint()
 				if (displayNext) 
 				{
 					sprintf(cNoch, "(%d min)", p_event->duration / 60);
-					sprintf(cSeit, /*g_Locale->getText(LOCALE_CHANNELLIST_START)*/_("starts %02d:%02d"), pStartZeit->tm_hour, pStartZeit->tm_min);
+					sprintf(cSeit, _("starts %02d:%02d"), pStartZeit->tm_hour, pStartZeit->tm_min);
 				} 
 				else 
 				{
-					sprintf(cSeit, /*g_Locale->getText(LOCALE_CHANNELLIST_SINCE)*/_("since %02d:%02d"), pStartZeit->tm_hour, pStartZeit->tm_min);
+					sprintf(cSeit, _("since %02d:%02d"), pStartZeit->tm_hour, pStartZeit->tm_min);
 					int noch = (p_event->startTime + p_event->duration - time(NULL)) / 60;
 					if ((noch < 0) || (noch >= 10000))
 						noch = 0;

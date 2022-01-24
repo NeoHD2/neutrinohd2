@@ -45,96 +45,6 @@
 #include <gui/widget/hintbox.h>
 
 
-/*
-CHintBox::CHintBox(const neutrino_locale_t Caption, const char * const Text, const int Width, const char * const Icon)
-{
-	char * begin;
-	char * pos;
-	int    nw;
-
-	message = strdup(Text);
-
-	cFrameBox.iWidth = Width;
-
-	cFrameBoxTitle.iHeight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
-	cFrameBoxItem.iHeight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
-	cFrameBox.iHeight = cFrameBoxTitle.iHeight + cFrameBoxItem.iHeight;
-
-	caption = g_Locale->getText(Caption);
-
-	begin = message;
-
-	while (true)
-	{
-		cFrameBox.iHeight += cFrameBoxItem.iHeight;
-		if (cFrameBox.iHeight > HINTBOX_MAX_HEIGHT)
-			cFrameBox.iHeight -= cFrameBoxItem.iHeight;
-
-		line.push_back(begin);
-
-		pos = strchr(begin, '\n');
-		if (pos != NULL)
-		{
-			*pos = 0;
-			begin = pos + 1;
-		}
-		else
-			break;
-	}
-
-	entries_per_page = ((cFrameBox.iHeight - cFrameBoxTitle.iHeight) / cFrameBoxItem.iHeight) - 1;
-	current_page = 0;
-
-	unsigned int additional_width;
-
-	if (entries_per_page < line.size())
-		additional_width = BORDER_LEFT + BORDER_RIGHT + SCROLLBAR_WIDTH;
-	else
-		additional_width = BORDER_LEFT + BORDER_RIGHT;
-
-	if (Icon != NULL)
-	{
-		iconfile = Icon;
-		additional_width += BORDER_LEFT + BORDER_RIGHT + 2*ICON_OFFSET;
-	}
-	else
-		iconfile = "";
-
-	nw = additional_width + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(caption); // UTF-8
-
-	if (nw > cFrameBox.iWidth)
-		cFrameBox.iWidth = nw;
-
-	for (std::vector<char *>::const_iterator it = line.begin(); it != line.end(); it++)
-	{
-		nw = additional_width + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(*it, true); // UTF-8
-		
-		if (nw > cFrameBox.iWidth)
-		{
-			cFrameBox.iWidth = nw;
-
-			if(cFrameBox.iWidth > HINTBOX_MAX_WIDTH)
-				cFrameBox.iWidth = HINTBOX_MAX_WIDTH;
-		}
-	}
-
-	//
-	cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - cFrameBox.iWidth ) >> 1);
-	cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - cFrameBox.iHeight) >> 2);
-	
-	m_cBoxWindow = new CWindow(&cFrameBox);
-	m_cBoxWindow->enableSaveScreen();
-	m_cBoxWindow->setShadowMode(g_settings.menu_shadow? SHADOW_ALL : SHADOW_NO);
-	m_cBoxWindow->setCorner(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID, CORNER_ALL);
-	
-	// HG
-	paintHG = true;
-	count = 0;
-	sec_timer_id = 0;
-	background = NULL;
-}
-*/
-
 CHintBox::CHintBox(const char * Caption, const char * const Text, const int Width, const char * const Icon)
 {
 	char * begin;
@@ -443,30 +353,6 @@ int CHintBox::exec(int timeout)
 	return res;
 }
 
-/*
-int HintBox(const neutrino_locale_t Caption, const char * const Text, const int Width, int timeout, const char * const Icon)
-{
-	int res = messages_return::none;
-
-	neutrino_msg_t msg;
-	neutrino_msg_data_t data;
-
- 	CHintBox * hintBox = new CHintBox(Caption, Text, Width, Icon);
-
-	res = hintBox->exec(timeout);
-		
-	delete hintBox;
-	hintBox = NULL;
-
-	return res;
-}
-
-int HintBox(const neutrino_locale_t Caption, const neutrino_locale_t Text, const int Width, int timeout, const char * const Icon)
-{
-	return HintBox(Caption, g_Locale->getText(Text), Width, timeout, Icon);
-}
-*/
-
 int HintBox(const char * const Caption, const char * const Text, const int Width, int timeout, const char * const Icon)
 {
 	int res = messages_return::none;
@@ -484,11 +370,5 @@ int HintBox(const char * const Caption, const char * const Text, const int Width
 	return res;
 }
 
-/*
-int HintBox(const char * Caption, const neutrino_locale_t Text, const int Width, int timeout, const char * const Icon)
-{
-	return HintBox(Caption, g_Locale->getText(Text), Width, timeout, Icon);
-}
-*/
 
 

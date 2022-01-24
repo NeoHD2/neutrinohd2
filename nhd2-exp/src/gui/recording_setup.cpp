@@ -90,7 +90,7 @@ int CRecordingSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	}
 	else if(actionKey == "recording")
 	{
-		CHintBox * hintBox = new CHintBox(_("Information"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now")); // UTF-8
+		CHintBox * hintBox = new CHintBox(_("Information"), _("Save settings now")); // UTF-8
 		hintBox->paint();
 		
 		CNeutrinoApp::getInstance()->setupRecordingDevice();
@@ -139,11 +139,11 @@ int CRecordingSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	return ret;
 }
 
-bool CRecordingSettings::changeNotify(const neutrino_locale_t OptionName, void */*data*/)
+bool CRecordingSettings::changeNotify(const std::string& OptionName, void */*data*/)
 {
 	dprintf(DEBUG_NORMAL, "CRecordingSettings::changeNotify:\n");
 	
-	if(ARE_LOCALES_EQUAL(OptionName, LOCALE_EXTRA_AUTO_TIMESHIFT)) 
+	if(OptionName == _("Permanent timeshift")) 
 	{	  
 		if(g_settings.auto_timeshift)
 			startAutoRecord(true);
@@ -224,12 +224,12 @@ void CRecordingSettings::showMenu()
 	recordingSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	recordingSettings.addItem(new CMenuForwarder(_("Activate changes"), true, NULL, this, "recording", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
 
-	recordingSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_TIMERSETTINGS_SEPARATOR)));
+	recordingSettings.addItem(new CMenuSeparator(LINE | STRING, _("Timer settings")));
 	recordingSettings.addItem(fTimerBefore);
 	recordingSettings.addItem(fTimerAfter);
 
 	//apids
-	recordingSettings.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_RECORDINGMENU_APIDS)));
+	recordingSettings.addItem(new CMenuSeparator(LINE | STRING, _("default audio streams")));
 	recordingSettings.addItem(aoj1);
 	recordingSettings.addItem(aoj2);
 	recordingSettings.addItem(aoj3);
@@ -265,7 +265,7 @@ void CRecordingSettings::showMenu()
 }
 
 // recording safety notifier
-bool CRecordingSafetyNotifier::changeNotify(const neutrino_locale_t, void *)
+bool CRecordingSafetyNotifier::changeNotify(const std::string&, void *)
 {
 	g_Timerd->setRecordingSafety(atoi(g_settings.record_safety_time_before)*60, atoi(g_settings.record_safety_time_after)*60);
 
@@ -273,7 +273,7 @@ bool CRecordingSafetyNotifier::changeNotify(const neutrino_locale_t, void *)
 }
 
 // rec apids notifier
-bool CRecAPIDSettingsNotifier::changeNotify(const neutrino_locale_t, void *)
+bool CRecAPIDSettingsNotifier::changeNotify(const std::string&, void *)
 {
 	g_settings.recording_audio_pids_default = ( (g_settings.recording_audio_pids_std ? TIMERD_APIDS_STD : 0) | (g_settings.recording_audio_pids_alt ? TIMERD_APIDS_ALT : 0) | (g_settings.recording_audio_pids_ac3 ? TIMERD_APIDS_AC3 : 0));
 

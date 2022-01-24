@@ -217,9 +217,9 @@ CZapitSetupNotifier::CZapitSetupNotifier(CMenuOptionChooser* m1, CMenuForwarder*
 	zapit4 = m4;
 }
 
-bool CZapitSetupNotifier::changeNotify(const neutrino_locale_t OptionName, void *)
+bool CZapitSetupNotifier::changeNotify(const std::string& OptionName, void *)
 {
-	if (ARE_LOCALES_EQUAL(OptionName, LOCALE_MISCSETTINGS_ZAPIT))
+	if (OptionName == _("Start Channel settings"))
 	{
 		bool activTV = false;
 		bool activRadio = false;
@@ -252,7 +252,7 @@ CZapitSetupModeNotifier::CZapitSetupModeNotifier(int *zMode, CMenuItem *m1, CMen
 	item3 = m3;
 }
 
-bool CZapitSetupModeNotifier::changeNotify(const neutrino_locale_t, void *)
+bool CZapitSetupModeNotifier::changeNotify(const std::string&, void *)
 {
 	int nmode = *mode;
 	

@@ -35,7 +35,7 @@
 class CVideoSetupNotifier : public CChangeObserver
 {
 	public:
-		bool changeNotify(const neutrino_locale_t OptionName, void *);
+		bool changeNotify(const std::string& OptionName, void *);
 };
 
 class CVideoSettings : public CMenuTarget

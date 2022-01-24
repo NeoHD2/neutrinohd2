@@ -70,11 +70,11 @@ class CScanTs : public CMenuTarget
 		CProgressBar * snrscale, * sigscale;
 
 		void paint(bool fortest = false);
-		void paintLineLocale(int _x, int * _y, int _width, const neutrino_locale_t l);
+		void paintLineLocale(int _x, int * _y, int _width, const char* const l);
 		void paintLine(int _x, int _y, int w, const char * const txt);
 		void paintRadar(void);
 		int handleMsg(neutrino_msg_t msg, neutrino_msg_data_t data);
-		int greater_xpos(int xpos, const neutrino_locale_t txt);
+		int greater_xpos(int xpos, const char* const txt);
 		bool freqready;
 		void showSNR();
 		

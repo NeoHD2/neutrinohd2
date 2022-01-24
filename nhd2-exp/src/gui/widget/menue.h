@@ -119,8 +119,6 @@ class CMenuWidget : public CMenuTarget
 
 		// head
 		int hheight;
-		//std::string nameString;
-		//neutrino_locale_t locale;
 		std::string l_name;
 		std::string iconfile;
 		int hbutton_count;
@@ -191,7 +189,6 @@ class CMenuWidget : public CMenuTarget
 	public:
 		CMenuWidget();
 		CMenuWidget(const char * const Name, const std::string& Icon = "", const int mwidth = MENU_WIDTH, const int mheight = MENU_HEIGHT);
-		//CMenuWidget(const neutrino_locale_t Name, const std::string& Icon = "", const int mwidth = MENU_WIDTH, const int mheight = MENU_HEIGHT);
 		
 		~CMenuWidget();
 

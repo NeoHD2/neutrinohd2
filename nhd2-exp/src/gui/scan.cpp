@@ -346,7 +346,7 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 
 	if(!test) 
 	{
-		const char * text = g_Locale->getText(success ? LOCALE_SCANTS_FINISHED : LOCALE_SCANTS_FAILED);
+		const char * text = success ? _("Transponderscan finished.") : _("Transponderscan failed!");
 		
 		// head
 		frameBuffer->paintBoxRel(x, y, width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
@@ -521,10 +521,10 @@ void CScanTs::hide()
 	freqready = 0;
 }
 
-void CScanTs::paintLineLocale(int _x, int * _y, int _width, const neutrino_locale_t l)
+void CScanTs::paintLineLocale(int _x, int * _y, int _width, const char* const l)
 {
 	frameBuffer->paintBoxRel(_x, *_y, _width, mheight, COL_MENUCONTENT_PLUS_0);
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(_x, *_y + mheight, _width, g_Locale->getText(l), COL_MENUCONTENTINACTIVE, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(_x, *_y + mheight, _width, l, COL_MENUCONTENTINACTIVE, 0, true); // UTF-8
 	*_y += mheight;
 }
 
@@ -551,7 +551,7 @@ void CScanTs::paint(bool fortest)
 	frameBuffer->paintIcon(NEUTRINO_ICON_UPDATE, x + BORDER_LEFT, ypos + (hheight - ih)/2);
 	
 	// head title
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(xpos1 + iw + 5, ypos + hheight - (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2, width, fortest ? g_Locale->getText(LOCALE_SCANTS_TEST) : g_Locale->getText(LOCALE_SCANTS_HEAD), COL_MENUHEAD, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(xpos1 + iw + 5, ypos + hheight - (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2, width, fortest ? _("Test signal") : _("Scan transponder"), COL_MENUHEAD, 0, true); // UTF-8
 	
 	// exit icon
 	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_HOME, &iw, &ih);
@@ -571,58 +571,58 @@ void CScanTs::paint(bool fortest)
 
 	if ( getFE(feindex)->getInfo()->type == FE_QPSK)
 	{	//sat
-		paintLineLocale(xpos1, &ypos, width - xpos1, LOCALE_SCANTS_ACTSATELLITE);
-		xpos2 = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(LOCALE_SCANTS_ACTSATELLITE), true); // UTF-8
+		paintLineLocale(xpos1, &ypos, width - xpos1, _("Satellite:"));
+		xpos2 = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(_("Satellite:"), true); // UTF-8
 	}
 
 	//CABLE
 	else if ( getFE(feindex)->getInfo()->type == FE_QAM)
 	{	//cable
-		paintLineLocale(xpos1, &ypos, width - xpos1, LOCALE_SCANTS_ACTCABLE);
-		xpos2 = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(LOCALE_SCANTS_ACTCABLE), true); // UTF-8
+		paintLineLocale(xpos1, &ypos, width - xpos1, _("Cable:"));
+		xpos2 = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(_("Cable:"), true); // UTF-8
 	}
 
 	//DVB-T
 	else if ( getFE(feindex)->getInfo()->type == FE_OFDM)
 	{	//terrestrial
-		paintLineLocale(xpos1, &ypos, width - xpos1, LOCALE_SCANTS_ACTTERRESTRIAL);
-		xpos2 = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(LOCALE_SCANTS_ACTTERRESTRIAL), true); // UTF-8
+		paintLineLocale(xpos1, &ypos, width - xpos1, _("Terrestrial:"));
+		xpos2 = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(_("Terrestrial:"), true); // UTF-8
 	}
 
 	// transponder
 	ypos_transponder = ypos;
-	paintLineLocale(xpos1, &ypos, width - xpos1, LOCALE_SCANTS_TRANSPONDERS);
-	xpos2 = greater_xpos(xpos2, LOCALE_SCANTS_TRANSPONDERS);
+	paintLineLocale(xpos1, &ypos, width - xpos1, _("Transponders:"));
+	xpos2 = greater_xpos(xpos2, _("Transponders:"));
 
 	// frequency
 	ypos_frequency = ypos;
-	paintLineLocale(xpos1, &ypos, width - xpos1, LOCALE_SCANTS_FREQDATA);
-	xpos2 = greater_xpos(xpos2, LOCALE_SCANTS_FREQDATA);
+	paintLineLocale(xpos1, &ypos, width - xpos1, _("Frequency:"));
+	xpos2 = greater_xpos(xpos2, _("Frequency:"));
 
 	// provider
 	ypos += mheight >> 1; // 1/2 blank line
 	
 	ypos_provider = ypos;
-	paintLineLocale(xpos1, &ypos, width - xpos1, LOCALE_SCANTS_PROVIDER);
-	xpos2 = greater_xpos(xpos2, LOCALE_SCANTS_PROVIDER);
+	paintLineLocale(xpos1, &ypos, width - xpos1, _("Provider:"));
+	xpos2 = greater_xpos(xpos2, _("Provider:"));
 	
 	// channel
 	ypos_channel = ypos;
-	paintLineLocale(xpos1, &ypos, width - xpos1, LOCALE_SCANTS_CHANNEL);
-	xpos2 = greater_xpos(xpos2, LOCALE_SCANTS_CHANNEL);
+	paintLineLocale(xpos1, &ypos, width - xpos1, _("Channel:"));
+	xpos2 = greater_xpos(xpos2, _("Channel:"));
 
 	// services (tv/radio/data/summe)
 	ypos += mheight >> 1; // 1/2 blank line
 
-	ypos_service_numbers = ypos; paintLineLocale(xpos1         , &ypos, 72                 , LOCALE_SCANTS_NUMBEROFTVSERVICES   );
-	ypos = ypos_service_numbers; paintLineLocale(xpos1 +     56, &ypos, 72                 , LOCALE_SCANTS_NUMBEROFRADIOSERVICES);
-	ypos = ypos_service_numbers; paintLineLocale(xpos1 + 2 * 72, &ypos, 72                 , LOCALE_SCANTS_NUMBEROFDATASERVICES );
-	ypos = ypos_service_numbers; paintLineLocale(xpos1 + 3 * 72, &ypos, width - 3 * 72 - 10, LOCALE_SCANTS_NUMBEROFTOTALSERVICES);
+	ypos_service_numbers = ypos; paintLineLocale(xpos1         , &ypos, 72                 , _("TV"));
+	ypos = ypos_service_numbers; paintLineLocale(xpos1 +     56, &ypos, 72                 , _("Radio"));
+	ypos = ypos_service_numbers; paintLineLocale(xpos1 + 2 * 72, &ypos, 72                 , _("Data") );
+	ypos = ypos_service_numbers; paintLineLocale(xpos1 + 3 * 72, &ypos, width - 3 * 72 - 10, _("Total"));
 }
 
-int CScanTs::greater_xpos(int xpos, const neutrino_locale_t txt)
+int CScanTs::greater_xpos(int xpos, const char* const txt)
 {
-	int txt_xpos = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(g_Locale->getText(txt), true); // UTF-8
+	int txt_xpos = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(txt, true); // UTF-8
 	if (txt_xpos > xpos)
 		return txt_xpos;
 	else 

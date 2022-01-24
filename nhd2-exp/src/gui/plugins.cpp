@@ -331,7 +331,7 @@ void CPlugins::startPlugin(const char * const name)
 		
 		std::string hint = name;
 		hint += " ";
-		hint += g_Locale->getText(LOCALE_PLUGINS_NOT_INSTALLED);
+		hint += _("is not installed please install again.");
 		
 		HintBox(_("Information"), _(hint.c_str()));
 	}

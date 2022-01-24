@@ -104,7 +104,7 @@ void CBEBouquetWidget::paint()
 	{
 		if (!(*Bouquets)[count]->bWebTV)
 		{
-			item = new ClistBoxItem((*Bouquets)[count]->bFav ? g_Locale->getText(LOCALE_FAVORITES_BOUQUETNAME) : (*Bouquets)[count]->Name.c_str());
+			item = new ClistBoxItem((*Bouquets)[count]->bFav ? _("My Favorites") : (*Bouquets)[count]->Name.c_str());
 
 			if(state == beMoving && count == selected)
 				item->setIconName(NEUTRINO_ICON_BUTTON_YELLOW);
@@ -127,7 +127,7 @@ void CBEBouquetWidget::paint()
 		}
 	}
 
-	listBox->setTitle(g_Locale->getText(LOCALE_BOUQUETLIST_HEAD));
+	listBox->setTitle(_("Bouquets"));
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
 	listBox->setHeadGradient(g_settings.Head_gradient);
@@ -389,7 +389,7 @@ int CBEBouquetWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 
 				if (selected < Bouquets->size()) /* Bouquets->size() might be 0 */
 				{
-					CBEChannelWidget* channelWidget = new CBEChannelWidget((*Bouquets)[selected]->bFav ? g_Locale->getText(LOCALE_FAVORITES_BOUQUETNAME) : (*Bouquets)[selected]->Name, selected);
+					CBEChannelWidget* channelWidget = new CBEChannelWidget((*Bouquets)[selected]->bFav ? _("My Favorites") : (*Bouquets)[selected]->Name, selected);
 
 					channelWidget->exec(this, "");
 					if (channelWidget->hasChanged())

@@ -53,7 +53,6 @@ class CHTTPTool
 		CHTTPTool();
 		
 		//
-		void setTitle(const neutrino_locale_t title);
 		void setTitle(const char* const title);
 		bool downloadFile(const std::string &URL, const char * const downloadTarget, int globalProgressEnd = -1);
 };

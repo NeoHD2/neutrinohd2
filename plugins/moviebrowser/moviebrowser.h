@@ -664,7 +664,7 @@ class COnOffNotifier : public CChangeObserver
         public:
                 COnOffNotifier(CMenuItem* a1, CMenuItem* a2 = NULL, CMenuItem* a3 = NULL, CMenuItem* a4 = NULL, CMenuItem* a5 = NULL);
 		COnOffNotifier(int OffValue = 0);
-                bool changeNotify(const neutrino_locale_t, void *Data);
+                bool changeNotify(const std::string&, void *Data);
 		void addItem(CMenuItem* menuItem);
 };
 

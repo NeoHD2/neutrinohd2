@@ -35,7 +35,7 @@
 class CAudioSetupNotifier : public CChangeObserver
 {
 	public:
-		bool changeNotify(const neutrino_locale_t OptionName, void *);
+		bool changeNotify(const std::string& OptionName, void *);
 };
 
 class CAudioSettings : public CMenuTarget
@@ -61,7 +61,7 @@ class CAutoAudioNotifier : public CChangeObserver
 		
 	public:
 		CAutoAudioNotifier(CMenuItem * item1, CMenuItem * item2, CMenuItem * item3, CMenuItem * item4);
-		bool changeNotify(const neutrino_locale_t, void * /*data*/);
+		bool changeNotify(const std::string&, void * /*data*/);
 };
 
 // autosub select notifier
@@ -72,7 +72,7 @@ class CSubLangSelectNotifier : public CChangeObserver
 		
 	public:
 		CSubLangSelectNotifier(CMenuItem * item1, CMenuItem * item2, CMenuItem * item3);
-		bool changeNotify(const neutrino_locale_t, void * /*data*/);
+		bool changeNotify(const std::string&, void * /*data*/);
 };
 
 #endif //__audio_setup__

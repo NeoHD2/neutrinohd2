@@ -164,7 +164,7 @@ void CNFilm::loadGenreList(bool genre)
 {
 	if(genre)
 	{
-		CHintBox loadBox("Movie Trailer", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+		CHintBox loadBox(_("Movie Trailer"), _("Scan for Movies ..."));
 		loadBox.paint();
 
 		genres.clear();
@@ -186,7 +186,7 @@ void CNFilm::loadTMDBPlaylist(bool genre, const char *txt, const char *list, con
 {
 	dprintf(DEBUG_NORMAL, "CNFilm::loadPlaylist:\n");
 
-	CHintBox loadBox("Movie Trailer", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox(_("Movie Trailer"), _("Scan for Movies ..."));
 	loadBox.paint();
 
 	thumbnail_dir = "/tmp/nfilm";

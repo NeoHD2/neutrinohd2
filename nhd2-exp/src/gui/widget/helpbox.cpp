@@ -63,17 +63,6 @@ CHelpBox::~CHelpBox()
   	}
 }
 
-/*
-void CHelpBox::show(const neutrino_locale_t Caption, const int Width, int timeout, const result_ Default, const uint32_t ShowButtons)
-{
-	dprintf(DEBUG_NORMAL, "Helpbox::show\n");
-
- 	CMessageBox msgBox(Caption, m_lines, Width, NEUTRINO_ICON_INFO, Default, ShowButtons);
-
-	msgBox.exec(timeout);
-}
-*/
-
 void CHelpBox::show(const char* const Caption, const int Width, int timeout, const result_ Default, const uint32_t ShowButtons)
 {
 	dprintf(DEBUG_NORMAL, "Helpbox::show\n");

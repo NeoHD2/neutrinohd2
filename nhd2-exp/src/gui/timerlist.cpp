@@ -108,7 +108,7 @@ class CTimerListNewNotifier : public CChangeObserver
 			stopTime = time;
 		}
 		
-		bool changeNotify(const neutrino_locale_t /*OptionName*/, void *)
+		bool changeNotify(const std::string& /*OptionName*/, void *)
 		{
 			CTimerd::CTimerEventTypes type = (CTimerd::CTimerEventTypes) *iType;
 			
@@ -175,7 +175,7 @@ class CTimerListRepeatNotifier : public CChangeObserver
 			iRepeat = repeat;
 		}
 
-		bool changeNotify(const neutrino_locale_t /*OptionName*/, void *)
+		bool changeNotify(const std::string& /*OptionName*/, void *)
 		{
 			if(*iRepeat >= (int)CTimerd::TIMERREPEAT_WEEKDAYS)
 				m1->setActive (true);
@@ -220,9 +220,9 @@ class CTimerListApidNotifier : public CChangeObserver
 			m_ac3 = m4;
 		}
 
-		bool changeNotify(const neutrino_locale_t OptionName, void *)
+		bool changeNotify(const std::string& OptionName, void *)
 		{
-			if(OptionName == LOCALE_TIMERLIST_APIDS_DFLT)
+			if(OptionName == _("record default audio streams"))
 			{
 				if(*o_dflt == 0)
 				{
@@ -761,7 +761,7 @@ void CTimerList::paint()
 				break;
 			case CTimerd::TIMER_STANDBY:
 				{
-					zAddData = g_Locale->getText(timer.standby_on ? LOCALE_TIMERLIST_STANDBY_ON : LOCALE_TIMERLIST_STANDBY_OFF);
+					zAddData = timer.standby_on ? _("Enter standby") : _("Leave standby");
 					break;
 				}
 			case CTimerd::TIMER_REMIND :
@@ -786,7 +786,7 @@ void CTimerList::paint()
 	}
 
 	// head
-	listBox->setTitle(g_Locale->getText(LOCALE_TIMERLIST_NAME), NEUTRINO_ICON_TIMER);
+	listBox->setTitle(_("Timer list"), NEUTRINO_ICON_TIMER);
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
 	listBox->setHeadGradient(g_settings.Head_gradient);
@@ -812,15 +812,15 @@ const char * CTimerList::convertTimerType2String(const CTimerd::CTimerEventTypes
 {
 	switch(type)
 	{
-		case CTimerd::TIMER_SHUTDOWN    : return g_Locale->getText(LOCALE_TIMERLIST_TYPE_SHUTDOWN   );
-		case CTimerd::TIMER_NEXTPROGRAM : return g_Locale->getText(LOCALE_TIMERLIST_TYPE_NEXTPROGRAM);
-		case CTimerd::TIMER_ZAPTO       : return g_Locale->getText(LOCALE_TIMERLIST_TYPE_ZAPTO      );
-		case CTimerd::TIMER_STANDBY     : return g_Locale->getText(LOCALE_TIMERLIST_TYPE_STANDBY    );
-		case CTimerd::TIMER_RECORD      : return g_Locale->getText(LOCALE_TIMERLIST_TYPE_RECORD     );
-		case CTimerd::TIMER_REMIND      : return g_Locale->getText(LOCALE_TIMERLIST_TYPE_REMIND     );
-		case CTimerd::TIMER_SLEEPTIMER  : return g_Locale->getText(LOCALE_TIMERLIST_TYPE_SLEEPTIMER );
-		case CTimerd::TIMER_EXEC_PLUGIN : return g_Locale->getText(LOCALE_TIMERLIST_TYPE_EXECPLUGIN );
-		default                         : return g_Locale->getText(LOCALE_TIMERLIST_TYPE_UNKNOWN    );
+		case CTimerd::TIMER_SHUTDOWN    : return _("Unknown") ;
+		case CTimerd::TIMER_NEXTPROGRAM : return _("Next program");
+		case CTimerd::TIMER_ZAPTO       : return _("Zap to");
+		case CTimerd::TIMER_STANDBY     : return _("Standby");
+		case CTimerd::TIMER_RECORD      : return _("Record");
+		case CTimerd::TIMER_REMIND      : return _("Remind");
+		case CTimerd::TIMER_SLEEPTIMER  : return _("Sleeptimer");
+		case CTimerd::TIMER_EXEC_PLUGIN : return _("Execute plugin");
+		default                         : return _("Unknown");
 	}
 }
 
@@ -828,42 +828,42 @@ std::string CTimerList::convertTimerRepeat2String(const CTimerd::CTimerEventRepe
 {
 	switch(rep)
 	{
-		case CTimerd::TIMERREPEAT_ONCE               : return g_Locale->getText(LOCALE_TIMERLIST_REPEAT_ONCE              );
-		case CTimerd::TIMERREPEAT_DAILY              : return g_Locale->getText(LOCALE_TIMERLIST_REPEAT_DAILY             );
-		case CTimerd::TIMERREPEAT_WEEKLY             : return g_Locale->getText(LOCALE_TIMERLIST_REPEAT_WEEKLY            );
-		case CTimerd::TIMERREPEAT_BIWEEKLY           : return g_Locale->getText(LOCALE_TIMERLIST_REPEAT_BIWEEKLY          );
-		case CTimerd::TIMERREPEAT_FOURWEEKLY         : return g_Locale->getText(LOCALE_TIMERLIST_REPEAT_FOURWEEKLY        );
-		case CTimerd::TIMERREPEAT_MONTHLY            : return g_Locale->getText(LOCALE_TIMERLIST_REPEAT_MONTHLY           );
-		case CTimerd::TIMERREPEAT_BYEVENTDESCRIPTION : return g_Locale->getText(LOCALE_TIMERLIST_REPEAT_BYEVENTDESCRIPTION);
+		case CTimerd::TIMERREPEAT_ONCE               : return _("once");
+		case CTimerd::TIMERREPEAT_DAILY              : return _("daily");
+		case CTimerd::TIMERREPEAT_WEEKLY             : return _("weekly");
+		case CTimerd::TIMERREPEAT_BIWEEKLY           : return _("biweekly");
+		case CTimerd::TIMERREPEAT_FOURWEEKLY         : return _("fourweekly");
+		case CTimerd::TIMERREPEAT_MONTHLY            : return _("monthly");
+		case CTimerd::TIMERREPEAT_BYEVENTDESCRIPTION : return _("see timer");
 		default:
 			if(rep >=CTimerd::TIMERREPEAT_WEEKDAYS)
 			{
 				int weekdays = (((int)rep) >> 9);
 				std::string weekdayStr = "";
 				if(weekdays & 1)
-					weekdayStr+= g_Locale->getText(LOCALE_TIMERLIST_REPEAT_MONDAY);
+					weekdayStr+= _("Monday");
 				weekdays >>= 1;
 				if(weekdays & 1)
-					weekdayStr+= g_Locale->getText(LOCALE_TIMERLIST_REPEAT_TUESDAY);
+					weekdayStr+= _("Tuesday");
 				weekdays >>= 1;
 				if(weekdays & 1)
-					weekdayStr+= g_Locale->getText(LOCALE_TIMERLIST_REPEAT_WEDNESDAY);
+					weekdayStr+= _("Wednesday");
 				weekdays >>= 1;
 				if(weekdays & 1)
-					weekdayStr+= g_Locale->getText(LOCALE_TIMERLIST_REPEAT_THURSDAY);
+					weekdayStr+= _("Thursday");
 				weekdays >>= 1;
 				if(weekdays & 1)
-					weekdayStr+= g_Locale->getText(LOCALE_TIMERLIST_REPEAT_FRIDAY);
+					weekdayStr+= _("Friday");
 				weekdays >>= 1;
 				if(weekdays & 1)
-					weekdayStr+= g_Locale->getText(LOCALE_TIMERLIST_REPEAT_SATURDAY);
+					weekdayStr+= _("Saturday");
 				weekdays >>= 1;
 				if(weekdays & 1)
-					weekdayStr+= g_Locale->getText(LOCALE_TIMERLIST_REPEAT_SUNDAY);
+					weekdayStr+= _("Sunday");
 				return weekdayStr;
 			}
 			else
-				return g_Locale->getText(LOCALE_TIMERLIST_REPEAT_UNKNOWN);
+				return _("Unknown");
 	}
 }
 
@@ -875,7 +875,7 @@ std::string CTimerList::convertChannelId2String(const t_channel_id id) // UTF-8
 	name = g_Zapit->getChannelName(id); // UTF-8
 
 	if (name.empty())
-		name = g_Locale->getText(LOCALE_TIMERLIST_PROGRAM_UNKNOWN);
+		name = _("Unknown");
 
 	return name;
 }
@@ -1121,7 +1121,7 @@ bool askUserOnTimerConflict(time_t announceTime, time_t stopTime)
 	
 	//printf("[CTimerdClient] attention\n%d\t%d\t%d conflicts with:\n",timerNew.announceTime,timerNew.alarmTime,timerNew.stopTime);
 
-	std::string timerbuf = g_Locale->getText(LOCALE_TIMERLIST_OVERLAPPING_TIMER);
+	std::string timerbuf = _("Timer conflict. Create the timer anyway?");
 	timerbuf += "\n";
 	for (CTimerd::TimerList::iterator it = overlappingTimers.begin(); it != overlappingTimers.end(); it++)
 	{

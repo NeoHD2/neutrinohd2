@@ -66,7 +66,6 @@
 #include <system/settings.h>
 #include <system/debug.h>
 #include <system/localize.h>
-#include <system/locals.h>
 #include <system/setting_helpers.h>
 #include <system/helpers.h>
 #include <system/tmdbparser.h>
@@ -169,7 +168,6 @@
 %include <src/system/settings.h>
 %include <src/system/debug.h>
 %include <src/system/localize.h>
-%include <src/system/locals.h>
 %include <src/system/setting_helpers.h>
 %include <src/system/helpers.h>
 %include <src/system/tmdbparser.h>

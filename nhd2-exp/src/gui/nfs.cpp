@@ -70,7 +70,7 @@ class CNFSMountGuiNotifier : public CChangeObserver
 			m_type = type;
 		}
 		
-		bool changeNotify(const neutrino_locale_t /*OptionName*/, void *)
+		bool changeNotify(const std::string& /*OptionName*/, void *)
 		{
 			if(*m_type == (int)CFSMounter::NFS)
 			{
@@ -136,7 +136,7 @@ int CNFSMountGui::exec( CMenuTarget *parent, const std::string &actionKey )
 				g_settings.network_nfs_ip[i].c_str(),
 				FILESYSTEM_ENCODING_TO_UTF8(g_settings.network_nfs_dir[i]),
 				FILESYSTEM_ENCODING_TO_UTF8(g_settings.network_nfs_local_dir[i]),
-				g_Locale->getText(g_settings.network_nfs_automount[i] ? LOCALE_MESSAGEBOX_YES : LOCALE_MESSAGEBOX_NO));
+				g_settings.network_nfs_automount[i] ? _("Yes") : _("No"));
 		}
 		returnval = menu();
 	}
@@ -154,7 +154,7 @@ int CNFSMountGui::exec( CMenuTarget *parent, const std::string &actionKey )
 				g_settings.network_nfs_ip[i].c_str(),
 				FILESYSTEM_ENCODING_TO_UTF8(g_settings.network_nfs_dir[i]),
 				FILESYSTEM_ENCODING_TO_UTF8(g_settings.network_nfs_local_dir[i]),
-				g_Locale->getText(g_settings.network_nfs_automount[i] ? LOCALE_MESSAGEBOX_YES : LOCALE_MESSAGEBOX_NO));
+				g_settings.network_nfs_automount[i] ? _("Yes") : _("No"));
 			sprintf(ISO_8859_1_entry[i], "%s", UTF8_to_Latin1(m_entry[i]).c_str());
 		}
 	}
@@ -446,27 +446,27 @@ const char * mntRes2Str(CFSMounter::MountRes res)
 	switch(res)
 	{
 		case CFSMounter::MRES_FS_NOT_SUPPORTED:
-			return g_Locale->getText(LOCALE_NFS_MOUNTERROR_NOTSUP);
+			return _("filesystem type not supported");
 			break;
 			
 		case CFSMounter::MRES_FS_ALREADY_MOUNTED:
-			return g_Locale->getText(LOCALE_NFS_ALREADYMOUNTED);
+			return _("directory already mounted");
 			break;
 			
 		case CFSMounter::MRES_TIMEOUT:
-			return g_Locale->getText(LOCALE_NFS_MOUNTTIMEOUT);
+			return _("mount error: timeout");
 			break;
 			
 		case CFSMounter::MRES_UNKNOWN:
-			return g_Locale->getText(LOCALE_NFS_MOUNTERROR);
+			return _("mount error");
 			break;
 			
 		case CFSMounter::MRES_OK:
-			return g_Locale->getText(LOCALE_NFS_MOUNTOK);
+			return _("mount successful");
 			break;
 			
 		default:
-			return g_Locale->getText(NONEXISTANT_LOCALE);
+			return _("");
 			break;
 	}
 }
@@ -476,15 +476,15 @@ const char * mntRes2Str(CFSMounter::UMountRes res)
 	switch(res)
 	{
 		case CFSMounter::UMRES_ERR:
-			return g_Locale->getText(LOCALE_NFS_UMOUNTERROR);
+			return _("error umounting volume");
 			break;
 			
 		case CFSMounter::UMRES_OK:
-			return g_Locale->getText(NONEXISTANT_LOCALE);
+			return _("");
 			break;
 			
 		default:
-			return g_Locale->getText(NONEXISTANT_LOCALE);
+			return _("");
 			break;
 	}
 }

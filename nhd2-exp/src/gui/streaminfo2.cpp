@@ -161,7 +161,7 @@ int CStreamInfo2::doSignalStrengthLoop()
 	char tmp_str[150];
 	int offset_tmp = 0;
 	
-	int offset = g_Font[font_info]->getRenderWidth(g_Locale->getText (LOCALE_STREAMINFO_BITRATE));
+	int offset = g_Font[font_info]->getRenderWidth(_("Bitrate"));
 	int sw = g_Font[font_info]->getRenderWidth ("99999.999");
 	int mm = g_Font[font_info]->getRenderWidth ("Max");//max min lenght
 	maxb = minb = lastb = 0;
@@ -220,7 +220,7 @@ int CStreamInfo2::doSignalStrengthLoop()
 					{
 						case 0:
 						tmp_rate = bit_s;
-						sprintf(tmp_str, "%s", g_Locale->getText(LOCALE_STREAMINFO_BITRATE));
+						sprintf(tmp_str, "%s", _("Bitrate"));
 						offset_tmp = 0;
 						break;
 						case 1:
@@ -361,7 +361,7 @@ void CStreamInfo2::paint_signal_fe_box(int _x, int _y, int w, int h)
 	int y1, y2;
 	int xd = w/4;
 
-	g_Font[font_small]->RenderString(_x, _y+iheight+15, width-10, g_Locale->getText(LOCALE_STREAMINFO_SIGNAL), COL_MENUCONTENTDARK, 0, true);
+	g_Font[font_small]->RenderString(_x, _y+iheight+15, width-10, _("Receipt signal"), COL_MENUCONTENTDARK, 0, true);
 
 	sigBox_x = _x;
 	sigBox_y = _y+iheight+15;
@@ -518,7 +518,7 @@ void CStreamInfo2::paint(int /*mode*/)
 	if (paint_mode == 0) 
 	{
 		// -- tech Infos, PIG, small signal graph
-		head_string = g_Locale->getText(LOCALE_STREAMINFO_HEAD);
+		head_string = _("Stream-Information");
 
 		CVFD::getInstance ()->setMode (CVFD::MODE_MENU_UTF8, head_string);
 
@@ -556,10 +556,10 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 
 	// paint labels
 	int spaceoffset = 0,i = 0;
-	int array[4] = {g_Font[font_info]->getRenderWidth(g_Locale->getText (LOCALE_STREAMINFO_RESOLUTION)),
-		      g_Font[font_info]->getRenderWidth(g_Locale->getText (LOCALE_STREAMINFO_ARATIO)),
-		      g_Font[font_info]->getRenderWidth(g_Locale->getText (LOCALE_STREAMINFO_FRAMERATE)),
-		      g_Font[font_info]->getRenderWidth(g_Locale->getText (LOCALE_STREAMINFO_AUDIOTYPE))}; 
+	int array[4] = {g_Font[font_info]->getRenderWidth(_("Resolution")),
+		      g_Font[font_info]->getRenderWidth(_("Aspect Ratio")),
+		      g_Font[font_info]->getRenderWidth(_("Framerate")),
+		      g_Font[font_info]->getRenderWidth(_("Audiotype"))}; 
 		      
 	for(i = 0 ; i < 4; i++)
 	{
@@ -573,7 +573,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 
 	// resolution
 	ypos += iheight;
-	sprintf ((char *) buf, "%s:",g_Locale->getText (LOCALE_STREAMINFO_RESOLUTION));
+	sprintf ((char *) buf, "%s:", _("Resolution"));
 	g_Font[font_info]->RenderString (xpos, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true);	// UTF-8
 	
 	sprintf ((char *) buf, "%dx%d", xres, yres);
@@ -583,7 +583,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 	aspectRatio = videoDecoder->getAspectRatio();
 
 	ypos += iheight;
-	sprintf ((char *) buf, "%s:", g_Locale->getText (LOCALE_STREAMINFO_ARATIO));
+	sprintf ((char *) buf, "%s:", _("Aspect Ratio"));
 	g_Font[font_info]->RenderString (xpos, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true);	// UTF-8
 
 	switch (aspectRatio) 
@@ -603,7 +603,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 			sprintf((char*) buf, "20:9");
 			break;
 		default:
-			sprintf((char*)buf, g_Locale->getText (LOCALE_STREAMINFO_ARATIO_UNKNOWN));
+			sprintf((char*)buf, _("unknown"));
 			break;
 	}
 
@@ -611,7 +611,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 
 	// framerate
 	ypos += iheight;
-	sprintf ((char *) buf, "%s:", g_Locale->getText (LOCALE_STREAMINFO_FRAMERATE));
+	sprintf ((char *) buf, "%s:", _("Framerate"));
 	g_Font[font_info]->RenderString (xpos, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true);	// UTF-8
 
 	switch (framerate) 
@@ -623,7 +623,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 			sprintf((char *) buf, "50fps");
 		break;
 		default:
-			sprintf((char*)buf, g_Locale->getText (LOCALE_STREAMINFO_FRAMERATE_UNKNOWN));
+			sprintf((char*)buf, _("unknown"));
 	}
 	g_Font[font_info]->RenderString (xpos+spaceoffset, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true);	// UTF-8
 
@@ -637,13 +637,13 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 	const char *sampfreqnames[4] = { "44,1k", "48k", "32k", "res" };
 	const char *modenames[4] = { "stereo", "joint_st", "dual_ch", "single_ch" };
 
-	sprintf ((char *) buf, "%s: %s (%s/%s) %s", g_Locale->getText (LOCALE_STREAMINFO_AUDIOTYPE), modenames[stereo], sampfreqnames[sampfreq], layernames[layer], copy ? "c" : "");
+	sprintf ((char *) buf, "%s: %s (%s/%s) %s", _("Audiotype"), modenames[stereo], sampfreqnames[sampfreq], layernames[layer], copy ? "c" : "");
   }
 
 	const char *mpegmodes[4] = { "stereo", "joint_st", "dual_ch", "single_ch" };
 	const char *ddmodes[8] = { "CH1/CH2", "C", "L/R", "L/C/R", "L/R/S", "L/C/R/S", "L/R/SL/SR", "L/C/R/SL/SR" };
 
-	sprintf ((char *) buf, "%s:", g_Locale->getText (LOCALE_STREAMINFO_AUDIOTYPE));
+	sprintf ((char *) buf, "%s:", _("Audiotype"));
 	g_Font[font_info]->RenderString (xpos, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true);	// UTF-8
 
 	if(type == 0) 
@@ -659,7 +659,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 
 	// satellite
 	ypos += iheight;
-	sprintf ((char *) buf, "%s:",g_Locale->getText (LOCALE_SATSETUP_SATELLITE));//swiped locale
+	sprintf ((char *) buf, "%s:", _("Satellite"));//swiped locale
 	g_Font[font_info]->RenderString(xpos, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
 
 	t_satellite_position satellitePosition = CNeutrinoApp::getInstance ()->channelList->getActiveSatellitePosition ();
@@ -680,7 +680,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 	CChannelList *channelList = CNeutrinoApp::getInstance()->channelList;
 
 	ypos += iheight;
-	sprintf ((char *) buf, "%s:",g_Locale->getText (LOCALE_TIMERLIST_CHANNEL));//swiped locale
+	sprintf ((char *) buf, "%s:", _("Channel"));//swiped locale
 	g_Font[font_info]->RenderString(xpos, ypos, width*2/3-10, buf , COL_MENUCONTENTDARK, 0, true); // UTF-8
 	sprintf((char*) buf, "%s" ,channelList->getActiveChannelName().c_str());
 	g_Font[font_info]->RenderString (xpos + spaceoffset, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true);	// UTF-8
@@ -737,7 +737,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 	} 
 	else 
 	{
-		sprintf((char*) buf, "%s", g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE));
+		sprintf((char*) buf, "%s", _("not available"));
 	}
 	g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "Vpid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
 	g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
@@ -747,7 +747,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 	g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "Apid(s):" , COL_MENUCONTENTDARK, 0, true); // UTF-8
 	if (g_RemoteControl->current_PIDs.APIDs.empty())
 	{
-		sprintf((char*) buf, "%s", g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE));
+		sprintf((char*) buf, "%s", _("not available"));
 	} 
 	else 
 	{
@@ -776,7 +776,7 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 	// vtxtpid
 	ypos += sheight;
 	if ( g_RemoteControl->current_PIDs.PIDs.vtxtpid == 0 )
-        	sprintf((char*) buf, "%s", g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE));
+        	sprintf((char*) buf, "%s", _("not available"));
 	else
         	sprintf((char*) buf, "0x%04x (%i)", g_RemoteControl->current_PIDs.PIDs.vtxtpid, g_RemoteControl->current_PIDs.PIDs.vtxtpid );
 	g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "VTXTpid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8

@@ -24,45 +24,6 @@ extern "C" void plugin_exec(void);
 extern "C" void plugin_init(void);
 extern "C" void plugin_del(void);
 
-// locale
-enum {
-	LOCALE_YOUTUBE,
-	LOCALE_YT_YOUTUBE,
-	LOCALE_YT_ERROR,
-	LOCALE_YT_MOST_POPULAR,
-	LOCALE_YT_MOST_POPULAR_ALL_TIME,
-	LOCALE_YT_NEXT_RESULTS,
-	LOCALE_YT_PREV_RESULTS,
-	LOCALE_YT_REGION,
-	LOCALE_YT_RELATED,
-	LOCALE_YT_SEARCH,
-	LOCALE_YT_ORDERBY,
-	LOCALE_YT_ORDERBY_PUBLISHED,
-	LOCALE_YT_ORDERBY_RATING,
-	LOCALE_YT_ORDERBY_RELEVANCE,
-	LOCALE_YT_ORDERBY_VIEWCOUNT,
-	LOCALE_YT_AUTOPLAY
-};
-
-const char * locale_real_names_yt[] = {
-	"",
-	"youtube.yt_youtube",
-	"youtube.yt_error",
-	"youtube.yt_most_popular",
-	"youtube.yt_most_popular_all_time",
-	"youtube.yt_next_results",
-	"youtube.yt_prev_results",
-	"youtube.yt_region",
-	"youtube.yt_related",
-	"youtube.yt_search",
-	"youtube.yt_orderby",
-	"youtube.yt_orderby.published",
-	"youtube.yt_orderby.rating",
-	"youtube.yt_orderby.relevance",
-	"youtube.yt_orderby.viewcount",
-	"youtube.yt_autoplay"
-};
-
 #define NEUTRINO_ICON_YT				PLUGINDIR "/youtube/youtube.png"
 #define NEUTRINO_ICON_YT_SMALL			PLUGINDIR "/youtube/youtube_small.png"
 
@@ -170,7 +131,7 @@ void CYTBrowser::showMenu()
 
 	//
 	std::string title;
-	title = g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_YOUTUBE);
+	title = _("Youtube Player");
 	title += " : ";
 		
 	title += getFeedLocale();
@@ -252,7 +213,7 @@ void CYTBrowser::loadYTTitles(int mode, std::string search, std::string id, bool
 {
 	dprintf(DEBUG_NORMAL, "CYTBrowser::loadYTTitles: parsed %d old mode %d new mode %d region %s\n", ytparser.Parsed(), ytparser.GetFeedMode(), ytmode, m_settings.ytregion.c_str());
 
-	CHintBox loadBox(g_Locale->getCustomText((neutrino_locale_t)LOCALE_YT_YOUTUBE), g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox(_("Youtube Player"), _("Scan for Movies ..."));
 
 	if(show_hint)
 		loadBox.paint();
@@ -510,18 +471,12 @@ void plugin_del(void)
 
 void plugin_exec(void)
 {
-	// load locale
-	g_Locale->loadCustomLocale(g_settings.language, locale_real_names_yt, sizeof(locale_real_names_yt)/sizeof(const char *), PLUGINDIR "/youtube/");
-
 	CYTBrowser* YTHandler = new CYTBrowser(cYTFeedParser::MOST_POPULAR);
 	
 	YTHandler->exec(NULL, "");
 	
 	delete YTHandler;
-	YTHandler = NULL;
-
-	// unload locale
-	g_Locale->unloadCustomLocale(locale_real_names_yt, sizeof(locale_real_names_yt)/sizeof(const char *));		
+	YTHandler = NULL;		
 }
 
 

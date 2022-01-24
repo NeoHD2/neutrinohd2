@@ -616,7 +616,7 @@ void CUpnpBrowserGui::loadDevices(bool hint)
 {
 	m_devices.clear();
 
-	CHintBox *scanBox = new CHintBox(_("Information"), /*g_Locale->getText(LOCALE_UPNPBROWSER_SCANNING)*/_("Scanning for UPnP servers")); // UTF-8
+	CHintBox *scanBox = new CHintBox(_("Information"), _("Scanning for UPnP servers")); // UTF-8
 
 	if(hint)
 		scanBox->paint();
@@ -665,7 +665,7 @@ void CUpnpBrowserGui::showMenuDevice()
 	}
 
 	// head
-	listBox->setTitle(g_Locale->getText(LOCALE_UPNPBROWSER_HEAD), UPNP_ICON_SMALL);
+	listBox->setTitle(_("UPnP Browser"), UPNP_ICON_SMALL);
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
 
@@ -772,7 +772,7 @@ void CUpnpBrowserGui::showMenuEntry()
 	}
 
 	// head
-	listBox->setTitle(g_Locale->getText(LOCALE_UPNPBROWSER_HEAD), UPNP_ICON_SMALL);
+	listBox->setTitle(_("UPnP Browser"), UPNP_ICON_SMALL);
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
 

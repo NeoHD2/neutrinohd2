@@ -659,7 +659,7 @@ std::string Lang2ISO639_1(std::string& lang)
 //
 std::string Lang2I18N(std::string lang)
 {
-	std::string ret = "en_EN";
+	std::string ret = "C";
 	
 	if ((lang == "de") || (lang == "bayrisch") || (lang == "ch-baslerdeutsch") || (lang == "ch-berndeutsch"))
 		ret = "de_DE";

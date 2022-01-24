@@ -35,12 +35,10 @@
 
 #include <string>
 
-#include <system/locals.h>
+//#include <system/locals.h>
 #include <time.h>
 #include <locale.h>
-
 #include <map>
-
 #include <libintl.h>
 
 
@@ -54,11 +52,7 @@ extern std::map<std::string, std::string> iso639rev;
 #define ARE_LOCALES_EQUAL(a,b) (a == b)
 
 class CLocaleManager
-{
-	private:
-		char **localeData;
-		char **customData;
-		
+{	
 	public:
 		enum loadLocale_ret_t
 		{
@@ -67,20 +61,10 @@ class CLocaleManager
 			NO_SUCH_LOCALE  = -1
 		};
 
-		CLocaleManager();
-		~CLocaleManager();
+		CLocaleManager(){};
+		~CLocaleManager(){};
 
-		loadLocale_ret_t loadLocale(const char * const locale);
-		const char *getText(const neutrino_locale_t keyName) const;
-
-		static neutrino_locale_t getMonth  (const struct tm * struct_tm_p);
-		static neutrino_locale_t getWeekday(const struct tm * struct_tm_p);
-
-		// custom locale
-		loadLocale_ret_t loadCustomLocale(const char * const locale, const char ** custom_locale_real_names, const size_t length, const char * path);  
-		void unloadCustomLocale(const char **custom_locale_real_names, const size_t length);
-
-		const char *getCustomText(const neutrino_locale_t keyName) const;
+		loadLocale_ret_t loadLocale(const char* const locale);
 };
 
 #endif

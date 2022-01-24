@@ -146,7 +146,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		int exec(CMenuTarget* parent, const std::string& actionKey);
 		
 		//onchange
-		bool changeNotify(const neutrino_locale_t OptionName, void *);
+		bool changeNotify(const std::string& OptionName, void *);
 		
 		//
 		void saveSetup(const char * fname);
@@ -163,7 +163,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		bool hasWidgets(){return widgets.size();};
 		CMenuTarget* convertTarget(const int id);
 		uint32_t convertColor(const char* const rgba);
-		neutrino_locale_t convertLocale(const int loc);
+		//neutrino_locale_t convertLocale(const int loc);
 		
 		std::vector<CPlugins::plugin> skin_list;
 		

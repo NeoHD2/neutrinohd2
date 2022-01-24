@@ -47,14 +47,14 @@
 class CSectionsdConfigNotifier : public CChangeObserver
 {
         public:
-                bool changeNotify(const neutrino_locale_t, void * );
+                bool changeNotify(const std::string&, void * );
 };
 
 // color setup notifier
 class CColorSetupNotifier : public CChangeObserver
 {
 	public:
-		bool changeNotify(const neutrino_locale_t, void *);
+		bool changeNotify(const std::string&, void *);
 };
 
 // subtitle change notifier

@@ -63,8 +63,7 @@ class CHelpBox
 		void addSeparator();
 		void addPagebreak();
 		
-		//void show(const neutrino_locale_t Caption, const int Width = HELPBOX_WIDTH, int timeout = -1, const result_ Default = mbrBack, const uint32_t ShowButtons = mbBack);
-
+		//
 		void show(const char* const Caption, const int Width = HELPBOX_WIDTH, int timeout = -1, const result_ Default = mbrBack, const uint32_t ShowButtons = mbBack);
 };
 

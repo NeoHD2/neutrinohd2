@@ -137,11 +137,11 @@ void CImageInfo::paint()
 {
 	const char * head_string;
  	int  xpos = x + BORDER_LEFT;
-	int x_offset = g_Font[font_info]->getRenderWidth(g_Locale->getText(LOCALE_IMAGEINFO_HOMEPAGE)) + 10;
+	int x_offset = g_Font[font_info]->getRenderWidth(_("Home page:")) + 10;
 
 	ypos = y + 5;
 
-	head_string = g_Locale->getText(LOCALE_IMAGEINFO_HEAD);
+	head_string = _("Image info:");
 
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8, head_string);
 
@@ -178,12 +178,12 @@ void CImageInfo::paint()
 
 	// image name
 	ypos += iheight;
-	paintLine(xpos, font_info, g_Locale->getText(LOCALE_IMAGEINFO_IMAGE));
+	paintLine(xpos, font_info, _("Image:"));
 	paintLine(xpos + x_offset, font_info, imagename);
 
 	// release cycle
 	ypos += iheight;
-	paintLine(xpos, font_info, g_Locale->getText(LOCALE_IMAGEINFO_VERSION));
+	paintLine(xpos, font_info, _("Version:"));
 	paintLine(xpos + x_offset, font_info, releaseCycle);
 	
 	// git built date
@@ -198,7 +198,7 @@ void CImageInfo::paint()
 	
 	// image type
 	ypos += iheight;
-	paintLine(xpos, font_info, g_Locale->getText(LOCALE_IMAGEINFO_TYPE));
+	paintLine(xpos, font_info, _("Type:"));
 	paintLine(xpos + x_offset, font_info, imageType);
 
 	// 
@@ -206,22 +206,22 @@ void CImageInfo::paint()
 
 	// doko
 	ypos += iheight;
-	paintLine(xpos, font_info, g_Locale->getText(LOCALE_IMAGEINFO_DOKUMENTATION));
+	paintLine(xpos, font_info, _("Docs:"));
 	paintLine(xpos + x_offset, font_info, docs);
 
 	// forum
 	ypos += iheight;
-	paintLine(xpos, font_info, g_Locale->getText(LOCALE_IMAGEINFO_FORUM));
+	paintLine(xpos, font_info, _("Forum:"));
 	paintLine(xpos + x_offset, font_info, forum);
 
 	// homepage
 	ypos += iheight;
-	paintLine(xpos, font_info, g_Locale->getText(LOCALE_IMAGEINFO_HOMEPAGE));
+	paintLine(xpos, font_info, _("Home page:"));
 	paintLine(xpos + x_offset, font_info, homepage);
 
 	// license
 	ypos += 5*iheight;
-	paintLine(xpos, font_info,g_Locale->getText(LOCALE_IMAGEINFO_LICENSE));
+	paintLine(xpos, font_info, _("License:"));
 	paintLine(xpos + x_offset, font_small, "This program is free software; you can redistribute it and/or modify");
 
 	ypos += sheight;

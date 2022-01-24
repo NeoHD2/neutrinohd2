@@ -167,7 +167,7 @@ CInfoBox::~CInfoBox()
 void CInfoBox::initVar(void)
 {
 	// head
-	m_cTitle = g_Locale->getText(LOCALE_MESSAGEBOX_INFO);
+	m_cTitle = _("Information");
 	m_cIcon = NEUTRINO_ICON_INFO;
 	headColor = COL_MENUHEAD_PLUS_0;
 	headRadius = g_settings.Head_radius;

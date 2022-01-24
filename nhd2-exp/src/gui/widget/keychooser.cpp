@@ -65,25 +65,6 @@ class CKeyValue : public CMenuSeparator
 		};
 };
 
-/*
-CKeyChooser::CKeyChooser(int * const Key, const neutrino_locale_t Title, const std::string & Icon) : CMenuWidget(Title, Icon)
-{
-	frameBuffer = CFrameBuffer::getInstance();
-	key = Key;
-	keyChooser = new CKeyChooserItem(LOCALE_KEYCHOOSER_HEAD, key);
-	keyDeleter = new CKeyChooserItemNoKey(key);
-
-	enableShrinkMenu();
-
-	addItem(new CKeyValue());
-	addItem(new CMenuSeparator(LINE));
-	addItem(new CMenuForwarder(LOCALE_MENU_BACK, true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	addItem(new CMenuSeparator(LINE));
-	addItem(new CMenuForwarder(LOCALE_KEYCHOOSERMENU_SETNEW , true, NULL, keyChooser));
-	addItem(new CMenuForwarder(LOCALE_KEYCHOOSERMENU_SETNONE, true, NULL, keyDeleter));
-}
-*/
-
 CKeyChooser::CKeyChooser(int * const Key, const char * const Title, const std::string & Icon) : CMenuWidget(Title, Icon)
 {
 	frameBuffer = CFrameBuffer::getInstance();
@@ -113,14 +94,6 @@ void CKeyChooser::paint()
 
 	CMenuWidget::paint();
 }
-
-/*
-CKeyChooserItem::CKeyChooserItem(const neutrino_locale_t Name, int * Key)
-{
-	name = g_Locale->getText(Name);
-	key = Key;
-}
-*/
 
 CKeyChooserItem::CKeyChooserItem(const char * const Name, int * Key)
 {

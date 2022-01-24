@@ -34,14 +34,6 @@ CHTTPTool::CHTTPTool()
 	userAgent = "neutrino/httpdownloader";
 }
 
-void CHTTPTool::setTitle(const neutrino_locale_t title)
-{
-	captionString = g_Locale->getText(title);
-	
-	if (statusViewer)
-		statusViewer->setTitle(captionString.c_str());
-}
-
 void CHTTPTool::setTitle(const char * const title)
 {
 	captionString = title;

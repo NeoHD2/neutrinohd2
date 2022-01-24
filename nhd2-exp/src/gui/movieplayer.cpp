@@ -613,7 +613,7 @@ void CMoviePlayerGui::stop()
 		// stop record if recording
 		if( CNeutrinoApp::getInstance()->recordingstatus) 
 		{
-			if(MessageBox(_("Information"), /*LOCALE_SHUTDOWN_RECODING_QUERY*/_("You really want to to stop record ?"), mbrYes, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)
+			if(MessageBox(_("Information"), _("You really want to to stop record ?"), mbrYes, mbYes | mbNo, NULL, 450, 30, true) == mbrYes)
 			{
 				CVCRControl::getInstance()->Stop();
 				g_Timerd->stopTimerEvent(CNeutrinoApp::getInstance()->recording_id);
@@ -725,15 +725,15 @@ void CMoviePlayerGui::PlayFile(void)
 	// backword hintbox
 	CTextBox newBackwordHintBox;
 	newBackwordHintBox.setPosition(&boxposition);
-	newBackwordHintBox.setText(/*g_Locale->getText(LOCALE_MOVIEBROWSER_HINT_NEWBOOK_BACKWARD)*/_("New jump back\n 'blue' for endposition"));
+	newBackwordHintBox.setText(_("New jump back\n 'blue' for endposition"));
 
 	// forward hintbox
 	CTextBox newForwardHintBox;
 	newForwardHintBox.setPosition(&boxposition);
-	newForwardHintBox.setText(/*g_Locale->getText(LOCALE_MOVIEBROWSER_HINT_NEWBOOK_FORWARD)*/_("New jump forward\n 'blue' for endposition"));
+	newForwardHintBox.setText(_("New jump forward\n 'blue' for endposition"));
 
 	//
-	int jump_not_until = 0;		// any jump shall be avoided until this time (in seconds from moviestart)
+	int jump_not_until = 0;	// any jump shall be avoided until this time (in seconds from moviestart)
 	MI_BOOKMARK new_bookmark;	// used for new movie info bookmarks created from the movieplayer
 	new_bookmark.pos = 0;		// clear , since this is used as flag for bookmark activity
 	new_bookmark.length = 0;
@@ -1525,7 +1525,7 @@ void CMoviePlayerGui::PlayFile(void)
 		{
 			if (mplist && !mplist->isPainted())
 			{
-		 		if(MessageBox(_("Information"), /*g_Locale->getText(LOCALE_SCREENSHOT_ANNOUNCE)*/_("create screenshot?"), mbrNo, mbYes | mbNo) == mbrYes) 
+		 		if(MessageBox(_("Information"), _("create screenshot?"), mbrNo, mbYes | mbNo) == mbrYes) 
 				{
 					CVCRControl::getInstance()->Screenshot(0, (char *)playlist[selected].file.Name.c_str());
 				}
@@ -1619,23 +1619,23 @@ void CMoviePlayerGui::showHelpTS()
 {
 	CHelpBox helpbox;
 
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_RED, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP1)*/_("Movie info"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_GREEN, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP2)*/_("Select audio track"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_YELLOW, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP3)*/_("Help"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_BLUE, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP4)*/_("Create bookmark"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_RED, _("Movie info"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_GREEN, _("Select audio track"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_YELLOW, _("Help"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_BLUE, _("Create bookmark"));
 	helpbox.addSeparator();
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_SETUP, _("MoviePlayer setup"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_HELP, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP15)*/_("show movie infoviewer"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_HELP, _("show movie infoviewer"));
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_0, _("skip bookmark"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_1, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP6)*/_("approx. 1 minute back"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_2, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP12)*/_("goto start") );
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_3, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP7)*/_("skip approx. 1 minute"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_4, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP8)*/_("approx. 5 minutes back"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_5, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP13)*/_("goto middle"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_6, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP9)*/_("skip approx. 5 minutes"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_7, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP10)*/_("approx. 10 minutes back"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_8, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP14)*/_("goto end"));
-	helpbox.addLine(NEUTRINO_ICON_BUTTON_9, /*g_Locale->getText(LOCALE_MOVIEPLAYER_TSHELP11)*/_("skip approx. 10 minutes"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_1, _("approx. 1 minute back"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_2, _("goto start") );
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_3, _("skip approx. 1 minute"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_4, _("approx. 5 minutes back"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_5, _("goto middle"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_6, _("skip approx. 5 minutes"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_7, _("approx. 10 minutes back"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_8, _("goto end"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_9, _("skip approx. 10 minutes"));
 	//helpbox.addSeparator();
 	//helpbox.addLine("Version: $Revision: 3.0 $");
 
@@ -1676,19 +1676,19 @@ int CMoviePlayerGui::showStartPosSelectionMenu(void)
 	// bookmark start
 	if(playlist[selected].bookmarks.start != 0)
 	{
-		startPosSelectionMenu.addItem(new CMenuForwarder(/*LOCALE_MOVIEBROWSER_BOOK_MOVIESTART*/_("Movie start:"), true, start_pos));
+		startPosSelectionMenu.addItem(new CMenuForwarder(_("Movie start:"), true, start_pos));
 		position[menu_nr++] = playlist[selected].bookmarks.start;
 	}
 	
 	// bookmark laststop
 	if(playlist[selected].bookmarks.lastPlayStop != 0) 
 	{
-		startPosSelectionMenu.addItem(new CMenuForwarder(/*OCALE_MOVIEBROWSER_BOOK_LASTMOVIESTOP*/_("Last play stop:"), true, play_pos));
+		startPosSelectionMenu.addItem(new CMenuForwarder(_("Last play stop:"), true, play_pos));
 		position[menu_nr++] = playlist[selected].bookmarks.lastPlayStop;
 	}
 	
 	// movie start
-	startPosSelectionMenu.addItem(new CMenuForwarder(/*LOCALE_MOVIEBROWSER_START_RECORD_START*/_("Movie start"), true, NULL));
+	startPosSelectionMenu.addItem(new CMenuForwarder(_("Movie start"), true, NULL));
 
 	position[menu_nr++] = 0;
 
@@ -2137,18 +2137,18 @@ void CMoviePlayerGui::doTMDB(MI_MOVIE_INFO& movieFile)
 		buffer += minfo_list[0].overview;
 		buffer += "\n";
 
-		buffer += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_LENGTH) + ": " + to_string(minfo_list[0].runtime);
+		buffer += (std::string)_("Length (Min)") + ": " + to_string(minfo_list[0].runtime);
 		buffer += "\n";
 
-		buffer += (std::string)g_Locale->getText(LOCALE_EPGVIEWER_GENRE) + ": " + minfo_list[0].genres;
+		buffer += (std::string)_("Genre") + ": " + minfo_list[0].genres;
 		buffer += "\n";
-		buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ORIGINAL_TITLE) + " : " + minfo_list[0].original_title;
+		buffer += (std::string)_("Original Title") + " : " + minfo_list[0].original_title;
 		buffer += "\n";
-		buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_YEAR_OF_PRODUCTION) + " : " + minfo_list[0].release_date.substr(0,4);
+		buffer += (std::string)_("Year of production") + " : " + minfo_list[0].release_date.substr(0,4);
 		buffer += "\n";
 
 		if (!minfo_list[0].cast.empty())
-			buffer += (std::string)g_Locale->getText(LOCALE_EPGEXTENDED_ACTORS) + ":\n" + minfo_list[0].cast;
+			buffer += (std::string)_("Actors") + ":\n" + minfo_list[0].cast;
 
 		// thumbnail
 		std::string tname = tmdb->getThumbnailDir();
@@ -2172,7 +2172,7 @@ void CMoviePlayerGui::doTMDB(MI_MOVIE_INFO& movieFile)
 		infoBox->exec();
 		delete infoBox;
 
-		if(MessageBox(_("Information"), /*g_Locale->getText(LOCALE_MOVIEBROWSER_PREFER_TMDB_INFO)*/_("Prefer TMDB Infos"), mbrNo, mbYes | mbNo) == mbrYes) 
+		if(MessageBox(_("Information"), _("Prefer TMDB Infos"), mbrNo, mbYes | mbNo) == mbrYes) 
 		{
 			// tfile
 			std::string tname = movieFile.file.Name;
@@ -2202,7 +2202,7 @@ void CMoviePlayerGui::doTMDB(MI_MOVIE_INFO& movieFile)
 	}
 	else
 	{
-		MessageBox(_("Information"), /*g_Locale->getText(LOCALE_STREAMINFO_NOT_AVAILABLE)*/_("TMDB Infos are not available"), mbrBack, mbBack, NEUTRINO_ICON_INFO);
+		MessageBox(_("Information"), _("TMDB Infos are not available"), mbrBack, mbBack, NEUTRINO_ICON_INFO);
 	}
 
 	delete tmdb;

@@ -39,7 +39,6 @@
 
 
 class ClistBox;
-extern CLocaleManager		*g_Locale;
 
 // item type
 enum 
@@ -94,7 +93,6 @@ enum
 typedef struct keyval
 {
 	int key;
-	//neutrino_locale_t value;
 	char* valname;
 } keyval_struct;
 
@@ -105,12 +103,6 @@ class CChangeObserver
 		CChangeObserver(){}
 		virtual ~CChangeObserver(){}
 		
-		/*
-		virtual bool changeNotify(const neutrino_locale_t, void *)
-		{
-			return false;
-		}
-		*/
 		virtual bool changeNotify(const std::string&, void *)
 		{
 			return false;
@@ -216,7 +208,6 @@ class CMenuItem
 
 		//
 		virtual void setHint(const char* const Text){itemHint =  Text;};
-		//virtual void setHint(const neutrino_locale_t locale){itemHint = g_Locale->getText(locale); };
 
 		//
 		virtual void setIconName(const char* const icon){iconName = icon;};
@@ -253,7 +244,6 @@ class CMenuItem
 class CMenuOptionChooser : public CMenuItem
 {
 	protected:
-		//neutrino_locale_t optionName;
 		int height;
 		int * optionValue;
 
@@ -277,7 +267,6 @@ class CMenuOptionChooser : public CMenuItem
 		bool pulldown;
 
 	public:
-		//CMenuOptionChooser(const neutrino_locale_t OptionName, int * const OptionValue, const struct keyval * const Options, const unsigned Number_Of_Options, const bool Active = false, CChangeObserver * const Observ = NULL, const neutrino_msg_t DirectKey = RC_nokey, const std::string & IconName= "", bool Pulldown = false);
 		CMenuOptionChooser(const char* const OptionName, int * const OptionValue, const struct keyval * const Options, const unsigned Number_Of_Options, const bool Active = false, CChangeObserver * const Observ = NULL, const neutrino_msg_t DirectKey = RC_nokey, const std::string& IconName= "", bool Pulldown = false);
 
 		~CMenuOptionChooser(){};
@@ -301,13 +290,10 @@ class CMenuOptionNumberChooser : public CMenuItem
 	int display_offset;
 
 	int localized_value;
-	//neutrino_locale_t localized_value_name;
 	
 	std::string nameString;
-	//neutrino_locale_t name;
 
 	protected:
-		//neutrino_locale_t optionName;
 		int height;
 		int* optionValue;
 
@@ -325,7 +311,6 @@ class CMenuOptionNumberChooser : public CMenuItem
 		CChangeObserver * observ;
 
 	public:
-		//CMenuOptionNumberChooser(const neutrino_locale_t Name, int * const OptionValue, const bool Active, const int min_value, const int max_value, CChangeObserver * const Observ = NULL, const int print_offset = 0, const int special_value = 0, const neutrino_locale_t special_value_name = NONEXISTANT_LOCALE, const char * non_localized_name = NULL);
 		CMenuOptionNumberChooser(const char * const Name, int * const OptionValue, const bool Active, const int min_value, const int max_value, CChangeObserver * const Observ = NULL, const int print_offset = 0, const int special_value = 0, const char * non_localized_name = NULL);
 
 		~CMenuOptionNumberChooser(){};
@@ -339,7 +324,6 @@ class CMenuOptionNumberChooser : public CMenuItem
 class CMenuOptionStringChooser : public CMenuItem
 {
 	std::string nameString;
-	//neutrino_locale_t name;
 	int height;
 	char * optionValue;
 	std::vector<std::string> options;
@@ -347,8 +331,6 @@ class CMenuOptionStringChooser : public CMenuItem
 	bool pulldown;
 
 	public:
-		//CMenuOptionStringChooser(const neutrino_locale_t Name, char* OptionValue, bool Active = false, CChangeObserver* Observ = NULL, const neutrino_msg_t DirectKey = RC_nokey, const std::string & IconName= "", bool Pulldown = false);
-		
 		CMenuOptionStringChooser(const char* const Name, char * OptionValue, bool Active = false, CChangeObserver* Observ = NULL, const neutrino_msg_t DirectKey = RC_nokey, const std::string & IconName= "", bool Pulldown = false);
 		
 		~CMenuOptionStringChooser();
@@ -411,14 +393,11 @@ class CMenuForwarder : public CMenuItem
 
 	protected:
 		std::string textString;
-		//neutrino_locale_t text;
 
 		virtual const char *getName(void);
 		virtual const char *getOption(void);
-	public:
-
-		//CMenuForwarder(const neutrino_locale_t Text, const bool Active = true, const char * const Option = NULL, CMenuTarget* Target = NULL, const char* const ActionKey = NULL, const neutrino_msg_t DirectKey = RC_nokey, const char* const IconName = NULL, const char* const ItemIcon = NULL, const neutrino_locale_t Hint = NONEXISTANT_LOCALE );
 		
+	public:
 		CMenuForwarder(const char* const Text, const bool Active = true, const char* const Option = NULL, CMenuTarget* Target = NULL, const char* const ActionKey = NULL, const neutrino_msg_t DirectKey = RC_nokey, const char* const IconName = NULL, const char* const ItemIcon = NULL, const char* const Hint = NULL );
 
 		~CMenuForwarder(){};
@@ -466,9 +445,8 @@ class CLockedMenuForwarder : public CMenuForwarder, public CPINProtection
 
 	protected:
 		virtual CMenuTarget* getParent(){ return Parent;};
-	public:
-		//CLockedMenuForwarder(const neutrino_locale_t Text, char * _validPIN, bool alwaysAsk = false, const bool Active = true, char * Option = NULL, CMenuTarget * Target = NULL, const char * const ActionKey = NULL, neutrino_msg_t DirectKey = RC_nokey, const char * const IconName = NULL, const char * const ItemIcon = NULL, const neutrino_locale_t Hint = NONEXISTANT_LOCALE ): CMenuForwarder(Text, Active, Option, Target, ActionKey, DirectKey, IconName, ItemIcon, Hint), CPINProtection( _validPIN){AlwaysAsk = alwaysAsk;};
-		   
+		
+	public:   
 		CLockedMenuForwarder(const char * const Text, char * _validPIN, bool alwaysAsk = false, const bool Active = true, char * Option = NULL, CMenuTarget * Target = NULL, const char * const ActionKey = NULL, neutrino_msg_t DirectKey = RC_nokey, const char * const IconName = NULL, const char * const ItemIcon = NULL, const char* const Hint = NULL)
 		 : CMenuForwarder(Text, Active, Option, Target, ActionKey, DirectKey, IconName, ItemIcon, Hint),
 		   CPINProtection( _validPIN){AlwaysAsk = alwaysAsk;};
@@ -484,7 +462,6 @@ class ClistBoxItem : public CMenuItem
 
 	protected:
 		//
-		//neutrino_locale_t text;
 		std::string textString;
 
 		//
@@ -492,9 +469,7 @@ class ClistBoxItem : public CMenuItem
 		virtual const char *getOption(void);
 
 	public:
-		//ClistBoxItem(const neutrino_locale_t Text, const bool Active = true, const char* const Option = NULL, CMenuTarget * Target = NULL, const char* const ActionKey = NULL, const neutrino_msg_t DirectKey = RC_nokey, const char* const Icon = NULL, const char* const ItemIcon = NULL, const neutrino_locale_t Hint = NONEXISTANT_LOCALE);
-
-		ClistBoxItem(const char* const Text, const bool Active = true, const char* const Option = NULL, CMenuTarget * Target = NULL, const char* const ActionKey = NULL, const neutrino_msg_t DirectKey = RC_nokey, const char* const IconName = NULL, const char* const ItemIcon = NULL, const /*neutrino_locale_t*/char* const Hint = NULL);
+		ClistBoxItem(const char* const Text, const bool Active = true, const char* const Option = NULL, CMenuTarget * Target = NULL, const char* const ActionKey = NULL, const neutrino_msg_t DirectKey = RC_nokey, const char* const IconName = NULL, const char* const ItemIcon = NULL, const char* const Hint = NULL);
 		
 		~ClistBoxItem(){};
 		

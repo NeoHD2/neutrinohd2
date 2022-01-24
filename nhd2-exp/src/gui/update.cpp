@@ -136,6 +136,7 @@ class CUpdateMenuTarget : public CMenuTarget
 		}
 };
 
+/*
 class CNonLocalizedMenuSeparator : public CMenuSeparator
 {
 	const char * the_text;
@@ -151,6 +152,7 @@ class CNonLocalizedMenuSeparator : public CMenuSeparator
 			return the_text;
 		}
 };
+*/
 
 bool CFlashUpdate::selectHttpImage(void)
 {
@@ -164,8 +166,8 @@ bool CFlashUpdate::selectHttpImage(void)
 	int selected = -1;
 
 	//httpTool.setStatusViewer(progressWindow);
-	httpTool.setTitle(LOCALE_FLASHUPDATE_HEAD);
-	progressWindow->showStatusMessageUTF(g_Locale->getText(LOCALE_FLASHUPDATE_GETINFOFILE)); // UTF-8
+	httpTool.setTitle(_("Software Update"));
+	progressWindow->showStatusMessageUTF(_("getting update list")); // UTF-8
 
 	// NOTE: remember me : i dont like this menu GUI :-(
 	CMenuWidget SelectionWidget(_("Available Images/Packages"), NEUTRINO_ICON_UPDATE , MENU_WIDTH + 50);
@@ -202,7 +204,7 @@ bool CFlashUpdate::selectHttpImage(void)
 			updates_lists.push_back(url.substr(startpos, endpos - startpos));
 		}
 
-		SelectionWidget.addItem(new CNonLocalizedMenuSeparator(updates_lists.rbegin()->c_str(), LOCALE_FLASHUPDATE_SELECTIMAGE));
+		//SelectionWidget.addItem(new CNonLocalizedMenuSeparator(updates_lists.rbegin()->c_str(), LOCALE_FLASHUPDATE_SELECTIMAGE));
 		
 		if (httpTool.downloadFile(url, gTmpPath LIST_OF_UPDATES_LOCAL_FILENAME, 20))
 		{
@@ -246,7 +248,7 @@ bool CFlashUpdate::selectHttpImage(void)
 
 	if (urls.empty())
 	{
-		HintBox(_("Error"), /*g_Locale->getText(LOCALE_FLASHUPDATE_GETINFOFILEERROR)*/_("can't get update list")); // UTF-8
+		HintBox(_("Error"), _("can't get update list")); // UTF-8
 		return false;
 	}
 		
@@ -269,7 +271,7 @@ bool CFlashUpdate::getUpdateImage(const std::string & version)
 {
 	CHTTPTool httpTool;
 	char * fname, dest_name[100];
-	httpTool.setTitle(LOCALE_FLASHUPDATE_HEAD);
+	httpTool.setTitle(_("Software Update"));
 
 	fname = rindex(const_cast<char *>(filename.c_str()), '/');
 	if(fname != NULL) 
@@ -278,7 +280,7 @@ bool CFlashUpdate::getUpdateImage(const std::string & version)
 		return false;
 
 	sprintf(dest_name, "%s/%s", g_settings.update_dir, fname);
-	progressWindow->showStatusMessageUTF(std::string(g_Locale->getText(LOCALE_FLASHUPDATE_GETUPDATEFILE)) + ' ' + version); // UTF-8
+	progressWindow->showStatusMessageUTF(std::string(_("getting update list")) + ' ' + version); // UTF-8
 
 	dprintf(DEBUG_NORMAL, "get update (url): %s - %s\n", filename.c_str(), dest_name);
 	
@@ -289,7 +291,7 @@ bool CFlashUpdate::checkVersion4Update()
 {
 	char msg[400];
 	CFlashVersionInfo * versionInfo;
-	neutrino_locale_t msg_body;
+	const char* msg_body;
 
 	dprintf(DEBUG_NORMAL, "[update] mode is %d\n", updateMode);
 
@@ -300,17 +302,17 @@ bool CFlashUpdate::checkVersion4Update()
 			return false;
 
 		progressWindow->showGlobalStatus(20);
-		progressWindow->showStatusMessageUTF(g_Locale->getText(LOCALE_FLASHUPDATE_VERSIONCHECK) ); // UTF-8
+		progressWindow->showStatusMessageUTF(_("checking version")); // UTF-8
 
 		dprintf(DEBUG_NORMAL, "internet version: %s\n", newVersion.c_str());
 
 		progressWindow->showGlobalStatus(20);
 		progressWindow->hide();
 		
-		msg_body = (fileType < '3')? LOCALE_FLASHUPDATE_FLASHMSGBOX : LOCALE_FLASHUPDATE_PACKAGEMSGBOX;
+		msg_body = (fileType < '3')? _("Found the following new image:\nDate: %s, %s\nBaseImage: %s\nImageType: %s\n\nDo you want to install this version now?") : _("Found the following new package:\nPackage: %s\nDate: %s, %s\nBaseImage: %s\nType: %s\n\nDo you want to download and install this version now?");
 		
 		versionInfo = new CFlashVersionInfo(newVersion);	//NOTE: Memory leak: versionInfo
-		sprintf(msg, g_Locale->getText(msg_body), filename.c_str(), versionInfo->getDate(), versionInfo->getTime(), versionInfo->getReleaseCycle(), versionInfo->getType());
+		sprintf(msg, msg_body, filename.c_str(), versionInfo->getDate(), versionInfo->getTime(), versionInfo->getReleaseCycle(), versionInfo->getType());
 
 		// flash
 		if(fileType < '3') 
@@ -370,7 +372,7 @@ bool CFlashUpdate::checkVersion4Update()
 			
 			dprintf(DEBUG_NORMAL, "flash-file not found: %s\n", filename.c_str());
 			
-			HintBox(_("Error"), /*g_Locale->getText(LOCALE_FLASHUPDATE_CANTOPENFILE)*/_("can't open file")); // UTF-8
+			HintBox(_("Error"), _("can't open file")); // UTF-8
 			return false;
 		}
 		
@@ -394,8 +396,8 @@ bool CFlashUpdate::checkVersion4Update()
 			dprintf(DEBUG_NORMAL, "[update] manual file type: %s %c\n", ptr, fileType);
 		}
 
-		strcpy(msg, g_Locale->getText( (fileType < '3')? LOCALE_FLASHUPDATE_SQUASHFS_NOVERSION : LOCALE_FLASHUPDATE_NOVERSION ));
-		msg_body = (fileType < '3')? LOCALE_FLASHUPDATE_FLASHMSGBOX : LOCALE_FLASHUPDATE_PACKAGEMSGBOX;
+		strcpy(msg, (fileType < '3')? _("manual flash update version checks are currently not supported.\nAre you sure that you wish to install this image?") : _("by manual package update version checks are currently not supported.\nAre you sure that you wish to install this package?") );
+		msg_body = (fileType < '3')? _("Found the following new image:\nDate: %s, %s\nBaseImage: %s\nImageType: %s\n\nDo you want to install this version now?") : _("Found the following new package:\nPackage: %s\nDate: %s, %s\nBaseImage: %s\nType: %s\n\nDo you want to download and install this version now?");
 	}
 	
 	return ( (fileType == 'T')? true : MessageBox(_("Information"), msg, mbrYes, mbYes | mbNo, NEUTRINO_ICON_UPDATE) == mbrYes); // UTF-8
@@ -436,7 +438,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 		if(!getUpdateImage(newVersion)) 
 		{
 			hide();
-			HintBox(_("Error"), /*g_Locale->getText(LOCALE_FLASHUPDATE_GETUPDATEFILEERROR)*/_("can't get update list")); // UTF-8
+			HintBox(_("Error"), _("can't get update list")); // UTF-8
 			return RETURN_REPAINT;
 		}
 		
@@ -456,7 +458,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 	}
 
 	// MD5summ check
-	progressWindow->showStatusMessageUTF(g_Locale->getText(LOCALE_FLASHUPDATE_MD5CHECK)); // UTF-8
+	progressWindow->showStatusMessageUTF(_("MD5 checking")); // UTF-8
 	
 	if((updateMode == UPDATEMODE_INTERNET) && !ft.check_md5(filename, file_md5)) 
 	{
@@ -506,7 +508,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 
 		//status anzeigen
 		progressWindow->showGlobalStatus(100);
-		progressWindow->showStatusMessageUTF(g_Locale->getText(LOCALE_FLASHUPDATE_READY)); // UTF-8
+		progressWindow->showStatusMessageUTF(_("Package successfully installed")); // UTF-8
 
 		progressWindow->hide();
 
@@ -514,7 +516,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 		nfs_mounted_once = false; /* needed by update.cpp to prevent removal of modules after flashing a new cramfs, since rmmod (busybox) might no longer be available */
 		CFSMounter::umount();
 
-		HintBox(_("Information"), /*g_Locale->getText(LOCALE_FLASHUPDATE_FLASHREADYREBOOT)*/_("The image was successfully flashed.\nThe box will be rebooted now.")); // UTF-8
+		HintBox(_("Information"), _("The image was successfully flashed.\nThe box will be rebooted now.")); // UTF-8
 		
 		ft.reboot();
 		sleep(20000);
@@ -545,7 +547,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 		if( system(cmd) )
 		{
 			progressWindow->hide();
-			HintBox(_("Error"), /*g_Locale->getText(LOCALE_FLASHUPDATE_INSTALLFAILED)*/_("package install failed")); // UTF-8
+			HintBox(_("Error"), _("package install failed")); // UTF-8
 
 			return RETURN_REPAINT;
 		}
@@ -554,7 +556,7 @@ int CFlashUpdate::exec(CMenuTarget * parent, const std::string &)
 		progressWindow->showGlobalStatus(100);
 		
 		// show successfull msg :-)
-		HintBox(_("Information"), /*g_Locale->getText(LOCALE_FLASHUPDATE_READY)*/_("Package successfully installed")); // UTF-8
+		HintBox(_("Information"), _("Package successfully installed")); // UTF-8
 	}
 	
 	progressWindow->hide();
@@ -586,7 +588,7 @@ void CFlashExpert::readmtd(int _readmtd)
 	progressWindow->setTitle(_("Reading Flash"));
 	progressWindow->paint();
 	progressWindow->showGlobalStatus(0);
-	progressWindow->showStatusMessageUTF((std::string(g_Locale->getText(LOCALE_FLASHUPDATE_ACTIONREADFLASH)) + " (" + CMTDInfo::getInstance()->getMTDName(_readmtd) + ')')); // UTF-8
+	progressWindow->showStatusMessageUTF((std::string(_("Read whole image")) + " (" + CMTDInfo::getInstance()->getMTDName(_readmtd) + ')')); // UTF-8
 	CFlashTool ft;
 	ft.setStatusViewer(progressWindow);
 	ft.setMTDDevice(CMTDInfo::getInstance()->getMTDFileName(_readmtd));
@@ -599,9 +601,9 @@ void CFlashExpert::readmtd(int _readmtd)
 	else 
 	{
 		progressWindow->showGlobalStatus(100);
-		progressWindow->showStatusMessageUTF(g_Locale->getText(LOCALE_FLASHUPDATE_READY)); // UTF-8
+		progressWindow->showStatusMessageUTF(_("Package successfully installed")); // UTF-8
 		char message[500];
-		sprintf(message, g_Locale->getText(LOCALE_FLASHUPDATE_SAVESUCCESS), filename.c_str());
+		sprintf(message, _("The image was successfully saved \nunder %s."), filename.c_str());
 		sleep(1);
 		progressWindow->hide();
 		HintBox(_("Information"), _(message));
@@ -612,8 +614,7 @@ void CFlashExpert::writemtd(const std::string & filename, int mtdNumber)
 {
 	char message[500];
 
-	sprintf(message,
-		g_Locale->getText(LOCALE_FLASHUPDATE_REALLYFLASHMTD), FILESYSTEM_ENCODING_TO_UTF8(std::string(filename).c_str()), CMTDInfo::getInstance()->getMTDName(mtdNumber).c_str());
+	sprintf(message, _("Do you really want to flash?\n\nIf a error occurs or the image is not\nvalid, the box will not boot after flashing.\n\nImagename: %s\nTarget: %s"), FILESYSTEM_ENCODING_TO_UTF8(std::string(filename).c_str()), CMTDInfo::getInstance()->getMTDName(mtdNumber).c_str());
 
 	if (MessageBox(_("Information"), message, mbrNo, mbYes | mbNo, NEUTRINO_ICON_UPDATE) != mbrYes) // UTF-8
 		return;
@@ -638,10 +639,10 @@ void CFlashExpert::writemtd(const std::string & filename, int mtdNumber)
 	else 
 	{
 		progressWindow->showGlobalStatus(100);
-		progressWindow->showStatusMessageUTF(g_Locale->getText(LOCALE_FLASHUPDATE_READY)); // UTF-8
+		progressWindow->showStatusMessageUTF(_("Package successfully installed")); // UTF-8
 		sleep(1);
 		progressWindow->hide();
-		HintBox(_("Information"), /*g_Locale->getText(LOCALE_FLASHUPDATE_FLASHREADYREBOOT)*/_("The image was successfully flashed.\nThe box will be rebooted now.")); // UTF-8
+		HintBox(_("Information"), _("The image was successfully flashed.\nThe box will be rebooted now.")); // UTF-8
 		ft.reboot();
 	}
 }

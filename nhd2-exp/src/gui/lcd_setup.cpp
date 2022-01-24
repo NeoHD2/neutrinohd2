@@ -196,7 +196,7 @@ void CLCDSettings::showMenu()
 }
 
 // lcd notifier
-bool CLcdNotifier::changeNotify(const neutrino_locale_t, void * Data)
+bool CLcdNotifier::changeNotify(const std::string&, void * Data)
 {
 	int state = *(int *)Data;
 

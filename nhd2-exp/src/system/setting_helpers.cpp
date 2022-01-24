@@ -113,7 +113,7 @@ extern CFrontend * live_fe;
 extern t_channel_id live_channel_id;
 
 // sectionsd config notifier
-bool CSectionsdConfigNotifier::changeNotify(const neutrino_locale_t, void *)
+bool CSectionsdConfigNotifier::changeNotify(const std::string&, void *)
 {
 	dprintf(DEBUG_NORMAL, "CSectionsdConfigNotifier::changeNotify\n");
 
@@ -123,7 +123,7 @@ bool CSectionsdConfigNotifier::changeNotify(const neutrino_locale_t, void *)
 }
 
 // color setup notifier
-bool CColorSetupNotifier::changeNotify(const neutrino_locale_t, void *)
+bool CColorSetupNotifier::changeNotify(const std::string&, void *)
 {
 	dprintf(DEBUG_NORMAL, "CColorSetupNotifier::changeNotify:\n");
 	

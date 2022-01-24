@@ -70,7 +70,7 @@ void CNEpisodes::loadEpisodesTitle()
 	removeThumbnailDir();
 	createThumbnailDir();
 
-	CHintBox loadBox("Serien Trailer", g_Locale->getText(LOCALE_MOVIEBROWSER_SCAN_FOR_MOVIES));
+	CHintBox loadBox(_("Serien Trailer"), _("Scan for Movies ..."));
 	loadBox.paint();
 
 	tmdb = new CTmdb();

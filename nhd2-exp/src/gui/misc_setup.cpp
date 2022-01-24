@@ -195,11 +195,11 @@ int CGeneralSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	return ret;
 }
 
-bool CGeneralSettings::changeNotify(const neutrino_locale_t OptionName, void */*data*/)
+bool CGeneralSettings::changeNotify(const std::string& OptionName, void */*data*/)
 {
 	dprintf(DEBUG_NORMAL, "CGeneralSettings::changeNotify:\n");
 	
-	if(ARE_LOCALES_EQUAL(OptionName, LOCALE_MISCSETTINGS_INFOBAR_RADIOTEXT)) 
+	if(OptionName == _("Radio Text")) 
 	{
 		bool usedBackground = CFrameBuffer::getInstance()->getuseBackground();
 		
@@ -356,7 +356,7 @@ void CGeneralSettings::showMenu()
 }
 
 // TZ notifier
-bool CTZChangeNotifier::changeNotify(const neutrino_locale_t, void * Data)
+bool CTZChangeNotifier::changeNotify(const std::string&, void * Data)
 {
 	bool found = false;
 	std::string name, zone;
@@ -553,18 +553,18 @@ int CChannelListSettings::exec(CMenuTarget* parent, const std::string& actionKey
 	return ret;
 }
 
-bool CChannelListSettings::changeNotify(const neutrino_locale_t OptionName, void */*data*/)
+bool CChannelListSettings::changeNotify(const std::string& OptionName, void */*data*/)
 {
 	dprintf(DEBUG_NORMAL, "CChannelListSettings::changeNotify:\n");
 	
-	if(ARE_LOCALES_EQUAL(OptionName, LOCALE_CHANNELLIST_MAKE_HDLIST)) // HD bouquet
+	if(OptionName == _("Create list of HD channels")) // HD bouquet
 	{
 		CNeutrinoApp::getInstance()->channelsInit();
 		CNeutrinoApp::getInstance()->channelList->adjustToChannelID(live_channel_id);
 		
 		return true;
 	}
-	else if(ARE_LOCALES_EQUAL(OptionName, LOCALE_EXTRA_ZAPIT_MAKE_BOUQUET)) // rmains channel
+	else if(OptionName == _("Make Remaining Channels list")) // rmains channel
 	{
 		setZapitConfig(&zapitCfg);
 		
@@ -572,7 +572,7 @@ bool CChannelListSettings::changeNotify(const neutrino_locale_t OptionName, void
 		
 		return true;
 	}
-	else if(ARE_LOCALES_EQUAL(OptionName, LOCALE_ZAPIT_SCANSDT))
+	else if(OptionName == _("Scan SDT for updates"))
 	{
 		setZapitConfig(&zapitCfg);
 		bool ret = (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbNo | mbYes) == mbrYes);
@@ -800,7 +800,7 @@ COnlineEPGNotifier::COnlineEPGNotifier(CMenuForwarder* m1, CMenuOptionChooser* m
 	item3 = m3;
 }
 
-bool COnlineEPGNotifier::changeNotify(const neutrino_locale_t, void *)
+bool COnlineEPGNotifier::changeNotify(const std::string&, void *)
 {
 	dprintf(DEBUG_NORMAL, "COnlineEPGNotifier::changeNotify\n");
 
@@ -816,7 +816,7 @@ bool COnlineEPGNotifier::changeNotify(const neutrino_locale_t, void *)
 // epg language select notifier
 void sectionsd_set_languages(const std::vector<std::string>& newLanguages);
 
-bool CEPGlangSelectNotifier::changeNotify(const neutrino_locale_t, void *)
+bool CEPGlangSelectNotifier::changeNotify(const std::string&, void *)
 {
 	std::vector<std::string> v_languages;
 	bool found = false;
@@ -852,7 +852,7 @@ bool CEPGlangSelectNotifier::changeNotify(const neutrino_locale_t, void *)
 }
 
 // epg config notifier
-bool CEPGConfigNotifier::changeNotify(const neutrino_locale_t, void *)
+bool CEPGConfigNotifier::changeNotify(const std::string&, void *)
 {
 	dprintf(DEBUG_NORMAL, "CEPGConfigNotifier::changeNotify\n");
 
@@ -930,7 +930,7 @@ CMiscNotifier::CMiscNotifier( CMenuItem* i1)
    	toDisable[0] = i1;
 }
 
-bool CMiscNotifier::changeNotify(const neutrino_locale_t, void *)
+bool CMiscNotifier::changeNotify(const std::string&, void *)
 {
 	dprintf(DEBUG_NORMAL, "CMiscNotifier::changeNotify\n");
 

@@ -223,128 +223,128 @@ void CEpgData::start()
 }
 
 #define GENRE_MOVIE_COUNT 9
-const neutrino_locale_t genre_movie[GENRE_MOVIE_COUNT] =
+const char* const genre_movie[GENRE_MOVIE_COUNT] =
 {
-	LOCALE_GENRE_MOVIE_0,
-	LOCALE_GENRE_MOVIE_1,
-	LOCALE_GENRE_MOVIE_2,
-	LOCALE_GENRE_MOVIE_3,
-	LOCALE_GENRE_MOVIE_4,
-	LOCALE_GENRE_MOVIE_5,
-	LOCALE_GENRE_MOVIE_6,
-	LOCALE_GENRE_MOVIE_7,
-	LOCALE_GENRE_MOVIE_8
+	_("movie/drama"),
+	_("detective/thriller"),
+	_("adventure/western/war"),
+	_("science fiction/fantasy/horror"),
+	_("comedy"),
+	_("soap/melodrama/folkloric"),
+	_("romance"),
+	_("serious/classical/religious/historical movie/drama"),
+	_("adult movie/drama")
 };
 
 #define GENRE_NEWS_COUNT 5
-const neutrino_locale_t genre_news[GENRE_NEWS_COUNT] =
+const char* const genre_news[GENRE_NEWS_COUNT] =
 {
-	LOCALE_GENRE_NEWS_0,
-	LOCALE_GENRE_NEWS_1,
-	LOCALE_GENRE_NEWS_2,
-	LOCALE_GENRE_NEWS_3,
-	LOCALE_GENRE_NEWS_4
+	_("news"),
+	_("news/weather report"),
+	_("news magazine"),
+	_("documentary"),
+	_("discussion/interview/debate")
 };
 
 #define GENRE_SHOW_COUNT 4
-const neutrino_locale_t genre_show[GENRE_SHOW_COUNT] =
+const char* const genre_show[GENRE_SHOW_COUNT] =
 {
-	LOCALE_GENRE_SHOW_0,
-	LOCALE_GENRE_SHOW_1,
-	LOCALE_GENRE_SHOW_2,
-	LOCALE_GENRE_SHOW_3
+	_("Show / Gameshow"),
+	_("game show/quiz/contest"),
+	_("variety show"),
+	_("talk show")
 };
 
 #define GENRE_SPORTS_COUNT 12
-const neutrino_locale_t genre_sports[GENRE_SPORTS_COUNT] =
+const char* const genre_sports[GENRE_SPORTS_COUNT] =
 {
-	LOCALE_GENRE_SPORTS_0,
-	LOCALE_GENRE_SPORTS_1,
-	LOCALE_GENRE_SPORTS_2,
-	LOCALE_GENRE_SPORTS_3,
-	LOCALE_GENRE_SPORTS_4,
-	LOCALE_GENRE_SPORTS_5,
-	LOCALE_GENRE_SPORTS_6,
-	LOCALE_GENRE_SPORTS_7,
-	LOCALE_GENRE_SPORTS_8,
-	LOCALE_GENRE_SPORTS_9,
-	LOCALE_GENRE_SPORTS_10,
-	LOCALE_GENRE_SPORTS_11
+	_("sports"),
+	_("special events (Olympic Games,World Cup etc.)"),
+	_("sports magazines"),
+	_("football/soccer"),
+	_("tennis/squash"),
+	_("team sports (excluding football)"),
+	_("athletics"),
+	_("motor sports"),
+	_("water sports"),
+	_("winter sports"),
+	_("equestrian"),
+	_("martial sports"),
 };
 
 #define GENRE_CHILDRENS_PROGRAMMES_COUNT 6
-const neutrino_locale_t genre_childrens_programmes[GENRE_CHILDRENS_PROGRAMMES_COUNT] =
+const char* const genre_childrens_programmes[GENRE_CHILDRENS_PROGRAMMES_COUNT] =
 {
-	LOCALE_GENRE_CHILDRENS_PROGRAMMES_0,
-	LOCALE_GENRE_CHILDRENS_PROGRAMMES_1,
-	LOCALE_GENRE_CHILDRENS_PROGRAMMES_2,
-	LOCALE_GENRE_CHILDRENS_PROGRAMMES_3,
-	LOCALE_GENRE_CHILDRENS_PROGRAMMES_4,
-	LOCALE_GENRE_CHILDRENS_PROGRAMMES_5
+	_("children / juvenile program"),
+	_("pre-school children's programmes"),
+	_("entertainment programmes for 6 to 14"),
+	_("entertainment programmes for 10 to 16"),
+	_("informational/educational/school programmes"),
+	_("cartoons/puppets"),
 };
 
 #define GENRE_MUSIC_DANCE_COUNT 7
-const neutrino_locale_t genre_music_dance[GENRE_MUSIC_DANCE_COUNT] =
+const char* const genre_music_dance[GENRE_MUSIC_DANCE_COUNT] =
 {
-	LOCALE_GENRE_MUSIC_DANCE_0,
-	LOCALE_GENRE_MUSIC_DANCE_1,
-	LOCALE_GENRE_MUSIC_DANCE_2,
-	LOCALE_GENRE_MUSIC_DANCE_3,
-	LOCALE_GENRE_MUSIC_DANCE_4,
-	LOCALE_GENRE_MUSIC_DANCE_5,
-	LOCALE_GENRE_MUSIC_DANCE_6
+	_("music / ballet / dance"),
+	_("rock/pop"),
+	_("serious music/classical music"),
+	_("folk/traditional music"),
+	_("jazz"),
+	_("musical/opera"),
+	_("ballet"),
 };
 
 #define GENRE_ARTS_COUNT 12
-const neutrino_locale_t genre_arts_dance[GENRE_ARTS_COUNT] =
+const char* const genre_arts_dance[GENRE_ARTS_COUNT] =
 {
-	LOCALE_GENRE_ARTS_0,
-	LOCALE_GENRE_ARTS_1,
-	LOCALE_GENRE_ARTS_2,
-	LOCALE_GENRE_ARTS_3,
-	LOCALE_GENRE_ARTS_4,
-	LOCALE_GENRE_ARTS_5,
-	LOCALE_GENRE_ARTS_6,
-	LOCALE_GENRE_ARTS_7,
-	LOCALE_GENRE_ARTS_8,
-	LOCALE_GENRE_ARTS_9,
-	LOCALE_GENRE_ARTS_10,
-	LOCALE_GENRE_ARTS_11
+	_("arts / culture"),
+	_("performing arts"),
+	_("fine arts"),
+	_("religion"),
+	_("popular culture/traditional arts"),
+	_("literature"),
+	_("film/cinema"),
+	_("experimental film/video"),
+	_("broadcasting/press"),
+	_("new media"),
+	_("arts/culture magazines"),
+	_("fashion"),
 };
 
 #define GENRE_SOCIAL_POLITICAL_COUNT 4
-const neutrino_locale_t genre_social_political[GENRE_SOCIAL_POLITICAL_COUNT] =
+const char* const genre_social_political[GENRE_SOCIAL_POLITICAL_COUNT] =
 {
-	LOCALE_GENRE_SOCIAL_POLITICAL_0,
-	LOCALE_GENRE_SOCIAL_POLITICAL_1,
-	LOCALE_GENRE_SOCIAL_POLITICAL_2,
-	LOCALE_GENRE_SOCIAL_POLITICAL_3
+	_("social & politic events / business"),
+	_("magazines/reports/documentary"),
+	_("economics/social advisory"),
+	_("remarkable people"),
 };
 
 #define GENRE_DOCUS_MAGAZINES_COUNT 8
-const neutrino_locale_t genre_docus_magazines[GENRE_DOCUS_MAGAZINES_COUNT] =
+const char* const genre_docus_magazines[GENRE_DOCUS_MAGAZINES_COUNT] =
 {
-	LOCALE_GENRE_DOCUS_MAGAZINES_0,
-	LOCALE_GENRE_DOCUS_MAGAZINES_1,
-	LOCALE_GENRE_DOCUS_MAGAZINES_2,
-	LOCALE_GENRE_DOCUS_MAGAZINES_3,
-	LOCALE_GENRE_DOCUS_MAGAZINES_4,
-	LOCALE_GENRE_DOCUS_MAGAZINES_5,
-	LOCALE_GENRE_DOCUS_MAGAZINES_6,
-	LOCALE_GENRE_DOCUS_MAGAZINES_7
+	_("documentation / magazine"),
+	_("nature/animals/environment"),
+	_("technology/natural sciences"),
+	_("medicine/physiology/psychology"),
+	_("foreign countries/expeditions"),
+	_("social/spiritual sciences"),
+	_("further education"),
+	_("languages"),
 };
 
 #define GENRE_TRAVEL_HOBBIES_COUNT 8
-const neutrino_locale_t genre_travel_hobbies[GENRE_TRAVEL_HOBBIES_COUNT] =
+const char* const genre_travel_hobbies[GENRE_TRAVEL_HOBBIES_COUNT] =
 {
-	LOCALE_GENRE_TRAVEL_HOBBIES_0,
-	LOCALE_GENRE_TRAVEL_HOBBIES_1,
-	LOCALE_GENRE_TRAVEL_HOBBIES_2,
-	LOCALE_GENRE_TRAVEL_HOBBIES_3,
-	LOCALE_GENRE_TRAVEL_HOBBIES_4,
-	LOCALE_GENRE_TRAVEL_HOBBIES_5,
-	LOCALE_GENRE_TRAVEL_HOBBIES_6,
-	LOCALE_GENRE_TRAVEL_HOBBIES_7
+	_("travel & recreation"),
+	_("tourism/travel"),
+	_("tourism/travel"),
+	_("handicraft"),
+	_("motoring"),
+	_("fitness & health"),
+	_("cooking"),
+	_("gardening")
 };
 
 const unsigned char genre_sub_classes[10] =
@@ -361,18 +361,18 @@ const unsigned char genre_sub_classes[10] =
 	GENRE_TRAVEL_HOBBIES_COUNT
 };
 
-const neutrino_locale_t * genre_sub_classes_list[10] =
+const char*const genre_sub_classes_list[10] =
 {
-	genre_movie,
-	genre_news,
-	genre_show,
-	genre_sports,
-	genre_childrens_programmes,
-	genre_music_dance,
-	genre_arts_dance,
-	genre_social_political,
-	genre_docus_magazines,
-	genre_travel_hobbies
+	*genre_movie,
+	*genre_news,
+	*genre_show,
+	*genre_sports,
+	*genre_childrens_programmes,
+	*genre_music_dance,
+	*genre_arts_dance,
+	*genre_social_political,
+	*genre_docus_magazines,
+	*genre_travel_hobbies
 };
 
 bool CEpgData::hasFollowScreenings(const t_channel_id /*channel_id*/, const std::string & title) 
@@ -390,8 +390,9 @@ bool CEpgData::hasFollowScreenings(const t_channel_id /*channel_id*/, const std:
 
 const char * GetGenre(const unsigned char contentClassification) // UTF-8
 {
-	neutrino_locale_t res;
+	const char* res = NULL;
 
+/*
 	int i = (contentClassification & 0xF0);
 	
 	if ((i >= 0x010) && (i < 0x0B0))
@@ -402,9 +403,10 @@ const char * GetGenre(const unsigned char contentClassification) // UTF-8
 		res = genre_sub_classes_list[i][((contentClassification & 0x0F) < genre_sub_classes[i]) ? (contentClassification & 0x0F) : 0];
 	}
 	else
-		res = LOCALE_GENRE_UNKNOWN;
+		res = _("unknown");
+*/
 
-	return g_Locale->getText(res);
+	return res;
 }
 
 static bool sortByDateTime (const CChannelEvent& a, const CChannelEvent& b)
@@ -512,7 +514,7 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 	//scan epg-data - sort to list
 	if (epgData.info2.empty())
 	{
-		epgBuffer += g_Locale->getText(LOCALE_EPGVIEWER_NODETAILED);
+		epgBuffer += _("No detailed informations available");
 		epgBuffer += "\n";
 	}
 	else
@@ -563,7 +565,7 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 	// -- 2002-05-03 rasc
 	if (hasFollowScreenings(channel_id, epgData.title)) 
 	{
-		epgBuffer += g_Locale->getText(LOCALE_EPGVIEWER_MORE_SCREENINGS);
+		epgBuffer += _("More Screenings on this Channel");
 		epgBuffer += ":";
 
 		FollowScreenings(channel_id, epgData.title);
@@ -894,17 +896,17 @@ void CEpgData::GetEPGData(const t_channel_id channel_id, uint64_t id, time_t* st
 		// If we have items, merge and localize them (e.g. actor1, actor2, ... -> Actors)
 		if (false == epgData.itemDescriptions.empty()) 
 		{
-			reformatExtendedEvents("Year of production", g_Locale->getText(LOCALE_EPGEXTENDED_YEAR_OF_PRODUCTION), false, epgData);
+			reformatExtendedEvents("Year of production", _("Year of Production"), false, epgData);
 
-			reformatExtendedEvents("Original title", g_Locale->getText(LOCALE_EPGEXTENDED_ORIGINAL_TITLE), false, epgData);
+			reformatExtendedEvents("Original title", _("Original Title"), false, epgData);
 
-			reformatExtendedEvents("Director", g_Locale->getText(LOCALE_EPGEXTENDED_DIRECTOR), false, epgData);
+			reformatExtendedEvents("Director", _("Director"), false, epgData);
 
-			reformatExtendedEvents("Actor", g_Locale->getText(LOCALE_EPGEXTENDED_ACTORS), true, epgData);
+			reformatExtendedEvents("Actor", _("Actors"), true, epgData);
 
-			reformatExtendedEvents("Guests", g_Locale->getText(LOCALE_EPGEXTENDED_GUESTS), false, epgData);
+			reformatExtendedEvents("Guests", _("Guests"), false, epgData);
 
-			reformatExtendedEvents("Presenter", g_Locale->getText(LOCALE_EPGEXTENDED_PRESENTER), false, epgData);
+			reformatExtendedEvents("Presenter", _("Presenter"), false, epgData);
 		}
 		
 		struct tm *pStartZeit = localtime(&(epgData.epg_times).startzeit);
@@ -969,7 +971,7 @@ int CEpgData::FollowScreenings (const t_channel_id /*channel_id*/, const std::st
 	time_t			curtime;
 	struct  tm		*tmStartZeit;
 	std::string		screening_dates,screening_nodual;
-	int				count;
+	int			count;
 	char			tmpstr[256];
 
   	count = 0;
@@ -990,13 +992,13 @@ int CEpgData::FollowScreenings (const t_channel_id /*channel_id*/, const std::st
 
 			screening_dates = "    ";
 
-			screening_dates += g_Locale->getText(CLocaleManager::getWeekday(tmStartZeit));
+			screening_dates += ""; //_(tmStartZeit->tm_wday); // FIXME: weekdays
 			screening_dates += '.';
 
 			strftime(tmpstr, sizeof(tmpstr), "  %d.", tmStartZeit );
 			screening_dates += tmpstr;
 
-			screening_dates += g_Locale->getText(CLocaleManager::getMonth(tmStartZeit));
+			screening_dates += ""; //_(tmStartZeit->tm_mon); // FIXME: months
 
 			strftime(tmpstr, sizeof(tmpstr), ".  %H:%M ", tmStartZeit );
 			screening_dates += tmpstr;

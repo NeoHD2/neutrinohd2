@@ -187,12 +187,12 @@ void CThemes::readThemes(CMenuWidget &themes)
 				{
 					if ( p == 0 && hasCVSThemes == false ) 
 					{
-						themes.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_COLORTHEMEMENU_SELECT2)));
+						themes.addItem(new CMenuSeparator(LINE | STRING, _("Select theme")));
 						hasCVSThemes = true;
 					} 
 					else if ( p == 1 && hasUserThemes == false ) 
 					{
-						themes.addItem(new CMenuSeparator(LINE | STRING, g_Locale->getText(LOCALE_COLORTHEMEMENU_SELECT1)));
+						themes.addItem(new CMenuSeparator(LINE | STRING, _("Select theme")));
 						hasUserThemes = true;
 					}
 					
@@ -326,7 +326,7 @@ void CThemes::readFile(const char* themename)
 		g_settings.menu_FootInfo_Text_blue = themefile.getInt32( "menu_FootInfo_Text_blue", 85);
 
 		notifier = new CColorSetupNotifier;
-		notifier->changeNotify(NONEXISTANT_LOCALE, NULL);
+		notifier->changeNotify("", NULL);
 		
 		delete notifier;
 		notifier = NULL;
@@ -494,7 +494,7 @@ void CThemes::setupDefaultColors()
 	g_settings.menu_FootInfo_Text_blue = 85;
 	
 	notifier = new CColorSetupNotifier();
-	notifier->changeNotify(NONEXISTANT_LOCALE, NULL);
+	notifier->changeNotify("", NULL);
 	delete notifier;
 	notifier = NULL;
 }

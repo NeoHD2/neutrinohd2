@@ -206,7 +206,7 @@ void EventList::readEvents(const t_channel_id channel_id)
 	{
 		CChannelEvent evt;
 
-		evt.description = g_Locale->getText(LOCALE_EPGLIST_NOEVENTS);
+		evt.description = _("EPG is not available...");
 		evt.eventID = 0;
 		evtlist.push_back(evt);
 
@@ -631,7 +631,7 @@ void EventList::paint(t_channel_id channel_id)
 			char tmpstr[256];
 			struct tm *tmStartZeit = localtime(&evtlist[count].startTime);
 
-			datetime1_str = g_Locale->getText(CLocaleManager::getWeekday(tmStartZeit));
+			datetime1_str = ""; //_(tmStartZeit); //FIXME:
 
 			strftime(tmpstr, sizeof(tmpstr), ". %H:%M, ", tmStartZeit );
 			datetime1_str += tmpstr;
@@ -639,7 +639,7 @@ void EventList::paint(t_channel_id channel_id)
 			strftime(tmpstr, sizeof(tmpstr), " %d. ", tmStartZeit );
 			datetime1_str += tmpstr;
 
-			datetime1_str += g_Locale->getText(CLocaleManager::getMonth(tmStartZeit));
+			datetime1_str += ""; //_(tmStartZeit); FIXME:
 
 			datetime1_str += '.';
 
@@ -806,7 +806,7 @@ int EventList::findEvents(void)
 			{
 				CChannelEvent evt;
 
-				evt.description = g_Locale->getText(LOCALE_EPGVIEWER_NOTFOUND);
+				evt.description = _("no epg found");
 				evt.eventID = 0;
 				evtlist.push_back(evt);
 			}
@@ -815,7 +815,7 @@ int EventList::findEvents(void)
 			current_event = 0;
 		selected= current_event;
 		
-		name = g_Locale->getText(LOCALE_EVENTFINDER_SEARCH);
+		name = _("Search");
 		name += ": '";
 		name += m_search_keyword;
 		name += "'";

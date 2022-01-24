@@ -113,7 +113,7 @@ class CSatelliteSetupNotifier : public CChangeObserver
 	public:
 		CSatelliteSetupNotifier(int num = 0);
 		void addItem(int list, CMenuItem* item);
-		bool changeNotify(const neutrino_locale_t, void * Data);
+		bool changeNotify(const std::string&, void * Data);
 };
 
 // scan setup notifier
@@ -130,7 +130,7 @@ class CScanSetupNotifier : public CChangeObserver
 	public:
 		CScanSetupNotifier(int num = 0);
 		void addItem(int list , CMenuItem *item);
-		bool changeNotify(const neutrino_locale_t, void * Data);
+		bool changeNotify(const std::string&, void * Data);
 };
 
 class CTunerSetup : public CMenuTarget

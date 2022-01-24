@@ -143,7 +143,7 @@ int CHDDMenuHandler::exec(CMenuTarget * parent, const std::string &actionKey)
 	}
 	else if(actionKey == "activateNow")
 	{
-		CHintBox * hintBox = new CHintBox(_("Information"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save Settings now")); // UTF-8
+		CHintBox * hintBox = new CHintBox(_("Information"), _("Save Settings now")); // UTF-8
 		hintBox->paint();
 		
 		CHDDDestExec * hddActiv = new CHDDDestExec();
@@ -368,7 +368,7 @@ int CHDDMenuHandler::hddMenu()
 			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Filexplorer"), mounted, NULL, new CHDDBrowser(), DEVICE));
 			
 			// part
-			tempMenu[i]->addItem(new CMenuForwarder(PART, true, mounted? g_Locale->getText(LOCALE_HDD_MOUNTED) : g_Locale->getText(LOCALE_HDD_UMOUNTED), PartMenu[j]));
+			tempMenu[i]->addItem(new CMenuForwarder(PART, true, mounted? _("HDD mounted") : _("HDD umounted"), PartMenu[j]));
 			
 			close(fd);
 		}
@@ -474,7 +474,7 @@ int CHDDInit::exec(CMenuTarget * /*parent*/, const std::string& actionKey)
 
 	if (!output) 
 	{
-		hintbox = new CHintBox(_("HDD Init"), /*g_Locale->getText(LOCALE_HDD_INIT_FAILED)*/_("HDD init failed !"));
+		hintbox = new CHintBox(_("HDD Init"), _("HDD init failed !"));
 		hintbox->paint();
 		sleep(2);
 		delete hintbox;
@@ -654,7 +654,7 @@ int CHDDFmtExec::exec(CMenuTarget *parent, const std::string& actionKey)
 			
 			if(res == -1)
 			{
-				hintbox = new CHintBox(_("HDD Format"), /*g_Locale->getText(LOCALE_HDD_UMOUNT_WARN)*/_("HDD unmount failed !"));
+				hintbox = new CHintBox(_("HDD Format"), _("HDD unmount failed !"));
 				hintbox->paint();
 				sleep(2);
 				delete hintbox;
@@ -694,7 +694,7 @@ int CHDDFmtExec::exec(CMenuTarget *parent, const std::string& actionKey)
 	
 	if (!output) 
 	{
-		hintbox = new CHintBox(_("HDD Init"), /*g_Locale->getText(LOCALE_HDD_FORMAT_FAILED)*/_("HDD format failed !"));
+		hintbox = new CHintBox(_("HDD Init"), _("HDD format failed !"));
 		hintbox->paint();
 		sleep(2);
 		delete hintbox;
@@ -826,7 +826,7 @@ int CHDDChkExec::exec(CMenuTarget *parent, const std::string& actionKey)
 		{
 			dprintf(DEBUG_NORMAL, "CHDDChkExec::exec: can not umount %s\n", dst);
 				
-			hintbox = new CHintBox(_("Check filesystem"), /*g_Locale->getText(LOCALE_HDD_CHECK_FAILED)*/_("HDD check failed !"));
+			hintbox = new CHintBox(_("Check filesystem"), _("HDD check failed !"));
 			hintbox->paint();
 			sleep(2);
 			delete hintbox;
@@ -850,7 +850,7 @@ int CHDDChkExec::exec(CMenuTarget *parent, const std::string& actionKey)
 	
 	if (!output) 
 	{
-		hintbox = new CHintBox(_("HDD Init"), /*g_Locale->getText(LOCALE_HDD_CHECK_FAILED)*/_("HDD check failed !"));
+		hintbox = new CHintBox(_("HDD Init"), _("HDD check failed !"));
 		hintbox->paint();
 		sleep(2);
 		delete hintbox;
@@ -905,7 +905,7 @@ int CHDDChkExec::exec(CMenuTarget *parent, const std::string& actionKey)
 	
 	if(res < 0)
 	{
-		hintbox = new CHintBox(_("HDD Mount"), /*g_Locale->getText(LOCALE_HDD_MOUNTFAILED)*/_("HDD Mount Failed"));
+		hintbox = new CHintBox(_("HDD Mount"), _("HDD Mount Failed"));
 		hintbox->paint();
 		sleep(2);
 		delete hintbox;
@@ -938,7 +938,7 @@ int CHDDMountMSGExec::exec(CMenuTarget *parent, const std::string& actionKey)
 	/* if mounted */
 	if(res == 1) 
 	{
-		hintbox = new CHintBox(_("HDD Mount"), /*g_Locale->getText(LOCALE_HDD_MOUNTED)*/_("HDD Mounted"));
+		hintbox = new CHintBox(_("HDD Mount"), _("HDD Mounted"));
 		hintbox->paint();
 		sleep(2);
 		delete hintbox;
@@ -960,7 +960,7 @@ int CHDDMountMSGExec::exec(CMenuTarget *parent, const std::string& actionKey)
 
 			if(res == 0) 
 			{
-				hintbox = new CHintBox(_("HDD Mount"), /*g_Locale->getText(LOCALE_HDD_MOUNTED)*/_("HDD Mounted"));
+				hintbox = new CHintBox(_("HDD Mount"), _("HDD Mounted"));
 				hintbox->paint();
 				sleep(2);
 				delete hintbox;
@@ -976,7 +976,7 @@ int CHDDMountMSGExec::exec(CMenuTarget *parent, const std::string& actionKey)
 				
 				if(res == 0)
 				{
-					hintbox = new CHintBox(_("HDD Mount"), /*g_Locale->getText(LOCALE_HDD_MOUNTED)*/_("HDD Mounted"));
+					hintbox = new CHintBox(_("HDD Mount"), _("HDD Mounted"));
 					hintbox->paint();
 					sleep(2);
 					delete hintbox;
@@ -994,7 +994,7 @@ int CHDDMountMSGExec::exec(CMenuTarget *parent, const std::string& actionKey)
 					
 					if(res == 0)
 					{
-						hintbox = new CHintBox(_("HDD Mount"), /*g_Locale->getText(LOCALE_HDD_MOUNTED)*/_("HDD Mounted"));
+						hintbox = new CHintBox(_("HDD Mount"), _("HDD Mounted"));
 						hintbox->paint();
 						sleep(2);
 						delete hintbox;
@@ -1003,7 +1003,7 @@ int CHDDMountMSGExec::exec(CMenuTarget *parent, const std::string& actionKey)
 					}
 					else
 					{
-						hintbox = new CHintBox(_("HDD Mount"), /*g_Locale->getText(LOCALE_HDD_MOUNTFAILED)*/_("HDD Mount failed !"));
+						hintbox = new CHintBox(_("HDD Mount"), _("HDD Mount failed !"));
 						hintbox->paint();
 						sleep(2);
 						delete hintbox;
@@ -1014,7 +1014,7 @@ int CHDDMountMSGExec::exec(CMenuTarget *parent, const std::string& actionKey)
 		}
 		else // can not get fstype
 		{
-			hintbox = new CHintBox(_("HDD Mount"), /*g_Locale->getText(LOCALE_HDD_MOUNTFAILED)*/_("HDD Mount failed !"));
+			hintbox = new CHintBox(_("HDD Mount"), _("HDD Mount failed !"));
 			hintbox->paint();
 			sleep(2);
 			delete hintbox;
@@ -1143,7 +1143,7 @@ int CHDDuMountMSGExec::exec(CMenuTarget* parent, const std::string& actionKey)
 
 		if(res == 0)	/* umounted */
 		{
-			hintbox = new CHintBox(_("HDD Mount"), /*g_Locale->getText(LOCALE_HDD_UMOUNTED)*/_("HDD umount"));
+			hintbox = new CHintBox(_("HDD Mount"), _("HDD umount"));
 			hintbox->paint();
 			sleep(2);
 			delete hintbox;
@@ -1152,7 +1152,7 @@ int CHDDuMountMSGExec::exec(CMenuTarget* parent, const std::string& actionKey)
 		}
 		else
 		{
-			hintbox = new CHintBox(_("HDD Mount"), /*g_Locale->getText(LOCALE_HDD_UMOUNT_WARN)*/_("HDD unmount failed !"));
+			hintbox = new CHintBox(_("HDD Mount"), _("HDD unmount failed !"));
 			hintbox->paint();
 			sleep(2);
 			delete hintbox;
@@ -1162,7 +1162,7 @@ int CHDDuMountMSGExec::exec(CMenuTarget* parent, const std::string& actionKey)
 	}
 
 	// not mounted
-	hintbox = new CHintBox(_("HDD Mount"), /*g_Locale->getText(LOCALE_HDD_UMOUNTED)*/_("HDD umounted"));
+	hintbox = new CHintBox(_("HDD Mount"), _("HDD umounted"));
 	hintbox->paint();
 	sleep(2);
 	delete hintbox;
@@ -1267,7 +1267,7 @@ REPEAT:
 	}
 	else
 	{
-		hintbox = new CHintBox(_("HDD Mount"), /*g_Locale->getText(LOCALE_HDD_UMOUNTED)*/_("HDD umounted"));
+		hintbox = new CHintBox(_("HDD Mount"), _("HDD umounted"));
 		hintbox->paint();
 		sleep(2);
 		delete hintbox;

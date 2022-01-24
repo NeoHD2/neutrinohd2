@@ -235,7 +235,6 @@ bool CNeutrinoApp::showUserMenu(int button)
 	if( button == SNeutrinoSettings::BUTTON_BLUE) 
 	{
 		if( txt.empty() )		                
-			//txt = g_Locale->getText(LOCALE_MAINMENU_FEATURES);
 			txt = _("Features");
 	}
 

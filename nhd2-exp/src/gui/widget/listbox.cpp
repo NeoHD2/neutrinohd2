@@ -123,35 +123,11 @@ void CMenuItem::setMarked(const bool Marked)
 }
 
 // CMenuOptionChooser
-/*
-CMenuOptionChooser::CMenuOptionChooser(const neutrino_locale_t OptionName, int *const OptionValue, const struct keyval* const Options, const unsigned Number_Of_Options, const bool Active, CChangeObserver* const Observ, const neutrino_msg_t DirectKey, const std::string& IconName, bool Pulldown)
-{
-	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;	
-	
-	optionNameString = g_Locale->getText(OptionName);
-	optionName = OptionName;
-	
-	options = Options;
-	active = Active;
-	optionValue = OptionValue;
-	number_of_options = Number_Of_Options;
-	observ = Observ;
-	directKey = DirectKey;
-	iconName = IconName;
-	can_arrow = true;
-	
-	pulldown = Pulldown;
-
-	itemType = ITEM_TYPE_OPTION_CHOOSER;
-}
-*/
-
 CMenuOptionChooser::CMenuOptionChooser(const char * const OptionName, int* const OptionValue, const struct keyval *const Options, const unsigned Number_Of_Options, const bool Active, CChangeObserver* const Observ, const neutrino_msg_t DirectKey, const std::string & IconName, bool Pulldown)
 {
 	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;
 
 	optionNameString = OptionName;
-	//optionName = NONEXISTANT_LOCALE;
 	
 	options = Options;
 	active = Active;
@@ -210,8 +186,6 @@ int CMenuOptionChooser::exec(CMenuTarget *parent)
 
 			if(options[count].valname != 0)
 				l_option = options[count].valname;
-			//else
-			//	l_option = g_Locale->getText(options[count].value);
 			
 			menu->addItem(new CMenuForwarder(l_option), selected);
 		}
@@ -287,19 +261,14 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 	// paint item
 	frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
 
-	//neutrino_locale_t option = NONEXISTANT_LOCALE;
 	const char * l_option = NULL;
 
 	for(unsigned int count = 0 ; count < number_of_options; count++) 
 	{
 		if (options[count].key == *optionValue) 
 		{
-			//option = options[count].value;
-			
 			if(options[count].valname != 0)
 				l_option = options[count].valname;
-			//else
-			//	l_option = g_Locale->getText(option);
 			break;
 		}
 	}
@@ -307,11 +276,9 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 	if(l_option == NULL) 
 	{
 		*optionValue = options[0].key;
-		//option = options[0].value;
+
 		if(options[0].valname != 0)
 			l_option = options[0].valname;
-		//else
-		//	l_option = g_Locale->getText(option);
 	}
 
 	// paint icon (left)
@@ -373,39 +340,11 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 }
 
 //CMenuOptionNumberChooser
-/*
-CMenuOptionNumberChooser::CMenuOptionNumberChooser(const neutrino_locale_t Name, int * const OptionValue, const bool Active, const int min_value, const int max_value, CChangeObserver * const Observ, const int print_offset, const int special_value, const neutrino_locale_t special_value_name, const char * non_localized_name)
-{
-	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;
-
-	nameString  = g_Locale->getText(Name);
-	name = Name;
-	
-	active = Active;
-	optionValue = OptionValue;
-
-	lower_bound = min_value;
-	upper_bound = max_value;
-
-	display_offset = print_offset;
-
-	localized_value = special_value;
-	localized_value_name = special_value_name;
-
-	optionString = non_localized_name;
-	can_arrow = true;
-	observ = Observ;
-
-	itemType = ITEM_TYPE_OPTION_NUMBER_CHOOSER;
-}
-*/
-
 CMenuOptionNumberChooser::CMenuOptionNumberChooser(const char * const Name, int * const OptionValue, const bool Active, const int min_value, const int max_value, CChangeObserver * const Observ, const int print_offset, const int special_value, const char * non_localized_name)
 {
 	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;
 
 	nameString  = Name;
-	//name = NONEXISTANT_LOCALE;
 	
 	active = Active;
 	optionValue = OptionValue;
@@ -416,7 +355,6 @@ CMenuOptionNumberChooser::CMenuOptionNumberChooser(const char * const Name, int 
 	display_offset = print_offset;
 
 	localized_value = special_value;
-	//localized_value_name = special_value_name;
 
 	optionString = non_localized_name;
 	
@@ -487,13 +425,11 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 	const char * l_option;
 	char option_value[11];
 
-	if (/*(localized_value_name == NONEXISTANT_LOCALE) || */ ((*optionValue) != localized_value) )
+	if ( ((*optionValue) != localized_value) )
 	{
 		sprintf(option_value, "%d", ((*optionValue) + display_offset));
 		l_option = option_value;
 	}
-	//else
-	//	l_option = g_Locale->getText(localized_value_name);
 
 	int stringwidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_option, true); // UTF-8
 	// icons 
@@ -505,10 +441,7 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 
 	const char * l_name;
 	
-	//if(name == NONEXISTANT_LOCALE)
-		l_name = nameString.c_str();
-	//else
-        //	l_name = g_Locale->getText(name);
+	l_name = nameString.c_str();
 	
 	l_name = (optionString != NULL) ? optionString : l_name;
 
@@ -531,33 +464,11 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 }
 
 // CMenuOptionStringChooser
-/*
-CMenuOptionStringChooser::CMenuOptionStringChooser(const neutrino_locale_t Name, char * OptionValue, bool Active, CChangeObserver* Observ, const neutrino_msg_t DirectKey, const std::string & IconName, bool Pulldown)
-{
-	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;	
-
-	nameString = g_Locale->getText(Name);
-	name = Name;
-	active = Active;
-	optionValue = OptionValue;
-	observ = Observ;
-
-	directKey = DirectKey;
-	iconName = IconName;
-	can_arrow = true;
-	
-	pulldown = Pulldown;
-
-	itemType = ITEM_TYPE_OPTION_STRING_CHOOSER;
-}
-*/
-
 CMenuOptionStringChooser::CMenuOptionStringChooser(const char * const Name, char * OptionValue, bool Active, CChangeObserver* Observ, const neutrino_msg_t DirectKey, const std::string & IconName, bool Pulldown)
 {
 	height = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6;
 
 	nameString = Name;
-	//name = NONEXISTANT_LOCALE;
 	active = Active;
 	optionValue = OptionValue;
 	observ = Observ;
@@ -723,10 +634,7 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
         // locale text
 	const char * l_name;
 	
-	//if(name == NONEXISTANT_LOCALE)
-		l_name = nameString.c_str();
-	//else
-        //	l_name = g_Locale->getText(name);
+	l_name = nameString.c_str();
 	
 	int stringstartposName = x + BORDER_LEFT + icon_w + ICON_OFFSET;
 	
@@ -970,35 +878,9 @@ bool CZapProtection::check()
 }
 
 // CMenuForwarder
-/*
-CMenuForwarder::CMenuForwarder(const neutrino_locale_t Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const neutrino_locale_t Hint )
-{
-	option = Option? Option : "";
-
-	textString = g_Locale->getText(Text);
-	text = Text;
-	
-	active = Active;
-	jumpTarget = Target;
-	actionKey = ActionKey ? ActionKey : "";
-	directKey = DirectKey;
-	
-	iconName = IconName ? IconName : "";
-	
-	itemIcon = ItemIcon ? ItemIcon : "";
-	itemHint = g_Locale->getText(Hint);
-	itemName = g_Locale->getText(Text);
-
-	optionValueString = "";
-	
-	itemType = ITEM_TYPE_FORWARDER;
-}
-*/
-
 CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const char* const Hint )
 {
 	textString = Text? Text : "";
-	//text = NONEXISTANT_LOCALE;
 
 	option = Option? Option : "";
 	
@@ -1083,10 +965,7 @@ const char * CMenuForwarder::getName(void)
 {
 	const char * l_name;
 	
-	//if(text == NONEXISTANT_LOCALE)
-		l_name = textString.c_str();
-	//else
-        //	l_name = g_Locale->getText(text);
+	l_name = textString.c_str();
 	
 	return l_name;
 }
@@ -1364,34 +1243,8 @@ int CLockedMenuForwarder::exec(CMenuTarget * parent)
 }
 
 //ClistBoxItem
-/*
-ClistBoxItem::ClistBoxItem(const neutrino_locale_t Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, const neutrino_msg_t DirectKey, const char * const IconName, const char * const ItemIcon, const neutrino_locale_t Hint)
-{
-	text = Text;
-	textString = g_Locale->getText(Text);
-
-	option = Option? Option : "";
-
-	active = Active;
-	jumpTarget = Target;
-	actionKey = ActionKey ? ActionKey : "";
-
-	directKey = DirectKey;
-
-	iconName = IconName ? IconName : "";
-	itemIcon = ItemIcon? ItemIcon : "";
-	itemName = g_Locale->getText(Text);
-	itemHint = g_Locale->getText(Hint);
-	
-	runningPercent = 0;
-
-	itemType = ITEM_TYPE_LISTBOXITEM;
-}
-*/
-
 ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const char * const Option, CMenuTarget* Target, const char * const ActionKey, const neutrino_msg_t DirectKey, const char * const IconName, const char* const ItemIcon, const char* const Hint)
 {
-	//text = NONEXISTANT_LOCALE;
 	textString = Text? Text : "";
 
 	option = Option? Option : "";
@@ -1492,10 +1345,7 @@ const char * ClistBoxItem::getName(void)
 {
 	const char * l_name;
 	
-	//if(text == NONEXISTANT_LOCALE)
-		l_name = textString.c_str();
-	//else
-        //	l_name = g_Locale->getText(text);
+	l_name = textString.c_str();
 	
 	return l_name;
 }
