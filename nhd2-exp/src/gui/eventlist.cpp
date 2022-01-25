@@ -631,17 +631,14 @@ void EventList::paint(t_channel_id channel_id)
 			char tmpstr[256];
 			struct tm *tmStartZeit = localtime(&evtlist[count].startTime);
 
-			datetime1_str = ""; //_(tmStartZeit); //FIXME:
+			strftime(tmpstr, sizeof(tmpstr), "%A", tmStartZeit );
+			datetime1_str = tmpstr;
 
-			strftime(tmpstr, sizeof(tmpstr), ". %H:%M, ", tmStartZeit );
+			strftime(tmpstr, sizeof(tmpstr), " %H:%M ", tmStartZeit );
 			datetime1_str += tmpstr;
 
-			strftime(tmpstr, sizeof(tmpstr), " %d. ", tmStartZeit );
+			strftime(tmpstr, sizeof(tmpstr), " %d.%m.%Y ", tmStartZeit );
 			datetime1_str += tmpstr;
-
-			datetime1_str += ""; //_(tmStartZeit); FIXME:
-
-			datetime1_str += '.';
 
 			if ( m_showChannel ) // show the channel if we made a event search only (which could be made through all channels ).
 			{

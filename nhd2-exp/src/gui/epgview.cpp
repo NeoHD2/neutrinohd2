@@ -554,10 +554,10 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 		epgBuffer += "\n";
 	}
 
-	//
+	// FIXME:
 	if (epgData.contentClassification.length()> 0)
 	{
-		epgBuffer += GetGenre(epgData.contentClassification[0]);
+		//epgBuffer += GetGenre(epgData.contentClassification[0]);
 		epgBuffer += "\n";
 	}
 
@@ -992,15 +992,13 @@ int CEpgData::FollowScreenings (const t_channel_id /*channel_id*/, const std::st
 
 			screening_dates = "    ";
 
-			screening_dates += ""; //_(tmStartZeit->tm_wday); // FIXME: weekdays
-			screening_dates += '.';
-
-			strftime(tmpstr, sizeof(tmpstr), "  %d.", tmStartZeit );
+			strftime(tmpstr, sizeof(tmpstr), "%A", tmStartZeit);
 			screening_dates += tmpstr;
 
-			screening_dates += ""; //_(tmStartZeit->tm_mon); // FIXME: months
+			strftime(tmpstr, sizeof(tmpstr), "  %d.%m.%Y", tmStartZeit );
+			screening_dates += tmpstr;
 
-			strftime(tmpstr, sizeof(tmpstr), ".  %H:%M ", tmStartZeit );
+			strftime(tmpstr, sizeof(tmpstr), "  %H:%M", tmStartZeit );
 			screening_dates += tmpstr;
 
 			if (screening_dates != screening_nodual)

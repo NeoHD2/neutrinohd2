@@ -437,7 +437,7 @@ int CLanguageSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(actionKey == "savesettings")
 	{
 		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		if (MessageBox(_("Information"), _("GUI Restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			CNeutrinoApp::getInstance()->exec(NULL, "restart");
 		}
@@ -449,7 +449,7 @@ int CLanguageSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		strcpy(g_settings.language, "en");
 		g_Locale->loadLocale(g_settings.language);
 		
-		if (MessageBox(_("Information"), _("GUI Restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			CNeutrinoApp::getInstance()->exec(NULL, "restart");
 		}
@@ -461,7 +461,7 @@ int CLanguageSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		strcpy(g_settings.language, "de");
 		g_Locale->loadLocale(g_settings.language);
 		
-		if (MessageBox(_("Information"), _("GUI Restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			CNeutrinoApp::getInstance()->exec(NULL, "restart");
 		}

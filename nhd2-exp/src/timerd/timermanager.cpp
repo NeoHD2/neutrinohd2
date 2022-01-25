@@ -920,19 +920,19 @@ void CTimerEvent::Reschedule()
 					break;
 				case CTimerd::TIMERREPEAT_DAILY:
 					t->tm_mday++;
-				break;
+					break;
 				case CTimerd::TIMERREPEAT_WEEKLY: 
 					t->tm_mday+=7;
-				break;
+					break;
 				case CTimerd::TIMERREPEAT_BIWEEKLY: 
 					t->tm_mday+=14;
-				break;
+					break;
 				case CTimerd::TIMERREPEAT_FOURWEEKLY: 
 					t->tm_mday+=28;
-				break;
+					break;
 				case CTimerd::TIMERREPEAT_MONTHLY: 
 					t->tm_mon++;
-				break;
+					break;
 				case CTimerd::TIMERREPEAT_BYEVENTDESCRIPTION :
 					// todo !!
 					break;
