@@ -142,7 +142,7 @@
 		</ITEM>
 		<ITEM name="menuforwarder" id="5" localename="Service" target="4">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Main Setup" target="2">
+		<ITEM name="menuforwarder" id="5" localename="Settings" target="2">
 		</ITEM>
 		<ITEM name="menuforwarder" id="5" localename="Information" target="5">
 		</ITEM>
@@ -152,8 +152,8 @@
 		</ITEM>
 	</LISTBOX>
 	
-<KEY name="0x191" target="43" actionkey="features"> 
-</KEY>
+	<KEY name="0x191" target="43" actionkey="features"> 
+	</KEY>
 </WIDGET>
 
 </skin>

@@ -3,39 +3,45 @@ msgid "Error" msgstr "Fehler"
 msgid "Information" msgstr "Information"
 msgid "back" msgstr "zurück"
 msgid "Save Settings" msgstr "Einstellungen speichern"
+msgid "Save settings now" msgstr "Einstellungen jetzt speichern"
 msgid "Yes" msgstr "Ja"
 msgid "No" msgstr "Nein"
 msgid "Cancel" msgstr "Abbruch"
 msgid "OK" msgstr "OK"
 msgid "Back" msgstr "Zurück"
+#
+msgid "on" msgstr "ein"
+msgid "off" msgstr "aus"
 
 
 # mainmenu
 msgid "Main Menu" msgstr "Haupt Menü"
 msgid "Features" msgstr "Erweiterungen"
 msgid "Service" msgstr "Service"
-msgid "Main Setup" msgstr "Einstellungen"
+msgid "Settings" msgstr "Einstellungen"
 #msgid "Information" msgstr "Informatiom"
 msgid "Power Menu" msgstr "Power Menü"
 msgid "Media Player" msgstr "Media Player"
+
+# settings
 
 # features
 msgid "Plugins" msgstr "Zusatz Programme"
 msgid "Timerlist" msgstr "Timer Liste"
 
-# mainsetup
-# osdsetup
-msgid "OSD Setup" msgstr "OSD Einstellungen"
-msgid "Skin Select" msgstr "Skin Auswahl"
+# settings
+# osd settings
+msgid "OSD settings" msgstr "OSD Einstellungen"
+msgid "Skin select" msgstr "Skin Auswahl"
 msgid "Themes" msgstr "Themes"
 msgid "Menu" msgstr "Menü"
 msgid "Infobar" msgstr "Infobar"
-msgid "Language Setup" msgstr "Sprache"
+msgid "Language settings" msgstr "Sprache"
 msgid "Font" msgstr "Font"
-msgid "OSD Timing" msgstr "OSD Timing"
-msgid "Screen Setup" msgstr "Bildschirm"
-msgid "Alpha Setup" msgstr "Alpha"
-msgid "OSD Diverses" msgstr "OSD Diverse Einstellungen"
+msgid "OSD timing" msgstr "OSD timing"
+msgid "Screen settings" msgstr "Bildschirm"
+msgid "Alpha settings" msgstr "Alpha"
+msgid "OSD misc-settings" msgstr "OSD diverse Einstellungen"
 
 # screensetup
 msgid "Discard changes?" msgstr "Wollen Sie die Änderungen verwerfen?"
@@ -45,7 +51,7 @@ msgid "Lower Right" msgstr "Bildrand unten, rechts"
 # skin select
 msgid "neutrino(default)" msgstr "Neutrino (default)"
 msgid "Here you can select a skin from the following list." msgstr "Hier können Sie eine Skin aus der Liste wählen"
-msgid "GUI Restart" msgstr "GUI Restart"
+msgid "Neutrino restart" msgstr "Neutrino restart"
 msgid "Skin Style selection" msgstr "Skin Style Auswahl"
 msgid "choose Skin Style." msgstr "wähle einen Skin Style."
 

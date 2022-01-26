@@ -16,7 +16,7 @@
 		</ITEM>
 		<ITEM name="menuforwarder" id="5" localename="Service" itemicon="hint_service" hint="Timer List" target="4">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Main Setup" itemicon="hint_settings" hint="test" target="2">
+		<ITEM name="menuforwarder" id="5" localename="Settings" itemicon="hint_settings" hint="test" target="2">
 		</ITEM>
 		<ITEM name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="5">
 		</ITEM>

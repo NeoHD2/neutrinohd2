@@ -96,19 +96,19 @@ void CPowerMenu::showMenu(void)
 	powerMenu->enablePaintDate();
 	
 	// sleep timer
-	powerMenu->addItem(new ClistBoxItem(_("Sleep Timer"), true, NULL, new CSleepTimerWidget, NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SLEEPTIMER, _("Sleep Timer")));
+	powerMenu->addItem(new CMenuForwarder(_("Sleep Timer"), true, NULL, new CSleepTimerWidget, NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SLEEPTIMER, _("Sleep Timer")));
 
 	// restart neutrino
-	powerMenu->addItem(new ClistBoxItem(_("GUI Restart"), true, NULL, this, "restart", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_RESTART, _("Neutrino restart")));
+	powerMenu->addItem(new CMenuForwarder(_("GUI Restart"), true, NULL, this, "restart", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_RESTART, _("Neutrino restart")));
 
 	// standby
-	powerMenu->addItem(new ClistBoxItem(_("Standby"), true, NULL, this, "standby", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_STANDBY, _("Standby")));
+	powerMenu->addItem(new CMenuForwarder(_("Standby"), true, NULL, this, "standby", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_STANDBY, _("Standby")));
 
 	// reboot
-	powerMenu->addItem(new ClistBoxItem(_("Reboot"), true, NULL, this, "reboot", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_REBOOT, _("Reboot")));
+	powerMenu->addItem(new CMenuForwarder(_("Reboot"), true, NULL, this, "reboot", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_REBOOT, _("Reboot")));
 
 	// shutdown
-	powerMenu->addItem(new ClistBoxItem(_("Shutdown"), true, NULL, this, "shutdown", RC_standby, NEUTRINO_ICON_BUTTON_POWER, NEUTRINO_ICON_MENUITEM_SHUTDOWN, _("Shutdown")));
+	powerMenu->addItem(new CMenuForwarder(_("Shutdown"), true, NULL, this, "shutdown", RC_standby, NEUTRINO_ICON_BUTTON_POWER, NEUTRINO_ICON_MENUITEM_SHUTDOWN, _("Shutdown")));
 
 	powerMenu->integratePlugins(CPlugins::I_TYPE_POWER, shortcut++);
 	

@@ -104,24 +104,24 @@ void CServiceMenu::showMenu(void)
 	service->enablePaintDate();
 	
 	// tuner/scan setup
-	service->addItem(new ClistBoxItem(_("Scan transponder"), true, NULL, new CTunerSetup(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SCANSETTINGS, _("Scan transponder")));
+	service->addItem(new CMenuForwarder(_("Scan transponder"), true, NULL, new CTunerSetup(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SCANSETTINGS, _("Scan transponder")));
 
 	// reload Channels
-	service->addItem(new ClistBoxItem(_("Reload channel lists"), true, NULL, this, "reloadchannels", RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_RELOADCHANNELS, _("Reload channel lists")));
+	service->addItem(new CMenuForwarder(_("Reload channel lists"), true, NULL, this, "reloadchannels", RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_RELOADCHANNELS, _("Reload channel lists")));
 
 	// Bouquets Editor
-	service->addItem(new ClistBoxItem(_("Bouquet Editor"), true, NULL, new CBEBouquetWidget(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOUQUETSEDITOR, _("Bouquet Editor")));
+	service->addItem(new CMenuForwarder(_("Bouquet Editor"), true, NULL, new CBEBouquetWidget(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOUQUETSEDITOR, _("Bouquet Editor")));
 	
 	// CI Cam 	
 #if defined (ENABLE_CI)
-	service->addItem(new ClistBoxItem(_("CI Cam"), true, NULL, g_CamHandler, NULL, CRCInput::convertDigitToKey(shortcutService++), NULL, NEUTRINO_ICON_MENUITEM_CICAM, _("CI Cam Settings")));
+	service->addItem(new CMenuForwarder(_("CI Cam"), true, NULL, g_CamHandler, NULL, CRCInput::convertDigitToKey(shortcutService++), NULL, NEUTRINO_ICON_MENUITEM_CICAM, _("CI Cam Settings")));
 #endif
 	
 	// image info
-	service->addItem(new ClistBoxItem(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_info, NEUTRINO_ICON_BUTTON_HELP, NEUTRINO_ICON_MENUITEM_IMAGEINFO, _("Image info")), false);
+	service->addItem(new CMenuForwarder(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_info, NEUTRINO_ICON_BUTTON_HELP, NEUTRINO_ICON_MENUITEM_IMAGEINFO, _("Image info")), false);
 	
 	// software update
-	service->addItem(new ClistBoxItem(_("Software Update"), true, NULL, new CUpdateSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_SOFTUPDATE, _("Software Update")));
+	service->addItem(new CMenuForwarder(_("Software Update"), true, NULL, new CUpdateSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_SOFTUPDATE, _("Software Update")));
 
 	service->integratePlugins(CPlugins::I_TYPE_SERVICE, shortcutService++);
 	

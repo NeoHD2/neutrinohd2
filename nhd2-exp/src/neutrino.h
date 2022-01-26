@@ -163,7 +163,6 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		bool hasWidgets(){return widgets.size();};
 		CMenuTarget* convertTarget(const int id);
 		uint32_t convertColor(const char* const rgba);
-		//neutrino_locale_t convertLocale(const int loc);
 		
 		std::vector<CPlugins::plugin> skin_list;
 		
@@ -214,11 +213,9 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		void setupRecordingDevice(void);
 		void startNextRecording();
 		
-		// recording flag
+		//
 		int recordingstatus;
-		// timeshift flag
 		int timeshiftstatus;
-		// recording_id 
 		int recording_id;
 		
 #if defined (USE_PLAYBACK)

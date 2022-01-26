@@ -359,17 +359,6 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 	return parent;
 }
 
-/*
-neutrino_locale_t CNeutrinoApp::convertLocale(const int loc)
-{
-	dprintf(DEBUG_INFO, "CNeutrinoApp::convertLocale: id: %d\n", loc);
-	
-	neutrino_locale_t locale = NONEXISTANT_LOCALE;
-	
-	return locale;
-}
-*/
-
 //
 CWidget* CNeutrinoApp::getWidget(int id)
 {

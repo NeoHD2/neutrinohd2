@@ -456,11 +456,11 @@ void CInfoMenu::showMenu()
 	infoMenu->enablePaintDate();
 	infoMenu->enableShrinkMenu();
 	
-	infoMenu->addItem( new ClistBoxItem(_("Information"), true, NULL, new CDBoxInfoWidget(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Here you can get HW infos about your STB.\n")));
+	infoMenu->addItem( new CMenuForwarder(_("Information"), true, NULL, new CDBoxInfoWidget(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Here you can get HW infos about your STB.\n")));
 	
-	infoMenu->addItem(new ClistBoxItem(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_IMAGEINFO, _("Here you can get infos about the software.\n")), false);
+	infoMenu->addItem(new CMenuForwarder(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_IMAGEINFO, _("Here you can get infos about the software.\n")), false);
 	
-	infoMenu->addItem(new ClistBoxItem(_("Sender information"), true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Here you can get infos about the Channel.\n")));
+	infoMenu->addItem(new CMenuForwarder(_("Sender information"), true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Here you can get infos about the Channel.\n")));
 	
 	infoMenu->integratePlugins(CPlugins::I_TYPE_MAIN);
 	

@@ -1,38 +1,38 @@
 <skin>
 
-<!-- SKIN: titan -->
-<!-- AUTHOR: mohousch -->
-<!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<!-- SKIN: titan -->
+	<!-- AUTHOR: mohousch -->
+	<!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 
-<WIDGET name="mainmenu" id="1" posx="30" posy="50" width="640" height="620">
-	<HEAD posx="30" posy="50" width="640" height="40" localename="Main Menu" halign="0" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
-	</HEAD>
-	
-	<LISTBOX posx="30" posy="90" width="640" height="540" paintframe="1" type="0" scrollbar="1">
-		<ITEM name="menuforwarder" id="5" localename="EPG / Timer" target="3">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" iconname="red" target="0" actionkey="features">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Service" itemicon="hint_service" hint="Timer List" target="4">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Main Setup" itemicon="hint_settings" hint="test" target="2">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="5">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Power Menu" itemicon="hint_shutdown" hint="Timer List" target="7">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Media Player" itemicon="hint_media" hint="Timer List" target="8">
-		</ITEM>
-	</LISTBOX>
-	
-	<FOOT posx="30" posy="630" width="640" height="40">
-		<BUTTON name="info" localename="">
-		</BUTTON>
-	</FOOT>
-	
-<KEY name="0x191" target="parent" actionkey="features"> 
-</KEY>
-</WIDGET>
+	<WIDGET name="mainmenu" id="1" posx="30" posy="50" width="640" height="620">
+		<HEAD posx="30" posy="50" width="640" height="40" localename="Main Menu" halign="0" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<LISTBOX posx="30" posy="90" width="640" height="540" paintframe="1" type="0" scrollbar="1">
+			<ITEM name="menuforwarder" id="5" localename="EPG / Timer" target="3">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" iconname="red" target="0" actionkey="features">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Service" itemicon="hint_service" hint="Timer List" target="4">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Settings" itemicon="hint_settings" hint="test" target="2">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="5">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Power Menu" itemicon="hint_shutdown" hint="Timer List" target="7">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Media Player" itemicon="hint_media" hint="Timer List" target="8">
+			</ITEM>
+		</LISTBOX>
+		
+		<FOOT posx="30" posy="630" width="640" height="40">
+			<BUTTON name="info" localename="">
+			</BUTTON>
+		</FOOT>
+		
+		<KEY name="0x191" target="parent" actionkey="features"> 
+		</KEY>
+	</WIDGET>
 
 </skin>
 
