@@ -277,7 +277,7 @@ class CMenuWidget : public CMenuTarget
 		virtual CMenuItem *getSelectedItem(void){if (hasItem()) return items[selected]; else return NULL;};
 
 		//
-		std::string getName(void){ return l_name.c_str();};
+		//std::string getName(void){ return l_name.c_str();};
 		std::string getActionKey(){return actionKey;}; // lua
 };
 

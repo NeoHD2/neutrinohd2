@@ -51,6 +51,8 @@ const keyval MESSAGEBOX_NO_YES_OPTIONS[MESSAGEBOX_NO_YES_OPTION_COUNT] =
 
 CAudioPlayerSettings::CAudioPlayerSettings()
 {
+	id = WIDGET_AUDIOPLAYERSETUP;
+	name = "audioplayer settings";
 }
 
 CAudioPlayerSettings::~CAudioPlayerSettings()

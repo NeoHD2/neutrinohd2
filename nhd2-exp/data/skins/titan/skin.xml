@@ -4,8 +4,34 @@
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 
-<WIDGET name="mainmenu" id="1" posx="0" posy="0" width="700" height="720" paintframe="1">
+<WIDGET name="settings" id="2" posx="0" posy="0" width="700" height="720" paintframe="1">
+	<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+	</HEAD>
+	
+	<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1">
+		<ITEM name="menuforwarder" id="5" localename="A / V settings" itemicon="hint_timers" hint="Timer List" target="3">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Network" itemicon="hint_plugin" hint="Timer List" target="6" actionkey="features">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Parentallock" itemicon="hint_service" hint="Timer List" target="4">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="OSD settings" itemicon="hint_settings" hint="test" target="9">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Misc settings" itemicon="hint_dboxinfo" hint="Timer List" target="5">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="HDD settings" itemicon="hint_shutdown" hint="Timer List" target="7">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Movieplayer settings" itemicon="hint_media" hint="Timer List" target="8">
+		</ITEM>
+	</LISTBOX>
+	
+	<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+		<BUTTON name="info" localename="">
+		</BUTTON>
+	</FOOT>
+</WIDGET>
 
+<WIDGET name="mainmenu" id="1" posx="0" posy="0" width="700" height="720" paintframe="1">
 	<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 	</HEAD>
 	
@@ -31,8 +57,8 @@
 		</BUTTON>
 	</FOOT>
 	
-<KEY name="0x191" target="parent" actionkey="features"> 
-</KEY>
+	<KEY name="0x191" target="parent" actionkey="features"> 
+	</KEY>
 </WIDGET>
 
 </skin>

@@ -450,6 +450,9 @@ void CInfoMenu::showMenu()
 {
 	infoMenu = new CMenuWidget("Information", NEUTRINO_ICON_INFO);
 	
+	id = WIDGET_INFORMATION;
+	name = "information";
+	
 	infoMenu->setWidgetMode(MODE_MENU);
 	infoMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	infoMenu->setMenuPosition(MENU_POSITION_LEFT);
@@ -460,7 +463,7 @@ void CInfoMenu::showMenu()
 	
 	infoMenu->addItem(new CMenuForwarder(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_IMAGEINFO, _("Here you can get infos about the software.\n")), false);
 	
-	infoMenu->addItem(new CMenuForwarder(_("Sender information"), true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Here you can get infos about the Channel.\n")));
+	infoMenu->addItem(new CMenuForwarder(_("Stream information"), true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Here you can get infos about the Channel.\n")));
 	
 	infoMenu->integratePlugins(CPlugins::I_TYPE_MAIN);
 	

@@ -1,43 +1,697 @@
+# English translations for neutrino-hd2 package.
+# Copyright (C) 2022 THE neutrino-hd2'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the neutrino-hd2 package.
+# Automatically generated, 2022.
 #
-msgid "Main Menu" msgstr "Main Menu"
-msgid "Features" msgstr "Features"
-msgid "Service" msgstr "Service"
-msgid "Main Setup" msgstr "Main Setup"
-msgid "Information" msgstr "Informatiom"
-msgid "Power Menu" msgstr "Power Menu"
-msgid "Media Player" msgstr "Media Player"
+msgid ""
+msgstr ""
+"Project-Id-Version: neutrino-hd2 4.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-28 00:50+0100\n"
+"PO-Revision-Date: 2022-01-28 00:35+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-# features
-msgid "Plugins" msgstr "Plugins"
-msgid "Timerlist" msgstr "Timerlist"
+#, c-format
+msgid "(%d%% over)"
+msgstr "(%d%% over)"
 
-# mainsetup
-# osdsetup
-msgid "OSD Setup" msgstr "OSD Setup"
-msgid "Skin Select" msgstr "Skin Select"
-msgid "Themes" msgstr "Themes"
-msgid "Menu" msgstr "Menu"
-msgid "Infobar" msgstr "Infobar"
-msgid "Language Setup" msgstr "Language Setup"
-msgid "Font" msgstr "Font"
-msgid "OSD Timing" msgstr "OSD Timing"
-msgid "Screen Setup" msgstr "Screen Setup"
-msgid "Alpha Setup" msgstr "Alpha Setup"
-msgid "OSD Diverses" msgstr "OSD Diverses"
+msgid "(Date)"
+msgstr "(Date)"
 
-# screensetup
-msgid "Discard changes?" msgstr "Discard changes?"
-msgid "Upper Left" msgstr "red = setup upper left"
-msgid "Lower Right" msgstr "green = setup lower right"
+msgid "(Size)"
+msgstr "(Size)"
 
-# skin select
-msgid "neutrino(default)" msgstr "neutrino (default)"
-msgid "Here you can select a skin from the following list." msgstr "Here you can select a skin from the following list."
-msgid "GUI Restart" msgstr "GUI Restart"
-msgid "Skin Style selection" msgstr "Skin Style selection"
-msgid "choose Skin Style." msgstr "choose Skin Style."
+msgid "(filename)"
+msgstr "(filename)"
 
-# language setup
-#msgid "Language Setup" msgstr "Language Setup"
-msgid "back" msgstr "back"
-msgid "Save Settings" msgstr "Save Settings"
+msgid "(filename2)"
+msgstr "(filename2)"
+
+#, c-format
+msgid "(starting in %d min)"
+msgstr "(starting in %d min)"
+
+msgid "(type)"
+msgstr "(type)"
+
+msgid "?"
+msgstr "?"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "All Services"
+msgstr "All Services"
+
+msgid "Audio Player settings"
+msgstr ""
+
+#, fuzzy
+msgid "Audio settings"
+msgstr "Settings"
+
+msgid "BOTTOM"
+msgstr ""
+
+msgid "BOTTOM LEFT"
+msgstr ""
+
+msgid "BOTTOM RIGHT"
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Bouquets"
+msgstr "Bouquets"
+
+msgid "Box / Channel Information"
+msgstr "Box / Channel Information"
+
+msgid ""
+"Box will shutdown in 1 min.\n"
+"Cancel Sutdown ?"
+msgstr ""
+"Box will shutdown in 1 min.\n"
+"Cancel Sutdown ?"
+
+msgid "Buttons Bar"
+msgstr ""
+
+msgid "Buttons Line"
+msgstr ""
+
+msgid "CORNER ALL"
+msgstr ""
+
+msgid "CORNER NONE"
+msgstr ""
+
+msgid "Channel"
+msgstr "Channel"
+
+msgid "Channel Logo(EPGPlus)"
+msgstr ""
+
+msgid "Channel name"
+msgstr "Channel name"
+
+msgid "Channellist"
+msgstr "Channellist"
+
+msgid "Corner"
+msgstr ""
+
+msgid "Dark to Light"
+msgstr ""
+
+msgid "Dark to Light to Dark"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Direct-Mode"
+msgstr "Direct-Mode"
+
+msgid "EPG Date"
+msgstr "EPG Date"
+
+msgid "EPG Info 1"
+msgstr "EPG Info 1"
+
+msgid "EPG Info 2"
+msgstr "EPG Info 2"
+
+msgid "EPG Info1"
+msgstr "EPG Info1"
+
+msgid "EPG Info2"
+msgstr "EPG Info2"
+
+msgid "EPG Title"
+msgstr "EPG Title"
+
+msgid "EPG is not available..."
+msgstr "EPG is not available..."
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Event list"
+msgstr "Event list"
+
+msgid "Eventlist Overview (EPG Plus)"
+msgstr "Eventlist Overview (EPG Plus)"
+
+msgid "Events Textcolor"
+msgstr ""
+
+msgid "Favorites"
+msgstr "Favorites"
+
+msgid "Features"
+msgstr "Features"
+
+msgid "Filebrowser"
+msgstr "Filebrowser"
+
+msgid "Filter off"
+msgstr "Filter off"
+
+msgid "Filter on"
+msgstr "Filter on"
+
+msgid "Font"
+msgstr ""
+
+msgid "Font name"
+msgstr ""
+
+msgid "Foot"
+msgstr ""
+
+msgid "Gradient"
+msgstr ""
+
+#, fuzzy
+msgid "Gradient direction"
+msgstr "direct selection"
+
+#, fuzzy
+msgid "HDD settings"
+msgstr "Settings"
+
+msgid "Head"
+msgstr ""
+
+msgid "Here you can select a skin from the following list."
+msgstr ""
+
+msgid "Here you can setup the GUI Skin\n"
+msgstr ""
+
+msgid "Here you can setup the GUI themes.\n"
+msgstr ""
+
+msgid "Horizontal"
+msgstr ""
+
+msgid "Horizontal (in %)"
+msgstr ""
+
+msgid "IPTV Mode"
+msgstr "IPTV Mode"
+
+msgid "Infobar"
+msgstr ""
+
+msgid "Information"
+msgstr "Information"
+
+#, fuzzy
+msgid "Item Info"
+msgstr "Menu Info"
+
+msgid "Keyword"
+msgstr "Keyword"
+
+#, fuzzy
+msgid "LCD settings"
+msgstr "Settings"
+
+msgid "LEFT"
+msgstr ""
+
+msgid "Language Setup"
+msgstr ""
+
+#, fuzzy
+msgid "Language settings"
+msgstr "Save settings now"
+
+msgid "Light to Dark"
+msgstr ""
+
+msgid "Light to Dark to Light"
+msgstr ""
+
+msgid "Main Menu"
+msgstr "Main Menu"
+
+#, fuzzy
+msgid "Main Settings"
+msgstr "Settings"
+
+msgid "Mark"
+msgstr "Mark"
+
+msgid "Media Player"
+msgstr "Media Player"
+
+#, fuzzy
+msgid "Menu"
+msgstr "Menutext"
+
+msgid "Menu Info"
+msgstr "Menu Info"
+
+msgid "Menu Title"
+msgstr "Menu Title"
+
+msgid "Menutext"
+msgstr "Menutext"
+
+#, fuzzy
+msgid "Misc settings"
+msgstr "Settings"
+
+msgid "Movie Player settings"
+msgstr ""
+
+msgid "My Favorites"
+msgstr "My Favorites"
+
+#, fuzzy
+msgid "Network settings"
+msgstr "Save settings now"
+
+msgid "Neutrino restart"
+msgstr ""
+
+msgid "Next Page"
+msgstr "Next Page"
+
+msgid "No neutrino-settings found, Using defaults."
+msgstr "No neutrino-settings found, Using defaults."
+
+msgid "Number"
+msgstr "Number"
+
+#, fuzzy
+msgid "OSD Miscsettings"
+msgstr "Settings"
+
+msgid "OSD Timing"
+msgstr ""
+
+#, fuzzy
+msgid "OSD misc-settings"
+msgstr "Settings"
+
+#, fuzzy
+msgid "OSD settings"
+msgstr "Settings"
+
+msgid "OSD timing"
+msgstr ""
+
+msgid "Options"
+msgstr "Options"
+
+msgid "Parentallock settings"
+msgstr ""
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Power Menu"
+msgstr "Power Menu"
+
+msgid "Prev Page"
+msgstr "Prev Page"
+
+msgid "Program unknown"
+msgstr "Program unknown"
+
+msgid "Progressbar Color"
+msgstr ""
+
+msgid "Provider"
+msgstr "Provider"
+
+msgid "Providers"
+msgstr "Providers"
+
+msgid "RIGHT"
+msgstr ""
+
+msgid "Radio Mode"
+msgstr "Radio Mode"
+
+msgid "Radius"
+msgstr ""
+
+msgid "Record"
+msgstr "Record"
+
+msgid "Recording"
+msgstr "Recording"
+
+#, fuzzy
+msgid "Recording settings"
+msgstr "Recording"
+
+msgid "Recording starts in a few minutes"
+msgstr "Recording starts in a few minutes"
+
+msgid "Refresh EPG"
+msgstr "Refresh EPG"
+
+msgid "Reloading channel lists, please be patient."
+msgstr "Reloading channel lists, please be patient."
+
+msgid "Reminder"
+msgstr "Reminder"
+
+msgid "Remote Control lock"
+msgstr "Remote Control lock"
+
+#, fuzzy
+msgid "Remote Control settings"
+msgstr "Remote Control lock"
+
+msgid "Satellite display on infobar"
+msgstr ""
+
+msgid "Satellites"
+msgstr "Satellites"
+
+#, fuzzy
+msgid "Save Settings"
+msgstr "Save settings now"
+
+msgid "Save settings now"
+msgstr "Save settings now"
+
+msgid "Scart Mode"
+msgstr "Scart Mode"
+
+msgid "Schedule"
+msgstr "Schedule"
+
+msgid "Schedule Event"
+msgstr "Schedule Event"
+
+msgid "Schedule Record"
+msgstr "Schedule Record"
+
+msgid "Schedule ecord"
+msgstr "Schedule ecord"
+
+#, fuzzy
+msgid "Screen settings"
+msgstr "Settings"
+
+msgid "Scroll Mode"
+msgstr "Scroll Mode"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Search for keyword in EPG..."
+msgstr "Search for keyword in EPG..."
+
+msgid "Search in EPG"
+msgstr "Search in EPG"
+
+msgid "Search within"
+msgstr "Search within"
+
+msgid "Select Subservice"
+msgstr "Select Subservice"
+
+#, fuzzy
+msgid "Select language"
+msgstr "Select starting-time"
+
+msgid "Select starting-time"
+msgstr "Select starting-time"
+
+msgid "Service"
+msgstr "Service"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Shadow"
+msgstr ""
+
+msgid "Skin Select"
+msgstr ""
+
+#, fuzzy
+msgid "Skin Style Selection"
+msgstr "direct selection"
+
+#, fuzzy
+msgid "Skin Style selection"
+msgstr "direct selection"
+
+msgid "Skin select"
+msgstr ""
+
+msgid "Sleeptimer in 1 min"
+msgstr "Sleeptimer in 1 min"
+
+msgid "Start Search"
+msgstr "Start Search"
+
+msgid "Stretch Mode"
+msgstr "Stretch Mode"
+
+msgid "Subchannel display"
+msgstr ""
+
+msgid "System"
+msgstr "System"
+
+msgid "TOP"
+msgstr ""
+
+msgid "TOP LEFT"
+msgstr ""
+
+msgid "TOP RIGHT"
+msgstr ""
+
+msgid "TV Mode"
+msgstr "TV Mode"
+
+msgid "Teletext"
+msgstr "Teletext"
+
+msgid "Textcolor"
+msgstr ""
+
+msgid ""
+"The event is flagged for record.\n"
+"The box will power on and \n"
+"switch to this channel at the given time."
+msgstr ""
+"The event is flagged for record.\n"
+"The box will power on and \n"
+"switch to this channel at the given time."
+
+msgid ""
+"The event is scheduled.\n"
+"The box will power on and \n"
+"switch to this channel at the given time."
+msgstr ""
+"The event is scheduled.\n"
+"The box will power on and \n"
+"switch to this channel at the given time."
+
+msgid ""
+"The neutrino-settings have been updated.\n"
+"New Options will be set to default."
+msgstr ""
+"The neutrino-settings have been updated.\n"
+"New Options will be set to default."
+
+msgid "Themes"
+msgstr ""
+
+msgid "Time in sec. After this time the"
+msgstr ""
+
+msgid "Timer List"
+msgstr "Timer List"
+
+msgid "Timerlist"
+msgstr "Timerlist"
+
+msgid "Title"
+msgstr "Title"
+
+msgid "Vertical"
+msgstr ""
+
+msgid "Vertikal (in %)"
+msgstr ""
+
+#, fuzzy
+msgid "Video settings"
+msgstr "Save settings now"
+
+msgid "Volume Step Size"
+msgstr ""
+
+msgid "Volumebar"
+msgstr ""
+
+msgid "WebTV"
+msgstr "WebTV"
+
+msgid "Window-Content"
+msgstr ""
+
+msgid "Window-Content inactive"
+msgstr ""
+
+msgid "Window-Content selected"
+msgstr ""
+
+msgid "You really want to to stop record ?"
+msgstr "You really want to to stop record ?"
+
+msgid "Zapto timer in one minute"
+msgstr "Zapto timer in one minute"
+
+msgid "angular"
+msgstr ""
+
+msgid "back"
+msgstr ""
+
+msgid "bottom left"
+msgstr ""
+
+msgid "bottom right"
+msgstr ""
+
+msgid "by bouquet"
+msgstr "by bouquet"
+
+msgid "by page"
+msgstr "by page"
+
+msgid "choose Skin Style."
+msgstr ""
+
+msgid "colored"
+msgstr ""
+
+msgid "date / time"
+msgstr "date / time"
+
+msgid "default center"
+msgstr ""
+
+msgid "direct selection"
+msgstr "direct selection"
+
+msgid "english"
+msgstr ""
+
+msgid "filebrowser item"
+msgstr "filebrowser item"
+
+msgid "higher center"
+msgstr ""
+
+msgid "info"
+msgstr "info"
+
+msgid "infobar will be faded out."
+msgstr ""
+
+msgid "is not installed please install again."
+msgstr "is not installed please install again."
+
+msgid "large"
+msgstr "large"
+
+msgid "load default skin configuration"
+msgstr "load default skin configuration"
+
+msgid "logos Dir"
+msgstr ""
+
+msgid "middle"
+msgstr ""
+
+msgid "monochrom"
+msgstr ""
+
+msgid "neutrino (default)"
+msgstr ""
+
+msgid "next bouquet"
+msgstr "next bouquet"
+
+msgid "no epg found"
+msgstr "no epg found"
+
+msgid "no gradient"
+msgstr ""
+
+msgid "not available"
+msgstr "not available"
+
+msgid "off"
+msgstr "off"
+
+msgid "on"
+msgstr "on"
+
+msgid "page down"
+msgstr "page down"
+
+msgid "page up"
+msgstr "page up"
+
+msgid "prev bouquet"
+msgstr "prev bouquet"
+
+msgid "record"
+msgstr "record"
+
+msgid "schedule"
+msgstr "schedule"
+
+msgid "search"
+msgstr "search"
+
+msgid "small"
+msgstr "small"
+
+msgid "sorting(Time)"
+msgstr "sorting(Time)"
+
+msgid "start"
+msgstr "start"
+
+msgid "swap mode"
+msgstr "swap mode"
+
+msgid "top left"
+msgstr ""
+
+msgid "top right"
+msgstr ""
+
+msgid "view mode"
+msgstr "view mode"

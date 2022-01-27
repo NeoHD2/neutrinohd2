@@ -94,6 +94,7 @@ std::string to_hexstring(unsigned long long);
 
 std::string Lang2ISO639_1(std::string& lang);
 std::string Lang2I18N(std::string lang);
+std::string locale2lang(std::string lang);
 
 inline int atoi(std::string &s) { return atoi(s.c_str()); }
 inline int atoi(const std::string &s) { return atoi(s.c_str()); }

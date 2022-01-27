@@ -1,147 +1,666 @@
+# German translations for neutrino-hd2 package.
+# Copyright (C) 2022 THE neutrino-hd2'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the neutrino-hd2 package.
+# Automatically generated, 2022.
 #
-msgid "Error" msgstr "Fehler"
-msgid "Information" msgstr "Information"
-msgid "back" msgstr "zurück"
-msgid "Save Settings" msgstr "Einstellungen speichern"
-msgid "Save settings now" msgstr "Einstellungen jetzt speichern"
-msgid "Yes" msgstr "Ja"
-msgid "No" msgstr "Nein"
-msgid "Cancel" msgstr "Abbruch"
-msgid "OK" msgstr "OK"
-msgid "Back" msgstr "Zurück"
-#
-msgid "on" msgstr "ein"
-msgid "off" msgstr "aus"
+msgid ""
+msgstr ""
+"Project-Id-Version: neutrino-hd2 4.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-28 00:50+0100\n"
+"PO-Revision-Date: 2022-01-28 00:35+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#, c-format
+msgid "(%d%% over)"
+msgstr ""
 
-# mainmenu
-msgid "Main Menu" msgstr "Haupt Menü"
-msgid "Features" msgstr "Erweiterungen"
-msgid "Service" msgstr "Service"
-msgid "Settings" msgstr "Einstellungen"
-#msgid "Information" msgstr "Informatiom"
-msgid "Power Menu" msgstr "Power Menü"
-msgid "Media Player" msgstr "Media Player"
+msgid "(Date)"
+msgstr ""
 
-# settings
+msgid "(Size)"
+msgstr ""
 
-# features
-msgid "Plugins" msgstr "Zusatz Programme"
-msgid "Timerlist" msgstr "Timer Liste"
+msgid "(filename)"
+msgstr ""
 
-# settings
-# osd settings
-msgid "OSD settings" msgstr "OSD Einstellungen"
-msgid "Skin select" msgstr "Skin Auswahl"
-msgid "Themes" msgstr "Themes"
-msgid "Menu" msgstr "Menü"
-msgid "Infobar" msgstr "Infobar"
-msgid "Language settings" msgstr "Sprache"
-msgid "Font" msgstr "Font"
-msgid "OSD timing" msgstr "OSD timing"
-msgid "Screen settings" msgstr "Bildschirm"
-msgid "Alpha settings" msgstr "Alpha"
-msgid "OSD misc-settings" msgstr "OSD diverse Einstellungen"
+msgid "(filename2)"
+msgstr ""
 
-# screensetup
-msgid "Discard changes?" msgstr "Wollen Sie die Änderungen verwerfen?"
-msgid "Upper Left" msgstr "Bildrand oben, links"
-msgid "Lower Right" msgstr "Bildrand unten, rechts"
+#, c-format
+msgid "(starting in %d min)"
+msgstr ""
 
-# skin select
-msgid "neutrino(default)" msgstr "Neutrino (default)"
-msgid "Here you can select a skin from the following list." msgstr "Hier können Sie eine Skin aus der Liste wählen"
-msgid "Neutrino restart" msgstr "Neutrino restart"
-msgid "Skin Style selection" msgstr "Skin Style Auswahl"
-msgid "choose Skin Style." msgstr "wähle einen Skin Style."
+msgid "(type)"
+msgstr ""
 
-# language setup
-#msgid "Language Setup" msgstr "Sprache Einstellungen"
-#msgid "back" msgstr "zurück"
-#msgid "Save Settings" msgstr "Einstellungen speichern"
+msgid "?"
+msgstr ""
 
-# infobar
-msgid "EPG not available" msgstr "Keine EPG-Information verfügbar"
-msgid "waiting for EPG..." msgstr "Warte auf EPG-Informationen..."
-msgid "EPG not loaded..." msgstr "Informationen noch nicht geladen..."
-msgid "Waiting for time..." msgstr "Warte auf Uhrzeit..."
-msgid "Direct-Mode" msgstr "Bildregie-Modus"
-msgid "Antenna positioning" msgstr "Antennenpositionierung"
-msgid "Subservices" msgstr "Bildregie"
-msgid "Timeselection" msgstr "Startzeiten"
-msgid "Event-List" msgstr "Event-liste"
-msgid "No info for current program available" msgstr "Keine Info zu laufendem Programm"
-msgid "Audio" msgstr "Tonwahl"
+msgid "Actions"
+msgstr ""
 
-# channellist
-msgid "Now" msgstr "Jetzt"
-msgid "Next" msgstr "Später"
-msgid "Bouquets" msgstr "Bouquets"
-#msgid "Eventlist overview" msgstr "Vorschau Übersicht"
-msgid "since %02d:%02d" msgstr "seit %02d:%02d"
-msgid "starts %02d:%02d" msgstr "ab %02d:%02d"
+msgid "All Services"
+msgstr ""
 
-# plugins list
-msgid "remove" msgstr "löschen"
-msgid "start" msgstr "starten"
-msgid "Reload plugins" msgstr "Plugins neu laden"
-msgid "Description: " msgstr "Beschreibung: "
+msgid "Audio Player settings"
+msgstr ""
 
-# epgmenu
-msgid "EPG - Program Information" msgstr "EPG - Programm Information"
-msgid "Eventlist current programm" msgstr "Vorschau aktuelles Programm"
-msgid "Details current program" msgstr "Info zur Sendung"
-msgid "Eventlist overview" msgstr "Vorschau Übersicht"
-msgid "Sender information" msgstr "Sender Informationen"
-msgid "Timer list" msgstr "Timer Liste"
+msgid "Audio settings"
+msgstr ""
 
+msgid "BOTTOM"
+msgstr ""
 
-# plugins
-msgid "play records" msgstr "spielt Aufnahmen ab"
-msgid "play music files" msgstr "spielt Musik Dateien ab"
-msgid "display pics" msgstr "zeigt Bilder Dateien"
-msgid "play and edit records and movies" msgstr "spielt / bearbeitet Aufnahmen und Filme"
-msgid "play media files" msgstr "spielt Media Dateien alle Art (Movie / Audio)"
-msgid "Test Menu" msgstr "Test Menü"
-msgid "sample API code for developer (v0.0.1)" msgstr "Beispiel Programme für die API"
+msgid "BOTTOM LEFT"
+msgstr ""
 
-# powermenu
-msgid "Sleep Timer" msgstr "Sleep Timer"
-msgid "Standby" msgstr "Standby"
-msgid "Reboot" msgstr "Neustart"
-msgid "Shutdown" msgstr "Ausschalten"
+msgid "BOTTOM RIGHT"
+msgstr ""
 
-# information
-msgid "Image info" msgstr "Image-Info"
+msgid "Background"
+msgstr ""
 
+msgid "Bouquets"
+msgstr ""
 
+msgid "Box / Channel Information"
+msgstr ""
 
+msgid ""
+"Box will shutdown in 1 min.\n"
+"Cancel Sutdown ?"
+msgstr ""
 
+msgid "Buttons Bar"
+msgstr ""
 
+msgid "Buttons Line"
+msgstr ""
 
+msgid "CORNER ALL"
+msgstr ""
 
+msgid "CORNER NONE"
+msgstr ""
 
+msgid "Channel"
+msgstr ""
 
+msgid "Channel Logo(EPGPlus)"
+msgstr ""
 
+msgid "Channel name"
+msgstr ""
 
+msgid "Channellist"
+msgstr ""
 
+msgid "Corner"
+msgstr ""
 
+msgid "Dark to Light"
+msgstr ""
 
+msgid "Dark to Light to Dark"
+msgstr ""
 
+msgid "Default"
+msgstr ""
 
+msgid "Delete"
+msgstr ""
 
+msgid "Description"
+msgstr ""
 
+msgid "Direct-Mode"
+msgstr ""
 
+msgid "EPG Date"
+msgstr ""
 
+msgid "EPG Info 1"
+msgstr ""
 
+msgid "EPG Info 2"
+msgstr ""
 
+msgid "EPG Info1"
+msgstr ""
 
+msgid "EPG Info2"
+msgstr ""
 
+msgid "EPG Title"
+msgstr ""
 
+msgid "EPG is not available..."
+msgstr ""
 
+msgid "Error"
+msgstr ""
 
+msgid "Event list"
+msgstr ""
 
+msgid "Eventlist Overview (EPG Plus)"
+msgstr ""
 
+msgid "Events Textcolor"
+msgstr ""
 
+msgid "Favorites"
+msgstr ""
 
+msgid "Features"
+msgstr ""
 
+msgid "Filebrowser"
+msgstr ""
+
+msgid "Filter off"
+msgstr ""
+
+msgid "Filter on"
+msgstr ""
+
+msgid "Font"
+msgstr ""
+
+msgid "Font name"
+msgstr ""
+
+msgid "Foot"
+msgstr ""
+
+msgid "Gradient"
+msgstr ""
+
+msgid "Gradient direction"
+msgstr ""
+
+msgid "HDD settings"
+msgstr ""
+
+msgid "Head"
+msgstr ""
+
+msgid "Here you can select a skin from the following list."
+msgstr ""
+
+msgid "Here you can setup the GUI Skin\n"
+msgstr ""
+
+msgid "Here you can setup the GUI themes.\n"
+msgstr ""
+
+msgid "Horizontal"
+msgstr ""
+
+msgid "Horizontal (in %)"
+msgstr ""
+
+msgid "IPTV Mode"
+msgstr ""
+
+msgid "Infobar"
+msgstr ""
+
+msgid "Information"
+msgstr ""
+
+msgid "Item Info"
+msgstr ""
+
+msgid "Keyword"
+msgstr ""
+
+msgid "LCD settings"
+msgstr ""
+
+msgid "LEFT"
+msgstr ""
+
+msgid "Language Setup"
+msgstr ""
+
+msgid "Language settings"
+msgstr ""
+
+msgid "Light to Dark"
+msgstr ""
+
+msgid "Light to Dark to Light"
+msgstr ""
+
+msgid "Main Menu"
+msgstr ""
+
+msgid "Main Settings"
+msgstr ""
+
+msgid "Mark"
+msgstr ""
+
+msgid "Media Player"
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+msgid "Menu Info"
+msgstr ""
+
+msgid "Menu Title"
+msgstr ""
+
+msgid "Menutext"
+msgstr ""
+
+msgid "Misc settings"
+msgstr ""
+
+msgid "Movie Player settings"
+msgstr ""
+
+msgid "My Favorites"
+msgstr ""
+
+msgid "Network settings"
+msgstr ""
+
+msgid "Neutrino restart"
+msgstr ""
+
+msgid "Next Page"
+msgstr ""
+
+msgid "No neutrino-settings found, Using defaults."
+msgstr ""
+
+msgid "Number"
+msgstr ""
+
+msgid "OSD Miscsettings"
+msgstr ""
+
+msgid "OSD Timing"
+msgstr ""
+
+msgid "OSD misc-settings"
+msgstr ""
+
+msgid "OSD settings"
+msgstr ""
+
+msgid "OSD timing"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Parentallock settings"
+msgstr ""
+
+msgid "Plugins"
+msgstr ""
+
+msgid "Power Menu"
+msgstr ""
+
+msgid "Prev Page"
+msgstr ""
+
+msgid "Program unknown"
+msgstr ""
+
+msgid "Progressbar Color"
+msgstr ""
+
+msgid "Provider"
+msgstr ""
+
+msgid "Providers"
+msgstr ""
+
+msgid "RIGHT"
+msgstr ""
+
+msgid "Radio Mode"
+msgstr ""
+
+msgid "Radius"
+msgstr ""
+
+msgid "Record"
+msgstr ""
+
+msgid "Recording"
+msgstr ""
+
+msgid "Recording settings"
+msgstr ""
+
+msgid "Recording starts in a few minutes"
+msgstr ""
+
+msgid "Refresh EPG"
+msgstr ""
+
+msgid "Reloading channel lists, please be patient."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
+
+msgid "Remote Control lock"
+msgstr ""
+
+msgid "Remote Control settings"
+msgstr ""
+
+msgid "Satellite display on infobar"
+msgstr ""
+
+msgid "Satellites"
+msgstr ""
+
+msgid "Save Settings"
+msgstr ""
+
+msgid "Save settings now"
+msgstr ""
+
+msgid "Scart Mode"
+msgstr ""
+
+msgid "Schedule"
+msgstr ""
+
+msgid "Schedule Event"
+msgstr ""
+
+msgid "Schedule Record"
+msgstr ""
+
+msgid "Schedule ecord"
+msgstr ""
+
+msgid "Screen settings"
+msgstr ""
+
+msgid "Scroll Mode"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search for keyword in EPG..."
+msgstr ""
+
+msgid "Search in EPG"
+msgstr ""
+
+msgid "Search within"
+msgstr ""
+
+msgid "Select Subservice"
+msgstr ""
+
+msgid "Select language"
+msgstr ""
+
+msgid "Select starting-time"
+msgstr ""
+
+msgid "Service"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Shadow"
+msgstr ""
+
+msgid "Skin Select"
+msgstr ""
+
+msgid "Skin Style Selection"
+msgstr ""
+
+msgid "Skin Style selection"
+msgstr ""
+
+msgid "Skin select"
+msgstr ""
+
+msgid "Sleeptimer in 1 min"
+msgstr ""
+
+msgid "Start Search"
+msgstr ""
+
+msgid "Stretch Mode"
+msgstr ""
+
+msgid "Subchannel display"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "TOP"
+msgstr ""
+
+msgid "TOP LEFT"
+msgstr ""
+
+msgid "TOP RIGHT"
+msgstr ""
+
+msgid "TV Mode"
+msgstr ""
+
+msgid "Teletext"
+msgstr ""
+
+msgid "Textcolor"
+msgstr ""
+
+msgid ""
+"The event is flagged for record.\n"
+"The box will power on and \n"
+"switch to this channel at the given time."
+msgstr ""
+
+msgid ""
+"The event is scheduled.\n"
+"The box will power on and \n"
+"switch to this channel at the given time."
+msgstr ""
+
+msgid ""
+"The neutrino-settings have been updated.\n"
+"New Options will be set to default."
+msgstr ""
+
+msgid "Themes"
+msgstr ""
+
+msgid "Time in sec. After this time the"
+msgstr ""
+
+msgid "Timer List"
+msgstr ""
+
+msgid "Timerlist"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Vertical"
+msgstr ""
+
+msgid "Vertikal (in %)"
+msgstr ""
+
+msgid "Video settings"
+msgstr ""
+
+msgid "Volume Step Size"
+msgstr ""
+
+msgid "Volumebar"
+msgstr ""
+
+msgid "WebTV"
+msgstr ""
+
+msgid "Window-Content"
+msgstr ""
+
+msgid "Window-Content inactive"
+msgstr ""
+
+msgid "Window-Content selected"
+msgstr ""
+
+msgid "You really want to to stop record ?"
+msgstr ""
+
+msgid "Zapto timer in one minute"
+msgstr ""
+
+msgid "angular"
+msgstr ""
+
+msgid "back"
+msgstr ""
+
+msgid "bottom left"
+msgstr ""
+
+msgid "bottom right"
+msgstr ""
+
+msgid "by bouquet"
+msgstr ""
+
+msgid "by page"
+msgstr ""
+
+msgid "choose Skin Style."
+msgstr ""
+
+msgid "colored"
+msgstr ""
+
+msgid "date / time"
+msgstr ""
+
+msgid "default center"
+msgstr ""
+
+msgid "direct selection"
+msgstr ""
+
+msgid "english"
+msgstr ""
+
+msgid "filebrowser item"
+msgstr ""
+
+msgid "higher center"
+msgstr ""
+
+msgid "info"
+msgstr ""
+
+msgid "infobar will be faded out."
+msgstr ""
+
+msgid "is not installed please install again."
+msgstr ""
+
+msgid "large"
+msgstr ""
+
+msgid "load default skin configuration"
+msgstr ""
+
+msgid "logos Dir"
+msgstr ""
+
+msgid "middle"
+msgstr ""
+
+msgid "monochrom"
+msgstr ""
+
+msgid "neutrino (default)"
+msgstr ""
+
+msgid "next bouquet"
+msgstr ""
+
+msgid "no epg found"
+msgstr ""
+
+msgid "no gradient"
+msgstr ""
+
+msgid "not available"
+msgstr ""
+
+msgid "off"
+msgstr ""
+
+msgid "on"
+msgstr ""
+
+msgid "page down"
+msgstr ""
+
+msgid "page up"
+msgstr ""
+
+msgid "prev bouquet"
+msgstr ""
+
+msgid "record"
+msgstr ""
+
+msgid "schedule"
+msgstr ""
+
+msgid "search"
+msgstr ""
+
+msgid "small"
+msgstr ""
+
+msgid "sorting(Time)"
+msgstr ""
+
+msgid "start"
+msgstr ""
+
+msgid "swap mode"
+msgstr ""
+
+msgid "top left"
+msgstr ""
+
+msgid "top right"
+msgstr ""
+
+msgid "view mode"
+msgstr ""

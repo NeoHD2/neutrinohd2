@@ -32,6 +32,9 @@ using namespace std;
 class CAudioSelectMenuHandler : public CMenuTarget
 {
 	public:
+		CAudioSelectMenuHandler(){id = WIDGET_AUDIOSELECT; name = "audio select";};
+		~CAudioSelectMenuHandler(){};
+		
 		int exec( CMenuTarget * parent, const std::string &actionkey);
 		void doMenu();
 };

@@ -142,7 +142,7 @@ class CMenuTarget
 	protected:
 		std::string *valueString;
 		std::string valueStringTmp;
-
+		
 	public:
 		CMenuTarget(){ valueStringTmp = std::string(); valueString = &valueStringTmp; };
 		virtual ~CMenuTarget(){};
@@ -150,6 +150,7 @@ class CMenuTarget
 		virtual int exec(CMenuTarget* parent, const std::string& actionKey) = 0;
 		virtual std::string& getString(void) { return *valueString; };
 		
+		//
 		//
 		int id;
 		std::string name;

@@ -485,6 +485,7 @@ void CLanguageSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CLanguageSettings::showMenu:\n");
 	
+	CMenuItem* item = NULL;
 	CMenuWidget languageSettings(_("Language Setup"), NEUTRINO_ICON_LANGUAGE );
 
 	languageSettings.setWidgetMode(MODE_SETUP);
@@ -508,39 +509,15 @@ void CLanguageSettings::showMenu()
 		
 		if(n > 0)
 		{
-			/*
-			for(int count = 0; count < n; count++) 
-			{
-				char * locale = strdup(namelist[count]->d_name);
-				char * pos = strstr(locale, ".locale");
-
-				if(pos != NULL) 
-				{
-					*pos = '\0';
-				
-					CMenuOptionLanguageChooser* oj = new CMenuOptionLanguageChooser((char*)locale, this, locale);
-					oj->addOption(locale);
-					languageSettings.addItem( oj );
-				} 
-				else
-					free(locale);
-				free(namelist[count]);
-			}
-			free(namelist);
-			*/
 			while(n--)
 			{
 				if(namelist[n]->d_type == DT_DIR && !strstr(namelist[n]->d_name, ".") && !strstr(namelist[n]->d_name, ".."))
 				{
-					/*
-					CMenuOptionLanguageChooser* oj = new CMenuOptionLanguageChooser(namelist[n]->d_name, this, namelist[n]->d_name);
-					oj->addOption(namelist[n]->d_name);
-					*/
 					
-					CMenuForwarder* oj = new CMenuForwarder(namelist[n]->d_name, true, NULL, this, namelist[n]->d_name);
-					oj->setIconName(namelist[n]->d_name);
+					item = new CMenuForwarder(locale2lang(namelist[n]->d_name).c_str(), true, NULL, this, namelist[n]->d_name);
+					item->setIconName(namelist[n]->d_name);
 					
-					languageSettings.addItem( oj );	
+					languageSettings.addItem(item);	
 				}
 				free(namelist[n]);
 			}
@@ -549,7 +526,6 @@ void CLanguageSettings::showMenu()
 	}
 	
 	languageSettings.exec(NULL, "");
-	languageSettings.hide();
 }
 
 bool CLanguageSettings::changeNotify(const std::string& OptionName, void */*data*/)

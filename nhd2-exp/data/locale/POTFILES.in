@@ -1,0 +1,9 @@
+./../src/neutrino.cpp
+./../src/neutrino_menue.cpp
+./../src/skin.cpp
+./../src/gui/eventlist.cpp
+./../src/gui/filebrowser.cpp
+./../src/gui/epgplus.cpp
+./../src/gui/main_setup.cpp
+./../src/gui/osd_setup.cpp
+

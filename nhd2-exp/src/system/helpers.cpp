@@ -693,6 +693,19 @@ std::string Lang2I18N(std::string lang)
 	return ret;
 }
 
+//
+std::string locale2lang(std::string lang)
+{
+	std::string ret = "english";
+	
+	if (lang == "de") 
+		ret = "german";
+	else if (lang == "en")
+		ret = "english";
+
+	return ret;
+}
+
 void splitString(std::string &str, std::string delim, std::vector<std::string> &strlist, int start)
 {
 	strlist.clear();

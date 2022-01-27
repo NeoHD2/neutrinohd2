@@ -1022,7 +1022,7 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::loadSkin: %s\n", skinName.c_str());
 	
-	//TEST
+	//
 	parseSkin();
 	
 #if ENABLE_LUA	

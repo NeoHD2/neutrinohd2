@@ -64,6 +64,9 @@
 CAlphaSetup::CAlphaSetup(const char* const Name, unsigned char * Alpha, CChangeObserver * Observer)
 {
 	frameBuffer = CFrameBuffer::getInstance();
+	
+	id = WIDGET_ALPHASETUP;
+	name = "alphasetup";
 
 	hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
 	mheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
@@ -94,19 +97,6 @@ int CAlphaSetup::exec(CMenuTarget * parent, const std::string &)
 
 	neutrino_msg_t      msg;
 	neutrino_msg_data_t data;
-
-/*
-	hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
-	mheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
-
-	mainBox.iWidth = w_max(MENU_WIDTH, 0);
-	mainBox.iHeight = hheight + mheight*2;
-
-	mainBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - mainBox.iWidth) >> 1);
-	mainBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - mainBox.iHeight) >> 1);
-
-	mainWindow.setPosition(&mainBox);
-*/
 
 	int res = RETURN_REPAINT;
 	
