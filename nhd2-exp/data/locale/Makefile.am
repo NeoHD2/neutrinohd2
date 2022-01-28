@@ -5,7 +5,7 @@ LANGPO = $(LANGS:=.po)
 
 EXTRA_DIST = $(LANGPO)
 
-neutrino-hd2.pot: $(top_srcdir)/src/*.cpp $(top_srcdir)/src/gui/*.cpp
+neutrino-hd2.pot: $(top_srcdir)/src/*.cpp $(top_srcdir)/src/gui/*.cpp $(top_srcdir)/src/gui/widget/*.cpp $(top_srcdir)/src/system/*.cpp $(top_srcdir)/src/driver/*.cpp $(top_srcdir)/src/daemonc/*.cpp
 	$(XGETTEXT) -L C++ --keyword=_ --keyword=N_ --from-code=utf-8 --no-wrap --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
 	
 %.po: neutrino-hd2.pot

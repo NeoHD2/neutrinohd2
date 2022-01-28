@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-28 01:42+0100\n"
+"POT-Creation-Date: 2022-01-28 10:35+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -188,6 +188,9 @@ msgid "BOTTOM LEFT"
 msgstr ""
 
 msgid "BOTTOM RIGHT"
+msgstr ""
+
+msgid "Back"
 msgstr ""
 
 msgid "Background"
@@ -371,6 +374,9 @@ msgstr ""
 msgid "Current Track"
 msgstr ""
 
+msgid "Current key"
+msgstr ""
+
 msgid "Current transponder"
 msgstr ""
 
@@ -456,6 +462,9 @@ msgid "Director"
 msgstr ""
 
 msgid "Disable (soft) Limits"
+msgstr ""
+
+msgid "Discard changes ?"
 msgstr ""
 
 msgid "Discard changes?"
@@ -979,6 +988,9 @@ msgstr ""
 msgid "Led Color"
 msgstr ""
 
+msgid "Length"
+msgstr ""
+
 msgid "Length (Min)"
 msgstr ""
 
@@ -1000,10 +1012,20 @@ msgstr ""
 msgid "LoDirection"
 msgstr ""
 
+msgid "Lock RC"
+msgstr ""
+
 msgid "Lock Remote Control"
 msgstr ""
 
 msgid "Lock program"
+msgstr ""
+
+msgid "Locked Channel"
+msgstr ""
+
+#, c-format
+msgid "Locked program (from %d years up)"
 msgstr ""
 
 msgid "Longitude"
@@ -1153,6 +1175,9 @@ msgstr ""
 msgid "NTP/DVB-Time-Sync in minutes"
 msgstr ""
 
+msgid "Name"
+msgstr ""
+
 msgid "Name server"
 msgstr ""
 
@@ -1220,6 +1245,9 @@ msgstr ""
 msgid "No info for current program available"
 msgstr ""
 
+msgid "No key"
+msgstr ""
+
 msgid "No neutrino-settings found, Using defaults."
 msgstr "No neutrino-settings found, Using defaults."
 
@@ -1237,6 +1265,12 @@ msgstr ""
 
 msgid "Number"
 msgstr "Number"
+
+msgid "Numeric Zap"
+msgstr ""
+
+msgid "OK"
+msgstr ""
 
 msgid "OK saves, HOME! aborts"
 msgstr ""
@@ -1260,6 +1294,11 @@ msgid "Off"
 msgstr ""
 
 msgid "On"
+msgstr ""
+
+msgid ""
+"One or several recording processes are active.\n"
+"If you encounter this message and no recording is active, please restart Neutrino."
 msgstr ""
 
 msgid "Online EPG"
@@ -1329,6 +1368,9 @@ msgid "Please enter jump target"
 msgstr ""
 
 msgid "Please enter the filename of the playlist"
+msgstr ""
+
+msgid "Please press the new key"
 msgstr ""
 
 msgid "Plugin"
@@ -1721,10 +1763,16 @@ msgstr ""
 msgid "Settings restore"
 msgstr ""
 
+msgid "Setup New Key"
+msgstr ""
+
 msgid "Setup network now, please wait..."
 msgstr ""
 
 msgid "Setup network on startup"
+msgstr ""
+
+msgid "Setup new key"
 msgstr ""
 
 msgid "Setup satellites input / LNB"
@@ -2001,6 +2049,16 @@ msgstr ""
 "The neutrino-settings have been updated.\n"
 "New Options will be set to default."
 
+msgid ""
+"The recording directory is not writable.\n"
+"Recording will not work."
+msgstr ""
+
+msgid ""
+"The recording was aborted,\n"
+"because the target file could not be opened."
+msgstr ""
+
 msgid "Theme name"
 msgstr ""
 
@@ -2169,6 +2227,9 @@ msgstr ""
 msgid "Video settings"
 msgstr ""
 
+msgid "Videotext"
+msgstr ""
+
 msgid "Virtual zap"
 msgstr ""
 
@@ -2188,6 +2249,9 @@ msgid "Volume adjustment (in %)"
 msgstr ""
 
 msgid "Volumebar"
+msgstr ""
+
+msgid "Wait a few seconds for abort"
 msgstr ""
 
 msgid "Waiting for CI answer"
@@ -2247,6 +2311,9 @@ msgid ""
 "Your box remote control will be locked.\n"
 " To unlock it, press <RED> \n"
 " and <MENU> on your remote control."
+msgstr ""
+
+msgid "Youth protection"
 msgstr ""
 
 msgid "Youth protection settings"
@@ -2356,6 +2423,12 @@ msgstr ""
 msgid "can't open file"
 msgstr ""
 
+msgid "can't open mtd-device"
+msgstr ""
+
+msgid "caps / no caps"
+msgstr ""
+
 msgid "cartoons/puppets"
 msgstr ""
 
@@ -2369,6 +2442,9 @@ msgid "children / juvenile program"
 msgstr ""
 
 msgid "choose Skin Style."
+msgstr ""
+
+msgid "clear all"
 msgstr ""
 
 msgid "colored"
@@ -2452,6 +2528,12 @@ msgstr ""
 msgid "erase all"
 msgstr ""
 
+msgid "erasing flash"
+msgstr ""
+
+msgid "erasure of flash failed"
+msgstr ""
+
 msgid "error umounting volume"
 msgstr ""
 
@@ -2519,6 +2601,9 @@ msgid "goto middle"
 msgstr ""
 
 msgid "goto start"
+msgstr ""
+
+msgid "green"
 msgstr ""
 
 msgid "handicraft"
@@ -2769,6 +2854,9 @@ msgstr ""
 msgid "prev bouquet"
 msgstr ""
 
+msgid "programming flash"
+msgstr ""
+
 msgid "purple"
 msgstr ""
 
@@ -2916,6 +3004,9 @@ msgid "technology/natural sciences"
 msgstr ""
 
 msgid "tennis/squash"
+msgstr ""
+
+msgid "the filesize is 0 Bytes"
 msgstr ""
 
 msgid "time (in minutes) to switch from standby"
