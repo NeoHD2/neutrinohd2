@@ -5,7 +5,25 @@ LANGPO = $(LANGS:=.po)
 
 EXTRA_DIST = $(LANGPO)
 
-neutrino-hd2.pot: $(top_srcdir)/src/*.cpp $(top_srcdir)/src/gui/*.cpp $(top_srcdir)/src/gui/widget/*.cpp $(top_srcdir)/src/system/*.cpp $(top_srcdir)/src/driver/*.cpp $(top_srcdir)/src/daemonc/*.cpp
+neutrino-hd2.pot: $(top_srcdir)/src/*.cpp $(top_srcdir)/src/gui/*.cpp $(top_srcdir)/src/gui/widget/*.cpp $(top_srcdir)/src/system/*.cpp $(top_srcdir)/src/driver/*.cpp $(top_srcdir)/src/daemonc/*.cpp \
+	$(top_srcdir)/../plugins/test/*.cpp \
+	$(top_srcdir)/../plugins/audioplayer/*.cpp \
+	$(top_srcdir)/../plugins/fileexplorer/*.cpp \
+	$(top_srcdir)/../plugins/fileplayer/*.cpp \
+	$(top_srcdir)/../plugins/icecast/*.cpp \
+	$(top_srcdir)/../plugins/internetradio/*.cpp \
+	$(top_srcdir)/../plugins/mediaportal/*.cpp \
+	$(top_srcdir)/../plugins/moviebrowser/*.cpp \
+	$(top_srcdir)/../plugins/netzkino/*.cpp \
+	$(top_srcdir)/../plugins/nfilm/*.cpp \
+	$(top_srcdir)/../plugins/ntvshows/*.cpp \
+	$(top_srcdir)/../plugins/opkg_manager/*.cpp \
+	$(top_srcdir)/../plugins/picviewer/*.cpp \
+	$(top_srcdir)/../plugins/satipclient/*.cpp \
+	$(top_srcdir)/../plugins/systeminfo/*.cpp \
+	$(top_srcdir)/../plugins/tsbrowser/*.cpp \
+	$(top_srcdir)/../plugins/upnp/*.cpp \
+	$(top_srcdir)/../plugins/youtube/*.cpp
 	$(XGETTEXT) -L C++ --keyword=_ --keyword=N_ --from-code=utf-8 --no-wrap --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
 	
 %.po: neutrino-hd2.pot

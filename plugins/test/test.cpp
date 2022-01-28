@@ -4221,16 +4221,14 @@ void CTestMenu::testClistBox4()
 	rightWidget->setItemsPerPage(5,2);
 	rightWidget->enableShrinkMenu();
 	
+	rightWidget->paintMainFrame(false);
+	
 	// head
-	rightWidget->setTitle("ClistBox (standard)", NEUTRINO_ICON_MOVIE);
+	//rightWidget->enablePaintHead();
+	rightWidget->setTitle("ClistBox (FRAME)", NEUTRINO_ICON_MOVIE);
 	//rightWidget->setTitleHAlign(CC_ALIGN_CENTER);
-	rightWidget->enablePaintHead();
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
-	rightWidget->setFormat("%d.%m.%Y %H:%M:%S");
-
-	//rightWidget->paintMainFrame(false);	
-	//rightWidget->setSelected(selected);
 	
 	//
 	rightWidget->paint();
@@ -7586,7 +7584,7 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CBouquetList:", true, NULL, this, "bouquetlist"));
 	
 	//		
-	mainMenu->addItem(new CMenuForwarder("SKIN", true, NULL, CNeutrinoApp::getInstance(), "plugins"));
+	mainMenu->addItem(new CMenuForwarder("SKIN", true, NULL, CNeutrinoApp::getInstance(), "skin"));
 	
 	mainMenu->exec(NULL, "");
 

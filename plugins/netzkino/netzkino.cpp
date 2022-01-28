@@ -86,8 +86,6 @@ void CNKMovies::loadNKTitles(int mode, std::string search, int id)
 		MessageBox(_("Error"), _("Failed to load Netzkino Movies"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 
 		loadBox.hide();
-		
-		return;
 	}
 	
 	m_vMovieInfo.clear();
@@ -131,10 +129,12 @@ void CNKMovies::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CNKMovies::showMenu: mode:%d id:%d title:%s\n", catMode, catID, caption.c_str());
 	
+	/*
 	if(m_vMovieInfo.empty())
 	{
 		return;
 	}
+	*/
 
 	//
 	std::string title;
