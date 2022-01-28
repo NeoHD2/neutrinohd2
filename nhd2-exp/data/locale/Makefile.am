@@ -5,13 +5,12 @@ LANGPO = $(LANGS:=.po)
 
 EXTRA_DIST = $(LANGPO)
 
-neutrino-hd2.pot:
-	$(XGETTEXT) --default-domain=@PACKAGE_NAME@ --directory=$(top_srcdir)/src --keyword=_ --keyword=N_ --from-code=utf-8 --files-from=$(srcdir)/POTFILES.in --no-wrap --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
-	$(SED) --in-place $@ --expression=s/CHARSET/UTF-8/
+neutrino-hd2.pot: $(top_srcdir)/src/*.cpp $(top_srcdir)/src/gui/*.cpp
+	$(XGETTEXT) -L C++ --keyword=_ --keyword=N_ --from-code=utf-8 --no-wrap --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
 	
-%.po: @PACKAGE_NAME@.pot
+%.po: neutrino-hd2.pot
 	if [ -f $@ ]; then \
-		$(MSGMERGE) --backup=none --no-wrap --no-location -s -U $@ $< && touch $@; \
+		$(MSGMERGE) --backup=none --no-wrap --no-location -s -U -q -N $@ $< && touch $@; \
 		$(MSGATTRIB) --no-wrap --no-obsolete $@ -o $@; \
 	else \
 		$(MSGINIT) -l $@ -o $@ -i $< --no-translator; \
