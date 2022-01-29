@@ -551,7 +551,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 {
 	int cnt = 0;	
 
-	dprintf(DEBUG_NORMAL, "CBouquetManager::parseWebTVBouquet: parsing %s\n", filename.c_str());
+	dprintf(DEBUG_INFO, "CBouquetManager::parseWebTVBouquet: parsing %s\n", filename.c_str());
 
 	_xmlDocPtr parser = NULL;
 	
@@ -870,12 +870,12 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 		infile.close();
 	}
 
-	dprintf(DEBUG_NORMAL, "CBouquetManager::loadWebTVBouquet: load %d WEBTV Channels (allchans:%d)\n", cnt, (int) allchans.size());
+	dprintf(DEBUG_INFO, "CBouquetManager::loadWebTVBouquet: load %d WEBTV Channels (allchans:%d)\n", cnt, (int) allchans.size());
 }
 
 void CBouquetManager::loadWebTVBouquet(const std::string& dirname)
 {
-	dprintf(DEBUG_NORMAL, "CBouquetManager::loadWebTVBouquet: %s\n", dirname.c_str());
+	dprintf(DEBUG_INFO, "CBouquetManager::loadWebTVBouquet: %s\n", dirname.c_str());
 
 	dirent_struct **namelist;
 	int n;
@@ -916,7 +916,7 @@ void CBouquetManager::loadWebTVBouquet(const std::string& dirname)
 
 void CBouquetManager::loadBouquets(bool loadCurrentBouquet)
 {
-	dprintf(DEBUG_NORMAL, "CBouquetManager::loadBouquets:\n");
+	dprintf(DEBUG_INFO, "CBouquetManager::loadBouquets:\n");
 
 	clearAll();
 	
@@ -934,7 +934,7 @@ void CBouquetManager::loadBouquets(bool loadCurrentBouquet)
 		parser = parseXmlFile(CURRENTSERVICES_XML);
 		if (parser != NULL)
 		{
-			dprintf(DEBUG_NORMAL, "reading %s\n", CURRENTSERVICES_XML);
+			dprintf(DEBUG_INFO, "reading %s\n", CURRENTSERVICES_XML);
 
 			makeBouquetfromCurrentservices(xmlDocGetRootElement(parser));
 			xmlFreeDoc(parser);

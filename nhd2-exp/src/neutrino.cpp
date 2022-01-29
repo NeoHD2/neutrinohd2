@@ -4449,7 +4449,7 @@ void CNeutrinoApp::ExitRun(int retcode, bool save)
 		if (frameBuffer != NULL)
 			delete frameBuffer;
 
-		dprintf(DEBUG_NORMAL, ">>> CNeutrinoApp::ExitRun: Good bye (retcode: %d)<<<\n", retcode);
+		dprintf(DEBUG_NORMAL, ">>> CNeutrinoApp::ExitRun: Good bye (retcode: %d) <<<\n", retcode);
 		
 #if defined (USE_OPENGL)		
 		if(retcode == RESTART)

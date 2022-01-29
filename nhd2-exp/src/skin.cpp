@@ -1020,7 +1020,7 @@ void CNeutrinoApp::parseSkin()
 //
 void CNeutrinoApp::loadSkin(std::string skinName)
 {
-	dprintf(DEBUG_NORMAL, "CNeutrinoApp::loadSkin: %s\n", skinName.c_str());
+	dprintf(DEBUG_INFO, "CNeutrinoApp::loadSkin: %s\n", skinName.c_str());
 	
 	//
 	parseSkin();
@@ -1059,7 +1059,7 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		
 					if (!filename.empty())
 					{
-						dprintf(DEBUG_NORMAL, "CNeutrinoApp::loadskin: add: %s\n", filename.c_str());
+						dprintf(DEBUG_INFO, "CNeutrinoApp::loadskin: add: %s\n", filename.c_str());
 						
 						new_skin.pluginfile = filename;
 						new_skin.type = CPlugins::P_TYPE_LUA;
@@ -1201,7 +1201,7 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 
 void CNeutrinoApp::startSkin(const char * const filename)
 {
-	dprintf(DEBUG_NORMAL, "CNeutrinoApp::startSkin: %s\n", filename);
+	dprintf(DEBUG_INFO, "CNeutrinoApp::startSkin: %s\n", filename);
 	
 #if ENABLE_LUA	
 	int skinnr = -1;
@@ -1226,7 +1226,7 @@ void CNeutrinoApp::startSkin(const char * const filename)
 	}
 	else
 	{
-		dprintf(DEBUG_NORMAL, "CPlugins::startSkin: could not find %s\n", filename);
+		dprintf(DEBUG_INFO, "CPlugins::startSkin: could not find %s\n", filename);
 		
 		std::string hint = filename;
 		hint += " ";
@@ -1239,7 +1239,7 @@ void CNeutrinoApp::startSkin(const char * const filename)
 
 bool CNeutrinoApp::skin_exists(const char* const filename)
 {
-	dprintf(DEBUG_NORMAL, "CNeutrinoApp::skin_exists: %s\n", filename);
+	dprintf(DEBUG_INFO, "CNeutrinoApp::skin_exists: %s\n", filename);
 	
 	for (int i = 0; i <  (int) skin_list.size(); i++)
 	{
@@ -1306,7 +1306,7 @@ void CNeutrinoApp::unloadSkin()
 //
 void CNeutrinoApp::readSkinConfig(const char* const filename)
 {
-	dprintf(DEBUG_NORMAL, "CNeutrinpApp::readSkinConfig %s\n", filename);
+	dprintf(DEBUG_INFO, "CNeutrinpApp::readSkinConfig %s\n", filename);
 	
 	CConfigFile* skinConfig = new CConfigFile(',');
 	
@@ -1428,7 +1428,7 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 
 void CNeutrinoApp::saveSkinConfig(const char * const filename)
 {
-	dprintf(DEBUG_NORMAL, "CNeutrinoApp::saveFile: %s\n", filename);
+	dprintf(DEBUG_INFO, "CNeutrinoApp::saveFile: %s\n", filename);
 	
 	CConfigFile* skinConfig = new CConfigFile(',');;
 	

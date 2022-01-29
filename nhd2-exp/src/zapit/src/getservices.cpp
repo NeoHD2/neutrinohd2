@@ -77,7 +77,7 @@ extern void parseScanInputXml(fe_type_t fe_type);	// defined in zapit.cpp
 
 void ParseTransponders(_xmlNodePtr node, t_satellite_position satellitePosition, delivery_system_t system)
 {
-	dprintf(DEBUG_NORMAL, "[getservices] ParseTransponders:\n");
+	dprintf(DEBUG_INFO, "[getservices] ParseTransponders:\n");
 
 	t_transport_stream_id transport_stream_id;
 	t_original_network_id original_network_id;
@@ -261,7 +261,7 @@ void ParseChannels(_xmlNodePtr node, const t_transport_stream_id transport_strea
 // scan services.xml
 void FindTransponder(_xmlNodePtr search)
 {
-	dprintf(DEBUG_NORMAL, "[getservices] FindTransponder:\n");
+	dprintf(DEBUG_INFO, "[getservices] FindTransponder:\n");
 
 	t_satellite_position satellitePosition = 0;
     	delivery_system_t system = DVB_S;
@@ -282,7 +282,7 @@ void FindTransponder(_xmlNodePtr search)
 				}
 			}
 			
-			dprintf(DEBUG_NORMAL, "[getservices] FindTransponder: going to parse dvb-%c provider %s\n", xmlGetName(search)[0], xmlGetAttribute(search, "name"));
+			dprintf(DEBUG_INFO, "[getservices] FindTransponder: going to parse dvb-%c provider %s\n", xmlGetName(search)[0], xmlGetAttribute(search, "name"));
 		}
 		else if ( !(strcmp(xmlGetName(search), "terrestrial")) && have_t)
 		{
@@ -297,14 +297,14 @@ void FindTransponder(_xmlNodePtr search)
 				}
 			}
 			
-			dprintf(DEBUG_NORMAL, "[getservices] FindTransponder: going to parse dvb-%c provider %s\n", xmlGetName(search)[0], xmlGetAttribute(search, "name"));
+			dprintf(DEBUG_INFO, "[getservices] FindTransponder: going to parse dvb-%c provider %s\n", xmlGetName(search)[0], xmlGetAttribute(search, "name"));
 		}
 		else if ( !(strcmp(xmlGetName(search), "sat")) && have_s) 
 		{
 			system = DVB_S;
 			satellitePosition = xmlGetSignedNumericAttribute(search, "position", 10);
 			
-			dprintf(DEBUG_NORMAL, "[getservices] FindTransponder: going to parse dvb-%c provider %s position %d\n", xmlGetName(search)[0], xmlGetAttribute(search, "name"), satellitePosition);
+			dprintf(DEBUG_INFO, "[getservices] FindTransponder: going to parse dvb-%c provider %s position %d\n", xmlGetName(search)[0], xmlGetAttribute(search, "name"), satellitePosition);
 		}
 		else // unknow
 		{
@@ -426,7 +426,7 @@ void ParseSatTransponders(fe_type_t frontendType, _xmlNodePtr search, t_satellit
 
 int loadMotorPositions(void)
 {
-	dprintf(DEBUG_NORMAL, "[getservices] loadMotorPositions:\n");
+	dprintf(DEBUG_INFO, "[getservices] loadMotorPositions:\n");
 
 	FILE *fd = NULL;
 	char buffer[256] = "";
@@ -472,7 +472,7 @@ void SaveMotorPositions()
 	FILE * fd;
 	sat_iterator_t sit;
 	
-	dprintf(DEBUG_NORMAL, "[getservices] saving motor positions...\n");
+	dprintf(DEBUG_INFO, "[getservices] saving motor positions...\n");
 
 	fd = fopen(SATCONFIG, "w");
 	if(fd == NULL) 
@@ -528,7 +528,7 @@ int loadTransponders()
 	
 	t_satellite_position position = 0; //first position
 
-	dprintf(DEBUG_NORMAL, "[getservices] loadTransponders:\n");
+	dprintf(DEBUG_INFO, "[getservices] loadTransponders:\n");
 	
 	select_transponders.clear();
 	fake_tid = 0;
@@ -705,7 +705,7 @@ int loadServices(bool only_current)
 	_xmlDocPtr parser;
 	scnt = 0;
 
-	dprintf(DEBUG_NORMAL, "[getservices] loadServices:\n");
+	dprintf(DEBUG_INFO, "[getservices] loadServices:\n");
 
 	if(only_current)
 		goto do_current;
@@ -742,7 +742,7 @@ int loadServices(bool only_current)
 		xmlFreeDoc(parser);
 	}
 
-	dprintf(DEBUG_NORMAL, "[getservices] loadServices: services loaded (%d)...\n", scnt);
+	dprintf(DEBUG_INFO, "[getservices] loadServices: services loaded (%d)...\n", scnt);
 
 	// load motor position
 	for(int i = 0; i < FrontendCount; i++)
@@ -783,7 +783,7 @@ do_current:
 		}
 	}
 
-	dprintf(DEBUG_NORMAL, "[getservices] loadServices: services loaded (%d)...\n", allchans.size());
+	dprintf(DEBUG_INFO, "[getservices] loadServices: services loaded (%d)...\n", allchans.size());
 
 	return 0;
 }

@@ -891,7 +891,7 @@ void CFrameBuffer::paintFrameBox(const int x, const int y, const int dx, const i
 
 void CFrameBuffer::setIconBasePath(const std::string & iconPath)
 {
-	dprintf(DEBUG_NORMAL, "CFrameBuffer::setIconBasePath: %s\n", iconPath.c_str());
+	dprintf(DEBUG_INFO, "CFrameBuffer::setIconBasePath: %s\n", iconPath.c_str());
 	
 	iconBasePath = iconPath;
 	g_settings.icons_dir = iconBasePath;
@@ -899,7 +899,7 @@ void CFrameBuffer::setIconBasePath(const std::string & iconPath)
 
 void CFrameBuffer::setHintBasePath(const std::string & hintPath)
 {
-	dprintf(DEBUG_NORMAL, "CFrameBuffer::setHintBasePath: %s\n", hintPath.c_str());
+	dprintf(DEBUG_INFO, "CFrameBuffer::setHintBasePath: %s\n", hintPath.c_str());
 	
 	hintBasePath = hintPath;
 	g_settings.hints_dir = hintBasePath;
@@ -907,7 +907,7 @@ void CFrameBuffer::setHintBasePath(const std::string & hintPath)
 
 void CFrameBuffer::setButtonBasePath(const std::string & buttonPath)
 {
-	dprintf(DEBUG_NORMAL, "CFrameBuffer::setButtonBasePath: %s\n", buttonPath.c_str());
+	dprintf(DEBUG_INFO, "CFrameBuffer::setButtonBasePath: %s\n", buttonPath.c_str());
 	
 	buttonBasePath = buttonPath;
 	g_settings.buttons_dir = buttonBasePath;
