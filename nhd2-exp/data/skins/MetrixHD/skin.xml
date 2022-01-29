@@ -96,6 +96,7 @@
 	</widget>
 	-->
 
+<!--
 	<WIDGET name="mainsetup" id="2" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" color="#0f0f0f00">
 		</WINDOW>
@@ -129,6 +130,7 @@
 		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
 		
 	</WIDGET>
+	-->
 
 	<WIDGET name="mainmenu" id="1" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" color="#0f0f0f00">

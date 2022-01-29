@@ -77,7 +77,7 @@ enum {
 	//CC_SLIDER,
 };
 
-// halign and we assume all CCItems are valigned
+// halign
 enum {
 	CC_ALIGN_LEFT,
 	CC_ALIGN_CENTER,
@@ -92,15 +92,13 @@ class CComponent
 		int cc_type;
 		CBox cCBox;
 		int halign;
-		int valign;
+		//int valign;
 		
 		//
 		bool rePaint;
 		
-		CWindow* parent;
-		
 		//
-		CComponent(){frameBuffer = CFrameBuffer::getInstance(); rePaint = false;};
+		CComponent(){frameBuffer = CFrameBuffer::getInstance(); rePaint = false; halign = CC_ALIGN_LEFT; };
 		virtual ~CComponent(){};
 		
 		virtual bool isSelectable(void){return false;};
@@ -130,9 +128,6 @@ class CComponent
 		
 		//
 		virtual inline CBox getWindowsPos(void){return (cCBox);};
-		
-		// 
-		void setParent(CWindow* p){parent = p;};
 };
 
 class CCIcon : public CComponent

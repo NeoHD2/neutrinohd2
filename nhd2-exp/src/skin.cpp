@@ -54,16 +54,28 @@
 #include <gui/themes.h>
 //
 #include <gui/main_setup.h>
-#include <gui/osd_setup.h>
 #include <gui/epg_menu.h>
 #include <gui/epgplus.h>
 #include <gui/timerlist.h>
 #include <gui/streaminfo2.h>
 #include <gui/service_menu.h>
 #include <gui/mediaplayer.h>
-#include <gui/misc_setup.h>
 #include <gui/dboxinfo.h>
 #include <gui/power_menu.h>
+
+#include <gui/audio_setup.h>
+#include <gui/video_setup.h>
+#include <gui/parentallock_setup.h>
+#include <gui/network_setup.h>
+#include <gui/movieplayer_setup.h>
+#include <gui/osd_setup.h>
+#include <gui/audioplayer_setup.h>
+#include <gui/pictureviewer_setup.h>
+#include <gui/lcd_setup.h>
+#include <gui/rc_setup.h>
+#include <gui/recording_setup.h>
+#include <gui/misc_setup.h>
+#include <gui/hdd_menu.h>
 
 #include <system/helpers.h>
 #include <system/debug.h>
@@ -86,7 +98,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			parent = this;
 			break;
 		
-		case 1:
+		case WIDGET_MAINMENU:
 			{
 				if (widget_exists(WIDGET_MAINMENU))
 				{
@@ -100,7 +112,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			}
 			break;
 			
-		case 2:
+		case WIDGET_MAINSETTINGS:
 			{
 				if (widget_exists(WIDGET_MAINSETTINGS))
 				{
@@ -114,7 +126,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			}
 			break;
 			
-		case 3:
+		case WIDGET_EPGTIMER:
 			{
 				if (widget_exists(WIDGET_EPGTIMER))
 				{
@@ -128,7 +140,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			}
 			break;
 			
-		case 4:
+		case WIDGET_SERVICE:
 			{
 				if (widget_exists(WIDGET_SERVICE))
 				{
@@ -142,7 +154,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			}
 			break;
 			
-		case 5:
+		case WIDGET_INFORMATION:
 			{
 				if (widget_exists(WIDGET_INFORMATION))
 				{
@@ -156,7 +168,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			}
 			break;
 			
-		case 6:
+		case WIDGET_FEATURES:
 			{
 				if (widget_exists(WIDGET_FEATURES))
 				{
@@ -170,7 +182,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			}
 			break;
 			
-		case 7:
+		case WIDGET_POWERMENU:
 			{
 				if (widget_exists(WIDGET_POWERMENU))
 				{
@@ -184,7 +196,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			}
 			break;
 			
-		case 8:
+		case WIDGET_MEDIAPLAYER:
 			{
 				if (widget_exists(WIDGET_MEDIAPLAYER))
 				{
@@ -198,7 +210,91 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			}
 			break;
 			
-		case 9:
+		case WIDGET_VIDEOSETUP:
+			{
+				if (widget_exists(WIDGET_VIDEOSETUP))
+				{
+					parent = getWidget(WIDGET_VIDEOSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CVideoSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_AUDIOSETUP:
+			{
+				if (widget_exists(WIDGET_AUDIOSETUP))
+				{
+					parent = getWidget(WIDGET_AUDIOSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CAudioSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_PARENTALSETUP:
+			{
+				if (widget_exists(WIDGET_PARENTALSETUP))
+				{
+					parent = getWidget(WIDGET_PARENTALSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CParentalLockSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_NETWORKSETUP:
+			{
+				if (widget_exists(WIDGET_NETWORKSETUP))
+				{
+					parent = getWidget(WIDGET_NETWORKSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = CNetworkSettings::getInstance();
+				}
+			}
+			break;
+			
+		case WIDGET_RECORDINGSETUP:
+			{
+				if (widget_exists(WIDGET_RECORDINGSETUP))
+				{
+					parent = getWidget(WIDGET_RECORDINGSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CRecordingSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_MOVIEPLAYERSETUP:
+			{
+				if (widget_exists(WIDGET_MOVIEPLAYERSETUP))
+				{
+					parent = getWidget(WIDGET_MOVIEPLAYERSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CMoviePlayerSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_ODSETTINGS:
 			{
 				if (widget_exists(WIDGET_ODSETTINGS))
 				{
@@ -212,7 +308,63 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			}
 			break;
 			
-		case 10:
+		case WIDGET_LCDSETUP:
+			{
+				if (widget_exists(WIDGET_LCDSETUP))
+				{
+					parent = getWidget(WIDGET_LCDSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CLCDSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_REMOTECONTROLSETUP:
+			{
+				if (widget_exists(WIDGET_REMOTECONTROLSETUP))
+				{
+					parent = getWidget(WIDGET_REMOTECONTROLSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CRemoteControlSettings();
+				}
+			}
+			break;
+		
+		case WIDGET_AUDIOPLAYERSETUP:
+			{
+				if (widget_exists(WIDGET_AUDIOPLAYERSETUP))
+				{
+					parent = getWidget(WIDGET_AUDIOPLAYERSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CAudioPlayerSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_PICTUREVIEWERSETUP:
+			{
+				if (widget_exists(WIDGET_PICTUREVIEWERSETUP))
+				{
+					parent = getWidget(WIDGET_PICTUREVIEWERSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CPictureViewerSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_MISCSETTINGS:
 			{
 				if (widget_exists(WIDGET_MISCSETTINGS))
 				{
@@ -226,128 +378,16 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			}
 			break;
 			
-		case 11:
+		case WIDGET_HDDSETUP:
 			{
-				if (widget_exists(WIDGET_NVOD))
+				if (widget_exists(WIDGET_HDDSETUP))
 				{
-					parent = getWidget(WIDGET_NVOD);
+					parent = getWidget(WIDGET_HDDSETUP);
 				}
 				else
 				{
 					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = this;
-				}
-			}
-			break;
-			
-		case 30:
-			{
-				if (widget_exists(WIDGET_SKINSETUP))
-				{
-					parent = getWidget(WIDGET_SKINSETUP);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CSkinManager();
-				}
-			}
-			break;
-			
-		case 34:
-			{
-				if (widget_exists(WIDGET_LANGUAGESETUP))
-				{
-					parent = getWidget(WIDGET_LANGUAGESETUP);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CLanguageSettings();
-				}
-			}
-			break;
-			
-		case 43:
-			{
-				if (widget_exists(WIDGET_PLUINGSLIST))
-				{
-					parent = getWidget(WIDGET_PLUINGSLIST);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CPluginList();
-				}
-			}
-			break;
-			
-		case 44:
-			{
-				if (widget_exists(WIDGET_EPGVIEW))
-				{
-					parent = getWidget(WIDGET_EPGVIEW);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CEPGDataHandler();
-				}
-			}
-			break;
-			
-		case 45:
-			{
-				if (widget_exists(WIDGET_EVENTLIST))
-				{
-					parent = getWidget(WIDGET_EVENTLIST);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CEventListHandler();
-				}
-			}
-			break;
-			
-		case 46:
-			{
-				if (widget_exists(WIDGET_EPGPLUS))
-				{
-					parent = getWidget(WIDGET_EPGPLUS);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CEPGplusHandler();
-				}
-			}
-			break;
-			
-		case 47:
-			{
-				if (widget_exists(WIDGET_TIMERLIST))
-				{
-					parent = getWidget(WIDGET_TIMERLIST);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CTimerList();
-				}
-			}
-			break;
-			
-		case 67:
-			{
-				if (widget_exists(WIDGET_STREAMINFO))
-				{
-					parent = getWidget(WIDGET_STREAMINFO);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CStreamInfo2Handler();
+					parent = new CHDDMenuHandler();
 				}
 			}
 			break;

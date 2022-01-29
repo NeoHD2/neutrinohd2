@@ -9,9 +9,9 @@
 		</HEAD>
 		
 		<LISTBOX posx="30" posy="90" width="640" height="540" paintframe="1" type="0" scrollbar="1">
-			<ITEM name="menuforwarder" id="5" localename="EPG / Timer" target="3">
+			<ITEM name="menuforwarder" id="5" localename="EPG / Timer" iconname="btn_red" target="3">
 			</ITEM>
-			<ITEM name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" iconname="red" target="0" actionkey="features">
+			<ITEM name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" iconname="btn_green" target="0" actionkey="features">
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Service" itemicon="hint_service" hint="Timer List" target="4">
 			</ITEM>

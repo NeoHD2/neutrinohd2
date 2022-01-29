@@ -9,19 +9,31 @@
 	</HEAD>
 	
 	<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1">
-		<ITEM name="menuforwarder" id="5" localename="A / V settings" itemicon="hint_timers" hint="Timer List" target="3">
+		<ITEM name="menuforwarder" id="5" localename="Video settings" itemicon="hint_video" hint="Timer List" target="9">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Network" itemicon="hint_plugin" hint="Timer List" target="6" actionkey="features">
+		<ITEM name="menuforwarder" id="5" localename="Audio settings" itemicon="hint_audio" hint="Timer List" target="10" actionkey="features">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Parentallock" itemicon="hint_service" hint="Timer List" target="4">
+		<ITEM name="menuforwarder" id="5" localename="Parentallock settings" itemicon="hint_protection" hint="Timer List" target="11">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="OSD settings" itemicon="hint_settings" hint="test" target="9">
+		<ITEM name="menuforwarder" id="5" localename="Network settings" itemicon="hint_network" hint="test" target="12">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Misc settings" itemicon="hint_dboxinfo" hint="Timer List" target="5">
+		<ITEM name="menuforwarder" id="5" localename="Recording settings" itemicon="hint_recording" hint="Timer List" target="13">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="HDD settings" itemicon="hint_shutdown" hint="Timer List" target="7">
+		<ITEM name="menuforwarder" id="5" localename="Movie Player settings" itemicon="hint_mb" hint="Timer List" target="14">
 		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Movieplayer settings" itemicon="hint_media" hint="Timer List" target="8">
+		<ITEM name="menuforwarder" id="5" localename="OSD settings" itemicon="hint_osd" hint="Timer List" target="15">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="LCD settings" itemicon="hint_vfd" hint="Timer List" target="16">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Remote Control settings" itemicon="hint_keys" hint="Timer List" target="17">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Audio Player settings" itemicon="hint_aplay" hint="Timer List" target="18">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Picture Viewer settings" itemicon="hint_picview" hint="Timer List" target="19">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="Misc settings" itemicon="hint_extended" hint="Timer List" target="20">
+		</ITEM>
+		<ITEM name="menuforwarder" id="5" localename="HDD settings" itemicon="hint_hdd" hint="Timer List" target="21">
 		</ITEM>
 	</LISTBOX>
 	

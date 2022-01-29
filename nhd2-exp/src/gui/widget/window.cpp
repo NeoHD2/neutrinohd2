@@ -232,7 +232,6 @@ void CWindow::hide()
 void CWindow::addCCItem(CComponent* CCItem)
 {
 	CCItems.push_back(CCItem);
-	CCItem->setParent(this);
 }
 
 //

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-28 11:53+0100\n"
+"POT-Creation-Date: 2022-01-29 12:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1527,7 +1527,7 @@ msgstr ""
 #: ../../src/neutrino.cpp:5286 ../../src/neutrino.cpp:5291
 #: ../../src/neutrino.cpp:5307 ../../src/neutrino.cpp:5312
 #: ../../src/neutrino.cpp:5324 ../../src/neutrino.cpp:5326
-#: ../../src/skin.cpp:1235 ../../src/gui/dboxinfo.cpp:462
+#: ../../src/skin.cpp:1275 ../../src/gui/dboxinfo.cpp:462
 #: ../../src/gui/cam_menu.cpp:201 ../../src/gui/cam_menu.cpp:229
 #: ../../src/gui/cam_menu.cpp:258 ../../src/gui/cam_menu.cpp:359
 #: ../../src/gui/cam_menu.cpp:473 ../../src/gui/cam_menu.cpp:488
@@ -4473,7 +4473,7 @@ msgstr ""
 msgid "internet Radio"
 msgstr ""
 
-#: ../../src/skin.cpp:1233 ../../src/gui/plugins.cpp:334
+#: ../../src/skin.cpp:1273 ../../src/gui/plugins.cpp:334
 msgid "is not installed please install again."
 msgstr ""
 
