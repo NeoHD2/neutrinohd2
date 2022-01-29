@@ -3808,29 +3808,30 @@ void CTestMenu::testClistBox()
 	rightWidget->paintMainFrame(false);
 
 	// head
+	//rightWidget->enablePaintHead();
 	rightWidget->setTitle("ClistBox (standard)", NEUTRINO_ICON_MOVIE);
 	//rightWidget->setTitleHAlign(CC_ALIGN_CENTER);
-	rightWidget->enablePaintHead();
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 	rightWidget->setFormat("%d.%m.%Y %H:%M:%S");
 
 	// footer
-	rightWidget->enablePaintFoot();
+	//rightWidget->enablePaintFoot();
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// itemInfo
 	rightWidget->enablePaintFootInfo(70);
-	rightWidget->setFootInfoMode(FOOT_HINTITEM_MODE);
+	rightWidget->setFootInfoMode(FOOT_HINTHINT_MODE);
 	rightWidget->setItemInfoPos(Box.iX + Box.iWidth + 150, Box.iY + 100, 400, 400);
 	rightWidget->paintItemInfoShadow(SHADOW_ALL);
-	rightWidget->paintItemInfoFrame(false);
+	rightWidget->paintItemInfoFrame(true);
 	rightWidget->enableItemInfoSaveScreen();
 	rightWidget->setItemInfoFont(g_Font[SNeutrinoSettings::FONT_TYPE_GAMELIST_ITEMLARGE]);
 	
 	//
-	rightWidget->paintScrollBar(true);
+	//rightWidget->paintScrollBar(true);
 	
+	//
 	rightWidget->setParent(this);
 	rightWidget->addKey(RC_info, this, "linfo");
 	rightWidget->addKey(RC_setup, this, "lsetup");

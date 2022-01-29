@@ -146,7 +146,7 @@
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Infobar" itemicon="hint_infobarcolors" target="24">
 			</ITEM>
-			<ITEM name="menuforwarder" id="5" localename="Language" itemicon="hint_language" target="36">
+			<ITEM name="menuforwarder" id="5" localename="Language" itemicon="hint_language" target="26">
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Font" itemicon="hint_font" target="27">
 			</ITEM>
@@ -239,7 +239,7 @@
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Service" itemicon="hint_service" target="4">
 			</ITEM>
-			<ITEM name="menuforwarder" id="5" localename="Settings" itemicon="hint_settings" target="2">
+			<ITEM name="menuforwarder" id="5" localename="Main Settings" itemicon="hint_settings" target="2">
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" target="5">
 			</ITEM>

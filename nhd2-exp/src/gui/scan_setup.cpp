@@ -128,7 +128,7 @@ const keyval SATSETUP_SCANTP_FEC[SATSETUP_SCANTP_FEC_COUNT] =
 {
 	{ FEC_NONE, _("FEC_NONE") },
 	
-        { FEC_1_2, _("1/2") },
+        { FEC_1_2, "1/2" },
         { FEC_2_3, "2/3" },
         { FEC_3_4, "3/4" },
         { FEC_5_6, "5/6" },

@@ -209,7 +209,7 @@ class CWidget : public CMenuTarget
 		CWidget(CBox *position);
 		virtual ~CWidget();
 
-		//WIDGETITEMS
+		// WIDGETITEMS
 		virtual void addItem(CWidgetItem *widgetItem, const bool defaultselected = false);
 		bool hasItem(){return !items.empty();};
 		int getItemsCount(){return items.size();};

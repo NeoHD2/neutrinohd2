@@ -25,10 +25,11 @@ neutrino-hd2.pot: $(top_srcdir)/src/*.cpp $(top_srcdir)/src/gui/*.cpp $(top_srcd
 	$(top_srcdir)/../plugins/upnp/*.cpp \
 	$(top_srcdir)/../plugins/youtube/*.cpp
 	$(XGETTEXT) -L C++ --keyword=_ --keyword=N_ --from-code=utf-8 --no-wrap --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
+	$(SED) --in-place $@ --expression=s/CHARSET/UTF-8/
 	
 %.po: neutrino-hd2.pot
 	if [ -f $@ ]; then \
-		$(MSGMERGE) --backup=none --no-wrap --no-location -s -U -q -N $@ $< && touch $@; \
+		$(MSGMERGE) --backup=none --no-wrap --no-location -s -U $@ $< && touch $@; \
 		$(MSGATTRIB) --no-wrap --no-obsolete $@ -o $@; \
 	else \
 		$(MSGINIT) -l $@ -o $@ -i $< --no-translator; \

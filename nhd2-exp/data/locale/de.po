@@ -7,71 +7,68 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-29 19:57+0100\n"
+"POT-Creation-Date: 2022-01-30 00:22+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "'X'=timer '-' no timer"
-msgstr ""
+msgstr "'X'=Timer '-' kein Timer"
 
 #, c-format
 msgid "(%d%% over)"
-msgstr ""
+msgstr "(%d%% vorbei)"
 
 msgid "(Date)"
-msgstr ""
+msgstr "(Datum)"
 
 msgid "(Re)-Calculate Positions"
-msgstr ""
+msgstr "(Neu)-Berechne(n)) Positionen"
 
 msgid "(Size)"
-msgstr ""
+msgstr "(Grösse)"
 
 msgid "(a) Motor Position:"
-msgstr ""
+msgstr "(a) Motor Position:"
 
 msgid "(b) Movement:"
-msgstr ""
+msgstr "(b) Bewegung:"
 
 msgid "(c) Step Size:"
-msgstr ""
+msgstr "(c) Schrittweite:"
 
 msgid "(filename)"
-msgstr ""
+msgstr "(Dateiname)"
 
 msgid "(filename2)"
-msgstr ""
+msgstr "(Dateiname2)"
 
 msgid "(relative, in seconds)"
-msgstr ""
+msgstr "(relativ, in Sekunden)"
 
 #, c-format
 msgid "(starting in %d min)"
-msgstr ""
+msgstr "(Beginn in %d Min.)"
 
 msgid "(type)"
-msgstr ""
+msgstr "(Typ)"
 
 msgid "0 for unlimited repeats"
-msgstr ""
-
-msgid "1/2"
-msgstr ""
+msgstr "0 fuer unbegrenzte Anzahl"
 
 msgid "12 years"
-msgstr ""
+msgstr "12 Jahre"
 
 msgid "16 years"
-msgstr ""
+msgstr "16 Jahre"
 
 msgid "18 years"
-msgstr ""
+msgstr "18 Jhare"
 
 msgid "6 years"
 msgstr ""
@@ -80,40 +77,40 @@ msgid "?"
 msgstr ""
 
 msgid "A/V sync"
-msgstr ""
+msgstr "A/V sync"
 
 msgid "AC3 Delay"
-msgstr ""
+msgstr "AC3 Verzögerung"
 
 msgid "Abortion of channel scan"
-msgstr ""
+msgstr "Breche Scan ab"
 
 msgid "Absolute start directory"
-msgstr ""
+msgstr "Startverzeichnis absolut"
 
 msgid "Actions"
-msgstr ""
+msgstr "Aktionen"
 
 msgid "Activate changes"
 msgstr ""
 
 msgid "Activate settings"
-msgstr ""
+msgstr "Aktiviere Einstellungen"
 
 msgid "Actors"
-msgstr ""
+msgstr "Darsteller"
 
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 msgid "Add to Bouquets"
-msgstr ""
+msgstr "zur den Bouquets hinzufuegen"
 
 msgid "Additional paths"
 msgstr ""
 
 msgid "Advanced"
-msgstr ""
+msgstr "Erweiterte Auswahl"
 
 msgid "Age"
 msgstr ""
@@ -122,10 +119,10 @@ msgid "Alarm time"
 msgstr ""
 
 msgid "All Services"
-msgstr ""
+msgstr "Alle Services"
 
 msgid "All services"
-msgstr ""
+msgstr "Alle Services"
 
 msgid "Alpha"
 msgstr ""
@@ -711,7 +708,7 @@ msgid "Favorites"
 msgstr ""
 
 msgid "Features"
-msgstr ""
+msgstr "Erweiterungen"
 
 msgid "File could not be created:"
 msgstr ""
@@ -1195,10 +1192,10 @@ msgid "MD5 checking"
 msgstr ""
 
 msgid "Main Menu"
-msgstr ""
+msgstr "Haupt Menü"
 
 msgid "Main Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 msgid "Make Remaining Channels list"
 msgstr ""
@@ -1499,10 +1496,10 @@ msgid "OSD timing"
 msgstr ""
 
 msgid "Off"
-msgstr ""
+msgstr "Aus"
 
 msgid "On"
-msgstr ""
+msgstr "Ein"
 
 msgid ""
 "One or several recording processes are active.\n"
@@ -1606,7 +1603,7 @@ msgid "Position:"
 msgstr ""
 
 msgid "Power Menu"
-msgstr ""
+msgstr "Power Menü"
 
 msgid "Prefer TMBD infos ?"
 msgstr ""
@@ -1876,7 +1873,7 @@ msgid "Save Settings"
 msgstr ""
 
 msgid "Save Settings now"
-msgstr ""
+msgstr "Einstellungen jetzt speichern"
 
 msgid "Save Timer"
 msgstr ""
@@ -3217,10 +3214,10 @@ msgid "not connected"
 msgstr ""
 
 msgid "off"
-msgstr ""
+msgstr "aus"
 
 msgid "on"
-msgstr ""
+msgstr "ein"
 
 msgid "on broadcasted lock"
 msgstr ""
@@ -3340,7 +3337,7 @@ msgid "save playlist"
 msgstr ""
 
 msgid "save settings now"
-msgstr ""
+msgstr "Einstellungen jetzt speichern"
 
 msgid "scan for Movies ..."
 msgstr ""

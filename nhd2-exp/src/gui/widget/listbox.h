@@ -588,7 +588,7 @@ class ClistBox : public CWidgetItem
 		button_label_list_t fbutton_labels;
 		bool foot_line;
 
-		// footInfo
+		// itemInfo
 		int cFrameFootInfoHeight;
 		int footInfoHeight;
 		CItems2DetailsLine itemsLine;
@@ -670,7 +670,7 @@ class ClistBox : public CWidgetItem
 		void setFootGradient(int grad){footGradient = grad;};
 		void setFootLine(bool l){foot_line = l;};
 
-		// footInfo
+		// itemInfo
 		void enablePaintFootInfo(int fh){paintFootInfo = true; footInfoHeight = fh;};
 		void setFootInfoMode(int mode){footInfoMode = mode;};
 		void setItemInfoPos(int x, int y, int dx, int dy)
