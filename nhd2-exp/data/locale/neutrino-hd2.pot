@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-29 19:41+0100\n"
+"POT-Creation-Date: 2022-01-29 19:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2080,7 +2080,6 @@ msgstr ""
 msgid "Neutrino Restart"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:984 ../../src/gui/osd_setup.cpp:993
 #: ../../src/gui/themes.cpp:148 ../../src/gui/power_menu.cpp:102
 #: ../../src/gui/misc_setup.cpp:578
 msgid "Neutrino restart"
@@ -2646,8 +2645,8 @@ msgstr ""
 msgid "Reload plugins"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5324 ../../src/neutrino.cpp:5326
-#: ../../src/gui/service_menu.cpp:76 ../../src/gui/service_menu.cpp:78
+#: ../../src/neutrino.cpp:5326 ../../src/gui/service_menu.cpp:76
+#: ../../src/gui/service_menu.cpp:78
 msgid "Reloading channel lists, please be patient."
 msgstr ""
 
@@ -2836,8 +2835,6 @@ msgstr ""
 msgid "Save in channel dir"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5277 ../../src/neutrino.cpp:5286
-#: ../../src/neutrino.cpp:5291 ../../src/neutrino.cpp:5307
 #: ../../src/gui/osd_setup.cpp:227 ../../src/gui/osd_setup.cpp:372
 #: ../../src/gui/osd_setup.cpp:614 ../../src/gui/osd_setup.cpp:685
 #: ../../src/gui/osd_setup.cpp:869 ../../src/gui/hdd_menu.cpp:194
@@ -2863,6 +2860,10 @@ msgstr ""
 msgid "Save settings now"
 msgstr ""
 
+#: ../../src/neutrino.cpp:5277 ../../src/neutrino.cpp:5291
+msgid "Save settings now?"
+msgstr ""
+
 #: ../../src/gui/timerlist.cpp:1045
 msgid "Save timer"
 msgstr ""
@@ -2873,6 +2874,14 @@ msgstr ""
 
 #: ../../src/gui/rc_setup.cpp:255
 msgid "Saving keymap, please wait..."
+msgstr ""
+
+#: ../../src/neutrino.cpp:5307
+msgid "Saving settings now, please be patient."
+msgstr ""
+
+#: ../../src/neutrino.cpp:5286
+msgid "Saving settings now, please, please be patient."
 msgstr ""
 
 #: ../../src/gui/pictureviewer_setup.cpp:127
@@ -3185,16 +3194,20 @@ msgid "Size"
 msgstr ""
 
 #: ../../src/gui/osd_setup.cpp:923 ../../src/gui/osd_setup.cpp:984
-#: ../../src/gui/osd_setup.cpp:993
+#: ../../src/gui/osd_setup.cpp:995
 msgid "Skin Select"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1078
+#: ../../src/gui/osd_setup.cpp:1082
 msgid "Skin Style Selection"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1013 ../../src/gui/osd_setup.cpp:1078
+#: ../../src/gui/osd_setup.cpp:1017
 msgid "Skin Style selection"
+msgstr ""
+
+#: ../../src/gui/osd_setup.cpp:1082
+msgid "Skin Style selection?"
 msgstr ""
 
 #: ../../src/gui/osd_setup.cpp:102
@@ -4213,7 +4226,7 @@ msgstr ""
 msgid "children / juvenile program"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1048
+#: ../../src/gui/osd_setup.cpp:1052
 msgid "choose Skin Style."
 msgstr ""
 
@@ -4287,6 +4300,10 @@ msgstr ""
 
 #: ../../../plugins/systeminfo/systeminfo.cpp:111
 msgid "dmesg"
+msgstr ""
+
+#: ../../src/neutrino.cpp:5324
+msgid "do you want to reload channel lists?"
 msgstr ""
 
 #: ../../src/gui/epgview.cpp:245
@@ -4539,7 +4556,7 @@ msgid "literature"
 msgstr ""
 
 #: ../../src/neutrino.cpp:5312
-msgid "load default skin configuration"
+msgid "load default skin configuration?"
 msgstr ""
 
 #: ../../src/gui/nfs.cpp:323
@@ -5080,6 +5097,10 @@ msgstr ""
 
 #: ../../src/system/flashtool.cpp:167
 msgid "the filesize is 0 Bytes"
+msgstr ""
+
+#: ../../src/gui/osd_setup.cpp:984 ../../src/gui/osd_setup.cpp:995
+msgid "this need Neutrino restart, your Box will automatically restart"
 msgstr ""
 
 #: ../../src/gui/misc_setup.cpp:283

@@ -981,22 +981,26 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 	if (actionKey == "neutrino_default")
 	{
-		if (MessageBox(_("Skin Select"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Skin Select"), _("this need Neutrino restart, your Box will automatically restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			g_settings.use_default_skin = true;
 			CNeutrinoApp::getInstance()->unloadSkin();
 			CNeutrinoApp::getInstance()->exec(NULL, "restart");
 		}
+		
+		return ret;
 	}
 	else if (!actionKey.empty())
 	{
-		if (MessageBox(_("Skin Select"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Skin Select"), _("this need Neutrino restart, your Box will automatically restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			g_settings.use_default_skin = false;
 			CNeutrinoApp::getInstance()->unloadSkin();
 			g_settings.preferred_skin = actionKey;
 			CNeutrinoApp::getInstance()->exec(NULL, "restart");
 		}
+		
+		return ret;
 	}
 		
 	showMenu();
@@ -1075,7 +1079,7 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if (!actionKey.empty())
 	{
 		// FIXME: localize
-		if (MessageBox(_("Skin Style Selection"), _("Skin Style selection"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Skin Style Selection"), _("Skin Style selection?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			//
 			std::string skinConfigFile = CONFIGDIR "/skins/";
@@ -1094,6 +1098,8 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 			
 			CNeutrinoApp::getInstance()->saveSkinConfig(skinConfig.c_str());
 		}
+		
+		return ret;
 	}
 		
 	showMenu();

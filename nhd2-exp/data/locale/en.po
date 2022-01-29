@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-29 19:41+0100\n"
+"POT-Creation-Date: 2022-01-29 19:57+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1898,6 +1898,9 @@ msgstr ""
 msgid "Save settings now"
 msgstr "Save settings now"
 
+msgid "Save settings now?"
+msgstr ""
+
 msgid "Save timer"
 msgstr ""
 
@@ -1905,6 +1908,12 @@ msgid "Save/Restore epg on reboot"
 msgstr ""
 
 msgid "Saving keymap, please wait..."
+msgstr ""
+
+msgid "Saving settings now, please be patient."
+msgstr ""
+
+msgid "Saving settings now, please, please be patient."
 msgstr ""
 
 msgid "Scaling"
@@ -2109,6 +2118,9 @@ msgid "Skin Style Selection"
 msgstr ""
 
 msgid "Skin Style selection"
+msgstr ""
+
+msgid "Skin Style selection?"
 msgstr ""
 
 msgid "Skin select"
@@ -2873,6 +2885,9 @@ msgstr ""
 msgid "dmesg"
 msgstr ""
 
+msgid "do you want to reload channel lists?"
+msgstr ""
+
 msgid "documentary"
 msgstr ""
 
@@ -3059,8 +3074,8 @@ msgstr ""
 msgid "literature"
 msgstr ""
 
-msgid "load default skin configuration"
-msgstr "load default skin configuration"
+msgid "load default skin configuration?"
+msgstr ""
 
 msgid "local dir"
 msgstr ""
@@ -3442,6 +3457,9 @@ msgid "tennis/squash"
 msgstr ""
 
 msgid "the filesize is 0 Bytes"
+msgstr ""
+
+msgid "this need Neutrino restart, your Box will automatically restart"
 msgstr ""
 
 msgid "time (in minutes) to switch from standby"

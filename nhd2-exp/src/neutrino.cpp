@@ -5274,7 +5274,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	}
 	else if(actionKey == "savesettings") 
 	{
-		if (MessageBox(_("Information"), _("Save settings now"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("Save settings now?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			saveSetup(NEUTRINO_SETTINGS_FILE);
 
@@ -5283,12 +5283,12 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 			zapitCfg.saveLastChannel = g_settings.uselastchannel;
 			setZapitConfig(&zapitCfg);
 
-			HintBox(_("Information"), _("Save settings now"));
+			HintBox(_("Information"), _("Saving settings now, please, please be patient."));
 		}
 	}
 	else if (actionKey == "saveskinsettings")
 	{
-		if (MessageBox(_("Information"), _("Save settings now"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("Save settings now?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			if (!g_settings.use_default_skin)
 			{
@@ -5304,12 +5304,12 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 				
 			tuxtxt_close();
 				
-			HintBox(_("Information"), _("Save settings now"));
+			HintBox(_("Information"), _("Saving settings now, please be patient."));
 		}
 	}
 	else if (actionKey == "defaultskinsettings")
 	{
-		if (MessageBox(_("Information"), _("load default skin configuration"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("load default skin configuration?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			std::string skinDefaultConfigFile = CONFIGDIR "/skins/";
 			skinDefaultConfigFile += g_settings.preferred_skin.c_str();
@@ -5321,7 +5321,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	}
 	if(actionKey == "reloadchannels")
 	{
-		if (MessageBox(_("Information"), _("Reloading channel lists, please be patient."), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("do you want to reload channel lists?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			HintBox(_("Information"), _("Reloading channel lists, please be patient."));
 			g_Zapit->reinitChannels();
