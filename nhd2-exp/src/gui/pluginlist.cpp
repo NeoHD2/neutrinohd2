@@ -95,7 +95,7 @@ void CPluginList::showMenu()
 
 
 	// widget
-	plist = new CMenuWidget(/*LOCALE_USERMENU_ITEM_PLUGINS*/_("Plugins"), NEUTRINO_ICON_FEATURES, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+	plist = new CMenuWidget(_("Plugins"), NEUTRINO_ICON_FEATURES, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 
 	//
 	for(unsigned int count = 0; count < (unsigned int)g_PluginList->getNumberOfPlugins(); count++)

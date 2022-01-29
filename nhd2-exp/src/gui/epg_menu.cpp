@@ -90,7 +90,7 @@ int CEPGMenuHandler::doMenu()
 	redMenu.addItem(new ClistBoxItem(_("Eventlist overview"), true, NULL, new CEPGplusHandler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_STANDBY));
 
 	//tech info
-	redMenu.addItem(new ClistBoxItem(_("Sender information"), true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_TIMERLIST));
+	redMenu.addItem(new ClistBoxItem(_("Stream information"), true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_TIMERLIST));
 	
 	// timerlis
 	//tech info

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-29 12:47+0100\n"
+"POT-Creation-Date: 2022-01-29 16:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1196,10 +1196,6 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: ../../src/gui/power_menu.cpp:102
-msgid "GUI Restart"
-msgstr ""
-
 #: ../../src/gui/misc_setup.cpp:141
 msgid "General Settings"
 msgstr ""
@@ -1527,7 +1523,7 @@ msgstr ""
 #: ../../src/neutrino.cpp:5286 ../../src/neutrino.cpp:5291
 #: ../../src/neutrino.cpp:5307 ../../src/neutrino.cpp:5312
 #: ../../src/neutrino.cpp:5324 ../../src/neutrino.cpp:5326
-#: ../../src/skin.cpp:1275 ../../src/gui/dboxinfo.cpp:462
+#: ../../src/skin.cpp:1299 ../../src/gui/dboxinfo.cpp:462
 #: ../../src/gui/cam_menu.cpp:201 ../../src/gui/cam_menu.cpp:229
 #: ../../src/gui/cam_menu.cpp:258 ../../src/gui/cam_menu.cpp:359
 #: ../../src/gui/cam_menu.cpp:473 ../../src/gui/cam_menu.cpp:488
@@ -1662,12 +1658,12 @@ msgstr ""
 msgid "LaDirection"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:489
-msgid "Language Setup"
+#: ../../src/gui/osd_setup.cpp:114
+msgid "Language"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:114
-msgid "Language settings"
+#: ../../src/gui/osd_setup.cpp:489
+msgid "Language Setup"
 msgstr ""
 
 #: ../../src/gui/rc_setup.cpp:95
@@ -2074,6 +2070,10 @@ msgstr ""
 
 #: ../../../plugins/test/test.cpp:259
 msgid "Neue Filme"
+msgstr ""
+
+#: ../../src/gui/power_menu.cpp:102
+msgid "Neutrino Restart"
 msgstr ""
 
 #: ../../src/gui/osd_setup.cpp:984 ../../src/gui/osd_setup.cpp:993
@@ -2953,12 +2953,12 @@ msgstr ""
 msgid "Schedule ecord"
 msgstr ""
 
-#: ../../src/gui/screensetup.cpp:114
-msgid "Screen Setup"
+#: ../../src/gui/osd_setup.cpp:123
+msgid "Screen"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:123
-msgid "Screen settings"
+#: ../../src/gui/screensetup.cpp:114
+msgid "Screen Setup"
 msgstr ""
 
 #: ../../src/gui/rc_setup.cpp:107
@@ -3035,10 +3035,6 @@ msgstr ""
 
 #: ../../src/gui/scan_setup.cpp:669 ../../src/gui/scan_setup.cpp:912
 msgid "Select transponder"
-msgstr ""
-
-#: ../../src/gui/epg_menu.cpp:93
-msgid "Sender information"
 msgstr ""
 
 #: ../../src/gui/movieinfo.cpp:1048
@@ -3331,7 +3327,7 @@ msgstr ""
 msgid "Store Motor Position (a)"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:466
+#: ../../src/gui/dboxinfo.cpp:466 ../../src/gui/epg_menu.cpp:93
 msgid "Stream information"
 msgstr ""
 
@@ -4473,7 +4469,7 @@ msgstr ""
 msgid "internet Radio"
 msgstr ""
 
-#: ../../src/skin.cpp:1273 ../../src/gui/plugins.cpp:334
+#: ../../src/skin.cpp:1297 ../../src/gui/plugins.cpp:334
 msgid "is not installed please install again."
 msgstr ""
 

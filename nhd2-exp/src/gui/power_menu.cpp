@@ -99,7 +99,7 @@ void CPowerMenu::showMenu(void)
 	powerMenu->addItem(new CMenuForwarder(_("Sleep Timer"), true, NULL, new CSleepTimerWidget, NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SLEEPTIMER, _("Sleep Timer")));
 
 	// restart neutrino
-	powerMenu->addItem(new CMenuForwarder(_("GUI Restart"), true, NULL, this, "restart", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_RESTART, _("Neutrino restart")));
+	powerMenu->addItem(new CMenuForwarder(_("Neutrino Restart"), true, NULL, this, "restart", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_RESTART, _("Neutrino restart")));
 
 	// standby
 	powerMenu->addItem(new CMenuForwarder(_("Standby"), true, NULL, this, "standby", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_STANDBY, _("Standby")));

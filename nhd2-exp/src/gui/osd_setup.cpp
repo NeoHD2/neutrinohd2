@@ -90,7 +90,7 @@ void COSDSettings::showMenu(void)
 	
 	int shortcutOSD = 1;
 	
-	CMenuWidget * osdSettings = new CMenuWidget(_("OSD settings"), NEUTRINO_ICON_COLORS );
+	CMenuWidget * osdSettings = new CMenuWidget(_("OSD settings"), NEUTRINO_ICON_COLORS);
 
 	osdSettings->setWidgetMode(MODE_MENU);
 	osdSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
@@ -111,7 +111,7 @@ void COSDSettings::showMenu(void)
 	osdSettings->addItem( new CMenuForwarder(_("Infobar"), true, NULL, new COSDInfoBarColorSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_INFOBARCOLORS/*, LOCALE_HELPTEXT_INFOBARCOLORS*/));
 
 	// language
-	osdSettings->addItem(new CMenuForwarder(_("Language settings"), true, NULL, new CLanguageSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_LANGUAGE/*, LOCALE_HELPTEXT_LANGUAGE*/));
+	osdSettings->addItem(new CMenuForwarder(_("Language"), true, NULL, new CLanguageSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_LANGUAGE/*, LOCALE_HELPTEXT_LANGUAGE*/));
 	
 	// font
 	osdSettings->addItem(new CMenuForwarder(_("Font"), true, NULL, new CFontSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_FONT/*, LOCALE_HELPTEXT_FONT*/));
@@ -120,11 +120,11 @@ void COSDSettings::showMenu(void)
 	osdSettings->addItem(new CMenuForwarder(_("OSD timing"), true, NULL, new COSDTimingSettings(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_OSDTIMING/*, LOCALE_HELPTEXT_OSDTIMING*/));
 
 	// sceensetup
-	osdSettings->addItem(new CMenuForwarder(_("Screen settings"), true, NULL, new CScreenSetup(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_SCREENSETUP));
+	osdSettings->addItem(new CMenuForwarder(_("Screen"), true, NULL, new CScreenSetup(), NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_SCREENSETUP));
 	
 	// alpha setup
 	//FIXME:
-	//CAlphaSetup * chAlphaSetup = new CAlphaSetup(_("Alpha settings"), &g_settings.gtx_alpha);
+	//CAlphaSetup * chAlphaSetup = new CAlphaSetup(_("Alpha"), &g_settings.gtx_alpha);
 	//osdSettings->addItem( new CMenuForwarder(_("Alpha Setup"), true, NULL, chAlphaSetup, NULL, CRCInput::convertDigitToKey(shortcutOSD++), NULL, NEUTRINO_ICON_MENUITEM_ALPHASETUP));
 	
 	// diverses

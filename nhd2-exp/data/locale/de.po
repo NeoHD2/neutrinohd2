@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-29 12:47+0100\n"
+"POT-Creation-Date: 2022-01-29 16:28+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -809,9 +809,6 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-msgid "GUI Restart"
-msgstr ""
-
 msgid "General Settings"
 msgstr ""
 
@@ -1091,10 +1088,10 @@ msgstr ""
 msgid "LaDirection"
 msgstr ""
 
-msgid "Language Setup"
+msgid "Language"
 msgstr ""
 
-msgid "Language settings"
+msgid "Language Setup"
 msgstr ""
 
 msgid "Last Channel"
@@ -1372,6 +1369,9 @@ msgid "Neu by Netzkino"
 msgstr ""
 
 msgid "Neue Filme"
+msgstr ""
+
+msgid "Neutrino Restart"
 msgstr ""
 
 msgid "Neutrino restart"
@@ -1941,10 +1941,10 @@ msgstr ""
 msgid "Schedule ecord"
 msgstr ""
 
-msgid "Screen Setup"
+msgid "Screen"
 msgstr ""
 
-msgid "Screen settings"
+msgid "Screen Setup"
 msgstr ""
 
 msgid "Screenshot"
@@ -1999,9 +1999,6 @@ msgid "Select theme"
 msgstr ""
 
 msgid "Select transponder"
-msgstr ""
-
-msgid "Sender information"
 msgstr ""
 
 msgid "Serie"

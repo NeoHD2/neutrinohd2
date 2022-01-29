@@ -4,74 +4,259 @@
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 
-<WIDGET name="settings" id="2" posx="0" posy="0" width="700" height="720" paintframe="1">
-	<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
-	</HEAD>
-	
-	<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1">
-		<ITEM name="menuforwarder" id="5" localename="Video settings" itemicon="hint_video" hint="Timer List" target="9">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Audio settings" itemicon="hint_audio" hint="Timer List" target="10" actionkey="features">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Parentallock settings" itemicon="hint_protection" hint="Timer List" target="11">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Network settings" itemicon="hint_network" hint="test" target="12">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Recording settings" itemicon="hint_recording" hint="Timer List" target="13">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Movie Player settings" itemicon="hint_mb" hint="Timer List" target="14">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="OSD settings" itemicon="hint_osd" hint="Timer List" target="15">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="LCD settings" itemicon="hint_vfd" hint="Timer List" target="16">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Remote Control settings" itemicon="hint_keys" hint="Timer List" target="17">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Audio Player settings" itemicon="hint_aplay" hint="Timer List" target="18">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Picture Viewer settings" itemicon="hint_picview" hint="Timer List" target="19">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Misc settings" itemicon="hint_extended" hint="Timer List" target="20">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="HDD settings" itemicon="hint_hdd" hint="Timer List" target="21">
-		</ITEM>
-	</LISTBOX>
-	
-	<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-		<BUTTON name="info" localename="">
-		</BUTTON>
-	</FOOT>
-</WIDGET>
+	<WIDGET name="mediaplayer" id="8" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Media Player" icon="multimedia" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >
+			<INTEGRATION id="0x04" shortcut="1">
+			</INTEGRATION>
+		</LISTBOX>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON name="info" localename="">
+			</BUTTON>
+		</FOOT>
+	</WIDGET>
 
-<WIDGET name="mainmenu" id="1" posx="0" posy="0" width="700" height="720" paintframe="1">
-	<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
-	</HEAD>
-	
-	<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1">
-		<ITEM name="menuforwarder" id="5" localename="EPG / Timer" itemicon="hint_timers" hint="Timer List" target="3">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" hint="Timer List" target="6" actionkey="features">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Service" itemicon="hint_service" hint="Timer List" target="4">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Settings" itemicon="hint_settings" hint="test" target="2">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" hint="Timer List" target="5">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Power Menu" itemicon="hint_shutdown" hint="Timer List" target="7">
-		</ITEM>
-		<ITEM name="menuforwarder" id="5" localename="Media Player" itemicon="hint_media" hint="Timer List" target="8">
-		</ITEM>
-	</LISTBOX>
-	
-	<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-		<BUTTON name="info" localename="">
-		</BUTTON>
-	</FOOT>
-	
-	<KEY name="0x191" target="parent" actionkey="features"> 
-	</KEY>
-</WIDGET>
+	<WIDGET name="information" id="5" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Information" icon="information" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >
+			<ITEM name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" target="60">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Image info" itemicon="hint_imageinfo" target="61">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Stream information" itemicon="hint_dboxinfo" target="66">
+			</ITEM>
+			<INTEGRATION id="0x02" shortcut="4">
+			</INTEGRATION>
+		</LISTBOX>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON name="info" localename="">
+			</BUTTON>
+		</FOOT>
+	</WIDGET>
+
+	<WIDGET name="powermenu" id="7" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Power Menu" icon="power" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >
+			<ITEM name="menuforwarder" id="5" localename="Sleep Timer" itemicon="hint_sleeptimer" target="65">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Neutrino Restart" itemicon="hint_restart" target="0" actionkey="restart">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Standby" itemicon="hint_standby" target="0" actionkey="standby">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Reboot" itemicon="hint_reboot" target="0" actionkey="reboot">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Shutdown" itemicon="hint_shutdown" target="0" actionkey="shurdown">
+			</ITEM>
+		</LISTBOX>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON name="info" localename="">
+			</BUTTON>
+		</FOOT>
+	</WIDGET>
+
+	<WIDGET name="service" id="4" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Service" icon="softupdate" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >
+			<ITEM name="menuforwarder" id="5" localename="Scan transponder" itemicon="hint_scan" target="40">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Reload channel lists" itemicon="hint_reload" target="0" actionkey="reloadchannels">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Bouquet Editor" itemicon="hint_bedit" target="50">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="CI Cam" itemicon="hint_ci" target="41">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Image info" itemicon="hint_imageinfo" target="61">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Software Update" itemicon="hint_swupdate" target="42">
+			</ITEM>
+		</LISTBOX>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON name="info" localename="">
+			</BUTTON>
+		</FOOT>
+	</WIDGET>
+
+
+	<WIDGET name="features" id="6" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Features" icon="features" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >
+			<ITEM name="menuforwarder" id="5" localename="Timer list" itemicon="hint_timers" target="47">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Plugins" itemicon="hint_plugin" target="43">
+			</ITEM>
+			<INTEGRATION id="0x40" shortcut="3">
+			</INTEGRATION>
+		</LISTBOX>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON name="info" localename="">
+			</BUTTON>
+		</FOOT>
+		<KEY name="0x191" target="parent" actionkey="plugins"> 
+		</KEY>
+	</WIDGET>
+
+	<WIDGET name="epgmenu" id="3" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="EPG - Program Information" icon="epg" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >
+			<ITEM name="menuforwarder" id="5" localename="Eventlist current programm" itemicon="hint_sleeptimer" target="45">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Details current program" itemicon="hint_restart" target="44" >
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Eventlist overview" itemicon="hint_standby" target="34">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Stream information" itemicon="hint_dboxinfo" target="66">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Timer list" itemicon="hint_timers" target="47">
+			</ITEM>
+		</LISTBOX>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON name="info" localename="">
+			</BUTTON>
+		</FOOT>
+	</WIDGET>
+
+	<WIDGET name="osd settings" id="15" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="OSD settings" icon="colors" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >
+			<ITEM name="menuforwarder" id="5" localename="Skin select" itemicon="hint_themes" target="22">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Themes" itemicon="hint_themes" target="25" >
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Menu" itemicon="hint_menucolors" target="23">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Infobar" itemicon="hint_infobarcolors" target="24">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Language" itemicon="hint_language" target="36">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Font" itemicon="hint_font" target="27">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="OSD timing" itemicon="hint_osdtiming" target="28">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Screen" itemicon="hint_lcd4linux" target="29">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="OSD misc-settings" itemicon="hint_osd" target="30">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Skin Style selection" itemicon="hint_osd" target="32">
+			</ITEM>
+		</LISTBOX>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON name="info" localename="">
+			</BUTTON>
+		</FOOT>
+	</WIDGET>
+
+	<WIDGET name="miscsettings" id="20" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Miscsettings" icon="settings" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >
+			<ITEM name="menuforwarder" id="5" localename="General Settings" itemicon="hint_settings" target="33">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Channellist Settings" itemicon="hint_bedit" target="35" >
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="EPG Settings" itemicon="hint_streaminfo" target="34">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Filebrowser Settings" itemicon="hint_fileplay" target="37">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Last Channel settings" itemicon="hint_personalize" target="36">
+			</ITEM>
+		</LISTBOX>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON name="info" localename="">
+			</BUTTON>
+		</FOOT>
+	</WIDGET>
+
+	<WIDGET name="settings" id="2" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >
+			<ITEM name="menuforwarder" id="5" localename="Video settings" itemicon="hint_video" target="9">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Audio settings" itemicon="hint_audio" target="10">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Parentallock settings" itemicon="hint_protection" target="11">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Network settings" itemicon="hint_network" target="12">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Recording settings" itemicon="hint_recording" target="13">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Movie Player settings" itemicon="hint_mb" target="14">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="OSD settings" itemicon="hint_osd" target="15">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="LCD settings" itemicon="hint_vfd" target="16">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Remote Control settings" itemicon="hint_keys" target="17">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Audio Player settings" itemicon="hint_aplay" target="18">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Picture Viewer settings" itemicon="hint_picview" target="19">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Misc settings" itemicon="hint_extended" target="20">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="HDD settings" itemicon="hint_hdd" hint="Timer List" target="21">
+			</ITEM>
+		</LISTBOX>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON name="info" localename="">
+			</BUTTON>
+		</FOOT>
+	</WIDGET>
+
+	<WIDGET name="mainmenu" id="1" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1">
+			<ITEM name="menuforwarder" id="5" localename="EPG / Timer" itemicon="hint_timers" target="3">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Features" itemicon="hint_plugin" target="6">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Service" itemicon="hint_service" target="4">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Settings" itemicon="hint_settings" target="2">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" target="5">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Power Menu" itemicon="hint_shutdown" target="7">
+			</ITEM>
+			<ITEM name="menuforwarder" id="5" localename="Media Player" itemicon="hint_media" target="8">
+			</ITEM>
+		</LISTBOX>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON name="info" localename="">
+			</BUTTON>
+		</FOOT>
+		
+		<KEY name="0x191" target="parent" actionkey="features"> 
+		</KEY>
+	</WIDGET>
 
 </skin>
 

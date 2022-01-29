@@ -479,6 +479,7 @@ void CNeutrinoApp::parseSkin()
 	_xmlNodePtr search = root->xmlChildrenNode; //WIDGET
 	_xmlNodePtr listbox_node = NULL; // LISTBOX
 	_xmlNodePtr listboxitem_node = NULL; //CMENUITEM FIXME:split
+	_xmlNodePtr listboxintegration_node = NULL;
 	_xmlNodePtr key_node = NULL; // KEY
 	_xmlNodePtr label_node = NULL;
 	_xmlNodePtr image_node = NULL;
@@ -893,6 +894,29 @@ void CNeutrinoApp::parseSkin()
 					listBox->addItem(menuItem);
 				
 					listboxitem_node = listboxitem_node->xmlNextNode;
+				}
+				
+				////
+				listboxintegration_node = listbox_node->xmlChildrenNode;
+					
+				while ((listboxintegration_node = xmlGetNextOccurence(listboxintegration_node, "INTEGRATION")) != NULL) 
+				{
+					CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED;
+					int mode = MODE_MENU;
+					unsigned int shortcut = RC_nokey;
+					unsigned int type = WIDGET_TYPE_STANDARD;
+						
+					integration = (CPlugins::i_type_t)xmlGetSignedNumericAttribute(listboxintegration_node, "id", 0);
+					mode = xmlGetSignedNumericAttribute(listboxintegration_node, "mode", 0);
+					shortcut = xmlGetSignedNumericAttribute(listboxintegration_node, "shortcut", 0);
+					type = xmlGetSignedNumericAttribute(listboxintegration_node, "type", 0);
+					
+					unsigned int lines = xmlGetSignedNumericAttribute(listboxintegration_node, "lines", 0);
+					unsigned int shadow = xmlGetSignedNumericAttribute(listboxintegration_node, "shadow", 0);
+						
+					listBox->integratePlugins(integration, shortcut, true, mode, type, lines, shadow);
+				
+					listboxintegration_node = listboxintegration_node->xmlNextNode;
 				}
 					
 				wdg->addItem(listBox);
