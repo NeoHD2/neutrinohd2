@@ -76,6 +76,14 @@
 #include <gui/recording_setup.h>
 #include <gui/misc_setup.h>
 #include <gui/hdd_menu.h>
+#include <gui/screensetup.h>
+#include <gui/alphasetup.h>
+#include <gui/zapit_setup.h>
+#include <gui/bedit/bouqueteditor_bouquets.h>
+#include <gui/cam_menu.h>
+#include <gui/update.h>
+#include <gui/imageinfo.h>
+#include <gui/sleeptimer.h>
 
 #include <system/helpers.h>
 #include <system/debug.h>
@@ -388,6 +396,412 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 				{
 					dprintf(DEBUG_INFO, "id: %d not found\n", id);
 					parent = new CHDDMenuHandler();
+				}
+			}
+			break;
+			
+		case WIDGET_SKINSETUP:
+			{
+				if (widget_exists(WIDGET_SKINSETUP))
+				{
+					parent = getWidget(WIDGET_SKINSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CSkinManager();
+				}
+			}
+			break;
+			
+		case WIDGET_MENUSETUP:
+			{
+				if (widget_exists(WIDGET_MENUSETUP))
+				{
+					parent = getWidget(WIDGET_MENUSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new COSDMenuColorSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_INFOBARSETUP:
+			{
+				if (widget_exists(WIDGET_INFOBARSETUP))
+				{
+					parent = getWidget(WIDGET_INFOBARSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new COSDInfoBarColorSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_THEMESETUP:
+			{
+				if (widget_exists(WIDGET_THEMESETUP))
+				{
+					parent = getWidget(WIDGET_THEMESETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CThemes();
+				}
+			}
+			break;
+			
+		case WIDGET_LANGUAGESETUP:
+			{
+				if (widget_exists(WIDGET_LANGUAGESETUP))
+				{
+					parent = getWidget(WIDGET_LANGUAGESETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CLanguageSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_FONTSETUP:
+			{
+				if (widget_exists(WIDGET_FONTSETUP))
+				{
+					parent = getWidget(WIDGET_FONTSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CFontSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_OSDTIMINGSETUP:
+			{
+				if (widget_exists(WIDGET_OSDTIMINGSETUP))
+				{
+					parent = getWidget(WIDGET_OSDTIMINGSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new COSDTimingSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_SCREENSETUP:
+			{
+				if (widget_exists(WIDGET_SCREENSETUP))
+				{
+					parent = getWidget(WIDGET_SCREENSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CScreenSetup();
+				}
+			}
+			break;
+			
+		case WIDGET_OSDMISCSETUP:
+			{
+				if (widget_exists(WIDGET_OSDMISCSETUP))
+				{
+					parent = getWidget(WIDGET_OSDMISCSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new COSDDiverses();
+				}
+			}
+			break;
+			
+		case WIDGET_ALPHASETUP:
+			{
+				if (widget_exists(WIDGET_ALPHASETUP))
+				{
+					parent = getWidget(WIDGET_ALPHASETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CAlphaSetup(_("Alpha"), &g_settings.gtx_alpha);;
+				}
+			}
+			break;
+			
+		case WIDGET_SKINSTYLESELECTIONSETUP:
+			{
+				if (widget_exists(WIDGET_SKINSTYLESELECTIONSETUP))
+				{
+					parent = getWidget(WIDGET_SKINSTYLESELECTIONSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CSkinSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_MISCSETUP:
+			{
+				if (widget_exists(WIDGET_MISCSETUP))
+				{
+					parent = getWidget(WIDGET_MISCSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CGeneralSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_EPGSETUP:
+			{
+				if (widget_exists(WIDGET_EPGSETUP))
+				{
+					parent = getWidget(WIDGET_EPGSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CEPGSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_CHANNELSSETUP:
+			{
+				if (widget_exists(WIDGET_CHANNELSSETUP))
+				{
+					parent = getWidget(WIDGET_CHANNELSSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CChannelListSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_ZAPITSETUP:
+			{
+				if (widget_exists(WIDGET_ZAPITSETUP))
+				{
+					parent = getWidget(WIDGET_ZAPITSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CZapitSetup();
+				}
+			}
+			break;
+			
+		case WIDGET_FILEBROWSERSETUP:
+			{
+				if (widget_exists(WIDGET_FILEBROWSERSETUP))
+				{
+					parent = getWidget(WIDGET_FILEBROWSERSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CFileBrowserSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_SCANSETUP:
+			{
+				if (widget_exists(WIDGET_SCANSETUP))
+				{
+					parent = getWidget(WIDGET_SCANSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CTunerSetup();
+				}
+			}
+			break;
+			
+		case WIDGET_CICAMSETUP:
+			{
+				if (widget_exists(WIDGET_CICAMSETUP))
+				{
+					parent = getWidget(WIDGET_CICAMSETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CCAMMenuHandler();
+				}
+			}
+			break;
+			
+		case WIDGET_UPDATESETUP:
+			{
+				if (widget_exists(WIDGET_UPDATESETUP))
+				{
+					parent = getWidget(WIDGET_UPDATESETUP);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CUpdateSettings();
+				}
+			}
+			break;
+			
+		case WIDGET_BOUQUETEDITOR:
+			{
+				if (widget_exists(WIDGET_BOUQUETEDITOR))
+				{
+					parent = getWidget(WIDGET_BOUQUETEDITOR);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CBEBouquetWidget();
+				}
+			}
+			break;
+			
+		case WIDGET_IMAGEINFO:
+			{
+				if (widget_exists(WIDGET_IMAGEINFO))
+				{
+					parent = getWidget(WIDGET_IMAGEINFO);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CImageInfo();
+				}
+			}
+			break;
+			
+		case WIDGET_DBOXINFO:
+			{
+				if (widget_exists(WIDGET_DBOXINFO))
+				{
+					parent = getWidget(WIDGET_DBOXINFO);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CDBoxInfoWidget();
+				}
+			}
+			break;
+			
+		case WIDGET_STREAMINFO:
+			{
+				if (widget_exists(WIDGET_STREAMINFO))
+				{
+					parent = getWidget(WIDGET_STREAMINFO);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CStreamInfo2Handler();
+				}
+			}
+			break;
+			
+		case WIDGET_SLEEPTIMER:
+			{
+				if (widget_exists(WIDGET_SLEEPTIMER))
+				{
+					parent = getWidget(WIDGET_SLEEPTIMER);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CSleepTimerWidget();
+				}
+			}
+			break;
+			
+		case WIDGET_EVENTLIST:
+			{
+				if (widget_exists(WIDGET_EVENTLIST))
+				{
+					parent = getWidget(WIDGET_EVENTLIST);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CEventListHandler();
+				}
+			}
+			break;
+			
+		case WIDGET_EPGVIEW:
+			{
+				if (widget_exists(WIDGET_EPGVIEW))
+				{
+					parent = getWidget(WIDGET_EPGVIEW);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CEPGDataHandler();
+				}
+			}
+			break;
+			
+		case WIDGET_EPGPLUS:
+			{
+				if (widget_exists(WIDGET_EPGPLUS))
+				{
+					parent = getWidget(WIDGET_EPGPLUS);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CEPGplusHandler();
+				}
+			}
+			break;
+			
+		case WIDGET_PLUINGSLIST:
+			{
+				if (widget_exists(WIDGET_PLUINGSLIST))
+				{
+					parent = getWidget(WIDGET_PLUINGSLIST);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CPluginList();
+				}
+			}
+			break;
+			
+		case WIDGET_TIMERLIST:
+			{
+				if (widget_exists(WIDGET_TIMERLIST))
+				{
+					parent = getWidget(WIDGET_TIMERLIST);
+				}
+				else
+				{
+					dprintf(DEBUG_INFO, "id: %d not found\n", id);
+					parent = new CTimerList();
 				}
 			}
 			break;
@@ -896,23 +1310,24 @@ void CNeutrinoApp::parseSkin()
 					listboxitem_node = listboxitem_node->xmlNextNode;
 				}
 				
-				////
+				//
 				listboxintegration_node = listbox_node->xmlChildrenNode;
 					
 				while ((listboxintegration_node = xmlGetNextOccurence(listboxintegration_node, "INTEGRATION")) != NULL) 
 				{
 					CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED;
-					int mode = MODE_MENU;
+					unsigned int mode = MODE_MENU;
 					unsigned int shortcut = RC_nokey;
 					unsigned int type = WIDGET_TYPE_STANDARD;
+					unsigned int lines = false;
+					unsigned int shadow = false;
 						
 					integration = (CPlugins::i_type_t)xmlGetSignedNumericAttribute(listboxintegration_node, "id", 0);
 					mode = xmlGetSignedNumericAttribute(listboxintegration_node, "mode", 0);
 					shortcut = xmlGetSignedNumericAttribute(listboxintegration_node, "shortcut", 0);
 					type = xmlGetSignedNumericAttribute(listboxintegration_node, "type", 0);
-					
-					unsigned int lines = xmlGetSignedNumericAttribute(listboxintegration_node, "lines", 0);
-					unsigned int shadow = xmlGetSignedNumericAttribute(listboxintegration_node, "shadow", 0);
+					lines = xmlGetSignedNumericAttribute(listboxintegration_node, "lines", 0);
+					shadow = xmlGetSignedNumericAttribute(listboxintegration_node, "shadow", 0);
 						
 					listBox->integratePlugins(integration, shortcut, true, mode, type, lines, shadow);
 				
@@ -1338,7 +1753,7 @@ void CNeutrinoApp::unloadSkin()
 	themes->setupDefaultColors();
 	
 	// menu
-	g_settings.menu_shadow = true;
+	g_settings.menu_shadow = false;
 	
 	// infobar
 	g_settings.infobar_gradient = NOGRADIENT;
@@ -1347,7 +1762,7 @@ void CNeutrinoApp::unloadSkin()
 	g_settings.infobar_corner = CORNER_NONE;
 	g_settings.infobar_buttonbar = true;
 	g_settings.infobar_buttonline = false;
-	g_settings.infobar_shadow = true;
+	g_settings.infobar_shadow = false;
 	
 	// head
 	g_settings.Head_radius = RADIUS_MID;
@@ -1360,7 +1775,7 @@ void CNeutrinoApp::unloadSkin()
 	g_settings.Foot_gradient = DARK2LIGHT;
 	
 	// itemInfo
-	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", true);
+	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", false);
 	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
 	
 	delete themes;
@@ -1468,15 +1883,15 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.infobar_gradient_direction = skinConfig->getInt32("infobar_gradient_direction", GRADIENT_HORIZONTAL);
 		g_settings.infobar_corner = skinConfig->getInt32("infobar_corner", CORNER_ALL);
 		g_settings.infobar_radius = skinConfig->getInt32("infobar_radius", RADIUS_MID);
-		g_settings.infobar_shadow = skinConfig->getBool("infobar_shadow", true);
+		g_settings.infobar_shadow = skinConfig->getBool("infobar_shadow", false);
 		g_settings.infobar_buttonbar = skinConfig->getBool("infobar_buttonbar", true);
 		g_settings.infobar_buttonline = skinConfig->getBool("infobar_buttonline", false);
 		
 		//
-		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", true);
+		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", false);
 		
 		// itemInfo
-		g_settings.Foot_Info_shadow = skinConfig->getBool("Foot_Info_shadow", true);
+		g_settings.Foot_Info_shadow = skinConfig->getBool("Foot_Info_shadow", false);
 		g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
 		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );

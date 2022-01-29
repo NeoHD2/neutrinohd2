@@ -722,7 +722,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	//
 	g_settings.use_default_skin = configfile.getBool("use_default_skin", true);
 	g_settings.preferred_skin = configfile.getString("preferred_skin", "default");
-	g_settings.menu_shadow = configfile.getBool("menu_shadow", true);
+	g_settings.menu_shadow = configfile.getBool("menu_shadow", false);
 
 	// keysbinding
 	strcpy(g_settings.repeat_blocker, configfile.getString("repeat_blocker", "250").c_str());
@@ -933,11 +933,11 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.infobar_gradient_direction = configfile.getInt32("infobar_gradient_direction", GRADIENT_HORIZONTAL);
 	g_settings.infobar_buttonbar = configfile.getBool("infobar_buttonbar", true);
 	g_settings.infobar_buttonline = configfile.getBool("infobar_buttonline", false);
-	g_settings.infobar_shadow = configfile.getBool("infobar_shadow", true);
+	g_settings.infobar_shadow = configfile.getBool("infobar_shadow", false);
 	
 	//
 	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
-	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", true);
+	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", false);
 	// END MISC OPTS
 
 	// HDD

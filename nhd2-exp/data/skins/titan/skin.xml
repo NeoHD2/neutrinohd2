@@ -119,7 +119,7 @@
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Details current program" itemicon="hint_restart" target="44" >
 			</ITEM>
-			<ITEM name="menuforwarder" id="5" localename="Eventlist overview" itemicon="hint_standby" target="34">
+			<ITEM name="menuforwarder" id="5" localename="Eventlist overview" itemicon="hint_standby" target="46">
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Stream information" itemicon="hint_dboxinfo" target="66">
 			</ITEM>
@@ -190,7 +190,7 @@
 	</WIDGET>
 
 	<WIDGET name="settings" id="2" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Settings" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
 		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >
@@ -218,7 +218,7 @@
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Misc settings" itemicon="hint_extended" target="20">
 			</ITEM>
-			<ITEM name="menuforwarder" id="5" localename="HDD settings" itemicon="hint_hdd" hint="Timer List" target="21">
+			<ITEM name="menuforwarder" id="5" localename="HDD settings" itemicon="hint_hdd" target="21">
 			</ITEM>
 		</LISTBOX>
 		
