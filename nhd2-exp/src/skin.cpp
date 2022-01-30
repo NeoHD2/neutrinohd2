@@ -1504,69 +1504,21 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 {
 	dprintf(DEBUG_INFO, "CNeutrinoApp::loadSkin: %s\n", skinName.c_str());
 	
+	std::string skinPath = CONFIGDIR "/skins/";
+	skinPath += skinName.c_str();
+	
+	// read skin config
+	std::string skinConfigFile = skinPath.c_str();
+	skinConfigFile += "/";
+	skinConfigFile += skinName.c_str();
+	skinConfigFile += ".config";
+	
+	readSkinConfig(skinConfigFile.c_str());
+	
 	//
 	parseSkin();
 	
-#if 0	
-	// unload
-	unloadSkin();
-	
 	//
-	std::string skinPath = CONFIGDIR "/skins/";
-	skinPath += skinName.c_str();
-	
-	std::string fontFileName;
-	
-	// load skin
-	struct dirent **namelist;
-	int i = 0;
-
-	i = scandir(skinPath.c_str(), &namelist, 0, 0);
-
-	if (i > 0)
-	{
-		while(i--)
-		{
-			if( (strcmp(namelist[i]->d_name, ".") != 0) && (strcmp(namelist[i]->d_name, "..") != 0) )
-			{
-				std::string filename = skinPath.c_str();
-				filename += "/";
-				filename += namelist[i]->d_name;
-				
-				std::string extension = getFileExt(filename);
-				
-				if ( strcasecmp("lua", extension.c_str()) == 0)
-				{
-					CPlugins::plugin new_skin;
-		
-					if (!filename.empty())
-					{
-						dprintf(DEBUG_INFO, "CNeutrinoApp::loadskin: add: %s\n", filename.c_str());
-						
-						new_skin.pluginfile = filename;
-						new_skin.type = CPlugins::P_TYPE_LUA;
-						new_skin.hide = true;
-						
-						new_skin.filename = getBaseName(filename);
-						new_skin.filename = removeExtension(new_skin.filename);
-					
-						skin_list.push_back(new_skin);
-					}
-				}
-					
-				if ( strcasecmp("ttf", extension.c_str()) == 0)
-					fontFileName = filename;
-				
-				filename.clear();			
-			}
-			free(namelist[i]);
-		}
-		free(namelist);
-	}
-#endif
-	std::string skinPath = CONFIGDIR "/skins/";
-	skinPath += skinName.c_str();
-	
 	std::string fontFileName;
 	
 	struct dirent **namelist;
@@ -1672,7 +1624,7 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		
 		readSkinConfig(skinConfigFile.c_str());
 	}
-	else // if mainmenu.lua not found fallback to default (neutrino intern)
+	else //fallback to default (neutrino intern)
 	{
 		strcpy( g_settings.font_file, DATADIR "/neutrino/fonts/arial.ttf");
 		
@@ -1690,40 +1642,7 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 
 void CNeutrinoApp::startSkin(const char * const filename)
 {
-	dprintf(DEBUG_INFO, "CNeutrinoApp::startSkin: %s\n", filename);
-	
-#if 0
-	int skinnr = -1;
-	
-	for (int i = 0; i <  (int) skin_list.size(); i++)
-	{
-		if ( strcasecmp(filename, skin_list[i].filename.c_str()) == 0)
-		{
-			skinnr = i;
-		}
-	}
-	
-	if (skinnr > -1)
-	{
-		// LUA
-		neutrinoLua* luaInvoker = new neutrinoLua();
-
-		luaInvoker->execFile(skin_list[skinnr].pluginfile.c_str());
-
-		delete luaInvoker;
-		luaInvoker = NULL;
-	}
-	else
-	{
-		dprintf(DEBUG_INFO, "CPlugins::startSkin: could not find %s\n", filename);
-		
-		std::string hint = filename;
-		hint += " ";
-		hint += _("is not installed please install again.");
-		
-		HintBox(_("Information"), _(hint.c_str()));
-	}
-#endif	
+	dprintf(DEBUG_INFO, "CNeutrinoApp::startSkin: %s\n", filename);	
 }
 
 bool CNeutrinoApp::skin_exists(const char* const filename)
@@ -1739,21 +1658,22 @@ bool CNeutrinoApp::skin_exists(const char* const filename)
 	if (::file_exists(skin.c_str()))
 		ret = true;
 	
-	/*
-	for (int i = 0; i <  (int) skin_list.size(); i++)
-	{
-		if ( strcasecmp(filename, skin_list[i].filename.c_str()) == 0)
-			return true;
-	}
-	*/
-	
 	return ret;
 }
 
 void CNeutrinoApp::unloadSkin()
 {
-	// clearb cache
-	//skin_list.clear();
+	// 
+	for (unsigned int i = 0; i < (unsigned int) widgets.size(); i++)
+	{
+		if (widgets[i])
+		{
+			delete widgets[i];
+			widgets[i] = NULL;
+		}
+	}
+	
+	//
 	widgets.clear();
 	
 	// set font to arial
@@ -1797,7 +1717,7 @@ void CNeutrinoApp::unloadSkin()
 	g_settings.Foot_gradient = DARK2LIGHT;
 	
 	// itemInfo
-	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", false);
+	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", true);
 	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
 	
 	delete themes;
@@ -1913,7 +1833,7 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", false);
 		
 		// itemInfo
-		g_settings.Foot_Info_shadow = skinConfig->getBool("Foot_Info_shadow", false);
+		g_settings.Foot_Info_shadow = skinConfig->getBool("Foot_Info_shadow", true);
 		g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
 		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );

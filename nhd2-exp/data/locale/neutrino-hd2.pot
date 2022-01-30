@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-30 14:23+0100\n"
+"POT-Creation-Date: 2022-01-30 15:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1523,31 +1523,31 @@ msgstr ""
 #: ../../src/neutrino.cpp:5274 ../../src/neutrino.cpp:5279
 #: ../../src/neutrino.cpp:5295 ../../src/neutrino.cpp:5300
 #: ../../src/neutrino.cpp:5312 ../../src/neutrino.cpp:5314
-#: ../../src/skin.cpp:1724 ../../src/gui/dboxinfo.cpp:462
-#: ../../src/gui/cam_menu.cpp:201 ../../src/gui/cam_menu.cpp:229
-#: ../../src/gui/cam_menu.cpp:258 ../../src/gui/cam_menu.cpp:359
-#: ../../src/gui/cam_menu.cpp:473 ../../src/gui/cam_menu.cpp:488
-#: ../../src/gui/hdd_menu.cpp:146 ../../src/gui/network_setup.cpp:159
-#: ../../src/gui/rc_setup.cpp:255 ../../src/gui/scan_setup.cpp:288
-#: ../../src/gui/recording_setup.cpp:93 ../../src/gui/movieplayer.cpp:616
-#: ../../src/gui/movieplayer.cpp:1528 ../../src/gui/movieplayer.cpp:1644
-#: ../../src/gui/movieplayer.cpp:2175 ../../src/gui/movieplayer.cpp:2205
-#: ../../src/gui/update.cpp:322 ../../src/gui/update.cpp:330
-#: ../../src/gui/update.cpp:403 ../../src/gui/update.cpp:477
-#: ../../src/gui/update.cpp:519 ../../src/gui/update.cpp:536
-#: ../../src/gui/update.cpp:559 ../../src/gui/update.cpp:609
-#: ../../src/gui/update.cpp:619 ../../src/gui/update.cpp:645
-#: ../../src/gui/themes.cpp:89 ../../src/gui/themes.cpp:127
-#: ../../src/gui/pictureviewer.cpp:417 ../../src/gui/video_setup.cpp:437
-#: ../../src/gui/timerlist.cpp:1162 ../../src/gui/misc_setup.cpp:578
-#: ../../src/gui/service_menu.cpp:76 ../../src/gui/service_menu.cpp:78
-#: ../../src/gui/plugins.cpp:336 ../../src/gui/audioplayer.cpp:1283
-#: ../../src/gui/eventlist.cpp:510 ../../src/gui/eventlist.cpp:515
-#: ../../src/gui/infoviewer.cpp:1113 ../../src/gui/widget/infobox.cpp:170
-#: ../../../plugins/test/test.cpp:3260 ../../../plugins/test/test.cpp:3275
-#: ../../../plugins/test/test.cpp:3291 ../../../plugins/test/test.cpp:3304
-#: ../../../plugins/test/test.cpp:3352 ../../../plugins/test/test.cpp:5712
-#: ../../../plugins/test/test.cpp:5718 ../../../plugins/icecast/icecast.cpp:665
+#: ../../src/gui/dboxinfo.cpp:462 ../../src/gui/cam_menu.cpp:201
+#: ../../src/gui/cam_menu.cpp:229 ../../src/gui/cam_menu.cpp:258
+#: ../../src/gui/cam_menu.cpp:359 ../../src/gui/cam_menu.cpp:473
+#: ../../src/gui/cam_menu.cpp:488 ../../src/gui/hdd_menu.cpp:146
+#: ../../src/gui/network_setup.cpp:159 ../../src/gui/rc_setup.cpp:255
+#: ../../src/gui/scan_setup.cpp:288 ../../src/gui/recording_setup.cpp:93
+#: ../../src/gui/movieplayer.cpp:616 ../../src/gui/movieplayer.cpp:1528
+#: ../../src/gui/movieplayer.cpp:1644 ../../src/gui/movieplayer.cpp:2175
+#: ../../src/gui/movieplayer.cpp:2205 ../../src/gui/update.cpp:322
+#: ../../src/gui/update.cpp:330 ../../src/gui/update.cpp:403
+#: ../../src/gui/update.cpp:477 ../../src/gui/update.cpp:519
+#: ../../src/gui/update.cpp:536 ../../src/gui/update.cpp:559
+#: ../../src/gui/update.cpp:609 ../../src/gui/update.cpp:619
+#: ../../src/gui/update.cpp:645 ../../src/gui/themes.cpp:89
+#: ../../src/gui/themes.cpp:127 ../../src/gui/pictureviewer.cpp:417
+#: ../../src/gui/video_setup.cpp:437 ../../src/gui/timerlist.cpp:1162
+#: ../../src/gui/misc_setup.cpp:578 ../../src/gui/service_menu.cpp:76
+#: ../../src/gui/service_menu.cpp:78 ../../src/gui/plugins.cpp:336
+#: ../../src/gui/audioplayer.cpp:1283 ../../src/gui/eventlist.cpp:510
+#: ../../src/gui/eventlist.cpp:515 ../../src/gui/infoviewer.cpp:1113
+#: ../../src/gui/widget/infobox.cpp:170 ../../../plugins/test/test.cpp:3260
+#: ../../../plugins/test/test.cpp:3275 ../../../plugins/test/test.cpp:3291
+#: ../../../plugins/test/test.cpp:3304 ../../../plugins/test/test.cpp:3352
+#: ../../../plugins/test/test.cpp:5712 ../../../plugins/test/test.cpp:5718
+#: ../../../plugins/icecast/icecast.cpp:665
 #: ../../../plugins/moviebrowser/tstool.cpp:278
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:918
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:945
@@ -3190,15 +3190,15 @@ msgstr ""
 msgid "Skin Select"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1082
+#: ../../src/gui/osd_setup.cpp:1084
 msgid "Skin Style Selection"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1017
+#: ../../src/gui/osd_setup.cpp:1019
 msgid "Skin Style selection"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1082
+#: ../../src/gui/osd_setup.cpp:1084
 msgid "Skin Style selection?"
 msgstr ""
 
@@ -4218,7 +4218,7 @@ msgstr ""
 msgid "children / juvenile program"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1052
+#: ../../src/gui/osd_setup.cpp:1054
 msgid "choose Skin Style."
 msgstr ""
 
@@ -4482,7 +4482,7 @@ msgstr ""
 msgid "internet Radio"
 msgstr ""
 
-#: ../../src/skin.cpp:1722 ../../src/gui/plugins.cpp:334
+#: ../../src/gui/plugins.cpp:334
 msgid "is not installed please install again."
 msgstr ""
 

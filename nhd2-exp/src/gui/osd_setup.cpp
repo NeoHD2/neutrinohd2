@@ -997,6 +997,8 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 			g_settings.use_default_skin = false;
 			CNeutrinoApp::getInstance()->unloadSkin();
 			g_settings.preferred_skin = actionKey;
+			
+			usleep(1000);
 			CNeutrinoApp::getInstance()->exec(NULL, "restart");
 		}
 		

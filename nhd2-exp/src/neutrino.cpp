@@ -937,7 +937,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	
 	//
 	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
-	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", false);
+	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", true);
 	// END MISC OPTS
 
 	// HDD
