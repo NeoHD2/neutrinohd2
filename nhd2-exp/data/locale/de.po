@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-30 00:22+0100\n"
+"POT-Creation-Date: 2022-01-30 13:31+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -131,7 +131,7 @@ msgid "Alpha Setup"
 msgstr ""
 
 msgid "Analog Output"
-msgstr ""
+msgstr "Analog-Ausgang"
 
 msgid "Antenna positioning"
 msgstr ""
@@ -158,22 +158,22 @@ msgid "Audio Player"
 msgstr ""
 
 msgid "Audio Player Setup"
-msgstr ""
+msgstr "Audioplayer Einstellungen"
 
 msgid "Audio Player settings"
-msgstr ""
+msgstr "Audioplayer Einstellungen"
 
 msgid "Audio Playlist"
 msgstr ""
 
 msgid "Audio language preferences"
-msgstr ""
+msgstr "Bevorzugte Ton Sprachen"
 
 msgid "Audio master"
 msgstr ""
 
 msgid "Audio settings"
-msgstr ""
+msgstr "Audio-Einstellungen"
 
 msgid "Audioplayer"
 msgstr ""
@@ -188,10 +188,10 @@ msgid "Auto Play"
 msgstr ""
 
 msgid "Auto select audio"
-msgstr ""
+msgstr "Tonwahl automatisch"
 
 msgid "Auto select subtitles"
-msgstr ""
+msgstr "Untertitel automatisch"
 
 msgid "Auto-Scan"
 msgstr ""
@@ -212,7 +212,7 @@ msgid "BOTTOM RIGHT"
 msgstr ""
 
 msgid "Back"
-msgstr ""
+msgstr "Zurück"
 
 msgid "Background"
 msgstr ""
@@ -239,7 +239,7 @@ msgid "Bouquet"
 msgstr ""
 
 msgid "Bouquet Editor"
-msgstr ""
+msgstr "Bouquet-Verwaltung"
 
 msgid "Bouquet back"
 msgstr ""
@@ -316,7 +316,7 @@ msgid "Cable:"
 msgstr ""
 
 msgid "Cancel"
-msgstr ""
+msgstr "Abbruch"
 
 msgid "Cancel movie cut/split ?"
 msgstr ""
@@ -502,7 +502,7 @@ msgid "Description: "
 msgstr ""
 
 msgid "Details current program"
-msgstr ""
+msgstr "Info zur Sendung"
 
 msgid "DiSEqC"
 msgstr ""
@@ -660,22 +660,22 @@ msgid "Enter your new youth protection pin code here!"
 msgstr ""
 
 msgid "Error"
-msgstr ""
+msgstr "Fehler"
 
 msgid "Event list"
-msgstr ""
+msgstr "Vorschau aktuelles Programm"
 
 msgid "Event-List"
-msgstr ""
+msgstr "Vorschau aktuelles Programm"
 
 msgid "Eventlist Overview (EPG Plus)"
-msgstr ""
+msgstr "Vorschau Übersicht (EPG Plus)"
 
 msgid "Eventlist current programm"
-msgstr ""
+msgstr "Vorschau aktuelles Programm"
 
 msgid "Eventlist overview"
-msgstr ""
+msgstr "Vorschau Übersicht (EPG Plus)"
 
 msgid "Events Textcolor"
 msgstr ""
@@ -687,7 +687,7 @@ msgid "Exit"
 msgstr ""
 
 msgid "Expert-functions"
-msgstr ""
+msgstr "Experten Funktionen"
 
 msgid "FEC"
 msgstr ""
@@ -705,7 +705,7 @@ msgid "Fast/timeshift record time(hours)"
 msgstr ""
 
 msgid "Favorites"
-msgstr ""
+msgstr "Favoriten"
 
 msgid "Features"
 msgstr "Erweiterungen"
@@ -801,7 +801,7 @@ msgid "Frequency:"
 msgstr ""
 
 msgid "Friday"
-msgstr ""
+msgstr "Freitag"
 
 msgid "Frontend:"
 msgstr ""
@@ -866,8 +866,9 @@ msgstr ""
 msgid "HDD Mounted"
 msgstr ""
 
+#, fuzzy
 msgid "HDD Settings"
-msgstr ""
+msgstr "Festplatte Einstellungen"
 
 msgid "HDD Umount"
 msgstr ""
@@ -885,7 +886,7 @@ msgid "HDD mounted"
 msgstr ""
 
 msgid "HDD settings"
-msgstr ""
+msgstr "Festplatte Einstellungen"
 
 msgid "HDD umount"
 msgstr ""
@@ -1023,7 +1024,7 @@ msgid "Infobar Crypticons"
 msgstr ""
 
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 msgid "Install menu"
 msgstr ""
@@ -1065,7 +1066,7 @@ msgid "LCD EPG Align"
 msgstr ""
 
 msgid "LCD settings"
-msgstr ""
+msgstr "Display Einstellungen"
 
 msgid "LED-Power"
 msgstr ""
@@ -1092,7 +1093,7 @@ msgid "Language"
 msgstr ""
 
 msgid "Language Setup"
-msgstr ""
+msgstr "Sprache Einstellungen"
 
 msgid "Last Channel"
 msgstr ""
@@ -1194,9 +1195,6 @@ msgstr ""
 msgid "Main Menu"
 msgstr "Haupt Menü"
 
-msgid "Main Settings"
-msgstr "Einstellungen"
-
 msgid "Make Remaining Channels list"
 msgstr ""
 
@@ -1243,13 +1241,13 @@ msgid "Mini-DiSEqC"
 msgstr ""
 
 msgid "Misc settings"
-msgstr ""
+msgstr "Diverse Einstellungen"
 
 msgid "Miscsettings"
-msgstr ""
+msgstr "Diverse Einstellungen"
 
 msgid "Mo Tu We Th Fr Sa Su"
-msgstr ""
+msgstr "Mo Di Mi Do Fr Sa So"
 
 msgid "Modechange"
 msgstr ""
@@ -1294,7 +1292,7 @@ msgid "Movie Player"
 msgstr ""
 
 msgid "Movie Player settings"
-msgstr ""
+msgstr "Movieplayer Einstellungen"
 
 msgid "Movie Trailer"
 msgstr ""
@@ -1360,7 +1358,7 @@ msgid "Network Name"
 msgstr ""
 
 msgid "Network settings"
-msgstr ""
+msgstr "Netzwerk Einstellungen"
 
 msgid "Netzkino"
 msgstr ""
@@ -1372,10 +1370,10 @@ msgid "Neue Filme"
 msgstr ""
 
 msgid "Neutrino Restart"
-msgstr ""
+msgstr "Neutrino neu starten"
 
 msgid "Neutrino restart"
-msgstr ""
+msgstr "Neutrino neu starten"
 
 msgid "New Bookmark"
 msgstr ""
@@ -1412,7 +1410,7 @@ msgid "Next program"
 msgstr ""
 
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 msgid "No CAM in slot"
 msgstr ""
@@ -1472,7 +1470,7 @@ msgid "Numeric Zap"
 msgstr ""
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "OK saves, HOME! aborts"
 msgstr ""
@@ -1481,16 +1479,16 @@ msgid "OPKG-Manager"
 msgstr ""
 
 msgid "OSD Miscsettings"
-msgstr ""
+msgstr "OSD Diverse Einstellungen"
 
 msgid "OSD Timing"
 msgstr ""
 
 msgid "OSD misc-settings"
-msgstr ""
+msgstr "OSD Diverse Einstellungen"
 
 msgid "OSD settings"
-msgstr ""
+msgstr "OSD Einstellungen"
 
 msgid "OSD timing"
 msgstr ""
@@ -1531,7 +1529,7 @@ msgid "Overwrite?"
 msgstr ""
 
 msgid "PCM Delay"
-msgstr ""
+msgstr "PCM Verzögerung"
 
 msgid "PSI Setup"
 msgstr ""
@@ -1546,10 +1544,10 @@ msgid "Page Up"
 msgstr ""
 
 msgid "Parental Lock"
-msgstr ""
+msgstr "Jugendschutz PIN"
 
 msgid "Parentallock settings"
-msgstr ""
+msgstr "Jugendschutz PIN Einstellungen"
 
 msgid "Partition-Selector"
 msgstr ""
@@ -1570,13 +1568,13 @@ msgid "Picture"
 msgstr ""
 
 msgid "Picture Viewer"
-msgstr ""
+msgstr "Bildbetrachter"
 
 msgid "Picture viewer"
-msgstr ""
+msgstr "Bildbetrachter"
 
 msgid "Pictureviewer settings"
-msgstr ""
+msgstr "Bildbetrachter Einstellungen"
 
 msgid "Playtime"
 msgstr ""
@@ -1624,7 +1622,7 @@ msgid "Preferred EPG language"
 msgstr ""
 
 msgid "Preferred language"
-msgstr ""
+msgstr "Bevorzugte Sprachen"
 
 msgid "Presenter"
 msgstr ""
@@ -1729,7 +1727,7 @@ msgid "Recording directory"
 msgstr ""
 
 msgid "Recording settings"
-msgstr ""
+msgstr "Aufnahme Einstellungen"
 
 msgid "Recording starts in a few minutes"
 msgstr ""
@@ -1750,7 +1748,7 @@ msgid "Reload"
 msgstr ""
 
 msgid "Reload channel lists"
-msgstr ""
+msgstr "Kanallisten neu laden"
 
 msgid "Reload movie info at start"
 msgstr ""
@@ -1762,7 +1760,7 @@ msgid "Reloading channel lists, please be patient."
 msgstr ""
 
 msgid "Remind"
-msgstr ""
+msgstr "Vormerken"
 
 msgid "Reminder"
 msgstr ""
@@ -1771,7 +1769,7 @@ msgid "Remote Control lock"
 msgstr ""
 
 msgid "Remote Control settings"
-msgstr ""
+msgstr "Tasten-Einstellungen"
 
 msgid "Remote control reactivated."
 msgstr ""
@@ -1870,7 +1868,7 @@ msgid "Save Keymap"
 msgstr ""
 
 msgid "Save Settings"
-msgstr ""
+msgstr "Einstellungen speichern"
 
 msgid "Save Settings now"
 msgstr "Einstellungen jetzt speichern"
@@ -1891,10 +1889,10 @@ msgid "Save in channel dir"
 msgstr ""
 
 msgid "Save settings now"
-msgstr ""
+msgstr "Einstellungen jetzt speichern"
 
 msgid "Save settings now?"
-msgstr ""
+msgstr "Einstellungen jetzt speichern?"
 
 msgid "Save timer"
 msgstr ""
@@ -1906,10 +1904,14 @@ msgid "Saving keymap, please wait..."
 msgstr ""
 
 msgid "Saving settings now, please be patient."
-msgstr ""
+msgstr "Einstellungen werden gespeichert, bitte warten."
 
-msgid "Saving settings now, please, please be patient."
+msgid ""
+"Saving settings now, please be patient.\n"
+" this needs Neutrino restart."
 msgstr ""
+"Einstellungen werden gespeichert, bitte warten.\n"
+"Einstellungen werden aktiv nach neutrino neu Start."
 
 msgid "Scaling"
 msgstr ""
@@ -1930,7 +1932,7 @@ msgid "Scan for services"
 msgstr ""
 
 msgid "Scan transponder"
-msgstr ""
+msgstr "Kanalsuche"
 
 msgid "Scanning for UPnP servers"
 msgstr ""
@@ -1951,10 +1953,10 @@ msgid "Schedule ecord"
 msgstr ""
 
 msgid "Screen"
-msgstr ""
+msgstr "Bildschirm"
 
 msgid "Screen Setup"
-msgstr ""
+msgstr "Bildschirm Einstellungen"
 
 msgid "Screenshot"
 msgstr ""
@@ -1999,7 +2001,7 @@ msgid "Select audio track"
 msgstr ""
 
 msgid "Select language"
-msgstr ""
+msgstr "Sprache wählen"
 
 msgid "Select starting-time"
 msgstr ""
@@ -2050,7 +2052,7 @@ msgid "Set in hours"
 msgstr ""
 
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 msgid "Settings backup"
 msgstr ""
@@ -2107,19 +2109,19 @@ msgid "Size"
 msgstr ""
 
 msgid "Skin Select"
-msgstr ""
+msgstr "Skin Auswahl"
 
 msgid "Skin Style Selection"
-msgstr ""
+msgstr "Skin Style Auswahl"
 
 msgid "Skin Style selection"
-msgstr ""
+msgstr "Skin Style Auswahl"
 
 msgid "Skin Style selection?"
-msgstr ""
+msgstr "Skin Style Auswählen?"
 
 msgid "Skin select"
-msgstr ""
+msgstr "Skin Auswahl"
 
 msgid "Sleep Timer"
 msgstr ""
@@ -2128,10 +2130,10 @@ msgid "Sleep time"
 msgstr ""
 
 msgid "Sleeptimer"
-msgstr ""
+msgstr "Ausschalt Timer"
 
 msgid "Sleeptimer in 1 min"
-msgstr ""
+msgstr "Sleeptimer in 1 Min."
 
 msgid "Slideshow"
 msgstr ""
@@ -2170,7 +2172,7 @@ msgid "Start Search"
 msgstr ""
 
 msgid "Start dir."
-msgstr ""
+msgstr "Start-Verz."
 
 msgid "Start movie from:"
 msgstr ""
@@ -2212,10 +2214,10 @@ msgid "Store Motor Position (a)"
 msgstr ""
 
 msgid "Stream information"
-msgstr ""
+msgstr "technische Information"
 
 msgid "Stream-Information"
-msgstr ""
+msgstr "technische Information"
 
 msgid "Stretch Mode"
 msgstr ""
@@ -2413,13 +2415,13 @@ msgid "Timeout waiting CI menu ready"
 msgstr ""
 
 msgid "Timer List"
-msgstr ""
+msgstr "Timerliste"
 
 msgid "Timer conflict. Create the timer anyway?"
 msgstr ""
 
 msgid "Timer list"
-msgstr ""
+msgstr "Timerliste"
 
 msgid "Timer settings"
 msgstr ""
@@ -2428,7 +2430,7 @@ msgid "Timer typ"
 msgstr ""
 
 msgid "Timerlist"
-msgstr ""
+msgstr "Timerliste"
 
 msgid "Timeselection"
 msgstr ""
@@ -2584,10 +2586,10 @@ msgid "Video Resolution"
 msgstr ""
 
 msgid "Video Settings"
-msgstr ""
+msgstr "Video-Einstellungen"
 
 msgid "Video settings"
-msgstr ""
+msgstr "Video-Einstellungen"
 
 msgid "Videotext"
 msgstr ""
@@ -2665,7 +2667,7 @@ msgid "Year of production"
 msgstr ""
 
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 msgid "You really want to to stop record ?"
 msgstr ""
@@ -2760,7 +2762,7 @@ msgid "athletics"
 msgstr ""
 
 msgid "back"
-msgstr ""
+msgstr "zurück"
 
 msgid "ballet"
 msgstr ""
@@ -3050,7 +3052,7 @@ msgid "jump prev"
 msgstr ""
 
 msgid "languages"
-msgstr ""
+msgstr "Sprache"
 
 msgid "large"
 msgstr ""
@@ -3283,7 +3285,7 @@ msgid "rating"
 msgstr ""
 
 msgid "record"
-msgstr ""
+msgstr "Aufnahme"
 
 msgid "record default audio streams"
 msgstr ""
@@ -3520,7 +3522,7 @@ msgid "winter sports"
 msgstr ""
 
 msgid "yes"
-msgstr ""
+msgstr "Ja"
 
 msgid "youtube ID Key:"
 msgstr ""

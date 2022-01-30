@@ -58,8 +58,8 @@ extern "C" int pinghost( const char *hostname );
 #define OPTIONS_OFF0_ON1_OPTION_COUNT 2
 const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
 {
-        { 0, _("off") },
-        { 1, _("on") }
+        { 0, "off" },
+        { 1, "on" }
 };
 
 #define OPTIONS_NTPENABLE_OPTION_COUNT 2

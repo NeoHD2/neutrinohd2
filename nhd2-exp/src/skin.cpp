@@ -877,6 +877,9 @@ void CNeutrinoApp::parseSkin()
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::parseSkin\n");
 	
+	// shall we clear cache  ???
+	widgets.clear();
+	
 	//
 	_xmlDocPtr parser = NULL;
 	
@@ -1504,7 +1507,7 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 	//
 	parseSkin();
 	
-#if ENABLE_LUA	
+#if 0	
 	// unload
 	unloadSkin();
 	
@@ -1560,8 +1563,16 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		}
 		free(namelist);
 	}
+#endif
+	std::string skinPath = CONFIGDIR "/skins/";
+	skinPath += skinName.c_str();
 	
-	if (CNeutrinoApp::getInstance()->skin_exists("mainmenu"))
+	std::string fontFileName;
+	
+	struct dirent **namelist;
+	int i = 0;
+	
+	if (CNeutrinoApp::getInstance()->skin_exists(skinName.c_str()))
 	{
 		// setup font
 		std::string fontPath = skinPath.c_str();
@@ -1674,15 +1685,14 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 		frameBuffer->setIconBasePath(DATADIR "/neutrino/icons/");
 		frameBuffer->setButtonBasePath(DATADIR "/neutrino/buttons/");
 		frameBuffer->setHintBasePath(DATADIR "/neutrino/hints/");
-	}
-#endif	
+	}	
 }
 
 void CNeutrinoApp::startSkin(const char * const filename)
 {
 	dprintf(DEBUG_INFO, "CNeutrinoApp::startSkin: %s\n", filename);
 	
-#if ENABLE_LUA	
+#if 0
 	int skinnr = -1;
 	
 	for (int i = 0; i <  (int) skin_list.size(); i++)
@@ -1720,19 +1730,31 @@ bool CNeutrinoApp::skin_exists(const char* const filename)
 {
 	dprintf(DEBUG_INFO, "CNeutrinoApp::skin_exists: %s\n", filename);
 	
+	bool ret = false;
+	
+	std::string skin = CONFIGDIR "/skins/";
+	skin += filename;
+	skin += "/skin.xml";
+	
+	if (::file_exists(skin.c_str()))
+		ret = true;
+	
+	/*
 	for (int i = 0; i <  (int) skin_list.size(); i++)
 	{
 		if ( strcasecmp(filename, skin_list[i].filename.c_str()) == 0)
 			return true;
 	}
+	*/
 	
-	return false;
+	return ret;
 }
 
 void CNeutrinoApp::unloadSkin()
 {
 	// clearb cache
-	skin_list.clear();
+	//skin_list.clear();
+	widgets.clear();
 	
 	// set font to arial
 	strcpy( g_settings.font_file, DATADIR "/neutrino/fonts/arial.ttf");

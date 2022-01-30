@@ -93,7 +93,7 @@ enum
 typedef struct keyval
 {
 	int key;
-	char* valname;
+	const char* valname;
 } keyval_struct;
 
 // CChangeObserver

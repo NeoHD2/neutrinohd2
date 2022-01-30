@@ -145,12 +145,12 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 			//
 			if (!g_settings.use_default_skin)
 			{
-				if (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+				//if (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 				{
 					CNeutrinoApp::getInstance()->exec(NULL, "saveskinsettings");
 					
-					CNeutrinoApp::getInstance()->unloadSkin();
-					CNeutrinoApp::getInstance()->exec(NULL, "restart");
+					//CNeutrinoApp::getInstance()->unloadSkin();
+					//CNeutrinoApp::getInstance()->exec(NULL, "restart");
 				}
 			}
 

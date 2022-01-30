@@ -2965,12 +2965,10 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				//
-				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
+				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
 				{
 					if (hasWidgets() && (widget_exists(WIDGET_MAINMENU)))
 						getWidget(WIDGET_MAINMENU)->exec(NULL, "");
-					else
-						startSkin("mainmenu");
 				}
 				else	
 					mainMenu();
@@ -3202,19 +3200,13 @@ void CNeutrinoApp::RealRun(void)
 
 				//
 				StopSubtitles();
-
-				//
-				//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-				//	startSkin("red");
-				//else
-				{					
-					CEPGMenuHandler* redMenu = new CEPGMenuHandler();
 					
-					redMenu->exec(NULL, "");
+				CEPGMenuHandler* redMenu = new CEPGMenuHandler();
 					
-					delete redMenu;
-					redMenu = NULL;
-				}
+				redMenu->exec(NULL, "");
+					
+				delete redMenu;
+				redMenu = NULL;
 
 				//
 				StartSubtitles();
@@ -3270,11 +3262,7 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				// features
-				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists("mainmenu")))
-					//startSkin("blue");
-					showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
-				else
-					showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
+				showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
 
 				StartSubtitles();
 			}
@@ -5283,7 +5271,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 			zapitCfg.saveLastChannel = g_settings.uselastchannel;
 			setZapitConfig(&zapitCfg);
 
-			HintBox(_("Information"), _("Saving settings now, please, please be patient."));
+			HintBox(_("Information"), _("Saving settings now, please be patient."));
 		}
 	}
 	else if (actionKey == "saveskinsettings")
@@ -5304,7 +5292,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 				
 			tuxtxt_close();
 				
-			HintBox(_("Information"), _("Saving settings now, please be patient."));
+			HintBox(_("Information"), _("Saving settings now, please be patient.\n this needs Neutrino restart."));
 		}
 	}
 	else if (actionKey == "defaultskinsettings")

@@ -76,7 +76,7 @@ void CMainSettingsMenu::showMenu(void)
 	
 	int shortcutMainSettings = 1;
 
-	CMenuWidget * mainSettings = new CMenuWidget(_("Main Settings"), NEUTRINO_ICON_SETTINGS);
+	CMenuWidget * mainSettings = new CMenuWidget(_("Settings"), NEUTRINO_ICON_SETTINGS);
 
 	mainSettings->setWidgetMode(MODE_MENU);
 	mainSettings->setWidgetType(WIDGET_TYPE_CLASSIC);

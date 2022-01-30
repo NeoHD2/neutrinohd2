@@ -670,7 +670,7 @@ void CItems2DetailsLine::clear(int x, int y, int width, int height, int info_hei
 		// info box
 		frameBuffer->paintBackgroundBoxRel(x, y + height, width, info_height);
 	}
-	else if ( (mode == DL_HINTITEM) || (mode == DL_HINTICON) )
+	else if ( (mode == DL_HINTITEM) || (mode == DL_HINTICON) || (mode == DL_HINTHINT))
 	{
 		frameBuffer->paintBackgroundBoxRel(x, y, width, height);
 	}

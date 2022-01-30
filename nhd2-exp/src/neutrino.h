@@ -163,16 +163,12 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		bool hasWidgets(){return widgets.size();};
 		CMenuTarget* convertTarget(const int id);
 		uint32_t convertColor(const char* const rgba);
-		
-		std::vector<CPlugins::plugin> skin_list;
-		
+		void readSkinConfig(const char* const filename);
+		void saveSkinConfig(const char* const filename);
+		bool skin_exists(const char* const filename);
 		void loadSkin(std::string skinName);
 		void unloadSkin();
 		void startSkin(const char* const filename);
-		bool skin_exists(const char* const filename);
-		
-		void readSkinConfig(const char* const filename);
-		void saveSkinConfig(const char* const filename);
 		
 		//
 		void mainMenu(void);

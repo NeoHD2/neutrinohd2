@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-30 00:22+0100\n"
-"PO-Revision-Date: 2022-01-28 01:41+0100\n"
+"POT-Creation-Date: 2022-01-30 14:23+0100\n"
+"PO-Revision-Date: 2022-01-30 00:49+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -18,240 +18,240 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "'X'=timer '-' no timer"
-msgstr ""
+msgstr "'X'=timer '-' no timer"
 
 #, c-format
 msgid "(%d%% over)"
 msgstr "(%d%% over)"
 
 msgid "(Date)"
-msgstr ""
+msgstr "(Date)"
 
 msgid "(Re)-Calculate Positions"
-msgstr ""
+msgstr "(Re)-Calculate Positions"
 
 msgid "(Size)"
-msgstr ""
+msgstr "(Size)"
 
 msgid "(a) Motor Position:"
-msgstr ""
+msgstr "(a) Motor Position:"
 
 msgid "(b) Movement:"
-msgstr ""
+msgstr "(b) Movement:"
 
 msgid "(c) Step Size:"
-msgstr ""
+msgstr "(c) Step Size:"
 
 msgid "(filename)"
-msgstr ""
+msgstr "(filename)"
 
 msgid "(filename2)"
-msgstr ""
+msgstr "(filename2)"
 
 msgid "(relative, in seconds)"
-msgstr ""
+msgstr "(relative, in seconds)"
 
 #, c-format
 msgid "(starting in %d min)"
 msgstr "(starting in %d min)"
 
 msgid "(type)"
-msgstr ""
+msgstr "(type)"
 
 msgid "0 for unlimited repeats"
-msgstr ""
+msgstr "0 for unlimited repeats"
 
 msgid "12 years"
-msgstr ""
+msgstr "12 years"
 
 msgid "16 years"
-msgstr ""
+msgstr "16 years"
 
 msgid "18 years"
-msgstr ""
+msgstr "18 years"
 
 msgid "6 years"
-msgstr ""
+msgstr "6 years"
 
 msgid "?"
-msgstr ""
+msgstr "?"
 
 msgid "A/V sync"
-msgstr ""
+msgstr "A/V sync"
 
 msgid "AC3 Delay"
-msgstr ""
+msgstr "AC3 Delay"
 
 msgid "Abortion of channel scan"
-msgstr ""
+msgstr "Abortion of channel scan"
 
 msgid "Absolute start directory"
-msgstr ""
+msgstr "Absolute start directory"
 
 msgid "Actions"
-msgstr ""
+msgstr "Actions"
 
 msgid "Activate changes"
-msgstr ""
+msgstr "Activate changes"
 
 msgid "Activate settings"
-msgstr ""
+msgstr "Activate settings"
 
 msgid "Actors"
-msgstr ""
+msgstr "Actors"
 
 msgid "Add"
-msgstr ""
+msgstr "Add"
 
 msgid "Add to Bouquets"
-msgstr ""
+msgstr "Add to Bouquets"
 
 msgid "Additional paths"
-msgstr ""
+msgstr "Additional paths"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Advanced"
 
 msgid "Age"
-msgstr ""
+msgstr "Age"
 
 msgid "Alarm time"
-msgstr ""
+msgstr "Alarm time"
 
 msgid "All Services"
 msgstr "All Services"
 
 msgid "All services"
-msgstr ""
+msgstr "All services"
 
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 msgid "Alpha Setup"
-msgstr ""
+msgstr "Alpha Setup"
 
 msgid "Analog Output"
-msgstr ""
+msgstr "Analog Output"
 
 msgid "Antenna positioning"
-msgstr ""
+msgstr "Antenna positioning"
 
 msgid "Are you sure ?"
-msgstr ""
+msgstr "Are you sure ?"
 
 msgid "Are you sure to format ? You will lost all data "
-msgstr ""
+msgstr "Are you sure to format ? You will lost all data "
 
 msgid "Are you sure to init ?"
-msgstr ""
+msgstr "Are you sure to init ?"
 
 msgid "Aspect Ratio"
-msgstr ""
+msgstr "Aspect Ratio"
 
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 msgid "Audio PIDs"
-msgstr ""
+msgstr "Audio PIDs"
 
 msgid "Audio Player"
-msgstr ""
+msgstr "Audio Player"
 
 msgid "Audio Player Setup"
-msgstr ""
+msgstr "Audio Player Setup"
 
 msgid "Audio Player settings"
-msgstr ""
+msgstr "Audio Player settings"
 
 msgid "Audio Playlist"
-msgstr ""
+msgstr "Audio Playlist"
 
 msgid "Audio language preferences"
-msgstr ""
+msgstr "Audio language preferences"
 
 msgid "Audio master"
-msgstr ""
+msgstr "Audio master"
 
 msgid "Audio settings"
-msgstr ""
+msgstr "Audio settings"
 
 msgid "Audioplayer"
-msgstr ""
+msgstr "Audioplayer"
 
 msgid "Audioplayer settings"
-msgstr ""
+msgstr "Audioplayer settings"
 
 msgid "Audiotype"
-msgstr ""
+msgstr "Audiotype"
 
 msgid "Auto Play"
-msgstr ""
+msgstr "Auto Play"
 
 msgid "Auto select audio"
-msgstr ""
+msgstr "Auto select audio"
 
 msgid "Auto select subtitles"
-msgstr ""
+msgstr "Auto select subtitles"
 
 msgid "Auto-Scan"
-msgstr ""
+msgstr "Auto-Scan"
 
 msgid "Auto-Scan multiple Satellites"
-msgstr ""
+msgstr "Auto-Scan multiple Satellites"
 
 msgid "Available Images/Packages"
-msgstr ""
+msgstr "Available Images/Packages"
 
 msgid "BOTTOM"
-msgstr ""
+msgstr "BOTTOM"
 
 msgid "BOTTOM LEFT"
-msgstr ""
+msgstr "BOTTOM LEFT"
 
 msgid "BOTTOM RIGHT"
-msgstr ""
+msgstr "BOTTOM RIGHT"
 
 msgid "Back"
-msgstr ""
+msgstr "Back"
 
 msgid "Background"
-msgstr ""
+msgstr "Background"
 
 msgid "Backup failed"
-msgstr ""
+msgstr "Backup failed"
 
 msgid "Bandwidth"
-msgstr ""
+msgstr "Bandwidth"
 
 msgid "Bitrate"
-msgstr ""
+msgstr "Bitrate"
 
 msgid "Bookmark"
-msgstr ""
+msgstr "Bookmark"
 
 msgid "Bookmark change"
-msgstr ""
+msgstr "Bookmark change"
 
 msgid "Bookmarks"
-msgstr ""
+msgstr "Bookmarks"
 
 msgid "Bouquet"
-msgstr ""
+msgstr "Bouquet"
 
 msgid "Bouquet Editor"
-msgstr ""
+msgstr "Bouquet Editor"
 
 msgid "Bouquet back"
-msgstr ""
+msgstr "Bouquet back"
 
 msgid "Bouquets"
-msgstr ""
+msgstr "Bouquets"
 
 msgid "Box / Channel Information"
 msgstr "Box / Channel Information"
 
 msgid "Box Info"
-msgstr ""
+msgstr "Box Info"
 
 msgid ""
 "Box will shutdown in 1 min.\n"
@@ -261,301 +261,301 @@ msgstr ""
 "Cancel Sutdown ?"
 
 msgid "Brightness"
-msgstr ""
+msgstr "Brightness"
 
 msgid "Broadcast"
-msgstr ""
+msgstr "Broadcast"
 
 msgid "Browser Options"
-msgstr ""
+msgstr "Browser Options"
 
 msgid "Browser hight [Pixel]"
-msgstr ""
+msgstr "Browser hight [Pixel]"
 
 msgid "Buttons Bar"
-msgstr ""
+msgstr "Buttons Bar"
 
 msgid "Buttons Line"
-msgstr ""
+msgstr "Buttons Line"
 
 msgid "CAM init complete"
-msgstr ""
+msgstr "CAM init complete"
 
 msgid "CAM inserted in slot"
-msgstr ""
+msgstr "CAM inserted in slot"
 
 msgid "CAM removed from slot"
-msgstr ""
+msgstr "CAM removed from slot"
 
 msgid "CI Cam"
-msgstr ""
+msgstr "CI Cam"
 
 msgid "CI Cam Settings"
-msgstr ""
+msgstr "CI Cam Settings"
 
 msgid "CI Cam settings"
-msgstr ""
+msgstr "CI Cam settings"
 
 msgid "CI cam reset"
-msgstr ""
+msgstr "CI cam reset"
 
 msgid "CIFS"
-msgstr ""
+msgstr "CIFS"
 
 msgid "CORNER ALL"
-msgstr ""
+msgstr "CORNER ALL"
 
 msgid "CORNER NONE"
-msgstr ""
+msgstr "CORNER NONE"
 
 msgid "CPU:"
-msgstr ""
+msgstr "CPU:"
 
 msgid "Cable"
-msgstr ""
+msgstr "Cable"
 
 msgid "Cable:"
-msgstr ""
+msgstr "Cable:"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 msgid "Cancel movie cut/split ?"
-msgstr ""
+msgstr "Cancel movie cut/split ?"
 
 msgid "Change PIN code"
-msgstr ""
+msgstr "Change PIN code"
 
 msgid "Change sort order"
-msgstr ""
+msgstr "Change sort order"
 
 msgid "Channel"
-msgstr ""
+msgstr "Channel"
 
 msgid "Channel (short) / Sep.-Line / Title"
-msgstr ""
+msgstr "Channel (short) / Sep.-Line / Title"
 
 msgid "Channel (short) / Title"
-msgstr ""
+msgstr "Channel (short) / Title"
 
 msgid "Channel / Sep.-Line / Title"
-msgstr ""
+msgstr "Channel / Sep.-Line / Title"
 
 msgid "Channel / Title"
-msgstr ""
+msgstr "Channel / Title"
 
 msgid "Channel Logo(EPGPlus)"
-msgstr ""
+msgstr "Channel Logo(EPGPlus)"
 
 msgid "Channel down"
-msgstr ""
+msgstr "Channel down"
 
 msgid "Channel name"
 msgstr "Channel name"
 
 msgid "Channel not available"
-msgstr ""
+msgstr "Channel not available"
 
 msgid "Channel up"
-msgstr ""
+msgstr "Channel up"
 
 msgid "Channel:"
-msgstr ""
+msgstr "Channel:"
 
 msgid "Channellist"
 msgstr "Channellist"
 
 msgid "Channellist Settings"
-msgstr ""
+msgstr "Channellist Settings"
 
 msgid "Check filesystem"
-msgstr ""
+msgstr "Check filesystem"
 
 msgid "Clear all"
-msgstr ""
+msgstr "Clear all"
 
 msgid "Code Rate HP"
-msgstr ""
+msgstr "Code Rate HP"
 
 msgid "Code Rate LP"
-msgstr ""
+msgstr "Code Rate LP"
 
 msgid "Colour Range"
-msgstr ""
+msgstr "Colour Range"
 
 msgid "Command failed"
-msgstr ""
+msgstr "Command failed"
 
 msgid "Commited/Uncommited"
-msgstr ""
+msgstr "Commited/Uncommited"
 
 msgid "Contrast"
-msgstr ""
+msgstr "Contrast"
 
 msgid "Contrast / Brightness"
-msgstr ""
+msgstr "Contrast / Brightness"
 
 msgid "Coping, please wait"
-msgstr ""
+msgstr "Coping, please wait"
 
 msgid "Copy bouquet to Favorites"
-msgstr ""
+msgstr "Copy bouquet to Favorites"
 
 msgid "Copy failed, is there jump bookmarks ? Or check free space."
-msgstr ""
+msgstr "Copy failed, is there jump bookmarks ? Or check free space."
 
 msgid "Copy if destination is empty only"
-msgstr ""
+msgstr "Copy if destination is empty only"
 
 msgid "Copy jumps"
-msgstr ""
+msgstr "Copy jumps"
 
 msgid "Copy jumps from movie to new file ?"
-msgstr ""
+msgstr "Copy jumps from movie to new file ?"
 
 msgid "Corner"
-msgstr ""
+msgstr "Corner"
 
 msgid "Correction time in min. (00=off). This time"
-msgstr ""
+msgstr "Correction time in min. (00=off). This time"
 
 msgid "Country"
-msgstr ""
+msgstr "Country"
 
 msgid "Create bookmark"
-msgstr ""
+msgstr "Create bookmark"
 
 msgid "Create list of HD channels"
-msgstr ""
+msgstr "Create list of HD channels"
 
 msgid "Current Track"
-msgstr ""
+msgstr "Current Track"
 
 msgid "Current key"
-msgstr ""
+msgstr "Current key"
 
 msgid "Current transponder"
-msgstr ""
+msgstr "Current transponder"
 
 msgid "Current version"
-msgstr ""
+msgstr "Current version"
 
 msgid "Cut failed, is there jump bookmarks ? Or check free space."
-msgstr ""
+msgstr "Cut failed, is there jump bookmarks ? Or check free space."
 
 msgid "Cut jumps"
-msgstr ""
+msgstr "Cut jumps"
 
 msgid "Cut jumps from movie ?"
-msgstr ""
+msgstr "Cut jumps from movie ?"
 
 msgid "Cutting, please wait"
-msgstr ""
+msgstr "Cutting, please wait"
 
 msgid "DHCP"
-msgstr ""
+msgstr "DHCP"
 
 msgid "Dark to Light"
-msgstr ""
+msgstr "Dark to Light"
 
 msgid "Dark to Light to Dark"
-msgstr ""
+msgstr "Dark to Light to Dark"
 
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 msgid "Date:"
-msgstr ""
+msgstr "Date:"
 
 msgid "Debug"
-msgstr ""
+msgstr "Debug"
 
 msgid "Decrease Motor Position (a)"
-msgstr ""
+msgstr "Decrease Motor Position (a)"
 
 msgid "Default"
-msgstr ""
+msgstr "Default"
 
 msgid "Default (Channel)"
-msgstr ""
+msgstr "Default (Channel)"
 
 msgid "Default gateway"
-msgstr ""
+msgstr "Default gateway"
 
 msgid "Default theme"
-msgstr ""
+msgstr "Default theme"
 
 msgid "Delayed shutdown"
-msgstr ""
+msgstr "Delayed shutdown"
 
 msgid "Delete"
-msgstr ""
+msgstr "Delete"
 
 msgid "Delete all"
-msgstr ""
+msgstr "Delete all"
 
 msgid "Description"
 msgstr "Description"
 
 msgid "Description: "
-msgstr ""
+msgstr "Description: "
 
 msgid "Details current program"
-msgstr ""
+msgstr "Details current program"
 
 msgid "DiSEqC"
-msgstr ""
+msgstr "DiSEqC"
 
 msgid "DiSEqC 1.0"
-msgstr ""
+msgstr "DiSEqC 1.0"
 
 msgid "DiSEqC 1.1"
-msgstr ""
+msgstr "DiSEqC 1.1"
 
 msgid "DiSEqC-Settings"
-msgstr ""
+msgstr "DiSEqC-Settings"
 
 msgid "DiSEqC-repeats"
-msgstr ""
+msgstr "DiSEqC-repeats"
 
 msgid "Diashow mode"
-msgstr ""
+msgstr "Diashow mode"
 
 msgid "Dim timeout"
-msgstr ""
+msgstr "Dim timeout"
 
 msgid "Dir"
-msgstr ""
+msgstr "Dir"
 
 msgid "Direct-Mode"
 msgstr "Direct-Mode"
 
 msgid "Director"
-msgstr ""
+msgstr "Director"
 
 msgid "Disable (soft) Limits"
-msgstr ""
+msgstr "Disable (soft) Limits"
 
 msgid "Discard changes ?"
-msgstr ""
+msgstr "Discard changes ?"
 
 msgid "Discard changes?"
-msgstr ""
+msgstr "Discard changes?"
 
 msgid "Diseqc input"
-msgstr ""
+msgstr "Diseqc input"
 
 msgid "Display Settings"
-msgstr ""
+msgstr "Display Settings"
 
 msgid "Display image"
-msgstr ""
+msgstr "Display image"
 
 msgid "Do not scale picture"
-msgstr ""
+msgstr "Do not scale picture"
 
 #, c-format
 msgid ""
@@ -567,30 +567,37 @@ msgid ""
 "Imagename: %s\n"
 "Target: %s"
 msgstr ""
+"Do you really want to flash?\n"
+"\n"
+"If a error occurs or the image is not\n"
+"valid, the box will not boot after flashing.\n"
+"\n"
+"Imagename: %s\n"
+"Target: %s"
 
 msgid "Do you want to overwrite this file:"
-msgstr ""
+msgstr "Do you want to overwrite this file:"
 
 msgid "Do you want to restore the previous settings?"
-msgstr ""
+msgstr "Do you want to restore the previous settings?"
 
 msgid "Docs:"
-msgstr ""
+msgstr "Docs:"
 
 msgid "Dolby Digital"
-msgstr ""
+msgstr "Dolby Digital"
 
 msgid "Drive Mode"
-msgstr ""
+msgstr "Drive Mode"
 
 msgid "Drive Mode/auto stop"
-msgstr ""
+msgstr "Drive Mode/auto stop"
 
 msgid "EPG"
-msgstr ""
+msgstr "EPG"
 
 msgid "EPG - Program Information"
-msgstr ""
+msgstr "EPG - Program Information"
 
 msgid "EPG Date"
 msgstr "EPG Date"
@@ -602,109 +609,109 @@ msgid "EPG Info 2"
 msgstr "EPG Info 2"
 
 msgid "EPG Info1"
-msgstr ""
+msgstr "EPG Info1"
 
 msgid "EPG Info2"
-msgstr ""
+msgstr "EPG Info2"
 
 msgid "EPG Long Description (hours)"
-msgstr ""
+msgstr "EPG Long Description (hours)"
 
 msgid "EPG Settings"
-msgstr ""
+msgstr "EPG Settings"
 
 msgid "EPG Title"
 msgstr "EPG Title"
 
 msgid "EPG is not available..."
-msgstr ""
+msgstr "EPG is not available..."
 
 msgid "EPG not available"
-msgstr ""
+msgstr "EPG not available"
 
 msgid "EPG not loaded..."
-msgstr ""
+msgstr "EPG not loaded..."
 
 msgid "EPG remove after (std.)"
-msgstr ""
+msgstr "EPG remove after (std.)"
 
 msgid "EPG save path"
-msgstr ""
+msgstr "EPG save path"
 
 msgid "EPG-Cache (Days)"
-msgstr ""
+msgstr "EPG-Cache (Days)"
 
 msgid "East"
-msgstr ""
+msgstr "East"
 
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 msgid "Enable (soft) Limits"
-msgstr ""
+msgstr "Enable (soft) Limits"
 
 msgid "Enable standby"
-msgstr ""
+msgstr "Enable standby"
 
 msgid "Enter 0 to switch of the blocker (red is space)"
-msgstr ""
+msgstr "Enter 0 to switch of the blocker (red is space)"
 
 msgid "Enter jump target"
-msgstr ""
+msgstr "Enter jump target"
 
 msgid "Enter new Position (s)"
-msgstr ""
+msgstr "Enter new Position (s)"
 
 msgid "Enter standby"
-msgstr ""
+msgstr "Enter standby"
 
 msgid "Enter your new youth protection pin code here!"
-msgstr ""
+msgstr "Enter your new youth protection pin code here!"
 
 msgid "Error"
 msgstr "Error"
 
 msgid "Event list"
-msgstr ""
+msgstr "Event list"
 
 msgid "Event-List"
-msgstr ""
+msgstr "Event-List"
 
 msgid "Eventlist Overview (EPG Plus)"
-msgstr ""
+msgstr "Eventlist Overview (EPG Plus)"
 
 msgid "Eventlist current programm"
-msgstr ""
+msgstr "Eventlist current programm"
 
 msgid "Eventlist overview"
-msgstr ""
+msgstr "Eventlist overview"
 
 msgid "Events Textcolor"
-msgstr ""
+msgstr "Events Textcolor"
 
 msgid "Execute plugin"
-msgstr ""
+msgstr "Execute plugin"
 
 msgid "Exit"
-msgstr ""
+msgstr "Exit"
 
 msgid "Expert-functions"
-msgstr ""
+msgstr "Expert-functions"
 
 msgid "FEC"
-msgstr ""
+msgstr "FEC"
 
 msgid "FEC_NONE"
-msgstr ""
+msgstr "FEC_NONE"
 
 msgid "Failed to load Netzkino Movies"
-msgstr ""
+msgstr "Failed to load Netzkino Movies"
 
 msgid "Failed to load youtube feed"
-msgstr ""
+msgstr "Failed to load youtube feed"
 
 msgid "Fast/timeshift record time(hours)"
-msgstr ""
+msgstr "Fast/timeshift record time(hours)"
 
 msgid "Favorites"
 msgstr "Favorites"
@@ -713,64 +720,64 @@ msgid "Features"
 msgstr "Features"
 
 msgid "File could not be created:"
-msgstr ""
+msgstr "File could not be created:"
 
 msgid "File size (MB)"
-msgstr ""
+msgstr "File size (MB)"
 
 msgid "File system"
-msgstr ""
+msgstr "File system"
 
 msgid "File-Selector"
-msgstr ""
+msgstr "File-Selector"
 
 msgid "Filebrowser"
-msgstr ""
+msgstr "Filebrowser"
 
 msgid "Filebrowser Settings"
-msgstr ""
+msgstr "Filebrowser Settings"
 
 msgid "Filename of the play list"
-msgstr ""
+msgstr "Filename of the play list"
 
 msgid "Filenames (with EPG data)"
-msgstr ""
+msgstr "Filenames (with EPG data)"
 
 msgid "Files Browser"
-msgstr ""
+msgstr "Files Browser"
 
 msgid "Film Informationen"
-msgstr ""
+msgstr "Film Informationen"
 
 msgid "Filter movies by category:"
-msgstr ""
+msgstr "Filter movies by category:"
 
 msgid "Filter off"
-msgstr ""
+msgstr "Filter off"
 
 msgid "Filter on"
-msgstr ""
+msgstr "Filter on"
 
 msgid "Filter:"
-msgstr ""
+msgstr "Filter:"
 
 msgid "Focus"
-msgstr ""
+msgstr "Focus"
 
 msgid "Font"
-msgstr ""
+msgstr "Font"
 
 msgid "Font name"
-msgstr ""
+msgstr "Font name"
 
 msgid "Foot"
-msgstr ""
+msgstr "Foot"
 
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 msgid "Forum:"
-msgstr ""
+msgstr "Forum:"
 
 #, c-format
 msgid ""
@@ -781,6 +788,12 @@ msgid ""
 "\n"
 "Do you want to install this version now?"
 msgstr ""
+"Found the following new image:\n"
+"Date: %s, %s\n"
+"BaseImage: %s\n"
+"ImageType: %s\n"
+"\n"
+"Do you want to install this version now?"
 
 #, c-format
 msgid ""
@@ -792,439 +805,443 @@ msgid ""
 "\n"
 "Do you want to download and install this version now?"
 msgstr ""
+"Found the following new package:\n"
+"Package: %s\n"
+"Date: %s, %s\n"
+"BaseImage: %s\n"
+"Type: %s\n"
+"\n"
+"Do you want to download and install this version now?"
 
 msgid "Framerate"
-msgstr ""
+msgstr "Framerate"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Frequency"
 
 msgid "Frequency:"
-msgstr ""
+msgstr "Frequency:"
 
 msgid "Friday"
-msgstr ""
+msgstr "Friday"
 
 msgid "Frontend:"
-msgstr ""
+msgstr "Frontend:"
 
 msgid "Fullscreen"
-msgstr ""
+msgstr "Fullscreen"
 
 msgid "General Settings"
-msgstr ""
+msgstr "General Settings"
 
 msgid "General settings"
-msgstr ""
+msgstr "General settings"
 
 msgid "Generic delay"
-msgstr ""
+msgstr "Generic delay"
 
 msgid "Genre"
-msgstr ""
+msgstr "Genre"
 
 msgid "Goto Motor Position (a)"
-msgstr ""
+msgstr "Goto Motor Position (a)"
 
 msgid "Goto Reference Position"
-msgstr ""
+msgstr "Goto Reference Position"
 
 msgid "Gradient"
-msgstr ""
+msgstr "Gradient"
 
 msgid "Gradient direction"
-msgstr ""
+msgstr "Gradient direction"
 
 msgid "Guard Interval"
-msgstr ""
+msgstr "Guard Interval"
 
 msgid "Guests"
-msgstr ""
+msgstr "Guests"
 
 msgid "HD Kino"
-msgstr ""
+msgstr "HD Kino"
 
 msgid "HDD Devices:"
-msgstr ""
+msgstr "HDD Devices:"
 
 msgid "HDD Filexplorer"
-msgstr ""
+msgstr "HDD Filexplorer"
 
 msgid "HDD Format"
-msgstr ""
+msgstr "HDD Format"
 
 msgid "HDD Init"
-msgstr ""
+msgstr "HDD Init"
 
 msgid "HDD Mount"
-msgstr ""
+msgstr "HDD Mount"
 
 msgid "HDD Mount Failed"
-msgstr ""
+msgstr "HDD Mount Failed"
 
 msgid "HDD Mount failed !"
-msgstr ""
+msgstr "HDD Mount failed !"
 
 msgid "HDD Mounted"
-msgstr ""
+msgstr "HDD Mounted"
 
 msgid "HDD Settings"
-msgstr ""
+msgstr "HDD Settings"
 
 msgid "HDD Umount"
-msgstr ""
+msgstr "HDD Umount"
 
 msgid "HDD check failed !"
-msgstr ""
+msgstr "HDD check failed !"
 
 msgid "HDD format failed !"
-msgstr ""
+msgstr "HDD format failed !"
 
 msgid "HDD init failed !"
-msgstr ""
+msgstr "HDD init failed !"
 
 msgid "HDD mounted"
-msgstr ""
+msgstr "HDD mounted"
 
 msgid "HDD settings"
-msgstr ""
+msgstr "HDD settings"
 
 msgid "HDD umount"
-msgstr ""
+msgstr "HDD umount"
 
 msgid "HDD umounted"
-msgstr ""
+msgstr "HDD umounted"
 
 msgid "HDD unmount failed !"
-msgstr ""
+msgstr "HDD unmount failed !"
 
 msgid "HDMI Color Space"
-msgstr ""
+msgstr "HDMI Color Space"
 
 msgid "Halt Motor"
-msgstr ""
+msgstr "Halt Motor"
 
 msgid "Hdd Format"
-msgstr ""
+msgstr "Hdd Format"
 
 msgid "Head"
-msgstr ""
+msgstr "Head"
 
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 msgid "Here you can get HW infos about your STB.\n"
-msgstr ""
+msgstr "Here you can get HW infos about your STB.\n"
 
 msgid "Here you can get infos about the Channel.\n"
-msgstr ""
+msgstr "Here you can get infos about the Channel.\n"
 
 msgid "Here you can get infos about the software.\n"
-msgstr ""
+msgstr "Here you can get infos about the software.\n"
 
 msgid "Here you can select a skin from the following list."
-msgstr ""
+msgstr "Here you can select a skin from the following list."
 
 msgid "Here you can setup the GUI Skin\n"
-msgstr ""
+msgstr "Here you can setup the GUI Skin\n"
 
 msgid "Here you can setup the GUI themes.\n"
-msgstr ""
+msgstr "Here you can setup the GUI themes.\n"
 
 msgid "Hide series"
-msgstr ""
+msgstr "Hide series"
 
 msgid "Hierarchy"
-msgstr ""
+msgstr "Hierarchy"
 
 msgid "High decode priority"
-msgstr ""
+msgstr "High decode priority"
 
 msgid "Highlight"
-msgstr ""
+msgstr "Highlight"
 
 msgid "History"
-msgstr ""
+msgstr "History"
 
 msgid "Home page:"
-msgstr ""
+msgstr "Home page:"
 
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 msgid "Horizontal (in %)"
-msgstr ""
+msgstr "Horizontal (in %)"
 
 msgid "Hostname"
-msgstr ""
+msgstr "Hostname"
 
 msgid "How long into the future will EPG extended descriptions"
-msgstr ""
+msgstr "How long into the future will EPG extended descriptions"
 
 msgid "How long will EPG-Data be stored after they timed out?"
-msgstr ""
+msgstr "How long will EPG-Data be stored after they timed out?"
 
 msgid "How long will EPG-Data in the future cached?"
-msgstr ""
+msgstr "How long will EPG-Data in the future cached?"
 
 msgid "How many events should be stored?"
-msgstr ""
+msgstr "How many events should be stored?"
 
 msgid "ICE Cast"
-msgstr ""
+msgstr "ICE Cast"
 
 msgid "IP address"
-msgstr ""
+msgstr "IP address"
 
 msgid "IP:"
-msgstr ""
+msgstr "IP:"
 
 msgid "IPTV"
-msgstr ""
+msgstr "IPTV"
 
 msgid "IPTV Channel"
-msgstr ""
+msgstr "IPTV Channel"
 
 msgid "IPTV Mode"
 msgstr "IPTV Mode"
 
 msgid "ISO-8859-1"
-msgstr ""
+msgstr "ISO-8859-1"
 
 msgid "Image info"
-msgstr ""
+msgstr "Image info"
 
 msgid "Image info:"
-msgstr ""
+msgstr "Image info:"
 
 msgid "Image:"
-msgstr ""
+msgstr "Image:"
 
 msgid "ImageType"
-msgstr ""
+msgstr "ImageType"
 
 msgid "Impossible to truncate playing movie."
-msgstr ""
+msgstr "Impossible to truncate playing movie."
 
 msgid "Increase Motor Position (a)"
-msgstr ""
+msgstr "Increase Motor Position (a)"
 
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 msgid "Info 1"
-msgstr ""
+msgstr "Info 1"
 
 msgid "Info 2"
-msgstr ""
+msgstr "Info 2"
 
 msgid "Infobar"
-msgstr ""
+msgstr "Infobar"
 
 msgid "Infobar Crypticons"
-msgstr ""
+msgstr "Infobar Crypticons"
 
 msgid "Information"
 msgstr "Information"
 
 msgid "Install menu"
-msgstr ""
+msgstr "Install menu"
 
 msgid "Interface"
-msgstr ""
+msgstr "Interface"
 
 msgid "Internet Radio"
-msgstr ""
+msgstr "Internet Radio"
 
 msgid "Invert"
-msgstr ""
+msgstr "Invert"
 
 msgid "Is this video mode working ok ?"
-msgstr ""
+msgstr "Is this video mode working ok ?"
 
 msgid "Item Info"
-msgstr ""
+msgstr "Item Info"
 
 msgid "Jump (<0 back , >0 for):"
-msgstr ""
+msgstr "Jump (<0 back , >0 for):"
 
 msgid "Jump over"
-msgstr ""
+msgstr "Jump over"
 
 msgid "Key"
-msgstr ""
+msgstr "Key"
 
 msgid "Key Repeat-blocker"
-msgstr ""
+msgstr "Key Repeat-blocker"
 
 msgid "Keybinding Setup"
-msgstr ""
+msgstr "Keybinding Setup"
 
 msgid "Keyword"
-msgstr ""
+msgstr "Keyword"
 
 msgid "LCD EPG Align"
-msgstr ""
+msgstr "LCD EPG Align"
 
 msgid "LCD settings"
-msgstr ""
+msgstr "LCD settings"
 
 msgid "LED-Power"
-msgstr ""
+msgstr "LED-Power"
 
 msgid "LEFT"
-msgstr ""
+msgstr "LEFT"
 
 msgid "LNB High Offset"
-msgstr ""
+msgstr "LNB High Offset"
 
 msgid "LNB Low Offset"
-msgstr ""
+msgstr "LNB Low Offset"
 
 msgid "LNB switch Offset"
-msgstr ""
+msgstr "LNB switch Offset"
 
 msgid "LUFS"
-msgstr ""
+msgstr "LUFS"
 
 msgid "LaDirection"
-msgstr ""
+msgstr "LaDirection"
 
 msgid "Language"
-msgstr ""
+msgstr "Language"
 
 msgid "Language Setup"
-msgstr ""
+msgstr "Language Setup"
 
 msgid "Last Channel"
-msgstr ""
+msgstr "Last Channel"
 
 msgid "Last Channel settings"
-msgstr ""
+msgstr "Last Channel settings"
 
 msgid "Last play date"
-msgstr ""
+msgstr "Last play date"
 
 msgid "Last play stop:"
-msgstr ""
+msgstr "Last play stop:"
 
 msgid "Last played:"
-msgstr ""
+msgstr "Last played:"
 
 msgid "Last recorded:"
-msgstr ""
+msgstr "Last recorded:"
 
 msgid "Latitude"
-msgstr ""
+msgstr "Latitude"
 
 msgid "Leave standby"
-msgstr ""
+msgstr "Leave standby"
 
 msgid "Led Color"
-msgstr ""
+msgstr "Led Color"
 
 msgid "Length"
-msgstr ""
+msgstr "Length"
 
 msgid "Length (Min)"
-msgstr ""
+msgstr "Length (Min)"
 
 msgid "Length (min"
-msgstr ""
+msgstr "Length (min"
 
 msgid "Length (min)"
-msgstr ""
+msgstr "Length (min)"
 
 msgid "License:"
-msgstr ""
+msgstr "License:"
 
 msgid "Light to Dark"
-msgstr ""
+msgstr "Light to Dark"
 
 msgid "Light to Dark to Light"
-msgstr ""
+msgstr "Light to Dark to Light"
 
 msgid "List End"
-msgstr ""
+msgstr "List End"
 
 msgid "List Start"
-msgstr ""
+msgstr "List Start"
 
 msgid "LoDirection"
-msgstr ""
+msgstr "LoDirection"
 
 msgid "Load default settings"
-msgstr ""
+msgstr "Load default settings"
 
 msgid "Loading package list"
-msgstr ""
+msgstr "Loading package list"
 
 msgid "Lock RC"
-msgstr ""
+msgstr "Lock RC"
 
 msgid "Lock Remote Control"
-msgstr ""
+msgstr "Lock Remote Control"
 
 msgid "Lock movies from"
-msgstr ""
+msgstr "Lock movies from"
 
 msgid "Lock program"
-msgstr ""
+msgstr "Lock program"
 
 msgid "Locked Channel"
-msgstr ""
+msgstr "Locked Channel"
 
 #, c-format
 msgid "Locked program (from %d years up)"
-msgstr ""
+msgstr "Locked program (from %d years up)"
 
 msgid "Longitude"
-msgstr ""
+msgstr "Longitude"
 
 msgid "Lower Right"
-msgstr ""
+msgstr "Lower Right"
 
 msgid "MAC address"
-msgstr ""
+msgstr "MAC address"
 
 msgid "MAC address:"
-msgstr ""
+msgstr "MAC address:"
 
 msgid "MD5 checking"
-msgstr ""
+msgstr "MD5 checking"
 
 msgid "Main Menu"
 msgstr "Main Menu"
 
-msgid "Main Settings"
-msgstr ""
-
 msgid "Make Remaining Channels list"
-msgstr ""
+msgstr "Make Remaining Channels list"
 
 msgid "Manual frequency scan"
-msgstr ""
+msgstr "Manual frequency scan"
 
 msgid "Manuell(ftp) Software Manager"
-msgstr ""
+msgstr "Manuell(ftp) Software Manager"
 
 msgid "Mark"
-msgstr ""
+msgstr "Mark"
 
 msgid "Max. Events"
-msgstr ""
+msgstr "Max. Events"
 
 msgid "Media"
-msgstr ""
+msgstr "Media"
 
 msgid "Media Player"
 msgstr "Media Player"
 
 msgid "Media Portal"
-msgstr ""
+msgstr "Media Portal"
 
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
 msgid "Menu Info"
 msgstr "Menu Info"
@@ -1233,538 +1250,547 @@ msgid "Menu Title"
 msgstr "Menu Title"
 
 msgid "Menu mode"
-msgstr ""
+msgstr "Menu mode"
 
 msgid "Menutext"
 msgstr "Menutext"
 
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 msgid "Mini-DiSEqC"
-msgstr ""
+msgstr "Mini-DiSEqC"
 
 msgid "Misc settings"
-msgstr ""
+msgstr "Misc settings"
 
 msgid "Miscsettings"
-msgstr ""
+msgstr "Miscsettings"
 
 msgid "Mo Tu We Th Fr Sa Su"
-msgstr ""
+msgstr "Mo Tu We Th Fr Sa Su"
 
 msgid "Modechange"
-msgstr ""
+msgstr "Modechange"
 
 msgid "Modify"
-msgstr ""
+msgstr "Modify"
 
 msgid "Modify timer"
-msgstr ""
+msgstr "Modify timer"
 
 msgid "Modulation"
-msgstr ""
+msgstr "Modulation"
 
 msgid "Monday"
-msgstr ""
+msgstr "Monday"
 
 msgid "More Screenings on this Channel"
-msgstr ""
+msgstr "More Screenings on this Channel"
 
 msgid "Most popular today"
-msgstr ""
+msgstr "Most popular today"
 
 msgid "Motor Control Settings"
-msgstr ""
+msgstr "Motor Control Settings"
 
 msgid "Motor Setup"
-msgstr ""
+msgstr "Motor Setup"
 
 msgid "Mount Network volume"
-msgstr ""
+msgstr "Mount Network volume"
 
 msgid "Mount options"
-msgstr ""
+msgstr "Mount options"
 
 msgid "Move"
-msgstr ""
+msgstr "Move"
 
 msgid "Movie Browser"
-msgstr ""
+msgstr "Movie Browser"
 
 msgid "Movie Player"
-msgstr ""
+msgstr "Movie Player"
 
 msgid "Movie Player settings"
-msgstr ""
+msgstr "Movie Player settings"
 
 msgid "Movie Trailer"
-msgstr ""
+msgstr "Movie Trailer"
 
 msgid "Movie end:"
-msgstr ""
+msgstr "Movie end:"
 
 msgid "Movie info"
-msgstr ""
+msgstr "Movie info"
 
 msgid "Movie start"
-msgstr ""
+msgstr "Movie start"
 
 msgid "Movie start:"
-msgstr ""
+msgstr "Movie start:"
 
 msgid "MoviePlayer setup"
-msgstr ""
+msgstr "MoviePlayer setup"
 
 msgid "Moviebrowser"
-msgstr ""
+msgstr "Moviebrowser"
 
 msgid "Movieplayer settings"
-msgstr ""
+msgstr "Movieplayer settings"
 
 msgid "Movies Browser"
-msgstr ""
+msgstr "Movies Browser"
 
 msgid "My Favorites"
 msgstr "My Favorites"
 
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 msgid "NFS settings"
-msgstr ""
+msgstr "NFS settings"
 
 msgid "NTP-Server"
-msgstr ""
+msgstr "NTP-Server"
 
 msgid "NTP-Server example: ntp1.ptb.de"
-msgstr ""
+msgstr "NTP-Server example: ntp1.ptb.de"
 
 msgid "NTP/DVB-Refresh"
-msgstr ""
+msgstr "NTP/DVB-Refresh"
 
 msgid "NTP/DVB-Time-Sync in minutes"
-msgstr ""
+msgstr "NTP/DVB-Time-Sync in minutes"
 
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 msgid "Name server"
-msgstr ""
+msgstr "Name server"
 
 msgid "Netmask"
-msgstr ""
+msgstr "Netmask"
 
 msgid "Network Mount Manager"
-msgstr ""
+msgstr "Network Mount Manager"
 
 msgid "Network Name"
-msgstr ""
+msgstr "Network Name"
 
 msgid "Network settings"
-msgstr ""
+msgstr "Network settings"
 
 msgid "Netzkino"
-msgstr ""
+msgstr "Netzkino"
 
 msgid "Neu by Netzkino"
-msgstr ""
+msgstr "Neu by Netzkino"
 
 msgid "Neue Filme"
-msgstr ""
+msgstr "Neue Filme"
 
 msgid "Neutrino Restart"
-msgstr ""
+msgstr "Neutrino Restart"
 
 msgid "Neutrino restart"
-msgstr ""
+msgstr "Neutrino restart"
 
 msgid "New Bookmark"
-msgstr ""
+msgstr "New Bookmark"
 
 msgid ""
 "New jump back\n"
 " 'blue' for endposition"
 msgstr ""
+"New jump back\n"
+" 'blue' for endposition"
 
 msgid ""
 "New jump forward\n"
 " 'blue' for endposition"
 msgstr ""
+"New jump forward\n"
+" 'blue' for endposition"
 
 msgid "New timer"
-msgstr ""
+msgstr "New timer"
 
 msgid "Next"
-msgstr ""
+msgstr "Next"
 
 msgid "Next Page"
-msgstr ""
+msgstr "Next Page"
 
 msgid "Next bouquet"
-msgstr ""
+msgstr "Next bouquet"
 
 msgid "Next focus"
-msgstr ""
+msgstr "Next focus"
 
 msgid "Next image"
-msgstr ""
+msgstr "Next image"
 
 msgid "Next program"
-msgstr ""
+msgstr "Next program"
 
 msgid "No"
-msgstr ""
+msgstr "No"
 
 msgid "No CAM in slot"
-msgstr ""
+msgstr "No CAM in slot"
 
 msgid "No End bookmark defined!"
-msgstr ""
+msgstr "No End bookmark defined!"
 
 msgid "No UPnP servers found"
-msgstr ""
+msgstr "No UPnP servers found"
 
 msgid ""
 "No channels were found!\n"
 "Please execute a scan\n"
 "(MENU-key -> service)"
 msgstr ""
+"No channels were found!\n"
+"Please execute a scan\n"
+"(MENU-key -> service)"
 
 msgid "No detailed informations available"
-msgstr ""
+msgstr "No detailed informations available"
 
 msgid "No info for current program available"
-msgstr ""
+msgstr "No info for current program available"
 
 msgid "No key"
-msgstr ""
+msgstr "No key"
 
 msgid "No neutrino-settings found, Using defaults."
 msgstr "No neutrino-settings found, Using defaults."
 
 msgid "Noise"
-msgstr ""
+msgstr "Noise"
 
 msgid "None"
-msgstr ""
+msgstr "None"
 
 msgid "North"
-msgstr ""
+msgstr "North"
 
 msgid "Not available"
-msgstr ""
+msgstr "Not available"
 
 msgid "Not used"
-msgstr ""
+msgstr "Not used"
 
 msgid "Now"
-msgstr ""
+msgstr "Now"
 
 msgid "Number"
 msgstr "Number"
 
 msgid "Number of lines last play"
-msgstr ""
+msgstr "Number of lines last play"
 
 msgid "Number of lines last record"
-msgstr ""
+msgstr "Number of lines last record"
 
 msgid "Numeric Zap"
-msgstr ""
+msgstr "Numeric Zap"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "OK saves, HOME! aborts"
-msgstr ""
+msgstr "OK saves, HOME! aborts"
 
 msgid "OPKG-Manager"
-msgstr ""
+msgstr "OPKG-Manager"
 
 msgid "OSD Miscsettings"
-msgstr ""
+msgstr "OSD Miscsettings"
 
 msgid "OSD Timing"
-msgstr ""
+msgstr "OSD Timing"
 
 msgid "OSD misc-settings"
-msgstr ""
+msgstr "OSD misc-settings"
 
 msgid "OSD settings"
-msgstr ""
+msgstr "OSD settings"
 
 msgid "OSD timing"
-msgstr ""
+msgstr "OSD timing"
 
 msgid "Off"
-msgstr ""
+msgstr "Off"
 
 msgid "On"
-msgstr ""
+msgstr "On"
 
 msgid ""
 "One or several recording processes are active.\n"
 "If you encounter this message and no recording is active, please restart Neutrino."
 msgstr ""
+"One or several recording processes are active.\n"
+"If you encounter this message and no recording is active, please restart Neutrino."
 
 msgid "Online EPG"
-msgstr ""
+msgstr "Online EPG"
 
 msgid "Online Software Manager"
-msgstr ""
+msgstr "Online Software Manager"
 
 msgid "Only radio"
-msgstr ""
+msgstr "Only radio"
 
 msgid "Only tv"
-msgstr ""
+msgstr "Only tv"
 
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 msgid "Order by"
-msgstr ""
+msgstr "Order by"
 
 msgid "Original Title"
-msgstr ""
+msgstr "Original Title"
 
 msgid "Overwrite?"
-msgstr ""
+msgstr "Overwrite?"
 
 msgid "PCM Delay"
-msgstr ""
+msgstr "PCM Delay"
 
 msgid "PSI Setup"
-msgstr ""
+msgstr "PSI Setup"
 
 msgid "Package successfully installed"
-msgstr ""
+msgstr "Package successfully installed"
 
 msgid "Page Down"
-msgstr ""
+msgstr "Page Down"
 
 msgid "Page Up"
-msgstr ""
+msgstr "Page Up"
 
 msgid "Parental Lock"
-msgstr ""
+msgstr "Parental Lock"
 
 msgid "Parentallock settings"
-msgstr ""
+msgstr "Parentallock settings"
 
 msgid "Partition-Selector"
-msgstr ""
+msgstr "Partition-Selector"
 
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 msgid "Path"
-msgstr ""
+msgstr "Path"
 
 msgid "Paths"
-msgstr ""
+msgstr "Paths"
 
 msgid "Permanent timeshift"
-msgstr ""
+msgstr "Permanent timeshift"
 
 msgid "Picture"
-msgstr ""
+msgstr "Picture"
 
 msgid "Picture Viewer"
-msgstr ""
+msgstr "Picture Viewer"
 
 msgid "Picture viewer"
-msgstr ""
+msgstr "Picture viewer"
 
 msgid "Pictureviewer settings"
-msgstr ""
+msgstr "Pictureviewer settings"
 
 msgid "Playtime"
-msgstr ""
+msgstr "Playtime"
 
 msgid "Please enter jump target"
-msgstr ""
+msgstr "Please enter jump target"
 
 msgid "Please enter the filename of the playlist"
-msgstr ""
+msgstr "Please enter the filename of the playlist"
 
 msgid "Please press the new key"
-msgstr ""
+msgstr "Please press the new key"
 
 msgid "Plugin"
-msgstr ""
+msgstr "Plugin"
 
 msgid "Plugins"
 msgstr "Plugins"
 
 msgid "Polarization"
-msgstr ""
+msgstr "Polarization"
 
 msgid "Position:"
-msgstr ""
+msgstr "Position:"
 
 msgid "Power Menu"
 msgstr "Power Menu"
 
 msgid "Prefer TMBD infos ?"
-msgstr ""
+msgstr "Prefer TMBD infos ?"
 
 msgid "Prefer TMDB Infos"
-msgstr ""
+msgstr "Prefer TMDB Infos"
 
 msgid "Prefer TMDB infos"
-msgstr ""
+msgstr "Prefer TMDB infos"
 
 msgid "Prefer TMDB infos ?"
-msgstr ""
+msgstr "Prefer TMDB infos ?"
 
 msgid "Prefered subtitle language"
-msgstr ""
+msgstr "Prefered subtitle language"
 
 msgid "Preferred EPG language"
-msgstr ""
+msgstr "Preferred EPG language"
 
 msgid "Preferred language"
-msgstr ""
+msgstr "Preferred language"
 
 msgid "Presenter"
-msgstr ""
+msgstr "Presenter"
 
 msgid "Prev Page"
-msgstr ""
+msgstr "Prev Page"
 
 msgid "Previous image"
-msgstr ""
+msgstr "Previous image"
 
 msgid "Program unknown"
 msgstr "Program unknown"
 
 msgid "Progressbar Color"
-msgstr ""
+msgstr "Progressbar Color"
 
 msgid "Prompt for PIN"
-msgstr ""
+msgstr "Prompt for PIN"
 
 msgid "Provider"
 msgstr "Provider"
 
 msgid "Provider:"
-msgstr ""
+msgstr "Provider:"
 
 msgid "Providers"
 msgstr "Providers"
 
 msgid "Proxyserver"
-msgstr ""
+msgstr "Proxyserver"
 
 msgid "Quality"
-msgstr ""
+msgstr "Quality"
 
 msgid "Quickzap"
-msgstr ""
+msgstr "Quickzap"
 
 msgid "RIGHT"
-msgstr ""
+msgstr "RIGHT"
 
 msgid "Radio"
-msgstr ""
+msgstr "Radio"
 
 msgid "Radio Channel"
-msgstr ""
+msgstr "Radio Channel"
 
 msgid "Radio Mode"
 msgstr "Radio Mode"
 
 msgid "Radio Text"
-msgstr ""
+msgstr "Radio Text"
 
 msgid "Radius"
-msgstr ""
+msgstr "Radius"
 
 msgid "Read one partition"
-msgstr ""
+msgstr "Read one partition"
 
 msgid "Read whole image"
-msgstr ""
+msgstr "Read whole image"
 
 msgid "Reading Flash"
-msgstr ""
+msgstr "Reading Flash"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Reboot"
 
 msgid "Receipt signal"
-msgstr ""
+msgstr "Receipt signal"
 
 msgid "Receiving list, please wait"
-msgstr ""
+msgstr "Receiving list, please wait"
 
 msgid "Record"
-msgstr ""
+msgstr "Record"
 
 msgid "Record AC3 streams"
-msgstr ""
+msgstr "Record AC3 streams"
 
 msgid "Record alternative streams"
-msgstr ""
+msgstr "Record alternative streams"
 
 msgid "Record date"
-msgstr ""
+msgstr "Record date"
 
 msgid "Record default audio streams"
-msgstr ""
+msgstr "Record default audio streams"
 
 msgid "Record standard stream"
-msgstr ""
+msgstr "Record standard stream"
 
 msgid "Record start time correction"
-msgstr ""
+msgstr "Record start time correction"
 
 msgid "Record stop time correction"
-msgstr ""
+msgstr "Record stop time correction"
 
 msgid "Recording"
 msgstr "Recording"
 
 msgid "Recording directory"
-msgstr ""
+msgstr "Recording directory"
 
 msgid "Recording settings"
-msgstr ""
+msgstr "Recording settings"
 
 msgid "Recording starts in a few minutes"
 msgstr "Recording starts in a few minutes"
 
 msgid "Records browser"
-msgstr ""
+msgstr "Records browser"
 
 msgid "Refresh EPG"
-msgstr ""
+msgstr "Refresh EPG"
 
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
 msgid "Release cycle"
-msgstr ""
+msgstr "Release cycle"
 
 msgid "Reload"
-msgstr ""
+msgstr "Reload"
 
 msgid "Reload channel lists"
-msgstr ""
+msgstr "Reload channel lists"
 
 msgid "Reload movie info at start"
-msgstr ""
+msgstr "Reload movie info at start"
 
 msgid "Reload plugins"
-msgstr ""
+msgstr "Reload plugins"
 
 msgid "Reloading channel lists, please be patient."
 msgstr "Reloading channel lists, please be patient."
 
 msgid "Remind"
-msgstr ""
+msgstr "Remind"
 
 msgid "Reminder"
 msgstr "Reminder"
@@ -1773,594 +1799,607 @@ msgid "Remote Control lock"
 msgstr "Remote Control lock"
 
 msgid "Remote Control settings"
-msgstr ""
+msgstr "Remote Control settings"
 
 msgid "Remote control reactivated."
-msgstr ""
+msgstr "Remote control reactivated."
 
 msgid "Remount at start"
-msgstr ""
+msgstr "Remount at start"
 
 msgid "Repeat"
-msgstr ""
+msgstr "Repeat"
 
 msgid "Repeat delay"
-msgstr ""
+msgstr "Repeat delay"
 
 msgid "Reread image"
-msgstr ""
+msgstr "Reread image"
 
 msgid "Reread image (no scaling)"
-msgstr ""
+msgstr "Reread image (no scaling)"
 
 msgid "Reset settings to defaults"
-msgstr ""
+msgstr "Reset settings to defaults"
 
 msgid "Reset to defaults"
-msgstr ""
+msgstr "Reset to defaults"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Resolution"
 
 msgid "Restore EPG on boot"
-msgstr ""
+msgstr "Restore EPG on boot"
 
 msgid "Rotor position"
-msgstr ""
+msgstr "Rotor position"
 
 msgid "Row item"
-msgstr ""
+msgstr "Row item"
 
 msgid "Row settings"
-msgstr ""
+msgstr "Row settings"
 
 msgid "Row width"
-msgstr ""
+msgstr "Row width"
 
 msgid "SB mode"
-msgstr ""
+msgstr "SB mode"
 
 msgid "SMATV Remote Tuning"
-msgstr ""
+msgstr "SMATV Remote Tuning"
 
 msgid "SMBFS"
-msgstr ""
+msgstr "SMBFS"
 
 msgid "Same TP"
-msgstr ""
+msgstr "Same TP"
 
 msgid "Sat"
-msgstr ""
+msgstr "Sat"
 
 msgid "SatIP Client Debug"
-msgstr ""
+msgstr "SatIP Client Debug"
 
 msgid "SatIP Client enabled"
-msgstr ""
+msgstr "SatIP Client enabled"
 
 msgid "SatIP Server IP"
-msgstr ""
+msgstr "SatIP Server IP"
 
 msgid "SatIP Server Port"
-msgstr ""
+msgstr "SatIP Server Port"
 
 msgid "Satellite"
-msgstr ""
+msgstr "Satellite"
 
 msgid "Satellite Position (Step Mode):"
-msgstr ""
+msgstr "Satellite Position (Step Mode):"
 
 msgid "Satellite display on infobar"
-msgstr ""
+msgstr "Satellite display on infobar"
 
 msgid "Satellite-Bouquet"
-msgstr ""
+msgstr "Satellite-Bouquet"
 
 msgid "Satellite:"
-msgstr ""
+msgstr "Satellite:"
 
 msgid "Satellites"
 msgstr "Satellites"
 
 msgid "Saturation"
-msgstr ""
+msgstr "Saturation"
 
 msgid "Saturday"
-msgstr ""
+msgstr "Saturday"
 
 msgid "Save Keymap"
-msgstr ""
+msgstr "Save Keymap"
 
 msgid "Save Settings"
-msgstr ""
+msgstr "Save Settings"
 
 msgid "Save Settings now"
-msgstr ""
+msgstr "Save Settings now"
 
 msgid "Save Timer"
-msgstr ""
+msgstr "Save Timer"
 
 msgid "Save changes"
-msgstr ""
+msgstr "Save changes"
 
 msgid "Save changes in all movie info files"
-msgstr ""
+msgstr "Save changes in all movie info files"
 
 msgid "Save current theme"
-msgstr ""
+msgstr "Save current theme"
 
 msgid "Save in channel dir"
-msgstr ""
+msgstr "Save in channel dir"
 
 msgid "Save settings now"
 msgstr "Save settings now"
 
 msgid "Save settings now?"
-msgstr ""
+msgstr "Save settings now?"
 
 msgid "Save timer"
-msgstr ""
+msgstr "Save timer"
 
 msgid "Save/Restore epg on reboot"
-msgstr ""
+msgstr "Save/Restore epg on reboot"
 
 msgid "Saving keymap, please wait..."
-msgstr ""
+msgstr "Saving keymap, please wait..."
 
 msgid "Saving settings now, please be patient."
-msgstr ""
+msgstr "Saving settings now, please be patient."
 
-msgid "Saving settings now, please, please be patient."
-msgstr ""
+#, fuzzy
+msgid ""
+"Saving settings now, please be patient.\n"
+" this needs Neutrino restart."
+msgstr "Saving settings now, please be patient."
 
 msgid "Scaling"
-msgstr ""
+msgstr "Scaling"
 
 msgid "Scan SDT for updates"
-msgstr ""
+msgstr "Scan SDT for updates"
 
 msgid "Scan again"
-msgstr ""
+msgstr "Scan again"
 
 msgid "Scan for Categories"
-msgstr ""
+msgstr "Scan for Categories"
 
 msgid "Scan for Movies ..."
-msgstr ""
+msgstr "Scan for Movies ..."
 
 msgid "Scan for services"
-msgstr ""
+msgstr "Scan for services"
 
 msgid "Scan transponder"
-msgstr ""
+msgstr "Scan transponder"
 
 msgid "Scanning for UPnP servers"
-msgstr ""
+msgstr "Scanning for UPnP servers"
 
 msgid "Scart Mode"
 msgstr "Scart Mode"
 
 msgid "Schedule"
-msgstr ""
+msgstr "Schedule"
 
 msgid "Schedule Event"
-msgstr ""
+msgstr "Schedule Event"
 
 msgid "Schedule Record"
-msgstr ""
+msgstr "Schedule Record"
 
 msgid "Schedule ecord"
-msgstr ""
+msgstr "Schedule ecord"
 
 msgid "Screen"
-msgstr ""
+msgstr "Screen"
 
 msgid "Screen Setup"
-msgstr ""
+msgstr "Screen Setup"
 
 msgid "Screenshot"
-msgstr ""
+msgstr "Screenshot"
 
 msgid "Scroll Mode"
-msgstr ""
+msgstr "Scroll Mode"
 
 msgid "Scroll down"
-msgstr ""
+msgstr "Scroll down"
 
 msgid "Scroll left"
-msgstr ""
+msgstr "Scroll left"
 
 msgid "Scroll right"
-msgstr ""
+msgstr "Scroll right"
 
 msgid "Scroll up"
-msgstr ""
+msgstr "Scroll up"
 
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 msgid "Search for keyword in EPG..."
-msgstr ""
+msgstr "Search for keyword in EPG..."
 
 msgid "Search in EPG"
-msgstr ""
+msgstr "Search in EPG"
 
 msgid "Search keyword"
-msgstr ""
+msgstr "Search keyword"
 
 msgid "Search within"
-msgstr ""
+msgstr "Search within"
 
 msgid "Security"
-msgstr ""
+msgstr "Security"
 
 msgid "Select Subservice"
 msgstr "Select Subservice"
 
 msgid "Select audio track"
-msgstr ""
+msgstr "Select audio track"
 
 msgid "Select language"
-msgstr ""
+msgstr "Select language"
 
 msgid "Select starting-time"
 msgstr "Select starting-time"
 
 msgid "Select theme"
-msgstr ""
+msgstr "Select theme"
 
 msgid "Select transponder"
-msgstr ""
+msgstr "Select transponder"
 
 msgid "Serie"
-msgstr ""
+msgstr "Serie"
 
 msgid "Serie auto create"
-msgstr ""
+msgstr "Serie auto create"
 
 msgid "Serien Trailer"
-msgstr ""
+msgstr "Serien Trailer"
 
 msgid "Server Box GUI"
-msgstr ""
+msgstr "Server Box GUI"
 
 msgid "Server Box IP"
-msgstr ""
+msgstr "Server Box IP"
 
 msgid "Server Box type"
-msgstr ""
+msgstr "Server Box type"
 
 msgid "Server IP"
-msgstr ""
+msgstr "Server IP"
 
 msgid "Service"
 msgstr "Service"
 
 msgid "Servicescan"
-msgstr ""
+msgstr "Servicescan"
 
 msgid "Set East (soft) Limit"
-msgstr ""
+msgstr "Set East (soft) Limit"
 
 msgid "Set West (soft) Limit"
-msgstr ""
+msgstr "Set West (soft) Limit"
 
 msgid "Set in days."
-msgstr ""
+msgstr "Set in days."
 
 msgid "Set in hours"
-msgstr ""
+msgstr "Set in hours"
 
 msgid "Settings"
 msgstr "Settings"
 
 msgid "Settings backup"
-msgstr ""
+msgstr "Settings backup"
 
 msgid "Settings restore"
-msgstr ""
+msgstr "Settings restore"
 
 msgid "Setup New Key"
-msgstr ""
+msgstr "Setup New Key"
 
 msgid "Setup network now, please wait..."
-msgstr ""
+msgstr "Setup network now, please wait..."
 
 msgid "Setup network on startup"
-msgstr ""
+msgstr "Setup network on startup"
 
 msgid "Setup new key"
-msgstr ""
+msgstr "Setup new key"
 
 msgid "Setup satellites input / LNB"
-msgstr ""
+msgstr "Setup satellites input / LNB"
 
 msgid "Shadow"
-msgstr ""
+msgstr "Shadow"
 
 msgid "Shortest time (in ms) to recognize 2 keystrokes"
-msgstr ""
+msgstr "Shortest time (in ms) to recognize 2 keystrokes"
 
 msgid "Should the search really be aborted?"
-msgstr ""
+msgstr "Should the search really be aborted?"
 
 msgid "Show / Gameshow"
-msgstr ""
+msgstr "Show / Gameshow"
 
 msgid "Show active network settings"
-msgstr ""
+msgstr "Show active network settings"
 
 msgid "Show file rights"
-msgstr ""
+msgstr "Show file rights"
 
 msgid "Show mode"
-msgstr ""
+msgstr "Show mode"
 
 msgid "Shuffle"
-msgstr ""
+msgstr "Shuffle"
 
 msgid "Shutdown"
-msgstr ""
+msgstr "Shutdown"
 
 msgid "Shutdown time in min. (000=off)"
-msgstr ""
+msgstr "Shutdown time in min. (000=off)"
 
 msgid "Size"
-msgstr ""
+msgstr "Size"
 
 msgid "Skin Select"
-msgstr ""
+msgstr "Skin Select"
 
 msgid "Skin Style Selection"
-msgstr ""
+msgstr "Skin Style Selection"
 
 msgid "Skin Style selection"
-msgstr ""
+msgstr "Skin Style selection"
 
 msgid "Skin Style selection?"
-msgstr ""
+msgstr "Skin Style selection?"
 
 msgid "Skin select"
-msgstr ""
+msgstr "Skin select"
 
 msgid "Sleep Timer"
-msgstr ""
+msgstr "Sleep Timer"
 
 msgid "Sleep time"
-msgstr ""
+msgstr "Sleep time"
 
 msgid "Sleeptimer"
-msgstr ""
+msgstr "Sleeptimer"
 
 msgid "Sleeptimer in 1 min"
 msgstr "Sleeptimer in 1 min"
 
 msgid "Slideshow"
-msgstr ""
+msgstr "Slideshow"
 
 msgid "Slideshow display time"
-msgstr ""
+msgstr "Slideshow display time"
 
 msgid "Software Update"
-msgstr ""
+msgstr "Software Update"
 
 msgid "Software update URL"
-msgstr ""
+msgstr "Software update URL"
 
 msgid "South"
-msgstr ""
+msgstr "South"
 
 msgid "Standby"
-msgstr ""
+msgstr "Standby"
 
 msgid "Standby Brightness"
-msgstr ""
+msgstr "Standby Brightness"
 
 msgid "Start Channel settings"
-msgstr ""
+msgstr "Start Channel settings"
 
 msgid "Start Menu"
-msgstr ""
+msgstr "Start Menu"
 
 msgid "Start Mode"
-msgstr ""
+msgstr "Start Mode"
 
 msgid "Start SatIP Client"
-msgstr ""
+msgstr "Start SatIP Client"
 
 msgid "Start Search"
-msgstr ""
+msgstr "Start Search"
 
 msgid "Start dir."
-msgstr ""
+msgstr "Start dir."
 
 msgid "Start movie from:"
-msgstr ""
+msgstr "Start movie from:"
 
 msgid "Start scan"
-msgstr ""
+msgstr "Start scan"
 
 msgid "Start update of movie info files"
-msgstr ""
+msgstr "Start update of movie info files"
 
 msgid "Startup to standby"
-msgstr ""
+msgstr "Startup to standby"
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "Status line"
-msgstr ""
+msgstr "Status line"
 
 msgid "Step Mode"
-msgstr ""
+msgstr "Step Mode"
 
 msgid "Step/Drive Motor East (b,c)"
-msgstr ""
+msgstr "Step/Drive Motor East (b,c)"
 
 msgid "Step/Drive Motor West (b,c)"
-msgstr ""
+msgstr "Step/Drive Motor West (b,c)"
 
 msgid "Stop SatIP Client"
-msgstr ""
+msgstr "Stop SatIP Client"
 
 msgid "Stop subtitles"
-msgstr ""
+msgstr "Stop subtitles"
 
 msgid "Stop time"
-msgstr ""
+msgstr "Stop time"
 
 msgid "Store Motor Position (a)"
-msgstr ""
+msgstr "Store Motor Position (a)"
 
 msgid "Stream information"
-msgstr ""
+msgstr "Stream information"
 
 msgid "Stream-Information"
-msgstr ""
+msgstr "Stream-Information"
 
 msgid "Stretch Mode"
-msgstr ""
+msgstr "Stretch Mode"
 
 msgid "Subchannel display"
-msgstr ""
+msgstr "Subchannel display"
 
 msgid "Subchannel down"
-msgstr ""
+msgstr "Subchannel down"
 
 msgid "Subchannel up"
-msgstr ""
+msgstr "Subchannel up"
 
 msgid "Subservices"
-msgstr ""
+msgstr "Subservices"
 
 msgid "Subtitle Select"
-msgstr ""
+msgstr "Subtitle Select"
 
 msgid "Subtitle language preferences"
-msgstr ""
+msgstr "Subtitle language preferences"
 
 msgid "Subtitles"
-msgstr ""
+msgstr "Subtitles"
 
 msgid "Subtitles not found"
-msgstr ""
+msgstr "Subtitles not found"
 
 msgid "Sunday"
-msgstr ""
+msgstr "Sunday"
 
 msgid "Swap rotor east/west"
-msgstr ""
+msgstr "Swap rotor east/west"
 
 msgid "Switch Step/Drive Mode (b)"
-msgstr ""
+msgstr "Switch Step/Drive Mode (b)"
 
 msgid "Symbol rate"
-msgstr ""
+msgstr "Symbol rate"
 
 msgid "Syncronisation via"
-msgstr ""
+msgstr "Syncronisation via"
 
 msgid "System"
 msgstr "System"
 
 msgid "TMDB"
-msgstr ""
+msgstr "TMDB"
 
 msgid "TMDB Infos are not available"
-msgstr ""
+msgstr "TMDB Infos are not available"
 
 msgid "TMDB Key:"
-msgstr ""
+msgstr "TMDB Key:"
 
 msgid "TMDB info"
-msgstr ""
+msgstr "TMDB info"
 
 msgid "TMDB:"
-msgstr ""
+msgstr "TMDB:"
 
 msgid "TOP"
-msgstr ""
+msgstr "TOP"
 
 msgid "TOP LEFT"
-msgstr ""
+msgstr "TOP LEFT"
 
 msgid "TOP RIGHT"
-msgstr ""
+msgstr "TOP RIGHT"
 
 msgid "TS Browser"
-msgstr ""
+msgstr "TS Browser"
 
 msgid "TV"
-msgstr ""
+msgstr "TV"
 
 msgid "TV & Radio"
-msgstr ""
+msgstr "TV & Radio"
 
 msgid "TV Channel"
-msgstr ""
+msgstr "TV Channel"
 
 msgid "TV Mode"
 msgstr "TV Mode"
 
 msgid "TV-System"
-msgstr ""
+msgstr "TV-System"
 
 msgid "TV/Radio-mode"
-msgstr ""
+msgstr "TV/Radio-mode"
 
 msgid "Teletext"
 msgstr "Teletext"
 
 msgid "Terrestrial"
-msgstr ""
+msgstr "Terrestrial"
 
 msgid "Terrestrial:"
-msgstr ""
+msgstr "Terrestrial:"
 
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 msgid "Test Menu"
-msgstr ""
+msgstr "Test Menu"
 
 msgid "Test network now"
-msgstr ""
+msgstr "Test network now"
 
 msgid "Test signal"
-msgstr ""
+msgstr "Test signal"
 
 msgid "Textcolor"
-msgstr ""
+msgstr "Textcolor"
 
 msgid "The STB will shutdown after this time."
-msgstr ""
+msgstr "The STB will shutdown after this time."
 
 msgid ""
 "The event is flagged for record.\n"
 "The box will power on and \n"
 "switch to this channel at the given time."
 msgstr ""
+"The event is flagged for record.\n"
+"The box will power on and \n"
+"switch to this channel at the given time."
 
 msgid ""
 "The event is scheduled.\n"
 "The box will power on and \n"
 "switch to this channel at the given time."
 msgstr ""
+"The event is scheduled.\n"
+"The box will power on and \n"
+"switch to this channel at the given time."
 
 msgid "The extension .m3u will be added automatically"
-msgstr ""
+msgstr "The extension .m3u will be added automatically"
 
 msgid ""
 "The image was successfully flashed.\n"
 "The box will be rebooted now."
 msgstr ""
+"The image was successfully flashed.\n"
+"The box will be rebooted now."
 
 #, c-format
 msgid ""
 "The image was successfully saved \n"
 "under %s."
 msgstr ""
+"The image was successfully saved \n"
+"under %s."
 
 msgid ""
 "The image you have selected is an untested version, this means\n"
@@ -2368,6 +2407,10 @@ msgid ""
 "\n"
 "Do you really want to update to this version?"
 msgstr ""
+"The image you have selected is an untested version, this means\n"
+"your box maybe fail to boot after update.\n"
+"\n"
+"Do you really want to update to this version?"
 
 msgid ""
 "The neutrino-settings have been updated.\n"
@@ -2380,296 +2423,300 @@ msgid ""
 "The recording directory is not writable.\n"
 "Recording will not work."
 msgstr ""
+"The recording directory is not writable.\n"
+"Recording will not work."
 
 msgid ""
 "The recording was aborted,\n"
 "because the target file could not be opened."
 msgstr ""
+"The recording was aborted,\n"
+"because the target file could not be opened."
 
 msgid "Theme name"
-msgstr ""
+msgstr "Theme name"
 
 msgid "Themes"
-msgstr ""
+msgstr "Themes"
 
 msgid "Thursday"
-msgstr ""
+msgstr "Thursday"
 
 msgid "Time"
-msgstr ""
+msgstr "Time"
 
 msgid "Time Zone"
-msgstr ""
+msgstr "Time Zone"
 
 msgid "Time in sec. After this time the"
-msgstr ""
+msgstr "Time in sec. After this time the"
 
 msgid "Time-Syncronisation"
-msgstr ""
+msgstr "Time-Syncronisation"
 
 msgid "Time:"
-msgstr ""
+msgstr "Time:"
 
 msgid "Timed Step Mode"
-msgstr ""
+msgstr "Timed Step Mode"
 
 msgid "Timeout waiting CI menu ready"
-msgstr ""
+msgstr "Timeout waiting CI menu ready"
 
 msgid "Timer List"
 msgstr "Timer List"
 
 msgid "Timer conflict. Create the timer anyway?"
-msgstr ""
+msgstr "Timer conflict. Create the timer anyway?"
 
 msgid "Timer list"
-msgstr ""
+msgstr "Timer list"
 
 msgid "Timer settings"
-msgstr ""
+msgstr "Timer settings"
 
 msgid "Timer typ"
-msgstr ""
+msgstr "Timer typ"
 
 msgid "Timerlist"
 msgstr "Timerlist"
 
 msgid "Timeselection"
-msgstr ""
+msgstr "Timeselection"
 
 msgid "Timeshift"
-msgstr ""
+msgstr "Timeshift"
 
 msgid "Tint"
-msgstr ""
+msgstr "Tint"
 
 msgid "Titel"
-msgstr ""
+msgstr "Titel"
 
 msgid "Title"
 msgstr "Title"
 
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 msgid "Transmission mode"
-msgstr ""
+msgstr "Transmission mode"
 
 msgid "Transponders:"
-msgstr ""
+msgstr "Transponders:"
 
 msgid "Transponderscan failed!"
-msgstr ""
+msgstr "Transponderscan failed!"
 
 msgid "Transponderscan finished."
-msgstr ""
+msgstr "Transponderscan finished."
 
 msgid "Truncate failed."
-msgstr ""
+msgstr "Truncate failed."
 
 msgid "Truncate jumps"
-msgstr ""
+msgstr "Truncate jumps"
 
 msgid "Truncate movie ?"
-msgstr ""
+msgstr "Truncate movie ?"
 
 msgid "Truncating, please wait"
-msgstr ""
+msgstr "Truncating, please wait"
 
 msgid "Tuesday"
-msgstr ""
+msgstr "Tuesday"
 
 msgid "Tuner mode"
-msgstr ""
+msgstr "Tuner mode"
 
 msgid "Tuner typ"
-msgstr ""
+msgstr "Tuner typ"
 
 msgid "Type:"
-msgstr ""
+msgstr "Type:"
 
 msgid "UPnP Browser"
-msgstr ""
+msgstr "UPnP Browser"
 
 msgid "USALS command repeat"
-msgstr ""
+msgstr "USALS command repeat"
 
 msgid "UTF-8"
-msgstr ""
+msgstr "UTF-8"
 
 msgid "Umount Network volume"
-msgstr ""
+msgstr "Umount Network volume"
 
 msgid "Uncommited/Commited"
-msgstr ""
+msgstr "Uncommited/Commited"
 
 msgid "Unicable"
-msgstr ""
+msgstr "Unicable"
 
 msgid "Unicable SCR address"
-msgstr ""
+msgstr "Unicable SCR address"
 
 msgid "Unicable Setup"
-msgstr ""
+msgstr "Unicable Setup"
 
 msgid "Unicable frequency"
-msgstr ""
+msgstr "Unicable frequency"
 
 msgid "Unicable setup"
-msgstr ""
+msgstr "Unicable setup"
 
 msgid "Unicable2 (JESS)"
-msgstr ""
+msgstr "Unicable2 (JESS)"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Unknown"
 
 msgid "Update failed"
-msgstr ""
+msgstr "Update failed"
 
 msgid "Upper Left"
-msgstr ""
+msgstr "Upper Left"
 
 msgid "Use 0..9, or use Up/Down,"
-msgstr ""
+msgstr "Use 0..9, or use Up/Down,"
 
 msgid "Use NIT"
-msgstr ""
+msgstr "Use NIT"
 
 msgid "Use directory"
-msgstr ""
+msgstr "Use directory"
 
 msgid "Use gotoXX"
-msgstr ""
+msgstr "Use gotoXX"
 
 msgid "Use movie directory"
-msgstr ""
+msgstr "Use movie directory"
 
 msgid "Use record directory"
-msgstr ""
+msgstr "Use record directory"
 
 msgid "User menu"
-msgstr ""
+msgstr "User menu"
 
 msgid "User menu F1"
-msgstr ""
+msgstr "User menu F1"
 
 msgid "User menu F2"
-msgstr ""
+msgstr "User menu F2"
 
 msgid "User menu F3"
-msgstr ""
+msgstr "User menu F3"
 
 msgid "User menu F4"
-msgstr ""
+msgstr "User menu F4"
 
 msgid "User menu blue"
-msgstr ""
+msgstr "User menu blue"
 
 msgid "Username"
-msgstr ""
+msgstr "Username"
 
 msgid "VTuner Device"
-msgstr ""
+msgstr "VTuner Device"
 
 msgid "Version:"
-msgstr ""
+msgstr "Version:"
 
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 msgid "Vertikal (in %)"
-msgstr ""
+msgstr "Vertikal (in %)"
 
 msgid "Video Format"
-msgstr ""
+msgstr "Video Format"
 
 msgid "Video Resolution"
-msgstr ""
+msgstr "Video Resolution"
 
 msgid "Video Settings"
-msgstr ""
+msgstr "Video Settings"
 
 msgid "Video settings"
-msgstr ""
+msgstr "Video settings"
 
 msgid "Videotext"
-msgstr ""
+msgstr "Videotext"
 
 msgid "Virtual zap"
-msgstr ""
+msgstr "Virtual zap"
 
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
 
 msgid "Volume / Playtime"
-msgstr ""
+msgstr "Volume / Playtime"
 
 msgid "Volume / Playtime / Audio"
-msgstr ""
+msgstr "Volume / Playtime / Audio"
 
 msgid "Volume Step Size"
-msgstr ""
+msgstr "Volume Step Size"
 
 msgid "Volume adjustment (in %)"
-msgstr ""
+msgstr "Volume adjustment (in %)"
 
 msgid "Volumebar"
-msgstr ""
+msgstr "Volumebar"
 
 msgid "Wait a few seconds for abort"
-msgstr ""
+msgstr "Wait a few seconds for abort"
 
 msgid "Waiting for CI answer"
-msgstr ""
+msgstr "Waiting for CI answer"
 
 msgid "Waiting for time..."
-msgstr ""
+msgstr "Waiting for time..."
 
 msgid "Warn"
-msgstr ""
+msgstr "Warn"
 
 msgid "WebTV"
 msgstr "WebTV"
 
 msgid "Wednesday"
-msgstr ""
+msgstr "Wednesday"
 
 msgid "West"
-msgstr ""
+msgstr "West"
 
 msgid "Wide Screen Auto"
-msgstr ""
+msgstr "Wide Screen Auto"
 
 msgid "Window-Content"
-msgstr ""
+msgstr "Window-Content"
 
 msgid "Window-Content inactive"
-msgstr ""
+msgstr "Window-Content inactive"
 
 msgid "Window-Content selected"
-msgstr ""
+msgstr "Window-Content selected"
 
 msgid "Write one partition"
-msgstr ""
+msgstr "Write one partition"
 
 msgid "Writing Flash"
-msgstr ""
+msgstr "Writing Flash"
 
 msgid "YT:"
-msgstr ""
+msgstr "YT:"
 
 msgid "Year"
-msgstr ""
+msgstr "Year"
 
 msgid "Year of Production"
-msgstr ""
+msgstr "Year of Production"
 
 msgid "Year of production"
-msgstr ""
+msgstr "Year of production"
 
 msgid "Yes"
-msgstr ""
+msgstr "Yes"
 
 msgid "You really want to to stop record ?"
 msgstr "You really want to to stop record ?"
@@ -2678,544 +2725,553 @@ msgid ""
 "Your Release cycle differs.\n"
 "To continue?"
 msgstr ""
+"Your Release cycle differs.\n"
+"To continue?"
 
 msgid ""
 "Your box remote control will be locked.\n"
 " To unlock it, press <RED> \n"
 " and <MENU> on your remote control."
 msgstr ""
+"Your box remote control will be locked.\n"
+" To unlock it, press <RED> \n"
+" and <MENU> on your remote control."
 
 msgid "Youth protection"
-msgstr ""
+msgstr "Youth protection"
 
 msgid "Youth protection settings"
-msgstr ""
+msgstr "Youth protection settings"
 
 msgid "Youtube Player"
-msgstr ""
+msgstr "Youtube Player"
 
 msgid "Zap cycle"
-msgstr ""
+msgstr "Zap cycle"
 
 msgid "Zap to"
-msgstr ""
+msgstr "Zap to"
 
 msgid "Zapping History Bouquet"
-msgstr ""
+msgstr "Zapping History Bouquet"
 
 msgid "Zapto timer in one minute"
 msgstr "Zapto timer in one minute"
 
 msgid "Zoom in"
-msgstr ""
+msgstr "Zoom in"
 
 msgid "Zoom out"
-msgstr ""
+msgstr "Zoom out"
 
 msgid "a empty entry means no proxy"
-msgstr ""
+msgstr "a empty entry means no proxy"
 
 msgid "a empty entry means no proxy-auth"
-msgstr ""
+msgstr "a empty entry means no proxy-auth"
 
 msgid "activated"
-msgstr ""
+msgstr "activated"
 
 msgid "add channel to my favorites"
-msgstr ""
+msgstr "add channel to my favorites"
 
 msgid "adult movie/drama"
-msgstr ""
+msgstr "adult movie/drama"
 
 msgid "advanced"
-msgstr ""
+msgstr "advanced"
 
 msgid "adventure/western/war"
-msgstr ""
+msgstr "adventure/western/war"
 
 msgid "alpha"
-msgstr ""
+msgstr "alpha"
 
 msgid "always"
-msgstr ""
+msgstr "always"
 
 msgid "amount of timer repeats"
-msgstr ""
+msgstr "amount of timer repeats"
 
 msgid "angular"
-msgstr ""
+msgstr "angular"
 
 msgid "approx. 1 minute back"
-msgstr ""
+msgstr "approx. 1 minute back"
 
 msgid "approx. 10 minutes back"
-msgstr ""
+msgstr "approx. 10 minutes back"
 
 msgid "approx. 5 minutes back"
-msgstr ""
+msgstr "approx. 5 minutes back"
 
 msgid "arts / culture"
-msgstr ""
+msgstr "arts / culture"
 
 msgid "arts/culture magazines"
-msgstr ""
+msgstr "arts/culture magazines"
 
 msgid "athletics"
-msgstr ""
+msgstr "athletics"
 
 msgid "back"
-msgstr ""
+msgstr "back"
 
 msgid "ballet"
-msgstr ""
+msgstr "ballet"
 
 msgid "be Cached? (Set in hours)"
-msgstr ""
+msgstr "be Cached? (Set in hours)"
 
 msgid "biweekly"
-msgstr ""
+msgstr "biweekly"
 
 msgid "blue"
-msgstr ""
+msgstr "blue"
 
 msgid "bottom left"
-msgstr ""
+msgstr "bottom left"
 
 msgid "bottom right"
-msgstr ""
+msgstr "bottom right"
 
 msgid "broadcasting/press"
-msgstr ""
+msgstr "broadcasting/press"
 
 msgid "by bouquet"
-msgstr ""
+msgstr "by bouquet"
 
 msgid ""
 "by manual package update version checks are currently not supported.\n"
 "Are you sure that you wish to install this package?"
 msgstr ""
+"by manual package update version checks are currently not supported.\n"
+"Are you sure that you wish to install this package?"
 
 msgid "by page"
-msgstr ""
+msgstr "by page"
 
 msgid "can't get update list"
-msgstr ""
+msgstr "can't get update list"
 
 msgid "can't load icecast list"
-msgstr ""
+msgstr "can't load icecast list"
 
 msgid "can't open file"
-msgstr ""
+msgstr "can't open file"
 
 msgid "can't open mtd-device"
-msgstr ""
+msgstr "can't open mtd-device"
 
 msgid "caps / no caps"
-msgstr ""
+msgstr "caps / no caps"
 
 msgid "cartoons/puppets"
-msgstr ""
+msgstr "cartoons/puppets"
 
 msgid "center"
-msgstr ""
+msgstr "center"
 
 msgid "checking version"
-msgstr ""
+msgstr "checking version"
 
 msgid "children / juvenile program"
-msgstr ""
+msgstr "children / juvenile program"
 
 msgid "choose Skin Style."
-msgstr ""
+msgstr "choose Skin Style."
 
 msgid "clear all"
-msgstr ""
+msgstr "clear all"
 
 msgid "colored"
-msgstr ""
+msgstr "colored"
 
 msgid "comedy"
-msgstr ""
+msgstr "comedy"
 
 msgid "cooking"
-msgstr ""
+msgstr "cooking"
 
 msgid "cpu/file"
-msgstr ""
+msgstr "cpu/file"
 
 msgid "create screenshot?"
-msgstr ""
+msgstr "create screenshot?"
 
 msgid "daily"
-msgstr ""
+msgstr "daily"
 
 msgid "date / time"
 msgstr "date / time"
 
 msgid "default audio streams"
-msgstr ""
+msgstr "default audio streams"
 
 msgid "default center"
-msgstr ""
+msgstr "default center"
 
 msgid "delete"
-msgstr ""
+msgstr "delete"
 
 msgid "detective/thriller"
-msgstr ""
+msgstr "detective/thriller"
 
 msgid "direct connected"
-msgstr ""
+msgstr "direct connected"
 
 msgid "direct selection"
 msgstr "direct selection"
 
 msgid "directory already mounted"
-msgstr ""
+msgstr "directory already mounted"
 
 msgid "directory/share"
-msgstr ""
+msgstr "directory/share"
 
 msgid "discussion/interview/debate"
-msgstr ""
+msgstr "discussion/interview/debate"
 
 msgid "dmesg"
-msgstr ""
+msgstr "dmesg"
 
 msgid "do you want to reload channel lists?"
-msgstr ""
+msgstr "do you want to reload channel lists?"
 
 msgid "documentary"
-msgstr ""
+msgstr "documentary"
 
 msgid "documentation / magazine"
-msgstr ""
+msgstr "documentation / magazine"
 
 msgid "don't care"
-msgstr ""
+msgstr "don't care"
 
 msgid "downmix"
-msgstr ""
+msgstr "downmix"
 
 msgid "economics/social advisory"
-msgstr ""
+msgstr "economics/social advisory"
 
 msgid "enter proxyserver name or ip, use host:port"
-msgstr ""
+msgstr "enter proxyserver name or ip, use host:port"
 
 msgid "enter the proxyserver password"
-msgstr ""
+msgstr "enter the proxyserver password"
 
 msgid "enter the proxyserver username"
-msgstr ""
+msgstr "enter the proxyserver username"
 
 msgid "entertainment programmes for 10 to 16"
-msgstr ""
+msgstr "entertainment programmes for 10 to 16"
 
 msgid "entertainment programmes for 6 to 14"
-msgstr ""
+msgstr "entertainment programmes for 6 to 14"
 
 msgid "equestrian"
-msgstr ""
+msgstr "equestrian"
 
 msgid "erase all"
-msgstr ""
+msgstr "erase all"
 
 msgid "erasing flash"
-msgstr ""
+msgstr "erasing flash"
 
 msgid "erasure of flash failed"
-msgstr ""
+msgstr "erasure of flash failed"
 
 msgid "error umounting volume"
-msgstr ""
+msgstr "error umounting volume"
 
 msgid "experimental film/video"
-msgstr ""
+msgstr "experimental film/video"
 
 msgid "fashion"
-msgstr ""
+msgstr "fashion"
 
 msgid "fast"
-msgstr ""
+msgstr "fast"
 
 msgid "filebrowser item"
 msgstr "filebrowser item"
 
 msgid "filesystem type not supported"
-msgstr ""
+msgstr "filesystem type not supported"
 
 msgid "film/cinema"
-msgstr ""
+msgstr "film/cinema"
 
 msgid "fine arts"
-msgstr ""
+msgstr "fine arts"
 
 msgid "fitness & health"
-msgstr ""
+msgstr "fitness & health"
 
 msgid "folk/traditional music"
-msgstr ""
+msgstr "folk/traditional music"
 
 msgid "football/soccer"
-msgstr ""
+msgstr "football/soccer"
 
 msgid "foreign countries/expeditions"
-msgstr ""
+msgstr "foreign countries/expeditions"
 
 msgid "fourweekly"
-msgstr ""
+msgstr "fourweekly"
 
 msgid "frame hight"
-msgstr ""
+msgstr "frame hight"
 
 msgid "from 12 years up"
-msgstr ""
+msgstr "from 12 years up"
 
 msgid "from 16 years up"
-msgstr ""
+msgstr "from 16 years up"
 
 msgid "from 18 years up"
-msgstr ""
+msgstr "from 18 years up"
 
 msgid "further education"
-msgstr ""
+msgstr "further education"
 
 msgid "game show/quiz/contest"
-msgstr ""
+msgstr "game show/quiz/contest"
 
 msgid "gardening"
-msgstr ""
+msgstr "gardening"
 
 msgid "getting update list"
-msgstr ""
+msgstr "getting update list"
 
 msgid "goto end"
-msgstr ""
+msgstr "goto end"
 
 msgid "goto middle"
-msgstr ""
+msgstr "goto middle"
 
 msgid "goto start"
-msgstr ""
+msgstr "goto start"
 
 msgid "green"
-msgstr ""
+msgstr "green"
 
 msgid "handicraft"
-msgstr ""
+msgstr "handicraft"
 
 msgid "higher center"
-msgstr ""
+msgstr "higher center"
 
 msgid "image has errors"
-msgstr ""
+msgstr "image has errors"
 
 msgid "info"
 msgstr "info"
 
 msgid "infobar will be faded out."
-msgstr ""
+msgstr "infobar will be faded out."
 
 msgid "informational/educational/school programmes"
-msgstr ""
+msgstr "informational/educational/school programmes"
 
 msgid "internet Radio"
-msgstr ""
+msgstr "internet Radio"
 
 msgid "is not installed please install again."
 msgstr "is not installed please install again."
 
 msgid "is reachable (ping)"
-msgstr ""
+msgstr "is reachable (ping)"
 
 msgid "is unreachable"
-msgstr ""
+msgstr "is unreachable"
 
 msgid "is unreachable (host or protocol error)"
-msgstr ""
+msgstr "is unreachable (host or protocol error)"
 
 msgid "is unreachable (socket error)"
-msgstr ""
+msgstr "is unreachable (socket error)"
 
 msgid "jazz"
-msgstr ""
+msgstr "jazz"
 
 msgid "jump backwards"
-msgstr ""
+msgstr "jump backwards"
 
 msgid "jump ff"
-msgstr ""
+msgstr "jump ff"
 
 msgid "jump forwards"
-msgstr ""
+msgstr "jump forwards"
 
 msgid "jump prev"
-msgstr ""
+msgstr "jump prev"
 
 msgid "languages"
-msgstr ""
+msgstr "languages"
 
 msgid "large"
 msgstr "large"
 
 msgid "last play max items"
-msgstr ""
+msgstr "last play max items"
 
 msgid "leave current"
-msgstr ""
+msgstr "leave current"
 
 msgid "left"
-msgstr ""
+msgstr "left"
 
 msgid "literature"
-msgstr ""
+msgstr "literature"
 
 msgid "load default skin configuration?"
-msgstr ""
+msgstr "load default skin configuration?"
 
 msgid "local dir"
-msgstr ""
+msgstr "local dir"
 
 msgid "logos Dir"
-msgstr ""
+msgstr "logos Dir"
 
 msgid "loop"
-msgstr ""
+msgstr "loop"
 
 msgid "magazines/reports/documentary"
-msgstr ""
+msgstr "magazines/reports/documentary"
 
 msgid ""
 "manual flash update version checks are currently not supported.\n"
 "Are you sure that you wish to install this image?"
 msgstr ""
+"manual flash update version checks are currently not supported.\n"
+"Are you sure that you wish to install this image?"
 
 msgid "martial sports"
-msgstr ""
+msgstr "martial sports"
 
 msgid "medicine/physiology/psychology"
-msgstr ""
+msgstr "medicine/physiology/psychology"
 
 msgid "middle"
-msgstr ""
+msgstr "middle"
 
 msgid "milliseconds"
-msgstr ""
+msgstr "milliseconds"
 
 msgid "mono left"
-msgstr ""
+msgstr "mono left"
 
 msgid "mono right"
-msgstr ""
+msgstr "mono right"
 
 msgid "monochrom"
-msgstr ""
+msgstr "monochrom"
 
 msgid "monthly"
-msgstr ""
+msgstr "monthly"
 
 msgid "most popular"
-msgstr ""
+msgstr "most popular"
 
 msgid "motor sports"
-msgstr ""
+msgstr "motor sports"
 
 msgid "motoring"
-msgstr ""
+msgstr "motoring"
 
 msgid "mount"
-msgstr ""
+msgstr "mount"
 
 msgid "mount error"
-msgstr ""
+msgstr "mount error"
 
 msgid "mount error: timeout"
-msgstr ""
+msgstr "mount error: timeout"
 
 msgid "mount now"
-msgstr ""
+msgstr "mount now"
 
 msgid "mount on startup"
-msgstr ""
+msgstr "mount on startup"
 
 msgid "mount successful"
-msgstr ""
+msgstr "mount successful"
 
 msgid "movie/drama"
-msgstr ""
+msgstr "movie/drama"
 
 msgid "moving speed (10 = 1deg/sec)"
-msgstr ""
+msgstr "moving speed (10 = 1deg/sec)"
 
 msgid "music / ballet / dance"
-msgstr ""
+msgstr "music / ballet / dance"
 
 msgid "musical/opera"
-msgstr ""
+msgstr "musical/opera"
 
 msgid "nature/animals/environment"
-msgstr ""
+msgstr "nature/animals/environment"
 
 msgid "need reboot or epg-reset"
-msgstr ""
+msgstr "need reboot or epg-reset"
 
 msgid "neutrino (default)"
-msgstr ""
+msgstr "neutrino (default)"
 
 msgid "never"
-msgstr ""
+msgstr "never"
 
 msgid "new media"
-msgstr ""
+msgstr "new media"
 
 msgid "news"
-msgstr ""
+msgstr "news"
 
 msgid "news magazine"
-msgstr ""
+msgstr "news magazine"
 
 msgid "news/weather report"
-msgstr ""
+msgstr "news/weather report"
 
 msgid "next bouquet"
-msgstr ""
+msgstr "next bouquet"
 
 msgid "next focus"
-msgstr ""
+msgstr "next focus"
 
 msgid "next results"
-msgstr ""
+msgstr "next results"
 
 msgid "no"
-msgstr ""
+msgstr "no"
 
 msgid "no (temporary)"
-msgstr ""
+msgstr "no (temporary)"
 
 msgid "no DiSEqC"
-msgstr ""
+msgstr "no DiSEqC"
 
 msgid "no epg found"
-msgstr ""
+msgstr "no epg found"
 
 msgid "no gradient"
-msgstr ""
+msgstr "no gradient"
 
 msgid "none"
-msgstr ""
+msgstr "none"
 
 msgid "normal Brightness"
-msgstr ""
+msgstr "normal Brightness"
 
 msgid "normaly 50000, 0 to disable limit"
-msgstr ""
+msgstr "normaly 50000, 0 to disable limit"
 
 msgid "not available"
-msgstr ""
+msgstr "not available"
 
 msgid "not connected"
-msgstr ""
+msgstr "not connected"
 
 msgid "off"
 msgstr "off"
@@ -3224,307 +3280,307 @@ msgid "on"
 msgstr "on"
 
 msgid "on broadcasted lock"
-msgstr ""
+msgstr "on broadcasted lock"
 
 msgid "on locked bouquets"
-msgstr ""
+msgstr "on locked bouquets"
 
 msgid "on weekdays"
-msgstr ""
+msgstr "on weekdays"
 
 msgid "once"
-msgstr ""
+msgstr "once"
 
 msgid "output to PNG"
-msgstr ""
+msgstr "output to PNG"
 
 msgid "package has errors"
-msgstr ""
+msgstr "package has errors"
 
 msgid "package install failed"
-msgstr ""
+msgstr "package install failed"
 
 msgid "page down"
-msgstr ""
+msgstr "page down"
 
 msgid "page up"
-msgstr ""
+msgstr "page up"
 
 msgid "passthrough"
-msgstr ""
+msgstr "passthrough"
 
 msgid "password"
-msgstr ""
+msgstr "password"
 
 msgid "performing arts"
-msgstr ""
+msgstr "performing arts"
 
 msgid "popular culture/traditional arts"
-msgstr ""
+msgstr "popular culture/traditional arts"
 
 msgid "pre-school children's programmes"
-msgstr ""
+msgstr "pre-school children's programmes"
 
 msgid "prev bouquet"
-msgstr ""
+msgstr "prev bouquet"
 
 msgid "prev results"
-msgstr ""
+msgstr "prev results"
 
 msgid "programming flash"
-msgstr ""
+msgstr "programming flash"
 
 msgid "ps"
-msgstr ""
+msgstr "ps"
 
 msgid "publishing date"
-msgstr ""
+msgstr "publishing date"
 
 msgid "purple"
-msgstr ""
+msgstr "purple"
 
 msgid "rating"
-msgstr ""
+msgstr "rating"
 
 msgid "record"
-msgstr ""
+msgstr "record"
 
 msgid "record default audio streams"
-msgstr ""
+msgstr "record default audio streams"
 
 msgid "record max items"
-msgstr ""
+msgstr "record max items"
 
 msgid "recording directory"
-msgstr ""
+msgstr "recording directory"
 
 msgid "red"
-msgstr ""
+msgstr "red"
 
 msgid "relevance"
-msgstr ""
+msgstr "relevance"
 
 msgid "religion"
-msgstr ""
+msgstr "religion"
 
 msgid "remarkable people"
-msgstr ""
+msgstr "remarkable people"
 
 msgid "remount"
-msgstr ""
+msgstr "remount"
 
 msgid "remove"
-msgstr ""
+msgstr "remove"
 
 msgid "remove screenshot?"
-msgstr ""
+msgstr "remove screenshot?"
 
 msgid "repeats"
-msgstr ""
+msgstr "repeats"
 
 msgid "rock/pop"
-msgstr ""
+msgstr "rock/pop"
 
 msgid "romance"
-msgstr ""
+msgstr "romance"
 
 msgid "row nr"
-msgstr ""
+msgstr "row nr"
 
 msgid "row width"
-msgstr ""
+msgstr "row width"
 
 msgid "save play list"
-msgstr ""
+msgstr "save play list"
 
 msgid "save playlist"
-msgstr ""
+msgstr "save playlist"
 
 msgid "save settings now"
-msgstr ""
+msgstr "save settings now"
 
 msgid "scan for Movies ..."
-msgstr ""
+msgstr "scan for Movies ..."
 
 msgid "schedule"
-msgstr ""
+msgstr "schedule"
 
 msgid "science fiction/fantasy/horror"
-msgstr ""
+msgstr "science fiction/fantasy/horror"
 
 msgid "search"
-msgstr ""
+msgstr "search"
 
 msgid "see timer"
-msgstr ""
+msgstr "see timer"
 
 msgid "serious music/classical music"
-msgstr ""
+msgstr "serious music/classical music"
 
 msgid "serious/classical/religious/historical movie/drama"
-msgstr ""
+msgstr "serious/classical/religious/historical movie/drama"
 
 msgid "show movie infoviewer"
-msgstr ""
+msgstr "show movie infoviewer"
 
 msgid "shuffle"
-msgstr ""
+msgstr "shuffle"
 
 msgid "shuffle playlist"
-msgstr ""
+msgstr "shuffle playlist"
 
 msgid "simple"
-msgstr ""
+msgstr "simple"
 
 #, c-format
 msgid "since %02d:%02d"
-msgstr ""
+msgstr "since %02d:%02d"
 
 msgid "skip approx. 1 minute"
-msgstr ""
+msgstr "skip approx. 1 minute"
 
 msgid "skip approx. 10 minutes"
-msgstr ""
+msgstr "skip approx. 10 minutes"
 
 msgid "skip approx. 5 minutes"
-msgstr ""
+msgstr "skip approx. 5 minutes"
 
 msgid "skip bookmark"
-msgstr ""
+msgstr "skip bookmark"
 
 msgid "slow"
-msgstr ""
+msgstr "slow"
 
 msgid "small"
 msgstr "small"
 
 msgid "soap/melodrama/folkloric"
-msgstr ""
+msgstr "soap/melodrama/folkloric"
 
 msgid "social & politic events / business"
-msgstr ""
+msgstr "social & politic events / business"
 
 msgid "social/spiritual sciences"
-msgstr ""
+msgstr "social/spiritual sciences"
 
 msgid "sorting(Time)"
-msgstr ""
+msgstr "sorting(Time)"
 
 msgid "special events (Olympic Games,World Cup etc.)"
-msgstr ""
+msgstr "special events (Olympic Games,World Cup etc.)"
 
 msgid "sports"
-msgstr ""
+msgstr "sports"
 
 msgid "sports magazines"
-msgstr ""
+msgstr "sports magazines"
 
 msgid "start"
 msgstr "start"
 
 #, c-format
 msgid "starts %02d:%02d"
-msgstr ""
+msgstr "starts %02d:%02d"
 
 msgid "stereo"
-msgstr ""
+msgstr "stereo"
 
 msgid "stop on good signal(moving)"
-msgstr ""
+msgstr "stop on good signal(moving)"
 
 msgid "stop on good signal(stopped)"
-msgstr ""
+msgstr "stop on good signal(stopped)"
 
 msgid "swap mode"
-msgstr ""
+msgstr "swap mode"
 
 msgid "switch off after"
-msgstr ""
+msgstr "switch off after"
 
 msgid "talk show"
-msgstr ""
+msgstr "talk show"
 
 msgid "team sports (excluding football)"
-msgstr ""
+msgstr "team sports (excluding football)"
 
 msgid "technology/natural sciences"
-msgstr ""
+msgstr "technology/natural sciences"
 
 msgid "tennis/squash"
-msgstr ""
+msgstr "tennis/squash"
 
 msgid "the filesize is 0 Bytes"
-msgstr ""
+msgstr "the filesize is 0 Bytes"
 
 msgid "this need Neutrino restart, your Box will automatically restart"
-msgstr ""
+msgstr "this need Neutrino restart, your Box will automatically restart"
 
 msgid "time (in minutes) to switch from standby"
-msgstr ""
+msgstr "time (in minutes) to switch from standby"
 
 msgid "tmdb Info"
-msgstr ""
+msgstr "tmdb Info"
 
 msgid "to deep standby (0 = off)."
-msgstr ""
+msgstr "to deep standby (0 = off)."
 
 msgid "top left"
-msgstr ""
+msgstr "top left"
 
 msgid "top right"
-msgstr ""
+msgstr "top right"
 
 msgid "tourism/travel"
-msgstr ""
+msgstr "tourism/travel"
 
 msgid "travel & recreation"
-msgstr ""
+msgstr "travel & recreation"
 
 msgid "type"
-msgstr ""
+msgstr "type"
 
 msgid "umount"
-msgstr ""
+msgstr "umount"
 
 #, c-format
 msgid "unknown"
-msgstr ""
+msgstr "unknown"
 
 msgid "update"
-msgstr ""
+msgstr "update"
 
 msgid "username"
-msgstr ""
+msgstr "username"
 
 msgid "variety show"
-msgstr ""
+msgstr "variety show"
 
 msgid "view count"
-msgstr ""
+msgstr "view count"
 
 msgid "view mode"
-msgstr ""
+msgstr "view mode"
 
 msgid "waiting for EPG..."
-msgstr ""
+msgstr "waiting for EPG..."
 
 msgid "water sports"
-msgstr ""
+msgstr "water sports"
 
 msgid "weekly"
-msgstr ""
+msgstr "weekly"
 
 msgid "will added to stop time of every record timer."
-msgstr ""
+msgstr "will added to stop time of every record timer."
 
 msgid "will be deducted of every record timer."
-msgstr ""
+msgstr "will be deducted of every record timer."
 
 msgid "winter sports"
-msgstr ""
+msgstr "winter sports"
 
 msgid "yes"
-msgstr ""
+msgstr "yes"
 
 msgid "youtube ID Key:"
-msgstr ""
+msgstr "youtube ID Key:"
