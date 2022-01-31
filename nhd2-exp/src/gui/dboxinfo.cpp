@@ -122,6 +122,7 @@ void CDBoxInfoWidget::showInfo()
 	dprintf(DEBUG_NORMAL, "CDBoxInfoWidget::showInfo:\n");
 
 	dboxInfo = new CWidget(&Box);
+	name = "CDBoxInfoWidget";
 	
 	m_window = new CWindow(&Box);
 	m_window->setCorner(RADIUS_MID, CORNER_ALL);
@@ -137,7 +138,13 @@ void CDBoxInfoWidget::showInfo()
 
 	//cpu
 	yPos += 40 + 10;
-	CCIcon* cpuIcon = new CCIcon(NEUTRINO_ICON_MENUITEM_IMAGEINFO);
+	
+	std::string CPU = g_settings.hints_dir;
+	CPU += "/";
+	CPU += NEUTRINO_ICON_MENUITEM_IMAGEINFO;
+	CPU += ".png";
+	
+	CCIcon* cpuIcon = new CCIcon(CPU.c_str());
 	cpuIcon->setPosition(Box.iX + 10, yPos, cpuIcon->iWidth, cpuIcon->iHeight);
 	m_window->addCCItem(cpuIcon);
 	
@@ -279,7 +286,11 @@ void CDBoxInfoWidget::showInfo()
 	m_window->addCCItem(hLine2);
     	
     	//hdd devices
-    	CCIcon* hddIcon = new CCIcon(NEUTRINO_ICON_MENUITEM_HDDSETTINGS);
+    	std::string HDD = g_settings.hints_dir;
+	HDD += "/";
+	HDD += NEUTRINO_ICON_MENUITEM_HDDSETTINGS;
+	HDD += ".png";
+    	CCIcon* hddIcon = new CCIcon(HDD.c_str());
     	
 	FILE * f;
 	int fd_hdd;
@@ -385,7 +396,13 @@ void CDBoxInfoWidget::showInfo()
 	
 	//frontend
 	yPos += hddIcon->iHeight + 10;
-	CCIcon* tunerIcon = new CCIcon(NEUTRINO_ICON_MENUITEM_SCANSETTINGS);
+	
+	std::string TUNER = g_settings.hints_dir;
+	TUNER += "/";
+	TUNER += NEUTRINO_ICON_MENUITEM_SCANSETTINGS;
+	TUNER += ".png";
+	
+	CCIcon* tunerIcon = new CCIcon(TUNER.c_str());
 	
 	if (FrontendCount)
 	{
@@ -455,7 +472,7 @@ void CInfoMenu::showMenu()
 	
 	infoMenu->setWidgetMode(MODE_MENU);
 	infoMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
-	infoMenu->setMenuPosition(MENU_POSITION_LEFT);
+	infoMenu->setMenuPosition(MENU_POSITION_CENTER);
 	infoMenu->enablePaintDate();
 	infoMenu->enableShrinkMenu();
 	

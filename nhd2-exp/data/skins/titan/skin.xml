@@ -253,9 +253,7 @@
 			<BUTTON name="info" localename="">
 			</BUTTON>
 		</FOOT>
-		
-		<KEY name="0x191" target="parent" actionkey="features"> 
-		</KEY>
+
 	</WIDGET>
 
 </skin>

@@ -37,6 +37,5 @@ class CEPGMenuHandler : public CMenuTarget
 		int  doMenu();
 };
 
-
 #endif
 

@@ -182,15 +182,16 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
+	shrinkMenu = false;
+	widgetMode = MODE_MENU;
+	
+	//
 	cnt = 0;
 
 	// frame
 	itemsPerX = 6;
 	itemsPerY = 3;
 	maxItemsPerPage = itemsPerX*itemsPerY;
-
-	shrinkMenu = false;
-	widgetMode = MODE_MENU;
 	
 	menu_position = MENU_POSITION_CENTER;
 
@@ -370,9 +371,6 @@ void CMenuWidget::initFrames()
 		{
 			if (hasItem())
 				height = std::min(height, hheight + heightFirstPage + fheight + cFrameFootInfoHeight);
-			// FIXME:
-			//int listmaxshow = (height - hheight - fheight - cFrameFootInfoHeight)/item_height;
-			//height = hheight + listmaxshow*item_height + fheight + cFrameFootInfoHeight;
 		}
 
 		//

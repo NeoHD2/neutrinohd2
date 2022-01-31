@@ -44,16 +44,13 @@
 #include <gui/epgplus.h>
 #include <gui/streaminfo2.h>
 
+#include <system/debug.h>
 
-
-//
-//  -- EPG Menue Handler Class
-//  -- to be used for calls from Menue
-//  -- (2004-03-06 rasc)
-// 
 
 int CEPGMenuHandler::exec(CMenuTarget* parent, const std::string &)
 {
+	dprintf(DEBUG_NORMAL, "CEPGMenuHandler::exec:\n");
+	
 	int res = RETURN_EXIT_ALL;
 
 	if (parent)
@@ -64,19 +61,16 @@ int CEPGMenuHandler::exec(CMenuTarget* parent, const std::string &)
 	return res;
 }
 
-
-
-
 int CEPGMenuHandler::doMenu()
 {
 	CMenuWidget redMenu(_("EPG - Program Information"), NEUTRINO_ICON_BUTTON_EPG);
 	
-	redMenu.id = WIDGET_EPGTIMER;
-	redMenu.name = "epgtimer";
+	id = WIDGET_EPGTIMER;
+	name = "epgtimer";
 
 	redMenu.setWidgetMode(MODE_MENU);
 	redMenu.setWidgetType(WIDGET_TYPE_CLASSIC);
-	redMenu.setMenuPosition(MENU_POSITION_LEFT);
+	redMenu.setMenuPosition(MENU_POSITION_CENTER);
 	redMenu.enableShrinkMenu();
 	redMenu.enableSaveScreen();
 
@@ -93,7 +87,6 @@ int CEPGMenuHandler::doMenu()
 	redMenu.addItem(new ClistBoxItem(_("Stream information"), true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_TIMERLIST));
 	
 	// timerlis
-	//tech info
 	redMenu.addItem(new ClistBoxItem(_("Timer list"), true, NULL, new CTimerList(), "", RC_1, NEUTRINO_ICON_BUTTON_1, NEUTRINO_ICON_MENUITEM_TIMERLIST));
 					
 	return redMenu.exec(NULL, "");

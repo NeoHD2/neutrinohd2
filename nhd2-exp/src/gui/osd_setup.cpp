@@ -95,7 +95,7 @@ void COSDSettings::showMenu(void)
 	osdSettings->setWidgetMode(MODE_MENU);
 	osdSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
 	osdSettings->enableShrinkMenu();
-	osdSettings->setMenuPosition(MENU_POSITION_LEFT);
+	osdSettings->setMenuPosition(MENU_POSITION_CENTER);
 	osdSettings->enablePaintDate();
 	
 	// skin

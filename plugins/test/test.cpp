@@ -3774,6 +3774,8 @@ void CTestMenu::testClistBox()
 	loadBox.paint();
 	loadMoviePlaylist();
 	loadBox.hide();
+	
+	/*
 
 	// load items
 	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
@@ -3801,14 +3803,24 @@ void CTestMenu::testClistBox()
 		
 		rightWidget->addItem(item);
 	}
+	
+	*/
+	
+	rightWidget->addItem(new CMenuForwarder("item1"));
+	rightWidget->addItem(new CMenuForwarder("item2"));
+	rightWidget->addItem(new CMenuForwarder("item3"));
+	rightWidget->addItem(new CMenuForwarder("item4"));
+	rightWidget->addItem(new CMenuForwarder("item5"));
+	rightWidget->addItem(new CMenuForwarder("item6"));
+	rightWidget->addItem(new CMenuForwarder("item7"));
 
 	// mode
 	rightWidget->setWidgetType(WIDGET_TYPE_CLASSIC);
-	//rightWidget->enableShrinkMenu();
-	rightWidget->paintMainFrame(false);
+	rightWidget->enableShrinkMenu();
+	rightWidget->paintMainFrame(true);
 
 	// head
-	//rightWidget->enablePaintHead();
+	rightWidget->enablePaintHead();
 	rightWidget->setTitle("ClistBox (standard)", NEUTRINO_ICON_MOVIE);
 	//rightWidget->setTitleHAlign(CC_ALIGN_CENTER);
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
@@ -3816,7 +3828,7 @@ void CTestMenu::testClistBox()
 	rightWidget->setFormat("%d.%m.%Y %H:%M:%S");
 
 	// footer
-	//rightWidget->enablePaintFoot();
+	rightWidget->enablePaintFoot();
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// itemInfo

@@ -2243,8 +2243,9 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
 	cnt = 0;
-
-	itemType = WIDGETITEM_LISTBOX;
+	//
+	widgetMode = MODE_LISTBOX;
+	menu_position = MENU_POSITION_CENTER;
 
 	savescreen = false;
 	background = NULL;
@@ -2271,6 +2272,8 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	
 	//
 	sec_timer_id = 0;
+	
+	itemType = WIDGETITEM_LISTBOX;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -2351,6 +2354,9 @@ ClistBox::ClistBox(CBox* position)
 	//
 	widgetType = WIDGET_TYPE_STANDARD;
 	cnt = 0;
+	//
+	widgetMode = MODE_LISTBOX;
+	menu_position = MENU_POSITION_CENTER;
 	
 	//
 	inFocus = true;
@@ -2360,8 +2366,6 @@ ClistBox::ClistBox(CBox* position)
 	itemsPerX = 6;
 	itemsPerY = 3;
 	maxItemsPerPage = itemsPerX*itemsPerY;
-
-	itemType = WIDGETITEM_LISTBOX;
 
 	savescreen = false;
 	background = NULL;
@@ -2388,6 +2392,8 @@ ClistBox::ClistBox(CBox* position)
 	
 	//
 	sec_timer_id = 0;
+	
+	itemType = WIDGETITEM_LISTBOX;
 }
 
 ClistBox::~ClistBox()
@@ -2554,11 +2560,15 @@ void ClistBox::initFrames()
 		// recalculate height
 		if(shrinkMenu)
 		{
-			listmaxshow = (itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight)/item_height;
-			itemBox.iHeight = hheight + listmaxshow*item_height + fheight + cFrameFootInfoHeight;
-			
-			//if (hasItem())
-			//	itemBox.iHeight = std::min(itemBox.iHeight, hheight + heightFirstPage + fheight + cFrameFootInfoHeight); //FIXME:
+			if (widgetMode == MODE_LISTBOX)
+			{
+				listmaxshow = (itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight)/item_height;
+				itemBox.iHeight = hheight + listmaxshow*item_height + fheight + cFrameFootInfoHeight;
+			}
+			else if (widgetMode == MODE_MENU)
+			{
+				itemBox.iHeight = std::min(itemBox.iHeight, hheight + heightFirstPage + fheight + cFrameFootInfoHeight);
+			}
 		}
 		
 		// sanity check
@@ -2572,6 +2582,26 @@ void ClistBox::initFrames()
 		//
 		full_height = itemBox.iHeight;
 		full_width = itemBox.iWidth;
+		
+		// menu position
+		if (widgetMode == MODE_MENU)
+		{
+			if(menu_position == MENU_POSITION_CENTER)
+			{
+				itemBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - full_width ) >> 1 );
+				itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
+			}
+			else if(menu_position == MENU_POSITION_LEFT)
+			{
+				itemBox.iX = frameBuffer->getScreenX();
+				itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
+			}
+			else if(menu_position == MENU_POSITION_RIGHT)
+			{
+				itemBox.iX = frameBuffer->getScreenX() + frameBuffer->getScreenWidth() - full_width;
+				itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
+			}
+		}
 	}
 }
 

@@ -133,7 +133,7 @@ void CMiscSettingsMenu::showMenu(void)
 	miscSettings->setWidgetMode(MODE_MENU);
 	miscSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
 	miscSettings->enableShrinkMenu();
-	miscSettings->setMenuPosition(MENU_POSITION_LEFT);
+	miscSettings->setMenuPosition(MENU_POSITION_CENTER);
 	miscSettings->enablePaintFootInfo();
 	miscSettings->enablePaintDate();
 

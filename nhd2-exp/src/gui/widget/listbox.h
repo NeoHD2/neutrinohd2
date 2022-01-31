@@ -625,6 +625,10 @@ class ClistBox : public CWidgetItem
 		fb_pixel_t* items_background;
 		bool itemShadow;
 		
+		//
+		int widgetMode;
+		int menu_position;
+		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		ClistBox(CBox* position);
@@ -733,6 +737,8 @@ class ClistBox : public CWidgetItem
 		int getWidgetType(){return widgetType;};
 		void addWidgetType(int wtype){widget.push_back(wtype);};
 		void changeWidgetType();
+		void setWidgetMode(int mode){widgetMode = mode;};
+		void setMenuPosition(int p){menu_position = p;};
 
 		//
 		bool isSelectable(void){return true;};

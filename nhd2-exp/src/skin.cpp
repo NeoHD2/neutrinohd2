@@ -1240,17 +1240,57 @@ void CNeutrinoApp::parseSkin()
 				unsigned int shadow = 0;
 					
 				type = xmlGetSignedNumericAttribute(listbox_node, "type", 0);
+				unsigned int mode = xmlGetSignedNumericAttribute(listbox_node, "mode", 2);
 				scrollbar = xmlGetSignedNumericAttribute(listbox_node, "scrollbar", 0);
 				shadow = xmlGetSignedNumericAttribute(listbox_node, "shadow", 0);
+				unsigned int shrink = xmlGetSignedNumericAttribute(listbox_node, "shrink", 0);
+				unsigned int position = xmlGetSignedNumericAttribute(listbox_node, "position", 0);
+				
+				// head
+				unsigned int painthead = xmlGetSignedNumericAttribute(listbox_node, "painthead", 0);
+				unsigned int paintdate = xmlGetSignedNumericAttribute(listbox_node, "paintdate", 0);
+				const char* title = xmlGetAttribute(listbox_node, "title");
+				const char* icon = xmlGetAttribute(listbox_node, "icon");
+				
+				// foot
+				unsigned int paintfoot = xmlGetSignedNumericAttribute(listbox_node, "paintfoot", 0);
+				
+				// iteminfo
+				unsigned int paintiteminfo = xmlGetSignedNumericAttribute(listbox_node, "paintiteminfo", 0);
+				unsigned int iteminfomode = xmlGetSignedNumericAttribute(listbox_node, "iteminfomode", 0);
 					
 				ClistBox* listBox = NULL;
 					
 				listBox = new ClistBox(posx, posy, width, height);
 				listBox->setWidgetType(type);
+				listBox->setWidgetMode(mode);
 				listBox->paintScrollBar(scrollbar);
 				listBox->paintMainFrame(i_paintframe);
 				if (i_color != NULL) listBox->setColor(finalColor);
 				listBox->paintItemShadow(shadow);
+				if (mode == MODE_MENU) listBox->setMenuPosition(position);
+				if (shrink) listBox->enableShrinkMenu();
+				
+				//
+				if (painthead)
+				{
+				 	listBox->enablePaintHead();
+				 	listBox->setTitle(title, icon);
+				 	if (paintdate) listBox->enablePaintDate();
+				}
+				
+				//
+				if (paintfoot)
+				{
+					listBox->enablePaintFoot();
+				}
+				
+				// iteminfo
+				if (paintiteminfo)
+				{
+					listBox->enablePaintFootInfo(70);
+					listBox->setFootInfoMode(iteminfomode);
+				}
 					
 				CMenuItem* menuItem = NULL;
 					
@@ -1335,6 +1375,28 @@ void CNeutrinoApp::parseSkin()
 					listBox->integratePlugins(integration, shortcut, true, mode, type, lines, shadow);
 				
 					listboxintegration_node = listboxintegration_node->xmlNextNode;
+				}
+				
+				//
+				footbutton_node = listbox_node->xmlChildrenNode;
+					
+				while ((footbutton_node = xmlGetNextOccurence(footbutton_node, "BUTTON")) != NULL) 
+				{
+					char* button = NULL;
+					char* localename = NULL;
+						
+					button = xmlGetAttribute(footbutton_node, (char*)"name");
+					localename = xmlGetAttribute(footbutton_node, (char*)"localename");
+						
+					button_label_struct btn;
+					btn.button = "";
+					if (button) btn.button = button;
+					btn.localename = "";
+					if (localename) btn.localename = localename;
+						
+					listBox->setFootButtons(&btn);
+				
+					footbutton_node = footbutton_node->xmlNextNode;
 				}
 					
 				wdg->addItem(listBox);
@@ -1640,9 +1702,9 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 	}	
 }
 
-void CNeutrinoApp::startSkin(const char * const filename)
+void CNeutrinoApp::startSkin(const int id)
 {
-	dprintf(DEBUG_INFO, "CNeutrinoApp::startSkin: %s\n", filename);	
+	dprintf(DEBUG_INFO, "CNeutrinoApp::startSkin: %d\n", id);	
 }
 
 bool CNeutrinoApp::skin_exists(const char* const filename)

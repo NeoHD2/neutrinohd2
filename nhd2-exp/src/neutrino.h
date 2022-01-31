@@ -168,7 +168,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		bool skin_exists(const char* const filename);
 		void loadSkin(std::string skinName);
 		void unloadSkin();
-		void startSkin(const char* const filename);
+		void startSkin(const int id);
 		
 		//
 		void mainMenu(void);

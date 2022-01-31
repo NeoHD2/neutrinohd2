@@ -232,7 +232,6 @@ void CWidget::hide()
 {
 	dprintf(DEBUG_NORMAL, "CWidget:: hide (%s)\n", name.c_str());
 
-/*
 	//
 	if (hasItem())
 	{
@@ -242,8 +241,7 @@ void CWidget::hide()
 		}
 	}
 	
-	// CCItem CC_PIG ???
-*/		
+	// CCItem CC_PIG ???		
 
 	if( savescreen && background)
 	{
@@ -251,7 +249,8 @@ void CWidget::hide()
 	}
 	else
 	{
-		frameBuffer->paintBackgroundBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight);
+		if (paintframe)
+			frameBuffer->paintBackgroundBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight);
 	}
 
 	frameBuffer->blit();

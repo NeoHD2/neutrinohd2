@@ -83,7 +83,7 @@ void CNeutrinoApp::mainMenu(void)
 	nMenu->setWidgetMode(MODE_MENU);
 	nMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	nMenu->enableShrinkMenu();
-	nMenu->setMenuPosition(MENU_POSITION_LEFT);
+	nMenu->setMenuPosition(MENU_POSITION_CENTER);
 	nMenu->enablePaintDate();
 	nMenu->enablePaintFootInfo();
 		  
@@ -251,7 +251,7 @@ bool CNeutrinoApp::showUserMenu(int button)
 	menu->setWidgetMode(MODE_MENU);
 	menu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	menu->enableShrinkMenu();
-	menu->setMenuPosition(MENU_POSITION_LEFT);
+	menu->setMenuPosition(MENU_POSITION_CENTER);
 	menu->enablePaintFootInfo();
 
 	menu->addKey(RC_blue, this, "plugins");

@@ -81,7 +81,7 @@ void CMainSettingsMenu::showMenu(void)
 	mainSettings->setWidgetMode(MODE_MENU);
 	mainSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
 	mainSettings->enableShrinkMenu();
-	mainSettings->setMenuPosition(MENU_POSITION_LEFT);
+	mainSettings->setMenuPosition(MENU_POSITION_CENTER);
 	mainSettings->enablePaintFootInfo();
 	mainSettings->enablePaintDate();
 

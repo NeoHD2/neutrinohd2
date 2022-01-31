@@ -2965,13 +2965,15 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				//
-				if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
+				//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
 				{
 					if (hasWidgets() && (widget_exists(WIDGET_MAINMENU)))
 						getWidget(WIDGET_MAINMENU)->exec(NULL, "");
+					else
+						mainMenu();
 				}
-				else	
-					mainMenu();
+				//else	
+				//	mainMenu();
 
 				// restore mute symbol
 				AudioMute(current_muted, true);
@@ -3200,14 +3202,33 @@ void CNeutrinoApp::RealRun(void)
 
 				//
 				StopSubtitles();
-					
-				CEPGMenuHandler* redMenu = new CEPGMenuHandler();
-					
-				redMenu->exec(NULL, "");
-					
-				delete redMenu;
-				redMenu = NULL;
-
+				
+				//
+				//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
+				{
+					if (hasWidgets() && (widget_exists(WIDGET_EPGTIMER)))
+						getWidget(WIDGET_EPGTIMER)->exec(NULL, "");
+					else
+					{	
+						CEPGMenuHandler* redMenu = new CEPGMenuHandler();
+							
+						redMenu->exec(NULL, "");
+							
+						delete redMenu;
+						redMenu = NULL;
+					}
+				}
+				/*
+				else
+				{	
+					CEPGMenuHandler* redMenu = new CEPGMenuHandler();
+						
+					redMenu->exec(NULL, "");
+						
+					delete redMenu;
+					redMenu = NULL;
+				}
+				*/
 				//
 				StartSubtitles();
 			}
@@ -3249,7 +3270,15 @@ void CNeutrinoApp::RealRun(void)
 				// select NVODs
 				if (mode != mode_webtv)
 				{
-					SelectNVOD();
+					//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
+					{
+						if (hasWidgets() && (widget_exists(WIDGET_NVOD)))
+							getWidget(WIDGET_NVOD)->exec(NULL, "");
+						else
+							SelectNVOD();
+					}
+					//else
+					//	SelectNVOD();
 				}
 
 				StartSubtitles();
@@ -3262,7 +3291,15 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				// features
-				showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
+				//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
+				{
+					if (hasWidgets() && (widget_exists(WIDGET_FEATURES)))
+						getWidget(WIDGET_FEATURES)->exec(NULL, "");
+					else
+						showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
+				}
+				//else
+				//	showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
 
 				StartSubtitles();
 			}

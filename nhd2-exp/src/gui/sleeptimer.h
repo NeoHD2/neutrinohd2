@@ -29,6 +29,9 @@
 class CSleepTimerWidget: public CMenuTarget
 {
 	public:
+		CSleepTimerWidget(){};
+		~CSleepTimerWidget(){};
+		
 		int exec(CMenuTarget * parent, const std::string & actionKey);
 };
 
