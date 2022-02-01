@@ -1236,11 +1236,12 @@ void CNeutrinoApp::parseSkin()
 				if (i_color) finalColor = convertColor(i_color);
 				
 				unsigned int type = 0;
+				unsigned int mode = 2;
 				unsigned int scrollbar = 1;
 				unsigned int shadow = 0;
 					
 				type = xmlGetSignedNumericAttribute(listbox_node, "type", 0);
-				unsigned int mode = xmlGetSignedNumericAttribute(listbox_node, "mode", 2);
+				mode = xmlGetSignedNumericAttribute(listbox_node, "mode", 0);
 				scrollbar = xmlGetSignedNumericAttribute(listbox_node, "scrollbar", 0);
 				shadow = xmlGetSignedNumericAttribute(listbox_node, "shadow", 0);
 				unsigned int shrink = xmlGetSignedNumericAttribute(listbox_node, "shrink", 0);
@@ -1268,8 +1269,10 @@ void CNeutrinoApp::parseSkin()
 				listBox->paintMainFrame(i_paintframe);
 				if (i_color != NULL) listBox->setColor(finalColor);
 				listBox->paintItemShadow(shadow);
-				if (mode == MODE_MENU) listBox->setMenuPosition(position);
+				if (mode == 0) listBox->setMenuPosition(position);
 				if (shrink) listBox->enableShrinkMenu();
+				
+				printf("parseSkin: mode:%d\n", mode);
 				
 				//
 				if (painthead)

@@ -88,7 +88,7 @@
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Reboot" itemicon="hint_reboot" target="0" actionkey="reboot">
 			</ITEM>
-			<ITEM name="menuforwarder" id="5" localename="Shutdown" itemicon="hint_shutdown" target="0" actionkey="shurdown">
+			<ITEM name="menuforwarder" id="5" localename="Shutdown" itemicon="hint_shutdown" target="0" actionkey="shutdown">
 			</ITEM>
 		</LISTBOX>
 	</WIDGET>
