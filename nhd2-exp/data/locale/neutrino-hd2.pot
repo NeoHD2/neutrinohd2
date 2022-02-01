@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-31 21:23+0100\n"
+"POT-Creation-Date: 2022-02-01 06:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "'X'=timer '-' no timer"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5624
+#: ../../src/neutrino.cpp:5619
 #, c-format
 msgid "(%d%% over)"
 msgstr ""
@@ -65,7 +65,7 @@ msgstr ""
 msgid "(relative, in seconds)"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5619
+#: ../../src/neutrino.cpp:5614
 #, c-format
 msgid "(starting in %d min)"
 msgstr ""
@@ -183,7 +183,7 @@ msgstr ""
 msgid "Alpha"
 msgstr ""
 
-#: ../../src/gui/alphasetup.cpp:195 ../../../plugins/test/test.cpp:5266
+#: ../../src/gui/alphasetup.cpp:195 ../../../plugins/test/test.cpp:5264
 msgid "Alpha Setup"
 msgstr ""
 
@@ -314,7 +314,7 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:284 ../../src/gui/osd_setup.cpp:289
 #: ../../src/gui/osd_setup.cpp:294 ../../src/gui/osd_setup.cpp:311
 #: ../../src/gui/osd_setup.cpp:375 ../../src/gui/osd_setup.cpp:386
-#: ../../../plugins/test/test.cpp:5349
+#: ../../../plugins/test/test.cpp:5347
 msgid "Background"
 msgstr ""
 
@@ -377,7 +377,7 @@ msgstr ""
 msgid "Box Info"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4149
+#: ../../src/neutrino.cpp:4144
 msgid ""
 "Box will shutdown in 1 min.\n"
 "Cancel Sutdown ?"
@@ -791,7 +791,7 @@ msgstr ""
 msgid "Dir"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5646 ../../src/gui/infoviewer.cpp:812
+#: ../../src/neutrino.cpp:5641 ../../src/gui/infoviewer.cpp:812
 #: ../../src/gui/infoviewer.cpp:865
 msgid "Direct-Mode"
 msgstr ""
@@ -820,7 +820,7 @@ msgid "Diseqc input"
 msgstr ""
 
 #: ../../src/gui/lcd_setup.cpp:128 ../../src/gui/lcd_setup.cpp:145
-#: ../../../plugins/test/test.cpp:5339
+#: ../../../plugins/test/test.cpp:5337
 msgid "Display Settings"
 msgstr ""
 
@@ -1515,14 +1515,14 @@ msgid "Infobar Crypticons"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:120 ../../src/neutrino.cpp:2818
-#: ../../src/neutrino.cpp:3183 ../../src/neutrino.cpp:4059
-#: ../../src/neutrino.cpp:4097 ../../src/neutrino.cpp:4104
-#: ../../src/neutrino.cpp:4149 ../../src/neutrino.cpp:4190
-#: ../../src/neutrino.cpp:4199 ../../src/neutrino.cpp:4218
-#: ../../src/neutrino.cpp:4383 ../../src/neutrino.cpp:5302
-#: ../../src/neutrino.cpp:5311 ../../src/neutrino.cpp:5316
-#: ../../src/neutrino.cpp:5332 ../../src/neutrino.cpp:5337
-#: ../../src/neutrino.cpp:5349 ../../src/neutrino.cpp:5351
+#: ../../src/neutrino.cpp:3178 ../../src/neutrino.cpp:4054
+#: ../../src/neutrino.cpp:4092 ../../src/neutrino.cpp:4099
+#: ../../src/neutrino.cpp:4144 ../../src/neutrino.cpp:4185
+#: ../../src/neutrino.cpp:4194 ../../src/neutrino.cpp:4213
+#: ../../src/neutrino.cpp:4378 ../../src/neutrino.cpp:5297
+#: ../../src/neutrino.cpp:5306 ../../src/neutrino.cpp:5311
+#: ../../src/neutrino.cpp:5327 ../../src/neutrino.cpp:5332
+#: ../../src/neutrino.cpp:5344 ../../src/neutrino.cpp:5346
 #: ../../src/gui/dboxinfo.cpp:479 ../../src/gui/cam_menu.cpp:201
 #: ../../src/gui/cam_menu.cpp:229 ../../src/gui/cam_menu.cpp:258
 #: ../../src/gui/cam_menu.cpp:359 ../../src/gui/cam_menu.cpp:473
@@ -1546,7 +1546,7 @@ msgstr ""
 #: ../../src/gui/widget/infobox.cpp:170 ../../../plugins/test/test.cpp:3260
 #: ../../../plugins/test/test.cpp:3275 ../../../plugins/test/test.cpp:3291
 #: ../../../plugins/test/test.cpp:3304 ../../../plugins/test/test.cpp:3352
-#: ../../../plugins/test/test.cpp:5724 ../../../plugins/test/test.cpp:5730
+#: ../../../plugins/test/test.cpp:5722 ../../../plugins/test/test.cpp:5728
 #: ../../../plugins/icecast/icecast.cpp:665
 #: ../../../plugins/moviebrowser/tstool.cpp:278
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:918
@@ -2126,7 +2126,7 @@ msgstr ""
 #: ../../src/gui/nfs.cpp:157 ../../src/gui/nfs.cpp:227
 #: ../../src/gui/recording_setup.cpp:57 ../../src/gui/timerlist.cpp:918
 #: ../../src/gui/misc_setup.cpp:77 ../../src/gui/widget/messagebox.cpp:499
-#: ../../../plugins/test/test.cpp:7460
+#: ../../../plugins/test/test.cpp:7458
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:126
 msgid "No"
 msgstr ""
@@ -2306,7 +2306,7 @@ msgstr ""
 msgid "PCM Delay"
 msgstr ""
 
-#: ../../src/gui/psisetup.cpp:339 ../../../plugins/test/test.cpp:5276
+#: ../../src/gui/psisetup.cpp:339 ../../../plugins/test/test.cpp:5274
 msgid "PSI Setup"
 msgstr ""
 
@@ -2458,7 +2458,7 @@ msgstr ""
 msgid "Previous image"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4035
+#: ../../src/neutrino.cpp:4030
 msgid "Program unknown"
 msgstr ""
 
@@ -2586,7 +2586,7 @@ msgstr ""
 msgid "Record stop time correction"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5397 ../../src/neutrino.cpp:5401
+#: ../../src/neutrino.cpp:5392 ../../src/neutrino.cpp:5396
 msgid "Recording"
 msgstr ""
 
@@ -2599,7 +2599,7 @@ msgstr ""
 msgid "Recording settings"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4097
+#: ../../src/neutrino.cpp:4092
 msgid "Recording starts in a few minutes"
 msgstr ""
 
@@ -2635,7 +2635,7 @@ msgstr ""
 msgid "Reload plugins"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5351 ../../src/gui/service_menu.cpp:76
+#: ../../src/neutrino.cpp:5346 ../../src/gui/service_menu.cpp:76
 #: ../../src/gui/service_menu.cpp:78
 msgid "Reloading channel lists, please be patient."
 msgstr ""
@@ -2644,7 +2644,7 @@ msgstr ""
 msgid "Remind"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4245
+#: ../../src/neutrino.cpp:4240
 msgid "Reminder"
 msgstr ""
 
@@ -2850,7 +2850,7 @@ msgstr ""
 msgid "Save settings now"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5302 ../../src/neutrino.cpp:5316
+#: ../../src/neutrino.cpp:5297 ../../src/neutrino.cpp:5311
 msgid "Save settings now?"
 msgstr ""
 
@@ -2866,11 +2866,11 @@ msgstr ""
 msgid "Saving keymap, please wait..."
 msgstr ""
 
-#: ../../src/neutrino.cpp:5311
+#: ../../src/neutrino.cpp:5306
 msgid "Saving settings now, please be patient."
 msgstr ""
 
-#: ../../src/neutrino.cpp:5332
+#: ../../src/neutrino.cpp:5327
 msgid ""
 "Saving settings now, please be patient.\n"
 " this needs Neutrino restart."
@@ -2896,21 +2896,21 @@ msgstr ""
 #: ../../../plugins/test/test.cpp:1421 ../../../plugins/test/test.cpp:1617
 #: ../../../plugins/test/test.cpp:1714 ../../../plugins/test/test.cpp:2083
 #: ../../../plugins/test/test.cpp:3485 ../../../plugins/test/test.cpp:3773
-#: ../../../plugins/test/test.cpp:3906 ../../../plugins/test/test.cpp:4055
-#: ../../../plugins/test/test.cpp:4203 ../../../plugins/test/test.cpp:4343
-#: ../../../plugins/test/test.cpp:4504 ../../../plugins/test/test.cpp:5514
-#: ../../../plugins/test/test.cpp:5573 ../../../plugins/test/test.cpp:6238
-#: ../../../plugins/test/test.cpp:6268 ../../../plugins/test/test.cpp:6298
-#: ../../../plugins/test/test.cpp:6328 ../../../plugins/test/test.cpp:6361
-#: ../../../plugins/test/test.cpp:6391 ../../../plugins/test/test.cpp:6421
-#: ../../../plugins/test/test.cpp:6451 ../../../plugins/test/test.cpp:6527
-#: ../../../plugins/test/test.cpp:6589 ../../../plugins/test/test.cpp:6690
-#: ../../../plugins/test/test.cpp:6732 ../../../plugins/test/test.cpp:6774
-#: ../../../plugins/test/test.cpp:6816 ../../../plugins/test/test.cpp:6858
-#: ../../../plugins/test/test.cpp:6900 ../../../plugins/test/test.cpp:6942
-#: ../../../plugins/test/test.cpp:6984 ../../../plugins/test/test.cpp:7095
-#: ../../../plugins/test/test.cpp:7177 ../../../plugins/test/test.cpp:7220
-#: ../../../plugins/test/test.cpp:7271 ../../../plugins/test/test.cpp:7326
+#: ../../../plugins/test/test.cpp:3904 ../../../plugins/test/test.cpp:4053
+#: ../../../plugins/test/test.cpp:4201 ../../../plugins/test/test.cpp:4341
+#: ../../../plugins/test/test.cpp:4502 ../../../plugins/test/test.cpp:5512
+#: ../../../plugins/test/test.cpp:5571 ../../../plugins/test/test.cpp:6236
+#: ../../../plugins/test/test.cpp:6266 ../../../plugins/test/test.cpp:6296
+#: ../../../plugins/test/test.cpp:6326 ../../../plugins/test/test.cpp:6359
+#: ../../../plugins/test/test.cpp:6389 ../../../plugins/test/test.cpp:6419
+#: ../../../plugins/test/test.cpp:6449 ../../../plugins/test/test.cpp:6525
+#: ../../../plugins/test/test.cpp:6587 ../../../plugins/test/test.cpp:6688
+#: ../../../plugins/test/test.cpp:6730 ../../../plugins/test/test.cpp:6772
+#: ../../../plugins/test/test.cpp:6814 ../../../plugins/test/test.cpp:6856
+#: ../../../plugins/test/test.cpp:6898 ../../../plugins/test/test.cpp:6940
+#: ../../../plugins/test/test.cpp:6982 ../../../plugins/test/test.cpp:7093
+#: ../../../plugins/test/test.cpp:7175 ../../../plugins/test/test.cpp:7218
+#: ../../../plugins/test/test.cpp:7269 ../../../plugins/test/test.cpp:7324
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2906
 #: ../../../plugins/nfilm/nfilm.cpp:167 ../../../plugins/nfilm/nfilm.cpp:189
 #: ../../../plugins/ntvshows/ntvshows.cpp:133
@@ -2990,7 +2990,7 @@ msgstr ""
 msgid "Scroll up"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:815 ../../../plugins/test/test.cpp:7319
+#: ../../src/gui/eventlist.cpp:815 ../../../plugins/test/test.cpp:7317
 #: ../../../plugins/netzkino/netzkino.cpp:338
 #: ../../../plugins/nfilm/nfilm.cpp:596
 #: ../../../plugins/youtube/youtube.cpp:443
@@ -3017,7 +3017,7 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5567
+#: ../../src/neutrino.cpp:5562
 msgid "Select Subservice"
 msgstr ""
 
@@ -3030,7 +3030,7 @@ msgstr ""
 msgid "Select language"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5567
+#: ../../src/neutrino.cpp:5562
 msgid "Select starting-time"
 msgstr ""
 
@@ -3218,7 +3218,7 @@ msgstr ""
 msgid "Sleeptimer"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4104
+#: ../../src/neutrino.cpp:4099
 msgid "Sleeptimer in 1 min"
 msgstr ""
 
@@ -3484,7 +3484,7 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:7470
+#: ../../../plugins/test/test.cpp:7468
 msgid "Test Menu"
 msgstr ""
 
@@ -3973,12 +3973,12 @@ msgstr ""
 #: ../../src/gui/nfs.cpp:157 ../../src/gui/nfs.cpp:228
 #: ../../src/gui/recording_setup.cpp:58 ../../src/gui/timerlist.cpp:919
 #: ../../src/gui/misc_setup.cpp:78 ../../src/gui/widget/messagebox.cpp:472
-#: ../../../plugins/test/test.cpp:7461
+#: ../../../plugins/test/test.cpp:7459
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:127
 msgid "Yes"
 msgstr ""
 
-#: ../../src/neutrino.cpp:3183 ../../src/neutrino.cpp:4383
+#: ../../src/neutrino.cpp:3178 ../../src/neutrino.cpp:4378
 #: ../../src/gui/movieplayer.cpp:616
 msgid "You really want to to stop record ?"
 msgstr ""
@@ -4022,7 +4022,7 @@ msgstr ""
 msgid "Zapping History Bouquet"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4015
+#: ../../src/neutrino.cpp:4010
 msgid "Zapto timer in one minute"
 msgstr ""
 
@@ -4294,7 +4294,7 @@ msgstr ""
 msgid "dmesg"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5349
+#: ../../src/neutrino.cpp:5344
 msgid "do you want to reload channel lists?"
 msgstr ""
 
@@ -4547,7 +4547,7 @@ msgstr ""
 msgid "literature"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5337
+#: ../../src/neutrino.cpp:5332
 msgid "load default skin configuration?"
 msgstr ""
 
@@ -4749,7 +4749,7 @@ msgstr ""
 msgid "not connected"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5579 ../../src/gui/osd_setup.cpp:59
+#: ../../src/neutrino.cpp:5574 ../../src/gui/osd_setup.cpp:59
 #: ../../src/gui/hdd_menu.cpp:82 ../../src/gui/hdd_menu.cpp:91
 #: ../../src/gui/audio_setup.cpp:53 ../../src/gui/audio_setup.cpp:69
 #: ../../src/gui/audio_setup.cpp:77 ../../src/gui/scan_setup.cpp:90
@@ -4762,7 +4762,7 @@ msgstr ""
 msgid "off"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5580 ../../src/gui/osd_setup.cpp:60
+#: ../../src/neutrino.cpp:5575 ../../src/gui/osd_setup.cpp:60
 #: ../../src/gui/audio_setup.cpp:54 ../../src/gui/audio_setup.cpp:70
 #: ../../src/gui/audio_setup.cpp:78 ../../src/gui/scan_setup.cpp:91
 #: ../../src/gui/recording_setup.cpp:51 ../../src/gui/misc_setup.cpp:71
@@ -5041,7 +5041,7 @@ msgstr ""
 msgid "sports magazines"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5397 ../../src/gui/pluginlist.cpp:85
+#: ../../src/neutrino.cpp:5392 ../../src/gui/pluginlist.cpp:85
 msgid "start"
 msgstr ""
 

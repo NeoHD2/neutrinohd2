@@ -1702,9 +1702,19 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 	}	
 }
 
-void CNeutrinoApp::startSkin(const int id)
+bool CNeutrinoApp::startSkin(const int id)
 {
-	dprintf(DEBUG_INFO, "CNeutrinoApp::startSkin: %d\n", id);	
+	dprintf(DEBUG_INFO, "CNeutrinoApp::startSkin: %d\n", id);
+	
+	bool ret = false;
+	
+	if (hasWidgets() && (widget_exists(id)))
+	{
+		ret = true;
+		getWidget(id)->exec(NULL, "");
+	}
+	
+	return ret;	
 }
 
 bool CNeutrinoApp::skin_exists(const char* const filename)

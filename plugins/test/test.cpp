@@ -3775,8 +3775,6 @@ void CTestMenu::testClistBox()
 	loadMoviePlaylist();
 	loadBox.hide();
 	
-	/*
-
 	// load items
 	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
 	{
@@ -3804,8 +3802,7 @@ void CTestMenu::testClistBox()
 		rightWidget->addItem(item);
 	}
 	
-	*/
-	
+	/*
 	rightWidget->addItem(new CMenuForwarder("item1"));
 	rightWidget->addItem(new CMenuForwarder("item2"));
 	rightWidget->addItem(new CMenuForwarder("item3"));
@@ -3813,6 +3810,7 @@ void CTestMenu::testClistBox()
 	rightWidget->addItem(new CMenuForwarder("item5"));
 	rightWidget->addItem(new CMenuForwarder("item6"));
 	rightWidget->addItem(new CMenuForwarder("item7"));
+	*/
 
 	// mode
 	rightWidget->setWidgetType(WIDGET_TYPE_CLASSIC);

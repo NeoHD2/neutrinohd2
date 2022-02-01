@@ -2965,15 +2965,10 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				//
-				//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
-				{
-					if (hasWidgets() && (widget_exists(WIDGET_MAINMENU)))
-						getWidget(WIDGET_MAINMENU)->exec(NULL, "");
-					else
-						mainMenu();
-				}
-				//else	
-				//	mainMenu();
+				//if (hasWidgets() && (widget_exists(WIDGET_MAINMENU)))
+				//		getWidget(WIDGET_MAINMENU)->exec(NULL, "");
+				if (!startSkin(WIDGET_MAINMENU))
+					mainMenu();
 
 				// restore mute symbol
 				AudioMute(current_muted, true);
