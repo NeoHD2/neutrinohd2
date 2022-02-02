@@ -159,8 +159,8 @@ bool CColorSetupNotifier::changeNotify(const std::string&, void *)
 	// channellist colored events
 	frameBuffer->paletteGenFade(COL_COLORED_EVENTS_CHANNELLIST, convertSetupColor2RGB(g_settings.menu_Content_red, g_settings.menu_Content_green, g_settings.menu_Content_blue), convertSetupColor2RGB(g_settings.infobar_colored_events_red, g_settings.infobar_colored_events_green, g_settings.infobar_colored_events_blue), 8, convertSetupAlpha2Alpha(g_settings.menu_Content_alpha) );
 
-	// foot info
-	frameBuffer->paletteGenFade(COL_MENUFOOT_INFO, convertSetupColor2RGB(g_settings.menu_FootInfo_red, g_settings.menu_FootInfo_green, g_settings.menu_FootInfo_blue), convertSetupColor2RGB(g_settings.menu_FootInfo_Text_red, g_settings.menu_FootInfo_Text_green, g_settings.menu_FootInfo_Text_blue), 8, convertSetupAlpha2Alpha( g_settings.menu_FootInfo_alpha ) );
+	// hint
+	frameBuffer->paletteGenFade(COL_MENUHINT, convertSetupColor2RGB(g_settings.menu_Hint_red, g_settings.menu_Hint_green, g_settings.menu_Hint_blue), convertSetupColor2RGB(g_settings.menu_Hint_Text_red, g_settings.menu_Hint_Text_green, g_settings.menu_Hint_Text_blue), 8, convertSetupAlpha2Alpha( g_settings.menu_Hint_alpha ) );
 
 	frameBuffer->paletteSet();
 

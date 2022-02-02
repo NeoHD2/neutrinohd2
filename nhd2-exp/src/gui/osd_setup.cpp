@@ -252,9 +252,9 @@ void COSDMenuColorSettings::showMenu()
 	CColorChooser * chFootTextcolor = new CColorChooser(_("Textcolor"), &g_settings.menu_Foot_Text_red, &g_settings.menu_Foot_Text_green, &g_settings.menu_Foot_Text_blue, NULL, CNeutrinoApp::getInstance()->colorSetupNotifier);
 
 	// foot info
-	CColorChooser* chFootInfoColor = new CColorChooser(_("Background"), &g_settings.menu_FootInfo_red, &g_settings.menu_FootInfo_green, &g_settings.menu_FootInfo_blue, &g_settings.menu_FootInfo_alpha, CNeutrinoApp::getInstance()->colorSetupNotifier);
+	CColorChooser* chHintColor = new CColorChooser(_("Background"), &g_settings.menu_Hint_red, &g_settings.menu_Hint_green, &g_settings.menu_Hint_blue, &g_settings.menu_Hint_alpha, CNeutrinoApp::getInstance()->colorSetupNotifier);
 
-	CColorChooser * chFootInfoTextColor = new CColorChooser(_("Textcolor"), &g_settings.menu_FootInfo_Text_red, &g_settings.menu_FootInfo_Text_green, &g_settings.menu_FootInfo_Text_blue, NULL, CNeutrinoApp::getInstance()->colorSetupNotifier);
+	CColorChooser * chHintTextColor = new CColorChooser(_("Textcolor"), &g_settings.menu_Hint_Text_red, &g_settings.menu_Hint_Text_green, &g_settings.menu_Hint_Text_blue, NULL, CNeutrinoApp::getInstance()->colorSetupNotifier);
 
 	// head
 	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, _("Head")));
@@ -304,20 +304,20 @@ void COSDMenuColorSettings::showMenu()
 	// foot radius
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Radius"), &g_settings.Foot_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 
-	// footInfo
+	// itemInfo
 	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, _("Item Info")));
 	
-	// fontInfocolor
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Background"), true, NULL, chFootInfoColor ));
+	// itemInfocolor
+	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Background"), true, NULL, chHintColor ));
 
 	// fontinfo text color
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chFootInfoTextColor ));
+	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chHintTextColor ));
 
-	// footInfo gradient
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.Foot_Info_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	// itemInfo gradient
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.Hint_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 	
-	// footinfo shadow
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Shadow"), &g_settings.Foot_Info_shadow, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	// iteminfo shadow
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Shadow"), &g_settings.Hint_shadow, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 	
 	OSDmenuColorsSettings.exec(NULL, "");
 	OSDmenuColorsSettings.hide();

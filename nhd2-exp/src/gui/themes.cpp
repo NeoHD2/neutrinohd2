@@ -315,15 +315,15 @@ void CThemes::readFile(const char* themename)
 		g_settings.menu_Foot_Text_green = themefile.getInt32( "menu_Foot_Text_green", 100);
 		g_settings.menu_Foot_Text_blue = themefile.getInt32( "menu_Foot_Text_blue", 100);
 
-		g_settings.menu_FootInfo_alpha = themefile.getInt32( "menu_FootInfo_alpha", 20);
-		g_settings.menu_FootInfo_red = themefile.getInt32( "menu_FootInfo_red", 25);
-		g_settings.menu_FootInfo_green = themefile.getInt32( "menu_FootInfo_green", 25);
-		g_settings.menu_FootInfo_blue = themefile.getInt32( "menu_FootInfo_blue", 25);
+		g_settings.menu_Hint_alpha = themefile.getInt32( "menu_Hint_alpha", 20);
+		g_settings.menu_Hint_red = themefile.getInt32( "menu_Hint_red", 25);
+		g_settings.menu_Hint_green = themefile.getInt32( "menu_Hint_green", 25);
+		g_settings.menu_Hint_blue = themefile.getInt32( "menu_Hint_blue", 25);
 		
-		g_settings.menu_FootInfo_Text_alpha = themefile.getInt32( "menu_FootInfo_Text_alpha", 0);
-		g_settings.menu_FootInfo_Text_red = themefile.getInt32( "menu_FootInfo_Text_red", 85);
-		g_settings.menu_FootInfo_Text_green = themefile.getInt32( "menu_FootInfo_Text_green", 85);
-		g_settings.menu_FootInfo_Text_blue = themefile.getInt32( "menu_FootInfo_Text_blue", 85);
+		g_settings.menu_Hint_Text_alpha = themefile.getInt32( "menu_Hint_Text_alpha", 0);
+		g_settings.menu_Hint_Text_red = themefile.getInt32( "menu_Hint_Text_red", 85);
+		g_settings.menu_Hint_Text_green = themefile.getInt32( "menu_Hint_Text_green", 85);
+		g_settings.menu_Hint_Text_blue = themefile.getInt32( "menu_Hint_Text_blue", 85);
 
 		notifier = new CColorSetupNotifier;
 		notifier->changeNotify("", NULL);
@@ -398,14 +398,14 @@ void CThemes::saveFile(const char * themename)
 	themefile.setInt32( "menu_Foot_Text_green", g_settings.menu_Foot_Text_green );
 	themefile.setInt32( "menu_Foot_Text_blue", g_settings.menu_Foot_Text_blue );
 
-	themefile.setInt32( "menu_FootInfo_alpha", g_settings.menu_FootInfo_alpha );
-	themefile.setInt32( "menu_FootInfo_red", g_settings.menu_FootInfo_red );
-	themefile.setInt32( "menu_FootInfo_green", g_settings.menu_FootInfo_green );
-	themefile.setInt32( "menu_FootInfo_blue", g_settings.menu_FootInfo_blue );
-	themefile.setInt32( "menu_FootInfo_Text_alpha", g_settings.menu_FootInfo_Text_alpha );
-	themefile.setInt32( "menu_FootInfo_Text_red", g_settings.menu_FootInfo_Text_red );
-	themefile.setInt32( "menu_FootInfo_Text_green", g_settings.menu_FootInfo_Text_green );
-	themefile.setInt32( "menu_FootInfo_Text_blue", g_settings.menu_FootInfo_Text_blue );
+	themefile.setInt32( "menu_Hint_alpha", g_settings.menu_Hint_alpha );
+	themefile.setInt32( "menu_Hint_red", g_settings.menu_Hint_red );
+	themefile.setInt32( "menu_Hint_green", g_settings.menu_Hint_green );
+	themefile.setInt32( "menu_Hint_blue", g_settings.menu_Hint_blue );
+	themefile.setInt32( "menu_Hint_Text_alpha", g_settings.menu_Hint_Text_alpha );
+	themefile.setInt32( "menu_Hint_Text_red", g_settings.menu_Hint_Text_red );
+	themefile.setInt32( "menu_Hint_Text_green", g_settings.menu_Hint_Text_green );
+	themefile.setInt32( "menu_Hint_Text_blue", g_settings.menu_Hint_Text_blue );
 
 	if (!themefile.saveConfig(themename))
 		printf("[neutrino theme] %s write error\n", themename);
@@ -483,15 +483,15 @@ void CThemes::setupDefaultColors()
 	g_settings.menu_Foot_Text_green = 100;
 	g_settings.menu_Foot_Text_blue = 100;
 
-	g_settings.menu_FootInfo_alpha = 0;
-	g_settings.menu_FootInfo_red = 15;
-	g_settings.menu_FootInfo_green = 15;
-	g_settings.menu_FootInfo_blue = 15;
+	g_settings.menu_Hint_alpha = 0;
+	g_settings.menu_Hint_red = 15;
+	g_settings.menu_Hint_green = 15;
+	g_settings.menu_Hint_blue = 15;
 		
-	g_settings.menu_FootInfo_Text_alpha = 0;
-	g_settings.menu_FootInfo_Text_red = 85;
-	g_settings.menu_FootInfo_Text_green = 85;
-	g_settings.menu_FootInfo_Text_blue = 85;
+	g_settings.menu_Hint_Text_alpha = 0;
+	g_settings.menu_Hint_Text_red = 85;
+	g_settings.menu_Hint_Text_green = 85;
+	g_settings.menu_Hint_Text_blue = 85;
 	
 	notifier = new CColorSetupNotifier();
 	notifier->changeNotify("", NULL);

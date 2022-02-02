@@ -67,7 +67,6 @@ void CPowerMenu::showMenu(void)
 	powerMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	powerMenu->enableShrinkMenu();
 	powerMenu->setMenuPosition(MENU_POSITION_CENTER);
-	powerMenu->enablePaintFootInfo();
 	powerMenu->enablePaintDate();
 	
 	// sleep timer

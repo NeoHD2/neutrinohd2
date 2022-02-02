@@ -675,8 +675,8 @@ class ClistBox : public CWidgetItem
 		void setFootLine(bool l){foot_line = l;};
 
 		// itemInfo
-		void enablePaintFootInfo(int fh){paintFootInfo = true; footInfoHeight = fh;};
-		void setFootInfoMode(int mode){footInfoMode = mode;};
+		void enablePaintItemInfo(int fh){paintFootInfo = true; footInfoHeight = fh;};
+		void setItemInfoMode(int mode){footInfoMode = mode;};
 		void setItemInfoPos(int x, int y, int dx, int dy)
 		{
 			if ( (footInfoMode == FOOT_HINTITEM_MODE) || (footInfoMode == FOOT_HINTICON_MODE) || (footInfoMode == FOOT_HINTHINT_MODE))
@@ -732,7 +732,7 @@ class ClistBox : public CWidgetItem
 		int getItemsPerY()const{return itemsPerY;};
 		int getMaxItemsPerPage()const{return maxItemsPerPage;};
 
-		// widget type
+		// widget type/mode/pos
 		void setWidgetType(int type){widgetType = type; widget.push_back(widgetType);};
 		int getWidgetType(){return widgetType;};
 		void addWidgetType(int wtype){widget.push_back(wtype);};

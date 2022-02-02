@@ -532,16 +532,16 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	int ypos2 = y + height;
 	
 	fb_pixel_t col1 = COL_MENUCONTENT_PLUS_6;
-	fb_pixel_t col2 = COL_MENUFOOT_INFO_PLUS_0;
+	fb_pixel_t col2 = COL_MENUHINT_PLUS_0;
 
 	// shadow / frame
 	if ( (mode == DL_INFO) || (mode == DL_HINT) )
 	{
 		// infoBox
-		frameBuffer->paintBoxRel(x, ypos2, width, info_height, COL_MENUFOOT_INFO_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.Foot_Info_gradient);
+		frameBuffer->paintBoxRel(x, ypos2, width, info_height, COL_MENUHINT_PLUS_0, NO_RADIUS, CORNER_NONE, g_settings.Hint_gradient);
 		
 		// shadow
-		if (g_settings.Foot_Info_shadow) frameBuffer->paintFrameBox(x, ypos2, width, info_height, col1);
+		if (g_settings.Hint_shadow) frameBuffer->paintFrameBox(x, ypos2, width, info_height, col1);
 	}
 	
 	//
@@ -558,7 +558,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		{
 			l_ow1 = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->getRenderWidth(option_info1.c_str());
 
-			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->RenderString(DLx + DLwidth - BORDER_RIGHT - l_ow1, DLy + (DLheight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->getHeight(), DLwidth - BORDER_LEFT - BORDER_RIGHT - l_ow1, option_info1.c_str(), COL_MENUFOOT_INFO, 0, true);
+			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->RenderString(DLx + DLwidth - BORDER_RIGHT - l_ow1, DLy + (DLheight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->getHeight(), DLwidth - BORDER_LEFT - BORDER_RIGHT - l_ow1, option_info1.c_str(), COL_MENUHINT, 0, true);
 		}
 
 		// info1
@@ -567,7 +567,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		{
 			l_w1 = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->getRenderWidth(info1.c_str());
 
-			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->RenderString(DLx + BORDER_LEFT, DLy + (DLheight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->getHeight(), DLwidth - BORDER_LEFT - BORDER_RIGHT - l_ow1, info1.c_str(), COL_MENUFOOT_INFO, 0, true);
+			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->RenderString(DLx + BORDER_LEFT, DLy + (DLheight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST]->getHeight(), DLwidth - BORDER_LEFT - BORDER_RIGHT - l_ow1, info1.c_str(), COL_MENUHINT, 0, true);
 		}
 
 		// option_info2
@@ -576,7 +576,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		{
 			l_ow2 = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getRenderWidth(option_info2.c_str());
 
-			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(DLx + DLwidth - BORDER_RIGHT - l_ow2, DLy + DLheight/2 + (DLheight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), DLwidth - BORDER_LEFT - BORDER_RIGHT - l_ow2, option_info2.c_str(), COL_MENUFOOT_INFO, 0, true);
+			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(DLx + DLwidth - BORDER_RIGHT - l_ow2, DLy + DLheight/2 + (DLheight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), DLwidth - BORDER_LEFT - BORDER_RIGHT - l_ow2, option_info2.c_str(), COL_MENUHINT, 0, true);
 		}
 
 		// info2
@@ -585,7 +585,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		{
 			l_w2 = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->getRenderWidth(info2.c_str());
 
-			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->RenderString (DLx + BORDER_LEFT, DLy + DLheight/2 + (DLheight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->getHeight(), DLwidth - BORDER_LEFT - BORDER_RIGHT - l_ow2, info2.c_str(), COL_MENUFOOT_INFO, 0, true); // UTF-8
+			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->RenderString (DLx + BORDER_LEFT, DLy + DLheight/2 + (DLheight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_DESCR]->getHeight(), DLwidth - BORDER_LEFT - BORDER_RIGHT - l_ow2, info2.c_str(), COL_MENUHINT, 0, true); // UTF-8
 		}
 	}
 	else if (mode == DL_HINT)

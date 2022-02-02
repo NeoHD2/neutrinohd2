@@ -252,10 +252,10 @@ class CMenuWidget : public CMenuTarget
 		void setHeadGradient(int grad){headGradient = grad; def_headGradient = false;};
 
 		// footInfo
-		void enablePaintFootInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh; /*initFrames();*/};
-		void setFootInfoMode(int mode = FOOT_INFO_MODE){footInfoMode = mode;};
+		void enablePaintItemInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh; /*initFrames();*/};
+		void setItemInfoMode(int mode = FOOT_INFO_MODE){footInfoMode = mode;};
 
-		//
+		// type/mode/pos
 		void setWidgetType(int type){widgetType = type; widget.push_back(widgetType);};
 		int getWidgetType(){return widgetType;};
 		void addWidgetType(int wtype){widget.push_back(wtype);};

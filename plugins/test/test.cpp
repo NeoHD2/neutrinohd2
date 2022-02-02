@@ -927,7 +927,7 @@ void CTestMenu::testCWidget()
 	rightWidget->setWidgetType(WIDGET_TYPE_FRAME);
 	rightWidget->setItemsPerPage(6,2);
 	rightWidget->setSelected(right_selected);
-	rightWidget->enablePaintFootInfo(80);
+	rightWidget->enablePaintItemInfo(80);
 
 	// loadPlaylist
 	CHintBox loadBox("CWidget(CFrameBox/ClistBox)", _("Scan for Movies ..."));
@@ -1706,8 +1706,8 @@ void CTestMenu::testClistBoxWidget()
 	rightWidget->enablePaintDate();
 	rightWidget->enablePaintFoot();
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
-	rightWidget->enablePaintFootInfo(80);
-	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
+	rightWidget->enablePaintItemInfo(80);
+	rightWidget->setItemInfoMode(FOOT_HINT_MODE);
 	rightWidget->enableShrinkMenu();
 
 	// loadPlaylist
@@ -2057,7 +2057,7 @@ void CTestMenu::testCWidgetItem()
 	rightWidget->setWidgetType(WIDGET_TYPE_FRAME);
 	rightWidget->setItemsPerPage(6,2);
 	rightWidget->setSelected(right_selected);
-	rightWidget->enablePaintFootInfo(80);
+	rightWidget->enablePaintItemInfo(80);
 
 	enum {
 		WIDGET_TOP,
@@ -3830,8 +3830,8 @@ void CTestMenu::testClistBox()
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// itemInfo
-	rightWidget->enablePaintFootInfo(70);
-	rightWidget->setFootInfoMode(FOOT_HINTHINT_MODE);
+	rightWidget->enablePaintItemInfo(70);
+	rightWidget->setItemInfoMode(FOOT_HINTHINT_MODE);
 	rightWidget->setItemInfoPos(Box.iX + Box.iWidth + 150, Box.iY + 100, 400, 400);
 	rightWidget->paintItemInfoShadow(SHADOW_ALL);
 	rightWidget->paintItemInfoFrame(true);
@@ -3948,8 +3948,8 @@ void CTestMenu::testClistBox2()
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	//rightWidget->enablePaintFootInfo(70);
-	//rightWidget->setFootInfoMode(FOOT_HINT_MODE);
+	//rightWidget->enablePaintItemInfo(70);
+	//rightWidget->setItemInfoMode(FOOT_HINT_MODE);
 
 	//rightWidget->setSelected(selected);
 	
@@ -4097,7 +4097,7 @@ void CTestMenu::testClistBox3()
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	rightWidget->enablePaintFootInfo(80);
+	rightWidget->enablePaintItemInfo(80);
 
 	//rightWidget->setSelected(selected);
 	
@@ -4393,8 +4393,8 @@ void CTestMenu::testClistBox5()
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	rightWidget->enablePaintFootInfo(80);
-	rightWidget->setFootInfoMode(FOOT_INFO_MODE);
+	rightWidget->enablePaintItemInfo(80);
+	rightWidget->setItemInfoMode(FOOT_INFO_MODE);
 
 	//rightWidget->setSelected(selected);
 	
@@ -4557,8 +4557,8 @@ void CTestMenu::testClistBox6()
 	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// footinfo
-	rightWidget->enablePaintFootInfo(80);
-	rightWidget->setFootInfoMode(FOOT_HINT_MODE);
+	rightWidget->enablePaintItemInfo(80);
+	rightWidget->setItemInfoMode(FOOT_HINT_MODE);
 
 	//rightWidget->setSelected(selected);
 	
@@ -5547,8 +5547,8 @@ void CTestMenu::testCMenuWidget()
 	menuWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
 	// footInfo
-	menuWidget->enablePaintFootInfo(80);
-	menuWidget->setFootInfoMode(FOOT_HINT_MODE);
+	menuWidget->enablePaintItemInfo(80);
+	menuWidget->setItemInfoMode(FOOT_HINT_MODE);
 
 	menuWidget->addKey(RC_info, this, "minfo");
 	menuWidget->addKey(RC_setup, this, "lsetup");
@@ -5606,8 +5606,8 @@ void CTestMenu::testCMenuWidget1()
 	//menuWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// foot info in menu mode are always enabled
-	menuWidget->enablePaintFootInfo(80);
-	menuWidget->setFootInfoMode(FOOT_HINT_MODE);
+	menuWidget->enablePaintItemInfo(80);
+	menuWidget->setItemInfoMode(FOOT_HINT_MODE);
 
 	menuWidget->addKey(RC_info, this, "minfo");
 	menuWidget->addKey(RC_setup, this, "lsetup");

@@ -72,7 +72,7 @@
 #define COL_INFOBAR_SHADOW			254-8*8
 #define COL_COLORED_EVENTS_INFOBAR		254-8*9
 #define COL_COLORED_EVENTS_CHANNELLIST	254-8*10
-#define COL_MENUFOOT_INFO			254-8*11
+#define COL_MENUHINT				254-8*11
 
 // gui common colors
 #define COL_MAROON_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_MAROON]
@@ -127,8 +127,8 @@
 // foot
 #define COL_MENUFOOT_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_MENUFOOT + 0]
 
-// footInfo
-#define COL_MENUFOOT_INFO_PLUS_0        	CFrameBuffer::getInstance()->realcolor[COL_MENUFOOT_INFO + 0]
+// itemInfo
+#define COL_MENUHINT_PLUS_0        	CFrameBuffer::getInstance()->realcolor[COL_MENUHINT + 0]
 
 
 //

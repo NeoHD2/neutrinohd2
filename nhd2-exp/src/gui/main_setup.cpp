@@ -82,7 +82,6 @@ void CMainSettingsMenu::showMenu(void)
 	mainSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
 	mainSettings->enableShrinkMenu();
 	mainSettings->setMenuPosition(MENU_POSITION_CENTER);
-	mainSettings->enablePaintFootInfo();
 	mainSettings->enablePaintDate();
 
 	// video settings

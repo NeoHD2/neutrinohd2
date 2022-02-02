@@ -100,7 +100,6 @@ void CServiceMenu::showMenu(void)
 	service->setWidgetType(WIDGET_TYPE_CLASSIC);
 	service->enableShrinkMenu();
 	service->setMenuPosition(MENU_POSITION_CENTER);
-	service->enablePaintFootInfo();
 	service->enablePaintDate();
 	
 	// tuner/scan setup

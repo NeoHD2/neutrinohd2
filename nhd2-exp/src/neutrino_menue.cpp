@@ -85,7 +85,6 @@ void CNeutrinoApp::mainMenu(void)
 	nMenu->enableShrinkMenu();
 	nMenu->setMenuPosition(MENU_POSITION_CENTER);
 	nMenu->enablePaintDate();
-	nMenu->enablePaintFootInfo();
 		  
 	// tv modus
 	nMenu->addItem(new CMenuForwarder(_("TV Mode"), true, NULL, this, "tv", RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_TV, _("TV Mode")), true);
@@ -252,7 +251,6 @@ bool CNeutrinoApp::showUserMenu(int button)
 	menu->setWidgetType(WIDGET_TYPE_CLASSIC);
 	menu->enableShrinkMenu();
 	menu->setMenuPosition(MENU_POSITION_CENTER);
-	menu->enablePaintFootInfo();
 
 	menu->addKey(RC_blue, this, "plugins");
 

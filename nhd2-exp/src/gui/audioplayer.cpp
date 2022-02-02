@@ -1358,7 +1358,7 @@ void CAudioPlayerGui::showPlaylist()
 	alist->enablePaintFoot();
 	alist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 	
-	alist->enablePaintFootInfo(70);
+	alist->enablePaintItemInfo(70);
 	
 	alist->paint();
 }

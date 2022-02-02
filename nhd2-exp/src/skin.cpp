@@ -1300,8 +1300,8 @@ void CNeutrinoApp::parseSkin()
 				// iteminfo
 				if (paintiteminfo)
 				{
-					listBox->enablePaintFootInfo(70);
-					listBox->setFootInfoMode(iteminfomode);
+					listBox->enablePaintItemInfo(70);
+					listBox->setItemInfoMode(iteminfomode);
 					
 					listBox->setItemInfoPos(iteminfo_posx, iteminfo_posy, iteminfo_width, iteminfo_height);
 					listBox->paintItemInfoFrame(iteminfoframe);
@@ -1820,8 +1820,8 @@ void CNeutrinoApp::unloadSkin()
 	g_settings.Foot_gradient = DARK2LIGHT;
 	
 	// itemInfo
-	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", true);
-	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
+	g_settings.Hint_shadow = configfile.getBool("Hint_shadow", true);
+	g_settings.Hint_gradient = configfile.getInt32("Hint_gradient", NOGRADIENT);
 	
 	// progressbar color
 	g_settings.progressbar_color = configfile.getInt32("progressbar_color", 1);
@@ -1905,15 +1905,15 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.menu_Foot_Text_green = skinConfig->getInt32( "menu_Foot_Text_green", 100);
 		g_settings.menu_Foot_Text_blue = skinConfig->getInt32( "menu_Foot_Text_blue", 100);
 
-		g_settings.menu_FootInfo_alpha = skinConfig->getInt32( "menu_FootInfo_alpha", 0);
-		g_settings.menu_FootInfo_red = skinConfig->getInt32( "menu_FootInfo_red", 15);
-		g_settings.menu_FootInfo_green = skinConfig->getInt32( "menu_FootInfo_green", 15);
-		g_settings.menu_FootInfo_blue = skinConfig->getInt32( "menu_FootInfo_blue", 15);
+		g_settings.menu_Hint_alpha = skinConfig->getInt32( "menu_Hint_alpha", 0);
+		g_settings.menu_Hint_red = skinConfig->getInt32( "menu_Hint_red", 15);
+		g_settings.menu_Hint_green = skinConfig->getInt32( "menu_Hint_green", 15);
+		g_settings.menu_Hint_blue = skinConfig->getInt32( "menu_Hint_blue", 15);
 		
-		g_settings.menu_FootInfo_Text_alpha = skinConfig->getInt32( "menu_FootInfo_Text_alpha", 0);
-		g_settings.menu_FootInfo_Text_red = skinConfig->getInt32( "menu_FootInfo_Text_red", 85);
-		g_settings.menu_FootInfo_Text_green = skinConfig->getInt32( "menu_FootInfo_Text_green", 85);
-		g_settings.menu_FootInfo_Text_blue = skinConfig->getInt32( "menu_FootInfo_Text_blue", 85);
+		g_settings.menu_Hint_Text_alpha = skinConfig->getInt32( "menu_Hint_Text_alpha", 0);
+		g_settings.menu_Hint_Text_red = skinConfig->getInt32( "menu_Hint_Text_red", 85);
+		g_settings.menu_Hint_Text_green = skinConfig->getInt32( "menu_Hint_Text_green", 85);
+		g_settings.menu_Hint_Text_blue = skinConfig->getInt32( "menu_Hint_Text_blue", 85);
 		
 		// head
 		g_settings.Head_gradient = skinConfig->getInt32("Head_gradient", DARK2LIGHT2DARK);
@@ -1940,8 +1940,8 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", false);
 		
 		// itemInfo
-		g_settings.Foot_Info_shadow = skinConfig->getBool("Foot_Info_shadow", true);
-		g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
+		g_settings.Hint_shadow = skinConfig->getBool("Hint_shadow", true);
+		g_settings.Hint_gradient = configfile.getInt32("Hint_gradient", NOGRADIENT);
 		
 		// progressbar color
 		g_settings.progressbar_color = skinConfig->getInt32("progressbar_color", 1);
@@ -2023,14 +2023,14 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	skinConfig->setInt32( "menu_Foot_Text_green", g_settings.menu_Foot_Text_green );
 	skinConfig->setInt32( "menu_Foot_Text_blue", g_settings.menu_Foot_Text_blue );
 
-	skinConfig->setInt32( "menu_FootInfo_alpha", g_settings.menu_FootInfo_alpha );
-	skinConfig->setInt32( "menu_FootInfo_red", g_settings.menu_FootInfo_red );
-	skinConfig->setInt32( "menu_FootInfo_green", g_settings.menu_FootInfo_green );
-	skinConfig->setInt32( "menu_FootInfo_blue", g_settings.menu_FootInfo_blue );
-	skinConfig->setInt32( "menu_FootInfo_Text_alpha", g_settings.menu_FootInfo_Text_alpha );
-	skinConfig->setInt32( "menu_FootInfo_Text_red", g_settings.menu_FootInfo_Text_red );
-	skinConfig->setInt32( "menu_FootInfo_Text_green", g_settings.menu_FootInfo_Text_green );
-	skinConfig->setInt32( "menu_FootInfo_Text_blue", g_settings.menu_FootInfo_Text_blue );
+	skinConfig->setInt32( "menu_Hint_alpha", g_settings.menu_Hint_alpha );
+	skinConfig->setInt32( "menu_Hint_red", g_settings.menu_Hint_red );
+	skinConfig->setInt32( "menu_Hint_green", g_settings.menu_Hint_green );
+	skinConfig->setInt32( "menu_Hint_blue", g_settings.menu_Hint_blue );
+	skinConfig->setInt32( "menu_Hint_Text_alpha", g_settings.menu_Hint_Text_alpha );
+	skinConfig->setInt32( "menu_Hint_Text_red", g_settings.menu_Hint_Text_red );
+	skinConfig->setInt32( "menu_Hint_Text_green", g_settings.menu_Hint_Text_green );
+	skinConfig->setInt32( "menu_Hint_Text_blue", g_settings.menu_Hint_Text_blue );
 	
 	//
 	skinConfig->setInt32("Head_gradient", g_settings.Head_gradient);
@@ -2057,8 +2057,8 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	skinConfig->setBool("menu_shadow", g_settings.menu_shadow);
 	
 	// itemInfo
-	skinConfig->setBool("Foot_Info_shadow", g_settings.Foot_Info_shadow);
-	skinConfig->setInt32("Foot_Info_gradient", g_settings.Foot_Info_gradient);
+	skinConfig->setBool("Hint_shadow", g_settings.Hint_shadow);
+	skinConfig->setInt32("Hint_gradient", g_settings.Hint_gradient);
 	
 	// progressbar color
 	skinConfig->setInt32("progressbar_color", g_settings.progressbar_color);

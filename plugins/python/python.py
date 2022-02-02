@@ -183,7 +183,7 @@ class testMenu(CMenuTarget):
 		self.listWidget.addWidgetType(WIDGET_TYPE_CLASSIC)
 		self.listWidget.addWidgetType(WIDGET_TYPE_EXTENDED)
 		self.listWidget.addWidgetType(WIDGET_TYPE_FRAME)
-		self.listWidget.enablePaintFootInfo()
+		self.listWidget.enablePaintItemInfo(70)
 
 		# messageBox
 		item1 = CMenuForwarder("CMessageBox")

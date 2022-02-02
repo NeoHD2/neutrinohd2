@@ -689,15 +689,15 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.menu_Foot_Text_green = configfile.getInt32( "menu_Foot_Text_green", 100);
 	g_settings.menu_Foot_Text_blue = configfile.getInt32( "menu_Foot_Text_blue", 100);
 
-	g_settings.menu_FootInfo_alpha = configfile.getInt32( "menu_FootInfo_alpha", 20);
-	g_settings.menu_FootInfo_red = configfile.getInt32( "menu_FootInfo_red", 25);
-	g_settings.menu_FootInfo_green = configfile.getInt32( "menu_FootInfo_green", 25);
-	g_settings.menu_FootInfo_blue = configfile.getInt32( "menu_FootInfo_blue", 25);
+	g_settings.menu_Hint_alpha = configfile.getInt32( "menu_Hint_alpha", 20);
+	g_settings.menu_Hint_red = configfile.getInt32( "menu_Hint_red", 25);
+	g_settings.menu_Hint_green = configfile.getInt32( "menu_Hint_green", 25);
+	g_settings.menu_Hint_blue = configfile.getInt32( "menu_Hint_blue", 25);
 		
-	g_settings.menu_FootInfo_Text_alpha = configfile.getInt32( "menu_FootInfo_Text_alpha", 0);
-	g_settings.menu_FootInfo_Text_red = configfile.getInt32( "menu_FootInfo_Text_red", 85);
-	g_settings.menu_FootInfo_Text_green = configfile.getInt32( "menu_FootInfo_Text_green", 85);
-	g_settings.menu_FootInfo_Text_blue = configfile.getInt32( "menu_FootInfo_Text_blue", 85);
+	g_settings.menu_Hint_Text_alpha = configfile.getInt32( "menu_Hint_Text_alpha", 0);
+	g_settings.menu_Hint_Text_red = configfile.getInt32( "menu_Hint_Text_red", 85);
+	g_settings.menu_Hint_Text_green = configfile.getInt32( "menu_Hint_Text_green", 85);
+	g_settings.menu_Hint_Text_blue = configfile.getInt32( "menu_Hint_Text_blue", 85);
 
 	strcpy( g_settings.font_file, configfile.getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
 
@@ -936,8 +936,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.infobar_shadow = configfile.getBool("infobar_shadow", false);
 	
 	//
-	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
-	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", true);
+	g_settings.Hint_gradient = configfile.getInt32("Hint_gradient", NOGRADIENT);
+	g_settings.Hint_shadow = configfile.getBool("Hint_shadow", true);
 	// END MISC OPTS
 
 	// HDD
@@ -1185,15 +1185,15 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32( "menu_Foot_Text_green", g_settings.menu_Foot_Text_green );
 	configfile.setInt32( "menu_Foot_Text_blue", g_settings.menu_Foot_Text_blue );
 
-	configfile.setInt32( "menu_FootInfo_alpha", g_settings.menu_FootInfo_alpha );
-	configfile.setInt32( "menu_FootInfo_red", g_settings.menu_FootInfo_red );
-	configfile.setInt32( "menu_FootInfo_green", g_settings.menu_FootInfo_green );
-	configfile.setInt32( "menu_FootInfo_blue", g_settings.menu_FootInfo_blue );
+	configfile.setInt32( "menu_Hint_alpha", g_settings.menu_Hint_alpha );
+	configfile.setInt32( "menu_Hint_red", g_settings.menu_Hint_red );
+	configfile.setInt32( "menu_Hint_green", g_settings.menu_Hint_green );
+	configfile.setInt32( "menu_Hint_blue", g_settings.menu_Hint_blue );
 	
-	configfile.setInt32( "menu_FootInfo_Text_alpha", g_settings.menu_FootInfo_Text_alpha );
-	configfile.setInt32( "menu_FootInfo_Text_red", g_settings.menu_FootInfo_Text_red );
-	configfile.setInt32( "menu_FootInfo_Text_green", g_settings.menu_FootInfo_Text_green );
-	configfile.setInt32( "menu_FootInfo_Text_blue", g_settings.menu_FootInfo_Text_blue );
+	configfile.setInt32( "menu_Hint_Text_alpha", g_settings.menu_Hint_Text_alpha );
+	configfile.setInt32( "menu_Hint_Text_red", g_settings.menu_Hint_Text_red );
+	configfile.setInt32( "menu_Hint_Text_green", g_settings.menu_Hint_Text_green );
+	configfile.setInt32( "menu_Hint_Text_blue", g_settings.menu_Hint_Text_blue );
 
 	configfile.setInt32( "screen_StartX", g_settings.screen_StartX );
 	configfile.setInt32( "screen_StartY", g_settings.screen_StartY );
@@ -1382,8 +1382,8 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setBool("Foot_line", g_settings.Foot_line);
 	
 	//
-	configfile.setInt32("Foot_Info_gradient", g_settings.Foot_Info_gradient);
-	configfile.setBool("Foot_Info_shadow", g_settings.Foot_Info_shadow);
+	configfile.setInt32("Hint_gradient", g_settings.Hint_gradient);
+	configfile.setBool("Hint_shadow", g_settings.Hint_shadow);
 	
 	//
 	configfile.setInt32("infobar_gradient", g_settings.infobar_gradient);

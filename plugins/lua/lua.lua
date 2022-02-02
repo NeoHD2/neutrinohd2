@@ -334,7 +334,7 @@ function testCMenuWidget()
 	local listBoxWidget = neutrino.CMenuWidget("lua: CMenuWidget")
 	listBoxWidget:setWidgetType(neutrino.WIDGET_TYPE_STANDARD)
 	listBoxWidget:setWidgetMode(neutrino.MODE_MENU)
-	listBoxWidget:enablePaintFootInfo()
+	listBoxWidget:enablePaintItemInfo(70)
 	listBoxWidget:enableShrinkMenu()
 
 	-- CMessageBox
@@ -1073,7 +1073,7 @@ function main()
 
 	m:setWidgetMode(neutrino.MODE_MENU)
 	m:enableShrinkMenu()
-	m:enablePaintFootInfo()
+	m:enablePaintItemInfo(70)
 	m:setFootInfoMode(neutrino.FOOT_HINT_MODE)
 
 	item1 = neutrino.CMenuForwarder("testCWidget", true, "", null, "listWidget")

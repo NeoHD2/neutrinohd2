@@ -191,15 +191,15 @@ struct SNeutrinoSettings
 	unsigned char menu_Foot_Text_green;
 	unsigned char menu_Foot_Text_blue;
 
-	unsigned char menu_FootInfo_alpha;
-	unsigned char menu_FootInfo_red;
-	unsigned char menu_FootInfo_green;
-	unsigned char menu_FootInfo_blue;
+	unsigned char menu_Hint_alpha;
+	unsigned char menu_Hint_red;
+	unsigned char menu_Hint_green;
+	unsigned char menu_Hint_blue;
 	
-	unsigned char menu_FootInfo_Text_alpha;
-	unsigned char menu_FootInfo_Text_red;
-	unsigned char menu_FootInfo_Text_green;
-	unsigned char menu_FootInfo_Text_blue;
+	unsigned char menu_Hint_Text_alpha;
+	unsigned char menu_Hint_Text_red;
+	unsigned char menu_Hint_Text_green;
+	unsigned char menu_Hint_Text_blue;
 
 	char	font_file[100];
 
@@ -470,8 +470,8 @@ struct SNeutrinoSettings
 	int Foot_line;
 	
 	//
-	int Foot_Info_gradient;
-	int Foot_Info_shadow;
+	int Hint_gradient;
+	int Hint_shadow;
 	
 	// infobar
 	int infobar_gradient;
