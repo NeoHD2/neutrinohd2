@@ -962,7 +962,7 @@ void CNeutrinoApp::parseSkin()
 			wdg->id = id;
 			if (name != NULL) wdg->name = name;
 			wdg->paintMainFrame(paintframe);
-			if (color != NULL) wdg->setColor(wColor); // FIXME: corrupted
+			if (color != NULL) wdg->setColor(wColor);
 			wdg->setGradient(gradient);
 			wdg->setCorner(corner, radius);
 			if (savescreen) wdg->enableSaveScreen();
@@ -1259,6 +1259,17 @@ void CNeutrinoApp::parseSkin()
 				// iteminfo
 				unsigned int paintiteminfo = xmlGetSignedNumericAttribute(listbox_node, "paintiteminfo", 0);
 				unsigned int iteminfomode = xmlGetSignedNumericAttribute(listbox_node, "iteminfomode", 0);
+				
+				unsigned int iteminfoframe = xmlGetSignedNumericAttribute(listbox_node, "iteminfoframe", 0);
+				unsigned int iteminfo_posx = xmlGetSignedNumericAttribute(listbox_node, "iteminfoposx", 0);
+				unsigned int iteminfo_posy = xmlGetSignedNumericAttribute(listbox_node, "iteminfoposy", 0);
+				unsigned int iteminfo_width = xmlGetSignedNumericAttribute(listbox_node, "iteminfowidth", 0);
+				unsigned int iteminfo_height = xmlGetSignedNumericAttribute(listbox_node, "iteminfoheight", 0);
+				char* iteminfo_color = NULL;
+				iteminfo_color = xmlGetAttribute(listbox_node, (char*)"iteminfocolor");
+				uint32_t hintColor = COL_MENUCONTENT_PLUS_0;
+				
+				if (iteminfo_color) hintColor = convertColor(iteminfo_color);
 					
 				ClistBox* listBox = NULL;
 					
@@ -1271,8 +1282,6 @@ void CNeutrinoApp::parseSkin()
 				listBox->paintItemShadow(shadow);
 				if (mode == 0) listBox->setMenuPosition(position);
 				if (shrink) listBox->enableShrinkMenu();
-				
-				printf("parseSkin: mode:%d\n", mode);
 				
 				//
 				if (painthead)
@@ -1293,10 +1302,15 @@ void CNeutrinoApp::parseSkin()
 				{
 					listBox->enablePaintFootInfo(70);
 					listBox->setFootInfoMode(iteminfomode);
+					
+					listBox->setItemInfoPos(iteminfo_posx, iteminfo_posy, iteminfo_width, iteminfo_height);
+					listBox->paintItemInfoFrame(iteminfoframe);
+					if (iteminfo_color) listBox->setItemInfoColor(hintColor);
 				}
 					
 				CMenuItem* menuItem = NULL;
-					
+				
+				// ITEM	
 				listboxitem_node = listbox_node->xmlChildrenNode;
 					
 				while ((listboxitem_node = xmlGetNextOccurence(listboxitem_node, "ITEM")) != NULL) 
@@ -1347,9 +1361,23 @@ void CNeutrinoApp::parseSkin()
 					if (directkey) menuItem->setDirectKey(directkey);	
 					if (iconName) menuItem->setIconName(iconName);	
 					if (hint) menuItem->setHint(hint);
-					if (itemIcon) menuItem->setItemIcon(itemIcon);
 					if (lines) menuItem->set2lines();
 					if (option) menuItem->setOption(option);
+					
+					if (itemIcon)
+					{
+						std::string filename = CONFIGDIR "/skins/";
+						filename += g_settings.preferred_skin;
+						filename += "/";
+						filename += itemIcon;
+						
+						if (file_exists(filename.c_str()))
+							menuItem->setItemIcon(filename.c_str());
+						else
+						{
+							menuItem->setItemIcon(itemIcon);
+						}
+					}
 						
 					listBox->addItem(menuItem);
 				
@@ -1795,6 +1823,10 @@ void CNeutrinoApp::unloadSkin()
 	g_settings.Foot_Info_shadow = configfile.getBool("Foot_Info_shadow", true);
 	g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
 	
+	// progressbar color
+	g_settings.progressbar_color = configfile.getInt32("progressbar_color", 1);
+	g_settings.progressbar_gradient = configfile.getInt32("progressbar_gradient", DARK2LIGHT2DARK);
+	
 	delete themes;
 	themes = NULL;
 }
@@ -1911,6 +1943,10 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.Foot_Info_shadow = skinConfig->getBool("Foot_Info_shadow", true);
 		g_settings.Foot_Info_gradient = configfile.getInt32("Foot_Info_gradient", NOGRADIENT);
 		
+		// progressbar color
+		g_settings.progressbar_color = skinConfig->getInt32("progressbar_color", 1);
+		g_settings.progressbar_gradient = skinConfig->getInt32("progressbar_gradient", DARK2LIGHT2DARK);
+		
 		strcpy( g_settings.font_file, skinConfig->getString( "font_file", DATADIR "/neutrino/fonts/arial.ttf" ).c_str() );
 
 		colorSetupNotifier = new CColorSetupNotifier;
@@ -2023,6 +2059,10 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	// itemInfo
 	skinConfig->setBool("Foot_Info_shadow", g_settings.Foot_Info_shadow);
 	skinConfig->setInt32("Foot_Info_gradient", g_settings.Foot_Info_gradient);
+	
+	// progressbar color
+	skinConfig->setInt32("progressbar_color", g_settings.progressbar_color);
+	skinConfig->setInt32("progressbar_gradient", g_settings.progressbar_gradient);
 		
 	skinConfig->setString("font_file", g_settings.font_file);
 

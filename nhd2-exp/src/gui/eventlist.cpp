@@ -355,7 +355,7 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 					} 
 					else 
 					{
-						MessageBox(_("Schedule ecord"), _("The event is flagged for record.\nThe box will power on and \nswitch to this channel at the given time."), mbrBack, mbBack, NEUTRINO_ICON_INFO);
+						MessageBox(_("Schedule Record"), _("The event is flagged for record.\nThe box will power on and \nswitch to this channel at the given time."), mbrBack, mbBack, NEUTRINO_ICON_INFO);
 					}
 				}
 				timerlist.clear();
@@ -700,9 +700,9 @@ void EventList::paint(t_channel_id channel_id)
 	listBox->setFootLine(g_settings.Foot_line);
 
 	if(sort_mode == SORT_DESCRIPTION)
-		FootButtons[3].localename = "sorting(A..Z)";
+		FootButtons[3].localename = _("sorting(A..Z)");
 	else
-		FootButtons[3].localename = "sorting(Time)";
+		FootButtons[3].localename = _("sorting(Time)");
 
 	listBox->setFootButtons(FootButtons, NUM_LIST_BUTTONS);
 

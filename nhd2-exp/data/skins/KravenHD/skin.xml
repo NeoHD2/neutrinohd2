@@ -6,48 +6,38 @@
 
 	<WIDGET name="mediaplayer" id="8" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 
-		<!-- title -->
 		<LABEL posx="640" posy="50" width="640" height="50" text="Media Player" halign="1">
 		</LABEL>
-		
-		<!-- logo -->	
+			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
 		</IMAGE>
 		
-		<!-- date -->
+		
 		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
 		</TIME>
 		
-		<!-- time -->
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<!-- menu -->
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" shadow="1">
 			<INTEGRATION id="0x04" shortcut="1">
 			</INTEGRATION>
 		</LISTBOX>
 	</WIDGET>
-	
-	<WIDGET name="information" id="5" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 
-		<!-- title -->
+	<WIDGET name="information" id="5" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LABEL posx="640" posy="50" width="640" height="50" text="Information" halign="1">
 		</LABEL>
-		
-		<!-- logo -->	
+			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
 		</IMAGE>
 		
-		<!-- date -->
 		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
 		</TIME>
 		
-		<!-- time -->
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<!-- menu -->
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" shadow="1">
 			<ITEM name="menuforwarder" id="5" localename="Information" itemicon="hint_dboxinfo" target="60">
 			</ITEM>
@@ -59,26 +49,20 @@
 			</INTEGRATION>
 		</LISTBOX>
 	</WIDGET>
-	
-	<WIDGET name="powermenu" id="7" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 
-		<!-- title -->
+	<WIDGET name="powermenu" id="7" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LABEL posx="640" posy="50" width="640" height="50" text="Power Menu" halign="1">
 		</LABEL>
-		
-		<!-- logo -->	
+			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
 		</IMAGE>
 		
-		<!-- date -->
 		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
 		</TIME>
 		
-		<!-- time -->
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<!-- menu -->
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" shadow="1">
 			<ITEM name="menuforwarder" id="5" localename="Sleep Timer" itemicon="hint_sleeptimer" target="65">
 			</ITEM>
@@ -92,26 +76,20 @@
 			</ITEM>
 		</LISTBOX>
 	</WIDGET>
-	
-	<WIDGET name="service" id="4" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 
-		<!-- title -->
+	<WIDGET name="service" id="4" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LABEL posx="640" posy="50" width="640" height="50" text="Service" halign="1">
 		</LABEL>
-		
-		<!-- logo -->	
+			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
 		</IMAGE>
 		
-		<!-- date -->
 		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
 		</TIME>
 		
-		<!-- time -->
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<!-- menu -->
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" shadow="1">
 			<ITEM name="menuforwarder" id="5" localename="Scan transponder" itemicon="hint_scan" target="40">
 			</ITEM>
@@ -127,26 +105,20 @@
 			</ITEM>
 		</LISTBOX>
 	</WIDGET>
-	
-	<WIDGET name="features" id="6" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 
-		<!-- title -->
+	<WIDGET name="features" id="6" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LABEL posx="640" posy="50" width="640" height="50" text="Features" halign="1">
 		</LABEL>
-		
-		<!-- logo -->	
+			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
 		</IMAGE>
 		
-		<!-- date -->
 		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
 		</TIME>
 		
-		<!-- time -->
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<!-- menu -->
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" shadow="1">
 			<ITEM name="menuforwarder" id="5" localename="Timer list" itemicon="hint_timers" target="47">
 			</ITEM>
@@ -156,26 +128,20 @@
 			</INTEGRATION>
 		</LISTBOX>
 	</WIDGET>
-	
-	<WIDGET name="epgmenu" id="3" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 
-		<!-- title -->
+	<WIDGET name="epgmenu" id="3" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LABEL posx="640" posy="50" width="640" height="50" text="EPG - Program Information" halign="1">
 		</LABEL>
 		
-		<!-- logo -->	
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
 		</IMAGE>
 		
-		<!-- date -->
 		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
 		</TIME>
 		
-		<!-- time -->
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<!-- menu -->
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" shadow="1">
 			<ITEM name="menuforwarder" id="5" localename="Eventlist current programm" itemicon="hint_sleeptimer" target="45">
 			</ITEM>
@@ -189,26 +155,20 @@
 			</ITEM>
 		</LISTBOX>
 	</WIDGET>
-	
-	<WIDGET name="miscsettings" id="20" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 
-		<!-- title -->
+	<WIDGET name="miscsettings" id="20" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LABEL posx="640" posy="50" width="640" height="50" text="Miscsettings" halign="1">
 		</LABEL>
-		
-		<!-- logo -->	
+			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
 		</IMAGE>
 		
-		<!-- date -->
 		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
 		</TIME>
 		
-		<!-- time -->
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<!-- menu -->
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" shadow="1">
 			<ITEM name="menuforwarder" id="5" localename="General Settings" itemicon="hint_settings" target="33">
 			</ITEM>
@@ -222,26 +182,20 @@
 			</ITEM>
 		</LISTBOX>
 	</WIDGET>
-	
-	<WIDGET name="osd settings" id="15" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 
-		<!-- title -->
+	<WIDGET name="osd settings" id="15" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LABEL posx="640" posy="50" width="640" height="50" text="OSD settings" halign="1">
 		</LABEL>
-		
-		<!-- logo -->	
+			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
 		</IMAGE>
 		
-		<!-- date -->
 		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
 		</TIME>
 		
-		<!-- time -->
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<!-- menu -->
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" shadow="1">
 			<ITEM name="menuforwarder" id="5" localename="Skin select" itemicon="hint_themes" target="22">
 			</ITEM>
@@ -265,26 +219,20 @@
 			</ITEM>
 		</LISTBOX>
 	</WIDGET>
-	
-	<WIDGET name="settings" id="2" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 
-		<!-- title -->
+	<WIDGET name="settings" id="2" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LABEL posx="640" posy="50" width="640" height="50" text="Settings" halign="1">
 		</LABEL>
-		
-		<!-- logo -->	
+			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
 		</IMAGE>
 		
-		<!-- date -->
 		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
 		</TIME>
 		
-		<!-- time -->
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<!-- menu -->
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" shadow="1">
 			<ITEM name="menuforwarder" id="5" localename="Video settings" itemicon="hint_video" target="9">
 			</ITEM>
@@ -318,26 +266,20 @@
 		</KEY>
 	</WIDGET>
 
-	<WIDGET name="mainmenu" id="1" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
-
-		<!-- title -->
+	<WIDGET name="mainmenu" id="1" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="0">
 		<LABEL posx="640" posy="50" width="640" height="50" text="Main Menu" halign="1">
 		</LABEL>
 		
-		<!-- logo -->	
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
 		</IMAGE>
 		
-		<!-- date -->
 		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
 		</TIME>
 		
-		<!-- time -->
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<!-- menu -->
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" shadow="1">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" mode="0" shadow="1">
 			<ITEM name="menuforwarder" id="5" localename="EPG / Timer" target="3">
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Features" target="6">

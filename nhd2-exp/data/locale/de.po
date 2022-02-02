@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 17:54+0100\n"
+"POT-Creation-Date: 2022-02-02 18:33+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -113,10 +113,10 @@ msgid "Advanced"
 msgstr "Erweiterte Auswahl"
 
 msgid "Age"
-msgstr ""
+msgstr "Alter"
 
 msgid "Alarm time"
-msgstr ""
+msgstr "Alarmzeit"
 
 msgid "All Services"
 msgstr "Alle Services"
@@ -128,7 +128,7 @@ msgid "Alpha"
 msgstr ""
 
 msgid "Alpha Setup"
-msgstr ""
+msgstr "Alpha Einstellungen"
 
 msgid "Analog Output"
 msgstr "Analog-Ausgang"
@@ -146,7 +146,7 @@ msgid "Are you sure to init ?"
 msgstr ""
 
 msgid "Aspect Ratio"
-msgstr ""
+msgstr "Bildschirmformat"
 
 msgid "Audio"
 msgstr ""
@@ -1262,10 +1262,10 @@ msgid "Modulation"
 msgstr ""
 
 msgid "Monday"
-msgstr ""
+msgstr "Montag"
 
 msgid "More Screenings on this Channel"
-msgstr ""
+msgstr "Weitere Termine auf diesem Kanal"
 
 msgid "Most popular today"
 msgstr ""
@@ -1426,12 +1426,15 @@ msgid ""
 "Please execute a scan\n"
 "(MENU-key -> service)"
 msgstr ""
+"Es wurden keine Kanäle gefunden!\n"
+"Führen Sie bitte eine Kanalsuche durch\n"
+"(MENU-Taste -> Service)"
 
 msgid "No detailed informations available"
-msgstr ""
+msgstr "Keine ausführlichen Informationen verfügbar"
 
 msgid "No info for current program available"
-msgstr ""
+msgstr "keine Programminformationen (EPG) gefunden"
 
 msgid "No key"
 msgstr ""
@@ -1688,7 +1691,7 @@ msgid "Reading Flash"
 msgstr ""
 
 msgid "Reboot"
-msgstr ""
+msgstr "Neustart"
 
 msgid "Receipt signal"
 msgstr ""
@@ -1697,7 +1700,7 @@ msgid "Receiving list, please wait"
 msgstr ""
 
 msgid "Record"
-msgstr ""
+msgstr "Aufnahme"
 
 msgid "Record AC3 streams"
 msgstr ""
@@ -1736,7 +1739,7 @@ msgid "Records browser"
 msgstr ""
 
 msgid "Refresh EPG"
-msgstr ""
+msgstr "Aktualisieren"
 
 msgid "Region"
 msgstr ""
@@ -1941,16 +1944,13 @@ msgid "Scart Mode"
 msgstr ""
 
 msgid "Schedule"
-msgstr ""
+msgstr "Umschalten"
 
 msgid "Schedule Event"
-msgstr ""
+msgstr "Umschalten"
 
 msgid "Schedule Record"
-msgstr ""
-
-msgid "Schedule ecord"
-msgstr ""
+msgstr "Aufnehmen"
 
 msgid "Screen"
 msgstr "Bildschirm"
@@ -1977,7 +1977,7 @@ msgid "Scroll up"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "Suche"
 
 msgid "Search for keyword in EPG..."
 msgstr ""
@@ -2100,7 +2100,7 @@ msgid "Shuffle"
 msgstr ""
 
 msgid "Shutdown"
-msgstr ""
+msgstr "Ausschalten"
 
 msgid "Shutdown time in min. (000=off)"
 msgstr ""
@@ -3345,13 +3345,13 @@ msgid "scan for Movies ..."
 msgstr ""
 
 msgid "schedule"
-msgstr ""
+msgstr "Umschalten"
 
 msgid "science fiction/fantasy/horror"
 msgstr ""
 
 msgid "search"
-msgstr ""
+msgstr "Suche"
 
 msgid "see timer"
 msgstr ""
@@ -3405,8 +3405,12 @@ msgstr ""
 msgid "social/spiritual sciences"
 msgstr ""
 
+#, fuzzy
+msgid "sorting(A..Z)"
+msgstr "Sortieren(A..Z)"
+
 msgid "sorting(Time)"
-msgstr ""
+msgstr "Sortieren(Zeit)"
 
 msgid "special events (Olympic Games,World Cup etc.)"
 msgstr ""

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 17:54+0100\n"
+"POT-Creation-Date: 2022-02-02 18:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2951,11 +2951,8 @@ msgstr ""
 
 #: ../../src/gui/epgplus.cpp:1403 ../../src/gui/epgview.cpp:773
 #: ../../src/gui/epgview.cpp:778 ../../src/gui/eventlist.cpp:353
-msgid "Schedule Record"
-msgstr ""
-
 #: ../../src/gui/eventlist.cpp:358
-msgid "Schedule ecord"
+msgid "Schedule Record"
 msgstr ""
 
 #: ../../src/gui/osd_setup.cpp:123
@@ -5025,7 +5022,11 @@ msgstr ""
 msgid "social/spiritual sciences"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:602
+#: ../../src/gui/eventlist.cpp:703
+msgid "sorting(A..Z)"
+msgstr ""
+
+#: ../../src/gui/eventlist.cpp:602 ../../src/gui/eventlist.cpp:705
 msgid "sorting(Time)"
 msgstr ""
 

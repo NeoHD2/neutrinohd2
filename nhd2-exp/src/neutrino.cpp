@@ -912,7 +912,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	// progressbar color
 	g_settings.progressbar_color = configfile.getInt32("progressbar_color", 1);
-	g_settings.progressbar_gradient = configfile.getInt32("progressbar_gradient", NOGRADIENT);
+	g_settings.progressbar_gradient = configfile.getInt32("progressbar_gradient", DARK2LIGHT2DARK);
 
 	// head
 	g_settings.Head_corner = configfile.getInt32("Head_corner", CORNER_TOP);
