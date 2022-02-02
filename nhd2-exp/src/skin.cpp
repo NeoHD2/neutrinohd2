@@ -911,10 +911,12 @@ void CNeutrinoApp::parseSkin()
 	if (search) 
 	{
 		dprintf(DEBUG_NORMAL, "CNeutrinoApp:parseSkin: %s\n", filename.c_str());
+		
+		CWidget* wdg = NULL;
 
 		while ((search = xmlGetNextOccurence(search, "WIDGET")) != NULL) 
 		{
-			CWidget* wdg = NULL;
+			//CWidget* wdg = NULL;
 			
 			char* name = NULL;
 			unsigned int id = 0;
@@ -972,6 +974,7 @@ void CNeutrinoApp::parseSkin()
 			
 			// WINDOW
 			window_node = search->xmlChildrenNode;
+			CWindow* window = NULL;
 			
 			while ((window_node = xmlGetNextOccurence(window_node, "WINDOW")) != NULL) 
 			{
@@ -1012,7 +1015,7 @@ void CNeutrinoApp::parseSkin()
 				unsigned int refresh = 0;
 				refresh = xmlGetSignedNumericAttribute(window_node, "refresh", 0);
 					
-				CWindow* window = NULL;
+				//CWindow* window = NULL;
 					
 				window = new CWindow(posx, posy, width, height);
 					
@@ -1027,6 +1030,7 @@ void CNeutrinoApp::parseSkin()
 			
 			// HEAD
 			head_node = search->xmlChildrenNode;
+			CHeaders* head = NULL;
 			
 			while ((head_node = xmlGetNextOccurence(head_node, "HEAD")) != NULL) 
 			{
@@ -1078,7 +1082,7 @@ void CNeutrinoApp::parseSkin()
 				paintdate = xmlGetSignedNumericAttribute(head_node, "paintdate", 0);
 				format = xmlGetAttribute(head_node, (char*)"format");
 				
-				CHeaders* head = NULL;
+				//CHeaders* head = NULL;
 				head = new CHeaders(posx, posy, width, height);
 					
 				if (title != NULL) head->setTitle(_(title));
@@ -1121,6 +1125,7 @@ void CNeutrinoApp::parseSkin()
 			
 			// FOOT
 			foot_node = search->xmlChildrenNode;
+			CFooters* foot = NULL;
 			
 			while ((foot_node = xmlGetNextOccurence(foot_node, "FOOT")) != NULL) 
 			{
@@ -1161,7 +1166,7 @@ void CNeutrinoApp::parseSkin()
 				unsigned int f_line = 0;
 				f_line = xmlGetSignedNumericAttribute(foot_node, "line", 0);
 						
-				CFooters* foot = NULL;
+				//CFooters* foot = NULL;
 				foot = new CFooters(posx, posy, width, height);
 					
 				if (i_color != NULL) foot->setColor(finalColor);
@@ -1198,6 +1203,7 @@ void CNeutrinoApp::parseSkin()
 			
 			// LISTBOX
 			listbox_node = search->xmlChildrenNode;
+			ClistBox* listBox = NULL;
 			
 			while ((listbox_node = xmlGetNextOccurence(listbox_node, "LISTBOX")) != NULL) 
 			{
@@ -1271,7 +1277,7 @@ void CNeutrinoApp::parseSkin()
 				
 				if (iteminfo_color) hintColor = convertColor(iteminfo_color);
 					
-				ClistBox* listBox = NULL;
+				//ClistBox* listBox = NULL;
 					
 				listBox = new ClistBox(posx, posy, width, height);
 				listBox->setWidgetType(type);
@@ -1307,11 +1313,10 @@ void CNeutrinoApp::parseSkin()
 					listBox->paintItemInfoFrame(iteminfoframe);
 					if (iteminfo_color) listBox->setItemInfoColor(hintColor);
 				}
-					
-				CMenuItem* menuItem = NULL;
 				
 				// ITEM	
 				listboxitem_node = listbox_node->xmlChildrenNode;
+				CMenuItem* menuItem = NULL;
 					
 				while ((listboxitem_node = xmlGetNextOccurence(listboxitem_node, "ITEM")) != NULL) 
 				{
@@ -1437,6 +1442,7 @@ void CNeutrinoApp::parseSkin()
 			
 			// LABEL
 			label_node = search->xmlChildrenNode;
+			CCLabel* label = NULL;
 			
 			while ((label_node = xmlGetNextOccurence(label_node, "LABEL")) != NULL) 
 			{
@@ -1467,7 +1473,7 @@ void CNeutrinoApp::parseSkin()
 				text = xmlGetAttribute(label_node, (char*)"text");
 				l_halign = xmlGetSignedNumericAttribute(label_node, "halign", 0);
 						
-				CCLabel* label = NULL;
+				//CCLabel* label = NULL;
 							
 				label = new CCLabel(cc_x, cc_y, cc_dx, cc_dy);
 							
@@ -1481,6 +1487,7 @@ void CNeutrinoApp::parseSkin()
 			
 			// IMAGE
 			image_node = search->xmlChildrenNode;
+			CCImage* pic = NULL;
 			
 			while ((image_node = xmlGetNextOccurence(image_node, "IMAGE")) != NULL) 
 			{
@@ -1508,7 +1515,7 @@ void CNeutrinoApp::parseSkin()
 				char* image = NULL;
 				image = xmlGetAttribute(image_node, (char*)"image");
 						
-				CCImage* pic = NULL;
+				//CCImage* pic = NULL;
 							
 				pic = new CCImage(cc_x, cc_y, cc_dx, cc_dy);
 							
@@ -1517,7 +1524,18 @@ void CNeutrinoApp::parseSkin()
 				filename += "/";
 				filename += image;
 							
-				if (image != NULL) pic->setImage(filename.c_str());
+				if (image != NULL)
+				{
+					std::string filename = CONFIGDIR "/skins/";
+					filename += g_settings.preferred_skin;
+					filename += "/";
+					filename += image;
+					
+					if (file_exists(filename.c_str()))
+						pic->setImage(filename.c_str());
+					else
+						pic->setImage(image);
+				}
 							
 				wdg->addCCItem(pic);	
 			
@@ -1526,6 +1544,7 @@ void CNeutrinoApp::parseSkin()
 			
 			// TIME
 			time_node = search->xmlChildrenNode;
+			CCTime* time = NULL;
 			
 			while ((time_node = xmlGetNextOccurence(time_node, "TIME")) != NULL) 
 			{
@@ -1553,7 +1572,7 @@ void CNeutrinoApp::parseSkin()
 				char* cc_format = NULL;
 				cc_format = xmlGetAttribute(time_node, (char*)"format");
 						
-				CCTime* time = NULL;
+				//CCTime* time = NULL;
 							
 				time = new CCTime(cc_x, cc_y, cc_dx, cc_dy);
 							

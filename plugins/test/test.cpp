@@ -1033,8 +1033,7 @@ void CTestMenu::testCWindowWidget()
 	foot.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
 	// icon
-	CCIcon testIcon;
-	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
+	CCIcon testIcon(NEUTRINO_ICON_BUTTON_RED);
 	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
 	
 	testWidget->addCCItem(&testIcon);
