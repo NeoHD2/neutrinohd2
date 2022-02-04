@@ -438,40 +438,17 @@ int CLanguageSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	{
 		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
 		
-		/*
-		if (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
-		{
-			CNeutrinoApp::getInstance()->exec(NULL, "restart");
-		}
-		*/
-		
 		return ret;
 	}
-	else if (actionKey == "en")
+	else if (!actionKey.empty() && actionKey != g_settings.language)
 	{
-		strcpy(g_settings.language, "en");
+		strcpy(g_settings.language, actionKey.c_str());
 		g_Locale->loadLocale(g_settings.language);
 		
-		/*
-		if (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Information"), _("this need Neutrino restart\ndo you want really to restart?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			CNeutrinoApp::getInstance()->exec(NULL, "restart");
 		}
-		*/
-		
-		return ret;
-	}
-	else if (actionKey == "de")
-	{
-		strcpy(g_settings.language, "de");
-		g_Locale->loadLocale(g_settings.language);
-		
-		/*
-		if (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
-		{
-			CNeutrinoApp::getInstance()->exec(NULL, "restart");
-		}
-		*/
 		
 		return ret;
 	}
@@ -514,8 +491,14 @@ void CLanguageSettings::showMenu()
 				if(namelist[n]->d_type == DT_DIR && !strstr(namelist[n]->d_name, ".") && !strstr(namelist[n]->d_name, ".."))
 				{
 					
-					item = new CMenuForwarder(locale2lang(namelist[n]->d_name).c_str(), true, NULL, this, namelist[n]->d_name);
+					item = new ClistBoxItem(locale2lang(namelist[n]->d_name).c_str(), true, NULL, this, namelist[n]->d_name);
 					item->setIconName(namelist[n]->d_name);
+					
+					if (strcmp(g_settings.language, namelist[n]->d_name) == 0)
+					{
+						item->setIcon1(NEUTRINO_ICON_MARK);
+						item->setMarked(true);
+					}
 					
 					languageSettings.addItem(item);	
 				}
@@ -929,6 +912,12 @@ void CSkinManager::showMenu()
 	item = new ClistBoxItem(_("neutrino (default)"), true, NULL, this, "neutrino_default", RC_nokey, NULL, DATADIR "/neutrino/icons/prev.jpg");
 	item->setHint(_("Here you can select a skin from the following list."));
 	
+	if (g_settings.use_default_skin)
+	{
+		item->setIcon1(NEUTRINO_ICON_MARK);
+		item->setMarked(true);
+	}
+	
 	skinMenu->addItem(item);
 	
 	std::string skinPath = CONFIGDIR "/skins";
@@ -953,7 +942,14 @@ void CSkinManager::showMenu()
 				hint += namelist[i]->d_name;
 				hint += "/prev.png";
 				item->setItemIcon(hint.c_str());
-				item->setHint(_("Here you can select a skin from the following list.")); // FIXME: localize
+				item->setHint(_("Here you can select a skin from the following list."));
+				
+				if (!g_settings.use_default_skin && g_settings.preferred_skin == namelist[i]->d_name)
+				{
+					item->setIcon1(NEUTRINO_ICON_MARK);
+					item->setMarked(true);
+				}
+				
 				item->set2lines();
 				
 				skinMenu->addItem(item);	
@@ -979,9 +975,9 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 		parent->hide();
 		
 		
-	if (actionKey == "neutrino_default")
+	if (actionKey == "neutrino_default" && !g_settings.use_default_skin)
 	{
-		if (MessageBox(_("Skin Select"), _("this need Neutrino restart, your Box will automatically restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Skin Select"), _("this need Neutrino restart\ndo you want really to restart?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			g_settings.use_default_skin = true;
 			CNeutrinoApp::getInstance()->unloadSkin();
@@ -990,9 +986,9 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 		return ret;
 	}
-	else if (!actionKey.empty())
+	else if (!actionKey.empty() && actionKey != g_settings.preferred_skin)
 	{
-		if (MessageBox(_("Skin Select"), _("this need Neutrino restart, your Box will automatically restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (MessageBox(_("Skin Select"), _("this need Neutrino restart\ndo you want really to restart?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			g_settings.use_default_skin = false;
 			CNeutrinoApp::getInstance()->unloadSkin();
