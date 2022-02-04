@@ -204,7 +204,7 @@
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Recording settings" itemicon="hint_recording" target="13">
 			</ITEM>
-			<ITEM name="menuforwarder" id="5" localename="Movie Player settings" itemicon="hint_mb" target="14">
+			<ITEM name="menuforwarder" id="5" localename="Movieplayer settings" itemicon="hint_mb" target="14">
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="OSD settings" itemicon="hint_osd" target="15">
 			</ITEM>
@@ -212,9 +212,9 @@
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Remote Control settings" itemicon="hint_keys" target="17">
 			</ITEM>
-			<ITEM name="menuforwarder" id="5" localename="Audio Player settings" itemicon="hint_aplay" target="18">
+			<ITEM name="menuforwarder" id="5" localename="Audioplayer settings" itemicon="hint_aplay" target="18">
 			</ITEM>
-			<ITEM name="menuforwarder" id="5" localename="Picture Viewer settings" itemicon="hint_picview" target="19">
+			<ITEM name="menuforwarder" id="5" localename="Pictureviewer settings" itemicon="hint_picview" target="19">
 			</ITEM>
 			<ITEM name="menuforwarder" id="5" localename="Misc settings" itemicon="hint_extended" target="20">
 			</ITEM>

@@ -98,7 +98,7 @@ const char* const  keydescription[KEYBINDS_COUNT] =
 	// media
 	_("Records browser"),
 	_("Audioplayer"),
-	_("Picture Viewer"),
+	_("Pictureviewer"),
 	_("Timerlist"),
 	_("Internet Radio"),
 	_("Movies Browser"),
@@ -106,39 +106,6 @@ const char* const  keydescription[KEYBINDS_COUNT] =
 	_("IPTV"),
 	_("Screenshot")
 };
-
-/*
-const neutrino_locale_t keydescription[KEYBINDS_COUNT] =
-{
-	// zap
-	LOCALE_KEYBINDINGMENU_TVRADIOMODE,
-	LOCALE_KEYBINDINGMENU_PAGEUP,
-	LOCALE_KEYBINDINGMENU_PAGEDOWN,
-	LOCALE_EXTRA_KEY_LIST_START,
-	LOCALE_EXTRA_KEY_LIST_END,
-	LOCALE_KEYBINDINGMENU_CANCEL,
-	LOCALE_KEYBINDINGMENU_BOUQUETUP,
-	LOCALE_KEYBINDINGMENU_BOUQUETDOWN,
-	LOCALE_KEYBINDINGMENU_CHANNELUP,
-	LOCALE_KEYBINDINGMENU_CHANNELDOWN,
-	LOCALE_KEYBINDINGMENU_SUBCHANNELUP,
-	LOCALE_KEYBINDINGMENU_SUBCHANNELDOWN,
-	LOCALE_KEYBINDINGMENU_ZAPHISTORY,
-	LOCALE_KEYBINDINGMENU_LASTCHANNEL,
-	LOCALE_KEYBINDINGMENU_PIP,
-	
-	// media
-	LOCALE_KEYBINDINGMENU_RECORDSBROWSER,
-	LOCALE_KEYBINDINGMENU_AUDIOPLAYER,
-	LOCALE_KEYBINDINGMENU_PICTUREVIEWER,
-	LOCALE_KEYBINDINGMENU_TIMERLIST,
-	LOCALE_KEYBINDINGMENU_INETRADIO,
-	LOCALE_KEYBINDINGMENU_MOVIEBROWSER,
-	LOCALE_KEYBINDINGMENU_FILEBROWSER,
-	LOCALE_KEYBINDINGMENU_WEBTV,
-	LOCALE_KEYBINDINGMENU_SCREENSHOT
-};
-*/
 
 CRemoteControlSettings::CRemoteControlSettings()
 {
@@ -175,7 +142,7 @@ void CRemoteControlSettings::showMenu()
 	
 	int shortcutkeysettings = 1;
 	
-	CMenuWidget remoteControlSettings(_("Keybinding Setup"), NEUTRINO_ICON_KEYBINDING );
+	CMenuWidget remoteControlSettings(_("Keybinding settings"), NEUTRINO_ICON_KEYBINDING );
 
 	remoteControlSettings.setWidgetMode(MODE_SETUP);
 	remoteControlSettings.enableShrinkMenu();
@@ -205,9 +172,9 @@ void CRemoteControlSettings::showMenu()
  	remoteControlSettings.addItem(new CMenuForwarder(_("Generic delay"), true, g_settings.repeat_genericblocker, remoteControlSettings_repeat_genericblocker, NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
 
 	// keybinding menu
-	remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, _("Keybinding Setup")));
+	remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, _("Keybinding settings")));
 	
-	remoteControlSettings.addItem(new CMenuForwarder(_("Keybinding Setup"), true, NULL, new CKeysBindingSettings(), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
+	remoteControlSettings.addItem(new CMenuForwarder(_("Keybinding settings"), true, NULL, new CKeysBindingSettings(), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
 
         // usermenu 
         remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, _("User menu")));
@@ -315,7 +282,7 @@ void CKeysBindingSettings::showMenu()
 		keychooser[i] = new CKeyChooser(keyvalue_p[i], keydescription[i], NEUTRINO_ICON_SETTINGS);
 	
 	// keybinding menu
-	CMenuWidget bindSettings(_("Keybinding Setup"), NEUTRINO_ICON_KEYBINDING );
+	CMenuWidget bindSettings(_("Keybinding settings"), NEUTRINO_ICON_KEYBINDING );
 
 	bindSettings.setWidgetMode(MODE_SETUP);
 	bindSettings.enableShrinkMenu();

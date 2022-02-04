@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-02 23:16+0100\n"
+"POT-Creation-Date: 2022-02-04 04:33+0100\n"
 "PO-Revision-Date: 2022-01-30 00:49+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -159,9 +159,6 @@ msgstr "Audio Player"
 
 msgid "Audio Player Setup"
 msgstr "Audio Player Setup"
-
-msgid "Audio Player settings"
-msgstr "Audio Player settings"
 
 msgid "Audio Playlist"
 msgstr "Audio Playlist"
@@ -365,7 +362,8 @@ msgstr "Channel:"
 msgid "Channellist"
 msgstr "Channellist"
 
-msgid "Channellist Settings"
+#, fuzzy
+msgid "Channellist settings"
 msgstr "Channellist Settings"
 
 msgid "Check filesystem"
@@ -617,9 +615,6 @@ msgstr "EPG Info2"
 msgid "EPG Long Description (hours)"
 msgstr "EPG Long Description (hours)"
 
-msgid "EPG Settings"
-msgstr "EPG Settings"
-
 msgid "EPG Title"
 msgstr "EPG Title"
 
@@ -637,6 +632,10 @@ msgstr "EPG remove after (std.)"
 
 msgid "EPG save path"
 msgstr "EPG save path"
+
+#, fuzzy
+msgid "EPG settings"
+msgstr "EPG Settings"
 
 msgid "EPG-Cache (Days)"
 msgstr "EPG-Cache (Days)"
@@ -734,7 +733,8 @@ msgstr "File-Selector"
 msgid "Filebrowser"
 msgstr "Filebrowser"
 
-msgid "Filebrowser Settings"
+#, fuzzy
+msgid "Filebrowser settings"
 msgstr "Filebrowser Settings"
 
 msgid "Filename of the play list"
@@ -830,9 +830,6 @@ msgstr "Frontend:"
 
 msgid "Fullscreen"
 msgstr "Fullscreen"
-
-msgid "General Settings"
-msgstr "General Settings"
 
 msgid "General settings"
 msgstr "General settings"
@@ -1077,8 +1074,9 @@ msgstr "Key"
 msgid "Key Repeat-blocker"
 msgstr "Key Repeat-blocker"
 
-msgid "Keybinding Setup"
-msgstr "Keybinding Setup"
+#, fuzzy
+msgid "Keybinding settings"
+msgstr "Recording settings"
 
 msgid "Keyword"
 msgstr "Keyword"
@@ -1311,9 +1309,6 @@ msgstr "Movie Browser"
 
 msgid "Movie Player"
 msgstr "Movie Player"
-
-msgid "Movie Player settings"
-msgstr "Movie Player settings"
 
 msgid "Movie Trailer"
 msgstr "Movie Trailer"
@@ -1597,10 +1592,8 @@ msgstr "Permanent timeshift"
 msgid "Picture"
 msgstr "Picture"
 
-msgid "Picture Viewer"
-msgstr "Picture Viewer"
-
-msgid "Picture viewer"
+#, fuzzy
+msgid "Pictureviewer"
 msgstr "Picture viewer"
 
 msgid "Pictureviewer settings"
@@ -2088,6 +2081,10 @@ msgstr "Settings restore"
 
 msgid "Setup New Key"
 msgstr "Setup New Key"
+
+#, fuzzy
+msgid "Setup network now"
+msgstr "Test network now"
 
 msgid "Setup network now, please wait..."
 msgstr "Setup network now, please wait..."

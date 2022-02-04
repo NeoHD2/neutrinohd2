@@ -252,7 +252,7 @@
 			</ITEM>
 			<ITEM name="listboxitem" id="7" lines="1" localename="Recording settings" itemicon="hint_recording" target="13">
 			</ITEM>
-			<ITEM name="listboxitem" id="7" lines="1" localename="Movie Player settings" itemicon="hint_mb" target="14">
+			<ITEM name="listboxitem" id="7" lines="1" localename="Movieplayer settings" itemicon="hint_mb" target="14">
 			</ITEM>
 			<ITEM name="listboxitem" id="7" lines="1" localename="OSD settings" itemicon="hint_osd" target="15">
 			</ITEM>
@@ -260,9 +260,9 @@
 			</ITEM>
 			<ITEM name="listboxitem" id="7" lines="1" localename="Remote Control settings" itemicon="hint_keys" target="17">
 			</ITEM>
-			<ITEM name="listboxitem" id="7" lines="1" localename="Audio Player settings" itemicon="hint_aplay" target="18">
+			<ITEM name="listboxitem" id="7" lines="1" localename="Audioplayer settings" itemicon="hint_aplay" target="18">
 			</ITEM>
-			<ITEM name="listboxitem" id="7" lines="1" localename="Picture Viewer settings" itemicon="hint_picview" target="19">
+			<ITEM name="listboxitem" id="7" lines="1" localename="Pictureviewer settings" itemicon="hint_picview" target="19">
 			</ITEM>
 			<ITEM name="listboxitem" id="7" lines="1" localename="Misc settings" itemicon="hint_extended" target="20">
 			</ITEM>

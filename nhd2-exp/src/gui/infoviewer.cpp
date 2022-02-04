@@ -1754,7 +1754,7 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 				//refresh box current
 				currentInfoBox.hide();
 				
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, BoxEndX - ChanInfoX, /*g_Locale->getText(LOCALE_INFOVIEWER_NOCURRENT)*/_("No info for current program available"), COL_COLORED_EVENTS_INFOBAR, 0, true);	// UTF-8
+				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, BoxEndX - ChanInfoX, _("No info for current program available"), COL_INFOBAR_COLORED_EVENTS, 0, true);	// UTF-8
 
 				// next
 				nextInfoBox.hide();
@@ -1770,12 +1770,12 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 				// refresh box
 			  	currentInfoBox.hide();
 			  		
-			  	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (BoxStartX + 10, ChanInfoY + ChanInfoHeight, EPGTimeWidth, runningStart, COL_COLORED_EVENTS_INFOBAR);
+			  	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (BoxStartX + 10, ChanInfoY + ChanInfoHeight, EPGTimeWidth, runningStart, COL_INFOBAR_COLORED_EVENTS);
 
-			  	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, duration1TextPos - ChanInfoX - 5, info_CurrentNext.current_name, COL_COLORED_EVENTS_INFOBAR, 0, true);
+			  	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, duration1TextPos - ChanInfoX - 5, info_CurrentNext.current_name, COL_INFOBAR_COLORED_EVENTS, 0, true);
 			  	
 				//
-		  		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (duration1TextPos, ChanInfoY + ChanInfoHeight, duration1Width, runningRest, COL_COLORED_EVENTS_INFOBAR);
+		  		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (duration1TextPos, ChanInfoY + ChanInfoHeight, duration1Width, runningRest, COL_INFOBAR_COLORED_EVENTS);
 
 				// next 
 				if ((!is_nvod) && (info_CurrentNext.flags & CSectionsdClient::epgflags::has_next)) 

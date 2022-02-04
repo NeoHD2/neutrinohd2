@@ -172,7 +172,7 @@ const struct button_label PictureViewerButtons[FOOT_BUTTONS_COUNT] =
 
 void CPicViewer::showMenu()
 {
-	plist = new CMenuWidget(_("Picture Viewer"), NEUTRINO_ICON_PICTURE, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
+	plist = new CMenuWidget(_("Pictureviewer"), NEUTRINO_ICON_PICTURE, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
 
 	for(unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 	{

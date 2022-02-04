@@ -100,7 +100,7 @@ void CMainSettingsMenu::showMenu(void)
 	mainSettings->addItem(new CMenuForwarder(_("Recording settings"), true, NULL, new CRecordingSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_RECORDINGSETTINGS));
 
 	// movieplayer settings
-	mainSettings->addItem(new CMenuForwarder(_("Movie Player settings"), true, NULL, new CMoviePlayerSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_MOVIEPLAYERSETTINGS));
+	mainSettings->addItem(new CMenuForwarder(_("Movieplayer settings"), true, NULL, new CMoviePlayerSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_MOVIEPLAYERSETTINGS));
 
 	//OSD settings
 	mainSettings->addItem(new CMenuForwarder(_("OSD settings"), true, NULL, new COSDSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS));
@@ -113,10 +113,10 @@ void CMainSettingsMenu::showMenu(void)
 	mainSettings->addItem(new CMenuForwarder(_("Remote Control settings"), true, NULL, new CRemoteControlSettings(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_REMOTECONTROLSETTINGS));
 
 	// audioplayer settings
-	mainSettings->addItem(new CMenuForwarder(_("Audio Player settings"), true, NULL, new CAudioPlayerSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_AUDIOPLAYERSETTINGS));
+	mainSettings->addItem(new CMenuForwarder(_("Audioplayer settings"), true, NULL, new CAudioPlayerSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_AUDIOPLAYERSETTINGS));
 	
 	// pictureviewer settings
-	mainSettings->addItem(new CMenuForwarder("Picture Viewer settings", true, NULL, new CPictureViewerSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_PICTUREVIEWERSETTINGS));
+	mainSettings->addItem(new CMenuForwarder(_("Pictureviewer settings"), true, NULL, new CPictureViewerSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_PICTUREVIEWERSETTINGS));
 
 	// misc settings
 	mainSettings->addItem(new CMenuForwarder(_("Misc settings"), true, NULL, new CMiscSettingsMenu(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_MISCSETTINGS));

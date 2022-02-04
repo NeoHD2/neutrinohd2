@@ -241,7 +241,7 @@ void CNetworkSettings::showMenu()
         CStringInputSMS * networkSettings_NtpServer = new CStringInputSMS(_("NTP-Server"), g_settings.network_ntpserver.c_str(), MAX_INPUT_CHARS, _("NTP-Server example: ntp1.ptb.de"), _("need reboot or epg-reset"), "abcdefghijklmnopqrstuvwxyz0123456789-. ", sectionsdConfigNotifier);
         CStringInput * networkSettings_NtpRefresh = new CStringInput(_("NTP/DVB-Refresh"), g_settings.network_ntprefresh.c_str(), 3, _("NTP/DVB-Time-Sync in minutes"), _("need reboot or epg-reset"), "0123456789 ", sectionsdConfigNotifier);
 
-	CMenuForwarder * m0 = new CMenuForwarder(_("Setup network now, please wait..."), true, NULL, this, "network", RC_green, NEUTRINO_ICON_BUTTON_GREEN);
+	CMenuForwarder * m0 = new CMenuForwarder(_("Setup network now"), true, NULL, this, "network", RC_green, NEUTRINO_ICON_BUTTON_GREEN);
 
 	CMenuForwarder * m1 = new CMenuForwarder(_("IP address"), networkConfig->inet_static, networkConfig->address.c_str(), networkSettings_NetworkIP);
 

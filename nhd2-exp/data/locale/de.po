@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-02 23:16+0100\n"
+"POT-Creation-Date: 2022-02-04 04:33+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -158,9 +158,6 @@ msgid "Audio Player"
 msgstr ""
 
 msgid "Audio Player Setup"
-msgstr "Audioplayer Einstellungen"
-
-msgid "Audio Player settings"
 msgstr "Audioplayer Einstellungen"
 
 msgid "Audio Playlist"
@@ -363,8 +360,9 @@ msgstr ""
 msgid "Channellist"
 msgstr ""
 
-msgid "Channellist Settings"
-msgstr ""
+#, fuzzy
+msgid "Channellist settings"
+msgstr "Diverse Einstellungen"
 
 msgid "Check filesystem"
 msgstr ""
@@ -608,9 +606,6 @@ msgstr ""
 msgid "EPG Long Description (hours)"
 msgstr ""
 
-msgid "EPG Settings"
-msgstr ""
-
 msgid "EPG Title"
 msgstr ""
 
@@ -628,6 +623,10 @@ msgstr ""
 
 msgid "EPG save path"
 msgstr ""
+
+#, fuzzy
+msgid "EPG settings"
+msgstr "Festplatte Einstellungen"
 
 msgid "EPG-Cache (Days)"
 msgstr ""
@@ -725,8 +724,9 @@ msgstr ""
 msgid "Filebrowser"
 msgstr ""
 
-msgid "Filebrowser Settings"
-msgstr ""
+#, fuzzy
+msgid "Filebrowser settings"
+msgstr "Video-Einstellungen"
 
 msgid "Filename of the play list"
 msgstr ""
@@ -807,9 +807,6 @@ msgid "Frontend:"
 msgstr ""
 
 msgid "Fullscreen"
-msgstr ""
-
-msgid "General Settings"
 msgstr ""
 
 msgid "General settings"
@@ -1056,8 +1053,9 @@ msgstr ""
 msgid "Key Repeat-blocker"
 msgstr ""
 
-msgid "Keybinding Setup"
-msgstr ""
+#, fuzzy
+msgid "Keybinding settings"
+msgstr "Aufnahme Einstellungen"
 
 msgid "Keyword"
 msgstr ""
@@ -1290,9 +1288,6 @@ msgstr ""
 
 msgid "Movie Player"
 msgstr ""
-
-msgid "Movie Player settings"
-msgstr "Movieplayer Einstellungen"
 
 msgid "Movie Trailer"
 msgstr ""
@@ -1570,10 +1565,8 @@ msgstr ""
 msgid "Picture"
 msgstr ""
 
-msgid "Picture Viewer"
-msgstr "Bildbetrachter"
-
-msgid "Picture viewer"
+#, fuzzy
+msgid "Pictureviewer"
 msgstr "Bildbetrachter"
 
 msgid "Pictureviewer settings"
@@ -2061,6 +2054,9 @@ msgid "Settings restore"
 msgstr ""
 
 msgid "Setup New Key"
+msgstr ""
+
+msgid "Setup network now"
 msgstr ""
 
 msgid "Setup network now, please wait..."

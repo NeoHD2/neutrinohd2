@@ -70,9 +70,8 @@
 #define COL_MENUFOOT				254-8*6
 #define COL_INFOBAR				254-8*7
 #define COL_INFOBAR_SHADOW			254-8*8
-#define COL_COLORED_EVENTS_INFOBAR		254-8*9
-#define COL_COLORED_EVENTS_CHANNELLIST	254-8*10
-#define COL_MENUHINT				254-8*11
+#define COL_INFOBAR_COLORED_EVENTS		254-8*9
+#define COL_MENUHINT				254-8*10
 
 // gui common colors
 #define COL_MAROON_PLUS_0			CFrameBuffer::getInstance()->realcolor[COL_MAROON]

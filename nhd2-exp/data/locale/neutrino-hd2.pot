@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-02 23:16+0100\n"
+"POT-Creation-Date: 2022-02-04 04:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,10 +232,6 @@ msgstr ""
 msgid "Audio Player Setup"
 msgstr ""
 
-#: ../../src/gui/main_setup.cpp:116
-msgid "Audio Player settings"
-msgstr ""
-
 #: ../../src/gui/audioplayer.cpp:220 ../../src/gui/audioplayer.cpp:333
 #: ../../src/gui/audioplayer.cpp:1355
 msgid "Audio Playlist"
@@ -257,7 +253,7 @@ msgstr ""
 msgid "Audioplayer"
 msgstr ""
 
-#: ../../src/gui/audioplayer_setup.cpp:97
+#: ../../src/gui/audioplayer_setup.cpp:97 ../../src/gui/main_setup.cpp:116
 msgid "Audioplayer settings"
 msgstr ""
 
@@ -537,13 +533,13 @@ msgstr ""
 msgid "Channel:"
 msgstr ""
 
-#: ../../src/neutrino.cpp:416 ../../src/gui/rc_setup.cpp:336
+#: ../../src/neutrino.cpp:416 ../../src/gui/rc_setup.cpp:303
 #: ../../src/gui/eventlist.cpp:831 ../../src/system/settings.cpp:48
 msgid "Channellist"
 msgstr ""
 
 #: ../../src/gui/misc_setup.cpp:143 ../../src/gui/misc_setup.cpp:590
-msgid "Channellist Settings"
+msgid "Channellist settings"
 msgstr ""
 
 #: ../../src/gui/hdd_menu.cpp:358 ../../src/gui/hdd_menu.cpp:829
@@ -902,10 +898,6 @@ msgstr ""
 msgid "EPG Long Description (hours)"
 msgstr ""
 
-#: ../../src/gui/misc_setup.cpp:146 ../../src/gui/misc_setup.cpp:701
-msgid "EPG Settings"
-msgstr ""
-
 #: ../../src/neutrino.cpp:406 ../../src/gui/eventlist.cpp:837
 msgid "EPG Title"
 msgstr ""
@@ -931,6 +923,10 @@ msgstr ""
 msgid "EPG save path"
 msgstr ""
 
+#: ../../src/gui/misc_setup.cpp:146 ../../src/gui/misc_setup.cpp:701
+msgid "EPG settings"
+msgstr ""
+
 #: ../../src/gui/misc_setup.cpp:725 ../../src/gui/misc_setup.cpp:726
 msgid "EPG-Cache (Days)"
 msgstr ""
@@ -951,7 +947,7 @@ msgstr ""
 msgid "Enable standby"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:193 ../../src/gui/rc_setup.cpp:196
+#: ../../src/gui/rc_setup.cpp:160 ../../src/gui/rc_setup.cpp:163
 msgid "Enter 0 to switch of the blocker (red is space)"
 msgstr ""
 
@@ -1084,7 +1080,7 @@ msgid "Filebrowser"
 msgstr ""
 
 #: ../../src/gui/misc_setup.cpp:149 ../../src/gui/misc_setup.cpp:898
-msgid "Filebrowser Settings"
+msgid "Filebrowser settings"
 msgstr ""
 
 #: ../../src/gui/audioplayer.cpp:1119
@@ -1196,15 +1192,11 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: ../../src/gui/misc_setup.cpp:140
-msgid "General Settings"
-msgstr ""
-
-#: ../../src/gui/misc_setup.cpp:257
+#: ../../src/gui/misc_setup.cpp:140 ../../src/gui/misc_setup.cpp:257
 msgid "General settings"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:193 ../../src/gui/rc_setup.cpp:205
+#: ../../src/gui/rc_setup.cpp:160 ../../src/gui/rc_setup.cpp:172
 msgid "Generic delay"
 msgstr ""
 
@@ -1527,7 +1519,7 @@ msgstr ""
 #: ../../src/gui/cam_menu.cpp:229 ../../src/gui/cam_menu.cpp:258
 #: ../../src/gui/cam_menu.cpp:359 ../../src/gui/cam_menu.cpp:473
 #: ../../src/gui/cam_menu.cpp:488 ../../src/gui/hdd_menu.cpp:146
-#: ../../src/gui/network_setup.cpp:159 ../../src/gui/rc_setup.cpp:255
+#: ../../src/gui/network_setup.cpp:159 ../../src/gui/rc_setup.cpp:222
 #: ../../src/gui/scan_setup.cpp:288 ../../src/gui/recording_setup.cpp:93
 #: ../../src/gui/movieplayer.cpp:616 ../../src/gui/movieplayer.cpp:1528
 #: ../../src/gui/movieplayer.cpp:1644 ../../src/gui/movieplayer.cpp:2175
@@ -1608,13 +1600,13 @@ msgstr ""
 msgid "Key"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:199
+#: ../../src/gui/rc_setup.cpp:166
 msgid "Key Repeat-blocker"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:178 ../../src/gui/rc_setup.cpp:208
-#: ../../src/gui/rc_setup.cpp:210 ../../src/gui/rc_setup.cpp:318
-msgid "Keybinding Setup"
+#: ../../src/gui/rc_setup.cpp:145 ../../src/gui/rc_setup.cpp:175
+#: ../../src/gui/rc_setup.cpp:177 ../../src/gui/rc_setup.cpp:285
+msgid "Keybinding settings"
 msgstr ""
 
 #: ../../src/gui/eventlist.cpp:953 ../../src/gui/eventlist.cpp:955
@@ -1760,7 +1752,7 @@ msgstr ""
 msgid "Loading package list"
 msgstr ""
 
-#: ../../src/system/setting_helpers.cpp:278
+#: ../../src/system/setting_helpers.cpp:275
 msgid "Lock RC"
 msgstr ""
 
@@ -1830,7 +1822,7 @@ msgstr ""
 msgid "Max. Events"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:348
+#: ../../src/gui/rc_setup.cpp:315
 msgid "Media"
 msgstr ""
 
@@ -1875,7 +1867,7 @@ msgstr ""
 msgid "Misc settings"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:353 ../../src/gui/misc_setup.cpp:131
+#: ../../src/gui/rc_setup.cpp:320 ../../src/gui/misc_setup.cpp:131
 msgid "Miscsettings"
 msgstr ""
 
@@ -1883,7 +1875,7 @@ msgstr ""
 msgid "Mo Tu We Th Fr Sa Su"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:330
+#: ../../src/gui/rc_setup.cpp:297
 msgid "Modechange"
 msgstr ""
 
@@ -1948,10 +1940,6 @@ msgstr ""
 msgid "Movie Player"
 msgstr ""
 
-#: ../../src/gui/main_setup.cpp:103
-msgid "Movie Player settings"
-msgstr ""
-
 #: ../../../plugins/nfilm/nfilm.cpp:167 ../../../plugins/nfilm/nfilm.cpp:189
 msgid "Movie Trailer"
 msgstr ""
@@ -1988,7 +1976,7 @@ msgstr ""
 msgid "Moviebrowser"
 msgstr ""
 
-#: ../../src/gui/movieplayer_setup.cpp:89
+#: ../../src/gui/main_setup.cpp:103 ../../src/gui/movieplayer_setup.cpp:89
 msgid "Movieplayer settings"
 msgstr ""
 
@@ -2026,7 +2014,7 @@ msgstr ""
 msgid "NTP/DVB-Time-Sync in minutes"
 msgstr ""
 
-#: ../../src/system/setting_helpers.cpp:295
+#: ../../src/system/setting_helpers.cpp:292
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:101
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:120
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:157
@@ -2368,15 +2356,12 @@ msgstr ""
 msgid "Picture"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:101 ../../../plugins/picviewer/picviewer.cpp:175
-msgid "Picture Viewer"
+#: ../../src/gui/rc_setup.cpp:101 ../../src/gui/pictureviewer.cpp:165
+#: ../../../plugins/picviewer/picviewer.cpp:175
+msgid "Pictureviewer"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:165
-msgid "Picture viewer"
-msgstr ""
-
-#: ../../src/gui/pictureviewer_setup.cpp:110
+#: ../../src/gui/pictureviewer_setup.cpp:110 ../../src/gui/main_setup.cpp:119
 msgid "Pictureviewer settings"
 msgstr ""
 
@@ -2401,7 +2386,7 @@ msgid "Plugin"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:301 ../../src/gui/pluginlist.cpp:98
-#: ../../src/gui/pluginlist.cpp:211 ../../src/system/setting_helpers.cpp:276
+#: ../../src/gui/pluginlist.cpp:211 ../../src/system/setting_helpers.cpp:273
 msgid "Plugins"
 msgstr ""
 
@@ -2495,7 +2480,7 @@ msgstr ""
 msgid "Quality"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:342
+#: ../../src/gui/rc_setup.cpp:309
 msgid "Quickzap"
 msgstr ""
 
@@ -2669,7 +2654,7 @@ msgstr ""
 msgid "Repeat"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:196 ../../src/gui/rc_setup.cpp:202
+#: ../../src/gui/rc_setup.cpp:163 ../../src/gui/rc_setup.cpp:169
 msgid "Repeat delay"
 msgstr ""
 
@@ -2789,7 +2774,7 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:359
+#: ../../src/gui/rc_setup.cpp:326
 msgid "Save Keymap"
 msgstr ""
 
@@ -2830,8 +2815,8 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:869 ../../src/gui/hdd_menu.cpp:194
 #: ../../src/gui/network_setup.cpp:272 ../../src/gui/audio_setup.cpp:167
 #: ../../src/gui/audioplayer_setup.cpp:110
-#: ../../src/gui/pictureviewer_setup.cpp:123 ../../src/gui/rc_setup.cpp:188
-#: ../../src/gui/rc_setup.cpp:328 ../../src/gui/scan_setup.cpp:288
+#: ../../src/gui/pictureviewer_setup.cpp:123 ../../src/gui/rc_setup.cpp:155
+#: ../../src/gui/rc_setup.cpp:295 ../../src/gui/scan_setup.cpp:288
 #: ../../src/gui/scan_setup.cpp:368 ../../src/gui/scan_setup.cpp:428
 #: ../../src/gui/scan_setup.cpp:533 ../../src/gui/scan_setup.cpp:660
 #: ../../src/gui/scan_setup.cpp:793 ../../src/gui/scan_setup.cpp:827
@@ -2862,7 +2847,7 @@ msgstr ""
 msgid "Save/Restore epg on reboot"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:255
+#: ../../src/gui/rc_setup.cpp:222
 msgid "Saving keymap, please wait..."
 msgstr ""
 
@@ -3118,7 +3103,11 @@ msgstr ""
 msgid "Setup New Key"
 msgstr ""
 
-#: ../../src/gui/network_setup.cpp:159 ../../src/gui/network_setup.cpp:244
+#: ../../src/gui/network_setup.cpp:244
+msgid "Setup network now"
+msgstr ""
+
+#: ../../src/gui/network_setup.cpp:159
 msgid "Setup network now, please wait..."
 msgstr ""
 
@@ -3138,7 +3127,7 @@ msgstr ""
 msgid "Shadow"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:193 ../../src/gui/rc_setup.cpp:196
+#: ../../src/gui/rc_setup.cpp:160 ../../src/gui/rc_setup.cpp:163
 msgid "Shortest time (in ms) to recognize 2 keystrokes"
 msgstr ""
 
@@ -3628,7 +3617,7 @@ msgid "Timer typ"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:272 ../../src/gui/rc_setup.cpp:102
-#: ../../src/system/setting_helpers.cpp:275
+#: ../../src/system/setting_helpers.cpp:272
 msgid "Timerlist"
 msgstr ""
 
@@ -3797,28 +3786,28 @@ msgstr ""
 msgid "Use record directory"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:213 ../../src/gui/motorcontrol.cpp:613
-#: ../../src/system/setting_helpers.cpp:293
+#: ../../src/gui/rc_setup.cpp:180 ../../src/gui/motorcontrol.cpp:613
+#: ../../src/system/setting_helpers.cpp:290
 msgid "User menu"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:219
+#: ../../src/gui/rc_setup.cpp:186
 msgid "User menu F1"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:220
+#: ../../src/gui/rc_setup.cpp:187
 msgid "User menu F2"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:221
+#: ../../src/gui/rc_setup.cpp:188
 msgid "User menu F3"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:222
+#: ../../src/gui/rc_setup.cpp:189
 msgid "User menu F4"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:216
+#: ../../src/gui/rc_setup.cpp:183
 msgid "User menu blue"
 msgstr ""
 
@@ -3860,7 +3849,7 @@ msgstr ""
 msgid "Video settings"
 msgstr ""
 
-#: ../../src/system/setting_helpers.cpp:277
+#: ../../src/system/setting_helpers.cpp:274
 msgid "Videotext"
 msgstr ""
 
@@ -4112,8 +4101,8 @@ msgstr ""
 #: ../../src/gui/audioplayer_setup.cpp:106
 #: ../../src/gui/pictureviewer_setup.cpp:119 ../../src/gui/nfs.cpp:197
 #: ../../src/gui/nfs.cpp:286 ../../src/gui/nfs.cpp:370
-#: ../../src/gui/nfs.cpp:419 ../../src/gui/rc_setup.cpp:184
-#: ../../src/gui/rc_setup.cpp:324 ../../src/gui/scan_setup.cpp:364
+#: ../../src/gui/nfs.cpp:419 ../../src/gui/rc_setup.cpp:151
+#: ../../src/gui/rc_setup.cpp:291 ../../src/gui/scan_setup.cpp:364
 #: ../../src/gui/scan_setup.cpp:381 ../../src/gui/scan_setup.cpp:390
 #: ../../src/gui/scan_setup.cpp:408 ../../src/gui/scan_setup.cpp:424
 #: ../../src/gui/scan_setup.cpp:530 ../../src/gui/scan_setup.cpp:656

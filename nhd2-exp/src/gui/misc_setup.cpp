@@ -137,24 +137,24 @@ void CMiscSettingsMenu::showMenu(void)
 	miscSettings->enablePaintDate();
 
 	//miscSettings general
-	miscSettings->addItem(new CMenuForwarder(_("General Settings"), true, NULL, new CGeneralSettings(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_GENERALSETTINGS));
+	miscSettings->addItem(new CMenuForwarder(_("General settings"), true, NULL, new CGeneralSettings(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_GENERALSETTINGS));
 	
 	//channellist settings
-	miscSettings->addItem(new CMenuForwarder(_("Channellist Settings"), true, NULL, new CChannelListSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_CHANNELLISTSETTINGS));
+	miscSettings->addItem(new CMenuForwarder(_("Channellist settings"), true, NULL, new CChannelListSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_CHANNELLISTSETTINGS));
 
 	// epg settings
-	miscSettings->addItem(new CMenuForwarder(_("EPG Settings"), true, NULL, new CEPGSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_EPGSETTINGS));
+	miscSettings->addItem(new CMenuForwarder(_("EPG settings"), true, NULL, new CEPGSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_EPGSETTINGS));
 
 	// filebrowser settings
-	miscSettings->addItem(new CMenuForwarder(_("Filebrowser Settings"), true, NULL, new CFileBrowserSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_FILEBROWSERSETTINGS));
+	miscSettings->addItem(new CMenuForwarder(_("Filebrowser settings"), true, NULL, new CFileBrowserSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_FILEBROWSERSETTINGS));
 	
 	// zapit setup (start channel)
 	miscSettings->addItem(new CMenuForwarder(_("Last Channel settings"), true, NULL, new CZapitSetup(), NULL, CRCInput::convertDigitToKey(shortcutMiscSettings++), NULL, NEUTRINO_ICON_MENUITEM_STARTCHANNELSETTINGS));
 	
 	// psi setup
 	//FIXME:	
-	//CPSISetup * chPSISetup = new CPSISetup(LOCALE_VIDEOMENU_PSISETUP, &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
-	//miscSettings->addItem( new CMenuForwarder(_("PSI Setup"), true, NULL, chPSISetup, NULL, CRCInput::convertDigitToKey(shortcutMiscSettings++), NULL, NEUTRINO_ICON_MENUITEM_PSISETTINGS));
+	//CPSISetup * chPSISetup = new CPSISetup(_(PSI settings), &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
+	//miscSettings->addItem( new CMenuForwarder(_("PSI settings"), true, NULL, chPSISetup, NULL, CRCInput::convertDigitToKey(shortcutMiscSettings++), NULL, NEUTRINO_ICON_MENUITEM_PSISETTINGS));
 	
 	miscSettings->exec(NULL, "");
 	miscSettings->hide();
@@ -587,7 +587,7 @@ void CChannelListSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CChannelListSettings::showMenu:\n");
 	
-	CMenuWidget miscSettingsChannelList(_("Channellist Settings"), NEUTRINO_ICON_SETTINGS);
+	CMenuWidget miscSettingsChannelList(_("Channellist settings"), NEUTRINO_ICON_SETTINGS);
 	miscSettingsChannelList.enableSaveScreen();
 	miscSettingsChannelList.setWidgetMode(MODE_SETUP);
 	miscSettingsChannelList.enableShrinkMenu();
@@ -698,7 +698,7 @@ void CEPGSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CEPGSettings::showMenu:\n");
 	
-	CMenuWidget miscSettingsEPG(_("EPG Settings"), NEUTRINO_ICON_SETTINGS);
+	CMenuWidget miscSettingsEPG(_("EPG settings"), NEUTRINO_ICON_SETTINGS);
 	
 	miscSettingsEPG.setWidgetMode(MODE_SETUP);
 	miscSettingsEPG.enableShrinkMenu();
@@ -895,7 +895,7 @@ void CFileBrowserSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CFileBrowserSettings::showMenu:\n");
 	
-	CMenuWidget miscSettingsFileBrowser(_("Filebrowser Settings"), NEUTRINO_ICON_SETTINGS);
+	CMenuWidget miscSettingsFileBrowser(_("Filebrowser settings"), NEUTRINO_ICON_SETTINGS);
 
 	miscSettingsFileBrowser.setWidgetMode(MODE_SETUP);
 	miscSettingsFileBrowser.enableShrinkMenu();
@@ -937,4 +937,6 @@ bool CMiscNotifier::changeNotify(const std::string&, void *)
 
    	return true;
 }
+
+
 

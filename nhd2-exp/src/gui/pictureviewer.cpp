@@ -162,7 +162,7 @@ void CPictureViewerGui::show()
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
 
-	CVFD::getInstance()->setMode(CVFD::MODE_PIC, _("Picture viewer"));
+	CVFD::getInstance()->setMode(CVFD::MODE_PIC, _("Pictureviewer"));
 
 	int timeout;
 
