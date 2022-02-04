@@ -917,6 +917,11 @@ int CMenuForwarder::getHeight(void) const
 			if (ih >= ITEM_ICON_H_MINI/2)
 				ih = ITEM_ICON_H_MINI/2;
 		}
+		
+		if(nLinesItem)
+		{
+			ih = ITEM_ICON_H_MINI;
+		}
 	}
 	else if(widgetType == WIDGET_TYPE_CLASSIC)
 	{
@@ -3737,10 +3742,9 @@ void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned i
 			neutrino_msg_t dk = (shortcut != RC_nokey) ? CRCInput::convertDigitToKey(sc++) : RC_nokey;
 
 			//FIXME: iconName
-			ClistBoxItem *fw_plugin = new ClistBoxItem(g_PluginList->getName(count), enabled, NULL, CPluginsExec::getInstance(), g_PluginList->getFileName(count), dk, NULL, IconName.c_str());
+			CMenuForwarder *fw_plugin = new CMenuForwarder(g_PluginList->getName(count), enabled, NULL, CPluginsExec::getInstance(), g_PluginList->getFileName(count), dk, NULL, IconName.c_str());
 
 			fw_plugin->setHint(g_PluginList->getDescription(count).c_str());
-			//fw_plugin->setWidgetMode(imode); //FIXME:
 			fw_plugin->setWidgetType(itype);
 			if (i2lines)
 				fw_plugin->set2lines();
