@@ -190,6 +190,9 @@ class CWidget : public CMenuTarget
 		bool savescreen;
 		void saveScreen();
 		void restoreScreen();
+		//
+		bool enablePos;
+		int menu_position;
 
 		// mainframe		
 		bool paintframe;
@@ -243,6 +246,7 @@ class CWidget : public CMenuTarget
 		void setCorner(int ra, int co){radius = ra; corner = co;};
 		//
 		void enableSaveScreen();
+		void setMenuPosition(int p){enablePos = true; menu_position = p;};
 
 		// lua compatibility
 		int getSelected(){return exit_pressed ? -1 : selected;};

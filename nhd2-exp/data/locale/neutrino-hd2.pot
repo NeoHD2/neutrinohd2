@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 04:33+0100\n"
+"POT-Creation-Date: 2022-02-04 15:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3192,14 +3192,11 @@ msgstr ""
 msgid "Skin select"
 msgstr ""
 
-#: ../../src/gui/sleeptimer.cpp:83 ../../src/gui/power_menu.cpp:73
-msgid "Sleep Timer"
-msgstr ""
-
 #: ../../src/gui/hdd_menu.cpp:201
 msgid "Sleep time"
 msgstr ""
 
+#: ../../src/gui/sleeptimer.cpp:83 ../../src/gui/power_menu.cpp:73
 #: ../../src/gui/timerlist.cpp:821 ../../src/gui/timerlist.cpp:910
 msgid "Sleeptimer"
 msgstr ""
@@ -3322,12 +3319,9 @@ msgstr ""
 msgid "Store Motor Position (a)"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:483 ../../src/gui/epg_menu.cpp:87
+#: ../../src/gui/streaminfo2.cpp:521 ../../src/gui/dboxinfo.cpp:483
+#: ../../src/gui/epg_menu.cpp:87
 msgid "Stream information"
-msgstr ""
-
-#: ../../src/gui/streaminfo2.cpp:521
-msgid "Stream-Information"
 msgstr ""
 
 #: ../../src/gui/epgplus.cpp:1477

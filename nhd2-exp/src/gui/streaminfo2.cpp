@@ -518,12 +518,12 @@ void CStreamInfo2::paint(int /*mode*/)
 	if (paint_mode == 0) 
 	{
 		// -- tech Infos, PIG, small signal graph
-		head_string = _("Stream-Information");
+		head_string = _("Stream information");
 
 		CVFD::getInstance ()->setMode (CVFD::MODE_MENU_UTF8, head_string);
 
 		// paint backround, title pig, etc
-		frameBuffer->paintBoxRel(0, 0, max_width, max_height, /*COL_MENUHEAD_PLUS_0*/COL_MENUCONTENTDARK_PLUS_0);
+		frameBuffer->paintBoxRel(0, 0, max_width, max_height, COL_MENUCONTENTDARK_PLUS_0);
 
 		g_Font[font_head]->RenderString (xpos, ypos + hheight + 1, width, head_string, COL_MENUHEAD, 0, true);	// UTF-8
 		ypos += hheight;
@@ -540,7 +540,7 @@ void CStreamInfo2::paint(int /*mode*/)
 	{
 		// --  small PIG, small signal graph
 		// -- paint backround, title pig, etc.
-		frameBuffer->paintBoxRel (0, 0, max_width, max_height, /*COL_MENUHEAD_PLUS_0*/COL_MENUCONTENTDARK_PLUS_0);
+		frameBuffer->paintBoxRel (0, 0, max_width, max_height, COL_MENUCONTENTDARK_PLUS_0);
 
 		// -- paint large signal graph
 		paint_signal_fe_box (x, y, width, height-100);

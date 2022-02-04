@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 04:33+0100\n"
+"POT-Creation-Date: 2022-02-04 15:24+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2119,9 +2119,6 @@ msgstr "Skin Style Auswählen?"
 msgid "Skin select"
 msgstr "Skin Auswahl"
 
-msgid "Sleep Timer"
-msgstr ""
-
 msgid "Sleep time"
 msgstr ""
 
@@ -2210,10 +2207,7 @@ msgid "Store Motor Position (a)"
 msgstr ""
 
 msgid "Stream information"
-msgstr "technische Information"
-
-msgid "Stream-Information"
-msgstr "technische Information"
+msgstr "Technische Information"
 
 msgid "Stretch Mode"
 msgstr ""

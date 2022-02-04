@@ -64,7 +64,7 @@
 		</TIME>
 		
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" shadow="1">
-			<ITEM  id="7" localename="Sleep Timer" lines="1" itemicon="hint_sleeptimer" target="65">
+			<ITEM  id="7" localename="Sleeptimer" lines="1" itemicon="hint_sleeptimer" target="65">
 			</ITEM>
 			<ITEM  id="7" localename="Neutrino Restart" lines="1" itemicon="hint_restart" target="0" actionkey="restart">
 			</ITEM>

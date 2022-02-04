@@ -48,6 +48,10 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 
 	savescreen = false;
 	background = NULL;
+	
+	//
+	enablePos = false;
+	menu_position = MENU_POSITION_CENTER;
 
 	timeout = 0;
 	selected = -1;
@@ -73,6 +77,10 @@ CWidget::CWidget(CBox *position)
 
 	savescreen = false;
 	background = NULL;
+	
+	//
+	enablePos = false;
+	menu_position = MENU_POSITION_CENTER;
 
 	timeout = 0;
 	selected = -1;
@@ -145,6 +153,26 @@ void CWidget::initFrames()
 	// sanity check
 	if(mainFrameBox.iWidth > (int)frameBuffer->getScreenWidth(true))
 		mainFrameBox.iWidth = frameBuffer->getScreenWidth(true);
+		
+	// menu position
+	if (enablePos)
+	{
+		if(menu_position == MENU_POSITION_CENTER)
+		{
+			mainFrameBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - mainFrameBox.iWidth ) >> 1 );
+			mainFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - mainFrameBox.iHeight) >> 1 );
+		}
+		else if(menu_position == MENU_POSITION_LEFT)
+		{
+			mainFrameBox.iX = frameBuffer->getScreenX();
+			mainFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - mainFrameBox.iHeight) >> 1 );
+		}
+		else if(menu_position == MENU_POSITION_RIGHT)
+		{
+			mainFrameBox.iX = frameBuffer->getScreenX() + frameBuffer->getScreenWidth() - mainFrameBox.iWidth;
+			mainFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - mainFrameBox.iHeight) >> 1 );
+		}
+	}
 
 	if(savescreen) 
 		saveScreen();
@@ -177,10 +205,11 @@ void CWidget::paint()
 	if (paintframe)
 		frameBuffer->paintBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight, backgroundColor, radius, corner, gradient);
 
-	// paint items
+	// WidgetItems
 	if (hasItem())
 		paintItems();
-		
+	
+	// CCItems	
 	if (hasCCItem())
 		paintCCItems();
 }
@@ -233,15 +262,19 @@ void CWidget::hide()
 	dprintf(DEBUG_NORMAL, "CWidget:: hide (%s)\n", name.c_str());
 
 	//
-	if (hasItem())
+	if (hasCCItem())
 	{
-		for(unsigned int i = 0; i < items.size(); i++)
+		for(unsigned int i = 0; i < (unsigned int)CCItems.size(); i++)
 		{
-			items[i]->hide();
+			CComponent *CCItem = CCItems[i];
+
+			if (CCItem->getCCType() == CC_PIG)
+			{
+				CCItem->hide();
+				break;
+			}
 		}
-	}
-	
-	// CCItem CC_PIG ???		
+	}	
 
 	if( savescreen && background)
 	{
@@ -249,8 +282,8 @@ void CWidget::hide()
 	}
 	else
 	{
-		if (paintframe)
-			frameBuffer->paintBackgroundBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight);
+		//if (paintframe)
+		frameBuffer->paintBackgroundBoxRel(mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight);
 	}
 
 	frameBuffer->blit();

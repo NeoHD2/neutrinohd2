@@ -70,7 +70,7 @@ void CPowerMenu::showMenu(void)
 	powerMenu->enablePaintDate();
 	
 	// sleep timer
-	powerMenu->addItem(new CMenuForwarder(_("Sleep Timer"), true, NULL, new CSleepTimerWidget(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SLEEPTIMER, _("Sleep Timer")));
+	powerMenu->addItem(new CMenuForwarder(_("Sleeptimer"), true, NULL, new CSleepTimerWidget(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SLEEPTIMER, _("Sleeptimer")));
 
 	// restart neutrino
 	powerMenu->addItem(new CMenuForwarder(_("Neutrino Restart"), true, NULL, CNeutrinoApp::getInstance(), "restart", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_RESTART, _("Neutrino restart")));

@@ -71,7 +71,7 @@ int CSleepTimerWidget::exec(CMenuTarget* parent, const std::string &)
 	
   	if ( info_CurrentNext.flags & CSectionsdClient::epgflags::has_current) 
 	{
-  		time_t jetzt=time(NULL);
+  		time_t jetzt = time(NULL);
   		int current_epg_zeit_dauer_rest = (info_CurrentNext.current_zeit.dauer + 150 - (jetzt - info_CurrentNext.current_zeit.startzeit ))/60 ;
   		
   		if(shutdown_min == 0 && current_epg_zeit_dauer_rest > 0 && current_epg_zeit_dauer_rest < 1000)
@@ -80,7 +80,7 @@ int CSleepTimerWidget::exec(CMenuTarget* parent, const std::string &)
   		}
   	}
 
-	inbox = new CStringInput(_("Sleep Timer"), value, 3, _("Shutdown time in min. (000=off)"), _("The STB will shutdown after this time."), "0123456789 ");
+	inbox = new CStringInput(_("Sleeptimer"), value, 3, _("Shutdown time in min. (000=off)"), _("The STB will shutdown after this time."), "0123456789 ");
 	inbox->exec (NULL, "");
 	inbox->hide ();
 
@@ -107,3 +107,5 @@ int CSleepTimerWidget::exec(CMenuTarget* parent, const std::string &)
 	
 	return res;
 }
+
+

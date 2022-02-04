@@ -57,7 +57,7 @@
 		</WINDOW>
 		
 		<LISTBOX posx="50" posy="60" width="540" height="620" type="0" mode ="2">
-			<ITEM name="listboxitem" id="7" lines="1" localename="Sleep Timer" itemicon="hint_sleeptimer" target="65">
+			<ITEM name="listboxitem" id="7" lines="1" localename="Sleeptimer" itemicon="hint_sleeptimer" target="65">
 			</ITEM>
 			<ITEM name="listboxitem" id="7" lines="1" localename="Neutrino Restart" itemicon="hint_restart" target="0" actionkey="restart">
 			</ITEM>
