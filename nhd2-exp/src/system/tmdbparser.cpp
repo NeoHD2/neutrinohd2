@@ -51,8 +51,7 @@ CTmdb::CTmdb()
 
 	key = "507930c8d6d400c85eae3a7e7b3f6c78";
 
-	std::string language = g_settings.language;
-	lang = Lang2ISO639_1(language);
+	lang = g_settings.language;
 
 	fileHelper.createDir(thumbnail_dir.c_str(), 0755);
 }

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 17:04+0100\n"
+"POT-Creation-Date: 2022-02-04 18:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "'X'=timer '-' no timer"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5619
+#: ../../src/neutrino.cpp:5617
 #, c-format
 msgid "(%d%% over)"
 msgstr ""
@@ -65,7 +65,7 @@ msgstr ""
 msgid "(relative, in seconds)"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5614
+#: ../../src/neutrino.cpp:5612
 #, c-format
 msgid "(starting in %d min)"
 msgstr ""
@@ -129,7 +129,7 @@ msgid "Activate settings"
 msgstr ""
 
 #: ../../src/gui/movieplayer.cpp:2151 ../../src/gui/movieinfo.cpp:1010
-#: ../../src/gui/epgview.cpp:905 ../../src/system/tmdbparser.cpp:248
+#: ../../src/gui/epgview.cpp:905 ../../src/system/tmdbparser.cpp:247
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:267
 msgid "Actors"
 msgstr ""
@@ -373,7 +373,7 @@ msgstr ""
 msgid "Box Info"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4144
+#: ../../src/neutrino.cpp:4142
 msgid ""
 "Box will shutdown in 1 min.\n"
 "Cancel Sutdown ?"
@@ -787,7 +787,7 @@ msgstr ""
 msgid "Dir"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5641 ../../src/gui/infoviewer.cpp:812
+#: ../../src/neutrino.cpp:5639 ../../src/gui/infoviewer.cpp:812
 #: ../../src/gui/infoviewer.cpp:865
 msgid "Direct-Mode"
 msgstr ""
@@ -1201,7 +1201,7 @@ msgid "Generic delay"
 msgstr ""
 
 #: ../../src/gui/movieplayer.cpp:2143 ../../src/gui/movieinfo.cpp:986
-#: ../../src/system/tmdbparser.cpp:234
+#: ../../src/system/tmdbparser.cpp:233
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:106
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:107
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:162
@@ -1507,14 +1507,14 @@ msgid "Infobar Crypticons"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:119 ../../src/neutrino.cpp:2818
-#: ../../src/neutrino.cpp:3178 ../../src/neutrino.cpp:4054
-#: ../../src/neutrino.cpp:4092 ../../src/neutrino.cpp:4099
-#: ../../src/neutrino.cpp:4144 ../../src/neutrino.cpp:4185
-#: ../../src/neutrino.cpp:4194 ../../src/neutrino.cpp:4213
-#: ../../src/neutrino.cpp:4378 ../../src/neutrino.cpp:5297
-#: ../../src/neutrino.cpp:5306 ../../src/neutrino.cpp:5311
-#: ../../src/neutrino.cpp:5327 ../../src/neutrino.cpp:5332
-#: ../../src/neutrino.cpp:5344 ../../src/neutrino.cpp:5346
+#: ../../src/neutrino.cpp:3176 ../../src/neutrino.cpp:4052
+#: ../../src/neutrino.cpp:4090 ../../src/neutrino.cpp:4097
+#: ../../src/neutrino.cpp:4142 ../../src/neutrino.cpp:4183
+#: ../../src/neutrino.cpp:4192 ../../src/neutrino.cpp:4211
+#: ../../src/neutrino.cpp:4376 ../../src/neutrino.cpp:5295
+#: ../../src/neutrino.cpp:5304 ../../src/neutrino.cpp:5309
+#: ../../src/neutrino.cpp:5325 ../../src/neutrino.cpp:5330
+#: ../../src/neutrino.cpp:5342 ../../src/neutrino.cpp:5344
 #: ../../src/gui/dboxinfo.cpp:479 ../../src/gui/cam_menu.cpp:201
 #: ../../src/gui/cam_menu.cpp:229 ../../src/gui/cam_menu.cpp:258
 #: ../../src/gui/cam_menu.cpp:359 ../../src/gui/cam_menu.cpp:473
@@ -1697,7 +1697,7 @@ msgstr ""
 msgid "Led Color"
 msgstr ""
 
-#: ../../src/system/tmdbparser.cpp:225 ../../src/system/tmdbparser.cpp:229
+#: ../../src/system/tmdbparser.cpp:224 ../../src/system/tmdbparser.cpp:228
 msgid "Length"
 msgstr ""
 
@@ -2281,7 +2281,7 @@ msgid "Order by"
 msgstr ""
 
 #: ../../src/gui/movieplayer.cpp:2145 ../../src/gui/movieinfo.cpp:993
-#: ../../src/gui/epgview.cpp:901 ../../src/system/tmdbparser.cpp:236
+#: ../../src/gui/epgview.cpp:901 ../../src/system/tmdbparser.cpp:235
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:261
 msgid "Original Title"
 msgstr ""
@@ -2443,7 +2443,7 @@ msgstr ""
 msgid "Previous image"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4030
+#: ../../src/neutrino.cpp:4028
 msgid "Program unknown"
 msgstr ""
 
@@ -2571,7 +2571,7 @@ msgstr ""
 msgid "Record stop time correction"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5392 ../../src/neutrino.cpp:5396
+#: ../../src/neutrino.cpp:5390 ../../src/neutrino.cpp:5394
 msgid "Recording"
 msgstr ""
 
@@ -2584,7 +2584,7 @@ msgstr ""
 msgid "Recording settings"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4092
+#: ../../src/neutrino.cpp:4090
 msgid "Recording starts in a few minutes"
 msgstr ""
 
@@ -2620,7 +2620,7 @@ msgstr ""
 msgid "Reload plugins"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5346 ../../src/gui/service_menu.cpp:76
+#: ../../src/neutrino.cpp:5344 ../../src/gui/service_menu.cpp:76
 #: ../../src/gui/service_menu.cpp:78
 msgid "Reloading channel lists, please be patient."
 msgstr ""
@@ -2629,7 +2629,7 @@ msgstr ""
 msgid "Remind"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4240
+#: ../../src/neutrino.cpp:4238
 msgid "Reminder"
 msgstr ""
 
@@ -2835,7 +2835,7 @@ msgstr ""
 msgid "Save settings now"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5297 ../../src/neutrino.cpp:5311
+#: ../../src/neutrino.cpp:5295 ../../src/neutrino.cpp:5309
 msgid "Save settings now?"
 msgstr ""
 
@@ -2851,11 +2851,11 @@ msgstr ""
 msgid "Saving keymap, please wait..."
 msgstr ""
 
-#: ../../src/neutrino.cpp:5306
+#: ../../src/neutrino.cpp:5304
 msgid "Saving settings now, please be patient."
 msgstr ""
 
-#: ../../src/neutrino.cpp:5327
+#: ../../src/neutrino.cpp:5325
 msgid ""
 "Saving settings now, please be patient.\n"
 " this needs Neutrino restart."
@@ -2999,7 +2999,7 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5562
+#: ../../src/neutrino.cpp:5560
 msgid "Select Subservice"
 msgstr ""
 
@@ -3012,7 +3012,7 @@ msgstr ""
 msgid "Select language"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5562
+#: ../../src/neutrino.cpp:5560
 msgid "Select starting-time"
 msgstr ""
 
@@ -3201,7 +3201,7 @@ msgstr ""
 msgid "Sleeptimer"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4099
+#: ../../src/neutrino.cpp:4097
 msgid "Sleeptimer in 1 min"
 msgstr ""
 
@@ -3939,7 +3939,7 @@ msgstr ""
 msgid "Year"
 msgstr ""
 
-#: ../../src/gui/epgview.cpp:899 ../../src/system/tmdbparser.cpp:238
+#: ../../src/gui/epgview.cpp:899 ../../src/system/tmdbparser.cpp:237
 msgid "Year of Production"
 msgstr ""
 
@@ -3958,7 +3958,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: ../../src/neutrino.cpp:3178 ../../src/neutrino.cpp:4378
+#: ../../src/neutrino.cpp:3176 ../../src/neutrino.cpp:4376
 #: ../../src/gui/movieplayer.cpp:616
 msgid "You really want to to stop record ?"
 msgstr ""
@@ -4002,7 +4002,7 @@ msgstr ""
 msgid "Zapping History Bouquet"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4010
+#: ../../src/neutrino.cpp:4008
 msgid "Zapto timer in one minute"
 msgstr ""
 
@@ -4274,7 +4274,7 @@ msgstr ""
 msgid "dmesg"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5344
+#: ../../src/neutrino.cpp:5342
 msgid "do you want to reload channel lists?"
 msgstr ""
 
@@ -4527,7 +4527,7 @@ msgstr ""
 msgid "literature"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5332
+#: ../../src/neutrino.cpp:5330
 msgid "load default skin configuration?"
 msgstr ""
 
@@ -4729,7 +4729,7 @@ msgstr ""
 msgid "not connected"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5574 ../../src/gui/osd_setup.cpp:59
+#: ../../src/neutrino.cpp:5572 ../../src/gui/osd_setup.cpp:59
 #: ../../src/gui/hdd_menu.cpp:82 ../../src/gui/hdd_menu.cpp:91
 #: ../../src/gui/audio_setup.cpp:53 ../../src/gui/audio_setup.cpp:69
 #: ../../src/gui/audio_setup.cpp:77 ../../src/gui/scan_setup.cpp:90
@@ -4742,7 +4742,7 @@ msgstr ""
 msgid "off"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5575 ../../src/gui/osd_setup.cpp:60
+#: ../../src/neutrino.cpp:5573 ../../src/gui/osd_setup.cpp:60
 #: ../../src/gui/audio_setup.cpp:54 ../../src/gui/audio_setup.cpp:70
 #: ../../src/gui/audio_setup.cpp:78 ../../src/gui/scan_setup.cpp:91
 #: ../../src/gui/recording_setup.cpp:51 ../../src/gui/misc_setup.cpp:71
@@ -5025,7 +5025,7 @@ msgstr ""
 msgid "sports magazines"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5392 ../../src/gui/pluginlist.cpp:85
+#: ../../src/neutrino.cpp:5390 ../../src/gui/pluginlist.cpp:85
 msgid "start"
 msgstr ""
 

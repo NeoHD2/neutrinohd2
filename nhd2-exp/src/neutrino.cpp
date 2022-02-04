@@ -2965,9 +2965,7 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				//
-				//if (hasWidgets() && (widget_exists(WIDGET_MAINMENU)))
-				//		getWidget(WIDGET_MAINMENU)->exec(NULL, "");
-				if (!startSkin(WIDGET_MAINMENU))
+				if (!execSkin(WIDGET_MAINMENU))
 					mainMenu();
 
 				// restore mute symbol
@@ -5700,7 +5698,6 @@ int main(int argc, char *argv[])
 	signal(SIGPIPE, SIG_IGN);
 	
 	// initlocale
-	setlocale(LC_ALL, "");
 	bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale");
 	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
 	textdomain(PACKAGE_NAME);

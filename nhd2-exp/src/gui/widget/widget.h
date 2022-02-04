@@ -203,9 +203,6 @@ class CWidget : public CMenuTarget
 		
 		//
 		void initFrames();
-		
-		//
-		void paint();
 
 	public:
 		CWidget(const int x = 0, const int y = 0, const int dx = DEFAULT_XRES, const int dy = DEFAULT_YRES);
@@ -229,6 +226,8 @@ class CWidget : public CMenuTarget
 		void paintCCItems();
 		
 		//
+		//
+		virtual void paint();
 		virtual void hide();
 		virtual int exec(CMenuTarget *parent, const std::string &actionKey);
 

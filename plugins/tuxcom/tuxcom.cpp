@@ -118,11 +118,12 @@ void SetLanguage()
 {
 	if (langselect == BTN_AUTO)
 	{
-		language=LANG_INT;
-		if (strncmp(setlocale( LC_ALL, NULL ),"de",2) == 0) language = LANG_DE;
-		if (strncmp(setlocale( LC_ALL, NULL ),"it",2) == 0) language = LANG_IT;
-		if (strncmp(setlocale( LC_ALL, NULL ),"sv",2) == 0) language=LANG_SV;
-		if (strncmp(setlocale( LC_ALL, NULL ),"pt",2) == 0) language=LANG_PT;
+		language = LANG_INT;
+		
+		if (g_settings.language == "de") language = LANG_DE;
+		if (g_settings.language == "it") language = LANG_IT;
+		if (g_settings.language == "sv") language=LANG_SV;
+		if (g_settings.language == "pt") language=LANG_PT;
 	}
 	else
 	{

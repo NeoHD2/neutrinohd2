@@ -623,10 +623,11 @@ std::string changeFileNameExt(std::string &filename, const char *ext)
 	return filename;
 }
 
+/*
 std::string Lang2ISO639_1(std::string& lang)
 {
 	std::string ret = "";
-	if ((lang == "deutsch") || (lang == "bayrisch") || (lang == "ch-baslerdeutsch") || (lang == "ch-berndeutsch"))
+	if (lang == "de")
 		ret = "de";
 	else if (lang == "english")
 		ret = "en";
@@ -655,40 +656,39 @@ std::string Lang2ISO639_1(std::string& lang)
 
 	return ret;
 }
+*/
 
 //
 std::string Lang2I18N(std::string lang)
 {
 	std::string ret = "C";
 	
-	if ((lang == "de") || (lang == "bayrisch") || (lang == "ch-baslerdeutsch") || (lang == "ch-berndeutsch"))
+	if (lang == "de")
 		ret = "de_DE";
 	else if (lang == "en")
 		ret = "C";
-	else if (lang == "nederlands")
+	else if (lang == "nl")
 		ret = "nl_NL";
-	else if (lang == "slovak")
+	else if (lang == "sk")
 		ret = "sk_SK";
-	else if (lang == "bosanski")
+	else if (lang == "bs")
 		ret = "bs_BS";
-	else if (lang == "czech")
+	else if (lang == "cs")
 		ret = "cs_CS";
-	else if (lang == "francais")
-		ret = "fr";
-	else if (lang == "italiano")
+	else if (lang == "fr")
+		ret = "fr_FR";
+	else if (lang == "it")
 		ret = "it_IT";
-	else if (lang == "polski")
+	else if (lang == "pl")
 		ret = "pl_PL";
-	else if (lang == "portugues")
+	else if (lang == "pt")
 		ret = "pt_PT";
-	else if (lang == "russkij")
+	else if (lang == "ru")
 		ret = "ru_RU";
-	else if (lang == "suomi")
-		ret = "fi_FI";
-	else if (lang == "svenska")
+	else if (lang == "sv")
 		ret = "sv_SV";
-	else if (lang == "arabic")
-		ret = "ar_AR";
+	else if (lang == "ar")
+		ret = "ar_AE";
 
 	return ret;
 }
