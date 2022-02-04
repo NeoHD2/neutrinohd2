@@ -1408,7 +1408,7 @@ void CNeutrinoApp::parseSkin()
 					lines = xmlGetSignedNumericAttribute(listboxintegration_node, "lines", 0);
 					shadow = xmlGetSignedNumericAttribute(listboxintegration_node, "shadow", 0);
 						
-					listBox->integratePlugins(integration, shortcut, true, mode, type, lines, shadow);
+					listBox->integratePlugins(integration, shortcut? shortcut : RC_nokey, true, mode, type, lines, shadow);
 				
 					listboxintegration_node = listboxintegration_node->xmlNextNode;
 				}
