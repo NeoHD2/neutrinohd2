@@ -9,7 +9,7 @@
 		</WINDOW>
 		
 		<LISTBOX posx="50" posy="60" width="540" height="620" type="0" mode ="2">
-			<INTEGRATION id="0x04" shortcut="1" lines="1">
+			<INTEGRATION id="0x04" lines="1">
 			</INTEGRATION>
 		</LISTBOX>
 		
@@ -36,7 +36,7 @@
 			</ITEM>
 			<ITEM id="5" lines="1" localename="Stream information" itemicon="hint_dboxinfo" target="66">
 			</ITEM>
-			<INTEGRATION id="0x02" shortcut="4" lines="1">
+			<INTEGRATION id="0x02" lines="1">
 			</INTEGRATION>
 		</LISTBOX>
 		
@@ -121,7 +121,7 @@
 			</ITEM>
 			<ITEM id="5" lines="1" localename="Plugins" itemicon="hint_plugin" target="43">
 			</ITEM>
-			<INTEGRATION id="0x40" shortcut="3" lines="1">
+			<INTEGRATION id="0x40" lines="1">
 			</INTEGRATION>
 		</LISTBOX>
 		
