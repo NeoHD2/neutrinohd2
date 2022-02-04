@@ -64,10 +64,15 @@ enum
 	NO_AUTO_LINEBREAK = 0x80
 };
 
-#define TOP_RIGHT	0
-#define TOP_LEFT	1
-#define TOP_CENTER	2
+// pic
+enum 
+{
+	PIC_RIGHT,
+	PIC_LEFT,
+	PIC_CENTER
+};
 
+// shadow
 enum {
 	SHADOW_NO,
 	SHADOW_ALL,
@@ -79,9 +84,6 @@ class CTextBox : public CWidgetItem
 	private:
 		CBox m_cFrameTextRel;
 		CBox m_cFrameScrollRel;
-
-		int m_nMaxHeight;
-		int m_nMaxWidth;
 
 		// variables
 		std::string m_cText;
@@ -146,7 +148,7 @@ class CTextBox : public CWidgetItem
 		void scrollPageUp(const int pages = 1);
 
 		//				
-		bool setText(const char * const newText, const char * const _thumbnail = NULL, int _tw = 0, int _th = 0, int _tmode = TOP_RIGHT, bool enable_frame = false, const bool useBackground = false);
+		bool setText(const char * const newText, const char * const _thumbnail = NULL, int _tw = 0, int _th = 0, int _tmode = PIC_RIGHT, bool enable_frame = false, const bool useBackground = false);
 		
 		inline bool isPainted(void){return painted;};
 

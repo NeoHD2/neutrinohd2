@@ -72,11 +72,11 @@ enum
 
 enum
 {
-	FOOT_INFO_MODE = 0,
-	FOOT_HINT_MODE,
-	FOOT_HINTITEM_MODE,
-	FOOT_HINTICON_MODE,
-	FOOT_HINTHINT_MODE
+	ITEMINFO_INFO_MODE = 0,
+	ITEMINFO_HINT_MODE,
+	ITEMINFO_HINTITEM_MODE,
+	ITEMINFO_HINTICON_MODE,
+	ITEMINFO_HINTHINT_MODE
 };
 
 // line separator
@@ -679,7 +679,7 @@ class ClistBox : public CWidgetItem
 		void setItemInfoMode(int mode){footInfoMode = mode;};
 		void setItemInfoPos(int x, int y, int dx, int dy)
 		{
-			if ( (footInfoMode == FOOT_HINTITEM_MODE) || (footInfoMode == FOOT_HINTICON_MODE) || (footInfoMode == FOOT_HINTHINT_MODE))
+			if ( (footInfoMode == ITEMINFO_HINTITEM_MODE) || (footInfoMode == ITEMINFO_HINTICON_MODE) || (footInfoMode == ITEMINFO_HINTHINT_MODE))
 			{
 				itemInfoBox.iX = x; 
 				itemInfoBox.iY = y; 

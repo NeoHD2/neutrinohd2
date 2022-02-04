@@ -48,10 +48,6 @@
 #include <driver/framebuffer.h>
 
 
-#define TOP_RIGHT	0
-#define TOP_LEFT	1
-#define TOP_CENTER	2
-
 class CInfoBox  
 {
 	private:
@@ -116,7 +112,7 @@ class CInfoBox
 		void setHeadGradient(int grad){headGradient = grad;};
 		
 		// text
-		bool setText(const char * const newText, const char * const _thumbnail = NULL, int _tw = 0, int _th = 0, int tmode = TOP_RIGHT, bool enable_frame = false, const bool useBackground = false);
+		bool setText(const char * const newText, const char * const _thumbnail = NULL, int _tw = 0, int _th = 0, int tmode = PIC_RIGHT, bool enable_frame = false, const bool useBackground = false);
 		void setMode(const int mode){m_nMode = mode;};
 		void setBackgroundColor(fb_pixel_t col);
 		void setTextColor(uint8_t col);
@@ -133,6 +129,6 @@ class CInfoBox
 };
 
 //
-void InfoBox(const char * const text, const char * const title, const char * const icon = NEUTRINO_ICON_INFO, const char * const thumbnail = NULL, int tw = 0, int th = 0, int tmode = TOP_RIGHT);
+void InfoBox(const char * const text, const char * const title, const char * const icon = NEUTRINO_ICON_INFO, const char * const thumbnail = NULL, int tw = 0, int th = 0, int tmode = PIC_RIGHT);
 
 #endif

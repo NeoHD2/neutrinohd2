@@ -56,9 +56,6 @@ CTextBox::CTextBox(const int x, const int y, const int dx, const int dy)
 	itemBox.iWidth = dx;
 	itemBox.iHeight = dy;
 	
-	m_nMaxHeight = itemBox.iHeight;
-	m_nMaxWidth = itemBox.iWidth;
-	
 	//
 	initFramesRel();
 }
@@ -72,9 +69,6 @@ CTextBox::CTextBox(CBox* position)
 	if(position != NULL)
 	{
 		itemBox = *position;
-
-		m_nMaxHeight = itemBox.iHeight;
-		m_nMaxWidth = itemBox.iWidth;
 	}
 	
 	//
@@ -106,7 +100,7 @@ void CTextBox::initVar(void)
 	
 	m_cText	= "";
 	m_nMode = SCROLL;
-	m_tMode = TOP_RIGHT;
+	m_tMode = PIC_RIGHT;
 
 	m_pcFontText = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
 	m_nFontTextHeight = m_pcFontText->getHeight();
@@ -122,9 +116,6 @@ void CTextBox::initVar(void)
 
 	itemBox.iX = g_settings.screen_StartX + ((g_settings.screen_EndX - g_settings.screen_StartX - itemBox.iWidth) >>1);
 	itemBox.iY = g_settings.screen_StartY + ((g_settings.screen_EndY - g_settings.screen_StartY - itemBox.iHeight) >>1);
-
-	m_nMaxHeight = MAX_WINDOW_HEIGHT;
-	m_nMaxWidth = MAX_WINDOW_WIDTH;
 	
 	m_textBackgroundColor = COL_MENUCONTENT_PLUS_0;
 	m_textColor = COL_MENUCONTENT;
@@ -159,9 +150,6 @@ void CTextBox::setPosition(const int x, const int y, const int dx, const int dy)
 	itemBox.iWidth = dx;
 	itemBox.iHeight = dy;
 
-	m_nMaxHeight = itemBox.iHeight;
-	m_nMaxWidth = itemBox.iWidth;
-
 	initFramesRel();
 }
 
@@ -170,9 +158,6 @@ void CTextBox::setPosition(const CBox * position)
 	if(position != NULL)
 	{
 		itemBox = *position;
-
-		m_nMaxHeight = itemBox.iHeight;
-		m_nMaxWidth = itemBox.iWidth;
 	}
 
 	initFramesRel();
@@ -213,8 +198,8 @@ void CTextBox::reSizeTextFrameWidth(int textWidth)
 
 	int iNewWindowWidth = textWidth + m_cFrameScrollRel.iWidth + BORDER_LEFT + BORDER_RIGHT;
 
-	if( iNewWindowWidth > m_nMaxWidth) 
-		iNewWindowWidth = m_nMaxWidth;
+	if( iNewWindowWidth > itemBox.iWidth) 
+		iNewWindowWidth = itemBox.iWidth;
 	if( iNewWindowWidth < MIN_WINDOW_WIDTH) 
 		iNewWindowWidth = MIN_WINDOW_WIDTH;
 
@@ -230,8 +215,8 @@ void CTextBox::reSizeTextFrameHeight(int textHeight)
 
 	int iNewWindowHeight = textHeight + BORDER_LEFT + BORDER_RIGHT;
 
-	if( iNewWindowHeight > m_nMaxHeight) 
-		iNewWindowHeight = m_nMaxHeight;
+	if( iNewWindowHeight > itemBox.iHeight) 
+		iNewWindowHeight = itemBox.iHeight;
 	if( iNewWindowHeight < MIN_WINDOW_HEIGHT) 
 		iNewWindowHeight = MIN_WINDOW_HEIGHT;
 
@@ -323,7 +308,7 @@ void CTextBox::refreshTextLineArray(void)
 	}
 	
 	//
-	if( (!access(thumbnail.c_str(), F_OK) && m_nCurrentPage == 0) && m_tMode != TOP_CENTER)
+	if( (!access(thumbnail.c_str(), F_OK) && m_nCurrentPage == 0) && m_tMode != PIC_CENTER)
 		lineBreakWidth = m_cFrameTextRel.iWidth - tw - 10;
 	
 	const int TextChars = m_cText.size();
@@ -434,10 +419,12 @@ void CTextBox::refreshTextLineArray(void)
 		// linesPerPage
 		m_nLinesPerPage = (m_cFrameTextRel.iHeight) / m_nFontTextHeight;
 
-		if(m_tMode == TOP_CENTER && m_nCurrentPage == 0)
-			m_nLinesPerPage = (m_cFrameTextRel.iHeight - th - 10) / m_nFontTextHeight;
-		else if(m_tMode == TOP_CENTER && m_nCurrentPage > 0)
-			m_nLinesPerPage = (m_cFrameTextRel.iHeight) / m_nFontTextHeight;
+		//if(m_tMode == PIC_CENTER && m_nCurrentPage == 0)
+		//{
+		//	m_nLinesPerPage = (m_cFrameTextRel.iHeight - th - 10) / m_nFontTextHeight;
+		//}
+		//else if(m_tMode == PIC_CENTER && m_nCurrentPage > 0)
+		//	m_nLinesPerPage = (m_cFrameTextRel.iHeight) / m_nFontTextHeight; // FIXME:
 
 		// NrOfPages
 		if(m_nLinesPerPage > 0)
@@ -517,9 +504,10 @@ void CTextBox::refreshText(void)
 	int i;
 	int x_start = 0;
 
-	if(m_tMode == TOP_CENTER && m_nCurrentPage == 0)
+	if(m_tMode == PIC_CENTER && m_nCurrentPage == 0)
 	{
 		y = y + th + 10;
+		m_nLinesPerPage = (m_cFrameTextRel.iHeight - th - 10) / m_nFontTextHeight;
 	}
 
 	for(i = m_nCurrentLine; i < m_nNrOfLines && i < m_nCurrentLine + m_nLinesPerPage; i++)
@@ -529,7 +517,7 @@ void CTextBox::refreshText(void)
 		// x_start FIXME:		
 		if( !access(thumbnail.c_str(), F_OK) && (m_nCurrentPage == 0))
 		{
-			if (m_tMode == TOP_LEFT)
+			if (m_tMode == PIC_LEFT)
 			{
 				if(i <= (th / m_nFontTextHeight))
 					x_start = tw + 10;
@@ -643,17 +631,17 @@ bool CTextBox::setText(const char * const newText, const char * const _thumbnail
 		}
 
 		// position
-		if(m_tMode == TOP_RIGHT)
+		if(m_tMode == PIC_RIGHT)
 		{
 			lx = itemBox.iX + itemBox.iWidth - (tw + m_cFrameScrollRel.iWidth + 10);
 			ly = itemBox.iY + 10;
 		}
-		else if(m_tMode == TOP_LEFT)
+		else if(m_tMode == PIC_LEFT)
 		{
 			lx = itemBox.iX + 10;
 			ly = itemBox.iY + 10;
 		}
-		else if(m_tMode == TOP_CENTER)
+		else if(m_tMode == PIC_CENTER)
 		{
 			lx = itemBox.iX + (itemBox.iWidth - tw)/2;
 			ly = itemBox.iY + 10;

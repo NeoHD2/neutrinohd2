@@ -175,7 +175,7 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	paintFootInfo = false;
 	footInfoHeight = 0;
 	cFrameFootInfoHeight = 0;
-	footInfoMode = FOOT_INFO_MODE;
+	footInfoMode = ITEMINFO_INFO_MODE;
 
 	timeout = 0;
 	sec_timer_interval = 1; // 1 min
@@ -912,7 +912,7 @@ void CMenuWidget::paintItemInfo(int pos)
 		{
 			if(paintFootInfo)
 			{
-				if (footInfoMode == FOOT_INFO_MODE)
+				if (footInfoMode == ITEMINFO_INFO_MODE)
 				{
 					CMenuItem * item = items[pos];
 	
@@ -925,7 +925,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					
 					itemsLine.paint(x, y, width, height - cFrameFootInfoHeight, cFrameFootInfoHeight, item->getHeight(), item->getYPosition());
 				}
-				else if (footInfoMode == FOOT_HINT_MODE)
+				else if (footInfoMode == ITEMINFO_HINT_MODE)
 				{
 					CMenuItem* item = items[pos];
 	
@@ -1027,7 +1027,7 @@ void CMenuWidget::paintItemInfo(int pos)
 		{
 			if(paintFootInfo)
 			{
-				if (footInfoMode == FOOT_INFO_MODE)
+				if (footInfoMode == ITEMINFO_INFO_MODE)
 				{
 					CMenuItem * item = items[pos];
 	
@@ -1040,7 +1040,7 @@ void CMenuWidget::paintItemInfo(int pos)
 					
 					itemsLine.paint(x, y, width, height - cFrameFootInfoHeight, cFrameFootInfoHeight, item->getHeight(), item->getYPosition());
 				}
-				else if (footInfoMode == FOOT_HINT_MODE)
+				else if (footInfoMode == ITEMINFO_HINT_MODE)
 				{
 					CMenuItem* item = items[pos];
 	
@@ -1174,7 +1174,7 @@ void CMenuWidget::paintItemInfo(int pos)
 			textBox->setBackgroundColor(COL_MENUCONTENTDARK_PLUS_0);
 
 			// hint
-			textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), p_w, p_h, TOP_CENTER);
+			textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), p_w, p_h, PIC_CENTER);
 			textBox->paint();
 			
 			// info button

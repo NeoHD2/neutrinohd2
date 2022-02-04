@@ -610,7 +610,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		// Hint
 		if(!hint.empty())
 		{
-			Dline.setText(hint.c_str(), !icon.empty()? icon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, iw, ih, TOP_LEFT);
+			Dline.setText(hint.c_str(), !icon.empty()? icon.c_str() : NEUTRINO_ICON_MENUITEM_NOPREVIEW, iw, ih, PIC_LEFT);
 		}
 					
 		Dline.paint();
@@ -633,7 +633,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		::scaleImage(icon, &pw, &ph);
 
 		// Hint
-		Dline.setText(hint.c_str(), icon.c_str(), pw, ph, TOP_CENTER);
+		Dline.setText(hint.c_str(), icon.c_str(), pw, ph, PIC_CENTER);
 					
 		Dline.paint();
 	}
@@ -797,7 +797,7 @@ void CCText::paint()
 	// caption
 	if(!Text.empty())
 	{
-		textBox.setText(Text.c_str(), NULL, 0, 0, TOP_RIGHT, false, useBG);
+		textBox.setText(Text.c_str(), NULL, 0, 0, PIC_RIGHT, false, useBG);
 	}
 	
 	textBox.paint();

@@ -2223,7 +2223,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	paintFootInfo = false;
 	footInfoHeight = 0;
 	cFrameFootInfoHeight = 0;
-	footInfoMode = FOOT_INFO_MODE;
+	footInfoMode = ITEMINFO_INFO_MODE;
 	itemInfoBox.iX = 0;
 	itemInfoBox.iY = 0;
 	itemInfoBox.iWidth = 0;
@@ -2343,7 +2343,7 @@ ClistBox::ClistBox(CBox* position)
 	paintFootInfo = false;
 	footInfoHeight = 0;
 	cFrameFootInfoHeight = 0;
-	footInfoMode = FOOT_INFO_MODE;
+	footInfoMode = ITEMINFO_INFO_MODE;
 	itemInfoBox.iX = 0;
 	itemInfoBox.iY = 0;
 	itemInfoBox.iWidth = 0;
@@ -3094,7 +3094,7 @@ void ClistBox::paintItemInfo(int pos)
 	{
 		if(paintFootInfo)
 		{
-			if (footInfoMode == FOOT_INFO_MODE)
+			if (footInfoMode == ITEMINFO_INFO_MODE)
 			{
 				CMenuItem* item = items[pos];
 
@@ -3107,7 +3107,7 @@ void ClistBox::paintItemInfo(int pos)
 					
 				itemsLine.paint(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight - cFrameFootInfoHeight, cFrameFootInfoHeight, item->getHeight(), item->getYPosition());
 			}
-			else if (footInfoMode == FOOT_HINT_MODE)
+			else if (footInfoMode == ITEMINFO_HINT_MODE)
 			{
 				CMenuItem* item = items[pos];
 	
@@ -3120,7 +3120,7 @@ void ClistBox::paintItemInfo(int pos)
 					
 				itemsLine.paint(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight - cFrameFootInfoHeight, cFrameFootInfoHeight, item->getHeight(), item->getYPosition());
 			}
-			else if (footInfoMode == FOOT_HINTITEM_MODE)
+			else if (footInfoMode == ITEMINFO_HINTITEM_MODE)
 			{
 				CMenuItem* item = items[pos];
 	
@@ -3137,7 +3137,7 @@ void ClistBox::paintItemInfo(int pos)
 					
 				itemsLine.paint(itemInfoBox.iX, itemInfoBox.iY, itemInfoBox.iWidth, itemInfoBox.iHeight);
 			}
-			else if (footInfoMode == FOOT_HINTICON_MODE)
+			else if (footInfoMode == ITEMINFO_HINTICON_MODE)
 			{
 				CMenuItem* item = items[pos];
 	
@@ -3153,7 +3153,7 @@ void ClistBox::paintItemInfo(int pos)
 					
 				itemsLine.paint(itemInfoBox.iX, itemInfoBox.iY, itemInfoBox.iWidth, itemInfoBox.iHeight);
 			}
-			else if (footInfoMode == FOOT_HINTHINT_MODE)
+			else if (footInfoMode == ITEMINFO_HINTHINT_MODE)
 			{
 				CMenuItem* item = items[pos];
 	
@@ -3191,11 +3191,12 @@ void ClistBox::paintItemInfo(int pos)
 		}
 						
 		textBox = new CTextBox(itemBox.iX + 2*(itemBox.iWidth/3), itemBox.iY + hheight, (itemBox.iWidth/3), items_height);
+		//textBox->setMode(AUTO_WIDTH | ~SCROLL);
 				
 		textBox->setBackgroundColor(COL_MENUCONTENTDARK_PLUS_0);
 
 		// hint
-		textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), p_w, p_h, TOP_CENTER);
+		textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), p_w, p_h, PIC_CENTER);
 		textBox->paint();
 	}
 	else if(widgetType == WIDGET_TYPE_FRAME)
@@ -3233,7 +3234,7 @@ void ClistBox::hideItemInfo()
 	{
 	    	if(widgetType == WIDGET_TYPE_STANDARD || widgetType == WIDGET_TYPE_CLASSIC)
 		{
-			if ((footInfoMode == FOOT_INFO_MODE) || (footInfoMode == FOOT_HINT_MODE))
+			if ((footInfoMode == ITEMINFO_INFO_MODE) || (footInfoMode == ITEMINFO_HINT_MODE))
 				itemsLine.clear(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight - cFrameFootInfoHeight, cFrameFootInfoHeight);
 			else
 				itemsLine.clear(itemInfoBox.iX, itemInfoBox.iY, itemInfoBox.iWidth, itemInfoBox.iHeight, 0);
