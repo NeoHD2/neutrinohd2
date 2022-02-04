@@ -1389,7 +1389,7 @@ void CNeutrinoApp::parseSkin()
 					listboxitem_node = listboxitem_node->xmlNextNode;
 				}
 				
-				//
+				// INTEGRATION
 				listboxintegration_node = listbox_node->xmlChildrenNode;
 					
 				while ((listboxintegration_node = xmlGetNextOccurence(listboxintegration_node, "INTEGRATION")) != NULL) 
@@ -1413,7 +1413,7 @@ void CNeutrinoApp::parseSkin()
 					listboxintegration_node = listboxintegration_node->xmlNextNode;
 				}
 				
-				//
+				// FOOTBUTTON
 				footbutton_node = listbox_node->xmlChildrenNode;
 					
 				while ((footbutton_node = xmlGetNextOccurence(footbutton_node, "BUTTON")) != NULL) 
@@ -1519,11 +1519,6 @@ void CNeutrinoApp::parseSkin()
 							
 				pic = new CCImage(cc_x, cc_y, cc_dx, cc_dy);
 							
-				std::string filename = CONFIGDIR "/skins/";
-				filename += g_settings.preferred_skin;
-				filename += "/";
-				filename += image;
-							
 				if (image != NULL)
 				{
 					std::string filename = CONFIGDIR "/skins/";
@@ -1576,7 +1571,7 @@ void CNeutrinoApp::parseSkin()
 							
 				time = new CCTime(cc_x, cc_y, cc_dx, cc_dy);
 							
-				if (cc_format != NULL) time->setFormat(_(cc_format)); //FIXME: corrupted
+				if (cc_format != NULL) time->setFormat(_(cc_format));
 				if (cc_refresh) time->enableRepaint();
 							
 				wdg->addCCItem(time);	
@@ -1758,7 +1753,8 @@ bool CNeutrinoApp::startSkin(const int id)
 	
 	bool ret = false;
 	
-	if (hasWidgets() && (widget_exists(id)))
+	//if (hasWidgets() && (widget_exists(id)))
+	if (getWidget(id))
 	{
 		ret = true;
 		getWidget(id)->exec(NULL, "");
