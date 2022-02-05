@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-05 02:08+0100\n"
+"POT-Creation-Date: 2022-02-05 03:14+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -643,6 +643,9 @@ msgstr ""
 msgid "Enable standby"
 msgstr ""
 
+msgid "English"
+msgstr "Englisch"
+
 msgid "Enter 0 to switch of the blocker (red is space)"
 msgstr ""
 
@@ -756,10 +759,10 @@ msgid "Focus"
 msgstr ""
 
 msgid "Font"
-msgstr ""
+msgstr "Schrift"
 
 msgid "Font name"
-msgstr ""
+msgstr "Schrift Name"
 
 msgid "Foot"
 msgstr ""
@@ -817,6 +820,9 @@ msgstr ""
 
 msgid "Genre"
 msgstr ""
+
+msgid "German"
+msgstr "Deutsch"
 
 msgid "Goto Motor Position (a)"
 msgstr ""
@@ -1088,7 +1094,7 @@ msgid "LaDirection"
 msgstr ""
 
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 msgid "Language Setup"
 msgstr "Sprache Einstellungen"

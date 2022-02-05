@@ -1,4 +1,4 @@
-LANGS = en de
+LANGS = de
 
 LANGMO = $(LANGS:=.mo)
 LANGPO = $(LANGS:=.po)

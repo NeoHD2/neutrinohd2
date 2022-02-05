@@ -474,6 +474,17 @@ void CLanguageSettings::showMenu()
 
 	languageSettings.addItem(new CMenuForwarder(_("Save Settings"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	languageSettings.addItem(new CMenuSeparator(LINE));
+	
+	item = new ClistBoxItem(_("English"), true, NULL, this, "en");
+	item->setIconName("en");
+	
+	if (strcmp(g_settings.language, "en") == 0)
+	{
+		item->setIcon1(NEUTRINO_ICON_MARK);
+		//item->setMarked(true);
+	}
+					
+	languageSettings.addItem(item);
 
 	struct dirent **namelist;
 	int n;
@@ -491,13 +502,13 @@ void CLanguageSettings::showMenu()
 				if(namelist[n]->d_type == DT_DIR && !strstr(namelist[n]->d_name, ".") && !strstr(namelist[n]->d_name, ".."))
 				{
 					
-					item = new ClistBoxItem(locale2lang(namelist[n]->d_name).c_str(), true, NULL, this, namelist[n]->d_name);
+					item = new ClistBoxItem(_(locale2lang(namelist[n]->d_name).c_str()), true, NULL, this, namelist[n]->d_name);
 					item->setIconName(namelist[n]->d_name);
 					
 					if (strcmp(g_settings.language, namelist[n]->d_name) == 0)
 					{
 						item->setIcon1(NEUTRINO_ICON_MARK);
-						item->setMarked(true);
+						//item->setMarked(true);
 					}
 					
 					languageSettings.addItem(item);	
@@ -915,7 +926,7 @@ void CSkinManager::showMenu()
 	if (g_settings.use_default_skin)
 	{
 		item->setIcon1(NEUTRINO_ICON_MARK);
-		item->setMarked(true);
+		//item->setMarked(true);
 	}
 	
 	skinMenu->addItem(item);
@@ -947,7 +958,7 @@ void CSkinManager::showMenu()
 				if (!g_settings.use_default_skin && g_settings.preferred_skin == namelist[i]->d_name)
 				{
 					item->setIcon1(NEUTRINO_ICON_MARK);
-					item->setMarked(true);
+					//item->setMarked(true);
 				}
 				
 				item->set2lines();
