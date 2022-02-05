@@ -54,7 +54,11 @@ class CPluginList : public CMenuTarget
 			resume = 1,
 		} result;
 
-		CMenuWidget* plist;
+
+		CWidget* pWidget;
+		CHeaders* head;
+		CFooters* foot;
+		ClistBox* plist;
 		CMenuItem* item;
 
 	private:

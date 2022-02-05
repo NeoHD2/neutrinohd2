@@ -228,7 +228,9 @@ class CTestMenu : public CMenuTarget
 		void testCBouquetlist();
 		
 		// skin
-		void loadSkin();
+		void testSkinWidget();
+		void testSkinSetup();
+		
 
 	public:
 		CTestMenu();
@@ -5679,13 +5681,136 @@ void CTestMenu::testCBouquetlist()
 }
 
 // skin
-void CTestMenu::loadSkin()
+#define NUM_LIST_BUTTONS 4
+struct button_label CPluginListButtons[NUM_LIST_BUTTONS] =
 {
-	dprintf(DEBUG_NORMAL, "\nCTestMenu::loadSkin\n");
+	{ NEUTRINO_ICON_BUTTON_RED, _("remove") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("start") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, "" },
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("Reload plugins")}
+};
+
+void CTestMenu::testSkinWidget()
+{
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testSkinWidget\n");
 	
-	// exec widget
-	if (CNeutrinoApp::getInstance()->widget_exists(WIDGET_MAINMENU))
-		CNeutrinoApp::getInstance()->getWidget(WIDGET_MAINMENU)->exec(NULL, "");
+	//
+	//CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->clearItems();
+	//CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->clearCCItems();
+
+	//
+	CBox Box;
+	
+	Box.iWidth = (g_settings.screen_EndX - g_settings.screen_StartX - 20)/2;
+	Box.iHeight = g_settings.screen_EndY - g_settings.screen_StartY - 20;
+
+	Box.iX = 50; //frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - Box.iWidth ) >> 1 );
+	Box.iY = 50; //frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - Box.iHeight) >> 1 );
+	
+	if (rightWidget)
+	{
+		delete rightWidget;
+		rightWidget = NULL;
+	}
+
+	rightWidget = new ClistBox(&Box);
+	
+	//
+	for(unsigned int count = 0; count < (unsigned int)g_PluginList->getNumberOfPlugins(); count++)
+	{
+		std::string IconName = "";
+
+		IconName = PLUGINDIR;
+		IconName += "/";
+		IconName += g_PluginList->getFileName(count);
+		IconName += "/";
+		IconName += g_PluginList->getIcon(count);
+
+		bool enabled = g_PluginList->getType(count) != CPlugins::P_TYPE_DISABLED;
+		
+		// skip hidden plugins
+		if (!g_PluginList->isHidden(count))
+		{	
+			item = new CMenuForwarder(_(g_PluginList->getName(count)), enabled, _(g_PluginList->getDescription(count).c_str()), CPluginsExec::getInstance(), g_PluginList->getFileName(count), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
+
+			item->set2lines();
+			item->enableItemShadow();
+
+			rightWidget->addItem(item);
+		}
+	}
+
+	// mode
+	rightWidget->setWidgetType(WIDGET_TYPE_CLASSIC);
+	rightWidget->enableShrinkMenu();
+	rightWidget->paintMainFrame(false);
+	rightWidget->paintScrollBar(false);
+	
+	//printf("WITEMS: %d CCITEMS:%d\n", CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getItemsCount(), CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getCCItemsCount());
+	
+	//CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->removeItem(CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getItemsCount());
+	CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->addItem(rightWidget);
+	
+	// label
+	CCLabel* label = new CCLabel(640, 50, 640, 50);
+	label->setText(_("Plugins"));
+	label->setHAlign(CC_ALIGN_CENTER);
+	
+	//CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->addCCItem(label);
+	
+	// logo
+	CCIcon* logo = new CCIcon(640, 150, 640, 300);
+	
+	std::string icon = CONFIGDIR "/skins/";
+	icon += g_settings.preferred_skin;
+	icon += "/background/logo.png";
+	
+	logo->setIcon(icon.c_str());
+	
+	//CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->addCCItem(logo);
+	
+	// date
+	CCTime* date = new CCTime(640, 450, 640, 100);
+	date->setFormat("%a %d.%m.%Y");
+	date->enableRepaint();
+	
+	//CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->addCCItem(date);
+	
+	// time
+	CCTime* time = new CCTime(640, 500, 640, 100);
+	time->setFormat("%H:%M:%S");
+	
+	time->enableRepaint();
+	
+	//CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->addCCItem(time);
+	
+	//
+	//CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->removeCCItem(CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getCCItemsCount());
+	
+	CCButtons* btn = new CCButtons(10, 680, 1260, 40);
+	btn->setButtons(CPluginListButtons, NUM_LIST_BUTTONS);
+	
+	CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->addCCItem(btn);
+	
+	CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
+	CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
+	
+	//
+	CNeutrinoApp::getInstance()->execSkin(WIDGET_PLUGIN);
+	
+	//
+	CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->removeCCItem(4);
+	CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->removeItem(0);
+}
+
+void CTestMenu::testSkinSetup()
+{
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testSkinSetup\n");
+	
+	//CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX)->clearItems();
+	//CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX)->clearCCItems();
+	
+	CNeutrinoApp::getInstance()->execSkin(WIDGET_MAX);
 }
 
 // exec
@@ -7439,15 +7564,37 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 	}
 	else if(actionKey == "skin")
 	{
-		loadSkin();
+		testSkinWidget();
 		
 		return RETURN_REPAINT;
 	}
-	else if(actionKey == "features")
+	else if(actionKey == "skinSetup")
 	{
-		CNeutrinoApp::getInstance()->exec(NULL, "features");
+		testSkinSetup();
 		
 		return RETURN_REPAINT;
+	}
+	else if(actionKey == "RC_blue")
+	{
+		g_PluginList->loadPlugins();
+		//showMenu();
+		return RETURN_REPAINT;
+	}
+	if(actionKey == "RC_red")
+	{
+		selected = rightWidget->getSelected();
+
+		// remove selected plugin
+		g_PluginList->removePlugin(selected);
+
+		// relaod plugins
+		g_PluginList->loadPlugins();
+
+		if(selected > (int)g_PluginList->getNumberOfPlugins() - 1)
+			selected = (int)g_PluginList->getNumberOfPlugins() - 1;
+
+		testSkinWidget();
+		return RETURN_EXIT_ALL;
 	}
 
 	showMenu();
@@ -7597,8 +7744,10 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CChannelList:", true, NULL, this, "channellist"));
 	mainMenu->addItem(new CMenuForwarder("CBouquetList:", true, NULL, this, "bouquetlist"));
 	
-	//		
-	mainMenu->addItem(new CMenuForwarder("SKIN", true, NULL, CNeutrinoApp::getInstance(), "skin"));
+	//
+	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "SKIN") );		
+	mainMenu->addItem(new CMenuForwarder("SKIN-WIDGET", true, NULL, this, "skin"));
+	mainMenu->addItem(new CMenuForwarder("SKIN-SETUP", true, NULL, this, "skinSetup"));
 	
 	mainMenu->exec(NULL, "");
 

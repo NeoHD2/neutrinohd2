@@ -30,8 +30,6 @@
 
 #include <driver/rcinput.h>
 
-//#include <gui/widget/textbox.h>
-
 
 extern CLocaleManager* g_Locale; // for DL
 
@@ -624,6 +622,7 @@ class CWidgetItem
 		virtual inline CBox getWindowsPos(void){return (itemBox);};
 
 		virtual int getWidgetType(){return (4);};
+		virtual int getWidgetItemType(){return itemType;};
 
 		virtual int oKKeyPressed(CMenuTarget *parent){return 0;};
 		virtual void homeKeyPressed(){};

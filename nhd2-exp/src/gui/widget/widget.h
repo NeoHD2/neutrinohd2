@@ -26,8 +26,10 @@
 #endif
 
 #include <gui/widget/widget_helpers.h>
+#include <gui/widget/listbox.h>
 
 
+class ClistBox;
 //
 #define WIDGET_COUNT	83
 enum {
@@ -215,6 +217,7 @@ class CWidget : public CMenuTarget
 		int getItemsCount(){return items.size();};
 		virtual void clearItems(void){return items.clear();};
 		virtual void paintItems();
+		virtual void removeItem(long pos);
 		
 		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
 		
@@ -224,6 +227,7 @@ class CWidget : public CMenuTarget
 		int getCCItemsCount(){return CCItems.size();};
 		void clearCCItems(){CCItems.clear();};
 		void paintCCItems();
+		void removeCCItem(long pos);
 		
 		//
 		//
@@ -253,6 +257,9 @@ class CWidget : public CMenuTarget
 		neutrino_msg_t getKey(){return msg;};
 		inline CBox getWindowsPos(void){return(mainFrameBox);};
 		bool getExitPressed(){return exit_pressed;};
+		
+		//
+		CWidgetItem* getListBox(const int pos);
 
 		// events
 		virtual void onOKKeyPressed();

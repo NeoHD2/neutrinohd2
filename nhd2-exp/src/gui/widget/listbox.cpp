@@ -2496,7 +2496,7 @@ void ClistBox::initFrames()
 
 		item->widgetType = widgetType;
 		item->paintFrame = paintFrame;
-		item->itemShadow = itemShadow;
+		//item->itemShadow = itemShadow;
 	} 
 
 	// head

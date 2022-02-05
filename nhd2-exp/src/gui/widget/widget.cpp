@@ -122,11 +122,20 @@ void CWidget::addItem(CWidgetItem *widgetItem, const bool defaultselected)
 	widgetItem->setParent(this);
 }
 
-////
+void CWidget::removeItem(long pos)
+{
+	items.erase(items.begin() + pos); 
+}
+
+//
 void CWidget::addCCItem(CComponent* CCItem)
 {
 	CCItems.push_back(CCItem);
-	//CCItem->setParent(this);
+}
+
+void CWidget::removeCCItem(long pos)
+{
+	CCItems.erase(CCItems.begin() + pos); 
 }
 
 void CWidget::paintCCItems()
@@ -182,7 +191,7 @@ void CWidget::paintItems()
 {
 	dprintf(DEBUG_INFO, "CWidget:: paintItems\n");
 
-	for (int i = 0; i < items.size(); i++)
+	for (unsigned int i = 0; i < (unsigned int)items.size(); i++)
 	{
 		if( (items[i]->isSelectable()) && (selected == -1)) 
 		{
@@ -311,7 +320,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 	// set in focus
 	if (hasItem() && items.size() > 1)
 	{
-		for (unsigned int i = 0; i < items.size(); i++)
+		for (unsigned int i = 0; i < (unsigned int)items.size(); i++)
 		{
 			if((items[i]->isSelectable()) && (items[i]->inFocus == true))
 			{
@@ -388,7 +397,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 			if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 			{
 				// refresh items
-				for (unsigned int i = 0; i < items.size(); i++)
+				for (unsigned int i = 0; i < (unsigned int)items.size(); i++)
 				{
 					if (items[i]->update())
 					{
@@ -538,7 +547,7 @@ void CWidget::onHomeKeyPressed()
 	
 	if (hasItem())
 	{
-		for (unsigned int count = 0; count < items.size(); count++) 
+		for (unsigned int count = 0; count < (unsigned int)items.size(); count++) 
 		{
 			items[count]->homeKeyPressed();
 		}
@@ -553,7 +562,7 @@ void CWidget::onYellowKeyPressed()
 	
 	if(hasItem())
 	{
-		for (unsigned int count = 1; count < items.size(); count++) 
+		for (unsigned int count = 1; count < (unsigned int)items.size(); count++) 
 		{
 			pos = (selected + count)%items.size();
 
@@ -664,7 +673,7 @@ void CWidget::onRightKeyPressed()
 	{
 		if( (items[selected]->itemType == WIDGETITEM_LISTBOX) && ( (items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
 		{
-			for (unsigned int count = 1; count < items.size(); count++) 
+			for (unsigned int count = 1; count < (unsigned int)items.size(); count++) 
 			{
 				pos = (selected + count)%items.size();
 
@@ -697,7 +706,7 @@ void CWidget::onLeftKeyPressed()
 	{
 		if( (items[selected]->itemType == WIDGETITEM_LISTBOX) && ((items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
 		{
-			for (unsigned int count = 1; count < items.size(); count++) 
+			for (unsigned int count = 1; count < (unsigned int)items.size(); count++) 
 			{
 				pos = (selected - count)%items.size();
 
@@ -741,4 +750,23 @@ void CWidget::onPageDownKeyPressed()
 		items[selected]->scrollPageDown();
 	}
 }
+
+////
+CWidgetItem* CWidget::getListBox(const int pos)
+{
+	CWidgetItem* ret = NULL;
+	
+	for (unsigned int count = 0; count < (unsigned int)items.size(); count++) 
+	{
+		if (items[pos]->itemType == WIDGETITEM_LISTBOX)
+		{
+			ret = items[pos];
+			break;
+		}
+	}
+	
+	return ret;
+}
+
+
 
