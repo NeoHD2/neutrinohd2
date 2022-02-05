@@ -4240,6 +4240,10 @@ void CTestMenu::testClistBox4()
 	rightWidget->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	rightWidget->enablePaintDate();
 	
+	// foot
+	//rightWidget->enablePaintFoot();
+	rightWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	
 	//
 	rightWidget->paint();
 	CFrameBuffer::getInstance()->blit();
