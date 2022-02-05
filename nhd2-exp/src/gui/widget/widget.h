@@ -149,13 +149,12 @@ class CMenuTarget
 		std::string valueStringTmp;
 		
 	public:
-		CMenuTarget(){ valueStringTmp = std::string(); valueString = &valueStringTmp; };
+		CMenuTarget(){ valueStringTmp = std::string(); valueString = &valueStringTmp; name = ""; id = -1;};
 		virtual ~CMenuTarget(){};
 		virtual void hide(){valueString->clear();};
 		virtual int exec(CMenuTarget* parent, const std::string& actionKey) = 0;
 		virtual std::string& getString(void) { return *valueString; };
 		
-		//
 		//
 		int id;
 		std::string name;
