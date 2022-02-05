@@ -902,12 +902,10 @@ void CNeutrinoApp::parseSkin()
 	_xmlNodePtr image_node = NULL;
 	_xmlNodePtr time_node = NULL;
 	_xmlNodePtr head_node = NULL;
-	_xmlNodePtr headbutton_node = NULL;
 	_xmlNodePtr foot_node = NULL;
-	_xmlNodePtr footbutton_node = NULL;
-	_xmlNodePtr footbuttonlabel_node = NULL;
+	_xmlNodePtr button_node = NULL;
+	_xmlNodePtr buttonlabel_node = NULL;
 	_xmlNodePtr window_node = NULL;
-	//_xmlNodePtr windowitem_node = NULL;
 	
 	if (search) 
 	{
@@ -917,8 +915,6 @@ void CNeutrinoApp::parseSkin()
 
 		while ((search = xmlGetNextOccurence(search, "WIDGET")) != NULL) 
 		{
-			//CWidget* wdg = NULL;
-			
 			char* name = NULL;
 			unsigned int id = 0;
 			
@@ -1016,8 +1012,6 @@ void CNeutrinoApp::parseSkin()
 				unsigned int refresh = 0;
 				refresh = xmlGetSignedNumericAttribute(window_node, "refresh", 0);
 					
-				//CWindow* window = NULL;
-					
 				window = new CWindow(posx, posy, width, height);
 					
 				window->paintMainFrame(i_paintframe);
@@ -1082,8 +1076,7 @@ void CNeutrinoApp::parseSkin()
 				h_line = xmlGetSignedNumericAttribute(head_node, "line", 0);
 				paintdate = xmlGetSignedNumericAttribute(head_node, "paintdate", 0);
 				format = xmlGetAttribute(head_node, (char*)"format");
-				
-				//CHeaders* head = NULL;
+
 				head = new CHeaders(posx, posy, width, height);
 					
 				if (title != NULL) head->setTitle(_(title));
@@ -1097,16 +1090,16 @@ void CNeutrinoApp::parseSkin()
 				if (paintdate) head->enablePaintDate();
 				if (format != NULL) head->setFormat(_(format));
 					
-				//
-				headbutton_node = head_node->xmlChildrenNode;
+				// BUTTON_LABEL
+				buttonlabel_node = head_node->xmlChildrenNode;
 					
-				while ((headbutton_node = xmlGetNextOccurence(headbutton_node, "BUTTON")) != NULL) 
+				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
 					char* button = NULL;
 					char* localename = NULL;
 						
-					button = xmlGetAttribute(headbutton_node, (char*)"name");
-					localename = xmlGetAttribute(headbutton_node, (char*)"localename");
+					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
+					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
 						
 					button_label_struct btn;
 					btn.button = "";
@@ -1116,7 +1109,7 @@ void CNeutrinoApp::parseSkin()
 						
 					head->setButtons(&btn);
 				
-					headbutton_node = headbutton_node->xmlNextNode;
+					buttonlabel_node = buttonlabel_node->xmlNextNode;
 				}
 					
 				wdg->addItem(head);
@@ -1167,7 +1160,6 @@ void CNeutrinoApp::parseSkin()
 				unsigned int f_line = 0;
 				f_line = xmlGetSignedNumericAttribute(foot_node, "line", 0);
 						
-				//CFooters* foot = NULL;
 				foot = new CFooters(posx, posy, width, height);
 					
 				if (i_color != NULL) foot->setColor(finalColor);
@@ -1176,15 +1168,16 @@ void CNeutrinoApp::parseSkin()
 				foot->setRadius(i_radius);
 				foot->setFootLine(f_line);
 					
-				footbutton_node = foot_node->xmlChildrenNode;
+				// BUTTON_LABEL
+				buttonlabel_node = foot_node->xmlChildrenNode;
 					
-				while ((footbutton_node = xmlGetNextOccurence(footbutton_node, "BUTTON")) != NULL) 
+				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
 					char* button = NULL;
 					char* localename = NULL;
 						
-					button = xmlGetAttribute(footbutton_node, (char*)"name");
-					localename = xmlGetAttribute(footbutton_node, (char*)"localename");
+					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
+					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
 						
 					button_label_struct btn;
 					btn.button = "";
@@ -1194,7 +1187,7 @@ void CNeutrinoApp::parseSkin()
 						
 					foot->setButtons(&btn);
 				
-					footbutton_node = footbutton_node->xmlNextNode;
+					buttonlabel_node = buttonlabel_node->xmlNextNode;
 				}
 					
 				wdg->addItem(foot);
@@ -1277,8 +1270,6 @@ void CNeutrinoApp::parseSkin()
 				uint32_t hintColor = COL_MENUCONTENT_PLUS_0;
 				
 				if (iteminfo_color) hintColor = convertColor(iteminfo_color);
-					
-				//ClistBox* listBox = NULL;
 					
 				listBox = new ClistBox(posx, posy, width, height);
 				listBox->setWidgetType(type);
@@ -1417,16 +1408,16 @@ void CNeutrinoApp::parseSkin()
 					listboxintegration_node = listboxintegration_node->xmlNextNode;
 				}
 				
-				// FOOTBUTTON
-				footbutton_node = listbox_node->xmlChildrenNode;
+				// BUTTON_LABEL
+				buttonlabel_node = listbox_node->xmlChildrenNode;
 					
-				while ((footbutton_node = xmlGetNextOccurence(footbutton_node, "BUTTON")) != NULL) 
+				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
 					char* button = NULL;
 					char* localename = NULL;
 						
-					button = xmlGetAttribute(footbutton_node, (char*)"name");
-					localename = xmlGetAttribute(footbutton_node, (char*)"localename");
+					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
+					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
 						
 					button_label_struct btn;
 					btn.button = "";
@@ -1436,7 +1427,7 @@ void CNeutrinoApp::parseSkin()
 						
 					listBox->setFootButtons(&btn);
 				
-					footbutton_node = footbutton_node->xmlNextNode;
+					buttonlabel_node = buttonlabel_node->xmlNextNode;
 				}
 					
 				wdg->addItem(listBox);
@@ -1583,29 +1574,29 @@ void CNeutrinoApp::parseSkin()
 				time_node = time_node->xmlNextNode;
 			}
 			
-			////
-			footbutton_node = search->xmlChildrenNode;
+			// BUTTONS
+			button_node = search->xmlChildrenNode;
 			CCButtons* cButton = NULL;
 					
-			while ((footbutton_node = xmlGetNextOccurence(footbutton_node, "BUTTON")) != NULL) 
+			while ((button_node = xmlGetNextOccurence(button_node, "BUTTON")) != NULL) 
 			{
-				unsigned int b_x = xmlGetSignedNumericAttribute(footbutton_node, "posx", 0);
-				unsigned int b_y = xmlGetSignedNumericAttribute(footbutton_node, "posy", 0);
-				unsigned int b_dx = xmlGetSignedNumericAttribute(footbutton_node, "width", 0);
-				unsigned int b_dy = xmlGetSignedNumericAttribute(footbutton_node, "height", 0);
+				unsigned int b_x = xmlGetSignedNumericAttribute(button_node, "posx", 0);
+				unsigned int b_y = xmlGetSignedNumericAttribute(button_node, "posy", 0);
+				unsigned int b_dx = xmlGetSignedNumericAttribute(button_node, "width", 0);
+				unsigned int b_dy = xmlGetSignedNumericAttribute(button_node, "height", 0);
 				
 				cButton = new CCButtons(b_x, b_y, b_dx, b_dy);
 				
-				////
-				footbuttonlabel_node = footbutton_node->xmlChildrenNode;
+				// BUTTON_LABEL
+				buttonlabel_node = button_node->xmlChildrenNode;
 				
-				while ((footbuttonlabel_node = xmlGetNextOccurence(footbuttonlabel_node, "BUTTON_LABEL")) != NULL) 
+				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
 					char* button = NULL;
 					char* localename = NULL;
 							
-					button = xmlGetAttribute(footbuttonlabel_node, (char*)"name");
-					localename = xmlGetAttribute(footbuttonlabel_node, (char*)"localename");
+					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
+					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
 							
 					button_label_struct btn;
 					btn.button = "";
@@ -1615,17 +1606,15 @@ void CNeutrinoApp::parseSkin()
 							
 					cButton->setButtons(&btn);
 					
-					footbuttonlabel_node = footbuttonlabel_node->xmlNextNode;
+					buttonlabel_node = buttonlabel_node->xmlNextNode;
 				}
-				////
 					
 				wdg->addCCItem(cButton);
 				
-				footbutton_node = footbutton_node->xmlNextNode;
+				button_node = button_node->xmlNextNode;
 			}
-			////
 			
-			// key
+			// KEY
 			key_node = search->xmlChildrenNode;
 			
 			while ((key_node = xmlGetNextOccurence(key_node, "KEY")) != NULL) 

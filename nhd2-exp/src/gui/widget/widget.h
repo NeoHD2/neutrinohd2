@@ -259,7 +259,7 @@ class CWidget : public CMenuTarget
 		bool getExitPressed(){return exit_pressed;};
 		
 		//
-		CWidgetItem* getListBox(const int pos);
+		CWidgetItem* getWidgetItem(const int pos, const int type);
 
 		// events
 		virtual void onOKKeyPressed();

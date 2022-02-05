@@ -5,8 +5,22 @@
 	<!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 	
 	<WIDGET name="plugins" id="80" posx="0" posy="0" width="1280" height="720">
-		<LISTBOX posx="50" posy="60" width="540" height="620" type="0" mode ="2">
+		<LISTBOX posx="50" posy="60" width="540" height="580" type="0" mode ="2">
 		</LISTBOX>
+		
+		<BUTTON posx="50" posy="630" width="540" height="40">
+			<BUTTON_LABEL name="btn_red" localename="delete">
+			</BUTTON_LABEL>
+		
+			<BUTTON_LABEL name="btn_green" localename="start">
+			</BUTTON_LABEL>
+		
+			<BUTTON_LABEL name="btn_yellow">
+			</BUTTON_LABEL>
+
+			<BUTTON_LABEL name="btn_blue" localename="reload">
+			</BUTTON_LABEL>
+		</BUTTON>
 		
 		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" color="#0f0f0f00">
 		</WINDOW>

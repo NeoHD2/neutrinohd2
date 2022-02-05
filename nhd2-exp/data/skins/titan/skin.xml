@@ -4,6 +4,28 @@
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 
+	<WIDGET name="plugins" id="80" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Media Player" icon="multimedia" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="btn_red" localename="delete">
+			</BUTTON_LABEL>
+		
+			<BUTTON_LABEL name="btn_green" localename="start">
+			</BUTTON_LABEL>
+		
+			<BUTTON_LABEL name="btn_yellow">
+			</BUTTON_LABEL>
+
+			<BUTTON_LABEL name="btn_blue" localename="reload">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+
 	<WIDGET name="mediaplayer" id="8" posx="0" posy="0" width="700" height="720" paintframe="1">
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Media Player" icon="multimedia" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
@@ -14,8 +36,8 @@
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-			<BUTTON name="info" localename="">
-			</BUTTON>
+			<BUTTON_LABEL name="info" localename="">
+			</BUTTON_LABEL>
 		</FOOT>
 	</WIDGET>
 
@@ -35,8 +57,8 @@
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-			<BUTTON name="info" localename="">
-			</BUTTON>
+			<BUTTON_LABEL name="info" localename="">
+			</BUTTON_LABEL>
 		</FOOT>
 	</WIDGET>
 
@@ -58,8 +80,8 @@
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-			<BUTTON name="info" localename="">
-			</BUTTON>
+			<BUTTON_LABEL name="info" localename="">
+			</BUTTON_LABEL>
 		</FOOT>
 	</WIDGET>
 
@@ -83,8 +105,8 @@
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-			<BUTTON name="info" localename="">
-			</BUTTON>
+			<BUTTON_LABEL name="info" localename="">
+			</BUTTON_LABEL>
 		</FOOT>
 	</WIDGET>
 
@@ -103,10 +125,10 @@
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-			<BUTTON name="info" localename="">
-			</BUTTON>
+			<BUTTON_LABEL name="info" localename="">
+			</BUTTON_LABEL>
 		</FOOT>
-		<KEY name="0x191" target="parent" actionkey="plugins"> 
+		<KEY name="0x191" target="0" actionkey="plugins"> 
 		</KEY>
 	</WIDGET>
 
@@ -128,8 +150,8 @@
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-			<BUTTON name="info" localename="">
-			</BUTTON>
+			<BUTTON_LABEL name="info" localename="">
+			</BUTTON_LABEL>
 		</FOOT>
 	</WIDGET>
 
@@ -161,8 +183,8 @@
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-			<BUTTON name="info" localename="">
-			</BUTTON>
+			<BUTTON_LABEL name="info" localename="">
+			</BUTTON_LABEL>
 		</FOOT>
 	</WIDGET>
 
@@ -184,8 +206,8 @@
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-			<BUTTON name="info" localename="">
-			</BUTTON>
+			<BUTTON_LABEL name="info" localename="">
+			</BUTTON_LABEL>
 		</FOOT>
 	</WIDGET>
 
@@ -223,8 +245,8 @@
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-			<BUTTON name="info" localename="">
-			</BUTTON>
+			<BUTTON_LABEL name="info" localename="">
+			</BUTTON_LABEL>
 		</FOOT>
 	</WIDGET>
 
@@ -250,8 +272,8 @@
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-			<BUTTON name="info" localename="">
-			</BUTTON>
+			<BUTTON_LABEL name="info" localename="">
+			</BUTTON_LABEL>
 		</FOOT>
 
 	</WIDGET>

@@ -751,17 +751,34 @@ void CWidget::onPageDownKeyPressed()
 	}
 }
 
-////
-CWidgetItem* CWidget::getListBox(const int pos)
+//
+CWidgetItem* CWidget::getWidgetItem(const int pos, const int type)
 {
 	CWidgetItem* ret = NULL;
 	
 	for (unsigned int count = 0; count < (unsigned int)items.size(); count++) 
 	{
+	/*
 		if (items[pos]->itemType == WIDGETITEM_LISTBOX)
 		{
 			ret = items[pos];
 			break;
+		}
+	*/
+		switch (type)
+		{
+			case WIDGETITEM_LISTBOX:
+				if (items[pos]->itemType == WIDGETITEM_LISTBOX)
+					ret = items[pos]; 
+				break;
+				
+			case WIDGETITEM_WINDOW:
+				if (items[pos]->itemType == WIDGETITEM_WINDOW)
+					ret = items[pos]; 
+				break;
+				
+			default:
+				break;
 		}
 	}
 	

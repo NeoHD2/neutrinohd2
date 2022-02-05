@@ -96,82 +96,31 @@ void CPluginList::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CPluginList::showMenu\n");
 
-/*
-	// widget
-	plist = new CMenuWidget(_("Plugins"), NEUTRINO_ICON_FEATURES, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
-
 	//
-	for(unsigned int count = 0; count < (unsigned int)g_PluginList->getNumberOfPlugins(); count++)
-	{
-		std::string IconName = "";
-
-		IconName = PLUGINDIR;
-		IconName += "/";
-		IconName += g_PluginList->getFileName(count);
-		IconName += "/";
-		IconName += g_PluginList->getIcon(count);
-
-		bool enabled = g_PluginList->getType(count) != CPlugins::P_TYPE_DISABLED;
-		
-		// skip hidden plugins
-		if (!g_PluginList->isHidden(count))
-		{	
-			item = new CMenuForwarder(_(g_PluginList->getName(count)), enabled, _(g_PluginList->getDescription(count).c_str()), CPluginsExec::getInstance(), to_string(count).c_str(), RC_nokey, NULL, file_exists(IconName.c_str())? IconName.c_str() : NEUTRINO_ICON_MENUITEM_PLUGIN);
-
-			item->set2lines(); 
-
-			plist->addItem(item);
-		}
-	}
-	
-	//
-	plist->setWidgetMode(MODE_MENU);
-	plist->setWidgetType(WIDGET_TYPE_CLASSIC);
-	plist->enableShrinkMenu();
-	plist->enableItemShadow();
-
-	// head
-	plist->setTitleHAlign(CC_ALIGN_CENTER);
-	plist->enablePaintDate();
-	plist->setHeadButtons(&CPluginListHeadButtons, 1);
-
-	// foot
-	plist->setFootButtons(CPluginListButtons, NUM_LIST_BUTTONS);
-
-	//
-	plist->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
-	plist->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
-	//plist->addKey(RC_yellow, this, CRCInput::getSpecialKeyName(RC_yellow));
-	plist->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
-	plist->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
-	plist->addKey(RC_ok, this, CRCInput::getSpecialKeyName(RC_ok));
-
-	plist->setSelected(selected);
-
-	plist->exec(NULL, "");
-	//plist->hide();
-	delete plist;
-	plist = NULL;
-*/
-
-	////
 	int prev_ItemsCount = 0;
 	int prev_CCItemsCount = 0;
 	
 	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN))
 	{
 		prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getItemsCount();
-		prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getCCItemsCount();
+		prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getCCItemsCount();
+		
+		printf("WDItems:%d CCItems:%d\n", prev_ItemsCount, prev_CCItemsCount);
 		
 		pWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN);
-		plist = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getListBox(prev_ItemsCount - 1);
+		plist = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
+		//
 		pWidget = new CWidget(0, 0, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+		
+		pWidget->id = WIDGET_PLUGIN;
+		pWidget->name = "plugins";
 		
 		pWidget->setMenuPosition(MENU_POSITION_CENTER);
 		
+		//
 		plist = new ClistBox(0, 0, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 		
 		plist->setWidgetMode(MODE_MENU);
@@ -236,7 +185,6 @@ void CPluginList::showMenu()
 	
 	//
 	pWidget->exec(NULL, "");
-	////
 }
 
 int CPluginList::exec(CMenuTarget * parent, const std::string& actionKey)
