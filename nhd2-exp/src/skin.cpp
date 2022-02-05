@@ -873,21 +873,23 @@ uint32_t CNeutrinoApp::convertColor(const char* const color)
 }
 
 //
-void CNeutrinoApp::parseSkin()
+void CNeutrinoApp::parseSkin(const char* const filename)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::parseSkin\n");
 	
-	// shall we clear cache  ???
-	widgets.clear();
+	//
+	//widgets.clear();
 	
 	//
 	_xmlDocPtr parser = NULL;
 	
+	/*
 	std::string filename = CONFIGDIR "/skins/";
 	filename += g_settings.preferred_skin;
 	filename += "/skin.xml";
+	*/
 
-	parser = parseXmlFile(filename.c_str());
+	parser = parseXmlFile(filename);
 	
 	if (parser == NULL)
 		return;
@@ -909,7 +911,7 @@ void CNeutrinoApp::parseSkin()
 	
 	if (search) 
 	{
-		dprintf(DEBUG_NORMAL, "CNeutrinoApp:parseSkin: %s\n", filename.c_str());
+		dprintf(DEBUG_NORMAL, "CNeutrinoApp:parseSkin: %s\n", filename);
 		
 		CWidget* wdg = NULL;
 
@@ -1658,7 +1660,10 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 	readSkinConfig(skinConfigFile.c_str());
 	
 	//
-	parseSkin();
+	std::string skinFileName = skinPath.c_str();
+	skinFileName += "/skin.xml";
+	
+	parseSkin(skinFileName.c_str());
 	
 	//
 	std::string fontFileName;

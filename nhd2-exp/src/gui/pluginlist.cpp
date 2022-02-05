@@ -137,6 +137,9 @@ void CPluginList::showMenu()
 		plist->enablePaintFoot();
 		plist->setFootButtons(CPluginListButtons, NUM_LIST_BUTTONS);
 	}
+	
+	//
+	plist->clearItems();
 
 	//
 	for(unsigned int count = 0; count < (unsigned int)g_PluginList->getNumberOfPlugins(); count++)
