@@ -66,8 +66,6 @@ CPluginList::CPluginList()
 	selected = 0;
 
 	pWidget = NULL;
-	head = NULL;
-	foot = NULL;
 	plist = NULL;
 	item = NULL;
 }

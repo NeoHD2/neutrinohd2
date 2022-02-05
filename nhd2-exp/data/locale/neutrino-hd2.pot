@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-05 20:56+0100\n"
+"POT-Creation-Date: 2022-02-05 22:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -747,7 +747,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ../../src/gui/pluginlist.cpp:238
+#: ../../src/gui/pluginlist.cpp:236
 msgid "Description: "
 msgstr ""
 
@@ -1079,7 +1079,7 @@ msgstr ""
 msgid "File-Selector"
 msgstr ""
 
-#: ../../src/gui/filebrowser.cpp:832 ../../src/system/settings.cpp:51
+#: ../../src/gui/filebrowser.cpp:829 ../../src/system/settings.cpp:51
 msgid "Filebrowser"
 msgstr ""
 
@@ -1108,11 +1108,11 @@ msgstr ""
 msgid "Filter movies by category:"
 msgstr ""
 
-#: ../../src/gui/filebrowser.cpp:702 ../../src/gui/filebrowser.cpp:856
+#: ../../src/gui/filebrowser.cpp:702 ../../src/gui/filebrowser.cpp:853
 msgid "Filter off"
 msgstr ""
 
-#: ../../src/gui/filebrowser.cpp:856
+#: ../../src/gui/filebrowser.cpp:853
 msgid "Filter on"
 msgstr ""
 
@@ -1822,7 +1822,7 @@ msgstr ""
 msgid "Manuell(ftp) Software Manager"
 msgstr ""
 
-#: ../../src/gui/filebrowser.cpp:701 ../../src/gui/filebrowser.cpp:853
+#: ../../src/gui/filebrowser.cpp:701 ../../src/gui/filebrowser.cpp:850
 msgid "Mark"
 msgstr ""
 
@@ -2393,8 +2393,8 @@ msgstr ""
 msgid "Plugin"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:301 ../../src/gui/pluginlist.cpp:131
-#: ../../src/gui/pluginlist.cpp:250 ../../src/system/setting_helpers.cpp:273
+#: ../../src/neutrino_menue.cpp:301 ../../src/gui/pluginlist.cpp:129
+#: ../../src/gui/pluginlist.cpp:248 ../../src/system/setting_helpers.cpp:273
 #: ../../../plugins/test/test.cpp:5756
 msgid "Plugins"
 msgstr ""
@@ -2625,7 +2625,7 @@ msgstr ""
 msgid "Reload movie info at start"
 msgstr ""
 
-#: ../../src/gui/pluginlist.cpp:90 ../../../plugins/test/test.cpp:5690
+#: ../../src/gui/pluginlist.cpp:88 ../../../plugins/test/test.cpp:5690
 msgid "Reload plugins"
 msgstr ""
 
@@ -3473,7 +3473,7 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:7618
+#: ../../../plugins/test/test.cpp:7642
 msgid "Test Menu"
 msgstr ""
 
@@ -3985,7 +3985,7 @@ msgid ""
 " and <MENU> on your remote control."
 msgstr ""
 
-#: ../../src/gui/widget/listbox.cpp:846 ../../src/gui/widget/listbox.cpp:865
+#: ../../src/gui/widget/listbox.cpp:848 ../../src/gui/widget/listbox.cpp:867
 msgid "Youth protection"
 msgstr ""
 
@@ -4885,7 +4885,7 @@ msgstr ""
 msgid "remount"
 msgstr ""
 
-#: ../../src/gui/pluginlist.cpp:87 ../../../plugins/test/test.cpp:5687
+#: ../../src/gui/pluginlist.cpp:85 ../../../plugins/test/test.cpp:5687
 msgid "remove"
 msgstr ""
 
@@ -5034,7 +5034,7 @@ msgstr ""
 msgid "sports magazines"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5390 ../../src/gui/pluginlist.cpp:88
+#: ../../src/neutrino.cpp:5390 ../../src/gui/pluginlist.cpp:86
 #: ../../../plugins/test/test.cpp:5688
 msgid "start"
 msgstr ""

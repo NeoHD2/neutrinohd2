@@ -120,10 +120,10 @@ void SetLanguage()
 	{
 		language = LANG_INT;
 		
-		if (g_settings.language == "de") language = LANG_DE;
-		if (g_settings.language == "it") language = LANG_IT;
-		if (g_settings.language == "sv") language=LANG_SV;
-		if (g_settings.language == "pt") language=LANG_PT;
+		if (strcmp(g_settings.language, "de") == 0) language = LANG_DE;
+		if (strcmp(g_settings.language, "it") == 0) language = LANG_IT;
+		if (strcmp(g_settings.language, "sv") == 0) language=LANG_SV;
+		if (strcmp(g_settings.language, "pt") == 0) language=LANG_PT;
 	}
 	else
 	{

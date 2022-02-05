@@ -798,7 +798,8 @@ int CMenuSeparator::paint(bool /*selected*/, bool /*AfterPulldown*/)
 
 	if(widgetType != WIDGET_TYPE_FRAME)
 	{
-		frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_0);
+		if (paintFrame)
+			frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_0);
 
 		// line
 		if ((type & LINE))
@@ -825,7 +826,8 @@ int CMenuSeparator::paint(bool /*selected*/, bool /*AfterPulldown*/)
 				else // ALIGN_CENTER
 					stringstartposX = x + (dx >> 1) - (stringwidth >> 1);
 
-				frameBuffer->paintBoxRel(stringstartposX - 5, y, stringwidth + 10, height, COL_MENUCONTENT_PLUS_0);
+				if (paintFrame)
+					frameBuffer->paintBoxRel(stringstartposX - 5, y, stringwidth + 10, height, COL_MENUCONTENT_PLUS_0);
 
 				g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposX, y + height, dx - (stringstartposX - x) , l_text, COL_MENUCONTENTINACTIVE, 0, true); // UTF-8
 			}

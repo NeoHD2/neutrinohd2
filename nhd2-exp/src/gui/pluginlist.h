@@ -56,8 +56,6 @@ class CPluginList : public CMenuTarget
 
 
 		CWidget* pWidget;
-		CHeaders* head;
-		CFooters* foot;
 		ClistBox* plist;
 		CMenuItem* item;
 

@@ -7613,13 +7613,41 @@ void CTestMenu::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CTestMenu::showMenu:\n");
 
-	CMenuWidget * mainMenu = new CMenuWidget();
+	//CMenuWidget * mainMenu = new CMenuWidget();
+	//mainMenu->setTitle(_("Test Menu"), NEUTRINO_ICON_BUTTON_SETUP);
+	CWidget* mWidget = NULL;
+	ClistBox* mainMenu = NULL;
+	
+	int prev_ItemsCount = 0;
+	int prev_CCItemsCount = 0;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX))
+	{
+		prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX)->getItemsCount();
+		prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX)->getCCItemsCount();
+		
+		printf("WDItems:%d CCItems:%d\n", prev_ItemsCount, prev_CCItemsCount);
+		
+		mWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX);
+		mainMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX)->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+	mWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	mWidget->setMenuPosition(MENU_POSITION_CENTER);
+	
+	mainMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 
+	mainMenu->enablePaintHead();
 	mainMenu->setTitle(_("Test Menu"), NEUTRINO_ICON_BUTTON_SETUP);
-
 	mainMenu->setWidgetMode(MODE_MENU);
+	mainMenu->setMenuPosition(MENU_POSITION_CENTER);
 	mainMenu->enableShrinkMenu(),
 	mainMenu->enablePaintDate();
+	mainMenu->enablePaintFoot();
+	}
+	
+	mainMenu->clearItems();
 			
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistFrame)", true, NULL, this, "listframewidget"));
@@ -7745,14 +7773,17 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuForwarder("CBouquetList:", true, NULL, this, "bouquetlist"));
 	
 	//
-	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "SKIN") );		
-	mainMenu->addItem(new CMenuForwarder("SKIN-WIDGET", true, NULL, this, "skin"));
-	mainMenu->addItem(new CMenuForwarder("SKIN-SETUP", true, NULL, this, "skinSetup"));
+	//mainMenu->addItem(new CMenuSeparator(LINE | STRING, "SKIN") );		
+	//mainMenu->addItem(new CMenuForwarder("SKIN-WIDGET", true, NULL, this, "skin"));
+	//mainMenu->addItem(new CMenuForwarder("SKIN-SETUP", true, NULL, this, "skinSetup"));
 	
-	mainMenu->exec(NULL, "");
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX) == NULL)
+		mWidget->addItem(mainMenu);
+	
+	mWidget->exec(NULL, "");
 
-	delete mainMenu;
-	mainMenu = NULL;
+	//delete mainMenu;
+	//mainMenu = NULL;
 }
 
 void plugin_init(void)
