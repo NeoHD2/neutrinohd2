@@ -1019,18 +1019,51 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		//
-		frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENT_PLUS_0);
-
-		if(!itemIcon.empty())
-			frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);
-
-		//
 		if(selected)
 		{
-			frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENT_PLUS_6);
+			if (!paintFrame)
+			{
+				if (background)
+				{
+					delete [] background;
+					background = NULL;
+				}
+									
+				background = new fb_pixel_t[item_width*item_height];
+						
+				if (background)
+				{
+					frameBuffer->saveScreen(x, y, item_width, item_height, background);
+				}
+			}
+			
+			frameBuffer->paintBoxRel(x, y, item_width, item_height, bgcolor);
 
 			if(!itemIcon.empty())
 				frameBuffer->paintHintIcon(itemIcon, x + 2, y + 2, item_width - 4, item_height - 4);
+		}
+		else
+		{
+			//
+			//frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENT_PLUS_0);
+			// refresh
+			if (paintFrame)
+			{
+				frameBuffer->paintBoxRel(x, y, item_width, item_height, bgcolor);
+			}
+			else
+			{
+				if (background)
+				{
+					frameBuffer->restoreScreen(x, y, item_width, item_height, background);
+							
+					delete [] background;
+					background = NULL;
+				}
+			}
+
+			if(!itemIcon.empty())
+				frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);
 		}
 
 		// vfd
@@ -1411,7 +1444,6 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		//
 		if(selected)
 		{
-			////TEST
 			if (!paintFrame)
 			{
 				if (background)
@@ -1427,20 +1459,19 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 					frameBuffer->saveScreen(x, y, item_width, item_height, background);
 				}
 			}
-			////
 				
 			if (parent)
 			{
 				if (parent->inFocus)
 				{	
-					frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
+					frameBuffer->paintBoxRel(x, y, item_width, item_height, bgcolor);
 
 					if(!itemIcon.empty())
 						frameBuffer->paintHintIcon(itemIcon, x + 2, y + 2, item_width - 4, item_height - 4);
 				}
 				else
 				{
-					frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENT_PLUS_0 ); //FIXME:
+					frameBuffer->paintBoxRel(x, y, item_width, item_height, bgcolor); //FIXME:
 
 					if(!itemIcon.empty())
 						frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);
@@ -1448,26 +1479,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			}
 			else
 			{
-				////TEST
-				/*
-				if (!paintFrame)
-				{
-					if (background)
-					{
-						delete [] background;
-						background = NULL;
-					}
-									
-					background = new fb_pixel_t[item_width*item_height];
-						
-					if (background)
-					{
-						frameBuffer->saveScreen(x, y, item_width, item_height, background);
-					}
-				}
-				*/
-				////
-				frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENTSELECTED_PLUS_0);
+				frameBuffer->paintBoxRel(x, y, item_width, item_height, bgcolor);
 
 				if(!itemIcon.empty())
 					frameBuffer->paintHintIcon(itemIcon, x + 2, y + 2, item_width - 4, item_height - 4);
@@ -1478,7 +1490,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			// refresh
 			if (paintFrame)
 			{
-				frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENT_PLUS_0);
+				frameBuffer->paintBoxRel(x, y, item_width, item_height, bgcolor);
 			}
 			else
 			{

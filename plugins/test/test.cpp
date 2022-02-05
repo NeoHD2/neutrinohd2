@@ -4205,7 +4205,7 @@ void CTestMenu::testClistBox4()
 	// load items
 	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
 	{
-		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "mmwplay");
+		item = new CMenuForwarder(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "mmwplay");
 
 		item->setOption(m_vMovieInfo[i].epgChannel.c_str());
 
