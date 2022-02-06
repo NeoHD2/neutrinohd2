@@ -62,44 +62,14 @@ extern CPlugins * g_PluginList;    // defined in neutrino.cpp
 /// CMenuWidget
 CMenuWidget::CMenuWidget()
 {
-        //nameString = g_Locale->getText(NONEXISTANT_LOCALE);
-	//locale = NONEXISTANT_LOCALE;
-
-	/*
-	if(locale == NONEXISTANT_LOCALE)
-		l_name = nameString.c_str();
-	else
-        	l_name = g_Locale->getText(locale);
-        */
         l_name = "";
 
 	Init("", MENU_WIDTH, MENU_HEIGHT);
 }
 
-/*
-CMenuWidget::CMenuWidget(const neutrino_locale_t Name, const std::string & Icon, const int mwidth, const int mheight)
-{
-	locale = Name;
-        nameString = g_Locale->getText(NONEXISTANT_LOCALE);
-
-	if(locale == NONEXISTANT_LOCALE)
-		l_name = nameString.c_str();
-	else
-        	l_name = g_Locale->getText(locale);
-
-	Init(Icon, mwidth, mheight);
-}
-*/
-
 CMenuWidget::CMenuWidget(const char* Name, const std::string & Icon, const int mwidth, const int mheight)
 {
-	//locale = NONEXISTANT_LOCALE;
         l_name = Name;
-
-	//if(locale == NONEXISTANT_LOCALE)
-	//	l_name = nameString.c_str();
-	//else
-        //	l_name = g_Locale->getText(locale);
 
 	Init(Icon, mwidth, mheight);
 }
@@ -408,13 +378,6 @@ void CMenuWidget::paintHead()
 {
 	dprintf(DEBUG_DEBUG, "CMenuWidget::paintHead:\n");
 	
-	/*
-	if(locale == NONEXISTANT_LOCALE)
-		l_name = nameString.c_str();
-	else
-        	l_name = g_Locale->getText(locale);
-        */
-	
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		// headBoxox
@@ -594,12 +557,6 @@ void CMenuWidget::paintFoot()
 						}
 				
 						int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-						/*
-						if(fbutton_labels[i].localename != NULL)
-							l_option = fbutton_labels[i].localename;
-						else
-							l_option = g_Locale->getText(fbutton_labels[i].locale);
-						*/
 		
 						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - fheight + (fheight - ih[i])/2, 0, true, iw[i], ih[i]);
 
@@ -642,12 +599,6 @@ void CMenuWidget::paintFoot()
 						}
 						
 						int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-						/*
-						if(fbutton_labels[i].localename != NULL)
-							l_option = fbutton_labels[i].localename;
-						else
-							l_option = g_Locale->getText(fbutton_labels[i].locale);
-						*/
 		
 						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, x + BORDER_LEFT + i*buttonWidth, y + height - cFrameFootInfoHeight - fheight + (fheight - ih[i])/2, 0, true, iw[i], ih[i]);
 

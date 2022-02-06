@@ -64,9 +64,6 @@ int CEPGMenuHandler::exec(CMenuTarget* parent, const std::string &)
 int CEPGMenuHandler::doMenu()
 {
 	CMenuWidget redMenu(_("EPG - Program Information"), NEUTRINO_ICON_BUTTON_EPG);
-	
-	id = WIDGET_EPGTIMER;
-	name = "epgtimer";
 
 	redMenu.setWidgetMode(MODE_MENU);
 	redMenu.setWidgetType(WIDGET_TYPE_CLASSIC);

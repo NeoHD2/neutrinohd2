@@ -53,16 +53,10 @@
 #include <system/settings.h>
 #include <gui/widget/listbox.h>
 
-
-enum {
-	MENU_POSITION_LEFT = 0,
-	MENU_POSITION_CENTER = 1,
-	MENU_POSITION_RIGHT = 2
-};
 	
-/// CMenuWidget
+// CMenuWidget
 class CMenuWidget : public CMenuTarget
-{
+{	
 	protected:
 		//
 		CFrameBuffer *frameBuffer;

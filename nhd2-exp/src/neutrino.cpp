@@ -3263,15 +3263,10 @@ void CNeutrinoApp::RealRun(void)
 				// select NVODs
 				if (mode != mode_webtv)
 				{
-					//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
-					{
-						if (hasWidgets() && (widget_exists(WIDGET_NVOD)))
-							getWidget(WIDGET_NVOD)->exec(NULL, "");
-						else
-							SelectNVOD();
-					}
-					//else
-					//	SelectNVOD();
+					if (hasWidgets() && (widget_exists(WIDGET_NVOD)))
+						getWidget(WIDGET_NVOD)->exec(NULL, "");
+					else
+						SelectNVOD();
 				}
 
 				StartSubtitles();
@@ -5578,9 +5573,6 @@ bool CNeutrinoApp::getNVODMenu(CMenuWidget * menu)
 //FIXME: rewrite
         if(menu == NULL)
                 return false;
-                
-	menu->id = WIDGET_NVOD;
-	menu->name = "nvod";
 	
         if (g_RemoteControl->subChannels.empty())
                 return false;

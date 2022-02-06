@@ -93,9 +93,6 @@ extern int current_muted;
 CAudioPlayerGui::CAudioPlayerGui()
 {
 	m_frameBuffer = CFrameBuffer::getInstance();
-	
-	id = WIDGET_AUDIOPLAYER;
-	name = "audiopöayer";
 
 	Init();
 }

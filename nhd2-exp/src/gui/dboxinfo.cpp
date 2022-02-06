@@ -122,7 +122,6 @@ void CDBoxInfoWidget::showInfo()
 	dprintf(DEBUG_NORMAL, "CDBoxInfoWidget::showInfo:\n");
 
 	dboxInfo = new CWidget(&Box);
-	name = "CDBoxInfoWidget";
 	
 	m_window = new CWindow(&Box);
 	m_window->setCorner(RADIUS_MID, CORNER_ALL);
@@ -466,9 +465,6 @@ int CInfoMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 void CInfoMenu::showMenu()
 {
 	infoMenu = new CMenuWidget("Information", NEUTRINO_ICON_INFO);
-	
-	id = WIDGET_INFORMATION;
-	name = "information";
 	
 	infoMenu->setWidgetMode(MODE_MENU);
 	infoMenu->setWidgetType(WIDGET_TYPE_CLASSIC);

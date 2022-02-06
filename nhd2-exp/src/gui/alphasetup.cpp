@@ -64,9 +64,6 @@
 CAlphaSetup::CAlphaSetup(const char* const Name, unsigned char * Alpha, CChangeObserver * Observer)
 {
 	frameBuffer = CFrameBuffer::getInstance();
-	
-	id = WIDGET_ALPHASETUP;
-	name = "alphasetup";
 
 	hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
 	mheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();

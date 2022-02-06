@@ -38,7 +38,7 @@ class CServiceMenu : public CMenuTarget
 		void showMenu(void);
 		
 	public:
-		CServiceMenu(){ id = WIDGET_SERVICE;};
+		CServiceMenu(){};
 		~CServiceMenu(){};
 		
 		int exec(CMenuTarget* parent, const std::string& actionKey);

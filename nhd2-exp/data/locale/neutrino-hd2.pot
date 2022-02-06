@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-06 00:16+0100\n"
+"POT-Creation-Date: 2022-02-06 01:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "'X'=timer '-' no timer"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5617
+#: ../../src/neutrino.cpp:5609
 #, c-format
 msgid "(%d%% over)"
 msgstr ""
@@ -61,11 +61,11 @@ msgstr ""
 msgid "(filename2)"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:352 ../../src/gui/audioplayer.cpp:370
+#: ../../src/gui/audioplayer.cpp:349 ../../src/gui/audioplayer.cpp:367
 msgid "(relative, in seconds)"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5612
+#: ../../src/neutrino.cpp:5604
 #, c-format
 msgid "(starting in %d min)"
 msgstr ""
@@ -183,7 +183,7 @@ msgstr ""
 msgid "Alpha"
 msgstr ""
 
-#: ../../src/gui/alphasetup.cpp:195 ../../../plugins/test/test.cpp:5269
+#: ../../src/gui/alphasetup.cpp:192 ../../../plugins/test/test.cpp:5269
 msgid "Alpha Setup"
 msgstr ""
 
@@ -228,12 +228,12 @@ msgstr ""
 msgid "Audio Player"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1280
+#: ../../src/gui/audioplayer.cpp:1277
 msgid "Audio Player Setup"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:220 ../../src/gui/audioplayer.cpp:333
-#: ../../src/gui/audioplayer.cpp:1355
+#: ../../src/gui/audioplayer.cpp:217 ../../src/gui/audioplayer.cpp:330
+#: ../../src/gui/audioplayer.cpp:1352
 msgid "Audio Playlist"
 msgstr ""
 
@@ -253,7 +253,7 @@ msgstr ""
 msgid "Audioplayer"
 msgstr ""
 
-#: ../../src/gui/audioplayer_setup.cpp:97 ../../src/gui/main_setup.cpp:116
+#: ../../src/gui/audioplayer_setup.cpp:95 ../../src/gui/main_setup.cpp:116
 msgid "Audioplayer settings"
 msgstr ""
 
@@ -365,15 +365,15 @@ msgstr ""
 msgid "Bouquets"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:119
+#: ../../src/neutrino_menue.cpp:116
 msgid "Box / Channel Information"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:133
+#: ../../src/gui/dboxinfo.cpp:132
 msgid "Box Info"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4142
+#: ../../src/neutrino.cpp:4137
 msgid ""
 "Box will shutdown in 1 min.\n"
 "Cancel Sutdown ?"
@@ -448,7 +448,7 @@ msgstr ""
 msgid "CORNER NONE"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:152
+#: ../../src/gui/dboxinfo.cpp:151
 msgid "CPU:"
 msgstr ""
 
@@ -632,7 +632,7 @@ msgstr ""
 msgid "Create list of HD channels"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:521
+#: ../../src/gui/audioplayer.cpp:518
 msgid "Current Track"
 msgstr ""
 
@@ -751,7 +751,7 @@ msgstr ""
 msgid "Description: "
 msgstr ""
 
-#: ../../src/gui/epg_menu.cpp:81
+#: ../../src/gui/epg_menu.cpp:78
 msgid "Details current program"
 msgstr ""
 
@@ -787,7 +787,7 @@ msgstr ""
 msgid "Dir"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5639 ../../src/gui/infoviewer.cpp:812
+#: ../../src/neutrino.cpp:5631 ../../src/gui/infoviewer.cpp:812
 #: ../../src/gui/infoviewer.cpp:865
 msgid "Direct-Mode"
 msgstr ""
@@ -804,7 +804,7 @@ msgstr ""
 msgid "Discard changes ?"
 msgstr ""
 
-#: ../../src/gui/screensetup.cpp:114 ../../src/gui/alphasetup.cpp:195
+#: ../../src/gui/screensetup.cpp:114 ../../src/gui/alphasetup.cpp:192
 #: ../../src/gui/vfdcontroler.cpp:232 ../../src/gui/psisetup.cpp:339
 #: ../../src/gui/widget/colorchooser.cpp:225
 #: ../../src/gui/widget/stringinput_ext.cpp:252
@@ -840,7 +840,7 @@ msgid ""
 "Target: %s"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1195
+#: ../../src/gui/audioplayer.cpp:1192
 msgid "Do you want to overwrite this file:"
 msgstr ""
 
@@ -955,7 +955,7 @@ msgstr ""
 msgid "Enter 0 to switch of the blocker (red is space)"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:348 ../../src/gui/audioplayer.cpp:366
+#: ../../src/gui/audioplayer.cpp:345 ../../src/gui/audioplayer.cpp:363
 msgid "Enter jump target"
 msgstr ""
 
@@ -981,7 +981,7 @@ msgstr ""
 #: ../../src/gui/update.cpp:375 ../../src/gui/update.cpp:441
 #: ../../src/gui/update.cpp:468 ../../src/gui/update.cpp:504
 #: ../../src/gui/update.cpp:550 ../../src/gui/misc_setup.cpp:488
-#: ../../src/gui/audioplayer.cpp:1168 ../../src/gui/infoviewer.cpp:1097
+#: ../../src/gui/audioplayer.cpp:1165 ../../src/gui/infoviewer.cpp:1097
 #: ../../src/driver/vcrcontrol.cpp:738 ../../../plugins/test/test.cpp:3284
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:931
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:940
@@ -1009,11 +1009,11 @@ msgstr ""
 msgid "Eventlist Overview (EPG Plus)"
 msgstr ""
 
-#: ../../src/gui/epg_menu.cpp:78
+#: ../../src/gui/epg_menu.cpp:75
 msgid "Eventlist current programm"
 msgstr ""
 
-#: ../../src/gui/epg_menu.cpp:84 ../../src/gui/channellist.cpp:1511
+#: ../../src/gui/epg_menu.cpp:81 ../../src/gui/channellist.cpp:1511
 msgid "Eventlist overview"
 msgstr ""
 
@@ -1058,12 +1058,12 @@ msgstr ""
 msgid "Favorites"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:113 ../../src/neutrino_menue.cpp:237
+#: ../../src/neutrino_menue.cpp:110 ../../src/neutrino_menue.cpp:234
 #: ../../src/gui/infoviewer.cpp:481
 msgid "Features"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1165
+#: ../../src/gui/audioplayer.cpp:1162
 msgid "File could not be created:"
 msgstr ""
 
@@ -1087,7 +1087,7 @@ msgstr ""
 msgid "Filebrowser settings"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1119
+#: ../../src/gui/audioplayer.cpp:1116
 msgid "Filename of the play list"
 msgstr ""
 
@@ -1187,7 +1187,7 @@ msgstr ""
 msgid "Friday"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:413
+#: ../../src/gui/dboxinfo.cpp:412
 msgid "Frontend:"
 msgstr ""
 
@@ -1250,7 +1250,7 @@ msgstr ""
 msgid "HD Kino"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:309
+#: ../../src/gui/dboxinfo.cpp:308
 msgid "HDD Devices:"
 msgstr ""
 
@@ -1353,15 +1353,15 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:479
+#: ../../src/gui/dboxinfo.cpp:475
 msgid "Here you can get HW infos about your STB.\n"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:483
+#: ../../src/gui/dboxinfo.cpp:479
 msgid "Here you can get infos about the Channel.\n"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:481
+#: ../../src/gui/dboxinfo.cpp:477
 msgid "Here you can get infos about the software.\n"
 msgstr ""
 
@@ -1385,7 +1385,7 @@ msgstr ""
 msgid "Hierarchy"
 msgstr ""
 
-#: ../../src/gui/audioplayer_setup.cpp:114
+#: ../../src/gui/audioplayer_setup.cpp:112
 msgid "High decode priority"
 msgstr ""
 
@@ -1452,7 +1452,7 @@ msgstr ""
 msgid "IPTV Channel"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:96
+#: ../../src/neutrino_menue.cpp:93
 msgid "IPTV Mode"
 msgstr ""
 
@@ -1460,7 +1460,7 @@ msgstr ""
 msgid "ISO-8859-1"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:481 ../../src/gui/service_menu.cpp:120
+#: ../../src/gui/dboxinfo.cpp:477 ../../src/gui/service_menu.cpp:120
 msgid "Image info"
 msgstr ""
 
@@ -1514,16 +1514,16 @@ msgstr ""
 msgid "Infobar Crypticons"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:119 ../../src/neutrino.cpp:2818
-#: ../../src/neutrino.cpp:3176 ../../src/neutrino.cpp:4052
-#: ../../src/neutrino.cpp:4090 ../../src/neutrino.cpp:4097
-#: ../../src/neutrino.cpp:4142 ../../src/neutrino.cpp:4183
-#: ../../src/neutrino.cpp:4192 ../../src/neutrino.cpp:4211
-#: ../../src/neutrino.cpp:4376 ../../src/neutrino.cpp:5295
-#: ../../src/neutrino.cpp:5304 ../../src/neutrino.cpp:5309
-#: ../../src/neutrino.cpp:5325 ../../src/neutrino.cpp:5330
-#: ../../src/neutrino.cpp:5342 ../../src/neutrino.cpp:5344
-#: ../../src/gui/osd_setup.cpp:448 ../../src/gui/dboxinfo.cpp:479
+#: ../../src/neutrino_menue.cpp:116 ../../src/neutrino.cpp:2818
+#: ../../src/neutrino.cpp:3176 ../../src/neutrino.cpp:4047
+#: ../../src/neutrino.cpp:4085 ../../src/neutrino.cpp:4092
+#: ../../src/neutrino.cpp:4137 ../../src/neutrino.cpp:4178
+#: ../../src/neutrino.cpp:4187 ../../src/neutrino.cpp:4206
+#: ../../src/neutrino.cpp:4371 ../../src/neutrino.cpp:5290
+#: ../../src/neutrino.cpp:5299 ../../src/neutrino.cpp:5304
+#: ../../src/neutrino.cpp:5320 ../../src/neutrino.cpp:5325
+#: ../../src/neutrino.cpp:5337 ../../src/neutrino.cpp:5339
+#: ../../src/gui/osd_setup.cpp:448 ../../src/gui/dboxinfo.cpp:475
 #: ../../src/gui/cam_menu.cpp:201 ../../src/gui/cam_menu.cpp:229
 #: ../../src/gui/cam_menu.cpp:258 ../../src/gui/cam_menu.cpp:359
 #: ../../src/gui/cam_menu.cpp:473 ../../src/gui/cam_menu.cpp:488
@@ -1541,7 +1541,7 @@ msgstr ""
 #: ../../src/gui/pictureviewer.cpp:417 ../../src/gui/video_setup.cpp:437
 #: ../../src/gui/timerlist.cpp:1162 ../../src/gui/misc_setup.cpp:577
 #: ../../src/gui/service_menu.cpp:76 ../../src/gui/service_menu.cpp:78
-#: ../../src/gui/plugins.cpp:336 ../../src/gui/audioplayer.cpp:1283
+#: ../../src/gui/plugins.cpp:336 ../../src/gui/audioplayer.cpp:1280
 #: ../../src/gui/eventlist.cpp:510 ../../src/gui/eventlist.cpp:515
 #: ../../src/gui/infoviewer.cpp:1113 ../../src/gui/widget/infobox.cpp:170
 #: ../../../plugins/test/test.cpp:3261 ../../../plugins/test/test.cpp:3276
@@ -1579,7 +1579,7 @@ msgstr ""
 msgid "Interface"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:103 ../../src/gui/audioplayer.cpp:333
+#: ../../src/gui/rc_setup.cpp:103 ../../src/gui/audioplayer.cpp:330
 #: ../../../plugins/internetradio/internetradio.cpp:660
 msgid "Internet Radio"
 msgstr ""
@@ -1834,7 +1834,7 @@ msgstr ""
 msgid "Media"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:104 ../../src/gui/mediaplayer.cpp:62
+#: ../../src/neutrino_menue.cpp:101 ../../src/gui/mediaplayer.cpp:62
 msgid "Media Player"
 msgstr ""
 
@@ -2294,7 +2294,7 @@ msgstr ""
 msgid "Original Title"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1196
+#: ../../src/gui/audioplayer.cpp:1193
 msgid "Overwrite?"
 msgstr ""
 
@@ -2377,11 +2377,11 @@ msgstr ""
 msgid "Playtime"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:351 ../../src/gui/audioplayer.cpp:369
+#: ../../src/gui/audioplayer.cpp:348 ../../src/gui/audioplayer.cpp:366
 msgid "Please enter jump target"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1122
+#: ../../src/gui/audioplayer.cpp:1119
 msgid "Please enter the filename of the playlist"
 msgstr ""
 
@@ -2393,7 +2393,7 @@ msgstr ""
 msgid "Plugin"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:301 ../../src/gui/pluginlist.cpp:129
+#: ../../src/neutrino_menue.cpp:295 ../../src/gui/pluginlist.cpp:129
 #: ../../src/gui/pluginlist.cpp:248 ../../src/system/setting_helpers.cpp:273
 #: ../../../plugins/test/test.cpp:5756
 msgid "Plugins"
@@ -2407,7 +2407,7 @@ msgstr ""
 msgid "Position:"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:116 ../../src/gui/power_menu.cpp:64
+#: ../../src/neutrino_menue.cpp:113 ../../src/gui/power_menu.cpp:64
 msgid "Power Menu"
 msgstr ""
 
@@ -2452,7 +2452,7 @@ msgstr ""
 msgid "Previous image"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4028
+#: ../../src/neutrino.cpp:4023
 msgid "Program unknown"
 msgstr ""
 
@@ -2505,7 +2505,7 @@ msgstr ""
 msgid "Radio Channel"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:93
+#: ../../src/neutrino_menue.cpp:90
 msgid "Radio Mode"
 msgstr ""
 
@@ -2580,7 +2580,7 @@ msgstr ""
 msgid "Record stop time correction"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5390 ../../src/neutrino.cpp:5394
+#: ../../src/neutrino.cpp:5385 ../../src/neutrino.cpp:5389
 msgid "Recording"
 msgstr ""
 
@@ -2593,7 +2593,7 @@ msgstr ""
 msgid "Recording settings"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4090
+#: ../../src/neutrino.cpp:4085
 msgid "Recording starts in a few minutes"
 msgstr ""
 
@@ -2629,7 +2629,7 @@ msgstr ""
 msgid "Reload plugins"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5344 ../../src/gui/service_menu.cpp:76
+#: ../../src/neutrino.cpp:5339 ../../src/gui/service_menu.cpp:76
 #: ../../src/gui/service_menu.cpp:78
 msgid "Reloading channel lists, please be patient."
 msgstr ""
@@ -2638,11 +2638,11 @@ msgstr ""
 msgid "Remind"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4238
+#: ../../src/neutrino.cpp:4233
 msgid "Reminder"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:280
+#: ../../src/neutrino_menue.cpp:274
 msgid "Remote Control lock"
 msgstr ""
 
@@ -2823,7 +2823,7 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:608 ../../src/gui/osd_setup.cpp:679
 #: ../../src/gui/osd_setup.cpp:863 ../../src/gui/hdd_menu.cpp:194
 #: ../../src/gui/network_setup.cpp:272 ../../src/gui/audio_setup.cpp:167
-#: ../../src/gui/audioplayer_setup.cpp:110
+#: ../../src/gui/audioplayer_setup.cpp:108
 #: ../../src/gui/pictureviewer_setup.cpp:123 ../../src/gui/rc_setup.cpp:155
 #: ../../src/gui/rc_setup.cpp:295 ../../src/gui/scan_setup.cpp:288
 #: ../../src/gui/scan_setup.cpp:368 ../../src/gui/scan_setup.cpp:428
@@ -2844,7 +2844,7 @@ msgstr ""
 msgid "Save settings now"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5295 ../../src/neutrino.cpp:5309
+#: ../../src/neutrino.cpp:5290 ../../src/neutrino.cpp:5304
 msgid "Save settings now?"
 msgstr ""
 
@@ -2860,11 +2860,11 @@ msgstr ""
 msgid "Saving keymap, please wait..."
 msgstr ""
 
-#: ../../src/neutrino.cpp:5304
+#: ../../src/neutrino.cpp:5299
 msgid "Saving settings now, please be patient."
 msgstr ""
 
-#: ../../src/neutrino.cpp:5325
+#: ../../src/neutrino.cpp:5320
 msgid ""
 "Saving settings now, please be patient.\n"
 " this needs Neutrino restart."
@@ -2930,7 +2930,7 @@ msgstr ""
 msgid "Scanning for UPnP servers"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:100
+#: ../../src/neutrino_menue.cpp:97
 msgid "Scart Mode"
 msgstr ""
 
@@ -3008,7 +3008,7 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5560
+#: ../../src/neutrino.cpp:5555
 msgid "Select Subservice"
 msgstr ""
 
@@ -3021,7 +3021,7 @@ msgstr ""
 msgid "Select language"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5560
+#: ../../src/neutrino.cpp:5555
 msgid "Select starting-time"
 msgstr ""
 
@@ -3071,7 +3071,7 @@ msgstr ""
 msgid "Server IP"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:110 ../../src/gui/service_menu.cpp:97
+#: ../../src/neutrino_menue.cpp:107 ../../src/gui/service_menu.cpp:97
 msgid "Service"
 msgstr ""
 
@@ -3095,7 +3095,7 @@ msgstr ""
 msgid "Set in hours"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:107 ../../src/gui/main_setup.cpp:79
+#: ../../src/neutrino_menue.cpp:104 ../../src/gui/main_setup.cpp:79
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3296
 msgid "Settings"
 msgstr ""
@@ -3210,7 +3210,7 @@ msgstr ""
 msgid "Sleeptimer"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4097
+#: ../../src/neutrino.cpp:4092
 msgid "Sleeptimer in 1 min"
 msgstr ""
 
@@ -3268,7 +3268,7 @@ msgstr ""
 msgid "Start Search"
 msgstr ""
 
-#: ../../src/gui/audioplayer_setup.cpp:117
+#: ../../src/gui/audioplayer_setup.cpp:115
 #: ../../src/gui/pictureviewer_setup.cpp:133
 #: ../../src/gui/movieplayer_setup.cpp:103
 msgid "Start dir."
@@ -3328,8 +3328,8 @@ msgstr ""
 msgid "Store Motor Position (a)"
 msgstr ""
 
-#: ../../src/gui/streaminfo2.cpp:521 ../../src/gui/dboxinfo.cpp:483
-#: ../../src/gui/epg_menu.cpp:87
+#: ../../src/gui/streaminfo2.cpp:521 ../../src/gui/dboxinfo.cpp:479
+#: ../../src/gui/epg_menu.cpp:84
 msgid "Stream information"
 msgstr ""
 
@@ -3389,7 +3389,7 @@ msgstr ""
 msgid "Syncronisation via"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:110
+#: ../../src/neutrino_menue.cpp:107
 msgid "System"
 msgstr ""
 
@@ -3443,7 +3443,7 @@ msgstr ""
 msgid "TV Channel"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:90
+#: ../../src/neutrino_menue.cpp:87
 msgid "TV Mode"
 msgstr ""
 
@@ -3456,7 +3456,7 @@ msgstr ""
 msgid "TV/Radio-mode"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:290
+#: ../../src/neutrino_menue.cpp:284
 msgid "Teletext"
 msgstr ""
 
@@ -3473,7 +3473,7 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:7642
+#: ../../../plugins/test/test.cpp:7647
 msgid "Test Menu"
 msgstr ""
 
@@ -3516,7 +3516,7 @@ msgid ""
 "switch to this channel at the given time."
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1123
+#: ../../src/gui/audioplayer.cpp:1120
 msgid "The extension .m3u will be added automatically"
 msgstr ""
 
@@ -3599,7 +3599,7 @@ msgstr ""
 msgid "Timeout waiting CI menu ready"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:272
+#: ../../src/neutrino_menue.cpp:266
 msgid "Timer List"
 msgstr ""
 
@@ -3607,7 +3607,7 @@ msgstr ""
 msgid "Timer conflict. Create the timer anyway?"
 msgstr ""
 
-#: ../../src/gui/epg_menu.cpp:90 ../../src/gui/timerlist.cpp:789
+#: ../../src/gui/epg_menu.cpp:87 ../../src/gui/timerlist.cpp:789
 msgid "Timer list"
 msgstr ""
 
@@ -3619,7 +3619,7 @@ msgstr ""
 msgid "Timer typ"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:272 ../../src/gui/rc_setup.cpp:102
+#: ../../src/neutrino_menue.cpp:266 ../../src/gui/rc_setup.cpp:102
 #: ../../src/system/setting_helpers.cpp:272
 msgid "Timerlist"
 msgstr ""
@@ -3967,7 +3967,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: ../../src/neutrino.cpp:3176 ../../src/neutrino.cpp:4376
+#: ../../src/neutrino.cpp:3176 ../../src/neutrino.cpp:4371
 #: ../../src/gui/movieplayer.cpp:616
 msgid "You really want to to stop record ?"
 msgstr ""
@@ -4011,7 +4011,7 @@ msgstr ""
 msgid "Zapping History Bouquet"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4008
+#: ../../src/neutrino.cpp:4003
 msgid "Zapto timer in one minute"
 msgstr ""
 
@@ -4052,10 +4052,10 @@ msgstr ""
 msgid "adventure/western/war"
 msgstr ""
 
-#: ../../src/gui/alphasetup.cpp:131 ../../src/gui/alphasetup.cpp:136
-#: ../../src/gui/alphasetup.cpp:145 ../../src/gui/alphasetup.cpp:150
-#: ../../src/gui/alphasetup.cpp:166 ../../src/gui/alphasetup.cpp:185
-#: ../../src/gui/alphasetup.cpp:252 ../../src/gui/widget/colorchooser.cpp:70
+#: ../../src/gui/alphasetup.cpp:128 ../../src/gui/alphasetup.cpp:133
+#: ../../src/gui/alphasetup.cpp:142 ../../src/gui/alphasetup.cpp:147
+#: ../../src/gui/alphasetup.cpp:163 ../../src/gui/alphasetup.cpp:182
+#: ../../src/gui/alphasetup.cpp:249 ../../src/gui/widget/colorchooser.cpp:70
 msgid "alpha"
 msgstr ""
 
@@ -4101,7 +4101,7 @@ msgstr ""
 #: ../../src/gui/cam_menu.cpp:121 ../../src/gui/hdd_menu.cpp:190
 #: ../../src/gui/hdd_menu.cpp:307 ../../src/gui/hdd_menu.cpp:351
 #: ../../src/gui/network_setup.cpp:268 ../../src/gui/audio_setup.cpp:163
-#: ../../src/gui/audioplayer_setup.cpp:106
+#: ../../src/gui/audioplayer_setup.cpp:104
 #: ../../src/gui/pictureviewer_setup.cpp:119 ../../src/gui/nfs.cpp:197
 #: ../../src/gui/nfs.cpp:286 ../../src/gui/nfs.cpp:370
 #: ../../src/gui/nfs.cpp:419 ../../src/gui/rc_setup.cpp:151
@@ -4283,7 +4283,7 @@ msgstr ""
 msgid "dmesg"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5342
+#: ../../src/neutrino.cpp:5337
 msgid "do you want to reload channel lists?"
 msgstr ""
 
@@ -4467,7 +4467,7 @@ msgstr ""
 msgid "informational/educational/school programmes"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:220
+#: ../../src/gui/audioplayer.cpp:217
 msgid "internet Radio"
 msgstr ""
 
@@ -4495,19 +4495,19 @@ msgstr ""
 msgid "jazz"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1291
+#: ../../src/gui/audioplayer.cpp:1288
 msgid "jump backwards"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1278
+#: ../../src/gui/audioplayer.cpp:1275
 msgid "jump ff"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1292
+#: ../../src/gui/audioplayer.cpp:1289
 msgid "jump forwards"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1277
+#: ../../src/gui/audioplayer.cpp:1274
 msgid "jump prev"
 msgstr ""
 
@@ -4536,7 +4536,7 @@ msgstr ""
 msgid "literature"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5330
+#: ../../src/neutrino.cpp:5325
 msgid "load default skin configuration?"
 msgstr ""
 
@@ -4738,7 +4738,7 @@ msgstr ""
 msgid "not connected"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5572 ../../src/gui/osd_setup.cpp:59
+#: ../../src/neutrino.cpp:5567 ../../src/gui/osd_setup.cpp:59
 #: ../../src/gui/hdd_menu.cpp:82 ../../src/gui/hdd_menu.cpp:91
 #: ../../src/gui/audio_setup.cpp:53 ../../src/gui/audio_setup.cpp:69
 #: ../../src/gui/audio_setup.cpp:77 ../../src/gui/scan_setup.cpp:90
@@ -4751,7 +4751,7 @@ msgstr ""
 msgid "off"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5573 ../../src/gui/osd_setup.cpp:60
+#: ../../src/neutrino.cpp:5568 ../../src/gui/osd_setup.cpp:60
 #: ../../src/gui/audio_setup.cpp:54 ../../src/gui/audio_setup.cpp:70
 #: ../../src/gui/audio_setup.cpp:78 ../../src/gui/scan_setup.cpp:91
 #: ../../src/gui/recording_setup.cpp:51 ../../src/gui/misc_setup.cpp:71
@@ -4915,11 +4915,11 @@ msgstr ""
 msgid "row width"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1290
+#: ../../src/gui/audioplayer.cpp:1287
 msgid "save play list"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1276
+#: ../../src/gui/audioplayer.cpp:1273
 msgid "save playlist"
 msgstr ""
 
@@ -4959,11 +4959,11 @@ msgstr ""
 msgid "show movie infoviewer"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1293
+#: ../../src/gui/audioplayer.cpp:1290
 msgid "shuffle"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1279
+#: ../../src/gui/audioplayer.cpp:1276
 msgid "shuffle playlist"
 msgstr ""
 
@@ -5034,7 +5034,7 @@ msgstr ""
 msgid "sports magazines"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5390 ../../src/gui/pluginlist.cpp:86
+#: ../../src/neutrino.cpp:5385 ../../src/gui/pluginlist.cpp:86
 #: ../../../plugins/test/test.cpp:5688
 msgid "start"
 msgstr ""

@@ -7612,6 +7612,11 @@ const keyval MESSAGEBOX_NO_YES_OPTIONS[MESSAGEBOX_NO_YES_OPTION_COUNT] =
 void CTestMenu::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CTestMenu::showMenu:\n");
+	
+	////
+	std::string skin = PLUGINDIR "/test/skin.xml";
+	CNeutrinoApp::getInstance()->parseSkin(skin.c_str());
+	////
 
 	//CMenuWidget * mainMenu = new CMenuWidget();
 	//mainMenu->setTitle(_("Test Menu"), NEUTRINO_ICON_BUTTON_SETUP);
@@ -7781,6 +7786,8 @@ void CTestMenu::showMenu()
 		mWidget->addItem(mainMenu);
 	
 	mWidget->exec(NULL, "");
+	
+	//CNeutrinoApp::getInstance()->removeSkin(WIDGET_MAX);
 
 	//delete mainMenu;
 	//mainMenu = NULL;

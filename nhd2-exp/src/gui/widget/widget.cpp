@@ -65,6 +65,10 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 	corner = CORNER_NONE;
 
 	actionKey = "";
+	
+	//
+	name = "";
+	id = -1;
 }
 
 CWidget::CWidget(CBox *position)
@@ -94,6 +98,10 @@ CWidget::CWidget(CBox *position)
 	corner = CORNER_ALL;
 
 	actionKey = "";
+	
+	//
+	name = "";
+	id = -1;
 }
 
 CWidget::~CWidget()

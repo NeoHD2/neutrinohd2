@@ -171,6 +171,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		bool execSkin(const int id);
 		bool paintSkin(const int id);
 		bool hideSkin(const int id);
+		bool removeSkin(const int id);
 		
 		//
 		void mainMenu(void);

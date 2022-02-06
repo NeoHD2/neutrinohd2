@@ -149,20 +149,20 @@ class CMenuTarget
 		std::string valueStringTmp;
 		
 	public:
-		CMenuTarget(){ valueStringTmp = std::string(); valueString = &valueStringTmp; name = ""; id = -1;};
+		CMenuTarget(){ valueStringTmp = std::string(); valueString = &valueStringTmp;};
 		virtual ~CMenuTarget(){};
 		virtual void hide(){valueString->clear();};
 		virtual int exec(CMenuTarget* parent, const std::string& actionKey) = 0;
 		virtual std::string& getString(void) { return *valueString; };
-		
-		//
-		int id;
-		std::string name;
 };
 
 //
 class CWidget : public CMenuTarget
 {
+	public:
+		int id;
+		std::string name;
+		
 	protected:
 		CFrameBuffer *frameBuffer;
 		CBox mainFrameBox;

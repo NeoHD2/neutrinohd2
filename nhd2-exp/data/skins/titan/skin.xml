@@ -4,6 +4,7 @@
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 
+	<!--
 	<WIDGET name="testmenu" id="82" posx="0" posy="0" width="700" height="720" paintframe="1">
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" scrollbar="0" >
 		</LISTBOX>
@@ -16,6 +17,7 @@
 			</BUTTON_LABEL>
 		</FOOT>
 	</WIDGET>
+	-->
 
 	<WIDGET name="plugins" id="80" posx="0" posy="0" width="700" height="720" paintframe="1">
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" >

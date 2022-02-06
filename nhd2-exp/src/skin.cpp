@@ -842,7 +842,7 @@ bool CNeutrinoApp::widget_exists(int id)
 
 uint32_t CNeutrinoApp::convertColor(const char* const color)
 {
-	dprintf(DEBUG_INFO, "CNeutrinoApp::convertColor: id: %d\n", id);
+	dprintf(DEBUG_INFO, "CNeutrinoApp::convertColor: colorr: %s\n", color);
 	
 	uint32_t rgba = COL_MENUCONTENT_PLUS_0;
 	
@@ -882,12 +882,6 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 	
 	//
 	_xmlDocPtr parser = NULL;
-	
-	/*
-	std::string filename = CONFIGDIR "/skins/";
-	filename += g_settings.preferred_skin;
-	filename += "/skin.xml";
-	*/
 
 	parser = parseXmlFile(filename);
 	
@@ -968,6 +962,13 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 			wdg->setCorner(corner, radius);
 			if (savescreen) wdg->enableSaveScreen();
 			wdg->setTimeOut(timeout);
+			
+			// skip duplicate
+			for (unsigned long i = 0; i < (unsigned long)widgets.size(); i++)
+			{
+				if(widgets[i]->id == wdg->id)
+					widgets.erase(widgets.begin() + i); 
+			}
 			
 			widgets.push_back(wdg);
 			
@@ -1641,6 +1642,9 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 	
 	xmlFreeDoc(parser);
 	parser = NULL;
+	
+	//
+	dprintf(DEBUG_INFO, "CNeutrinoApp::parseSkin: widgets count:%d\n\n", (int)widgets.size());
 }
 
 //
@@ -1827,6 +1831,21 @@ bool CNeutrinoApp::hideSkin(const int id)
 	{
 		ret = true;
 		getWidget(id)->hide();
+	}
+	
+	return ret;	
+}
+
+bool CNeutrinoApp::removeSkin(const int id)
+{
+	dprintf(DEBUG_INFO, "CNeutrinoApp::hideSkin: %d\n", id);
+	
+	bool ret = false;
+	
+	if (getWidget(id))
+	{
+		ret = true;
+		widgets.erase(widgets.begin() + id); 
 	}
 	
 	return ret;	
