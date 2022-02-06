@@ -5382,7 +5382,7 @@ bool CNeutrinoApp::changeNotify(const std::string& OptionName, void */*data*/)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::changeNotify\n");
 
-	if ( (OptionName == _("start"))  || (OptionName == _("Recording")) )
+	if ( (OptionName == _("Start"))  || (OptionName == _("Recording")) )
 	{
 		if(g_RemoteControl->is_video_started) 
 		{

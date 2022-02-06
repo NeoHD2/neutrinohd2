@@ -898,7 +898,7 @@ void CUpdateSettings::showMenu()
 	updateSettings.addItem(new CMenuSeparator(LINE));
 		
 	// update dir
-	updateSettings.addItem( new CMenuForwarder(_(""), true, g_settings.update_dir , this, "update_dir") );
+	updateSettings.addItem( new CMenuForwarder("", true, g_settings.update_dir , this, "update_dir") );
 	
 	// url
 	CStringInputSMS * updateSettings_url_file = new CStringInputSMS(_("Software update URL"), g_settings.softupdate_url_file);

@@ -39,6 +39,22 @@
 
 extern cVideo * videoDecoder;
 
+// CComponent
+CComponent::CComponent()
+{
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
+	cCBox.iX = 0;
+	cCBox.iY = 0;
+	cCBox.iWidth = 0;
+	cCBox.iHeight = 0;
+	
+	rePaint = false; 
+	halign = CC_ALIGN_LEFT;
+	
+	cc_type = -1;
+}
+
 // CCIcon
 CCIcon::CCIcon(const int x, const int y, const int dx, const int dy)
 {
@@ -325,7 +341,6 @@ void CCButtons::paint()
 		{
 			if (!buttons[i].button.empty())
 			{
-				//const char * l_option = NULL;
 				iw[i] = 0;
 				ih[i] = 0;
 
@@ -338,17 +353,11 @@ void CCButtons::paint()
 				}
 				
 				int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-
-				/*
-				if(buttons[i].localename != NULL)
-					l_option = buttons[i].localename;
-				else
-					l_option = g_Locale->getText(buttons[i].locale);
-				*/
 		
 				CFrameBuffer::getInstance()->paintIcon(buttons[i].button, cCBox.iX + BORDER_LEFT + i*buttonWidth, cCBox.iY + (cCBox.iHeight - ih[i])/2, 0, true, iw[i], ih[i]);
 
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(cCBox.iX + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, cCBox.iY + f_h + (cCBox.iHeight - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, /*l_option*/buttons[i].localename, COL_MENUFOOT, 0, true); // UTF-8
+				// FIXME: i18n
+				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(cCBox.iX + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, cCBox.iY + f_h + (cCBox.iHeight - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, _(buttons[i].localename.c_str()), COL_MENUFOOT, 0, true); // UTF-8
 			}
 		}
 	}
@@ -375,8 +384,6 @@ void CCButtons::paintFootButtons(const int x, const int y, const int dx, const i
 			{
 				iw[i] = 0;
 				ih[i] = 0;
-				//std::string l_option("");
-				//l_option.clear();
 
 				frameBuffer->getIconSize(content[i].button.c_str(), &iw[i], &ih[i]);
 				
@@ -386,17 +393,11 @@ void CCButtons::paintFootButtons(const int x, const int y, const int dx, const i
 				}
 				
 				int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-
-				/*
-				if(content[i].localename != NULL)
-					l_option = content[i].localename;
-				else
-					l_option = g_Locale->getText(content[i].locale);
-				*/
 		
 				frameBuffer->paintIcon(content[i].button, x + BORDER_LEFT + i*buttonWidth, y + (dy - ih[i])/2, 0, true, iw[i], ih[i]);
 
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, y + f_h + (dy - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, content[i].localename, COL_MENUFOOT, 0, true); // UTF-8
+				// FIXME: i18n
+				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(x + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, y + f_h + (dy - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, _(content[i].localename.c_str()), COL_MENUFOOT, 0, true); // UTF-8
 			}
 		}
 	}
@@ -1058,6 +1059,27 @@ void CCCounter::refresh()
 }
 
 // CWidgetItem
+CWidgetItem::CWidgetItem()
+{
+	frameBuffer = CFrameBuffer::getInstance();
+	
+	itemBox.iX = 0;
+	itemBox.iY = 0;
+	itemBox.iWidth = 0;
+	itemBox.iHeight = 0; 
+	
+	inFocus = true; 
+	rePaint = false; 
+	
+	actionKey = ""; 
+	parent = NULL; 
+	
+	sec_timer_id = 0;
+	
+	widgetItem_type = -1;
+}
+
+//
 bool CWidgetItem::onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data)
 {
 	dprintf(DEBUG_DEBUG, "CWidgetItem::onButtonPress: (msg:%ld) (data:%ld)\n", msg, data);
@@ -1186,7 +1208,7 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 	
 	thalign = CC_ALIGN_LEFT;
 
-	itemType = WIDGETITEM_HEAD;
+	widgetItem_type = WIDGETITEM_HEAD;
 }
 
 CHeaders::CHeaders(CBox* position, const char * const title, const char * const icon)
@@ -1213,7 +1235,7 @@ CHeaders::CHeaders(CBox* position, const char * const title, const char * const 
 	
 	thalign = CC_ALIGN_LEFT;
 
-	itemType = WIDGETITEM_HEAD;
+	widgetItem_type = WIDGETITEM_HEAD;
 }
 
 void CHeaders::setButtons(const struct button_label* _hbutton_labels, const int _hbutton_count)		
@@ -1338,7 +1360,7 @@ CFooters::CFooters(int x, int y, int dx, int dy)
 	fgradient = g_settings.Foot_gradient;
 	foot_line = g_settings.Foot_line;
 
-	itemType = WIDGETITEM_FOOT;
+	widgetItem_type = WIDGETITEM_FOOT;
 }
 
 CFooters::CFooters(CBox* position)
@@ -1357,7 +1379,7 @@ CFooters::CFooters(CBox* position)
 	fgradient = g_settings.Foot_gradient;
 	foot_line = g_settings.Foot_line;
 
-	itemType = WIDGETITEM_FOOT;
+	widgetItem_type = WIDGETITEM_FOOT;
 }
 
 void CFooters::setButtons(const struct button_label *button_label, const int button_count, const int _fbutton_width)

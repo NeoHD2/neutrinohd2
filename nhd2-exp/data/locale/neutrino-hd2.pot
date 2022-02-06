@@ -3,15 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: ../../src/gui/nfs.cpp:469 ../../src/gui/nfs.cpp:483
-#: ../../src/gui/nfs.cpp:487 ../../src/gui/update.cpp:901
-#: ../../../plugins/moviebrowser/moviebrowser.cpp:177
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-06 01:16+0100\n"
+"POT-Creation-Date: 2022-02-06 16:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -722,7 +719,8 @@ msgstr ""
 
 #: ../../src/gui/filebrowser.cpp:495 ../../src/gui/filebrowser.cpp:504
 #: ../../src/gui/movieplayer.cpp:1981 ../../src/gui/channellist.cpp:388
-#: ../../src/gui/timerlist.cpp:653 ../../src/gui/bouquetlist.cpp:311
+#: ../../src/gui/timerlist.cpp:653 ../../src/gui/pluginlist.cpp:85
+#: ../../src/gui/bouquetlist.cpp:311
 #: ../../../plugins/audioplayer/audioplayer.cpp:252
 #: ../../../plugins/icecast/icecast.cpp:674
 #: ../../../plugins/internetradio/internetradio.cpp:652
@@ -747,7 +745,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ../../src/gui/pluginlist.cpp:236
+#: ../../src/gui/pluginlist.cpp:234
 msgid "Description: "
 msgstr ""
 
@@ -1546,8 +1544,8 @@ msgstr ""
 #: ../../src/gui/infoviewer.cpp:1113 ../../src/gui/widget/infobox.cpp:170
 #: ../../../plugins/test/test.cpp:3261 ../../../plugins/test/test.cpp:3276
 #: ../../../plugins/test/test.cpp:3292 ../../../plugins/test/test.cpp:3305
-#: ../../../plugins/test/test.cpp:3353 ../../../plugins/test/test.cpp:5850
-#: ../../../plugins/test/test.cpp:5856 ../../../plugins/icecast/icecast.cpp:665
+#: ../../../plugins/test/test.cpp:3353 ../../../plugins/test/test.cpp:5732
+#: ../../../plugins/test/test.cpp:5738 ../../../plugins/icecast/icecast.cpp:665
 #: ../../../plugins/moviebrowser/tstool.cpp:278
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:918
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:945
@@ -2059,10 +2057,6 @@ msgstr ""
 msgid "Neu by Netzkino"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:261
-msgid "Neue Filme"
-msgstr ""
-
 #: ../../src/gui/power_menu.cpp:76
 msgid "Neutrino Restart"
 msgstr ""
@@ -2073,6 +2067,10 @@ msgstr ""
 
 #: ../../src/gui/movieplayer.cpp:747 ../../src/gui/movieinfo.cpp:1501
 msgid "New Bookmark"
+msgstr ""
+
+#: ../../../plugins/test/test.cpp:261
+msgid "New Movies"
 msgstr ""
 
 #: ../../src/gui/movieplayer.cpp:728
@@ -2122,7 +2120,6 @@ msgstr ""
 #: ../../src/gui/nfs.cpp:157 ../../src/gui/nfs.cpp:227
 #: ../../src/gui/recording_setup.cpp:57 ../../src/gui/timerlist.cpp:918
 #: ../../src/gui/misc_setup.cpp:77 ../../src/gui/widget/messagebox.cpp:499
-#: ../../../plugins/test/test.cpp:7608
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:126
 msgid "No"
 msgstr ""
@@ -2393,9 +2390,8 @@ msgstr ""
 msgid "Plugin"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:295 ../../src/gui/pluginlist.cpp:129
-#: ../../src/gui/pluginlist.cpp:248 ../../src/system/setting_helpers.cpp:273
-#: ../../../plugins/test/test.cpp:5756
+#: ../../src/neutrino_menue.cpp:295 ../../src/gui/pluginlist.cpp:127
+#: ../../src/gui/pluginlist.cpp:246 ../../src/system/setting_helpers.cpp:273
 msgid "Plugins"
 msgstr ""
 
@@ -2625,7 +2621,7 @@ msgstr ""
 msgid "Reload movie info at start"
 msgstr ""
 
-#: ../../src/gui/pluginlist.cpp:88 ../../../plugins/test/test.cpp:5690
+#: ../../src/gui/pluginlist.cpp:88
 msgid "Reload plugins"
 msgstr ""
 
@@ -2893,18 +2889,18 @@ msgstr ""
 #: ../../../plugins/test/test.cpp:3905 ../../../plugins/test/test.cpp:4054
 #: ../../../plugins/test/test.cpp:4202 ../../../plugins/test/test.cpp:4346
 #: ../../../plugins/test/test.cpp:4507 ../../../plugins/test/test.cpp:5517
-#: ../../../plugins/test/test.cpp:5576 ../../../plugins/test/test.cpp:6364
-#: ../../../plugins/test/test.cpp:6394 ../../../plugins/test/test.cpp:6424
-#: ../../../plugins/test/test.cpp:6454 ../../../plugins/test/test.cpp:6487
-#: ../../../plugins/test/test.cpp:6517 ../../../plugins/test/test.cpp:6547
-#: ../../../plugins/test/test.cpp:6577 ../../../plugins/test/test.cpp:6653
-#: ../../../plugins/test/test.cpp:6715 ../../../plugins/test/test.cpp:6816
-#: ../../../plugins/test/test.cpp:6858 ../../../plugins/test/test.cpp:6900
-#: ../../../plugins/test/test.cpp:6942 ../../../plugins/test/test.cpp:6984
-#: ../../../plugins/test/test.cpp:7026 ../../../plugins/test/test.cpp:7068
-#: ../../../plugins/test/test.cpp:7110 ../../../plugins/test/test.cpp:7221
-#: ../../../plugins/test/test.cpp:7303 ../../../plugins/test/test.cpp:7346
-#: ../../../plugins/test/test.cpp:7397 ../../../plugins/test/test.cpp:7452
+#: ../../../plugins/test/test.cpp:5576 ../../../plugins/test/test.cpp:6246
+#: ../../../plugins/test/test.cpp:6276 ../../../plugins/test/test.cpp:6306
+#: ../../../plugins/test/test.cpp:6336 ../../../plugins/test/test.cpp:6369
+#: ../../../plugins/test/test.cpp:6399 ../../../plugins/test/test.cpp:6429
+#: ../../../plugins/test/test.cpp:6459 ../../../plugins/test/test.cpp:6535
+#: ../../../plugins/test/test.cpp:6597 ../../../plugins/test/test.cpp:6698
+#: ../../../plugins/test/test.cpp:6740 ../../../plugins/test/test.cpp:6782
+#: ../../../plugins/test/test.cpp:6824 ../../../plugins/test/test.cpp:6866
+#: ../../../plugins/test/test.cpp:6908 ../../../plugins/test/test.cpp:6950
+#: ../../../plugins/test/test.cpp:6992 ../../../plugins/test/test.cpp:7103
+#: ../../../plugins/test/test.cpp:7185 ../../../plugins/test/test.cpp:7228
+#: ../../../plugins/test/test.cpp:7279 ../../../plugins/test/test.cpp:7334
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2906
 #: ../../../plugins/nfilm/nfilm.cpp:167 ../../../plugins/nfilm/nfilm.cpp:189
 #: ../../../plugins/ntvshows/ntvshows.cpp:133
@@ -2981,7 +2977,7 @@ msgstr ""
 msgid "Scroll up"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:815 ../../../plugins/test/test.cpp:7445
+#: ../../src/gui/eventlist.cpp:815 ../../../plugins/test/test.cpp:7327
 #: ../../../plugins/netzkino/netzkino.cpp:338
 #: ../../../plugins/nfilm/nfilm.cpp:596
 #: ../../../plugins/youtube/youtube.cpp:443
@@ -3247,6 +3243,10 @@ msgstr ""
 msgid "Standby Brightness"
 msgstr ""
 
+#: ../../src/neutrino.cpp:5385 ../../src/gui/pluginlist.cpp:86
+msgid "Start"
+msgstr ""
+
 #: ../../src/gui/zapit_setup.cpp:152 ../../src/gui/zapit_setup.cpp:197
 #: ../../src/gui/zapit_setup.cpp:222
 msgid "Start Channel settings"
@@ -3473,7 +3473,7 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:7647
+#: ../../../plugins/test/test.cpp:7499
 msgid "Test Menu"
 msgstr ""
 
@@ -3607,7 +3607,7 @@ msgstr ""
 msgid "Timer conflict. Create the timer anyway?"
 msgstr ""
 
-#: ../../src/gui/epg_menu.cpp:87 ../../src/gui/timerlist.cpp:789
+#: ../../src/gui/epg_menu.cpp:87
 msgid "Timer list"
 msgstr ""
 
@@ -3620,7 +3620,7 @@ msgid "Timer typ"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:266 ../../src/gui/rc_setup.cpp:102
-#: ../../src/system/setting_helpers.cpp:272
+#: ../../src/gui/timerlist.cpp:789 ../../src/system/setting_helpers.cpp:272
 msgid "Timerlist"
 msgstr ""
 
@@ -3962,7 +3962,6 @@ msgstr ""
 #: ../../src/gui/nfs.cpp:157 ../../src/gui/nfs.cpp:228
 #: ../../src/gui/recording_setup.cpp:58 ../../src/gui/timerlist.cpp:919
 #: ../../src/gui/misc_setup.cpp:78 ../../src/gui/widget/messagebox.cpp:472
-#: ../../../plugins/test/test.cpp:7609
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:127
 msgid "Yes"
 msgstr ""
@@ -4885,10 +4884,6 @@ msgstr ""
 msgid "remount"
 msgstr ""
 
-#: ../../src/gui/pluginlist.cpp:85 ../../../plugins/test/test.cpp:5687
-msgid "remove"
-msgstr ""
-
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:1056
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3170
 msgid "remove screenshot?"
@@ -5032,11 +5027,6 @@ msgstr ""
 
 #: ../../src/gui/epgview.cpp:263
 msgid "sports magazines"
-msgstr ""
-
-#: ../../src/neutrino.cpp:5385 ../../src/gui/pluginlist.cpp:86
-#: ../../../plugins/test/test.cpp:5688
-msgid "start"
 msgstr ""
 
 #: ../../src/gui/channellist.cpp:1591

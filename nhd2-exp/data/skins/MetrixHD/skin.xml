@@ -28,16 +28,16 @@
 		</LISTBOX>
 		
 		<BUTTON posx="50" posy="630" width="540" height="40">
-			<BUTTON_LABEL name="btn_red" localename="delete">
+			<BUTTON_LABEL name="btn_red" localename="Delete">
 			</BUTTON_LABEL>
 		
-			<BUTTON_LABEL name="btn_green" localename="start">
+			<BUTTON_LABEL name="btn_green" localename="Start">
 			</BUTTON_LABEL>
 		
 			<BUTTON_LABEL name="btn_yellow">
 			</BUTTON_LABEL>
 
-			<BUTTON_LABEL name="btn_blue" localename="reload">
+			<BUTTON_LABEL name="btn_blue" localename="Reload plugins">
 			</BUTTON_LABEL>
 		</BUTTON>
 		

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-06 01:16+0100\n"
+"POT-Creation-Date: 2022-02-06 16:40+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -119,10 +119,10 @@ msgid "Alarm time"
 msgstr "Alarmzeit"
 
 msgid "All Services"
-msgstr "Alle Services"
+msgstr "Alle"
 
 msgid "All services"
-msgstr "Alle Services"
+msgstr "Alle"
 
 msgid "Alpha"
 msgstr ""
@@ -191,10 +191,10 @@ msgid "Auto select subtitles"
 msgstr "Untertitel automatisch"
 
 msgid "Auto-Scan"
-msgstr ""
+msgstr "Auto scan"
 
 msgid "Auto-Scan multiple Satellites"
-msgstr ""
+msgstr "Alle Satelliten scannen"
 
 msgid "Available Images/Packages"
 msgstr ""
@@ -488,10 +488,10 @@ msgid "Delayed shutdown"
 msgstr ""
 
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 msgid "Delete all"
-msgstr ""
+msgstr "Alle löschen"
 
 msgid "Description"
 msgstr ""
@@ -1203,7 +1203,7 @@ msgid "Make Remaining Channels list"
 msgstr ""
 
 msgid "Manual frequency scan"
-msgstr ""
+msgstr "Manueller Frequenzscan"
 
 msgid "Manuell(ftp) Software Manager"
 msgstr ""
@@ -1257,10 +1257,10 @@ msgid "Modechange"
 msgstr ""
 
 msgid "Modify"
-msgstr ""
+msgstr "Bearbeiten"
 
 msgid "Modify timer"
-msgstr ""
+msgstr "Timer bearbeiten"
 
 msgid "Modulation"
 msgstr ""
@@ -1323,7 +1323,7 @@ msgid "Movies Browser"
 msgstr ""
 
 msgid "My Favorites"
-msgstr ""
+msgstr "Meine Favoriten"
 
 msgid "NFS"
 msgstr ""
@@ -1367,9 +1367,6 @@ msgstr ""
 msgid "Neu by Netzkino"
 msgstr ""
 
-msgid "Neue Filme"
-msgstr ""
-
 msgid "Neutrino Restart"
 msgstr "Neutrino neu starten"
 
@@ -1378,6 +1375,9 @@ msgstr "Neutrino neu starten"
 
 msgid "New Bookmark"
 msgstr ""
+
+msgid "New Movies"
+msgstr "Neu Filme"
 
 msgid ""
 "New jump back\n"
@@ -1390,10 +1390,10 @@ msgid ""
 msgstr ""
 
 msgid "New timer"
-msgstr ""
+msgstr "Neuer Timer"
 
 msgid "Next"
-msgstr ""
+msgstr "Später"
 
 msgid "Next Page"
 msgstr "Seite vor"
@@ -1459,10 +1459,10 @@ msgid "Not used"
 msgstr ""
 
 msgid "Now"
-msgstr ""
+msgstr "Jetzt"
 
 msgid "Number"
-msgstr ""
+msgstr "Nummer"
 
 msgid "Number of lines last play"
 msgstr ""
@@ -1645,13 +1645,13 @@ msgid "Prompt for PIN"
 msgstr ""
 
 msgid "Provider"
-msgstr ""
+msgstr "Provider"
 
 msgid "Provider:"
 msgstr ""
 
 msgid "Providers"
-msgstr ""
+msgstr "Anbieter"
 
 msgid "Proxyserver"
 msgstr ""
@@ -1747,7 +1747,7 @@ msgid "Release cycle"
 msgstr ""
 
 msgid "Reload"
-msgstr ""
+msgstr "Neu laden"
 
 msgid "Reload channel lists"
 msgstr "Kanallisten neu laden"
@@ -1756,10 +1756,11 @@ msgid "Reload movie info at start"
 msgstr ""
 
 msgid "Reload plugins"
-msgstr ""
+msgstr "Neu laden"
 
+#, fuzzy
 msgid "Reloading channel lists, please be patient."
-msgstr ""
+msgstr "Kanallisten werden neu geladen, bitte warten..."
 
 msgid "Remind"
 msgstr "Vormerken"
@@ -1858,7 +1859,7 @@ msgid "Satellite:"
 msgstr ""
 
 msgid "Satellites"
-msgstr ""
+msgstr "Empfang"
 
 msgid "Saturation"
 msgstr ""
@@ -1919,16 +1920,16 @@ msgid "Scaling"
 msgstr ""
 
 msgid "Scan SDT for updates"
-msgstr ""
+msgstr "Scan SDT für Updates"
 
 msgid "Scan again"
 msgstr ""
 
 msgid "Scan for Categories"
-msgstr ""
+msgstr "Suche Kategorien ..."
 
 msgid "Scan for Movies ..."
-msgstr ""
+msgstr "Suche Filme ..."
 
 msgid "Scan for services"
 msgstr ""
@@ -1937,7 +1938,7 @@ msgid "Scan transponder"
 msgstr "Kanalsuche"
 
 msgid "Scanning for UPnP servers"
-msgstr ""
+msgstr "Suche nach UPnP Servern"
 
 msgid "Scart Mode"
 msgstr ""
@@ -2154,6 +2155,9 @@ msgstr ""
 
 msgid "Standby Brightness"
 msgstr ""
+
+msgid "Start"
+msgstr "Starten"
 
 msgid "Start Channel settings"
 msgstr ""
@@ -2853,7 +2857,7 @@ msgid "default center"
 msgstr ""
 
 msgid "delete"
-msgstr ""
+msgstr "löschen"
 
 msgid "detective/thriller"
 msgstr ""
@@ -2877,7 +2881,7 @@ msgid "dmesg"
 msgstr ""
 
 msgid "do you want to reload channel lists?"
-msgstr ""
+msgstr "Wollen Sie die Kanal Listen neu laden?"
 
 msgid "documentary"
 msgstr ""
@@ -3161,7 +3165,7 @@ msgid "never"
 msgstr ""
 
 msgid "new media"
-msgstr ""
+msgstr "neu media"
 
 msgid "news"
 msgstr ""
@@ -3307,9 +3311,6 @@ msgstr ""
 msgid "remount"
 msgstr ""
 
-msgid "remove"
-msgstr ""
-
 msgid "remove screenshot?"
 msgstr ""
 
@@ -3338,7 +3339,7 @@ msgid "save settings now"
 msgstr "Einstellungen jetzt speichern"
 
 msgid "scan for Movies ..."
-msgstr ""
+msgstr "Suche Filme ..."
 
 msgid "schedule"
 msgstr "Umschalten"
@@ -3415,9 +3416,6 @@ msgid "sports"
 msgstr ""
 
 msgid "sports magazines"
-msgstr ""
-
-msgid "start"
 msgstr ""
 
 #, c-format

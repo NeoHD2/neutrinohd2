@@ -435,7 +435,7 @@ CFrameBox::CFrameBox(const int x, int const y, const int dx, const int dy)
 
 	inFocus = true;
 
-	itemType = WIDGETITEM_FRAMEBOX;
+	widgetItem_type = WIDGETITEM_FRAMEBOX;
 	paintFrame = true;
 
 	actionKey = "";
@@ -485,7 +485,7 @@ CFrameBox::CFrameBox(CBox* position)
 
 	inFocus = true;
 
-	itemType = WIDGETITEM_FRAMEBOX;
+	widgetItem_type = WIDGETITEM_FRAMEBOX;
 	paintFrame = true;
 
 	actionKey = "";

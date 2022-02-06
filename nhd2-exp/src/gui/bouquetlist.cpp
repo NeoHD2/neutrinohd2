@@ -511,7 +511,7 @@ void CBouquetList::hide()
 	frameBuffer->blit();
 }
 
-const struct button_label HButton = {NEUTRINO_ICON_BUTTON_SETUP, "" };
+const struct button_label HButton = {NEUTRINO_ICON_BUTTON_SETUP, " " };
 
 const struct button_label CBouquetListButtons[4] =
 {

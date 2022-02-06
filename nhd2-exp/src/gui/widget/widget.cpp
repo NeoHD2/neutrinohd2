@@ -599,7 +599,7 @@ void CWidget::onUpKeyPressed()
 	if(hasItem() && selected >= 0)
 	{
 #if 0
-		if( ((items[selected]->itemType == WIDGETITEM_FRAMEBOX) ) /*|| ((items[selected]->itemType == WIDGETITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) )*/ )
+		if( ((items[selected]->widgetItem_type == WIDGETITEM_FRAMEBOX) ) /*|| ((items[selected]->widgetItem_type == WIDGETITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) )*/ )
 		{
 			for (unsigned int count = 1; count < items.size(); count++) 
 			{
@@ -637,7 +637,7 @@ void CWidget::onDownKeyPressed()
 	if(hasItem() && selected >= 0)
 	{
 #if 0
-		if( ((items[selected]->itemType == WIDGETITEM_FRAMEBOX) ) /*|| ((items[selected]->itemType == WIDGETITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) )*/ )
+		if( ((items[selected]->widgetItem_type == WIDGETITEM_FRAMEBOX) ) /*|| ((items[selected]->widgetItem_type == WIDGETITEM_LISTBOX) && (items[selected]->getWidgetType() == WIDGET_TYPE_FRAME) )*/ )
 		{
 			//onYellowKeyPressed();
 			for (unsigned int count = 1; count < items.size(); count++) 
@@ -679,7 +679,7 @@ void CWidget::onRightKeyPressed()
 	
 	if(hasItem() && selected >= 0)
 	{
-		if( (items[selected]->itemType == WIDGETITEM_LISTBOX) && ( (items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
+		if( (items[selected]->widgetItem_type == WIDGETITEM_LISTBOX) && ( (items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
 		{
 			for (unsigned int count = 1; count < (unsigned int)items.size(); count++) 
 			{
@@ -712,7 +712,7 @@ void CWidget::onLeftKeyPressed()
 	
 	if(hasItem() && selected >= 0)
 	{
-		if( (items[selected]->itemType == WIDGETITEM_LISTBOX) && ((items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
+		if( (items[selected]->widgetItem_type == WIDGETITEM_LISTBOX) && ((items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
 		{
 			for (unsigned int count = 1; count < (unsigned int)items.size(); count++) 
 			{
@@ -767,7 +767,7 @@ CWidgetItem* CWidget::getWidgetItem(const int pos, const int type)
 	for (unsigned int count = 0; count < (unsigned int)items.size(); count++) 
 	{
 	/*
-		if (items[pos]->itemType == WIDGETITEM_LISTBOX)
+		if (items[pos]->widgetItem_type == WIDGETITEM_LISTBOX)
 		{
 			ret = items[pos];
 			break;
@@ -776,12 +776,12 @@ CWidgetItem* CWidget::getWidgetItem(const int pos, const int type)
 		switch (type)
 		{
 			case WIDGETITEM_LISTBOX:
-				if (items[pos]->itemType == WIDGETITEM_LISTBOX)
+				if (items[pos]->widgetItem_type == WIDGETITEM_LISTBOX)
 					ret = items[pos]; 
 				break;
 				
 			case WIDGETITEM_WINDOW:
-				if (items[pos]->itemType == WIDGETITEM_WINDOW)
+				if (items[pos]->widgetItem_type == WIDGETITEM_WINDOW)
 					ret = items[pos]; 
 				break;
 				

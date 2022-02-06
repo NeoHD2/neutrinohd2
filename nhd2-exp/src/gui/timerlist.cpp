@@ -786,7 +786,7 @@ void CTimerList::paint()
 	}
 
 	// head
-	listBox->setTitle(_("Timer list"), NEUTRINO_ICON_TIMER);
+	listBox->setTitle(_("Timerlist"), NEUTRINO_ICON_TIMER);
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
 	listBox->setHeadGradient(g_settings.Head_gradient);

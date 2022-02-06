@@ -43,16 +43,16 @@ class ClistBox;
 // item type
 enum 
 {
-	ITEM_TYPE_OPTION_CHOOSER = 0,
-	ITEM_TYPE_OPTION_NUMBER_CHOOSER,
-	ITEM_TYPE_OPTION_STRING_CHOOSER,
-	ITEM_TYPE_OPTION_LANGUAGE_CHOOSER,
-	ITEM_TYPE_SEPARATOR,
-	ITEM_TYPE_FORWARDER,
-	ITEM_TYPE_LOCKED_FORWARDER,
+	MENUITEM_OPTION_CHOOSER = 0,
+	MENUITEM_OPTION_NUMBER_CHOOSER,
+	MENUITEM_OPTION_STRING_CHOOSER,
+	MENUITEM_OPTION_LANGUAGE_CHOOSER,
+	MENUITEM_SEPARATOR,
+	MENUITEM_FORWARDER,
+	MENUITEM_LOCKED_FORWARDER,
 	//
-	ITEM_TYPE_LISTBOXITEM,
-	ITEM_TYPE_PLUGINITEM
+	MENUITEM_LISTBOXITEM,
+	MENUITEM_PLUGINITEM
 };
 
 enum
@@ -144,7 +144,7 @@ class CMenuItem
 		bool pb;
 
 		//
-		int itemType;
+		int menuItem_type;
 		
 		//
 		int widgetType;
@@ -200,7 +200,7 @@ class CMenuItem
 
 		//
 		virtual int getYPosition(void) const { return y; }
-		virtual int getItemType(){ return itemType;};
+		virtual int getMenuItemType(){ return menuItem_type;};
 
 		//
 		virtual void setOption(const char* text){option = text;};

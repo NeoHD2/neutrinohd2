@@ -19,16 +19,16 @@
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		<BUTTON posx="10" posy="680" width="1260" height="40">
-			<BUTTON_LABEL name="btn_red" localename="delete">
+			<BUTTON_LABEL name="btn_red" localename="Delete">
 			</BUTTON_LABEL>
 		
-			<BUTTON_LABEL name="btn_green" localename="start">
+			<BUTTON_LABEL name="btn_green" localename="Start">
 			</BUTTON_LABEL>
 		
 			<BUTTON_LABEL name="btn_yellow">
 			</BUTTON_LABEL>
 
-			<BUTTON_LABEL name="btn_blue" localename="reload">
+			<BUTTON_LABEL name="btn_blue" localename="Reload plugins">
 			</BUTTON_LABEL>
 		</BUTTON>
 	</WIDGET>
@@ -66,16 +66,16 @@
 		</TIME>
 		
 		<BUTTON posx="10" posy="680" width="1260" height="40">
-			<BUTTON_LABEL name="btn_red" localename="delete">
+			<BUTTON_LABEL name="btn_red" localename="Delete">
 			</BUTTON_LABEL>
 		
-			<BUTTON_LABEL name="btn_green" localename="start">
+			<BUTTON_LABEL name="btn_green" localename="Start">
 			</BUTTON_LABEL>
 		
 			<BUTTON_LABEL name="btn_yellow">
 			</BUTTON_LABEL>
 
-			<BUTTON_LABEL name="btn_blue" localename="reload">
+			<BUTTON_LABEL name="btn_blue" localename="Reload plugins">
 			</BUTTON_LABEL>
 		</BUTTON>
 	</WIDGET>

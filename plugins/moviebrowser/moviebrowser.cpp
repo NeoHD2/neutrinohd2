@@ -174,7 +174,7 @@ const char* const m_localizedItemName[MB_INFO_MAX_NUMBER + 1] =
 	_("Audio"),
 	_("Length (Min)"),
 	_("Size"), 
-	_("")
+	""
 };
 
 // default row size in pixel for any element

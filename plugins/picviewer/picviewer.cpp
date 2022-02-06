@@ -259,7 +259,7 @@ int CPicViewer::exec(CMenuTarget* parent, const std::string& actionKey)
 		CPicturePlayList::iterator p = playlist.begin() + plist->getSelected();
 		playlist.erase(p);
 
-		if (selected >= (unsigned int)playlist.size())
+		if (selected >= (int)playlist.size())
 			selected = playlist.size() - 1;
 
 		showMenu();

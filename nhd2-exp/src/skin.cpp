@@ -1098,16 +1098,16 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 					
 				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
-					char* button = NULL;
-					char* localename = NULL;
+					const char* button = NULL;
+					const char* localename = NULL;
 						
 					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
 					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
 						
 					button_label_struct btn;
-					btn.button = "";
+					btn.button = " ";
 					if (button) btn.button = button;
-					btn.localename = "";
+					btn.localename = " ";
 					if (localename) btn.localename = localename;
 						
 					head->setButtons(&btn);
@@ -1176,16 +1176,16 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 					
 				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
-					char* button = NULL;
-					char* localename = NULL;
+					const char* button = NULL;
+					const char* localename = NULL;
 						
 					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
 					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
 						
 					button_label_struct btn;
-					btn.button = "";
+					btn.button = " ";
 					if (button) btn.button = button;
-					btn.localename = "";
+					btn.localename = " ";
 					if (localename) btn.localename = localename;
 						
 					foot->setButtons(&btn);
@@ -1350,9 +1350,9 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 						
 					if (item_localename) itemName = _(item_localename);
 						
-					if (itemid == ITEM_TYPE_FORWARDER)
+					if (itemid == MENUITEM_FORWARDER)
 						menuItem = new CMenuForwarder(itemName.c_str());
-					else if (itemid == ITEM_TYPE_LISTBOXITEM)
+					else if (itemid == MENUITEM_LISTBOXITEM)
 						menuItem = new ClistBoxItem(itemName.c_str());
 						
 					if (item_actionkey) actionKey = item_actionkey;	
@@ -1416,16 +1416,16 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 					
 				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
-					char* button = NULL;
-					char* localename = NULL;
+					const char* button = NULL;
+					const char* localename = NULL;
 						
 					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
 					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
 						
 					button_label_struct btn;
-					btn.button = "";
+					btn.button = " ";
 					if (button) btn.button = button;
-					btn.localename = "";
+					btn.localename = " ";
 					if (localename) btn.localename = localename;
 						
 					listBox->setFootButtons(&btn);
@@ -1595,16 +1595,16 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 				
 				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
-					char* button = NULL;
-					char* localename = NULL;
+					const char* button = NULL;
+					const char* localename = NULL;
 							
 					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
 					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
 							
 					button_label_struct btn;
-					btn.button = "";
+					btn.button = " ";
 					if (button) btn.button = button;
-					btn.localename = "";
+					btn.localename = " ";
 					if (localename) btn.localename = localename;
 							
 					cButton->setButtons(&btn);

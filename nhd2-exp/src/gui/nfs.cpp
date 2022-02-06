@@ -466,7 +466,7 @@ const char * mntRes2Str(CFSMounter::MountRes res)
 			break;
 			
 		default:
-			return _("");
+			return "";
 			break;
 	}
 }
@@ -480,11 +480,11 @@ const char * mntRes2Str(CFSMounter::UMountRes res)
 			break;
 			
 		case CFSMounter::UMRES_OK:
-			return _("");
+			return "";
 			break;
 			
 		default:
-			return _("");
+			return "";
 			break;
 	}
 }

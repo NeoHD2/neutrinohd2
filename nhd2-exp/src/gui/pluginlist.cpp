@@ -82,9 +82,9 @@ void CPluginList::hide()
 #define NUM_LIST_BUTTONS 4
 struct button_label CPluginListButtons[NUM_LIST_BUTTONS] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, _("remove") },
-	{ NEUTRINO_ICON_BUTTON_GREEN, _("start") },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, "" },
+	{ NEUTRINO_ICON_BUTTON_RED, _("Delete") },
+	{ NEUTRINO_ICON_BUTTON_GREEN, _("Start") },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, " " },
 	{ NEUTRINO_ICON_BUTTON_BLUE, _("Reload plugins")}
 };
 
@@ -102,8 +102,6 @@ void CPluginList::showMenu()
 	{
 		prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getItemsCount();
 		prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getCCItemsCount();
-		
-		printf("WDItems:%d CCItems:%d\n", prev_ItemsCount, prev_CCItemsCount);
 		
 		pWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN);
 		plist = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);

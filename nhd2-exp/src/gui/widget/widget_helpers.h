@@ -30,9 +30,7 @@
 
 #include <driver/rcinput.h>
 
-
-extern CLocaleManager* g_Locale; // for DL
-
+//
 class CMenuTarget;
 class CWidgetItem;
 class CWidget;
@@ -90,13 +88,12 @@ class CComponent
 		int cc_type;
 		CBox cCBox;
 		int halign;
-		//int valign;
 		
 		//
 		bool rePaint;
 		
 		//
-		CComponent(){frameBuffer = CFrameBuffer::getInstance(); rePaint = false; halign = CC_ALIGN_LEFT; };
+		CComponent();
 		virtual ~CComponent(){};
 		
 		virtual bool isSelectable(void){return false;};
@@ -104,8 +101,6 @@ class CComponent
 		//
 		virtual void paint(void){};
 		virtual void hide(void){};
-		
-		//
 		virtual void refresh(void){};
 		virtual void enableRepaint(){rePaint = true;};
 		virtual bool update() const {return rePaint;};
@@ -578,7 +573,7 @@ class CWidgetItem
 		CFrameBuffer* frameBuffer;
 		CBox itemBox;
 
-		int itemType;
+		int widgetItem_type;
 		bool inFocus;
 		bool rePaint;
 		std::string actionKey; // lua
@@ -594,7 +589,7 @@ class CWidgetItem
 		uint32_t sec_timer_id;
 
 		//
-		CWidgetItem(){frameBuffer = CFrameBuffer::getInstance(); inFocus = true; actionKey = ""; parent = NULL; rePaint = false; sec_timer_id = 0;};
+		CWidgetItem();
 		virtual ~CWidgetItem(){};
 
 		virtual bool isSelectable(void){return false;}
@@ -603,12 +598,11 @@ class CWidgetItem
 		//
 		virtual void paint(void){painted = true;};
 		virtual void hide(void){painted = false;};
-		
-		//
 		virtual void refresh(void){};
 		virtual void enableRepaint(){rePaint = true;};
 		virtual bool update() const {return rePaint;};
 
+		//
 		virtual void scrollLineDown(const int lines = 1){};
 		virtual void scrollLineUp(const int lines = 1){};
 		virtual void scrollPageDown(const int pages = 1){};
@@ -616,14 +610,18 @@ class CWidgetItem
 		virtual void swipLeft(){};
 		virtual void swipRight(){};
 
+		//
 		virtual void setOutFocus(bool focus = true){inFocus = !focus;};
 		virtual void setSelected(unsigned int _new) {};
 
+		//
 		virtual inline CBox getWindowsPos(void){return (itemBox);};
 
+		//
 		virtual int getWidgetType(){return (4);};
-		virtual int getWidgetItemType(){return itemType;};
+		virtual int getWidgetItemType(){return widgetItem_type;};
 
+		//
 		virtual int oKKeyPressed(CMenuTarget *parent){return 0;};
 		virtual void homeKeyPressed(){};
 		virtual void onDirectKeyPressed(neutrino_msg_t msg){};

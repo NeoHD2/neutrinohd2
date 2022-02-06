@@ -139,7 +139,7 @@ CMenuOptionChooser::CMenuOptionChooser(const char * const OptionName, int* const
 	can_arrow = true;
 	pulldown = Pulldown;
 
-	itemType = ITEM_TYPE_OPTION_CHOOSER;
+	menuItem_type = MENUITEM_OPTION_CHOOSER;
 }
 
 void CMenuOptionChooser::setOptionValue(const int newvalue)
@@ -315,7 +315,7 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(x + BORDER_LEFT, y + height, height, CRCInput::getKeyName(directKey), color, height);
         }
 
-	int stringwidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_option, true); // UTF-8
+	int stringwidth = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(_(l_option), true); // FIXME: i18n
 	int stringstartposName = x + BORDER_LEFT + icon_w + ICON_OFFSET;
 	int stringstartposOption = x + dx - (stringwidth + BORDER_RIGHT); //
 
@@ -325,7 +325,7 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposName, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - (stringstartposName - x), l_name, color, 0, true); // UTF-8
 	
 	// option
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_LEFT - (stringstartposOption - x), _(l_option), color, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_LEFT - (stringstartposOption - x), _(l_option), color, 0, true); // FIXME: i18n
 
 	// vfd
 	if (selected && !AfterPulldown)
@@ -361,7 +361,7 @@ CMenuOptionNumberChooser::CMenuOptionNumberChooser(const char * const Name, int 
 	can_arrow = true;
 	observ = Observ;
 
-	itemType = ITEM_TYPE_OPTION_NUMBER_CHOOSER;
+	menuItem_type = MENUITEM_OPTION_NUMBER_CHOOSER;
 }
 
 int CMenuOptionNumberChooser::exec(CMenuTarget*)
@@ -479,7 +479,7 @@ CMenuOptionStringChooser::CMenuOptionStringChooser(const char * const Name, char
 	
 	pulldown = Pulldown;
 
-	itemType = ITEM_TYPE_OPTION_STRING_CHOOSER;
+	menuItem_type = MENUITEM_OPTION_STRING_CHOOSER;
 }
 
 CMenuOptionStringChooser::~CMenuOptionStringChooser()
@@ -671,7 +671,7 @@ CMenuOptionLanguageChooser::CMenuOptionLanguageChooser(char* Name, CChangeObserv
 	directKey = RC_nokey;
 	iconName = IconName ? IconName : "";
 
-	itemType = ITEM_TYPE_OPTION_LANGUAGE_CHOOSER;
+	menuItem_type = MENUITEM_OPTION_LANGUAGE_CHOOSER;
 }
 
 CMenuOptionLanguageChooser::~CMenuOptionLanguageChooser()
@@ -770,7 +770,7 @@ CMenuSeparator::CMenuSeparator(const int Type, const char * const Text)
 	type = Type;
 	textString = Text;
 
-	itemType = ITEM_TYPE_SEPARATOR;
+	menuItem_type = MENUITEM_SEPARATOR;
 }
 
 int CMenuSeparator::getHeight(void) const
@@ -899,7 +899,7 @@ CMenuForwarder::CMenuForwarder(const char * const Text, const bool Active, const
 
 	optionValueString = "";
 	
-	itemType = ITEM_TYPE_FORWARDER;
+	menuItem_type = MENUITEM_FORWARDER;
 }
 
 int CMenuForwarder::getHeight(void) const
@@ -1302,7 +1302,7 @@ ClistBoxItem::ClistBoxItem(const char * const Text, const bool Active, const cha
 	
 	runningPercent = 0;
 
-	itemType = ITEM_TYPE_LISTBOXITEM;
+	menuItem_type = MENUITEM_LISTBOXITEM;
 }
 
 int ClistBoxItem::getHeight(void) const
@@ -1855,7 +1855,7 @@ CPluginItem::CPluginItem(const char * const pluginName, const bool Active, const
 	directKey = DirectKey;
 	iconName = IconName ? IconName : "";
 
-	itemType = ITEM_TYPE_PLUGINITEM;
+	menuItem_type = MENUITEM_PLUGINITEM;
 }
 
 int CPluginItem::getHeight(void) const
@@ -2256,7 +2256,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	fheight = 0;
 	fbutton_count	= 0;
 	fbutton_labels.clear();
-	fbutton_width = itemBox.iWidth;
+	fbutton_width = itemBox.iWidth - 20;
 	footColor = COL_MENUFOOT_PLUS_0;
 	footRadius = g_settings.Foot_radius;
 	footCorner = g_settings.Foot_corner;
@@ -2322,7 +2322,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	//
 	sec_timer_id = 0;
 	
-	itemType = WIDGETITEM_LISTBOX;
+	widgetItem_type = WIDGETITEM_LISTBOX;
 }
 
 ClistBox::ClistBox(CBox* position)
@@ -2361,7 +2361,7 @@ ClistBox::ClistBox(CBox* position)
 	hbutton_labels.clear();
 	fbutton_count	= 0;
 	fbutton_labels.clear();
-	fbutton_width = itemBox.iWidth;
+	fbutton_width = itemBox.iWidth - 20;
 	paintDate = false;
 	l_name = "";
 	iconfile = "";
@@ -2442,7 +2442,7 @@ ClistBox::ClistBox(CBox* position)
 	//
 	sec_timer_id = 0;
 	
-	itemType = WIDGETITEM_LISTBOX;
+	widgetItem_type = WIDGETITEM_LISTBOX;
 }
 
 ClistBox::~ClistBox()
@@ -3043,7 +3043,6 @@ void ClistBox::paintFoot()
 				{
 					if (!fbutton_labels[i].button.empty())
 					{
-						//const char * l_option = NULL;
 						int iw = 0;
 						int ih = 0;
 
@@ -3055,16 +3054,11 @@ void ClistBox::paintFoot()
 						}
 						
 						int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-						/*
-						if(fbutton_labels[i].localename != NULL)
-							l_option = fbutton_labels[i].localename;
-						else
-							l_option = g_Locale->getText(fbutton_labels[i].locale);
-						*/
 		
 						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + (fheight - ih)/2, 0, true, iw, ih);
 
-						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, fbutton_labels[i].localename, COL_MENUFOOT, 0, true); // UTF-8
+						// FIXME: i18n
+						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, _(fbutton_labels[i].localename.c_str()), COL_MENUFOOT, 0, true); // UTF-8
 					}
 				}
 			}
@@ -3087,7 +3081,6 @@ void ClistBox::paintFoot()
 			{
 				if (!fbutton_labels[i].button.empty())
 				{
-					//const char * l_option = NULL;
 					int iw = 0;
 					int ih = 0;
 
@@ -3099,17 +3092,10 @@ void ClistBox::paintFoot()
 					}
 						
 					int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-
-					/*
-					if(fbutton_labels[i].localename != NULL)
-						l_option = fbutton_labels[i].localename;
-					else
-						l_option = g_Locale->getText(fbutton_labels[i].locale);
-					*/
 		
 					CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + (fheight - ih)/2, 0, true, iw, ih);
-
-					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, fbutton_labels[i].localename, COL_MENUFOOT, 0, true); // UTF-8
+					// FIXME: i18n
+					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, _(fbutton_labels[i].localename.c_str()), COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
 		}
@@ -3145,7 +3131,7 @@ void ClistBox::setFootButtons(const struct button_label* _fbutton_labels, const 
 		}
 
 		fbutton_count = fbutton_labels.size();	
-		fbutton_width = (_fbutton_width == 0)? itemBox.iWidth : _fbutton_width;
+		fbutton_width = (_fbutton_width == 0)? itemBox.iWidth - 20: _fbutton_width;
 	}
 }
 

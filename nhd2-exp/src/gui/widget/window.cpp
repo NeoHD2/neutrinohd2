@@ -105,7 +105,7 @@ void CWindow::init()
 		itemBox.iWidth = frameBuffer->getScreenWidth(true);
 	
 	//
-	itemType = WIDGETITEM_WINDOW;
+	widgetItem_type = WIDGETITEM_WINDOW;
 }
 
 void CWindow::saveScreen()

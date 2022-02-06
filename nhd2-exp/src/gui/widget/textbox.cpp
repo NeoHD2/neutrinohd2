@@ -140,7 +140,7 @@ void CTextBox::initVar(void)
 	savescreen = false;
 	background = NULL;
 	
-	itemType = WIDGETITEM_TEXTBOX;
+	widgetItem_type = WIDGETITEM_TEXTBOX;
 }
 
 void CTextBox::setPosition(const int x, const int y, const int dx, const int dy)
