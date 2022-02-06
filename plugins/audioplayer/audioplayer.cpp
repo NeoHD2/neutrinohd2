@@ -276,17 +276,18 @@ void CMP3Player::showMenu()
 		snprintf(duration, 8, "(%ld:%02ld)", playlist[i].MetaData.total_time / 60, playlist[i].MetaData.total_time % 60);
 
 		//
-		item = new ClistBoxItem(title.c_str(), true, NULL, this, "aplay");
+		item = new ClistBoxItem(title.c_str(), true, artist.c_str(), this, "aplay");
 			
 		item->setOptionInfo(duration);
 		item->setNumber(i + 1);
 
 		// details Box
-		item->setInfo1(title.c_str());
-		item->setOptionInfo1(genre.c_str());
-		item->setInfo2(artist.c_str());
-		item->setOptionInfo2(date.c_str());
+		item->setInfo1(genre.c_str());
+		//item->setOptionInfo1(genre.c_str());
+		item->setInfo2(date.c_str());
+		//item->setOptionInfo2(date.c_str());
 
+		/*
 		std::string tmp = title.c_str();
 		tmp += "\n";
 		tmp += genre.c_str();
@@ -296,21 +297,26 @@ void CMP3Player::showMenu()
 		tmp += date.c_str();
 
 		item->setHint(tmp.c_str());
+		*/
+		
 		item->setItemIcon(cover.c_str());
+		
+		item->set2lines();
+		item->enableItemShadow();
 
 		alist->addItem(item);
 	}
 	
 	alist->setWidgetMode(MODE_LISTBOX);
-	alist->setWidgetType(WIDGET_TYPE_EXTENDED);
+	alist->setWidgetType(WIDGET_TYPE_CLASSIC);
+	alist->setItemsPerPage(10, 6);
 
 	alist->setSelected(selected);
 
-	alist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
-	alist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
-	
-	alist->enablePaintItemInfo(70);
 	alist->enablePaintDate();
+	alist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	
+	alist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 
 	alist->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));
 	alist->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));

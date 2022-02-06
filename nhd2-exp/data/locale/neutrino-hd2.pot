@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-06 16:40+0100\n"
+"POT-Creation-Date: 2022-02-06 17:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -230,7 +230,7 @@ msgid "Audio Player Setup"
 msgstr ""
 
 #: ../../src/gui/audioplayer.cpp:217 ../../src/gui/audioplayer.cpp:330
-#: ../../src/gui/audioplayer.cpp:1352
+#: ../../src/gui/audioplayer.cpp:1358
 msgid "Audio Playlist"
 msgstr ""
 

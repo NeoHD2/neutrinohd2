@@ -1319,17 +1319,18 @@ void CAudioPlayerGui::showPlaylist()
 		snprintf(duration, 8, "(%ld:%02ld)", m_playlist[i].MetaData.total_time / 60, m_playlist[i].MetaData.total_time % 60);
 
 		//
-		item = new ClistBoxItem(title.c_str());
+		item = new ClistBoxItem(title.c_str(), true, artist.c_str());
 			
 		item->setOptionInfo(duration);
 		item->setNumber(i + 1);
 
 		// details Box
-		item->setInfo1(title.c_str());
-		item->setOptionInfo1(genre.c_str());
-		item->setInfo2(artist.c_str());
-		item->setOptionInfo2(date.c_str());
+		item->setInfo1(genre.c_str());
+		//item->setOptionInfo1(genre.c_str());
+		item->setInfo2(date.c_str());
+		//item->setOptionInfo2(date.c_str());
 
+		/*
 		std::string tmp = title.c_str();
 		tmp += "\n";
 		tmp += genre.c_str();
@@ -1339,12 +1340,17 @@ void CAudioPlayerGui::showPlaylist()
 		tmp += date.c_str();
 
 		item->setHint(tmp.c_str());
+		*/
+		
 		item->setItemIcon(cover.c_str());
+		
+		item->set2lines();
+		item->enableItemShadow();
 
 		alist->addItem(item);
 	}
 
-	alist->setWidgetType(WIDGET_TYPE_EXTENDED);
+	alist->setWidgetType(WIDGET_TYPE_CLASSIC);
 	
 	alist->setSelected(m_current);
 	
@@ -1354,8 +1360,6 @@ void CAudioPlayerGui::showPlaylist()
 	
 	alist->enablePaintFoot();
 	alist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
-	
-	alist->enablePaintItemInfo(70);
 	
 	alist->paint();
 }
