@@ -42,8 +42,7 @@ extern cVideo * videoDecoder;
 // CComponent
 CComponent::CComponent()
 {
-	frameBuffer = CFrameBuffer::getInstance(); 
-	
+	//
 	cCBox.iX = 0;
 	cCBox.iY = 0;
 	cCBox.iWidth = 0;
@@ -225,6 +224,8 @@ CProgressBar::CProgressBar(int x, int y, int w, int h, int r, int g, int b, bool
 CProgressBar::CProgressBar(const CBox* position, int r, int g, int b, bool inv)
 {
 	dprintf(DEBUG_INFO, "CProgressBar::CProgressBar: x:%d y:%d dx:%d dy:%d\n", position->iX, position->iY, position->iWidth, position->iHeight);
+	
+	frameBuffer = CFrameBuffer::getInstance(); 
 	
 	cCBox = *position;
 	inverse = inv;
@@ -824,6 +825,8 @@ void CCLabel::paint()
 //
 CCText::CCText(const int x, const int y, const int dx, const int dy)
 {
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
 	cCBox.iX = x;
 	cCBox.iY = y;
 	cCBox.iWidth = dx;
@@ -859,6 +862,8 @@ void CCText::paint()
 // grid
 CCGrid::CCGrid(const int x, const int y, const int dx, const int dy)
 {
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
 	cCBox.iX = x;
 	cCBox.iY = y;
 	cCBox.iWidth = dx;
@@ -869,6 +874,8 @@ CCGrid::CCGrid(const int x, const int y, const int dx, const int dy)
 
 CCGrid::CCGrid(CBox* position)
 {
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
 	cCBox = *position;
 
 	init();
@@ -876,8 +883,6 @@ CCGrid::CCGrid(CBox* position)
 
 void CCGrid::init()
 {
-	frameBuffer = CFrameBuffer::getInstance();
-
 	rgb = COL_NOBEL_PLUS_0;
 	inter_frame = 15;
 	
@@ -923,6 +928,9 @@ void CCGrid::hide()
 // pig
 CCPig::CCPig(const int x, const int y, const int dx, const int dy)
 {
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
+	//
 	cCBox.iX = x;
 	cCBox.iY = y;
 	cCBox.iWidth = dx;
@@ -933,6 +941,9 @@ CCPig::CCPig(const int x, const int y, const int dx, const int dy)
 
 CCPig::CCPig(CBox* position)
 {
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
+	//
 	cCBox = *position;
 
 	init();
@@ -940,8 +951,6 @@ CCPig::CCPig(CBox* position)
 
 void CCPig::init()
 {
-	frameBuffer = CFrameBuffer::getInstance();
-	
 	//
 	cc_type = CC_PIG;
 }
@@ -985,6 +994,8 @@ void CCPig::hide()
 // CCTime
 CCTime::CCTime(const int x, const int y, const int dx, const int dy)
 {
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
 	cCBox.iX = x;
 	cCBox.iY = y;
 	cCBox.iWidth = dx;
@@ -1047,6 +1058,8 @@ void CCTime::refresh()
 CCCounter::CCCounter(const int x, const int y, const int dx, const int dy)
 {
 	dprintf(DEBUG_INFO, "CCCounter::CCCounter: x:%d y:%d dx:%d dy:%d\n", x, y, dx, dy);
+	
+	frameBuffer = CFrameBuffer::getInstance(); 
 	
 	cCBox.iX = x;
 	cCBox.iY = y;
@@ -1113,8 +1126,6 @@ void CCCounter::refresh()
 // CWidgetItem
 CWidgetItem::CWidgetItem()
 {
-	frameBuffer = CFrameBuffer::getInstance();
-	
 	itemBox.iX = 0;
 	itemBox.iY = 0;
 	itemBox.iWidth = 0;
@@ -1237,6 +1248,8 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 {
 	dprintf(DEBUG_INFO, "CHeaders::CHeaders: x:%d y:%d dx:%d dy:%d title:%s icon:%s\n", x, y, dx, dy, title, icon);
 	
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
 	itemBox.iX = x;
 	itemBox.iY = y;
 	itemBox.iWidth = dx;
@@ -1266,6 +1279,8 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 CHeaders::CHeaders(CBox* position, const char * const title, const char * const icon)
 {
 	dprintf(DEBUG_INFO, "CHeaders::CHeaders: x:%d y:%d dx:%d dy:%d title:%s icon:%s\n", position->iX, position->iY, position->iWidth, position->iHeight, title, icon);
+	
+	frameBuffer = CFrameBuffer::getInstance(); 
 	
 	itemBox = *position;
 
@@ -1398,6 +1413,8 @@ CFooters::CFooters(int x, int y, int dx, int dy)
 {
 	dprintf(DEBUG_INFO, "CFooters::CFooters: x:%d y:%d dx:%d dy:%d\n", x, y, dx, dy);
 	
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
 	itemBox.iX = x;
 	itemBox.iY = y;
 	itemBox.iWidth = dx;
@@ -1418,6 +1435,8 @@ CFooters::CFooters(int x, int y, int dx, int dy)
 CFooters::CFooters(CBox* position)
 {
 	dprintf(DEBUG_INFO, "CFooters::CFooters: x:%d y:%d dx:%d dy:%d\n", position->iX, position->iY, position->iWidth, position->iHeight);
+	
+	frameBuffer = CFrameBuffer::getInstance(); 
 	
 	itemBox = *position;
 

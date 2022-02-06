@@ -44,6 +44,8 @@ CWindow::CWindow(const int x, const int y, const int dx, const int dy)
 {
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
 	
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
 	itemBox.iX = x;
 	itemBox.iY = y;
 	itemBox.iWidth = dx;
@@ -55,6 +57,8 @@ CWindow::CWindow(const int x, const int y, const int dx, const int dy)
 CWindow::CWindow(CBox* position)
 {
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
+	
+	frameBuffer = CFrameBuffer::getInstance(); 
 	
 	itemBox = *position;
 
@@ -78,8 +82,6 @@ CWindow::~CWindow()
 void CWindow::init()
 {
 	dprintf(DEBUG_DEBUG, "CWindow::%s\n", __FUNCTION__);
-	
-	frameBuffer = CFrameBuffer::getInstance();
 
 	radius = NO_RADIUS;
 	corner = CORNER_NONE;

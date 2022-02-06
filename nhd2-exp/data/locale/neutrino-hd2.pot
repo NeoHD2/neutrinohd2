@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-06 20:36+0100\n"
+"POT-Creation-Date: 2022-02-06 21:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Alpha"
 msgstr ""
 
-#: ../../src/gui/alphasetup.cpp:192 ../../../plugins/test/test.cpp:5269
+#: ../../src/gui/alphasetup.cpp:192 ../../../plugins/test/test.cpp:5262
 msgid "Alpha Setup"
 msgstr ""
 
@@ -307,7 +307,7 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:284 ../../src/gui/osd_setup.cpp:289
 #: ../../src/gui/osd_setup.cpp:294 ../../src/gui/osd_setup.cpp:311
 #: ../../src/gui/osd_setup.cpp:375 ../../src/gui/osd_setup.cpp:386
-#: ../../../plugins/test/test.cpp:5352
+#: ../../../plugins/test/test.cpp:5345
 msgid "Background"
 msgstr ""
 
@@ -683,7 +683,7 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:3179
+#: ../../../plugins/test/test.cpp:3172
 msgid "Date:"
 msgstr ""
 
@@ -814,7 +814,7 @@ msgid "Diseqc input"
 msgstr ""
 
 #: ../../src/gui/lcd_setup.cpp:128 ../../src/gui/lcd_setup.cpp:145
-#: ../../../plugins/test/test.cpp:5342
+#: ../../../plugins/test/test.cpp:5335
 msgid "Display Settings"
 msgstr ""
 
@@ -980,7 +980,7 @@ msgstr ""
 #: ../../src/gui/update.cpp:468 ../../src/gui/update.cpp:504
 #: ../../src/gui/update.cpp:550 ../../src/gui/misc_setup.cpp:488
 #: ../../src/gui/audioplayer.cpp:1165 ../../src/gui/infoviewer.cpp:1097
-#: ../../src/driver/vcrcontrol.cpp:738 ../../../plugins/test/test.cpp:3284
+#: ../../src/driver/vcrcontrol.cpp:738 ../../../plugins/test/test.cpp:3277
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:931
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:940
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:942
@@ -1121,7 +1121,7 @@ msgstr ""
 msgid "Filter:"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:260
+#: ../../../plugins/test/test.cpp:262
 msgid "Focus"
 msgstr ""
 
@@ -1438,7 +1438,7 @@ msgstr ""
 msgid "IP address"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:3150
+#: ../../../plugins/test/test.cpp:3143
 msgid "IP:"
 msgstr ""
 
@@ -1542,10 +1542,10 @@ msgstr ""
 #: ../../src/gui/plugins.cpp:336 ../../src/gui/audioplayer.cpp:1280
 #: ../../src/gui/eventlist.cpp:510 ../../src/gui/eventlist.cpp:515
 #: ../../src/gui/infoviewer.cpp:1113 ../../src/gui/widget/infobox.cpp:170
-#: ../../../plugins/test/test.cpp:3261 ../../../plugins/test/test.cpp:3276
-#: ../../../plugins/test/test.cpp:3292 ../../../plugins/test/test.cpp:3305
-#: ../../../plugins/test/test.cpp:3353 ../../../plugins/test/test.cpp:5732
-#: ../../../plugins/test/test.cpp:5738 ../../../plugins/icecast/icecast.cpp:665
+#: ../../../plugins/test/test.cpp:3254 ../../../plugins/test/test.cpp:3269
+#: ../../../plugins/test/test.cpp:3285 ../../../plugins/test/test.cpp:3298
+#: ../../../plugins/test/test.cpp:3346 ../../../plugins/test/test.cpp:5725
+#: ../../../plugins/test/test.cpp:5731 ../../../plugins/icecast/icecast.cpp:665
 #: ../../../plugins/moviebrowser/tstool.cpp:278
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:918
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:945
@@ -1795,7 +1795,7 @@ msgstr ""
 msgid "MAC address"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:3164
+#: ../../../plugins/test/test.cpp:3157
 msgid "MAC address:"
 msgstr ""
 
@@ -2069,7 +2069,7 @@ msgstr ""
 msgid "New Bookmark"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:261
+#: ../../../plugins/test/test.cpp:263
 msgid "New Movies"
 msgstr ""
 
@@ -2093,7 +2093,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: ../../src/gui/filebrowser.cpp:699 ../../../plugins/test/test.cpp:258
+#: ../../src/gui/filebrowser.cpp:699 ../../../plugins/test/test.cpp:260
 #: ../../../plugins/ntvshows/ntvshows.cpp:273
 msgid "Next Page"
 msgstr ""
@@ -2299,7 +2299,7 @@ msgstr ""
 msgid "PCM Delay"
 msgstr ""
 
-#: ../../src/gui/psisetup.cpp:339 ../../../plugins/test/test.cpp:5279
+#: ../../src/gui/psisetup.cpp:339 ../../../plugins/test/test.cpp:5272
 msgid "PSI Setup"
 msgstr ""
 
@@ -2439,7 +2439,7 @@ msgstr ""
 msgid "Presenter"
 msgstr ""
 
-#: ../../src/gui/filebrowser.cpp:700 ../../../plugins/test/test.cpp:259
+#: ../../src/gui/filebrowser.cpp:700 ../../../plugins/test/test.cpp:261
 #: ../../../plugins/ntvshows/ntvshows.cpp:274
 msgid "Prev Page"
 msgstr ""
@@ -2882,25 +2882,25 @@ msgstr ""
 msgid "Scan for Categories"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:935 ../../../plugins/test/test.cpp:1182
-#: ../../../plugins/test/test.cpp:1422 ../../../plugins/test/test.cpp:1618
-#: ../../../plugins/test/test.cpp:1715 ../../../plugins/test/test.cpp:2084
-#: ../../../plugins/test/test.cpp:3486 ../../../plugins/test/test.cpp:3774
-#: ../../../plugins/test/test.cpp:3905 ../../../plugins/test/test.cpp:4054
-#: ../../../plugins/test/test.cpp:4202 ../../../plugins/test/test.cpp:4346
-#: ../../../plugins/test/test.cpp:4507 ../../../plugins/test/test.cpp:5517
-#: ../../../plugins/test/test.cpp:5576 ../../../plugins/test/test.cpp:6246
-#: ../../../plugins/test/test.cpp:6276 ../../../plugins/test/test.cpp:6306
-#: ../../../plugins/test/test.cpp:6336 ../../../plugins/test/test.cpp:6369
-#: ../../../plugins/test/test.cpp:6399 ../../../plugins/test/test.cpp:6429
-#: ../../../plugins/test/test.cpp:6459 ../../../plugins/test/test.cpp:6535
-#: ../../../plugins/test/test.cpp:6597 ../../../plugins/test/test.cpp:6698
-#: ../../../plugins/test/test.cpp:6740 ../../../plugins/test/test.cpp:6782
-#: ../../../plugins/test/test.cpp:6824 ../../../plugins/test/test.cpp:6866
-#: ../../../plugins/test/test.cpp:6908 ../../../plugins/test/test.cpp:6950
-#: ../../../plugins/test/test.cpp:6992 ../../../plugins/test/test.cpp:7103
-#: ../../../plugins/test/test.cpp:7185 ../../../plugins/test/test.cpp:7228
-#: ../../../plugins/test/test.cpp:7279 ../../../plugins/test/test.cpp:7334
+#: ../../../plugins/test/test.cpp:938 ../../../plugins/test/test.cpp:1175
+#: ../../../plugins/test/test.cpp:1415 ../../../plugins/test/test.cpp:1611
+#: ../../../plugins/test/test.cpp:1708 ../../../plugins/test/test.cpp:2077
+#: ../../../plugins/test/test.cpp:3479 ../../../plugins/test/test.cpp:3767
+#: ../../../plugins/test/test.cpp:3898 ../../../plugins/test/test.cpp:4047
+#: ../../../plugins/test/test.cpp:4195 ../../../plugins/test/test.cpp:4339
+#: ../../../plugins/test/test.cpp:4500 ../../../plugins/test/test.cpp:5510
+#: ../../../plugins/test/test.cpp:5569 ../../../plugins/test/test.cpp:6239
+#: ../../../plugins/test/test.cpp:6269 ../../../plugins/test/test.cpp:6299
+#: ../../../plugins/test/test.cpp:6329 ../../../plugins/test/test.cpp:6362
+#: ../../../plugins/test/test.cpp:6392 ../../../plugins/test/test.cpp:6422
+#: ../../../plugins/test/test.cpp:6452 ../../../plugins/test/test.cpp:6528
+#: ../../../plugins/test/test.cpp:6590 ../../../plugins/test/test.cpp:6691
+#: ../../../plugins/test/test.cpp:6733 ../../../plugins/test/test.cpp:6775
+#: ../../../plugins/test/test.cpp:6817 ../../../plugins/test/test.cpp:6859
+#: ../../../plugins/test/test.cpp:6901 ../../../plugins/test/test.cpp:6943
+#: ../../../plugins/test/test.cpp:6985 ../../../plugins/test/test.cpp:7096
+#: ../../../plugins/test/test.cpp:7178 ../../../plugins/test/test.cpp:7221
+#: ../../../plugins/test/test.cpp:7272 ../../../plugins/test/test.cpp:7327
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2906
 #: ../../../plugins/nfilm/nfilm.cpp:167 ../../../plugins/nfilm/nfilm.cpp:189
 #: ../../../plugins/ntvshows/ntvshows.cpp:133
@@ -2977,7 +2977,7 @@ msgstr ""
 msgid "Scroll up"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:815 ../../../plugins/test/test.cpp:7327
+#: ../../src/gui/eventlist.cpp:815 ../../../plugins/test/test.cpp:7320
 #: ../../../plugins/netzkino/netzkino.cpp:338
 #: ../../../plugins/nfilm/nfilm.cpp:596
 #: ../../../plugins/youtube/youtube.cpp:443
@@ -3469,11 +3469,11 @@ msgstr ""
 msgid "Terrestrial:"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:3207
+#: ../../../plugins/test/test.cpp:3200
 msgid "Test"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:7499
+#: ../../../plugins/test/test.cpp:7492
 msgid "Test Menu"
 msgstr ""
 
@@ -3587,7 +3587,7 @@ msgstr ""
 msgid "Time-Syncronisation"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:3192
+#: ../../../plugins/test/test.cpp:3185
 msgid "Time:"
 msgstr ""
 

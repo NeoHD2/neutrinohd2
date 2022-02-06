@@ -146,17 +146,7 @@ void CWidget::removeCCItem(long pos)
 	CCItems.erase(CCItems.begin() + pos); 
 }
 
-void CWidget::paintCCItems()
-{
-	dprintf(DEBUG_INFO, "CWidget::paintCCItems:\n");
-
-	for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
-	{
-		CCItems[count]->paint();
-	}
-}
-////
-
+//
 void CWidget::initFrames()
 {
 	dprintf(DEBUG_INFO, "CWidget::initFrames\n");
@@ -207,6 +197,17 @@ void CWidget::paintItems()
 		items[i]->paint();
 	}
 
+}
+
+//
+void CWidget::paintCCItems()
+{
+	dprintf(DEBUG_INFO, "CWidget::paintCCItems:\n");
+
+	for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
+	{
+		CCItems[count]->paint();
+	}
 }
 
 void CWidget::paint()

@@ -169,7 +169,6 @@ class CWidget : public CMenuTarget
 
 		// 
 		std::vector<CWidgetItem*> items;
-		//
 		std::vector<CComponent*> CCItems;
 
 		//
@@ -211,7 +210,7 @@ class CWidget : public CMenuTarget
 		virtual ~CWidget();
 
 		// WIDGETITEMS
-		virtual void addItem(CWidgetItem *widgetItem, const bool defaultselected = false);
+		virtual void addItem(CWidgetItem* widgetItem, const bool defaultselected = false);
 		bool hasItem(){return !items.empty();};
 		int getItemsCount(){return items.size();};
 		virtual void clearItems(void){return items.clear();};
@@ -221,14 +220,13 @@ class CWidget : public CMenuTarget
 		void setSelected(unsigned int _new) {selected = _new; if (selected < 0) selected = 0;};
 		
 		// CCITEMS
-		void addCCItem(CComponent* CCItem);
+		virtual void addCCItem(CComponent* CCItem);
 		bool hasCCItem(){return !CCItems.empty();};
 		int getCCItemsCount(){return CCItems.size();};
-		void clearCCItems(){CCItems.clear();};
-		void paintCCItems();
-		void removeCCItem(long pos);
+		virtual void clearCCItems(){CCItems.clear();};
+		virtual void paintCCItems();
+		virtual void removeCCItem(long pos);
 		
-		//
 		//
 		virtual void paint();
 		virtual void hide();

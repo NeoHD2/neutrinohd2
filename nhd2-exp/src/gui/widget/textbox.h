@@ -82,6 +82,9 @@ enum {
 class CTextBox : public CWidgetItem
 {
 	private:
+		CFrameBuffer* frameBuffer;
+		
+		//
 		CBox m_cFrameTextRel;
 		CBox m_cFrameScrollRel;
 

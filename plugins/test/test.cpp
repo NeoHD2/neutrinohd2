@@ -108,6 +108,8 @@ class CTestMenu : public CMenuTarget
 		CMenuWidget* menuWidget;
 		CMenuItem* item;
 		
+		CComponent* cCItem;
+		
 		//
 		CProgressWindow * progressWindow;
 		CProgressBar* progressBar;
@@ -294,6 +296,7 @@ CTestMenu::CTestMenu()
 	progressWindow = NULL;
 	progressBar = NULL;
 	progressBar2 = NULL;
+	cCItem = NULL;
 }
 
 CTestMenu::~CTestMenu()
@@ -998,7 +1001,7 @@ void CTestMenu::testCWidget()
 
 void CTestMenu::testCWindowWidget()
 {
-	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCWindowWidget(CCItems)\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCWidget(CCItems)\n");
 
 	// CBox
 	CBox Box;
@@ -1021,13 +1024,8 @@ void CTestMenu::testCWindowWidget()
 	testWidget->setColor(COL_MENUCONTENT_PLUS_0);
 	testWidget->setCorner(RADIUS_MID, CORNER_ALL);
 	
-	// CWindow
-	//windowWidget = new CWindow(&Box);
-	//windowWidget->setColor(COL_MENUCONTENT_PLUS_0);
-	//windowWidget->setCorner(RADIUS_MID, CORNER_ALL);
-	
 	// heades
-	CHeaders head(Box.iX, Box.iY, Box.iWidth, 40, "CWidget(CWindow)", NEUTRINO_ICON_COLORS);
+	CHeaders head(Box.iX, Box.iY, Box.iWidth, 40, "CWidget(CCItems)", NEUTRINO_ICON_COLORS);
 	head.enablePaintDate();
 	
 	// footers
@@ -1105,8 +1103,6 @@ void CTestMenu::testCWindowWidget()
 	
 	testWidget->addCCItem(&testPig);
 	
-	//testWidget = new CWidget();
-	//testWidget->addItem(windowWidget);
 	testWidget->addItem(&head);
 	testWidget->addItem(&foot);
 	
@@ -1119,9 +1115,6 @@ void CTestMenu::testCWindowWidget()
 	
 	delete testWidget;
 	testWidget = NULL;
-	
-	//delete windowWidget;
-	//windowWidget = NULL;
 }
 
 void CTestMenu::testCTextBoxWidget()

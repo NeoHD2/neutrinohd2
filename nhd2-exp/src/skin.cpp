@@ -914,6 +914,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 		CCImage* pic = NULL;
 		CCTime* time = NULL;
 		CCButtons* cButton = NULL;
+		//CComponent* cCItem = NULL;
 
 		while ((search = xmlGetNextOccurence(search, "WIDGET")) != NULL) 
 		{

@@ -49,6 +49,8 @@ CTextBox::CTextBox(const int x, const int y, const int dx, const int dy)
 {
 	dprintf(DEBUG_INFO, "CTextBox::CTextBox:\r\n");
 	
+	frameBuffer = CFrameBuffer::getInstance(); 
+	
 	initVar();
 
 	itemBox.iX = x;
@@ -63,6 +65,8 @@ CTextBox::CTextBox(const int x, const int y, const int dx, const int dy)
 CTextBox::CTextBox(CBox* position)
 {
 	dprintf(DEBUG_INFO, "CTextBox::CTextBox:\r\n");
+	
+	frameBuffer = CFrameBuffer::getInstance(); 
 	
 	initVar();
 

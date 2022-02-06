@@ -52,6 +52,15 @@ class CBox
 		~CBox(){};
 };
 
+//
+typedef struct button_label
+{
+	std::string button;
+	std::string localename;
+} button_label_struct;
+
+typedef std::vector<button_label_struct> button_label_list_t;
+
 // CComponent
 enum {
 	CC_ICON,
@@ -84,7 +93,6 @@ class CComponent
 {
 	public:
 		//
-		CFrameBuffer *frameBuffer;
 		int cc_type;
 		CBox cCBox;
 		int halign;
@@ -121,11 +129,38 @@ class CComponent
 		
 		//
 		virtual inline CBox getWindowsPos(void){return (cCBox);};
+		
+		//
+		virtual void init(){};
+		virtual void setIcon(const char* const icon){};
+		virtual void setImage(const char* const image){};
+		virtual void setScaling(bool s){};
+		virtual void paintMainFrame(bool p){};
+		virtual void setColor(uint32_t col){};
+		virtual void setButtons(const struct button_label *button_label, const int button_count = 1){};
+		virtual void setFont(CFont *f){};
+		virtual void setText(const char* text){};
+		virtual void enablePaintBG(){};
+		virtual void setHAlign(int h){};
+		//virtual void setFont(CFont* f){font = f;};
+		virtual void setMode(int m){};
+		//void setColor(uint8_t c){color = c;};
+		//void setText(const char* const text){Text = text;};
+		virtual void useBackground(void){};
+		//void setColor(uint8_t col){color = col;};
+		//void setFont(CFont *f){font = f;};
+		virtual void setFormat(const char* f){};
+		//void setHAlign(int h){halign = h;};
+		virtual void setInterFrame(int iframe = 15){};
+		virtual void setTotalTime(time_t tot_time){};
+		virtual void setPlayTime(time_t p_time){};
 };
 
 class CCIcon : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//		
 		int iWidth;
 		int iHeight;
@@ -145,6 +180,8 @@ class CCIcon : public CComponent
 class CCImage : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		int iWidth;
 		int iHeight;
@@ -176,14 +213,6 @@ enum {
 	BUTTON_LABEL_NOTCOLORED
 };
 
-typedef struct button_label
-{
-	std::string button;
-	std::string localename;
-} button_label_struct;
-
-typedef std::vector<button_label_struct> button_label_list_t;
-
 // CButtons
 class CCButtons : public CComponent
 {
@@ -193,6 +222,8 @@ class CCButtons : public CComponent
 		int mode;
 
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		CCButtons(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
 		virtual ~CCButtons(){};
@@ -212,6 +243,8 @@ class CCButtons : public CComponent
 class CScrollBar : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		CScrollBar(){frameBuffer = CFrameBuffer::getInstance(); cc_type = CC_SCROLLBAR;};
 		virtual ~CScrollBar(){};
@@ -232,6 +265,8 @@ class CProgressBar : public CComponent
 		double div;
 
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		CProgressBar(int x, int y, int w, int h, int r = 40, int g = 100, int b = 70, bool inv = true);
 		CProgressBar(const CBox* psoition, int r = 40, int g = 100, int b = 70, bool inv = true);
@@ -259,6 +294,9 @@ enum {
 class CItems2DetailsLine : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
+		//
 		std::string info1, option_info1;
 		std::string info2, option_info2;
 		std::string hint;
@@ -303,6 +341,8 @@ class CItems2DetailsLine : public CComponent
 class CCHline : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		fb_pixel_t color;
 		
@@ -321,6 +361,8 @@ class CCHline : public CComponent
 class CCVline : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		fb_pixel_t color;
 		
@@ -339,6 +381,8 @@ class CCVline : public CComponent
 class CCFrameLine : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		fb_pixel_t color;
 		
@@ -357,6 +401,8 @@ class CCFrameLine : public CComponent
 class CCLabel : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		int width;
 		int height;
@@ -390,6 +436,8 @@ class CCLabel : public CComponent
 class CCText : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		CFont* font;
 		int mode;
@@ -421,6 +469,8 @@ class CCGrid : public CComponent
 		int inter_frame;
 
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		CCGrid(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		CCGrid(CBox* position);
@@ -441,6 +491,8 @@ class CCGrid : public CComponent
 class CCPig : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		CCPig(const int x = 0, const int y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		CCPig(CBox* position);
@@ -459,6 +511,8 @@ class CCPig : public CComponent
 class CCTime : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		uint8_t color;
 		CFont* font;
@@ -488,6 +542,8 @@ class CCTime : public CComponent
 class CCCounter : public CComponent
 {
 	public:
+		CFrameBuffer* frameBuffer;
+		
 		//
 		uint8_t color;
 		CFont* font;
@@ -533,7 +589,6 @@ class CWidgetItem
 {
 	public:
 		//
-		CFrameBuffer* frameBuffer;
 		CBox itemBox;
 
 		int widgetItem_type;
@@ -607,6 +662,9 @@ class CWidgetItem
 class CHeaders : public CWidgetItem
 {
 	private:
+		CFrameBuffer* frameBuffer;
+		
+		//
 		fb_pixel_t bgcolor;
 		int radius;
 		int corner;
@@ -655,6 +713,9 @@ class CHeaders : public CWidgetItem
 class CFooters : public CWidgetItem
 {
 	private:
+		CFrameBuffer* frameBuffer;
+		
+		//
 		unsigned int fcount;
 		int fbutton_width;
 		button_label_list_t fbuttons;
