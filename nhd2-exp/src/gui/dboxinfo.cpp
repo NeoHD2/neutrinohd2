@@ -151,7 +151,7 @@ void CDBoxInfoWidget::showInfo()
 	cpuLabel->setText(_("CPU:"));
 	cpuLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 	cpuLabel->setColor(COL_MENUHEAD);
-	cpuLabel->setPosition(Box.iX + 10 + cpuIcon->iWidth + 10, yPos, cpuLabel->getWidth(), cpuIcon->iHeight);
+	cpuLabel->setPosition(Box.iX + 10 + cpuIcon->iWidth + 10, yPos, cpuLabel->getWindowsPos().iWidth, cpuIcon->iHeight);
 	m_window->addCCItem(cpuLabel);
 	
 	yPos += cpuIcon->iHeight + 10;
@@ -186,10 +186,10 @@ void CDBoxInfoWidget::showInfo()
 				cpuLabel1->setText(hw.c_str());
 				cpuLabel1->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
 				cpuLabel1->setColor(COL_MENUCONTENT);
-				cpuLabel1->setPosition(Box.iX + 10 + cpuIcon->iWidth, yPos, Box.iWidth, cpuLabel1->getHeight());
+				cpuLabel1->setPosition(Box.iX + 10 + cpuIcon->iWidth, yPos, Box.iWidth, cpuLabel1->getWindowsPos().iHeight);
 				m_window->addCCItem(cpuLabel1);
 				
-				yPos += cpuLabel1->getHeight();
+				yPos += cpuLabel1->getWindowsPos().iHeight;
 				
 				break;
 			}
@@ -202,10 +202,10 @@ void CDBoxInfoWidget::showInfo()
 			cpuLabel2->setText(buffer);
 			cpuLabel2->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
 			cpuLabel2->setColor(COL_MENUCONTENT);
-			cpuLabel2->setPosition(Box.iX + 10 + cpuIcon->iWidth, yPos, Box.iWidth, cpuLabel2->getHeight());
+			cpuLabel2->setPosition(Box.iX + 10 + cpuIcon->iWidth, yPos, Box.iWidth, cpuLabel2->getWindowsPos().iHeight);
 			m_window->addCCItem(cpuLabel2);
 			
-			yPos += cpuLabel2->getHeight();
+			yPos += cpuLabel2->getWindowsPos().iHeight;
 		}
 		fclose(fd);
 
@@ -268,7 +268,7 @@ void CDBoxInfoWidget::showInfo()
 	// mem
 	sprintf(ubuf, "memory total %dKb, free %dKb", (int) info.totalram/1024, (int) info.freeram/1024);
 
-	yPos += upLabel->getHeight() + 10;
+	yPos += upLabel->getWindowsPos().iHeight + 10;
 	
 	CCLabel* memLabel = new CCLabel();
 	memLabel->setText(ubuf);
@@ -278,7 +278,7 @@ void CDBoxInfoWidget::showInfo()
 	m_window->addCCItem(memLabel);
 	
 	// separator
-	yPos += memLabel->getHeight() + 10;
+	yPos += memLabel->getWindowsPos().iHeight + 10;
 	
 	CCHline* hLine2 = new CCHline();
 	hLine2->setPosition(Box.iX + 10,  yPos, Box.iWidth - 20, 10);
@@ -309,7 +309,7 @@ void CDBoxInfoWidget::showInfo()
 		hddLabel->setText(_("HDD Devices:"));
 		hddLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 		hddLabel->setColor(COL_MENUHEAD);
-		hddLabel->setPosition(Box.iX + 10 + hddIcon->iWidth + 10, yPos, hddLabel->getWidth(), hddIcon->iHeight);
+		hddLabel->setPosition(Box.iX + 10 + hddIcon->iWidth + 10, yPos, hddLabel->getWindowsPos().iWidth, hddIcon->iHeight);
 		m_window->addCCItem(hddLabel);
 	}
 	
@@ -388,10 +388,10 @@ void CDBoxInfoWidget::showInfo()
 		hddLabel1->setText(str);
 		hddLabel1->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
 		hddLabel1->setColor(COL_MENUCONTENT);
-		hddLabel1->setPosition(Box.iX + 10 + hddIcon->iWidth, yPos, Box.iWidth, hddLabel1->getHeight());
+		hddLabel1->setPosition(Box.iX + 10 + hddIcon->iWidth, yPos, Box.iWidth, hddLabel1->getWindowsPos().iHeight);
 		m_window->addCCItem(hddLabel1);
 			
-		yPos += hddLabel1->getHeight();
+		yPos += hddLabel1->getWindowsPos().iHeight;
 	}
 	
 	//frontend
@@ -414,7 +414,7 @@ void CDBoxInfoWidget::showInfo()
 		tunerLabel->setText(_("Frontend:"));
 		tunerLabel->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
 		tunerLabel->setColor(COL_MENUHEAD);
-		tunerLabel->setPosition(Box.iX + 10 + tunerIcon->iWidth + 10, yPos, tunerLabel->getWidth(), tunerIcon->iHeight);
+		tunerLabel->setPosition(Box.iX + 10 + tunerIcon->iWidth + 10, yPos, tunerLabel->getWindowsPos().iWidth, tunerIcon->iHeight);
 		m_window->addCCItem(tunerLabel);
 	}
 	
@@ -430,10 +430,10 @@ void CDBoxInfoWidget::showInfo()
 		tunerLabel1->setText(tbuf);
 		tunerLabel1->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
 		tunerLabel1->setColor(COL_MENUCONTENT);
-		tunerLabel1->setPosition(Box.iX + 10 + tunerIcon->iWidth, yPos, tunerLabel1->getWidth(), tunerLabel1->getHeight());
+		tunerLabel1->setPosition(Box.iX + 10 + tunerIcon->iWidth, yPos, tunerLabel1->getWindowsPos().iWidth, tunerLabel1->getWindowsPos().iHeight);
 		m_window->addCCItem(tunerLabel1);
 		
-		yPos += tunerLabel1->getHeight();
+		yPos += tunerLabel1->getWindowsPos().iHeight;
 		
 	}
 

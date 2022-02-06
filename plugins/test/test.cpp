@@ -1033,14 +1033,15 @@ void CTestMenu::testCWindowWidget()
 	foot.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
 	// icon
-	CCIcon testIcon(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
-	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
+	CCIcon testIcon;
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
+	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
 	
 	testWidget->addCCItem(&testIcon);
 	
 	// image
-	CCImage testImage(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
+	CCImage testImage;
+	testImage.setPosition(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
 	
 	testWidget->addCCItem(&testImage);
@@ -1051,7 +1052,7 @@ void CTestMenu::testCWindowWidget()
 	testLabel.setColor(COL_ORANGE);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponent label test :-)");
-	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
+	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight());
 	
 	testWidget->addCCItem(&testLabel);
 	
@@ -1756,7 +1757,7 @@ void CTestMenu::testClistBoxWidget()
 
 void CTestMenu::testMultiWidget()
 {
-	dprintf(DEBUG_NORMAL, "\ntestMultiWidget\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testMultiWidget\n");
 
 	CBox mainBox(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
@@ -1843,26 +1844,26 @@ void CTestMenu::testMultiWidget()
 	windowWidget->setColor(COL_MENUCONTENT_PLUS_0);
 	
 	// icon
-	CCIcon testIcon(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
+	CCIcon testIcon;
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
-	//testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
+	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
 	
 	windowWidget->addCCItem(&testIcon);
 	
 	// image
-	CCImage testImage(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
+	CCImage testImage;
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
-	//testImage.setPosition(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
+	testImage.setPosition(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
 	
 	windowWidget->addCCItem(&testImage);
 	
 	// label
-	CCLabel testLabel(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
+	CCLabel testLabel;
 	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
 	testLabel.setColor(COL_GREEN);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponent label test :-)");
-	//testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
+	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight());
 	
 	windowWidget->addCCItem(&testLabel);
 	
@@ -2707,7 +2708,7 @@ void CTestMenu::testCComponent()
 	testLabel.setColor(COL_GREEN);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponet label test :-)");
-	testLabel.setPosition(Box.iX + 10, Box.iY + 50, Box.iWidth, testLabel.getHeight());
+	testLabel.setPosition(Box.iX + 10, Box.iY + 50, Box.iWidth, g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight());
 	
 	windowWidget->addCCItem(&testLabel);
 	

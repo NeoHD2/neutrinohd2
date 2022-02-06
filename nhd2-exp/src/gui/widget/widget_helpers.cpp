@@ -776,8 +776,10 @@ CCLabel::CCLabel(const int x, const int y, const int dx, const int dy)
 	paintBG = false; 
 	utf8 = true; 
 	font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE];
-	height = font->getHeight();
-	width = 0;
+	
+	//height = font->getHeight();
+	//width = 0;
+	
 	halign = CC_ALIGN_LEFT;
 	
 	label = "";
@@ -789,7 +791,12 @@ void CCLabel::paint()
 {
 	dprintf(DEBUG_INFO, "CCLabel::paint\n");
 	
-	int stringWidth = font->getRenderWidth(label);
+	int stringWidth = 0;
+	int height = 0;
+	
+	if (font) height = font->getHeight();
+	
+	if (!label.empty()) stringWidth = font->getRenderWidth(label.c_str());
 	
 	if (stringWidth > cCBox.iWidth)
 		stringWidth = cCBox.iWidth;
@@ -801,7 +808,7 @@ void CCLabel::paint()
 	else if (halign == CC_ALIGN_RIGHT)
 		startPosX = cCBox.iX + cCBox.iWidth - stringWidth;
 	
-	font->RenderString(startPosX, cCBox.iY + height + (cCBox.iHeight - height)/2, cCBox.iWidth, label, color, 0, utf8, paintBG);
+	if (!label.empty()) font->RenderString(startPosX, cCBox.iY + height + (cCBox.iHeight - height)/2, cCBox.iWidth, label.c_str(), color, 0, utf8, paintBG);
 }
 
 //

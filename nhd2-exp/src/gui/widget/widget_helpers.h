@@ -164,6 +164,8 @@ class CCIcon : public CComponent
 		//		
 		int iWidth;
 		int iHeight;
+		
+		//
 		std::string iconName;
 
 		CCIcon(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
@@ -185,6 +187,8 @@ class CCImage : public CComponent
 		int iWidth;
 		int iHeight;
 		int iNbp;
+		
+		//
 		std::string imageName;
 		bool scale;
 		uint32_t color;
@@ -402,9 +406,6 @@ class CCLabel : public CComponent
 		CFrameBuffer* frameBuffer;
 		
 		//
-		int width;
-		int height;
-		
 		uint8_t color;
 		CFont* font;
 		std::string label;
@@ -418,16 +419,12 @@ class CCLabel : public CComponent
 		//
 		void setColor(uint8_t col){color = col;};
 		void setFont(CFont *f){font = f;};
-		void setText(const char* text){label = text;};
+		void setText(const char* const text){label = text;};
 		void enablePaintBG(){paintBG = true;};
 		void setHAlign(int h){halign = h;};
 		
 		//
 		void paint();
-		
-		//
-		int getHeight(){return height;};
-		int getWidth(){return font->getRenderWidth(label);};
 };
 
 //CText
