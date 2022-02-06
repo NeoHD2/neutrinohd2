@@ -1033,15 +1033,15 @@ void CTestMenu::testCWindowWidget()
 	foot.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
 	// icon
-	CCIcon testIcon(NEUTRINO_ICON_BUTTON_RED);
+	CCIcon testIcon(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
 	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
+	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
 	
 	testWidget->addCCItem(&testIcon);
 	
 	// image
-	CCImage testImage;
+	CCImage testImage(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
-	testImage.setPosition(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
 	
 	testWidget->addCCItem(&testImage);
 	
@@ -1831,10 +1831,6 @@ void CTestMenu::testMultiWidget()
 	Box.iX = mainBox.iX + leftBox.iWidth;
 	Box.iY = mainBox.iY + headBox.iHeight;
 	
-	//int currentPage = 0;
-	//int NrOfPages = 4;
-	//int pcr = 25;
-	
 	loadMoviePlaylist();
 	
 	std::string buffer;
@@ -1847,74 +1843,74 @@ void CTestMenu::testMultiWidget()
 	windowWidget->setColor(COL_MENUCONTENT_PLUS_0);
 	
 	// icon
-	CCIcon testIcon;
+	CCIcon testIcon(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
 	testIcon.setIcon(NEUTRINO_ICON_BUTTON_RED);
-	testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
+	//testIcon.setPosition(Box.iX + 150, Box.iY + 150, testIcon.iWidth, testIcon.iHeight);
 	
 	windowWidget->addCCItem(&testIcon);
 	
 	// image
-	CCImage testImage;
+	CCImage testImage(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
 	testImage.setImage(m_vMovieInfo[0].tfile.c_str());
-	testImage.setPosition(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
+	//testImage.setPosition(Box.iX + Box.iWidth - 210, Box.iY + 50, 200, 350);
 	
 	windowWidget->addCCItem(&testImage);
 	
 	// label
-	CCLabel testLabel;
+	CCLabel testLabel(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
 	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
 	testLabel.setColor(COL_GREEN);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponent label test :-)");
-	testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
+	//testLabel.setPosition(Box.iX + 20, Box.iY + 50, Box.iWidth, testLabel.getHeight());
 	
 	windowWidget->addCCItem(&testLabel);
 	
 	// CButtons
-	CCButtons testButton;
+	CCButtons testButton(Box.iX + 10, Box.iY + Box.iHeight - 100, Box.iWidth, 40);
 	int icon_w, icon_h;
 	CFrameBuffer::getInstance()->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
-	testButton.setPosition(Box.iX + 10, Box.iY + Box.iHeight - 100, Box.iWidth, 40);
+	//testButton.setPosition(Box.iX + 10, Box.iY + Box.iHeight - 100, Box.iWidth, 40);
 	testButton.setButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
 	windowWidget->addCCItem(&testButton);
 	
 	// Hline
-	CCHline testHline;
-	testHline.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10, 10);
+	CCHline testHline(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10, 10);
+	//testHline.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10, 10);
 	
 	windowWidget->addCCItem(&testHline);
 	
 	// Vline
-	CCVline testVline;
-	testVline.setPosition(Box.iX, Box.iY + 10, 10, Box.iHeight - 20);
+	CCVline testVline(Box.iX, Box.iY + 10, 10, Box.iHeight - 20);
+	//testVline.setPosition(Box.iX, Box.iY + 10, 10, Box.iHeight - 20);
 	
 	windowWidget->addCCItem(&testVline);
 	
 	// CCFrameLine
-	CCFrameLine testFrameLine;
-	testFrameLine.setPosition(Box.iX + 10, Box.iY + 140, testIcon.iWidth + 100, testIcon.iHeight + 20);
+	CCFrameLine testFrameLine(Box.iX + 10, Box.iY + 140, testIcon.iWidth + 100, testIcon.iHeight + 20);
+	//testFrameLine.setPosition(Box.iX + 10, Box.iY + 140, testIcon.iWidth + 100, testIcon.iHeight + 20);
 	
 	windowWidget->addCCItem(&testFrameLine);
 	
 	// text
-	CCText testText;
-	testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20, Box.iHeight/4);
+	CCText testText(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20, Box.iHeight/4);
+	//testText.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20, Box.iHeight/4);
 	testText.setMode(AUTO_WIDTH);
 	testText.setText(buffer.c_str());
 	
 	windowWidget->addCCItem(&testText);
 
 	// grid
-	CCGrid testGrid;
-	testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
+	CCGrid testGrid(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
+	//testGrid.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20, Box.iY + 100, 200, 160);
 	testGrid.setColor(COL_PURPLE_PLUS_0);
 	
 	windowWidget->addCCItem(&testGrid);
 	
 	// pig
-	CCPig testPig;
-	testPig.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20 + 200 + 10, Box.iY + 100, 300, 160);
+	CCPig testPig(Box.iX + 180 + testIcon.iWidth + 100 + 20 + 200 + 10, Box.iY + 100, 300, 160);
+	//testPig.setPosition(Box.iX + 180 + testIcon.iWidth + 100 + 20 + 200 + 10, Box.iY + 100, 300, 160);
 	
 	windowWidget->addCCItem(&testPig);
 	

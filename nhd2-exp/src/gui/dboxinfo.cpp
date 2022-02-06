@@ -143,8 +143,8 @@ void CDBoxInfoWidget::showInfo()
 	CPU += NEUTRINO_ICON_MENUITEM_IMAGEINFO;
 	CPU += ".png";
 	
-	CCIcon* cpuIcon = new CCIcon(CPU.c_str());
-	cpuIcon->setPosition(Box.iX + 10, yPos, cpuIcon->iWidth, cpuIcon->iHeight);
+	CCIcon* cpuIcon = new CCIcon(Box.iX + 10, yPos, cpuIcon->iWidth, cpuIcon->iHeight);
+	cpuIcon->setIcon(CPU.c_str());
 	m_window->addCCItem(cpuIcon);
 	
 	CCLabel* cpuLabel = new CCLabel();
@@ -289,7 +289,8 @@ void CDBoxInfoWidget::showInfo()
 	HDD += "/";
 	HDD += NEUTRINO_ICON_MENUITEM_HDDSETTINGS;
 	HDD += ".png";
-    	CCIcon* hddIcon = new CCIcon(HDD.c_str());
+    	CCIcon* hddIcon = new CCIcon();
+    	hddIcon->setIcon(HDD.c_str());
     	
 	FILE * f;
 	int fd_hdd;
@@ -401,7 +402,8 @@ void CDBoxInfoWidget::showInfo()
 	TUNER += NEUTRINO_ICON_MENUITEM_SCANSETTINGS;
 	TUNER += ".png";
 	
-	CCIcon* tunerIcon = new CCIcon(TUNER.c_str());
+	CCIcon* tunerIcon = new CCIcon();
+	tunerIcon->setIcon(TUNER.c_str());
 	
 	if (FrontendCount)
 	{

@@ -354,19 +354,19 @@
 		</TIME>
 		
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="0">
-			<ITEM id="5" lines="1" localename="EPG / Timer" target="3" shadow="1">
+			<ITEM id="5" localename="EPG / Timer" target="3" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Features" target="6" shadow="1">
+			<ITEM id="5" localename="Features" target="6" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Service" target="4" shadow="1">
+			<ITEM id="5" localename="Service" target="4" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Settings" target="2" shadow="1">
+			<ITEM id="5" localename="Settings" target="2" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Information" target="5" shadow="1">
+			<ITEM id="5" localename="Information" target="5" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Power Menu" target="7" shadow="1">
+			<ITEM id="5" localename="Power Menu" target="7" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Mediaplayer" target="8" shadow="1">
+			<ITEM id="5" localename="Mediaplayer" target="8" lines="1" shadow="1">
 			</ITEM>
 		</LISTBOX>
 	</WIDGET>

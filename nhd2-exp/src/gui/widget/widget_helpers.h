@@ -167,7 +167,6 @@ class CCIcon : public CComponent
 		std::string iconName;
 
 		CCIcon(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
-		CCIcon(const char* const icon, const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
 		virtual ~CCIcon(){};
 		
 		//
@@ -192,7 +191,6 @@ class CCImage : public CComponent
 		bool paintframe;
 
 		CCImage(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
-		CCImage(const char* const image, const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
 		virtual ~CCImage(){};
 		
 		//
