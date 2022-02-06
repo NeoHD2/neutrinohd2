@@ -878,9 +878,6 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::parseSkin\n");
 	
 	//
-	//widgets.clear();
-	
-	//
 	_xmlDocPtr parser = NULL;
 
 	parser = parseXmlFile(filename);
@@ -908,6 +905,15 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 		dprintf(DEBUG_NORMAL, "CNeutrinoApp:parseSkin: %s\n", filename);
 		
 		CWidget* wdg = NULL;
+		CWindow* window = NULL;
+		CHeaders* head = NULL;
+		CFooters* foot = NULL;
+		ClistBox* listBox = NULL;
+		CMenuItem* menuItem = NULL;
+		CCLabel* label = NULL;
+		CCImage* pic = NULL;
+		CCTime* time = NULL;
+		CCButtons* cButton = NULL;
 
 		while ((search = xmlGetNextOccurence(search, "WIDGET")) != NULL) 
 		{
@@ -974,7 +980,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 			
 			// WINDOW
 			window_node = search->xmlChildrenNode;
-			CWindow* window = NULL;
+			//CWindow* window = NULL;
 			
 			while ((window_node = xmlGetNextOccurence(window_node, "WINDOW")) != NULL) 
 			{
@@ -1028,7 +1034,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 			
 			// HEAD
 			head_node = search->xmlChildrenNode;
-			CHeaders* head = NULL;
+			//CHeaders* head = NULL;
 			
 			while ((head_node = xmlGetNextOccurence(head_node, "HEAD")) != NULL) 
 			{
@@ -1098,8 +1104,8 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 					
 				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
-					const char* button = NULL;
-					const char* localename = NULL;
+					char* button = NULL;
+					char* localename = NULL;
 						
 					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
 					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
@@ -1122,7 +1128,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 			
 			// FOOT
 			foot_node = search->xmlChildrenNode;
-			CFooters* foot = NULL;
+			//CFooters* foot = NULL;
 			
 			while ((foot_node = xmlGetNextOccurence(foot_node, "FOOT")) != NULL) 
 			{
@@ -1176,8 +1182,8 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 					
 				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
-					const char* button = NULL;
-					const char* localename = NULL;
+					char* button = NULL;
+					char* localename = NULL;
 						
 					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
 					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
@@ -1200,7 +1206,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 			
 			// LISTBOX
 			listbox_node = search->xmlChildrenNode;
-			ClistBox* listBox = NULL;
+			//ClistBox* listBox = NULL;
 			
 			while ((listbox_node = xmlGetNextOccurence(listbox_node, "LISTBOX")) != NULL) 
 			{
@@ -1241,12 +1247,10 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 				unsigned int type = 0;
 				unsigned int mode = 2;
 				unsigned int scrollbar = 1;
-				unsigned int shadow = 0;
 					
 				type = xmlGetSignedNumericAttribute(listbox_node, "type", 0);
 				mode = xmlGetSignedNumericAttribute(listbox_node, "mode", 0);
 				scrollbar = xmlGetSignedNumericAttribute(listbox_node, "scrollbar", 0);
-				shadow = xmlGetSignedNumericAttribute(listbox_node, "shadow", 0);
 				unsigned int shrink = xmlGetSignedNumericAttribute(listbox_node, "shrink", 0);
 				unsigned int position = xmlGetSignedNumericAttribute(listbox_node, "position", 0);
 				
@@ -1280,7 +1284,6 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 				listBox->paintScrollBar(scrollbar);
 				listBox->paintMainFrame(i_paintframe);
 				if (i_color != NULL) listBox->setColor(finalColor);
-				listBox->paintItemShadow(shadow);
 				if (mode == 0) listBox->setMenuPosition(position);
 				if (shrink) listBox->enableShrinkMenu();
 				
@@ -1311,7 +1314,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 				
 				// ITEM	
 				listboxitem_node = listbox_node->xmlChildrenNode;
-				CMenuItem* menuItem = NULL;
+				//CMenuItem* menuItem = NULL;
 					
 				while ((listboxitem_node = xmlGetNextOccurence(listboxitem_node, "ITEM")) != NULL) 
 				{
@@ -1411,13 +1414,13 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 					listboxintegration_node = listboxintegration_node->xmlNextNode;
 				}
 				
-				// BUTTON_LABEL
+				// BUTTON_LABEL / FOOT
 				buttonlabel_node = listbox_node->xmlChildrenNode;
 					
 				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
-					const char* button = NULL;
-					const char* localename = NULL;
+					char* button = NULL;
+					char* localename = NULL;
 						
 					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
 					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
@@ -1432,6 +1435,8 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 				
 					buttonlabel_node = buttonlabel_node->xmlNextNode;
 				}
+				
+				// BUTTON_LABEL / HEAD
 					
 				wdg->addItem(listBox);
 			
@@ -1440,7 +1445,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 			
 			// LABEL
 			label_node = search->xmlChildrenNode;
-			CCLabel* label = NULL;
+			//CCLabel* label = NULL;
 			
 			while ((label_node = xmlGetNextOccurence(label_node, "LABEL")) != NULL) 
 			{
@@ -1470,8 +1475,6 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 							
 				text = xmlGetAttribute(label_node, (char*)"text");
 				l_halign = xmlGetSignedNumericAttribute(label_node, "halign", 0);
-						
-				//CCLabel* label = NULL;
 							
 				label = new CCLabel(cc_x, cc_y, cc_dx, cc_dy);
 							
@@ -1485,7 +1488,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 			
 			// IMAGE
 			image_node = search->xmlChildrenNode;
-			CCImage* pic = NULL;
+			//CCImage* pic = NULL;
 			
 			while ((image_node = xmlGetNextOccurence(image_node, "IMAGE")) != NULL) 
 			{
@@ -1512,8 +1515,6 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 				
 				char* image = NULL;
 				image = xmlGetAttribute(image_node, (char*)"image");
-						
-				//CCImage* pic = NULL;
 							
 				pic = new CCImage(cc_x, cc_y, cc_dx, cc_dy);
 							
@@ -1537,7 +1538,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 			
 			// TIME
 			time_node = search->xmlChildrenNode;
-			CCTime* time = NULL;
+			//CCTime* time = NULL;
 			
 			while ((time_node = xmlGetNextOccurence(time_node, "TIME")) != NULL) 
 			{
@@ -1564,8 +1565,6 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 					
 				char* cc_format = NULL;
 				cc_format = xmlGetAttribute(time_node, (char*)"format");
-						
-				//CCTime* time = NULL;
 							
 				time = new CCTime(cc_x, cc_y, cc_dx, cc_dy);
 							
@@ -1579,7 +1578,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 			
 			// BUTTONS
 			button_node = search->xmlChildrenNode;
-			CCButtons* cButton = NULL;
+			//CCButtons* cButton = NULL;
 					
 			while ((button_node = xmlGetNextOccurence(button_node, "BUTTON")) != NULL) 
 			{
@@ -1595,8 +1594,8 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 				
 				while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
 				{
-					const char* button = NULL;
-					const char* localename = NULL;
+					char* button = NULL;
+					char* localename = NULL;
 							
 					button = xmlGetAttribute(buttonlabel_node, (char*)"name");
 					localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");

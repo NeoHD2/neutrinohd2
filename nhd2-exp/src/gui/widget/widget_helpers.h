@@ -132,21 +132,14 @@ class CCIcon : public CComponent
 		std::string iconName;
 
 		CCIcon(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
-		CCIcon(const char* icon, const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		CCIcon(const char* const icon, const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
 		virtual ~CCIcon(){};
 		
 		//
-		void setIcon(const char* icon)
-		{
-			iconName = std::string(icon); 
-			frameBuffer->getIconSize(iconName.c_str(), &iWidth, &iHeight);
-		};
+		void setIcon(const char* const icon);
 
 		// h/v aligned
-		void paint()
-		{
-			frameBuffer->paintIcon(iconName.c_str(), cCBox.iX + (cCBox.iWidth - iWidth)/2, cCBox.iY + (cCBox.iHeight - iHeight)/2);
-		};
+		void paint();
 };
 
 class CCImage : public CComponent
@@ -162,44 +155,17 @@ class CCImage : public CComponent
 		bool paintframe;
 
 		CCImage(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
-		CCImage(const char* image, const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		CCImage(const char* const image, const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
 		virtual ~CCImage(){};
 		
 		//
-		void setImage(const char* image)
-		{
-			imageName = std::string(image); 
-			frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
-		};
+		void setImage(const char* const image);
 		void setScaling(bool s){scale = s;};
 		void paintMainFrame(bool p){paintframe = p;};
 		void setColor(uint32_t col){color = col;};
 		
 		// h/v aligned
-		void paint()
-		{
-			if (iWidth > cCBox.iWidth) iWidth = cCBox.iWidth;
-			if (iHeight > cCBox.iHeight) iHeight = cCBox.iHeight;
-			
-			int startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (iWidth >> 1);
-			
-			if (scale)
-			{
-				// bg
-				if (paintframe) frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, color);
-				
-				// image
-				frameBuffer->displayImage(imageName.c_str(), cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
-			}
-			else
-			{
-				// bg
-				if (paintframe) frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, color);
-				
-				// image
-				frameBuffer->displayImage(imageName.c_str(), startPosX, cCBox.iY + (cCBox.iHeight - iHeight)/2, iWidth, iHeight);
-			}
-		};
+		void paint();
 };
 
 // buttons
@@ -384,10 +350,7 @@ class CCFrameLine : public CComponent
 		void setColor(fb_pixel_t col){color = col;};
 		
 		//
-		void paint()
-		{
-			frameBuffer->paintFrameBox(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, color);
-		};
+		void paint();
 };
 
 // CLabel

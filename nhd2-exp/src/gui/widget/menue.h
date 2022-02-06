@@ -171,7 +171,6 @@ class CMenuWidget : public CMenuTarget
 		bool shrinkMenu;
 		int widgetMode;
 		int menu_position;
-		bool itemShadow;
 		
 		//
 		fb_pixel_t bgcolor;
@@ -256,7 +255,6 @@ class CMenuWidget : public CMenuTarget
 		void changeWidgetType();
 		void setWidgetMode(int mode){widgetMode = mode;};
 		void setMenuPosition(int p){menu_position = p;};
-		void enableItemShadow(){itemShadow = true;};
 
 		//
 		void setItemsPerPage(int itemsX = 6, int itemsY = 3){itemsPerX = itemsX; itemsPerY = itemsY; maxItemsPerPage = itemsPerX*itemsPerY;};

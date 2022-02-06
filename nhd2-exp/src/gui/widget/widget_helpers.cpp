@@ -74,9 +74,9 @@ CCIcon::CCIcon(const int x, const int y, const int dx, const int dy)
 	cc_type = CC_ICON;
 }
 
-CCIcon::CCIcon(const char* icon, const int x, const int y, const int dx, const int dy)
+CCIcon::CCIcon(const char* const icon, const int x, const int y, const int dx, const int dy)
 {
-	dprintf(DEBUG_INFO, "CCIcon::CCIcon: %s x:%d y:%d dx:%d dy:%d\n", icon, x, y, dx, dy);
+	dprintf(DEBUG_INFO, "CCIcon::CCIcon:x:%d y:%d dx:%d dy:%d\n", x, y, dx, dy);
 	
 	frameBuffer = CFrameBuffer::getInstance();
 	
@@ -90,6 +90,19 @@ CCIcon::CCIcon(const char* icon, const int x, const int y, const int dx, const i
 			
 	cc_type = CC_ICON;
 }
+
+//
+void CCIcon::setIcon(const char* const icon)
+{
+	iconName = std::string(icon); 
+	frameBuffer->getIconSize(iconName.c_str(), &iWidth, &iHeight);
+}
+
+//
+void CCIcon::paint()
+{
+	frameBuffer->paintIcon(iconName.c_str(), cCBox.iX + (cCBox.iWidth - iWidth)/2, cCBox.iY + (cCBox.iHeight - iHeight)/2);
+};
 
 // CCImage
 CCImage::CCImage(const int x, const int y, const int dx, const int dy)
@@ -114,9 +127,9 @@ CCImage::CCImage(const int x, const int y, const int dx, const int dy)
 	cc_type = CC_IMAGE;
 }
 
-CCImage::CCImage(const char* image, const int x, const int y, const int dx, const int dy)
+CCImage::CCImage(const char* const image, const int x, const int y, const int dx, const int dy)
 {
-	dprintf(DEBUG_INFO, "CCImage::CCImage: %s x:%d y:%d dx:%d dy:%d\n", image, x, y, dx, dy);
+	dprintf(DEBUG_INFO, "CCImage::CCImage:x:%d y:%d dx:%d dy:%d\n", x, y, dx, dy);
 	
 	frameBuffer = CFrameBuffer::getInstance();
 	
@@ -138,6 +151,39 @@ CCImage::CCImage(const char* image, const int x, const int y, const int dx, cons
 	frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
 			
 	cc_type = CC_IMAGE;
+}
+
+//
+void CCImage::setImage(const char* const image)
+{
+	imageName = std::string(image); 
+	frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
+}
+
+//
+void CCImage::paint()
+{
+	if (iWidth > cCBox.iWidth) iWidth = cCBox.iWidth;
+	if (iHeight > cCBox.iHeight) iHeight = cCBox.iHeight;
+			
+	int startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (iWidth >> 1);
+			
+	if (scale)
+	{
+		// bg
+		if (paintframe) frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, color);
+				
+		// image
+		frameBuffer->displayImage(imageName.c_str(), cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight);
+	}
+	else
+	{
+		// bg
+		if (paintframe) frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, color);
+				
+		// image
+		frameBuffer->displayImage(imageName.c_str(), startPosX, cCBox.iY + (cCBox.iHeight - iHeight)/2, iWidth, iHeight);
+	}
 }
 
 // progressbar
@@ -729,6 +775,12 @@ CCFrameLine::CCFrameLine(const int x, const int y, const int dx, const int dy)
 	
 	color = COL_WHITE_PLUS_0; 
 	cc_type = CC_FRAMELINE;
+}
+
+//
+void CCFrameLine::paint()
+{
+	frameBuffer->paintFrameBox(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, color);
 }
 
 // CLabel
@@ -1419,7 +1471,6 @@ void CFooters::paint()
 		{
 			if (!fbuttons[i].button.empty())
 			{
-				//const char * l_option = NULL;
 				int iw = 0;
 				int ih = 0;
 
@@ -1432,17 +1483,11 @@ void CFooters::paint()
 				}
 				
 				int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-
-				/*
-				if(fbuttons[i].localename != NULL)
-					l_option = fbuttons[i].localename;
-				else
-					l_option = g_Locale->getText(fbuttons[i].locale);
-				*/
 		
 				CFrameBuffer::getInstance()->paintIcon(fbuttons[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + (itemBox.iHeight - ih)/2, 0, true, iw, ih);
 
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + f_h + (itemBox.iHeight - f_h)/2, buttonWidth - iw - ICON_OFFSET, fbuttons[i].localename, COL_MENUFOOT, 0, true); // UTF-8
+				// FIXME: i18n
+				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + f_h + (itemBox.iHeight - f_h)/2, buttonWidth - iw - ICON_OFFSET, _(fbuttons[i].localename.c_str()), COL_MENUFOOT, 0, true); // UTF-8
 			}
 		}
 	}

@@ -419,7 +419,7 @@ void sectionsd_getEventsServiceKey(t_channel_id serviceUniqueKey, CChannelEventL
 bool sectionsd_getComponentTagsUniqueKey(const event_id_t uniqueKey, CSectionsdClient::ComponentTagList& tags);
 
 // head
-struct button_label HButton = { NEUTRINO_ICON_BUTTON_HELP, "" };
+const struct button_label HButton = { NEUTRINO_ICON_BUTTON_HELP, " " };
 
 void CEpgData::showHead(const t_channel_id channel_id)
 {
@@ -1017,10 +1017,10 @@ int CEpgData::FollowScreenings (const t_channel_id /*channel_id*/, const std::st
 // foot
 struct button_label FButtons[4] =
 {
-	{ "", "" },
-	{ "", ""},
-	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Schedule")},
-	{ "", "" }
+	{ DUMMY_ICON, " " },
+	{ DUMMY_ICON,  " "},
+	{ NEUTRINO_ICON_BUTTON_YELLOW, "Schedule"},
+	{ DUMMY_ICON, " " }
 };
 
 void CEpgData::showTimerEventBar(bool _show)

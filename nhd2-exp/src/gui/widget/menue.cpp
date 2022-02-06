@@ -174,8 +174,6 @@ void CMenuWidget::Init(const std::string &Icon, const int mwidth, const int mhei
 	
 	items_width = 0;
 	items_height = 0;
-	
-	itemShadow = false;
 }
 
 void CMenuWidget::move(int xoff, int yoff)
@@ -228,7 +226,6 @@ void CMenuWidget::initFrames()
 
 		item->widgetType = widgetType;
 		//item->widgetMode = widgetMode;
-		item->itemShadow = itemShadow;
 	} 
 
 	// init frames

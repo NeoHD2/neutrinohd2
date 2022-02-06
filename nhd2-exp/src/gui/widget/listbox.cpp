@@ -2317,9 +2317,6 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	items_height = 0;
 	
 	//
-	itemShadow = false;
-	
-	//
 	sec_timer_id = 0;
 	
 	widgetItem_type = WIDGETITEM_LISTBOX;
@@ -2437,8 +2434,6 @@ ClistBox::ClistBox(CBox* position)
 	items_width = 0;
 	items_height = 0;
 	
-	itemShadow = false;
-	
 	//
 	sec_timer_id = 0;
 	
@@ -2498,7 +2493,6 @@ void ClistBox::initFrames()
 
 		item->widgetType = widgetType;
 		item->paintFrame = paintFrame;
-		//item->itemShadow = itemShadow;
 	} 
 
 	// head

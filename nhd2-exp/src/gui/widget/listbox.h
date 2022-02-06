@@ -629,7 +629,6 @@ class ClistBox : public CWidgetItem
 		int corner;
 		bool scrollbar;
 		fb_pixel_t* items_background;
-		bool itemShadow;
 		
 		//
 		int widgetMode;
@@ -710,7 +709,6 @@ class ClistBox : public CWidgetItem
 		void setRadius(int ra){radius = ra;};
 		void setCorner(int co){corner = co;};
 		void paintScrollBar(bool sb){scrollbar = sb;};
-		void paintItemShadow(bool s){itemShadow = s;};
 
 		virtual void scrollLineDown(const int lines = 1);
 		virtual void scrollLineUp(const int lines = 1);

@@ -294,31 +294,31 @@
 		</WINDOW>
 		
 		<LISTBOX posx="50" posy="60" width="540" height="620" type="0" mode="2">
-			<ITEM id="5" lines="1" localename="Video settings" itemicon="hint_video" target="9">
+			<ITEM id="5" localename="Video settings" itemicon="hint_video" target="9" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Audio settings" itemicon="hint_audio" target="10">
+			<ITEM id="5" localename="Audio settings" itemicon="hint_audio" target="10" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="" lines="1" localename="Parentallock settings" itemicon="hint_protection" target="11">
+			<ITEM id="5" localename="Parentallock settings" itemicon="hint_protection" target="11" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Network settings" itemicon="hint_network" target="12">
+			<ITEM id="5" localename="Network settings" itemicon="hint_network" target="12" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Recording settings" itemicon="hint_recording" target="13">
+			<ITEM id="5" localename="Recording settings" itemicon="hint_recording" target="13" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Movieplayer settings" itemicon="hint_mb" target="14">
+			<ITEM id="5" localename="Movieplayer settings" itemicon="hint_mb" target="14" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="OSD settings" itemicon="hint_osd" target="15">
+			<ITEM id="5" localename="OSD settings" itemicon="hint_osd" target="15" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="LCD settings" itemicon="hint_vfd" target="16">
+			<ITEM id="5" localename="LCD settings" itemicon="hint_vfd" target="16" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Remote Control settings" itemicon="hint_keys" target="17">
+			<ITEM id="5" localename="Remote Control settings" itemicon="hint_keys" target="17" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Audioplayer settings" itemicon="hint_aplay" target="18">
+			<ITEM id="5" localename="Audioplayer settings" itemicon="hint_aplay" target="18" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Pictureviewer settings" itemicon="hint_picview" target="19">
+			<ITEM id="5" localename="Pictureviewer settings" itemicon="hint_picview" target="19" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="Misc settings" itemicon="hint_extended" target="20">
+			<ITEM id="5" localename="Misc settings" itemicon="hint_extended" target="20" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" lines="1" localename="HDD settings" itemicon="hint_hdd" target="21">
+			<ITEM id="5" localename="HDD settings" itemicon="hint_hdd" target="21" lines="1" shadow="1">
 			</ITEM>
 		</LISTBOX>
 		
@@ -358,9 +358,6 @@
 		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1" color="#00195000" ></WINDOW>
 		
 		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Main Menu" halign="1"></LABEL>
-		<!--
-		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
-		-->
 		
 		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" color="#0f0f0f00"></WINDOW>
 		
