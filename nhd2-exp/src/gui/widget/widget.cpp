@@ -152,9 +152,7 @@ void CWidget::paintCCItems()
 
 	for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
 	{
-		CComponent *CCItem = CCItems[count];
-
-		CCItem->paint();
+		CCItems[count]->paint();
 	}
 }
 ////
@@ -283,11 +281,9 @@ void CWidget::hide()
 	{
 		for(unsigned int i = 0; i < (unsigned int)CCItems.size(); i++)
 		{
-			CComponent *CCItem = CCItems[i];
-
-			if (CCItem->getCCType() == CC_PIG)
+			if (CCItems[i]->getCCType() == CC_PIG)
 			{
-				CCItem->hide();
+				CCItems[i]->hide();
 				break;
 			}
 		}

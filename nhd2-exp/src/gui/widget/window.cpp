@@ -215,11 +215,9 @@ void CWindow::hide()
 	{
 		for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
 		{
-			CComponent *CCItem = CCItems[count];
-
-			if (CCItem->getCCType() == CC_PIG)
+			if (CCItems[count]->getCCType() == CC_PIG)
 			{
-				CCItem->hide();
+				CCItems[count]->hide();
 				break;
 			}
 		}
@@ -241,9 +239,7 @@ void CWindow::paintCCItems()
 
 	for (unsigned int count = 0; count < (unsigned int)CCItems.size(); count++) 
 	{
-		CComponent *CCItem = CCItems[count];
-
-		CCItem->paint();
+		CCItems[count]->paint();
 	}
 }
 
