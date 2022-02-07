@@ -92,6 +92,8 @@ extern int current_muted;
 
 CAudioPlayerGui::CAudioPlayerGui()
 {
+	dprintf(DEBUG_INFO, "CAudioPlayerGui::CAudioPlayerGui()\n");
+	
 	m_frameBuffer = CFrameBuffer::getInstance();
 
 	Init();

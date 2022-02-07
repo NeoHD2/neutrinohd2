@@ -177,7 +177,7 @@ void CNEpisodes::getMovieVideoUrl(MI_MOVIE_INFO& movie)
 #define HEAD_BUTTONS_COUNT	1
 const struct button_label HeadButtons[HEAD_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_HELP, "" },
+	{ NEUTRINO_ICON_BUTTON_HELP, " " },
 };
 
 void CNEpisodes::showMenu()

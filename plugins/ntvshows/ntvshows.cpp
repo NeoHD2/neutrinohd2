@@ -263,8 +263,8 @@ void CTVShows::showMovieInfo(MI_MOVIE_INFO& movie)
 #define HEAD_BUTTONS_COUNT	2
 const struct button_label HeadButtons[HEAD_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_HELP, "" },
-	{ NEUTRINO_ICON_BUTTON_SETUP, "" }
+	{ NEUTRINO_ICON_BUTTON_HELP, " " },
+	{ NEUTRINO_ICON_BUTTON_SETUP, " " }
 };
 
 #define FOOT_BUTTONS_COUNT	4
@@ -272,8 +272,8 @@ const struct button_label FootButtons[FOOT_BUTTONS_COUNT] =
 {
 	{ NEUTRINO_ICON_BUTTON_RED, _("Next Page") },
 	{ NEUTRINO_ICON_BUTTON_GREEN, _("Prev Page") },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, "" },
-	{ NEUTRINO_ICON_BUTTON_BLUE, "" }
+	{ NEUTRINO_ICON_BUTTON_YELLOW, " " },
+	{ NEUTRINO_ICON_BUTTON_BLUE, " " }
 };
 
 void CTVShows::showMenu()

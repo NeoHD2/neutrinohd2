@@ -71,6 +71,8 @@
 
 CPictureViewerGui::CPictureViewerGui()
 {
+	dprintf(DEBUG_INFO, "CPictureViewerGui::CPictureViewerGui()\n");
+	
 	frameBuffer = CFrameBuffer::getInstance();
 
 	m_state = SINGLE;

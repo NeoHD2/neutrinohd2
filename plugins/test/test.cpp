@@ -111,9 +111,9 @@ class CTestMenu : public CMenuTarget
 		CComponent* cCItem;
 		
 		//
-		CProgressWindow * progressWindow;
-		CProgressBar* progressBar;
-		CProgressBar* progressBar2;
+		//CProgressWindow * progressWindow;
+		//CProgressBar* progressBar;
+		//CProgressBar* progressBar2;
 
 		// helper functions
 		void loadTMDBPlaylist(const char *txt = "movie", const char *list = "popular", const int seite = 1, bool search = false);
@@ -293,9 +293,9 @@ CTestMenu::CTestMenu()
 	listFrame = NULL;
 	windowWidget = NULL;
 	textBoxWidget = NULL;
-	progressWindow = NULL;
-	progressBar = NULL;
-	progressBar2 = NULL;
+	//progressWindow = NULL;
+	//progressBar = NULL;
+	//progressBar2 = NULL;
 	cCItem = NULL;
 }
 
@@ -2746,7 +2746,7 @@ void CTestMenu::testCComponent()
 	testDline.setIcon(m_vMovieInfo[0].tfile.c_str());
 	
 	// pb
-	CProgressBar testPB(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, Box.iWidth /3, 10, 40, 100, 70, true);
+	//CProgressBar testPB(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, Box.iWidth /3, 10, 40, 100, 70, true);
 	//testPB.setPosition(Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150, Box.iWidth /3, 10);
 	
 	// sb
@@ -2782,8 +2782,8 @@ REPAINT:
 	head.paint();
 	foot.paint();
 	testDline.paint(Box.iX, Box.iY, Box.iWidth, Box.iHeight, 70, 35, Box.iY + 2*35);
-	testPB.paint(/*Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150,*/pcr);
-	testSB.paint(Box.iX + Box.iWidth - 10, Box.iY + 40, Box.iHeight - 80, NrOfPages, currentPage);
+	//testPB.paint(/*Box.iX + Box.iWidth/2 - Box.iWidth/4, Box.iY + Box.iHeight - 150,*/pcr);
+	//testSB.paint(Box.iX + Box.iWidth - 10, Box.iY + 40, Box.iHeight - 80, NrOfPages, currentPage);
 	
 	CFrameBuffer::getInstance()->blit();
 	
@@ -3598,6 +3598,7 @@ void CTestMenu::testCProgressBar()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCProgressBar\n");
 	
+#if 0
 	CBox Box;
 	
 	Box.iX = g_settings.screen_StartX + 10;
@@ -3664,6 +3665,7 @@ void CTestMenu::testCProgressBar()
 	
 	//
 	hide();
+#endif
 }
 
 // CProgressWindow
@@ -3671,6 +3673,7 @@ void CTestMenu::testCProgressWindow()
 {
 	dprintf(DEBUG_NORMAL, "\ntestCProgressWindow\n");
 
+#if 0
 	progressWindow = new CProgressWindow();
 	progressWindow->setTitle("CProgressWindow");
 	progressWindow->paint();
@@ -3717,6 +3720,7 @@ void CTestMenu::testCProgressWindow()
 	progressWindow->hide();
 	delete progressWindow;
 	progressWindow = NULL;
+#endif
 }
 
 // CButtons
@@ -7482,6 +7486,8 @@ void CTestMenu::showMenu()
 	{
 		mWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
 		mWidget->setMenuPosition(MENU_POSITION_CENTER);
+		
+		mWidget->name = "Test Menu";
 		
 		mainMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 

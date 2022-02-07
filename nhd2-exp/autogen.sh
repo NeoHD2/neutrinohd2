@@ -56,7 +56,7 @@ if [ ! -e acinclude.m4 ]; then
 	done
 fi
 
-echo "Generating configuration files for $package, please wait...."
+echo "Generating configuration files for $package, please wait..."
 
 echo "  aclocal $ACLOCAL_FLAGS"
 aclocal $ACLOCAL_FLAGS

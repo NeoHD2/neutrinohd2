@@ -76,7 +76,7 @@ CCIcon::CCIcon(const int x, const int y, const int dx, const int dy)
 //
 void CCIcon::setIcon(const char* const icon)
 {
-	iconName = std::string(icon); 
+	iconName = icon? icon : ""; 
 	
 	if (!iconName.empty()) frameBuffer->getIconSize(iconName.c_str(), &iWidth, &iHeight);
 }
@@ -115,7 +115,7 @@ CCImage::CCImage(const int x, const int y, const int dx, const int dy)
 //
 void CCImage::setImage(const char* const image)
 {
-	imageName = std::string(image);
+	imageName = image? image : "";
 	 
 	if (!imageName.empty()) frameBuffer->getSize(imageName, &iWidth, &iHeight, &iNbp);
 }

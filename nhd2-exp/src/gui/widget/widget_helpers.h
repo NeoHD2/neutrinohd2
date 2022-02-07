@@ -27,6 +27,7 @@
 
 #include <system/localize.h>
 #include <system/settings.h>
+#include <system/debug.h>
 
 #include <driver/rcinput.h>
 
@@ -119,13 +120,18 @@ class CComponent
 		//
 		virtual void setPosition(const int _x, const int _y, const int _width, const int _height)
 		{
+			dprintf(DEBUG_INFO, "CComponent::setPosition: x:%d y:%d dx:%d dy:%d\n", _x, _y, _width, _height);
+			
 			cCBox.iX = _x;
 			cCBox.iY = _y;
 			cCBox.iWidth = _width;
 			cCBox.iHeight = _height;
 		};
 		
-		virtual void setPosition(const CBox * position){cCBox = *position;};
+		virtual void setPosition(const CBox * position)
+		{
+			cCBox = *position;
+		};
 		
 		//
 		virtual inline CBox getWindowsPos(void){return (cCBox);};
@@ -419,7 +425,7 @@ class CCLabel : public CComponent
 		//
 		void setColor(uint8_t col){color = col;};
 		void setFont(CFont *f){font = f;};
-		void setText(const char* const text){label = text;};
+		void setText(const char* const text){label = text? text : "";};
 		void enablePaintBG(){paintBG = true;};
 		void setHAlign(int h){halign = h;};
 		
@@ -448,7 +454,7 @@ class CCText : public CComponent
 		void setFont(CFont* f){font = f;};
 		void setMode(int m){mode = m;};
 		void setColor(uint8_t c){color = c;};
-		void setText(const char* const text){Text = text;};
+		void setText(const char* const text){Text = text? text : "";};
 		void useBackground(void){useBG = true;};
 		
 		//
@@ -522,7 +528,7 @@ class CCTime : public CComponent
 		//
 		void setColor(uint8_t col){color = col;};
 		void setFont(CFont *f){font = f;};
-		void setFormat(const char* f){format = f;};
+		void setFormat(const char* const f){format = f? f : "";};
 		void setHAlign(int h){halign = h;};
 		
 		//

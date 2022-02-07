@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 01:44+0100\n"
+"POT-Creation-Date: 2022-02-07 04:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgstr ""
 msgid "(filename2)"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:349 ../../src/gui/audioplayer.cpp:367
+#: ../../src/gui/audioplayer.cpp:351 ../../src/gui/audioplayer.cpp:369
 msgid "(relative, in seconds)"
 msgstr ""
 
@@ -125,13 +125,13 @@ msgstr ""
 msgid "Activate settings"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:2151 ../../src/gui/movieinfo.cpp:1010
+#: ../../src/gui/movieplayer.cpp:2153 ../../src/gui/movieinfo.cpp:1010
 #: ../../src/gui/epgview.cpp:905 ../../src/system/tmdbparser.cpp:247
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:267
 msgid "Actors"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1984
+#: ../../src/gui/movieplayer.cpp:1986
 #: ../../../plugins/audioplayer/audioplayer.cpp:253
 #: ../../../plugins/icecast/icecast.cpp:675
 #: ../../../plugins/internetradio/internetradio.cpp:653
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Alpha"
 msgstr ""
 
-#: ../../src/gui/alphasetup.cpp:192 ../../../plugins/test/test.cpp:5259
+#: ../../src/gui/alphasetup.cpp:192 ../../../plugins/test/test.cpp:5263
 msgid "Alpha Setup"
 msgstr ""
 
@@ -210,7 +210,7 @@ msgstr ""
 msgid "Aspect Ratio"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1842 ../../src/gui/movieinfo.cpp:1107
+#: ../../src/gui/movieplayer.cpp:1844 ../../src/gui/movieinfo.cpp:1107
 #: ../../src/gui/infoviewer.cpp:1818
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:116
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:174
@@ -225,12 +225,12 @@ msgstr ""
 msgid "Audio Player"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1277
+#: ../../src/gui/audioplayer.cpp:1279
 msgid "Audio Player Setup"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:217 ../../src/gui/audioplayer.cpp:330
-#: ../../src/gui/audioplayer.cpp:1358
+#: ../../src/gui/audioplayer.cpp:219 ../../src/gui/audioplayer.cpp:332
+#: ../../src/gui/audioplayer.cpp:1360
 msgid "Audio Playlist"
 msgstr ""
 
@@ -307,7 +307,7 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:284 ../../src/gui/osd_setup.cpp:289
 #: ../../src/gui/osd_setup.cpp:294 ../../src/gui/osd_setup.cpp:311
 #: ../../src/gui/osd_setup.cpp:375 ../../src/gui/osd_setup.cpp:386
-#: ../../../plugins/test/test.cpp:5342
+#: ../../../plugins/test/test.cpp:5346
 msgid "Background"
 msgstr ""
 
@@ -336,7 +336,7 @@ msgstr ""
 msgid "Bookmark change"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:742 ../../src/gui/movieplayer.cpp:1856
+#: ../../src/gui/movieplayer.cpp:744 ../../src/gui/movieplayer.cpp:1858
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:119
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2964
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2981
@@ -476,8 +476,8 @@ msgstr ""
 msgid "Change PIN code"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:390 ../../src/gui/pictureviewer.cpp:395
-#: ../../src/gui/pictureviewer.cpp:409
+#: ../../src/gui/pictureviewer.cpp:392 ../../src/gui/pictureviewer.cpp:397
+#: ../../src/gui/pictureviewer.cpp:411
 msgid "Change sort order"
 msgstr ""
 
@@ -621,7 +621,7 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1625
+#: ../../src/gui/movieplayer.cpp:1627
 msgid "Create bookmark"
 msgstr ""
 
@@ -629,7 +629,7 @@ msgstr ""
 msgid "Create list of HD channels"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:518
+#: ../../src/gui/audioplayer.cpp:520
 msgid "Current Track"
 msgstr ""
 
@@ -718,7 +718,7 @@ msgid "Delayed shutdown"
 msgstr ""
 
 #: ../../src/gui/filebrowser.cpp:495 ../../src/gui/filebrowser.cpp:504
-#: ../../src/gui/movieplayer.cpp:1981 ../../src/gui/channellist.cpp:388
+#: ../../src/gui/movieplayer.cpp:1983 ../../src/gui/channellist.cpp:388
 #: ../../src/gui/timerlist.cpp:654 ../../src/gui/pluginlist.cpp:85
 #: ../../src/gui/bouquetlist.cpp:311
 #: ../../../plugins/audioplayer/audioplayer.cpp:252
@@ -732,7 +732,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1983
+#: ../../src/gui/movieplayer.cpp:1985
 #: ../../../plugins/audioplayer/audioplayer.cpp:254
 #: ../../../plugins/icecast/icecast.cpp:676
 #: ../../../plugins/internetradio/internetradio.cpp:654
@@ -773,7 +773,7 @@ msgstr ""
 msgid "DiSEqC-repeats"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:392
+#: ../../src/gui/pictureviewer.cpp:394
 msgid "Diashow mode"
 msgstr ""
 
@@ -814,15 +814,15 @@ msgid "Diseqc input"
 msgstr ""
 
 #: ../../src/gui/lcd_setup.cpp:128 ../../src/gui/lcd_setup.cpp:145
-#: ../../../plugins/test/test.cpp:5332
+#: ../../../plugins/test/test.cpp:5336
 msgid "Display Settings"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:388
+#: ../../src/gui/pictureviewer.cpp:390
 msgid "Display image"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:389
+#: ../../src/gui/pictureviewer.cpp:391
 msgid "Do not scale picture"
 msgstr ""
 
@@ -838,7 +838,7 @@ msgid ""
 "Target: %s"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1192
+#: ../../src/gui/audioplayer.cpp:1194
 msgid "Do you want to overwrite this file:"
 msgstr ""
 
@@ -953,7 +953,7 @@ msgstr ""
 msgid "Enter 0 to switch of the blocker (red is space)"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:345 ../../src/gui/audioplayer.cpp:363
+#: ../../src/gui/audioplayer.cpp:347 ../../src/gui/audioplayer.cpp:365
 msgid "Enter jump target"
 msgstr ""
 
@@ -979,7 +979,7 @@ msgstr ""
 #: ../../src/gui/update.cpp:375 ../../src/gui/update.cpp:441
 #: ../../src/gui/update.cpp:468 ../../src/gui/update.cpp:504
 #: ../../src/gui/update.cpp:550 ../../src/gui/misc_setup.cpp:488
-#: ../../src/gui/audioplayer.cpp:1165 ../../src/gui/infoviewer.cpp:1097
+#: ../../src/gui/audioplayer.cpp:1167 ../../src/gui/infoviewer.cpp:1097
 #: ../../src/driver/vcrcontrol.cpp:738 ../../../plugins/test/test.cpp:3274
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:931
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:940
@@ -1023,7 +1023,7 @@ msgstr ""
 msgid "Execute plugin"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:396 ../../src/gui/pictureviewer.cpp:412
+#: ../../src/gui/pictureviewer.cpp:398 ../../src/gui/pictureviewer.cpp:414
 msgid "Exit"
 msgstr ""
 
@@ -1061,7 +1061,7 @@ msgstr ""
 msgid "Features"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1162
+#: ../../src/gui/audioplayer.cpp:1164
 msgid "File could not be created:"
 msgstr ""
 
@@ -1085,7 +1085,7 @@ msgstr ""
 msgid "Filebrowser settings"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1116
+#: ../../src/gui/audioplayer.cpp:1118
 msgid "Filename of the play list"
 msgstr ""
 
@@ -1202,7 +1202,7 @@ msgstr ""
 msgid "Generic delay"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:2143 ../../src/gui/movieinfo.cpp:986
+#: ../../src/gui/movieplayer.cpp:2145 ../../src/gui/movieinfo.cpp:986
 #: ../../src/system/tmdbparser.cpp:233
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:106
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:107
@@ -1346,7 +1346,7 @@ msgstr ""
 msgid "Head"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1624 ../../src/gui/movieplayer.cpp:1848
+#: ../../src/gui/movieplayer.cpp:1626 ../../src/gui/movieplayer.cpp:1850
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3316
 msgid "Help"
 msgstr ""
@@ -1527,25 +1527,25 @@ msgstr ""
 #: ../../src/gui/cam_menu.cpp:473 ../../src/gui/cam_menu.cpp:488
 #: ../../src/gui/hdd_menu.cpp:146 ../../src/gui/network_setup.cpp:159
 #: ../../src/gui/rc_setup.cpp:222 ../../src/gui/scan_setup.cpp:288
-#: ../../src/gui/recording_setup.cpp:93 ../../src/gui/movieplayer.cpp:616
-#: ../../src/gui/movieplayer.cpp:1528 ../../src/gui/movieplayer.cpp:1644
-#: ../../src/gui/movieplayer.cpp:2175 ../../src/gui/movieplayer.cpp:2205
+#: ../../src/gui/recording_setup.cpp:93 ../../src/gui/movieplayer.cpp:618
+#: ../../src/gui/movieplayer.cpp:1530 ../../src/gui/movieplayer.cpp:1646
+#: ../../src/gui/movieplayer.cpp:2177 ../../src/gui/movieplayer.cpp:2207
 #: ../../src/gui/update.cpp:322 ../../src/gui/update.cpp:330
 #: ../../src/gui/update.cpp:403 ../../src/gui/update.cpp:477
 #: ../../src/gui/update.cpp:519 ../../src/gui/update.cpp:536
 #: ../../src/gui/update.cpp:559 ../../src/gui/update.cpp:609
 #: ../../src/gui/update.cpp:619 ../../src/gui/update.cpp:645
 #: ../../src/gui/themes.cpp:89 ../../src/gui/themes.cpp:127
-#: ../../src/gui/pictureviewer.cpp:417 ../../src/gui/video_setup.cpp:437
+#: ../../src/gui/pictureviewer.cpp:419 ../../src/gui/video_setup.cpp:437
 #: ../../src/gui/timerlist.cpp:1163 ../../src/gui/misc_setup.cpp:577
 #: ../../src/gui/service_menu.cpp:76 ../../src/gui/service_menu.cpp:78
-#: ../../src/gui/plugins.cpp:336 ../../src/gui/audioplayer.cpp:1280
+#: ../../src/gui/plugins.cpp:336 ../../src/gui/audioplayer.cpp:1282
 #: ../../src/gui/eventlist.cpp:510 ../../src/gui/eventlist.cpp:515
 #: ../../src/gui/infoviewer.cpp:1113 ../../src/gui/widget/infobox.cpp:170
 #: ../../../plugins/test/test.cpp:3251 ../../../plugins/test/test.cpp:3266
 #: ../../../plugins/test/test.cpp:3282 ../../../plugins/test/test.cpp:3295
-#: ../../../plugins/test/test.cpp:3343 ../../../plugins/test/test.cpp:5722
-#: ../../../plugins/test/test.cpp:5728 ../../../plugins/icecast/icecast.cpp:665
+#: ../../../plugins/test/test.cpp:3343 ../../../plugins/test/test.cpp:5726
+#: ../../../plugins/test/test.cpp:5732 ../../../plugins/icecast/icecast.cpp:665
 #: ../../../plugins/moviebrowser/tstool.cpp:278
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:918
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:945
@@ -1577,7 +1577,7 @@ msgstr ""
 msgid "Interface"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:103 ../../src/gui/audioplayer.cpp:330
+#: ../../src/gui/rc_setup.cpp:103 ../../src/gui/audioplayer.cpp:332
 #: ../../../plugins/internetradio/internetradio.cpp:660
 msgid "Internet Radio"
 msgstr ""
@@ -1598,7 +1598,7 @@ msgstr ""
 msgid "Jump (<0 back , >0 for):"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:749 ../../src/gui/movieinfo.cpp:1505
+#: ../../src/gui/movieplayer.cpp:751 ../../src/gui/movieinfo.cpp:1505
 msgid "Jump over"
 msgstr ""
 
@@ -1678,7 +1678,7 @@ msgstr ""
 msgid "Last play date"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1686
+#: ../../src/gui/movieplayer.cpp:1688
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2972
 msgid "Last play stop:"
 msgstr ""
@@ -1707,7 +1707,7 @@ msgstr ""
 msgid "Length"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:2140 ../../src/gui/movieinfo.cpp:1095
+#: ../../src/gui/movieplayer.cpp:2142 ../../src/gui/movieinfo.cpp:1095
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:175
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3078
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3081
@@ -1853,7 +1853,7 @@ msgstr ""
 msgid "Menu Title"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:387
+#: ../../src/gui/pictureviewer.cpp:389
 msgid "Menu mode"
 msgstr ""
 
@@ -1942,7 +1942,7 @@ msgstr ""
 msgid "Movie Browser"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:2028
+#: ../../src/gui/movieplayer.cpp:2030
 msgid "Movie Player"
 msgstr ""
 
@@ -1950,25 +1950,25 @@ msgstr ""
 msgid "Movie Trailer"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:751
+#: ../../src/gui/movieplayer.cpp:753
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2971
 msgid "Movie end:"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1622
+#: ../../src/gui/movieplayer.cpp:1624
 msgid "Movie info"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1691
+#: ../../src/gui/movieplayer.cpp:1693
 msgid "Movie start"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:750 ../../src/gui/movieplayer.cpp:1679
+#: ../../src/gui/movieplayer.cpp:752 ../../src/gui/movieplayer.cpp:1681
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2970
 msgid "Movie start:"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1627
+#: ../../src/gui/movieplayer.cpp:1629
 msgid "MoviePlayer setup"
 msgstr ""
 
@@ -2065,7 +2065,7 @@ msgstr ""
 msgid "Neutrino restart"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:747 ../../src/gui/movieinfo.cpp:1501
+#: ../../src/gui/movieplayer.cpp:749 ../../src/gui/movieinfo.cpp:1501
 msgid "New Bookmark"
 msgstr ""
 
@@ -2073,13 +2073,13 @@ msgstr ""
 msgid "New Movies"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:728
+#: ../../src/gui/movieplayer.cpp:730
 msgid ""
 "New jump back\n"
 " 'blue' for endposition"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:733
+#: ../../src/gui/movieplayer.cpp:735
 msgid ""
 "New jump forward\n"
 " 'blue' for endposition"
@@ -2107,7 +2107,7 @@ msgstr ""
 msgid "Next focus"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:394 ../../src/gui/pictureviewer.cpp:401
+#: ../../src/gui/pictureviewer.cpp:396 ../../src/gui/pictureviewer.cpp:403
 msgid "Next image"
 msgstr ""
 
@@ -2285,13 +2285,13 @@ msgstr ""
 msgid "Order by"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:2145 ../../src/gui/movieinfo.cpp:993
+#: ../../src/gui/movieplayer.cpp:2147 ../../src/gui/movieinfo.cpp:993
 #: ../../src/gui/epgview.cpp:901 ../../src/system/tmdbparser.cpp:235
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:261
 msgid "Original Title"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1193
+#: ../../src/gui/audioplayer.cpp:1195
 msgid "Overwrite?"
 msgstr ""
 
@@ -2299,7 +2299,7 @@ msgstr ""
 msgid "PCM Delay"
 msgstr ""
 
-#: ../../src/gui/psisetup.cpp:339 ../../../plugins/test/test.cpp:5269
+#: ../../src/gui/psisetup.cpp:339 ../../../plugins/test/test.cpp:5273
 msgid "PSI Setup"
 msgstr ""
 
@@ -2361,7 +2361,7 @@ msgstr ""
 msgid "Picture"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:101 ../../src/gui/pictureviewer.cpp:165
+#: ../../src/gui/rc_setup.cpp:101 ../../src/gui/pictureviewer.cpp:167
 #: ../../../plugins/picviewer/picviewer.cpp:175
 msgid "Pictureviewer"
 msgstr ""
@@ -2374,11 +2374,11 @@ msgstr ""
 msgid "Playtime"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:348 ../../src/gui/audioplayer.cpp:366
+#: ../../src/gui/audioplayer.cpp:350 ../../src/gui/audioplayer.cpp:368
 msgid "Please enter jump target"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1119
+#: ../../src/gui/audioplayer.cpp:1121
 msgid "Please enter the filename of the playlist"
 msgstr ""
 
@@ -2411,7 +2411,7 @@ msgstr ""
 msgid "Prefer TMBD infos ?"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:2175
+#: ../../src/gui/movieplayer.cpp:2177
 msgid "Prefer TMDB Infos"
 msgstr ""
 
@@ -2444,7 +2444,7 @@ msgstr ""
 msgid "Prev Page"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:393 ../../src/gui/pictureviewer.cpp:400
+#: ../../src/gui/pictureviewer.cpp:395 ../../src/gui/pictureviewer.cpp:402
 msgid "Previous image"
 msgstr ""
 
@@ -2654,7 +2654,7 @@ msgstr ""
 msgid "Remount at start"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:748 ../../src/gui/timerlist.cpp:968
+#: ../../src/gui/movieplayer.cpp:750 ../../src/gui/timerlist.cpp:968
 #: ../../src/gui/timerlist.cpp:1068 ../../src/gui/movieinfo.cpp:1503
 msgid "Repeat"
 msgstr ""
@@ -2663,11 +2663,11 @@ msgstr ""
 msgid "Repeat delay"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:399
+#: ../../src/gui/pictureviewer.cpp:401
 msgid "Reread image"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:403
+#: ../../src/gui/pictureviewer.cpp:405
 msgid "Reread image (no scaling)"
 msgstr ""
 
@@ -2885,22 +2885,22 @@ msgstr ""
 #: ../../../plugins/test/test.cpp:938 ../../../plugins/test/test.cpp:1176
 #: ../../../plugins/test/test.cpp:1416 ../../../plugins/test/test.cpp:1612
 #: ../../../plugins/test/test.cpp:1709 ../../../plugins/test/test.cpp:2074
-#: ../../../plugins/test/test.cpp:3476 ../../../plugins/test/test.cpp:3764
-#: ../../../plugins/test/test.cpp:3895 ../../../plugins/test/test.cpp:4044
-#: ../../../plugins/test/test.cpp:4192 ../../../plugins/test/test.cpp:4336
-#: ../../../plugins/test/test.cpp:4497 ../../../plugins/test/test.cpp:5507
-#: ../../../plugins/test/test.cpp:5566 ../../../plugins/test/test.cpp:6236
-#: ../../../plugins/test/test.cpp:6266 ../../../plugins/test/test.cpp:6296
-#: ../../../plugins/test/test.cpp:6326 ../../../plugins/test/test.cpp:6359
-#: ../../../plugins/test/test.cpp:6389 ../../../plugins/test/test.cpp:6419
-#: ../../../plugins/test/test.cpp:6449 ../../../plugins/test/test.cpp:6525
-#: ../../../plugins/test/test.cpp:6587 ../../../plugins/test/test.cpp:6688
-#: ../../../plugins/test/test.cpp:6730 ../../../plugins/test/test.cpp:6772
-#: ../../../plugins/test/test.cpp:6814 ../../../plugins/test/test.cpp:6856
-#: ../../../plugins/test/test.cpp:6898 ../../../plugins/test/test.cpp:6940
-#: ../../../plugins/test/test.cpp:6982 ../../../plugins/test/test.cpp:7093
-#: ../../../plugins/test/test.cpp:7175 ../../../plugins/test/test.cpp:7218
-#: ../../../plugins/test/test.cpp:7269 ../../../plugins/test/test.cpp:7324
+#: ../../../plugins/test/test.cpp:3476 ../../../plugins/test/test.cpp:3768
+#: ../../../plugins/test/test.cpp:3899 ../../../plugins/test/test.cpp:4048
+#: ../../../plugins/test/test.cpp:4196 ../../../plugins/test/test.cpp:4340
+#: ../../../plugins/test/test.cpp:4501 ../../../plugins/test/test.cpp:5511
+#: ../../../plugins/test/test.cpp:5570 ../../../plugins/test/test.cpp:6240
+#: ../../../plugins/test/test.cpp:6270 ../../../plugins/test/test.cpp:6300
+#: ../../../plugins/test/test.cpp:6330 ../../../plugins/test/test.cpp:6363
+#: ../../../plugins/test/test.cpp:6393 ../../../plugins/test/test.cpp:6423
+#: ../../../plugins/test/test.cpp:6453 ../../../plugins/test/test.cpp:6529
+#: ../../../plugins/test/test.cpp:6591 ../../../plugins/test/test.cpp:6692
+#: ../../../plugins/test/test.cpp:6734 ../../../plugins/test/test.cpp:6776
+#: ../../../plugins/test/test.cpp:6818 ../../../plugins/test/test.cpp:6860
+#: ../../../plugins/test/test.cpp:6902 ../../../plugins/test/test.cpp:6944
+#: ../../../plugins/test/test.cpp:6986 ../../../plugins/test/test.cpp:7097
+#: ../../../plugins/test/test.cpp:7179 ../../../plugins/test/test.cpp:7222
+#: ../../../plugins/test/test.cpp:7273 ../../../plugins/test/test.cpp:7328
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2906
 #: ../../../plugins/nfilm/nfilm.cpp:167 ../../../plugins/nfilm/nfilm.cpp:189
 #: ../../../plugins/ntvshows/ntvshows.cpp:133
@@ -2961,23 +2961,23 @@ msgstr ""
 msgid "Scroll Mode"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:411
+#: ../../src/gui/pictureviewer.cpp:413
 msgid "Scroll down"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:408
+#: ../../src/gui/pictureviewer.cpp:410
 msgid "Scroll left"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:410
+#: ../../src/gui/pictureviewer.cpp:412
 msgid "Scroll right"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:405
+#: ../../src/gui/pictureviewer.cpp:407
 msgid "Scroll up"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:816 ../../../plugins/test/test.cpp:7317
+#: ../../src/gui/eventlist.cpp:816 ../../../plugins/test/test.cpp:7321
 #: ../../../plugins/netzkino/netzkino.cpp:338
 #: ../../../plugins/nfilm/nfilm.cpp:596
 #: ../../../plugins/youtube/youtube.cpp:443
@@ -3008,7 +3008,7 @@ msgstr ""
 msgid "Select Subservice"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1623
+#: ../../src/gui/movieplayer.cpp:1625
 msgid "Select audio track"
 msgstr ""
 
@@ -3152,7 +3152,7 @@ msgstr ""
 msgid "Show file rights"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:398
+#: ../../src/gui/pictureviewer.cpp:400
 msgid "Show mode"
 msgstr ""
 
@@ -3274,7 +3274,7 @@ msgstr ""
 msgid "Start dir."
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1670
+#: ../../src/gui/movieplayer.cpp:1672
 msgid "Start movie from:"
 msgstr ""
 
@@ -3398,7 +3398,7 @@ msgstr ""
 msgid "TMDB"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:2205
+#: ../../src/gui/movieplayer.cpp:2207
 msgid "TMDB Infos are not available"
 msgstr ""
 
@@ -3406,7 +3406,7 @@ msgstr ""
 msgid "TMDB Key:"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1982
+#: ../../src/gui/movieplayer.cpp:1984
 msgid "TMDB info"
 msgstr ""
 
@@ -3473,7 +3473,7 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:7489
+#: ../../../plugins/test/test.cpp:7495
 msgid "Test Menu"
 msgstr ""
 
@@ -3516,7 +3516,7 @@ msgid ""
 "switch to this channel at the given time."
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1120
+#: ../../src/gui/audioplayer.cpp:1122
 msgid "The extension .m3u will be added automatically"
 msgstr ""
 
@@ -3952,7 +3952,7 @@ msgstr ""
 msgid "Year of Production"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:2147 ../../src/gui/movieinfo.cpp:1036
+#: ../../src/gui/movieplayer.cpp:2149 ../../src/gui/movieinfo.cpp:1036
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:263
 msgid "Year of production"
 msgstr ""
@@ -3967,7 +3967,7 @@ msgid "Yes"
 msgstr ""
 
 #: ../../src/neutrino.cpp:3176 ../../src/neutrino.cpp:4371
-#: ../../src/gui/movieplayer.cpp:616
+#: ../../src/gui/movieplayer.cpp:618
 msgid "You really want to to stop record ?"
 msgstr ""
 
@@ -4014,11 +4014,11 @@ msgstr ""
 msgid "Zapto timer in one minute"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:406
+#: ../../src/gui/pictureviewer.cpp:408
 msgid "Zoom in"
 msgstr ""
 
-#: ../../src/gui/pictureviewer.cpp:404
+#: ../../src/gui/pictureviewer.cpp:406
 msgid "Zoom out"
 msgstr ""
 
@@ -4070,15 +4070,15 @@ msgstr ""
 msgid "angular"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1630
+#: ../../src/gui/movieplayer.cpp:1632
 msgid "approx. 1 minute back"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1636
+#: ../../src/gui/movieplayer.cpp:1638
 msgid "approx. 10 minutes back"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1633
+#: ../../src/gui/movieplayer.cpp:1635
 msgid "approx. 5 minutes back"
 msgstr ""
 
@@ -4230,7 +4230,7 @@ msgstr ""
 msgid "cpu/file"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1528
+#: ../../src/gui/movieplayer.cpp:1530
 msgid "create screenshot?"
 msgstr ""
 
@@ -4426,15 +4426,15 @@ msgstr ""
 msgid "getting update list"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1637
+#: ../../src/gui/movieplayer.cpp:1639
 msgid "goto end"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1634
+#: ../../src/gui/movieplayer.cpp:1636
 msgid "goto middle"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1631
+#: ../../src/gui/movieplayer.cpp:1633
 msgid "goto start"
 msgstr ""
 
@@ -4466,7 +4466,7 @@ msgstr ""
 msgid "informational/educational/school programmes"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:217
+#: ../../src/gui/audioplayer.cpp:219
 msgid "internet Radio"
 msgstr ""
 
@@ -4494,19 +4494,19 @@ msgstr ""
 msgid "jazz"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1288
+#: ../../src/gui/audioplayer.cpp:1290
 msgid "jump backwards"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1275
+#: ../../src/gui/audioplayer.cpp:1277
 msgid "jump ff"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1289
+#: ../../src/gui/audioplayer.cpp:1291
 msgid "jump forwards"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1274
+#: ../../src/gui/audioplayer.cpp:1276
 msgid "jump prev"
 msgstr ""
 
@@ -4910,11 +4910,11 @@ msgstr ""
 msgid "row width"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1287
+#: ../../src/gui/audioplayer.cpp:1289
 msgid "save play list"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1273
+#: ../../src/gui/audioplayer.cpp:1275
 msgid "save playlist"
 msgstr ""
 
@@ -4950,15 +4950,15 @@ msgstr ""
 msgid "serious/classical/religious/historical movie/drama"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1628
+#: ../../src/gui/movieplayer.cpp:1630
 msgid "show movie infoviewer"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1290
+#: ../../src/gui/audioplayer.cpp:1292
 msgid "shuffle"
 msgstr ""
 
-#: ../../src/gui/audioplayer.cpp:1276
+#: ../../src/gui/audioplayer.cpp:1278
 msgid "shuffle playlist"
 msgstr ""
 
@@ -4971,19 +4971,19 @@ msgstr ""
 msgid "since %02d:%02d"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1632
+#: ../../src/gui/movieplayer.cpp:1634
 msgid "skip approx. 1 minute"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1638
+#: ../../src/gui/movieplayer.cpp:1640
 msgid "skip approx. 10 minutes"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1635
+#: ../../src/gui/movieplayer.cpp:1637
 msgid "skip approx. 5 minutes"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:1629
+#: ../../src/gui/movieplayer.cpp:1631
 msgid "skip bookmark"
 msgstr ""
 

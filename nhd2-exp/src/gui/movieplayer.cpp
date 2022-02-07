@@ -110,6 +110,8 @@ extern cPlayback *playback;
 // movieplayer
 CMoviePlayerGui::CMoviePlayerGui()
 {
+	dprintf(DEBUG_INFO, "CMoviePlayerGui::CMoviePlayerGui()\n");
+	
 	stopped = false;
 
 	frameBuffer = CFrameBuffer::getInstance();
