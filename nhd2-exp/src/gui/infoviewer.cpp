@@ -1215,7 +1215,7 @@ void CInfoViewer::showRadiotext()
 
 int CInfoViewer::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 {
-	dprintf(DEBUG_DEBUG, "CInfoViewer::handleMsg: msg:%s\n", CRCInput::getSpecialKeyName(msg));
+	//dprintf(DEBUG_DEBUG, "CInfoViewer::handleMsg: msg:%s\n", CRCInput::getSpecialKeyName(msg));
 
  	if ((msg == NeutrinoMessages::EVT_CURRENTNEXT_EPG) || (msg == NeutrinoMessages::EVT_NEXTPROGRAM)) 
 	{
@@ -1409,7 +1409,7 @@ int CInfoViewer::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 		return messages_return::handled;
   	}
 
-	dprintf(DEBUG_DEBUG, "CInfoViewer::handleMsg: messages_return::unhandled\n");
+	//dprintf(DEBUG_DEBUG, "CInfoViewer::handleMsg: messages_return::unhandled\n");
 
   	return messages_return::unhandled;
 }

@@ -486,7 +486,7 @@ void CRCInput::close()
 	{
 		::ioctl(STDIN_FILENO, TCSETA, &orig_termio);
 				
-		dprintf(DEBUG_DEBUG, "Original terminal settings restored.\n");	
+		dprintf(DEBUG_DEBUG, "CRCInput::close:Original terminal settings restored.\n");	
 	}
 #endif /* KEYBOARD_INSTEAD_OF_REMOTE_CONTROL */
 
@@ -633,7 +633,7 @@ int CRCInput::addTimer(const time_t *Timeout)
 
 void CRCInput::killTimer(uint32_t id)
 {
-	dprintf(DEBUG_DEBUG, "killing timer %d\n", id);
+	dprintf(DEBUG_DEBUG, "CRCInput::killTimer: killing timer %d\n", id);
 	
 	std::vector<timer>::iterator e;
 	
@@ -854,7 +854,7 @@ void CRCInput::getMsg_us(neutrino_msg_t * msg, neutrino_msg_data_t * data, uint6
 			*msg  = buf.msg;
 			*data = buf.data;
 
-			dprintf(DEBUG_DEBUG, "got event from high-pri pipe %x %x\n", *msg, *data );
+			dprintf(DEBUG_INFO, "\n\033[1;32mCRCInput::getMsg_us:got event from high-pri pipe (0x%x) (0x%x)\033[0m\n\n", *msg, *data );
 
 			return;
 		}

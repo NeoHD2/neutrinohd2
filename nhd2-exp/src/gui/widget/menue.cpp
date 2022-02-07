@@ -1387,7 +1387,7 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 		
 		int handled = false;
 
-		dprintf(DEBUG_DEBUG, "CMenuWidget::exec: msg:%s\n", CRCInput::getSpecialKeyName(msg));
+		//dprintf(DEBUG_DEBUG, "CMenuWidget::exec: msg:%s\n", CRCInput::getSpecialKeyName(msg));
 
 		if ( msg <= RC_MaxRC ) 
 		{

@@ -277,7 +277,8 @@ int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string& actionK
 		}
 		else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			listBox->paintHead();
+			//listBox->paintHead();
+			listBox->refresh();
 		}
 		else if (CNeutrinoApp::getInstance()->handleMsg(msg, data) & messages_return::cancel_all)
 		{

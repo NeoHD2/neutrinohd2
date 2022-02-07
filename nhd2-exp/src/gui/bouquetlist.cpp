@@ -470,7 +470,8 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 		}
 		else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			listBox->paintHead();
+			//listBox->paintHead();
+			listBox->refresh();
 		} 
 		else 
 		{

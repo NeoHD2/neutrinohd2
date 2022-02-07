@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-06 23:59+0100\n"
+"POT-Creation-Date: 2022-02-07 01:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../src/gui/timerlist.cpp:959 ../../src/gui/timerlist.cpp:1057
+#: ../../src/gui/timerlist.cpp:960 ../../src/gui/timerlist.cpp:1058
 msgid "'X'=timer '-' no timer"
 msgstr ""
 
@@ -71,7 +71,7 @@ msgstr ""
 msgid "(type)"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:961 ../../src/gui/timerlist.cpp:1061
+#: ../../src/gui/timerlist.cpp:962 ../../src/gui/timerlist.cpp:1062
 msgid "0 for unlimited repeats"
 msgstr ""
 
@@ -160,15 +160,15 @@ msgstr ""
 msgid "Age"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:946 ../../src/gui/timerlist.cpp:947
-#: ../../src/gui/timerlist.cpp:1049 ../../src/gui/timerlist.cpp:1050
+#: ../../src/gui/timerlist.cpp:947 ../../src/gui/timerlist.cpp:948
+#: ../../src/gui/timerlist.cpp:1050 ../../src/gui/timerlist.cpp:1051
 msgid "Alarm time"
 msgstr ""
 
 #: ../../src/neutrino.cpp:1507 ../../src/neutrino.cpp:1508
 #: ../../src/neutrino.cpp:1529 ../../src/neutrino.cpp:1580
 #: ../../src/neutrino.cpp:1581 ../../src/neutrino.cpp:1587
-#: ../../src/neutrino.cpp:1588 ../../src/gui/bouquetlist.cpp:521
+#: ../../src/neutrino.cpp:1588 ../../src/gui/bouquetlist.cpp:522
 msgid "All Services"
 msgstr ""
 
@@ -217,7 +217,7 @@ msgstr ""
 msgid "Audio"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:991 ../../src/gui/timerlist.cpp:1016
+#: ../../src/gui/timerlist.cpp:992 ../../src/gui/timerlist.cpp:1017
 msgid "Audio PIDs"
 msgstr ""
 
@@ -357,7 +357,7 @@ msgstr ""
 msgid "Bouquet back"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1510 ../../src/gui/eventlist.cpp:830
+#: ../../src/gui/channellist.cpp:1511 ../../src/gui/eventlist.cpp:831
 #: ../../src/gui/bouquetlist.cpp:72
 msgid "Bouquets"
 msgstr ""
@@ -481,8 +481,8 @@ msgstr ""
 msgid "Change sort order"
 msgstr ""
 
-#: ../../src/gui/streaminfo2.cpp:683 ../../src/gui/timerlist.cpp:1070
-#: ../../src/gui/movieinfo.cpp:1059 ../../src/gui/eventlist.cpp:829
+#: ../../src/gui/streaminfo2.cpp:683 ../../src/gui/timerlist.cpp:1071
+#: ../../src/gui/movieinfo.cpp:1059 ../../src/gui/eventlist.cpp:830
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:109
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:166
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3069
@@ -531,7 +531,7 @@ msgid "Channel:"
 msgstr ""
 
 #: ../../src/neutrino.cpp:416 ../../src/gui/rc_setup.cpp:303
-#: ../../src/gui/eventlist.cpp:831 ../../src/system/settings.cpp:48
+#: ../../src/gui/eventlist.cpp:832 ../../src/system/settings.cpp:48
 msgid "Channellist"
 msgstr ""
 
@@ -638,7 +638,7 @@ msgstr ""
 msgid "Current key"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1115 ../../src/gui/channellist.cpp:1177
+#: ../../src/gui/channellist.cpp:1116 ../../src/gui/channellist.cpp:1178
 msgid "Current transponder"
 msgstr ""
 
@@ -719,7 +719,7 @@ msgstr ""
 
 #: ../../src/gui/filebrowser.cpp:495 ../../src/gui/filebrowser.cpp:504
 #: ../../src/gui/movieplayer.cpp:1981 ../../src/gui/channellist.cpp:388
-#: ../../src/gui/timerlist.cpp:653 ../../src/gui/pluginlist.cpp:85
+#: ../../src/gui/timerlist.cpp:654 ../../src/gui/pluginlist.cpp:85
 #: ../../src/gui/bouquetlist.cpp:311
 #: ../../../plugins/audioplayer/audioplayer.cpp:252
 #: ../../../plugins/icecast/icecast.cpp:674
@@ -884,11 +884,11 @@ msgstr ""
 msgid "EPG Info 2"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:838
+#: ../../src/gui/eventlist.cpp:839
 msgid "EPG Info1"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:839
+#: ../../src/gui/eventlist.cpp:840
 msgid "EPG Info2"
 msgstr ""
 
@@ -896,7 +896,7 @@ msgstr ""
 msgid "EPG Long Description (hours)"
 msgstr ""
 
-#: ../../src/neutrino.cpp:406 ../../src/gui/eventlist.cpp:837
+#: ../../src/neutrino.cpp:406 ../../src/gui/eventlist.cpp:838
 msgid "EPG Title"
 msgstr ""
 
@@ -966,7 +966,7 @@ msgstr ""
 msgid "Enter new Position (s)"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:764 ../../src/gui/timerlist.cpp:899
+#: ../../src/gui/timerlist.cpp:765 ../../src/gui/timerlist.cpp:900
 msgid "Enter standby"
 msgstr ""
 
@@ -974,8 +974,8 @@ msgstr ""
 msgid "Enter your new youth protection pin code here!"
 msgstr ""
 
-#: ../../src/neutrino.cpp:2256 ../../src/gui/channellist.cpp:1031
-#: ../../src/gui/channellist.cpp:1091 ../../src/gui/update.cpp:251
+#: ../../src/neutrino.cpp:2256 ../../src/gui/channellist.cpp:1032
+#: ../../src/gui/channellist.cpp:1092 ../../src/gui/update.cpp:251
 #: ../../src/gui/update.cpp:375 ../../src/gui/update.cpp:441
 #: ../../src/gui/update.cpp:468 ../../src/gui/update.cpp:504
 #: ../../src/gui/update.cpp:550 ../../src/gui/misc_setup.cpp:488
@@ -995,11 +995,11 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:769
+#: ../../src/gui/eventlist.cpp:770
 msgid "Event list"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1508 ../../src/gui/infoviewer.cpp:1729
+#: ../../src/gui/channellist.cpp:1509 ../../src/gui/infoviewer.cpp:1729
 msgid "Event-List"
 msgstr ""
 
@@ -1011,7 +1011,7 @@ msgstr ""
 msgid "Eventlist current programm"
 msgstr ""
 
-#: ../../src/gui/epg_menu.cpp:81 ../../src/gui/channellist.cpp:1511
+#: ../../src/gui/epg_menu.cpp:81 ../../src/gui/channellist.cpp:1512
 msgid "Eventlist overview"
 msgstr ""
 
@@ -1019,7 +1019,7 @@ msgstr ""
 msgid "Events Textcolor"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:822 ../../src/gui/timerlist.cpp:912
+#: ../../src/gui/timerlist.cpp:823 ../../src/gui/timerlist.cpp:913
 msgid "Execute plugin"
 msgstr ""
 
@@ -1052,7 +1052,7 @@ msgid "Fast/timeshift record time(hours)"
 msgstr ""
 
 #: ../../src/neutrino.cpp:1516 ../../src/neutrino.cpp:1525
-#: ../../src/neutrino.cpp:1534 ../../src/gui/bouquetlist.cpp:518
+#: ../../src/neutrino.cpp:1534 ../../src/gui/bouquetlist.cpp:519
 msgid "Favorites"
 msgstr ""
 
@@ -1181,7 +1181,7 @@ msgstr ""
 msgid "Frequency:"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:856
+#: ../../src/gui/timerlist.cpp:857
 msgid "Friday"
 msgstr ""
 
@@ -1391,7 +1391,7 @@ msgstr ""
 msgid "Highlight"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1146
+#: ../../src/gui/channellist.cpp:1147
 msgid "History"
 msgstr ""
 
@@ -1537,7 +1537,7 @@ msgstr ""
 #: ../../src/gui/update.cpp:619 ../../src/gui/update.cpp:645
 #: ../../src/gui/themes.cpp:89 ../../src/gui/themes.cpp:127
 #: ../../src/gui/pictureviewer.cpp:417 ../../src/gui/video_setup.cpp:437
-#: ../../src/gui/timerlist.cpp:1162 ../../src/gui/misc_setup.cpp:577
+#: ../../src/gui/timerlist.cpp:1163 ../../src/gui/misc_setup.cpp:577
 #: ../../src/gui/service_menu.cpp:76 ../../src/gui/service_menu.cpp:78
 #: ../../src/gui/plugins.cpp:336 ../../src/gui/audioplayer.cpp:1280
 #: ../../src/gui/eventlist.cpp:510 ../../src/gui/eventlist.cpp:515
@@ -1615,7 +1615,7 @@ msgstr ""
 msgid "Keybinding settings"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:953 ../../src/gui/eventlist.cpp:955
+#: ../../src/gui/eventlist.cpp:954 ../../src/gui/eventlist.cpp:956
 msgid "Keyword"
 msgstr ""
 
@@ -1695,7 +1695,7 @@ msgstr ""
 msgid "Latitude"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:764 ../../src/gui/timerlist.cpp:898
+#: ../../src/gui/timerlist.cpp:765 ../../src/gui/timerlist.cpp:899
 msgid "Leave standby"
 msgstr ""
 
@@ -1861,7 +1861,7 @@ msgstr ""
 msgid "Menutext"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1086 ../../src/gui/timerlist.cpp:1087
+#: ../../src/gui/timerlist.cpp:1087 ../../src/gui/timerlist.cpp:1088
 msgid "Message"
 msgstr ""
 
@@ -1877,7 +1877,7 @@ msgstr ""
 msgid "Miscsettings"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:959 ../../src/gui/timerlist.cpp:1057
+#: ../../src/gui/timerlist.cpp:960 ../../src/gui/timerlist.cpp:1058
 msgid "Mo Tu We Th Fr Sa Su"
 msgstr ""
 
@@ -1885,11 +1885,11 @@ msgstr ""
 msgid "Modechange"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:656
+#: ../../src/gui/timerlist.cpp:657
 msgid "Modify"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:928
+#: ../../src/gui/timerlist.cpp:929
 msgid "Modify timer"
 msgstr ""
 
@@ -1898,7 +1898,7 @@ msgstr ""
 msgid "Modulation"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:844
+#: ../../src/gui/timerlist.cpp:845
 msgid "Monday"
 msgstr ""
 
@@ -1992,7 +1992,7 @@ msgstr ""
 
 #: ../../src/neutrino.cpp:1461 ../../src/gui/channellist.cpp:455
 #: ../../src/gui/channellist.cpp:458 ../../src/gui/channellist.cpp:459
-#: ../../src/gui/bouquetlist.cpp:532
+#: ../../src/gui/bouquetlist.cpp:533
 msgid "My Favorites"
 msgstr ""
 
@@ -2085,11 +2085,11 @@ msgid ""
 " 'blue' for endposition"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:654 ../../src/gui/timerlist.cpp:1035
+#: ../../src/gui/timerlist.cpp:655 ../../src/gui/timerlist.cpp:1036
 msgid "New timer"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1509 ../../src/gui/channellist.cpp:1646
+#: ../../src/gui/channellist.cpp:1510 ../../src/gui/channellist.cpp:1647
 msgid "Next"
 msgstr ""
 
@@ -2111,14 +2111,14 @@ msgstr ""
 msgid "Next image"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:816
+#: ../../src/gui/timerlist.cpp:817
 msgid "Next program"
 msgstr ""
 
 #: ../../src/gui/audioplayer_setup.cpp:48
 #: ../../src/gui/pictureviewer_setup.cpp:53 ../../src/gui/nfs.cpp:139
 #: ../../src/gui/nfs.cpp:157 ../../src/gui/nfs.cpp:227
-#: ../../src/gui/recording_setup.cpp:57 ../../src/gui/timerlist.cpp:918
+#: ../../src/gui/recording_setup.cpp:57 ../../src/gui/timerlist.cpp:919
 #: ../../src/gui/misc_setup.cpp:77 ../../src/gui/widget/messagebox.cpp:499
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:126
 msgid "No"
@@ -2136,8 +2136,8 @@ msgstr ""
 msgid "No UPnP servers found"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1031 ../../src/gui/channellist.cpp:1091
-#: ../../src/gui/channellist.cpp:1353
+#: ../../src/gui/channellist.cpp:1032 ../../src/gui/channellist.cpp:1092
+#: ../../src/gui/channellist.cpp:1354
 msgid ""
 "No channels were found!\n"
 "Please execute a scan\n"
@@ -2184,7 +2184,7 @@ msgstr ""
 msgid "Not used"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1642
+#: ../../src/gui/channellist.cpp:1643
 msgid "Now"
 msgstr ""
 
@@ -2211,9 +2211,9 @@ msgstr ""
 #: ../../src/gui/network_setup.cpp:226 ../../src/gui/network_setup.cpp:228
 #: ../../src/gui/network_setup.cpp:230 ../../src/gui/network_setup.cpp:232
 #: ../../src/gui/network_setup.cpp:234 ../../src/gui/nfs.cpp:290
-#: ../../src/gui/nfs.cpp:315 ../../src/gui/timerlist.cpp:946
-#: ../../src/gui/timerlist.cpp:950 ../../src/gui/timerlist.cpp:1049
-#: ../../src/gui/timerlist.cpp:1053
+#: ../../src/gui/nfs.cpp:315 ../../src/gui/timerlist.cpp:947
+#: ../../src/gui/timerlist.cpp:951 ../../src/gui/timerlist.cpp:1050
+#: ../../src/gui/timerlist.cpp:1054
 msgid "OK saves, HOME! aborts"
 msgstr ""
 
@@ -2386,7 +2386,7 @@ msgstr ""
 msgid "Please press the new key"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1091
+#: ../../src/gui/timerlist.cpp:1092
 msgid "Plugin"
 msgstr ""
 
@@ -2469,7 +2469,7 @@ msgstr ""
 msgid "Provider:"
 msgstr ""
 
-#: ../../src/neutrino.cpp:1510 ../../src/gui/bouquetlist.cpp:519
+#: ../../src/neutrino.cpp:1510 ../../src/gui/bouquetlist.cpp:520
 msgid "Providers"
 msgstr ""
 
@@ -2541,16 +2541,16 @@ msgstr ""
 msgid "Receiving list, please wait"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:971 ../../src/gui/timerlist.cpp:819
-#: ../../src/gui/timerlist.cpp:909
+#: ../../src/gui/epgplus.cpp:971 ../../src/gui/timerlist.cpp:820
+#: ../../src/gui/timerlist.cpp:910
 msgid "Record"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:208 ../../src/gui/timerlist.cpp:1010
+#: ../../src/gui/recording_setup.cpp:208 ../../src/gui/timerlist.cpp:1011
 msgid "Record AC3 streams"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:205 ../../src/gui/timerlist.cpp:1008
+#: ../../src/gui/recording_setup.cpp:205 ../../src/gui/timerlist.cpp:1009
 msgid "Record alternative streams"
 msgstr ""
 
@@ -2560,11 +2560,11 @@ msgstr ""
 msgid "Record date"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1004
+#: ../../src/gui/timerlist.cpp:1005
 msgid "Record default audio streams"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1006
+#: ../../src/gui/timerlist.cpp:1007
 msgid "Record standard stream"
 msgstr ""
 
@@ -2580,8 +2580,8 @@ msgstr ""
 msgid "Recording"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:217 ../../src/gui/timerlist.cpp:982
-#: ../../src/gui/timerlist.cpp:1080
+#: ../../src/gui/recording_setup.cpp:217 ../../src/gui/timerlist.cpp:983
+#: ../../src/gui/timerlist.cpp:1081
 msgid "Recording directory"
 msgstr ""
 
@@ -2597,7 +2597,7 @@ msgstr ""
 msgid "Records browser"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:974 ../../src/gui/eventlist.cpp:603
+#: ../../src/gui/epgplus.cpp:974 ../../src/gui/eventlist.cpp:604
 msgid "Refresh EPG"
 msgstr ""
 
@@ -2609,7 +2609,7 @@ msgstr ""
 msgid "Release cycle"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:655
+#: ../../src/gui/timerlist.cpp:656
 msgid "Reload"
 msgstr ""
 
@@ -2630,7 +2630,7 @@ msgstr ""
 msgid "Reloading channel lists, please be patient."
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:820 ../../src/gui/timerlist.cpp:911
+#: ../../src/gui/timerlist.cpp:821 ../../src/gui/timerlist.cpp:912
 msgid "Remind"
 msgstr ""
 
@@ -2654,8 +2654,8 @@ msgstr ""
 msgid "Remount at start"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:748 ../../src/gui/timerlist.cpp:967
-#: ../../src/gui/timerlist.cpp:1067 ../../src/gui/movieinfo.cpp:1503
+#: ../../src/gui/movieplayer.cpp:748 ../../src/gui/timerlist.cpp:968
+#: ../../src/gui/timerlist.cpp:1068 ../../src/gui/movieinfo.cpp:1503
 msgid "Repeat"
 msgstr ""
 
@@ -2705,7 +2705,7 @@ msgstr ""
 msgid "Row width"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1083
+#: ../../src/gui/timerlist.cpp:1084
 msgid "SB mode"
 msgstr ""
 
@@ -2764,7 +2764,7 @@ msgid "Satellite:"
 msgstr ""
 
 #: ../../src/neutrino.cpp:1513 ../../src/neutrino.cpp:1522
-#: ../../src/gui/bouquetlist.cpp:520
+#: ../../src/gui/bouquetlist.cpp:521
 msgid "Satellites"
 msgstr ""
 
@@ -2775,7 +2775,7 @@ msgstr ""
 msgid "Saturation"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:859
+#: ../../src/gui/timerlist.cpp:860
 msgid "Saturday"
 msgstr ""
 
@@ -2791,7 +2791,7 @@ msgstr ""
 msgid "Save Settings now"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:938
+#: ../../src/gui/timerlist.cpp:939
 msgid "Save Timer"
 msgstr ""
 
@@ -2844,7 +2844,7 @@ msgstr ""
 msgid "Save settings now?"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1045
+#: ../../src/gui/timerlist.cpp:1046
 msgid "Save timer"
 msgstr ""
 
@@ -2977,18 +2977,18 @@ msgstr ""
 msgid "Scroll up"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:815 ../../../plugins/test/test.cpp:7317
+#: ../../src/gui/eventlist.cpp:816 ../../../plugins/test/test.cpp:7317
 #: ../../../plugins/netzkino/netzkino.cpp:338
 #: ../../../plugins/nfilm/nfilm.cpp:596
 #: ../../../plugins/youtube/youtube.cpp:443
 msgid "Search"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:769
+#: ../../src/gui/eventlist.cpp:770
 msgid "Search for keyword in EPG..."
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:958 ../../src/gui/eventlist.cpp:961
+#: ../../src/gui/eventlist.cpp:959 ../../src/gui/eventlist.cpp:962
 msgid "Search in EPG"
 msgstr ""
 
@@ -2996,7 +2996,7 @@ msgstr ""
 msgid "Search keyword"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:956
+#: ../../src/gui/eventlist.cpp:957
 msgid "Search within"
 msgstr ""
 
@@ -3162,7 +3162,7 @@ msgstr ""
 msgid "Shuffle"
 msgstr ""
 
-#: ../../src/gui/power_menu.cpp:85 ../../src/gui/timerlist.cpp:906
+#: ../../src/gui/power_menu.cpp:85 ../../src/gui/timerlist.cpp:907
 msgid "Shutdown"
 msgstr ""
 
@@ -3202,7 +3202,7 @@ msgid "Sleep time"
 msgstr ""
 
 #: ../../src/gui/sleeptimer.cpp:83 ../../src/gui/power_menu.cpp:73
-#: ../../src/gui/timerlist.cpp:821 ../../src/gui/timerlist.cpp:910
+#: ../../src/gui/timerlist.cpp:822 ../../src/gui/timerlist.cpp:911
 msgid "Sleeptimer"
 msgstr ""
 
@@ -3231,8 +3231,8 @@ msgstr ""
 msgid "South"
 msgstr ""
 
-#: ../../src/gui/power_menu.cpp:79 ../../src/gui/timerlist.cpp:818
-#: ../../src/gui/timerlist.cpp:908
+#: ../../src/gui/power_menu.cpp:79 ../../src/gui/timerlist.cpp:819
+#: ../../src/gui/timerlist.cpp:909
 msgid "Standby"
 msgstr ""
 
@@ -3264,7 +3264,7 @@ msgstr ""
 msgid "Start SatIP Client"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:959
+#: ../../src/gui/eventlist.cpp:960
 msgid "Start Search"
 msgstr ""
 
@@ -3319,8 +3319,8 @@ msgstr ""
 msgid "Stop subtitles"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:950 ../../src/gui/timerlist.cpp:953
-#: ../../src/gui/timerlist.cpp:1053 ../../src/gui/timerlist.cpp:1054
+#: ../../src/gui/timerlist.cpp:951 ../../src/gui/timerlist.cpp:954
+#: ../../src/gui/timerlist.cpp:1054 ../../src/gui/timerlist.cpp:1055
 msgid "Stop time"
 msgstr ""
 
@@ -3369,7 +3369,7 @@ msgstr ""
 msgid "Subtitles not found"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:862
+#: ../../src/gui/timerlist.cpp:863
 msgid "Sunday"
 msgstr ""
 
@@ -3567,7 +3567,7 @@ msgstr ""
 msgid "Themes"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:853
+#: ../../src/gui/timerlist.cpp:854
 msgid "Thursday"
 msgstr ""
 
@@ -3603,7 +3603,7 @@ msgstr ""
 msgid "Timer List"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1124
+#: ../../src/gui/timerlist.cpp:1125
 msgid "Timer conflict. Create the timer anyway?"
 msgstr ""
 
@@ -3615,12 +3615,12 @@ msgstr ""
 msgid "Timer settings"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:943 ../../src/gui/timerlist.cpp:1096
+#: ../../src/gui/timerlist.cpp:944 ../../src/gui/timerlist.cpp:1097
 msgid "Timer typ"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:266 ../../src/gui/rc_setup.cpp:102
-#: ../../src/gui/timerlist.cpp:789 ../../src/system/setting_helpers.cpp:272
+#: ../../src/gui/timerlist.cpp:790 ../../src/system/setting_helpers.cpp:272
 msgid "Timerlist"
 msgstr ""
 
@@ -3687,7 +3687,7 @@ msgstr ""
 msgid "Truncating, please wait"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:847
+#: ../../src/gui/timerlist.cpp:848
 msgid "Tuesday"
 msgstr ""
 
@@ -3747,8 +3747,8 @@ msgstr ""
 msgid "Unicable2 (JESS)"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:815 ../../src/gui/timerlist.cpp:823
-#: ../../src/gui/timerlist.cpp:866 ../../src/gui/timerlist.cpp:878
+#: ../../src/gui/timerlist.cpp:816 ../../src/gui/timerlist.cpp:824
+#: ../../src/gui/timerlist.cpp:867 ../../src/gui/timerlist.cpp:879
 msgid "Unknown"
 msgstr ""
 
@@ -3763,9 +3763,9 @@ msgstr ""
 #: ../../src/gui/network_setup.cpp:226 ../../src/gui/network_setup.cpp:228
 #: ../../src/gui/network_setup.cpp:230 ../../src/gui/network_setup.cpp:232
 #: ../../src/gui/network_setup.cpp:234 ../../src/gui/nfs.cpp:290
-#: ../../src/gui/nfs.cpp:315 ../../src/gui/timerlist.cpp:946
-#: ../../src/gui/timerlist.cpp:950 ../../src/gui/timerlist.cpp:1049
-#: ../../src/gui/timerlist.cpp:1053
+#: ../../src/gui/nfs.cpp:315 ../../src/gui/timerlist.cpp:947
+#: ../../src/gui/timerlist.cpp:951 ../../src/gui/timerlist.cpp:1050
+#: ../../src/gui/timerlist.cpp:1054
 msgid "Use 0..9, or use Up/Down,"
 msgstr ""
 
@@ -3904,7 +3904,7 @@ msgstr ""
 msgid "WebTV"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:850
+#: ../../src/gui/timerlist.cpp:851
 msgid "Wednesday"
 msgstr ""
 
@@ -3960,7 +3960,7 @@ msgstr ""
 #: ../../src/gui/audioplayer_setup.cpp:49
 #: ../../src/gui/pictureviewer_setup.cpp:54 ../../src/gui/nfs.cpp:139
 #: ../../src/gui/nfs.cpp:157 ../../src/gui/nfs.cpp:228
-#: ../../src/gui/recording_setup.cpp:58 ../../src/gui/timerlist.cpp:919
+#: ../../src/gui/recording_setup.cpp:58 ../../src/gui/timerlist.cpp:920
 #: ../../src/gui/misc_setup.cpp:78 ../../src/gui/widget/messagebox.cpp:472
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:127
 msgid "Yes"
@@ -4002,7 +4002,7 @@ msgstr ""
 msgid "Zap cycle"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:817 ../../src/gui/timerlist.cpp:907
+#: ../../src/gui/timerlist.cpp:818 ../../src/gui/timerlist.cpp:908
 msgid "Zap to"
 msgstr ""
 
@@ -4062,7 +4062,7 @@ msgstr ""
 msgid "always"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:961 ../../src/gui/timerlist.cpp:1061
+#: ../../src/gui/timerlist.cpp:962 ../../src/gui/timerlist.cpp:1062
 msgid "amount of timer repeats"
 msgstr ""
 
@@ -4113,8 +4113,8 @@ msgstr ""
 #: ../../src/gui/recording_setup.cpp:220 ../../src/gui/update.cpp:179
 #: ../../src/gui/update.cpp:870 ../../src/gui/update.cpp:884
 #: ../../src/gui/themes.cpp:227 ../../src/gui/video_setup.cpp:370
-#: ../../src/gui/timerlist.cpp:934 ../../src/gui/timerlist.cpp:1002
-#: ../../src/gui/timerlist.cpp:1041 ../../src/gui/misc_setup.cpp:263
+#: ../../src/gui/timerlist.cpp:935 ../../src/gui/timerlist.cpp:1003
+#: ../../src/gui/timerlist.cpp:1042 ../../src/gui/misc_setup.cpp:263
 #: ../../src/gui/misc_setup.cpp:598 ../../src/gui/misc_setup.cpp:709
 #: ../../src/gui/misc_setup.cpp:906 ../../src/gui/lcd_setup.cpp:136
 #: ../../src/gui/zapit_setup.cpp:160 ../../src/gui/parentallock_setup.cpp:103
@@ -4133,7 +4133,7 @@ msgstr ""
 msgid "be Cached? (Set in hours)"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:834 ../../src/gui/timerlist.cpp:889
+#: ../../src/gui/timerlist.cpp:835 ../../src/gui/timerlist.cpp:890
 msgid "biweekly"
 msgstr ""
 
@@ -4234,7 +4234,7 @@ msgstr ""
 msgid "create screenshot?"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:832 ../../src/gui/timerlist.cpp:887
+#: ../../src/gui/timerlist.cpp:833 ../../src/gui/timerlist.cpp:888
 msgid "daily"
 msgstr ""
 
@@ -4390,7 +4390,7 @@ msgstr ""
 msgid "foreign countries/expeditions"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:835 ../../src/gui/timerlist.cpp:890
+#: ../../src/gui/timerlist.cpp:836 ../../src/gui/timerlist.cpp:891
 msgid "fourweekly"
 msgstr ""
 
@@ -4589,7 +4589,7 @@ msgstr ""
 msgid "monochrom"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:836 ../../src/gui/timerlist.cpp:891
+#: ../../src/gui/timerlist.cpp:837 ../../src/gui/timerlist.cpp:892
 msgid "monthly"
 msgstr ""
 
@@ -4704,7 +4704,7 @@ msgstr ""
 msgid "no DiSEqC"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:806
+#: ../../src/gui/eventlist.cpp:807
 msgid "no epg found"
 msgstr ""
 
@@ -4770,13 +4770,13 @@ msgstr ""
 msgid "on locked bouquets"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:892 ../../src/gui/timerlist.cpp:959
-#: ../../src/gui/timerlist.cpp:960 ../../src/gui/timerlist.cpp:1057
-#: ../../src/gui/timerlist.cpp:1058
+#: ../../src/gui/timerlist.cpp:893 ../../src/gui/timerlist.cpp:960
+#: ../../src/gui/timerlist.cpp:961 ../../src/gui/timerlist.cpp:1058
+#: ../../src/gui/timerlist.cpp:1059
 msgid "on weekdays"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:831 ../../src/gui/timerlist.cpp:886
+#: ../../src/gui/timerlist.cpp:832 ../../src/gui/timerlist.cpp:887
 msgid "once"
 msgstr ""
 
@@ -4848,7 +4848,7 @@ msgstr ""
 msgid "rating"
 msgstr ""
 
-#: ../../src/gui/epgview.cpp:1042 ../../src/gui/eventlist.cpp:599
+#: ../../src/gui/epgview.cpp:1042 ../../src/gui/eventlist.cpp:600
 msgid "record"
 msgstr ""
 
@@ -4860,7 +4860,7 @@ msgstr ""
 msgid "record max items"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:974 ../../src/gui/timerlist.cpp:1073
+#: ../../src/gui/timerlist.cpp:975 ../../src/gui/timerlist.cpp:1074
 msgid "recording directory"
 msgstr ""
 
@@ -4889,8 +4889,8 @@ msgstr ""
 msgid "remove screenshot?"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:961 ../../src/gui/timerlist.cpp:963
-#: ../../src/gui/timerlist.cpp:1061 ../../src/gui/timerlist.cpp:1062
+#: ../../src/gui/timerlist.cpp:962 ../../src/gui/timerlist.cpp:964
+#: ../../src/gui/timerlist.cpp:1062 ../../src/gui/timerlist.cpp:1063
 msgid "repeats"
 msgstr ""
 
@@ -4926,7 +4926,7 @@ msgstr ""
 msgid "scan for Movies ..."
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:601
+#: ../../src/gui/eventlist.cpp:602
 msgid "schedule"
 msgstr ""
 
@@ -4934,11 +4934,11 @@ msgstr ""
 msgid "science fiction/fantasy/horror"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:600
+#: ../../src/gui/eventlist.cpp:601
 msgid "search"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:837
+#: ../../src/gui/timerlist.cpp:838
 msgid "see timer"
 msgstr ""
 
@@ -4966,7 +4966,7 @@ msgstr ""
 msgid "simple"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1595
+#: ../../src/gui/channellist.cpp:1596
 #, c-format
 msgid "since %02d:%02d"
 msgstr ""
@@ -5009,11 +5009,11 @@ msgstr ""
 msgid "social/spiritual sciences"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:703
+#: ../../src/gui/eventlist.cpp:704
 msgid "sorting(A..Z)"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:602 ../../src/gui/eventlist.cpp:705
+#: ../../src/gui/eventlist.cpp:603 ../../src/gui/eventlist.cpp:706
 msgid "sorting(Time)"
 msgstr ""
 
@@ -5029,7 +5029,7 @@ msgstr ""
 msgid "sports magazines"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1591
+#: ../../src/gui/channellist.cpp:1592
 #, c-format
 msgid "starts %02d:%02d"
 msgstr ""
@@ -5150,7 +5150,7 @@ msgstr ""
 msgid "water sports"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:833 ../../src/gui/timerlist.cpp:888
+#: ../../src/gui/timerlist.cpp:834 ../../src/gui/timerlist.cpp:889
 msgid "weekly"
 msgstr ""
 

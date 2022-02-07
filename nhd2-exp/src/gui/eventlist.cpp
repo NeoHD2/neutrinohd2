@@ -536,7 +536,8 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 		}
 		else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			listBox->paintHead();
+			//listBox->paintHead();
+			listBox->refresh();
 		} 
 		else
 		{

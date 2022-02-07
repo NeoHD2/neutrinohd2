@@ -1469,7 +1469,7 @@ void CFrameBuffer::saveScreen(int x, int y, int dx, int dy, fb_pixel_t * const m
 
 void CFrameBuffer::restoreScreen(int x, int y, int dx, int dy, fb_pixel_t * const memp)
 {
-	dprintf(DEBUG_DEBUG, "CFrameBuffer::restoreScreen\n");
+	//dprintf(DEBUG_DEBUG, "CFrameBuffer::restoreScreen\n");
 	
 	if (!getActive())
 		return;

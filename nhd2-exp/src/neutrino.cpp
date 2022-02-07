@@ -3566,7 +3566,7 @@ void CNeutrinoApp::RealRun(void)
 // handle msg
 int CNeutrinoApp::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 {
-	dprintf(DEBUG_DEBUG, "CNeutrinoApp::handleMsg: msg:%s\n", CRCInput::getSpecialKeyName(msg));
+	//dprintf(DEBUG_DEBUG, "CNeutrinoApp::handleMsg: msg:%s\n", CRCInput::getSpecialKeyName(msg));
 
 	int res = 0;
 
@@ -4351,7 +4351,7 @@ skip_message:
 	if ((msg >= RC_WithData) && (msg < RC_WithData + 0x10000000))
 		delete[] (unsigned char*) data;
 
-	dprintf(DEBUG_DEBUG, "CNeutrinoApp::handleMsg: messages_return::unhandled\n");
+	//dprintf(DEBUG_DEBUG, "CNeutrinoApp::handleMsg: messages_return::unhandled\n");
 
 	return messages_return::unhandled;
 }

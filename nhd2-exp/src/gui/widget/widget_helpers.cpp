@@ -128,7 +128,7 @@ void CCImage::paint()
 	if (iWidth > cCBox.iWidth) iWidth = cCBox.iWidth;
 	if (iHeight > cCBox.iHeight) iHeight = cCBox.iHeight;
 			
-	int startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (iWidth >> 1);
+	int startPosX = cCBox.iX + (cCBox.iWidth - iWidth)/2;
 			
 	if (scale)
 	{
@@ -777,9 +777,6 @@ CCLabel::CCLabel(const int x, const int y, const int dx, const int dy)
 	utf8 = true; 
 	font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE];
 	
-	//height = font->getHeight();
-	//width = 0;
-	
 	halign = CC_ALIGN_LEFT;
 	
 	label = "";
@@ -804,7 +801,7 @@ void CCLabel::paint()
 	int startPosX = cCBox.iX;
 	
 	if (halign == CC_ALIGN_CENTER)
-		startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (stringWidth >> 1);
+		startPosX = cCBox.iX + (cCBox.iWidth - stringWidth)/2;
 	else if (halign == CC_ALIGN_RIGHT)
 		startPosX = cCBox.iX + cCBox.iWidth - stringWidth;
 	
@@ -828,7 +825,7 @@ CCText::CCText(const int x, const int y, const int dx, const int dy)
 	color = COL_MENUCONTENT;
 	useBG = false;
 	
-	Text = "";
+	Text = " ";
 	
 	cc_type = CC_TEXT;
 }
@@ -1040,7 +1037,7 @@ void CCTime::paint()
 	if (timestr_len > cCBox.iWidth)
 		timestr_len = cCBox.iWidth;
 		
-	int startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (timestr_len >> 1);
+	int startPosX = cCBox.iX + (cCBox.iWidth - timestr_len)/2;
 	
 	font->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), timestr_len + 1, timestr.c_str(), color, 0, true);
 }
