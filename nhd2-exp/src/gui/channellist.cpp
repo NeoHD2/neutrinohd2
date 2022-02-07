@@ -1600,8 +1600,16 @@ void CChannelList::paint()
 					sprintf(cNoch, "(%d / %d min)", seit, noch);
 				}
 			}
+			
+			std::string option = "";
+			
+			if (!p_event->description.empty())
+			{
+			 	option = " - ";
+				option += p_event->description.c_str();
+			}
 
-			item = new ClistBoxItem(chanlist[i]->name.c_str(), true, p_event->description.c_str());
+			item = new ClistBoxItem(chanlist[i]->name.c_str(), true, option.c_str());
 
 			item->setNumber(chanlist[i]->number);
 			item->setPercent(runningPercent);
@@ -1611,6 +1619,8 @@ void CChannelList::paint()
 			item->setOptionInfo1(cSeit);
 			item->setInfo2(p_event->text.c_str());
 			item->setOptionInfo2(cNoch);
+			
+			item->setOptionFontColor(COL_INFOBAR_COLORED_EVENTS);
 
 			listBox->addItem(item);
 		}

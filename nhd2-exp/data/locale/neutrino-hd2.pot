@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-08 00:13+0100\n"
+"POT-Creation-Date: 2022-02-08 00:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2089,7 +2089,7 @@ msgstr ""
 msgid "New timer"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1510 ../../src/gui/channellist.cpp:1647
+#: ../../src/gui/channellist.cpp:1510 ../../src/gui/channellist.cpp:1657
 msgid "Next"
 msgstr ""
 
@@ -2184,7 +2184,7 @@ msgstr ""
 msgid "Not used"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1643
+#: ../../src/gui/channellist.cpp:1653
 msgid "Now"
 msgstr ""
 
@@ -3013,7 +3013,7 @@ msgid "Select audio track"
 msgstr ""
 
 #: ../../src/gui/osd_setup.cpp:527 ../../src/gui/audio_select.cpp:108
-#: ../../src/gui/widget/listbox.cpp:706
+#: ../../src/gui/widget/listbox.cpp:707
 msgid "Select language"
 msgstr ""
 
@@ -3984,7 +3984,7 @@ msgid ""
 " and <MENU> on your remote control."
 msgstr ""
 
-#: ../../src/gui/widget/listbox.cpp:848 ../../src/gui/widget/listbox.cpp:867
+#: ../../src/gui/widget/listbox.cpp:849 ../../src/gui/widget/listbox.cpp:868
 msgid "Youth protection"
 msgstr ""
 
