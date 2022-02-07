@@ -2924,7 +2924,7 @@ void ClistBox::paintHead()
 			
 				timer = new CCTime(xstartPos - timestr_len, itemBox.iY, timestr_len, hheight);
 				//timer->setPosition(xstartPos - timestr_len, itemBox.iY, timestr_len, hheight);
-				timer->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+				timer->setFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 				timer->setFormat(format);
 				timer->enableRepaint();
 				timer->paint();
@@ -2999,7 +2999,7 @@ void ClistBox::paintHead()
 			
 				timer = new CCTime(xstartPos - timestr_len, itemBox.iY, timestr_len, hheight);
 				timer->setPosition(xstartPos - timestr_len, itemBox.iY, timestr_len, hheight);
-				timer->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+				timer->setFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 				timer->setFormat(format);
 				timer->enableRepaint();
 				timer->paint();

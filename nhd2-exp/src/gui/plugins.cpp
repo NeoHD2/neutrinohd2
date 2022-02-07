@@ -361,7 +361,7 @@ void CPlugins::startScriptPlugin(int number)
 
 void CPlugins::startPlugin(int number)
 {
-	dprintf(DEBUG_NORMAL, "CPlugins::startPlugin: %s type:%d\n\n", plugin_list[number].pluginfile.c_str(), plugin_list[number].type);
+	dprintf(DEBUG_NORMAL, "CPlugins::startPlugin: %s type:%d\n", plugin_list[number].pluginfile.c_str(), plugin_list[number].type);
 	
 	// export neutrino settings to the environment
 	char tmp[32];

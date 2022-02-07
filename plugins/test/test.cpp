@@ -1048,7 +1048,7 @@ void CTestMenu::testCWindowWidget()
 	
 	// label
 	CCLabel testLabel;
-	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
+	testLabel.setFont(SNeutrinoSettings::FONT_TYPE_MENU_TITLE);
 	testLabel.setColor(COL_ORANGE);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponent label test :-)");
@@ -1859,7 +1859,7 @@ void CTestMenu::testMultiWidget()
 	
 	// label
 	CCLabel testLabel;
-	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
+	testLabel.setFont(SNeutrinoSettings::FONT_TYPE_MENU_TITLE);
 	testLabel.setColor(COL_GREEN);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponent label test :-)");
@@ -2704,7 +2704,7 @@ void CTestMenu::testCComponent()
 	
 	// label
 	CCLabel testLabel;
-	testLabel.setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]);
+	testLabel.setFont(SNeutrinoSettings::FONT_TYPE_MENU_TITLE);
 	testLabel.setColor(COL_GREEN);
 	testLabel.enablePaintBG();
 	testLabel.setText("this is a CComponet label test :-)");
@@ -5692,7 +5692,7 @@ void CTestMenu::testSkinSetup()
 // exec
 int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 {
-	dprintf(DEBUG_NORMAL, "\nCTestMenu::exec: actionKey:%s\n", actionKey.c_str());
+	dprintf(DEBUG_NORMAL, "CTestMenu::exec: actionKey:%s\n", actionKey.c_str());
 	
 	if(parent)
 		hide();

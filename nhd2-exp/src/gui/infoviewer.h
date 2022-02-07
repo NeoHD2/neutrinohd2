@@ -173,7 +173,7 @@ class CInfoViewer
 		std::string eventname;
 
 		void show_Data(bool calledFromEvent = false);
-		void paintTime(int posx, int posy, CFont * timeFont);
+		void paintTime(int posx, int posy, unsigned int timeFont);
 		void showButton_Audio();
 		void showButton_SubServices();
 		void showIcon_16_9();		

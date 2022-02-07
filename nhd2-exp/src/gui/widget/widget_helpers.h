@@ -31,6 +31,8 @@
 
 #include <driver/rcinput.h>
 
+
+extern CFont * g_Font[FONT_TYPE_COUNT];
 //
 class CMenuTarget;
 class CWidgetItem;
@@ -144,7 +146,7 @@ class CComponent
 		virtual void paintMainFrame(bool p){};
 		virtual void setColor(uint32_t col){};
 		virtual void setButtons(const struct button_label *button_label, const int button_count = 1){};
-		virtual void setFont(CFont *f){};
+		virtual void setFont(unsigned int f){};
 		virtual void setText(const char* text){};
 		virtual void enablePaintBG(){};
 		virtual void setHAlign(int h){};
@@ -413,10 +415,9 @@ class CCLabel : public CComponent
 		
 		//
 		uint8_t color;
-		CFont* font;
+		unsigned int font;
 		std::string label;
 		bool paintBG;
-		bool utf8;
 		
 		//
 		CCLabel(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
@@ -424,7 +425,7 @@ class CCLabel : public CComponent
 		
 		//
 		void setColor(uint8_t col){color = col;};
-		void setFont(CFont *f){font = f;};
+		void setFont(unsigned int f){font = f;};
 		void setText(const char* const text){label = text? text : "";};
 		void enablePaintBG(){paintBG = true;};
 		void setHAlign(int h){halign = h;};
@@ -516,7 +517,8 @@ class CCTime : public CComponent
 		
 		//
 		uint8_t color;
-		CFont* font;
+		//CFont* font;
+		unsigned int font;
 		std::string format;
 		
 		fb_pixel_t* background;
@@ -527,7 +529,7 @@ class CCTime : public CComponent
 		
 		//
 		void setColor(uint8_t col){color = col;};
-		void setFont(CFont *f){font = f;};
+		void setFont(unsigned int f){font = f;};
 		void setFormat(const char* const f){format = f? f : "";};
 		void setHAlign(int h){halign = h;};
 		
@@ -547,7 +549,7 @@ class CCCounter : public CComponent
 		
 		//
 		uint8_t color;
-		CFont* font;
+		unsigned int font;
 		time_t total_time;
 		time_t play_time;
 		
@@ -559,7 +561,7 @@ class CCCounter : public CComponent
 		
 		//
 		void setColor(uint8_t col){color = col;};
-		void setFont(CFont *f){font = f;};
+		void setFont(unsigned int f){font = f;};
 		void setHAlign(int h){halign = h;};
 		void setTotalTime(time_t tot_time){total_time = tot_time;};
 		void setPlayTime(time_t p_time){play_time = p_time;};
@@ -572,7 +574,7 @@ class CCCounter : public CComponent
 		void refresh();
 		
 		//
-		CFont* getFont(){return font;};
+		CFont* getFont(){return g_Font[font];};
 };
 
 // CWidgetItem

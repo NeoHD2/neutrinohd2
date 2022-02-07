@@ -1471,7 +1471,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 						
 				cc_refresh = xmlGetSignedNumericAttribute(label_node, "refresh", 0);
 						
-				char* text = NULL;
+				std::string text = "";
 				unsigned int l_halign = 0;
 							
 				text = xmlGetAttribute(label_node, (char*)"text");
@@ -1479,7 +1479,7 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 							
 				label = new CCLabel(cc_x, cc_y, cc_dx, cc_dy);
 							
-				if (text != NULL) label->setText(_(text));
+				if (!text.empty()) label->setText(_(text.c_str()));
 				label->setHAlign(l_halign);
 							
 				wdg->addCCItem(label);	

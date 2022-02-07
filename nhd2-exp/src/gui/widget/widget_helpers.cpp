@@ -774,8 +774,7 @@ CCLabel::CCLabel(const int x, const int y, const int dx, const int dy)
 	
 	color = COL_MENUCONTENT;
 	paintBG = false; 
-	utf8 = true; 
-	font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE];
+	font = SNeutrinoSettings::FONT_TYPE_MENU_TITLE;
 	
 	halign = CC_ALIGN_LEFT;
 	
@@ -791,9 +790,9 @@ void CCLabel::paint()
 	int stringWidth = 0;
 	int height = 0;
 	
-	if (font) height = font->getHeight();
+	height = g_Font[font]->getHeight();
 	
-	if (!label.empty()) stringWidth = font->getRenderWidth(label.c_str());
+	if (!label.empty()) stringWidth = g_Font[font]->getRenderWidth(label.c_str());
 	
 	if (stringWidth > cCBox.iWidth)
 		stringWidth = cCBox.iWidth;
@@ -805,7 +804,7 @@ void CCLabel::paint()
 	else if (halign == CC_ALIGN_RIGHT)
 		startPosX = cCBox.iX + cCBox.iWidth - stringWidth;
 	
-	if (!label.empty()) font->RenderString(startPosX, cCBox.iY + height + (cCBox.iHeight - height)/2, cCBox.iWidth, label.c_str(), color, 0, utf8, paintBG);
+	g_Font[font]->RenderString(startPosX, cCBox.iY + height + (cCBox.iHeight - height)/2, cCBox.iWidth, label.c_str(), color, 0, true, paintBG);
 }
 
 //
@@ -1007,7 +1006,7 @@ CCTime::CCTime(const int x, const int y, const int dx, const int dy)
 	cCBox.iWidth = dx;
 	cCBox.iHeight = dy;
 	
-	font = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE];
+	font = SNeutrinoSettings::FONT_TYPE_MENU_TITLE;
 	color = COL_MENUHEAD;
 	
 	background = NULL;
@@ -1032,14 +1031,14 @@ void CCTime::paint()
 	//
 	std::string timestr = getNowTimeStr(format.c_str());
 		
-	int timestr_len = font->getRenderWidth(timestr.c_str(), true); // UTF-8
+	int timestr_len = g_Font[font]->getRenderWidth(timestr.c_str(), true); // UTF-8
 	
 	if (timestr_len > cCBox.iWidth)
 		timestr_len = cCBox.iWidth;
 		
 	int startPosX = cCBox.iX + (cCBox.iWidth - timestr_len)/2;
 	
-	font->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), timestr_len + 1, timestr.c_str(), color, 0, true);
+	g_Font[font]->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), timestr_len + 1, timestr.c_str(), color, 0, true);
 }
 
 void CCTime::refresh()
@@ -1052,14 +1051,14 @@ void CCTime::refresh()
 	//
 	std::string timestr = getNowTimeStr(format.c_str());
 		
-	int timestr_len = font->getRenderWidth(timestr.c_str(), true); // UTF-8
+	int timestr_len = g_Font[font]->getRenderWidth(timestr.c_str(), true); // UTF-8
 	
 	if (timestr_len > cCBox.iWidth)
 		timestr_len = cCBox.iWidth;
 		
 	int startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (timestr_len >> 1);
 	
-	font->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), /*timestr_len + 1*/cCBox.iWidth, timestr.c_str(), color, 0, true);
+	g_Font[font]->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), cCBox.iWidth, timestr.c_str(), color, 0, true);
 }
 
 // CCCounter
@@ -1074,7 +1073,7 @@ CCCounter::CCCounter(const int x, const int y, const int dx, const int dy)
 	cCBox.iWidth = dx;
 	cCBox.iHeight = dy;
 	
-	font = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO];
+	font = SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO;
 	color = COL_INFOBAR;
 	
 	background = NULL;
@@ -1083,8 +1082,8 @@ CCCounter::CCCounter(const int x, const int y, const int dx, const int dy)
 	play_time = 0;
 	
 	//
-	cCBox.iWidth = font->getRenderWidth("00:00:00 / 00:00:00");
-	cCBox.iHeight = font->getHeight();
+	cCBox.iWidth = g_Font[font]->getRenderWidth("00:00:00 / 00:00:00");
+	cCBox.iHeight = g_Font[font]->getHeight();
 	
 	cc_type = CC_COUNTER;
 }
@@ -1105,12 +1104,12 @@ void CCCounter::paint()
 	char playTime[11];
 	strftime(playTime, 11, "%T/", gmtime(&play_time));//FIXME
 	
-	font->RenderString(cCBox.iX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), cCBox.iWidth/2, playTime, color, 0, true);
+	g_Font[font]->RenderString(cCBox.iX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), cCBox.iWidth/2, playTime, color, 0, true);
 	
 	// total_time
 	char totalTime[10];
 	strftime(totalTime, 10, "%T", gmtime(&total_time));//FIXME
-	font->RenderString(cCBox.iX + cCBox.iWidth/2, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), cCBox.iWidth/2, totalTime, color, 0, true);
+	g_Font[font]->RenderString(cCBox.iX + cCBox.iWidth/2, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), cCBox.iWidth/2, totalTime, color, 0, true);
 }
 
 void CCCounter::refresh()
@@ -1123,12 +1122,12 @@ void CCCounter::refresh()
 	// play_time
 	char playTime[11];
 	strftime(playTime, 11, "%T/", gmtime(&play_time));//FIXME
-	font->RenderString(cCBox.iX, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), cCBox.iWidth/2, playTime, color, 0, true);
+	g_Font[font]->RenderString(cCBox.iX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), cCBox.iWidth/2, playTime, color, 0, true);
 	
 	// total_time
 	char totalTime[10];
 	strftime(totalTime, 10, "%T", gmtime(&total_time));//FIXME
-	font->RenderString(cCBox.iX + cCBox.iWidth/2, cCBox.iY + (cCBox.iHeight - font->getHeight())/2 + font->getHeight(), cCBox.iWidth/2, totalTime, color, 0, true);
+	g_Font[font]->RenderString(cCBox.iX + cCBox.iWidth/2, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), cCBox.iWidth/2, totalTime, color, 0, true);
 }
 
 // CWidgetItem
@@ -1393,7 +1392,7 @@ void CHeaders::paint()
 	
 		timer = new CCTime();
 		timer->setPosition(startx - timestr_len, itemBox.iY, timestr_len, itemBox.iHeight);
-		timer->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+		timer->setFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 		timer->setFormat(format.c_str());
 		timer->enableRepaint();
 		timer->paint();

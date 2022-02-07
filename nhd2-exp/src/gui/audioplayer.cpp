@@ -607,7 +607,7 @@ void CAudioPlayerGui::paintInfo(CAudiofile& File)
 		// total time
 		timeCounter = new CCCounter(cFrameBox.iX + cFrameBox.iWidth - 10 - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("00:00:00 / 00:00:00"), cFrameBox.iY + cFrameBox.iHeight/2 - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight()/2, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("00:00:00 / 00:00:00"));
 		
-		timeCounter->setFont(g_Font[SNeutrinoSettings::FONT_TYPE_MENU]);
+		timeCounter->setFont(SNeutrinoSettings::FONT_TYPE_MENU);
 		timeCounter->setTotalTime(m_time_total);
 		timeCounter->setPlayTime(m_time_played);
 		

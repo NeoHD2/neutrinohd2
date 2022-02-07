@@ -292,16 +292,16 @@ void CInfoViewer::start()
 #endif	
 }
 
-void CInfoViewer::paintTime(int posx, int posy, CFont* timeFont)
+void CInfoViewer::paintTime(int posx, int posy, unsigned int timeFont)
 {
 	dprintf(DEBUG_INFO, "CInfoViewer::paintTime:\n");
 	
-	int time_left_width = 2 * timeFont->getRenderWidth(widest_number);
-	int time_dot_width = timeFont->getRenderWidth(":");
+	int time_left_width = 2 * g_Font[timeFont]->getRenderWidth(widest_number);
+	int time_dot_width = g_Font[timeFont]->getRenderWidth(":");
 	int time_width = 2*time_left_width + time_dot_width;
-	int time_height = timeFont->getHeight();
+	int time_height = g_Font[timeFont]->getHeight();
 
-	int timestr_len = timeFont->getRenderWidth("00:00:00");
+	int timestr_len = g_Font[timeFont]->getRenderWidth("00:00:00");
 	
 	if (gotTime && is_visible) 
 	{
@@ -378,7 +378,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight + buttonBarHeight, COL_INFOBAR_PLUS_0, g_settings.infobar_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.infobar_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient, g_settings.infobar_gradient_direction);
 
 	//time
-	paintTime(BoxEndX, ChanNameY, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]);
+	paintTime(BoxEndX, ChanNameY, SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME);
 
 	//sat name
 	char strChanNum[10];
