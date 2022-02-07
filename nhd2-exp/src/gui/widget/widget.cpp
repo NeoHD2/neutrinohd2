@@ -37,8 +37,6 @@
 
 CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 {
-	dprintf(DEBUG_INFO, "CWidget::\n");
-	
 	frameBuffer = CFrameBuffer::getInstance();
 
 	mainFrameBox.iX = x;
@@ -73,8 +71,6 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 
 CWidget::CWidget(CBox *position)
 {
-	dprintf(DEBUG_INFO, "CWidget::\n");
-	
 	frameBuffer = CFrameBuffer::getInstance();
 
 	mainFrameBox = *position;

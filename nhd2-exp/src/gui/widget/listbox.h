@@ -156,8 +156,8 @@ class CMenuItem
 		int item_width;
 
 		//
-		CFont* nameFont;
-		CFont* optionFont;
+		unsigned int nameFont;
+		unsigned int optionFont;
 
 		bool nLinesItem; // 2 lines Item 
 
@@ -225,8 +225,8 @@ class CMenuItem
 		virtual void setNumber(int nr){number = nr;};
 		virtual void setPercent(unsigned int percent){pb = true; runningPercent = percent;};
 
-		virtual void setNameFont(CFont* font){nameFont = font;};
-		virtual void setOptionFont(CFont* font){optionFont = font;};
+		virtual void setNameFont(unsigned int font){nameFont = font;};
+		virtual void setOptionFont(unsigned int font){optionFont = font;};
 
 		virtual void set2lines(void){nLinesItem = true;};
 		virtual void setWidgetType(int type){widgetType = type;};

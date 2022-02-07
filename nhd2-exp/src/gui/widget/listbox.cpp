@@ -68,8 +68,8 @@ CMenuItem::CMenuItem()
 	runningPercent = 0;
 	pb = false;
 
-	nameFont = g_Font[SNeutrinoSettings::FONT_TYPE_MENU];
-	optionFont = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER];
+	nameFont = SNeutrinoSettings::FONT_TYPE_MENU;
+	optionFont = SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER;
 			
 	//
 	nLinesItem = false;
@@ -1731,25 +1731,25 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// local
 				if(l_text != NULL)
 				{
-						nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+						g_Font[nameFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + g_Font[nameFont]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 				
 				// option
 				if(option_text != NULL)
 				{
-						optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, option_text, color, 0, true);
+						g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, option_text, color, 0, true);
 				}
 				
 				// info1
 				if (!info1.empty())
 				{
-					optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, info1.c_str(), color, 0, true);
+					g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, info1.c_str(), color, 0, true);
 				}
 				
 				// info 2
 				if (!info2.empty())
 				{
-					optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height/2 + height/4, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, info2.c_str(), color, 0, true);
+					g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height/2 + height/4, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, info2.c_str(), color, 0, true);
 				}
 			}
 			else
@@ -1757,13 +1757,13 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// local
 				if(l_text != NULL)
 				{
-						nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + nameFont->getHeight() + (height - nameFont->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+						g_Font[nameFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + g_Font[nameFont]->getHeight() + (height - g_Font[nameFont]->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
 				if(option_text != NULL)
 				{
-						optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + optionFont->getHeight() + (height - optionFont->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
+						g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + g_Font[optionFont]->getHeight() + (height - g_Font[optionFont]->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
 				}
 			}
 		}
@@ -1774,13 +1774,13 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// local
 				if(l_text != NULL)
 				{
-						nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+						g_Font[nameFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + g_Font[nameFont]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
 				if(option_text != NULL)
 				{
-						optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
+						g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, color, 0, true);
 				}
 			}
 			else
@@ -1788,7 +1788,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// local
 				if(l_text != NULL)
 				{
-					nameFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + nameFont->getHeight() + (height - nameFont->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+					g_Font[nameFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + g_Font[nameFont]->getHeight() + (height - g_Font[nameFont]->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
@@ -1798,7 +1798,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 					//get icon size
 					frameBuffer->getIconSize(NEUTRINO_ICON_HD, &iw, &ih);
 
-					optionFont->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + optionFont->getHeight() + (height - optionFont->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, option_text, color, 0, true);
+					g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + g_Font[optionFont]->getHeight() + (height - g_Font[optionFont]->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, option_text, color, 0, true);
 				}
 			}
 		}
@@ -2171,13 +2171,13 @@ int CPluginItem::paint(bool selected, bool /*AfterPulldown*/)
 			// local
 			if(l_text != NULL)
 			{
-					nameFont->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - ICON_OFFSET - icon_w, l_text, color, 0, true); // UTF-8
+					g_Font[nameFont]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + 3 + g_Font[nameFont]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - ICON_OFFSET - icon_w, l_text, color, 0, true); // UTF-8
 			}
 
 			// option
 			if(option_text != NULL)
 			{
-					optionFont->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - icon_w, option_text, color, 0, true);
+					g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - icon_w, option_text, color, 0, true);
 			}
 		}
 		else
@@ -2185,13 +2185,13 @@ int CPluginItem::paint(bool selected, bool /*AfterPulldown*/)
 			// local
 			if(l_text != NULL)
 			{
-				nameFont->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + 3 + nameFont->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - ICON_OFFSET - icon_w, l_text, color, 0, true); // UTF-8
+				g_Font[nameFont]->RenderString(x + BORDER_LEFT + icon_w + ICON_OFFSET, y + 3 + g_Font[nameFont]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - ICON_OFFSET - icon_w, l_text, color, 0, true); // UTF-8
 			}
 
 			// option
 			if(option_text != NULL)
 			{
-				optionFont->RenderString(x + BORDER_LEFT + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - optionFont->getHeight())/2 + optionFont->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - l_text_width - icon_w, option_text, color, 0, true);
+				g_Font[optionFont]->RenderString(x + BORDER_LEFT + ICON_OFFSET + l_text_width + ICON_OFFSET, y + (height - g_Font[optionFont]->getHeight())/2 + g_Font[optionFont]->getHeight(), dx - BORDER_LEFT - BORDER_RIGHT - ICON_OFFSET - l_text_width - icon_w, option_text, color, 0, true);
 			}
 		}
 		
