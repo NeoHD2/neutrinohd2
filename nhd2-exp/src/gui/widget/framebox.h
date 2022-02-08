@@ -64,8 +64,8 @@ class CFrame
 		std::string caption;
 		std::string option;
 
-		CFont *captionFont;
-		CFont *optionFont;
+		unsigned int captionFont;
+		unsigned int optionFont;
 
 		CMenuTarget* jumpTarget;
 		std::string actionKey;
@@ -112,8 +112,8 @@ class CFrame
 		virtual void setDirectKey(neutrino_msg_t key){directKey = key;};
 		
 		//
-		virtual void setCaptionFont(CFont * font){captionFont = font;};
-		virtual void setOptionFont(CFont *font){optionFont = font;}; 
+		virtual void setCaptionFont(unsigned int font){captionFont = font;};
+		virtual void setOptionFont(unsigned int font){optionFont = font;}; 
 
 		int exec(CMenuTarget *parent);
 		

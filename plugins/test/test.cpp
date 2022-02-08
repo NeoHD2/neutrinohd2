@@ -1229,7 +1229,7 @@ void CTestMenu::testCFrameBox1()
 	titleFrame->setPosition(&titleBox);
 	titleFrame->paintMainFrame(false);
 	titleFrame->setTitle(m_vMovieInfo[0].epgTitle.c_str());
-	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+	titleFrame->setCaptionFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 	titleFrame->setActive(false);
 
 	frameBoxWidget->addFrame(titleFrame);
@@ -1292,7 +1292,7 @@ void CTestMenu::testCFrameBox1()
 	// infoFrame
 	CFrame * infoFrame = new CFrame();
 	infoFrame->setPosition(playBox.iX + 300 + 10, playBox.iY, 300, 60);
-	infoFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+	infoFrame->setCaptionFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
 	infoFrame->setTitle("Movie Details");
 	infoFrame->setIconName(NEUTRINO_ICON_INFO);
 	infoFrame->setActionKey(this, "minfo");
@@ -1302,7 +1302,7 @@ void CTestMenu::testCFrameBox1()
 	// play
 	CFrame *playFrame = new CFrame();
 	playFrame->setPosition(&playBox);
-	playFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+	playFrame->setCaptionFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
 	playFrame->setTitle("Movie abspielen");
 	playFrame->setIconName(NEUTRINO_ICON_PLAY);
 	playFrame->setActionKey(this, "mplay");
@@ -1423,7 +1423,7 @@ void CTestMenu::testCFrameBoxWidget()
 	// home
 	CFrame *homeFrame = new CFrame();
 	homeFrame->setMode(FRAME_LABEL);
-	homeFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+	homeFrame->setCaptionFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 	int h_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("Home");
 	int h_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 	homeFrame->setPosition(box.iX + 10, box.iY + 40, h_w + 10, h_h);
@@ -1436,7 +1436,7 @@ void CTestMenu::testCFrameBoxWidget()
 	// setup
 	CFrame *setupFrame = new CFrame();
 	setupFrame->setMode(FRAME_LABEL);
-	setupFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+	setupFrame->setCaptionFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 	int s_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("Setup");
 	int s_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 	setupFrame->setPosition(box.iX + 10 + 5 + h_w + 20, box.iY + 40, s_w + 10, h_h);
@@ -1465,7 +1465,7 @@ void CTestMenu::testCFrameBoxWidget()
 		// title
 		CFrame * titleFrame = new CFrame();
 		titleFrame->setMode(FRAME_LABEL);
-		titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+		titleFrame->setCaptionFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 		int t_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth(m_vMovieInfo[0].epgTitle);
 		int t_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 		titleFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10, t_w, t_h);
@@ -1503,7 +1503,7 @@ void CTestMenu::testCFrameBoxWidget()
 		// other
 		CFrame *otherFrame = new CFrame();
 		otherFrame->setMode(FRAME_LABEL);
-		otherFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+		otherFrame->setCaptionFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 		int o_w = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getRenderWidth("andere Filme:");
 		int o_h = g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]->getHeight();
 		otherFrame->setPosition(box.iX + 10, box.iY + 40 + h_h + 10 + 250 + 10, o_w + 10, o_h);
@@ -3222,7 +3222,7 @@ void CTestMenu::testCInfoBox()
 	
 	CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	
-	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, "CInfoBox", NEUTRINO_ICON_INFO);	
+	CInfoBox * infoBox = new CInfoBox(&position, "CInfoBox", NEUTRINO_ICON_INFO);	
 	
 	infoBox->setShadowMode(SHADOW_ALL);
 	infoBox->setBackgroundColor(/*make16color(0xBEBEBE)*/COL_SILVER_PLUS_0);
@@ -3831,7 +3831,7 @@ void CTestMenu::testClistBox()
 	rightWidget->paintItemInfoShadow(SHADOW_ALL);
 	rightWidget->paintItemInfoFrame(true);
 	rightWidget->enableItemInfoSaveScreen();
-	rightWidget->setItemInfoFont(g_Font[SNeutrinoSettings::FONT_TYPE_GAMELIST_ITEMLARGE]);
+	rightWidget->setItemInfoFont(SNeutrinoSettings::FONT_TYPE_GAMELIST_ITEMLARGE);
 	
 	//
 	//rightWidget->paintScrollBar(true);
@@ -5173,7 +5173,7 @@ void CTestMenu::testShowActuellEPG()
 	
 	CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	
-	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, title.c_str(), NULL);
+	CInfoBox * infoBox = new CInfoBox(&position, title.c_str(), NULL);
 
 	infoBox->setText(buffer.c_str());
 	

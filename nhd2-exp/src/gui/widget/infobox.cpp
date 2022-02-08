@@ -54,16 +54,16 @@
 // Data IN/OUT:		
 // Return:		
 // Notes:		
-//////////////////////////////////////////////////////////////////////
-CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const char * title, const char * icon)
+///////////////////
+CInfoBox::CInfoBox(/*CFont *fontText, const int _mode,*/ const CBox* position, const char * title, const char * icon)
 {
 	initVar();
 
 	if(title != NULL)		
 		m_cTitle = title;
 
-	if(fontText != NULL)
-		m_pcFontText = fontText;
+	//if(fontText != NULL)
+	//	m_pcFontText = fontText;
 	
 	if(icon != NULL)		
 		m_cIcon = icon;
@@ -71,16 +71,16 @@ CInfoBox::CInfoBox(CFont *fontText, const int _mode, const CBox* position, const
 	if(position != NULL)	
 		m_cBoxFrame = *position;
 	
-	m_nMode = _mode;
+	//m_nMode = _mode;
 
 	// initialise the window frames first
 	initFramesRel();
 
 	m_pcTextBox = new CTextBox(&m_cBoxFrameText);
 	
-	m_pcTextBox->setFont(fontText);
-	m_pcTextBox->setMode(m_nMode);
-	m_pcTextBox->setShadowMode(shadowMode);
+	//m_pcTextBox->setFont(fontText);
+	//m_pcTextBox->setMode(m_nMode);
+	//m_pcTextBox->setShadowMode(shadowMode);
 
 	if(m_nMode & AUTO_WIDTH || m_nMode & AUTO_HIGH)
 	{
@@ -176,7 +176,7 @@ void CInfoBox::initVar(void)
 	
 	// text
 	m_nMode = SCROLL;
-	m_pcFontText = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
+	m_pcFontText = SNeutrinoSettings::FONT_TYPE_EPG_INFO1;
 	
 	// foot
 	footColor = COL_MENUFOOT_PLUS_0;
@@ -232,7 +232,7 @@ void CInfoBox::initFramesRel(void)
 // Return:		
 // Notes:		
 //////////////////////////////////////////////////////////////////////
-const struct button_label HButton = { NEUTRINO_ICON_BUTTON_HELP, ""};
+const struct button_label HButton = { NEUTRINO_ICON_BUTTON_HELP, " "};
 
 void CInfoBox::refreshTitle(void)
 {
@@ -258,7 +258,7 @@ void CInfoBox::refreshTitle(void)
 void CInfoBox::refreshFoot(void)
 {
 	CFooters footers(&m_cBoxFrameFootRel);
-	struct button_label Button = { NEUTRINO_ICON_INFO, "" };
+	struct button_label Button = { NEUTRINO_ICON_INFO, " " };
 	
 	footers.setColor(footColor);
 	footers.setRadius(footRadius);
@@ -368,9 +368,9 @@ void CInfoBox::setTextColor(uint8_t col)
 }
 
 //
-void CInfoBox::setFont(CFont * font_text)
+void CInfoBox::setFont(unsigned int font_text)
 {
-	if(m_pcTextBox != NULL)
+	//if(m_pcTextBox != NULL)
 		m_pcTextBox->setFont(font_text);
 }
 
@@ -385,11 +385,6 @@ void CInfoBox::setFont(CFont * font_text)
 bool CInfoBox::paint(void)
 {
 	dprintf(DEBUG_DEBUG, "CInfoBox::paint\n");
-	
-	// bg / mainFrame
-	//CWindow bg(&m_cBoxFrame);
-	//bg.setCorner(RADIUS_MID, CORNER_ALL);
-	//bg.paint();
 
 	// title
 	refreshTitle();
@@ -521,8 +516,11 @@ void InfoBox(const char * const text, const char * const title, const char * con
 {
 	CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	
-	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, title, icon);
+	CInfoBox * infoBox = new CInfoBox(&position, title, icon);
 
+	//
+	infoBox->setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
+	infoBox->setMode(SCROLL);
 	infoBox->setText(text, thumbnail, tw, th, tmode);
 	infoBox->exec();
 	delete infoBox;

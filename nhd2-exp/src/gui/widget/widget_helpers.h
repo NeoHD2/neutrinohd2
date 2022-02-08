@@ -314,7 +314,7 @@ class CItems2DetailsLine : public CComponent
 		int mode;
 		
 		// cutom mode
-		CFont* tFont;
+		unsigned int tFont;
 		int shadowMode;
 		bool savescreen;
 		bool paintframe;
@@ -339,7 +339,7 @@ class CItems2DetailsLine : public CComponent
 		virtual void setIcon(const char* const ic){icon = ic;};
 		
 		// custom mode
-		void setFont(CFont* f){tFont = f;};
+		void setFont(unsigned int f){tFont = f;};
 		void setShadowMode(int m){shadowMode = m;};
 		void enableSaveScreen(){savescreen = true;};
 		void paintFrame(bool p){paintframe = p;};
@@ -441,7 +441,7 @@ class CCText : public CComponent
 		CFrameBuffer* frameBuffer;
 		
 		//
-		CFont* font;
+		unsigned int font;
 		int mode;
 		std::string Text;
 		uint8_t color;
@@ -452,7 +452,7 @@ class CCText : public CComponent
 		virtual ~CCText(){};
 		
 		//
-		void setFont(CFont* f){font = f;};
+		void setFont(unsigned int f){font = f;};
 		void setMode(int m){mode = m;};
 		void setColor(uint8_t c){color = c;};
 		void setText(const char* const text){Text = text? text : "";};

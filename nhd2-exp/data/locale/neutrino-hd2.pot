@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-08 00:40+0100\n"
+"POT-Creation-Date: 2022-02-08 17:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -357,7 +357,7 @@ msgstr ""
 msgid "Bouquet back"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1511 ../../src/gui/eventlist.cpp:831
+#: ../../src/gui/channellist.cpp:1511 ../../src/gui/eventlist.cpp:833
 #: ../../src/gui/bouquetlist.cpp:72
 msgid "Bouquets"
 msgstr ""
@@ -482,7 +482,7 @@ msgid "Change sort order"
 msgstr ""
 
 #: ../../src/gui/streaminfo2.cpp:683 ../../src/gui/timerlist.cpp:1071
-#: ../../src/gui/movieinfo.cpp:1059 ../../src/gui/eventlist.cpp:830
+#: ../../src/gui/movieinfo.cpp:1059 ../../src/gui/eventlist.cpp:832
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:109
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:166
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3069
@@ -531,7 +531,7 @@ msgid "Channel:"
 msgstr ""
 
 #: ../../src/neutrino.cpp:416 ../../src/gui/rc_setup.cpp:303
-#: ../../src/gui/eventlist.cpp:832 ../../src/system/settings.cpp:48
+#: ../../src/gui/eventlist.cpp:834 ../../src/system/settings.cpp:48
 msgid "Channellist"
 msgstr ""
 
@@ -884,11 +884,11 @@ msgstr ""
 msgid "EPG Info 2"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:839
+#: ../../src/gui/eventlist.cpp:841
 msgid "EPG Info1"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:840
+#: ../../src/gui/eventlist.cpp:842
 msgid "EPG Info2"
 msgstr ""
 
@@ -896,7 +896,7 @@ msgstr ""
 msgid "EPG Long Description (hours)"
 msgstr ""
 
-#: ../../src/neutrino.cpp:406 ../../src/gui/eventlist.cpp:838
+#: ../../src/neutrino.cpp:406 ../../src/gui/eventlist.cpp:840
 msgid "EPG Title"
 msgstr ""
 
@@ -995,7 +995,7 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:770
+#: ../../src/gui/eventlist.cpp:772
 msgid "Event list"
 msgstr ""
 
@@ -1529,7 +1529,7 @@ msgstr ""
 #: ../../src/gui/rc_setup.cpp:222 ../../src/gui/scan_setup.cpp:288
 #: ../../src/gui/recording_setup.cpp:93 ../../src/gui/movieplayer.cpp:618
 #: ../../src/gui/movieplayer.cpp:1530 ../../src/gui/movieplayer.cpp:1646
-#: ../../src/gui/movieplayer.cpp:2177 ../../src/gui/movieplayer.cpp:2207
+#: ../../src/gui/movieplayer.cpp:2179 ../../src/gui/movieplayer.cpp:2209
 #: ../../src/gui/update.cpp:322 ../../src/gui/update.cpp:330
 #: ../../src/gui/update.cpp:403 ../../src/gui/update.cpp:477
 #: ../../src/gui/update.cpp:519 ../../src/gui/update.cpp:536
@@ -1540,7 +1540,7 @@ msgstr ""
 #: ../../src/gui/timerlist.cpp:1163 ../../src/gui/misc_setup.cpp:577
 #: ../../src/gui/service_menu.cpp:76 ../../src/gui/service_menu.cpp:78
 #: ../../src/gui/plugins.cpp:336 ../../src/gui/audioplayer.cpp:1282
-#: ../../src/gui/eventlist.cpp:510 ../../src/gui/eventlist.cpp:515
+#: ../../src/gui/eventlist.cpp:512 ../../src/gui/eventlist.cpp:517
 #: ../../src/gui/infoviewer.cpp:1113 ../../src/gui/widget/infobox.cpp:170
 #: ../../../plugins/test/test.cpp:3251 ../../../plugins/test/test.cpp:3266
 #: ../../../plugins/test/test.cpp:3282 ../../../plugins/test/test.cpp:3295
@@ -1598,7 +1598,7 @@ msgstr ""
 msgid "Jump (<0 back , >0 for):"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:751 ../../src/gui/movieinfo.cpp:1505
+#: ../../src/gui/movieplayer.cpp:751 ../../src/gui/movieinfo.cpp:1507
 msgid "Jump over"
 msgstr ""
 
@@ -1615,7 +1615,7 @@ msgstr ""
 msgid "Keybinding settings"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:954 ../../src/gui/eventlist.cpp:956
+#: ../../src/gui/eventlist.cpp:956 ../../src/gui/eventlist.cpp:958
 msgid "Keyword"
 msgstr ""
 
@@ -2065,7 +2065,7 @@ msgstr ""
 msgid "Neutrino restart"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:749 ../../src/gui/movieinfo.cpp:1501
+#: ../../src/gui/movieplayer.cpp:749 ../../src/gui/movieinfo.cpp:1503
 msgid "New Bookmark"
 msgstr ""
 
@@ -2411,7 +2411,7 @@ msgstr ""
 msgid "Prefer TMBD infos ?"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:2177
+#: ../../src/gui/movieplayer.cpp:2179
 msgid "Prefer TMDB Infos"
 msgstr ""
 
@@ -2597,7 +2597,7 @@ msgstr ""
 msgid "Records browser"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:974 ../../src/gui/eventlist.cpp:604
+#: ../../src/gui/epgplus.cpp:974 ../../src/gui/eventlist.cpp:606
 msgid "Refresh EPG"
 msgstr ""
 
@@ -2655,7 +2655,7 @@ msgid "Remount at start"
 msgstr ""
 
 #: ../../src/gui/movieplayer.cpp:750 ../../src/gui/timerlist.cpp:968
-#: ../../src/gui/timerlist.cpp:1068 ../../src/gui/movieinfo.cpp:1503
+#: ../../src/gui/timerlist.cpp:1068 ../../src/gui/movieinfo.cpp:1505
 msgid "Repeat"
 msgstr ""
 
@@ -2977,18 +2977,18 @@ msgstr ""
 msgid "Scroll up"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:816 ../../../plugins/test/test.cpp:7321
+#: ../../src/gui/eventlist.cpp:818 ../../../plugins/test/test.cpp:7321
 #: ../../../plugins/netzkino/netzkino.cpp:338
 #: ../../../plugins/nfilm/nfilm.cpp:596
 #: ../../../plugins/youtube/youtube.cpp:443
 msgid "Search"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:770
+#: ../../src/gui/eventlist.cpp:772
 msgid "Search for keyword in EPG..."
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:959 ../../src/gui/eventlist.cpp:962
+#: ../../src/gui/eventlist.cpp:961 ../../src/gui/eventlist.cpp:964
 msgid "Search in EPG"
 msgstr ""
 
@@ -2996,7 +2996,7 @@ msgstr ""
 msgid "Search keyword"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:957
+#: ../../src/gui/eventlist.cpp:959
 msgid "Search within"
 msgstr ""
 
@@ -3264,7 +3264,7 @@ msgstr ""
 msgid "Start SatIP Client"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:960
+#: ../../src/gui/eventlist.cpp:962
 msgid "Start Search"
 msgstr ""
 
@@ -3398,7 +3398,7 @@ msgstr ""
 msgid "TMDB"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:2207
+#: ../../src/gui/movieplayer.cpp:2209
 msgid "TMDB Infos are not available"
 msgstr ""
 
@@ -4704,7 +4704,7 @@ msgstr ""
 msgid "no DiSEqC"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:807
+#: ../../src/gui/eventlist.cpp:809
 msgid "no epg found"
 msgstr ""
 
@@ -4728,8 +4728,8 @@ msgid "normaly 50000, 0 to disable limit"
 msgstr ""
 
 #: ../../src/gui/streaminfo2.cpp:740 ../../src/gui/streaminfo2.cpp:750
-#: ../../src/gui/streaminfo2.cpp:779 ../../src/gui/eventlist.cpp:510
-#: ../../src/gui/eventlist.cpp:515
+#: ../../src/gui/streaminfo2.cpp:779 ../../src/gui/eventlist.cpp:512
+#: ../../src/gui/eventlist.cpp:517
 msgid "not available"
 msgstr ""
 
@@ -4848,7 +4848,7 @@ msgstr ""
 msgid "rating"
 msgstr ""
 
-#: ../../src/gui/epgview.cpp:1042 ../../src/gui/eventlist.cpp:600
+#: ../../src/gui/epgview.cpp:1042 ../../src/gui/eventlist.cpp:602
 msgid "record"
 msgstr ""
 
@@ -4926,7 +4926,7 @@ msgstr ""
 msgid "scan for Movies ..."
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:602
+#: ../../src/gui/eventlist.cpp:604
 msgid "schedule"
 msgstr ""
 
@@ -4934,7 +4934,7 @@ msgstr ""
 msgid "science fiction/fantasy/horror"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:601
+#: ../../src/gui/eventlist.cpp:603
 msgid "search"
 msgstr ""
 
@@ -5009,11 +5009,11 @@ msgstr ""
 msgid "social/spiritual sciences"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:704
+#: ../../src/gui/eventlist.cpp:706
 msgid "sorting(A..Z)"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:603 ../../src/gui/eventlist.cpp:706
+#: ../../src/gui/eventlist.cpp:605 ../../src/gui/eventlist.cpp:708
 msgid "sorting(Time)"
 msgstr ""
 

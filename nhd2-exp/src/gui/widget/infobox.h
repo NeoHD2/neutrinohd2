@@ -68,7 +68,7 @@ class CInfoBox
 		// text
 		CBox m_cBoxFrameText;
 		CTextBox *m_pcTextBox;
-		CFont* m_pcFontText;
+		unsigned int m_pcFontText;
 		int m_nMode;
 		int shadowMode;
 		
@@ -96,13 +96,13 @@ class CInfoBox
 		void setBigFonts();
 
 	public:
-		virtual ~CInfoBox();
 		CInfoBox();
-		CInfoBox(CFont *fontText,
-				   const int mode, 
+		CInfoBox(/*CFont *fontText,
+				   const int mode,*/ 
 				   const CBox* position, 
 				   const char * title,
 				   const char * icon = NEUTRINO_ICON_INFO);
+		virtual ~CInfoBox();
 
 		// head
 		void setTitle(const char *title){m_cTitle = title;};
@@ -116,7 +116,7 @@ class CInfoBox
 		void setMode(const int mode){m_nMode = mode;};
 		void setBackgroundColor(fb_pixel_t col);
 		void setTextColor(uint8_t col);
-		void setFont(CFont * font_text);
+		void setFont(unsigned int font_text);
 		void setShadowMode(int sm){shadowMode = sm;};
 		
 		// foot

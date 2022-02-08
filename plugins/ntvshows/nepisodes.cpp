@@ -144,7 +144,7 @@ void CNEpisodes::showMovieInfo(MI_MOVIE_INFO& movie)
 	
 	CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	
-	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, movie.epgTitle.c_str(), NEUTRINO_ICON_MOVIE);
+	CInfoBox * infoBox = new CInfoBox(&position, movie.epgTitle.c_str(), NEUTRINO_ICON_MOVIE);
 
 	infoBox->setText(buffer.c_str(), thumbnail.c_str(), picw, pich);
 	infoBox->exec();

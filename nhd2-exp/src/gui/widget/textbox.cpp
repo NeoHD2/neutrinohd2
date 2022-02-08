@@ -88,7 +88,7 @@ CTextBox::~CTextBox()
 	if (bigFonts) 
 	{
 		bigFonts = false;
-		m_pcFontText->setSize((int)(m_pcFontText->getSize() / BIG_FONT_FAKTOR));
+		g_Font[m_pcFontText]->setSize((int)(g_Font[m_pcFontText]->getSize() / BIG_FONT_FAKTOR));
 	}
 	
 	if(background)
@@ -106,8 +106,8 @@ void CTextBox::initVar(void)
 	m_nMode = SCROLL;
 	m_tMode = PIC_RIGHT;
 
-	m_pcFontText = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
-	m_nFontTextHeight = m_pcFontText->getHeight();
+	m_pcFontText = SNeutrinoSettings::FONT_TYPE_EPG_INFO1;
+	m_nFontTextHeight = g_Font[m_pcFontText]->getHeight();
 
 	m_nNrOfPages = 1;
 	m_nNrOfLines = 0;
@@ -185,11 +185,11 @@ void CTextBox::setBigFonts()
 
 	if(bigFonts)
 	{
-		m_pcFontText->setSize((int)(m_pcFontText->getSize() * BIG_FONT_FAKTOR));
+		g_Font[m_pcFontText]->setSize((int)(g_Font[m_pcFontText]->getSize() * BIG_FONT_FAKTOR));
 	}
 	else
 	{
-		m_pcFontText->setSize((int)(m_pcFontText->getSize() / BIG_FONT_FAKTOR));
+		g_Font[m_pcFontText]->setSize((int)(g_Font[m_pcFontText]->getSize() / BIG_FONT_FAKTOR));
 	}
 
 	refreshTextLineArray();
@@ -342,7 +342,7 @@ void CTextBox::refreshTextLineArray(void)
 			}
 
 			aktWord = m_cText.substr(pos_prev, pos - pos_prev + 1);
-			aktWordWidth = m_pcFontText->getRenderWidth(aktWord, true);
+			aktWordWidth = g_Font[m_pcFontText]->getRenderWidth(aktWord, true);
 			pos_prev = pos + 1;
 			
 			// if(aktWord.find("&quot;") == )
@@ -528,7 +528,7 @@ void CTextBox::refreshText(void)
 			}
 		}
 
-		m_pcFontText->RenderString(m_cFrameTextRel.iX + x_start, y, m_cFrameTextRel.iWidth, m_cLineArray[i].c_str(), m_textColor, 0, true, useBG); // UTF-8
+		g_Font[m_pcFontText]->RenderString(m_cFrameTextRel.iX + x_start, y, m_cFrameTextRel.iWidth, m_cLineArray[i].c_str(), m_textColor, 0, true, useBG); // UTF-8
 	}
 }
 
@@ -693,7 +693,7 @@ void CTextBox::hide(void)
 	if (bigFonts) 
 	{
 		bigFonts = false;
-		m_pcFontText->setSize((int)(m_pcFontText->getSize() / BIG_FONT_FAKTOR));
+		g_Font[m_pcFontText]->setSize((int)(g_Font[m_pcFontText]->getSize() / BIG_FONT_FAKTOR));
 	}
 	
 	if(savescreen && background) 

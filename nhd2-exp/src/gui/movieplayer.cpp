@@ -2168,8 +2168,10 @@ void CMoviePlayerGui::doTMDB(MI_MOVIE_INFO& movieFile)
 	
 		CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	
-		CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, movieFile.epgTitle.c_str(), NEUTRINO_ICON_TMDB);
+		CInfoBox * infoBox = new CInfoBox(&position, movieFile.epgTitle.c_str(), NEUTRINO_ICON_TMDB);
 
+		infoBox->setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
+		infoBox->setMode(SCROLL);
 		infoBox->setText(buffer.c_str(), tname.c_str(), p_w, p_h);
 		infoBox->exec();
 		delete infoBox;

@@ -357,9 +357,6 @@ int HintBox(const char * const Caption, const char * const Text, const int Width
 {
 	int res = messages_return::none;
 
-	neutrino_msg_t msg;
-	neutrino_msg_data_t data;
-
  	CHintBox * hintBox = new CHintBox(Caption, Text, Width, Icon);
 
 	res = hintBox->exec(timeout);

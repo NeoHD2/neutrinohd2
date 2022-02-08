@@ -607,7 +607,7 @@ class ClistBox : public CWidgetItem
 		bool iteminfosavescreen;
 		int iteminfoshadowmode;
 		bool iteminfoframe;
-		CFont* iteminfofont;
+		unsigned int iteminfofont;
 		uint32_t iteminfocolor;
 		bool iteminfoscale;
 
@@ -698,7 +698,7 @@ class ClistBox : public CWidgetItem
 		void paintItemInfoShadow(int m){iteminfoshadow = true; iteminfoshadowmode = m;};
 		void enableItemInfoSaveScreen(){iteminfosavescreen = true;};
 		void paintItemInfoFrame(bool p){iteminfoframe = p;};
-		void setItemInfoFont(CFont* f){iteminfofont = f;};
+		void setItemInfoFont(unsigned int f){iteminfofont = f;};
 		void setItemInfoColor(uint32_t col){iteminfocolor = col;};
 		void setItemInfoScaling(bool s){iteminfoscale = s;};
 

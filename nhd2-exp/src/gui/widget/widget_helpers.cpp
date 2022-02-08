@@ -515,7 +515,7 @@ CItems2DetailsLine::CItems2DetailsLine()
 	icon = "";
 	
 	// hintitem / hinticon
-	tFont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
+	tFont = SNeutrinoSettings::FONT_TYPE_EPG_INFO2;
 	shadowMode = SHADOW_NO;
 	savescreen = false;
 	paintframe = true;
@@ -819,7 +819,7 @@ CCText::CCText(const int x, const int y, const int dx, const int dy)
 	cCBox.iWidth = dx;
 	cCBox.iHeight = dy;
 	
-	font = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1];
+	font = SNeutrinoSettings::FONT_TYPE_EPG_INFO1;
 	mode = AUTO_WIDTH;
 	color = COL_MENUCONTENT;
 	useBG = false;

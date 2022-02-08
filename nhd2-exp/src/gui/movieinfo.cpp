@@ -1165,7 +1165,7 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 	// infoBox
 	CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
 	
-	CInfoBox * infoBox = new CInfoBox(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1], SCROLL, &position, movie_info.epgTitle.empty()? movie_info.file.getFileName().c_str() : movie_info.epgTitle.c_str(), NEUTRINO_ICON_MOVIE);
+	CInfoBox * infoBox = new CInfoBox(&position, movie_info.epgTitle.empty()? movie_info.file.getFileName().c_str() : movie_info.epgTitle.c_str(), NEUTRINO_ICON_MOVIE);
 
 	// scale pic
 	int p_w = 0;
@@ -1173,6 +1173,8 @@ void CMovieInfo::showMovieInfo(MI_MOVIE_INFO & movie_info)
 
 	::scaleImage(movie_info.tfile, &p_w, &p_h);
 
+	infoBox->setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
+	infoBox->setMode(SCROLL);
 	infoBox->setText(print_buffer.c_str(), movie_info.tfile.c_str(), p_w, p_h);
 	infoBox->exec();
 	delete infoBox;
@@ -1816,7 +1818,7 @@ void CMovieInfoWidget::funArt()
 	titleFrame->setPosition(titleBox.iX, titleBox.iY, t_w, titleBox.iHeight);
 	titleFrame->paintMainFrame(false);
 	titleFrame->setTitle(movieFile.epgTitle.c_str());
-	titleFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE]);
+	titleFrame->setCaptionFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 	titleFrame->setActive(false);
 
 	testFrameBox->addFrame(titleFrame);
@@ -1875,7 +1877,7 @@ void CMovieInfoWidget::funArt()
 	lengthFrame->paintMainFrame(false);
 		
 	lengthFrame->setTitle(l_buffer.c_str());
-	lengthFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+	lengthFrame->setCaptionFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
 	lengthFrame->setActive(false);
 
 	testFrameBox->addFrame(lengthFrame);
@@ -1898,7 +1900,7 @@ void CMovieInfoWidget::funArt()
 	// play
 	CFrame *playFrame = new CFrame();
 	playFrame->setPosition(&playBox);
-	playFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+	playFrame->setCaptionFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
 	playFrame->setTitle("Movie abspielen");
 	playFrame->setIconName(NEUTRINO_ICON_PLAY);
 	playFrame->setActionKey(this, "playMovie");
@@ -1908,7 +1910,7 @@ void CMovieInfoWidget::funArt()
 	// infoFrame
 	CFrame * infoFrame = new CFrame();
 	infoFrame->setPosition(&infoBox);
-	infoFrame->setCaptionFont(g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]);
+	infoFrame->setCaptionFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
 	infoFrame->setTitle("Movie Details");
 	infoFrame->setIconName(NEUTRINO_ICON_INFO);
 	infoFrame->setActionKey(this, "MovieInfo");

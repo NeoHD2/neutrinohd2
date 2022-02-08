@@ -106,7 +106,7 @@ class CTextBox : public CWidgetItem
 		CScrollBar scrollBar;
 
 		// text
-		CFont* m_pcFontText;
+		unsigned int m_pcFontText;
 		unsigned int m_nFontTextHeight;
 		bool useBG;
 
@@ -167,7 +167,7 @@ class CTextBox : public CWidgetItem
 		void setCorner(int c){m_textCorner = c;};
 		void setBackgroundColor(fb_pixel_t col){m_textBackgroundColor = col;};
 		void setTextColor(uint8_t col){m_textColor = col;};
-		void setFont(CFont * font_text){m_pcFontText = font_text;};
+		void setFont(unsigned int font_text){m_pcFontText = font_text;};
 		void setMode(const int mode);
 		void paintMainFrame(bool p){paintframe = p;};
 		void setShadowMode(int m = SHADOW_ALL){shadowMode = m;};

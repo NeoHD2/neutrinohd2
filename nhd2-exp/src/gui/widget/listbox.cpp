@@ -2281,7 +2281,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	iteminfosavescreen = false;
 	iteminfoshadowmode = SHADOW_NO;
 	iteminfoframe = true;
-	iteminfofont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
+	iteminfofont = SNeutrinoSettings::FONT_TYPE_EPG_INFO2;
 	iteminfocolor = COL_MENUCONTENT_PLUS_0;
 	iteminfoscale = false;
 	
@@ -2398,7 +2398,7 @@ ClistBox::ClistBox(CBox* position)
 	iteminfosavescreen = false;
 	iteminfoshadowmode = SHADOW_NO;
 	iteminfoframe = true;
-	iteminfofont = g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO2];
+	iteminfofont = SNeutrinoSettings::FONT_TYPE_EPG_INFO2;
 	iteminfocolor = COL_MENUCONTENT_PLUS_0;
 	iteminfoscale = false;
 
