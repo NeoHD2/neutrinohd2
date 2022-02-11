@@ -268,7 +268,7 @@
 		</HEAD>
 		
 		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1">
-			<ITEM id="5" localename="EPG / Timer" itemicon="hint_timers" target="3">
+			<ITEM id="5" localename="EPG / Timer" itemicon="hint_timers" target="3" directkey="0x2">
 			</ITEM>
 			<ITEM id="5" localename="Features" itemicon="hint_plugin" target="6">
 			</ITEM>

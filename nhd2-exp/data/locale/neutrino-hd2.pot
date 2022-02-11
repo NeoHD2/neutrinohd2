@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-08 17:33+0100\n"
+"POT-Creation-Date: 2022-02-11 15:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -366,7 +366,7 @@ msgstr ""
 msgid "Box / Channel Information"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:132
+#: ../../src/gui/dboxinfo.cpp:134
 msgid "Box Info"
 msgstr ""
 
@@ -445,7 +445,7 @@ msgstr ""
 msgid "CORNER NONE"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:151
+#: ../../src/gui/dboxinfo.cpp:153
 msgid "CPU:"
 msgstr ""
 
@@ -1185,7 +1185,7 @@ msgstr ""
 msgid "Friday"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:414
+#: ../../src/gui/dboxinfo.cpp:418
 msgid "Frontend:"
 msgstr ""
 
@@ -1248,7 +1248,7 @@ msgstr ""
 msgid "HD Kino"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:309
+#: ../../src/gui/dboxinfo.cpp:312
 msgid "HDD Devices:"
 msgstr ""
 
@@ -1351,15 +1351,15 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:477
+#: ../../src/gui/dboxinfo.cpp:482
 msgid "Here you can get HW infos about your STB.\n"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:481
+#: ../../src/gui/dboxinfo.cpp:486
 msgid "Here you can get infos about the Channel.\n"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:479
+#: ../../src/gui/dboxinfo.cpp:484
 msgid "Here you can get infos about the software.\n"
 msgstr ""
 
@@ -1458,7 +1458,7 @@ msgstr ""
 msgid "ISO-8859-1"
 msgstr ""
 
-#: ../../src/gui/dboxinfo.cpp:479 ../../src/gui/service_menu.cpp:120
+#: ../../src/gui/dboxinfo.cpp:484 ../../src/gui/service_menu.cpp:120
 msgid "Image info"
 msgstr ""
 
@@ -1521,7 +1521,7 @@ msgstr ""
 #: ../../src/neutrino.cpp:5299 ../../src/neutrino.cpp:5304
 #: ../../src/neutrino.cpp:5320 ../../src/neutrino.cpp:5325
 #: ../../src/neutrino.cpp:5337 ../../src/neutrino.cpp:5339
-#: ../../src/gui/osd_setup.cpp:448 ../../src/gui/dboxinfo.cpp:477
+#: ../../src/gui/osd_setup.cpp:448 ../../src/gui/dboxinfo.cpp:482
 #: ../../src/gui/cam_menu.cpp:201 ../../src/gui/cam_menu.cpp:229
 #: ../../src/gui/cam_menu.cpp:258 ../../src/gui/cam_menu.cpp:359
 #: ../../src/gui/cam_menu.cpp:473 ../../src/gui/cam_menu.cpp:488
@@ -3328,7 +3328,7 @@ msgstr ""
 msgid "Store Motor Position (a)"
 msgstr ""
 
-#: ../../src/gui/streaminfo2.cpp:521 ../../src/gui/dboxinfo.cpp:481
+#: ../../src/gui/streaminfo2.cpp:521 ../../src/gui/dboxinfo.cpp:486
 #: ../../src/gui/epg_menu.cpp:84
 msgid "Stream information"
 msgstr ""

@@ -79,6 +79,8 @@ CFrontend * getFE(int index);
 #include <dlfcn.h>
 #include <sys/mount.h>
 
+#include <system/settings.h>
+
 
 static int my_filter(const struct dirent * dent)
 {
@@ -143,15 +145,16 @@ void CDBoxInfoWidget::showInfo()
 	CPU += NEUTRINO_ICON_MENUITEM_IMAGEINFO;
 	CPU += ".png";
 	
-	CCIcon* cpuIcon = new CCIcon(Box.iX + 10, yPos, cpuIcon->iWidth, cpuIcon->iHeight);
+	CCIcon* cpuIcon = new CCIcon(Box.iX + 10, yPos, 100, 40);
 	cpuIcon->setIcon(CPU.c_str());
 	m_window->addCCItem(cpuIcon);
 	
 	CCLabel* cpuLabel = new CCLabel();
 	cpuLabel->setText(_("CPU:"));
 	cpuLabel->setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
+	g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth("CPU:");
 	cpuLabel->setColor(COL_MENUHEAD);
-	cpuLabel->setPosition(Box.iX + 10 + cpuIcon->iWidth + 10, yPos, cpuLabel->getWindowsPos().iWidth, cpuIcon->iHeight);
+	cpuLabel->setPosition(Box.iX + 10 + 100 + 10, yPos, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth("CPU:"), 40);
 	m_window->addCCItem(cpuLabel);
 	
 	yPos += cpuIcon->iHeight + 10;
@@ -186,7 +189,7 @@ void CDBoxInfoWidget::showInfo()
 				cpuLabel1->setText(hw.c_str());
 				cpuLabel1->setFont(SNeutrinoSettings::FONT_TYPE_MENU);
 				cpuLabel1->setColor(COL_MENUCONTENT);
-				cpuLabel1->setPosition(Box.iX + 10 + cpuIcon->iWidth, yPos, Box.iWidth, cpuLabel1->getWindowsPos().iHeight);
+				cpuLabel1->setPosition(Box.iX + 10 + 100, yPos, Box.iWidth, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight());
 				m_window->addCCItem(cpuLabel1);
 				
 				yPos += cpuLabel1->getWindowsPos().iHeight;
@@ -202,7 +205,7 @@ void CDBoxInfoWidget::showInfo()
 			cpuLabel2->setText(buffer);
 			cpuLabel2->setFont(SNeutrinoSettings::FONT_TYPE_MENU);
 			cpuLabel2->setColor(COL_MENUCONTENT);
-			cpuLabel2->setPosition(Box.iX + 10 + cpuIcon->iWidth, yPos, Box.iWidth, cpuLabel2->getWindowsPos().iHeight);
+			cpuLabel2->setPosition(Box.iX + 10 + 100, yPos, Box.iWidth, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight());
 			m_window->addCCItem(cpuLabel2);
 			
 			yPos += cpuLabel2->getWindowsPos().iHeight;
@@ -309,11 +312,12 @@ void CDBoxInfoWidget::showInfo()
 		hddLabel->setText(_("HDD Devices:"));
 		hddLabel->setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
 		hddLabel->setColor(COL_MENUHEAD);
-		hddLabel->setPosition(Box.iX + 10 + hddIcon->iWidth + 10, yPos, hddLabel->getWindowsPos().iWidth, hddIcon->iHeight);
+		hddLabel->setPosition(Box.iX + 10 + hddIcon->iWidth + 10, yPos, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth("HDD Devices:"), 40);
 		m_window->addCCItem(hddLabel);
+		
+		yPos += hddIcon->iHeight + 10;
 	}
 	
-	yPos += hddIcon->iHeight + 10;
 	for(int i1 = 0; i1 < n; i1++) 
 	{
 		char str[256];
@@ -388,15 +392,13 @@ void CDBoxInfoWidget::showInfo()
 		hddLabel1->setText(str);
 		hddLabel1->setFont(SNeutrinoSettings::FONT_TYPE_MENU);
 		hddLabel1->setColor(COL_MENUCONTENT);
-		hddLabel1->setPosition(Box.iX + 10 + hddIcon->iWidth, yPos, Box.iWidth, hddLabel1->getWindowsPos().iHeight);
+		hddLabel1->setPosition(Box.iX + 10 + 100, yPos, Box.iWidth, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight());
 		m_window->addCCItem(hddLabel1);
 			
 		yPos += hddLabel1->getWindowsPos().iHeight;
 	}
 	
 	//frontend
-	yPos += hddIcon->iHeight + 10;
-	
 	std::string TUNER = g_settings.hints_dir;
 	TUNER += "/";
 	TUNER += NEUTRINO_ICON_MENUITEM_SCANSETTINGS;
@@ -407,18 +409,21 @@ void CDBoxInfoWidget::showInfo()
 	
 	if (FrontendCount)
 	{
-		tunerIcon->setPosition(Box.iX + 10, yPos, tunerIcon->iWidth, tunerIcon->iHeight);
+		yPos += hddIcon->iHeight + 10;
+		
+		tunerIcon->setPosition(Box.iX + 10, yPos, 100, 40);
 		m_window->addCCItem(tunerIcon);
 		
 		CCLabel* tunerLabel = new CCLabel();
 		tunerLabel->setText(_("Frontend:"));
 		tunerLabel->setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
 		tunerLabel->setColor(COL_MENUHEAD);
-		tunerLabel->setPosition(Box.iX + 10 + tunerIcon->iWidth + 10, yPos, tunerLabel->getWindowsPos().iWidth, tunerIcon->iHeight);
+		tunerLabel->setPosition(Box.iX + 10 + 100 + 10, yPos, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth("Frontend:"), 40);
 		m_window->addCCItem(tunerLabel);
+		
+		yPos += tunerIcon->iHeight + 10;
 	}
 	
-	yPos += tunerIcon->iHeight + 10;
 	for(int i2 = 0; i2 < FrontendCount; i2++)
 	{
 		CFrontend * fe = getFE(i2);
@@ -430,7 +435,7 @@ void CDBoxInfoWidget::showInfo()
 		tunerLabel1->setText(tbuf);
 		tunerLabel1->setFont(SNeutrinoSettings::FONT_TYPE_MENU);
 		tunerLabel1->setColor(COL_MENUCONTENT);
-		tunerLabel1->setPosition(Box.iX + 10 + tunerIcon->iWidth, yPos, tunerLabel1->getWindowsPos().iWidth, tunerLabel1->getWindowsPos().iHeight);
+		tunerLabel1->setPosition(Box.iX + 10 + 100, yPos, Box.iWidth, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight());
 		m_window->addCCItem(tunerLabel1);
 		
 		yPos += tunerLabel1->getWindowsPos().iHeight;
