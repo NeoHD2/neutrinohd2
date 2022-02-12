@@ -322,7 +322,7 @@ void CMessageBox::initFrames(void)
 
 	m_cBoxWindow->enableSaveScreen();
 	m_cBoxWindow->setShadowMode(g_settings.menu_shadow? SHADOW_ALL : SHADOW_NO);
-	m_cBoxWindow->setCorner(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID, CORNER_ALL);
+	m_cBoxWindow->setCorner(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius, g_settings.Head_corner | g_settings.Foot_corner);
 }
 
 void CMessageBox::paint(void)
@@ -343,7 +343,7 @@ void CMessageBox::refresh()
 	CHeaders headers(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + 1, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + 1, m_width - 2, m_theight - 2, m_caption.c_str(), m_iconfile.c_str());
 	
 	headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
-	headers.setRadius(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID);
+	headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);
 	
 	headers.paint();
 

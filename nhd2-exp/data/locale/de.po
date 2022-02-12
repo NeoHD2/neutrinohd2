@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-12 20:56+0100\n"
+"POT-Creation-Date: 2022-02-12 22:40+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1894,13 +1894,17 @@ msgstr ""
 msgid "Save settings now"
 msgstr "Einstellungen jetzt speichern"
 
+#, fuzzy
 msgid "Save settings now?"
-msgstr "Einstellungen jetzt speichern?"
+msgstr "Einstellungen jetzt speichern"
 
 msgid "Save timer"
 msgstr ""
 
 msgid "Save/Restore epg on reboot"
+msgstr ""
+
+msgid "Saving current theme!"
 msgstr ""
 
 msgid "Saving keymap, please wait..."
@@ -2880,8 +2884,9 @@ msgstr ""
 msgid "dmesg"
 msgstr ""
 
+#, fuzzy
 msgid "do you want to reload channel lists?"
-msgstr "Wollen Sie die Kanal Listen neu laden?"
+msgstr "Kanallisten neu laden"
 
 msgid "documentary"
 msgstr ""
@@ -3455,6 +3460,14 @@ msgstr ""
 #, fuzzy
 msgid ""
 "this need Neutrino restart\n"
+"do you want really to restart?"
+msgstr ""
+"Diese Einstellung braucht Neutrino neu Start\n"
+"willst Du wirklich Neutrino neu starten?"
+
+#, fuzzy
+msgid ""
+"this needs Neutrino restart\n"
 "do you want really to restart?"
 msgstr ""
 "Diese Einstellung braucht Neutrino neu Start\n"

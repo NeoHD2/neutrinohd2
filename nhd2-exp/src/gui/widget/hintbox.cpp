@@ -122,7 +122,7 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	m_cBoxWindow = new CWindow(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
 	m_cBoxWindow->enableSaveScreen();
 	m_cBoxWindow->setShadowMode(g_settings.menu_shadow);
-	m_cBoxWindow->setCorner(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID, CORNER_ALL);
+	m_cBoxWindow->setCorner(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius, g_settings.Head_corner | g_settings.Foot_corner);
 	
 	// HG
 	paintHG = true;
@@ -161,7 +161,7 @@ void CHintBox::refresh(void)
 	CHeaders headers(&cFrameBoxTitle, caption.c_str(), iconfile.c_str());
 
 	headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
-	headers.setRadius(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID);
+	headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);
 	headers.paint();
 
 	// body text

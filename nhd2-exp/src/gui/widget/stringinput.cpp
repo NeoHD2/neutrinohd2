@@ -454,12 +454,12 @@ void CStringInput::paint()
 	//box
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);;
+	m_cBoxWindow.setCorner(g_settings.Head_radius, g_settings.Head_corner | g_settings.Foot_corner);
 	m_cBoxWindow.paint();
 
 	// head
 	CHeaders headers(x, y, width, hheight, name.c_str(), iconfile.c_str());
-	headers.setRadius(RADIUS_MID);
+	headers.setRadius(g_settings.Head_radius);
 	headers.setCorner(CORNER_TOP);
 	headers.paint();
 

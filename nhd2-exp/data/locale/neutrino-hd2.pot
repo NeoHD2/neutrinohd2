@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-12 20:56+0100\n"
+"POT-Creation-Date: 2022-02-12 22:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Alpha"
 msgstr ""
 
-#: ../../src/gui/alphasetup.cpp:192 ../../../plugins/test/test.cpp:5263
+#: ../../src/gui/alphasetup.cpp:192 ../../../plugins/test/test.cpp:5267
 msgid "Alpha Setup"
 msgstr ""
 
@@ -307,7 +307,7 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:284 ../../src/gui/osd_setup.cpp:289
 #: ../../src/gui/osd_setup.cpp:294 ../../src/gui/osd_setup.cpp:311
 #: ../../src/gui/osd_setup.cpp:375 ../../src/gui/osd_setup.cpp:386
-#: ../../../plugins/test/test.cpp:5346
+#: ../../../plugins/test/test.cpp:5350
 msgid "Background"
 msgstr ""
 
@@ -709,7 +709,7 @@ msgstr ""
 msgid "Default gateway"
 msgstr ""
 
-#: ../../src/gui/themes.cpp:127 ../../src/gui/themes.cpp:238
+#: ../../src/gui/themes.cpp:127 ../../src/gui/themes.cpp:239
 msgid "Default theme"
 msgstr ""
 
@@ -814,7 +814,7 @@ msgid "Diseqc input"
 msgstr ""
 
 #: ../../src/gui/lcd_setup.cpp:128 ../../src/gui/lcd_setup.cpp:145
-#: ../../../plugins/test/test.cpp:5336
+#: ../../../plugins/test/test.cpp:5340
 msgid "Display Settings"
 msgstr ""
 
@@ -1518,24 +1518,24 @@ msgstr ""
 #: ../../src/neutrino.cpp:4137 ../../src/neutrino.cpp:4178
 #: ../../src/neutrino.cpp:4187 ../../src/neutrino.cpp:4206
 #: ../../src/neutrino.cpp:4371 ../../src/neutrino.cpp:5290
-#: ../../src/neutrino.cpp:5299 ../../src/neutrino.cpp:5304
-#: ../../src/neutrino.cpp:5320 ../../src/neutrino.cpp:5325
-#: ../../src/neutrino.cpp:5337 ../../src/neutrino.cpp:5339
-#: ../../src/gui/osd_setup.cpp:448 ../../src/gui/dboxinfo.cpp:482
-#: ../../src/gui/cam_menu.cpp:201 ../../src/gui/cam_menu.cpp:229
-#: ../../src/gui/cam_menu.cpp:258 ../../src/gui/cam_menu.cpp:359
-#: ../../src/gui/cam_menu.cpp:473 ../../src/gui/cam_menu.cpp:488
-#: ../../src/gui/hdd_menu.cpp:146 ../../src/gui/network_setup.cpp:159
-#: ../../src/gui/rc_setup.cpp:222 ../../src/gui/scan_setup.cpp:288
-#: ../../src/gui/recording_setup.cpp:93 ../../src/gui/movieplayer.cpp:618
-#: ../../src/gui/movieplayer.cpp:1530 ../../src/gui/movieplayer.cpp:1646
-#: ../../src/gui/movieplayer.cpp:2179 ../../src/gui/movieplayer.cpp:2209
-#: ../../src/gui/update.cpp:322 ../../src/gui/update.cpp:330
-#: ../../src/gui/update.cpp:403 ../../src/gui/update.cpp:477
-#: ../../src/gui/update.cpp:519 ../../src/gui/update.cpp:536
-#: ../../src/gui/update.cpp:559 ../../src/gui/update.cpp:609
-#: ../../src/gui/update.cpp:619 ../../src/gui/update.cpp:645
-#: ../../src/gui/themes.cpp:89 ../../src/gui/themes.cpp:127
+#: ../../src/neutrino.cpp:5299 ../../src/neutrino.cpp:5320
+#: ../../src/neutrino.cpp:5325 ../../src/neutrino.cpp:5337
+#: ../../src/neutrino.cpp:5339 ../../src/gui/osd_setup.cpp:448
+#: ../../src/gui/dboxinfo.cpp:482 ../../src/gui/cam_menu.cpp:201
+#: ../../src/gui/cam_menu.cpp:229 ../../src/gui/cam_menu.cpp:258
+#: ../../src/gui/cam_menu.cpp:359 ../../src/gui/cam_menu.cpp:473
+#: ../../src/gui/cam_menu.cpp:488 ../../src/gui/hdd_menu.cpp:146
+#: ../../src/gui/network_setup.cpp:159 ../../src/gui/rc_setup.cpp:222
+#: ../../src/gui/scan_setup.cpp:288 ../../src/gui/recording_setup.cpp:93
+#: ../../src/gui/movieplayer.cpp:618 ../../src/gui/movieplayer.cpp:1530
+#: ../../src/gui/movieplayer.cpp:1646 ../../src/gui/movieplayer.cpp:2179
+#: ../../src/gui/movieplayer.cpp:2209 ../../src/gui/update.cpp:322
+#: ../../src/gui/update.cpp:330 ../../src/gui/update.cpp:403
+#: ../../src/gui/update.cpp:477 ../../src/gui/update.cpp:519
+#: ../../src/gui/update.cpp:536 ../../src/gui/update.cpp:559
+#: ../../src/gui/update.cpp:609 ../../src/gui/update.cpp:619
+#: ../../src/gui/update.cpp:645 ../../src/gui/themes.cpp:89
+#: ../../src/gui/themes.cpp:127 ../../src/gui/themes.cpp:148
 #: ../../src/gui/pictureviewer.cpp:419 ../../src/gui/video_setup.cpp:437
 #: ../../src/gui/timerlist.cpp:1163 ../../src/gui/misc_setup.cpp:577
 #: ../../src/gui/service_menu.cpp:76 ../../src/gui/service_menu.cpp:78
@@ -1544,8 +1544,8 @@ msgstr ""
 #: ../../src/gui/infoviewer.cpp:1113 ../../src/gui/widget/infobox.cpp:170
 #: ../../../plugins/test/test.cpp:3251 ../../../plugins/test/test.cpp:3266
 #: ../../../plugins/test/test.cpp:3282 ../../../plugins/test/test.cpp:3295
-#: ../../../plugins/test/test.cpp:3343 ../../../plugins/test/test.cpp:5726
-#: ../../../plugins/test/test.cpp:5732 ../../../plugins/icecast/icecast.cpp:665
+#: ../../../plugins/test/test.cpp:3343 ../../../plugins/test/test.cpp:5730
+#: ../../../plugins/test/test.cpp:5736 ../../../plugins/icecast/icecast.cpp:665
 #: ../../../plugins/moviebrowser/tstool.cpp:278
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:918
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:945
@@ -2299,7 +2299,7 @@ msgstr ""
 msgid "PCM Delay"
 msgstr ""
 
-#: ../../src/gui/psisetup.cpp:339 ../../../plugins/test/test.cpp:5273
+#: ../../src/gui/psisetup.cpp:339 ../../../plugins/test/test.cpp:5277
 msgid "PSI Setup"
 msgstr ""
 
@@ -2826,12 +2826,11 @@ msgstr ""
 #: ../../src/gui/scan_setup.cpp:533 ../../src/gui/scan_setup.cpp:660
 #: ../../src/gui/scan_setup.cpp:793 ../../src/gui/scan_setup.cpp:827
 #: ../../src/gui/recording_setup.cpp:93 ../../src/gui/recording_setup.cpp:224
-#: ../../src/gui/update.cpp:874 ../../src/gui/themes.cpp:99
-#: ../../src/gui/themes.cpp:231 ../../src/gui/video_setup.cpp:374
-#: ../../src/gui/misc_setup.cpp:267 ../../src/gui/misc_setup.cpp:602
-#: ../../src/gui/misc_setup.cpp:713 ../../src/gui/misc_setup.cpp:910
-#: ../../src/gui/lcd_setup.cpp:140 ../../src/gui/zapit_setup.cpp:164
-#: ../../src/gui/parentallock_setup.cpp:107
+#: ../../src/gui/update.cpp:874 ../../src/gui/themes.cpp:231
+#: ../../src/gui/video_setup.cpp:374 ../../src/gui/misc_setup.cpp:267
+#: ../../src/gui/misc_setup.cpp:602 ../../src/gui/misc_setup.cpp:713
+#: ../../src/gui/misc_setup.cpp:910 ../../src/gui/lcd_setup.cpp:140
+#: ../../src/gui/zapit_setup.cpp:164 ../../src/gui/parentallock_setup.cpp:107
 #: ../../src/gui/movieplayer_setup.cpp:99
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:807
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:850
@@ -2840,7 +2839,7 @@ msgstr ""
 msgid "Save settings now"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5290 ../../src/neutrino.cpp:5304
+#: ../../src/neutrino.cpp:5290
 msgid "Save settings now?"
 msgstr ""
 
@@ -2850,6 +2849,10 @@ msgstr ""
 
 #: ../../src/gui/misc_setup.cpp:722
 msgid "Save/Restore epg on reboot"
+msgstr ""
+
+#: ../../src/gui/themes.cpp:99
+msgid "Saving current theme!"
 msgstr ""
 
 #: ../../src/gui/rc_setup.cpp:222
@@ -2888,19 +2891,19 @@ msgstr ""
 #: ../../../plugins/test/test.cpp:3476 ../../../plugins/test/test.cpp:3768
 #: ../../../plugins/test/test.cpp:3899 ../../../plugins/test/test.cpp:4048
 #: ../../../plugins/test/test.cpp:4196 ../../../plugins/test/test.cpp:4340
-#: ../../../plugins/test/test.cpp:4501 ../../../plugins/test/test.cpp:5511
-#: ../../../plugins/test/test.cpp:5570 ../../../plugins/test/test.cpp:6240
-#: ../../../plugins/test/test.cpp:6270 ../../../plugins/test/test.cpp:6300
-#: ../../../plugins/test/test.cpp:6330 ../../../plugins/test/test.cpp:6363
-#: ../../../plugins/test/test.cpp:6393 ../../../plugins/test/test.cpp:6423
-#: ../../../plugins/test/test.cpp:6453 ../../../plugins/test/test.cpp:6529
-#: ../../../plugins/test/test.cpp:6591 ../../../plugins/test/test.cpp:6692
-#: ../../../plugins/test/test.cpp:6734 ../../../plugins/test/test.cpp:6776
-#: ../../../plugins/test/test.cpp:6818 ../../../plugins/test/test.cpp:6860
-#: ../../../plugins/test/test.cpp:6902 ../../../plugins/test/test.cpp:6944
-#: ../../../plugins/test/test.cpp:6986 ../../../plugins/test/test.cpp:7097
-#: ../../../plugins/test/test.cpp:7179 ../../../plugins/test/test.cpp:7222
-#: ../../../plugins/test/test.cpp:7273 ../../../plugins/test/test.cpp:7328
+#: ../../../plugins/test/test.cpp:4501 ../../../plugins/test/test.cpp:5515
+#: ../../../plugins/test/test.cpp:5574 ../../../plugins/test/test.cpp:6244
+#: ../../../plugins/test/test.cpp:6274 ../../../plugins/test/test.cpp:6304
+#: ../../../plugins/test/test.cpp:6334 ../../../plugins/test/test.cpp:6367
+#: ../../../plugins/test/test.cpp:6397 ../../../plugins/test/test.cpp:6427
+#: ../../../plugins/test/test.cpp:6457 ../../../plugins/test/test.cpp:6533
+#: ../../../plugins/test/test.cpp:6595 ../../../plugins/test/test.cpp:6696
+#: ../../../plugins/test/test.cpp:6738 ../../../plugins/test/test.cpp:6780
+#: ../../../plugins/test/test.cpp:6822 ../../../plugins/test/test.cpp:6864
+#: ../../../plugins/test/test.cpp:6906 ../../../plugins/test/test.cpp:6948
+#: ../../../plugins/test/test.cpp:6990 ../../../plugins/test/test.cpp:7101
+#: ../../../plugins/test/test.cpp:7183 ../../../plugins/test/test.cpp:7226
+#: ../../../plugins/test/test.cpp:7277 ../../../plugins/test/test.cpp:7332
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2906
 #: ../../../plugins/nfilm/nfilm.cpp:167 ../../../plugins/nfilm/nfilm.cpp:189
 #: ../../../plugins/ntvshows/ntvshows.cpp:133
@@ -2977,7 +2980,7 @@ msgstr ""
 msgid "Scroll up"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:818 ../../../plugins/test/test.cpp:7321
+#: ../../src/gui/eventlist.cpp:818 ../../../plugins/test/test.cpp:7325
 #: ../../../plugins/netzkino/netzkino.cpp:338
 #: ../../../plugins/nfilm/nfilm.cpp:596
 #: ../../../plugins/youtube/youtube.cpp:443
@@ -3473,7 +3476,7 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:7495
+#: ../../../plugins/test/test.cpp:7499
 msgid "Test Menu"
 msgstr ""
 
@@ -5074,10 +5077,15 @@ msgstr ""
 msgid "the filesize is 0 Bytes"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:448 ../../src/gui/osd_setup.cpp:991
-#: ../../src/gui/osd_setup.cpp:1002
+#: ../../src/gui/osd_setup.cpp:448 ../../src/gui/osd_setup.cpp:1002
 msgid ""
 "this need Neutrino restart\n"
+"do you want really to restart?"
+msgstr ""
+
+#: ../../src/gui/osd_setup.cpp:991 ../../src/gui/themes.cpp:148
+msgid ""
+"this needs Neutrino restart\n"
 "do you want really to restart?"
 msgstr ""
 

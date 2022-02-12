@@ -5301,7 +5301,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	}
 	else if (actionKey == "saveskinsettings")
 	{
-		if (MessageBox(_("Information"), _("Save settings now?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		//if (MessageBox(_("Information"), _("Save settings now?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			if (!g_settings.use_default_skin)
 			{

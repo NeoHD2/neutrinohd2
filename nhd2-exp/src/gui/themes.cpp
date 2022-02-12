@@ -96,7 +96,7 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 				//
 				if (!nameInput->getExitPressed())
 				{
-					HintBox(_("Save current theme"), _("Save settings now"));
+					HintBox(_("Save current theme"), _("Saving current theme!"));
 					
 					if (g_settings.use_default_skin)
 						saveFile((char*)((std::string)USERDIR + nameInput->getString().c_str() + FILE_PREFIX).c_str());
@@ -145,12 +145,12 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 			//
 			if (!g_settings.use_default_skin)
 			{
-				//if (MessageBox(_("Information"), _("Neutrino restart"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+				if (MessageBox(_("Information"), _("this needs Neutrino restart\ndo you want really to restart?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 				{
 					CNeutrinoApp::getInstance()->exec(NULL, "saveskinsettings");
 					
-					//CNeutrinoApp::getInstance()->unloadSkin();
-					//CNeutrinoApp::getInstance()->exec(NULL, "restart");
+					CNeutrinoApp::getInstance()->unloadSkin();
+					CNeutrinoApp::getInstance()->exec(NULL, "restart");
 				}
 			}
 
@@ -231,11 +231,13 @@ int CThemes::Show()
 	themes.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 
 	themes.addItem(new CMenuForwarder(_("Save current theme"), true , NULL, this, "saveCurrentTheme", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
-
-	themes.addItem( new CMenuSeparator(LINE) );
 	
 	//set default theme
-	themes.addItem(new CMenuForwarder(_("Default theme"), true, NULL, this, "theme_default", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	if (g_settings.use_default_skin)
+	{
+		themes.addItem( new CMenuSeparator(LINE) );
+		themes.addItem(new CMenuForwarder(_("Default theme"), true, NULL, this, "theme_default", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	}
 	
 	readThemes(themes);
 

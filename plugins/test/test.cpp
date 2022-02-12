@@ -4643,7 +4643,7 @@ void CTestMenu::testClistBox6()
 
 void CTestMenu::testCFrameBox()
 {
-	dprintf(DEBUG_NORMAL, "\ntestCFrameBox\n");
+	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCFrameBox\n");
 
 	// frameBox
 	CBox topBox;
@@ -4667,6 +4667,7 @@ void CTestMenu::testCFrameBox()
 	frame->setActionKey(this, "help");
 	frame->setColor(COL_RED_PLUS_0);
 	frame->setGradient(DARK2LIGHT2DARK);
+	frame->setHAlign(CC_ALIGN_CENTER);
 	frameBoxWidget->addFrame(frame);
 	
 	frame = new CFrame();
@@ -4675,6 +4676,7 @@ void CTestMenu::testCFrameBox()
 	frame->setActionKey(this, "help");
 	frame->setColor(COL_GREEN_PLUS_0);
 	frame->setGradient(LIGHT2DARK);
+	frame->setHAlign(CC_ALIGN_CENTER);
 	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
@@ -4683,6 +4685,7 @@ void CTestMenu::testCFrameBox()
 	frame->setOption("(2019)");
 	frame->setActionKey(this, "help");
 	frame->setColor(COL_NOBEL_PLUS_0);
+	frame->setHAlign(CC_ALIGN_CENTER);
 	frameBoxWidget->addFrame(frame);
 	
 	// pic
@@ -4699,6 +4702,7 @@ void CTestMenu::testCFrameBox()
 	frame->setActionKey(this, "exit");
 	frame->setGradient(LIGHT2DARK);
 	frame->setColor(COL_BLUE_PLUS_0);
+	frame->setHAlign(CC_ALIGN_CENTER);
 	frameBoxWidget->addFrame(frame);
 
 	frameBoxWidget->setSelected(selected);
