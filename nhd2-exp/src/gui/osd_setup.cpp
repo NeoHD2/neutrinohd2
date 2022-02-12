@@ -1087,8 +1087,8 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 	if (!actionKey.empty())
 	{
-		// FIXME: localize
-		if (MessageBox(_("Skin Style Selection"), _("Skin Style selection?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		//
+		if (MessageBox(_("Skin Style Selection"), _("this needs Neutrino restart\nSkin Style selection?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
 			//
 			std::string skinConfigFile = CONFIGDIR "/skins/";
@@ -1106,6 +1106,9 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 			skinConfig += ".config";
 			
 			CNeutrinoApp::getInstance()->saveSkinConfig(skinConfig.c_str());
+			
+			usleep(1000);
+			CNeutrinoApp::getInstance()->exec(NULL, "restart");
 		}
 		
 		return ret;
