@@ -167,6 +167,7 @@
 #include <gui/themes.h>
 //
 #include <gui/mediaplayer.h>
+#include <gui/epg_menu.h>
 
 #include <system/localize.h>
 #include <system/settings.h>

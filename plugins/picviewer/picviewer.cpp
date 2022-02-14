@@ -189,7 +189,7 @@ void CPicViewer::showMenu()
 		item->setNumber(i + 1);	
 		item->setOptionInfo(timestring);
 		
-		item->setItemIcon(playlist[i].Filename.c_str());
+		item->setHintIcon(playlist[i].Filename.c_str());
 		item->setHint(timestring);
 
 		plist->addItem(item);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-13 21:50+0100\n"
+"POT-Creation-Date: 2022-02-14 12:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -296,7 +296,7 @@ msgstr ""
 msgid "BOTTOM RIGHT"
 msgstr ""
 
-#: ../../src/gui/widget/messagebox.cpp:526
+#: ../../src/gui/widget/messagebox.cpp:516
 msgid "Back"
 msgstr ""
 
@@ -462,8 +462,8 @@ msgstr ""
 #: ../../src/gui/rc_setup.cpp:87 ../../src/gui/update.cpp:659
 #: ../../src/gui/update.cpp:718 ../../src/gui/widget/messagebox.cpp:81
 #: ../../src/gui/widget/messagebox.cpp:130
-#: ../../src/gui/widget/messagebox.cpp:432
-#: ../../src/gui/widget/messagebox.cpp:526
+#: ../../src/gui/widget/messagebox.cpp:422
+#: ../../src/gui/widget/messagebox.cpp:516
 msgid "Cancel"
 msgstr ""
 
@@ -1057,7 +1057,7 @@ msgid "Favorites"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:110 ../../src/neutrino_menue.cpp:234
-#: ../../src/gui/infoviewer.cpp:481
+#: ../../src/gui/infoviewer.cpp:481 ../../../plugins/test/test.cpp:5570
 msgid "Features"
 msgstr ""
 
@@ -1544,8 +1544,9 @@ msgstr ""
 #: ../../src/gui/infoviewer.cpp:1113 ../../src/gui/widget/infobox.cpp:170
 #: ../../../plugins/test/test.cpp:3248 ../../../plugins/test/test.cpp:3263
 #: ../../../plugins/test/test.cpp:3279 ../../../plugins/test/test.cpp:3292
-#: ../../../plugins/test/test.cpp:3340 ../../../plugins/test/test.cpp:5723
-#: ../../../plugins/test/test.cpp:5729 ../../../plugins/icecast/icecast.cpp:665
+#: ../../../plugins/test/test.cpp:3340 ../../../plugins/test/test.cpp:5582
+#: ../../../plugins/test/test.cpp:5728 ../../../plugins/test/test.cpp:5734
+#: ../../../plugins/icecast/icecast.cpp:665
 #: ../../../plugins/moviebrowser/tstool.cpp:278
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:918
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:945
@@ -1833,6 +1834,7 @@ msgid "Media"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:101 ../../src/gui/mediaplayer.cpp:62
+#: ../../../plugins/test/test.cpp:5590
 msgid "Media Player"
 msgstr ""
 
@@ -2119,7 +2121,7 @@ msgstr ""
 #: ../../src/gui/pictureviewer_setup.cpp:53 ../../src/gui/nfs.cpp:139
 #: ../../src/gui/nfs.cpp:157 ../../src/gui/nfs.cpp:227
 #: ../../src/gui/recording_setup.cpp:57 ../../src/gui/timerlist.cpp:919
-#: ../../src/gui/misc_setup.cpp:77 ../../src/gui/widget/messagebox.cpp:499
+#: ../../src/gui/misc_setup.cpp:77 ../../src/gui/widget/messagebox.cpp:489
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:126
 msgid "No"
 msgstr ""
@@ -2204,7 +2206,7 @@ msgstr ""
 msgid "Numeric Zap"
 msgstr ""
 
-#: ../../src/gui/widget/messagebox.cpp:526
+#: ../../src/gui/widget/messagebox.cpp:516
 msgid "OK"
 msgstr ""
 
@@ -2404,6 +2406,7 @@ msgid "Position:"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:113 ../../src/gui/power_menu.cpp:64
+#: ../../../plugins/test/test.cpp:5586
 msgid "Power Menu"
 msgstr ""
 
@@ -2892,18 +2895,18 @@ msgstr ""
 #: ../../../plugins/test/test.cpp:3892 ../../../plugins/test/test.cpp:4041
 #: ../../../plugins/test/test.cpp:4189 ../../../plugins/test/test.cpp:4333
 #: ../../../plugins/test/test.cpp:4494 ../../../plugins/test/test.cpp:5508
-#: ../../../plugins/test/test.cpp:5567 ../../../plugins/test/test.cpp:6237
-#: ../../../plugins/test/test.cpp:6267 ../../../plugins/test/test.cpp:6297
-#: ../../../plugins/test/test.cpp:6327 ../../../plugins/test/test.cpp:6360
-#: ../../../plugins/test/test.cpp:6390 ../../../plugins/test/test.cpp:6420
-#: ../../../plugins/test/test.cpp:6450 ../../../plugins/test/test.cpp:6526
-#: ../../../plugins/test/test.cpp:6588 ../../../plugins/test/test.cpp:6689
-#: ../../../plugins/test/test.cpp:6731 ../../../plugins/test/test.cpp:6773
-#: ../../../plugins/test/test.cpp:6815 ../../../plugins/test/test.cpp:6857
-#: ../../../plugins/test/test.cpp:6899 ../../../plugins/test/test.cpp:6941
-#: ../../../plugins/test/test.cpp:6983 ../../../plugins/test/test.cpp:7094
-#: ../../../plugins/test/test.cpp:7176 ../../../plugins/test/test.cpp:7219
-#: ../../../plugins/test/test.cpp:7270 ../../../plugins/test/test.cpp:7325
+#: ../../../plugins/test/test.cpp:6242 ../../../plugins/test/test.cpp:6272
+#: ../../../plugins/test/test.cpp:6302 ../../../plugins/test/test.cpp:6332
+#: ../../../plugins/test/test.cpp:6365 ../../../plugins/test/test.cpp:6395
+#: ../../../plugins/test/test.cpp:6425 ../../../plugins/test/test.cpp:6455
+#: ../../../plugins/test/test.cpp:6531 ../../../plugins/test/test.cpp:6593
+#: ../../../plugins/test/test.cpp:6694 ../../../plugins/test/test.cpp:6736
+#: ../../../plugins/test/test.cpp:6778 ../../../plugins/test/test.cpp:6820
+#: ../../../plugins/test/test.cpp:6862 ../../../plugins/test/test.cpp:6904
+#: ../../../plugins/test/test.cpp:6946 ../../../plugins/test/test.cpp:6988
+#: ../../../plugins/test/test.cpp:7099 ../../../plugins/test/test.cpp:7181
+#: ../../../plugins/test/test.cpp:7224 ../../../plugins/test/test.cpp:7275
+#: ../../../plugins/test/test.cpp:7330
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2906
 #: ../../../plugins/nfilm/nfilm.cpp:167 ../../../plugins/nfilm/nfilm.cpp:189
 #: ../../../plugins/ntvshows/ntvshows.cpp:133
@@ -2980,7 +2983,7 @@ msgstr ""
 msgid "Scroll up"
 msgstr ""
 
-#: ../../src/gui/eventlist.cpp:818 ../../../plugins/test/test.cpp:7318
+#: ../../src/gui/eventlist.cpp:818 ../../../plugins/test/test.cpp:7323
 #: ../../../plugins/netzkino/netzkino.cpp:338
 #: ../../../plugins/nfilm/nfilm.cpp:596
 #: ../../../plugins/youtube/youtube.cpp:443
@@ -3071,6 +3074,7 @@ msgid "Server IP"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:107 ../../src/gui/service_menu.cpp:97
+#: ../../../plugins/test/test.cpp:5574
 msgid "Service"
 msgstr ""
 
@@ -3095,6 +3099,7 @@ msgid "Set in hours"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:104 ../../src/gui/main_setup.cpp:79
+#: ../../../plugins/test/test.cpp:5578
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3296
 msgid "Settings"
 msgstr ""
@@ -3472,7 +3477,7 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:7492
+#: ../../../plugins/test/test.cpp:7497
 msgid "Test Menu"
 msgstr ""
 
@@ -3596,6 +3601,10 @@ msgstr ""
 
 #: ../../src/gui/cam_menu.cpp:488
 msgid "Timeout waiting CI menu ready"
+msgstr ""
+
+#: ../../../plugins/test/test.cpp:5566
+msgid "Timer / EPG"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:266
@@ -3960,7 +3969,7 @@ msgstr ""
 #: ../../src/gui/pictureviewer_setup.cpp:54 ../../src/gui/nfs.cpp:139
 #: ../../src/gui/nfs.cpp:157 ../../src/gui/nfs.cpp:228
 #: ../../src/gui/recording_setup.cpp:58 ../../src/gui/timerlist.cpp:920
-#: ../../src/gui/misc_setup.cpp:78 ../../src/gui/widget/messagebox.cpp:472
+#: ../../src/gui/misc_setup.cpp:78 ../../src/gui/widget/messagebox.cpp:462
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:127
 msgid "Yes"
 msgstr ""

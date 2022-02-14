@@ -419,7 +419,7 @@ void CTSBrowser::showMenu()
 	{
 		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "mplay");
 
-		item->setItemIcon(m_vMovieInfo[i].tfile.c_str());
+		item->setHintIcon(m_vMovieInfo[i].tfile.c_str());
 	
 		item->setHint(m_vMovieInfo[i].epgInfo1.empty() ? m_vMovieInfo[i].epgInfo2.c_str() : m_vMovieInfo[i].epgInfo1.c_str());
 

@@ -687,7 +687,7 @@ void CInternetRadio::showMenu()
 		item->setInfo1(tmp.c_str());
 
 		item->setHint(tmp.c_str());
-		item->setItemIcon(cover.c_str());
+		item->setHintIcon(cover.c_str());
 
 		ilist->addItem(item);
 	}

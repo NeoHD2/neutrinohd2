@@ -2008,7 +2008,7 @@ void CMoviePlayerGui::showPlaylist()
 
 		item->setInfo2(playlist[i].epgInfo2.c_str());
 
-		item->setItemIcon(file_exists(playlist[i].tfile.c_str())? playlist[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+		item->setHintIcon(file_exists(playlist[i].tfile.c_str())? playlist[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 		item->set2lines();
 

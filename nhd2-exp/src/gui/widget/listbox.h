@@ -215,10 +215,12 @@ class CMenuItem
 
 		//
 		virtual void setHint(const char* const Text){itemHint =  Text;};
+		virtual void setHintIcon(const char* const icon){itemIcon = icon;};
 
 		//
 		virtual void setIconName(const char* const icon){iconName = icon;};
-		virtual void setItemIcon(const char* const icon){itemIcon = icon;};
+		//virtual void setItemIcon(const char* const icon){itemIcon = icon;};
+		//virtual void setHintIcon(const char* const icon){itemIcon = icon;};
 
 		//
 		virtual void setIcon1(const char* const icon){icon1 = icon;};

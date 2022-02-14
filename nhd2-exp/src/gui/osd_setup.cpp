@@ -952,7 +952,7 @@ void CSkinManager::showMenu()
 				hint += "/";
 				hint += namelist[i]->d_name;
 				hint += "/prev.png";
-				item->setItemIcon(hint.c_str());
+				item->setHintIcon(hint.c_str());
 				item->setHint(_("Here you can select a skin from the following list."));
 				
 				if (!g_settings.use_default_skin && g_settings.preferred_skin == namelist[i]->d_name)

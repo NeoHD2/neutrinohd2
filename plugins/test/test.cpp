@@ -953,7 +953,7 @@ void CTestMenu::testCWidget()
 
 		item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-		item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+		item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 		item->set2lines();
 
@@ -1724,7 +1724,7 @@ void CTestMenu::testClistBoxWidget()
 
 		item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-		item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+		item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 		item->set2lines();
 
@@ -2141,7 +2141,7 @@ DOFILM:
 
 		item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-		item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+		item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 		rightWidget->addItem(item);
 	}
@@ -3777,7 +3777,7 @@ void CTestMenu::testClistBox()
 		item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 		//item->setOptionInfo2("OptionInfo2");
 
-		item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+		item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 		//item->set2lines();
 
@@ -3908,7 +3908,7 @@ void CTestMenu::testClistBox2()
 		item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 		//item->setOptionInfo2("OptionInfo2");
 
-		item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+		item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 		item->set2lines();
 
@@ -4057,7 +4057,7 @@ void CTestMenu::testClistBox3()
 		item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 		//item->setOptionInfo2("OptionInfo2");
 
-		item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+		item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 		//item->set2lines();
 
@@ -4202,7 +4202,7 @@ void CTestMenu::testClistBox4()
 
 		item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-		item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+		item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 		item->set2lines();
 
@@ -4349,7 +4349,7 @@ void CTestMenu::testClistBox5()
 		item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 		//item->setOptionInfo2("OptionInfo2");
 
-		item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+		item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 		item->set2lines();
 
@@ -4510,7 +4510,7 @@ void CTestMenu::testClistBox6()
 		item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 		//item->setOptionInfo2("OptionInfo2");
 
-		item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+		item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 		item->set2lines();
 
@@ -5561,38 +5561,43 @@ void CTestMenu::testCMenuWidget1()
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCMenuWidget (menu mode)\n");
 	
 	// our listBox
-	menuWidget = new CMenuWidget("CMenuWidget(Menu Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+	menuWidget = new CMenuWidget("CMenuWidget(Menu Mode)", NEUTRINO_ICON_MOVIE);
 
-	//
-	CHintBox loadBox("CMenuWidget(menu mode)", _("Scan for Movies ..."));
-	loadBox.paint();
-	loadMoviePlaylist();
-	loadBox.hide();
+	item = new CMenuForwarder(_("Timer / EPG"), true, NULL, new CEPGMenuHandler());
+	item->setHintIcon(NEUTRINO_ICON_MENUITEM_SLEEPTIMER);
+	menuWidget->addItem(item);
 	
-	// add items
-	for (unsigned int i = 0; i < m_vMovieInfo.size(); i++)
-	{
-		item = new ClistBoxItem(m_vMovieInfo[i].epgTitle.c_str(), true, NULL, this, "mplay", RC_nokey, NULL, file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+	item = new CMenuForwarder(_("Features"), true, NULL, CNeutrinoApp::getInstance(), "features");
+	item->setHintIcon(NEUTRINO_ICON_MENUITEM_FEATURES);
+	menuWidget->addItem(item);
+	
+	item = new CMenuForwarder(_("Service"), true, NULL, new CServiceMenu());
+	item->setHintIcon(NEUTRINO_ICON_MENUITEM_SERVICE);
+	menuWidget->addItem(item);
+	
+	item = new CMenuForwarder(_("Settings"), true, NULL, new CMainSettingsMenu());
+	item->setHintIcon(NEUTRINO_ICON_MENUITEM_SETTINGS);
+	menuWidget->addItem(item);
+	
+	item = new CMenuForwarder(_("Information"), true, NULL, new CInfoMenu());
+	item->setHintIcon(NEUTRINO_ICON_MENUITEM_BOXINFO);
+	menuWidget->addItem(item);
 
-		item->setOption(m_vMovieInfo[i].epgChannel.c_str());
-
-		item->set2lines();
-
-		item->setHint(m_vMovieInfo[i].epgInfo2.c_str());
-
-		item->setInfo1(m_vMovieInfo[i].epgInfo1.c_str());
-		item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
-
-		menuWidget->addItem(item);
-	}
-
+	item = new CMenuForwarder(_("Power Menu"), true, NULL, new CPowerMenu());
+	item->setHintIcon(NEUTRINO_ICON_MENUITEM_POWERMENU);
+	menuWidget->addItem(item);
+	
+	item = new CMenuForwarder(_("Media Player"), true, NULL, new CMediaPlayerMenu());
+	item->setHintIcon(NEUTRINO_ICON_MENUITEM_MEDIAPLAYER);
+	menuWidget->addItem(item);
+	
 	menuWidget->setWidgetMode(MODE_MENU);
 	menuWidget->setWidgetType(WIDGET_TYPE_STANDARD);
 	menuWidget->addWidgetType(WIDGET_TYPE_CLASSIC);
 	menuWidget->addWidgetType(WIDGET_TYPE_EXTENDED);
 	menuWidget->addWidgetType(WIDGET_TYPE_FRAME);
 	menuWidget->setItemsPerPage(6, 2);
-	menuWidget->enableShrinkMenu();
+	//menuWidget->enableShrinkMenu();
 
 	// head
 	menuWidget->enablePaintDate();
@@ -5602,8 +5607,8 @@ void CTestMenu::testCMenuWidget1()
 	//menuWidget->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 
 	// foot info in menu mode are always enabled
-	menuWidget->enablePaintItemInfo(80);
-	menuWidget->setItemInfoMode(ITEMINFO_HINT_MODE);
+	//menuWidget->enablePaintItemInfo(70);
+	//menuWidget->setItemInfoMode(ITEMINFO_HINT_MODE);
 
 	menuWidget->addKey(RC_info, this, "minfo");
 	menuWidget->addKey(RC_setup, this, "lsetup");
@@ -6250,7 +6255,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 						item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-						item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+						item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 						rightWidget->addItem(item);
 					}
@@ -6280,7 +6285,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 						item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-						item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+						item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 						rightWidget->addItem(item);
 					}
@@ -6310,7 +6315,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 						item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-						item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+						item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 						rightWidget->addItem(item);
 					}
@@ -6340,7 +6345,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 						item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-						item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+						item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 						rightWidget->addItem(item);
 					}
@@ -6373,7 +6378,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 						item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-						item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+						item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 						rightWidget->addItem(item);
 					}
@@ -6403,7 +6408,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 						item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-						item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+						item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 						rightWidget->addItem(item);
 					}
@@ -6433,7 +6438,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 						item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-						item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+						item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 						rightWidget->addItem(item);
 					}
@@ -6463,7 +6468,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 						item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-						item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+						item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 						rightWidget->addItem(item);
 					}
@@ -6539,7 +6544,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 					item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-					item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+					item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 					rightWidget->addItem(item);
 				}
@@ -6601,7 +6606,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 					item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-					item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+					item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 					rightWidget->addItem(item);
 				}
@@ -6702,7 +6707,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -6744,7 +6749,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -6786,7 +6791,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -6828,7 +6833,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -6870,7 +6875,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -6912,7 +6917,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -6954,7 +6959,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -6996,7 +7001,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -7107,7 +7112,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -7189,7 +7194,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -7238,7 +7243,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -7290,7 +7295,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 			item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-			item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+			item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 			item->set2lines();
 
@@ -7338,7 +7343,7 @@ int CTestMenu::exec(CMenuTarget *parent, const std::string &actionKey)
 
 				item->setInfo2(m_vMovieInfo[i].epgInfo2.c_str());
 
-				item->setItemIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
+				item->setHintIcon(file_exists(m_vMovieInfo[i].tfile.c_str())? m_vMovieInfo[i].tfile.c_str() : DATADIR "/neutrino/icons/nopreview.jpg");
 
 				item->set2lines();
 

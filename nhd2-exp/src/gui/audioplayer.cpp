@@ -1344,7 +1344,7 @@ void CAudioPlayerGui::showPlaylist()
 		item->setHint(tmp.c_str());
 		*/
 		
-		item->setItemIcon(cover.c_str());
+		item->setHintIcon(cover.c_str());
 		
 		item->set2lines();
 		item->enableItemShadow();

@@ -1387,8 +1387,6 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 		
 		int handled = false;
 
-		//dprintf(DEBUG_DEBUG, "CMenuWidget::exec: msg:%s\n", CRCInput::getSpecialKeyName(msg));
-
 		if ( msg <= RC_MaxRC ) 
 		{
 			timeoutEnd = CRCInput::calcTimeoutEnd(timeout == 0 ? 0xFFFF : timeout);

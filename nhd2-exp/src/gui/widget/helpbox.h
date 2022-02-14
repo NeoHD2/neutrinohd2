@@ -43,7 +43,7 @@
 #include <gui/widget/messagebox.h>
 
 
-#define HELPBOX_WIDTH			600
+#define HELPBOX_WIDTH			650
 
 class CHelpBox
 {

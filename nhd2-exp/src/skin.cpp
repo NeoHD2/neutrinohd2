@@ -1379,10 +1379,10 @@ void CNeutrinoApp::parseSkin(const char* const filename)
 						filename += itemIcon;
 						
 						if (file_exists(filename.c_str()))
-							menuItem->setItemIcon(filename.c_str());
+							menuItem->setHintIcon(filename.c_str());
 						else
 						{
-							menuItem->setItemIcon(itemIcon);
+							menuItem->setHintIcon(itemIcon);
 						}
 					}
 						

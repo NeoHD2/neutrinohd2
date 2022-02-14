@@ -126,7 +126,7 @@ void CDBoxInfoWidget::showInfo()
 	dboxInfo = new CWidget(&Box);
 	
 	m_window = new CWindow(&Box);
-	m_window->setCorner(RADIUS_MID, CORNER_ALL);
+	m_window->setCorner(g_settings.Head_radius, CORNER_ALL);
 	
 	int yPos = Box.iY;
 	

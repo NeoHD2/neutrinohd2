@@ -226,16 +226,6 @@ void CMessageBox::init(const char * const Caption, const int Width, const char *
 		// 10 pixels left and right of every item. determined empirically :-(
 		lineWidth += count * (BORDER_LEFT + BORDER_RIGHT);
 		
-		/*
-                if (lineWidth > maxWidth)
-		{
-			maxWidth = lineWidth;
-
-			if(maxWidth > (MESSAGEBOX_MAX_WIDTH - 20))
-				maxWidth = MESSAGEBOX_MAX_WIDTH - 20;
-		}
-		*/
-		
 		if (lineWidth > m_width)
 			maxWidth = lineWidth;
 		else if (lineWidth > (MESSAGEBOX_MAX_WIDTH - 20))
