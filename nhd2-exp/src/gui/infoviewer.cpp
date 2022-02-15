@@ -379,6 +379,34 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 
 	//time
 	paintTime(BoxEndX, ChanNameY, SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME);
+	
+	////
+	unsigned int r_w = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth("00:00:00");
+  	
+  	//
+  	currentLabel = new CCLabel(ChanInfoX, ChanInfoY, BoxEndX - ChanInfoX - r_w - 10, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	currentLabel->setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+  	
+  	//
+  	currentStartTime = new CCLabel(BoxStartX + 10, ChanInfoY, ChanInfoX - BoxStartX, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	currentStartTime->setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+  	
+  	//
+  	currentPlayTime = new CCLabel(BoxEndX - 10 - r_w, ChanInfoY, r_w, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	currentPlayTime->setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+  	
+  	//
+  	nextLabel = new CCLabel(ChanInfoX, ChanInfoY + ChanInfoHeight, BoxEndX - ChanInfoX - r_w - 10, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	nextLabel->setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+  	
+  	//
+  	nextStartTime = new CCLabel(BoxStartX + 10, ChanInfoY + ChanInfoHeight, ChanInfoX - BoxStartX, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	nextStartTime->setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+  	
+  	//
+  	nextPlayTime = new CCLabel(BoxEndX - 10 - r_w, ChanInfoY + ChanInfoHeight, r_w, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	nextPlayTime->setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+	////
 
 	//sat name
 	char strChanNum[10];
@@ -1633,16 +1661,33 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 
   	int is_nvod = false;
   	
-  	//
-  	CWindow currentInfoBox(BoxStartX, ChanInfoY, BoxEndX - BoxStartX, CHANINFO_HEIGHT);
-  	currentInfoBox.paintMainFrame(false);
-  	currentInfoBox.enableSaveScreen();
-  	currentInfoBox.paint();
+  	/*
+  	unsigned int r_w = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth("00:00:00");
   	
-  	CWindow nextInfoBox(BoxStartX, ChanInfoY + CHANINFO_HEIGHT, BoxEndX - BoxStartX, ChanInfoHeight);
-  	nextInfoBox.paintMainFrame(false);
-  	nextInfoBox.enableSaveScreen();
-  	nextInfoBox.paint();
+  	//
+  	CCLabel currentLabel(ChanInfoX, ChanInfoY, BoxEndX - ChanInfoX - r_w - 10, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	currentLabel.setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+  	
+  	//
+  	CCLabel currentStartTime(BoxStartX + 10, ChanInfoY, ChanInfoX - BoxStartX, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	currentStartTime.setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+  	
+  	//
+  	CCLabel currentPlayTime(BoxEndX - 10 - r_w, ChanInfoY, r_w, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	currentPlayTime.setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+  	
+  	//
+  	CCLabel nextLabel(ChanInfoX, ChanInfoY + ChanInfoHeight, BoxEndX - ChanInfoX - r_w - 10, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	nextLabel.setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+  	
+  	//
+  	CCLabel nextStartTime(BoxStartX + 10, ChanInfoY + ChanInfoHeight, ChanInfoX - BoxStartX, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	nextStartTime.setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+  	
+  	//
+  	CCLabel nextPlayTime(BoxEndX - 10 - r_w, ChanInfoY + ChanInfoHeight, r_w, g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getHeight());
+  	nextPlayTime.setFont(SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO);
+  	*/
 
   	if (is_visible) 
 	{
@@ -1716,7 +1761,7 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 	  	timescale->reset();
 		timescale->paint(runningPercent);
 
-		int EPGTimeWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth("00:00:00"); //FIXME
+		//int EPGTimeWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth("00:00:00"); //FIXME
 
 		// red button
 		if (showButtonBar) 
@@ -1726,69 +1771,89 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 				// red button
 				frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_RED, BoxStartX + BORDER_LEFT, buttonBarStartY + 1, 0, true, icon_red_w, buttonBarHeight - 2);
 
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(BoxStartX + BORDER_LEFT + icon_red_w + ICON_OFFSET, buttonBarStartY + (buttonBarHeight - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight(), asize - 5, /*g_Locale->getText(LOCALE_INFOVIEWER_EVENTLIST)*/_("Event-List"), COL_INFOBAR_SHADOW, 0, true); // UTF-8
+				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(BoxStartX + BORDER_LEFT + icon_red_w + ICON_OFFSET, buttonBarStartY + (buttonBarHeight - g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight(), asize - 5, _("Event-List"), COL_INFOBAR_SHADOW, 0, true); // UTF-8
 	  		}
 		}
 
 		// paint epg infos
 		if ( (info_CurrentNext.flags & CSectionsdClient::epgflags::not_broadcast) || ((calledFromEvent) && !(info_CurrentNext.flags & (CSectionsdClient::epgflags::has_next | CSectionsdClient::epgflags::has_current)))) 
 		{
-			// noepg/waiting for time
-			// refresh box
-	  		nextInfoBox.hide();
+			// next / noepg/waiting for time
+	  		nextLabel->setText(gotTime ? _("EPG not available") : _("Waiting for time..."));
+	  		nextLabel->setColor(COL_INFOBAR);
+	  		nextLabel->paint();
 	  		
-	  		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(ChanInfoX, ChanInfoY + 2*ChanInfoHeight, BoxEndX - (BoxStartX + CHANNUMBER_WIDTH + 20), /*g_Locale->getText (*/gotTime ? /*LOCALE_INFOVIEWER_NOEPG*/_("EPG not available") : /*LOCALE_INFOVIEWER_WAITTIME*/_("Waiting for time...")/*)*/, COL_INFOBAR, 0, true);	// UTF-8
+	  		//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(ChanInfoX, ChanInfoY + 2*ChanInfoHeight, BoxEndX - (BoxStartX + CHANNUMBER_WIDTH + 20), gotTime ? _("EPG not available") : _("Waiting for time..."), COL_INFOBAR, 0, true);	// UTF-8
 		} 
 		else 
 		{
 	  		// found some epg
-	  		int duration1Width = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(runningRest);
-	  		int duration1TextPos = BoxEndX - duration1Width - BORDER_RIGHT;
+	  		//int duration1Width = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(runningRest);
+	  		//int duration1TextPos = BoxEndX - duration1Width - BORDER_RIGHT;
 
-	  		int duration2Width = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(nextDuration);
-	  		int duration2TextPos = BoxEndX - duration2Width - BORDER_RIGHT;
+	  		//int duration2Width = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(nextDuration);
+	  		//int duration2TextPos = BoxEndX - duration2Width - BORDER_RIGHT;
 
 	  		if ((info_CurrentNext.flags & CSectionsdClient::epgflags::has_next) && (!(info_CurrentNext.flags & CSectionsdClient::epgflags::has_current))) 
 			{
 				// current infos
-				//refresh box current
-				currentInfoBox.hide();
-				
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, BoxEndX - ChanInfoX, _("No info for current program available"), COL_INFOBAR_COLORED_EVENTS, 0, true);	// UTF-8
+				currentLabel->setText(_("No info for current program available"));
+				currentLabel->setColor(COL_INFOBAR_COLORED_EVENTS);
+				currentLabel->paint();
+				//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, BoxEndX - ChanInfoX, _("No info for current program available"), COL_INFOBAR_COLORED_EVENTS, 0, true);	// UTF-8
 
 				// next
-				nextInfoBox.hide();
-				
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(BoxStartX + BORDER_LEFT, ChanInfoY + 2*ChanInfoHeight, EPGTimeWidth, nextStart, COL_MENUCONTENTINACTIVE);
+				nextStartTime->setText(nextStart);
+				nextStartTime->paint();
+				//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(BoxStartX + BORDER_LEFT, ChanInfoY + 2*ChanInfoHeight, EPGTimeWidth, nextStart, COL_MENUCONTENTINACTIVE);
 
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(ChanInfoX, ChanInfoY + 2*ChanInfoHeight, duration2TextPos - ChanInfoX - 5, info_CurrentNext.next_name, COL_MENUCONTENTINACTIVE, 0, true);
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(duration2TextPos, ChanInfoY + 2*ChanInfoHeight, duration2Width, nextDuration, COL_MENUCONTENTINACTIVE);
+				//
+				nextLabel->setText(info_CurrentNext.next_name.c_str());
+				nextLabel->setColor(COL_INFOBAR);
+				nextLabel->paint();
+				//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(ChanInfoX, ChanInfoY + 2*ChanInfoHeight, duration2TextPos - ChanInfoX - 5, info_CurrentNext.next_name, COL_MENUCONTENTINACTIVE, 0, true);
+				
+				//
+				nextPlayTime->setText(nextDuration);
+				nextPlayTime->paint();
+				//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(duration2TextPos, ChanInfoY + 2*ChanInfoHeight, duration2Width, nextDuration, COL_MENUCONTENTINACTIVE);
 	  		} 
 			else 
 			{
 				// current
-				// refresh box
-			  	currentInfoBox.hide();
-			  		
-			  	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (BoxStartX + 10, ChanInfoY + ChanInfoHeight, EPGTimeWidth, runningStart, COL_INFOBAR_COLORED_EVENTS);
+			  	currentStartTime->setText(runningStart);
+				currentStartTime->paint();	
+			  	//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (BoxStartX + 10, ChanInfoY + ChanInfoHeight, EPGTimeWidth, runningStart, COL_INFOBAR_COLORED_EVENTS);
 
-			  	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, duration1TextPos - ChanInfoX - 5, info_CurrentNext.current_name, COL_INFOBAR_COLORED_EVENTS, 0, true);
+				//
+				currentLabel->setText(info_CurrentNext.current_name.c_str());
+				currentLabel->setColor(COL_INFOBAR_COLORED_EVENTS);
+				currentLabel->paint();
+			  	//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, duration1TextPos - ChanInfoX - 5, info_CurrentNext.current_name, COL_INFOBAR_COLORED_EVENTS, 0, true);
 			  	
 				//
-		  		g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (duration1TextPos, ChanInfoY + ChanInfoHeight, duration1Width, runningRest, COL_INFOBAR_COLORED_EVENTS);
+				currentPlayTime->setText(runningRest);
+				currentPlayTime->paint();
+		  		//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (duration1TextPos, ChanInfoY + ChanInfoHeight, duration1Width, runningRest, COL_INFOBAR_COLORED_EVENTS);
 
 				// next 
 				if ((!is_nvod) && (info_CurrentNext.flags & CSectionsdClient::epgflags::has_next)) 
 				{
-					// refresh
-					nextInfoBox.hide();
-						
-					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (BoxStartX + BORDER_LEFT, ChanInfoY + 2*ChanInfoHeight, EPGTimeWidth, nextStart, COL_MENUCONTENTINACTIVE);
+					//
+					nextStartTime->setText(nextStart);
+					nextStartTime->paint();	
+					//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (BoxStartX + BORDER_LEFT, ChanInfoY + 2*ChanInfoHeight, EPGTimeWidth, nextStart, COL_MENUCONTENTINACTIVE);
 
-					
-					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + 2*ChanInfoHeight, duration2TextPos - ChanInfoX - 5, info_CurrentNext.next_name, COL_MENUCONTENTINACTIVE, 0, true);
+					//
+					nextLabel->setText(info_CurrentNext.next_name.c_str());
+					nextLabel->setColor(COL_INFOBAR);
+					nextLabel->paint();
+					//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + 2*ChanInfoHeight, duration2TextPos - ChanInfoX - 5, info_CurrentNext.next_name, COL_MENUCONTENTINACTIVE, 0, true);
 
-					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (duration2TextPos, ChanInfoY + 2*ChanInfoHeight, duration2Width, nextDuration, COL_MENUCONTENTINACTIVE);
+					//
+					nextPlayTime->setText(nextDuration);
+					nextPlayTime->paint();
+					//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (duration2TextPos, ChanInfoY + 2*ChanInfoHeight, duration2Width, nextDuration, COL_MENUCONTENTINACTIVE);
 				} 
 	  		}
 		}
@@ -1878,6 +1943,8 @@ void CInfoViewer::killTitle()
 			delete timer;
 			timer = NULL;
 		}
+		
+		 
 /*
 		if(sigscale)
 		{

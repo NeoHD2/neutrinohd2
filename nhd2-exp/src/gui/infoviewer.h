@@ -60,6 +60,15 @@ class CInfoViewer
 		//
 		bool gotTime;
 		CCTime* timer;
+		////
+		CCLabel* currentLabel;
+		CCLabel* currentStartTime;
+		CCLabel* currentPlayTime;
+		
+		CCLabel* nextLabel;
+		CCLabel* nextStartTime;
+		CCLabel* nextPlayTime;
+		////
 		
 		//
 		bool recordModeActive;

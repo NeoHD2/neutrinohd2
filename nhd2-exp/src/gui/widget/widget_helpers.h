@@ -418,10 +418,11 @@ class CCLabel : public CComponent
 		unsigned int font;
 		std::string label;
 		bool paintBG;
+		uint32_t* background;
 		
 		//
 		CCLabel(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
-		virtual ~CCLabel(){};
+		virtual ~CCLabel();
 		
 		//
 		void setColor(uint8_t col){color = col;};
