@@ -418,10 +418,13 @@ class CCLabel : public CComponent
 		unsigned int font;
 		std::string label;
 		bool paintBG;
+		
+		//
+		bool savescreen;
 		uint32_t* background;
 		
 		//
-		CCLabel(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
+		CCLabel(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0, bool save = false);
 		virtual ~CCLabel();
 		
 		//

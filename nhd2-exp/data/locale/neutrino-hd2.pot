@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-15 12:46+0100\n"
+"POT-Creation-Date: 2022-02-16 10:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -190,7 +190,7 @@ msgstr ""
 msgid "Analog Output"
 msgstr ""
 
-#: ../../src/gui/infoviewer.cpp:1136
+#: ../../src/gui/infoviewer.cpp:1135
 msgid "Antenna positioning"
 msgstr ""
 
@@ -211,7 +211,7 @@ msgid "Aspect Ratio"
 msgstr ""
 
 #: ../../src/gui/movieplayer.cpp:1844 ../../src/gui/movieinfo.cpp:1107
-#: ../../src/gui/infoviewer.cpp:1883
+#: ../../src/gui/infoviewer.cpp:1851
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:116
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:174
 msgid "Audio"
@@ -518,7 +518,7 @@ msgstr ""
 msgid "Channel name"
 msgstr ""
 
-#: ../../src/gui/infoviewer.cpp:1125
+#: ../../src/gui/infoviewer.cpp:1124
 msgid "Channel not available"
 msgstr ""
 
@@ -785,8 +785,8 @@ msgstr ""
 msgid "Dir"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5631 ../../src/gui/infoviewer.cpp:840
-#: ../../src/gui/infoviewer.cpp:893
+#: ../../src/neutrino.cpp:5631 ../../src/gui/infoviewer.cpp:839
+#: ../../src/gui/infoviewer.cpp:892
 msgid "Direct-Mode"
 msgstr ""
 
@@ -904,12 +904,12 @@ msgstr ""
 msgid "EPG is not available..."
 msgstr ""
 
-#: ../../src/gui/infoviewer.cpp:767 ../../src/gui/infoviewer.cpp:784
-#: ../../src/gui/infoviewer.cpp:1782
+#: ../../src/gui/infoviewer.cpp:766 ../../src/gui/infoviewer.cpp:783
+#: ../../src/gui/infoviewer.cpp:1750
 msgid "EPG not available"
 msgstr ""
 
-#: ../../src/gui/infoviewer.cpp:796
+#: ../../src/gui/infoviewer.cpp:795
 msgid "EPG not loaded..."
 msgstr ""
 
@@ -979,7 +979,7 @@ msgstr ""
 #: ../../src/gui/update.cpp:375 ../../src/gui/update.cpp:441
 #: ../../src/gui/update.cpp:468 ../../src/gui/update.cpp:504
 #: ../../src/gui/update.cpp:550 ../../src/gui/misc_setup.cpp:488
-#: ../../src/gui/audioplayer.cpp:1167 ../../src/gui/infoviewer.cpp:1125
+#: ../../src/gui/audioplayer.cpp:1167 ../../src/gui/infoviewer.cpp:1124
 #: ../../src/driver/vcrcontrol.cpp:738 ../../../plugins/test/test.cpp:3271
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:931
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:940
@@ -999,7 +999,7 @@ msgstr ""
 msgid "Event list"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1509 ../../src/gui/infoviewer.cpp:1774
+#: ../../src/gui/channellist.cpp:1509 ../../src/gui/infoviewer.cpp:1742
 msgid "Event-List"
 msgstr ""
 
@@ -1057,7 +1057,7 @@ msgid "Favorites"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:110 ../../src/neutrino_menue.cpp:234
-#: ../../src/gui/infoviewer.cpp:509 ../../../plugins/test/test.cpp:5570
+#: ../../src/gui/infoviewer.cpp:508 ../../../plugins/test/test.cpp:5570
 msgid "Features"
 msgstr ""
 
@@ -1541,7 +1541,7 @@ msgstr ""
 #: ../../src/gui/service_menu.cpp:76 ../../src/gui/service_menu.cpp:78
 #: ../../src/gui/plugins.cpp:336 ../../src/gui/audioplayer.cpp:1282
 #: ../../src/gui/eventlist.cpp:512 ../../src/gui/eventlist.cpp:517
-#: ../../src/gui/infoviewer.cpp:1141 ../../src/gui/widget/infobox.cpp:170
+#: ../../src/gui/infoviewer.cpp:1140 ../../src/gui/widget/infobox.cpp:170
 #: ../../../plugins/test/test.cpp:3248 ../../../plugins/test/test.cpp:3263
 #: ../../../plugins/test/test.cpp:3279 ../../../plugins/test/test.cpp:3292
 #: ../../../plugins/test/test.cpp:3340 ../../../plugins/test/test.cpp:5582
@@ -2150,7 +2150,7 @@ msgstr ""
 msgid "No detailed informations available"
 msgstr ""
 
-#: ../../src/gui/infoviewer.cpp:1800
+#: ../../src/gui/infoviewer.cpp:1768
 msgid "No info for current program available"
 msgstr ""
 
@@ -3353,7 +3353,7 @@ msgstr ""
 msgid "Subchannel up"
 msgstr ""
 
-#: ../../src/gui/infoviewer.cpp:1460
+#: ../../src/gui/infoviewer.cpp:1459
 msgid "Subservices"
 msgstr ""
 
@@ -3632,7 +3632,7 @@ msgstr ""
 msgid "Timerlist"
 msgstr ""
 
-#: ../../src/gui/infoviewer.cpp:1460
+#: ../../src/gui/infoviewer.cpp:1459
 msgid "Timeselection"
 msgstr ""
 
@@ -3900,7 +3900,7 @@ msgstr ""
 msgid "Waiting for CI answer"
 msgstr ""
 
-#: ../../src/gui/infoviewer.cpp:796 ../../src/gui/infoviewer.cpp:1782
+#: ../../src/gui/infoviewer.cpp:795 ../../src/gui/infoviewer.cpp:1750
 msgid "Waiting for time..."
 msgstr ""
 
@@ -5161,7 +5161,7 @@ msgstr ""
 msgid "view mode"
 msgstr ""
 
-#: ../../src/gui/infoviewer.cpp:796
+#: ../../src/gui/infoviewer.cpp:795
 msgid "waiting for EPG..."
 msgstr ""
 

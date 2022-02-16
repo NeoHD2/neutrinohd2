@@ -761,7 +761,7 @@ void CCFrameLine::paint()
 }
 
 // CLabel
-CCLabel::CCLabel(const int x, const int y, const int dx, const int dy)
+CCLabel::CCLabel(const int x, const int y, const int dx, const int dy, bool save)
 {
 	dprintf(DEBUG_INFO, "CCLabel::CCLabel: x:%d y:%d dx:%d dy:%d\n", x, y, dx, dy);
 	
@@ -772,14 +772,23 @@ CCLabel::CCLabel(const int x, const int y, const int dx, const int dy)
 	cCBox.iWidth = dx;
 	cCBox.iHeight = dy;
 	
-	//
-	background = new fb_pixel_t[dx*dy];
+	background = NULL;
 	
-	if (background)
+	//
+	savescreen = save;
+	
+	if (savescreen)
 	{
-		frameBuffer->saveScreen(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, background);
+		background = new fb_pixel_t[dx*dy];
+		
+		if (background)
+		{
+			frameBuffer->saveScreen(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, background);
+		}
 	}
 	
+	
+	//
 	color = COL_MENUCONTENT;
 	paintBG = false; 
 	font = SNeutrinoSettings::FONT_TYPE_MENU_TITLE;
@@ -793,10 +802,13 @@ CCLabel::CCLabel(const int x, const int y, const int dx, const int dy)
 
 CCLabel::~CCLabel()
 {
-	if (background)
+	if (savescreen)
 	{
-		delete [] background;
-		background = NULL;
+		if (background)
+		{
+			delete [] background;
+			background = NULL;
+		}
 	}
 }
 
@@ -805,9 +817,12 @@ void CCLabel::paint()
 	dprintf(DEBUG_INFO, "CCLabel::paint\n");
 	
 	//
-	if (background)
+	if (savescreen)
 	{
-		frameBuffer->restoreScreen(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, background);
+		if (background)
+		{
+			frameBuffer->restoreScreen(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, background);
+		}
 	}
 	
 	//
