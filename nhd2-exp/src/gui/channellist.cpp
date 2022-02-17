@@ -869,7 +869,7 @@ bool CChannelList::showInfo(int pos, int epgpos)
 	CZapitChannel * chan = chanlist[pos];
 	
 	// channel infobar
-	g_InfoViewer->show(pos + 1, chan->name, chan->getSatellitePosition(), chan->channel_id, true, epgpos); // UTF-8
+	g_InfoViewer->showTitle(pos + 1, chan->name, chan->getSatellitePosition(), chan->channel_id, true, epgpos); // UTF-8
 	
 	return true;
 }

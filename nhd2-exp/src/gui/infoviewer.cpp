@@ -346,9 +346,9 @@ void CInfoViewer::showRecordIcon(const bool show)
 	}	
 }
 
-void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, const t_satellite_position satellitePosition)
+void CInfoViewer::show(const int ChanNum, const std::string & Channel, const t_satellite_position satellitePosition)
 {
-	dprintf(DEBUG_NORMAL, "CInfoViewer::showTitle:\n");
+	dprintf(DEBUG_NORMAL, "CInfoViewer::show:\n");
 	
 	std::string ChannelName = Channel; //FIXME:
 	
@@ -380,7 +380,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 	//time
 	paintTime(BoxEndX, ChanNameY, SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME);
 	
-	//
+	// just after paintinng bg to save bg for labels
 	unsigned int r_w = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getRenderWidth("00:00:00");
   	
   	//
@@ -509,7 +509,7 @@ void CInfoViewer::showTitle(const int ChanNum, const std::string & Channel, cons
 }
 
 //
-void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_satellite_position _satellitePosition, const t_channel_id _new_channel_id, const bool _calledFromNumZap, int _epgpos)
+void CInfoViewer::showTitle(const int _ChanNum, const std::string& _Channel, const t_satellite_position _satellitePosition, const t_channel_id _new_channel_id, const bool _calledFromNumZap, int _epgpos)
 {
 	//
 	std::string ChannelName = _Channel;
@@ -527,7 +527,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	// channel id
 	channel_id = _new_channel_id;
 
-	dprintf(DEBUG_NORMAL, "\nCInfoViewer::show: channel:%llx\n", channel_id);
+	dprintf(DEBUG_NORMAL, "\nCInfoViewer::showTitle: channel:%llx\n", channel_id);
 
 	// subchannel
 	if (! _calledFromNumZap && !(g_RemoteControl->subChannels.empty()) && (g_RemoteControl->selected_subchannel > 0))
@@ -552,7 +552,7 @@ void CInfoViewer::show(const int _ChanNum, const std::string& _Channel, const t_
 	} 
 
 	//
-	showTitle(_ChanNum, ChannelName, _satellitePosition);
+	show(_ChanNum, ChannelName, _satellitePosition);
 	
 	timescale->paint(runningPercent);
 
@@ -1906,50 +1906,50 @@ void CInfoViewer::killTitle()
 			killRadiotext();
 		}
 
-		if (timer)
-		{
-			delete timer;
-			timer = NULL;
-		}
-		
-		if (currentLabel)
-		{
-			delete currentLabel;
-			currentLabel = NULL;
-		}
-		
-		if (currentStartTime)
-		{
-			delete currentStartTime;
-			currentStartTime = NULL;
-		}
-		
-		if (currentPlayTime)
-		{
-			delete currentPlayTime;
-			currentPlayTime = NULL;
-		}
-		
-		if (nextLabel)
-		{
-			delete nextLabel;
-			nextLabel = NULL;
-		}
-		
-		if (nextStartTime)
-		{
-			delete nextStartTime;
-			nextStartTime = NULL;
-		}
-		
-		if (nextPlayTime)
-		{
-			delete nextPlayTime;
-			nextPlayTime = NULL;
-		}		
-
 		frameBuffer->blit();		
   	}
+  	
+  	if (timer)
+	{
+		delete timer;
+		timer = NULL;
+	}
+		
+	if (currentLabel)
+	{
+		delete currentLabel;
+		currentLabel = NULL;
+	}
+		
+	if (currentStartTime)
+	{
+		delete currentStartTime;
+		currentStartTime = NULL;
+	}
+		
+	if (currentPlayTime)
+	{
+		delete currentPlayTime;
+		currentPlayTime = NULL;
+	}
+		
+	if (nextLabel)
+	{
+		delete nextLabel;
+		nextLabel = NULL;
+	}
+		
+	if (nextStartTime)
+	{
+		delete nextStartTime;
+		nextStartTime = NULL;
+	}
+		
+	if (nextPlayTime)
+	{
+		delete nextPlayTime;
+		nextPlayTime = NULL;
+	}		
 }
 
 void CInfoViewer::Set_CA_Status(int Status)
@@ -2045,7 +2045,7 @@ int CInfoViewerHandler::exec(CMenuTarget * parent, const std::string &/*actionke
 	
 	channelList = CNeutrinoApp::getInstance()->channelList;
 	i->start();
-	i->show(channelList->getActiveChannelNumber(), channelList->getActiveChannelName(), channelList->getActiveSatellitePosition(), channelList->getActiveChannel_ChannelID());	// UTF-8
+	i->showTitle(channelList->getActiveChannelNumber(), channelList->getActiveChannelName(), channelList->getActiveSatellitePosition(), channelList->getActiveChannel_ChannelID());	// UTF-8
 
 	delete i;
 	

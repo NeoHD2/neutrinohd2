@@ -2862,7 +2862,7 @@ void CNeutrinoApp::showInfo()
 {
 	StopSubtitles();
 
-	g_InfoViewer->show(channelList->getActiveChannelNumber(), channelList->getActiveChannelName(), channelList->getActiveSatellitePosition(), channelList->getActiveChannel_ChannelID());
+	g_InfoViewer->showTitle(channelList->getActiveChannelNumber(), channelList->getActiveChannelName(), channelList->getActiveSatellitePosition(), channelList->getActiveChannel_ChannelID());
 
 	StartSubtitles();
 }
