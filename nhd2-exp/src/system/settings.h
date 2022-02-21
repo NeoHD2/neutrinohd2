@@ -165,21 +165,6 @@ struct SNeutrinoSettings
 	unsigned char menu_Content_inactive_Text_red;
 	unsigned char menu_Content_inactive_Text_green;
 	unsigned char menu_Content_inactive_Text_blue;
-
-	unsigned char infobar_alpha;
-	unsigned char infobar_red;
-	unsigned char infobar_green;
-	unsigned char infobar_blue;
-
-	unsigned char infobar_Text_alpha;
-	unsigned char infobar_Text_red;
-	unsigned char infobar_Text_green;
-	unsigned char infobar_Text_blue;
-	
-	unsigned char infobar_colored_events_alpha;
-	unsigned char infobar_colored_events_red;
-	unsigned char infobar_colored_events_green;
-	unsigned char infobar_colored_events_blue;
 	
 	unsigned char menu_Foot_alpha;
 	unsigned char menu_Foot_red;
@@ -200,6 +185,21 @@ struct SNeutrinoSettings
 	unsigned char menu_Hint_Text_red;
 	unsigned char menu_Hint_Text_green;
 	unsigned char menu_Hint_Text_blue;
+	
+	unsigned char infobar_alpha;
+	unsigned char infobar_red;
+	unsigned char infobar_green;
+	unsigned char infobar_blue;
+
+	unsigned char infobar_Text_alpha;
+	unsigned char infobar_Text_red;
+	unsigned char infobar_Text_green;
+	unsigned char infobar_Text_blue;
+	
+	unsigned char infobar_colored_events_alpha;
+	unsigned char infobar_colored_events_red;
+	unsigned char infobar_colored_events_green;
+	unsigned char infobar_colored_events_blue;
 
 	char	font_file[100];
 

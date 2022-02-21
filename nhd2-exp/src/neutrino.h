@@ -172,6 +172,18 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		bool paintSkin(const int id);
 		bool hideSkin(const int id);
 		bool removeSkin(const int id);
+		// 
+		void parseClistBox(_xmlNodePtr node, CWidget* widget);
+		void parseCWindow(_xmlNodePtr node, CWidget* widget);
+		void parseCHead(_xmlNodePtr node, CWidget* widget);
+		void parseCFoot(_xmlNodePtr node, CWidget* widget);
+		//
+		void parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);
+		void parseCCImage(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);
+		void parseCCTime(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);
+		void parseCCButtons(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);
+		//
+		void parseKey(_xmlNodePtr node, CWidget* widget);
 		
 		//
 		void mainMenu(void);
