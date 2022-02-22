@@ -349,7 +349,7 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 		const char * text = success ? _("Transponderscan finished.") : _("Transponderscan failed!");
 		
 		// head
-		frameBuffer->paintBoxRel(x, y, width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
+		frameBuffer->paintBoxRel(x, y, width, hheight, COL_MENUHEAD_PLUS_0, g_settings.Head_radius, CORNER_TOP, g_settings.Head_gradient);
 		
 		// exit icon
 		frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_HOME, &_iw, &_ih);
@@ -544,7 +544,7 @@ void CScanTs::paint(bool fortest)
 	ypos = y;
 	
 	// head 
-	frameBuffer->paintBoxRel(x, ypos, width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
+	frameBuffer->paintBoxRel(x, ypos, width, hheight, COL_MENUHEAD_PLUS_0, g_settings.Head_radius, CORNER_TOP, g_settings.Head_gradient);
 	
 	// icon
 	frameBuffer->getIconSize(NEUTRINO_ICON_UPDATE, &iw, &ih);
@@ -558,7 +558,7 @@ void CScanTs::paint(bool fortest)
 	frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_HOME, x + width - (BORDER_RIGHT + iw), ypos + (hheight - ih)/2);
 	
 	// main box
-	frameBuffer->paintBoxRel(x, ypos + hheight, width, height - hheight, COL_MENUCONTENT_PLUS_0, RADIUS_MID, CORNER_BOTTOM);
+	frameBuffer->paintBoxRel(x, ypos + hheight, width, height - hheight, COL_MENUCONTENT_PLUS_0, g_settings.Foot_radius, CORNER_BOTTOM);
 	
 	// radar
 	frameBuffer->loadPal("radar.pal", 17, 37);

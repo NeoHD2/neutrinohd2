@@ -273,6 +273,9 @@ void COSDMenuColorSettings::showMenu()
 	
 	// head radius
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Radius"), &g_settings.Head_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
+	// head line
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Line"), &g_settings.Head_line, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 
 	// window content
 	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, _("Window-Content")));
@@ -303,6 +306,9 @@ void COSDMenuColorSettings::showMenu()
 	
 	// foot radius
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Radius"), &g_settings.Foot_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
+	// foot line
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Line"), &g_settings.Foot_line, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 
 	// itemInfo
 	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, _("Item Info")));

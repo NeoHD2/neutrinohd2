@@ -42,18 +42,20 @@ class CProgressWindow : public CComponent
 	protected:
 
 		CFrameBuffer* frameBuffer;
-
-		CWindow m_cBoxWindow;
-
-		//neutrino_locale_t caption;
-		std::string captionString;
-
+		
+		//
 		int x;
 		int y;
 		int width;
 		int height;
 		int hheight; // head font height
 		int mheight; // menu font height
+
+		CWindow m_cBoxWindow;
+
+		std::string captionString;
+
+		//
 		unsigned int global_progress;
 		int globalstatusX;
 		int globalstatusY;
@@ -74,10 +76,12 @@ class CProgressWindow : public CComponent
 		void paint();
 		void hide();
 
-		//void setTitle(const neutrino_locale_t title);
+		//
 		void setTitle(const char* const title);
 		void showGlobalStatus(const unsigned int prog);
 		void showStatusMessageUTF(const std::string & text); // UTF-8
+		
+		//
 		void enableCancelIcon(){paintCancelIcon = true;};
 
 		unsigned int getGlobalStatus(void){return global_progress;};

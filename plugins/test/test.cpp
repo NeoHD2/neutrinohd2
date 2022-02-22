@@ -7465,7 +7465,7 @@ void CTestMenu::showMenu()
 	
 	//
 	//std::string skin = PLUGINDIR "/test/skin.xml";
-	std::string skin = "<skin><WIDGET name=\"testmenu\" id=\"82\" posx=\"0\" posy=\"0\" width=\"700\" height=\"720\" paintframe=\"1\"><LISTBOX posx=\"30\" posy=\"100\" width=\"640\" height=\"520\" paintframe=\"1\" type=\"0\" scrollbar=\"0\" ></LISTBOX><HEAD posx=\"30\" posy=\"50\" width=\"640\" height=\"40\" gradient=\"3\" corner=\"15\" radius=\"4\" localename=\"Test Menu\" icon=\"multimedia\" paintdate=\"1\" format=\"%d.%m.%Y %H:%M:%S\"></HEAD><FOOT posx=\"30\" posy=\"630\" width=\"640\" height=\"40\" gradient=\"3\" corner=\"15\" radius=\"4\"><BUTTON_LABEL name=\"info\"></BUTTON_LABEL></FOOT></WIDGET></skin>";
+	std::string skin = "<skin>\n\t<WIDGET name=\"testmenu\" id=\"82\" posx=\"0\" posy=\"0\" width=\"700\" height=\"720\" paintframe=\"1\">\n\t\t<LISTBOX posx=\"30\" posy=\"100\" width=\"640\" height=\"520\" paintframe=\"1\" type=\"0\" scrollbar=\"0\" ></LISTBOX>\n\t\t<HEAD posx=\"30\" posy=\"50\" width=\"640\" height=\"40\" gradient=\"3\" corner=\"15\" radius=\"4\" localename=\"Test Menu\" icon=\"multimedia\" paintdate=\"1\" format=\"%d.%m.%Y %H:%M:%S\"></HEAD>\n\t\t<FOOT posx=\"30\" posy=\"630\" width=\"640\" height=\"40\" gradient=\"3\" corner=\"15\" radius=\"4\">\n\t\t\t<BUTTON_LABEL name=\"info\"></BUTTON_LABEL>\n\t\t</FOOT>\n\t\t</WIDGET>\n\t</skin>\n";
 
 	CNeutrinoApp::getInstance()->parseSkin(skin.c_str(), true);
 

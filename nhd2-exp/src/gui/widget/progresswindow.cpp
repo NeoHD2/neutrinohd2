@@ -45,7 +45,6 @@ CProgressWindow::CProgressWindow(int _x, int _y, int _width, int _height)
 {
 	frameBuffer = CFrameBuffer::getInstance();
 
-	//caption = NONEXISTANT_LOCALE;
 	captionString = "";
 
 	paintHead = false;
@@ -91,27 +90,11 @@ void CProgressWindow::initFrames(int _x, int _y, int _width, int _height)
 	m_cBoxWindow.setPosition(x, y, width, height);
 }
 
-/*
-void CProgressWindow::setTitle(const neutrino_locale_t title)
-{
-	paintHead = true;
-	initFrames();
-
-	caption = title;
-	captionString = g_Locale->getText(caption);
-
-#ifdef LCD_UPDATE
-	CVFD::getInstance()->showProgressBar2(-1, NULL, -1, g_Locale->getText(caption)); // set global text in VFD
-#endif // VFD_UPDATE
-}
-*/
-
 void CProgressWindow::setTitle(const char * const title)
 {
 	paintHead = true;
 	initFrames();
 
-	//caption = NONEXISTANT_LOCALE;
 	captionString = title;
 
 #ifdef LCD_UPDATE
@@ -141,10 +124,11 @@ void CProgressWindow::showGlobalStatus(const unsigned int prog)
 	// refresh Box (%)
 	frameBuffer->paintBoxRel(x + width - (w + 20), globalstatusY - 5, w + 20 - 2, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 8, COL_MENUCONTENT_PLUS_0);
 
+	// percent
 	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(x + width - (w + 10), globalstatusY + 18, w, strProg, COL_MENUCONTENT, 0, true); // UTF-8
 
 	// progressBar
-	progressBar->paint(/*x + BORDER_LEFT, globalstatusY,*/ global_progress);
+	progressBar->paint(global_progress);
 	
 	CFrameBuffer::getInstance()->blit();
 
@@ -186,7 +170,7 @@ void CProgressWindow::paint()
 	// box
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setShadowMode(g_settings.menu_shadow? SHADOW_ALL : SHADOW_NO);
-	m_cBoxWindow.setCorner(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID, CORNER_ALL);
+	m_cBoxWindow.setCorner(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius, CORNER_ALL);
 	m_cBoxWindow.paint();
 	
 	// title
@@ -194,15 +178,12 @@ void CProgressWindow::paint()
 	{
 		const struct button_label cancelBtn = { NEUTRINO_ICON_BUTTON_HOME, "" };
 		const char * l_caption;
-		//if (caption != NONEXISTANT_LOCALE)
-		//	l_caption = g_Locale->getText(caption);
-		//else
-			l_caption = captionString.c_str();
+		l_caption = captionString.c_str();
 
 		CHeaders headers(x + 2, y + 2, width - 4, hheight - 2, l_caption, NEUTRINO_ICON_INFO);
 		
 		headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
-		headers.setRadius(g_settings.menu_shadow? NO_RADIUS : RADIUS_MID);
+		headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);
 		
 		if (paintCancelIcon)
 			headers.setButtons(&cancelBtn, 1);
