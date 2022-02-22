@@ -2299,7 +2299,7 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	cnt = 0;
 	//
 	widgetMode = MODE_LISTBOX;
-	menu_position = MENU_POSITION_CENTER;
+	menu_position = MENU_POSITION_NONE;
 
 	savescreen = false;
 	background = NULL;
@@ -2407,7 +2407,7 @@ ClistBox::ClistBox(CBox* position)
 	cnt = 0;
 	//
 	widgetMode = MODE_LISTBOX;
-	menu_position = MENU_POSITION_CENTER;
+	menu_position = MENU_POSITION_NONE;
 	
 	//
 	inFocus = true;

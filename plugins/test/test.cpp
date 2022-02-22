@@ -7463,13 +7463,12 @@ void CTestMenu::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CTestMenu::showMenu:\n");
 	
-	////
-	std::string skin = PLUGINDIR "/test/skin.xml";
-	CNeutrinoApp::getInstance()->parseSkin(skin.c_str());
-	////
+	//
+	//std::string skin = PLUGINDIR "/test/skin.xml";
+	std::string skin = "<skin><WIDGET name=\"testmenu\" id=\"82\" posx=\"0\" posy=\"0\" width=\"700\" height=\"720\" paintframe=\"1\"><LISTBOX posx=\"30\" posy=\"100\" width=\"640\" height=\"520\" paintframe=\"1\" type=\"0\" scrollbar=\"0\" ></LISTBOX><HEAD posx=\"30\" posy=\"50\" width=\"640\" height=\"40\" gradient=\"3\" corner=\"15\" radius=\"4\" localename=\"Test Menu\" icon=\"multimedia\" paintdate=\"1\" format=\"%d.%m.%Y %H:%M:%S\"></HEAD><FOOT posx=\"30\" posy=\"630\" width=\"640\" height=\"40\" gradient=\"3\" corner=\"15\" radius=\"4\"><BUTTON_LABEL name=\"info\"></BUTTON_LABEL></FOOT></WIDGET></skin>";
 
-	//CMenuWidget * mainMenu = new CMenuWidget();
-	//mainMenu->setTitle(_("Test Menu"), NEUTRINO_ICON_BUTTON_SETUP);
+	CNeutrinoApp::getInstance()->parseSkin(skin.c_str(), true);
+
 	CWidget* mWidget = NULL;
 	ClistBox* mainMenu = NULL;
 	

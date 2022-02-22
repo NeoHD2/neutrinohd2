@@ -156,7 +156,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		
 		// skin
 		WIDGETLIST widgets;
-		void parseSkin(const char* const filename);
+		void parseSkin(const char* const filename, bool xml_data = false);
 		WIDGETLIST getWidgets(){return widgets;};
 		CWidget* getWidget(int id);
 		bool widget_exists(int id);

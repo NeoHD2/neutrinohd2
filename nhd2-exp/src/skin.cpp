@@ -1649,14 +1649,17 @@ void CNeutrinoApp::parseKey(_xmlNodePtr node, CWidget* widget)
 }
 
 //
-void CNeutrinoApp::parseSkin(const char* const filename)
+void CNeutrinoApp::parseSkin(const char* const filename, bool xml_data)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::parseSkin\n");
 	
 	//
 	_xmlDocPtr parser = NULL;
 
-	parser = parseXmlFile(filename);
+	if (xml_data)
+		parser = parseXml(filename);
+	else
+		parser = parseXmlFile(filename);
 	
 	if (parser == NULL)
 		return;
