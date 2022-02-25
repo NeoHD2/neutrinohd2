@@ -842,7 +842,7 @@ bool CNeutrinoApp::widget_exists(int id)
 
 uint32_t CNeutrinoApp::convertColor(const char* const color)
 {
-	dprintf(DEBUG_INFO, "CNeutrinoApp::convertColor: colorr: %s\n", color);
+	dprintf(DEBUG_INFO, "CNeutrinoApp::convertColor: color: %s\n", color);
 	
 	uint32_t rgba = COL_MENUCONTENT_PLUS_0;
 	
@@ -870,6 +870,13 @@ uint32_t CNeutrinoApp::convertColor(const char* const color)
 	rgba = convertSetupColor2Color(r, g, b, a); 
 	
 	return rgba;
+}
+
+uint32_t convertMenuColor(int col)
+{
+	dprintf(DEBUG_INFO, "CNeutrinoApp::convertColor:\n");
+	
+	uint32_t rgba = COL_MENUCONTENT_PLUS_0;
 }
 
 //

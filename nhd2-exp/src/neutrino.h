@@ -163,6 +163,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		bool hasWidgets(){return widgets.size();};
 		CMenuTarget* convertTarget(const int id);
 		uint32_t convertColor(const char* const rgba);
+		uint32_t convertMenuColor(int col);
 		void readSkinConfig(const char* const filename);
 		void saveSkinConfig(const char* const filename);
 		bool skin_exists(const char* const filename);
