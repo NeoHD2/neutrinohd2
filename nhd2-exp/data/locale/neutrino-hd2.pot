@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-25 19:16+0100\n"
+"POT-Creation-Date: 2022-02-27 03:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2616,7 +2616,7 @@ msgstr ""
 msgid "Release cycle"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:656
+#: ../../src/gui/timerlist.cpp:656 ../../src/gui/pluginlist.cpp:88
 msgid "Reload"
 msgstr ""
 
@@ -2626,10 +2626,6 @@ msgstr ""
 
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3286
 msgid "Reload movie info at start"
-msgstr ""
-
-#: ../../src/gui/pluginlist.cpp:88
-msgid "Reload plugins"
 msgstr ""
 
 #: ../../src/neutrino.cpp:5339 ../../src/gui/service_menu.cpp:76

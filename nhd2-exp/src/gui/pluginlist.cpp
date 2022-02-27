@@ -85,7 +85,7 @@ struct button_label CPluginListButtons[NUM_LIST_BUTTONS] =
 	{ NEUTRINO_ICON_BUTTON_RED, _("Delete") },
 	{ NEUTRINO_ICON_BUTTON_GREEN, _("Start") },
 	{ NEUTRINO_ICON_BUTTON_YELLOW, " " },
-	{ NEUTRINO_ICON_BUTTON_BLUE, _("Reload plugins")}
+	{ NEUTRINO_ICON_BUTTON_BLUE, _("Reload")}
 };
 
 struct button_label CPluginListHeadButtons = {NEUTRINO_ICON_BUTTON_HELP_SMALL, "" };

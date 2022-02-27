@@ -99,11 +99,11 @@ CLocaleManager::loadLocale_ret_t CLocaleManager::loadLocale(const char* const lo
 	// set language
 	std::string lang = Lang2I18N(locale);
 	
-	//setenv("LANG", lang.c_str(), 1);
-	setenv("LANGUAGE", lang.c_str(), 1);
+	setenv("LANG", (char*)lang.c_str(), 1);
+	setenv("LANGUAGE", (char*)lang.c_str(), 1);
 	
 	//	
-	setlocale(LC_ALL, lang.c_str());
+	setlocale(LC_ALL, (char*)lang.c_str());
 	
 	return UNICODE_FONT;
 }
