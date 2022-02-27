@@ -872,7 +872,7 @@ uint32_t CNeutrinoApp::convertColor(const char* const color)
 	return rgba;
 }
 
-uint32_t convertMenuColor(int col)
+uint32_t CNeutrinoApp::convertMenuColor(int col)
 {
 	dprintf(DEBUG_INFO, "CNeutrinoApp::convertColor:\n");
 	
