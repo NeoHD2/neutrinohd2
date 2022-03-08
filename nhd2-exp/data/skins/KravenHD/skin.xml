@@ -77,7 +77,7 @@
 			<BUTTON_LABEL name="btn_yellow">
 			</BUTTON_LABEL>
 
-			<BUTTON_LABEL name="btn_blue" localename="Reload plugins">
+			<BUTTON_LABEL name="btn_blue" localename="Reload">
 			</BUTTON_LABEL>
 		</BUTTON>
 	</WIDGET>

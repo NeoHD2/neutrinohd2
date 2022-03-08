@@ -35,7 +35,7 @@
 			<BUTTON_LABEL name="btn_yellow">
 			</BUTTON_LABEL>
 
-			<BUTTON_LABEL name="btn_blue" localename="Reload plugins">
+			<BUTTON_LABEL name="btn_blue" localename="Reload">
 			</BUTTON_LABEL>
 		</FOOT>
 	</WIDGET>
@@ -44,7 +44,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Media Player" icon="multimedia" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
 			<INTEGRATION id="0x04" shortcut="1">
 			</INTEGRATION>
 		</LISTBOX>
@@ -59,7 +59,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Information" icon="information" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
 			<ITEM id="5" localename="Information" itemicon="hint_dboxinfo" target="60">
 			</ITEM>
 			<ITEM id="5" localename="Image info" itemicon="hint_imageinfo" target="61">
@@ -80,7 +80,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Power Menu" icon="power" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
 			<ITEM id="5" localename="Sleeptimer" itemicon="hint_sleeptimer" target="65">
 			</ITEM>
 			<ITEM id="5" localename="Neutrino Restart" itemicon="hint_restart" target="0" actionkey="restart">
@@ -103,7 +103,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Service" icon="softupdate" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
 			<ITEM id="5" localename="Scan transponder" itemicon="hint_scan" target="40">
 			</ITEM>
 			<ITEM id="5" localename="Reload channel lists" itemicon="hint_reload" target="0" actionkey="reloadchannels">
@@ -129,7 +129,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Features" icon="features" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
 			<ITEM id="5" localename="Timer list" itemicon="hint_timers" target="47">
 			</ITEM>
 			<ITEM id="5" localename="Plugins" itemicon="hint_plugin" target="43">
@@ -150,7 +150,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="EPG - Program Information" icon="epg" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
 			<ITEM id="5" localename="Eventlist current programm" itemicon="hint_sleeptimer" target="45">
 			</ITEM>
 			<ITEM id="5" localename="Details current program" itemicon="hint_restart" target="44" >
@@ -173,7 +173,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="OSD settings" icon="colors" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX name="listbox" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1"  mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1"  mode="2">
 			<ITEM id="5" localename="Skin select" itemicon="hint_themes" target="22">
 			</ITEM>
 			<ITEM id="5" localename="Themes" itemicon="hint_themes" target="25" >
@@ -206,7 +206,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Miscsettings" icon="settings" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
 			<ITEM id="5" localename="General Settings" itemicon="hint_settings" target="33">
 			</ITEM>
 			<ITEM id="5" localename="Channellist Settings" itemicon="hint_bedit" target="35" >
@@ -229,7 +229,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Settings" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
 			<ITEM id="5" localename="Video settings" itemicon="hint_video" target="9">
 			</ITEM>
 			<ITEM id="5" localename="Audio settings" itemicon="hint_audio" target="10">
@@ -268,7 +268,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX name="listbox" id="3" posx="30" posy="100" width="640" height="520" paintframe="1" type="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" mode="2">
 			<ITEM id="5" localename="EPG / Timer" itemicon="hint_timers" target="3" directkey="0x2">
 			</ITEM>
 			<ITEM id="5" localename="Features" itemicon="hint_plugin" target="6">

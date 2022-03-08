@@ -5332,7 +5332,7 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 			readSkinConfig(skinDefaultConfigFile.c_str());
 		}
 	}
-	if(actionKey == "reloadchannels")
+	else if(actionKey == "reloadchannels")
 	{
 		if (MessageBox(_("Information"), _("do you want to reload channel lists?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{

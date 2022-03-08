@@ -119,6 +119,7 @@ void CPluginList::showMenu()
 		//
 		plist = new ClistBox(0, 0, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 		
+		plist->setWidgetType(WIDGET_TYPE_CLASSIC);
 		plist->setWidgetMode(MODE_MENU);
 		plist->setMenuPosition(MENU_POSITION_CENTER);
 		
@@ -127,11 +128,14 @@ void CPluginList::showMenu()
 		plist->setTitle(_("Plugins"), NEUTRINO_ICON_FEATURES);
 		plist->setTitleHAlign(CC_ALIGN_CENTER);
 		plist->enablePaintDate();
+		plist->setFormat("%d.%m.%Y %H:%M:%S");
 		plist->setHeadButtons(&CPluginListHeadButtons, 1);
 		
 		// foot
 		plist->enablePaintFoot();
 		plist->setFootButtons(CPluginListButtons, NUM_LIST_BUTTONS);
+		
+		pWidget->addItem(plist);
 	}
 	
 	//
@@ -161,19 +165,6 @@ void CPluginList::showMenu()
 			plist->addItem(item);
 		}
 	}
-
-	// mode
-	plist->setWidgetType(WIDGET_TYPE_CLASSIC);
-	plist->enableShrinkMenu();
-	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN) != NULL)
-	{
-		plist->paintMainFrame(false);
-		plist->paintScrollBar(false);
-	}
-	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN) == NULL)
-		pWidget->addItem(plist);
 	
 	//
 	pWidget->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));

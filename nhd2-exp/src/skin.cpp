@@ -887,10 +887,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 	ClistBox* listBox = NULL;
 	CMenuItem* menuItem = NULL;
 	
-	//
-	//char* widgetitemname = NULL;
-	//unsigned int widgetitemid = 0;
-				
+	//			
 	unsigned int posx = 0;
 	unsigned int posy = 0;
 	unsigned int width = 0;
@@ -938,10 +935,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 	_xmlNodePtr buttonlabel_node = NULL;
 				
 	while ((node = xmlGetNextOccurence(node, "LISTBOX")) != NULL) 
-	{	
-		//widgetitemname = xmlGetAttribute(node, (char*)"name");
-		//widgetitemid = xmlGetSignedNumericAttribute(node, "id", 0);
-				
+	{			
 		posx = xmlGetSignedNumericAttribute(node, "posx", 0);
 		posy = xmlGetSignedNumericAttribute(node, "posy", 0);
 		width = xmlGetSignedNumericAttribute(node, "width", 0);
@@ -1034,8 +1028,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 		// ITEM	
 		listboxitem_node = node->xmlChildrenNode;
 		
-		//char* itemname = NULL;
-		unsigned int itemid = 5;
+		unsigned int itemid = 5; // MENUITEM_FORWARDER
 						
 		char* item_localename = NULL;
 		char* option = NULL;
@@ -1050,7 +1043,6 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 					
 		while ((listboxitem_node = xmlGetNextOccurence(listboxitem_node, "ITEM")) != NULL) 
 		{	
-			//itemname = xmlGetAttribute(listbox_node, (char*)"name");
 			itemid = xmlGetSignedNumericAttribute(listboxitem_node, "id", 0);
 						
 			item_localename = xmlGetAttribute(listboxitem_node, (char*)"localename");
@@ -1137,7 +1129,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 		char* button = NULL;
 		char* localename = NULL;
 					
-		while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "BUTTON_LABEL")) != NULL) 
+		while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "FOOT_BUTTON_LABEL")) != NULL) 
 		{	
 			button = xmlGetAttribute(buttonlabel_node, (char*)"name");
 			localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
@@ -1154,6 +1146,21 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 		}
 				
 		// BUTTON_LABEL / HEAD
+		while ((buttonlabel_node = xmlGetNextOccurence(buttonlabel_node, "HEAD_BUTTON_LABEL")) != NULL) 
+		{	
+			button = xmlGetAttribute(buttonlabel_node, (char*)"name");
+			//localename = xmlGetAttribute(buttonlabel_node, (char*)"localename");
+						
+			button_label_struct btn;
+			btn.button = " ";
+			if (button) btn.button = button;
+			btn.localename = " ";
+			//if (localename) btn.localename = localename;
+						
+			listBox->setHeadButtons(&btn);
+				
+			buttonlabel_node = buttonlabel_node->xmlNextNode;
+		}
 		
 		if (widget) widget->addItem(listBox);
 			
@@ -1166,9 +1173,6 @@ void CNeutrinoApp::parseCWindow(_xmlNodePtr node, CWidget* widget)
 	dprintf(DEBUG_INFO, "CNeutrinoApp::parseCWindow\n");
 	
 	CWindow* window = NULL;
-	
-	//char* widgetitemname = NULL;
-	//unsigned int widgetitemid = 0;
 				
 	unsigned int posx = 0;
 	unsigned int posy = 0;
@@ -1189,13 +1193,8 @@ void CNeutrinoApp::parseCWindow(_xmlNodePtr node, CWidget* widget)
 	
 	unsigned int refresh = 0;
 	
-//#TODO: add CCItems
-	
 	while ((node = xmlGetNextOccurence(node, "WINDOW")) != NULL) 
-	{
-		//widgetitemname = xmlGetAttribute(node, (char*)"name");
-		//widgetitemid = xmlGetSignedNumericAttribute(node, "id", 0);
-				
+	{		
 		posx = xmlGetSignedNumericAttribute(node, "posx", 0);
 		posy = xmlGetSignedNumericAttribute(node, "posy", 0);
 		width = xmlGetSignedNumericAttribute(node, "width", 0);
@@ -1229,7 +1228,6 @@ void CNeutrinoApp::parseCWindow(_xmlNodePtr node, CWidget* widget)
 		window->setShadowMode(i_shadow);
 		window->setGradient(i_gradient, i_direction, i_intensity, i_type);
 		
-		////
 		// LABEL
 		parseCCLabel(node->xmlChildrenNode, NULL, window);
 			
@@ -1241,7 +1239,6 @@ void CNeutrinoApp::parseCWindow(_xmlNodePtr node, CWidget* widget)
 			
 		// BUTTONS
 		parseCCButtons(node->xmlChildrenNode, NULL, window);
-		////
 					
 		if (widget) widget->addItem(window);
 			
@@ -1255,9 +1252,6 @@ void CNeutrinoApp::parseCHead(_xmlNodePtr node, CWidget* widget)
 	dprintf(DEBUG_INFO, "CNeutrinoApp::parseCHead:\n");
 	
 	CHeaders* head = NULL;
-	
-	//char* widgetitemname = NULL;
-	//unsigned int widgetitemid = 0;
 				
 	unsigned int posx = 0;
 	unsigned int posy = 0;
@@ -1280,10 +1274,7 @@ void CNeutrinoApp::parseCHead(_xmlNodePtr node, CWidget* widget)
 	_xmlNodePtr buttonlabel_node = NULL;
 	
 	while ((node = xmlGetNextOccurence(node, "HEAD")) != NULL) 
-	{		
-		//widgetitemname = xmlGetAttribute(node, (char*)"name");
-		//widgetitemid = xmlGetSignedNumericAttribute(node, "id", 0);
-				
+	{				
 		posx = xmlGetSignedNumericAttribute(node, "posx", 0);
 		posy = xmlGetSignedNumericAttribute(node, "posy", 0);
 		width = xmlGetSignedNumericAttribute(node, "width", 0);
@@ -1372,10 +1363,7 @@ void CNeutrinoApp::parseCFoot(_xmlNodePtr node, CWidget* widget)
 	_xmlNodePtr buttonlabel_node = NULL;
 	
 	while ((node = xmlGetNextOccurence(node, "FOOT")) != NULL) 
-	{
-		//widgetitemname = xmlGetAttribute(node, (char*)"name");
-		//widgetitemid = xmlGetSignedNumericAttribute(node, "id", 0);
-				
+	{		
 		posx = xmlGetSignedNumericAttribute(node, "posx", 0);
 		posy = xmlGetSignedNumericAttribute(node, "posy", 0);
 		width = xmlGetSignedNumericAttribute(node, "width", 0);
@@ -1438,10 +1426,7 @@ void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* wind
 	
 	CCLabel* label = NULL;
 	
-	//
-	//char* cc_name = NULL;
-	//unsigned int cc_id = 0;
-				
+	//			
 	unsigned int cc_x = 0;
 	unsigned int cc_y = 0;
 	unsigned int cc_dx = 0;
@@ -1451,10 +1436,7 @@ void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* wind
 	unsigned int l_halign = 0;
 	
 	while ((node = xmlGetNextOccurence(node, "LABEL")) != NULL) 
-	{				
-		//cc_name = xmlGetAttribute(node, (char*)"name");
-		//cc_id = xmlGetSignedNumericAttribute(node, "id", 0);
-				
+	{						
 		cc_x = xmlGetSignedNumericAttribute(node, "posx", 0);
 		cc_y = xmlGetSignedNumericAttribute(node, "posy", 0);
 		cc_dx = xmlGetSignedNumericAttribute(node, "width", 0);
@@ -1485,9 +1467,6 @@ void CNeutrinoApp::parseCCImage(_xmlNodePtr node, CWidget* widget, CWindow* wind
 	dprintf(DEBUG_INFO, "CNeutrinoApp::parseCCImage:\n");
 	
 	CCImage* pic = NULL;
-	
-	//char* cc_name = NULL;
-	//unsigned int cc_id = 0;
 				
 	unsigned int cc_x = 0;
 	unsigned int cc_y = 0;
@@ -1497,10 +1476,7 @@ void CNeutrinoApp::parseCCImage(_xmlNodePtr node, CWidget* widget, CWindow* wind
 	unsigned int cc_refresh = 0;
 	
 	while ((node = xmlGetNextOccurence(node, "IMAGE")) != NULL) 
-	{		
-		//cc_name = xmlGetAttribute(node, (char*)"name");
-		//cc_id = xmlGetSignedNumericAttribute(node, "id", 0);
-				
+	{				
 		cc_x = xmlGetSignedNumericAttribute(node, "posx", 0);
 		cc_y = xmlGetSignedNumericAttribute(node, "posy", 0);
 		cc_dx = xmlGetSignedNumericAttribute(node, "width", 0);
@@ -1539,9 +1515,6 @@ void CNeutrinoApp::parseCCTime(_xmlNodePtr node, CWidget* widget, CWindow* windo
 	dprintf(DEBUG_INFO, "CNeutrinoApp::parseCCTime:\n");
 	
 	CCTime* time = NULL;
-	
-	//char* cc_name = NULL;
-	//unsigned int cc_id = 0;
 				
 	unsigned int cc_x = 0;
 	unsigned int cc_y = 0;
@@ -1553,10 +1526,7 @@ void CNeutrinoApp::parseCCTime(_xmlNodePtr node, CWidget* widget, CWindow* windo
 	char* cc_format = NULL;
 	
 	while ((node = xmlGetNextOccurence(node, "TIME")) != NULL) 
-	{		
-		//cc_name = xmlGetAttribute(node, (char*)"name");
-		//cc_id = xmlGetSignedNumericAttribute(node, "id", 0);
-				
+	{				
 		cc_x = xmlGetSignedNumericAttribute(node, "posx", 0);
 		cc_y = xmlGetSignedNumericAttribute(node, "posy", 0);
 		cc_dx = xmlGetSignedNumericAttribute(node, "width", 0);
