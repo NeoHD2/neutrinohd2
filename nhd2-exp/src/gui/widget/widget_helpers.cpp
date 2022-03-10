@@ -1077,7 +1077,7 @@ void CCTime::paint()
 		
 	int startPosX = cCBox.iX + (cCBox.iWidth - timestr_len)/2;
 	
-	g_Font[font]->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), timestr_len + 1, timestr.c_str(), color, 0, true);
+	g_Font[font]->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), timestr_len, timestr.c_str(), color, 0, true);
 }
 
 void CCTime::refresh()
@@ -1095,9 +1095,9 @@ void CCTime::refresh()
 	if (timestr_len > cCBox.iWidth)
 		timestr_len = cCBox.iWidth;
 		
-	int startPosX = cCBox.iX + (cCBox.iWidth >> 1) - (timestr_len >> 1);
+	int startPosX = cCBox.iX + (cCBox.iWidth - timestr_len)/2;
 	
-	g_Font[font]->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), cCBox.iWidth, timestr.c_str(), color, 0, true);
+	g_Font[font]->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), timestr_len, timestr.c_str(), color, 0, true);
 }
 
 // CCCounter

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-08 17:46+0100\n"
+"POT-Creation-Date: 2022-03-10 17:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -745,7 +745,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ../../src/gui/pluginlist.cpp:232
+#: ../../src/gui/pluginlist.cpp:225
 msgid "Description: "
 msgstr ""
 
@@ -2397,7 +2397,7 @@ msgid "Plugin"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:295 ../../src/gui/pluginlist.cpp:128
-#: ../../src/gui/pluginlist.cpp:244 ../../src/system/setting_helpers.cpp:273
+#: ../../src/gui/pluginlist.cpp:237 ../../src/system/setting_helpers.cpp:273
 msgid "Plugins"
 msgstr ""
 
