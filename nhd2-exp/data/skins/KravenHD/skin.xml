@@ -5,7 +5,7 @@
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 
 	<WIDGET name="filebrowser" id="51" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="0">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="1">
 		</LISTBOX>
 		<LABEL posx="640" posy="50" width="640" height="50" text="Filebrowser" halign="1">
 		</LABEL>
@@ -52,7 +52,7 @@
 -->
 
 	<WIDGET name="plugins" id="80" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="0">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="1">
 		</LISTBOX>
 		
 		<LABEL posx="640" posy="50" width="640" height="50" text="Plugins" halign="1">

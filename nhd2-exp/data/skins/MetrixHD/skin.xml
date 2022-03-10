@@ -26,7 +26,7 @@
 	-->
 	
 	<WIDGET name="plugins" id="80" posx="0" posy="0" width="1280" height="720">
-		<LISTBOX posx="50" posy="60" width="540" height="580" type="0" mode ="2">
+		<LISTBOX posx="50" posy="60" width="540" height="580" type="1">
 		</LISTBOX>
 		
 		<BUTTON posx="50" posy="630" width="540" height="40">
