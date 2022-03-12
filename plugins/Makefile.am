@@ -21,8 +21,7 @@ SUBDIRS = \
 
 #testing
 if ENABLE_TESTING
-SUBDIRS += ard \
-	satipclient \
+SUBDIRS += satipclient \
 	opkg_manager \
 	tuxcal
 endif

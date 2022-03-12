@@ -2516,8 +2516,10 @@ void ClistBox::initFrames()
 	if(widgetType == WIDGET_TYPE_FRAME)
 	{
 		//
-		if (paintFrame)
-		cFrameFootInfoHeight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
+		if (paintFrame && paintFootInfo)
+		{
+			cFrameFootInfoHeight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
+		}
 		
 		//	
 		if(fbutton_count == 0)
@@ -3222,7 +3224,10 @@ void ClistBox::paintItemInfo(int pos)
 	}	
 	else if(widgetType == WIDGET_TYPE_EXTENDED)
 	{
-		dprintf(DEBUG_INFO, "ClistBox::paintItemInfo:\n"); //FIXME:
+		dprintf(DEBUG_INFO, "ClistBox::paintItemInfo:\n"); 
+		
+		if (paintFootInfo)
+		{
 		
 		CMenuItem* item = items[pos];
 
@@ -3248,10 +3253,12 @@ void ClistBox::paintItemInfo(int pos)
 		// hint
 		textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), p_w, p_h, PIC_CENTER);
 		textBox->paint();
+		
+		}
 	}
 	else if(widgetType == WIDGET_TYPE_FRAME)
 	{
-		if (paintFrame)
+		if (paintFrame && paintFootInfo)
 		{
 			dprintf(DEBUG_INFO, "ClistBox::paintItemInfo:\n"); //FIXME:
 			

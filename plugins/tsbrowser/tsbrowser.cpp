@@ -33,7 +33,8 @@ class CTSBrowser : public CMenuTarget
 		int selected;
 
 		//
-		CMenuWidget* mlist;
+		CWidget* widget;
+		ClistBox* mlist;
 		CMenuItem* item;
 
 		//
@@ -64,6 +65,7 @@ CTSBrowser::CTSBrowser()
 	frameBuffer = CFrameBuffer::getInstance();
 
 	//
+	widget = NULL;
 	mlist = NULL;
 	item = NULL;
 
@@ -121,7 +123,6 @@ void CTSBrowser::loadPlaylist()
 	
 	//
 	//if(CFileHelpers::getInstance()->readDir(Path, &filelist, &fileFilter))
-	
 	CFileHelpers::getInstance()->addRecursiveDir(&filelist, Path, &fileFilter);
 
 	if(filelist.size() > 0)
@@ -151,7 +152,6 @@ void CTSBrowser::loadPlaylist()
 	filelist.clear();
 
 	//if(CFileHelpers::getInstance()->readDir(Path, &filelist, &fileFilter))
-	
 	CFileHelpers::getInstance()->addRecursiveDir(&filelist, Path, &fileFilter);
 
 	if(filelist.size() > 0)
@@ -347,7 +347,7 @@ void CTSBrowser::onDeleteFile(MI_MOVIE_INFO& movieFile)
 		msg += movieFile.file.Name;
 			
 	msg += "\r\n ";
-	msg += _("?");
+	msg += "?";
 
 	if (MessageBox(_("Delete"), msg.c_str(), mbrNo, mbYes | mbNo) == mbrYes)
 	{
@@ -411,7 +411,9 @@ const struct button_label FootButtons[FOOT_BUTTONS_COUNT] =
 
 void CTSBrowser::showMenu()
 {
-	mlist = new CMenuWidget("Movie Browser", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+	widget = new CWidget();
+	//mlist = new CMenuWidget("Movie Browser", NEUTRINO_ICON_MOVIE);
+	mlist = new ClistBox(0, 0, 1280, 720);
 
 	mlist->clearAll();
 
@@ -426,26 +428,44 @@ void CTSBrowser::showMenu()
 		mlist->addItem(item);
 	}
 
+	//
 	mlist->setWidgetMode(MODE_LISTBOX);
 	mlist->setWidgetType(WIDGET_TYPE_FRAME);
 	mlist->setItemsPerPage(6, 2);
-	mlist->setSelected(selected);
+	
+	//
+	mlist->enablePaintHead();
+	mlist->setTitle(_("Movie Browser"), NEUTRINO_ICON_MOVIE);
+	//mlist->setTitleHAlign(CC_ALIGN_CENTER);
 	mlist->enablePaintDate();
-	//mlist->enablePaintFootInfo();
-
+	mlist->setFormat("%A %d.%m.%Y %H:%M:%S");
 	mlist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	
+	//
+	mlist->enablePaintFoot();
 	mlist->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
+	
+	//
+	mlist->enablePaintItemInfo();
 
-	mlist->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
-	mlist->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
-	mlist->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
-	mlist->addKey(RC_spkr, this, CRCInput::getSpecialKeyName(RC_spkr));
-	mlist->addKey(RC_yellow, this, CRCInput::getSpecialKeyName(RC_yellow));
-	mlist->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
+	//
+	widget->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
+	widget->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
+	widget->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
+	widget->addKey(RC_spkr, this, CRCInput::getSpecialKeyName(RC_spkr));
+	widget->addKey(RC_yellow, this, CRCInput::getSpecialKeyName(RC_yellow));
+	widget->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
+	
+	//
+	widget->addItem(mlist);
 
-	mlist->exec(NULL, "");
+	widget->exec(NULL, "");
+	
 	delete mlist;
 	mlist = NULL;
+	
+	delete widget;
+	widget = NULL;
 }
 
 int CTSBrowser::exec(CMenuTarget* parent, const std::string& actionKey)
@@ -457,7 +477,7 @@ int CTSBrowser::exec(CMenuTarget* parent, const std::string& actionKey)
 	
 	if(actionKey == "mplay")
 	{
-		selected = mlist->getSelected();
+		selected = mlist? mlist->getSelected() : 0;
 
 		CMovieInfoWidget movieInfoWidget;
 		movieInfoWidget.setMovie(m_vMovieInfo[selected]);
@@ -468,14 +488,14 @@ int CTSBrowser::exec(CMenuTarget* parent, const std::string& actionKey)
 	}
 	else if(actionKey == "RC_info")
 	{
-		selected = mlist->getSelected();
+		selected = mlist? mlist->getSelected() : 0;
 		m_movieInfo.showMovieInfo(m_vMovieInfo[mlist->getSelected()]);
 
 		return RETURN_REPAINT;
 	}
 	else if(actionKey == "RC_red")
 	{
-		selected = mlist->getSelected();
+		selected = mlist? mlist->getSelected() : 0;
 		hide();
 		doTMDB(m_vMovieInfo[mlist->getSelected()]);
 		showMenu();

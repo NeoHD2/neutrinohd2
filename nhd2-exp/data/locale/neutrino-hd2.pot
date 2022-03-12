@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-10 17:50+0100\n"
+"POT-Creation-Date: 2022-03-12 14:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,7 +93,6 @@ msgstr ""
 
 #: ../../src/gui/filebrowser.cpp:503
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2196
-#: ../../../plugins/tsbrowser/tsbrowser.cpp:350
 msgid "?"
 msgstr ""
 
@@ -1945,6 +1944,7 @@ msgstr ""
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:1089
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:1284
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:1701
+#: ../../../plugins/tsbrowser/tsbrowser.cpp:438
 msgid "Movie Browser"
 msgstr ""
 
@@ -2912,7 +2912,7 @@ msgstr ""
 #: ../../../plugins/ntvshows/ntvshows.cpp:133
 #: ../../../plugins/ntvshows/nseasons.cpp:75
 #: ../../../plugins/ntvshows/nepisodes.cpp:73
-#: ../../../plugins/tsbrowser/tsbrowser.cpp:119
+#: ../../../plugins/tsbrowser/tsbrowser.cpp:121
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:204
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:409
 #: ../../../plugins/youtube/youtube.cpp:216
@@ -3430,7 +3430,7 @@ msgstr ""
 msgid "TOP RIGHT"
 msgstr ""
 
-#: ../../../plugins/tsbrowser/tsbrowser.cpp:119
+#: ../../../plugins/tsbrowser/tsbrowser.cpp:121
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:204
 msgid "TS Browser"
 msgstr ""

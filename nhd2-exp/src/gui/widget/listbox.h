@@ -685,7 +685,7 @@ class ClistBox : public CWidgetItem
 		void setFootLine(bool l){foot_line = l;};
 
 		// itemInfo
-		void enablePaintItemInfo(int fh){paintFootInfo = true; footInfoHeight = fh;};
+		void enablePaintItemInfo(int fh = 0){paintFootInfo = true; footInfoHeight = fh;};
 		void setItemInfoMode(int mode){footInfoMode = mode;};
 		void setItemInfoPos(int x, int y, int dx, int dy)
 		{

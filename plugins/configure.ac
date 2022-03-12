@@ -67,7 +67,6 @@ opkg_manager/Makefile
 nfilm/Makefile
 ntvshows/Makefile
 upnp/Makefile
-ard/Makefile
 python/Makefile
 lua/Makefile
 netzkino_hd/Makefile
