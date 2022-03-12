@@ -38,6 +38,7 @@ const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
  
 CYTBrowser::CYTBrowser(int mode): configfile ('\t')
 {
+	widget = NULL;
 	moviesMenu = NULL;
 	item = NULL;
 
@@ -112,8 +113,8 @@ bool CYTBrowser::saveSettings(YTB_SETTINGS *settings)
 #define YT_HEAD_BUTTONS_COUNT	2
 const struct button_label YTHeadButtons[YT_HEAD_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_HELP, "" },
-	{ NEUTRINO_ICON_BUTTON_SETUP, "" }
+	{ NEUTRINO_ICON_BUTTON_HELP, " " },
+	{ NEUTRINO_ICON_BUTTON_SETUP, " " }
 };
 
 #define YT_FOOT_BUTTONS_COUNT  4
@@ -121,7 +122,7 @@ const struct button_label YTFootButtons[YT_FOOT_BUTTONS_COUNT] =
 {
 	{ NEUTRINO_ICON_BUTTON_RED, _("next results") },
 	{ NEUTRINO_ICON_BUTTON_GREEN, _("prev results") },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, "" },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, " " },
 	{ NEUTRINO_ICON_BUTTON_BLUE, _("most popular")}
 };
 
@@ -136,7 +137,9 @@ void CYTBrowser::showMenu()
 		
 	title += getFeedLocale();
 
-	moviesMenu = new CMenuWidget(title.c_str(), NEUTRINO_ICON_YT_SMALL);
+	//
+	widget = new CWidget();
+	moviesMenu = new ClistBox(0, 0, 1280, 720);
 	
 	std::string itemTitle;
 
@@ -151,24 +154,40 @@ void CYTBrowser::showMenu()
 		moviesMenu->addItem(item);
 	}
 
+	//
 	moviesMenu->setWidgetMode(MODE_LISTBOX);
 	moviesMenu->setWidgetType(WIDGET_TYPE_FRAME);
 	moviesMenu->setItemsPerPage(3, 2);
-	//moviesMenu->enablePaintFootInfo(); // never mind
 
+	//
+	moviesMenu->enablePaintHead();
+	moviesMenu->setTitle(title.c_str(), NEUTRINO_ICON_YT_SMALL);
+	moviesMenu->enablePaintDate();
 	moviesMenu->setHeadButtons(YTHeadButtons, YT_HEAD_BUTTONS_COUNT);
+	
+	//
+	moviesMenu->enablePaintFoot();
 	moviesMenu->setFootButtons(YTFootButtons, YT_FOOT_BUTTONS_COUNT);
+	
+	//
+	moviesMenu->enablePaintItemInfo();
 
-	moviesMenu->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
-	moviesMenu->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));
-	moviesMenu->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
-	moviesMenu->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
-	moviesMenu->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
-	moviesMenu->addKey(RC_record, this, CRCInput::getSpecialKeyName(RC_record));
+	widget->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
+	widget->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));
+	widget->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
+	widget->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
+	widget->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
+	widget->addKey(RC_record, this, CRCInput::getSpecialKeyName(RC_record));
+	
+	widget->addItem(moviesMenu);
 
-	moviesMenu->exec(NULL, "");
+	widget->exec(NULL, "");
+	
 	delete moviesMenu;
 	moviesMenu = NULL;
+	
+	delete widget;
+	widget = NULL;
 }
 
 void CYTBrowser::playMovie(void)
@@ -176,10 +195,10 @@ void CYTBrowser::playMovie(void)
 	if(m_settings.ytautoplay)
 	{
 		// add selected video
-		tmpMoviePlayerGui.addToPlaylist(m_vMovieInfo[moviesMenu->getSelected()]);
+		tmpMoviePlayerGui.addToPlaylist(m_vMovieInfo[moviesMenu? moviesMenu->getSelected() : 0]);
 
 		// get related videos
-		loadYTTitles(cYTFeedParser::RELATED, "", m_vMovieInfo[moviesMenu->getSelected()].ytid, false);
+		loadYTTitles(cYTFeedParser::RELATED, "", m_vMovieInfo[moviesMenu? moviesMenu->getSelected() : 0].ytid, false);
 
 		for(int i = 0; i < m_vMovieInfo.size(); i++)
 		{
@@ -191,9 +210,9 @@ void CYTBrowser::playMovie(void)
 	}
 	else
 	{
-		if (&m_vMovieInfo[moviesMenu->getSelected()].file != NULL) 
+		if (&m_vMovieInfo[moviesMenu? moviesMenu->getSelected() : 0].file != NULL) 
 		{
-			tmpMoviePlayerGui.addToPlaylist(m_vMovieInfo[moviesMenu->getSelected()]);
+			tmpMoviePlayerGui.addToPlaylist(m_vMovieInfo[moviesMenu? moviesMenu->getSelected() : 0]);
 			tmpMoviePlayerGui.exec(NULL, "");
 		}
 	}
@@ -201,12 +220,12 @@ void CYTBrowser::playMovie(void)
 
 void CYTBrowser::showMovieInfo(void)
 {
-	m_movieInfo.showMovieInfo(m_vMovieInfo[moviesMenu->getSelected()]);
+	m_movieInfo.showMovieInfo(m_vMovieInfo[moviesMenu? moviesMenu->getSelected() : 0]);
 }
 
 void CYTBrowser::recordMovie(void)
 {
-	::start_file_recording(m_vMovieInfo[moviesMenu->getSelected()].epgTitle.c_str(), m_vMovieInfo[moviesMenu->getSelected()].epgInfo2.c_str(), m_vMovieInfo[moviesMenu->getSelected()].file.Name.c_str());
+	::start_file_recording(m_vMovieInfo[moviesMenu? moviesMenu->getSelected() : 0].epgTitle.c_str(), m_vMovieInfo[moviesMenu? moviesMenu->getSelected() : 0].epgInfo2.c_str(), m_vMovieInfo[moviesMenu? moviesMenu->getSelected() : 0].file.Name.c_str());
 }
 
 void CYTBrowser::loadYTTitles(int mode, std::string search, std::string id, bool show_hint)
@@ -403,7 +422,7 @@ int CYTBrowser::exec(CMenuTarget* parent, const std::string& actionKey)
 	}
 	else if(actionKey == "RC_blue")
 	{
-		ytvid = m_vMovieInfo[moviesMenu->getSelected()].ytid;
+		ytvid = m_vMovieInfo[moviesMenu? moviesMenu->getSelected() : 0].ytid;
 		ytmode = cYTFeedParser::RELATED;
 
 		loadYTTitles(ytmode, ytsearch, ytvid);
@@ -413,7 +432,7 @@ int CYTBrowser::exec(CMenuTarget* parent, const std::string& actionKey)
 	}
 	else if(actionKey == "RC_red")
 	{
-		ytvid = m_vMovieInfo[moviesMenu->getSelected()].ytid;
+		ytvid = m_vMovieInfo[moviesMenu? moviesMenu->getSelected() : 0].ytid;
 		ytmode = cYTFeedParser::NEXT;
 
 		loadYTTitles(ytmode, ytsearch, ytvid);
@@ -423,7 +442,7 @@ int CYTBrowser::exec(CMenuTarget* parent, const std::string& actionKey)
 	}
 	else if(actionKey == "RC_green")
 	{
-		ytvid = m_vMovieInfo[moviesMenu->getSelected()].ytid;
+		ytvid = m_vMovieInfo[moviesMenu? moviesMenu->getSelected() : 0].ytid;
 		ytmode = cYTFeedParser::PREV;
 
 		loadYTTitles(ytmode, ytsearch, ytvid);

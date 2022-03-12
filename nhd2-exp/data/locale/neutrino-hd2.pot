@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-12 14:58+0100\n"
+"POT-Creation-Date: 2022-03-12 16:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,7 +134,7 @@ msgstr ""
 #: ../../../plugins/audioplayer/audioplayer.cpp:253
 #: ../../../plugins/icecast/icecast.cpp:675
 #: ../../../plugins/internetradio/internetradio.cpp:653
-#: ../../../plugins/picviewer/picviewer.cpp:168
+#: ../../../plugins/picviewer/picviewer.cpp:169
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:407
 msgid "Add"
 msgstr ""
@@ -258,7 +258,7 @@ msgstr ""
 msgid "Audiotype"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:353
+#: ../../../plugins/youtube/youtube.cpp:372
 msgid "Auto Play"
 msgstr ""
 
@@ -725,7 +725,7 @@ msgstr ""
 #: ../../../plugins/internetradio/internetradio.cpp:652
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2185
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:2198
-#: ../../../plugins/picviewer/picviewer.cpp:167
+#: ../../../plugins/picviewer/picviewer.cpp:168
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:338
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:352
 msgid "Delete"
@@ -735,7 +735,7 @@ msgstr ""
 #: ../../../plugins/audioplayer/audioplayer.cpp:254
 #: ../../../plugins/icecast/icecast.cpp:676
 #: ../../../plugins/internetradio/internetradio.cpp:654
-#: ../../../plugins/picviewer/picviewer.cpp:169
+#: ../../../plugins/picviewer/picviewer.cpp:170
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:408
 msgid "Delete all"
 msgstr ""
@@ -990,7 +990,7 @@ msgstr ""
 #: ../../../plugins/opkg_manager/opkg_manager.cpp:229
 #: ../../../plugins/opkg_manager/opkg_manager.cpp:457
 #: ../../../plugins/satipclient/satipclient.cpp:51
-#: ../../../plugins/youtube/youtube.cpp:240
+#: ../../../plugins/youtube/youtube.cpp:259
 msgid "Error"
 msgstr ""
 
@@ -1042,7 +1042,7 @@ msgstr ""
 msgid "Failed to load Netzkino Movies"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:240
+#: ../../../plugins/youtube/youtube.cpp:259
 msgid "Failed to load youtube feed"
 msgstr ""
 
@@ -1841,7 +1841,7 @@ msgstr ""
 msgid "Media Player"
 msgstr ""
 
-#: ../../../plugins/mediaportal/mediaportal.cpp:146
+#: ../../../plugins/mediaportal/mediaportal.cpp:156
 msgid "Media Portal"
 msgstr ""
 
@@ -1911,8 +1911,8 @@ msgstr ""
 msgid "More Screenings on this Channel"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:278
-#: ../../../plugins/youtube/youtube.cpp:324
+#: ../../../plugins/youtube/youtube.cpp:297
+#: ../../../plugins/youtube/youtube.cpp:343
 msgid "Most popular today"
 msgstr ""
 
@@ -2287,7 +2287,7 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:332
+#: ../../../plugins/youtube/youtube.cpp:351
 msgid "Order by"
 msgstr ""
 
@@ -2368,7 +2368,7 @@ msgid "Picture"
 msgstr ""
 
 #: ../../src/gui/rc_setup.cpp:101 ../../src/gui/pictureviewer.cpp:167
-#: ../../../plugins/picviewer/picviewer.cpp:175
+#: ../../../plugins/picviewer/picviewer.cpp:209
 msgid "Pictureviewer"
 msgstr ""
 
@@ -2608,7 +2608,7 @@ msgstr ""
 msgid "Refresh EPG"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:338
+#: ../../../plugins/youtube/youtube.cpp:357
 msgid "Region"
 msgstr ""
 
@@ -2915,7 +2915,7 @@ msgstr ""
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:121
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:204
 #: ../../../plugins/tsbrowser/tsbrowser.cpp:409
-#: ../../../plugins/youtube/youtube.cpp:216
+#: ../../../plugins/youtube/youtube.cpp:235
 msgid "Scan for Movies ..."
 msgstr ""
 
@@ -2986,7 +2986,7 @@ msgstr ""
 #: ../../src/gui/eventlist.cpp:818 ../../../plugins/test/test.cpp:7323
 #: ../../../plugins/netzkino/netzkino.cpp:338
 #: ../../../plugins/nfilm/nfilm.cpp:596
-#: ../../../plugins/youtube/youtube.cpp:443
+#: ../../../plugins/youtube/youtube.cpp:462
 msgid "Search"
 msgstr ""
 
@@ -2998,7 +2998,7 @@ msgstr ""
 msgid "Search in EPG"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:329
+#: ../../../plugins/youtube/youtube.cpp:348
 msgid "Search keyword"
 msgstr ""
 
@@ -3184,16 +3184,16 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:923 ../../src/gui/osd_setup.cpp:997
-#: ../../src/gui/osd_setup.cpp:1008
+#: ../../src/gui/osd_setup.cpp:923 ../../src/gui/osd_setup.cpp:999
+#: ../../src/gui/osd_setup.cpp:1010
 msgid "Skin Select"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1097
+#: ../../src/gui/osd_setup.cpp:1099
 msgid "Skin Style Selection"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1032
+#: ../../src/gui/osd_setup.cpp:1034
 msgid "Skin Style selection"
 msgstr ""
 
@@ -3214,7 +3214,7 @@ msgstr ""
 msgid "Sleeptimer in 1 min"
 msgstr ""
 
-#: ../../../plugins/picviewer/picviewer.cpp:170
+#: ../../../plugins/picviewer/picviewer.cpp:171
 msgid "Slideshow"
 msgstr ""
 
@@ -3477,7 +3477,7 @@ msgstr ""
 msgid "Test"
 msgstr ""
 
-#: ../../../plugins/test/test.cpp:7496
+#: ../../../plugins/test/test.cpp:7499
 msgid "Test Menu"
 msgstr ""
 
@@ -4000,9 +4000,9 @@ msgstr ""
 msgid "Youth protection settings"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:134
-#: ../../../plugins/youtube/youtube.cpp:216
-#: ../../../plugins/youtube/youtube.cpp:318
+#: ../../../plugins/youtube/youtube.cpp:135
+#: ../../../plugins/youtube/youtube.cpp:235
+#: ../../../plugins/youtube/youtube.cpp:337
 msgid "Youtube Player"
 msgstr ""
 
@@ -4214,7 +4214,7 @@ msgstr ""
 msgid "children / juvenile program"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1067
+#: ../../src/gui/osd_setup.cpp:1069
 msgid "choose Skin Style."
 msgstr ""
 
@@ -4601,7 +4601,7 @@ msgstr ""
 msgid "monthly"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:125
+#: ../../../plugins/youtube/youtube.cpp:126
 msgid "most popular"
 msgstr ""
 
@@ -4696,7 +4696,7 @@ msgstr ""
 msgid "next focus"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:122
+#: ../../../plugins/youtube/youtube.cpp:123
 msgid "next results"
 msgstr ""
 
@@ -4832,7 +4832,7 @@ msgstr ""
 msgid "prev bouquet"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:123
+#: ../../../plugins/youtube/youtube.cpp:124
 msgid "prev results"
 msgstr ""
 
@@ -4844,7 +4844,7 @@ msgstr ""
 msgid "ps"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:285
+#: ../../../plugins/youtube/youtube.cpp:304
 msgid "publishing date"
 msgstr ""
 
@@ -4852,7 +4852,7 @@ msgstr ""
 msgid "purple"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:288
+#: ../../../plugins/youtube/youtube.cpp:307
 msgid "rating"
 msgstr ""
 
@@ -4876,7 +4876,7 @@ msgstr ""
 msgid "red"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:286
+#: ../../../plugins/youtube/youtube.cpp:305
 msgid "relevance"
 msgstr ""
 
@@ -5082,19 +5082,19 @@ msgstr ""
 msgid "the filesize is 0 Bytes"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:454 ../../src/gui/osd_setup.cpp:1008
+#: ../../src/gui/osd_setup.cpp:454 ../../src/gui/osd_setup.cpp:1010
 msgid ""
 "this need Neutrino restart\n"
 "do you want really to restart?"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1097
+#: ../../src/gui/osd_setup.cpp:1099
 msgid ""
 "this needs Neutrino restart\n"
 "Skin Style selection?"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:997 ../../src/gui/themes.cpp:148
+#: ../../src/gui/osd_setup.cpp:999 ../../src/gui/themes.cpp:148
 msgid ""
 "this needs Neutrino restart\n"
 "do you want really to restart?"
@@ -5153,7 +5153,7 @@ msgstr ""
 msgid "variety show"
 msgstr ""
 
-#: ../../../plugins/youtube/youtube.cpp:287
+#: ../../../plugins/youtube/youtube.cpp:306
 msgid "view count"
 msgstr ""
 

@@ -30,7 +30,8 @@ class CPicViewer : public CMenuTarget
 	private:
 		CFrameBuffer* frameBuffer;
 
-		CMenuWidget* plist;
+		CWidget* widget;
+		ClistBox* plist;
 		CMenuItem* item;
 
 		CPictureViewerGui tmpPictureViewerGui;
@@ -57,6 +58,7 @@ CPicViewer::CPicViewer()
 {
 	frameBuffer = CFrameBuffer::getInstance();
 
+	widget = NULL;
 	plist = NULL;
 	item = NULL;
 
@@ -88,7 +90,6 @@ void CPicViewer::loadPlaylist()
 	Path = g_settings.network_nfs_picturedir;
 
 	//if(CFileHelpers::getInstance()->readDir(Path, &filelist, &fileFilter))
-
 	CFileHelpers::getInstance()->addRecursiveDir(&filelist, Path, &fileFilter);
 
 	if(filelist.size() > 0)
@@ -157,8 +158,8 @@ void CPicViewer::openFileBrowser()
 #define HEAD_BUTTONS_COUNT	2
 const struct button_label HeadButtons[HEAD_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_SETUP, "" },
-	{ NEUTRINO_ICON_BUTTON_HELP, "" }
+	{ NEUTRINO_ICON_BUTTON_SETUP, " " },
+	{ NEUTRINO_ICON_BUTTON_HELP, " " }
 };
 
 #define FOOT_BUTTONS_COUNT 4
@@ -172,7 +173,11 @@ const struct button_label PictureViewerButtons[FOOT_BUTTONS_COUNT] =
 
 void CPicViewer::showMenu()
 {
-	plist = new CMenuWidget(_("Pictureviewer"), NEUTRINO_ICON_PICTURE, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
+	widget = new CWidget();
+	
+	//plist = new CMenuWidget(_("Pictureviewer"), NEUTRINO_ICON_PICTURE, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
+	
+	plist = new ClistBox(0, 0, 1280, 720);
 
 	for(unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 	{
@@ -198,26 +203,37 @@ void CPicViewer::showMenu()
 	plist->setWidgetMode(MODE_LISTBOX);
 	plist->setWidgetType(WIDGET_TYPE_FRAME);
 	plist->setItemsPerPage(10, 6);
-	//plist->setTimeOut(g_settings.timing[SNeutrinoSettings::TIMING_CHANLIST]);
-	plist->setSelected(selected);
-	plist->enableSaveScreen();
-
+	
+	//
+	plist->enablePaintHead();
+	plist->setTitle(_("Pictureviewer"), NEUTRINO_ICON_PICTURE);
+	plist->enablePaintDate();
 	plist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
+	
+	//
+	plist->enablePaintFoot();
 	plist->setFootButtons(PictureViewerButtons, FOOT_BUTTONS_COUNT);
 	
-	plist->enablePaintDate();
+	//
+	plist->enablePaintItemInfo();
 
-	plist->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
-	plist->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));
-	plist->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
-	plist->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
-	plist->addKey(RC_yellow, this, CRCInput::getSpecialKeyName(RC_yellow));
-	plist->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
+	//
+	widget->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
+	widget->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));
+	widget->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
+	widget->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
+	widget->addKey(RC_yellow, this, CRCInput::getSpecialKeyName(RC_yellow));
+	widget->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
+	
+	widget->addItem(plist);
 
-	plist->exec(NULL, "");
-	//plist->hide();
+	widget->exec(NULL, "");
+	
 	delete plist;
 	plist = NULL;
+	
+	delete widget;
+	widget = NULL;
 }
 
 int CPicViewer::exec(CMenuTarget* parent, const std::string& actionKey)
@@ -227,10 +243,7 @@ int CPicViewer::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(parent)
 		hide();
 
-	if(plist != NULL)
-		selected = plist->getSelected();
-	else
-		selected = 0;
+	selected = plist? plist->getSelected() : 0;
 
 	if(actionKey == "view")
 	{

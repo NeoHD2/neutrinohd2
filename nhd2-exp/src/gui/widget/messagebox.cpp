@@ -330,7 +330,7 @@ void CMessageBox::refresh()
 	m_cBoxWindow->paint();
 
 	// title
-	CHeaders headers(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + 1, CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + 1, m_width - 2, m_theight - 2, m_caption.c_str(), m_iconfile.c_str());
+	CHeaders headers(CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1), CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2), m_width, m_theight, m_caption.c_str(), m_iconfile.c_str());
 	
 	headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
 	headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);

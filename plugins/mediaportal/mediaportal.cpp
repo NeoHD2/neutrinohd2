@@ -29,7 +29,8 @@ extern "C" void plugin_del(void);
 class CMediaPortal : public CMenuTarget
 {
 	private:
-		CMenuWidget* mediaPortal;
+		CWidget* widget;
+		ClistBox* mediaPortal;
 		CMenuItem* item;
 
 		void showMenu(void);
@@ -45,6 +46,7 @@ CMediaPortal::CMediaPortal()
 {
 	dprintf(DEBUG_NORMAL, "$Id: CMediaPortal, 2016.02.10 mohousch Exp $\n");
 
+	widget = NULL;
 	mediaPortal = NULL;
 	item = NULL;
 }
@@ -143,12 +145,19 @@ int CMediaPortal::exec(CMenuTarget * parent, const std::string & actionKey)
 
 void CMediaPortal::showMenu(void)
 {
-	mediaPortal = new CMenuWidget(_("Media Portal"), PLUGINDIR "/mediaportal/mp.png");
+	widget = new CWidget();
+	mediaPortal = new ClistBox(0, 0, 1280, 720);
 
 	mediaPortal->setWidgetMode(MODE_LISTBOX);
 	mediaPortal->setWidgetType(WIDGET_TYPE_FRAME);
-	//mediaPortal->enablePaintFootInfo();
+	
+	//
+	mediaPortal->enablePaintHead();
+	mediaPortal->setTitle(_("Media Portal"), PLUGINDIR "/mediaportal/mp.png");
 	mediaPortal->enablePaintDate();
+	
+	// 
+	mediaPortal->enablePaintItemInfo();
 
 	// youtube
 	item = new ClistBoxItem("You Tube", true, NULL, this, "youtube", RC_nokey, NULL, PLUGINDIR "/youtube/youtube.png");
@@ -174,11 +183,6 @@ void CMediaPortal::showMenu(void)
 	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("internetradio")).c_str());
 	
 	mediaPortal->addItem(item);
-
-	// ard
-	//item = new ClistBoxItem("ARD Mediathek", true, NULL, this, "ard", RC_nokey, NULL, PLUGINDIR "/mediaportal/ard.png");
-
-	//mediaPortal->addItem(item);
 
 	// nFilm
 	item = new ClistBoxItem("Movie Trailer", true, NULL, this, "nfilm", RC_nokey, NULL, PLUGINDIR "/nfilm/nfilm.png");
@@ -215,11 +219,16 @@ void CMediaPortal::showMenu(void)
 	item = new ClistBoxItem("Pluto TV VOD", true, NULL, this, "plutotv", RC_nokey, NULL, PLUGINDIR "/plutotv/plutotv.png");
 	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("plutotv")).c_str());
 	mediaPortal->addItem(item);
+	
+	widget->addItem(mediaPortal);
 
-	mediaPortal->exec(NULL, "");
-	mediaPortal->hide();
+	widget->exec(NULL, "");
+	
 	delete mediaPortal;
 	mediaPortal = NULL;
+	
+	delete widget;
+	widget = NULL;
 }
 
 //plugin API

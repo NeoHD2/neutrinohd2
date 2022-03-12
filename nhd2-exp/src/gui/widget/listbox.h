@@ -220,8 +220,6 @@ class CMenuItem
 
 		//
 		virtual void setIconName(const char* const icon){iconName = icon;};
-		//virtual void setItemIcon(const char* const icon){itemIcon = icon;};
-		//virtual void setHintIcon(const char* const icon){itemIcon = icon;};
 
 		//
 		virtual void setIcon1(const char* const icon){icon1 = icon;};

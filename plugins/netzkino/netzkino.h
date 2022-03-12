@@ -58,8 +58,6 @@ class CNKMovies : public CMenuTarget
 		std::vector<MI_MOVIE_INFO> m_vMovieInfo;
 		CMovieInfo m_movieInfo;
 
-		//CMoviePlayerGui tmpMoviePlayerGui;
-
 		//
 		cNKFeedParser nkparser;
 		nk_category_list_t cats;

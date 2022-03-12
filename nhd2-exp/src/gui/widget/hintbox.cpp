@@ -154,9 +154,9 @@ void CHintBox::refresh(void)
 	m_cBoxWindow->paint();
 	
 	// title
-	cFrameBoxTitle.iX = cFrameBox.iX + 1;
-	cFrameBoxTitle.iY = cFrameBox.iY + 1;
-	cFrameBoxTitle.iWidth = cFrameBox.iWidth - 2;
+	cFrameBoxTitle.iX = cFrameBox.iX;
+	cFrameBoxTitle.iY = cFrameBox.iY;
+	cFrameBoxTitle.iWidth = cFrameBox.iWidth;
 
 	CHeaders headers(&cFrameBoxTitle, caption.c_str(), iconfile.c_str());
 

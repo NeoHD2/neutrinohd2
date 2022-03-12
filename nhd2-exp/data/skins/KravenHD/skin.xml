@@ -4,36 +4,6 @@
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 
-	<WIDGET name="filebrowser" id="51" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="1">
-		</LISTBOX>
-		<LABEL posx="640" posy="50" width="640" height="50" text="Filebrowser" halign="1">
-		</LABEL>
-			
-		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
-		</IMAGE>
-		
-		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
-		</TIME>
-		
-		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
-		</TIME>
-		<BUTTON posx="10" posy="680" width="1260" height="40">
-			<BUTTON_LABEL name="btn_red" localename="Delete">
-			</BUTTON_LABEL>
-		
-			<BUTTON_LABEL name="btn_green" localename="Start">
-			</BUTTON_LABEL>
-		
-			<BUTTON_LABEL name="btn_yellow">
-			</BUTTON_LABEL>
-
-			<BUTTON_LABEL name="btn_blue" localename="Reload plugins">
-			</BUTTON_LABEL>
-		</BUTTON>
-	</WIDGET>
-
-<!--
 	<WIDGET name="test menu" id="82" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0">
 		</LISTBOX>
@@ -49,7 +19,6 @@
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 	</WIDGET>
--->
 
 	<WIDGET name="plugins" id="80" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="1">

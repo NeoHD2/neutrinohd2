@@ -961,15 +961,17 @@ void CSkinManager::showMenu()
 				item->setHintIcon(hint.c_str());
 				item->setHint(_("Here you can select a skin from the following list."));
 				
+				bool select = false;
+				
 				if (!g_settings.use_default_skin && g_settings.preferred_skin == namelist[i]->d_name)
 				{
 					item->setIcon1(NEUTRINO_ICON_MARK);
-					//item->setMarked(true);
+					select = true;
 				}
 				
 				item->set2lines();
 				
-				skinMenu->addItem(item);	
+				skinMenu->addItem(item, select);	
 			}
 			free(namelist[i]);
 		}

@@ -248,7 +248,7 @@ int CBEBouquetWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 				listBox->scrollPageUp();
 			else if(state == beMoving)
 			{
-				selected = listBox->getSelected();
+				selected = listBox? listBox->getSelected() : 0;
 				int next_selected = selected - listBox->getListMaxShow();
 
 				if (next_selected < 0)
