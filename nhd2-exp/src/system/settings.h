@@ -472,6 +472,8 @@ struct SNeutrinoSettings
 	//
 	int Hint_gradient;
 	int Hint_shadow;
+	int Hint_corner;
+	int Hint_radius;
 	
 	// infobar
 	int infobar_gradient;

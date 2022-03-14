@@ -170,7 +170,7 @@ void CProgressWindow::paint()
 	// box
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setShadowMode(g_settings.menu_shadow? SHADOW_ALL : SHADOW_NO);
-	m_cBoxWindow.setCorner(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius, CORNER_ALL);
+	m_cBoxWindow.setCorner(g_settings.Head_radius, CORNER_ALL);
 	m_cBoxWindow.paint();
 	
 	// title
@@ -180,10 +180,10 @@ void CProgressWindow::paint()
 		const char * l_caption;
 		l_caption = captionString.c_str();
 
-		CHeaders headers(x, y, width, hheight, l_caption, NEUTRINO_ICON_INFO);
+		CHeaders headers(g_settings.menu_shadow? x + 2 : x, g_settings.menu_shadow? y + 2 : y, g_settings.menu_shadow? width - 4 : width, hheight, l_caption, NEUTRINO_ICON_INFO);
 		
-		headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
-		headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);
+		//headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
+		//headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);
 		
 		if (paintCancelIcon)
 			headers.setButtons(&cancelBtn, 1);

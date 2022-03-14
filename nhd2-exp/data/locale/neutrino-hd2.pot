@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-14 19:31+0100\n"
+"POT-Creation-Date: 2022-03-14 21:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "'X'=timer '-' no timer"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5609
+#: ../../src/neutrino.cpp:5613
 #, c-format
 msgid "(%d%% over)"
 msgstr ""
@@ -62,7 +62,7 @@ msgstr ""
 msgid "(relative, in seconds)"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5604
+#: ../../src/neutrino.cpp:5608
 #, c-format
 msgid "(starting in %d min)"
 msgstr ""
@@ -164,10 +164,10 @@ msgstr ""
 msgid "Alarm time"
 msgstr ""
 
-#: ../../src/neutrino.cpp:1507 ../../src/neutrino.cpp:1508
-#: ../../src/neutrino.cpp:1529 ../../src/neutrino.cpp:1580
-#: ../../src/neutrino.cpp:1581 ../../src/neutrino.cpp:1587
-#: ../../src/neutrino.cpp:1588 ../../src/gui/bouquetlist.cpp:522
+#: ../../src/neutrino.cpp:1511 ../../src/neutrino.cpp:1512
+#: ../../src/neutrino.cpp:1533 ../../src/neutrino.cpp:1584
+#: ../../src/neutrino.cpp:1585 ../../src/neutrino.cpp:1591
+#: ../../src/neutrino.cpp:1592 ../../src/gui/bouquetlist.cpp:522
 msgid "All Services"
 msgstr ""
 
@@ -305,7 +305,7 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:263 ../../src/gui/osd_setup.cpp:282
 #: ../../src/gui/osd_setup.cpp:287 ../../src/gui/osd_setup.cpp:292
 #: ../../src/gui/osd_setup.cpp:297 ../../src/gui/osd_setup.cpp:317
-#: ../../src/gui/osd_setup.cpp:381 ../../src/gui/osd_setup.cpp:392
+#: ../../src/gui/osd_setup.cpp:387 ../../src/gui/osd_setup.cpp:398
 #: ../../../plugins/test/test.cpp:5343
 msgid "Background"
 msgstr ""
@@ -369,7 +369,7 @@ msgstr ""
 msgid "Box Info"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4137
+#: ../../src/neutrino.cpp:4141
 msgid ""
 "Box will shutdown in 1 min.\n"
 "Cancel Sutdown ?"
@@ -396,11 +396,11 @@ msgstr ""
 msgid "Browser hight [Pixel]"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:404
+#: ../../src/gui/osd_setup.cpp:410
 msgid "Buttons Bar"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:407
+#: ../../src/gui/osd_setup.cpp:413
 msgid "Buttons Line"
 msgstr ""
 
@@ -505,7 +505,7 @@ msgstr ""
 msgid "Channel / Title"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:891
+#: ../../src/gui/osd_setup.cpp:897
 msgid "Channel Logo(EPGPlus)"
 msgstr ""
 
@@ -513,7 +513,7 @@ msgstr ""
 msgid "Channel down"
 msgstr ""
 
-#: ../../src/neutrino.cpp:421 ../../src/gui/osd_setup.cpp:894
+#: ../../src/neutrino.cpp:421 ../../src/gui/osd_setup.cpp:900
 msgid "Channel name"
 msgstr ""
 
@@ -603,7 +603,7 @@ msgid "Copy jumps from movie to new file ?"
 msgstr ""
 
 #: ../../src/gui/osd_setup.cpp:272 ../../src/gui/osd_setup.cpp:305
-#: ../../src/gui/osd_setup.cpp:416
+#: ../../src/gui/osd_setup.cpp:332 ../../src/gui/osd_setup.cpp:422
 msgid "Corner"
 msgstr ""
 
@@ -695,7 +695,7 @@ msgstr ""
 msgid "Decrease Motor Position (a)"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:696
+#: ../../src/gui/osd_setup.cpp:702
 msgid "Default"
 msgstr ""
 
@@ -784,7 +784,7 @@ msgstr ""
 msgid "Dir"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5631 ../../src/gui/infoviewer.cpp:839
+#: ../../src/neutrino.cpp:5635 ../../src/gui/infoviewer.cpp:839
 #: ../../src/gui/infoviewer.cpp:892
 msgid "Direct-Mode"
 msgstr ""
@@ -944,7 +944,7 @@ msgstr ""
 msgid "Enable standby"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:484 ../../src/system/helpers.cpp:669
+#: ../../src/gui/osd_setup.cpp:490 ../../src/system/helpers.cpp:669
 msgid "English"
 msgstr ""
 
@@ -973,7 +973,7 @@ msgstr ""
 msgid "Enter your new youth protection pin code here!"
 msgstr ""
 
-#: ../../src/neutrino.cpp:2256 ../../src/gui/channellist.cpp:1032
+#: ../../src/neutrino.cpp:2260 ../../src/gui/channellist.cpp:1032
 #: ../../src/gui/channellist.cpp:1092 ../../src/gui/update.cpp:251
 #: ../../src/gui/update.cpp:375 ../../src/gui/update.cpp:441
 #: ../../src/gui/update.cpp:468 ../../src/gui/update.cpp:504
@@ -1014,7 +1014,7 @@ msgstr ""
 msgid "Eventlist overview"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:387 ../../src/gui/osd_setup.cpp:398
+#: ../../src/gui/osd_setup.cpp:393 ../../src/gui/osd_setup.cpp:404
 msgid "Events Textcolor"
 msgstr ""
 
@@ -1050,8 +1050,8 @@ msgstr ""
 msgid "Fast/timeshift record time(hours)"
 msgstr ""
 
-#: ../../src/neutrino.cpp:1516 ../../src/neutrino.cpp:1525
-#: ../../src/neutrino.cpp:1534 ../../src/gui/bouquetlist.cpp:519
+#: ../../src/neutrino.cpp:1520 ../../src/neutrino.cpp:1529
+#: ../../src/neutrino.cpp:1538 ../../src/gui/bouquetlist.cpp:519
 msgid "Favorites"
 msgstr ""
 
@@ -1124,12 +1124,12 @@ msgstr ""
 msgid "Focus"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:117 ../../src/gui/osd_setup.cpp:605
-#: ../../src/gui/osd_setup.cpp:621
+#: ../../src/gui/osd_setup.cpp:117 ../../src/gui/osd_setup.cpp:611
+#: ../../src/gui/osd_setup.cpp:627
 msgid "Font"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:618
+#: ../../src/gui/osd_setup.cpp:624
 msgid "Font name"
 msgstr ""
 
@@ -1227,11 +1227,11 @@ msgid "Goto Reference Position"
 msgstr ""
 
 #: ../../src/gui/osd_setup.cpp:269 ../../src/gui/osd_setup.cpp:302
-#: ../../src/gui/osd_setup.cpp:323 ../../src/gui/osd_setup.cpp:410
+#: ../../src/gui/osd_setup.cpp:323 ../../src/gui/osd_setup.cpp:416
 msgid "Gradient"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:413
+#: ../../src/gui/osd_setup.cpp:419
 msgid "Gradient direction"
 msgstr ""
 
@@ -1362,7 +1362,7 @@ msgstr ""
 msgid "Here you can get infos about the software.\n"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:930 ../../src/gui/osd_setup.cpp:962
+#: ../../src/gui/osd_setup.cpp:936 ../../src/gui/osd_setup.cpp:968
 msgid "Here you can select a skin from the following list."
 msgstr ""
 
@@ -1402,7 +1402,7 @@ msgstr ""
 msgid "Horizontal"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:622
+#: ../../src/gui/osd_setup.cpp:628
 msgid "Horizontal (in %)"
 msgstr ""
 
@@ -1502,7 +1502,7 @@ msgstr ""
 msgid "Info 2"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:111 ../../src/gui/osd_setup.cpp:369
+#: ../../src/gui/osd_setup.cpp:111 ../../src/gui/osd_setup.cpp:375
 #: ../../src/system/settings.cpp:50
 msgid "Infobar"
 msgstr ""
@@ -1511,15 +1511,15 @@ msgstr ""
 msgid "Infobar Crypticons"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:116 ../../src/neutrino.cpp:2818
-#: ../../src/neutrino.cpp:3176 ../../src/neutrino.cpp:4047
-#: ../../src/neutrino.cpp:4085 ../../src/neutrino.cpp:4092
-#: ../../src/neutrino.cpp:4137 ../../src/neutrino.cpp:4178
-#: ../../src/neutrino.cpp:4187 ../../src/neutrino.cpp:4206
-#: ../../src/neutrino.cpp:4371 ../../src/neutrino.cpp:5290
-#: ../../src/neutrino.cpp:5299 ../../src/neutrino.cpp:5320
-#: ../../src/neutrino.cpp:5325 ../../src/neutrino.cpp:5337
-#: ../../src/neutrino.cpp:5339 ../../src/gui/osd_setup.cpp:454
+#: ../../src/neutrino_menue.cpp:116 ../../src/neutrino.cpp:2822
+#: ../../src/neutrino.cpp:3180 ../../src/neutrino.cpp:4051
+#: ../../src/neutrino.cpp:4089 ../../src/neutrino.cpp:4096
+#: ../../src/neutrino.cpp:4141 ../../src/neutrino.cpp:4182
+#: ../../src/neutrino.cpp:4191 ../../src/neutrino.cpp:4210
+#: ../../src/neutrino.cpp:4375 ../../src/neutrino.cpp:5294
+#: ../../src/neutrino.cpp:5303 ../../src/neutrino.cpp:5324
+#: ../../src/neutrino.cpp:5329 ../../src/neutrino.cpp:5341
+#: ../../src/neutrino.cpp:5343 ../../src/gui/osd_setup.cpp:460
 #: ../../src/gui/dboxinfo.cpp:482 ../../src/gui/cam_menu.cpp:201
 #: ../../src/gui/cam_menu.cpp:229 ../../src/gui/cam_menu.cpp:258
 #: ../../src/gui/cam_menu.cpp:359 ../../src/gui/cam_menu.cpp:473
@@ -1659,7 +1659,7 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:472
+#: ../../src/gui/osd_setup.cpp:478
 msgid "Language Setup"
 msgstr ""
 
@@ -1996,7 +1996,7 @@ msgstr ""
 msgid "Movies Browser"
 msgstr ""
 
-#: ../../src/neutrino.cpp:1461 ../../src/gui/channellist.cpp:455
+#: ../../src/neutrino.cpp:1465 ../../src/gui/channellist.cpp:455
 #: ../../src/gui/channellist.cpp:458 ../../src/gui/channellist.cpp:459
 #: ../../src/gui/bouquetlist.cpp:533
 msgid "My Favorites"
@@ -2162,7 +2162,7 @@ msgstr ""
 msgid "No key"
 msgstr ""
 
-#: ../../src/neutrino.cpp:2818
+#: ../../src/neutrino.cpp:2822
 msgid "No neutrino-settings found, Using defaults."
 msgstr ""
 
@@ -2227,11 +2227,11 @@ msgstr ""
 msgid "OPKG-Manager"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:860
+#: ../../src/gui/osd_setup.cpp:866
 msgid "OSD Miscsettings"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:676
+#: ../../src/gui/osd_setup.cpp:682
 msgid "OSD Timing"
 msgstr ""
 
@@ -2455,11 +2455,11 @@ msgstr ""
 msgid "Previous image"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4023
+#: ../../src/neutrino.cpp:4027
 msgid "Program unknown"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:873
+#: ../../src/gui/osd_setup.cpp:879
 msgid "Progressbar Color"
 msgstr ""
 
@@ -2467,7 +2467,7 @@ msgstr ""
 msgid "Prompt for PIN"
 msgstr ""
 
-#: ../../src/neutrino.cpp:1519
+#: ../../src/neutrino.cpp:1523
 msgid "Provider"
 msgstr ""
 
@@ -2476,7 +2476,7 @@ msgstr ""
 msgid "Provider:"
 msgstr ""
 
-#: ../../src/neutrino.cpp:1510 ../../src/gui/bouquetlist.cpp:520
+#: ../../src/neutrino.cpp:1514 ../../src/gui/bouquetlist.cpp:520
 msgid "Providers"
 msgstr ""
 
@@ -2517,7 +2517,7 @@ msgid "Radio Text"
 msgstr ""
 
 #: ../../src/gui/osd_setup.cpp:275 ../../src/gui/osd_setup.cpp:308
-#: ../../src/gui/osd_setup.cpp:419
+#: ../../src/gui/osd_setup.cpp:329 ../../src/gui/osd_setup.cpp:425
 msgid "Radius"
 msgstr ""
 
@@ -2583,7 +2583,7 @@ msgstr ""
 msgid "Record stop time correction"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5385 ../../src/neutrino.cpp:5389
+#: ../../src/neutrino.cpp:5389 ../../src/neutrino.cpp:5393
 msgid "Recording"
 msgstr ""
 
@@ -2596,7 +2596,7 @@ msgstr ""
 msgid "Recording settings"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4085
+#: ../../src/neutrino.cpp:4089
 msgid "Recording starts in a few minutes"
 msgstr ""
 
@@ -2628,7 +2628,7 @@ msgstr ""
 msgid "Reload movie info at start"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5339 ../../src/gui/service_menu.cpp:76
+#: ../../src/neutrino.cpp:5343 ../../src/gui/service_menu.cpp:76
 #: ../../src/gui/service_menu.cpp:78
 msgid "Reloading channel lists, please be patient."
 msgstr ""
@@ -2637,7 +2637,7 @@ msgstr ""
 msgid "Remind"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4233
+#: ../../src/neutrino.cpp:4237
 msgid "Reminder"
 msgstr ""
 
@@ -2754,7 +2754,7 @@ msgstr ""
 msgid "Satellite Position (Step Mode):"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:897
+#: ../../src/gui/osd_setup.cpp:903
 msgid "Satellite display on infobar"
 msgstr ""
 
@@ -2766,7 +2766,7 @@ msgstr ""
 msgid "Satellite:"
 msgstr ""
 
-#: ../../src/neutrino.cpp:1513 ../../src/neutrino.cpp:1522
+#: ../../src/neutrino.cpp:1517 ../../src/neutrino.cpp:1526
 #: ../../src/gui/bouquetlist.cpp:521
 msgid "Satellites"
 msgstr ""
@@ -2786,7 +2786,7 @@ msgstr ""
 msgid "Save Keymap"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:481
+#: ../../src/gui/osd_setup.cpp:487
 msgid "Save Settings"
 msgstr ""
 
@@ -2818,9 +2818,9 @@ msgstr ""
 msgid "Save in channel dir"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:227 ../../src/gui/osd_setup.cpp:378
-#: ../../src/gui/osd_setup.cpp:614 ../../src/gui/osd_setup.cpp:685
-#: ../../src/gui/osd_setup.cpp:869 ../../src/gui/hdd_menu.cpp:194
+#: ../../src/gui/osd_setup.cpp:227 ../../src/gui/osd_setup.cpp:384
+#: ../../src/gui/osd_setup.cpp:620 ../../src/gui/osd_setup.cpp:691
+#: ../../src/gui/osd_setup.cpp:875 ../../src/gui/hdd_menu.cpp:194
 #: ../../src/gui/network_setup.cpp:272 ../../src/gui/audio_setup.cpp:167
 #: ../../src/gui/audioplayer_setup.cpp:108
 #: ../../src/gui/pictureviewer_setup.cpp:123 ../../src/gui/rc_setup.cpp:155
@@ -2842,7 +2842,7 @@ msgstr ""
 msgid "Save settings now"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5290
+#: ../../src/neutrino.cpp:5294
 msgid "Save settings now?"
 msgstr ""
 
@@ -2862,11 +2862,11 @@ msgstr ""
 msgid "Saving keymap, please wait..."
 msgstr ""
 
-#: ../../src/neutrino.cpp:5299
+#: ../../src/neutrino.cpp:5303
 msgid "Saving settings now, please be patient."
 msgstr ""
 
-#: ../../src/neutrino.cpp:5320
+#: ../../src/neutrino.cpp:5324
 msgid ""
 "Saving settings now, please be patient.\n"
 " this needs Neutrino restart."
@@ -3010,7 +3010,7 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5555
+#: ../../src/neutrino.cpp:5559
 msgid "Select Subservice"
 msgstr ""
 
@@ -3018,12 +3018,12 @@ msgstr ""
 msgid "Select audio track"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:533 ../../src/gui/audio_select.cpp:108
+#: ../../src/gui/osd_setup.cpp:539 ../../src/gui/audio_select.cpp:108
 #: ../../src/gui/widget/listbox.cpp:707
 msgid "Select language"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5555
+#: ../../src/neutrino.cpp:5559
 msgid "Select starting-time"
 msgstr ""
 
@@ -3136,7 +3136,7 @@ msgstr ""
 msgid "Setup satellites input / LNB"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:326 ../../src/gui/osd_setup.cpp:401
+#: ../../src/gui/osd_setup.cpp:326 ../../src/gui/osd_setup.cpp:407
 msgid "Shadow"
 msgstr ""
 
@@ -3184,16 +3184,16 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:923 ../../src/gui/osd_setup.cpp:999
-#: ../../src/gui/osd_setup.cpp:1010
+#: ../../src/gui/osd_setup.cpp:929 ../../src/gui/osd_setup.cpp:1005
+#: ../../src/gui/osd_setup.cpp:1016
 msgid "Skin Select"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1099
+#: ../../src/gui/osd_setup.cpp:1105
 msgid "Skin Style Selection"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1034
+#: ../../src/gui/osd_setup.cpp:1040
 msgid "Skin Style selection"
 msgstr ""
 
@@ -3210,7 +3210,7 @@ msgstr ""
 msgid "Sleeptimer"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4092
+#: ../../src/neutrino.cpp:4096
 msgid "Sleeptimer in 1 min"
 msgstr ""
 
@@ -3247,7 +3247,7 @@ msgstr ""
 msgid "Standby Brightness"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5385 ../../src/gui/pluginlist.cpp:86
+#: ../../src/neutrino.cpp:5389 ../../src/gui/pluginlist.cpp:86
 msgid "Start"
 msgstr ""
 
@@ -3341,7 +3341,7 @@ msgstr ""
 msgid "Stretch Mode"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:900
+#: ../../src/gui/osd_setup.cpp:906
 msgid "Subchannel display"
 msgstr ""
 
@@ -3495,7 +3495,7 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:266 ../../src/gui/osd_setup.cpp:283
 #: ../../src/gui/osd_setup.cpp:288 ../../src/gui/osd_setup.cpp:293
 #: ../../src/gui/osd_setup.cpp:299 ../../src/gui/osd_setup.cpp:320
-#: ../../src/gui/osd_setup.cpp:384 ../../src/gui/osd_setup.cpp:395
+#: ../../src/gui/osd_setup.cpp:390 ../../src/gui/osd_setup.cpp:401
 msgid "Textcolor"
 msgstr ""
 
@@ -3545,7 +3545,7 @@ msgid ""
 "Do you really want to update to this version?"
 msgstr ""
 
-#: ../../src/neutrino.cpp:2818
+#: ../../src/neutrino.cpp:2822
 msgid ""
 "The neutrino-settings have been updated.\n"
 "New Options will be set to default."
@@ -3583,7 +3583,7 @@ msgstr ""
 msgid "Time Zone"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:690
+#: ../../src/gui/osd_setup.cpp:696
 msgid "Time in sec. After this time the"
 msgstr ""
 
@@ -3839,7 +3839,7 @@ msgstr ""
 msgid "Vertical"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:623
+#: ../../src/gui/osd_setup.cpp:629
 msgid "Vertikal (in %)"
 msgstr ""
 
@@ -3880,7 +3880,7 @@ msgstr ""
 msgid "Volume / Playtime / Audio"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:906 ../../src/gui/osd_setup.cpp:907
+#: ../../src/gui/osd_setup.cpp:912 ../../src/gui/osd_setup.cpp:913
 msgid "Volume Step Size"
 msgstr ""
 
@@ -3888,7 +3888,7 @@ msgstr ""
 msgid "Volume adjustment (in %)"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:903
+#: ../../src/gui/osd_setup.cpp:909
 msgid "Volumebar"
 msgstr ""
 
@@ -3908,7 +3908,7 @@ msgstr ""
 msgid "Warn"
 msgstr ""
 
-#: ../../src/neutrino.cpp:1594 ../../src/neutrino.cpp:1595
+#: ../../src/neutrino.cpp:1598 ../../src/neutrino.cpp:1599
 msgid "WebTV"
 msgstr ""
 
@@ -3974,7 +3974,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: ../../src/neutrino.cpp:3176 ../../src/neutrino.cpp:4371
+#: ../../src/neutrino.cpp:3180 ../../src/neutrino.cpp:4375
 #: ../../src/gui/movieplayer.cpp:618
 msgid "You really want to to stop record ?"
 msgstr ""
@@ -4018,7 +4018,7 @@ msgstr ""
 msgid "Zapping History Bouquet"
 msgstr ""
 
-#: ../../src/neutrino.cpp:4003
+#: ../../src/neutrino.cpp:4007
 msgid "Zapto timer in one minute"
 msgstr ""
 
@@ -4102,9 +4102,9 @@ msgstr ""
 msgid "athletics"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:223 ../../src/gui/osd_setup.cpp:375
-#: ../../src/gui/osd_setup.cpp:478 ../../src/gui/osd_setup.cpp:611
-#: ../../src/gui/osd_setup.cpp:682 ../../src/gui/osd_setup.cpp:866
+#: ../../src/gui/osd_setup.cpp:223 ../../src/gui/osd_setup.cpp:381
+#: ../../src/gui/osd_setup.cpp:484 ../../src/gui/osd_setup.cpp:617
+#: ../../src/gui/osd_setup.cpp:688 ../../src/gui/osd_setup.cpp:872
 #: ../../src/gui/cam_menu.cpp:121 ../../src/gui/hdd_menu.cpp:190
 #: ../../src/gui/hdd_menu.cpp:307 ../../src/gui/hdd_menu.cpp:351
 #: ../../src/gui/network_setup.cpp:268 ../../src/gui/audio_setup.cpp:163
@@ -4149,11 +4149,11 @@ msgstr ""
 msgid "blue"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:841 ../../src/gui/osd_setup.cpp:852
+#: ../../src/gui/osd_setup.cpp:847 ../../src/gui/osd_setup.cpp:858
 msgid "bottom left"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:842 ../../src/gui/osd_setup.cpp:853
+#: ../../src/gui/osd_setup.cpp:848 ../../src/gui/osd_setup.cpp:859
 msgid "bottom right"
 msgstr ""
 
@@ -4214,7 +4214,7 @@ msgstr ""
 msgid "children / juvenile program"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1069
+#: ../../src/gui/osd_setup.cpp:1075
 msgid "choose Skin Style."
 msgstr ""
 
@@ -4222,7 +4222,7 @@ msgstr ""
 msgid "clear all"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:832
+#: ../../src/gui/osd_setup.cpp:838
 msgid "colored"
 msgstr ""
 
@@ -4254,7 +4254,7 @@ msgstr ""
 msgid "default audio streams"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:843
+#: ../../src/gui/osd_setup.cpp:849
 msgid "default center"
 msgstr ""
 
@@ -4290,7 +4290,7 @@ msgstr ""
 msgid "dmesg"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5337
+#: ../../src/neutrino.cpp:5341
 msgid "do you want to reload channel lists?"
 msgstr ""
 
@@ -4454,7 +4454,7 @@ msgstr ""
 msgid "handicraft"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:844
+#: ../../src/gui/osd_setup.cpp:850
 msgid "higher center"
 msgstr ""
 
@@ -4466,7 +4466,7 @@ msgstr ""
 msgid "info"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:690
+#: ../../src/gui/osd_setup.cpp:696
 msgid "infobar will be faded out."
 msgstr ""
 
@@ -4543,7 +4543,7 @@ msgstr ""
 msgid "literature"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5325
+#: ../../src/neutrino.cpp:5329
 msgid "load default skin configuration?"
 msgstr ""
 
@@ -4551,7 +4551,7 @@ msgstr ""
 msgid "local dir"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:888
+#: ../../src/gui/osd_setup.cpp:894
 msgid "logos Dir"
 msgstr ""
 
@@ -4593,7 +4593,7 @@ msgstr ""
 msgid "mono right"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:831
+#: ../../src/gui/osd_setup.cpp:837
 msgid "monochrom"
 msgstr ""
 
@@ -4661,7 +4661,7 @@ msgstr ""
 msgid "need reboot or epg-reset"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:929
+#: ../../src/gui/osd_setup.cpp:935
 msgid "neutrino (default)"
 msgstr ""
 
@@ -4745,7 +4745,7 @@ msgstr ""
 msgid "not connected"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5567 ../../src/gui/osd_setup.cpp:59
+#: ../../src/neutrino.cpp:5571 ../../src/gui/osd_setup.cpp:59
 #: ../../src/gui/hdd_menu.cpp:82 ../../src/gui/hdd_menu.cpp:91
 #: ../../src/gui/audio_setup.cpp:53 ../../src/gui/audio_setup.cpp:69
 #: ../../src/gui/audio_setup.cpp:77 ../../src/gui/scan_setup.cpp:90
@@ -4758,7 +4758,7 @@ msgstr ""
 msgid "off"
 msgstr ""
 
-#: ../../src/neutrino.cpp:5568 ../../src/gui/osd_setup.cpp:60
+#: ../../src/neutrino.cpp:5572 ../../src/gui/osd_setup.cpp:60
 #: ../../src/gui/audio_setup.cpp:54 ../../src/gui/audio_setup.cpp:70
 #: ../../src/gui/audio_setup.cpp:78 ../../src/gui/scan_setup.cpp:91
 #: ../../src/gui/recording_setup.cpp:51 ../../src/gui/misc_setup.cpp:71
@@ -5082,19 +5082,19 @@ msgstr ""
 msgid "the filesize is 0 Bytes"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:454 ../../src/gui/osd_setup.cpp:1010
+#: ../../src/gui/osd_setup.cpp:460 ../../src/gui/osd_setup.cpp:1016
 msgid ""
 "this need Neutrino restart\n"
 "do you want really to restart?"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1099
+#: ../../src/gui/osd_setup.cpp:1105
 msgid ""
 "this needs Neutrino restart\n"
 "Skin Style selection?"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:999 ../../src/gui/themes.cpp:148
+#: ../../src/gui/osd_setup.cpp:1005 ../../src/gui/themes.cpp:148
 msgid ""
 "this needs Neutrino restart\n"
 "do you want really to restart?"
@@ -5112,11 +5112,11 @@ msgstr ""
 msgid "to deep standby (0 = off)."
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:840 ../../src/gui/osd_setup.cpp:851
+#: ../../src/gui/osd_setup.cpp:846 ../../src/gui/osd_setup.cpp:857
 msgid "top left"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:839 ../../src/gui/osd_setup.cpp:850
+#: ../../src/gui/osd_setup.cpp:845 ../../src/gui/osd_setup.cpp:856
 msgid "top right"
 msgstr ""
 

@@ -122,7 +122,7 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	m_cBoxWindow = new CWindow(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
 	m_cBoxWindow->enableSaveScreen();
 	m_cBoxWindow->setShadowMode(g_settings.menu_shadow);
-	m_cBoxWindow->setCorner(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius, g_settings.Head_corner | g_settings.Foot_corner);
+	m_cBoxWindow->setCorner(g_settings.Head_radius, g_settings.Head_corner | g_settings.Foot_corner);
 	
 	// HG
 	paintHG = true;
@@ -154,14 +154,14 @@ void CHintBox::refresh(void)
 	m_cBoxWindow->paint();
 	
 	// title
-	cFrameBoxTitle.iX = cFrameBox.iX;
-	cFrameBoxTitle.iY = cFrameBox.iY;
-	cFrameBoxTitle.iWidth = cFrameBox.iWidth;
+	cFrameBoxTitle.iX = g_settings.menu_shadow? cFrameBox.iX + 2 : cFrameBox.iX;
+	cFrameBoxTitle.iY = g_settings.menu_shadow? cFrameBox.iY + 2 : cFrameBox.iY;
+	cFrameBoxTitle.iWidth = g_settings.menu_shadow? cFrameBox.iWidth - 4 : cFrameBox.iWidth;
 
 	CHeaders headers(&cFrameBoxTitle, caption.c_str(), iconfile.c_str());
 
-	headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
-	headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);
+	//headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
+	//headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);
 	headers.paint();
 
 	// body text

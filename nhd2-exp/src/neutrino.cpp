@@ -938,6 +938,8 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	//
 	g_settings.Hint_gradient = configfile.getInt32("Hint_gradient", NOGRADIENT);
 	g_settings.Hint_shadow = configfile.getBool("Hint_shadow", true);
+	g_settings.Hint_radius = configfile.getInt32("Hint_radius", NO_RADIUS);
+	g_settings.Hint_corner = configfile.getInt32("Hint_corner", CORNER_ALL);
 	// END MISC OPTS
 
 	// HDD
@@ -1384,6 +1386,8 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	//
 	configfile.setInt32("Hint_gradient", g_settings.Hint_gradient);
 	configfile.setBool("Hint_shadow", g_settings.Hint_shadow);
+	configfile.setInt32("Hint_radius", g_settings.Hint_radius);
+	configfile.setInt32("Hint_corner", g_settings.Hint_corner);
 	
 	//
 	configfile.setInt32("infobar_gradient", g_settings.infobar_gradient);

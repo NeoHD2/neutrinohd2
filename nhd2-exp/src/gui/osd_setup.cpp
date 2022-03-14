@@ -325,6 +325,12 @@ void COSDMenuColorSettings::showMenu()
 	// iteminfo shadow
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Shadow"), &g_settings.Hint_shadow, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 	
+	// itemInfo Radius
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Radius"), &g_settings.Hint_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
+	// itemInfo corner
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Corner"), &g_settings.Hint_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	
 	OSDmenuColorsSettings.exec(NULL, "");
 	OSDmenuColorsSettings.hide();
 }

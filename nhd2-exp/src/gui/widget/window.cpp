@@ -178,7 +178,8 @@ void CWindow::paint()
 	dprintf(DEBUG_INFO, "CWindow::%s\n", __FUNCTION__);
 	
 	// shadow
-	frameBuffer->paintFrameBox(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+	if (shadowMode)
+		frameBuffer->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6, radius, corner);
 
 	if (paintFrame)
 	{

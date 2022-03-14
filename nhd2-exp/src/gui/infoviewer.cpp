@@ -372,10 +372,10 @@ void CInfoViewer::show(const int ChanNum, const std::string & Channel, const t_s
 	
 	// shadow
 	if (g_settings.infobar_shadow)
-		frameBuffer->paintBoxRel(BoxStartX - 1, BoxStartY - 1, BoxWidth + 2, BoxHeight + buttonBarHeight + 2, COL_MENUCONTENT_PLUS_6);
+		frameBuffer->paintBoxRel(BoxStartX - 2, BoxStartY - 2, BoxWidth + 4, BoxHeight + buttonBarHeight + 4, COL_MENUCONTENT_PLUS_6, g_settings.infobar_radius, g_settings.infobar_corner);
 	
 	// box
-	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight + buttonBarHeight, COL_INFOBAR_PLUS_0, g_settings.infobar_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.infobar_shadow? CORNER_NONE : g_settings.infobar_corner, g_settings.infobar_gradient, g_settings.infobar_gradient_direction);
+	frameBuffer->paintBoxRel(BoxStartX, BoxStartY, BoxWidth, BoxHeight + buttonBarHeight - 4, COL_INFOBAR_PLUS_0, g_settings.infobar_radius, g_settings.infobar_corner, g_settings.infobar_gradient, g_settings.infobar_gradient_direction);
 
 	//time
 	paintTime(BoxEndX, ChanNameY, SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME);
@@ -492,7 +492,7 @@ void CInfoViewer::show(const int ChanNum, const std::string & Channel, const t_s
 		
 	// botton bar
 	if (g_settings.infobar_buttonbar)
-		frameBuffer->paintBoxRel(buttonBarStartX, buttonBarStartY, BoxWidth, buttonBarHeight, COL_INFOBAR_SHADOW_PLUS_1, g_settings.infobar_shadow? NO_RADIUS : g_settings.infobar_radius, g_settings.infobar_shadow? CORNER_NONE : g_settings.infobar_radius? CORNER_BOTTOM : CORNER_NONE);
+		frameBuffer->paintBoxRel(buttonBarStartX, buttonBarStartY, BoxWidth, buttonBarHeight, COL_INFOBAR_SHADOW_PLUS_1, g_settings.infobar_radius, g_settings.infobar_radius? CORNER_BOTTOM : CORNER_NONE);
 	else if(g_settings.infobar_buttonline)
 	{
 		CCHline hline(buttonBarStartX + BORDER_LEFT, buttonBarStartY, BoxWidth - BORDER_LEFT - BORDER_RIGHT, buttonBarHeight);
@@ -1897,7 +1897,7 @@ void CInfoViewer::killTitle()
 	{
 		is_visible = false;
 
-		frameBuffer->paintBackgroundBox(BoxStartX - 1, BoxStartY - 30 - 1, BoxEndX + 1, buttonBarStartY + buttonBarHeight + 1);
+		frameBuffer->paintBackgroundBox(BoxStartX - 2, BoxStartY - 30 - 2, BoxEndX + 2, buttonBarStartY + buttonBarHeight + 2);
 
 		// hide radiotext	
 		if (g_settings.radiotext_enable && g_Radiotext) 
