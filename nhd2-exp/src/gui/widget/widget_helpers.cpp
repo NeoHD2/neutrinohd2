@@ -552,7 +552,7 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		if (g_settings.Hint_shadow) frameBuffer->paintBoxRel(x, ypos2, width, info_height, COL_MENUCONTENT_PLUS_6, g_settings.Hint_radius, g_settings.Hint_corner);
 		
 		// infoBox
-		frameBuffer->paintBoxRel(x, ypos2, width, info_height, COL_MENUHINT_PLUS_0, g_settings.Hint_radius, g_settings.Hint_corner, g_settings.Hint_gradient);
+		frameBuffer->paintBoxRel(g_settings.Hint_shadow? x + 2 : x, g_settings.Hint_shadow? ypos2 + 2 : ypos2, g_settings.Hint_shadow? width - 4 : width, g_settings.Hint_shadow? info_height - 4 : info_height, COL_MENUHINT_PLUS_0, g_settings.Hint_radius, g_settings.Hint_corner, g_settings.Hint_gradient);
 	}
 	
 	//
