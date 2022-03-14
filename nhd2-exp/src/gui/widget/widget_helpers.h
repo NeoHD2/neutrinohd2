@@ -39,6 +39,15 @@ class CWidgetItem;
 class CWidget;
 class CWindow;
 
+
+// shadow
+enum {
+	SHADOW_NO,
+	SHADOW_ALL,
+	SHADOW_LEFTRIGHT,
+	SHADOW_TOPBOTTOM
+};
+
 // dimension helper
 class CBox
 {

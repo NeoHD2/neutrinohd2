@@ -930,6 +930,9 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 	const char* iteminfo_color = NULL;
 	
 	//
+	unsigned int itemshadow = 0;
+	
+	//
 	_xmlNodePtr listboxitem_node = NULL;
 	_xmlNodePtr listboxintegration_node = NULL;
 	_xmlNodePtr buttonlabel_node = NULL;
@@ -972,6 +975,9 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 		// foot
 		paintfoot = xmlGetSignedNumericAttribute(node, "paintfoot", 0);
 		foot_line = xmlGetSignedNumericAttribute(node, "foot_line", 0);
+		
+		//
+		itemshadow = xmlGetSignedNumericAttribute(node, "itemshadow", 0);
 				
 		// iteminfo
 		paintiteminfo = xmlGetSignedNumericAttribute(node, "paintiteminfo", 0);
@@ -1024,6 +1030,9 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 			listBox->paintItemInfoFrame(iteminfoframe);
 			if (iteminfo_color) listBox->setItemInfoColor(hintColor);
 		}
+		
+		// item
+		if (itemshadow) listBox->setItemShadowMode(itemshadow);
 				
 		// ITEM	
 		listboxitem_node = node->xmlChildrenNode;
@@ -1077,7 +1086,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 			if (hint) menuItem->setHint(hint);
 			if (lines) menuItem->set2lines();
 			if (option) menuItem->setOption(option);
-			if (shadow) menuItem->enableItemShadow();
+			if (shadow) menuItem->setShadowMode(shadow);
 					
 			if (itemIcon)
 			{

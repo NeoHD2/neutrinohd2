@@ -180,7 +180,7 @@ void CProgressWindow::paint()
 		const char * l_caption;
 		l_caption = captionString.c_str();
 
-		CHeaders headers(x + 2, y + 2, width - 4, hheight - 2, l_caption, NEUTRINO_ICON_INFO);
+		CHeaders headers(x, y, width, hheight, l_caption, NEUTRINO_ICON_INFO);
 		
 		headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
 		headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);

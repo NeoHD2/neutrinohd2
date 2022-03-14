@@ -473,25 +473,27 @@ void CTextBox::refreshText(void)
 		frameBuffer->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
 	}
 	
+	// shadow
+	CFrameBuffer::getInstance()->paintFrameBox(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+	
 	// paint background	
 	if(paintframe)
 	{
 		// bg
-		CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, m_textBackgroundColor, m_textRadius, m_textCorner);
-	}
-	
-	// shadow
-	if (shadowMode == SHADOW_ALL)
-	{
-		CFrameBuffer::getInstance()->paintFrameBox(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
-	}
-	else if (shadowMode == SHADOW_LEFTRIGHT)
-	{
-		// left
-		CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, 2, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
-			
-		// right
-		CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + itemBox.iWidth - 2, itemBox.iY, 2, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+		if (shadowMode == SHADOW_NO)
+			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, m_textBackgroundColor, m_textRadius, m_textCorner);
+		else if (shadowMode == SHADOW_ALL)
+		{
+			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 2, itemBox.iY + 2, itemBox.iWidth - 4, itemBox.iHeight - 4, m_textBackgroundColor, m_textRadius, m_textCorner);
+		}
+		else if (shadowMode == SHADOW_LEFTRIGHT)
+		{
+			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX + 2, itemBox.iY, itemBox.iWidth - 4, itemBox.iHeight, m_textBackgroundColor, m_textRadius, m_textCorner);
+		}
+		else if (shadowMode == SHADOW_TOPBOTTOM)
+		{
+			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY + 2, itemBox.iWidth, itemBox.iHeight - 4, m_textBackgroundColor, m_textRadius, m_textCorner);
+		}
 	}
 	
 	// paint thumbnail (paint picture only on first page)

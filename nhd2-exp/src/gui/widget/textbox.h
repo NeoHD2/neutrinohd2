@@ -72,13 +72,6 @@ enum
 	PIC_CENTER
 };
 
-// shadow
-enum {
-	SHADOW_NO,
-	SHADOW_ALL,
-	SHADOW_LEFTRIGHT
-};
-
 class CTextBox : public CWidgetItem
 {
 	private:

@@ -85,7 +85,7 @@ CMenuItem::CMenuItem()
 	actionKey = "";
 	
 	paintFrame = true;
-	itemShadow = false;
+	shadowMode = SHADOW_NO;
 	itemGradient = NOGRADIENT;
 	
 	//
@@ -1047,8 +1047,6 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 		}
 		else
 		{
-			//
-			//frameBuffer->paintBoxRel(x, y, item_width, item_height, COL_MENUCONTENT_PLUS_0);
 			// refresh
 			if (paintFrame)
 			{
@@ -1082,82 +1080,84 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 		int stringstartposX = x;	
 	
 		// paint item
-		if (itemShadow)
+		if (selected)
 		{
-			if (selected)
+			if (!paintFrame)
 			{
-				if (!paintFrame)
+				if (background)
 				{
-					if (background)
-					{
-						delete [] background;
-						background = NULL;
-					}
-									
-					background = new fb_pixel_t[dx*height];
-						
-					if (background)
-					{
-						frameBuffer->saveScreen(x, y, dx, height, background);
-					}
-				}	
-				
-				// shadow
-				frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);	
-				// itemBox
-				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
-			}
-			else
-			{
-				if (paintFrame)
-					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
-				else
-				{
-					if (background)
-					{
-						frameBuffer->restoreScreen(x, y, dx, height, background);
-							
-						delete [] background;
-						background = NULL;
-					}
+					delete [] background;
+					background = NULL;
 				}
+									
+				background = new fb_pixel_t[dx*height];
+						
+				if (background)
+				{
+					frameBuffer->saveScreen(x, y, dx, height, background);
+				}
+			}	
+				
+			// shadow
+			frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
+				
+			// itemBox
+			if (shadowMode == SHADOW_NO)
+			{
+				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
 			}
+			else if (shadowMode == SHADOW_ALL)
+			{
+				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			}
+			else if (shadowMode == SHADOW_LEFTRIGHT)
+			{
+				frameBuffer->paintBoxRel(x + 2, y, dx - 4, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			}
+			else if (shadowMode == SHADOW_TOPBOTTOM)
+			{
+				frameBuffer->paintBoxRel(x, y + 2, dx, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			} 
+			
+			/*	
+			// itemBox
+			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+				
+			// shadow
+			if (shadowMode == SHADOW_ALL)
+			{
+				frameBuffer->paintFrameBox(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
+			}
+			else if (shadowMode == SHADOW_LEFTRIGHT)
+			{
+				// left
+				frameBuffer->paintBoxRel(x, y, 2, height, COL_MENUCONTENT_PLUS_6);
+						
+				// right
+				frameBuffer->paintBoxRel(x + dx - 2, y, 2, height, COL_MENUCONTENT_PLUS_6);
+			}
+			else if (shadowMode == SHADOW_TOPBOTTOM)
+			{
+				// top
+				frameBuffer->paintBoxRel(x, y, dx, 2, COL_MENUCONTENT_PLUS_6);
+						
+				// bottom
+				frameBuffer->paintBoxRel(x, y + height - 2, dx, 2, COL_MENUCONTENT_PLUS_6);
+			} 
+			*/
 		}
 		else
 		{
-			if (selected)
-			{
-				if (!paintFrame)
-				{
-					if (background)
-					{
-						delete [] background;
-						background = NULL;
-					}
-									
-					background = new fb_pixel_t[dx*height];
-						
-					if (background)
-					{
-						frameBuffer->saveScreen(x, y, dx, height, background);
-					}
-				}	
-
-				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
-			}
+			if (paintFrame)
+				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 			else
 			{
-				if (paintFrame) //FIXME: TEST
-					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, NOGRADIENT);
-				else
+				if (background)
 				{
-					if (background)
-					{
-						frameBuffer->restoreScreen(x, y, dx, height, background);
+					frameBuffer->restoreScreen(x, y, dx, height, background);
 							
-						delete [] background;
-						background = NULL;
-					}
+					delete [] background;
+					background = NULL;
 				}
 			}
 		}
@@ -1524,82 +1524,85 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 	}
 	else // standard|classic|extended
 	{
-		if (itemShadow)
+		//
+		if (selected)
 		{
-			if (selected)
+			if (!paintFrame)
 			{
-				if (!paintFrame)
+				if (background)
 				{
-					if (background)
-					{
-						delete [] background;
-						background = NULL;
-					}
-									
-					background = new fb_pixel_t[dx*height];
-						
-					if (background)
-					{
-						frameBuffer->saveScreen(x, y, dx, height, background);
-					}
-				}	
-				
-				// shadow
-				frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);	
-				// itemBox
-				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
-			}
-			else
-			{
-				if (paintFrame)
-					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
-				else
-				{
-					if (background)
-					{
-						frameBuffer->restoreScreen(x, y, dx, height, background);
-							
-						delete [] background;
-						background = NULL;
-					}
+					delete [] background;
+					background = NULL;
 				}
+									
+				background = new fb_pixel_t[dx*height];
+						
+				if (background)
+				{
+					frameBuffer->saveScreen(x, y, dx, height, background);
+				}
+			}	
+				
+			// shadow
+			frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
+				
+			// itemBox
+			if (shadowMode == SHADOW_NO)
+			{
+				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
 			}
+			else if (shadowMode == SHADOW_ALL)
+			{
+				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			}
+			else if (shadowMode == SHADOW_LEFTRIGHT)
+			{
+				frameBuffer->paintBoxRel(x + 2, y, dx - 4, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			}
+			else if (shadowMode == SHADOW_TOPBOTTOM)
+			{
+				frameBuffer->paintBoxRel(x, y + 2, dx, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			} 
+			
+			/*	
+			// itemBox
+			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+				
+			// shadow
+			if (shadowMode == SHADOW_ALL)
+			{
+				frameBuffer->paintFrameBox(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
+			}
+			else if (shadowMode == SHADOW_LEFTRIGHT)
+			{
+				// left
+				frameBuffer->paintBoxRel(x, y, 2, height, COL_MENUCONTENT_PLUS_6);
+						
+				// right
+				frameBuffer->paintBoxRel(x + dx - 2, y, 2, height, COL_MENUCONTENT_PLUS_6);
+			}
+			else if (shadowMode == SHADOW_TOPBOTTOM)
+			{
+				// top
+				frameBuffer->paintBoxRel(x, y, dx, 2, COL_MENUCONTENT_PLUS_6);
+						
+				// bottom
+				frameBuffer->paintBoxRel(x, y + height - 2, dx, 2, COL_MENUCONTENT_PLUS_6);
+			} 
+			*/
 		}
 		else
 		{
-			if (selected)
-			{
-				if (!paintFrame)
-				{
-					if (background)
-					{
-						delete [] background;
-						background = NULL;
-					}
-									
-					background = new fb_pixel_t[dx*height];
-						
-					if (background)
-					{
-						frameBuffer->saveScreen(x, y, dx, height, background);
-					}
-				}	
-
-				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
-			}
+			if (paintFrame)
+					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 			else
 			{
-				if (paintFrame)
-					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, NOGRADIENT);
-				else
+				if (background)
 				{
-					if (background)
-					{
-						frameBuffer->restoreScreen(x, y, dx, height, background);
+					frameBuffer->restoreScreen(x, y, dx, height, background);
 							
-						delete [] background;
-						background = NULL;
-					}
+					delete [] background;
+					background = NULL;
 				}
 			}
 		}
@@ -2043,86 +2046,88 @@ int CPluginItem::paint(bool selected, bool /*AfterPulldown*/)
 	}
 	else // standard|classic|extended
 	{
-		if (itemShadow)
+		//
+		if (selected)
 		{
-			if (selected)
+			if (!paintFrame)
 			{
-				if (!paintFrame)
+				if (background)
 				{
-					if (background)
-					{
-						delete [] background;
-						background = NULL;
-					}
-									
-					background = new fb_pixel_t[dx*height];
-						
-					if (background)
-					{
-						frameBuffer->saveScreen(x, y, dx, height, background);
-					}
-				}	
-				
-				// shadow
-				frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);	
-				// itemBox
-				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
-			}
-			else
-			{
-				if (paintFrame)
-					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
-				else
-				{
-					if (background)
-					{
-						frameBuffer->restoreScreen(x, y, dx, height, background);
-							
-						delete [] background;
-						background = NULL;
-					}
+					delete [] background;
+					background = NULL;
 				}
+									
+				background = new fb_pixel_t[dx*height];
+						
+				if (background)
+				{
+					frameBuffer->saveScreen(x, y, dx, height, background);
+				}
+			}	
+				
+			// shadow
+			frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
+				
+			// itemBox
+			if (shadowMode == SHADOW_NO)
+			{
+				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
 			}
+			else if (shadowMode == SHADOW_ALL)
+			{
+				frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			}
+			else if (shadowMode == SHADOW_LEFTRIGHT)
+			{
+				frameBuffer->paintBoxRel(x + 2, y, dx - 4, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			}
+			else if (shadowMode == SHADOW_TOPBOTTOM)
+			{
+				frameBuffer->paintBoxRel(x, y + 2, dx, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+			} 
+			
+			/*	
+			// itemBox
+			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+				
+			// shadow
+			if (shadowMode == SHADOW_ALL)
+			{
+				frameBuffer->paintFrameBox(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
+			}
+			else if (shadowMode == SHADOW_LEFTRIGHT)
+			{
+				// left
+				frameBuffer->paintBoxRel(x, y, 2, height, COL_MENUCONTENT_PLUS_6);
+						
+				// right
+				frameBuffer->paintBoxRel(x + dx - 2, y, 2, height, COL_MENUCONTENT_PLUS_6);
+			}
+			else if (shadowMode == SHADOW_TOPBOTTOM)
+			{
+				// top
+				frameBuffer->paintBoxRel(x, y, dx, 2, COL_MENUCONTENT_PLUS_6);
+						
+				// bottom
+				frameBuffer->paintBoxRel(x, y + height - 2, dx, 2, COL_MENUCONTENT_PLUS_6);
+			} 
+			*/
 		}
 		else
 		{
-			if (selected)
-			{
-				if (!paintFrame)
-				{
-					if (background)
-					{
-						delete [] background;
-						background = NULL;
-					}
-									
-					background = new fb_pixel_t[dx*height];
-						
-					if (background)
-					{
-						frameBuffer->saveScreen(x, y, dx, height, background);
-					}
-				}	
-
-				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
-			}
+			if (paintFrame)
+				frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
 			else
 			{
-				if (paintFrame) //FIXME: TEST
-					frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, NOGRADIENT);
-				else
+				if (background)
 				{
-					if (background)
-					{
-						frameBuffer->restoreScreen(x, y, dx, height, background);
+					frameBuffer->restoreScreen(x, y, dx, height, background);
 							
-						delete [] background;
-						background = NULL;
-					}
+					delete [] background;
+					background = NULL;
 				}
 			}
-		}
-			
+		}	
 	
 		// icon (left)
 		int icon_w = 0;
@@ -2321,6 +2326,9 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	items_width = 0;
 	items_height = 0;
 	
+	itemShadow = false;
+	itemShadowMode = SHADOW_NO;
+	
 	//
 	sec_timer_id = 0;
 	
@@ -2439,6 +2447,9 @@ ClistBox::ClistBox(CBox* position)
 	items_width = 0;
 	items_height = 0;
 	
+	itemShadow = false;
+	itemShadowMode = SHADOW_NO;
+	
 	//
 	sec_timer_id = 0;
 	
@@ -2498,6 +2509,7 @@ void ClistBox::initFrames()
 
 		item->widgetType = widgetType;
 		item->paintFrame = paintFrame;
+		if (itemShadow) item->setShadowMode(itemShadowMode);
 	} 
 
 	// head
@@ -3379,6 +3391,7 @@ void ClistBox::hide()
 	painted = false;
 }
 
+//
 void ClistBox::scrollLineDown(const int)
 {
 	dprintf(DEBUG_INFO, "ClistBox::scrollLineDown:\n");
@@ -3775,7 +3788,7 @@ int ClistBox::oKKeyPressed(CMenuTarget* parent)
 		return RETURN_EXIT;
 }
 
-void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned int shortcut, bool enabled, int imode, int itype, bool i2lines, bool iShadow)
+void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned int shortcut, bool enabled, int imode, int itype, bool i2lines, int iShadow)
 {
 	unsigned int number_of_plugins = (unsigned int) g_PluginList->getNumberOfPlugins();
 
@@ -3809,10 +3822,8 @@ void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned i
 
 			fw_plugin->setHint(g_PluginList->getDescription(count).c_str());
 			fw_plugin->setWidgetType(itype);
-			if (i2lines)
-				fw_plugin->set2lines();
-			if (iShadow)
-				fw_plugin->enableItemShadow();
+			if (i2lines) fw_plugin->set2lines();
+			fw_plugin->setShadowMode(iShadow);
 			
 			fw_plugin->isPlugin = true;
 			

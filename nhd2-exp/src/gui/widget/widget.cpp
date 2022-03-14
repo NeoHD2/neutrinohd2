@@ -759,13 +759,6 @@ CWidgetItem* CWidget::getWidgetItem(const int pos, const int type)
 	
 	for (unsigned int count = 0; count < (unsigned int)items.size(); count++) 
 	{
-	/*
-		if (items[pos]->widgetItem_type == WIDGETITEM_LISTBOX)
-		{
-			ret = items[pos];
-			break;
-		}
-	*/
 		switch (type)
 		{
 			case WIDGETITEM_LISTBOX:

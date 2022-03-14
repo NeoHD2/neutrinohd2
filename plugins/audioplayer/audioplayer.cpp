@@ -302,7 +302,7 @@ void CMP3Player::showMenu()
 		item->setHintIcon(cover.c_str());
 		
 		item->set2lines();
-		item->enableItemShadow();
+		item->setShadowMode();
 
 		alist->addItem(item);
 	}

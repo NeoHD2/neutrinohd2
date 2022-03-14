@@ -168,7 +168,7 @@ class CMenuItem
 		
 		//
 		bool paintFrame;
-		bool itemShadow;
+		int shadowMode;
 		int itemGradient;
 		
 		//
@@ -234,8 +234,9 @@ class CMenuItem
 		virtual void set2lines(void){nLinesItem = true;};
 		virtual void setWidgetType(int type){widgetType = type;};
 		//virtual void setWidgetMode(int mode){widgetMode = mode;};
-		virtual void enableItemShadow(){itemShadow = true;};
-		virtual void setItemGradient(int gr){itemGradient = gr;};
+		//virtual void enableItemShadow(){itemShadow = true;};
+		virtual void setShadowMode(int m = SHADOW_ALL){shadowMode = m;};
+		virtual void setGradient(int gr){itemGradient = gr;};
 
 		//
 		virtual void setDirectKey(neutrino_msg_t key){directKey = key;};
@@ -637,6 +638,10 @@ class ClistBox : public CWidgetItem
 		int widgetMode;
 		int menu_position;
 		
+		//
+		bool itemShadow;
+		int itemShadowMode;
+		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
 		ClistBox(CBox* position);
@@ -746,6 +751,9 @@ class ClistBox : public CWidgetItem
 		void changeWidgetType();
 		void setWidgetMode(int mode){widgetMode = mode;};
 		void setMenuPosition(int p){menu_position = p;};
+		
+		//
+		void setItemShadowMode(int m = SHADOW_ALL){itemShadow = true; itemShadowMode = m;};
 
 		//
 		bool isSelectable(void){return true;};
@@ -758,7 +766,7 @@ class ClistBox : public CWidgetItem
 		//std::string getName(){return l_name;};
 		std::string getActionKey(void){return actionKey;}; // lua
 		
-		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true, int imode = MODE_MENU, int itype = WIDGET_TYPE_STANDARD, bool i2lines = false, bool iShadow = false);
+		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true, int imode = MODE_MENU, int itype = WIDGET_TYPE_STANDARD, bool i2lines = false, int iShadow = SHADOW_ALL);
 		
 		//
 		inline bool isPainted(void){return painted;};

@@ -1734,7 +1734,7 @@ void CTestMenu::testClistBoxWidget()
 
 		item->setHint(tmp.c_str());
 		
-		item->enableItemShadow();
+		item->setShadowMode();
 		//item->setWidgetMode(MODE_MENU);
 
 		rightWidget->addItem(item);
@@ -1794,14 +1794,14 @@ void CTestMenu::testMultiWidget()
 	leftWidget->setSelected(left_selected);
 
 	ClistBoxItem *item1 = new ClistBoxItem("Item 1");
-	item1->enableItemShadow();
+	item1->setShadowMode();
 	ClistBoxItem *item2 = new ClistBoxItem("Item 2");
 	item2->setOption("Item 2- Option");
 	item2->set2lines();
 	ClistBoxItem *item3 = new ClistBoxItem("Item 3");
 	item3->setOption("Item 3 Option");
 	item3->set2lines();
-	item3->enableItemShadow();
+	item3->setShadowMode();
 	ClistBoxItem *item4 = new ClistBoxItem("Item4");
 	CMenuSeparator *item5 = new CMenuSeparator();
 	CMenuSeparator *item6 = new CMenuSeparator();
@@ -4521,8 +4521,8 @@ void CTestMenu::testClistBox6()
 		item->setHint(tmp.c_str());
 		
 		//item->setWidgetMode(MODE_MENU);
-		item->enableItemShadow();
-		item->setItemGradient(LIGHT2DARK2LIGHT);
+		item->setShadowMode(SHADOW_TOPBOTTOM);
+		item->setGradient(LIGHT2DARK2LIGHT);
 		
 		rightWidget->addItem(item);
 	}
@@ -7639,9 +7639,6 @@ void CTestMenu::showMenu()
 		mWidget->addItem(mainMenu);
 	
 	mWidget->exec(NULL, "");
-
-	//delete mainMenu;
-	//mainMenu = NULL;
 }
 
 void plugin_init(void)

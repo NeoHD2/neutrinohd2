@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-12 16:25+0100\n"
+"POT-Creation-Date: 2022-03-14 19:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -229,7 +229,7 @@ msgid "Audio Player Setup"
 msgstr ""
 
 #: ../../src/gui/audioplayer.cpp:219 ../../src/gui/audioplayer.cpp:332
-#: ../../src/gui/audioplayer.cpp:1360
+#: ../../src/gui/audioplayer.cpp:1361
 msgid "Audio Playlist"
 msgstr ""
 
@@ -744,7 +744,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ../../src/gui/pluginlist.cpp:225
+#: ../../src/gui/pluginlist.cpp:226
 msgid "Description: "
 msgstr ""
 
@@ -2397,7 +2397,7 @@ msgid "Plugin"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:295 ../../src/gui/pluginlist.cpp:128
-#: ../../src/gui/pluginlist.cpp:237 ../../src/system/setting_helpers.cpp:273
+#: ../../src/gui/pluginlist.cpp:238 ../../src/system/setting_helpers.cpp:273
 msgid "Plugins"
 msgstr ""
 
