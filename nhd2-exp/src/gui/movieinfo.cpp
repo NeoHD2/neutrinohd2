@@ -1893,7 +1893,6 @@ void CMovieInfoWidget::funArt()
 
 	textFrame->setTitle(buffer.c_str());
 	textFrame->paintMainFrame(false);
-	textFrame->disableShadow();
 	textFrame->setActive(false);
 	
 	testFrameBox->addFrame(textFrame);
@@ -1905,6 +1904,7 @@ void CMovieInfoWidget::funArt()
 	playFrame->setTitle("Movie abspielen");
 	playFrame->setIconName(NEUTRINO_ICON_PLAY);
 	playFrame->setActionKey(this, "playMovie");
+	playFrame->enableShadow();
 
 	testFrameBox->addFrame(playFrame);
 
@@ -1915,6 +1915,7 @@ void CMovieInfoWidget::funArt()
 	infoFrame->setTitle("Movie Details");
 	infoFrame->setIconName(NEUTRINO_ICON_INFO);
 	infoFrame->setActionKey(this, "MovieInfo");
+	infoFrame->enableShadow();
 
 	testFrameBox->addFrame(infoFrame, true);
 

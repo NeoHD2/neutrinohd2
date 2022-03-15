@@ -1563,33 +1563,6 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			{
 				frameBuffer->paintBoxRel(x, y + 2, dx, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
 			} 
-			
-			/*	
-			// itemBox
-			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
-				
-			// shadow
-			if (shadowMode == SHADOW_ALL)
-			{
-				frameBuffer->paintFrameBox(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
-			}
-			else if (shadowMode == SHADOW_LEFTRIGHT)
-			{
-				// left
-				frameBuffer->paintBoxRel(x, y, 2, height, COL_MENUCONTENT_PLUS_6);
-						
-				// right
-				frameBuffer->paintBoxRel(x + dx - 2, y, 2, height, COL_MENUCONTENT_PLUS_6);
-			}
-			else if (shadowMode == SHADOW_TOPBOTTOM)
-			{
-				// top
-				frameBuffer->paintBoxRel(x, y, dx, 2, COL_MENUCONTENT_PLUS_6);
-						
-				// bottom
-				frameBuffer->paintBoxRel(x, y + height - 2, dx, 2, COL_MENUCONTENT_PLUS_6);
-			} 
-			*/
 		}
 		else
 		{
@@ -3240,32 +3213,30 @@ void ClistBox::paintItemInfo(int pos)
 		
 		if (paintFootInfo)
 		{
-		
-		CMenuItem* item = items[pos];
+			CMenuItem* item = items[pos];
 
-		// scale pic
-		int p_w = 0;
-		int p_h = 0;
+			// scale pic
+			int p_w = 0;
+			int p_h = 0;
 
-		std::string fname = item->itemIcon;
+			std::string fname = item->itemIcon;
 
-		::scaleImage(fname, &p_w, &p_h);
+			::scaleImage(fname, &p_w, &p_h);
 
-		if(textBox)
-		{
-			delete textBox;
-			textBox = NULL;
-		}
-						
-		textBox = new CTextBox(itemBox.iX + 2*(itemBox.iWidth/3), itemBox.iY + hheight, (itemBox.iWidth/3), items_height);
-		//textBox->setMode(AUTO_WIDTH | ~SCROLL);
-				
-		textBox->setBackgroundColor(COL_MENUCONTENTDARK_PLUS_0);
+			if(textBox)
+			{
+				delete textBox;
+				textBox = NULL;
+			}
+							
+			textBox = new CTextBox(itemBox.iX + 2*(itemBox.iWidth/3), itemBox.iY + hheight, (itemBox.iWidth/3), items_height);
+			//textBox->setMode(AUTO_WIDTH | ~SCROLL);
+					
+			textBox->setBackgroundColor(COL_MENUCONTENTDARK_PLUS_0);
 
-		// hint
-		textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), p_w, p_h, PIC_CENTER);
-		textBox->paint();
-		
+			// hint
+			textBox->setText(item->itemHint.c_str(), item->itemIcon.c_str(), p_w, p_h, PIC_CENTER);
+			textBox->paint();
 		}
 	}
 	else if(widgetType == WIDGET_TYPE_FRAME)

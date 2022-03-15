@@ -859,12 +859,14 @@ void CTestMenu::testCWidget()
 	frame->setPosition(topBox.iX, topBox.iY, topBox.iWidth/3, topBox.iHeight);
 	frame->setTitle("Filme");
 	frame->setActionKey(this, "movie");
+	frame->enableShadow();
 	frameBoxWidget->addFrame(frame);
 	
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + topBox.iWidth/3, topBox.iY, topBox.iWidth/3, topBox.iHeight);
 	frame->setTitle("Serien");
 	frame->setActionKey(this, "tv");
+	frame->enableShadow();
 	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
@@ -872,6 +874,7 @@ void CTestMenu::testCWidget()
 	frame->setTitle("Suche");
 	frame->setOption(tmdbsearch.c_str());
 	frame->setActionKey(this, "search");
+	frame->enableShadow();
 	frameBoxWidget->addFrame(frame);
 
 	frameBoxWidget->setSelected(top_selected); 
@@ -1296,6 +1299,7 @@ void CTestMenu::testCFrameBox1()
 	infoFrame->setTitle("Movie Details");
 	infoFrame->setIconName(NEUTRINO_ICON_INFO);
 	infoFrame->setActionKey(this, "minfo");
+	infoFrame->enableShadow();
 
 	frameBoxWidget->addFrame(infoFrame);
 
@@ -1306,6 +1310,7 @@ void CTestMenu::testCFrameBox1()
 	playFrame->setTitle("Movie abspielen");
 	playFrame->setIconName(NEUTRINO_ICON_PLAY);
 	playFrame->setActionKey(this, "mplay");
+	playFrame->enableShadow();
 
 	frameBoxWidget->addFrame(playFrame);
 
@@ -1981,11 +1986,15 @@ void CTestMenu::testCWidgetItem()
 	frame = new CFrame();
 	frame->setPosition(topBox.iX, topBox.iY, topBox.iWidth/3, topBox.iHeight);
 	frame->setTitle("Filme");
+	frame->enableShadow();
+	frame->setHAlign(CC_ALIGN_CENTER);
 	frameBoxWidget->addFrame(frame);
 	
 	frame = new CFrame();
 	frame->setPosition(topBox.iX + topBox.iWidth/3, topBox.iY, topBox.iWidth/3, topBox.iHeight);
 	frame->setTitle("Serien");
+	frame->enableShadow();
+	frame->setHAlign(CC_ALIGN_CENTER);
 	frameBoxWidget->addFrame(frame);
 
 	frame = new CFrame();
@@ -1993,6 +2002,8 @@ void CTestMenu::testCWidgetItem()
 	frame->setTitle("Suche");
 	frame->setOption(tmdbsearch.c_str());
 	frame->setActionKey(this, "search");
+	frame->enableShadow();
+	frame->setHAlign(CC_ALIGN_CENTER);
 	frameBoxWidget->addFrame(frame);
 
 	frameBoxWidget->setSelected(top_selected); 

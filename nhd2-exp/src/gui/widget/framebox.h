@@ -126,7 +126,7 @@ class CFrame
 			return active;				
 		}
 
-		virtual void disableShadow(void){shadow = false;};
+		virtual void enableShadow(void){shadow = true;};
 		virtual void paintMainFrame(bool p){paintFrame = p;};
 		virtual void setPosition(int x, int y, int dx, int dy){window.setPosition(x, y, dx, dy);};
 		virtual void setPosition(CBox *position){window.setPosition(position);};

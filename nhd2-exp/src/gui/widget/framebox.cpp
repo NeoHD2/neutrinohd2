@@ -45,7 +45,7 @@ CFrame::CFrame()
 	caption = "";
 	mode = FRAME_BOX;
 
-	shadow = true;
+	shadow = false;
 	paintFrame = true;
 	pluginOrigName = false;
 
@@ -80,7 +80,7 @@ void CFrame::setMode(int m)
 			
 	if ( (mode == FRAME_HLINE) || (mode == FRAME_VLINE) ) 
 	{
-		shadow = false;
+		//shadow = false;
 		paintFrame = false;
 		
 		setActive(false);

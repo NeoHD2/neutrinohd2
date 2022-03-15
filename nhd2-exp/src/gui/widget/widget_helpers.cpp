@@ -541,9 +541,6 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 	
 	//
 	int ypos2 = y + height;
-	
-	//fb_pixel_t col1 = COL_MENUCONTENT_PLUS_6;
-	//fb_pixel_t col2 = COL_MENUHINT_PLUS_0;
 
 	// shadow / frame
 	if ( (mode == DL_INFO) || (mode == DL_HINT) )
@@ -604,6 +601,8 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		CTextBox Dline(DLx, DLy, DLwidth, DLheight);
 		Dline.paintMainFrame(paintframe);
 		//Dline.setShadowMode(shadowMode);
+		Dline.setCorner(g_settings.Hint_corner);
+		Dline.setRadius(g_settings.Hint_radius);
 		Dline.setMode(AUTO_WIDTH);
 		
 		int iw = 100;
@@ -636,6 +635,8 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		Dline.setShadowMode(shadowMode);
 		if (savescreen) Dline.enableSaveScreen();
 		Dline.setBackgroundColor(color);
+		//Dline.setCorner(g_settings.Hint_corner);
+		//Dline.setRadius(g_settings.Hint_radius);
 		
 		// scale icon
 		int pw = 0;
@@ -666,6 +667,8 @@ void CItems2DetailsLine::paint(int x, int y, int width, int height, int info_hei
 		Dline.setShadowMode(shadowMode);
 		if (savescreen) Dline.enableSaveScreen();
 		Dline.setBackgroundColor(color);
+		//Dline.setCorner(g_settings.Hint_corner);
+		//Dline.setRadius(g_settings.Hint_radius);
 
 		// Hint
 		Dline.setText(hint.c_str());
