@@ -355,6 +355,7 @@ int CFrame::paint(bool selected, bool /*AfterPulldown*/)
 		textBox.setMode(AUTO_WIDTH);
 		textBox.setFont(captionFont);
 		textBox.enableSaveScreen();
+		textBox.setShadowMode(shadow? SHADOW_ALL : SHADOW_NO);
 
 		// caption
 		if(!caption.empty())

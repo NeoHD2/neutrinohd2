@@ -1802,14 +1802,14 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 	
 	// shadow
 	if (g_settings.infobar_shadow)
-		frameBuffer->paintBoxRel(cFrameBoxInfo.iX - 2, cFrameBoxInfo.iY - 2, cFrameBoxInfo.iWidth + 4, cFrameBoxInfo.iHeight + 4, COL_MENUCONTENT_PLUS_6, g_settings.infobar_radius, g_settings.infobar_corner);
+		frameBuffer->paintBoxRel(cFrameBoxInfo.iX, cFrameBoxInfo.iY, cFrameBoxInfo.iWidth, cFrameBoxInfo.iHeight, COL_MENUCONTENT_PLUS_6, g_settings.infobar_radius, g_settings.infobar_corner);
 		
 	// paint info box
-	frameBuffer->paintBoxRel(cFrameBoxInfo.iX, cFrameBoxInfo.iY, cFrameBoxInfo.iWidth, cFrameBoxInfo.iHeight, COL_INFOBAR_PLUS_0, g_settings.infobar_radius, g_settings.infobar_corner, g_settings.infobar_gradient, g_settings.infobar_gradient_direction); 
+	frameBuffer->paintBoxRel(g_settings.infobar_shadow? cFrameBoxInfo.iX + 2 : cFrameBoxInfo.iY, g_settings.infobar_shadow? cFrameBoxInfo.iY + 2 : cFrameBoxInfo.iY, g_settings.infobar_shadow? cFrameBoxInfo.iWidth - 4 : cFrameBoxInfo.iWidth, g_settings.infobar_shadow? cFrameBoxInfo.iHeight - 4 : cFrameBoxInfo.iHeight, COL_INFOBAR_PLUS_0, g_settings.infobar_radius, g_settings.infobar_corner, g_settings.infobar_gradient, g_settings.infobar_gradient_direction); 
 		
 	// bottum bar
 	if (g_settings.infobar_buttonbar)
-		frameBuffer->paintBoxRel(cFrameBoxButton.iX, cFrameBoxButton.iY, cFrameBoxButton.iWidth, cFrameBoxButton.iHeight, COL_INFOBAR_SHADOW_PLUS_1, g_settings.infobar_radius, g_settings.infobar_radius? CORNER_BOTTOM : CORNER_NONE);
+		frameBuffer->paintBoxRel(g_settings.infobar_shadow? cFrameBoxButton.iX + 2: cFrameBoxButton.iX, cFrameBoxButton.iY, g_settings.infobar_shadow? cFrameBoxButton.iWidth - 4 : cFrameBoxButton.iWidth, g_settings.infobar_shadow? cFrameBoxButton.iHeight - 2 : cFrameBoxButton.iHeight, COL_INFOBAR_SHADOW_PLUS_1, g_settings.infobar_radius, g_settings.infobar_radius? CORNER_BOTTOM : CORNER_NONE);
 	else if(g_settings.infobar_buttonline)
 	{
 		CCHline hline(cFrameBoxButton.iX + BORDER_LEFT, cFrameBoxButton.iY, cFrameBoxButton.iWidth - BORDER_LEFT - BORDER_RIGHT, cFrameBoxButton.iHeight);

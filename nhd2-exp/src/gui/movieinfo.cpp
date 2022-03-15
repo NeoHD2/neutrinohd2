@@ -1893,6 +1893,7 @@ void CMovieInfoWidget::funArt()
 
 	textFrame->setTitle(buffer.c_str());
 	textFrame->paintMainFrame(false);
+	textFrame->disableShadow();
 	textFrame->setActive(false);
 	
 	testFrameBox->addFrame(textFrame);

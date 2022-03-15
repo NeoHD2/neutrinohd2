@@ -2158,7 +2158,9 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		
 		// itemInfo
 		g_settings.Hint_shadow = skinConfig->getBool("Hint_shadow", true);
-		g_settings.Hint_gradient = configfile.getInt32("Hint_gradient", NOGRADIENT);
+		g_settings.Hint_gradient = skinConfig->getInt32("Hint_gradient", NOGRADIENT);
+		g_settings.Hint_radius = skinConfig->getInt32("Hint_radius", NO_RADIUS);
+		g_settings.Hint_corner = skinConfig->getInt32("Hint_corner", CORNER_ALL);
 		
 		// progressbar color
 		g_settings.progressbar_color = skinConfig->getInt32("progressbar_color", 1);
@@ -2276,6 +2278,8 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	// itemInfo
 	skinConfig->setBool("Hint_shadow", g_settings.Hint_shadow);
 	skinConfig->setInt32("Hint_gradient", g_settings.Hint_gradient);
+	skinConfig->setInt32("Hint_radius", g_settings.Hint_radius);
+	skinConfig->setInt32("Hint_corner", g_settings.Hint_corner);
 	
 	// progressbar color
 	skinConfig->setInt32("progressbar_color", g_settings.progressbar_color);

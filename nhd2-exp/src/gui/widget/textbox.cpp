@@ -473,12 +473,12 @@ void CTextBox::refreshText(void)
 		frameBuffer->restoreScreen(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, background);
 	}
 	
-	// shadow
-	CFrameBuffer::getInstance()->paintFrameBox(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
-	
 	// paint background	
 	if(paintframe)
 	{
+		// shadow
+		CFrameBuffer::getInstance()->paintFrameBox(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, COL_MENUCONTENT_PLUS_6);
+	
 		// bg
 		if (shadowMode == SHADOW_NO)
 			CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, m_textBackgroundColor, m_textRadius, m_textCorner);
