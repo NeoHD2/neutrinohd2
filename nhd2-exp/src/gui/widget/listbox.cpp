@@ -2640,26 +2640,26 @@ void ClistBox::initFrames()
 				listmaxshow = (itemBox.iHeight - hheight - fheight - cFrameFootInfoHeight)/item_height;
 				itemBox.iHeight = hheight + listmaxshow*item_height + fheight + cFrameFootInfoHeight;
 			}
-			else if (widgetMode == MODE_MENU)
+			else if ( (widgetMode == MODE_MENU) || (widgetMode == MODE_SETUP) )
 			{
 				itemBox.iHeight = std::min(itemBox.iHeight, hheight + heightFirstPage + fheight + cFrameFootInfoHeight);
 			}
 		}
 		
 		// sanity check
-		if(itemBox.iHeight > (int)frameBuffer->getScreenHeight(true) - 20)
-			itemBox.iHeight = frameBuffer->getScreenHeight(true) - 20;
+		if(itemBox.iHeight > (int)frameBuffer->getScreenHeight(true))
+			itemBox.iHeight = frameBuffer->getScreenHeight(true);
 
 		// sanity check
-		if(itemBox.iWidth > (int)frameBuffer->getScreenWidth(true) - 20)
-			itemBox.iWidth = frameBuffer->getScreenWidth(true) - 20;
+		if(itemBox.iWidth > (int)frameBuffer->getScreenWidth(true))
+			itemBox.iWidth = frameBuffer->getScreenWidth(true);
 		
 		//
 		full_height = itemBox.iHeight;
 		full_width = itemBox.iWidth;
 		
 		// menu position
-		if (widgetMode == MODE_MENU)
+		if ( (widgetMode == MODE_MENU) || (widgetMode == MODE_SETUP) )
 		{
 			if(menu_position == MENU_POSITION_CENTER)
 			{
@@ -3760,6 +3760,19 @@ void ClistBox::swipRight()
 	{
 		if(textBox)
 			textBox->scrollPageDown(1);
+	}
+	else if(widgetType == WIDGET_TYPE_STANDARD)
+	{
+		if(widgetMode == MODE_SETUP)
+		{
+			if(hasItem()) 
+			{
+				if((items[selected]->can_arrow)) 
+				{
+					oKKeyPressed(parent);
+				}
+			} 
+		}
 	}
 }
 

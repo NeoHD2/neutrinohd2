@@ -722,7 +722,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	//
 	g_settings.use_default_skin = configfile.getBool("use_default_skin", true);
 	g_settings.preferred_skin = configfile.getString("preferred_skin", "default");
-	g_settings.menu_shadow = configfile.getBool("menu_shadow", false);
+	g_settings.menu_border = configfile.getBool("menu_border", true);
 
 	// keysbinding
 	strcpy(g_settings.repeat_blocker, configfile.getString("repeat_blocker", "250").c_str());
@@ -933,11 +933,11 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	g_settings.infobar_gradient_direction = configfile.getInt32("infobar_gradient_direction", GRADIENT_HORIZONTAL);
 	g_settings.infobar_buttonbar = configfile.getBool("infobar_buttonbar", true);
 	g_settings.infobar_buttonline = configfile.getBool("infobar_buttonline", false);
-	g_settings.infobar_shadow = configfile.getBool("infobar_shadow", false);
+	g_settings.infobar_border = configfile.getBool("infobar_border", false);
 	
 	//
 	g_settings.Hint_gradient = configfile.getInt32("Hint_gradient", NOGRADIENT);
-	g_settings.Hint_shadow = configfile.getBool("Hint_shadow", true);
+	g_settings.Hint_border = configfile.getBool("Hint_border", true);
 	g_settings.Hint_radius = configfile.getInt32("Hint_radius", NO_RADIUS);
 	g_settings.Hint_corner = configfile.getInt32("Hint_corner", CORNER_ALL);
 	// END MISC OPTS
@@ -1215,7 +1215,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	//
 	configfile.setBool("use_default_skin", g_settings.use_default_skin);
 	configfile.setString("preferred_skin", g_settings.preferred_skin);
-	configfile.setBool("menu_shadow", g_settings.menu_shadow);
+	configfile.setBool("menu_border", g_settings.menu_border);
 	// END OSD
 
 	// KEYS
@@ -1385,7 +1385,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	
 	//
 	configfile.setInt32("Hint_gradient", g_settings.Hint_gradient);
-	configfile.setBool("Hint_shadow", g_settings.Hint_shadow);
+	configfile.setBool("Hint_border", g_settings.Hint_border);
 	configfile.setInt32("Hint_radius", g_settings.Hint_radius);
 	configfile.setInt32("Hint_corner", g_settings.Hint_corner);
 	
@@ -1396,7 +1396,7 @@ void CNeutrinoApp::saveSetup(const char * fname)
 	configfile.setInt32("infobar_radius", g_settings.infobar_radius);
 	configfile.setBool("infobar_buttonbar", g_settings.infobar_buttonbar);
 	configfile.setBool("infobar_buttonline", g_settings.infobar_buttonline);
-	configfile.setBool("infobar_shadow", g_settings.infobar_shadow);
+	configfile.setBool("infobar_border", g_settings.infobar_border);
 
 	configfile.setString("tmdbkey", g_settings.tmdbkey);
 	configfile.setString("ytkey", g_settings.ytkey);
@@ -2969,8 +2969,7 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				//
-				if (!execSkin(WIDGET_MAINMENU))
-					mainMenu();
+				mainMenu();
 
 				// restore mute symbol
 				AudioMute(current_muted, true);
@@ -3200,32 +3199,14 @@ void CNeutrinoApp::RealRun(void)
 				//
 				StopSubtitles();
 				
-				//
-				//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
-				{
-					if (hasWidgets() && (widget_exists(WIDGET_EPGTIMER)))
-						getWidget(WIDGET_EPGTIMER)->exec(NULL, "");
-					else
-					{	
-						CEPGMenuHandler* redMenu = new CEPGMenuHandler();
+				//	
+				CEPGMenuHandler* redMenu = new CEPGMenuHandler();
 							
-						redMenu->exec(NULL, "");
+				redMenu->exec(NULL, "");
 							
-						delete redMenu;
-						redMenu = NULL;
-					}
-				}
-				/*
-				else
-				{	
-					CEPGMenuHandler* redMenu = new CEPGMenuHandler();
-						
-					redMenu->exec(NULL, "");
-						
-					delete redMenu;
-					redMenu = NULL;
-				}
-				*/
+				delete redMenu;
+				redMenu = NULL;
+				
 				//
 				StartSubtitles();
 			}
@@ -3283,15 +3264,7 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				// features
-				//if ( !g_settings.use_default_skin && (CNeutrinoApp::getInstance()->skin_exists(g_settings.preferred_skin.c_str())))
-				{
-					if (hasWidgets() && (widget_exists(WIDGET_FEATURES)))
-						getWidget(WIDGET_FEATURES)->exec(NULL, "");
-					else
-						showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
-				}
-				//else
-				//	showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
+				showUserMenu(SNeutrinoSettings::BUTTON_BLUE);
 
 				StartSubtitles();
 			}

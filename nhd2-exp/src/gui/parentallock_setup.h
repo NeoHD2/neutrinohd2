@@ -35,6 +35,10 @@
 class CParentalLockSettings : public CMenuTarget
 {
 	private:
+		CWidget* widget;
+		ClistBox* listBox;
+		CMenuItem* item;
+		
 		void showMenu();
 		
 	public:

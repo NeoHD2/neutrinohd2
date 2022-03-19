@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-19 01:40+0100\n"
+"POT-Creation-Date: 2022-03-19 19:46+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -230,6 +230,9 @@ msgid "Bookmark change"
 msgstr ""
 
 msgid "Bookmarks"
+msgstr ""
+
+msgid "Border"
 msgstr ""
 
 msgid "Bouquet"
@@ -1229,6 +1232,9 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
+msgid "Menu Border"
+msgstr ""
+
 msgid "Menu Info"
 msgstr ""
 
@@ -2082,9 +2088,6 @@ msgstr ""
 msgid "Setup satellites input / LNB"
 msgstr ""
 
-msgid "Shadow"
-msgstr ""
-
 msgid "Shortest time (in ms) to recognize 2 keystrokes"
 msgstr ""
 
@@ -2688,9 +2691,6 @@ msgid ""
 msgstr ""
 
 msgid "Youth protection"
-msgstr ""
-
-msgid "Youth protection settings"
 msgstr ""
 
 msgid "Youtube Player"

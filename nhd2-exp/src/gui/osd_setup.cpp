@@ -323,8 +323,8 @@ void COSDMenuColorSettings::showMenu()
 	// itemInfo gradient
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.Hint_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 	
-	// iteminfo shadow
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Shadow"), &g_settings.Hint_shadow, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	// iteminfo border
+	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Border"), &g_settings.Hint_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
 	
 	// itemInfo Radius
 	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Radius"), &g_settings.Hint_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
@@ -404,8 +404,8 @@ void COSDInfoBarColorSettings::showMenu()
 	// events text color
 	OSDinfobarColorSettings.addItem( new CMenuForwarder(_("Events Textcolor"), true, NULL, chColored_Events ));
 	
-	// infobar shadow
-	OSDinfobarColorSettings.addItem(new CMenuOptionChooser(_("Shadow"), &g_settings.infobar_shadow, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	// infobar border
+	OSDinfobarColorSettings.addItem(new CMenuOptionChooser(_("Border"), &g_settings.infobar_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	
 	// infobar buttonbar
 	OSDinfobarColorSettings.addItem(new CMenuOptionChooser(_("Buttons Bar"), &g_settings.infobar_buttonbar, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
@@ -914,8 +914,8 @@ void COSDDiverses::showMenu()
 	CMenuForwarder *as = new CMenuForwarder(_("Volume Step Size"), true, g_settings.audio_step, audio_step );
 	osdDiverseSettings.addItem(as);
 	
-	// menu_shadow
-	osdDiverseSettings.addItem(new CMenuOptionChooser("Menu Shadow", &g_settings.menu_shadow, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	// menu_border
+	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Menu Border"), &g_settings.menu_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 	osdDiverseSettings.exec(NULL, "");
 	osdDiverseSettings.hide();

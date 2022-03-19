@@ -311,7 +311,7 @@ void CMessageBox::initFrames(void)
 	m_cBoxWindow = new CWindow(&cFrameBox);
 
 	m_cBoxWindow->enableSaveScreen();
-	m_cBoxWindow->setShadowMode(g_settings.menu_shadow? SHADOW_ALL : SHADOW_NO);
+	m_cBoxWindow->setShadowMode(g_settings.menu_border? SHADOW_ALL : SHADOW_NO);
 	m_cBoxWindow->setCorner(g_settings.Head_radius | g_settings.Foot_radius, g_settings.Head_corner | g_settings.Foot_corner);
 }
 
@@ -330,10 +330,7 @@ void CMessageBox::refresh()
 	m_cBoxWindow->paint();
 
 	// title
-	CHeaders headers(g_settings.menu_shadow? CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + 2 : CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1), g_settings.menu_shadow? CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + 2 : CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2), g_settings.menu_shadow? m_width - 4 : m_width, m_theight, m_caption.c_str(), m_iconfile.c_str());
-	
-	//headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
-	//headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);
+	CHeaders headers(g_settings.menu_border? CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1) + 2 : CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - m_width ) >> 1), g_settings.menu_border? CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2) + 2 : CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - m_height) >> 2), g_settings.menu_border? m_width - 4 : m_width, m_theight, m_caption.c_str(), m_iconfile.c_str());
 	
 	headers.paint();
 

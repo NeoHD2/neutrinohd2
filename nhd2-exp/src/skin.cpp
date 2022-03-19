@@ -248,11 +248,13 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			
 		case WIDGET_PARENTALSETUP:
 			{
+			/*
 				if (widget_exists(WIDGET_PARENTALSETUP))
 				{
 					parent = getWidget(WIDGET_PARENTALSETUP);
 				}
 				else
+			*/
 				{
 					dprintf(DEBUG_INFO, "id: %d not found\n", id);
 					parent = new CParentalLockSettings();
@@ -2015,7 +2017,7 @@ void CNeutrinoApp::unloadSkin()
 	themes->setupDefaultColors();
 	
 	// menu
-	g_settings.menu_shadow = false;
+	g_settings.menu_border = true;
 	
 	// infobar
 	g_settings.infobar_gradient = NOGRADIENT;
@@ -2024,7 +2026,7 @@ void CNeutrinoApp::unloadSkin()
 	g_settings.infobar_corner = CORNER_NONE;
 	g_settings.infobar_buttonbar = true;
 	g_settings.infobar_buttonline = false;
-	g_settings.infobar_shadow = false;
+	g_settings.infobar_border = false;
 	
 	// head
 	g_settings.Head_radius = RADIUS_MID;
@@ -2037,7 +2039,7 @@ void CNeutrinoApp::unloadSkin()
 	g_settings.Foot_gradient = DARK2LIGHT;
 	
 	// itemInfo
-	g_settings.Hint_shadow = configfile.getBool("Hint_shadow", true);
+	g_settings.Hint_border = configfile.getBool("Hint_border", true);
 	g_settings.Hint_gradient = configfile.getInt32("Hint_gradient", NOGRADIENT);
 	
 	// progressbar color
@@ -2149,15 +2151,15 @@ void CNeutrinoApp::readSkinConfig(const char* const filename)
 		g_settings.infobar_gradient_direction = skinConfig->getInt32("infobar_gradient_direction", GRADIENT_HORIZONTAL);
 		g_settings.infobar_corner = skinConfig->getInt32("infobar_corner", CORNER_ALL);
 		g_settings.infobar_radius = skinConfig->getInt32("infobar_radius", RADIUS_MID);
-		g_settings.infobar_shadow = skinConfig->getBool("infobar_shadow", false);
+		g_settings.infobar_border = skinConfig->getBool("infobar_border", false);
 		g_settings.infobar_buttonbar = skinConfig->getBool("infobar_buttonbar", true);
 		g_settings.infobar_buttonline = skinConfig->getBool("infobar_buttonline", false);
 		
 		//
-		g_settings.menu_shadow = skinConfig->getBool("menu_shadow", false);
+		g_settings.menu_border = skinConfig->getBool("menu_border", true);
 		
 		// itemInfo
-		g_settings.Hint_shadow = skinConfig->getBool("Hint_shadow", true);
+		g_settings.Hint_border = skinConfig->getBool("Hint_border", true);
 		g_settings.Hint_gradient = skinConfig->getInt32("Hint_gradient", NOGRADIENT);
 		g_settings.Hint_radius = skinConfig->getInt32("Hint_radius", NO_RADIUS);
 		g_settings.Hint_corner = skinConfig->getInt32("Hint_corner", CORNER_ALL);
@@ -2270,13 +2272,13 @@ void CNeutrinoApp::saveSkinConfig(const char * const filename)
 	skinConfig->setInt32("infobar_radius", g_settings.infobar_radius);
 	skinConfig->setBool("infobar_buttonbar", g_settings.infobar_buttonbar);
 	skinConfig->setBool("infobar_buttonline", g_settings.infobar_buttonline);
-	skinConfig->setBool("infobar_shadow", g_settings.infobar_shadow);
+	skinConfig->setBool("infobar_border", g_settings.infobar_border);
 	
 	//
-	skinConfig->setBool("menu_shadow", g_settings.menu_shadow);
+	skinConfig->setBool("menu_border", g_settings.menu_border);
 	
 	// itemInfo
-	skinConfig->setBool("Hint_shadow", g_settings.Hint_shadow);
+	skinConfig->setBool("Hint_border", g_settings.Hint_border);
 	skinConfig->setInt32("Hint_gradient", g_settings.Hint_gradient);
 	skinConfig->setInt32("Hint_radius", g_settings.Hint_radius);
 	skinConfig->setInt32("Hint_corner", g_settings.Hint_corner);

@@ -61,6 +61,9 @@ const keyval PARENTALLOCK_LOCKAGE_OPTIONS[PARENTALLOCK_LOCKAGE_OPTION_COUNT] =
 
 CParentalLockSettings::CParentalLockSettings()
 {
+	widget = NULL;
+	listBox = NULL;
+	item = NULL;
 }
 
 CParentalLockSettings::~CParentalLockSettings()
@@ -94,31 +97,64 @@ void CParentalLockSettings::showMenu()
 	
 	int shortcutLock = 1;
 	
-	CMenuWidget parentallockSettings(_("Youth protection settings"), NEUTRINO_ICON_LOCK);
+	
+	int prev_ItemsCount = 0;
+	int prev_CCItemsCount = 0;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP))
+	{
+		prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP)->getItemsCount();
+		prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP)->getCCItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP);
+		listBox = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		
+		listBox = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		listBox->setMenuPosition(MENU_POSITION_CENTER);
+		listBox->setWidgetMode(MODE_SETUP);
+		listBox->enableShrinkMenu();
+		
+		listBox->enablePaintHead();
+		listBox->setTitle(_("Parentallock settings"), NEUTRINO_ICON_LOCK);
 
-	parentallockSettings.setWidgetMode(MODE_SETUP);
-	parentallockSettings.enableShrinkMenu();
+		listBox->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		listBox->setFootButtons(&btn);
+		
+		widget->addItem(listBox);
+	}
+	
+	listBox->clearItems();
 	
 	// intro
-	parentallockSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	parentallockSettings.addItem( new CMenuSeparator(LINE) );
+	listBox->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	listBox->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	parentallockSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	parentallockSettings.addItem( new CMenuSeparator(LINE) );
+	listBox->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	listBox->addItem( new CMenuSeparator(LINE) );
 
 	// prompt
-	parentallockSettings.addItem(new CMenuOptionChooser(_("Prompt for PIN"), &g_settings.parentallock_prompt, PARENTALLOCK_PROMPT_OPTIONS, PARENTALLOCK_PROMPT_OPTION_COUNT, !parentallocked, NULL, CRCInput::convertDigitToKey(shortcutLock++), "", true ));
+	listBox->addItem(new CMenuOptionChooser(_("Prompt for PIN"), &g_settings.parentallock_prompt, PARENTALLOCK_PROMPT_OPTIONS, PARENTALLOCK_PROMPT_OPTION_COUNT, !parentallocked, NULL, CRCInput::convertDigitToKey(shortcutLock++), "", true ));
 
 	// lockage
-	parentallockSettings.addItem(new CMenuOptionChooser(_("Lock program"), &g_settings.parentallock_lockage, PARENTALLOCK_LOCKAGE_OPTIONS, PARENTALLOCK_LOCKAGE_OPTION_COUNT, !parentallocked, NULL, CRCInput::convertDigitToKey(shortcutLock++), "", true ));
+	listBox->addItem(new CMenuOptionChooser(_("Lock program"), &g_settings.parentallock_lockage, PARENTALLOCK_LOCKAGE_OPTIONS, PARENTALLOCK_LOCKAGE_OPTION_COUNT, !parentallocked, NULL, CRCInput::convertDigitToKey(shortcutLock++), "", true ));
 
 	// Pin
 	CPINChangeWidget * pinChangeWidget = new CPINChangeWidget(_("Change PIN code"), g_settings.parentallock_pincode, 4, _("Enter your new youth protection pin code here!"));
-	parentallockSettings.addItem( new CMenuForwarder(_("Change PIN code"), true, g_settings.parentallock_pincode, pinChangeWidget, NULL, CRCInput::convertDigitToKey(shortcutLock++) ));
+	listBox->addItem( new CMenuForwarder(_("Change PIN code"), true, g_settings.parentallock_pincode, pinChangeWidget, NULL, CRCInput::convertDigitToKey(shortcutLock++) ));
 	
-	parentallockSettings.exec(NULL, "");
-	parentallockSettings.hide();
+	//if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP) == NULL)
+	//	widget->addItem(listBox);
+	
+	widget->exec(NULL, "");
 }
 
 

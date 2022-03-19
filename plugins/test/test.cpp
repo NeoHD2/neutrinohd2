@@ -7517,6 +7517,8 @@ void CTestMenu::showMenu()
 		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
 		
 		mainMenu->setFootButtons(&btn);
+		
+		mWidget->addItem(mainMenu);
 	}
 	
 	mainMenu->clearItems();
@@ -7645,9 +7647,6 @@ void CTestMenu::showMenu()
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "SKIN") );		
 	mainMenu->addItem(new CMenuForwarder("SKIN-WIDGET", true, NULL, this, "skin"));
 	mainMenu->addItem(new CMenuForwarder("SKIN-SETUP", true, NULL, this, "skinSetup"));
-	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX) == NULL)
-		mWidget->addItem(mainMenu);
 	
 	mWidget->exec(NULL, "");
 }

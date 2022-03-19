@@ -501,7 +501,7 @@ void CAudioPlayerGui::paintFanArt(CAudiofile& File)
 void CAudioPlayerGui::paintInfo(CAudiofile& File)
 {
 	// shadow
-	if (g_settings.infobar_shadow)
+	if (g_settings.infobar_border)
 		m_frameBuffer->paintBoxRel(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight, COL_MENUCONTENT_PLUS_6, g_settings.infobar_radius, g_settings.infobar_corner);
 	
 	// box	

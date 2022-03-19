@@ -471,7 +471,7 @@ struct SNeutrinoSettings
 	
 	//
 	int Hint_gradient;
-	int Hint_shadow;
+	int Hint_border;
 	int Hint_corner;
 	int Hint_radius;
 	
@@ -482,10 +482,10 @@ struct SNeutrinoSettings
 	int infobar_radius;
 	int infobar_buttonbar;
 	int infobar_buttonline;
-	int infobar_shadow;
+	int infobar_border;
 	
 	//
-	int menu_shadow;
+	int menu_border;
 
 	// icons dir
 	std::string icons_dir;
