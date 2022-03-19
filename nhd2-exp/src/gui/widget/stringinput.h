@@ -63,6 +63,7 @@ class CStringInput : public CMenuTarget
 		int iheight; // itemheight
 
 		CWindow m_cBoxWindow;
+		CHeaders headers;
 		
 		uint32_t smstimer;
 

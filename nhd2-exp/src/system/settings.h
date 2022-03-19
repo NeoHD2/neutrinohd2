@@ -523,6 +523,7 @@ extern const char* const timing_setting_name[TIMING_SETTING_COUNT];
 #define RADIUS_SMALL    			2
 #define RADIUS_MID      			4
 #define RADIUS_LARGE    			8
+#define RADIUS_VERYLARGE			10
 
 //
 #define BORDER_LEFT				10

@@ -312,7 +312,7 @@ void CMessageBox::initFrames(void)
 
 	m_cBoxWindow->enableSaveScreen();
 	m_cBoxWindow->setShadowMode(g_settings.menu_shadow? SHADOW_ALL : SHADOW_NO);
-	m_cBoxWindow->setCorner(g_settings.Head_radius, g_settings.Head_corner | g_settings.Foot_corner);
+	m_cBoxWindow->setCorner(g_settings.Head_radius | g_settings.Foot_radius, g_settings.Head_corner | g_settings.Foot_corner);
 }
 
 void CMessageBox::paint(void)

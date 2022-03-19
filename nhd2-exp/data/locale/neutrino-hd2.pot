@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 17:48+0100\n"
+"POT-Creation-Date: 2022-03-19 01:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -299,13 +299,13 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:230 ../../src/gui/osd_setup.cpp:235
-#: ../../src/gui/osd_setup.cpp:240 ../../src/gui/osd_setup.cpp:245
-#: ../../src/gui/osd_setup.cpp:250 ../../src/gui/osd_setup.cpp:255
-#: ../../src/gui/osd_setup.cpp:263 ../../src/gui/osd_setup.cpp:282
-#: ../../src/gui/osd_setup.cpp:287 ../../src/gui/osd_setup.cpp:292
-#: ../../src/gui/osd_setup.cpp:297 ../../src/gui/osd_setup.cpp:317
-#: ../../src/gui/osd_setup.cpp:387 ../../src/gui/osd_setup.cpp:398
+#: ../../src/gui/osd_setup.cpp:231 ../../src/gui/osd_setup.cpp:236
+#: ../../src/gui/osd_setup.cpp:241 ../../src/gui/osd_setup.cpp:246
+#: ../../src/gui/osd_setup.cpp:251 ../../src/gui/osd_setup.cpp:256
+#: ../../src/gui/osd_setup.cpp:264 ../../src/gui/osd_setup.cpp:283
+#: ../../src/gui/osd_setup.cpp:288 ../../src/gui/osd_setup.cpp:293
+#: ../../src/gui/osd_setup.cpp:298 ../../src/gui/osd_setup.cpp:318
+#: ../../src/gui/osd_setup.cpp:388 ../../src/gui/osd_setup.cpp:399
 #: ../../../plugins/test/test.cpp:5354
 msgid "Background"
 msgstr ""
@@ -396,11 +396,11 @@ msgstr ""
 msgid "Browser hight [Pixel]"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:410
+#: ../../src/gui/osd_setup.cpp:411
 msgid "Buttons Bar"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:413
+#: ../../src/gui/osd_setup.cpp:414
 msgid "Buttons Line"
 msgstr ""
 
@@ -505,7 +505,7 @@ msgstr ""
 msgid "Channel / Title"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:897
+#: ../../src/gui/osd_setup.cpp:898
 msgid "Channel Logo(EPGPlus)"
 msgstr ""
 
@@ -513,7 +513,7 @@ msgstr ""
 msgid "Channel down"
 msgstr ""
 
-#: ../../src/neutrino.cpp:421 ../../src/gui/osd_setup.cpp:900
+#: ../../src/neutrino.cpp:421 ../../src/gui/osd_setup.cpp:901
 msgid "Channel name"
 msgstr ""
 
@@ -602,8 +602,8 @@ msgstr ""
 msgid "Copy jumps from movie to new file ?"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:272 ../../src/gui/osd_setup.cpp:305
-#: ../../src/gui/osd_setup.cpp:332 ../../src/gui/osd_setup.cpp:422
+#: ../../src/gui/osd_setup.cpp:273 ../../src/gui/osd_setup.cpp:306
+#: ../../src/gui/osd_setup.cpp:333 ../../src/gui/osd_setup.cpp:423
 msgid "Corner"
 msgstr ""
 
@@ -695,7 +695,7 @@ msgstr ""
 msgid "Decrease Motor Position (a)"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:702
+#: ../../src/gui/osd_setup.cpp:703
 msgid "Default"
 msgstr ""
 
@@ -797,7 +797,7 @@ msgstr ""
 msgid "Disable (soft) Limits"
 msgstr ""
 
-#: ../../src/gui/widget/stringinput.cpp:373
+#: ../../src/gui/widget/stringinput.cpp:377
 msgid "Discard changes ?"
 msgstr ""
 
@@ -944,7 +944,7 @@ msgstr ""
 msgid "Enable standby"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:490 ../../src/system/helpers.cpp:669
+#: ../../src/gui/osd_setup.cpp:491 ../../src/system/helpers.cpp:669
 msgid "English"
 msgstr ""
 
@@ -1014,7 +1014,7 @@ msgstr ""
 msgid "Eventlist overview"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:393 ../../src/gui/osd_setup.cpp:404
+#: ../../src/gui/osd_setup.cpp:394 ../../src/gui/osd_setup.cpp:405
 msgid "Events Textcolor"
 msgstr ""
 
@@ -1124,16 +1124,16 @@ msgstr ""
 msgid "Focus"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:117 ../../src/gui/osd_setup.cpp:611
-#: ../../src/gui/osd_setup.cpp:627
+#: ../../src/gui/osd_setup.cpp:117 ../../src/gui/osd_setup.cpp:612
+#: ../../src/gui/osd_setup.cpp:628
 msgid "Font"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:624
+#: ../../src/gui/osd_setup.cpp:625
 msgid "Font name"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:296
+#: ../../src/gui/osd_setup.cpp:297
 msgid "Foot"
 msgstr ""
 
@@ -1226,12 +1226,12 @@ msgstr ""
 msgid "Goto Reference Position"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:269 ../../src/gui/osd_setup.cpp:302
-#: ../../src/gui/osd_setup.cpp:323 ../../src/gui/osd_setup.cpp:416
+#: ../../src/gui/osd_setup.cpp:270 ../../src/gui/osd_setup.cpp:303
+#: ../../src/gui/osd_setup.cpp:324 ../../src/gui/osd_setup.cpp:417
 msgid "Gradient"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:419
+#: ../../src/gui/osd_setup.cpp:420
 msgid "Gradient direction"
 msgstr ""
 
@@ -1341,7 +1341,7 @@ msgstr ""
 msgid "Hdd Format"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:260
+#: ../../src/gui/osd_setup.cpp:261
 msgid "Head"
 msgstr ""
 
@@ -1362,7 +1362,7 @@ msgstr ""
 msgid "Here you can get infos about the software.\n"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:936 ../../src/gui/osd_setup.cpp:968
+#: ../../src/gui/osd_setup.cpp:937 ../../src/gui/osd_setup.cpp:969
 msgid "Here you can select a skin from the following list."
 msgstr ""
 
@@ -1402,7 +1402,7 @@ msgstr ""
 msgid "Horizontal"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:628
+#: ../../src/gui/osd_setup.cpp:629
 msgid "Horizontal (in %)"
 msgstr ""
 
@@ -1502,7 +1502,7 @@ msgstr ""
 msgid "Info 2"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:111 ../../src/gui/osd_setup.cpp:375
+#: ../../src/gui/osd_setup.cpp:111 ../../src/gui/osd_setup.cpp:376
 #: ../../src/system/settings.cpp:50
 msgid "Infobar"
 msgstr ""
@@ -1519,7 +1519,7 @@ msgstr ""
 #: ../../src/neutrino.cpp:4375 ../../src/neutrino.cpp:5294
 #: ../../src/neutrino.cpp:5303 ../../src/neutrino.cpp:5324
 #: ../../src/neutrino.cpp:5329 ../../src/neutrino.cpp:5341
-#: ../../src/neutrino.cpp:5343 ../../src/gui/osd_setup.cpp:460
+#: ../../src/neutrino.cpp:5343 ../../src/gui/osd_setup.cpp:461
 #: ../../src/gui/dboxinfo.cpp:482 ../../src/gui/cam_menu.cpp:201
 #: ../../src/gui/cam_menu.cpp:229 ../../src/gui/cam_menu.cpp:258
 #: ../../src/gui/cam_menu.cpp:359 ../../src/gui/cam_menu.cpp:473
@@ -1590,7 +1590,7 @@ msgstr ""
 msgid "Is this video mode working ok ?"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:314
+#: ../../src/gui/osd_setup.cpp:315
 msgid "Item Info"
 msgstr ""
 
@@ -1659,7 +1659,7 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:478
+#: ../../src/gui/osd_setup.cpp:479
 msgid "Language Setup"
 msgstr ""
 
@@ -1737,7 +1737,7 @@ msgstr ""
 msgid "Light to Dark to Light"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:278 ../../src/gui/osd_setup.cpp:311
+#: ../../src/gui/osd_setup.cpp:279 ../../src/gui/osd_setup.cpp:312
 msgid "Line"
 msgstr ""
 
@@ -1845,7 +1845,7 @@ msgstr ""
 msgid "Media Portal"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:108 ../../src/gui/osd_setup.cpp:217
+#: ../../src/gui/osd_setup.cpp:108 ../../src/gui/osd_setup.cpp:218
 #: ../../src/system/settings.cpp:47
 msgid "Menu"
 msgstr ""
@@ -2095,7 +2095,7 @@ msgstr ""
 msgid "New timer"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1510 ../../src/gui/channellist.cpp:1657
+#: ../../src/gui/channellist.cpp:1510 ../../src/gui/channellist.cpp:1678
 msgid "Next"
 msgstr ""
 
@@ -2190,7 +2190,7 @@ msgstr ""
 msgid "Not used"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1653
+#: ../../src/gui/channellist.cpp:1674
 msgid "Now"
 msgstr ""
 
@@ -2227,11 +2227,11 @@ msgstr ""
 msgid "OPKG-Manager"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:866
+#: ../../src/gui/osd_setup.cpp:867
 msgid "OSD Miscsettings"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:682
+#: ../../src/gui/osd_setup.cpp:683
 msgid "OSD Timing"
 msgstr ""
 
@@ -2459,7 +2459,7 @@ msgstr ""
 msgid "Program unknown"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:879
+#: ../../src/gui/osd_setup.cpp:880
 msgid "Progressbar Color"
 msgstr ""
 
@@ -2516,8 +2516,8 @@ msgstr ""
 msgid "Radio Text"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:275 ../../src/gui/osd_setup.cpp:308
-#: ../../src/gui/osd_setup.cpp:329 ../../src/gui/osd_setup.cpp:425
+#: ../../src/gui/osd_setup.cpp:276 ../../src/gui/osd_setup.cpp:309
+#: ../../src/gui/osd_setup.cpp:330 ../../src/gui/osd_setup.cpp:426
 msgid "Radius"
 msgstr ""
 
@@ -2754,7 +2754,7 @@ msgstr ""
 msgid "Satellite Position (Step Mode):"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:903
+#: ../../src/gui/osd_setup.cpp:904
 msgid "Satellite display on infobar"
 msgstr ""
 
@@ -2786,7 +2786,7 @@ msgstr ""
 msgid "Save Keymap"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:487
+#: ../../src/gui/osd_setup.cpp:488
 msgid "Save Settings"
 msgstr ""
 
@@ -2818,9 +2818,9 @@ msgstr ""
 msgid "Save in channel dir"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:227 ../../src/gui/osd_setup.cpp:384
-#: ../../src/gui/osd_setup.cpp:620 ../../src/gui/osd_setup.cpp:691
-#: ../../src/gui/osd_setup.cpp:875 ../../src/gui/hdd_menu.cpp:194
+#: ../../src/gui/osd_setup.cpp:228 ../../src/gui/osd_setup.cpp:385
+#: ../../src/gui/osd_setup.cpp:621 ../../src/gui/osd_setup.cpp:692
+#: ../../src/gui/osd_setup.cpp:876 ../../src/gui/hdd_menu.cpp:194
 #: ../../src/gui/network_setup.cpp:272 ../../src/gui/audio_setup.cpp:167
 #: ../../src/gui/audioplayer_setup.cpp:108
 #: ../../src/gui/pictureviewer_setup.cpp:123 ../../src/gui/rc_setup.cpp:155
@@ -3018,7 +3018,7 @@ msgstr ""
 msgid "Select audio track"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:539 ../../src/gui/audio_select.cpp:108
+#: ../../src/gui/osd_setup.cpp:540 ../../src/gui/audio_select.cpp:108
 #: ../../src/gui/widget/listbox.cpp:707
 msgid "Select language"
 msgstr ""
@@ -3136,7 +3136,7 @@ msgstr ""
 msgid "Setup satellites input / LNB"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:326 ../../src/gui/osd_setup.cpp:407
+#: ../../src/gui/osd_setup.cpp:327 ../../src/gui/osd_setup.cpp:408
 msgid "Shadow"
 msgstr ""
 
@@ -3184,16 +3184,16 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:929 ../../src/gui/osd_setup.cpp:1005
-#: ../../src/gui/osd_setup.cpp:1016
+#: ../../src/gui/osd_setup.cpp:930 ../../src/gui/osd_setup.cpp:1006
+#: ../../src/gui/osd_setup.cpp:1017
 msgid "Skin Select"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1105
+#: ../../src/gui/osd_setup.cpp:1106
 msgid "Skin Style Selection"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1040
+#: ../../src/gui/osd_setup.cpp:1041
 msgid "Skin Style selection"
 msgstr ""
 
@@ -3341,7 +3341,7 @@ msgstr ""
 msgid "Stretch Mode"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:906
+#: ../../src/gui/osd_setup.cpp:907
 msgid "Subchannel display"
 msgstr ""
 
@@ -3489,13 +3489,13 @@ msgstr ""
 msgid "Test signal"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:232 ../../src/gui/osd_setup.cpp:237
-#: ../../src/gui/osd_setup.cpp:242 ../../src/gui/osd_setup.cpp:247
-#: ../../src/gui/osd_setup.cpp:252 ../../src/gui/osd_setup.cpp:257
-#: ../../src/gui/osd_setup.cpp:266 ../../src/gui/osd_setup.cpp:283
-#: ../../src/gui/osd_setup.cpp:288 ../../src/gui/osd_setup.cpp:293
-#: ../../src/gui/osd_setup.cpp:299 ../../src/gui/osd_setup.cpp:320
-#: ../../src/gui/osd_setup.cpp:390 ../../src/gui/osd_setup.cpp:401
+#: ../../src/gui/osd_setup.cpp:233 ../../src/gui/osd_setup.cpp:238
+#: ../../src/gui/osd_setup.cpp:243 ../../src/gui/osd_setup.cpp:248
+#: ../../src/gui/osd_setup.cpp:253 ../../src/gui/osd_setup.cpp:258
+#: ../../src/gui/osd_setup.cpp:267 ../../src/gui/osd_setup.cpp:284
+#: ../../src/gui/osd_setup.cpp:289 ../../src/gui/osd_setup.cpp:294
+#: ../../src/gui/osd_setup.cpp:300 ../../src/gui/osd_setup.cpp:321
+#: ../../src/gui/osd_setup.cpp:391 ../../src/gui/osd_setup.cpp:402
 msgid "Textcolor"
 msgstr ""
 
@@ -3583,7 +3583,7 @@ msgstr ""
 msgid "Time Zone"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:696
+#: ../../src/gui/osd_setup.cpp:697
 msgid "Time in sec. After this time the"
 msgstr ""
 
@@ -3839,7 +3839,7 @@ msgstr ""
 msgid "Vertical"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:629
+#: ../../src/gui/osd_setup.cpp:630
 msgid "Vertikal (in %)"
 msgstr ""
 
@@ -3880,7 +3880,7 @@ msgstr ""
 msgid "Volume / Playtime / Audio"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:912 ../../src/gui/osd_setup.cpp:913
+#: ../../src/gui/osd_setup.cpp:913 ../../src/gui/osd_setup.cpp:914
 msgid "Volume Step Size"
 msgstr ""
 
@@ -3888,7 +3888,7 @@ msgstr ""
 msgid "Volume adjustment (in %)"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:909
+#: ../../src/gui/osd_setup.cpp:910
 msgid "Volumebar"
 msgstr ""
 
@@ -3924,15 +3924,15 @@ msgstr ""
 msgid "Wide Screen Auto"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:281
+#: ../../src/gui/osd_setup.cpp:282
 msgid "Window-Content"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:286
+#: ../../src/gui/osd_setup.cpp:287
 msgid "Window-Content inactive"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:291
+#: ../../src/gui/osd_setup.cpp:292
 msgid "Window-Content selected"
 msgstr ""
 
@@ -3992,7 +3992,7 @@ msgid ""
 " and <MENU> on your remote control."
 msgstr ""
 
-#: ../../src/gui/widget/listbox.cpp:849 ../../src/gui/widget/listbox.cpp:868
+#: ../../src/gui/widget/listbox.cpp:850 ../../src/gui/widget/listbox.cpp:869
 msgid "Youth protection"
 msgstr ""
 
@@ -4102,9 +4102,9 @@ msgstr ""
 msgid "athletics"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:223 ../../src/gui/osd_setup.cpp:381
-#: ../../src/gui/osd_setup.cpp:484 ../../src/gui/osd_setup.cpp:617
-#: ../../src/gui/osd_setup.cpp:688 ../../src/gui/osd_setup.cpp:872
+#: ../../src/gui/osd_setup.cpp:224 ../../src/gui/osd_setup.cpp:382
+#: ../../src/gui/osd_setup.cpp:485 ../../src/gui/osd_setup.cpp:618
+#: ../../src/gui/osd_setup.cpp:689 ../../src/gui/osd_setup.cpp:873
 #: ../../src/gui/cam_menu.cpp:121 ../../src/gui/hdd_menu.cpp:190
 #: ../../src/gui/hdd_menu.cpp:307 ../../src/gui/hdd_menu.cpp:351
 #: ../../src/gui/network_setup.cpp:268 ../../src/gui/audio_setup.cpp:163
@@ -4149,11 +4149,11 @@ msgstr ""
 msgid "blue"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:847 ../../src/gui/osd_setup.cpp:858
+#: ../../src/gui/osd_setup.cpp:848 ../../src/gui/osd_setup.cpp:859
 msgid "bottom left"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:848 ../../src/gui/osd_setup.cpp:859
+#: ../../src/gui/osd_setup.cpp:849 ../../src/gui/osd_setup.cpp:860
 msgid "bottom right"
 msgstr ""
 
@@ -4214,7 +4214,7 @@ msgstr ""
 msgid "children / juvenile program"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1075
+#: ../../src/gui/osd_setup.cpp:1076
 msgid "choose Skin Style."
 msgstr ""
 
@@ -4222,7 +4222,7 @@ msgstr ""
 msgid "clear all"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:838
+#: ../../src/gui/osd_setup.cpp:839
 msgid "colored"
 msgstr ""
 
@@ -4254,7 +4254,7 @@ msgstr ""
 msgid "default audio streams"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:849
+#: ../../src/gui/osd_setup.cpp:850
 msgid "default center"
 msgstr ""
 
@@ -4454,7 +4454,7 @@ msgstr ""
 msgid "handicraft"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:850
+#: ../../src/gui/osd_setup.cpp:851
 msgid "higher center"
 msgstr ""
 
@@ -4466,7 +4466,7 @@ msgstr ""
 msgid "info"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:696
+#: ../../src/gui/osd_setup.cpp:697
 msgid "infobar will be faded out."
 msgstr ""
 
@@ -4551,7 +4551,7 @@ msgstr ""
 msgid "local dir"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:894
+#: ../../src/gui/osd_setup.cpp:895
 msgid "logos Dir"
 msgstr ""
 
@@ -4593,7 +4593,7 @@ msgstr ""
 msgid "mono right"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:837
+#: ../../src/gui/osd_setup.cpp:838
 msgid "monochrom"
 msgstr ""
 
@@ -4661,7 +4661,7 @@ msgstr ""
 msgid "need reboot or epg-reset"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:935
+#: ../../src/gui/osd_setup.cpp:936
 msgid "neutrino (default)"
 msgstr ""
 
@@ -5082,19 +5082,19 @@ msgstr ""
 msgid "the filesize is 0 Bytes"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:460 ../../src/gui/osd_setup.cpp:1016
+#: ../../src/gui/osd_setup.cpp:461 ../../src/gui/osd_setup.cpp:1017
 msgid ""
 "this need Neutrino restart\n"
 "do you want really to restart?"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1105
+#: ../../src/gui/osd_setup.cpp:1106
 msgid ""
 "this needs Neutrino restart\n"
 "Skin Style selection?"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1005 ../../src/gui/themes.cpp:148
+#: ../../src/gui/osd_setup.cpp:1006 ../../src/gui/themes.cpp:148
 msgid ""
 "this needs Neutrino restart\n"
 "do you want really to restart?"
@@ -5112,11 +5112,11 @@ msgstr ""
 msgid "to deep standby (0 = off)."
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:846 ../../src/gui/osd_setup.cpp:857
+#: ../../src/gui/osd_setup.cpp:847 ../../src/gui/osd_setup.cpp:858
 msgid "top left"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:845 ../../src/gui/osd_setup.cpp:856
+#: ../../src/gui/osd_setup.cpp:846 ../../src/gui/osd_setup.cpp:857
 msgid "top right"
 msgstr ""
 
@@ -5151,6 +5151,10 @@ msgstr ""
 
 #: ../../src/gui/epgview.cpp:254
 msgid "variety show"
+msgstr ""
+
+#: ../../src/gui/osd_setup.cpp:179
+msgid "very large"
 msgstr ""
 
 #: ../../../plugins/youtube/youtube.cpp:306

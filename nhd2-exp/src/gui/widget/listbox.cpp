@@ -752,6 +752,7 @@ int CMenuOptionLanguageChooser::paint( bool selected, bool /*AfterPulldown*/)
 
 	// locale
 	int stringstartposOption = x + BORDER_LEFT + icon_w + ICON_OFFSET;
+	
 	g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->RenderString(stringstartposOption, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight(), dx - BORDER_RIGHT - (stringstartposOption - x), optionValue, color, 0, true); //UTF-8
 
 	// vfd
@@ -1077,9 +1078,7 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 	}
 	else
 	{
-		int stringstartposX = x;	
-	
-		// paint item
+		// paint itemBox
 		if (selected)
 		{
 			if (!paintFrame)
@@ -1118,33 +1117,6 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 			{
 				frameBuffer->paintBoxRel(x, y + 2, dx, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
 			} 
-			
-			/*	
-			// itemBox
-			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
-				
-			// shadow
-			if (shadowMode == SHADOW_ALL)
-			{
-				frameBuffer->paintFrameBox(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
-			}
-			else if (shadowMode == SHADOW_LEFTRIGHT)
-			{
-				// left
-				frameBuffer->paintBoxRel(x, y, 2, height, COL_MENUCONTENT_PLUS_6);
-						
-				// right
-				frameBuffer->paintBoxRel(x + dx - 2, y, 2, height, COL_MENUCONTENT_PLUS_6);
-			}
-			else if (shadowMode == SHADOW_TOPBOTTOM)
-			{
-				// top
-				frameBuffer->paintBoxRel(x, y, dx, 2, COL_MENUCONTENT_PLUS_6);
-						
-				// bottom
-				frameBuffer->paintBoxRel(x, y + height - 2, dx, 2, COL_MENUCONTENT_PLUS_6);
-			} 
-			*/
 		}
 		else
 		{
@@ -1177,8 +1149,12 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 				
 				frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
 				
+				// scale icon
 				if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
+				{
 					icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+					icon_w = 1.63*icon_h;
+				}
 				
 				frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);
 			}
@@ -1197,8 +1173,12 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 					
 					frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
 					
+					// scale icon
 					if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
+					{
 						icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+						icon_w = 1.63*icon_h;
+					}
 			
 					frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);
 				}
@@ -1512,8 +1492,6 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				frameBuffer->paintHintIcon(itemIcon, x + 4*ICON_OFFSET, y + 4*ICON_OFFSET, item_width - 8*ICON_OFFSET, item_height - 8*ICON_OFFSET);
 		}
 
-		// locale ???
-
 		// vfd
 		if (selected)
 		{
@@ -1581,6 +1559,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		}
 			
 		// icon (left)
+		/*
 		int icon_w = 0;
 		int icon_h = 0;
 		int bpp = 0;
@@ -1613,11 +1592,15 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
 				
 				if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
+				{
 					icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+					icon_w = 1.63*icon_h;
+				}
 		
 				frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);
 			}
 		}
+		*/
 
 		// icon1 (right)
 		int icon1_w = 0;
@@ -1630,8 +1613,15 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			
 			//get icon size
 			frameBuffer->getIconSize(icon1.c_str(), &icon1_w, &icon1_h);
+			
+			if (icon1_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
+			{
+				icon1_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+				icon1_w = 1.63*icon1_h;
+			}
 		
-			frameBuffer->paintIcon(icon1, x + dx - BORDER_LEFT - icon1_w, y + (height - icon1_h)/2 );
+			//frameBuffer->paintIcon(icon1, x + dx - BORDER_LEFT - icon1_w, y + (height - icon1_h)/2 );
+			frameBuffer->paintIcon(icon1, x + dx - BORDER_LEFT - icon1_w, y, height, true, icon1_w, icon1_h);
 		}
 
 		// icon2 (right)
@@ -1645,6 +1635,12 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			
 			//get icon size
 			frameBuffer->getIconSize(icon2.c_str(), &icon2_w, &icon2_h);
+			
+			if (icon2_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
+			{
+				icon2_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+				icon2_w = 1.63*icon2_h;
+			}
 		
 			frameBuffer->paintIcon(icon2, x + dx - BORDER_LEFT - (icon1_w? icon1_w + ICON_OFFSET : 0) - icon2_w, y + (height - icon2_h)/2 );
 		}
@@ -1660,42 +1656,86 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 		}
 
 		// number
-		int numwidth = 0;
-		int num_offset = 0;
+		int number_width = 0;
+		int number_offset = 0;
 		
-		if(number != 0)
+		if(number)
 		{
-			num_offset = ICON_OFFSET;
+			number_offset = ICON_OFFSET;
 			
 			char tmp[10];
 
 			sprintf((char*) tmp, "%d", number);
 
-			numwidth = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getRenderWidth("0000");
+			number_width = g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getRenderWidth("0000");
 
-			int numpos = x + BORDER_LEFT + numwidth - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getRenderWidth(tmp) + icon_w;
+			int numPosX = x + BORDER_LEFT + number_width - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getRenderWidth(tmp) /*+ icon_w*/;
 
-			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(numpos, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), numwidth + 5, tmp, color, 0, true); // UTF-8
+			g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->RenderString(numPosX, y + (height - g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight())/2 + g_Font[SNeutrinoSettings::FONT_TYPE_CHANNELLIST_NUMBER]->getHeight(), number_width + 5, tmp, color, 0, true); // UTF-8
+		}
+		
+		int icon_w = 0;
+		int icon_h = 0;
+		int bpp = 0;
+		int icon_offset = 0;
+
+		if(widgetType == WIDGET_TYPE_CLASSIC)
+		{
+			icon_h = ITEM_ICON_H_MINI;
+			icon_w = ITEM_ICON_W_MINI;
+			
+			//if (widgetMode == MODE_LISTBOX)
+			if(nLinesItem)
+			{
+				icon_h = ITEM_ICON_H_MINI*2;
+				icon_w = ITEM_ICON_W_MINI;
+			}
+					
+			if (!itemIcon.empty())
+			{
+				frameBuffer->paintHintIcon(itemIcon.c_str(), x + BORDER_LEFT + number_width + number_offset, y + ((height - icon_h)/2), icon_w, icon_h);
+			}
+		}
+		else // standard|extended
+		{
+			if (!iconName.empty())
+			{
+				icon_offset = ICON_OFFSET;
+				
+				//get icon size
+				frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
+				
+				if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
+				{
+					icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
+					icon_w = 1.63*icon_h;
+				}
+		
+				frameBuffer->paintIcon(iconName, x + BORDER_LEFT + number_width + number_offset, y, height, true, icon_w, icon_h);
+			}
 		}
 
 		// ProgressBar
-		int pBarWidth = 0;
+		int pb_width = 0;
 		int pb_offset = 0;
 		
 		if(pb)
 		{
 			pb_offset = ICON_OFFSET;
 			
-			pBarWidth = 35;
+			pb_width = 35;
 			int pBarHeight = height/5;
+			
+			int pbPosX = x + BORDER_LEFT + number_width + number_offset + icon_w + icon_offset;
 
-			CProgressBar timescale(x + BORDER_LEFT + numwidth + ICON_OFFSET, y + (height - pBarHeight)/2, pBarWidth, pBarHeight);
+			CProgressBar timescale(pbPosX, y + (height - pBarHeight)/2, pb_width, pBarHeight);
 			timescale.reset();
 			timescale.paint(runningPercent);
 		}
 	
 		// locale / option
 		int l_text_width = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_text, true);
+		int l_startPosX = x + BORDER_LEFT + number_width + number_offset + icon_w + icon_offset + pb_width + pb_offset;
 
 		// local
 		if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)
@@ -1708,25 +1748,25 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// local
 				if(l_text != NULL)
 				{
-						g_Font[nameFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + g_Font[nameFont]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+						g_Font[nameFont]->RenderString(/*x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET*/l_startPosX, y + 3 + g_Font[nameFont]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - number_width - pb_width - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 				
 				// option
 				if(option_text != NULL)
 				{
-						g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, option_text, selected? color : optionFontColor, 0, true);
+						g_Font[optionFont]->RenderString(/*x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET*/l_startPosX, y + height, dx - BORDER_LEFT - BORDER_RIGHT - number_width - pb_width - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, option_text, selected? color : optionFontColor, 0, true);
 				}
 				
 				// info1
 				if (!info1.empty())
 				{
-					g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, info1.c_str(), selected? color : optionFontColor, 0, true);
+					g_Font[optionFont]->RenderString(/*x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET*/l_startPosX, y + height/2, dx - BORDER_LEFT - BORDER_RIGHT - number_width - pb_width - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, info1.c_str(), selected? color : optionFontColor, 0, true);
 				}
 				
 				// info 2
 				if (!info2.empty())
 				{
-					g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height/2 + height/4, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, info2.c_str(), selected? color : optionFontColor, 0, true);
+					g_Font[optionFont]->RenderString(/*x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET*/l_startPosX, y + height/2 + height/4, dx - BORDER_LEFT - BORDER_RIGHT - number_width - pb_width - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - ICON_OFFSET, info2.c_str(), selected? color : optionFontColor, 0, true);
 				}
 			}
 			else
@@ -1734,13 +1774,13 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// local
 				if(l_text != NULL)
 				{
-						g_Font[nameFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + g_Font[nameFont]->getHeight() + (height - g_Font[nameFont]->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+						g_Font[nameFont]->RenderString(/*x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET*/l_startPosX, y + g_Font[nameFont]->getHeight() + (height - g_Font[nameFont]->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - number_width - pb_width - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
 				if(option_text != NULL)
 				{
-						g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + g_Font[optionFont]->getHeight() + (height - g_Font[optionFont]->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, selected? color : optionFontColor, 0, true);
+						g_Font[optionFont]->RenderString(/*x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET*/l_startPosX + l_text_width + ICON_OFFSET, y + g_Font[optionFont]->getHeight() + (height - g_Font[optionFont]->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - number_width - pb_width - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, selected? color : optionFontColor, 0, true);
 				}
 			}
 		}
@@ -1751,13 +1791,13 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// local
 				if(l_text != NULL)
 				{
-						g_Font[nameFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + 3 + g_Font[nameFont]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+						g_Font[nameFont]->RenderString(/*x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET*/l_startPosX, y + 3 + g_Font[nameFont]->getHeight(), dx - BORDER_RIGHT - BORDER_LEFT - number_width - pb_width - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
 				if(option_text != NULL)
 				{
-						g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + height, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, selected? color : optionFontColor, 0, true);
+						g_Font[optionFont]->RenderString(/*x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET*/l_startPosX, y + height, dx - BORDER_LEFT - BORDER_RIGHT - number_width - pb_width - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, option_text, selected? color : optionFontColor, 0, true);
 				}
 			}
 			else
@@ -1765,7 +1805,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				// local
 				if(l_text != NULL)
 				{
-					g_Font[nameFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET, y + g_Font[nameFont]->getHeight() + (height - g_Font[nameFont]->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - numwidth - pBarWidth - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
+					g_Font[nameFont]->RenderString(/*x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET*/l_startPosX, y + g_Font[nameFont]->getHeight() + (height - g_Font[nameFont]->getHeight())/2, dx - BORDER_RIGHT - BORDER_LEFT - number_width - pb_width - 2*ICON_OFFSET - icon_w - icon1_w - icon2_w - optionInfo_width - ICON_OFFSET, l_text, color, 0, true); // UTF-8
 				}
 
 				// option
@@ -1775,7 +1815,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 					//get icon size
 					frameBuffer->getIconSize(NEUTRINO_ICON_HD, &iw, &ih);
 
-					g_Font[optionFont]->RenderString(x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth + ICON_OFFSET + l_text_width + ICON_OFFSET, y + g_Font[optionFont]->getHeight() + (height - g_Font[optionFont]->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - numwidth - ICON_OFFSET - pBarWidth - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, option_text, selected? color : optionFontColor, 0, true);
+					g_Font[optionFont]->RenderString(/*x + BORDER_LEFT + icon_w + numwidth + ICON_OFFSET + pBarWidth*/l_startPosX + ICON_OFFSET + l_text_width + ICON_OFFSET, y + g_Font[optionFont]->getHeight() + (height - g_Font[optionFont]->getHeight())/2, dx - BORDER_LEFT - BORDER_RIGHT - number_width - ICON_OFFSET - pb_width - ICON_OFFSET - l_text_width - icon_w - icon1_w - ICON_OFFSET - icon2_w - ICON_OFFSET - 2*iw, option_text, selected? color : optionFontColor, 0, true);
 				}
 			}
 		}
@@ -2871,7 +2911,7 @@ void ClistBox::paintHead()
 			if(i_h >= hheight)
 			{
 				i_h = hheight - 2;
-				//i_w = i_h*1.67;
+				i_w = i_h*1.67;
 			}
 
 			CFrameBuffer::getInstance()->paintIcon(iconfile, itemBox.iX + BORDER_LEFT, itemBox.iY + (hheight - i_h)/2, 0, true, i_w, i_h);
@@ -2892,6 +2932,7 @@ void ClistBox::paintHead()
 						if(ih[i] >= hheight)
 						{
 							ih[i] = hheight - 2;
+							iw[i] = ih[i]*1.67;
 						}
 
 						xstartPos -= (iw[i] + ICON_TO_ICON_OFFSET);
@@ -2946,7 +2987,7 @@ void ClistBox::paintHead()
 			if(i_h >= hheight)
 			{
 				i_h = hheight - 2;
-				//i_w = i_h*1.67;
+				i_w = i_h*1.67;
 			}
 
 			CFrameBuffer::getInstance()->paintIcon(iconfile, itemBox.iX + BORDER_LEFT, itemBox.iY + (hheight - i_h)/2, 0, true, i_w, i_h);
@@ -2967,6 +3008,7 @@ void ClistBox::paintHead()
 						if(ih[i] >= hheight)
 						{
 							ih[i] = hheight - 2;
+							iw[i] = ih[i]*1.67;
 						}
 					
 						xstartPos -= (iw[i] + ICON_TO_ICON_OFFSET);

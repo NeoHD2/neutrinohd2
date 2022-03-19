@@ -115,7 +115,11 @@ void CStringInput::init()
 	selected = 0;
 	exit_pressed = false;
 
-	m_cBoxWindow.setPosition(x, y, width, height);
+	m_cBoxWindow.setPosition(x, y + hheight, width, height - hheight);
+	
+	//
+	// head
+	headers.setPosition(x, y, width, hheight);
 }
 
 void CStringInput::NormalKeyPressed(const neutrino_msg_t key)
@@ -436,6 +440,8 @@ void CStringInput::hide()
 	dprintf(DEBUG_NORMAL, "CStringInput::hide\n");
 
 	m_cBoxWindow.hide();
+	headers.hide();
+	
 	frameBuffer->blit();
 }
 
@@ -449,18 +455,20 @@ void CStringInput::paint()
 	dprintf(DEBUG_NORMAL, "CStringInput::paint\n");
 
 	// reinit
-	m_cBoxWindow.setPosition(x, y, width, height);
+	m_cBoxWindow.setPosition(x, y + hheight, width, height - hheight);
 
 	//box
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	m_cBoxWindow.setCorner(g_settings.Head_radius, g_settings.Head_corner | g_settings.Foot_corner);
+	m_cBoxWindow.setCorner(g_settings.Foot_radius, g_settings.Foot_corner);
 	m_cBoxWindow.paint();
 
 	// head
-	CHeaders headers(x, y, width, hheight, name.c_str(), iconfile.c_str());
+	headers.setPosition(x, y, width, hheight);
+	headers.setTitle(name.c_str());
+	headers.setIcon(iconfile.c_str());
 	headers.setRadius(g_settings.Head_radius);
-	headers.setCorner(CORNER_TOP);
+	headers.setCorner(g_settings.Head_corner);
 	headers.paint();
 
 	if (!hint_1.empty())
@@ -514,14 +522,6 @@ void CStringInput::paintChar(int pos)
 }
 
 // CStringInputSMS
-/*
-CStringInputSMS::CStringInputSMS(const neutrino_locale_t Name, const char * const Value, int Size, const neutrino_locale_t Hint_1, const neutrino_locale_t Hint_2, const char * const Valid_Chars, CChangeObserver* Observ, const char * const Icon)
-   		: CStringInput(Name, Value, Size, Hint_1, Hint_2, Valid_Chars, Observ, Icon)
-{
-	initSMS(Valid_Chars);
-}
-*/
-
 CStringInputSMS::CStringInputSMS(const char * const Head, const char * const Value, int Size, const char* const Hint_1, const char* const Hint_2, const char * const Valid_Chars, CChangeObserver* Observ, const char * const Icon)
    		: CStringInput(Head, Value, Size, Hint_1, Hint_2, Valid_Chars, Observ, Icon)
 {
@@ -680,7 +680,7 @@ void CStringInputSMS::paint()
 	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_RED, &icon_w, &icon_h);
 	int ButtonHeight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight() + 6;
 
-	frameBuffer->paintBoxRel(x, y + height - ButtonHeight, width, ButtonHeight, COL_MENUFOOT_PLUS_0, RADIUS_MID, CORNER_BOTTOM, g_settings.Foot_gradient);
+	frameBuffer->paintBoxRel(x, y + height - ButtonHeight, width, ButtonHeight, COL_MENUFOOT_PLUS_0, g_settings.Foot_radius, g_settings.Foot_corner, g_settings.Foot_gradient);
 
 	// foot buttons
 	buttons.paintFootButtons(x, y + height - ButtonHeight, width, ButtonHeight, 4, CStringInputSMSButtons);

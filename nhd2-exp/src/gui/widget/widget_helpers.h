@@ -649,6 +649,14 @@ class CWidgetItem
 		virtual void setSelected(unsigned int _new) {};
 
 		//
+		virtual void setPosition(const int x, const int y, const int dx, const int dy)
+		{
+			itemBox.iX = x;
+			itemBox.iY = y;
+			itemBox.iWidth = dx;
+			itemBox.iHeight = dy;
+		};
+		virtual void setPosition(CBox* position){itemBox = *position;};
 		virtual inline CBox getWindowsPos(void){return (itemBox);};
 
 		//
@@ -699,7 +707,7 @@ class CHeaders : public CWidgetItem
 		CCTime* timer;
 	
 	public:
-		CHeaders(const int x, const int y, const int dx, const int dy, const char * const title = NULL, const char * const icon = NULL);
+		CHeaders(const int x = 0, const int y = 0, const int dx = DEFAULT_XRES, const int dy = DEFAULT_XRES, const char * const title = NULL, const char * const icon = NULL);
 		CHeaders(CBox* position, const char * const title = NULL, const char * const icon = NULL);
 		virtual ~CHeaders(){};
 
@@ -743,7 +751,7 @@ class CFooters : public CWidgetItem
 		bool foot_line;
 	
 	public:
-		CFooters(int x, int y, int dx, int dy);
+		CFooters(const int x = 0, const int y = 0, const int dx = DEFAULT_XRES, const int dy = DEFAULT_XRES);
 		CFooters(CBox* position);
 		virtual ~CFooters(){};
 

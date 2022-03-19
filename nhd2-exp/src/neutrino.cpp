@@ -4642,7 +4642,7 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 		}
 		
 		// background box
-		frameBuffer->paintBoxRel(x, y , dx, dy, COL_MENUCONTENT_PLUS_0, RADIUS_MID, CORNER_BOTH);
+		frameBuffer->paintBoxRel(x, y , dx, dy, COL_MENUCONTENT_PLUS_0, g_settings.Head_radius | g_settings.Foot_radius, CORNER_ALL);
 		
 		// vol box aussen
 		frameBuffer->paintBoxRel(x + dy + dy/4 - 2, y + dy/4 - 2, dy*25/4 + 4, dy/2 + 4, COL_MENUCONTENT_PLUS_3);
@@ -4655,8 +4655,8 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 
 		g_volscale->reset();
 
-		//g_volscale->setPosition(x + dy+ (dy/4), y +(dy/4), 200, 15);
-		g_volscale->paint(/*x + dy+ (dy/4), y +(dy/4),*/ current_volume);
+		//
+		g_volscale->paint(current_volume);
 
 		char p1[4]; // 3 digits + '\0'
 		sprintf(p1, "%3d", current_volume);
@@ -4722,8 +4722,8 @@ void CNeutrinoApp::setVolume(const neutrino_msg_t key, const bool bDoPaint, bool
 				
 				dprintf(DEBUG_NORMAL, "CNeutrinoApp::setVolume: current_volume %d\n", current_volume);
 
-				//g_volscale->setPosition(x + dy+ (dy/4), y +(dy/4), 200, 15);
-				g_volscale->paint(/*x + dy+ (dy/4), y +(dy/4),*/ current_volume);
+				//
+				g_volscale->paint(current_volume);
 
 				char p[4]; // 3 digits + '\0'
 				sprintf(p, "%3d", current_volume);

@@ -131,8 +131,8 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	item = NULL;
 
 	// box	
-	cFrameBox.iWidth = w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 ));
-	cFrameBox.iHeight = h_max ( (frameBuffer->getScreenHeight() / 20 * 18), (frameBuffer->getScreenHeight() / 20));
+	cFrameBox.iWidth = frameBuffer->getScreenWidth() - 100;
+	cFrameBox.iHeight = frameBuffer->getScreenHeight() - 100;
 	
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
 	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
@@ -1621,12 +1621,33 @@ void CChannelList::paint()
 			item->setOptionInfo2(cNoch);
 			
 			item->setOptionFontColor(COL_INFOBAR_COLORED_EVENTS);
+			
+			
+			//
+			std::string msg = desc.c_str();
+			msg += "\n\n";
+			msg += cSeit;
+			msg += "\n\n";
+			msg += p_event->text.c_str();
+			msg += "\n\n";
+			msg += cNoch;
+			
+			item->setHint(msg.c_str());
+			
+			//
+			std::string logo;
+
+			logo = CChannellogo::getInstance()->getLogoName(chanlist[i]->getChannelID());
+			
+			item->setIconName(logo.c_str());
+			
 
 			listBox->addItem(item);
 		}
 	}
 	
 	//
+	listBox->setWidgetType(WIDGET_TYPE_EXTENDED);
 	listBox->enableShrinkMenu();
 
 	// head

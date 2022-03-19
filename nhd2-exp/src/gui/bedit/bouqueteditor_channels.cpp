@@ -77,8 +77,8 @@ CBEChannelWidget::CBEChannelWidget(const std::string & Caption, unsigned int Bou
 	item = NULL;
 
 	// box	
-	cFrameBox.iWidth = w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 ));
-	cFrameBox.iHeight = h_max ( (frameBuffer->getScreenHeight() / 20 * 20), (frameBuffer->getScreenHeight() / 20));
+	cFrameBox.iWidth = frameBuffer->getScreenWidth() - 100;
+	cFrameBox.iHeight = frameBuffer->getScreenHeight() - 100;
 	
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
 	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;

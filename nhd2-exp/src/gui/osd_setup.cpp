@@ -169,13 +169,14 @@ const keyval CORNER_TYPE_OPTIONS[CORNER_TYPE_OPTION_COUNT] =
 	{ CORNER_ALL, _("CORNER ALL") },
 };
 
-#define RADIUS_TYPE_OPTION_COUNT	4
+#define RADIUS_TYPE_OPTION_COUNT	5
 const keyval RADIUS_TYPE_OPTIONS[RADIUS_TYPE_OPTION_COUNT] =
 {
 	{ NO_RADIUS, _("angular") },
 	{ RADIUS_SMALL, _("small") },
 	{ RADIUS_MID, _("middle") },
 	{ RADIUS_LARGE, _("large") },
+	{ RADIUS_VERYLARGE, _("very large") }
 };
 
 COSDMenuColorSettings::COSDMenuColorSettings()

@@ -63,6 +63,7 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 
 	begin = message;
 
+	// recalculate height
 	while (true)
 	{
 		cFrameBox.iHeight += cFrameBoxItem.iHeight;
@@ -118,11 +119,18 @@ CHintBox::CHintBox(const char * Caption, const char * const Text, const int Widt
 	cFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - cFrameBox.iWidth ) >> 1);
 	cFrameBox.iY = CFrameBuffer::getInstance()->getScreenY() + ((CFrameBuffer::getInstance()->getScreenHeight() - cFrameBox.iHeight) >> 2);
 	
-	// Box
+	// head & body
 	m_cBoxWindow = new CWindow(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, cFrameBox.iHeight);
 	m_cBoxWindow->enableSaveScreen();
 	m_cBoxWindow->setShadowMode(g_settings.menu_shadow);
-	m_cBoxWindow->setCorner(g_settings.Head_radius, g_settings.Head_corner | g_settings.Foot_corner);
+	m_cBoxWindow->setCorner(g_settings.Head_radius | g_settings.Foot_radius, g_settings.Head_corner | g_settings.Foot_corner);
+	
+	// head
+	cFrameBoxTitle.iX = g_settings.menu_shadow? cFrameBox.iX + 2 : cFrameBox.iX;
+	cFrameBoxTitle.iY = g_settings.menu_shadow? cFrameBox.iY + 2 : cFrameBox.iY;
+	cFrameBoxTitle.iWidth = g_settings.menu_shadow? cFrameBox.iWidth - 4 : cFrameBox.iWidth;
+
+	headers.setPosition(&cFrameBoxTitle);
 	
 	// HG
 	paintHG = true;
@@ -136,7 +144,6 @@ CHintBox::~CHintBox(void)
 	dprintf(DEBUG_INFO, "CHintBox::del: (%s)\n", caption.c_str());
 
 	free(message);
-	//hide();
 }
 
 void CHintBox::paint(void)
@@ -154,14 +161,9 @@ void CHintBox::refresh(void)
 	m_cBoxWindow->paint();
 	
 	// title
-	cFrameBoxTitle.iX = g_settings.menu_shadow? cFrameBox.iX + 2 : cFrameBox.iX;
-	cFrameBoxTitle.iY = g_settings.menu_shadow? cFrameBox.iY + 2 : cFrameBox.iY;
-	cFrameBoxTitle.iWidth = g_settings.menu_shadow? cFrameBox.iWidth - 4 : cFrameBox.iWidth;
+	headers.setTitle(caption.c_str());
+	headers.setIcon(iconfile.c_str());
 
-	CHeaders headers(&cFrameBoxTitle, caption.c_str(), iconfile.c_str());
-
-	//headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
-	//headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);
 	headers.paint();
 
 	// body text

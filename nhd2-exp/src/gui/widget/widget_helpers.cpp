@@ -1458,7 +1458,7 @@ void CHeaders::hide()
 }
 
 // footers
-CFooters::CFooters(int x, int y, int dx, int dy)
+CFooters::CFooters(const int x, const int y, const int dx, const int dy)
 {
 	dprintf(DEBUG_INFO, "CFooters::CFooters: x:%d y:%d dx:%d dy:%d\n", x, y, dx, dy);
 	
