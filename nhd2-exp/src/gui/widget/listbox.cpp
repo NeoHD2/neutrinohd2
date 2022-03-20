@@ -1911,7 +1911,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 	
 		// locale / option
 		int l_text_width = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth(l_text, true);
-		int l_startPosX = x + BORDER_LEFT + number_width + number_offset + icon_w + icon_offset + pb_width + pb_offset;
+		int l_startPosX = x + BORDER_LEFT + number_width + number_offset + icon_w + icon_offset + pb_width + pb_offset + ICON_OFFSET;
 
 		// local
 		if(l_text_width >= dx - BORDER_LEFT - BORDER_RIGHT)

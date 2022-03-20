@@ -77,7 +77,6 @@ void CNeutrinoApp::mainMenu(void)
 	
 	CWidget* widget = NULL;
 	ClistBox* nMenu = NULL;
-	CMenuItem* item = NULL;
 	
 	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MAINMENU))
 	{
@@ -85,28 +84,24 @@ void CNeutrinoApp::mainMenu(void)
 	}
 	else
 	{
-		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
-		widget->setMenuPosition(MENU_POSITION_CENTER);
-		
 		nMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
-		nMenu->setMenuPosition(MENU_POSITION_CENTER);
-		//listBox->setWidgetMode(MODE_MENU);
-		//listBox->enableShrinkMenu();
 		
+		nMenu->setMenuPosition(MENU_POSITION_CENTER);
+		nMenu->setWidgetMode(MODE_MENU);
+		nMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
+		nMenu->enableShrinkMenu();
+		
+		//
 		nMenu->enablePaintHead();
 		nMenu->setTitle(_("Main Menu"), NEUTRINO_ICON_BUTTON_SETUP);
-		//listBox->setWidgetMode(MODE_SETUP);
+		nMenu->enablePaintDate();
+		
+		//
 		nMenu->enablePaintFoot();
 			
 		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
 			
 		nMenu->setFootButtons(&btn);
-		
-		nMenu->setWidgetMode(MODE_MENU);
-		nMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
-		nMenu->enableShrinkMenu();
-		nMenu->setMenuPosition(MENU_POSITION_CENTER);
-		nMenu->enablePaintDate();
 			  
 		// tv modus
 		nMenu->addItem(new CMenuForwarder(_("TV Mode"), true, NULL, this, "tv", RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_TV, _("TV Mode")), true);
@@ -117,15 +112,15 @@ void CNeutrinoApp::mainMenu(void)
 		// webtv
 		nMenu->addItem(new CMenuForwarder(_("IPTV Mode"), true, NULL, this, "webtv", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_WEBTV, _("IPTV Mode")));
 			
-	#if defined (ENABLE_SCART)
+#if defined (ENABLE_SCART)
 		// scart
 		nMenu->addItem(new CMenuForwarder(_("Scart Mode"), true, NULL, this, "scart", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_SCART, _("Scart Mode")));
-	#endif
+#endif
 
 		// mediaplayer
 		nMenu->addItem(new CMenuForwarder(_("Media Player"), true, NULL, new CMediaPlayerMenu(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_MEDIAPLAYER, _("Media Player")));
 			
-		// main setting menu
+		// main setting
 		nMenu->addItem(new CMenuForwarder(_("Settings"), true, NULL, new CMainSettingsMenu(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SETTINGS, _("Settings")));
 
 		// service
@@ -139,6 +134,10 @@ void CNeutrinoApp::mainMenu(void)
 
 		//box info
 		nMenu->addItem( new CMenuForwarder(_("Information"), true, NULL, new CInfoMenu(), NULL, RC_info, NEUTRINO_ICON_BUTTON_HELP, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Box / Channel Information")));
+		
+		//
+		widget = new CWidget(nMenu->getWindowsPos().iX, nMenu->getWindowsPos().iY, nMenu->getWindowsPos().iWidth, nMenu->getWindowsPos().iHeight);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(nMenu);
 	}
@@ -274,45 +273,39 @@ bool CNeutrinoApp::showUserMenu(int button)
 		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_FEATURES);
 		
 		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_FEATURES)->getItemsCount();
-		//int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_FEATURES)->getCCItemsCount();
 		
 		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_FEATURES)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
-		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
-		widget->setMenuPosition(MENU_POSITION_CENTER);
-		
 		menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 		menu->setMenuPosition(MENU_POSITION_CENTER);
+		menu->setWidgetMode(MODE_MENU);
+		menu->setWidgetType(WIDGET_TYPE_CLASSIC);
+		menu->enableShrinkMenu();
 		
+		//
 		menu->enablePaintHead();
 		menu->setTitle(txt.c_str(), NEUTRINO_ICON_FEATURES);
+		menu->enablePaintDate();
 		
+		//
 		menu->enablePaintFoot();
 			
 		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
 			
 		menu->setFootButtons(&btn);
 		
-		menu->setWidgetMode(MODE_MENU);
-		menu->setWidgetType(WIDGET_TYPE_CLASSIC);
-		menu->enableShrinkMenu();
-		menu->setMenuPosition(MENU_POSITION_CENTER);
-		menu->enablePaintDate();
+		//
+		widget = new CWidget(menu->getWindowsPos().iX, menu->getWindowsPos().iY, menu->getWindowsPos().iWidth, menu->getWindowsPos().iHeight);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(menu);
-	}
-	
-	menu->clearItems();		
-
-	//
-	//menu->setWidgetMode(MODE_MENU);
-	//menu->setWidgetType(WIDGET_TYPE_CLASSIC);
-	//menu->enableShrinkMenu();
-	//menu->setMenuPosition(MENU_POSITION_CENTER);
+	}	
 
 	widget->addKey(RC_blue, this, "plugins");
+	
+	menu->clearItems();	
 
 	// go through any postition number
 	for(int pos = 0; pos < SNeutrinoSettings::ITEM_MAX ; pos++) 

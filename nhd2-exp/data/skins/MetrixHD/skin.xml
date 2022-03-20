@@ -4,6 +4,25 @@
 	<!-- AUTHOR: mohousch -->
 	<!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 	
+	<WIDGET name="tunersetup" id="40" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Servicescan" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
 	<WIDGET name="parentallocksettings" id="11" posx="0" posy="0" width="1280" height="720">
 		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
 		</LISTBOX>
@@ -13,7 +32,7 @@
 		
 		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
 		
-		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Test Menu" halign="1"></LABEL>
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Parentallock settings" halign="1"></LABEL>
 		
 		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
 		
@@ -360,7 +379,7 @@
 		<LISTBOX posx="50" posy="60" width="540" height="620" type="0" mode ="2" paintiteminfo="1" iteminfomode="3" iteminfoframe="0" iteminfoposx="640" iteminfoposy="120" iteminfowidth="590" iteminfoheight="240">
 			<ITEM id="5" localename="EPG / Timer" itemicon="buttons/timerepg.png" target="3" lines="1">
 			</ITEM>
-			<ITEM id="5" localename="Features" itemicon="buttons/features.png" target="6" lines="1">
+			<ITEM id="5" localename="Features" itemicon="buttons/features.png" target="6" actionkey="features" lines="1">
 			</ITEM>
 			<ITEM id="5" localename="Service" itemicon="buttons/service.png" target="4" lines="1">
 			</ITEM>

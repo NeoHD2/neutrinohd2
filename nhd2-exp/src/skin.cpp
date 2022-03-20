@@ -103,21 +103,8 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 	switch(id)
 	{
 		case 0:
-			parent = this;
-			break;
-		
 		case WIDGET_MAINMENU:
-			{
-				if (widget_exists(WIDGET_MAINMENU))
-				{
-					parent = getWidget(WIDGET_MAINMENU);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = this;
-				}
-			}
+			parent = this;
 			break;
 			
 		case WIDGET_MAINSETTINGS:
@@ -136,11 +123,13 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			
 		case WIDGET_EPGTIMER:
 			{
+			/*
 				if (widget_exists(WIDGET_EPGTIMER))
 				{
 					parent = getWidget(WIDGET_EPGTIMER);
 				}
 				else
+				*/
 				{
 					dprintf(DEBUG_INFO, "id: %d not found\n", id);
 					parent = new CEPGMenuHandler();
@@ -150,11 +139,13 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			
 		case WIDGET_SERVICE:
 			{
+			/*
 				if (widget_exists(WIDGET_SERVICE))
 				{
 					parent = getWidget(WIDGET_SERVICE);
 				}
 				else
+				*/
 				{
 					dprintf(DEBUG_INFO, "id: %d not found\n", id);
 					parent = new CServiceMenu();
@@ -178,15 +169,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			
 		case WIDGET_FEATURES:
 			{
-				if (widget_exists(WIDGET_FEATURES))
-				{
-					parent = getWidget(WIDGET_FEATURES);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = this;
-				}
+				parent = this;
 			}
 			break;
 			
@@ -628,15 +611,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			
 		case WIDGET_SCANSETUP:
 			{
-				if (widget_exists(WIDGET_SCANSETUP))
-				{
-					parent = getWidget(WIDGET_SCANSETUP);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CTunerSetup();
-				}
+				parent = new CTunerSetup();
 			}
 			break;
 			
@@ -782,15 +757,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			
 		case WIDGET_PLUINGSLIST:
 			{
-				if (widget_exists(WIDGET_PLUINGSLIST))
-				{
-					parent = getWidget(WIDGET_PLUINGSLIST);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CPluginList();
-				}
+				parent = new CPluginList();
 			}
 			break;
 			

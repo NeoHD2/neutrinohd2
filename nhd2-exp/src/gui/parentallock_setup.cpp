@@ -95,25 +95,16 @@ void CParentalLockSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CParentalLockSettings::showMenu:\n");
 	
-	int shortcutLock = 1;
-	
-	
-	int prev_ItemsCount = 0;
-	int prev_CCItemsCount = 0;
-	
 	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP))
 	{
-		prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP)->getItemsCount();
-		prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP)->getCCItemsCount();
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP)->getCCItemsCount();
 		
 		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP);
 		listBox = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
-		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
-		widget->setMenuPosition(MENU_POSITION_CENTER);
-		
 		listBox = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 		listBox->setMenuPosition(MENU_POSITION_CENTER);
 		listBox->setWidgetMode(MODE_SETUP);
@@ -128,6 +119,9 @@ void CParentalLockSettings::showMenu()
 			
 		listBox->setFootButtons(&btn);
 		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(listBox);
 	}
 	
@@ -142,18 +136,16 @@ void CParentalLockSettings::showMenu()
 	listBox->addItem( new CMenuSeparator(LINE) );
 
 	// prompt
-	listBox->addItem(new CMenuOptionChooser(_("Prompt for PIN"), &g_settings.parentallock_prompt, PARENTALLOCK_PROMPT_OPTIONS, PARENTALLOCK_PROMPT_OPTION_COUNT, !parentallocked, NULL, CRCInput::convertDigitToKey(shortcutLock++), "", true ));
+	listBox->addItem(new CMenuOptionChooser(_("Prompt for PIN"), &g_settings.parentallock_prompt, PARENTALLOCK_PROMPT_OPTIONS, PARENTALLOCK_PROMPT_OPTION_COUNT, !parentallocked, NULL, RC_nokey, "", true ));
 
 	// lockage
-	listBox->addItem(new CMenuOptionChooser(_("Lock program"), &g_settings.parentallock_lockage, PARENTALLOCK_LOCKAGE_OPTIONS, PARENTALLOCK_LOCKAGE_OPTION_COUNT, !parentallocked, NULL, CRCInput::convertDigitToKey(shortcutLock++), "", true ));
+	listBox->addItem(new CMenuOptionChooser(_("Lock program"), &g_settings.parentallock_lockage, PARENTALLOCK_LOCKAGE_OPTIONS, PARENTALLOCK_LOCKAGE_OPTION_COUNT, !parentallocked, NULL, RC_nokey, "", true ));
 
 	// Pin
 	CPINChangeWidget * pinChangeWidget = new CPINChangeWidget(_("Change PIN code"), g_settings.parentallock_pincode, 4, _("Enter your new youth protection pin code here!"));
-	listBox->addItem( new CMenuForwarder(_("Change PIN code"), true, g_settings.parentallock_pincode, pinChangeWidget, NULL, CRCInput::convertDigitToKey(shortcutLock++) ));
+	listBox->addItem( new CMenuForwarder(_("Change PIN code"), true, g_settings.parentallock_pincode, pinChangeWidget, NULL));
 	
-	//if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP) == NULL)
-	//	widget->addItem(listBox);
-	
+	//
 	widget->exec(NULL, "");
 }
 

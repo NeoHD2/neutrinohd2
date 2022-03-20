@@ -75,14 +75,15 @@ int CEPGMenuHandler::doMenu()
 	}
 	else
 	{
-		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
-		widget->setMenuPosition(MENU_POSITION_CENTER);
-		
 		redMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 		redMenu->setMenuPosition(MENU_POSITION_CENTER);
+		redMenu->setWidgetMode(MODE_MENU);
+		redMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
+		redMenu->enableShrinkMenu();
 		
 		redMenu->enablePaintHead();
 		redMenu->setTitle(_("EPG - Program Information"), NEUTRINO_ICON_BUTTON_EPG);
+		redMenu->enablePaintDate();
 		
 		redMenu->enablePaintFoot();
 			
@@ -90,18 +91,6 @@ int CEPGMenuHandler::doMenu()
 			
 		redMenu->setFootButtons(&btn);
 		
-		redMenu->setWidgetMode(MODE_MENU);
-		redMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
-		redMenu->enableShrinkMenu();
-		redMenu->setMenuPosition(MENU_POSITION_CENTER);
-		redMenu->enablePaintDate();
-		
-		redMenu->setWidgetMode(MODE_MENU);
-		redMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
-		redMenu->setMenuPosition(MENU_POSITION_CENTER);
-		redMenu->enableShrinkMenu();
-		redMenu->enableSaveScreen();
-
 		// eventlist
 		redMenu->addItem(new ClistBoxItem(_("Eventlist current programm"), true, NULL, new CEventListHandler(), "", RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SLEEPTIMER));
 
@@ -116,6 +105,11 @@ int CEPGMenuHandler::doMenu()
 		
 		// timerlis
 		redMenu->addItem(new ClistBoxItem(_("Timer list"), true, NULL, new CTimerList(), "", RC_1, NEUTRINO_ICON_BUTTON_1, NEUTRINO_ICON_MENUITEM_TIMERLIST));
+		
+		//
+		//
+		widget = new CWidget(redMenu->getWindowsPos().iX, redMenu->getWindowsPos().iY, redMenu->getWindowsPos().iWidth, redMenu->getWindowsPos().iHeight);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(redMenu);
 	}

@@ -94,40 +94,66 @@ void CServiceMenu::showMenu(void)
 	
 	int shortcutService = 1;
 	
-	CMenuWidget * service = new CMenuWidget(_("Service"), NEUTRINO_ICON_UPDATE);
-
-	service->setWidgetMode(MODE_MENU);
-	service->setWidgetType(WIDGET_TYPE_CLASSIC);
-	service->enableShrinkMenu();
-	service->setMenuPosition(MENU_POSITION_CENTER);
-	service->enablePaintDate();
+	//CMenuWidget * service = new CMenuWidget(_("Service"), NEUTRINO_ICON_UPDATE);
 	
-	// tuner/scan setup
-	service->addItem(new CMenuForwarder(_("Scan transponder"), true, NULL, new CTunerSetup(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SCANSETTINGS, _("Scan transponder")));
-
-	// reload Channels
-	service->addItem(new CMenuForwarder(_("Reload channel lists"), true, NULL, this, "reloadchannels", RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_RELOADCHANNELS, _("Reload channel lists")));
-
-	// Bouquets Editor
-	service->addItem(new CMenuForwarder(_("Bouquet Editor"), true, NULL, new CBEBouquetWidget(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOUQUETSEDITOR, _("Bouquet Editor")));
+	CWidget* widget = NULL;
+	ClistBox* service = NULL;
 	
-	// CI Cam 	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_SERVICE))
+	{
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_SERVICE);
+	}
+	else
+	{
+		service = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		
+		service->setWidgetMode(MODE_MENU);
+		service->setWidgetType(WIDGET_TYPE_CLASSIC);
+		service->enableShrinkMenu();
+		service->setMenuPosition(MENU_POSITION_CENTER);
+		
+		//
+		service->enablePaintHead();
+		service->setTitle(_("Service"), NEUTRINO_ICON_UPDATE);
+		service->enablePaintDate();
+		
+		//
+		service->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		service->setFootButtons(&btn);
+	
+		// tuner/scan setup
+		service->addItem(new CMenuForwarder(_("Scan transponder"), true, NULL, new CTunerSetup(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_SCANSETTINGS, _("Scan transponder")));
+
+		// reload Channels
+		service->addItem(new CMenuForwarder(_("Reload channel lists"), true, NULL, this, "reloadchannels", RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_RELOADCHANNELS, _("Reload channel lists")));
+
+		// Bouquets Editor
+		service->addItem(new CMenuForwarder(_("Bouquet Editor"), true, NULL, new CBEBouquetWidget(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOUQUETSEDITOR, _("Bouquet Editor")));
+		
+		// CI Cam 	
 #if defined (ENABLE_CI)
-	service->addItem(new CMenuForwarder(_("CI Cam"), true, NULL, g_CamHandler, NULL, CRCInput::convertDigitToKey(shortcutService++), NULL, NEUTRINO_ICON_MENUITEM_CICAM, _("CI Cam Settings")));
+		service->addItem(new CMenuForwarder(_("CI Cam"), true, NULL, g_CamHandler, NULL, CRCInput::convertDigitToKey(shortcutService++), NULL, NEUTRINO_ICON_MENUITEM_CICAM, _("CI Cam Settings")));
 #endif
-	
-	// image info
-	service->addItem(new CMenuForwarder(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_info, NEUTRINO_ICON_BUTTON_HELP, NEUTRINO_ICON_MENUITEM_IMAGEINFO, _("Image info")), false);
-	
-	// software update
-	service->addItem(new CMenuForwarder(_("Software Update"), true, NULL, new CUpdateSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_SOFTUPDATE, _("Software Update")));
+		
+		// image info
+		service->addItem(new CMenuForwarder(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_info, NEUTRINO_ICON_BUTTON_HELP, NEUTRINO_ICON_MENUITEM_IMAGEINFO, _("Image info")), false);
+		
+		// software update
+		service->addItem(new CMenuForwarder(_("Software Update"), true, NULL, new CUpdateSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_SOFTUPDATE, _("Software Update")));
 
-	service->integratePlugins(CPlugins::I_TYPE_SERVICE, shortcutService++);
+		service->integratePlugins(CPlugins::I_TYPE_SERVICE, shortcutService++);
+		
+		//
+		widget = new CWidget(service->getWindowsPos().iX, service->getWindowsPos().iY, service->getWindowsPos().iWidth, service->getWindowsPos().iHeight);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		
+		widget->addItem(service);
+	}
 	
-	service->exec(NULL, "");
-	service->hide();
-	delete service;
-	service = NULL;
+	widget->exec(NULL, "");
 }
 
 

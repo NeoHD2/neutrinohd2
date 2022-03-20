@@ -3,11 +3,26 @@
 <!-- SKIN: KravenHD -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="tunersetup" id="40" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Servicescan" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
 
 	<WIDGET name="parentallocksettings" id="11" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
 		</LISTBOX>
-		<LABEL posx="640" posy="50" width="640" height="50" text="Test Menu" halign="1">
+		<LABEL posx="640" posy="50" width="640" height="50" text="Parentallock settings" halign="1">
 		</LABEL>
 			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
@@ -343,7 +358,7 @@
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="0">
 			<ITEM id="5" localename="EPG / Timer" target="3" lines="1" shadow="1">
 			</ITEM>
-			<ITEM id="5" localename="Features" target="6" lines="1" shadow="1">
+			<ITEM id="5" localename="Features" target="6" actionkey="features" lines="1" shadow="1">
 			</ITEM>
 			<ITEM id="5" localename="Service" target="4" lines="1" shadow="1">
 			</ITEM>

@@ -1468,26 +1468,64 @@ void CTunerSetup::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CTunerSetup::showMenu\n");
 	
-	CMenuWidget TunerSetup(_("Servicescan"), NEUTRINO_ICON_UPDATE);
-
-	TunerSetup.setWidgetMode(MODE_SETUP);
-	TunerSetup.enableShrinkMenu();
+	//CMenuWidget TunerSetup(_("Servicescan"), NEUTRINO_ICON_UPDATE);
 	
-	// intros
-	TunerSetup.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	TunerSetup.addItem( new CMenuSeparator(LINE) );
+	CWidget* widget = NULL;
+	ClistBox* TunerSetup = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_SCANSETUP))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCANSETUP)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCANSETUP)->getCCItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCANSETUP);
+		
+		TunerSetup = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_SCANSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		TunerSetup = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		
+		TunerSetup->setWidgetMode(MODE_MENU);
+		TunerSetup->setWidgetType(WIDGET_TYPE_CLASSIC);
+		TunerSetup->enableShrinkMenu();
+		TunerSetup->setMenuPosition(MENU_POSITION_CENTER);
+		
+		//
+		TunerSetup->enablePaintHead();
+		TunerSetup->setTitle(_("Servicescan"), NEUTRINO_ICON_UPDATE);
+		TunerSetup->enablePaintDate();
+		
+		//
+		TunerSetup->enablePaintFoot();
 			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		TunerSetup->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(TunerSetup->getWindowsPos().iX, TunerSetup->getWindowsPos().iY, TunerSetup->getWindowsPos().iWidth, TunerSetup->getWindowsPos().iHeight);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		
+		widget->addItem(TunerSetup);
+	}
+	
+	TunerSetup->clearItems();
+		
+	// intros
+	TunerSetup->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	TunerSetup->addItem( new CMenuSeparator(LINE) );
+				
 	for(int i = 0; i < FrontendCount; i++)
 	{
 		CFrontend * fe = getFE(i);
 		char tbuf[255];
-			
+				
 		sprintf(tbuf, "Tuner-%d: %s", i + 1, fe->getInfo()->name);
-		TunerSetup.addItem(new CMenuForwarder(tbuf, true, NULL, new CScanSetup(i) ));
+		TunerSetup->addItem(new CMenuForwarder(tbuf, true, NULL, new CScanSetup(i) ));
 	}
 	
-	TunerSetup.exec(NULL, "");
-	TunerSetup.hide();
+	widget->exec(NULL, "");
 }
 
 
