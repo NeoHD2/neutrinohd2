@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-19 19:46+0100\n"
+"POT-Creation-Date: 2022-03-20 16:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3027,7 +3027,7 @@ msgid "Select audio track"
 msgstr ""
 
 #: ../../src/gui/osd_setup.cpp:540 ../../src/gui/audio_select.cpp:108
-#: ../../src/gui/widget/listbox.cpp:707
+#: ../../src/gui/widget/listbox.cpp:870
 msgid "Select language"
 msgstr ""
 
@@ -3996,7 +3996,7 @@ msgid ""
 " and <MENU> on your remote control."
 msgstr ""
 
-#: ../../src/gui/widget/listbox.cpp:850 ../../src/gui/widget/listbox.cpp:869
+#: ../../src/gui/widget/listbox.cpp:1067 ../../src/gui/widget/listbox.cpp:1086
 msgid "Youth protection"
 msgstr ""
 

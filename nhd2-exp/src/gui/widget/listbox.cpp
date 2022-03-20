@@ -260,8 +260,63 @@ int CMenuOptionChooser::paint(bool selected, bool AfterPulldown)
 	}
 	
 	// paint item
-	frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
+	//frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
+	if (selected)
+	{
+		if (!paintFrame)
+		{
+			if (background)
+			{
+				delete [] background;
+				background = NULL;
+			}
+									
+			background = new fb_pixel_t[dx*height];
+						
+			if (background)
+			{
+				frameBuffer->saveScreen(x, y, dx, height, background);
+			}
+		}	
+				
+		// shadow
+		frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
+				
+		// itemBox
+		if (shadowMode == SHADOW_NO)
+		{
+			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
+		}
+		else if (shadowMode == SHADOW_ALL)
+		{
+			frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		}
+		else if (shadowMode == SHADOW_LEFTRIGHT)
+		{
+			frameBuffer->paintBoxRel(x + 2, y, dx - 4, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		}
+		else if (shadowMode == SHADOW_TOPBOTTOM)
+		{
+			frameBuffer->paintBoxRel(x, y + 2, dx, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		} 
+	}
+	else
+	{
+		if (paintFrame)
+			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+		else
+		{
+			if (background)
+			{
+				frameBuffer->restoreScreen(x, y, dx, height, background);
+							
+				delete [] background;
+				background = NULL;
+			}
+		}
+	}
 
+	//
 	const char * l_option = NULL;
 
 	for(unsigned int count = 0 ; count < number_of_options; count++) 
@@ -420,7 +475,61 @@ int CMenuOptionNumberChooser::paint(bool selected, bool /*AfterPulldown*/)
 	}
 	
 	// paint item
-	frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
+	//frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
+	if (selected)
+	{
+		if (!paintFrame)
+		{
+			if (background)
+			{
+				delete [] background;
+				background = NULL;
+			}
+									
+			background = new fb_pixel_t[dx*height];
+						
+			if (background)
+			{
+				frameBuffer->saveScreen(x, y, dx, height, background);
+			}
+		}	
+				
+		// shadow
+		frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
+				
+		// itemBox
+		if (shadowMode == SHADOW_NO)
+		{
+			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
+		}
+		else if (shadowMode == SHADOW_ALL)
+		{
+			frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		}
+		else if (shadowMode == SHADOW_LEFTRIGHT)
+		{
+			frameBuffer->paintBoxRel(x + 2, y, dx - 4, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		}
+		else if (shadowMode == SHADOW_TOPBOTTOM)
+		{
+			frameBuffer->paintBoxRel(x, y + 2, dx, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		} 
+	}
+	else
+	{
+		if (paintFrame)
+			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+		else
+		{
+			if (background)
+			{
+				frameBuffer->restoreScreen(x, y, dx, height, background);
+							
+				delete [] background;
+				background = NULL;
+			}
+		}
+	}
 
 	// option
 	const char * l_option;
@@ -596,7 +705,61 @@ int CMenuOptionStringChooser::paint( bool selected, bool afterPulldown)
 	}
 	
 	// paint item
-	frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
+	//frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
+	if (selected)
+	{
+		if (!paintFrame)
+		{
+			if (background)
+			{
+				delete [] background;
+				background = NULL;
+			}
+									
+			background = new fb_pixel_t[dx*height];
+						
+			if (background)
+			{
+				frameBuffer->saveScreen(x, y, dx, height, background);
+			}
+		}	
+				
+		// shadow
+		frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
+				
+		// itemBox
+		if (shadowMode == SHADOW_NO)
+		{
+			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
+		}
+		else if (shadowMode == SHADOW_ALL)
+		{
+			frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		}
+		else if (shadowMode == SHADOW_LEFTRIGHT)
+		{
+			frameBuffer->paintBoxRel(x + 2, y, dx - 4, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		}
+		else if (shadowMode == SHADOW_TOPBOTTOM)
+		{
+			frameBuffer->paintBoxRel(x, y + 2, dx, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		} 
+	}
+	else
+	{
+		if (paintFrame)
+			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+		else
+		{
+			if (background)
+			{
+				frameBuffer->restoreScreen(x, y, dx, height, background);
+							
+				delete [] background;
+				background = NULL;
+			}
+		}
+	}
 
 	// paint icon
 	int icon_w = 0;
@@ -736,7 +899,61 @@ int CMenuOptionLanguageChooser::paint( bool selected, bool /*AfterPulldown*/)
 	}
 	
 	// paint item
-	frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
+	//frameBuffer->paintBoxRel(x, y, dx, height, bgcolor); //FIXME
+	if (selected)
+	{
+		if (!paintFrame)
+		{
+			if (background)
+			{
+				delete [] background;
+				background = NULL;
+			}
+									
+			background = new fb_pixel_t[dx*height];
+						
+			if (background)
+			{
+				frameBuffer->saveScreen(x, y, dx, height, background);
+			}
+		}	
+				
+		// shadow
+		frameBuffer->paintBoxRel(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
+				
+		// itemBox
+		if (shadowMode == SHADOW_NO)
+		{
+			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient); 
+		}
+		else if (shadowMode == SHADOW_ALL)
+		{
+			frameBuffer->paintBoxRel(x + 2, y + 2, dx - 4, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		}
+		else if (shadowMode == SHADOW_LEFTRIGHT)
+		{
+			frameBuffer->paintBoxRel(x + 2, y, dx - 4, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		}
+		else if (shadowMode == SHADOW_TOPBOTTOM)
+		{
+			frameBuffer->paintBoxRel(x, y + 2, dx, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
+		} 
+	}
+	else
+	{
+		if (paintFrame)
+			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor);
+		else
+		{
+			if (background)
+			{
+				frameBuffer->restoreScreen(x, y, dx, height, background);
+							
+				delete [] background;
+				background = NULL;
+			}
+		}
+	}
 
 	// paint icon
 	int icon_w = 0;
@@ -1177,7 +1394,9 @@ int CMenuForwarder::paint(bool selected, bool /*AfterPulldown*/)
 					if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
 					{
 						icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
-						icon_w = 1.63*icon_h;
+						
+						if (icon_w > 1.63*icon_h)
+							icon_w = 1.63*icon_h;
 					}
 			
 					frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);
@@ -1557,50 +1776,6 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				}
 			}
 		}
-			
-		// icon (left)
-		/*
-		int icon_w = 0;
-		int icon_h = 0;
-		int bpp = 0;
-		int icon_offset = 0;
-
-		if(widgetType == WIDGET_TYPE_CLASSIC)
-		{
-			icon_h = ITEM_ICON_H_MINI;
-			icon_w = ITEM_ICON_W_MINI;
-			
-			//if (widgetMode == MODE_LISTBOX)
-			if(nLinesItem)
-			{
-				icon_h = ITEM_ICON_H_MINI*2;
-				icon_w = ITEM_ICON_W_MINI;
-			}
-					
-			if (!itemIcon.empty())
-			{
-				frameBuffer->paintHintIcon(itemIcon.c_str(), x + BORDER_LEFT, y + ((height - icon_h)/2), icon_w, icon_h);
-			}
-		}
-		else // standard|extended
-		{
-			if (!iconName.empty())
-			{
-				icon_offset = ICON_OFFSET;
-				
-				//get icon size
-				frameBuffer->getIconSize(iconName.c_str(), &icon_w, &icon_h);
-				
-				if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
-				{
-					icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
-					icon_w = 1.63*icon_h;
-				}
-		
-				frameBuffer->paintIcon(iconName, x + BORDER_LEFT, y, height, true, icon_w, icon_h);
-			}
-		}
-		*/
 
 		// icon1 (right)
 		int icon1_w = 0;
@@ -1708,7 +1883,8 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 				if (icon_h >= g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 6)
 				{
 					icon_h = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight() + 4;
-					icon_w = 1.63*icon_h;
+					if (icon_w > 1.63*icon_h)
+						icon_w = 1.63*icon_h;
 				}
 		
 				frameBuffer->paintIcon(iconName, x + BORDER_LEFT + number_width + number_offset, y, height, true, icon_w, icon_h);
@@ -2098,33 +2274,6 @@ int CPluginItem::paint(bool selected, bool /*AfterPulldown*/)
 			{
 				frameBuffer->paintBoxRel(x, y + 2, dx, height - 4, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
 			} 
-			
-			/*	
-			// itemBox
-			frameBuffer->paintBoxRel(x, y, dx, height, bgcolor, NO_RADIUS, CORNER_NONE, itemGradient);
-				
-			// shadow
-			if (shadowMode == SHADOW_ALL)
-			{
-				frameBuffer->paintFrameBox(x, y, dx, height, COL_MENUCONTENT_PLUS_6);
-			}
-			else if (shadowMode == SHADOW_LEFTRIGHT)
-			{
-				// left
-				frameBuffer->paintBoxRel(x, y, 2, height, COL_MENUCONTENT_PLUS_6);
-						
-				// right
-				frameBuffer->paintBoxRel(x + dx - 2, y, 2, height, COL_MENUCONTENT_PLUS_6);
-			}
-			else if (shadowMode == SHADOW_TOPBOTTOM)
-			{
-				// top
-				frameBuffer->paintBoxRel(x, y, dx, 2, COL_MENUCONTENT_PLUS_6);
-						
-				// bottom
-				frameBuffer->paintBoxRel(x, y + height - 2, dx, 2, COL_MENUCONTENT_PLUS_6);
-			} 
-			*/
 		}
 		else
 		{
