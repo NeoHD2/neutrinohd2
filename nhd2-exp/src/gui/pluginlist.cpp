@@ -95,13 +95,10 @@ void CPluginList::showMenu()
 	dprintf(DEBUG_NORMAL, "CPluginList::showMenu\n");
 
 	//
-	int prev_ItemsCount = 0;
-	int prev_CCItemsCount = 0;
-	
 	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN))
 	{
-		prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getItemsCount();
-		prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getCCItemsCount();
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getCCItemsCount();
 		
 		pWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN);
 		plist = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);

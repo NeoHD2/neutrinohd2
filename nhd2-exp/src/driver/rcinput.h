@@ -258,7 +258,7 @@ static const neutrino_msg_t RC_Messages = 0x90000000;
 static const neutrino_msg_t RC_WithData = 0xA0000000;
 
 #define NEUTRINO_UDS_NAME 		"/tmp/neutrino.sock"
-#define NEUTRINO_KEYMAP_FILE		CONFIGDIR "/keymap.conf"
+#define NEUTRINO_KEYMAP_FILE		CONFIGDIR "/rc.conf"
 
 class CRCInput
 {

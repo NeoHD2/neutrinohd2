@@ -136,7 +136,7 @@ void CNeutrinoApp::mainMenu(void)
 		nMenu->addItem( new CMenuForwarder(_("Information"), true, NULL, new CInfoMenu(), NULL, RC_info, NEUTRINO_ICON_BUTTON_HELP, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Box / Channel Information")));
 		
 		//
-		widget = new CWidget(nMenu->getWindowsPos().iX, nMenu->getWindowsPos().iY, nMenu->getWindowsPos().iWidth, nMenu->getWindowsPos().iHeight);
+		if (widget == NULL) widget = new CWidget(nMenu->getWindowsPos().iX, nMenu->getWindowsPos().iY, nMenu->getWindowsPos().iWidth, nMenu->getWindowsPos().iHeight);
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(nMenu);

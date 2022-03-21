@@ -76,57 +76,83 @@ void CMainSettingsMenu::showMenu(void)
 	
 	int shortcutMainSettings = 1;
 
-	CMenuWidget * mainSettings = new CMenuWidget(_("Settings"), NEUTRINO_ICON_SETTINGS);
-
-	mainSettings->setWidgetMode(MODE_MENU);
-	mainSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
-	mainSettings->enableShrinkMenu();
-	mainSettings->setMenuPosition(MENU_POSITION_CENTER);
-	mainSettings->enablePaintDate();
-
-	// video settings
-	mainSettings->addItem(new CMenuForwarder(_("Video settings"), true, NULL, new CVideoSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_VIDEOSETTINGS));
-
-	// audio settings
-	mainSettings->addItem(new CMenuForwarder(_("Audio settings"), true, NULL, new CAudioSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_AUDIOSETTINGS));
-
-	// parentallock
-	mainSettings->addItem(new CMenuForwarder(_("Parentallock settings"), true, NULL, new CParentalLockSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_PARENTALLOCKSETTINGS));
-
-	// network settings
-	mainSettings->addItem(new CMenuForwarder(_("Network settings"), true, NULL,  CNetworkSettings::getInstance(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_NETWORKSETTINGS));
-
-	// recording settings
-	mainSettings->addItem(new CMenuForwarder(_("Recording settings"), true, NULL, new CRecordingSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_RECORDINGSETTINGS));
-
-	// movieplayer settings
-	mainSettings->addItem(new CMenuForwarder(_("Movieplayer settings"), true, NULL, new CMoviePlayerSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_MOVIEPLAYERSETTINGS));
-
-	//OSD settings
-	mainSettings->addItem(new CMenuForwarder(_("OSD settings"), true, NULL, new COSDSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS));
-
-	// vfd/lcd settings
-	//if(CVFD::getInstance()->has_lcd)
-		mainSettings->addItem(new CMenuForwarder(_("LCD settings"), true, NULL, new CLCDSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_LCDSETTINGS));	
-
-	// remote control settings
-	mainSettings->addItem(new CMenuForwarder(_("Remote Control settings"), true, NULL, new CRemoteControlSettings(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_REMOTECONTROLSETTINGS));
-
-	// audioplayer settings
-	mainSettings->addItem(new CMenuForwarder(_("Audioplayer settings"), true, NULL, new CAudioPlayerSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_AUDIOPLAYERSETTINGS));
+	//
+	CWidget* widget = NULL;
+	ClistBox* mainSettings = NULL;
 	
-	// pictureviewer settings
-	mainSettings->addItem(new CMenuForwarder(_("Pictureviewer settings"), true, NULL, new CPictureViewerSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_PICTUREVIEWERSETTINGS));
+	//
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MAINSETTINGS))
+	{
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MAINSETTINGS);
+	}
+	else
+	{
+		mainSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		
+		mainSettings->setMenuPosition(MENU_POSITION_CENTER);
+		mainSettings->setWidgetMode(MODE_MENU);
+		mainSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
+		mainSettings->enableShrinkMenu();
+		
+		//
+		mainSettings->enablePaintHead();
+		mainSettings->setTitle(_("Settings"), NEUTRINO_ICON_SETTINGS);
+		mainSettings->enablePaintDate();
+		
+		//
+		mainSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		mainSettings->setFootButtons(&btn); 
 
-	// misc settings
-	mainSettings->addItem(new CMenuForwarder(_("Misc settings"), true, NULL, new CMiscSettingsMenu(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_MISCSETTINGS));
+		// video settings
+		mainSettings->addItem(new CMenuForwarder(_("Video settings"), true, NULL, new CVideoSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_VIDEOSETTINGS));
 
-	//HDD settings
-	mainSettings->addItem(new CMenuForwarder(_("HDD settings"), true, NULL, new CHDDMenuHandler(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_HDDSETTINGS));
+		// audio settings
+		mainSettings->addItem(new CMenuForwarder(_("Audio settings"), true, NULL, new CAudioSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_AUDIOSETTINGS));
+
+		// parentallock
+		mainSettings->addItem(new CMenuForwarder(_("Parentallock settings"), true, NULL, new CParentalLockSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_PARENTALLOCKSETTINGS));
+
+		// network settings
+		mainSettings->addItem(new CMenuForwarder(_("Network settings"), true, NULL,  CNetworkSettings::getInstance(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_NETWORKSETTINGS));
+
+		// recording settings
+		mainSettings->addItem(new CMenuForwarder(_("Recording settings"), true, NULL, new CRecordingSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_RECORDINGSETTINGS));
+
+		// movieplayer settings
+		mainSettings->addItem(new CMenuForwarder(_("Movieplayer settings"), true, NULL, new CMoviePlayerSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_MOVIEPLAYERSETTINGS));
+
+		//OSD settings
+		mainSettings->addItem(new CMenuForwarder(_("OSD settings"), true, NULL, new COSDSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS));
+
+		// vfd/lcd settings
+		//if(CVFD::getInstance()->has_lcd)
+			mainSettings->addItem(new CMenuForwarder(_("LCD settings"), true, NULL, new CLCDSettings(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL,  NEUTRINO_ICON_MENUITEM_LCDSETTINGS));	
+
+		// remote control settings
+		mainSettings->addItem(new CMenuForwarder(_("Remote Control settings"), true, NULL, new CRemoteControlSettings(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_REMOTECONTROLSETTINGS));
+
+		// audioplayer settings
+		mainSettings->addItem(new CMenuForwarder(_("Audioplayer settings"), true, NULL, new CAudioPlayerSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_AUDIOPLAYERSETTINGS));
+		
+		// pictureviewer settings
+		mainSettings->addItem(new CMenuForwarder(_("Pictureviewer settings"), true, NULL, new CPictureViewerSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_PICTUREVIEWERSETTINGS));
+
+		// misc settings
+		mainSettings->addItem(new CMenuForwarder(_("Misc settings"), true, NULL, new CMiscSettingsMenu(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_MISCSETTINGS));
+
+		//HDD settings
+		mainSettings->addItem(new CMenuForwarder(_("HDD settings"), true, NULL, new CHDDMenuHandler(), NULL, CRCInput::convertDigitToKey(shortcutMainSettings++), NULL, NEUTRINO_ICON_MENUITEM_HDDSETTINGS));
 	
-	mainSettings->exec(NULL, "");
-	mainSettings->hide();
-	delete mainSettings;
-	mainSettings = NULL;
+		//
+		if (widget == NULL) widget = new CWidget(mainSettings->getWindowsPos().iX, mainSettings->getWindowsPos().iY, mainSettings->getWindowsPos().iWidth, mainSettings->getWindowsPos().iHeight);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		
+		widget->addItem(mainSettings);
+	}
+	
+	widget->exec(NULL, "");
 }
 

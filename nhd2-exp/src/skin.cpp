@@ -756,23 +756,13 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			break;
 			
 		case WIDGET_PLUINGSLIST:
-			{
-				parent = new CPluginList();
-			}
+			parent = new CPluginList();
 			break;
 			
 		case WIDGET_TIMERLIST:
-			{
-				if (widget_exists(WIDGET_TIMERLIST))
-				{
-					parent = getWidget(WIDGET_TIMERLIST);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CTimerList();
-				}
-			}
+		case WIDGET_NEWTIMER:
+		case WIDGET_MODIFYTIMER:
+			parent = new CTimerList();	
 			break;
 		
 		default:

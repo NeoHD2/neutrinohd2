@@ -128,11 +128,11 @@ void CParentalLockSettings::showMenu()
 	listBox->clearItems();
 	
 	// intro
-	listBox->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	listBox->addItem(new CMenuForwarder(_("back"), true));
 	listBox->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	listBox->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	listBox->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
 	listBox->addItem( new CMenuSeparator(LINE) );
 
 	// prompt

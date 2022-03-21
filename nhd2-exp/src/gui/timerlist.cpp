@@ -250,6 +250,16 @@ class CTimerListApidNotifier : public CChangeObserver
 		}
 };
 
+const struct button_label TimerListButtons[4] =
+{
+	{ NEUTRINO_ICON_BUTTON_RED   , _("Delete") },
+	{ NEUTRINO_ICON_BUTTON_GREEN , _("New timer")    },
+	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Reload") },
+	{ NEUTRINO_ICON_BUTTON_OKAY, _("Modify") }
+};
+
+struct button_label CTimerListHeadButtons = {NEUTRINO_ICON_BUTTON_HELP_SMALL, "" };
+
 //
 CTimerList::CTimerList()
 {
@@ -262,6 +272,7 @@ CTimerList::CTimerList()
 	skipEventID = 0;
 
 	//
+	timerlistWidget = NULL;
 	listBox = NULL;
 	item = NULL;
 
@@ -273,6 +284,41 @@ CTimerList::CTimerList()
 	
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
 	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;		
+	//
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_TIMERLIST))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_TIMERLIST)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_TIMERLIST)->getCCItemsCount();
+		
+		if (timerlistWidget == NULL) timerlistWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_TIMERLIST);
+		if (listBox == NULL) listBox = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_TIMERLIST)->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		//
+		if (timerlistWidget == NULL) timerlistWidget = new CWidget(&cFrameBox);
+		
+		timerlistWidget->setMenuPosition(MENU_POSITION_CENTER);
+		
+		//
+		if (listBox == NULL) listBox = new ClistBox(&cFrameBox);
+		
+		// head
+		listBox->enablePaintHead();
+		listBox->setTitle(_("Timerlist"), NEUTRINO_ICON_TIMER);
+		listBox->enablePaintDate();
+		listBox->setHeadButtons(&CTimerListHeadButtons, 1);
+
+		// foot
+		listBox->enablePaintFoot();
+		listBox->setFootButtons(TimerListButtons, 4);
+		
+		//
+		if (timerlistWidget == NULL) timerlistWidget = new CWidget(&cFrameBox);
+		
+		timerlistWidget->setMenuPosition(MENU_POSITION_CENTER);
+		timerlistWidget->addItem(listBox);
+	}
 }
 
 CTimerList::~CTimerList()
@@ -497,9 +543,8 @@ int CTimerList::show()
 	neutrino_msg_data_t data;
 
 	int res = RETURN_REPAINT;
-
-	//
-	listBox = new ClistBox(&cFrameBox);
+	
+	paint();
 
 	// add sec timer
 	sec_timer_id = g_RCInput->addTimer(1*1000*1000, false);
@@ -613,11 +658,13 @@ int CTimerList::show()
 		} 
 		else
 		{
+		/*
 			if( CNeutrinoApp::getInstance()->handleMsg( msg, data ) & messages_return::cancel_all )
 			{
 				loop = false;
 				res = RETURN_EXIT_ALL;
 			}
+		*/
 		}
 
 		frameBuffer->blit();	
@@ -628,9 +675,6 @@ int CTimerList::show()
 	//
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
-
-	delete listBox;
-	listBox = NULL;
 	
 	CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
 
@@ -641,7 +685,7 @@ void CTimerList::hide()
 {
 	if(visible)
 	{
-		listBox->hide();
+		if (timerlistWidget) timerlistWidget->hide();
 		
 		visible = false;
 	}
@@ -649,21 +693,11 @@ void CTimerList::hide()
 
 bool sectionsd_getEPGid(const event_id_t epgID, const time_t startzeit, CEPGData * epgdata);
 
-const struct button_label TimerListButtons[4] =
-{
-	{ NEUTRINO_ICON_BUTTON_RED   , _("Delete") },
-	{ NEUTRINO_ICON_BUTTON_GREEN , _("New timer")    },
-	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Reload") },
-	{ NEUTRINO_ICON_BUTTON_OKAY, _("Modify") }
-};
-
-struct button_label CTimerListHeadButtons = {NEUTRINO_ICON_BUTTON_HELP_SMALL, "" };
-
 void CTimerList::paint()
 {
 	dprintf(DEBUG_NORMAL, "CTimerList::paint\n");
 
-	listBox->clearAll();
+	if (listBox) listBox->clearAll();
 
 	for (unsigned int count = 0; count < timerlist.size(); count++)
 	{
@@ -783,28 +817,11 @@ void CTimerList::paint()
 		item->setOption(zAddData.c_str());
 		item->setOptionInfo(convertTimerType2String(timer.eventType));
 
-		listBox->addItem(item);
+		if (listBox) listBox->addItem(item);
 	}
 
-	// head
-	listBox->setTitle(_("Timerlist"), NEUTRINO_ICON_TIMER);
-	listBox->enablePaintHead();
-	listBox->enablePaintDate();
-	listBox->setHeadGradient(g_settings.Head_gradient);
-	listBox->setHeadRadius(g_settings.Head_radius);
-	listBox->setHeadLine(g_settings.Head_line);
-	listBox->setHeadButtons(&CTimerListHeadButtons, 1);
-
-	// foot
-	listBox->enablePaintFoot();
-	listBox->setFootGradient(g_settings.Foot_gradient);
-	listBox->setFootRadius(g_settings.Foot_radius);
-	listBox->setFootLine(g_settings.Foot_line);
-	listBox->setFootButtons(TimerListButtons, 4);
-
 	//
-	listBox->setSelected(selected);
-	listBox->paint();
+	if (timerlistWidget) timerlistWidget->paint();
 
 	visible = true;
 }
@@ -926,33 +943,71 @@ int CTimerList::modifyTimer()
 
 	CTimerd::responseGetTimer* timer = &timerlist[selected];
 
+/*
 	CMenuWidget timerSettings(_("Modify timer"), NEUTRINO_ICON_SETTINGS);
 	timerSettings.enablePaintDate();
 	timerSettings.enableShrinkMenu();
 	timerSettings.setWidgetMode(MODE_SETUP);
-	
-	// intros
-	timerSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	timerSettings.addItem(new CMenuSeparator(LINE));
+*/
+	//
+	ClistBox* timerSettings = NULL;
+	CWidget* widget = NULL;
 	
 	//
-	timerSettings.addItem(new CMenuForwarder(_("Save Timer"), true, NULL, this, "modifytimer", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	timerSettings.addItem(new CMenuSeparator(LINE));
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MODIFYTIMER))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MODIFYTIMER)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MODIFYTIMER)->getCCItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MODIFYTIMER);
+		timerSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MODIFYTIMER)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		timerSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		timerSettings->setMenuPosition(MENU_POSITION_CENTER);
+		timerSettings->setWidgetMode(MODE_SETUP);
+		timerSettings->enableShrinkMenu();
+		
+		timerSettings->enablePaintHead();
+		timerSettings->setTitle(_("Modify timer"), NEUTRINO_ICON_SETTINGS);
+
+		timerSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		timerSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(timerSettings);
+	}
+	
+	timerSettings->clearItems();
+	
+	// intros
+	timerSettings->addItem(new CMenuForwarder(_("back"), true));
+	timerSettings->addItem(new CMenuSeparator(LINE));
+	
+	//
+	timerSettings->addItem(new CMenuForwarder(_("Save Timer"), true, NULL, this, "modifytimer"));
+	timerSettings->addItem(new CMenuSeparator(LINE));
 
 	char type[80];
 	strcpy(type, convertTimerType2String(timer->eventType)); // UTF
 	CMenuForwarder *m0 = new CMenuForwarder(_("Timer typ"), false, type);
-	timerSettings.addItem( m0);
+	timerSettings->addItem( m0);
 
 	CDateInput timerSettings_alarmTime(_("Alarm time"), &timer->alarmTime , _("Use 0..9, or use Up/Down,"), _("OK saves, HOME! aborts"));
 	CMenuForwarder *m1 = new CMenuForwarder(_("Alarm time"), true, timerSettings_alarmTime.getValue(), &timerSettings_alarmTime );
-	timerSettings.addItem( m1);
+	timerSettings->addItem( m1);
 
 	CDateInput timerSettings_stopTime(_("Stop time"), &timer->stopTime , _("Use 0..9, or use Up/Down,"), _("OK saves, HOME! aborts"));
 	if(timer->stopTime != 0)
 	{
 		CMenuForwarder *m2 = new CMenuForwarder(_("Stop time"), true, timerSettings_stopTime.getValue(), &timerSettings_stopTime );
-		timerSettings.addItem( m2);
+		timerSettings->addItem( m2);
 	}
 
 	g_Timerd->setWeekdaysToStr(timer->eventRepeat, (char *)m_weekdaysStr.c_str());
@@ -982,12 +1037,12 @@ int CTimerList::modifyTimer()
 	bool recDirEnabled = recDirs.hasItem() && (timer->eventType == CTimerd::TIMER_RECORD) && (recDir != NULL);
 	CMenuForwarder *m6 = new CMenuForwarder(_("Recording directory"), recDirEnabled, timer->recordingDir, &recDirs);
 
-	timerSettings.addItem(new CMenuSeparator(LINE));
-	timerSettings.addItem(m3);
-	timerSettings.addItem(m4);
-	timerSettings.addItem(m5);
-	timerSettings.addItem(new CMenuSeparator(LINE));
-	timerSettings.addItem(m6);
+	timerSettings->addItem(new CMenuSeparator(LINE));
+	timerSettings->addItem(m3);
+	timerSettings->addItem(m4);
+	timerSettings->addItem(m5);
+	timerSettings->addItem(new CMenuSeparator(LINE));
+	timerSettings->addItem(m6);
 
 	CMenuWidget timerSettings_apids(_("Audio PIDs"), NEUTRINO_ICON_SETTINGS);
 
@@ -1014,10 +1069,10 @@ int CTimerList::modifyTimer()
 
 	if(timer->eventType ==  CTimerd::TIMER_RECORD)
 	{  
-		timerSettings.addItem( new CMenuForwarder(_("Audio PIDs"), true, NULL, &timerSettings_apids ));
+		timerSettings->addItem( new CMenuForwarder(_("Audio PIDs"), true, NULL, &timerSettings_apids ));
 	}
 
-	return timerSettings.exec(this, "");
+	return widget->exec(this, "");
 }
 
 int CTimerList::newTimer()
@@ -1033,18 +1088,50 @@ int CTimerList::newTimer()
 	timerNew_standby_on = false;
 	strncpy(timerNew.recordingDir, g_settings.network_nfs_recordingdir, sizeof(timerNew.recordingDir));
 
-	CMenuWidget timerSettings(_("New timer"), NEUTRINO_ICON_SETTINGS);
-	timerSettings.enablePaintDate();
-	timerSettings.enableShrinkMenu();
-	timerSettings.setWidgetMode(MODE_SETUP);
-	
-	// intros
-	timerSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	timerSettings.addItem(new CMenuSeparator(LINE));
+	//
+	ClistBox* timerSettings = NULL;
+	CWidget* widget = NULL;
 	
 	//
-	timerSettings.addItem(new CMenuForwarder(_("Save timer"), true, NULL, this, "newtimer", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	timerSettings.addItem(new CMenuSeparator(LINE));
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_NEWTIMER))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NEWTIMER)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NEWTIMER)->getCCItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_NEWTIMER);
+		timerSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_NEWTIMER)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		timerSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		timerSettings->setMenuPosition(MENU_POSITION_CENTER);
+		timerSettings->setWidgetMode(MODE_SETUP);
+		timerSettings->enableShrinkMenu();
+		
+		timerSettings->enablePaintHead();
+		timerSettings->setTitle(_("New timer"), NEUTRINO_ICON_SETTINGS);
+
+		timerSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		timerSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(timerSettings);
+	}
+	
+	timerSettings->clearItems();
+	
+	// intros
+	timerSettings->addItem(new CMenuForwarder(_("back"), true));
+	timerSettings->addItem(new CMenuSeparator(LINE));
+	
+	//
+	timerSettings->addItem(new CMenuForwarder(_("Save timer"), true, NULL, this, "newtimer"));
+	timerSettings->addItem(new CMenuSeparator(LINE));
 
 	// alarm time
 	CDateInput timerSettings_alarmTime(_("Alarm time"), &(timerNew.alarmTime) , _("Use 0..9, or use Up/Down,"), _("OK saves, HOME! aborts"));
@@ -1096,21 +1183,22 @@ int CTimerList::newTimer()
 					timerSettings_stopTime.getValue());
 	CMenuOptionChooser *m0 = new CMenuOptionChooser(_("Timer typ"), (int *)&timerNew.eventType, TIMERLIST_TYPE_OPTIONS, TIMERLIST_TYPE_OPTION_COUNT, true, &notifier2);
 
-	timerSettings.addItem( m0);
-	timerSettings.addItem( m1);
-	timerSettings.addItem( m2);
-	timerSettings.addItem(new CMenuSeparator(LINE));
-	timerSettings.addItem( m3);
-	timerSettings.addItem( m4);
-	timerSettings.addItem( m5);
-	timerSettings.addItem(new CMenuSeparator(LINE));
-	timerSettings.addItem( m6);
-	timerSettings.addItem( m7);
-	timerSettings.addItem( m8);
-	timerSettings.addItem( m9);
-	timerSettings.addItem( m10);
+	timerSettings->addItem( m0);
+	timerSettings->addItem( m1);
+	timerSettings->addItem( m2);
+	timerSettings->addItem(new CMenuSeparator(LINE));
+	timerSettings->addItem( m3);
+	timerSettings->addItem( m4);
+	timerSettings->addItem( m5);
+	timerSettings->addItem(new CMenuSeparator(LINE));
+	timerSettings->addItem( m6);
+	timerSettings->addItem( m7);
+	timerSettings->addItem( m8);
+	timerSettings->addItem( m9);
+	timerSettings->addItem( m10);
 
-	int ret = timerSettings.exec(this, "");
+	//int ret = timerSettings.exec(this, "");
+	int ret = widget->exec(this, "");
 
 	return ret;
 }

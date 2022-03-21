@@ -126,7 +126,11 @@ enum {
 	WIDGET_MUTE,
 	//
 	WIDGET_PLUGIN = 			80,
-	WIDGET_NVOD,		// yellow
+	WIDGET_NVOD = 				81,		// yellow
+	
+	//
+	WIDGET_NEWTIMER = 			90,
+	WIDGET_MODIFYTIMER = 			91,
 	
 	//
 	WIDGET_MAX

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-20 20:34+0100\n"
+"POT-Creation-Date: 2022-03-21 12:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../../src/gui/timerlist.cpp:960 ../../src/gui/timerlist.cpp:1058
+#: ../../src/gui/timerlist.cpp:1015 ../../src/gui/timerlist.cpp:1145
 msgid "'X'=timer '-' no timer"
 msgstr ""
 
@@ -71,7 +71,7 @@ msgstr ""
 msgid "(type)"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:962 ../../src/gui/timerlist.cpp:1062
+#: ../../src/gui/timerlist.cpp:1017 ../../src/gui/timerlist.cpp:1149
 msgid "0 for unlimited repeats"
 msgstr ""
 
@@ -159,8 +159,8 @@ msgstr ""
 msgid "Age"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:947 ../../src/gui/timerlist.cpp:948
-#: ../../src/gui/timerlist.cpp:1050 ../../src/gui/timerlist.cpp:1051
+#: ../../src/gui/timerlist.cpp:1002 ../../src/gui/timerlist.cpp:1003
+#: ../../src/gui/timerlist.cpp:1137 ../../src/gui/timerlist.cpp:1138
 msgid "Alarm time"
 msgstr ""
 
@@ -216,7 +216,7 @@ msgstr ""
 msgid "Audio"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:992 ../../src/gui/timerlist.cpp:1017
+#: ../../src/gui/timerlist.cpp:1047 ../../src/gui/timerlist.cpp:1072
 msgid "Audio PIDs"
 msgstr ""
 
@@ -241,7 +241,7 @@ msgstr ""
 msgid "Audio master"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:155 ../../src/gui/main_setup.cpp:91
+#: ../../src/gui/audio_setup.cpp:155 ../../src/gui/main_setup.cpp:113
 msgid "Audio settings"
 msgstr ""
 
@@ -249,7 +249,7 @@ msgstr ""
 msgid "Audioplayer"
 msgstr ""
 
-#: ../../src/gui/audioplayer_setup.cpp:95 ../../src/gui/main_setup.cpp:116
+#: ../../src/gui/audioplayer_setup.cpp:95 ../../src/gui/main_setup.cpp:138
 msgid "Audioplayer settings"
 msgstr ""
 
@@ -270,12 +270,12 @@ msgstr ""
 msgid "Auto select subtitles"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:376 ../../src/gui/scan_setup.cpp:783
-#: ../../src/gui/scan_setup.cpp:803
+#: ../../src/gui/scan_setup.cpp:410 ../../src/gui/scan_setup.cpp:814
+#: ../../src/gui/scan_setup.cpp:834
 msgid "Auto-Scan"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:813 ../../src/gui/scan_setup.cpp:818
+#: ../../src/gui/scan_setup.cpp:844 ../../src/gui/scan_setup.cpp:849
 msgid "Auto-Scan multiple Satellites"
 msgstr ""
 
@@ -314,7 +314,7 @@ msgstr ""
 msgid "Backup failed"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:743
+#: ../../src/gui/scan_setup.cpp:777
 msgid "Bandwidth"
 msgstr ""
 
@@ -348,7 +348,7 @@ msgstr ""
 msgid "Border"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:596
+#: ../../src/gui/scan_setup.cpp:630
 msgid "Bouquet"
 msgstr ""
 
@@ -457,7 +457,7 @@ msgstr ""
 msgid "Cable"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:475 ../../src/gui/scan.cpp:581
+#: ../../src/gui/scan_setup.cpp:509 ../../src/gui/scan.cpp:581
 #: ../../src/gui/scan.cpp:582
 msgid "Cable:"
 msgstr ""
@@ -484,7 +484,7 @@ msgstr ""
 msgid "Change sort order"
 msgstr ""
 
-#: ../../src/gui/streaminfo2.cpp:683 ../../src/gui/timerlist.cpp:1071
+#: ../../src/gui/streaminfo2.cpp:683 ../../src/gui/timerlist.cpp:1158
 #: ../../src/gui/movieinfo.cpp:1059 ../../src/gui/eventlist.cpp:832
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:109
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:166
@@ -551,11 +551,11 @@ msgstr ""
 msgid "Clear all"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:747
+#: ../../src/gui/scan_setup.cpp:781
 msgid "Code Rate HP"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:751
+#: ../../src/gui/scan_setup.cpp:785
 msgid "Code Rate LP"
 msgstr ""
 
@@ -567,7 +567,7 @@ msgstr ""
 msgid "Command failed"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:233 ../../src/gui/scan_setup.cpp:438
+#: ../../src/gui/scan_setup.cpp:233 ../../src/gui/scan_setup.cpp:472
 msgid "Commited/Uncommited"
 msgstr ""
 
@@ -722,7 +722,7 @@ msgstr ""
 
 #: ../../src/gui/filebrowser.cpp:495 ../../src/gui/filebrowser.cpp:504
 #: ../../src/gui/movieplayer.cpp:1983 ../../src/gui/channellist.cpp:388
-#: ../../src/gui/timerlist.cpp:654 ../../src/gui/pluginlist.cpp:85
+#: ../../src/gui/timerlist.cpp:255 ../../src/gui/pluginlist.cpp:85
 #: ../../src/gui/bouquetlist.cpp:311
 #: ../../../plugins/audioplayer/audioplayer.cpp:252
 #: ../../../plugins/icecast/icecast.cpp:674
@@ -748,7 +748,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ../../src/gui/pluginlist.cpp:226
+#: ../../src/gui/pluginlist.cpp:223
 msgid "Description: "
 msgstr ""
 
@@ -756,7 +756,7 @@ msgstr ""
 msgid "Details current program"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:617
+#: ../../src/gui/scan_setup.cpp:651
 msgid "DiSEqC"
 msgstr ""
 
@@ -768,11 +768,11 @@ msgstr ""
 msgid "DiSEqC 1.1"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:523 ../../src/gui/scan_setup.cpp:636
+#: ../../src/gui/scan_setup.cpp:557 ../../src/gui/scan_setup.cpp:670
 msgid "DiSEqC-Settings"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:621
+#: ../../src/gui/scan_setup.cpp:655
 msgid "DiSEqC-repeats"
 msgstr ""
 
@@ -812,7 +812,7 @@ msgstr ""
 msgid "Discard changes?"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:435
+#: ../../src/gui/scan_setup.cpp:469
 msgid "Diseqc input"
 msgstr ""
 
@@ -969,7 +969,7 @@ msgstr ""
 msgid "Enter new Position (s)"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:765 ../../src/gui/timerlist.cpp:900
+#: ../../src/gui/timerlist.cpp:799 ../../src/gui/timerlist.cpp:917
 msgid "Enter standby"
 msgstr ""
 
@@ -1022,7 +1022,7 @@ msgstr ""
 msgid "Events Textcolor"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:823 ../../src/gui/timerlist.cpp:913
+#: ../../src/gui/timerlist.cpp:840 ../../src/gui/timerlist.cpp:930
 msgid "Execute plugin"
 msgstr ""
 
@@ -1034,7 +1034,7 @@ msgstr ""
 msgid "Expert-functions"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:728
+#: ../../src/gui/scan_setup.cpp:762
 msgid "FEC"
 msgstr ""
 
@@ -1176,7 +1176,7 @@ msgstr ""
 msgid "Framerate"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:695 ../../src/gui/scan_setup.cpp:696
+#: ../../src/gui/scan_setup.cpp:729 ../../src/gui/scan_setup.cpp:730
 msgid "Frequency"
 msgstr ""
 
@@ -1184,7 +1184,7 @@ msgstr ""
 msgid "Frequency:"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:857
+#: ../../src/gui/timerlist.cpp:874
 msgid "Friday"
 msgstr ""
 
@@ -1239,7 +1239,7 @@ msgstr ""
 msgid "Gradient direction"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:759
+#: ../../src/gui/scan_setup.cpp:793
 msgid "Guard Interval"
 msgstr ""
 
@@ -1316,7 +1316,7 @@ msgstr ""
 msgid "HDD mounted"
 msgstr ""
 
-#: ../../src/gui/main_setup.cpp:125
+#: ../../src/gui/main_setup.cpp:147
 msgid "HDD settings"
 msgstr ""
 
@@ -1382,7 +1382,7 @@ msgstr ""
 msgid "Hide series"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:763
+#: ../../src/gui/scan_setup.cpp:797
 msgid "Hierarchy"
 msgstr ""
 
@@ -1540,7 +1540,7 @@ msgstr ""
 #: ../../src/gui/update.cpp:645 ../../src/gui/themes.cpp:89
 #: ../../src/gui/themes.cpp:127 ../../src/gui/themes.cpp:148
 #: ../../src/gui/pictureviewer.cpp:419 ../../src/gui/video_setup.cpp:437
-#: ../../src/gui/timerlist.cpp:1163 ../../src/gui/misc_setup.cpp:577
+#: ../../src/gui/timerlist.cpp:1251 ../../src/gui/misc_setup.cpp:577
 #: ../../src/gui/service_menu.cpp:76 ../../src/gui/service_menu.cpp:78
 #: ../../src/gui/plugins.cpp:336 ../../src/gui/audioplayer.cpp:1282
 #: ../../src/gui/eventlist.cpp:512 ../../src/gui/eventlist.cpp:517
@@ -1627,7 +1627,7 @@ msgstr ""
 msgid "LCD EPG Align"
 msgstr ""
 
-#: ../../src/gui/main_setup.cpp:110
+#: ../../src/gui/main_setup.cpp:132
 msgid "LCD settings"
 msgstr ""
 
@@ -1639,15 +1639,15 @@ msgstr ""
 msgid "LEFT"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:454 ../../src/gui/scan_setup.cpp:465
+#: ../../src/gui/scan_setup.cpp:488 ../../src/gui/scan_setup.cpp:499
 msgid "LNB High Offset"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:453 ../../src/gui/scan_setup.cpp:464
+#: ../../src/gui/scan_setup.cpp:487 ../../src/gui/scan_setup.cpp:498
 msgid "LNB Low Offset"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:455 ../../src/gui/scan_setup.cpp:466
+#: ../../src/gui/scan_setup.cpp:489 ../../src/gui/scan_setup.cpp:500
 msgid "LNB switch Offset"
 msgstr ""
 
@@ -1655,7 +1655,7 @@ msgstr ""
 msgid "LUFS"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:549
+#: ../../src/gui/scan_setup.cpp:583
 msgid "LaDirection"
 msgstr ""
 
@@ -1695,11 +1695,11 @@ msgstr ""
 msgid "Last recorded:"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:552 ../../src/gui/scan_setup.cpp:553
+#: ../../src/gui/scan_setup.cpp:586 ../../src/gui/scan_setup.cpp:587
 msgid "Latitude"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:765 ../../src/gui/timerlist.cpp:899
+#: ../../src/gui/timerlist.cpp:799 ../../src/gui/timerlist.cpp:916
 msgid "Leave standby"
 msgstr ""
 
@@ -1753,7 +1753,7 @@ msgstr ""
 msgid "List Start"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:556
+#: ../../src/gui/scan_setup.cpp:590
 msgid "LoDirection"
 msgstr ""
 
@@ -1791,7 +1791,7 @@ msgstr ""
 msgid "Locked program (from %d years up)"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:559 ../../src/gui/scan_setup.cpp:560
+#: ../../src/gui/scan_setup.cpp:593 ../../src/gui/scan_setup.cpp:594
 msgid "Longitude"
 msgstr ""
 
@@ -1819,7 +1819,7 @@ msgstr ""
 msgid "Make Remaining Channels list"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:647 ../../src/gui/scan_setup.cpp:778
+#: ../../src/gui/scan_setup.cpp:681 ../../src/gui/scan_setup.cpp:809
 msgid "Manual frequency scan"
 msgstr ""
 
@@ -1874,7 +1874,7 @@ msgstr ""
 msgid "Menutext"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1087 ../../src/gui/timerlist.cpp:1088
+#: ../../src/gui/timerlist.cpp:1174 ../../src/gui/timerlist.cpp:1175
 msgid "Message"
 msgstr ""
 
@@ -1882,7 +1882,7 @@ msgstr ""
 msgid "Mini-DiSEqC"
 msgstr ""
 
-#: ../../src/gui/main_setup.cpp:122
+#: ../../src/gui/main_setup.cpp:144
 msgid "Misc settings"
 msgstr ""
 
@@ -1890,7 +1890,7 @@ msgstr ""
 msgid "Miscsettings"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:960 ../../src/gui/timerlist.cpp:1058
+#: ../../src/gui/timerlist.cpp:1015 ../../src/gui/timerlist.cpp:1145
 msgid "Mo Tu We Th Fr Sa Su"
 msgstr ""
 
@@ -1898,20 +1898,20 @@ msgstr ""
 msgid "Modechange"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:657
+#: ../../src/gui/timerlist.cpp:258
 msgid "Modify"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:929
+#: ../../src/gui/timerlist.cpp:973
 msgid "Modify timer"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:709 ../../src/gui/scan_setup.cpp:713
-#: ../../src/gui/scan_setup.cpp:717
+#: ../../src/gui/scan_setup.cpp:743 ../../src/gui/scan_setup.cpp:747
+#: ../../src/gui/scan_setup.cpp:751
 msgid "Modulation"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:845
+#: ../../src/gui/timerlist.cpp:862
 msgid "Monday"
 msgstr ""
 
@@ -1929,8 +1929,8 @@ msgid "Motor Control Settings"
 msgstr ""
 
 #: ../../src/gui/motorcontrol.cpp:522 ../../src/gui/motorcontrol.cpp:593
-#: ../../src/gui/scan_setup.cpp:385 ../../src/gui/scan_setup.cpp:521
-#: ../../src/gui/scan_setup.cpp:535
+#: ../../src/gui/scan_setup.cpp:419 ../../src/gui/scan_setup.cpp:555
+#: ../../src/gui/scan_setup.cpp:569
 msgid "Motor Setup"
 msgstr ""
 
@@ -1996,7 +1996,7 @@ msgstr ""
 msgid "Moviebrowser"
 msgstr ""
 
-#: ../../src/gui/main_setup.cpp:103 ../../src/gui/movieplayer_setup.cpp:89
+#: ../../src/gui/main_setup.cpp:125 ../../src/gui/movieplayer_setup.cpp:89
 msgid "Movieplayer settings"
 msgstr ""
 
@@ -2059,7 +2059,7 @@ msgstr ""
 msgid "Network Name"
 msgstr ""
 
-#: ../../src/gui/network_setup.cpp:188 ../../src/gui/main_setup.cpp:97
+#: ../../src/gui/network_setup.cpp:188 ../../src/gui/main_setup.cpp:119
 msgid "Network settings"
 msgstr ""
 
@@ -2099,7 +2099,7 @@ msgid ""
 " 'blue' for endposition"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:655 ../../src/gui/timerlist.cpp:1036
+#: ../../src/gui/timerlist.cpp:256 ../../src/gui/timerlist.cpp:1112
 msgid "New timer"
 msgstr ""
 
@@ -2125,14 +2125,14 @@ msgstr ""
 msgid "Next image"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:817
+#: ../../src/gui/timerlist.cpp:834
 msgid "Next program"
 msgstr ""
 
 #: ../../src/gui/audioplayer_setup.cpp:48
 #: ../../src/gui/pictureviewer_setup.cpp:53 ../../src/gui/nfs.cpp:139
 #: ../../src/gui/nfs.cpp:157 ../../src/gui/nfs.cpp:227
-#: ../../src/gui/recording_setup.cpp:57 ../../src/gui/timerlist.cpp:919
+#: ../../src/gui/recording_setup.cpp:57 ../../src/gui/timerlist.cpp:936
 #: ../../src/gui/misc_setup.cpp:77 ../../src/gui/widget/messagebox.cpp:486
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:126
 msgid "No"
@@ -2225,9 +2225,9 @@ msgstr ""
 #: ../../src/gui/network_setup.cpp:226 ../../src/gui/network_setup.cpp:228
 #: ../../src/gui/network_setup.cpp:230 ../../src/gui/network_setup.cpp:232
 #: ../../src/gui/network_setup.cpp:234 ../../src/gui/nfs.cpp:290
-#: ../../src/gui/nfs.cpp:315 ../../src/gui/timerlist.cpp:947
-#: ../../src/gui/timerlist.cpp:951 ../../src/gui/timerlist.cpp:1050
-#: ../../src/gui/timerlist.cpp:1054
+#: ../../src/gui/nfs.cpp:315 ../../src/gui/timerlist.cpp:1002
+#: ../../src/gui/timerlist.cpp:1006 ../../src/gui/timerlist.cpp:1137
+#: ../../src/gui/timerlist.cpp:1141
 msgid "OK saves, HOME! aborts"
 msgstr ""
 
@@ -2247,7 +2247,7 @@ msgstr ""
 msgid "OSD misc-settings"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:93 ../../src/gui/main_setup.cpp:106
+#: ../../src/gui/osd_setup.cpp:93 ../../src/gui/main_setup.cpp:128
 msgid "OSD settings"
 msgstr ""
 
@@ -2255,10 +2255,10 @@ msgstr ""
 msgid "OSD timing"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:82 ../../src/gui/scan_setup.cpp:435
-#: ../../src/gui/scan_setup.cpp:438 ../../src/gui/scan_setup.cpp:441
-#: ../../src/gui/scan_setup.cpp:444 ../../src/gui/scan_setup.cpp:563
-#: ../../src/gui/scan_setup.cpp:857 ../../src/gui/audio_select.cpp:67
+#: ../../src/gui/scan_setup.cpp:82 ../../src/gui/scan_setup.cpp:469
+#: ../../src/gui/scan_setup.cpp:472 ../../src/gui/scan_setup.cpp:475
+#: ../../src/gui/scan_setup.cpp:478 ../../src/gui/scan_setup.cpp:597
+#: ../../src/gui/scan_setup.cpp:889 ../../src/gui/audio_select.cpp:67
 msgid "Off"
 msgstr ""
 
@@ -2337,7 +2337,7 @@ msgstr ""
 msgid "Parental Lock"
 msgstr ""
 
-#: ../../src/gui/parentallock_setup.cpp:114 ../../src/gui/main_setup.cpp:94
+#: ../../src/gui/parentallock_setup.cpp:114 ../../src/gui/main_setup.cpp:116
 msgid "Parentallock settings"
 msgstr ""
 
@@ -2380,7 +2380,7 @@ msgstr ""
 msgid "Pictureviewer"
 msgstr ""
 
-#: ../../src/gui/pictureviewer_setup.cpp:110 ../../src/gui/main_setup.cpp:119
+#: ../../src/gui/pictureviewer_setup.cpp:110 ../../src/gui/main_setup.cpp:141
 msgid "Pictureviewer settings"
 msgstr ""
 
@@ -2400,16 +2400,16 @@ msgstr ""
 msgid "Please press the new key"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1092
+#: ../../src/gui/timerlist.cpp:1179
 msgid "Plugin"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:354 ../../src/gui/pluginlist.cpp:128
-#: ../../src/gui/pluginlist.cpp:238 ../../src/system/setting_helpers.cpp:273
+#: ../../src/neutrino_menue.cpp:354 ../../src/gui/pluginlist.cpp:125
+#: ../../src/gui/pluginlist.cpp:235 ../../src/system/setting_helpers.cpp:273
 msgid "Plugins"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:705
+#: ../../src/gui/scan_setup.cpp:739
 msgid "Polarization"
 msgstr ""
 
@@ -2479,7 +2479,7 @@ msgstr ""
 msgid "Provider"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:488 ../../src/gui/scan_setup.cpp:501
+#: ../../src/gui/scan_setup.cpp:522 ../../src/gui/scan_setup.cpp:535
 #: ../../src/gui/scan.cpp:606 ../../src/gui/scan.cpp:607
 msgid "Provider:"
 msgstr ""
@@ -2556,16 +2556,16 @@ msgstr ""
 msgid "Receiving list, please wait"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:971 ../../src/gui/timerlist.cpp:820
-#: ../../src/gui/timerlist.cpp:910
+#: ../../src/gui/epgplus.cpp:971 ../../src/gui/timerlist.cpp:837
+#: ../../src/gui/timerlist.cpp:927
 msgid "Record"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:208 ../../src/gui/timerlist.cpp:1011
+#: ../../src/gui/recording_setup.cpp:208 ../../src/gui/timerlist.cpp:1066
 msgid "Record AC3 streams"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:205 ../../src/gui/timerlist.cpp:1009
+#: ../../src/gui/recording_setup.cpp:205 ../../src/gui/timerlist.cpp:1064
 msgid "Record alternative streams"
 msgstr ""
 
@@ -2575,11 +2575,11 @@ msgstr ""
 msgid "Record date"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1005
+#: ../../src/gui/timerlist.cpp:1060
 msgid "Record default audio streams"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1007
+#: ../../src/gui/timerlist.cpp:1062
 msgid "Record standard stream"
 msgstr ""
 
@@ -2595,12 +2595,12 @@ msgstr ""
 msgid "Recording"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:217 ../../src/gui/timerlist.cpp:983
-#: ../../src/gui/timerlist.cpp:1081
+#: ../../src/gui/recording_setup.cpp:217 ../../src/gui/timerlist.cpp:1038
+#: ../../src/gui/timerlist.cpp:1168
 msgid "Recording directory"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:171 ../../src/gui/main_setup.cpp:100
+#: ../../src/gui/recording_setup.cpp:171 ../../src/gui/main_setup.cpp:122
 msgid "Recording settings"
 msgstr ""
 
@@ -2624,7 +2624,7 @@ msgstr ""
 msgid "Release cycle"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:656 ../../src/gui/pluginlist.cpp:88
+#: ../../src/gui/timerlist.cpp:257 ../../src/gui/pluginlist.cpp:88
 msgid "Reload"
 msgstr ""
 
@@ -2641,7 +2641,7 @@ msgstr ""
 msgid "Reloading channel lists, please be patient."
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:821 ../../src/gui/timerlist.cpp:912
+#: ../../src/gui/timerlist.cpp:838 ../../src/gui/timerlist.cpp:929
 msgid "Remind"
 msgstr ""
 
@@ -2653,7 +2653,7 @@ msgstr ""
 msgid "Remote Control lock"
 msgstr ""
 
-#: ../../src/gui/main_setup.cpp:113
+#: ../../src/gui/main_setup.cpp:135
 msgid "Remote Control settings"
 msgstr ""
 
@@ -2665,8 +2665,8 @@ msgstr ""
 msgid "Remount at start"
 msgstr ""
 
-#: ../../src/gui/movieplayer.cpp:750 ../../src/gui/timerlist.cpp:968
-#: ../../src/gui/timerlist.cpp:1068 ../../src/gui/movieinfo.cpp:1505
+#: ../../src/gui/movieplayer.cpp:750 ../../src/gui/timerlist.cpp:1023
+#: ../../src/gui/timerlist.cpp:1155 ../../src/gui/movieinfo.cpp:1505
 msgid "Repeat"
 msgstr ""
 
@@ -2699,7 +2699,7 @@ msgstr ""
 msgid "Restore EPG on boot"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:444
+#: ../../src/gui/scan_setup.cpp:478
 msgid "Rotor position"
 msgstr ""
 
@@ -2716,7 +2716,7 @@ msgstr ""
 msgid "Row width"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1084
+#: ../../src/gui/timerlist.cpp:1171
 msgid "SB mode"
 msgstr ""
 
@@ -2753,8 +2753,8 @@ msgstr ""
 msgid "SatIP Server Port"
 msgstr ""
 
-#: ../../src/gui/streaminfo2.cpp:662 ../../src/gui/scan_setup.cpp:400
-#: ../../src/gui/scan_setup.cpp:402 ../../src/gui/scan_setup.cpp:831
+#: ../../src/gui/streaminfo2.cpp:662 ../../src/gui/scan_setup.cpp:434
+#: ../../src/gui/scan_setup.cpp:436 ../../src/gui/scan_setup.cpp:862
 msgid "Satellite"
 msgstr ""
 
@@ -2786,7 +2786,7 @@ msgstr ""
 msgid "Saturation"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:860
+#: ../../src/gui/timerlist.cpp:877
 msgid "Saturday"
 msgstr ""
 
@@ -2802,7 +2802,7 @@ msgstr ""
 msgid "Save Settings now"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:939
+#: ../../src/gui/timerlist.cpp:994
 msgid "Save Timer"
 msgstr ""
 
@@ -2833,9 +2833,9 @@ msgstr ""
 #: ../../src/gui/audioplayer_setup.cpp:108
 #: ../../src/gui/pictureviewer_setup.cpp:123 ../../src/gui/rc_setup.cpp:155
 #: ../../src/gui/rc_setup.cpp:295 ../../src/gui/scan_setup.cpp:288
-#: ../../src/gui/scan_setup.cpp:368 ../../src/gui/scan_setup.cpp:428
-#: ../../src/gui/scan_setup.cpp:533 ../../src/gui/scan_setup.cpp:660
-#: ../../src/gui/scan_setup.cpp:793 ../../src/gui/scan_setup.cpp:827
+#: ../../src/gui/scan_setup.cpp:402 ../../src/gui/scan_setup.cpp:462
+#: ../../src/gui/scan_setup.cpp:567 ../../src/gui/scan_setup.cpp:694
+#: ../../src/gui/scan_setup.cpp:824 ../../src/gui/scan_setup.cpp:858
 #: ../../src/gui/recording_setup.cpp:93 ../../src/gui/recording_setup.cpp:224
 #: ../../src/gui/update.cpp:874 ../../src/gui/themes.cpp:231
 #: ../../src/gui/video_setup.cpp:374 ../../src/gui/misc_setup.cpp:267
@@ -2854,7 +2854,7 @@ msgstr ""
 msgid "Save settings now?"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1046
+#: ../../src/gui/timerlist.cpp:1133
 msgid "Save timer"
 msgstr ""
 
@@ -2927,11 +2927,11 @@ msgstr ""
 msgid "Scan for Movies ..."
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:591
+#: ../../src/gui/scan_setup.cpp:625
 msgid "Scan for services"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:345 ../../src/gui/service_menu.cpp:128
+#: ../../src/gui/scan_setup.cpp:368 ../../src/gui/service_menu.cpp:128
 #: ../../src/gui/scan.cpp:554
 msgid "Scan transponder"
 msgstr ""
@@ -3039,7 +3039,7 @@ msgstr ""
 msgid "Select theme"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:669 ../../src/gui/scan_setup.cpp:912
+#: ../../src/gui/scan_setup.cpp:703 ../../src/gui/scan_setup.cpp:944
 msgid "Select transponder"
 msgstr ""
 
@@ -3086,7 +3086,7 @@ msgstr ""
 msgid "Service"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:1496
+#: ../../src/gui/scan_setup.cpp:1526
 msgid "Servicescan"
 msgstr ""
 
@@ -3106,7 +3106,7 @@ msgstr ""
 msgid "Set in hours"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:124 ../../src/gui/main_setup.cpp:79
+#: ../../src/neutrino_menue.cpp:124 ../../src/gui/main_setup.cpp:99
 #: ../../../plugins/test/test.cpp:5589
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3296
 msgid "Settings"
@@ -3140,7 +3140,7 @@ msgstr ""
 msgid "Setup new key"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:632
+#: ../../src/gui/scan_setup.cpp:666
 msgid "Setup satellites input / LNB"
 msgstr ""
 
@@ -3174,7 +3174,7 @@ msgstr ""
 msgid "Shuffle"
 msgstr ""
 
-#: ../../src/gui/power_menu.cpp:85 ../../src/gui/timerlist.cpp:907
+#: ../../src/gui/power_menu.cpp:85 ../../src/gui/timerlist.cpp:924
 msgid "Shutdown"
 msgstr ""
 
@@ -3210,7 +3210,7 @@ msgid "Sleep time"
 msgstr ""
 
 #: ../../src/gui/sleeptimer.cpp:83 ../../src/gui/power_menu.cpp:73
-#: ../../src/gui/timerlist.cpp:822 ../../src/gui/timerlist.cpp:911
+#: ../../src/gui/timerlist.cpp:839 ../../src/gui/timerlist.cpp:928
 msgid "Sleeptimer"
 msgstr ""
 
@@ -3239,8 +3239,8 @@ msgstr ""
 msgid "South"
 msgstr ""
 
-#: ../../src/gui/power_menu.cpp:79 ../../src/gui/timerlist.cpp:819
-#: ../../src/gui/timerlist.cpp:909
+#: ../../src/gui/power_menu.cpp:79 ../../src/gui/timerlist.cpp:836
+#: ../../src/gui/timerlist.cpp:926
 msgid "Standby"
 msgstr ""
 
@@ -3286,8 +3286,8 @@ msgstr ""
 msgid "Start movie from:"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:773 ../../src/gui/scan_setup.cpp:800
-#: ../../src/gui/scan_setup.cpp:834
+#: ../../src/gui/scan_setup.cpp:807 ../../src/gui/scan_setup.cpp:831
+#: ../../src/gui/scan_setup.cpp:865
 msgid "Start scan"
 msgstr ""
 
@@ -3327,8 +3327,8 @@ msgstr ""
 msgid "Stop subtitles"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:951 ../../src/gui/timerlist.cpp:954
-#: ../../src/gui/timerlist.cpp:1054 ../../src/gui/timerlist.cpp:1055
+#: ../../src/gui/timerlist.cpp:1006 ../../src/gui/timerlist.cpp:1009
+#: ../../src/gui/timerlist.cpp:1141 ../../src/gui/timerlist.cpp:1142
 msgid "Stop time"
 msgstr ""
 
@@ -3377,11 +3377,11 @@ msgstr ""
 msgid "Subtitles not found"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:863
+#: ../../src/gui/timerlist.cpp:880
 msgid "Sunday"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:566
+#: ../../src/gui/scan_setup.cpp:600
 msgid "Swap rotor east/west"
 msgstr ""
 
@@ -3389,7 +3389,7 @@ msgstr ""
 msgid "Switch Step/Drive Mode (b)"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:723 ../../src/gui/scan_setup.cpp:724
+#: ../../src/gui/scan_setup.cpp:757 ../../src/gui/scan_setup.cpp:758
 msgid "Symbol rate"
 msgstr ""
 
@@ -3489,7 +3489,7 @@ msgstr ""
 msgid "Test network now"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:776 ../../src/gui/scan.cpp:554
+#: ../../src/gui/scan_setup.cpp:804 ../../src/gui/scan.cpp:554
 msgid "Test signal"
 msgstr ""
 
@@ -3575,7 +3575,7 @@ msgstr ""
 msgid "Themes"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:854
+#: ../../src/gui/timerlist.cpp:871
 msgid "Thursday"
 msgstr ""
 
@@ -3615,7 +3615,7 @@ msgstr ""
 msgid "Timer List"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:1125
+#: ../../src/gui/timerlist.cpp:1213
 msgid "Timer conflict. Create the timer anyway?"
 msgstr ""
 
@@ -3627,12 +3627,12 @@ msgstr ""
 msgid "Timer settings"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:944 ../../src/gui/timerlist.cpp:1097
+#: ../../src/gui/timerlist.cpp:999 ../../src/gui/timerlist.cpp:1184
 msgid "Timer typ"
 msgstr ""
 
 #: ../../src/neutrino_menue.cpp:325 ../../src/gui/rc_setup.cpp:102
-#: ../../src/gui/timerlist.cpp:790 ../../src/system/setting_helpers.cpp:272
+#: ../../src/gui/timerlist.cpp:308 ../../src/system/setting_helpers.cpp:272
 msgid "Timerlist"
 msgstr ""
 
@@ -3667,7 +3667,7 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:755
+#: ../../src/gui/scan_setup.cpp:789
 msgid "Transmission mode"
 msgstr ""
 
@@ -3699,11 +3699,11 @@ msgstr ""
 msgid "Truncating, please wait"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:848
+#: ../../src/gui/timerlist.cpp:865
 msgid "Tuesday"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:586
+#: ../../src/gui/scan_setup.cpp:620
 msgid "Tuner mode"
 msgstr ""
 
@@ -3719,7 +3719,7 @@ msgstr ""
 msgid "UPnP Browser"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:563
+#: ../../src/gui/scan_setup.cpp:597
 msgid "USALS command repeat"
 msgstr ""
 
@@ -3731,7 +3731,7 @@ msgstr ""
 msgid "Umount Network volume"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:234 ../../src/gui/scan_setup.cpp:441
+#: ../../src/gui/scan_setup.cpp:234 ../../src/gui/scan_setup.cpp:475
 msgid "Uncommited/Commited"
 msgstr ""
 
@@ -3739,19 +3739,19 @@ msgstr ""
 msgid "Unicable"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:856
+#: ../../src/gui/scan_setup.cpp:888
 msgid "Unicable SCR address"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:627
+#: ../../src/gui/scan_setup.cpp:661
 msgid "Unicable Setup"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:861 ../../src/gui/scan_setup.cpp:862
+#: ../../src/gui/scan_setup.cpp:893 ../../src/gui/scan_setup.cpp:894
 msgid "Unicable frequency"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:847
+#: ../../src/gui/scan_setup.cpp:879
 msgid "Unicable setup"
 msgstr ""
 
@@ -3759,8 +3759,8 @@ msgstr ""
 msgid "Unicable2 (JESS)"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:816 ../../src/gui/timerlist.cpp:824
-#: ../../src/gui/timerlist.cpp:867 ../../src/gui/timerlist.cpp:879
+#: ../../src/gui/timerlist.cpp:833 ../../src/gui/timerlist.cpp:841
+#: ../../src/gui/timerlist.cpp:884 ../../src/gui/timerlist.cpp:896
 msgid "Unknown"
 msgstr ""
 
@@ -3775,13 +3775,13 @@ msgstr ""
 #: ../../src/gui/network_setup.cpp:226 ../../src/gui/network_setup.cpp:228
 #: ../../src/gui/network_setup.cpp:230 ../../src/gui/network_setup.cpp:232
 #: ../../src/gui/network_setup.cpp:234 ../../src/gui/nfs.cpp:290
-#: ../../src/gui/nfs.cpp:315 ../../src/gui/timerlist.cpp:947
-#: ../../src/gui/timerlist.cpp:951 ../../src/gui/timerlist.cpp:1050
-#: ../../src/gui/timerlist.cpp:1054
+#: ../../src/gui/nfs.cpp:315 ../../src/gui/timerlist.cpp:1002
+#: ../../src/gui/timerlist.cpp:1006 ../../src/gui/timerlist.cpp:1137
+#: ../../src/gui/timerlist.cpp:1141
 msgid "Use 0..9, or use Up/Down,"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:601
+#: ../../src/gui/scan_setup.cpp:635
 msgid "Use NIT"
 msgstr ""
 
@@ -3789,7 +3789,7 @@ msgstr ""
 msgid "Use directory"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:447 ../../src/gui/scan_setup.cpp:541
+#: ../../src/gui/scan_setup.cpp:481 ../../src/gui/scan_setup.cpp:575
 msgid "Use gotoXX"
 msgstr ""
 
@@ -3860,7 +3860,7 @@ msgstr ""
 msgid "Video Settings"
 msgstr ""
 
-#: ../../src/gui/main_setup.cpp:88
+#: ../../src/gui/main_setup.cpp:110
 msgid "Video settings"
 msgstr ""
 
@@ -3916,7 +3916,7 @@ msgstr ""
 msgid "WebTV"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:851
+#: ../../src/gui/timerlist.cpp:868
 msgid "Wednesday"
 msgstr ""
 
@@ -3972,7 +3972,7 @@ msgstr ""
 #: ../../src/gui/audioplayer_setup.cpp:49
 #: ../../src/gui/pictureviewer_setup.cpp:54 ../../src/gui/nfs.cpp:139
 #: ../../src/gui/nfs.cpp:157 ../../src/gui/nfs.cpp:228
-#: ../../src/gui/recording_setup.cpp:58 ../../src/gui/timerlist.cpp:920
+#: ../../src/gui/recording_setup.cpp:58 ../../src/gui/timerlist.cpp:937
 #: ../../src/gui/misc_setup.cpp:78 ../../src/gui/widget/messagebox.cpp:459
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:127
 msgid "Yes"
@@ -4010,7 +4010,7 @@ msgstr ""
 msgid "Zap cycle"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:818 ../../src/gui/timerlist.cpp:908
+#: ../../src/gui/timerlist.cpp:835 ../../src/gui/timerlist.cpp:925
 msgid "Zap to"
 msgstr ""
 
@@ -4070,7 +4070,7 @@ msgstr ""
 msgid "always"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:962 ../../src/gui/timerlist.cpp:1062
+#: ../../src/gui/timerlist.cpp:1017 ../../src/gui/timerlist.cpp:1149
 msgid "amount of timer repeats"
 msgstr ""
 
@@ -4112,17 +4112,17 @@ msgstr ""
 #: ../../src/gui/pictureviewer_setup.cpp:119 ../../src/gui/nfs.cpp:197
 #: ../../src/gui/nfs.cpp:286 ../../src/gui/nfs.cpp:370
 #: ../../src/gui/nfs.cpp:419 ../../src/gui/rc_setup.cpp:151
-#: ../../src/gui/rc_setup.cpp:291 ../../src/gui/scan_setup.cpp:364
-#: ../../src/gui/scan_setup.cpp:381 ../../src/gui/scan_setup.cpp:390
-#: ../../src/gui/scan_setup.cpp:408 ../../src/gui/scan_setup.cpp:424
-#: ../../src/gui/scan_setup.cpp:530 ../../src/gui/scan_setup.cpp:656
-#: ../../src/gui/scan_setup.cpp:789 ../../src/gui/scan_setup.cpp:823
-#: ../../src/gui/scan_setup.cpp:852 ../../src/gui/scan_setup.cpp:1516
+#: ../../src/gui/rc_setup.cpp:291 ../../src/gui/scan_setup.cpp:398
+#: ../../src/gui/scan_setup.cpp:415 ../../src/gui/scan_setup.cpp:424
+#: ../../src/gui/scan_setup.cpp:442 ../../src/gui/scan_setup.cpp:458
+#: ../../src/gui/scan_setup.cpp:564 ../../src/gui/scan_setup.cpp:690
+#: ../../src/gui/scan_setup.cpp:820 ../../src/gui/scan_setup.cpp:854
+#: ../../src/gui/scan_setup.cpp:884 ../../src/gui/scan_setup.cpp:1546
 #: ../../src/gui/recording_setup.cpp:220 ../../src/gui/update.cpp:179
 #: ../../src/gui/update.cpp:870 ../../src/gui/update.cpp:884
 #: ../../src/gui/themes.cpp:227 ../../src/gui/video_setup.cpp:370
-#: ../../src/gui/timerlist.cpp:935 ../../src/gui/timerlist.cpp:1003
-#: ../../src/gui/timerlist.cpp:1042 ../../src/gui/misc_setup.cpp:263
+#: ../../src/gui/timerlist.cpp:990 ../../src/gui/timerlist.cpp:1058
+#: ../../src/gui/timerlist.cpp:1129 ../../src/gui/misc_setup.cpp:263
 #: ../../src/gui/misc_setup.cpp:598 ../../src/gui/misc_setup.cpp:709
 #: ../../src/gui/misc_setup.cpp:906 ../../src/gui/lcd_setup.cpp:136
 #: ../../src/gui/zapit_setup.cpp:160 ../../src/gui/parentallock_setup.cpp:131
@@ -4141,7 +4141,7 @@ msgstr ""
 msgid "be Cached? (Set in hours)"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:835 ../../src/gui/timerlist.cpp:890
+#: ../../src/gui/timerlist.cpp:852 ../../src/gui/timerlist.cpp:907
 msgid "biweekly"
 msgstr ""
 
@@ -4242,7 +4242,7 @@ msgstr ""
 msgid "create screenshot?"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:833 ../../src/gui/timerlist.cpp:888
+#: ../../src/gui/timerlist.cpp:850 ../../src/gui/timerlist.cpp:905
 msgid "daily"
 msgstr ""
 
@@ -4398,7 +4398,7 @@ msgstr ""
 msgid "foreign countries/expeditions"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:836 ../../src/gui/timerlist.cpp:891
+#: ../../src/gui/timerlist.cpp:853 ../../src/gui/timerlist.cpp:908
 msgid "fourweekly"
 msgstr ""
 
@@ -4597,7 +4597,7 @@ msgstr ""
 msgid "monochrom"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:837 ../../src/gui/timerlist.cpp:892
+#: ../../src/gui/timerlist.cpp:854 ../../src/gui/timerlist.cpp:909
 msgid "monthly"
 msgstr ""
 
@@ -4641,7 +4641,7 @@ msgstr ""
 msgid "movie/drama"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:539
+#: ../../src/gui/scan_setup.cpp:573
 msgid "moving speed (10 = 1deg/sec)"
 msgstr ""
 
@@ -4778,13 +4778,13 @@ msgstr ""
 msgid "on locked bouquets"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:893 ../../src/gui/timerlist.cpp:960
-#: ../../src/gui/timerlist.cpp:961 ../../src/gui/timerlist.cpp:1058
-#: ../../src/gui/timerlist.cpp:1059
+#: ../../src/gui/timerlist.cpp:910 ../../src/gui/timerlist.cpp:1015
+#: ../../src/gui/timerlist.cpp:1016 ../../src/gui/timerlist.cpp:1145
+#: ../../src/gui/timerlist.cpp:1146
 msgid "on weekdays"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:832 ../../src/gui/timerlist.cpp:887
+#: ../../src/gui/timerlist.cpp:849 ../../src/gui/timerlist.cpp:904
 msgid "once"
 msgstr ""
 
@@ -4868,7 +4868,7 @@ msgstr ""
 msgid "record max items"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:975 ../../src/gui/timerlist.cpp:1074
+#: ../../src/gui/timerlist.cpp:1030 ../../src/gui/timerlist.cpp:1161
 msgid "recording directory"
 msgstr ""
 
@@ -4897,8 +4897,8 @@ msgstr ""
 msgid "remove screenshot?"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:962 ../../src/gui/timerlist.cpp:964
-#: ../../src/gui/timerlist.cpp:1062 ../../src/gui/timerlist.cpp:1063
+#: ../../src/gui/timerlist.cpp:1017 ../../src/gui/timerlist.cpp:1019
+#: ../../src/gui/timerlist.cpp:1149 ../../src/gui/timerlist.cpp:1150
 msgid "repeats"
 msgstr ""
 
@@ -4946,7 +4946,7 @@ msgstr ""
 msgid "search"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:838
+#: ../../src/gui/timerlist.cpp:855
 msgid "see timer"
 msgstr ""
 
@@ -5173,7 +5173,7 @@ msgstr ""
 msgid "water sports"
 msgstr ""
 
-#: ../../src/gui/timerlist.cpp:834 ../../src/gui/timerlist.cpp:889
+#: ../../src/gui/timerlist.cpp:851 ../../src/gui/timerlist.cpp:906
 msgid "weekly"
 msgstr ""
 

@@ -342,11 +342,45 @@ void CScanSetup::showScanService()
 		dprintf(DEBUG_NORMAL, "CScanSetup::CScanSetup: Loading of scan settings failed. Using defaults.\n");
 	
 	//menue init
-	CMenuWidget * scansetup = new CMenuWidget(_("Scan transponder"), NEUTRINO_ICON_UPDATE);
+	//CMenuWidget * scansetup = new CMenuWidget(_("Scan transponder"), NEUTRINO_ICON_UPDATE);
+	CWidget* widget = NULL;
+	ClistBox* scansetup = NULL;
 	
-	scansetup->setWidgetMode(MODE_SETUP);
-	scansetup->enableShrinkMenu();
+	//scansetup->setWidgetMode(MODE_SETUP);
+	//scansetup->enableShrinkMenu();
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN)->getCCItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN);
+		scansetup = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		scansetup = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		scansetup->setMenuPosition(MENU_POSITION_CENTER);
+		scansetup->setWidgetMode(MODE_SETUP);
+		scansetup->enableShrinkMenu();
+		
+		scansetup->enablePaintHead();
+		scansetup->setTitle(_("Scan transponder"), NEUTRINO_ICON_UPDATE);
 
+		scansetup->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		scansetup->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(scansetup);
+	}
+
+	scansetup->clearItems();
+	////
 	// 
 	dmode = getFE(feindex)->diseqcType;
 	int shortcut = 1;
@@ -767,13 +801,10 @@ void CScanSetup::showScanService()
 	manualScan->addItem(new CMenuSeparator(LINE));
 		
 	// test signal
-	//manualScan->addItem(new CMenuForwarder(_("Test signal"), true, NULL, scanTs, "test", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW) );
+	manualScan->addItem(new CMenuForwarder(_("Test signal"), true, NULL, scanTs, "test", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW) );
 		
 	// scan
 	manualScan->addItem(new CMenuForwarder(_("Start scan"), true, NULL, scanTs, "manual", RC_blue, NEUTRINO_ICON_BUTTON_BLUE) );
-	
-	// test
-	scansetup->addItem(new CMenuForwarder(_("Test signal"), true, NULL, scanTs, "test", CRCInput::convertDigitToKey(shortcut++)) );
 		
 	CMenuForwarder * manScan = new CMenuForwarder(_("Manual frequency scan"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, manualScan, "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW);
 	feModeNotifier->addItem(0, manScan);
@@ -837,9 +868,10 @@ void CScanSetup::showScanService()
 		scansetup->addItem(fautoScanAll);
 	}
 
-	scansetup->exec(NULL, "");
-	scansetup->hide();
-	delete scansetup;
+	//scansetup->exec(NULL, "");
+	//scansetup->hide();
+	//delete scansetup;
+	widget->exec(NULL, "");
 }
 
 int CScanSetup::showUnicableSetup()
@@ -1467,8 +1499,6 @@ int CTunerSetup::exec(CMenuTarget* parent, const std::string& actionKey)
 void CTunerSetup::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CTunerSetup::showMenu\n");
-	
-	//CMenuWidget TunerSetup(_("Servicescan"), NEUTRINO_ICON_UPDATE);
 	
 	CWidget* widget = NULL;
 	ClistBox* TunerSetup = NULL;

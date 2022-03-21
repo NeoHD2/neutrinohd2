@@ -52,6 +52,7 @@ class CTimerList : public CMenuTarget
 		CFrameBuffer* frameBuffer;
 
 		//
+		CWidget* timerlistWidget;
 		ClistBox *listBox;
 		CMenuItem *item;
 		CBox cFrameBox;
