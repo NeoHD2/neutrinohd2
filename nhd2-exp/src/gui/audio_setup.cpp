@@ -152,42 +152,76 @@ void CAudioSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CAudioSettings::showMenu:\n");
 	
-	CMenuWidget audioSettings(_("Audio settings"), NEUTRINO_ICON_AUDIO);
+	//CMenuWidget audioSettings(_("Audio settings"), NEUTRINO_ICON_AUDIO);
 
-	audioSettings.setWidgetMode(MODE_SETUP);
-	audioSettings.enableShrinkMenu();
+	//audioSettings.setWidgetMode(MODE_SETUP);
+	//audioSettings.enableShrinkMenu();
 	
-	int shortcutAudio = 1;
+	//
+	CWidget* widget = NULL;
+	ClistBox* audioSettings = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP)->getCCItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP);
+		audioSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		audioSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		audioSettings->setMenuPosition(MENU_POSITION_CENTER);
+		audioSettings->setWidgetMode(MODE_SETUP);
+		audioSettings->enableShrinkMenu();
+		
+		audioSettings->enablePaintHead();
+		audioSettings->setTitle(_("Audio settings"), NEUTRINO_ICON_AUDIO);
+
+		audioSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		audioSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(audioSettings);
+	}
+	
+	audioSettings->clearItems();
 	
 	// intros
-	audioSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	audioSettings.addItem( new CMenuSeparator(LINE) );
+	audioSettings->addItem(new CMenuForwarder(_("back"), true));
+	audioSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	audioSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	audioSettings.addItem( new CMenuSeparator(LINE) );
+	audioSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
+	audioSettings->addItem( new CMenuSeparator(LINE) );
 
 	// analog output
-	audioSettings.addItem(new CMenuOptionChooser(_("Analog Output"), &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++), "", true ));
+	audioSettings->addItem(new CMenuOptionChooser(_("Analog Output"), &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, audioSetupNotifier, RC_nokey, "", true ));
 
 #if !defined (PLATFORM_COOLSTREAM)	
 	// hdmi-dd
-	audioSettings.addItem(new CMenuOptionChooser(_("Dolby Digital"), &g_settings.hdmi_dd, AC3_OPTIONS, AC3_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++) ));	
+	audioSettings->addItem(new CMenuOptionChooser(_("Dolby Digital"), &g_settings.hdmi_dd, AC3_OPTIONS, AC3_OPTION_COUNT, true, audioSetupNotifier));	
 #endif	
 
 	// A/V sync
-	audioSettings.addItem(new CMenuOptionChooser(_("A/V sync"), &g_settings.avsync, AUDIOMENU_AVSYNC_OPTIONS, AUDIOMENU_AVSYNC_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++), "", true ));
+	audioSettings->addItem(new CMenuOptionChooser(_("A/V sync"), &g_settings.avsync, AUDIOMENU_AVSYNC_OPTIONS, AUDIOMENU_AVSYNC_OPTION_COUNT, true, audioSetupNotifier, RC_nokey, "", true ));
 	
 #if !defined (PLATFORM_COOLSTREAM)	
 	// ac3 delay
-	audioSettings.addItem(new CMenuOptionChooser(_("AC3 Delay"), &g_settings.ac3_delay, AUDIODELAY_OPTIONS, AUDIODELAY_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++) ));
+	audioSettings->addItem(new CMenuOptionChooser(_("AC3 Delay"), &g_settings.ac3_delay, AUDIODELAY_OPTIONS, AUDIODELAY_OPTION_COUNT, true, audioSetupNotifier));
 	
 	// pcm delay
-	audioSettings.addItem(new CMenuOptionChooser(_("PCM Delay"), &g_settings.pcm_delay, AUDIODELAY_OPTIONS, AUDIODELAY_OPTION_COUNT, true, audioSetupNotifier, CRCInput::convertDigitToKey(shortcutAudio++) ));
+	audioSettings->addItem(new CMenuOptionChooser(_("PCM Delay"), &g_settings.pcm_delay, AUDIODELAY_OPTIONS, AUDIODELAY_OPTION_COUNT, true, audioSetupNotifier));
 #endif	
 	
 	// pref sub/lang
-	audioSettings.addItem(new CMenuSeparator(LINE | STRING, _("Audio language preferences")));
+	audioSettings->addItem(new CMenuSeparator(LINE | STRING, _("Audio language preferences")));
 	
 	// auto ac3 
 	CMenuOptionChooser * a1 = new CMenuOptionChooser(_("Dolby Digital"), &g_settings.audio_DolbyDigital, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, g_settings.auto_lang, audioSetupNotifier );
@@ -208,17 +242,17 @@ void CAudioSettings::showMenu()
 	CAutoAudioNotifier * autoAudioNotifier = new CAutoAudioNotifier(a1, audiolangSelect[0], audiolangSelect[1], audiolangSelect[2]);
 	
 	// auto lang
-	audioSettings.addItem(new CMenuOptionChooser(_("Auto select audio"), &g_settings.auto_lang, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, autoAudioNotifier));
+	audioSettings->addItem(new CMenuOptionChooser(_("Auto select audio"), &g_settings.auto_lang, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, autoAudioNotifier));
 	
 	// ac3
-	audioSettings.addItem(a1);
+	audioSettings->addItem(a1);
 	
 	// lang
 	for(int i = 0; i < 3; i++) 
-		audioSettings.addItem(audiolangSelect[i]);
+		audioSettings->addItem(audiolangSelect[i]);
 	
 	// sublang
-	audioSettings.addItem(new CMenuSeparator(LINE | STRING, _("Subtitle language preferences")));
+	audioSettings->addItem(new CMenuSeparator(LINE | STRING, _("Subtitle language preferences")));
 	
 	CMenuOptionStringChooser * sublangSelect[3];
 	for(int i = 0; i < 3; i++) 
@@ -234,15 +268,15 @@ void CAudioSettings::showMenu()
 	CSubLangSelectNotifier * subLangSelectNotifier = new CSubLangSelectNotifier(sublangSelect[0], sublangSelect[1], sublangSelect[2]);
 	
 	// auto sublang
-	audioSettings.addItem(new CMenuOptionChooser(_("Auto select subtitles"), &g_settings.auto_subs, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, subLangSelectNotifier));
+	audioSettings->addItem(new CMenuOptionChooser(_("Auto select subtitles"), &g_settings.auto_subs, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, subLangSelectNotifier));
 	
 	// sublang
 	for(int i = 0; i < 3; i++) 
-		audioSettings.addItem(sublangSelect[i]);
+		audioSettings->addItem(sublangSelect[i]);
 	
-	audioSettings.exec(NULL, "");
-	audioSettings.hide();
-
+	widget->exec(NULL, "");
+	
+	//
 	delete subLangSelectNotifier;
 	delete autoAudioNotifier;
 }

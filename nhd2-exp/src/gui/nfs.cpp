@@ -34,6 +34,9 @@
 #include <config.h>
 #endif
 
+#include <global.h>
+#include <neutrino.h>
+
 #include <gui/nfs.h>
 
 #include <gui/filebrowser.h>
@@ -188,14 +191,50 @@ int CNFSMountGui::exec( CMenuTarget *parent, const std::string &actionKey )
 
 int CNFSMountGui::menu()
 {
-	CMenuWidget mountMenuW(_("Mount Network volume"), NEUTRINO_ICON_NETWORK, 720);
+	//CMenuWidget mountMenuW(_("Mount Network volume"), NEUTRINO_ICON_NETWORK, 720);
 
-	mountMenuW.setWidgetMode(MODE_MENU);
-	mountMenuW.enableShrinkMenu();
+	//mountMenuW.setWidgetMode(MODE_MENU);
+	//mountMenuW.enableShrinkMenu();
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* mountMenuW = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_NFS))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NFS)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NFS)->getCCItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_NFS);
+		mountMenuW = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_NFS)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		mountMenuW = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		mountMenuW->setMenuPosition(MENU_POSITION_CENTER);
+		mountMenuW->setWidgetMode(MODE_SETUP);
+		mountMenuW->enableShrinkMenu();
+		
+		mountMenuW->enablePaintHead();
+		mountMenuW->setTitle(_("Network settings"), NEUTRINO_ICON_NETWORK);
+
+		mountMenuW->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		mountMenuW->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(mountMenuW);
+	}
+	
+	mountMenuW->clearItems();
 	
 	// intros
-	mountMenuW.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	mountMenuW.addItem(new CMenuSeparator(LINE));
+	mountMenuW->addItem(new CMenuForwarder(_("back")));
+	mountMenuW->addItem(new CMenuSeparator(LINE));
 	char s2[12];
 
 	for(int i = 0 ; i < NETWORK_NFS_NR_OF_ENTRIES ; i++)
@@ -212,10 +251,10 @@ int CNFSMountGui::menu()
 		{
 			forwarder->iconName = NEUTRINO_ICON_NOT_MOUNTED;
 		}
-		mountMenuW.addItem(forwarder);
+		mountMenuW->addItem(forwarder);
 	}
 	
-	int ret = mountMenuW.exec(this, "");
+	int ret = widget->exec(this, "");
 
 	return ret;
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-21 12:04+0100\n"
+"POT-Creation-Date: 2022-03-21 14:52+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1208,7 +1208,8 @@ msgstr "Haupt Menü"
 msgid "Make Remaining Channels list"
 msgstr ""
 
-msgid "Manual frequency scan"
+#, fuzzy
+msgid "Manual frequency scan / Test signal"
 msgstr "Manueller Frequenzscan"
 
 msgid "Manuell(ftp) Software Manager"
@@ -1661,6 +1662,9 @@ msgstr ""
 
 msgid "Providers"
 msgstr "Anbieter"
+
+msgid "Proxy server"
+msgstr ""
 
 msgid "Proxyserver"
 msgstr ""
@@ -2591,9 +2595,6 @@ msgstr ""
 
 msgid "Video Resolution"
 msgstr ""
-
-msgid "Video Settings"
-msgstr "Video-Einstellungen"
 
 msgid "Video settings"
 msgstr "Video-Einstellungen"

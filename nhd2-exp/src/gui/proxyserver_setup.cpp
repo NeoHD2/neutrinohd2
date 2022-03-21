@@ -62,24 +62,54 @@ int CProxySetup::showProxySetup()
 {
 	dprintf(DEBUG_DEBUG, "CProxySetup::showProxySetup\n");
 
-	//init
-	CMenuWidget * mn = new CMenuWidget(_("Proxyserver"), NEUTRINO_ICON_NETWORK);
+	//
+	CWidget* widget = NULL;
+	ClistBox* mn = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PROXYSETUP))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PROXYSETUP)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PROXYSETUP)->getCCItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_PROXYSETUP);
+		mn = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_PROXYSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		mn = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		mn->setMenuPosition(MENU_POSITION_CENTER);
+		mn->setWidgetMode(MODE_SETUP);
+		mn->enableShrinkMenu();
+		
+		mn->enablePaintHead();
+		mn->setTitle(_("Proxy server"), NEUTRINO_ICON_NETWORK);
 
-	mn->setWidgetMode(MODE_SETUP);
-	mn->enableShrinkMenu();
+		mn->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		mn->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(mn);
+	}
+	
+	mn->clearItems();
 
 	CStringInputSMS * softUpdate_proxy = new CStringInputSMS(_("Hostname"), g_settings.softupdate_proxyserver, MAX_INPUT_CHARS, _("enter proxyserver name or ip, use host:port"), _("a empty entry means no proxy"), "abcdefghijklmnopqrstuvwxyz0123456789-.: ");
-	mn->addItem(new CMenuForwarder(_("Hostname"), true, g_settings.softupdate_proxyserver, softUpdate_proxy, NULL, RC_red, NEUTRINO_ICON_BUTTON_RED));
+	mn->addItem(new CMenuForwarder(_("Hostname"), true, g_settings.softupdate_proxyserver, softUpdate_proxy));
 
 	CStringInputSMS * softUpdate_proxyuser = new CStringInputSMS(_("Username"), g_settings.softupdate_proxyusername, MAX_INPUT_CHARS, _("enter the proxyserver username"), _("a empty entry means no proxy-auth"), "abcdefghijklmnopqrstuvwxyz0123456789!""§$%&/()=?-. ");
-	mn->addItem(new CMenuForwarder(_("Username"), true, g_settings.softupdate_proxyusername, softUpdate_proxyuser, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+	mn->addItem(new CMenuForwarder(_("Username"), true, g_settings.softupdate_proxyusername, softUpdate_proxyuser));
 
 	CStringInputSMS * softUpdate_proxypass = new CStringInputSMS(_("Password"), g_settings.softupdate_proxypassword, MAX_INPUT_CHARS, _("enter the proxyserver password"), _("a empty entry means no proxy-auth"), "abcdefghijklmnopqrstuvwxyz0123456789!""§$%&/()=?-. ");
-	mn->addItem(new CMenuForwarder(_("Password"), true, g_settings.softupdate_proxypassword, softUpdate_proxypass, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	mn->addItem(new CMenuForwarder(_("Password"), true, g_settings.softupdate_proxypassword, softUpdate_proxypass));
 
-	int res = mn->exec(NULL, "");
-	mn->hide();
-	delete mn;
+	//
+	int res = widget->exec(NULL, "");
+	
 	return res;
 }
 

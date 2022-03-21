@@ -342,13 +342,10 @@ void CScanSetup::showScanService()
 		dprintf(DEBUG_NORMAL, "CScanSetup::CScanSetup: Loading of scan settings failed. Using defaults.\n");
 	
 	//menue init
-	//CMenuWidget * scansetup = new CMenuWidget(_("Scan transponder"), NEUTRINO_ICON_UPDATE);
 	CWidget* widget = NULL;
 	ClistBox* scansetup = NULL;
 	
-	//scansetup->setWidgetMode(MODE_SETUP);
-	//scansetup->enableShrinkMenu();
-	
+	//
 	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN))
 	{
 		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN)->getItemsCount();
@@ -380,7 +377,7 @@ void CScanSetup::showScanService()
 	}
 
 	scansetup->clearItems();
-	////
+	
 	// 
 	dmode = getFE(feindex)->diseqcType;
 	int shortcut = 1;
@@ -395,11 +392,11 @@ void CScanSetup::showScanService()
 		loadMotorPositions();
 	
 	// intros
-	scansetup->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	scansetup->addItem(new CMenuForwarder(_("back"), true));
 	scansetup->addItem(new CMenuSeparator(LINE));
 	
 	//save settings
-	scansetup->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	scansetup->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings"));
 	scansetup->addItem(new CMenuSeparator(LINE));
 			
 	// init satNotify
@@ -617,22 +614,22 @@ void CScanSetup::showScanService()
 		}
 	}
 	
-	scansetup->addItem(new CMenuOptionChooser(_("Tuner mode"),  (int *)&getFE(feindex)->mode, FRONTEND_MODE_OPTIONS, have_twin? FRONTEND_MODE_TWIN_OPTION_COUNT:FRONTEND_MODE_SINGLE_OPTION_COUNT, true, feModeNotifier, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true ));
+	scansetup->addItem(new CMenuOptionChooser(_("Tuner mode"),  (int *)&getFE(feindex)->mode, FRONTEND_MODE_OPTIONS, have_twin? FRONTEND_MODE_TWIN_OPTION_COUNT:FRONTEND_MODE_SINGLE_OPTION_COUNT, true, feModeNotifier, RC_nokey, "", true ));
 	
 	scansetup->addItem( new CMenuSeparator(LINE) );
 
 	// scan type
-	CMenuOptionChooser * ojScantype = new CMenuOptionChooser(_("Scan for services"), (int *)&scanSettings->scanType, SCANTS_ZAPIT_SCANTYPE, SCANTS_ZAPIT_SCANTYPE_COUNT, ((getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP)), NULL, CRCInput::convertDigitToKey(shortcut++), "", true);
+	CMenuOptionChooser * ojScantype = new CMenuOptionChooser(_("Scan for services"), (int *)&scanSettings->scanType, SCANTS_ZAPIT_SCANTYPE, SCANTS_ZAPIT_SCANTYPE_COUNT, ((getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP)), NULL, RC_nokey, "", true);
 	feModeNotifier->addItem(0, ojScantype);
 	scansetup->addItem(ojScantype);
 		
 	// bqts
-	CMenuOptionChooser * ojBouquets = new CMenuOptionChooser(_("Bouquet"), (int *)&scanSettings->bouquetMode, SCANTS_BOUQUET_OPTIONS, SCANTS_BOUQUET_OPTION_COUNT, ((getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP)), NULL, CRCInput::convertDigitToKey(shortcut++), "", true);
+	CMenuOptionChooser * ojBouquets = new CMenuOptionChooser(_("Bouquet"), (int *)&scanSettings->bouquetMode, SCANTS_BOUQUET_OPTIONS, SCANTS_BOUQUET_OPTION_COUNT, ((getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP)), NULL, RC_nokey, "", true);
 	feModeNotifier->addItem(0, ojBouquets);
 	scansetup->addItem(ojBouquets);
 	
 	// NIT
-	CMenuOptionChooser * useNit = new CMenuOptionChooser(_("Use NIT"), (int *)&scanSettings->scan_mode, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, ( (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP) ), NULL, CRCInput::convertDigitToKey(shortcut++) );
+	CMenuOptionChooser * useNit = new CMenuOptionChooser(_("Use NIT"), (int *)&scanSettings->scan_mode, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, ( (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP) ), NULL, RC_nokey);
 	feModeNotifier->addItem(0, useNit);
 	scansetup->addItem(useNit);
 		
@@ -648,7 +645,7 @@ void CScanSetup::showScanService()
 	if( getFE(feindex)->getInfo()->type == FE_QPSK )
 	{
 		// diseqc
-		ojDiseqc = new CMenuOptionChooser(_("DiSEqC"), (int *)&getFE(feindex)->diseqcType, SATSETUP_DISEQC_OPTIONS, SATSETUP_DISEQC_OPTION_COUNT, ( (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != FE_LOOP) ), satNotify, CRCInput::convertDigitToKey(shortcut++), "", true);
+		ojDiseqc = new CMenuOptionChooser(_("DiSEqC"), (int *)&getFE(feindex)->diseqcType, SATSETUP_DISEQC_OPTIONS, SATSETUP_DISEQC_OPTION_COUNT, ( (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != FE_LOOP) ), satNotify, RC_nokey, "", true);
 		feModeNotifier->addItem(1, ojDiseqc);
 		
 		// diseqc repeat
@@ -658,16 +655,16 @@ void CScanSetup::showScanService()
 		feModeNotifier->addItem(4, ojDiseqcRepeats);
 
 		// unicable setup
-		uniSetup = new CMenuForwarder(_("Unicable Setup"), (dmode > DISEQC_ADVANCED ? true : false), NULL, this, "unisetup", CRCInput::convertDigitToKey(shortcut++));
+		uniSetup = new CMenuForwarder(_("Unicable Setup"), (dmode > DISEQC_ADVANCED ? true : false), NULL, this, "unisetup", RC_nokey);
 		satNotify->addItem(3, uniSetup);
 		feModeNotifier->addItem(3, uniSetup);
 
 		// lnb setup
-		fsatSetup = new CMenuForwarder(_("Setup satellites input / LNB"), (getFE(feindex)->mode != FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, satSetup, "", CRCInput::convertDigitToKey(shortcut++));
+		fsatSetup = new CMenuForwarder(_("Setup satellites input / LNB"), (getFE(feindex)->mode != FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, satSetup, "", RC_nokey);
 		feModeNotifier->addItem(1, fsatSetup);
 		
 		// motor setup
-		fmotorMenu = new CMenuForwarder(_("DiSEqC-Settings"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, motorMenu, "", CRCInput::convertDigitToKey(shortcut++));
+		fmotorMenu = new CMenuForwarder(_("DiSEqC-Settings"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, motorMenu, "", RC_nokey);
 		feModeNotifier->addItem(1, fmotorMenu);
 		
 		scansetup->addItem(ojDiseqc);
@@ -678,7 +675,7 @@ void CScanSetup::showScanService()
 	}
 
 	// manuel scan menu
-	CMenuWidget * manualScan = new CMenuWidget(_("Manual frequency scan"), NEUTRINO_ICON_UPDATE);
+	CMenuWidget * manualScan = new CMenuWidget(_("Manual frequency scan / Test signal"), NEUTRINO_ICON_UPDATE);
 
 	manualScan->setWidgetMode(MODE_SETUP);
 	manualScan->enableShrinkMenu();
@@ -806,7 +803,7 @@ void CScanSetup::showScanService()
 	// scan
 	manualScan->addItem(new CMenuForwarder(_("Start scan"), true, NULL, scanTs, "manual", RC_blue, NEUTRINO_ICON_BUTTON_BLUE) );
 		
-	CMenuForwarder * manScan = new CMenuForwarder(_("Manual frequency scan"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, manualScan, "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW);
+	CMenuForwarder * manScan = new CMenuForwarder(_("Manual frequency scan / Test signal"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, manualScan, "");
 	feModeNotifier->addItem(0, manScan);
 	scansetup->addItem(manScan);
 		
@@ -831,7 +828,7 @@ void CScanSetup::showScanService()
 	autoScan->addItem(new CMenuForwarder(_("Start scan"), true, NULL, scanTs, "auto", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW) );
 		
 	// auto scan menu item
-	CMenuForwarder * auScan = new CMenuForwarder(_("Auto-Scan"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, autoScan, "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE);
+	CMenuForwarder * auScan = new CMenuForwarder(_("Auto-Scan"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, autoScan, "");
 	feModeNotifier->addItem(0, auScan);
 	
 	scansetup->addItem(auScan);
@@ -868,9 +865,6 @@ void CScanSetup::showScanService()
 		scansetup->addItem(fautoScanAll);
 	}
 
-	//scansetup->exec(NULL, "");
-	//scansetup->hide();
-	//delete scansetup;
 	widget->exec(NULL, "");
 }
 

@@ -185,11 +185,48 @@ void CNetworkSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CNetworkSettings::showMenu:\n");
 	
-	CMenuWidget networkSettings(_("Network settings"), NEUTRINO_ICON_NETWORK);
+	//CMenuWidget networkSettings(_("Network settings"), NEUTRINO_ICON_NETWORK);
 
-	networkSettings.setWidgetMode(MODE_SETUP);
-	networkSettings.enableShrinkMenu();
+	//networkSettings.setWidgetMode(MODE_SETUP);
+	//networkSettings.enableShrinkMenu();
 	
+	//
+	CWidget* widget = NULL;
+	ClistBox* networkSettings = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP)->getCCItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP);
+		networkSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		networkSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		networkSettings->setMenuPosition(MENU_POSITION_CENTER);
+		networkSettings->setWidgetMode(MODE_SETUP);
+		networkSettings->enableShrinkMenu();
+		
+		networkSettings->enablePaintHead();
+		networkSettings->setTitle(_("Network settings"), NEUTRINO_ICON_NETWORK);
+
+		networkSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		networkSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(networkSettings);
+	}
+	
+	networkSettings->clearItems();
+	
+	//
 	struct dirent **namelist;
 
 	//interface
@@ -241,7 +278,7 @@ void CNetworkSettings::showMenu()
         CStringInputSMS * networkSettings_NtpServer = new CStringInputSMS(_("NTP-Server"), g_settings.network_ntpserver.c_str(), MAX_INPUT_CHARS, _("NTP-Server example: ntp1.ptb.de"), _("need reboot or epg-reset"), "abcdefghijklmnopqrstuvwxyz0123456789-. ", sectionsdConfigNotifier);
         CStringInput * networkSettings_NtpRefresh = new CStringInput(_("NTP/DVB-Refresh"), g_settings.network_ntprefresh.c_str(), 3, _("NTP/DVB-Time-Sync in minutes"), _("need reboot or epg-reset"), "0123456789 ", sectionsdConfigNotifier);
 
-	CMenuForwarder * m0 = new CMenuForwarder(_("Setup network now"), true, NULL, this, "network", RC_green, NEUTRINO_ICON_BUTTON_GREEN);
+	CMenuForwarder * m0 = new CMenuForwarder(_("Setup network now"), true, NULL, this, "network");
 
 	CMenuForwarder * m1 = new CMenuForwarder(_("IP address"), networkConfig->inet_static, networkConfig->address.c_str(), networkSettings_NetworkIP);
 
@@ -265,60 +302,60 @@ void CNetworkSettings::showMenu()
 	CMenuOptionChooser * oj = new CMenuOptionChooser(_("Setup network on startup"), &network_automatic_start, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
 
 	// intros
-	networkSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	networkSettings.addItem( new CMenuSeparator(LINE) );
+	networkSettings->addItem(new CMenuForwarder(_("back"), true));
+	networkSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	networkSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	networkSettings.addItem( new CMenuSeparator(LINE) );
+	networkSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
+	networkSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// setup network on start
-	networkSettings.addItem( oj );
+	networkSettings->addItem( oj );
 
 	// test network now
-	networkSettings.addItem(new CMenuForwarder(_("Test network now"), true, NULL, this, "networktest"));
+	networkSettings->addItem(new CMenuForwarder(_("Test network now"), true, NULL, this, "networktest"));
 
 	// show active network settings
-	networkSettings.addItem(new CMenuForwarder(_("Show active network settings"), true, NULL, this, "networkshow", RC_info, NEUTRINO_ICON_BUTTON_HELP_SMALL));
+	networkSettings->addItem(new CMenuForwarder(_("Show active network settings"), true, NULL, this, "networkshow"));
 	
 	// setup network now
-	networkSettings.addItem( m0 );
+	networkSettings->addItem( m0 );
 	
 	// mac id
-	networkSettings.addItem(new CMenuSeparator(LINE));
-	networkSettings.addItem(mac);	//eth id
+	networkSettings->addItem(new CMenuSeparator(LINE));
+	networkSettings->addItem(mac);	//eth id
 	
 	// interface
 	if(ifcount)
-		networkSettings.addItem(ifSelect);	//if select
+		networkSettings->addItem(ifSelect);	//if select
 	else
 		delete ifSelect;
 
-	networkSettings.addItem(new CMenuSeparator(LINE));
+	networkSettings->addItem(new CMenuSeparator(LINE));
 
 	// dhcp on/off
 	oj = new CMenuOptionChooser(_("DHCP"), &network_dhcp, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, dhcpNotifier);
-	networkSettings.addItem(oj);
+	networkSettings->addItem(oj);
 
 	// hostname
-	networkSettings.addItem( m8);
+	networkSettings->addItem( m8);
 
 	// ip
-	networkSettings.addItem(new CMenuSeparator(LINE));
-	networkSettings.addItem( m1);
+	networkSettings->addItem(new CMenuSeparator(LINE));
+	networkSettings->addItem( m1);
 
 	// netmask
-	networkSettings.addItem( m2);
+	networkSettings->addItem( m2);
 
 	// broadcast
-	networkSettings.addItem( m3);
+	networkSettings->addItem( m3);
 
 	// default gateway
-	networkSettings.addItem(new CMenuSeparator(LINE));
-	networkSettings.addItem( m4);
+	networkSettings->addItem(new CMenuSeparator(LINE));
+	networkSettings->addItem( m4);
 
 	// nameserver
-	networkSettings.addItem( m5);
+	networkSettings->addItem( m5);
 	
 	//
 	if(ifcount > 1) // if there is only one, its probably wired
@@ -335,42 +372,42 @@ void CNetworkSettings::showMenu()
 		wlanEnable[1] = m10;
 		
 		// ssid
-		networkSettings.addItem(new CMenuSeparator(LINE));
-		networkSettings.addItem( m9);
+		networkSettings->addItem(new CMenuSeparator(LINE));
+		networkSettings->addItem( m9);
 
 		// key
-		networkSettings.addItem( m10);
+		networkSettings->addItem( m10);
 
 		//encryption
 		CMenuOptionChooser * m11 = new CMenuOptionChooser(_("Security"), &network_encryption, OPTIONS_WLAN_SECURITY_OPTIONS, OPTIONS_WLAN_SECURITY_OPTION_COUNT, true);
 		wlanEnable[2] = m11;
-		networkSettings.addItem( m11); //encryption
+		networkSettings->addItem( m11); //encryption
 	}
 	
 	// ntp
-	networkSettings.addItem(new CMenuSeparator(LINE | STRING, _("Time-Syncronisation")));
+	networkSettings->addItem(new CMenuSeparator(LINE | STRING, _("Time-Syncronisation")));
 
-	networkSettings.addItem(new CMenuOptionChooser(_("Syncronisation via"), &g_settings.network_ntpenable, OPTIONS_NTPENABLE_OPTIONS, OPTIONS_NTPENABLE_OPTION_COUNT, true, sectionsdConfigNotifier));
+	networkSettings->addItem(new CMenuOptionChooser(_("Syncronisation via"), &g_settings.network_ntpenable, OPTIONS_NTPENABLE_OPTIONS, OPTIONS_NTPENABLE_OPTION_COUNT, true, sectionsdConfigNotifier));
 
 	// ntp server
-        networkSettings.addItem( m6);
+        networkSettings->addItem( m6);
 
 	// ntp refresh
-        networkSettings.addItem( m7);
+        networkSettings->addItem( m7);
 	
 	//proxyserver submenu
-	networkSettings.addItem(new CMenuSeparator(LINE));
-	networkSettings.addItem(new CMenuForwarder(_("Proxyserver"), true, NULL, new CProxySetup(), NULL, RC_nokey, NULL));
+	networkSettings->addItem(new CMenuSeparator(LINE));
+	networkSettings->addItem(new CMenuForwarder(_("Proxyserver"), true, NULL, new CProxySetup(), NULL, RC_nokey, NULL));
 
 	// mount manager
-	networkSettings.addItem(new CMenuSeparator(LINE | STRING, _("Network Mount Manager")));
+	networkSettings->addItem(new CMenuSeparator(LINE | STRING, _("Network Mount Manager")));
 
-	networkSettings.addItem(new CMenuForwarder(_("Mount Network volume"), true, NULL, new CNFSMountGui(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	networkSettings->addItem(new CMenuForwarder(_("Mount Network volume"), true, NULL, new CNFSMountGui()));
 
-	networkSettings.addItem(new CMenuForwarder(_("Umount Network volume"), true, NULL, new CNFSUmountGui(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
+	networkSettings->addItem(new CMenuForwarder(_("Umount Network volume"), true, NULL, new CNFSUmountGui()));
 	
-	networkSettings.exec(NULL, "");
-	networkSettings.hide();
+	//
+	widget->exec(NULL, "");
 
 	delete MyIPChanger;
 	delete dhcpNotifier;

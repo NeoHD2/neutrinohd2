@@ -67,6 +67,8 @@
 #include <gui/video_setup.h>
 #include <gui/parentallock_setup.h>
 #include <gui/network_setup.h>
+#include <gui/proxyserver_setup.h>
+#include <gui/nfs.h>
 #include <gui/movieplayer_setup.h>
 #include <gui/osd_setup.h>
 #include <gui/audioplayer_setup.h>
@@ -122,35 +124,11 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			break;
 			
 		case WIDGET_EPGTIMER:
-			{
-			/*
-				if (widget_exists(WIDGET_EPGTIMER))
-				{
-					parent = getWidget(WIDGET_EPGTIMER);
-				}
-				else
-				*/
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CEPGMenuHandler();
-				}
-			}
+			parent = new CEPGMenuHandler();
 			break;
 			
 		case WIDGET_SERVICE:
-			{
-			/*
-				if (widget_exists(WIDGET_SERVICE))
-				{
-					parent = getWidget(WIDGET_SERVICE);
-				}
-				else
-				*/
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CServiceMenu();
-				}
-			}
+			parent = new CServiceMenu();
 			break;
 			
 		case WIDGET_INFORMATION:
@@ -202,61 +180,19 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			break;
 			
 		case WIDGET_VIDEOSETUP:
-			{
-				if (widget_exists(WIDGET_VIDEOSETUP))
-				{
-					parent = getWidget(WIDGET_VIDEOSETUP);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CVideoSettings();
-				}
-			}
+			parent = new CVideoSettings();
 			break;
 			
 		case WIDGET_AUDIOSETUP:
-			{
-				if (widget_exists(WIDGET_AUDIOSETUP))
-				{
-					parent = getWidget(WIDGET_AUDIOSETUP);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CAudioSettings();
-				}
-			}
+			parent = new CAudioSettings();
 			break;
 			
 		case WIDGET_PARENTALSETUP:
-			{
-			/*
-				if (widget_exists(WIDGET_PARENTALSETUP))
-				{
-					parent = getWidget(WIDGET_PARENTALSETUP);
-				}
-				else
-			*/
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CParentalLockSettings();
-				}
-			}
+			parent = new CParentalLockSettings();
 			break;
 			
 		case WIDGET_NETWORKSETUP:
-			{
-				if (widget_exists(WIDGET_NETWORKSETUP))
-				{
-					parent = getWidget(WIDGET_NETWORKSETUP);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = CNetworkSettings::getInstance();
-				}
-			}
+			parent = CNetworkSettings::getInstance();
 			break;
 			
 		case WIDGET_RECORDINGSETUP:
@@ -763,6 +699,14 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 		case WIDGET_NEWTIMER:
 		case WIDGET_MODIFYTIMER:
 			parent = new CTimerList();	
+			break;
+			
+		case WIDGET_PROXYSETUP:
+			parent = new CProxySetup();
+			break;
+			
+		case WIDGET_NFS:
+			parent = new CNFSMountGui();
 			break;
 		
 		default:
