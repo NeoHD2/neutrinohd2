@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-21 14:52+0100\n"
+"POT-Creation-Date: 2022-03-21 18:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,11 +96,11 @@ msgstr ""
 msgid "?"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:213 ../../src/gui/audio_setup.cpp:298
+#: ../../src/gui/audio_setup.cpp:207 ../../src/gui/audio_setup.cpp:292
 msgid "A/V sync"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:217 ../../src/gui/audio_setup.cpp:315
+#: ../../src/gui/audio_setup.cpp:211 ../../src/gui/audio_setup.cpp:309
 msgid "AC3 Delay"
 msgstr ""
 
@@ -183,7 +183,7 @@ msgstr ""
 msgid "Alpha Setup"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:205 ../../src/gui/audio_setup.cpp:288
+#: ../../src/gui/audio_setup.cpp:199 ../../src/gui/audio_setup.cpp:282
 #: ../../src/gui/video_setup.cpp:418 ../../src/gui/video_setup.cpp:443
 #: ../../src/gui/audio_select.cpp:131
 msgid "Analog Output"
@@ -233,7 +233,7 @@ msgstr ""
 msgid "Audio Playlist"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:224
+#: ../../src/gui/audio_setup.cpp:218
 msgid "Audio language preferences"
 msgstr ""
 
@@ -241,7 +241,7 @@ msgstr ""
 msgid "Audio master"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:180 ../../src/gui/main_setup.cpp:113
+#: ../../src/gui/audio_setup.cpp:174 ../../src/gui/main_setup.cpp:113
 msgid "Audio settings"
 msgstr ""
 
@@ -262,20 +262,19 @@ msgstr ""
 msgid "Auto Play"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:245
+#: ../../src/gui/audio_setup.cpp:239
 msgid "Auto select audio"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:271
+#: ../../src/gui/audio_setup.cpp:265
 msgid "Auto select subtitles"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:407 ../../src/gui/scan_setup.cpp:811
-#: ../../src/gui/scan_setup.cpp:831
+#: ../../src/gui/scan_setup.cpp:856 ../../src/gui/scan_setup.cpp:887
 msgid "Auto-Scan"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:841 ../../src/gui/scan_setup.cpp:846
+#: ../../src/gui/scan_setup.cpp:916 ../../src/gui/scan_setup.cpp:932
 msgid "Auto-Scan multiple Satellites"
 msgstr ""
 
@@ -314,7 +313,7 @@ msgstr ""
 msgid "Backup failed"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:774
+#: ../../src/gui/scan_setup.cpp:801
 msgid "Bandwidth"
 msgstr ""
 
@@ -348,7 +347,7 @@ msgstr ""
 msgid "Border"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:627
+#: ../../src/gui/scan_setup.cpp:626
 msgid "Bouquet"
 msgstr ""
 
@@ -551,11 +550,11 @@ msgstr ""
 msgid "Clear all"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:778
+#: ../../src/gui/scan_setup.cpp:805
 msgid "Code Rate HP"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:782
+#: ../../src/gui/scan_setup.cpp:809
 msgid "Code Rate LP"
 msgstr ""
 
@@ -756,7 +755,7 @@ msgstr ""
 msgid "Details current program"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:648
+#: ../../src/gui/scan_setup.cpp:647
 msgid "DiSEqC"
 msgstr ""
 
@@ -768,11 +767,11 @@ msgstr ""
 msgid "DiSEqC 1.1"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:554 ../../src/gui/scan_setup.cpp:667
+#: ../../src/gui/scan_setup.cpp:554 ../../src/gui/scan_setup.cpp:666
 msgid "DiSEqC-Settings"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:652
+#: ../../src/gui/scan_setup.cpp:651
 msgid "DiSEqC-repeats"
 msgstr ""
 
@@ -853,8 +852,8 @@ msgstr ""
 msgid "Docs:"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:209 ../../src/gui/audio_setup.cpp:227
-#: ../../src/gui/audio_setup.cpp:293 ../../src/gui/audio_select.cpp:135
+#: ../../src/gui/audio_setup.cpp:203 ../../src/gui/audio_setup.cpp:221
+#: ../../src/gui/audio_setup.cpp:287 ../../src/gui/audio_select.cpp:135
 #: ../../src/gui/audio_video_select.cpp:264
 msgid "Dolby Digital"
 msgstr ""
@@ -1034,7 +1033,7 @@ msgstr ""
 msgid "Expert-functions"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:759
+#: ../../src/gui/scan_setup.cpp:786
 msgid "FEC"
 msgstr ""
 
@@ -1176,7 +1175,7 @@ msgstr ""
 msgid "Framerate"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:726 ../../src/gui/scan_setup.cpp:727
+#: ../../src/gui/scan_setup.cpp:753 ../../src/gui/scan_setup.cpp:754
 msgid "Frequency"
 msgstr ""
 
@@ -1239,7 +1238,7 @@ msgstr ""
 msgid "Gradient direction"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:790
+#: ../../src/gui/scan_setup.cpp:817
 msgid "Guard Interval"
 msgstr ""
 
@@ -1382,7 +1381,7 @@ msgstr ""
 msgid "Hide series"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:794
+#: ../../src/gui/scan_setup.cpp:821
 msgid "Hierarchy"
 msgstr ""
 
@@ -1655,7 +1654,7 @@ msgstr ""
 msgid "LUFS"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:580
+#: ../../src/gui/scan_setup.cpp:579
 msgid "LaDirection"
 msgstr ""
 
@@ -1695,7 +1694,7 @@ msgstr ""
 msgid "Last recorded:"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:583 ../../src/gui/scan_setup.cpp:584
+#: ../../src/gui/scan_setup.cpp:582 ../../src/gui/scan_setup.cpp:583
 msgid "Latitude"
 msgstr ""
 
@@ -1753,7 +1752,7 @@ msgstr ""
 msgid "List Start"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:587
+#: ../../src/gui/scan_setup.cpp:586
 msgid "LoDirection"
 msgstr ""
 
@@ -1791,7 +1790,7 @@ msgstr ""
 msgid "Locked program (from %d years up)"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:590 ../../src/gui/scan_setup.cpp:591
+#: ../../src/gui/scan_setup.cpp:589 ../../src/gui/scan_setup.cpp:590
 msgid "Longitude"
 msgstr ""
 
@@ -1819,7 +1818,7 @@ msgstr ""
 msgid "Make Remaining Channels list"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:678 ../../src/gui/scan_setup.cpp:806
+#: ../../src/gui/scan_setup.cpp:695 ../../src/gui/scan_setup.cpp:833
 msgid "Manual frequency scan / Test signal"
 msgstr ""
 
@@ -1906,8 +1905,8 @@ msgstr ""
 msgid "Modify timer"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:740 ../../src/gui/scan_setup.cpp:744
-#: ../../src/gui/scan_setup.cpp:748
+#: ../../src/gui/scan_setup.cpp:767 ../../src/gui/scan_setup.cpp:771
+#: ../../src/gui/scan_setup.cpp:775
 msgid "Modulation"
 msgstr ""
 
@@ -1930,7 +1929,7 @@ msgstr ""
 
 #: ../../src/gui/motorcontrol.cpp:522 ../../src/gui/motorcontrol.cpp:593
 #: ../../src/gui/scan_setup.cpp:416 ../../src/gui/scan_setup.cpp:552
-#: ../../src/gui/scan_setup.cpp:566
+#: ../../src/gui/scan_setup.cpp:565
 msgid "Motor Setup"
 msgstr ""
 
@@ -2257,8 +2256,8 @@ msgstr ""
 
 #: ../../src/gui/scan_setup.cpp:82 ../../src/gui/scan_setup.cpp:466
 #: ../../src/gui/scan_setup.cpp:469 ../../src/gui/scan_setup.cpp:472
-#: ../../src/gui/scan_setup.cpp:475 ../../src/gui/scan_setup.cpp:594
-#: ../../src/gui/scan_setup.cpp:883 ../../src/gui/audio_select.cpp:67
+#: ../../src/gui/scan_setup.cpp:475 ../../src/gui/scan_setup.cpp:593
+#: ../../src/gui/scan_setup.cpp:1001 ../../src/gui/audio_select.cpp:67
 msgid "Off"
 msgstr ""
 
@@ -2309,7 +2308,7 @@ msgstr ""
 msgid "Overwrite?"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:220 ../../src/gui/audio_setup.cpp:320
+#: ../../src/gui/audio_setup.cpp:214 ../../src/gui/audio_setup.cpp:314
 msgid "PCM Delay"
 msgstr ""
 
@@ -2409,7 +2408,7 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:736
+#: ../../src/gui/scan_setup.cpp:763
 msgid "Polarization"
 msgstr ""
 
@@ -2438,7 +2437,7 @@ msgstr ""
 msgid "Prefer TMDB infos ?"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:260
+#: ../../src/gui/audio_setup.cpp:254
 msgid "Prefered subtitle language"
 msgstr ""
 
@@ -2446,7 +2445,7 @@ msgstr ""
 msgid "Preferred EPG language"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:234
+#: ../../src/gui/audio_setup.cpp:228
 msgid "Preferred language"
 msgstr ""
 
@@ -2741,6 +2740,10 @@ msgstr ""
 msgid "Sat"
 msgstr ""
 
+#: ../../src/gui/scan_setup.cpp:408
+msgid "Sat settings"
+msgstr ""
+
 #: ../../../plugins/satipclient/satipclient.cpp:193
 msgid "SatIP Client Debug"
 msgstr ""
@@ -2758,7 +2761,7 @@ msgid "SatIP Server Port"
 msgstr ""
 
 #: ../../src/gui/streaminfo2.cpp:662 ../../src/gui/scan_setup.cpp:431
-#: ../../src/gui/scan_setup.cpp:433 ../../src/gui/scan_setup.cpp:859
+#: ../../src/gui/scan_setup.cpp:433 ../../src/gui/scan_setup.cpp:945
 msgid "Satellite"
 msgstr ""
 
@@ -2833,13 +2836,13 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:228 ../../src/gui/osd_setup.cpp:385
 #: ../../src/gui/osd_setup.cpp:621 ../../src/gui/osd_setup.cpp:692
 #: ../../src/gui/osd_setup.cpp:876 ../../src/gui/hdd_menu.cpp:194
-#: ../../src/gui/network_setup.cpp:309 ../../src/gui/audio_setup.cpp:201
+#: ../../src/gui/network_setup.cpp:309 ../../src/gui/audio_setup.cpp:195
 #: ../../src/gui/audioplayer_setup.cpp:108
 #: ../../src/gui/pictureviewer_setup.cpp:123 ../../src/gui/rc_setup.cpp:155
 #: ../../src/gui/rc_setup.cpp:295 ../../src/gui/scan_setup.cpp:288
-#: ../../src/gui/scan_setup.cpp:399 ../../src/gui/scan_setup.cpp:459
-#: ../../src/gui/scan_setup.cpp:564 ../../src/gui/scan_setup.cpp:691
-#: ../../src/gui/scan_setup.cpp:821 ../../src/gui/scan_setup.cpp:855
+#: ../../src/gui/scan_setup.cpp:400 ../../src/gui/scan_setup.cpp:459
+#: ../../src/gui/scan_setup.cpp:563 ../../src/gui/scan_setup.cpp:719
+#: ../../src/gui/scan_setup.cpp:877 ../../src/gui/scan_setup.cpp:941
 #: ../../src/gui/recording_setup.cpp:93 ../../src/gui/recording_setup.cpp:224
 #: ../../src/gui/update.cpp:874 ../../src/gui/themes.cpp:231
 #: ../../src/gui/video_setup.cpp:408 ../../src/gui/misc_setup.cpp:267
@@ -2931,7 +2934,7 @@ msgstr ""
 msgid "Scan for Movies ..."
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:622
+#: ../../src/gui/scan_setup.cpp:621
 msgid "Scan for services"
 msgstr ""
 
@@ -3043,7 +3046,7 @@ msgstr ""
 msgid "Select theme"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:700 ../../src/gui/scan_setup.cpp:938
+#: ../../src/gui/scan_setup.cpp:728 ../../src/gui/scan_setup.cpp:1072
 msgid "Select transponder"
 msgstr ""
 
@@ -3090,7 +3093,7 @@ msgstr ""
 msgid "Service"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:1520
+#: ../../src/gui/scan_setup.cpp:1668
 msgid "Servicescan"
 msgstr ""
 
@@ -3144,7 +3147,7 @@ msgstr ""
 msgid "Setup new key"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:663
+#: ../../src/gui/scan_setup.cpp:662
 msgid "Setup satellites input / LNB"
 msgstr ""
 
@@ -3290,8 +3293,8 @@ msgstr ""
 msgid "Start movie from:"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:804 ../../src/gui/scan_setup.cpp:828
-#: ../../src/gui/scan_setup.cpp:862
+#: ../../src/gui/scan_setup.cpp:831 ../../src/gui/scan_setup.cpp:884
+#: ../../src/gui/scan_setup.cpp:948
 msgid "Start scan"
 msgstr ""
 
@@ -3369,7 +3372,7 @@ msgstr ""
 msgid "Subtitle Select"
 msgstr ""
 
-#: ../../src/gui/audio_setup.cpp:255
+#: ../../src/gui/audio_setup.cpp:249
 msgid "Subtitle language preferences"
 msgstr ""
 
@@ -3385,7 +3388,7 @@ msgstr ""
 msgid "Sunday"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:597
+#: ../../src/gui/scan_setup.cpp:596
 msgid "Swap rotor east/west"
 msgstr ""
 
@@ -3393,7 +3396,7 @@ msgstr ""
 msgid "Switch Step/Drive Mode (b)"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:754 ../../src/gui/scan_setup.cpp:755
+#: ../../src/gui/scan_setup.cpp:781 ../../src/gui/scan_setup.cpp:782
 msgid "Symbol rate"
 msgstr ""
 
@@ -3493,7 +3496,7 @@ msgstr ""
 msgid "Test network now"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:801 ../../src/gui/scan.cpp:554
+#: ../../src/gui/scan_setup.cpp:828 ../../src/gui/scan.cpp:554
 msgid "Test signal"
 msgstr ""
 
@@ -3671,7 +3674,7 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:786
+#: ../../src/gui/scan_setup.cpp:813
 msgid "Transmission mode"
 msgstr ""
 
@@ -3707,7 +3710,7 @@ msgstr ""
 msgid "Tuesday"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:617
+#: ../../src/gui/scan_setup.cpp:616
 msgid "Tuner mode"
 msgstr ""
 
@@ -3723,7 +3726,7 @@ msgstr ""
 msgid "UPnP Browser"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:594
+#: ../../src/gui/scan_setup.cpp:593
 msgid "USALS command repeat"
 msgstr ""
 
@@ -3743,20 +3746,20 @@ msgstr ""
 msgid "Unicable"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:882
+#: ../../src/gui/scan_setup.cpp:1000
 msgid "Unicable SCR address"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:658
+#: ../../src/gui/scan_setup.cpp:657
 msgid "Unicable Setup"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:887 ../../src/gui/scan_setup.cpp:888
+#: ../../src/gui/scan_setup.cpp:1005 ../../src/gui/scan_setup.cpp:1006
 msgid "Unicable frequency"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:873
-msgid "Unicable setup"
+#: ../../src/gui/scan_setup.cpp:980
+msgid "Unicable settings"
 msgstr ""
 
 #: ../../src/gui/scan_setup.cpp:121
@@ -3785,7 +3788,7 @@ msgstr ""
 msgid "Use 0..9, or use Up/Down,"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:632
+#: ../../src/gui/scan_setup.cpp:631
 msgid "Use NIT"
 msgstr ""
 
@@ -3793,7 +3796,7 @@ msgstr ""
 msgid "Use directory"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:478 ../../src/gui/scan_setup.cpp:572
+#: ../../src/gui/scan_setup.cpp:478 ../../src/gui/scan_setup.cpp:571
 msgid "Use gotoXX"
 msgstr ""
 
@@ -4107,17 +4110,17 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:689 ../../src/gui/osd_setup.cpp:873
 #: ../../src/gui/cam_menu.cpp:121 ../../src/gui/hdd_menu.cpp:190
 #: ../../src/gui/hdd_menu.cpp:307 ../../src/gui/hdd_menu.cpp:351
-#: ../../src/gui/network_setup.cpp:305 ../../src/gui/audio_setup.cpp:197
+#: ../../src/gui/network_setup.cpp:305 ../../src/gui/audio_setup.cpp:191
 #: ../../src/gui/audioplayer_setup.cpp:104
 #: ../../src/gui/pictureviewer_setup.cpp:119 ../../src/gui/nfs.cpp:236
 #: ../../src/gui/nfs.cpp:325 ../../src/gui/nfs.cpp:409
 #: ../../src/gui/nfs.cpp:458 ../../src/gui/rc_setup.cpp:151
-#: ../../src/gui/rc_setup.cpp:291 ../../src/gui/scan_setup.cpp:395
+#: ../../src/gui/rc_setup.cpp:291 ../../src/gui/scan_setup.cpp:396
 #: ../../src/gui/scan_setup.cpp:412 ../../src/gui/scan_setup.cpp:421
 #: ../../src/gui/scan_setup.cpp:439 ../../src/gui/scan_setup.cpp:455
-#: ../../src/gui/scan_setup.cpp:561 ../../src/gui/scan_setup.cpp:687
-#: ../../src/gui/scan_setup.cpp:817 ../../src/gui/scan_setup.cpp:851
-#: ../../src/gui/scan_setup.cpp:878 ../../src/gui/scan_setup.cpp:1540
+#: ../../src/gui/scan_setup.cpp:560 ../../src/gui/scan_setup.cpp:715
+#: ../../src/gui/scan_setup.cpp:873 ../../src/gui/scan_setup.cpp:937
+#: ../../src/gui/scan_setup.cpp:996 ../../src/gui/scan_setup.cpp:1688
 #: ../../src/gui/recording_setup.cpp:220 ../../src/gui/update.cpp:179
 #: ../../src/gui/update.cpp:870 ../../src/gui/update.cpp:884
 #: ../../src/gui/themes.cpp:227 ../../src/gui/video_setup.cpp:404
@@ -4641,7 +4644,7 @@ msgstr ""
 msgid "movie/drama"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:570
+#: ../../src/gui/scan_setup.cpp:569
 msgid "moving speed (10 = 1deg/sec)"
 msgstr ""
 

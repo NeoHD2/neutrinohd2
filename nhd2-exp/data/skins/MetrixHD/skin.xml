@@ -98,6 +98,101 @@
 		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
 	</WIDGET>
 	
+	<WIDGET name="autoscanall" id="104" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Auto-Scan multiple Satellites" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
+	<WIDGET name="autoscan" id="103" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Auto scan" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
+	<WIDGET name="manualscan" id="102" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Manual frequency scan / Test signal" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
+	<WIDGET name="unicablesetup" id="101" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Unicable settings" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
+	<WIDGET name="transponder" id="100" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Select transponder" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
 	<WIDGET name="scansetup" id="64" posx="0" posy="0" width="1280" height="720">
 		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
 		</LISTBOX>

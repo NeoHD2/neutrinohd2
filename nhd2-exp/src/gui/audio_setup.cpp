@@ -152,11 +152,6 @@ void CAudioSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CAudioSettings::showMenu:\n");
 	
-	//CMenuWidget audioSettings(_("Audio settings"), NEUTRINO_ICON_AUDIO);
-
-	//audioSettings.setWidgetMode(MODE_SETUP);
-	//audioSettings.enableShrinkMenu();
-	
 	//
 	CWidget* widget = NULL;
 	ClistBox* audioSettings = NULL;
@@ -164,7 +159,6 @@ void CAudioSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP))
 	{
 		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP)->getCCItemsCount();
 		
 		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP);
 		audioSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);

@@ -545,10 +545,8 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			}
 			break;
 			
-		case WIDGET_SCANSETUP:
-			{
-				parent = new CTunerSetup();
-			}
+		case WIDGET_TUNERSETUP:
+			parent = new CTunerSetup();
 			break;
 			
 		case WIDGET_CICAMSETUP:
@@ -707,6 +705,16 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			
 		case WIDGET_NFS:
 			parent = new CNFSMountGui();
+			break;
+			
+		case WIDGET_TRANSPONDER:
+			parent = new CTPSelectHandler();
+			break;
+		
+		case WIDGET_MANUALSCAN:
+		case WIDGET_AUTOSCAN:	
+		case WIDGET_UNICABLESETUP:
+			parent = new CScanSetup();
 			break;
 		
 		default:

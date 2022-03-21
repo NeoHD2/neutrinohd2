@@ -55,6 +55,8 @@ class CBEBouquetWidget : public CMenuTarget
 
 		CFrameBuffer *frameBuffer;
 		CBox cFrameBox;
+		
+		CWidget* widget;
 		ClistBox *listBox;
 		CMenuItem *item;
 

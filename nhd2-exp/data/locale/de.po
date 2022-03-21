@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-21 14:52+0100\n"
+"POT-Creation-Date: 2022-03-21 18:56+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1841,6 +1841,10 @@ msgstr ""
 msgid "Sat"
 msgstr ""
 
+#, fuzzy
+msgid "Sat settings"
+msgstr "OSD Einstellungen"
+
 msgid "SatIP Client Debug"
 msgstr ""
 
@@ -2524,8 +2528,9 @@ msgstr ""
 msgid "Unicable frequency"
 msgstr ""
 
-msgid "Unicable setup"
-msgstr ""
+#, fuzzy
+msgid "Unicable settings"
+msgstr "Diverse Einstellungen"
 
 msgid "Unicable2 (JESS)"
 msgstr ""

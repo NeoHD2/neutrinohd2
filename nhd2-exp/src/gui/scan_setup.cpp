@@ -285,7 +285,7 @@ int CScanSetup::exec(CMenuTarget * parent, const std::string &actionKey)
 	if(actionKey == "save_scansettings") 
 	{
 		// hint box
-		CHintBox * hintBox = new CHintBox(_("Information"), /*g_Locale->getText(LOCALE_MAINSETTINGS_SAVESETTINGSNOW_HINT)*/_("Save settings now")); // UTF-8
+		CHintBox * hintBox = new CHintBox(_("Information"), _("Save settings now")); // UTF-8
 		hintBox->paint();
 		
 		// save scan.conf
@@ -341,7 +341,7 @@ void CScanSetup::showScanService()
 	if( !scanSettings->loadSettings(NEUTRINO_SCAN_SETTINGS_FILE, feindex) ) 
 		dprintf(DEBUG_NORMAL, "CScanSetup::CScanSetup: Loading of scan settings failed. Using defaults.\n");
 	
-	//menue init
+	//
 	CWidget* widget = NULL;
 	ClistBox* scansetup = NULL;
 	
@@ -382,7 +382,8 @@ void CScanSetup::showScanService()
 	dmode = getFE(feindex)->diseqcType;
 	int shortcut = 1;
 	
-	sat_iterator_t sit; //sat list iterator
+	//sat list iterator
+	sat_iterator_t sit;
 	
 	// load frontend config
 	loadFrontendConfig();
@@ -404,15 +405,14 @@ void CScanSetup::showScanService()
 	CScanSetupNotifier * feModeNotifier = new CScanSetupNotifier(feindex);
 	
 	// Sat Setup
-	CMenuWidget * satSetup = new CMenuWidget(_("Auto-Scan"), NEUTRINO_ICON_UPDATE);
-
+	CMenuWidget * satSetup = new CMenuWidget(_("Sat settings"), NEUTRINO_ICON_UPDATE);
 	satSetup->setWidgetMode(MODE_SETUP);
 	satSetup->enableShrinkMenu();
 	
 	satSetup->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 	satSetup->addItem(new CMenuSeparator(LINE));
 
-	// satfind menu
+	// motot setup
 	CMenuWidget * satfindMenu = new CMenuWidget(_("Motor Setup"), NEUTRINO_ICON_UPDATE);
 
 	satfindMenu->setWidgetMode(MODE_SETUP);
@@ -428,7 +428,7 @@ void CScanSetup::showScanService()
 	// scan setup SAT
 	if( getFE(feindex)->getInfo()->type == FE_QPSK) 
 	{
-		satSelect = new CMenuOptionStringChooser(_("Satellite"), scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
+		satSelect = new CMenuOptionStringChooser(_("Satellite"), scanSettings->satNameNoDiseqc, true, NULL, RC_nokey, "", true);
 			
 		satOnOff = new CMenuWidget(_("Satellite"), NEUTRINO_ICON_UPDATE);
 
@@ -503,7 +503,7 @@ void CScanSetup::showScanService()
 	} 
 	else if ( getFE(feindex)->getInfo()->type == FE_QAM) 
 	{
-		satSelect = new CMenuOptionStringChooser(_("Cable:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
+		satSelect = new CMenuOptionStringChooser(_("Cable:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_nokey, "", true);
 
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++) 
 		{
@@ -516,7 +516,7 @@ void CScanSetup::showScanService()
 	}
 	else if ( getFE(feindex)->getInfo()->type == FE_OFDM) 
 	{
-		satSelect = new CMenuOptionStringChooser(_("Provider:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
+		satSelect = new CMenuOptionStringChooser(_("Provider:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_nokey, "", true);
 
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++)
 		{
@@ -529,7 +529,7 @@ void CScanSetup::showScanService()
 	}
     	else if ( getFE(feindex)->getInfo()->type == FE_ATSC) 
 	{
-		satSelect = new CMenuOptionStringChooser(_("Provider:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, true);
+		satSelect = new CMenuOptionStringChooser(_("Provider:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_nokey, "", true);
 
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++)
 		{
@@ -544,7 +544,7 @@ void CScanSetup::showScanService()
 	// sat select menu
 	satfindMenu->addItem(satSelect);
 
-	// motor menu
+	// motor menu/diseqc
 	CMenuWidget * motorMenu = NULL;
 
 	if ( getFE(feindex)->getInfo()->type == FE_QPSK) 
@@ -552,7 +552,6 @@ void CScanSetup::showScanService()
 		satfindMenu->addItem(new CMenuForwarder(_("Motor Setup"), true, NULL, new CMotorControl(feindex), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
 
 		motorMenu = new CMenuWidget(_("DiSEqC-Settings"), NEUTRINO_ICON_UPDATE);
-
 		motorMenu->setWidgetMode(MODE_SETUP);
 		motorMenu->enableShrinkMenu();
 		
@@ -673,22 +672,51 @@ void CScanSetup::showScanService()
 		scansetup->addItem(fsatSetup);
 		scansetup->addItem(fmotorMenu);
 	}
+	
+	//
+	CWidget* manualScanWidget = NULL;
+	ClistBox* manualScan = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MANUALSCAN))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MANUALSCAN)->getItemsCount();
+		
+		manualScanWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MANUALSCAN);
+		manualScan = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MANUALSCAN)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		manualScan = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		manualScan->setMenuPosition(MENU_POSITION_CENTER);
+		manualScan->setWidgetMode(MODE_SETUP);
+		manualScan->enableShrinkMenu();
+		
+		manualScan->enablePaintHead();
+		manualScan->setTitle(_("Manual frequency scan / Test signal"), NEUTRINO_ICON_UPDATE);
 
-	// manuel scan menu
-	CMenuWidget * manualScan = new CMenuWidget(_("Manual frequency scan / Test signal"), NEUTRINO_ICON_UPDATE);
+		manualScan->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		manualScan->setFootButtons(&btn);
+		
+		//
+		manualScanWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		manualScanWidget->setMenuPosition(MENU_POSITION_CENTER);
+		manualScanWidget->addItem(manualScan);
+	}
+	
+	manualScan->clearItems();
 
-	manualScan->setWidgetMode(MODE_SETUP);
-	manualScan->enableShrinkMenu();
-
-	//int man_shortcut = 1;
+	//
 	CScanTs * scanTs = new CScanTs(feindex);
 
 	// intros
-	manualScan->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	manualScan->addItem(new CMenuForwarder(_("back")));
 	manualScan->addItem(new CMenuSeparator(LINE));
 	
 	// save settings
-	manualScan->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	manualScan->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings"));
 	manualScan->addItem(new CMenuSeparator(LINE));
 
 	// sat select
@@ -722,7 +750,6 @@ void CScanSetup::showScanService()
 		break;
 	}
 	
-	//int freq_length = ( getFE(feindex)->getInfo()->type == FE_QPSK) ? 8 : 6;
 	CStringInput * freq = new CStringInput(_("Frequency"), (char *) scanSettings->TP_freq, freq_length, NULL, NULL, "0123456789");
 	CMenuForwarder * Freq = new CMenuForwarder(_("Frequency"), true, scanSettings->TP_freq, freq, "", RC_nokey );
 		
@@ -743,7 +770,7 @@ void CScanSetup::showScanService()
 	{
 		mod_pol = new CMenuOptionChooser(_("Modulation"), (int *)&scanSettings->TP_const, CABLETERRESTRIALSETUP_SCANTP_MOD, CABLETERRESTRIALSETUP_SCANTP_MOD_COUNT, true, NULL, RC_nokey, "", true);
 	}
-    else if( getFE(feindex)->getInfo()->type == FE_ATSC)
+    	else if( getFE(feindex)->getInfo()->type == FE_ATSC)
 	{
 		mod_pol = new CMenuOptionChooser(_("Modulation"), (int *)&scanSettings->TP_const, CABLETERRESTRIALSETUP_SCANTP_MOD, CABLETERRESTRIALSETUP_SCANTP_MOD_COUNT, true, NULL, RC_nokey, "", true);
 	}
@@ -798,37 +825,66 @@ void CScanSetup::showScanService()
 	manualScan->addItem(new CMenuSeparator(LINE));
 		
 	// test signal
-	manualScan->addItem(new CMenuForwarder(_("Test signal"), true, NULL, scanTs, "test", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW) );
+	manualScan->addItem(new CMenuForwarder(_("Test signal"), true, NULL, scanTs, "test") );
 		
 	// scan
-	manualScan->addItem(new CMenuForwarder(_("Start scan"), true, NULL, scanTs, "manual", RC_blue, NEUTRINO_ICON_BUTTON_BLUE) );
+	manualScan->addItem(new CMenuForwarder(_("Start scan"), true, NULL, scanTs, "manual") );
 		
-	CMenuForwarder * manScan = new CMenuForwarder(_("Manual frequency scan / Test signal"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, manualScan, "");
+	CMenuForwarder * manScan = new CMenuForwarder(_("Manual frequency scan / Test signal"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, manualScanWidget, "");
 	feModeNotifier->addItem(0, manScan);
 	scansetup->addItem(manScan);
 		
 	// auto scan menu
-	CMenuWidget * autoScan = new CMenuWidget(_("Auto-Scan"), NEUTRINO_ICON_UPDATE);
+	CWidget* autoScanWidget = NULL;
+	ClistBox* autoScan = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCAN))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCAN)->getItemsCount();
+		
+		autoScanWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCAN);
+		autoScan = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCAN)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		autoScan = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		autoScan->setMenuPosition(MENU_POSITION_CENTER);
+		autoScan->setWidgetMode(MODE_SETUP);
+		autoScan->enableShrinkMenu();
+		
+		autoScan->enablePaintHead();
+		autoScan->setTitle(_("Auto-Scan"), NEUTRINO_ICON_UPDATE);
 
-	autoScan->setWidgetMode(MODE_SETUP);
-	autoScan->enableShrinkMenu();
+		autoScan->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		autoScan->setFootButtons(&btn);
+		
+		//
+		autoScanWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		autoScanWidget->setMenuPosition(MENU_POSITION_CENTER);
+		autoScanWidget->addItem(autoScan);
+	}
+	
+	autoScan->clearItems();
 	
 	// intros
-	autoScan->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	autoScan->addItem(new CMenuForwarder(_("back")));
 	autoScan->addItem(new CMenuSeparator(LINE));
 	
 	// save settings
-	autoScan->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	autoScan->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings"));
 	autoScan->addItem(new CMenuSeparator(LINE));
 		
 	// sat select
 	autoScan->addItem(satSelect);
 		
 	// auto scan
-	autoScan->addItem(new CMenuForwarder(_("Start scan"), true, NULL, scanTs, "auto", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW) );
+	autoScan->addItem(new CMenuForwarder(_("Start scan"), true, NULL, scanTs, "auto") );
 		
 	// auto scan menu item
-	CMenuForwarder * auScan = new CMenuForwarder(_("Auto-Scan"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, autoScan, "");
+	CMenuForwarder * auScan = new CMenuForwarder(_("Auto-Scan"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, autoScanWidget, "");
 	feModeNotifier->addItem(0, auScan);
 	
 	scansetup->addItem(auScan);
@@ -838,28 +894,58 @@ void CScanSetup::showScanService()
 		
 	if( getFE(feindex)->getInfo()->type == FE_QPSK )
 	{
-		CMenuWidget * autoScanAll = new CMenuWidget(_("Auto-Scan multiple Satellites"), NEUTRINO_ICON_UPDATE);
-
-		autoScanAll->setWidgetMode(MODE_SETUP);
-		autoScanAll->enableShrinkMenu();
+		//
+		CWidget* autoScanAllWidget = NULL;
+		ClistBox* autoScanAll = NULL;
+		
+		if (CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCANALL))
+		{
+			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCANALL)->getItemsCount();
 			
-		fautoScanAll = new CMenuForwarder(_("Auto-Scan multiple Satellites"), ( (dmode != NO_DISEQC) && (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP)), NULL, autoScanAll );
+			autoScanAllWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCANALL);
+			autoScanAll = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCANALL)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		}
+		else
+		{
+			autoScanAll = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			autoScanAll->setMenuPosition(MENU_POSITION_CENTER);
+			autoScanAll->setWidgetMode(MODE_SETUP);
+			autoScanAll->enableShrinkMenu();
+			
+			autoScanAll->enablePaintHead();
+			autoScanAll->setTitle(_("Auto-Scan multiple Satellites"), NEUTRINO_ICON_UPDATE);
+
+			autoScanAll->enablePaintFoot();
+				
+			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+				
+			autoScanAll->setFootButtons(&btn);
+			
+			//
+			autoScanAllWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			autoScanAllWidget->setMenuPosition(MENU_POSITION_CENTER);
+			autoScanAllWidget->addItem(autoScanAll);
+		}
+		
+		autoScanAll->clearItems();
+			
+		fautoScanAll = new CMenuForwarder(_("Auto-Scan multiple Satellites"), ( (dmode != NO_DISEQC) && (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP)), NULL, autoScanAllWidget );
 		satNotify->addItem(2, fautoScanAll);
 		feModeNotifier->addItem(2, fautoScanAll);
 
 		// intros
-		autoScanAll->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+		autoScanAll->addItem(new CMenuForwarder(_("back")));
 		autoScanAll->addItem(new CMenuSeparator(LINE));
 		
 		// save settings
-		autoScanAll->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+		autoScanAll->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings"));
 		autoScanAll->addItem(new CMenuSeparator(LINE));
 		
 		// sat
-		autoScanAll->addItem(new CMenuForwarder(_("Satellite"), true, NULL, satOnOff, "", RC_green, NEUTRINO_ICON_BUTTON_GREEN ));
+		autoScanAll->addItem(new CMenuForwarder(_("Satellite"), true, NULL, satOnOff));
 			
 		// scan
-		autoScanAll->addItem(new CMenuForwarder(_("Start scan"), true, NULL, scanTs, "all", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW ) );
+		autoScanAll->addItem(new CMenuForwarder(_("Start scan"), true, NULL, scanTs, "all") );
 
 		// add item 
 		scansetup->addItem(fautoScanAll);
@@ -870,12 +956,44 @@ void CScanSetup::showScanService()
 
 int CScanSetup::showUnicableSetup()
 {
-	CMenuWidget * uni_setup = new CMenuWidget(_("Unicable setup"), NEUTRINO_ICON_UPDATE);
+	dprintf(DEBUG_INFO, "CScanSetup::showUnicableSetup\n");
+	
+	//
+	CWidget* uniWidget = NULL;
+	ClistBox* uni_setup = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_UNICABLESETUP))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_UNICABLESETUP)->getItemsCount();
+		
+		uniWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_UNICABLESETUP);
+		uni_setup = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_UNICABLESETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		uni_setup = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		uni_setup->setMenuPosition(MENU_POSITION_CENTER);
+		uni_setup->setWidgetMode(MODE_SETUP);
+		uni_setup->enableShrinkMenu();
+		
+		uni_setup->enablePaintHead();
+		uni_setup->setTitle(_("Unicable settings"), NEUTRINO_ICON_UPDATE);
 
-	uni_setup->setWidgetMode(MODE_SETUP);
-	uni_setup->enableShrinkMenu();
+		uni_setup->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		uni_setup->setFootButtons(&btn);
+		
+		//
+		uniWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		uniWidget->setMenuPosition(MENU_POSITION_CENTER);
+		uniWidget->addItem(uni_setup);
+	}
+	
+	uni_setup->clearItems();
 
-	uni_setup->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	uni_setup->addItem(new CMenuForwarder(_("back")));
 	uni_setup->addItem(new CMenuSeparator(LINE));
 
 	// uni_scr
@@ -888,9 +1006,8 @@ int CScanSetup::showUnicableSetup()
 	CMenuForwarder * uniqrg = new CMenuForwarder(_("Unicable frequency"), true, uni_qrg->getValue(), uni_qrg);
 	uni_setup->addItem(uniqrg);
 
-	uni_setup->exec(NULL, "");
-	uni_setup->hide();
-	delete uni_setup;
+	//
+	uniWidget->exec(NULL, "");
 
 	return RETURN_REPAINT;
 }
@@ -933,13 +1050,42 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 		old_position = position;
 	}
 	
-	printf("CTPSelectHandler::exec: fe(%d) %s position(%d)\n", feindex, scanSettings->satNameNoDiseqc, position);
-
-    	CMenuWidget * menu = new CMenuWidget(_("Select transponder"), NEUTRINO_ICON_UPDATE);
-
-	menu->setWidgetMode(MODE_SETUP);
-	menu->enableShrinkMenu();
+	//
+	CWidget* tpWidget = NULL;
+	ClistBox* menu = NULL;
 	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_TRANSPONDER))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_TRANSPONDER)->getItemsCount();
+		
+		tpWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_TRANSPONDER);
+		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_TRANSPONDER)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		menu->setMenuPosition(MENU_POSITION_CENTER);
+		menu->setWidgetMode(MODE_SETUP);
+		menu->enableShrinkMenu();
+		
+		menu->enablePaintHead();
+		menu->setTitle(_("Select transponder"), NEUTRINO_ICON_UPDATE);
+
+		menu->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		menu->setFootButtons(&btn);
+		
+		//
+		tpWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		tpWidget->setMenuPosition(MENU_POSITION_CENTER);
+		tpWidget->addItem(menu);
+	}
+	
+	menu->clearItems();
+	
+	//
 	i = 0;
 
 	for(tI = select_transponders.begin(); tI != select_transponders.end(); tI++) 
@@ -981,7 +1127,7 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 			break;
 				
 			case FE_ATSC:
-            {
+            		{
 				getFE(feindex)->getDelSys(FEC_NONE, tI->second.feparams.u.vsb.modulation, f, s, m);
 
 				snprintf(buf, sizeof(buf), "%d %s %s %s ", tI->second.feparams.frequency/100000, f, s, m);
@@ -993,10 +1139,12 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 		tmplist.insert(std::pair <int, transponder>(i, tI->second));
 		i++;
 	}
-
-	int retval = menu->exec(NULL, "");
+	
 	select = menu->getSelected();
-	delete menu;
+
+	int retval = tpWidget->exec(NULL, "");
+	//select = menu->getSelected();
+	//delete menu;
 
 	if(select >= 0) 
 	{
@@ -1009,7 +1157,7 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 		switch( getFE(feindex)->getInfo()->type) 
 		{
 			case FE_QPSK:
-				printf("CTPSelectHandler::exec: fe(%d) selected TP: freq %d pol %d SR %d fec %d\n", feindex, tmpI->second.feparams.frequency, tmpI->second.polarization, tmpI->second.feparams.u.qpsk.symbol_rate, tmpI->second.feparams.u.qpsk.fec_inner);
+				//printf("CTPSelectHandler::exec: fe(%d) selected TP: freq %d pol %d SR %d fec %d\n", feindex, tmpI->second.feparams.frequency, tmpI->second.polarization, tmpI->second.feparams.u.qpsk.symbol_rate, tmpI->second.feparams.u.qpsk.fec_inner);
 					
 				sprintf(scanSettings->TP_rate, "%d", tmpI->second.feparams.u.qpsk.symbol_rate);
 				scanSettings->TP_fec = tmpI->second.feparams.u.qpsk.fec_inner;
@@ -1017,7 +1165,7 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 				break;
 
 			case FE_QAM:
-				printf("CTPSelectHandler::exec: fe(%d) selected TP: freq %d SR %d fec %d mod %d\n", feindex, tmpI->second.feparams.frequency, tmpI->second.feparams.u.qpsk.symbol_rate, tmpI->second.feparams.u.qam.fec_inner, tmpI->second.feparams.u.qam.modulation);
+				//printf("CTPSelectHandler::exec: fe(%d) selected TP: freq %d SR %d fec %d mod %d\n", feindex, tmpI->second.feparams.frequency, tmpI->second.feparams.u.qpsk.symbol_rate, tmpI->second.feparams.u.qam.fec_inner, tmpI->second.feparams.u.qam.modulation);
 					
 				sprintf( scanSettings->TP_rate, "%d", tmpI->second.feparams.u.qam.symbol_rate);
 				scanSettings->TP_fec = tmpI->second.feparams.u.qam.fec_inner;
@@ -1026,7 +1174,7 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 
 			case FE_OFDM:
 			{
-				printf("CTPSelectHandler::exec: fe(%d) selected TP: freq %d band %d HP %d LP %d const %d trans %d guard %d hierarchy %d\n", feindex, tmpI->second.feparams.frequency, tmpI->second.feparams.u.ofdm.bandwidth, tmpI->second.feparams.u.ofdm.code_rate_HP, tmpI->second.feparams.u.ofdm.code_rate_LP, tmpI->second.feparams.u.ofdm.constellation, tmpI->second.feparams.u.ofdm.transmission_mode, tmpI->second.feparams.u.ofdm.guard_interval, tmpI->second.feparams.u.ofdm.hierarchy_information);
+				//printf("CTPSelectHandler::exec: fe(%d) selected TP: freq %d band %d HP %d LP %d const %d trans %d guard %d hierarchy %d\n", feindex, tmpI->second.feparams.frequency, tmpI->second.feparams.u.ofdm.bandwidth, tmpI->second.feparams.u.ofdm.code_rate_HP, tmpI->second.feparams.u.ofdm.code_rate_LP, tmpI->second.feparams.u.ofdm.constellation, tmpI->second.feparams.u.ofdm.transmission_mode, tmpI->second.feparams.u.ofdm.guard_interval, tmpI->second.feparams.u.ofdm.hierarchy_information);
 					
 				scanSettings->TP_band = tmpI->second.feparams.u.ofdm.bandwidth;
 				scanSettings->TP_HP = tmpI->second.feparams.u.ofdm.code_rate_HP;
@@ -1199,7 +1347,7 @@ bool CScanSettings::saveSettings(const char * const fileName, int index)
 		setConfigValue(index, "TP_hierarchy", TP_hierarchy);
 	}
 
-    if(getFE(index)->getInfo()->type == FE_ATSC)
+    	if(getFE(index)->getInfo()->type == FE_ATSC)
 	{
 		setConfigValue(index, "TP_mod", TP_mod);
 	}
@@ -1374,7 +1522,7 @@ CScanSetupNotifier::CScanSetupNotifier(int num)
 	feindex = num;
 }
 
-/* items1 enabled for advanced diseqc settings, items2 for diseqc != NO_DISEQC, items3 disabled for NO_DISEQC */
+// items1 enabled for advanced diseqc settings, items2 for diseqc != NO_DISEQC, items3 disabled for NO_DISEQC
 bool CScanSetupNotifier::changeNotify(const std::string&, void * Data)
 {
 	std::vector<CMenuItem*>::iterator it;
@@ -1497,14 +1645,14 @@ void CTunerSetup::showMenu()
 	CWidget* widget = NULL;
 	ClistBox* TunerSetup = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_SCANSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_TUNERSETUP))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCANSETUP)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCANSETUP)->getCCItemsCount();
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_TUNERSETUP)->getItemsCount();
+		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_TUNERSETUP)->getCCItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCANSETUP);
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_TUNERSETUP);
 		
-		TunerSetup = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_SCANSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		TunerSetup = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_TUNERSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{

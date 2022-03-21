@@ -68,11 +68,76 @@
 		</FOOT>
 	</WIDGET>
 	
+	<WIDGET name="autoscanall" id="104" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Auto-Scan multiple Satellite" icon="softupdate">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="autoscan" id="103" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Auto scan" icon="softupdate">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="manualscan" id="102" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Manual frequency scan / Test signal" icon="softupdate">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="unicablesetup" id="101" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Unicable settings" icon="softupdate">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="transponder" id="100" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Select transponder" icon="softupdate">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
 	<WIDGET name="scansetup" id="64" posx="0" posy="0" width="700" height="720" paintframe="1">
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
 		</LISTBOX>
 		
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Scan transponder" icon="settings">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Scan transponder" icon="softupdate">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">

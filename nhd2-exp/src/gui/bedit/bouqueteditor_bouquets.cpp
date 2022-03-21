@@ -58,31 +58,6 @@
 
 extern CBouquetManager * g_bouquetManager;	// defined in der zapit.cpp
 
-CBEBouquetWidget::CBEBouquetWidget()
-{
-	frameBuffer = CFrameBuffer::getInstance();
-
-	selected = -1;
-	state = beDefault;
-	blueFunction = beRename;
-	
-	Bouquets = &g_bouquetManager->Bouquets;
-
-	listBox = NULL;
-	item = NULL;
-
-	// box	
-	cFrameBox.iWidth = frameBuffer->getScreenWidth() - 100;
-	cFrameBox.iHeight = frameBuffer->getScreenHeight() - 100;
-	
-	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
-	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
-}
-
-CBEBouquetWidget::~CBEBouquetWidget()
-{
-}
-
 #define BUTTONS_COUNT	3
 
 const struct button_label CBEBouquetWidgetButtons[BUTTONS_COUNT] =
@@ -93,6 +68,39 @@ const struct button_label CBEBouquetWidgetButtons[BUTTONS_COUNT] =
 };
 
 const struct button_label HButton = {NEUTRINO_ICON_BUTTON_SETUP, ""};
+
+CBEBouquetWidget::CBEBouquetWidget()
+{
+	frameBuffer = CFrameBuffer::getInstance();
+
+	selected = -1;
+	state = beDefault;
+	blueFunction = beRename;
+	
+	Bouquets = &g_bouquetManager->Bouquets;
+
+	widget = NULL;
+	listBox = NULL;
+	item = NULL;
+
+	// box	
+	cFrameBox.iWidth = frameBuffer->getScreenWidth() - 100;
+	cFrameBox.iHeight = frameBuffer->getScreenHeight() - 100;
+	
+	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
+	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
+	
+	//
+	widget = new CWidget(&cFrameBox);
+	
+	listBox = new ClistBox(&cFrameBox);
+	
+	widget->addItem(listBox);
+}
+
+CBEBouquetWidget::~CBEBouquetWidget()
+{
+}
 
 void CBEBouquetWidget::paint()
 {
@@ -162,15 +170,13 @@ void CBEBouquetWidget::paint()
 	}
 
 	listBox->setFootButtons(Button, 4);
-
-	//
-	listBox->setSelected(selected);
-	listBox->paint();
+	
+	widget->paint();
 }
 
 void CBEBouquetWidget::hide()
 {
-	listBox->hide();
+	widget->hide();
 }
 
 int CBEBouquetWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/)
@@ -186,8 +192,6 @@ int CBEBouquetWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 		parent->hide();
 	
 	Bouquets = &g_bouquetManager->Bouquets;
-
-	listBox = new ClistBox(&cFrameBox);
 	
 	paint();
 	frameBuffer->blit();
@@ -437,8 +441,8 @@ int CBEBouquetWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
 
-	delete listBox;
-	listBox = NULL;
+	//delete listBox;
+	//listBox = NULL;
 	
 	return res;
 }
