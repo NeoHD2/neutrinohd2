@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-21 18:56+0100\n"
+"POT-Creation-Date: 2022-03-21 20:17+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -513,6 +513,10 @@ msgstr ""
 
 msgid "DiSEqC 1.1"
 msgstr ""
+
+#, fuzzy
+msgid "DiSEqC settings"
+msgstr "Festplatte Einstellungen"
 
 msgid "DiSEqC-Settings"
 msgstr ""

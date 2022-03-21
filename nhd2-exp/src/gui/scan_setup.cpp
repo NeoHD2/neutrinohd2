@@ -1,5 +1,5 @@
 /*
-	$Id: scan_setup.cpp 2015/12/22 11:42:38 mohousch Exp $
+	$Id: scan_setup.cpp 20.03.2022 mohousch Exp $
 
 	Neutrino-GUI  -   DBoxII-Project
 
@@ -405,16 +405,46 @@ void CScanSetup::showScanService()
 	CScanSetupNotifier * feModeNotifier = new CScanSetupNotifier(feindex);
 	
 	// Sat Setup
-	CMenuWidget * satSetup = new CMenuWidget(_("Sat settings"), NEUTRINO_ICON_UPDATE);
-	satSetup->setWidgetMode(MODE_SETUP);
-	satSetup->enableShrinkMenu();
+	CWidget* satSetupWidget = NULL;
+	ClistBox* satSetup = NULL;
 	
-	satSetup->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	//
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_SATSETUP))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_SATSETUP)->getItemsCount();
+		
+		satSetupWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_SATSETUP);
+		satSetup = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_SATSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		satSetup = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		satSetup->setMenuPosition(MENU_POSITION_CENTER);
+		satSetup->setWidgetMode(MODE_SETUP);
+		satSetup->enableShrinkMenu();
+		
+		satSetup->enablePaintHead();
+		satSetup->setTitle(_("Sat settings"), NEUTRINO_ICON_UPDATE);
+
+		satSetup->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		satSetup->setFootButtons(&btn);
+		
+		//
+		satSetupWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		satSetupWidget->setMenuPosition(MENU_POSITION_CENTER);
+		satSetupWidget->addItem(satSetup);
+	}
+
+	satSetup->clearItems();
+	
+	satSetup->addItem(new CMenuForwarder(_("back")));
 	satSetup->addItem(new CMenuSeparator(LINE));
 
 	// motot setup
 	CMenuWidget * satfindMenu = new CMenuWidget(_("Motor Setup"), NEUTRINO_ICON_UPDATE);
-
 	satfindMenu->setWidgetMode(MODE_SETUP);
 	satfindMenu->enableShrinkMenu();
 
@@ -431,7 +461,6 @@ void CScanSetup::showScanService()
 		satSelect = new CMenuOptionStringChooser(_("Satellite"), scanSettings->satNameNoDiseqc, true, NULL, RC_nokey, "", true);
 			
 		satOnOff = new CMenuWidget(_("Satellite"), NEUTRINO_ICON_UPDATE);
-
 		satOnOff->setWidgetMode(MODE_SETUP);
 		satOnOff->enableShrinkMenu();
 	
@@ -545,24 +574,58 @@ void CScanSetup::showScanService()
 	satfindMenu->addItem(satSelect);
 
 	// motor menu/diseqc
-	CMenuWidget * motorMenu = NULL;
+	//CMenuWidget * motorMenu = NULL;
+	CWidget* motorMenuWidget = NULL;
+	ClistBox* motorMenu = NULL;
 
 	if ( getFE(feindex)->getInfo()->type == FE_QPSK) 
 	{
 		satfindMenu->addItem(new CMenuForwarder(_("Motor Setup"), true, NULL, new CMotorControl(feindex), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
 
-		motorMenu = new CMenuWidget(_("DiSEqC-Settings"), NEUTRINO_ICON_UPDATE);
-		motorMenu->setWidgetMode(MODE_SETUP);
-		motorMenu->enableShrinkMenu();
+		//motorMenu = new CMenuWidget(_("DiSEqC settings"), NEUTRINO_ICON_UPDATE);
+		//motorMenu->setWidgetMode(MODE_SETUP);
+		//motorMenu->enableShrinkMenu();
+		
+		//
+		if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MOTORSETUP))
+		{
+			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MOTORSETUP)->getItemsCount();
+			
+			motorMenuWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MOTORSETUP);
+			motorMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MOTORSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		}
+		else
+		{
+			motorMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			motorMenu->setMenuPosition(MENU_POSITION_CENTER);
+			motorMenu->setWidgetMode(MODE_SETUP);
+			motorMenu->enableShrinkMenu();
+			
+			motorMenu->enablePaintHead();
+			motorMenu->setTitle(_("DiSEqC settings"), NEUTRINO_ICON_UPDATE);
+
+			motorMenu->enablePaintFoot();
+				
+			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+				
+			motorMenu->setFootButtons(&btn);
+			
+			//
+			motorMenuWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			motorMenuWidget->setMenuPosition(MENU_POSITION_CENTER);
+			motorMenuWidget->addItem(motorMenu);
+		}
+
+		motorMenu->clearItems();
 		
 		// intros
 		motorMenu->addItem(new CMenuSeparator(LINE));
-		motorMenu->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+		motorMenu->addItem(new CMenuForwarder(_("back")));
 
 		// save settings
-		motorMenu->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+		motorMenu->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings"));
 
-		motorMenu->addItem(new CMenuForwarder(_("Motor Setup"), true, NULL, satfindMenu, "", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+		motorMenu->addItem(new CMenuForwarder(_("Motor Setup"), true, NULL, satfindMenu, ""));
 
 		motorMenu->addItem(new CMenuSeparator(LINE));
 
@@ -659,11 +722,11 @@ void CScanSetup::showScanService()
 		feModeNotifier->addItem(3, uniSetup);
 
 		// lnb setup
-		fsatSetup = new CMenuForwarder(_("Setup satellites input / LNB"), (getFE(feindex)->mode != FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, satSetup, "", RC_nokey);
+		fsatSetup = new CMenuForwarder(_("Setup satellites input / LNB"), (getFE(feindex)->mode != FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, satSetupWidget, "", RC_nokey);
 		feModeNotifier->addItem(1, fsatSetup);
 		
 		// motor setup
-		fmotorMenu = new CMenuForwarder(_("DiSEqC-Settings"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, motorMenu, "", RC_nokey);
+		fmotorMenu = new CMenuForwarder(_("DiSEqC-Settings"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, motorMenuWidget, "", RC_nokey);
 		feModeNotifier->addItem(1, fmotorMenu);
 		
 		scansetup->addItem(ojDiseqc);
