@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-22 23:19+0100\n"
+"POT-Creation-Date: 2022-03-22 23:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -456,8 +456,8 @@ msgstr ""
 msgid "Cable"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:535 ../../src/gui/scan.cpp:573
-#: ../../src/gui/scan.cpp:574
+#: ../../src/gui/scan_setup.cpp:535 ../../src/gui/scan.cpp:570
+#: ../../src/gui/scan.cpp:571
 msgid "Cable:"
 msgstr ""
 
@@ -528,7 +528,7 @@ msgstr ""
 msgid "Channel up"
 msgstr ""
 
-#: ../../src/gui/scan.cpp:603 ../../src/gui/scan.cpp:604
+#: ../../src/gui/scan.cpp:600 ../../src/gui/scan.cpp:601
 msgid "Channel:"
 msgstr ""
 
@@ -676,7 +676,7 @@ msgstr ""
 msgid "Dark to Light to Dark"
 msgstr ""
 
-#: ../../src/gui/scan.cpp:611
+#: ../../src/gui/scan.cpp:608
 msgid "Data"
 msgstr ""
 
@@ -1183,7 +1183,7 @@ msgstr ""
 msgid "Frequency"
 msgstr ""
 
-#: ../../src/gui/scan.cpp:591 ../../src/gui/scan.cpp:592
+#: ../../src/gui/scan.cpp:588 ../../src/gui/scan.cpp:589
 msgid "Frequency:"
 msgstr ""
 
@@ -2483,7 +2483,7 @@ msgid "Provider"
 msgstr ""
 
 #: ../../src/gui/scan_setup.cpp:548 ../../src/gui/scan_setup.cpp:561
-#: ../../src/gui/scan.cpp:598 ../../src/gui/scan.cpp:599
+#: ../../src/gui/scan.cpp:595 ../../src/gui/scan.cpp:596
 msgid "Provider:"
 msgstr ""
 
@@ -2515,7 +2515,7 @@ msgstr ""
 msgid "RIGHT"
 msgstr ""
 
-#: ../../src/gui/scan.cpp:610
+#: ../../src/gui/scan.cpp:607
 msgid "Radio"
 msgstr ""
 
@@ -2781,7 +2781,7 @@ msgstr ""
 msgid "Satellite-Bouquet"
 msgstr ""
 
-#: ../../src/gui/scan.cpp:566 ../../src/gui/scan.cpp:567
+#: ../../src/gui/scan.cpp:563 ../../src/gui/scan.cpp:564
 msgid "Satellite:"
 msgstr ""
 
@@ -2943,7 +2943,7 @@ msgid "Scan for services"
 msgstr ""
 
 #: ../../src/gui/scan_setup.cpp:365 ../../src/gui/service_menu.cpp:128
-#: ../../src/gui/scan.cpp:545
+#: ../../src/gui/scan.cpp:542
 msgid "Scan transponder"
 msgstr ""
 
@@ -3450,7 +3450,7 @@ msgstr ""
 msgid "TS Browser"
 msgstr ""
 
-#: ../../src/gui/scan.cpp:609
+#: ../../src/gui/scan.cpp:606
 msgid "TV"
 msgstr ""
 
@@ -3484,7 +3484,7 @@ msgstr ""
 msgid "Terrestrial"
 msgstr ""
 
-#: ../../src/gui/scan.cpp:580 ../../src/gui/scan.cpp:581
+#: ../../src/gui/scan.cpp:577 ../../src/gui/scan.cpp:578
 msgid "Terrestrial:"
 msgstr ""
 
@@ -3500,7 +3500,7 @@ msgstr ""
 msgid "Test network now"
 msgstr ""
 
-#: ../../src/gui/scan_setup.cpp:890 ../../src/gui/scan.cpp:545
+#: ../../src/gui/scan_setup.cpp:890 ../../src/gui/scan.cpp:542
 msgid "Test signal"
 msgstr ""
 
@@ -3674,7 +3674,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: ../../src/gui/scan.cpp:612
+#: ../../src/gui/scan.cpp:609
 msgid "Total"
 msgstr ""
 
@@ -3682,8 +3682,16 @@ msgstr ""
 msgid "Transmission mode"
 msgstr ""
 
-#: ../../src/gui/scan.cpp:586 ../../src/gui/scan.cpp:587
+#: ../../src/gui/scan.cpp:583 ../../src/gui/scan.cpp:584
 msgid "Transponders:"
+msgstr ""
+
+#: ../../src/gui/scan.cpp:351
+msgid "Transponderscan failed!"
+msgstr ""
+
+#: ../../src/gui/scan.cpp:351
+msgid "Transponderscan finished."
 msgstr ""
 
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:954

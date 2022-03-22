@@ -302,7 +302,7 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 	while (!istheend) 
 	{
 		paintRadar();
-		showSNR(); // FIXME commented until scan slowdown will be solved
+		showSNR();
 
 		uint64_t timeoutEnd = CRCInput::calcTimeoutEnd_MS( 250 );
 
@@ -322,7 +322,7 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 				
 				if (MessageBox(_("Abortion of channel scan"), _("Should the search really be aborted?"), mbrNo, mbYes | mbNo) == mbrYes) 
 				{
-					g_Zapit->stopScan();
+					//g_Zapit->stopScan();
 					msg = RC_timeout;
 					istheend = true;
 				}
@@ -331,8 +331,6 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 				msg = handleMsg(msg, data);
 		}
 		while (!(msg == RC_timeout));
-		
-		//showSNR(); // FIXME commented until scan slowdown will be solved
 		
 		frameBuffer->blit();	
 	}
@@ -347,7 +345,7 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 				
 	}
 
-/*
+	//
 	if(!test) 
 	{
 		const char * text = success ? _("Transponderscan finished.") : _("Transponderscan failed!");
@@ -371,7 +369,6 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 				CNeutrinoApp::getInstance()->handleMsg( msg, data );
 		} while (!(msg == RC_timeout));
 	}
-*/
 
 	hide();
 	
