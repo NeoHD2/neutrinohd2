@@ -614,6 +614,8 @@ class CWidgetItem
 		
 		//
 		bool painted;
+		
+		//
 		CMenuTarget* parent;
 		
 		//

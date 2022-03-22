@@ -68,7 +68,7 @@
 	</WIDGET>
 	
 	<WIDGET name="videosetup" id="9" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="1" itemshadow="1">
 		</LISTBOX>
 		<LABEL posx="640" posy="50" width="640" height="50" text="Video settings" halign="1">
 		</LABEL>

@@ -4662,7 +4662,6 @@ void *event_proc(void *ptr)
 //error:
 	return NULL;
 }
-//
 
 //#define CHECK_FOR_LOCK
 //#endif

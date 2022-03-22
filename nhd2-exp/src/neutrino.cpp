@@ -5212,6 +5212,9 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::exec: actionKey: %s\n", actionKey.c_str());
 
 	int returnval = RETURN_REPAINT;
+	
+	if (parent)
+		parent->hide();
 
 	if(actionKey == "shutdown") 
 	{

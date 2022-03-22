@@ -302,6 +302,7 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 	while (!istheend) 
 	{
 		paintRadar();
+		showSNR(); // FIXME commented until scan slowdown will be solved
 
 		uint64_t timeoutEnd = CRCInput::calcTimeoutEnd_MS( 250 );
 
@@ -316,12 +317,14 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 			else if(msg == RC_home) 
 			{
 				// dont abort scan
-				if(manual && scanSettings->scan_mode)
-					continue;
+				//if(manual && scanSettings->scan_mode)
+				//	continue;
 				
 				if (MessageBox(_("Abortion of channel scan"), _("Should the search really be aborted?"), mbrNo, mbYes | mbNo) == mbrYes) 
 				{
 					g_Zapit->stopScan();
+					msg = RC_timeout;
+					istheend = true;
 				}
 			}
 			else
@@ -329,7 +332,7 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 		}
 		while (!(msg == RC_timeout));
 		
-		showSNR(); // FIXME commented until scan slowdown will be solved
+		//showSNR(); // FIXME commented until scan slowdown will be solved
 		
 		frameBuffer->blit();	
 	}
@@ -344,23 +347,17 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 				
 	}
 
+/*
 	if(!test) 
 	{
 		const char * text = success ? _("Transponderscan finished.") : _("Transponderscan failed!");
 		
-		// head
-		frameBuffer->paintBoxRel(x, y, width, hheight, COL_MENUHEAD_PLUS_0, g_settings.Head_radius, CORNER_TOP, g_settings.Head_gradient);
+		CHeaders head(x, y, width, hheight, text, NEUTRINO_ICON_UPDATE);
+		const struct button_label btn = { NEUTRINO_ICON_BUTTON_HOME, " "};
+			
+		head.setButtons(&btn);
 		
-		// exit icon
-		frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_HOME, &_iw, &_ih);
-		frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_HOME, x + width - (BORDER_RIGHT + _iw), y + (hheight - _ih)/2);
-		
-		// setup icon
-		frameBuffer->getIconSize(NEUTRINO_ICON_UPDATE, &_iw, &_ih);
-		frameBuffer->paintIcon(NEUTRINO_ICON_UPDATE, x + BORDER_LEFT, y + (hheight - _ih)/2);
-		
-		// title
-		g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(xpos1 + _iw + 5, y + hheight - (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2, width - BORDER_RIGHT - BORDER_LEFT - 2*_iw, text, COL_MENUHEAD, 0, true); // UTF-8
+		head.paint();
 			
 		frameBuffer->blit();		
 	
@@ -374,6 +371,7 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 				CNeutrinoApp::getInstance()->handleMsg( msg, data );
 		} while (!(msg == RC_timeout));
 	}
+*/
 
 	hide();
 	
@@ -543,19 +541,13 @@ void CScanTs::paint(bool fortest)
 
 	ypos = y;
 	
-	// head 
-	frameBuffer->paintBoxRel(x, ypos, width, hheight, COL_MENUHEAD_PLUS_0, g_settings.Head_radius, CORNER_TOP, g_settings.Head_gradient);
-	
-	// icon
-	frameBuffer->getIconSize(NEUTRINO_ICON_UPDATE, &iw, &ih);
-	frameBuffer->paintIcon(NEUTRINO_ICON_UPDATE, x + BORDER_LEFT, ypos + (hheight - ih)/2);
-	
-	// head title
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(xpos1 + iw + 5, ypos + hheight - (hheight - g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight())/2, width, fortest ? _("Test signal") : _("Scan transponder"), COL_MENUHEAD, 0, true); // UTF-8
-	
-	// exit icon
-	frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_HOME, &iw, &ih);
-	frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_HOME, x + width - (BORDER_RIGHT + iw), ypos + (hheight - ih)/2);
+	//
+	CHeaders head(x, ypos, width, hheight, fortest ? _("Test signal") : _("Scan transponder"), NEUTRINO_ICON_UPDATE);
+	const struct button_label btn = { NEUTRINO_ICON_BUTTON_HOME, " "};
+			
+	head.setButtons(&btn);
+		
+	head.paint();
 	
 	// main box
 	frameBuffer->paintBoxRel(x, ypos + hheight, width, height - hheight, COL_MENUCONTENT_PLUS_0, g_settings.Foot_radius, CORNER_BOTTOM);

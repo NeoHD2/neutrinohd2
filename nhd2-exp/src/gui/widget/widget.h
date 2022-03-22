@@ -196,7 +196,7 @@ class CWidget : public CMenuTarget
 		uint64_t timeout;
 		uint32_t sec_timer_id;
 		uint64_t sec_timer_interval;
-		std::string actionKey;
+		std::string actionKey; // for lua
 		
 		// screen
 		fb_pixel_t * background;

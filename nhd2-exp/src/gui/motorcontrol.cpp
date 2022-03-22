@@ -587,13 +587,12 @@ void CMotorControl::paint()
 	ypos = y;
 	
 	// headBox
-	frameBuffer->paintBoxRel(x, ypos, width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
-	
-	// head title
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT, ypos + hheight, width - BORDER_LEFT - BORDER_RIGHT, _("Motor Setup"), COL_MENUHEAD, 0, true); // UTF-8
+	CHeaders head(x, ypos, width, hheight, _("Motor Setup"), NEUTRINO_ICON_INFO);
+	head.paint();
 	
 	// footer
-	frameBuffer->paintBoxRel(x, ypos + hheight, width, height - hheight, COL_MENUCONTENT_PLUS_0, RADIUS_MID, CORNER_BOTTOM );
+	CFooters foot(x, ypos + hheight, width, height - hheight);
+	foot.paint();
 
 	ypos += hheight + (mheight >> 1) - 10;
 	ypos_menue = ypos;

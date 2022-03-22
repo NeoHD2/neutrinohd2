@@ -182,9 +182,6 @@ void CProgressWindow::paint()
 
 		CHeaders headers(g_settings.menu_border? x + 2 : x, g_settings.menu_border? y + 2 : y, g_settings.menu_border? width - 4 : width, hheight, l_caption, NEUTRINO_ICON_INFO);
 		
-		//headers.setCorner(g_settings.menu_shadow? CORNER_NONE : CORNER_TOP);
-		//headers.setRadius(g_settings.menu_shadow? NO_RADIUS : g_settings.Head_radius);
-		
 		if (paintCancelIcon)
 			headers.setButtons(&cancelBtn, 1);
 			

@@ -689,7 +689,7 @@ void CFont::RenderString(int x, int y, const int width, const std::string & text
 	RenderString(x, y, width, text.c_str(), color, boxheight, utf8_encoded, useBackground);
 }
 
-int CFont::getRenderWidth(const char *text, bool utf8_encoded)
+int CFont::getRenderWidth(const char* text, bool utf8_encoded)
 {
 	pthread_mutex_lock( &renderer->render_mutex );
 	

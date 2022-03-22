@@ -343,13 +343,6 @@ int CVideoSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(parent)
 		parent->hide();
 	
-	if(actionKey == "savesettings")
-	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		
-		return ret;
-	}
-	
 	showMenu();
 	
 	return ret;
@@ -361,12 +354,9 @@ void CVideoSettings::showMenu()
 	
 	int shortcutVideo = 1;
 	
-	//CMenuWidget videoSettings(_("Video Settings"), NEUTRINO_ICON_VIDEO);
+	//
 	CWidget* widget = NULL;
 	ClistBox* videoSettings = NULL; 
-
-	//videoSettings.setWidgetMode(MODE_SETUP);
-	//videoSettings.enableShrinkMenu();
 	
 	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_VIDEOSETUP))
 	{
@@ -401,28 +391,28 @@ void CVideoSettings::showMenu()
 	videoSettings->clearItems();
 	
 	// intros
-	videoSettings->addItem(new CMenuForwarder(_("back"), true));
+	videoSettings->addItem(new CMenuForwarder(_("back")));
 	videoSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	videoSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
+	videoSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
 	videoSettings->addItem( new CMenuSeparator(LINE) );
 
 	// video aspect ratio 4:3/16:9
-	videoSettings->addItem(new CMenuOptionChooser(_("TV-System"), &g_settings.video_Ratio, VIDEOMENU_VIDEORATIO_OPTIONS, VIDEOMENU_VIDEORATIO_OPTION_COUNT, true, videoSetupNotifier, RC_nokey, "", true ));
+	videoSettings->addItem(new CMenuOptionChooser(_("TV-System"), &g_settings.video_Ratio, VIDEOMENU_VIDEORATIO_OPTIONS, VIDEOMENU_VIDEORATIO_OPTION_COUNT, true, videoSetupNotifier));
 	
 	// video format bestfit/letterbox/panscan/non
-	videoSettings->addItem(new CMenuOptionChooser(_("Video Format"), &g_settings.video_Format, VIDEOMENU_VIDEOFORMAT_OPTIONS, VIDEOMENU_VIDEOFORMAT_OPTION_COUNT, true, videoSetupNotifier, RC_nokey, "", true ));
+	videoSettings->addItem(new CMenuOptionChooser(_("Video Format"), &g_settings.video_Format, VIDEOMENU_VIDEOFORMAT_OPTIONS, VIDEOMENU_VIDEOFORMAT_OPTION_COUNT, true, videoSetupNotifier));
 	
 	// video analogue mode
-	videoSettings->addItem(new CMenuOptionChooser(_("Analog Output"), &g_settings.analog_mode, VIDEOMENU_ANALOGUE_MODE_OPTIONS, VIDEOMENU_ANALOGUE_MODE_OPTION_COUNT, true, videoSetupNotifier, RC_nokey, "", true ));
+	videoSettings->addItem(new CMenuOptionChooser(_("Analog Output"), &g_settings.analog_mode, VIDEOMENU_ANALOGUE_MODE_OPTIONS, VIDEOMENU_ANALOGUE_MODE_OPTION_COUNT, true, videoSetupNotifier));
 
 #if !defined (PLATFORM_COOLSTREAM)
 	// video hdmi space colour	
-	videoSettings->addItem(new CMenuOptionChooser(_("HDMI Color Space"), &g_settings.hdmi_color_space, VIDEOMENU_HDMI_COLOR_SPACE_OPTIONS, VIDEOMENU_HDMI_COLOR_SPACE_OPTION_COUNT, true, videoSetupNotifier, RC_nokey, "", true ));	
+	videoSettings->addItem(new CMenuOptionChooser(_("HDMI Color Space"), &g_settings.hdmi_color_space, VIDEOMENU_HDMI_COLOR_SPACE_OPTIONS, VIDEOMENU_HDMI_COLOR_SPACE_OPTION_COUNT, true, videoSetupNotifier));	
 	
 	// wss
-	videoSettings->addItem(new CMenuOptionChooser(_("Colour Range"), &g_settings.wss_mode, VIDEOMENU_WSS_OPTIONS, VIDEOMENU_WSS_OPTION_COUNT, true, videoSetupNotifier, RC_nokey, "", true ));
+	videoSettings->addItem(new CMenuOptionChooser(_("Colour Range"), &g_settings.wss_mode, VIDEOMENU_WSS_OPTIONS, VIDEOMENU_WSS_OPTION_COUNT, true, videoSetupNotifier));
 #endif	
 
 	// video mode

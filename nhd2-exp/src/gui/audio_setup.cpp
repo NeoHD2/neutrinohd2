@@ -136,13 +136,6 @@ int CAudioSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(parent)
 		parent->hide();
 	
-	if(actionKey == "savesettings")
-	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		
-		return ret;
-	}
-	
 	showMenu();
 	
 	return ret;
@@ -188,15 +181,15 @@ void CAudioSettings::showMenu()
 	audioSettings->clearItems();
 	
 	// intros
-	audioSettings->addItem(new CMenuForwarder(_("back"), true));
+	audioSettings->addItem(new CMenuForwarder(_("back")));
 	audioSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	audioSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
+	audioSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
 	audioSettings->addItem( new CMenuSeparator(LINE) );
 
 	// analog output
-	audioSettings->addItem(new CMenuOptionChooser(_("Analog Output"), &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, audioSetupNotifier, RC_nokey, "", true ));
+	audioSettings->addItem(new CMenuOptionChooser(_("Analog Output"), &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, audioSetupNotifier));
 
 #if !defined (PLATFORM_COOLSTREAM)	
 	// hdmi-dd
@@ -204,7 +197,7 @@ void CAudioSettings::showMenu()
 #endif	
 
 	// A/V sync
-	audioSettings->addItem(new CMenuOptionChooser(_("A/V sync"), &g_settings.avsync, AUDIOMENU_AVSYNC_OPTIONS, AUDIOMENU_AVSYNC_OPTION_COUNT, true, audioSetupNotifier, RC_nokey, "", true ));
+	audioSettings->addItem(new CMenuOptionChooser(_("A/V sync"), &g_settings.avsync, AUDIOMENU_AVSYNC_OPTIONS, AUDIOMENU_AVSYNC_OPTION_COUNT, true, audioSetupNotifier));
 	
 #if !defined (PLATFORM_COOLSTREAM)	
 	// ac3 delay
@@ -214,7 +207,7 @@ void CAudioSettings::showMenu()
 	audioSettings->addItem(new CMenuOptionChooser(_("PCM Delay"), &g_settings.pcm_delay, AUDIODELAY_OPTIONS, AUDIODELAY_OPTION_COUNT, true, audioSetupNotifier));
 #endif	
 	
-	// pref sub/lang
+	// pref lang
 	audioSettings->addItem(new CMenuSeparator(LINE | STRING, _("Audio language preferences")));
 	
 	// auto ac3 

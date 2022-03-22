@@ -758,12 +758,13 @@ class ClistBox : public CWidgetItem
 		//
 		bool isSelectable(void){return true;};
 
-		int oKKeyPressed(CMenuTarget *parent);
+		int oKKeyPressed(CMenuTarget* _parent);
 		void homeKeyPressed(){selected = -1;};
 		void onDirectKeyPressed(neutrino_msg_t msg);
+		//int onRightKeyPressed();
+		//int onLeftKeyPressed();
 
 		//
-		//std::string getName(){return l_name;};
 		std::string getActionKey(void){return actionKey;}; // lua
 		
 		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true, int imode = MODE_MENU, int itype = WIDGET_TYPE_STANDARD, bool i2lines = false, int iShadow = SHADOW_ALL);

@@ -672,6 +672,7 @@ void CWidget::onRightKeyPressed()
 	
 	if(hasItem() && selected >= 0)
 	{
+	/*
 		if( (items[selected]->widgetItem_type == WIDGETITEM_LISTBOX) && ( (items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
 		{
 			for (unsigned int count = 1; count < (unsigned int)items.size(); count++) 
@@ -695,6 +696,7 @@ void CWidget::onRightKeyPressed()
 			}
 		}
 		else
+		*/
 			items[selected]->swipRight();
 	}
 }
@@ -705,6 +707,7 @@ void CWidget::onLeftKeyPressed()
 	
 	if(hasItem() && selected >= 0)
 	{
+	/*
 		if( (items[selected]->widgetItem_type == WIDGETITEM_LISTBOX) && ((items[selected]->getWidgetType() != WIDGET_TYPE_FRAME) && (items[selected]->getWidgetType() != WIDGET_TYPE_EXTENDED)) )
 		{
 			for (unsigned int count = 1; count < (unsigned int)items.size(); count++) 
@@ -728,6 +731,7 @@ void CWidget::onLeftKeyPressed()
 			}
 		}
 		else
+		*/
 			items[selected]->swipLeft();
 	}
 }

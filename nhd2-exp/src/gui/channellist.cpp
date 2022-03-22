@@ -131,11 +131,14 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	item = NULL;
 
 	// box	
-	cFrameBox.iWidth = frameBuffer->getScreenWidth() - 100;
-	cFrameBox.iHeight = frameBuffer->getScreenHeight() - 100;
+	cFrameBox.iWidth = frameBuffer->getScreenWidth() - 20;
+	cFrameBox.iHeight = frameBuffer->getScreenHeight() - 20;
 	
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
 	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
+	
+	//
+	listBox = new ClistBox(&cFrameBox);
 }
 
 CChannelList::~CChannelList()
@@ -517,6 +520,7 @@ int CChannelList::show(bool zap, bool customMode)
 	// update events
 	updateEvents();
 
+/*
 	if(listBox)
 	{
 		delete listBox;
@@ -524,6 +528,7 @@ int CChannelList::show(bool zap, bool customMode)
 	}
 
 	listBox = new ClistBox(&cFrameBox);
+*/
 
 	paint();
 	CFrameBuffer::getInstance()->blit();
@@ -832,11 +837,13 @@ int CChannelList::show(bool zap, bool customMode)
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
 
+/*
 	if (listBox)
 	{
 		delete listBox;
 		listBox = NULL;
 	}
+*/
 
 	if(NeutrinoMessages::mode_ts == CNeutrinoApp::getInstance()->getMode())
 		return -1;
@@ -1648,7 +1655,7 @@ void CChannelList::paint()
 	
 	//
 	listBox->setWidgetType(WIDGET_TYPE_EXTENDED);
-	listBox->enableShrinkMenu();
+	//listBox->enableShrinkMenu();
 
 	// head
 	listBox->setTitle(name.c_str());

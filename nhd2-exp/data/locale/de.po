@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-21 20:17+0100\n"
+"POT-Creation-Date: 2022-03-22 23:19+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -639,10 +639,10 @@ msgid "EPG-Cache (Days)"
 msgstr ""
 
 msgid "East"
-msgstr ""
+msgstr "Osten"
 
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 msgid "Enable (soft) Limits"
 msgstr ""
@@ -1464,10 +1464,10 @@ msgid "None"
 msgstr ""
 
 msgid "North"
-msgstr ""
+msgstr "Norden"
 
 msgid "Not available"
-msgstr ""
+msgstr "Nicht verfühbar"
 
 msgid "Not used"
 msgstr ""
@@ -2164,7 +2164,7 @@ msgid "Software update URL"
 msgstr ""
 
 msgid "South"
-msgstr ""
+msgstr "Süden"
 
 msgid "Standby"
 msgstr ""
@@ -2475,12 +2475,6 @@ msgstr ""
 msgid "Transponders:"
 msgstr ""
 
-msgid "Transponderscan failed!"
-msgstr ""
-
-msgid "Transponderscan finished."
-msgstr ""
-
 msgid "Truncate failed."
 msgstr ""
 
@@ -2651,7 +2645,7 @@ msgid "Wednesday"
 msgstr ""
 
 msgid "West"
-msgstr ""
+msgstr "Westen"
 
 msgid "Wide Screen Auto"
 msgstr ""
