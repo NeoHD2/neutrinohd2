@@ -847,10 +847,10 @@ void CFileBrowser::paint()
 	Button[1] = FileBrowserButtons[1];
 
 	Button[2].button = NEUTRINO_ICON_BUTTON_YELLOW;
-	Button[2].localename = Multi_Select? _("Mark") : "";
+	Button[2].localename = Multi_Select? _("Mark") : " ";
 
 	Button[3].button = NEUTRINO_ICON_BUTTON_BLUE;
-	Button[3].localename = (Filter != NULL)? (use_filter)? _("Filter off") : _("Filter on") : "";
+	Button[3].localename = (Filter != NULL)? (use_filter)? _("Filter off") : _("Filter on") : " ";
 
 	listBox->setFootButtons(Button, 4);
 

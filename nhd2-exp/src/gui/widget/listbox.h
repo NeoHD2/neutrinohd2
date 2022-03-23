@@ -65,9 +65,9 @@ enum
 
 enum 
 {
-	MODE_MENU = 0,
-	MODE_SETUP,
-	MODE_LISTBOX
+	MODE_LISTBOX = 0,
+	MODE_MENU,
+	MODE_SETUP
 };
 
 enum {

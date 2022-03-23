@@ -564,17 +564,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			break;
 			
 		case WIDGET_UPDATESETUP:
-			{
-				if (widget_exists(WIDGET_UPDATESETUP))
-				{
-					parent = getWidget(WIDGET_UPDATESETUP);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CUpdateSettings();
-				}
-			}
+			parent = new CUpdateSettings();
 			break;
 			
 		case WIDGET_BOUQUETEDITOR:
@@ -810,8 +800,8 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 	unsigned int i_corner = 0;
 	unsigned int i_radius = 0;
 	
-	unsigned int type = 0;
-	unsigned int mode = 2;
+	unsigned int type = WIDGET_TYPE_STANDARD;
+	unsigned int mode = MODE_LISTBOX;
 	unsigned int scrollbar = 1;
 	
 	unsigned int shrink = 0;
@@ -910,7 +900,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 		listBox->paintScrollBar(scrollbar);
 		listBox->paintMainFrame(i_paintframe);
 		if (i_color != NULL) listBox->setColor(finalColor);
-		if (mode == 0) listBox->setMenuPosition(position);
+		if (position) listBox->setMenuPosition(position);
 		if (shrink) listBox->enableShrinkMenu();
 				
 		//

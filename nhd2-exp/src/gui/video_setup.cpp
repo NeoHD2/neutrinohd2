@@ -352,8 +352,6 @@ void CVideoSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CVideoSettings::showMenu\n");
 	
-	int shortcutVideo = 1;
-	
 	//
 	CWidget* widget = NULL;
 	ClistBox* videoSettings = NULL; 
@@ -361,7 +359,6 @@ void CVideoSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_VIDEOSETUP))
 	{
 		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_VIDEOSETUP)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_VIDEOSETUP)->getCCItemsCount();
 		
 		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_VIDEOSETUP);
 		videoSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_VIDEOSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);

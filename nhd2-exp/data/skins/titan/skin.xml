@@ -3,8 +3,60 @@
 <!-- SKIN: titan -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="fileselector" id="112" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="File selector" icon="softupdate">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="mtdselector" id="111" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Partition selector" icon="softupdate">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="flashexpert" id="110" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Expert functions" icon="softupdate">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="softwareupdate" id="42" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Software update" icon="softupdate">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
 	<WIDGET name="nfs" id="39" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Mount Network volume" icon="network">
@@ -17,7 +69,7 @@
 	</WIDGET>
 	
 	<WIDGET name="proxysetup" id="38" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Proxy server" icon="network">
@@ -30,7 +82,7 @@
 	</WIDGET>
 	
 	<WIDGET name="networksetup" id="12" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Network settings" icon="network">
@@ -43,7 +95,7 @@
 	</WIDGET>
 	
 	<WIDGET name="audiosetup" id="10" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Audio settings" icon="audio">
@@ -56,7 +108,7 @@
 	</WIDGET>
 	
 	<WIDGET name="videosetup" id="9" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Video settings" icon="video">
@@ -69,7 +121,7 @@
 	</WIDGET>
 	
 	<WIDGET name="motorsetup" id="106" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="DiSEqC settings" icon="softupdate">
@@ -82,7 +134,7 @@
 	</WIDGET>
 	
 	<WIDGET name="satsetup" id="105" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Sat settings" icon="softupdate">
@@ -95,7 +147,7 @@
 	</WIDGET>
 	
 	<WIDGET name="autoscanall" id="104" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Auto-Scan multiple Satellite" icon="softupdate">
@@ -108,7 +160,7 @@
 	</WIDGET>
 	
 	<WIDGET name="autoscan" id="103" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Auto scan" icon="softupdate">
@@ -121,7 +173,7 @@
 	</WIDGET>
 	
 	<WIDGET name="manualscan" id="102" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Manual frequency scan / Test signal" icon="softupdate">
@@ -134,7 +186,7 @@
 	</WIDGET>
 	
 	<WIDGET name="unicablesetup" id="101" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Unicable settings" icon="softupdate">
@@ -147,7 +199,7 @@
 	</WIDGET>
 	
 	<WIDGET name="transponder" id="100" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Select transponder" icon="softupdate">
@@ -160,7 +212,7 @@
 	</WIDGET>
 	
 	<WIDGET name="scansetup" id="64" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Scan transponder" icon="softupdate">
@@ -173,7 +225,7 @@
 	</WIDGET>
 	
 	<WIDGET name="modifytimer" id="91" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="0" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="0" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Modify timer" icon="settings">
@@ -186,7 +238,7 @@
 	</WIDGET>
 	
 	<WIDGET name="newtimer" id="90" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="0" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="0" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="New timer" icon="settings">
@@ -221,7 +273,7 @@
 	</WIDGET>
 	
 	<WIDGET name="tunersetup" id="40" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="0" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="0" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Servicescan" icon="softupdate">
@@ -234,7 +286,7 @@
 	</WIDGET>
 	
 	<WIDGET name="parentallocksettings" id="11" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="0" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="0" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Parentallock settings" icon="lock">
@@ -285,7 +337,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Media Player" icon="multimedia" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="1">
 			<INTEGRATION id="0x04" shortcut="1">
 			</INTEGRATION>
 		</LISTBOX>
@@ -300,7 +352,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Information" icon="information" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="1">
 			<ITEM id="5" localename="Information" itemicon="hint_dboxinfo" target="60">
 			</ITEM>
 			<ITEM id="5" localename="Image info" itemicon="hint_imageinfo" target="61">
@@ -321,7 +373,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Power Menu" icon="power" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="1">
 			<ITEM id="5" localename="Sleeptimer" itemicon="hint_sleeptimer" target="65">
 			</ITEM>
 			<ITEM id="5" localename="Neutrino Restart" itemicon="hint_restart" target="0" actionkey="restart">
@@ -344,7 +396,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Service" icon="softupdate" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="1">
 			<ITEM id="5" localename="Scan transponder" itemicon="hint_scan" target="40">
 			</ITEM>
 			<ITEM id="5" localename="Reload channel lists" itemicon="hint_reload" target="0" actionkey="reloadchannels">
@@ -355,7 +407,7 @@
 			</ITEM>
 			<ITEM id="5" localename="Image info" itemicon="hint_imageinfo" target="61">
 			</ITEM>
-			<ITEM id="5" localename="Software Update" itemicon="hint_swupdate" target="42">
+			<ITEM id="5" localename="Software update" itemicon="hint_swupdate" target="42">
 			</ITEM>
 		</LISTBOX>
 		
@@ -370,7 +422,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Features" icon="features" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="1">
 			<ITEM id="5" localename="Timer list" itemicon="hint_timers" target="47">
 			</ITEM>
 			<ITEM id="5" localename="Plugins" itemicon="hint_plugin" target="43">
@@ -391,7 +443,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="EPG - Program Information" icon="epg" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="1">
 			<ITEM id="5" localename="Eventlist current programm" itemicon="hint_sleeptimer" target="45">
 			</ITEM>
 			<ITEM id="5" localename="Details current program" itemicon="hint_restart" target="44" >
@@ -414,7 +466,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="OSD settings" icon="colors" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1"  mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1"  mode="1">
 			<ITEM id="5" localename="Skin select" itemicon="hint_themes" target="22">
 			</ITEM>
 			<ITEM id="5" localename="Themes" itemicon="hint_themes" target="25" >
@@ -447,7 +499,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Miscsettings" icon="settings" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="1">
 			<ITEM id="5" localename="General Settings" itemicon="hint_settings" target="33">
 			</ITEM>
 			<ITEM id="5" localename="Channellist Settings" itemicon="hint_bedit" target="35" >
@@ -470,7 +522,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Settings" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="1">
 			<ITEM id="5" localename="Video settings" itemicon="hint_video" target="9">
 			</ITEM>
 			<ITEM id="5" localename="Audio settings" itemicon="hint_audio" target="10">
@@ -509,7 +561,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" mode="2">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" mode="1">
 			<ITEM id="5" localename="EPG / Timer" itemicon="hint_timers" target="3" directkey="0x2">
 			</ITEM>
 			<ITEM id="5" localename="Features" itemicon="hint_plugin" target="6" actionkey="features">

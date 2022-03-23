@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-22 23:47+0100\n"
+"POT-Creation-Date: 2022-03-23 13:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,7 +139,7 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:373
+#: ../../src/gui/channellist.cpp:367
 msgid "Add to Bouquets"
 msgstr ""
 
@@ -184,7 +184,7 @@ msgid "Alpha Setup"
 msgstr ""
 
 #: ../../src/gui/audio_setup.cpp:192 ../../src/gui/audio_setup.cpp:275
-#: ../../src/gui/video_setup.cpp:408 ../../src/gui/video_setup.cpp:433
+#: ../../src/gui/video_setup.cpp:405 ../../src/gui/video_setup.cpp:430
 #: ../../src/gui/audio_select.cpp:131
 msgid "Analog Output"
 msgstr ""
@@ -359,7 +359,7 @@ msgstr ""
 msgid "Bouquet back"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1518 ../../src/gui/eventlist.cpp:833
+#: ../../src/gui/channellist.cpp:1512 ../../src/gui/eventlist.cpp:833
 #: ../../src/gui/bouquetlist.cpp:72
 msgid "Bouquets"
 msgstr ""
@@ -461,8 +461,8 @@ msgstr ""
 msgid "Cable:"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:87 ../../src/gui/update.cpp:659
-#: ../../src/gui/update.cpp:718 ../../src/gui/widget/messagebox.cpp:81
+#: ../../src/gui/rc_setup.cpp:87 ../../src/gui/update.cpp:693
+#: ../../src/gui/update.cpp:786 ../../src/gui/widget/messagebox.cpp:81
 #: ../../src/gui/widget/messagebox.cpp:130
 #: ../../src/gui/widget/messagebox.cpp:419
 #: ../../src/gui/widget/messagebox.cpp:513
@@ -558,7 +558,7 @@ msgstr ""
 msgid "Code Rate LP"
 msgstr ""
 
-#: ../../src/gui/video_setup.cpp:415
+#: ../../src/gui/video_setup.cpp:412
 msgid "Colour Range"
 msgstr ""
 
@@ -640,11 +640,11 @@ msgstr ""
 msgid "Current key"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1123 ../../src/gui/channellist.cpp:1185
+#: ../../src/gui/channellist.cpp:1117 ../../src/gui/channellist.cpp:1179
 msgid "Current transponder"
 msgstr ""
 
-#: ../../src/gui/update.cpp:908
+#: ../../src/gui/update.cpp:1046
 msgid "Current version"
 msgstr ""
 
@@ -680,7 +680,7 @@ msgstr ""
 msgid "Data"
 msgstr ""
 
-#: ../../src/gui/update.cpp:923
+#: ../../src/gui/update.cpp:1061
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:112
 msgid "Date"
 msgstr ""
@@ -720,7 +720,7 @@ msgid "Delayed shutdown"
 msgstr ""
 
 #: ../../src/gui/filebrowser.cpp:495 ../../src/gui/filebrowser.cpp:504
-#: ../../src/gui/movieplayer.cpp:1983 ../../src/gui/channellist.cpp:391
+#: ../../src/gui/movieplayer.cpp:1983 ../../src/gui/channellist.cpp:385
 #: ../../src/gui/timerlist.cpp:255 ../../src/gui/pluginlist.cpp:85
 #: ../../src/gui/bouquetlist.cpp:311
 #: ../../../plugins/audioplayer/audioplayer.cpp:252
@@ -939,7 +939,7 @@ msgstr ""
 msgid "East"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:364 ../../src/gui/bouquetlist.cpp:264
+#: ../../src/gui/channellist.cpp:358 ../../src/gui/bouquetlist.cpp:264
 msgid "Edit"
 msgstr ""
 
@@ -980,8 +980,8 @@ msgstr ""
 msgid "Enter your new youth protection pin code here!"
 msgstr ""
 
-#: ../../src/neutrino.cpp:2260 ../../src/gui/channellist.cpp:1039
-#: ../../src/gui/channellist.cpp:1099 ../../src/gui/update.cpp:251
+#: ../../src/neutrino.cpp:2260 ../../src/gui/channellist.cpp:1033
+#: ../../src/gui/channellist.cpp:1093 ../../src/gui/update.cpp:251
 #: ../../src/gui/update.cpp:375 ../../src/gui/update.cpp:441
 #: ../../src/gui/update.cpp:468 ../../src/gui/update.cpp:504
 #: ../../src/gui/update.cpp:550 ../../src/gui/misc_setup.cpp:488
@@ -1005,7 +1005,7 @@ msgstr ""
 msgid "Event list"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1516 ../../src/gui/infoviewer.cpp:1742
+#: ../../src/gui/channellist.cpp:1510 ../../src/gui/infoviewer.cpp:1742
 msgid "Event-List"
 msgstr ""
 
@@ -1017,7 +1017,7 @@ msgstr ""
 msgid "Eventlist current programm"
 msgstr ""
 
-#: ../../src/gui/epg_menu.cpp:101 ../../src/gui/channellist.cpp:1519
+#: ../../src/gui/epg_menu.cpp:101 ../../src/gui/channellist.cpp:1513
 msgid "Eventlist overview"
 msgstr ""
 
@@ -1033,7 +1033,11 @@ msgstr ""
 msgid "Exit"
 msgstr ""
 
-#: ../../src/gui/update.cpp:878 ../../src/gui/update.cpp:897
+#: ../../src/gui/update.cpp:1005
+msgid "Expert functions"
+msgstr ""
+
+#: ../../src/gui/update.cpp:1035
 msgid "Expert-functions"
 msgstr ""
 
@@ -1071,16 +1075,16 @@ msgstr ""
 msgid "File could not be created:"
 msgstr ""
 
+#: ../../src/gui/update.cpp:769
+msgid "File selector"
+msgstr ""
+
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3153
 msgid "File size (MB)"
 msgstr ""
 
 #: ../../src/gui/misc_setup.cpp:914
 msgid "File system"
-msgstr ""
-
-#: ../../src/gui/update.cpp:712
-msgid "File-Selector"
 msgstr ""
 
 #: ../../src/gui/filebrowser.cpp:829 ../../src/system/settings.cpp:51
@@ -1336,7 +1340,7 @@ msgstr ""
 msgid "HDD unmount failed !"
 msgstr ""
 
-#: ../../src/gui/video_setup.cpp:412 ../../src/gui/video_setup.cpp:471
+#: ../../src/gui/video_setup.cpp:409 ../../src/gui/video_setup.cpp:468
 msgid "HDMI Color Space"
 msgstr ""
 
@@ -1397,7 +1401,7 @@ msgstr ""
 msgid "Highlight"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1154
+#: ../../src/gui/channellist.cpp:1148
 msgid "History"
 msgstr ""
 
@@ -1476,7 +1480,7 @@ msgstr ""
 msgid "Image:"
 msgstr ""
 
-#: ../../src/gui/update.cpp:930
+#: ../../src/gui/update.cpp:1068
 msgid "ImageType"
 msgstr ""
 
@@ -1542,7 +1546,7 @@ msgstr ""
 #: ../../src/gui/update.cpp:609 ../../src/gui/update.cpp:619
 #: ../../src/gui/update.cpp:645 ../../src/gui/themes.cpp:89
 #: ../../src/gui/themes.cpp:127 ../../src/gui/themes.cpp:148
-#: ../../src/gui/pictureviewer.cpp:419 ../../src/gui/video_setup.cpp:458
+#: ../../src/gui/pictureviewer.cpp:419 ../../src/gui/video_setup.cpp:455
 #: ../../src/gui/timerlist.cpp:1251 ../../src/gui/misc_setup.cpp:577
 #: ../../src/gui/service_menu.cpp:76 ../../src/gui/service_menu.cpp:78
 #: ../../src/gui/plugins.cpp:336 ../../src/gui/audioplayer.cpp:1282
@@ -1593,7 +1597,7 @@ msgstr ""
 msgid "Invert"
 msgstr ""
 
-#: ../../src/gui/video_setup.cpp:458
+#: ../../src/gui/video_setup.cpp:455
 msgid "Is this video mode working ok ?"
 msgstr ""
 
@@ -1826,7 +1830,7 @@ msgstr ""
 msgid "Manual frequency scan / Test signal"
 msgstr ""
 
-#: ../../src/gui/update.cpp:937
+#: ../../src/gui/update.cpp:1075
 #: ../../../plugins/opkg_manager/opkg_manager.cpp:260
 msgid "Manuell(ftp) Software Manager"
 msgstr ""
@@ -1946,7 +1950,7 @@ msgstr ""
 msgid "Mount options"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:371
+#: ../../src/gui/channellist.cpp:365
 msgid "Move"
 msgstr ""
 
@@ -2006,8 +2010,8 @@ msgstr ""
 msgid "Movies Browser"
 msgstr ""
 
-#: ../../src/neutrino.cpp:1465 ../../src/gui/channellist.cpp:458
-#: ../../src/gui/channellist.cpp:461 ../../src/gui/channellist.cpp:462
+#: ../../src/neutrino.cpp:1465 ../../src/gui/channellist.cpp:452
+#: ../../src/gui/channellist.cpp:455 ../../src/gui/channellist.cpp:456
 #: ../../src/gui/bouquetlist.cpp:533
 msgid "My Favorites"
 msgstr ""
@@ -2106,7 +2110,7 @@ msgstr ""
 msgid "New timer"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1517 ../../src/gui/channellist.cpp:1685
+#: ../../src/gui/channellist.cpp:1511 ../../src/gui/channellist.cpp:1679
 msgid "Next"
 msgstr ""
 
@@ -2153,8 +2157,8 @@ msgstr ""
 msgid "No UPnP servers found"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1039 ../../src/gui/channellist.cpp:1099
-#: ../../src/gui/channellist.cpp:1361
+#: ../../src/gui/channellist.cpp:1033 ../../src/gui/channellist.cpp:1093
+#: ../../src/gui/channellist.cpp:1355
 msgid ""
 "No channels were found!\n"
 "Please execute a scan\n"
@@ -2201,7 +2205,7 @@ msgstr ""
 msgid "Not used"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1681
+#: ../../src/gui/channellist.cpp:1675
 msgid "Now"
 msgstr ""
 
@@ -2279,7 +2283,7 @@ msgstr ""
 msgid "Online EPG"
 msgstr ""
 
-#: ../../src/gui/update.cpp:940
+#: ../../src/gui/update.cpp:1078
 #: ../../../plugins/opkg_manager/opkg_manager.cpp:259
 msgid "Online Software Manager"
 msgstr ""
@@ -2344,8 +2348,8 @@ msgstr ""
 msgid "Parentallock settings"
 msgstr ""
 
-#: ../../src/gui/update.cpp:653
-msgid "Partition-Selector"
+#: ../../src/gui/update.cpp:676
+msgid "Partition selector"
 msgstr ""
 
 #: ../../src/gui/proxyserver_setup.cpp:107
@@ -2536,7 +2540,7 @@ msgstr ""
 msgid "Radius"
 msgstr ""
 
-#: ../../src/gui/update.cpp:890
+#: ../../src/gui/update.cpp:1028
 msgid "Read one partition"
 msgstr ""
 
@@ -2627,7 +2631,7 @@ msgstr ""
 msgid "Region"
 msgstr ""
 
-#: ../../src/gui/update.cpp:920
+#: ../../src/gui/update.cpp:1058
 msgid "Release cycle"
 msgstr ""
 
@@ -2848,8 +2852,8 @@ msgstr ""
 #: ../../src/gui/scan_setup.cpp:626 ../../src/gui/scan_setup.cpp:782
 #: ../../src/gui/scan_setup.cpp:939 ../../src/gui/scan_setup.cpp:1003
 #: ../../src/gui/recording_setup.cpp:93 ../../src/gui/recording_setup.cpp:224
-#: ../../src/gui/update.cpp:874 ../../src/gui/themes.cpp:231
-#: ../../src/gui/video_setup.cpp:398 ../../src/gui/misc_setup.cpp:267
+#: ../../src/gui/update.cpp:979 ../../src/gui/themes.cpp:231
+#: ../../src/gui/video_setup.cpp:395 ../../src/gui/misc_setup.cpp:267
 #: ../../src/gui/misc_setup.cpp:602 ../../src/gui/misc_setup.cpp:713
 #: ../../src/gui/misc_setup.cpp:910 ../../src/gui/lcd_setup.cpp:140
 #: ../../src/gui/zapit_setup.cpp:164 ../../src/gui/parentallock_setup.cpp:136
@@ -3238,11 +3242,15 @@ msgid "Slideshow display time"
 msgstr ""
 
 #: ../../src/gui/update.cpp:169 ../../src/gui/update.cpp:274
-#: ../../src/gui/update.cpp:864 ../../src/gui/service_menu.cpp:145
+#: ../../src/gui/service_menu.cpp:145
 msgid "Software Update"
 msgstr ""
 
-#: ../../src/gui/update.cpp:904 ../../src/gui/update.cpp:905
+#: ../../src/gui/update.cpp:958
+msgid "Software update"
+msgstr ""
+
+#: ../../src/gui/update.cpp:1042 ../../src/gui/update.cpp:1043
 msgid "Software update URL"
 msgstr ""
 
@@ -3466,7 +3474,7 @@ msgstr ""
 msgid "TV Mode"
 msgstr ""
 
-#: ../../src/gui/video_setup.cpp:402 ../../src/gui/video_setup.cpp:442
+#: ../../src/gui/video_setup.cpp:399 ../../src/gui/video_setup.cpp:439
 #: ../../src/gui/audio_video_select.cpp:271
 msgid "TV-System"
 msgstr ""
@@ -3590,7 +3598,7 @@ msgstr ""
 msgid "Thursday"
 msgstr ""
 
-#: ../../src/gui/update.cpp:926
+#: ../../src/gui/update.cpp:1064
 msgid "Time"
 msgstr ""
 
@@ -3858,16 +3866,16 @@ msgstr ""
 msgid "Vertikal (in %)"
 msgstr ""
 
-#: ../../src/gui/video_setup.cpp:405 ../../src/gui/video_setup.cpp:442
+#: ../../src/gui/video_setup.cpp:402 ../../src/gui/video_setup.cpp:439
 #: ../../src/gui/audio_video_select.cpp:274
 msgid "Video Format"
 msgstr ""
 
-#: ../../src/gui/video_setup.cpp:419 ../../src/gui/video_setup.cpp:447
+#: ../../src/gui/video_setup.cpp:416 ../../src/gui/video_setup.cpp:444
 msgid "Video Resolution"
 msgstr ""
 
-#: ../../src/gui/video_setup.cpp:377 ../../src/gui/main_setup.cpp:110
+#: ../../src/gui/video_setup.cpp:374 ../../src/gui/main_setup.cpp:110
 msgid "Video settings"
 msgstr ""
 
@@ -3931,7 +3939,7 @@ msgstr ""
 msgid "West"
 msgstr ""
 
-#: ../../src/gui/video_setup.cpp:476
+#: ../../src/gui/video_setup.cpp:473
 msgid "Wide Screen Auto"
 msgstr ""
 
@@ -3947,7 +3955,7 @@ msgstr ""
 msgid "Window-Content selected"
 msgstr ""
 
-#: ../../src/gui/update.cpp:893
+#: ../../src/gui/update.cpp:1031
 msgid "Write one partition"
 msgstr ""
 
@@ -4050,7 +4058,7 @@ msgstr ""
 msgid "activated"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:375
+#: ../../src/gui/channellist.cpp:369
 msgid "add channel to my favorites"
 msgstr ""
 
@@ -4126,8 +4134,8 @@ msgstr ""
 #: ../../src/gui/scan_setup.cpp:935 ../../src/gui/scan_setup.cpp:999
 #: ../../src/gui/scan_setup.cpp:1058 ../../src/gui/scan_setup.cpp:1750
 #: ../../src/gui/recording_setup.cpp:220 ../../src/gui/update.cpp:179
-#: ../../src/gui/update.cpp:870 ../../src/gui/update.cpp:884
-#: ../../src/gui/themes.cpp:227 ../../src/gui/video_setup.cpp:394
+#: ../../src/gui/update.cpp:975 ../../src/gui/update.cpp:1022
+#: ../../src/gui/themes.cpp:227 ../../src/gui/video_setup.cpp:391
 #: ../../src/gui/timerlist.cpp:990 ../../src/gui/timerlist.cpp:1058
 #: ../../src/gui/timerlist.cpp:1129 ../../src/gui/misc_setup.cpp:263
 #: ../../src/gui/misc_setup.cpp:598 ../../src/gui/misc_setup.cpp:709
@@ -4265,7 +4273,7 @@ msgstr ""
 msgid "default center"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:369
+#: ../../src/gui/channellist.cpp:363
 msgid "delete"
 msgstr ""
 
@@ -4981,7 +4989,7 @@ msgstr ""
 msgid "simple"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1603
+#: ../../src/gui/channellist.cpp:1597
 #, c-format
 msgid "since %02d:%02d"
 msgstr ""
@@ -5044,7 +5052,7 @@ msgstr ""
 msgid "sports magazines"
 msgstr ""
 
-#: ../../src/gui/channellist.cpp:1599
+#: ../../src/gui/channellist.cpp:1593
 #, c-format
 msgid "starts %02d:%02d"
 msgstr ""

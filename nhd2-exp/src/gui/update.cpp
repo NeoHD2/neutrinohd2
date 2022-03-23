@@ -650,18 +650,52 @@ void CFlashExpert::writemtd(const std::string & filename, int mtdNumber)
 void CFlashExpert::showMTDSelector(const std::string & actionkey)
 {
 	//mtd-selector erzeugen
-	CMenuWidget * mtdselector = new CMenuWidget(_("Partition-Selector"), NEUTRINO_ICON_UPDATE);
+	//CMenuWidget * mtdselector = new CMenuWidget(_("Partition-Selector"), NEUTRINO_ICON_UPDATE);
+	//mtdselector->setWidgetMode(MODE_SETUP);
+	//mtdselector->enableShrinkMenu();
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* mtdselector = NULL; 
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MTDSELECTOR))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MTDSELECTOR)->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MTDSELECTOR);
+		mtdselector = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MTDSELECTOR)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		mtdselector = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		mtdselector->setMenuPosition(MENU_POSITION_CENTER);
+		mtdselector->setWidgetMode(MODE_SETUP);
+		mtdselector->enableShrinkMenu();
+		
+		mtdselector->enablePaintHead();
+		mtdselector->setTitle(_("Partition selector"), NEUTRINO_ICON_UPDATE);
 
-	mtdselector->setWidgetMode(MODE_SETUP);
-	mtdselector->enableShrinkMenu();
+		mtdselector->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		mtdselector->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(mtdselector);
+	}
+	
+	mtdselector->clearItems();
 	
 	// intros
 	mtdselector->addItem(new CMenuForwarder(_("Cancel")));
 	mtdselector->addItem(new CMenuSeparator(LINE));
 	
-	CMTDInfo* mtdInfo =CMTDInfo::getInstance();
+	CMTDInfo* mtdInfo = CMTDInfo::getInstance();
 
-	for(int x1 = 0; x1 < mtdInfo->getMTDCount(); x1++) 
+	for(int x1 = 0; x1 < (int) mtdInfo->getMTDCount(); x1++) 
 	{
 		char sActionKey[20];
 		sprintf(sActionKey, "%s%d", actionkey.c_str(), x1);
@@ -703,16 +737,50 @@ void CFlashExpert::showMTDSelector(const std::string & actionkey)
 		}
 	}
 	
-	mtdselector->exec(NULL,"");
-	delete mtdselector;
+	//
+	widget->exec(NULL, "");
 }
 
 void CFlashExpert::showFileSelector(const std::string & actionkey)
 {
-	CMenuWidget * fileselector = new CMenuWidget(_("File-Selector"), NEUTRINO_ICON_UPDATE);
+	//CMenuWidget * fileselector = new CMenuWidget(_("File-Selector"), NEUTRINO_ICON_UPDATE);
+	//fileselector->setWidgetMode(MODE_SETUP);
+	//fileselector->enableShrinkMenu();
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* fileselector = NULL; 
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_FILESELECTOR))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_FILESELECTOR)->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_FILESELECTOR);
+		fileselector = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_FILESELECTOR)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		fileselector = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		fileselector->setMenuPosition(MENU_POSITION_CENTER);
+		fileselector->setWidgetMode(MODE_SETUP);
+		fileselector->enableShrinkMenu();
+		
+		fileselector->enablePaintHead();
+		fileselector->setTitle(_("File selector"), NEUTRINO_ICON_UPDATE);
 
-	fileselector->setWidgetMode(MODE_SETUP);
-	fileselector->enableShrinkMenu();
+		fileselector->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		fileselector->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(fileselector);
+	}
+	
+	fileselector->clearItems();
 	
 	// intros
 	fileselector->addItem(new CMenuForwarder(_("Cancel")));
@@ -720,6 +788,7 @@ void CFlashExpert::showFileSelector(const std::string & actionkey)
 
 	struct dirent **namelist;
 	int n = scandir("/tmp", &namelist, 0, alphasort);
+	
 	if (n < 0)
 	{
 		perror("no flashimages available");
@@ -731,6 +800,7 @@ void CFlashExpert::showFileSelector(const std::string & actionkey)
 		{
 			std::string filen = namelist[count]->d_name;
 			int pos = filen.find(".img");
+			
 			if(pos != -1)
 			{
 				fileselector->addItem(new CMenuForwarder(filen.c_str(), true, NULL, this, (actionkey + filen).c_str()));
@@ -741,8 +811,8 @@ void CFlashExpert::showFileSelector(const std::string & actionkey)
 		free(namelist);
 	}
 
-	fileselector->exec(NULL,"");
-	delete fileselector;
+	//
+	widget->exec(NULL, "");
 }
 
 int CFlashExpert::exec(CMenuTarget* parent, const std::string & actionKey)
@@ -861,51 +931,119 @@ void CUpdateSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CUpdateSettings::showMenu\n");
 	
-	CMenuWidget updateSettings(_("Software Update"), NEUTRINO_ICON_UPDATE);
+	//
+	//CMenuWidget updateSettings(_("Software Update"), NEUTRINO_ICON_UPDATE);
+	//updateSettings.setWidgetMode(MODE_SETUP);
+	//updateSettings.enableShrinkMenu();
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* updateSettings = NULL; 
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_UPDATESETUP))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_UPDATESETUP)->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_UPDATESETUP);
+		updateSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_UPDATESETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		updateSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		updateSettings->setMenuPosition(MENU_POSITION_CENTER);
+		updateSettings->setWidgetMode(MODE_SETUP);
+		updateSettings->enableShrinkMenu();
+		
+		updateSettings->enablePaintHead();
+		updateSettings->setTitle(_("Software update"), NEUTRINO_ICON_UPDATE);
 
-	updateSettings.setWidgetMode(MODE_SETUP);
-	updateSettings.enableShrinkMenu();
+		updateSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		updateSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(updateSettings);
+	}
+	
+	updateSettings->clearItems();
 		
 	// intros
-	updateSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	updateSettings.addItem(new CMenuSeparator(LINE));
+	updateSettings->addItem(new CMenuForwarder(_("back")));
+	updateSettings->addItem(new CMenuSeparator(LINE));
 	
 	// save settings
-	updateSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	updateSettings.addItem( new CMenuSeparator(LINE) );
+	updateSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
+	updateSettings->addItem( new CMenuSeparator(LINE) );
 
 	// expert-function for mtd read/write
-	CMenuWidget * mtdexpert = new CMenuWidget(_("Expert-functions"), NEUTRINO_ICON_UPDATE);
+	//CMenuWidget * mtdexpert = new CMenuWidget(_("Expert functions"), NEUTRINO_ICON_UPDATE);
+	//mtdexpert->setWidgetMode(MODE_SETUP);
+	//mtdexpert->enableShrinkMenu();
+	
+	CWidget* mtdexpertWidget = NULL;
+	ClistBox* mtdexpert = NULL; 
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_FLASHEXPERT))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_FLASHEXPERT)->getItemsCount();
+		
+		mtdexpertWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_FLASHEXPERT);
+		mtdexpert = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_FLASHEXPERT)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		mtdexpert = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		mtdexpert->setMenuPosition(MENU_POSITION_CENTER);
+		mtdexpert->setWidgetMode(MODE_SETUP);
+		mtdexpert->enableShrinkMenu();
+		
+		mtdexpert->enablePaintHead();
+		mtdexpert->setTitle(_("Expert functions"), NEUTRINO_ICON_UPDATE);
 
-	mtdexpert->setWidgetMode(MODE_SETUP);
-	mtdexpert->enableShrinkMenu();
+		updateSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		mtdexpert->setFootButtons(&btn);
+		
+		//
+		mtdexpertWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		mtdexpertWidget->setMenuPosition(MENU_POSITION_CENTER);
+		mtdexpertWidget->addItem(mtdexpert);
+	}
+	
+	mtdexpert->clearItems();
 		
 	// intros
-	mtdexpert->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	mtdexpert->addItem(new CMenuForwarder(_("back")));
 	mtdexpert->addItem(new CMenuSeparator(LINE));
 		
 	CFlashExpert * fe = new CFlashExpert();
 
 	// read mtd 
-	mtdexpert->addItem(new CMenuForwarder(_("Read one partition"), true, NULL, fe, "readflashmtd" ));
+	mtdexpert->addItem(new CMenuForwarder(_("Read one partition"), true, NULL, fe, "readflashmtd"));
 
 	// write mtd
 	mtdexpert->addItem(new CMenuForwarder(_("Write one partition"), true, NULL, fe, "writeflashmtd"));
 
 	// experten function
 	//FIXME: allow update only when the rootfs is jffs2/squashfs
-	updateSettings.addItem(new CMenuForwarder(_("Expert-functions"), true, NULL, mtdexpert, "", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
-	updateSettings.addItem(new CMenuSeparator(LINE));
+	updateSettings->addItem(new CMenuForwarder(_("Expert-functions"), true, NULL, mtdexpertWidget));
+	updateSettings->addItem(new CMenuSeparator(LINE));
 		
 	// update dir
-	updateSettings.addItem( new CMenuForwarder("", true, g_settings.update_dir , this, "update_dir") );
+	updateSettings->addItem( new CMenuForwarder("", true, g_settings.update_dir , this, "update_dir") );
 	
 	// url
 	CStringInputSMS * updateSettings_url_file = new CStringInputSMS(_("Software update URL"), g_settings.softupdate_url_file);
-	updateSettings.addItem(new CMenuForwarder(_("Software update URL"), true, g_settings.softupdate_url_file, updateSettings_url_file));
+	updateSettings->addItem(new CMenuForwarder(_("Software update URL"), true, g_settings.softupdate_url_file, updateSettings_url_file));
 
 	// show current version
-	updateSettings.addItem(new CMenuSeparator(LINE | STRING, _("Current version")));
+	updateSettings->addItem(new CMenuSeparator(LINE | STRING, _("Current version")));
 
 	// get current version SBBB YYYY MM TT HH MM -- formatsting
 	//CConfigFile lconfigfile('\t');
@@ -917,30 +1055,30 @@ void CUpdateSettings::showMenu()
 	//static CFlashVersionInfo versionInfo(versionString);
 
 	// release cycle
-	updateSettings.addItem(new CMenuForwarder(_("Release cycle"), false, /*versionInfo.getReleaseCycle()*/ RELEASE_CYCLE));
+	updateSettings->addItem(new CMenuForwarder(_("Release cycle"), false, /*versionInfo.getReleaseCycle()*/ RELEASE_CYCLE));
 		
 	// date
-	updateSettings.addItem(new CMenuForwarder(_("Date"), false, /*versionInfo.getDate()*/ __DATE__ ));
+	updateSettings->addItem(new CMenuForwarder(_("Date"), false, /*versionInfo.getDate()*/ __DATE__ ));
 		
 	// time
-	updateSettings.addItem(new CMenuForwarder(_("Time"), false, /*versionInfo.getTime()*/ __TIME__));
+	updateSettings->addItem(new CMenuForwarder(_("Time"), false, /*versionInfo.getTime()*/ __TIME__));
 		
 	// type
 	// versionInfo.getType() returns const char * which is never deallocated
-	updateSettings.addItem(new CMenuForwarder(_("ImageType"), false, /*versionInfo.getType()*/ "Snapshot" ));
+	updateSettings->addItem(new CMenuForwarder(_("ImageType"), false, /*versionInfo.getType()*/ "Snapshot" ));
 
 	// check update
 	//FIXME: allow update only when the rootfs is jffs2/squashfs
-	updateSettings.addItem(new CMenuSeparator(LINE));
+	updateSettings->addItem(new CMenuSeparator(LINE));
 	
 	// offline
-	updateSettings.addItem(new CMenuForwarder(_("Manuell(ftp) Software Manager"), false, NULL, new CFlashUpdate(CFlashUpdate::UPDATEMODE_MANUAL), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+	updateSettings->addItem(new CMenuForwarder(_("Manuell(ftp) Software Manager"), true, NULL, new CFlashUpdate(CFlashUpdate::UPDATEMODE_MANUAL)));
 
 	// online
-	updateSettings.addItem(new CMenuForwarder(_("Online Software Manager"), false, NULL, new CFlashUpdate(CFlashUpdate::UPDATEMODE_INTERNET), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
+	updateSettings->addItem(new CMenuForwarder(_("Online Software Manager"), true, NULL, new CFlashUpdate(CFlashUpdate::UPDATEMODE_INTERNET)));
 	
-	updateSettings.exec(NULL, "");
-	updateSettings.hide();
+	//
+	widget->exec(NULL, "");
 	
 	delete fe;
 	delete mtdexpert;

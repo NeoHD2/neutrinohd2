@@ -144,12 +144,6 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 CChannelList::~CChannelList()
 {
 	chanlist.clear();
-
-	if (listBox)
-	{
-		delete listBox;
-		listBox = NULL;
-	}
 }
 
 void CChannelList::ClearList(void)

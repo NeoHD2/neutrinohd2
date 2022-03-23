@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-22 23:47+0100\n"
+"POT-Creation-Date: 2022-03-23 13:07+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -695,6 +695,10 @@ msgstr ""
 msgid "Exit"
 msgstr ""
 
+#, fuzzy
+msgid "Expert functions"
+msgstr "Experten Funktionen"
+
 msgid "Expert-functions"
 msgstr "Experten Funktionen"
 
@@ -722,13 +726,14 @@ msgstr "Erweiterungen"
 msgid "File could not be created:"
 msgstr ""
 
+#, fuzzy
+msgid "File selector"
+msgstr "Skin Style Auswahl"
+
 msgid "File size (MB)"
 msgstr ""
 
 msgid "File system"
-msgstr ""
-
-msgid "File-Selector"
 msgstr ""
 
 msgid "Filebrowser"
@@ -1567,8 +1572,9 @@ msgstr "Jugendschutz PIN"
 msgid "Parentallock settings"
 msgstr "Jugendschutz PIN Einstellungen"
 
-msgid "Partition-Selector"
-msgstr ""
+#, fuzzy
+msgid "Partition selector"
+msgstr "Skin Auswahl"
 
 msgid "Password"
 msgstr ""
@@ -2158,6 +2164,9 @@ msgid "Slideshow display time"
 msgstr ""
 
 msgid "Software Update"
+msgstr ""
+
+msgid "Software update"
 msgstr ""
 
 msgid "Software update URL"

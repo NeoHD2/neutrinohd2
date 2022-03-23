@@ -3,6 +3,70 @@
 <!-- SKIN: KravenHD -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="fileselector" id="112" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="File selector" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="mtdselector" id="111" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Partition selector" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="flashexpert" id="110" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Expert functions" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="softwareupdate" id="42" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Software update" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
 	<WIDGET name="nfs" id="39" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
 		</LISTBOX>
@@ -68,7 +132,7 @@
 	</WIDGET>
 	
 	<WIDGET name="videosetup" id="9" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="1" itemshadow="1">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="2" itemshadow="1">
 		</LISTBOX>
 		<LABEL posx="640" posy="50" width="640" height="50" text="Video settings" halign="1">
 		</LABEL>
@@ -452,7 +516,7 @@
 			</ITEM>
 			<ITEM  id="5" localename="Image info" lines="1" itemicon="hint_imageinfo" target="61" shadow="1">
 			</ITEM>
-			<ITEM  id="5" localename="Software Update" lines="1" itemicon="hint_swupdate" target="42" shadow="1">
+			<ITEM  id="5" localename="Software update" lines="1" itemicon="hint_swupdate" target="42" shadow="1">
 			</ITEM>
 		</LISTBOX>
 	</WIDGET>
@@ -470,7 +534,7 @@
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" mode="1">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" mode="1" itemshadow="1">
 			<ITEM  id="5" localename="Timer list" itemicon="hint_timers" target="47" lines="1" shadow="1">
 			</ITEM>
 			<ITEM  id="5" localename="Plugins" itemicon="hint_plugin" target="43" lines="1" shadow="1">
@@ -629,7 +693,7 @@
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="0">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="1">
 			<ITEM id="5" localename="EPG / Timer" target="3" lines="1" shadow="1">
 			</ITEM>
 			<ITEM id="5" localename="Features" target="6" actionkey="features" lines="1" shadow="1">
