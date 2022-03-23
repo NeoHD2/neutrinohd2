@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-23 13:38+0100\n"
+"POT-Creation-Date: 2022-03-23 18:16+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -247,9 +247,6 @@ msgstr ""
 msgid "Bouquets"
 msgstr ""
 
-msgid "Box / Channel Information"
-msgstr ""
-
 msgid "Box Info"
 msgstr ""
 
@@ -286,9 +283,6 @@ msgid "CAM removed from slot"
 msgstr ""
 
 msgid "CI Cam"
-msgstr ""
-
-msgid "CI Cam Settings"
 msgstr ""
 
 msgid "CI Cam settings"
@@ -927,22 +921,7 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-msgid "Here you can get HW infos about your STB.\n"
-msgstr ""
-
-msgid "Here you can get infos about the Channel.\n"
-msgstr ""
-
-msgid "Here you can get infos about the software.\n"
-msgstr ""
-
 msgid "Here you can select a skin from the following list."
-msgstr ""
-
-msgid "Here you can setup the GUI Skin\n"
-msgstr ""
-
-msgid "Here you can setup the GUI themes.\n"
 msgstr ""
 
 msgid "Hide series"
@@ -2286,9 +2265,6 @@ msgstr ""
 msgid "Syncronisation via"
 msgstr ""
 
-msgid "System"
-msgstr ""
-
 msgid "TMDB"
 msgstr ""
 
@@ -2441,9 +2417,6 @@ msgstr ""
 
 msgid "Timer / EPG"
 msgstr ""
-
-msgid "Timer List"
-msgstr "Timerliste"
 
 msgid "Timer conflict. Create the timer anyway?"
 msgstr ""

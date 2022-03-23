@@ -66,7 +66,6 @@ class CDBoxInfoWidget : public CMenuTarget
 class CInfoMenu : public CMenuTarget
 {
 	private:
-		CMenuWidget* infoMenu;
 		void showMenu();
 		
 	public:

@@ -126,40 +126,65 @@ void CMiscSettingsMenu::showMenu(void)
 {
 	dprintf(DEBUG_NORMAL, "CMiscSettingsMenu::showMenu:\n");
 	
-	int shortcutMiscSettings = 1;
-
-	CMenuWidget * miscSettings = new CMenuWidget(_("Miscsettings"), NEUTRINO_ICON_SETTINGS);
-
-	miscSettings->setWidgetMode(MODE_MENU);
-	miscSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
-	miscSettings->enableShrinkMenu();
-	miscSettings->setMenuPosition(MENU_POSITION_CENTER);
-	miscSettings->enablePaintDate();
-
-	//miscSettings general
-	miscSettings->addItem(new CMenuForwarder(_("General settings"), true, NULL, new CGeneralSettings(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_GENERALSETTINGS));
+	//
+	CWidget* widget = NULL;
+	ClistBox* miscSettings = NULL;
 	
-	//channellist settings
-	miscSettings->addItem(new CMenuForwarder(_("Channellist settings"), true, NULL, new CChannelListSettings(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_CHANNELLISTSETTINGS));
+	//
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MISCSETTINGS))
+	{
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MISCSETTINGS);
+	}
+	else
+	{
+		miscSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		
+		miscSettings->setMenuPosition(MENU_POSITION_CENTER);
+		miscSettings->setWidgetMode(MODE_MENU);
+		miscSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
+		miscSettings->enableShrinkMenu();
+		
+		//
+		miscSettings->enablePaintHead();
+		miscSettings->setTitle(_("Misc settings"), NEUTRINO_ICON_SETTINGS);
+		miscSettings->enablePaintDate();
+		
+		//
+		miscSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		miscSettings->setFootButtons(&btn);
 
-	// epg settings
-	miscSettings->addItem(new CMenuForwarder(_("EPG settings"), true, NULL, new CEPGSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_EPGSETTINGS));
+		//miscSettings general
+		miscSettings->addItem(new CMenuForwarder(_("General settings"), true, NULL, new CGeneralSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_GENERALSETTINGS));
+		
+		//channellist settings
+		miscSettings->addItem(new CMenuForwarder(_("Channellist settings"), true, NULL, new CChannelListSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_CHANNELLISTSETTINGS));
 
-	// filebrowser settings
-	miscSettings->addItem(new CMenuForwarder(_("Filebrowser settings"), true, NULL, new CFileBrowserSettings(), NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_FILEBROWSERSETTINGS));
+		// epg settings
+		miscSettings->addItem(new CMenuForwarder(_("EPG settings"), true, NULL, new CEPGSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_EPGSETTINGS));
+
+		// filebrowser settings
+		miscSettings->addItem(new CMenuForwarder(_("Filebrowser settings"), true, NULL, new CFileBrowserSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_FILEBROWSERSETTINGS));
+		
+		// zapit setup (start channel)
+		miscSettings->addItem(new CMenuForwarder(_("Last Channel settings"), true, NULL, new CZapitSetup(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_STARTCHANNELSETTINGS));
+		
+		// psi setup
+		//FIXME:	
+		//CPSISetup * chPSISetup = new CPSISetup(_(PSI settings), &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
+		//miscSettings->addItem( new CMenuForwarder(_("PSI settings"), true, NULL, chPSISetup, NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_PSISETTINGS));
+		
+		//
+		if (widget == NULL) widget = new CWidget(miscSettings->getWindowsPos().iX, miscSettings->getWindowsPos().iY, miscSettings->getWindowsPos().iWidth, miscSettings->getWindowsPos().iHeight);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		
+		widget->addItem(miscSettings);
+	}
 	
-	// zapit setup (start channel)
-	miscSettings->addItem(new CMenuForwarder(_("Last Channel settings"), true, NULL, new CZapitSetup(), NULL, CRCInput::convertDigitToKey(shortcutMiscSettings++), NULL, NEUTRINO_ICON_MENUITEM_STARTCHANNELSETTINGS));
-	
-	// psi setup
-	//FIXME:	
-	//CPSISetup * chPSISetup = new CPSISetup(_(PSI settings), &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
-	//miscSettings->addItem( new CMenuForwarder(_("PSI settings"), true, NULL, chPSISetup, NULL, CRCInput::convertDigitToKey(shortcutMiscSettings++), NULL, NEUTRINO_ICON_MENUITEM_PSISETTINGS));
-	
-	miscSettings->exec(NULL, "");
-	miscSettings->hide();
-	delete miscSettings;
-	miscSettings = NULL;
+	//
+	widget->exec(NULL, "");
 }
 
 //// general settings

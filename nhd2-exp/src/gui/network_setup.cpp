@@ -106,7 +106,6 @@ CNetworkSettings *CNetworkSettings::getInstance()
 
 CNetworkSettings::~CNetworkSettings()
 {
-	//delete networkConfig;
 }
 
 void CNetworkSettings::readNetworkSettings(std::string iname)
@@ -185,11 +184,6 @@ void CNetworkSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CNetworkSettings::showMenu:\n");
 	
-	//CMenuWidget networkSettings(_("Network settings"), NEUTRINO_ICON_NETWORK);
-
-	//networkSettings.setWidgetMode(MODE_SETUP);
-	//networkSettings.enableShrinkMenu();
-	
 	//
 	CWidget* widget = NULL;
 	ClistBox* networkSettings = NULL;
@@ -197,7 +191,6 @@ void CNetworkSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP))
 	{
 		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP)->getCCItemsCount();
 		
 		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP);
 		networkSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
@@ -232,7 +225,7 @@ void CNetworkSettings::showMenu()
 	//interface
 	int ifcount = scandir("/sys/class/net", &namelist, my_filter, alphasort);
 
-	CMenuOptionStringChooser * ifSelect = new CMenuOptionStringChooser(_("Interface"), g_settings.ifname, ifcount > 1, this, RC_nokey, "", true);
+	CMenuOptionStringChooser * ifSelect = new CMenuOptionStringChooser(_("Interface"), g_settings.ifname, ifcount > 1, this);
 
 	bool found = false;
 
@@ -397,7 +390,7 @@ void CNetworkSettings::showMenu()
 	
 	//proxyserver submenu
 	networkSettings->addItem(new CMenuSeparator(LINE));
-	networkSettings->addItem(new CMenuForwarder(_("Proxyserver"), true, NULL, new CProxySetup(), NULL, RC_nokey, NULL));
+	networkSettings->addItem(new CMenuForwarder(_("Proxyserver"), true, NULL, new CProxySetup()));
 
 	// mount manager
 	networkSettings->addItem(new CMenuSeparator(LINE | STRING, _("Network Mount Manager")));

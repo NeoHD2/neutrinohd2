@@ -168,11 +168,46 @@ void CRecordingSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CRecordingSettings::showMenu:\n");
 	
-	CMenuWidget recordingSettings(_("Recording settings"), NEUTRINO_ICON_RECORDING );
-
-	recordingSettings.setWidgetMode(MODE_SETUP);
-	recordingSettings.enableShrinkMenu();
+	//CMenuWidget recordingSettings(_("Recording settings"), NEUTRINO_ICON_RECORDING );
+	//recordingSettings.setWidgetMode(MODE_SETUP);
+	//recordingSettings.enableShrinkMenu();
 	
+	//
+	CWidget* widget = NULL;
+	ClistBox* recordingSettings = NULL; 
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_RECORDINGSETUP))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_RECORDINGSETUP)->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_RECORDINGSETUP);
+		recordingSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_RECORDINGSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		recordingSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		recordingSettings->setMenuPosition(MENU_POSITION_CENTER);
+		recordingSettings->setWidgetMode(MODE_SETUP);
+		recordingSettings->enableShrinkMenu();
+		
+		recordingSettings->enablePaintHead();
+		recordingSettings->setTitle(_("Recording settings"), NEUTRINO_ICON_RECORDING);
+
+		recordingSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		recordingSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(recordingSettings);
+	}
+	
+	recordingSettings->clearItems();
+	
+	//
 	int rec_pre = 0;
 	int rec_post = 0;
 	
@@ -217,51 +252,51 @@ void CRecordingSettings::showMenu()
 	CMenuForwarder* fRecDir = new CMenuForwarder(_("Recording directory"), true, g_settings.network_nfs_recordingdir, this, "recordingdir");
 
 	// intros
-	recordingSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	recordingSettings.addItem( new CMenuSeparator(LINE) );
+	recordingSettings->addItem(new CMenuForwarder(_("back")));
+	recordingSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	recordingSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	recordingSettings.addItem(new CMenuForwarder(_("Activate changes"), true, NULL, this, "recording", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+	recordingSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	recordingSettings->addItem(new CMenuForwarder(_("Activate changes"), true, NULL, this, "recording"));
 
-	recordingSettings.addItem(new CMenuSeparator(LINE | STRING, _("Timer settings")));
-	recordingSettings.addItem(fTimerBefore);
-	recordingSettings.addItem(fTimerAfter);
+	recordingSettings->addItem(new CMenuSeparator(LINE | STRING, _("Timer settings")));
+	recordingSettings->addItem(fTimerBefore);
+	recordingSettings->addItem(fTimerAfter);
 
 	//apids
-	recordingSettings.addItem(new CMenuSeparator(LINE | STRING, _("default audio streams")));
-	recordingSettings.addItem(aoj1);
-	recordingSettings.addItem(aoj2);
-	recordingSettings.addItem(aoj3);
+	recordingSettings->addItem(new CMenuSeparator(LINE | STRING, _("default audio streams")));
+	recordingSettings->addItem(aoj1);
+	recordingSettings->addItem(aoj2);
+	recordingSettings->addItem(aoj3);
 
 	//
-	recordingSettings.addItem(new CMenuSeparator(LINE));
+	recordingSettings->addItem(new CMenuSeparator(LINE));
 	//epg in name format
-	recordingSettings.addItem(oj11);
+	recordingSettings->addItem(oj11);
 	
 	// save in channeldir
-	recordingSettings.addItem(oj13);
+	recordingSettings->addItem(oj13);
 
-	recordingSettings.addItem(new CMenuSeparator(LINE));
+	recordingSettings->addItem(new CMenuSeparator(LINE));
 
 	//recdir
-	recordingSettings.addItem(fRecDir);
+	recordingSettings->addItem(fRecDir);
 	
 	// timeshift
-	recordingSettings.addItem(new CMenuSeparator(LINE | STRING, _("Timeshift")));
+	recordingSettings->addItem(new CMenuSeparator(LINE | STRING, _("Timeshift")));
 	
 	// record time
-	recordingSettings.addItem(new CMenuOptionNumberChooser(_("Fast/timeshift record time(hours)"), &g_settings.record_hours, true, 1, 24, NULL) );
+	recordingSettings->addItem(new CMenuOptionNumberChooser(_("Fast/timeshift record time(hours)"), &g_settings.record_hours, true, 1, 24, NULL) );
 
 	// timeshift
 	if (recDir != NULL)
 	{
 		// permanent timeshift
-		recordingSettings.addItem(new CMenuOptionChooser(_("Permanent timeshift"), &g_settings.auto_timeshift, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this));
+		recordingSettings->addItem(new CMenuOptionChooser(_("Permanent timeshift"), &g_settings.auto_timeshift, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this));
 	}
 	
-	recordingSettings.exec(NULL, "");
-	recordingSettings.hide();
+	//
+	widget->exec(NULL, "");
 }
 
 // recording safety notifier

@@ -59,37 +59,63 @@ void CPowerMenu::showMenu(void)
 {
 	dprintf(DEBUG_NORMAL, "CPowerMenu::showMenu:\n");
 
-	int shortcut = 1;
-
-	CMenuWidget * powerMenu = new CMenuWidget(_("Power Menu"), NEUTRINO_ICON_BUTTON_POWER);
-
-	powerMenu->setWidgetMode(MODE_MENU);
-	powerMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
-	powerMenu->enableShrinkMenu();
-	powerMenu->setMenuPosition(MENU_POSITION_CENTER);
-	powerMenu->enablePaintDate();
+	//
+	CWidget* widget = NULL;
+	ClistBox* powerMenu = NULL;
 	
-	// sleep timer
-	powerMenu->addItem(new CMenuForwarder(_("Sleeptimer"), true, NULL, new CSleepTimerWidget(), NULL, CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_SLEEPTIMER, _("Sleeptimer")));
-
-	// restart neutrino
-	powerMenu->addItem(new CMenuForwarder(_("Neutrino Restart"), true, NULL, CNeutrinoApp::getInstance(), "restart", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_RESTART, _("Neutrino restart")));
-
-	// standby
-	powerMenu->addItem(new CMenuForwarder(_("Standby"), true, NULL, CNeutrinoApp::getInstance(), "standby", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_STANDBY, _("Standby")));
-
-	// reboot
-	powerMenu->addItem(new CMenuForwarder(_("Reboot"), true, NULL, CNeutrinoApp::getInstance(), "reboot", CRCInput::convertDigitToKey(shortcut++), NULL, NEUTRINO_ICON_MENUITEM_REBOOT, _("Reboot")));
-
-	// shutdown
-	powerMenu->addItem(new CMenuForwarder(_("Shutdown"), true, NULL, CNeutrinoApp::getInstance(), "shutdown", RC_standby, NEUTRINO_ICON_BUTTON_POWER, NEUTRINO_ICON_MENUITEM_SHUTDOWN, _("Shutdown")));
-
-	powerMenu->integratePlugins(CPlugins::I_TYPE_POWER, shortcut++);
+	//
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_POWERMENU))
+	{
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_POWERMENU);
+	}
+	else
+	{
+		powerMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		
+		powerMenu->setMenuPosition(MENU_POSITION_CENTER);
+		powerMenu->setWidgetMode(MODE_MENU);
+		powerMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
+		powerMenu->enableShrinkMenu();
+		
+		//
+		powerMenu->enablePaintHead();
+		powerMenu->setTitle(_("Power Menu"), NEUTRINO_ICON_BUTTON_POWER);
+		powerMenu->enablePaintDate();
+		
+		//
+		powerMenu->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		powerMenu->setFootButtons(&btn); 
 	
-	powerMenu->exec(NULL, "");
-	powerMenu->hide();
-	delete powerMenu;
-	powerMenu = NULL;
+		// sleep timer
+		powerMenu->addItem(new CMenuForwarder(_("Sleeptimer"), true, NULL, new CSleepTimerWidget(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SLEEPTIMER));
+
+		// restart neutrino
+		powerMenu->addItem(new CMenuForwarder(_("Neutrino Restart"), true, NULL, CNeutrinoApp::getInstance(), "restart", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_RESTART));
+
+		// standby
+		powerMenu->addItem(new CMenuForwarder(_("Standby"), true, NULL, CNeutrinoApp::getInstance(), "standby", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_STANDBY));
+
+		// reboot
+		powerMenu->addItem(new CMenuForwarder(_("Reboot"), true, NULL, CNeutrinoApp::getInstance(), "reboot", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_REBOOT));
+
+		// shutdown
+		powerMenu->addItem(new CMenuForwarder(_("Shutdown"), true, NULL, CNeutrinoApp::getInstance(), "shutdown", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SHUTDOWN));
+
+		//
+		powerMenu->integratePlugins(CPlugins::I_TYPE_POWER);
+	
+		//
+		if (widget == NULL) widget = new CWidget(powerMenu->getWindowsPos().iX, powerMenu->getWindowsPos().iY, powerMenu->getWindowsPos().iWidth, powerMenu->getWindowsPos().iHeight);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		
+		widget->addItem(powerMenu);
+	}
+	
+	//
+	widget->exec(NULL, "");
 }
 
 

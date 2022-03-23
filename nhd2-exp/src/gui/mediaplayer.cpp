@@ -28,6 +28,9 @@
 #include <config.h>
 #endif
 
+#include <global.h>
+#include <neutrino.h>
+
 #include <stdio.h>
 
 #include <system/debug.h>
@@ -57,22 +60,48 @@ void CMediaPlayerMenu::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CMediaPlayerMenu::showMenu:\n");
 
-	int shortcutMediaPlayer = 1;
+	//
+	CWidget* widget = NULL;
+	ClistBox* MediaPlayer = NULL;
 	
-	CMenuWidget * MediaPlayer = new CMenuWidget(_("Media Player"), NEUTRINO_ICON_MULTIMEDIA);
+	//
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MEDIAPLAYER))
+	{
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MEDIAPLAYER);
+	}
+	else
+	{
+		MediaPlayer = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		
+		MediaPlayer->setMenuPosition(MENU_POSITION_CENTER);
+		MediaPlayer->setWidgetMode(MODE_MENU);
+		MediaPlayer->setWidgetType(WIDGET_TYPE_CLASSIC);
+		MediaPlayer->enableShrinkMenu();
+		
+		//
+		MediaPlayer->enablePaintHead();
+		MediaPlayer->setTitle(_("Media Player"), NEUTRINO_ICON_MULTIMEDIA);
+		MediaPlayer->enablePaintDate();
+		
+		//
+		MediaPlayer->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		MediaPlayer->setFootButtons(&btn); 
 
-	MediaPlayer->setWidgetMode(MODE_MENU);
-	MediaPlayer->setWidgetType(WIDGET_TYPE_CLASSIC);
-	MediaPlayer->enableShrinkMenu();
-	MediaPlayer->setMenuPosition(MENU_POSITION_CENTER);
-	MediaPlayer->enablePaintDate();
-
-	MediaPlayer->integratePlugins(CPlugins::I_TYPE_MULTIMEDIA, shortcutMediaPlayer++);
+		//
+		MediaPlayer->integratePlugins(CPlugins::I_TYPE_MULTIMEDIA);
+		
+		//
+		if (widget == NULL) widget = new CWidget(MediaPlayer->getWindowsPos().iX, MediaPlayer->getWindowsPos().iY, MediaPlayer->getWindowsPos().iWidth, MediaPlayer->getWindowsPos().iHeight);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		
+		widget->addItem(MediaPlayer);
+	}
 	
-	MediaPlayer->exec(NULL, "");
-	MediaPlayer->hide();
-	delete MediaPlayer;
-	MediaPlayer = NULL;
+	//
+	widget->exec(NULL, "");
 }
 
 

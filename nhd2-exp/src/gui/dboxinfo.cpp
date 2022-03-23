@@ -42,6 +42,7 @@
 #include <sys/vfs.h>
 
 #include <global.h>
+#include <neutrino.h>
 
 #include <driver/fontrenderer.h>
 #include <driver/screen_max.h>
@@ -471,23 +472,59 @@ int CInfoMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 
 void CInfoMenu::showMenu()
 {
-	infoMenu = new CMenuWidget("Information", NEUTRINO_ICON_INFO);
+	dprintf(DEBUG_NORMAL, "CInfoMenu::showMenu:\n");
 	
-	infoMenu->setWidgetMode(MODE_MENU);
-	infoMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
-	infoMenu->setMenuPosition(MENU_POSITION_CENTER);
-	infoMenu->enablePaintDate();
-	infoMenu->enableShrinkMenu();
+	//
+	CWidget* widget = NULL;
+	ClistBox* infoMenu = NULL;
 	
-	infoMenu->addItem( new CMenuForwarder(_("Information"), true, NULL, new CDBoxInfoWidget(), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Here you can get HW infos about your STB.\n")));
+	//
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_INFORMATION))
+	{
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_INFORMATION);
+	}
+	else
+	{
+		infoMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		
+		infoMenu->setMenuPosition(MENU_POSITION_CENTER);
+		infoMenu->setWidgetMode(MODE_MENU);
+		infoMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
+		infoMenu->enableShrinkMenu();
+		
+		//
+		infoMenu->enablePaintHead();
+		infoMenu->setTitle(_("Information"), NEUTRINO_ICON_INFO);
+		infoMenu->enablePaintDate();
+		
+		//
+		infoMenu->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		infoMenu->setFootButtons(&btn); 
 	
-	infoMenu->addItem(new CMenuForwarder(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN, NEUTRINO_ICON_MENUITEM_IMAGEINFO, _("Here you can get infos about the software.\n")), false);
+		//
+		infoMenu->addItem( new CMenuForwarder(_("Information"), true, NULL, new CDBoxInfoWidget(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_BOXINFO));
+		
+		//
+		infoMenu->addItem(new CMenuForwarder(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_IMAGEINFO), false);
+		
+		//
+		infoMenu->addItem(new CMenuForwarder(_("Stream information"), true, NULL, new CStreamInfo2Handler(), "", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_BOXINFO));
+		
+		//
+		infoMenu->integratePlugins(CPlugins::I_TYPE_MAIN);
 	
-	infoMenu->addItem(new CMenuForwarder(_("Stream information"), true, NULL, new CStreamInfo2Handler(), "", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_BOXINFO, _("Here you can get infos about the Channel.\n")));
+		//
+		if (widget == NULL) widget = new CWidget(infoMenu->getWindowsPos().iX, infoMenu->getWindowsPos().iY, infoMenu->getWindowsPos().iWidth, infoMenu->getWindowsPos().iHeight);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		
+		widget->addItem(infoMenu);
+	}
 	
-	infoMenu->integratePlugins(CPlugins::I_TYPE_MAIN);
-	
-	infoMenu->exec(NULL, "");
+	//
+	widget->exec(NULL, "");
 }
 
 

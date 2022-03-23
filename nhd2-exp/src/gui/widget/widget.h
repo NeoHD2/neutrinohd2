@@ -147,7 +147,7 @@ enum {
 	WIDGET_FILESELECTOR = 			112,
 	
 	//
-	WIDGET_MAX
+	WIDGET_MAX = 				999
 };
 
 //
