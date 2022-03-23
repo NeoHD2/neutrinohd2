@@ -3,6 +3,25 @@
 <!-- SKIN: MetrixHD -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="movieplayersetup" id="14" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Movieplayer settings" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
 	<WIDGET name="recordingsetup" id="13" posx="0" posy="0" width="1280" height="720">
 		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
 		</LISTBOX>
@@ -807,20 +826,22 @@
 		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
 		</WINDOW>
 		
-		<LISTBOX posx="50" posy="60" width="540" height="620" type="1" mode ="1" paintiteminfo="1" iteminfomode="3" iteminfoframe="0" iteminfoposx="640" iteminfoposy="120" iteminfowidth="590" iteminfoheight="240">
-			<ITEM id="5" localename="EPG / Timer" itemicon="buttons/timerepg.png" target="3">
+		<LISTBOX posx="50" posy="60" width="540" height="620" type="0" mode ="1" paintiteminfo="1" iteminfomode="3" iteminfoframe="0" iteminfoposx="640" iteminfoposy="120" iteminfowidth="590" iteminfoheight="240">
+			<ITEM id="5" localename="TV / RADIO / WEBTV" lines="1" itemicon="hint_tvmode" target="0" actionkey="tvradioswitch">
 			</ITEM>
-			<ITEM id="5" localename="Features" itemicon="buttons/features.png" target="6" actionkey="features" >
+			<ITEM id="5" localename="EPG / Timer" lines="1" itemicon="buttons/timerepg.png" target="3">
 			</ITEM>
-			<ITEM id="5" localename="Service" itemicon="buttons/service.png" target="4">
+			<ITEM id="5" localename="Features" lines="1" itemicon="buttons/features.png" target="6" actionkey="features" >
 			</ITEM>
-			<ITEM id="5" localename="Settings" itemicon="buttons/mainsetup.png" target="2">
+			<ITEM id="5" localename="Service" lines="1" itemicon="buttons/service.png" target="4">
 			</ITEM>
-			<ITEM id="5" localename="Information" itemicon="buttons/information.png" target="5">
+			<ITEM id="5" localename="Settings" lines="1" itemicon="buttons/mainsetup.png" target="2">
 			</ITEM>
-			<ITEM id="5" localename="Power Menu" itemicon="buttons/powermenu.png" target="7">
+			<ITEM id="5" localename="Information" lines="1" itemicon="buttons/information.png" target="5">
 			</ITEM>
-			<ITEM id="5" localename="Media Player" itemicon="buttons/mediaplayer.png" target="8">
+			<ITEM id="5" localename="Power Menu" lines="1" itemicon="buttons/powermenu.png" target="7">
+			</ITEM>
+			<ITEM id="5" localename="Media Player" lines="1" itemicon="buttons/mediaplayer.png" target="8">
 			</ITEM>
 		</LISTBOX>
 		

@@ -3,6 +3,22 @@
 <!-- SKIN: KravenHD -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="movieplayersetup" id="14" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Movieplayer settings" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
 	<WIDGET name="recordingsetup" id="13" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
 		</LISTBOX>
@@ -725,7 +741,9 @@
 		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
 		</TIME>
 		
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="1">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="1" itemshadow="1">
+			<ITEM id="5" localename="TV / RADIO / WEBTV" lines="1" itemicon="hint_tvmode" target="0" actionkey="tvradioswitch">
+			</ITEM>
 			<ITEM id="5" localename="EPG / Timer" target="3" lines="1" shadow="1">
 			</ITEM>
 			<ITEM id="5" localename="Features" target="6" actionkey="features" lines="1" shadow="1">

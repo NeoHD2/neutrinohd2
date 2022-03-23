@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-23 18:16+0100\n"
+"POT-Creation-Date: 2022-03-23 18:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:260
+#: ../../src/gui/recording_setup.cpp:256
 msgid "Activate changes"
 msgstr ""
 
@@ -602,7 +602,7 @@ msgstr ""
 msgid "Corner"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:222 ../../src/gui/recording_setup.cpp:226
+#: ../../src/gui/recording_setup.cpp:218 ../../src/gui/recording_setup.cpp:222
 msgid "Correction time in min. (00=off). This time"
 msgstr ""
 
@@ -1049,7 +1049,7 @@ msgstr ""
 msgid "Failed to load youtube feed"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:289
+#: ../../src/gui/recording_setup.cpp:285
 msgid "Fast/timeshift record time(hours)"
 msgstr ""
 
@@ -1091,7 +1091,7 @@ msgstr ""
 msgid "Filename of the play list"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:246
+#: ../../src/gui/recording_setup.cpp:242
 msgid "Filenames (with EPG data)"
 msgstr ""
 
@@ -1974,7 +1974,7 @@ msgstr ""
 msgid "Moviebrowser"
 msgstr ""
 
-#: ../../src/gui/main_setup.cpp:123 ../../src/gui/movieplayer_setup.cpp:89
+#: ../../src/gui/main_setup.cpp:123 ../../src/gui/movieplayer_setup.cpp:106
 msgid "Movieplayer settings"
 msgstr ""
 
@@ -2346,7 +2346,7 @@ msgstr ""
 msgid "Paths"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:146 ../../src/gui/recording_setup.cpp:295
+#: ../../src/gui/recording_setup.cpp:146 ../../src/gui/recording_setup.cpp:291
 msgid "Permanent timeshift"
 msgstr ""
 
@@ -2544,11 +2544,11 @@ msgstr ""
 msgid "Record"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:243 ../../src/gui/timerlist.cpp:1066
+#: ../../src/gui/recording_setup.cpp:239 ../../src/gui/timerlist.cpp:1066
 msgid "Record AC3 streams"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:240 ../../src/gui/timerlist.cpp:1064
+#: ../../src/gui/recording_setup.cpp:236 ../../src/gui/timerlist.cpp:1064
 msgid "Record alternative streams"
 msgstr ""
 
@@ -2566,11 +2566,11 @@ msgstr ""
 msgid "Record standard stream"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:222 ../../src/gui/recording_setup.cpp:223
+#: ../../src/gui/recording_setup.cpp:218 ../../src/gui/recording_setup.cpp:219
 msgid "Record start time correction"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:226 ../../src/gui/recording_setup.cpp:227
+#: ../../src/gui/recording_setup.cpp:222 ../../src/gui/recording_setup.cpp:223
 msgid "Record stop time correction"
 msgstr ""
 
@@ -2578,12 +2578,12 @@ msgstr ""
 msgid "Recording"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:252 ../../src/gui/timerlist.cpp:1038
+#: ../../src/gui/recording_setup.cpp:248 ../../src/gui/timerlist.cpp:1038
 #: ../../src/gui/timerlist.cpp:1168
 msgid "Recording directory"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:194 ../../src/gui/main_setup.cpp:120
+#: ../../src/gui/recording_setup.cpp:190 ../../src/gui/main_setup.cpp:120
 msgid "Recording settings"
 msgstr ""
 
@@ -2809,7 +2809,7 @@ msgstr ""
 msgid "Save current theme"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:249
+#: ../../src/gui/recording_setup.cpp:245
 msgid "Save in channel dir"
 msgstr ""
 
@@ -2823,13 +2823,13 @@ msgstr ""
 #: ../../src/gui/scan_setup.cpp:400 ../../src/gui/scan_setup.cpp:488
 #: ../../src/gui/scan_setup.cpp:626 ../../src/gui/scan_setup.cpp:782
 #: ../../src/gui/scan_setup.cpp:939 ../../src/gui/scan_setup.cpp:1003
-#: ../../src/gui/recording_setup.cpp:93 ../../src/gui/recording_setup.cpp:259
+#: ../../src/gui/recording_setup.cpp:93 ../../src/gui/recording_setup.cpp:255
 #: ../../src/gui/update.cpp:965 ../../src/gui/themes.cpp:231
 #: ../../src/gui/video_setup.cpp:395 ../../src/gui/misc_setup.cpp:292
 #: ../../src/gui/misc_setup.cpp:627 ../../src/gui/misc_setup.cpp:738
 #: ../../src/gui/misc_setup.cpp:935 ../../src/gui/lcd_setup.cpp:140
 #: ../../src/gui/zapit_setup.cpp:164 ../../src/gui/parentallock_setup.cpp:136
-#: ../../src/gui/movieplayer_setup.cpp:99
+#: ../../src/gui/movieplayer_setup.cpp:127
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:807
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:850
 #: ../../../plugins/satipclient/satipclient.cpp:171
@@ -3269,7 +3269,7 @@ msgstr ""
 
 #: ../../src/gui/audioplayer_setup.cpp:115
 #: ../../src/gui/pictureviewer_setup.cpp:133
-#: ../../src/gui/movieplayer_setup.cpp:103
+#: ../../src/gui/movieplayer_setup.cpp:131
 msgid "Start dir."
 msgstr ""
 
@@ -3606,7 +3606,7 @@ msgstr ""
 msgid "Timer list"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:262
+#: ../../src/gui/recording_setup.cpp:258
 msgid "Timer settings"
 msgstr ""
 
@@ -3623,7 +3623,7 @@ msgstr ""
 msgid "Timeselection"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:286
+#: ../../src/gui/recording_setup.cpp:282
 msgid "Timeshift"
 msgstr ""
 
@@ -4097,7 +4097,7 @@ msgstr ""
 #: ../../src/gui/scan_setup.cpp:623 ../../src/gui/scan_setup.cpp:778
 #: ../../src/gui/scan_setup.cpp:935 ../../src/gui/scan_setup.cpp:999
 #: ../../src/gui/scan_setup.cpp:1058 ../../src/gui/scan_setup.cpp:1750
-#: ../../src/gui/recording_setup.cpp:255 ../../src/gui/update.cpp:179
+#: ../../src/gui/recording_setup.cpp:251 ../../src/gui/update.cpp:179
 #: ../../src/gui/update.cpp:961 ../../src/gui/update.cpp:1008
 #: ../../src/gui/themes.cpp:227 ../../src/gui/video_setup.cpp:391
 #: ../../src/gui/timerlist.cpp:990 ../../src/gui/timerlist.cpp:1058
@@ -4105,7 +4105,7 @@ msgstr ""
 #: ../../src/gui/misc_setup.cpp:623 ../../src/gui/misc_setup.cpp:734
 #: ../../src/gui/misc_setup.cpp:931 ../../src/gui/lcd_setup.cpp:136
 #: ../../src/gui/zapit_setup.cpp:160 ../../src/gui/parentallock_setup.cpp:132
-#: ../../src/gui/movieplayer_setup.cpp:95
+#: ../../src/gui/movieplayer_setup.cpp:123
 #: ../../src/gui/widget/keychooser.cpp:79
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:1447
 #: ../../../plugins/satipclient/satipclient.cpp:169
@@ -4229,7 +4229,7 @@ msgstr ""
 msgid "date / time"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:237 ../../src/gui/recording_setup.cpp:267
+#: ../../src/gui/recording_setup.cpp:233 ../../src/gui/recording_setup.cpp:263
 msgid "default audio streams"
 msgstr ""
 
@@ -5156,11 +5156,11 @@ msgstr ""
 msgid "weekly"
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:226
+#: ../../src/gui/recording_setup.cpp:222
 msgid "will added to stop time of every record timer."
 msgstr ""
 
-#: ../../src/gui/recording_setup.cpp:222
+#: ../../src/gui/recording_setup.cpp:218
 msgid "will be deducted of every record timer."
 msgstr ""
 

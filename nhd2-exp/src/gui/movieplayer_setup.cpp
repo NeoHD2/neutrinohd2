@@ -58,13 +58,7 @@ int CMoviePlayerSettings::exec(CMenuTarget* parent, const std::string& actionKey
 	if(parent)
 		parent->hide();
 	
-	if(actionKey == "savesettings")
-	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		
-		return ret;
-	}
-	else if(actionKey == "moviedir")
+	if(actionKey == "moviedir")
 	{
 		CFileBrowser b;
 		b.Dir_Mode = true;
@@ -86,24 +80,58 @@ void CMoviePlayerSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CMoviePlayerSettings::showMenu:\n");
 	
-	CMenuWidget moviePlayerSettings(_("Movieplayer settings"), NEUTRINO_ICON_MOVIE);
+	//CMenuWidget moviePlayerSettings(_("Movieplayer settings"), NEUTRINO_ICON_MOVIE);
+	//moviePlayerSettings.setWidgetMode(MODE_SETUP);
+	//moviePlayerSettings.enableShrinkMenu();
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* moviePlayerSettings = NULL; 
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MOVIEPLAYERSETUP))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MOVIEPLAYERSETUP)->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MOVIEPLAYERSETUP);
+		moviePlayerSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MOVIEPLAYERSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		moviePlayerSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		moviePlayerSettings->setMenuPosition(MENU_POSITION_CENTER);
+		moviePlayerSettings->setWidgetMode(MODE_SETUP);
+		moviePlayerSettings->enableShrinkMenu();
+		
+		moviePlayerSettings->enablePaintHead();
+		moviePlayerSettings->setTitle(_("Movieplayer settings"), NEUTRINO_ICON_MOVIE);
 
-	moviePlayerSettings.setWidgetMode(MODE_SETUP);
-	moviePlayerSettings.enableShrinkMenu();
+		moviePlayerSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		moviePlayerSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(moviePlayerSettings);
+	}
+	
+	moviePlayerSettings->clearItems();
 	
 	// intros
-	moviePlayerSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	moviePlayerSettings.addItem( new CMenuSeparator(LINE) );
+	moviePlayerSettings->addItem(new CMenuForwarder(_("back")));
+	moviePlayerSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	moviePlayerSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	moviePlayerSettings.addItem( new CMenuSeparator(LINE) );
+	moviePlayerSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	moviePlayerSettings->addItem( new CMenuSeparator(LINE) );
 
 	// multiformat Dir
-	moviePlayerSettings.addItem(new CMenuForwarder(_("Start dir."), true, g_settings.network_nfs_moviedir, this, "moviedir") ); 
+	moviePlayerSettings->addItem(new CMenuForwarder(_("Start dir."), true, g_settings.network_nfs_moviedir, this, "moviedir") ); 
 	
-	moviePlayerSettings.exec(NULL, "");
-	moviePlayerSettings.hide();
+	//
+	widget->exec(NULL, "");
 }
 
 
