@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-23 13:07+0100\n"
+"POT-Creation-Date: 2022-03-23 13:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -407,15 +407,15 @@ msgstr ""
 msgid "Buttons Line"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:254
+#: ../../src/gui/cam_menu.cpp:284
 msgid "CAM init complete"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:197
+#: ../../src/gui/cam_menu.cpp:227
 msgid "CAM inserted in slot"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:225
+#: ../../src/gui/cam_menu.cpp:255
 msgid "CAM removed from slot"
 msgstr ""
 
@@ -427,11 +427,11 @@ msgstr ""
 msgid "CI Cam Settings"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:115
+#: ../../src/gui/cam_menu.cpp:134
 msgid "CI Cam settings"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:143
+#: ../../src/gui/cam_menu.cpp:173
 msgid "CI cam reset"
 msgstr ""
 
@@ -461,8 +461,8 @@ msgstr ""
 msgid "Cable:"
 msgstr ""
 
-#: ../../src/gui/rc_setup.cpp:87 ../../src/gui/update.cpp:693
-#: ../../src/gui/update.cpp:786 ../../src/gui/widget/messagebox.cpp:81
+#: ../../src/gui/rc_setup.cpp:87 ../../src/gui/update.cpp:688
+#: ../../src/gui/update.cpp:777 ../../src/gui/widget/messagebox.cpp:81
 #: ../../src/gui/widget/messagebox.cpp:130
 #: ../../src/gui/widget/messagebox.cpp:419
 #: ../../src/gui/widget/messagebox.cpp:513
@@ -644,7 +644,7 @@ msgstr ""
 msgid "Current transponder"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1046
+#: ../../src/gui/update.cpp:1032
 msgid "Current version"
 msgstr ""
 
@@ -680,7 +680,7 @@ msgstr ""
 msgid "Data"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1061
+#: ../../src/gui/update.cpp:1047
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:112
 msgid "Date"
 msgstr ""
@@ -1033,11 +1033,11 @@ msgstr ""
 msgid "Exit"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1005
+#: ../../src/gui/update.cpp:991
 msgid "Expert functions"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1035
+#: ../../src/gui/update.cpp:1021
 msgid "Expert-functions"
 msgstr ""
 
@@ -1075,7 +1075,7 @@ msgstr ""
 msgid "File could not be created:"
 msgstr ""
 
-#: ../../src/gui/update.cpp:769
+#: ../../src/gui/update.cpp:760
 msgid "File selector"
 msgstr ""
 
@@ -1480,7 +1480,7 @@ msgstr ""
 msgid "Image:"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1068
+#: ../../src/gui/update.cpp:1054
 msgid "ImageType"
 msgstr ""
 
@@ -1531,10 +1531,10 @@ msgstr ""
 #: ../../src/neutrino.cpp:5279 ../../src/neutrino.cpp:5300
 #: ../../src/neutrino.cpp:5305 ../../src/neutrino.cpp:5317
 #: ../../src/neutrino.cpp:5319 ../../src/gui/osd_setup.cpp:461
-#: ../../src/gui/dboxinfo.cpp:482 ../../src/gui/cam_menu.cpp:201
-#: ../../src/gui/cam_menu.cpp:229 ../../src/gui/cam_menu.cpp:258
-#: ../../src/gui/cam_menu.cpp:359 ../../src/gui/cam_menu.cpp:473
-#: ../../src/gui/cam_menu.cpp:488 ../../src/gui/hdd_menu.cpp:146
+#: ../../src/gui/dboxinfo.cpp:482 ../../src/gui/cam_menu.cpp:231
+#: ../../src/gui/cam_menu.cpp:259 ../../src/gui/cam_menu.cpp:288
+#: ../../src/gui/cam_menu.cpp:389 ../../src/gui/cam_menu.cpp:503
+#: ../../src/gui/cam_menu.cpp:518 ../../src/gui/hdd_menu.cpp:146
 #: ../../src/gui/network_setup.cpp:159 ../../src/gui/rc_setup.cpp:222
 #: ../../src/gui/scan_setup.cpp:288 ../../src/gui/recording_setup.cpp:93
 #: ../../src/gui/movieplayer.cpp:618 ../../src/gui/movieplayer.cpp:1530
@@ -1830,7 +1830,7 @@ msgstr ""
 msgid "Manual frequency scan / Test signal"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1075
+#: ../../src/gui/update.cpp:1061
 #: ../../../plugins/opkg_manager/opkg_manager.cpp:260
 msgid "Manuell(ftp) Software Manager"
 msgstr ""
@@ -2145,7 +2145,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:147
+#: ../../src/gui/cam_menu.cpp:177
 msgid "No CAM in slot"
 msgstr ""
 
@@ -2283,7 +2283,7 @@ msgstr ""
 msgid "Online EPG"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1078
+#: ../../src/gui/update.cpp:1064
 #: ../../../plugins/opkg_manager/opkg_manager.cpp:259
 msgid "Online Software Manager"
 msgstr ""
@@ -2348,7 +2348,7 @@ msgstr ""
 msgid "Parentallock settings"
 msgstr ""
 
-#: ../../src/gui/update.cpp:676
+#: ../../src/gui/update.cpp:671
 msgid "Partition selector"
 msgstr ""
 
@@ -2540,7 +2540,7 @@ msgstr ""
 msgid "Radius"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1028
+#: ../../src/gui/update.cpp:1014
 msgid "Read one partition"
 msgstr ""
 
@@ -2631,7 +2631,7 @@ msgstr ""
 msgid "Region"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1058
+#: ../../src/gui/update.cpp:1044
 msgid "Release cycle"
 msgstr ""
 
@@ -2852,7 +2852,7 @@ msgstr ""
 #: ../../src/gui/scan_setup.cpp:626 ../../src/gui/scan_setup.cpp:782
 #: ../../src/gui/scan_setup.cpp:939 ../../src/gui/scan_setup.cpp:1003
 #: ../../src/gui/recording_setup.cpp:93 ../../src/gui/recording_setup.cpp:224
-#: ../../src/gui/update.cpp:979 ../../src/gui/themes.cpp:231
+#: ../../src/gui/update.cpp:965 ../../src/gui/themes.cpp:231
 #: ../../src/gui/video_setup.cpp:395 ../../src/gui/misc_setup.cpp:267
 #: ../../src/gui/misc_setup.cpp:602 ../../src/gui/misc_setup.cpp:713
 #: ../../src/gui/misc_setup.cpp:910 ../../src/gui/lcd_setup.cpp:140
@@ -3246,11 +3246,11 @@ msgstr ""
 msgid "Software Update"
 msgstr ""
 
-#: ../../src/gui/update.cpp:958
+#: ../../src/gui/update.cpp:944
 msgid "Software update"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1042 ../../src/gui/update.cpp:1043
+#: ../../src/gui/update.cpp:1028 ../../src/gui/update.cpp:1029
 msgid "Software update URL"
 msgstr ""
 
@@ -3598,7 +3598,7 @@ msgstr ""
 msgid "Thursday"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1064
+#: ../../src/gui/update.cpp:1050
 msgid "Time"
 msgstr ""
 
@@ -3622,7 +3622,7 @@ msgstr ""
 msgid "Timed Step Mode"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:488
+#: ../../src/gui/cam_menu.cpp:518
 msgid "Timeout waiting CI menu ready"
 msgstr ""
 
@@ -3915,7 +3915,7 @@ msgstr ""
 msgid "Wait a few seconds for abort"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:473
+#: ../../src/gui/cam_menu.cpp:503
 msgid "Waiting for CI answer"
 msgstr ""
 
@@ -3955,7 +3955,7 @@ msgstr ""
 msgid "Window-Content selected"
 msgstr ""
 
-#: ../../src/gui/update.cpp:1031
+#: ../../src/gui/update.cpp:1017
 msgid "Write one partition"
 msgstr ""
 
@@ -4120,7 +4120,7 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:224 ../../src/gui/osd_setup.cpp:382
 #: ../../src/gui/osd_setup.cpp:485 ../../src/gui/osd_setup.cpp:618
 #: ../../src/gui/osd_setup.cpp:689 ../../src/gui/osd_setup.cpp:873
-#: ../../src/gui/cam_menu.cpp:121 ../../src/gui/hdd_menu.cpp:190
+#: ../../src/gui/cam_menu.cpp:151 ../../src/gui/hdd_menu.cpp:190
 #: ../../src/gui/hdd_menu.cpp:307 ../../src/gui/hdd_menu.cpp:351
 #: ../../src/gui/network_setup.cpp:305 ../../src/gui/audio_setup.cpp:184
 #: ../../src/gui/audioplayer_setup.cpp:104
@@ -4134,7 +4134,7 @@ msgstr ""
 #: ../../src/gui/scan_setup.cpp:935 ../../src/gui/scan_setup.cpp:999
 #: ../../src/gui/scan_setup.cpp:1058 ../../src/gui/scan_setup.cpp:1750
 #: ../../src/gui/recording_setup.cpp:220 ../../src/gui/update.cpp:179
-#: ../../src/gui/update.cpp:975 ../../src/gui/update.cpp:1022
+#: ../../src/gui/update.cpp:961 ../../src/gui/update.cpp:1008
 #: ../../src/gui/themes.cpp:227 ../../src/gui/video_setup.cpp:391
 #: ../../src/gui/timerlist.cpp:990 ../../src/gui/timerlist.cpp:1058
 #: ../../src/gui/timerlist.cpp:1129 ../../src/gui/misc_setup.cpp:263

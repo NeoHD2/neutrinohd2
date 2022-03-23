@@ -111,16 +111,47 @@ void CCAMMenuHandler::doMainMenu()
 
 	char name[255];
 	char str[255];
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* cammenu = NULL; 
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_CICAMSETUP))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_CICAMSETUP)->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_CICAMSETUP);
+		cammenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_CICAMSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		cammenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		cammenu->setMenuPosition(MENU_POSITION_CENTER);
+		cammenu->setWidgetMode(MODE_SETUP);
+		cammenu->enableShrinkMenu();
+		
+		cammenu->enablePaintHead();
+		cammenu->setTitle(_("CI Cam settings"), NEUTRINO_ICON_SETTINGS);
 
-	CMenuWidget * cammenu = new CMenuWidget(_("CI Cam settings"), NEUTRINO_ICON_SETTINGS);
-
-	cammenu->setWidgetMode(MODE_SETUP);
-	cammenu->enableShrinkMenu();
+		cammenu->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		cammenu->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(cammenu);
+	}
+	
+	cammenu->clearItems();
 	
 	// intros
-	cammenu->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	cammenu->addItem(new CMenuForwarder(_("back")));
 
-	CMenuWidget * tempMenu;
+	//
+	CMenuWidget* tempMenu = NULL;
 	
 	for (int i = 0; i < ci->ci_num; i++)
 	{
@@ -139,24 +170,23 @@ void CCAMMenuHandler::doMainMenu()
 			sprintf(RESET, "reset%d", i + 1);
 
 			cammenu->addItem(new CMenuSeparator(LINE));
-
 			cammenu->addItem(new CMenuForwarder(_("CI cam reset"), true, NULL, this, RESET, RC_nokey));
 		} 
 		else 
 		{
 			sprintf(str, "%s %d", _("No CAM in slot"), i + 1);
 			tempMenu = new CMenuWidget(str, NEUTRINO_ICON_SETTINGS);
-
 			tempMenu->setWidgetMode(MODE_SETUP);
 			tempMenu->enableShrinkMenu();
 
+			//
 			cammenu->addItem(new CMenuSeparator(LINE));
 			cammenu->addItem(new CMenuForwarder(str, false, NULL, tempMenu));
 		}
 	}	
 
-	cammenu->exec(NULL, "");
-	delete cammenu;
+	//
+	widget->exec(NULL, "");
 }
 
 #define CI_MSG_TIME 5
@@ -194,7 +224,7 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 			hintBox = NULL;
 		}
 		
-		sprintf(str, "%s %d", /*g_Locale->getText(LOCACE_CAM_INSERTED)*/_("CAM inserted in slot"), (int) data + 1);
+		sprintf(str, "%s %d", _("CAM inserted in slot"), (int) data + 1);
 
 		dprintf(DEBUG_NORMAL, "CCAMMenuHandler::handleMsg: %s\n", str);
 		

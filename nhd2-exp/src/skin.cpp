@@ -550,17 +550,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			break;
 			
 		case WIDGET_CICAMSETUP:
-			{
-				if (widget_exists(WIDGET_CICAMSETUP))
-				{
-					parent = getWidget(WIDGET_CICAMSETUP);
-				}
-				else
-				{
-					dprintf(DEBUG_INFO, "id: %d not found\n", id);
-					parent = new CCAMMenuHandler();
-				}
-			}
+			parent = new CCAMMenuHandler();
 			break;
 			
 		case WIDGET_UPDATESETUP:

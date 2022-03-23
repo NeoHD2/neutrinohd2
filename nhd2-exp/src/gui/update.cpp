@@ -649,11 +649,6 @@ void CFlashExpert::writemtd(const std::string & filename, int mtdNumber)
 
 void CFlashExpert::showMTDSelector(const std::string & actionkey)
 {
-	//mtd-selector erzeugen
-	//CMenuWidget * mtdselector = new CMenuWidget(_("Partition-Selector"), NEUTRINO_ICON_UPDATE);
-	//mtdselector->setWidgetMode(MODE_SETUP);
-	//mtdselector->enableShrinkMenu();
-	
 	//
 	CWidget* widget = NULL;
 	ClistBox* mtdselector = NULL; 
@@ -743,10 +738,6 @@ void CFlashExpert::showMTDSelector(const std::string & actionkey)
 
 void CFlashExpert::showFileSelector(const std::string & actionkey)
 {
-	//CMenuWidget * fileselector = new CMenuWidget(_("File-Selector"), NEUTRINO_ICON_UPDATE);
-	//fileselector->setWidgetMode(MODE_SETUP);
-	//fileselector->enableShrinkMenu();
-	
 	//
 	CWidget* widget = NULL;
 	ClistBox* fileselector = NULL; 
@@ -930,11 +921,6 @@ int CUpdateSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 void CUpdateSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CUpdateSettings::showMenu\n");
-	
-	//
-	//CMenuWidget updateSettings(_("Software Update"), NEUTRINO_ICON_UPDATE);
-	//updateSettings.setWidgetMode(MODE_SETUP);
-	//updateSettings.enableShrinkMenu();
 	
 	//
 	CWidget* widget = NULL;
