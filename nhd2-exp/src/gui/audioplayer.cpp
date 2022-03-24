@@ -1276,7 +1276,9 @@ void CAudioPlayerGui::showHelp()
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_GREEN, _("jump prev"));
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_YELLOW, _("jump ff"));
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_BLUE, _("shuffle playlist"));
+	helpbox.addSeparator();
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_SETUP, _("Audioplayer settings"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_OKAY, _("show playlist"));
 
 	hide();
 	helpbox.show(_("Information"));

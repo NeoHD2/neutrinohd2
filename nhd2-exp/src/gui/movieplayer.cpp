@@ -1628,6 +1628,8 @@ void CMoviePlayerGui::showHelpTS()
 	helpbox.addSeparator();
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_SETUP, _("Movieplayer settings"));
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_HELP, _("show movie infoviewer"));
+	helpbox.addLine(NEUTRINO_ICON_BUTTON_OKAY, _("show playlist"));
+	helpbox.addSeparator();
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_0, _("skip bookmark"));
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_1, _("approx. 1 minute back"));
 	helpbox.addLine(NEUTRINO_ICON_BUTTON_2, _("goto start") );

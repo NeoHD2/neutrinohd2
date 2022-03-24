@@ -356,15 +356,15 @@ const char *numberchars[] = {  "0#!$%&?*()@\\",
                  		 "wxyz9" 
 };
 
-const char *info[]   = { "(select 'hidden' to copy in background)"               ,"('versteckt' w�hlen zum Kopieren im Hintergrund)"              ,"(Seleziona 'nascosto' per copiare in background)"              ,"(v�lj 'g�md' f�r att kopiera i bakgrunden)"        ,"(Seleccionar 'Escondido' para copiar em background)"  ,
-                   "(select 'hidden' to move in background)"               ,"('versteckt' w�hlen zum Verschieben im Hintergrund)"           ,"(Seleziona 'nascosto' per muovere in background)"              ,"(v�lj 'g�md' f�r att flytta i bakgrund)"           ,"(Seleccionar 'Escondido' para mover em background)"   ,
-                   "(select 'hidden' to execute in background)"            ,"('versteckt' w�hlen zum Ausf�hren im Hintergrund)"             ,"(Seleziona 'nascosto' per eseguire in background)"             ,"(v�lj 'hidden' f�r att starta i bakgrunden)"       ,"(Seleccionar 'Escondido' para executar em background)",
+const char *info[]   = { "(select 'hidden' to copy in background)"               ,"('versteckt' wählen zum Kopieren im Hintergrund)"              ,"(Seleziona 'nascosto' per copiare in background)"              ,"(v�lj 'g�md' f�r att kopiera i bakgrunden)"        ,"(Seleccionar 'Escondido' para copiar em background)"  ,
+                   "(select 'hidden' to move in background)"               ,"('versteckt' wählen zum Verschieben im Hintergrund)"           ,"(Seleziona 'nascosto' per muovere in background)"              ,"(v�lj 'g�md' f�r att flytta i bakgrund)"           ,"(Seleccionar 'Escondido' para mover em background)"   ,
+                   "(select 'hidden' to execute in background)"            ,"('versteckt' wählen zum Ausführen im Hintergrund)"             ,"(Seleziona 'nascosto' per eseguire in background)"             ,"(v�lj 'hidden' f�r att starta i bakgrunden)"       ,"(Seleccionar 'Escondido' para executar em background)",
                    "selected:%d"                                           ,"markiert:%d"                                                   ,"Seleziona:%d"                                                  ,"vald:%d"                                           ,"Seleccionado:%d"                                      ,
 				   "Warning: killing a process can make your box unstable!","Warnung: Prozesse beenden kann die Box instabil werden lassen!","Attenzione: fermare un processo pu� rendere il DB instabile!"  ,"Varning: d�da en process kan g�ra din box ostabil!","Matar um processo pode pox a BOX instavel"            ,
 				   "Please enter your password"                            ,"Bitte Passwort eingeben"                                       ,"Per fovore inserire la password"                               ,"Skriv in ditt l�senord"                            ,"Por favor introduza password"                         ,
 				   "Please enter new password"                             ,"Bitte neues Passwort eingeben"                                 ,"Per fovore inserire la nuova password"                         ,"Skriv in ditt nya l�senord"                        ,"Por favor imtroduza nova password"                    ,
 				   "Please enter new password again"                       ,"Bitte neues Passwort wiederholen"                              ,"Per fovore inserire la nuova password di nuovo"                ,"Skriv in ditt nya l�senord igen"                   ,"Por favor introduza nova password outra vez"          ,
-				   "password has been changed"                             ,"Passwort wurde ge�ndert"                                       ,"La password � stata cambiata"                                  ,"l�senordet har �ndrats"                            ,"Password foi alterada"                                ,
+				   "password has been changed"                             ,"Passwort wurde geändert"                                       ,"La password � stata cambiata"                                  ,"l�senordet har �ndrats"                            ,"Password foi alterada"                                ,
 				   "searching..."							               ,"Suche l�uft..."                                                ,"Ricerca in corso..."                                           ,"S�ker..."                                          ,"Procurando..."                                        ,
 				   "search result"									       ,"Suchergebnis"                                                  ,"Risultato della ricerca"                                       ,"S�kresultat"                                       ,"Resultado da pesquisa"                                ,
 				   "settings saved"                                        ,"Einstellungen gespeichert"                                     ,"Impostazioni salvate"                                          ,"Inst�llningar sparade"                             ,"Gravar configuracoes"                                 ,
@@ -374,7 +374,7 @@ const char *info[]   = { "(select 'hidden' to copy in background)"              
 				   "%m/%d/%Y %H:%M:%S"                                     ,"%d.%m.%Y %H:%M:%S"                                             ,"%m/%d/%Y %H:%M:%S"                                             ,"%Y-%m-%d %H:%M:%S"                                 ,"%m/%d/%Y %H:%M:%S"                                    
 };
 
-const char *msg[]   = { "Execute '%s' ?"                             ,"'%s' ausf�hren ?"                                ,"Eseguire '%s'  ?"                                ,"Starta '%s' ?"                        ,"Executa '%s' ?"                                   ,
+const char *msg[]   = { "Execute '%s' ?"                             ,"'%s' ausführen ?"                                ,"Eseguire '%s'  ?"                                ,"Starta '%s' ?"                        ,"Executa '%s' ?"                                   ,
                   "Cannot execute file '%s'"                   ,"Kann '%s' nicht ausf�hren"                       ,"Impossibile eseguire il file '%s' "              ,"Kan inte starta fil"                  ,"Nao pode executar o ficheiro '%s'"                ,
                   "Copy '%s' to '%s' ?"                        ,"'%s' nach '%s' kopieren ?"                       ,"Copiare '%s' a '%s'  ?"                          ,"Kopiera '%s' till '%s'?"              ,"Copia '%s' para '%s' ?"                           ,
                   "Copy %d file(s) to '%s' ?"                  ,"%d Datei(en) nach '%s' kopieren ?"               ,"Copiare %d file in '%s'  ?"                      ,"Kopiera %d fil(er) till '%s'?"        ,"Copiar %d ficheiros '%s' para '%s' ?"             ,
@@ -383,7 +383,7 @@ const char *msg[]   = { "Execute '%s' ?"                             ,"'%s' ausf
                   "Move '%s' to '%s' ?"                        ,"'%s' nach '%s' verschieben ?"                    ,"Muovere '%s' in '%s' ?"                          ,"Flytta '%s' till '%s' ?"              ,"Mover '%s' para '%s' ?"                           ,
 				  "Move %d file(s) to '%s' ?"                  ,"%d Datei(en) nach '%s' verschieben ?"            ,"Muovere %d file in '%s' ?"                       ,"Flytta %d fil(er) till '%s' ?"        ,"Mover %d ficheiros para '%s' ..."                 ,
 				  "Moving file '%s' to '%s'..."                ,"verschiebe '%s' nach '%s' ..."                   ,"Sto muovendo file '%s' in '%s' ..."              ,"Flyttar filen '%s' till '%s'..."      ,"Movendo os ficheiros '%s' para '%s' ..."          ,
-				  "Delete '%s' ?"                              ,"'%s' l�schen ?"                                  ,"Cancellare '%s' ?"                               ,"Radera '%s' ?"                        ,"Apagando '%s' ?"                                  ,
+				  "Delete '%s' ?"                              ,"'%s' löschen ?"                                  ,"Cancellare '%s' ?"                               ,"Radera '%s' ?"                        ,"Apagando '%s' ?"                                  ,
 				  "Delete %d files ?"                          ,"%d Datei(en) l�schen ?"                          ,"Cancellare i %d file ?"                          ,"Radera %d fil(er) ?"                  ,"Apagando %d ficheiros ?"                          ,
 				  "Deleting file '%s'..."                      ,"l�sche Datei '%s' ..."                           ,"Sto cancellando i file '%s' ..."                 ,"Raderar filen '%s'..."                ,"Apagando ficheiros '%s' :"                        ,
 				  "rename file '%s' :"                         ,"Datei '%s' umbenennen:"                          ,"Rinominare il file '%s' :"                       ,"Byt namn p� filen '%s'"               ,"Mudar nome do ficheiro '%s' :"                    ,
@@ -405,7 +405,7 @@ const char *msg[]   = { "Execute '%s' ?"                             ,"'%s' ausf
 				  "owner"                                      ,"Besitzer"                                        ,"Proprietario"                                    ,"�gare"                                ,"Proprietario"                                     ,
 				  "start, time, process"             ,"Start/Laufzeit, Prozess"                                   ,"Processo"                                        ,"process"                              ,"Processo"                                         ,
 				  "cancel download ?"                          ,"Download abbrechen ?"                            ,"Cancellare Download ?"                           ,"avbryt nedladdning ?"                 ,"Parar download ?"                                 ,
-				  "append to file '%s' ?"                      ,"An Datei '%s' anh�ngen ?"                        ,"Aggiungere al file '%s' ?"                       ,"L�gg till i fil '%s' ?"               ,"Acrescentar ao ficheiro '%s' ?"                   ,
+				  "append to file '%s' ?"                      ,"An Datei '%s' anhängen ?"                        ,"Aggiungere al file '%s' ?"                       ,"L�gg till i fil '%s' ?"               ,"Acrescentar ao ficheiro '%s' ?"                   ,
 				  "search in directory %s for file:"           ,"In Verzeichnis %s suchen nach Datei:"            ,"Sto cercando il file %s:"                        ,"s�k i mappen %s efter fil:"           ,"Procurar no directorio %s pelo ficheiro:"         ,
 				  "save current settings ?"                    ,"Einstellungen speichern ?"                       ,"Salvare le impostazioni correnti ?"              ,"spara nuvarande inst�llningar ?"      ,"Gravar configuracao corrente"                     
 };
@@ -418,7 +418,7 @@ const char *menuline[]  = { ""      , ""       ,""      ,""       ,""      ,
                       "copy"  , "kopier.","Copia" ,"kopiera","Copia" ,
                       "move"  , "versch.","Muovi" ,"flytta" ,"Mover" ,
                       "mkdir" , "mkdir"  ,"mkdir" ,"mkdir"  ,"mkdir" ,
-                      "delete", "l�schen","Canc." ,"radera" ,"Apagar",
+                      "delete", "löschen","Canc." ,"radera" ,"Apagar",
                       "touch" , "neu"    ,"Crea"  ,"touch"  ,"Cria"  ,
                       "link"  , "Verw."  ,"Link"  ,"l�nk"   ,"Ligar" 
 };
@@ -431,25 +431,25 @@ const char *editorline[]= { ""      , ""       ,""         ,""       ,""      ,
                       "copy"  , "kopier.","Copia"    ,"kopiera","Copia" ,
                       "move"  , "versch.","Muovi"    ,"flytta" ,"mover" ,
                       ""      , ""       ,""         ,""       ,""      ,
-                      "delete", "l�schen","Cancella" ,"radera" ,"Apagar",
+                      "delete", "löschen","Cancella" ,"radera" ,"Apagar",
                       ""      , ""       ,""         ,""       ,""      ,
                       ""      , ""       ,""         ,""       ,""      
 };
 
 const char *colorline[] = { ""               , ""                     ,""                ,""                 ,""                  ,
-                      "execute command", "Kommando ausf�hren"   ,"Esegui comando"  ,"starta kommando"  ,"Executar comando"  ,
+                      "execute command", "Kommando ausführen"   ,"Esegui comando"  ,"starta kommando"  ,"Executar comando"  ,
                       "toggle marker"  , "Datei markieren"      ,"Seleziona"       ,"v�xla markering"  ,"Seleccionar"       ,
                       "sort directory" , "Verzeichnis sortieren","Ordina directory","sortera mapp"     ,"Ordenar Directorio",
                       "refresh view"   , "Ansicht aktualisieren","Rivisualizza"    ,"uppdatera vy"     ,"Fazer refresh"     ,
-                      "delete line"    , "Zeile l�schen"        ,"Cancella riga"   ,"radera linje"     ,"Apagar linha"      ,
-                      "insert line"    , "Zeile einf�gen"       ,"Inserisci riga"  ,"l�gg till linje"  ,"Inserir linha"     ,
-                      "clear input"    , "Eingabe l�schen"      ,"Cancella ins."   ,"rensa inmatning"  ,"Cancelar insercao" ,
+                      "delete line"    , "Zeile löschen"        ,"Cancella riga"   ,"radera linje"     ,"Apagar linha"      ,
+                      "insert line"    , "Zeile einfügen"       ,"Inserisci riga"  ,"l�gg till linje"  ,"Inserir linha"     ,
+                      "clear input"    , "Eingabe löschen"      ,"Cancella ins."   ,"rensa inmatning"  ,"Cancelar insercao" ,
                       "set uppercase"  , "Grossbuchstaben"      ,"Imposta su"      ,"s�tt versaler"    ,"Por letra grande"  ,
                       "set lowercase"  , "Kleinbuchstaben"      ,"Imposta gi�"     ,"s�tt gemener"     ,"Por letra pequena" ,
                       "kill process"   , "Prozess beenden"      ,"Ferma processo"  ,"d�da process"     ,"Matar processo"    ,
                       "to linux format", "in Linux-Format"      ,"A formato linux" ,"till Linux format","Formato linux"     ,
                       "mark text"      , "Text markieren"       ,"Marca testo"     ,"markera text"     ,"Marcar texto"      ,
-                      "insert text"    , "Text einf�gen"        ,"Inserisci testo" ,"l�gg till text"   ,"inserir Texto"     
+                      "insert text"    , "Text einfügen"        ,"Inserisci testo" ,"l�gg till text"   ,"inserir Texto"     
 };
 
 const char *mbox[]     = { "OK"           , "OK"                ,"OK"                ,"OK"             ,"OK"           ,
@@ -457,10 +457,10 @@ const char *mbox[]     = { "OK"           , "OK"                ,"OK"           
                      "Hidden"       , "Versteckt"         ,"Nascosto"          ,"G�md"           ,"Esconder"     ,
                      "yes"          , "ja"                ,"Si"                ,"ja"             ,"Sim"          ,
                      "no"           , "nein"              ,"No"                ,"nej"            ,"Nao"          ,
-                     "overwrite"    , "�berschr."         ,"Sovrascrivi"       ,"skriv �ver"     ,"Sobrepor"     ,
-                     "skip"         , "�berspringen"      ,"Salta"             ,"hoppa �ver"     ,"Saltar"       ,
-                     "overwrite all", "alle �berschreiben","Sovrascivi tutto"  ,"skriv �ver alla","Sobrepor tudo",
-                     "skip all"     , "alle �berspringen" ,"Salta tutto"       ,"hoppa �ver alla","Saltar tudo"  ,
+                     "overwrite"    , "überschr."         ,"Sovrascrivi"       ,"skriv �ver"     ,"Sobrepor"     ,
+                     "skip"         , "überspringen"      ,"Salta"             ,"hoppa �ver"     ,"Saltar"       ,
+                     "overwrite all", "alle überschreiben","Sovrascivi tutto"  ,"skriv �ver alla","Sobrepor tudo",
+                     "skip all"     , "alle überspringen" ,"Salta tutto"       ,"hoppa �ver alla","Saltar tudo"  ,
                      "rename"       , "umben."            ,"Rinomina"          ,"byt namn"       ,"Mudar nome"   ,
                      "ask"          , "nachfragen"        ,"Chiedi"            ,"fr�ga"          ,"Pergunta"     ,
                      "auto"			, "automatisch"       ,"automatico"        ,"auto"           ,"Auto"         ,
@@ -473,7 +473,7 @@ const char *mbox[]     = { "OK"           , "OK"                ,"OK"           
 
 const char *props[]    = { "read"   , "lesen"    ,"Lettura"   ,"l�s"     ,"Ler"       ,
                      "write"  , "schreiben","Scrittura" ,"skriv"   ,"Escrever"  ,
-                     "execute", "ausf�hren","Esecuzione","exekvera","Exececutar"
+                     "execute", "ausführen","Esecuzione","exekvera","Exececutar"
 };
 
 const char *ftpstr[]   = { "host"     , "Adresse"    ,"Host"       ,"serveraddress","Host"      ,
@@ -484,10 +484,10 @@ const char *ftpstr[]   = { "host"     , "Adresse"    ,"Host"       ,"serveraddre
 };
 
 const char *mainmenu[] = { "search files"                       , "Dateien suchen"                            ,"Cerca file"                                ,"s�k filer"                           ,"Procurar ficheiros"                 ,
-                     "taskmanager"                        , "Prozess�bersicht"                          ,"Taskmanager"                               ,"Process�versikt"                     ,"List de processos"                  ,
+                     "taskmanager"                        , "Prozessübersicht"                          ,"Taskmanager"                               ,"Process�versikt"                     ,"List de processos"                  ,
                      "toggle 16:9 mode"                   , "16:9-Modus setzen"                         ,"Passa a modalit� 16:9"                     ,"v�xla 16:9 l�ge"                     ,"Mudar para 16:9"                    ,
                      "set password"                       , "Passwort setzen"                           ,"Imposta password"                          ,"s�tt l�senord"                       ,"Por password"                       ,
-                     "show filesizes in byte <%s>"        , "Dateigr�ssen in Byte anzeigen <%s>"        ,"show filesizes in byte <%s>"               ,"show filesizes in byte <%s>"         ,"show filesizes in byte <%s>"        ,
+                     "show filesizes in byte <%s>"        , "Dateigrössen in Byte anzeigen <%s>"        ,"show filesizes in byte <%s>"               ,"show filesizes in byte <%s>"         ,"show filesizes in byte <%s>"        ,
                      "language/Sprache/Lingua/Spr�k: <%s>", "Sprache/language/Lingua/Spr�k: <%s>"       ,"Lingua/language/Sprache/Spr�k: <%s>"       ,"Lingua/language/Sprache/Spr�k: <%s>" ,"Lingua/language/Sprache/Spr�k: <%s>",
                      "save settings on exit: <%s>"        , "Einstellungen beim Beenden speichern: <%s>","Salvare le impostazioni in uscita: <%s>"   ,"spara inst�llningar vid avslut: <%s>","Gravar e sair: <%s>"                ,
                      "save settings now"                  , "Einstellungen jetzt speichern"             ,"Salvare le impostazioni adesso"            ,"spara inst�llningar nu"              ,"Gravar configuracoes agora"         
