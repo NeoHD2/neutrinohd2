@@ -2803,8 +2803,8 @@ void ClistBox::initFrames()
 		full_width = itemBox.iWidth;
 		
 		// menu position
-		if ( (widgetMode == MODE_MENU) || (widgetMode == MODE_SETUP) )
-		{
+		//if ( (widgetMode == MODE_MENU) || (widgetMode == MODE_SETUP) )
+		//{
 			if(menu_position == MENU_POSITION_CENTER)
 			{
 				itemBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - full_width ) >> 1 );
@@ -2820,7 +2820,7 @@ void ClistBox::initFrames()
 				itemBox.iX = frameBuffer->getScreenX() + frameBuffer->getScreenWidth() - full_width;
 				itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
 			}
-		}
+		//}
 	}
 }
 

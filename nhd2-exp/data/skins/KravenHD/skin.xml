@@ -3,6 +3,150 @@
 <!-- SKIN: KravenHD -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="osdmiscsetup" id="30" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="600" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Misc settings" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="osdtimingsetup" id="28" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="OSD Timing" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="fontsetup" id="27" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Font" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="languagesetup" id="26" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Language" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="infobarsetup" id="24" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Infobar" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="skinstyleselectionsetup" id="32" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Skin Style selection" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="themesetup" id="25" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Themes" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="skinsetup" id="22" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" mode ="0" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Skin Select" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="menusetup" id="23" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Menu" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
 	<WIDGET name="filebrowsersetup" id="37" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
 		</LISTBOX>
@@ -582,7 +726,7 @@
 	</WIDGET>
 
 	<WIDGET name="plugins" id="80" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="1">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" scrollbar="1">
 		</LISTBOX>
 		
 		<LABEL posx="640" posy="50" width="640" height="50" text="Plugins" halign="1">

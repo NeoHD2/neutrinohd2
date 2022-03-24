@@ -161,7 +161,7 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 	return Show();
 }
 
-void CThemes::readThemes(CMenuWidget &themes)
+void CThemes::readThemes(ClistBox* themes)
 {
 	struct dirent **themelist;
 	int n;
@@ -187,12 +187,12 @@ void CThemes::readThemes(CMenuWidget &themes)
 				{
 					if ( p == 0 && hasCVSThemes == false ) 
 					{
-						themes.addItem(new CMenuSeparator(LINE | STRING, _("Select theme")));
+						themes->addItem(new CMenuSeparator(LINE | STRING, _("Select theme")));
 						hasCVSThemes = true;
 					} 
 					else if ( p == 1 && hasUserThemes == false ) 
 					{
-						themes.addItem(new CMenuSeparator(LINE | STRING, _("Select theme")));
+						themes->addItem(new CMenuSeparator(LINE | STRING, _("Select theme")));
 						hasUserThemes = true;
 					}
 					
@@ -205,7 +205,7 @@ void CThemes::readThemes(CMenuWidget &themes)
 					else
 						oj = new CMenuForwarder((char*)file, true, "", this, file);
 					
-					themes.addItem( oj );
+					themes->addItem( oj );
 				}
 				free(themelist[count]);
 			}
@@ -218,30 +218,64 @@ int CThemes::Show()
 {
 	dprintf(DEBUG_NORMAL, "CThemes::Show:\n");
 
-	CMenuWidget themes(_("Themes"), NEUTRINO_ICON_COLORS);
+	//CMenuWidget themes(_("Themes"), NEUTRINO_ICON_COLORS);
+	//themes.setWidgetMode(MODE_MENU);
+	//themes.enableShrinkMenu();
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* themes = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("themesetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("themesetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("themesetup");
+		themes = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("themesetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		themes = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		themes->setMenuPosition(MENU_POSITION_CENTER);
+		themes->setWidgetMode(MODE_SETUP);
+		themes->enableShrinkMenu();
+		
+		themes->enablePaintHead();
+		themes->setTitle(_("Themes"), NEUTRINO_ICON_COLORS);
 
-	themes.setWidgetMode(MODE_MENU);
-	themes.enableShrinkMenu();
+		themes->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		themes->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(themes);
+	}
+	
+	themes->clearItems();
 
 	// intros
-	themes.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	themes.addItem( new CMenuSeparator(LINE) );
+	themes->addItem(new CMenuForwarder(_("back")));
+	themes->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	themes.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	themes->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
 
-	themes.addItem(new CMenuForwarder(_("Save current theme"), true , NULL, this, "saveCurrentTheme", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+	themes->addItem(new CMenuForwarder(_("Save current theme"), true , NULL, this, "saveCurrentTheme"));
 	
 	//set default theme
 	if (g_settings.use_default_skin)
 	{
-		themes.addItem( new CMenuSeparator(LINE) );
-		themes.addItem(new CMenuForwarder(_("Default theme"), true, NULL, this, "theme_default", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+		themes->addItem( new CMenuSeparator(LINE) );
+		themes->addItem(new CMenuForwarder(_("Default theme"), true, NULL, this, "theme_default"));
 	}
 	
 	readThemes(themes);
 
-	int res = themes.exec(NULL, "");
+	int res = widget->exec(NULL, "");
 	
 	return res;
 }

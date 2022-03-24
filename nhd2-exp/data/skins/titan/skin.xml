@@ -3,6 +3,123 @@
 <!-- SKIN: titan -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="osdmiscsetup" id="30" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Misc settings" icon="settings">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="osdtimingsetup" id="28" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="OSD Timing" icon="settings">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="fontsetup" id="27" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Font" icon="language">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="languagesetup" id="26" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Language" icon="language">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="infobarsetup" id="24" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Infobar" icon="colors">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="skinstyleselectionsetup" id="32" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Skin Style selection" icon="colors">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="themesetup" id="25" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Themes" icon="colors">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="skinsetup" id="22" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" mode ="0" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Skin Select" icon="colors">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="menusetup" id="23" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Menu" icon="colors">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
 	<WIDGET name="filebrowsersetup" id="37" posx="0" posy="0" width="700" height="720" paintframe="1">
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>

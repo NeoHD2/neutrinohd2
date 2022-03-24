@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-24 15:05+0100\n"
+"POT-Creation-Date: 2022-03-24 20:43+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1077,9 +1077,6 @@ msgstr ""
 msgid "Language"
 msgstr "Sprache"
 
-msgid "Language Setup"
-msgstr "Sprache Einstellungen"
-
 msgid "Last Channel"
 msgstr ""
 
@@ -1466,9 +1463,6 @@ msgstr ""
 
 msgid "OPKG-Manager"
 msgstr ""
-
-msgid "OSD Miscsettings"
-msgstr "OSD Diverse Einstellungen"
 
 msgid "OSD Timing"
 msgstr ""

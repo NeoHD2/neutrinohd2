@@ -240,17 +240,47 @@ void COSDMenuColorSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "COSDMenuColorSettings::showMenu:\n");
 	
-	CMenuWidget OSDmenuColorsSettings(_("Menu"), NEUTRINO_ICON_SETTINGS );
+	//
+	CWidget* widget = NULL;
+	ClistBox* OSDmenuColorsSettings = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("menusetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("menusetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("menusetup");
+		OSDmenuColorsSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("menusetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		OSDmenuColorsSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		OSDmenuColorsSettings->setMenuPosition(MENU_POSITION_CENTER);
+		OSDmenuColorsSettings->setWidgetMode(MODE_SETUP);
+		OSDmenuColorsSettings->enableShrinkMenu();
+		
+		OSDmenuColorsSettings->enablePaintHead();
+		OSDmenuColorsSettings->setTitle(_("Menu"), NEUTRINO_ICON_COLORS);
 
-	OSDmenuColorsSettings.setWidgetMode(MODE_SETUP);
-	OSDmenuColorsSettings.enableShrinkMenu();
+		OSDmenuColorsSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		OSDmenuColorsSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(OSDmenuColorsSettings);
+	}
+	
+	OSDmenuColorsSettings->clearItems();
 	
 	// intros
-	OSDmenuColorsSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	OSDmenuColorsSettings->addItem(new CMenuForwarder(_("back")));
 
 	// save settings
-	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE) );
-	OSDmenuColorsSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	OSDmenuColorsSettings->addItem( new CMenuSeparator(LINE) );
+	OSDmenuColorsSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
 
 	// head
 	CColorChooser* chHeadcolor = new CColorChooser(_("Background"), &g_settings.menu_Head_red, &g_settings.menu_Head_green, &g_settings.menu_Head_blue, &g_settings.menu_Head_alpha, CNeutrinoApp::getInstance()->colorSetupNotifier);
@@ -277,88 +307,88 @@ void COSDMenuColorSettings::showMenu()
 
 	CColorChooser * chFootTextcolor = new CColorChooser(_("Textcolor"), &g_settings.menu_Foot_Text_red, &g_settings.menu_Foot_Text_green, &g_settings.menu_Foot_Text_blue, NULL, CNeutrinoApp::getInstance()->colorSetupNotifier);
 
-	// foot info
+	// itemInfo
 	CColorChooser* chHintColor = new CColorChooser(_("Background"), &g_settings.menu_Hint_red, &g_settings.menu_Hint_green, &g_settings.menu_Hint_blue, &g_settings.menu_Hint_alpha, CNeutrinoApp::getInstance()->colorSetupNotifier);
 
 	CColorChooser * chHintTextColor = new CColorChooser(_("Textcolor"), &g_settings.menu_Hint_Text_red, &g_settings.menu_Hint_Text_green, &g_settings.menu_Hint_Text_blue, NULL, CNeutrinoApp::getInstance()->colorSetupNotifier);
 
 	// head
-	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, _("Head")));
+	OSDmenuColorsSettings->addItem( new CMenuSeparator(LINE | STRING, _("Head")));
 	
 	// head colr
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Background"), true, NULL, chHeadcolor ));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Background"), true, NULL, chHeadcolor ));
 	
 	// head text
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chHeadTextcolor ));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chHeadTextcolor ));
 
 	// head gradient
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.Head_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.Head_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
 	
 	// head corner
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Corner"), &g_settings.Head_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Corner"), &g_settings.Head_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true));
 	
 	// head radius
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Radius"), &g_settings.Head_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Radius"), &g_settings.Head_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true));
 	
 	// head line
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Line"), &g_settings.Head_line, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Line"), &g_settings.Head_line, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 	// window content
-	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, _("Window-Content")));
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Background"), true, NULL, chContentcolor ));
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chContentTextcolor ));
+	OSDmenuColorsSettings->addItem( new CMenuSeparator(LINE | STRING, _("Window-Content")));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Background"), true, NULL, chContentcolor ));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chContentTextcolor ));
 
 	// window content inactiv
-	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, _("Window-Content inactive")));
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Background"), true, NULL, chContentInactivecolor ));
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chContentInactiveTextcolor));
+	OSDmenuColorsSettings->addItem( new CMenuSeparator(LINE | STRING, _("Window-Content inactive")));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Background"), true, NULL, chContentInactivecolor ));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chContentInactiveTextcolor));
 
 	// window content selected
-	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, _("Window-Content selected")));
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Background"), true, NULL, chContentSelectedcolor ));
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chContentSelectedTextcolor ));
+	OSDmenuColorsSettings->addItem( new CMenuSeparator(LINE | STRING, _("Window-Content selected")));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Background"), true, NULL, chContentSelectedcolor ));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chContentSelectedTextcolor ));
 	
 	// foot
-	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, _("Foot")));
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Background"), true, NULL, chFootcolor ));
+	OSDmenuColorsSettings->addItem( new CMenuSeparator(LINE | STRING, _("Foot")));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Background"), true, NULL, chFootcolor ));
 
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chFootTextcolor ));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chFootTextcolor ));
 
 	// foot gradient
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.Foot_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.Foot_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
 	
 	// foot corner
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Corner"), &g_settings.Foot_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Corner"), &g_settings.Foot_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true));
 	
 	// foot radius
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Radius"), &g_settings.Foot_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Radius"), &g_settings.Foot_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true));
 	
 	// foot line
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Line"), &g_settings.Foot_line, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Line"), &g_settings.Foot_line, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 	// itemInfo
-	OSDmenuColorsSettings.addItem( new CMenuSeparator(LINE | STRING, _("Item Info")));
+	OSDmenuColorsSettings->addItem( new CMenuSeparator(LINE | STRING, _("Item Info")));
 	
 	// itemInfocolor
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Background"), true, NULL, chHintColor ));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Background"), true, NULL, chHintColor ));
 
 	// fontinfo text color
-	OSDmenuColorsSettings.addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chHintTextColor ));
+	OSDmenuColorsSettings->addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chHintTextColor ));
 
 	// itemInfo gradient
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.Hint_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.Hint_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
 	
 	// iteminfo border
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Border"), &g_settings.Hint_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Border"), &g_settings.Hint_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 	
 	// itemInfo Radius
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Radius"), &g_settings.Hint_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Radius"), &g_settings.Hint_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true));
 	
 	// itemInfo corner
-	OSDmenuColorsSettings.addItem(new CMenuOptionChooser(_("Corner"), &g_settings.Hint_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDmenuColorsSettings->addItem(new CMenuOptionChooser(_("Corner"), &g_settings.Hint_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true));
 	
-	OSDmenuColorsSettings.exec(NULL, "");
-	OSDmenuColorsSettings.hide();
+	//
+	widget->exec(NULL, "");
 }
 
 // osd infobarcolor settings
@@ -398,16 +428,46 @@ void COSDInfoBarColorSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "COSDInfoBarColorSettings::showMenu:\n");
 	
-	CMenuWidget OSDinfobarColorSettings(_("Infobar"), NEUTRINO_ICON_SETTINGS);
+	//
+	CWidget* widget = NULL;
+	ClistBox* OSDinfobarColorSettings = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("infobarsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("infobarsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("infobarsetup");
+		OSDinfobarColorSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("infobarsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		OSDinfobarColorSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		OSDinfobarColorSettings->setMenuPosition(MENU_POSITION_CENTER);
+		OSDinfobarColorSettings->setWidgetMode(MODE_SETUP);
+		OSDinfobarColorSettings->enableShrinkMenu();
+		
+		OSDinfobarColorSettings->enablePaintHead();
+		OSDinfobarColorSettings->setTitle(_("Infobar"), NEUTRINO_ICON_COLORS);
 
-	OSDinfobarColorSettings.setWidgetMode(MODE_SETUP);
-	OSDinfobarColorSettings.enableShrinkMenu();
+		OSDinfobarColorSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		OSDinfobarColorSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(OSDinfobarColorSettings);
+	}
+	
+	OSDinfobarColorSettings->clearItems();
 	
 	// intros
-	OSDinfobarColorSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	OSDinfobarColorSettings->addItem(new CMenuForwarder(_("back")));
 
-	OSDinfobarColorSettings.addItem(new CMenuSeparator(LINE));
-	OSDinfobarColorSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	OSDinfobarColorSettings->addItem(new CMenuSeparator(LINE));
+	OSDinfobarColorSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
 
 	// bg
 	CColorChooser * chInfobarcolor = new CColorChooser(_("Background"), &g_settings.infobar_red, &g_settings.infobar_green, &g_settings.infobar_blue,&g_settings.infobar_alpha, CNeutrinoApp::getInstance()->colorSetupNotifier);
@@ -418,40 +478,40 @@ void COSDInfoBarColorSettings::showMenu()
 	// colored events
 	CColorChooser * chColored_Events = new CColorChooser(_("Events Textcolor"), &g_settings.infobar_colored_events_red, &g_settings.infobar_colored_events_green, &g_settings.infobar_colored_events_blue, NULL, CNeutrinoApp::getInstance()->colorSetupNotifier);
 
-	OSDinfobarColorSettings.addItem( new CMenuSeparator(LINE));
+	OSDinfobarColorSettings->addItem( new CMenuSeparator(LINE));
 
 	// bg color
-	OSDinfobarColorSettings.addItem( new CMenuForwarder(_("Background"), true, NULL, chInfobarcolor ));
+	OSDinfobarColorSettings->addItem( new CMenuForwarder(_("Background"), true, NULL, chInfobarcolor ));
 
 	// text color
-	OSDinfobarColorSettings.addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chInfobarTextcolor ));
+	OSDinfobarColorSettings->addItem( new CMenuForwarder(_("Textcolor"), true, NULL, chInfobarTextcolor ));
 
 	// events text color
-	OSDinfobarColorSettings.addItem( new CMenuForwarder(_("Events Textcolor"), true, NULL, chColored_Events ));
+	OSDinfobarColorSettings->addItem( new CMenuForwarder(_("Events Textcolor"), true, NULL, chColored_Events ));
 	
 	// infobar border
-	OSDinfobarColorSettings.addItem(new CMenuOptionChooser(_("Border"), &g_settings.infobar_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	OSDinfobarColorSettings->addItem(new CMenuOptionChooser(_("Border"), &g_settings.infobar_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	
 	// infobar buttonbar
-	OSDinfobarColorSettings.addItem(new CMenuOptionChooser(_("Buttons Bar"), &g_settings.infobar_buttonbar, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	OSDinfobarColorSettings->addItem(new CMenuOptionChooser(_("Buttons Bar"), &g_settings.infobar_buttonbar, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	
 	// infobar buttonline
-	OSDinfobarColorSettings.addItem(new CMenuOptionChooser(_("Buttons Line"), &g_settings.infobar_buttonline, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	OSDinfobarColorSettings->addItem(new CMenuOptionChooser(_("Buttons Line"), &g_settings.infobar_buttonline, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 
 	// gradient
-	OSDinfobarColorSettings.addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.infobar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDinfobarColorSettings->addItem(new CMenuOptionChooser(_("Gradient"), &g_settings.infobar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
 	
 	// gradient direction
-	OSDinfobarColorSettings.addItem(new CMenuOptionChooser(_("Gradient direction"), &g_settings.infobar_gradient_direction, GRADIENT_DIRECTION_TYPE_OPTIONS, GRADIENT_DIRECTION_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDinfobarColorSettings->addItem(new CMenuOptionChooser(_("Gradient direction"), &g_settings.infobar_gradient_direction, GRADIENT_DIRECTION_TYPE_OPTIONS, GRADIENT_DIRECTION_TYPE_OPTION_COUNT, true));
 	
 	// corner
-	OSDinfobarColorSettings.addItem(new CMenuOptionChooser(_("Corner"), &g_settings.infobar_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDinfobarColorSettings->addItem(new CMenuOptionChooser(_("Corner"), &g_settings.infobar_corner, CORNER_TYPE_OPTIONS, CORNER_TYPE_OPTION_COUNT, true));
 	
 	// radius
-	OSDinfobarColorSettings.addItem(new CMenuOptionChooser(_("Radius"), &g_settings.infobar_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true, NULL, RC_nokey, "", true ));
+	OSDinfobarColorSettings->addItem(new CMenuOptionChooser(_("Radius"), &g_settings.infobar_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true));
 	
-	OSDinfobarColorSettings.exec(NULL, "");
-	OSDinfobarColorSettings.hide();
+	//
+	widget->exec(NULL, "");
 }
 
 // osd language settings
@@ -472,13 +532,7 @@ int CLanguageSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(parent)
 		parent->hide();
 
-	if(actionKey == "savesettings")
-	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		
-		return ret;
-	}
-	else if (!actionKey.empty() && actionKey != g_settings.language)
+	if (!actionKey.empty() && actionKey != g_settings.language)
 	{
 		strcpy(g_settings.language, actionKey.c_str());
 		g_Locale->loadLocale(g_settings.language);
@@ -500,18 +554,48 @@ void CLanguageSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CLanguageSettings::showMenu:\n");
 	
+	//
 	CMenuItem* item = NULL;
-	CMenuWidget languageSettings(_("Language Setup"), NEUTRINO_ICON_LANGUAGE );
+	CWidget* widget = NULL;
+	ClistBox* languageSettings = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("languagesetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("languagesetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("languagesetup");
+		languageSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("languagesetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		languageSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		languageSettings->setMenuPosition(MENU_POSITION_CENTER);
+		languageSettings->setWidgetMode(MODE_SETUP);
+		languageSettings->enableShrinkMenu();
+		
+		languageSettings->enablePaintHead();
+		languageSettings->setTitle(_("Language"), NEUTRINO_ICON_LANGUAGE);
 
-	languageSettings.setWidgetMode(MODE_SETUP);
-	//languageSettings.enableShrinkMenu();
+		languageSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		languageSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(languageSettings);
+	}
+	
+	languageSettings->clearItems();
 	
 	// intros
-	languageSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	languageSettings.addItem(new CMenuSeparator(LINE));
+	languageSettings->addItem(new CMenuForwarder(_("back")));
+	languageSettings->addItem(new CMenuSeparator(LINE));
 
-	languageSettings.addItem(new CMenuForwarder(_("Save Settings"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	languageSettings.addItem(new CMenuSeparator(LINE));
+	languageSettings->addItem(new CMenuForwarder(_("Save Settings"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	languageSettings->addItem(new CMenuSeparator(LINE));
 	
 	item = new ClistBoxItem(_("English"), true, NULL, this, "en");
 	item->setIconName("en");
@@ -522,7 +606,7 @@ void CLanguageSettings::showMenu()
 		//item->setMarked(true);
 	}
 					
-	languageSettings.addItem(item);
+	languageSettings->addItem(item);
 
 	struct dirent **namelist;
 	int n;
@@ -549,7 +633,7 @@ void CLanguageSettings::showMenu()
 						//item->setMarked(true);
 					}
 					
-					languageSettings.addItem(item);	
+					languageSettings->addItem(item);	
 				}
 				free(namelist[n]);
 			}
@@ -557,7 +641,8 @@ void CLanguageSettings::showMenu()
 		}
 	}
 	
-	languageSettings.exec(NULL, "");
+	//
+	widget->exec(NULL, "");
 }
 
 bool CLanguageSettings::changeNotify(const std::string& OptionName, void */*data*/)
@@ -634,28 +719,58 @@ void CFontSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CFontSettings::showMenu:\n");
 	
-	CMenuWidget fontSettings(_("Font"), NEUTRINO_ICON_COLORS, 700);
+	//
+	CWidget* widget = NULL;
+	ClistBox* fontSettings = NULL;
 	
-	fontSettings.setWidgetMode(MODE_SETUP);
-	fontSettings.enableShrinkMenu();
+	if (CNeutrinoApp::getInstance()->getWidget("fontsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("fontsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("fontsetup");
+		fontSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("fontsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		fontSettings = new ClistBox(0, 0, 700, MENU_HEIGHT);
+		fontSettings->setMenuPosition(MENU_POSITION_CENTER);
+		fontSettings->setWidgetMode(MODE_SETUP);
+		fontSettings->enableShrinkMenu();
+		
+		fontSettings->enablePaintHead();
+		fontSettings->setTitle(_("Font"), NEUTRINO_ICON_COLORS);
+
+		fontSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		fontSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, 700, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(fontSettings);
+	}
+	
+	fontSettings->clearItems();
 	
 	// intros
-	fontSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	fontSettings.addItem(new CMenuSeparator(LINE));
+	fontSettings->addItem(new CMenuForwarder(_("back")));
+	fontSettings->addItem(new CMenuSeparator(LINE));
 
-	fontSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	fontSettings.addItem(new CMenuSeparator(LINE));
+	fontSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
+	fontSettings->addItem(new CMenuSeparator(LINE));
 	
 	// font name
-	fontSettings.addItem(new CMenuForwarder(_("Font name"), true, g_settings.font_file, this, "select_font"));
+	fontSettings->addItem(new CMenuForwarder(_("Font name"), true, g_settings.font_file, this, "select_font"));
 	
 	// font scaling
-	fontSettings.addItem(new CMenuSeparator(LINE|STRING, _("Font")));
-	fontSettings.addItem(new CMenuOptionNumberChooser(_("Horizontal (in %)"), &g_settings.screen_xres, true, 50, 200, NULL) );
-	fontSettings.addItem(new CMenuOptionNumberChooser(_("Vertikal (in %)"), &g_settings.screen_yres, true, 50, 200, NULL) );
+	fontSettings->addItem(new CMenuSeparator(LINE|STRING, _("Font")));
+	fontSettings->addItem(new CMenuOptionNumberChooser(_("Horizontal (in %)"), &g_settings.screen_xres, true, 50, 200, NULL) );
+	fontSettings->addItem(new CMenuOptionNumberChooser(_("Vertikal (in %)"), &g_settings.screen_yres, true, 50, 200, NULL) );
 		
-	
-	fontSettings.exec(NULL, "");
+	//
+	widget->exec(NULL, "");
 }
 
 // osd timing settings
@@ -680,13 +795,7 @@ int COSDTimingSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(parent)
 		parent->hide();
 	
-	if(actionKey == "savesettings")
-	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		
-		return ret;
-	}
-	else if(actionKey == "osd.def") 
+	if(actionKey == "osd.def") 
 	{
 		for (int i = 0; i < TIMING_SETTING_COUNT; i++)
 			g_settings.timing[i] = default_timing[i];
@@ -705,30 +814,60 @@ void COSDTimingSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "COSDTimingSettings::showMenu:\n");
 	
-	CMenuWidget osdTimingSettings(_("OSD Timing"), NEUTRINO_ICON_SETTINGS);
+	//
+	CWidget* widget = NULL;
+	ClistBox* osdTimingSettings = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("osdtimingsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("osdtimingsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("osdtimingsetup");
+		osdTimingSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("osdtimingsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		osdTimingSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		osdTimingSettings->setMenuPosition(MENU_POSITION_CENTER);
+		osdTimingSettings->setWidgetMode(MODE_SETUP);
+		osdTimingSettings->enableShrinkMenu();
+		
+		osdTimingSettings->enablePaintHead();
+		osdTimingSettings->setTitle(_("OSD Timing"), NEUTRINO_ICON_SETTINGS);
 
-	osdTimingSettings.setWidgetMode(MODE_SETUP);
-	osdTimingSettings.enableShrinkMenu();
+		osdTimingSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		osdTimingSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(osdTimingSettings);
+	}
+	
+	osdTimingSettings->clearItems();
 	
 	// intros
-	osdTimingSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	osdTimingSettings.addItem(new CMenuSeparator(LINE));
+	osdTimingSettings->addItem(new CMenuForwarder(_("back")));
+	osdTimingSettings->addItem(new CMenuSeparator(LINE));
 
-	osdTimingSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	osdTimingSettings.addItem(new CMenuSeparator(LINE));
+	osdTimingSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	osdTimingSettings->addItem(new CMenuSeparator(LINE));
 
 	for (int i = 0; i < TIMING_SETTING_COUNT; i++)
 	{
 		CStringInput * colorSettings_timing_item = new CStringInput(timing_setting_name[i], g_settings.timing_string[i], 3, _("Time in sec. After this time the"), _("infobar will be faded out."), "0123456789 ", &timingsettingsnotifier);
 
-		osdTimingSettings.addItem(new CMenuForwarder(timing_setting_name[i], true, g_settings.timing_string[i], colorSettings_timing_item));
+		osdTimingSettings->addItem(new CMenuForwarder(timing_setting_name[i], true, g_settings.timing_string[i], colorSettings_timing_item));
 	}
 
-	osdTimingSettings.addItem(new CMenuSeparator(LINE));
-	osdTimingSettings.addItem(new CMenuForwarder(_("Default"), true, NULL, this, "osd.def", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+	osdTimingSettings->addItem(new CMenuSeparator(LINE));
+	osdTimingSettings->addItem(new CMenuForwarder(_("Default"), true, NULL, this, "osd.def"));
 	
-	osdTimingSettings.exec(NULL, "");
-	osdTimingSettings.hide();
+	//
+	widget->exec(NULL, "");
 }
 
 // timing settings notifier
@@ -889,82 +1028,147 @@ void COSDDiverses::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "COSDTimingSettings::showMenu:\n");
 	
-	CMenuWidget osdDiverseSettings(_("OSD Miscsettings"), NEUTRINO_ICON_SETTINGS, 800, 600);
+	//CMenuWidget osdDiverseSettings(_("OSD Miscsettings"), NEUTRINO_ICON_SETTINGS, 800, 600);
+	//osdDiverseSettings.setWidgetMode(MODE_SETUP);
+	//osdDiverseSettings.enableShrinkMenu();
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* osdDiverseSettings = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("osdmiscsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("osdmiscsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("osdmiscsetup");
+		osdDiverseSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("osdmiscsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		osdDiverseSettings = new ClistBox(0, 0, 800, MENU_HEIGHT);
+		osdDiverseSettings->setMenuPosition(MENU_POSITION_CENTER);
+		osdDiverseSettings->setWidgetMode(MODE_SETUP);
+		osdDiverseSettings->enableShrinkMenu();
+		
+		osdDiverseSettings->enablePaintHead();
+		osdDiverseSettings->setTitle(_("Misc settings"), NEUTRINO_ICON_SETTINGS);
 
-	osdDiverseSettings.setWidgetMode(MODE_SETUP);
-	osdDiverseSettings.enableShrinkMenu();
+		osdDiverseSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		osdDiverseSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, 800, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(osdDiverseSettings);
+	}
+	
+	osdDiverseSettings->clearItems();
 	
 	// intros
-	osdDiverseSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	osdDiverseSettings.addItem(new CMenuSeparator(LINE));
+	osdDiverseSettings->addItem(new CMenuForwarder(_("back")));
+	osdDiverseSettings->addItem(new CMenuSeparator(LINE));
 
-	osdDiverseSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	osdDiverseSettings.addItem(new CMenuSeparator(LINE));
+	osdDiverseSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	osdDiverseSettings->addItem(new CMenuSeparator(LINE));
 
 	// progressbar color
-	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Progressbar Color"), &g_settings.progressbar_color, PROGRESSBAR_COLOR_OPTIONS, PROGRESSBAR_COLOR_OPTION_COUNT, true));
+	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Progressbar Color"), &g_settings.progressbar_color, PROGRESSBAR_COLOR_OPTIONS, PROGRESSBAR_COLOR_OPTION_COUNT, true));
 	
 	// progressbar_gradient
-	osdDiverseSettings.addItem(new CMenuOptionChooser("ProgressBar Gradient", &g_settings.progressbar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
+	osdDiverseSettings->addItem(new CMenuOptionChooser("ProgressBar Gradient", &g_settings.progressbar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
 	
 	// icons dir
-	osdDiverseSettings.addItem(new CMenuForwarder("Icons Dir", true, g_settings.icons_dir.c_str(), this, "select_icons_dir"));
+	osdDiverseSettings->addItem(new CMenuForwarder("Icons Dir", true, g_settings.icons_dir.c_str(), this, "select_icons_dir"));
 	
 	// buttons dir
-	osdDiverseSettings.addItem(new CMenuForwarder("Buttons Dir", true, g_settings.buttons_dir.c_str(), this, "select_buttons_dir"));
+	osdDiverseSettings->addItem(new CMenuForwarder("Buttons Dir", true, g_settings.buttons_dir.c_str(), this, "select_buttons_dir"));
 	
 	// hints dir
-	osdDiverseSettings.addItem(new CMenuForwarder("Hints Dir", true, g_settings.hints_dir.c_str(), this, "select_hints_dir"));
+	osdDiverseSettings->addItem(new CMenuForwarder("Hints Dir", true, g_settings.hints_dir.c_str(), this, "select_hints_dir"));
 	
 	// logos dir
-	osdDiverseSettings.addItem( new CMenuForwarder(_("logos Dir"), true, g_settings.logos_dir.c_str(), this, "logos_dir" ) );
+	osdDiverseSettings->addItem( new CMenuForwarder(_("logos Dir"), true, g_settings.logos_dir.c_str(), this, "logos_dir" ) );
 	
 	// epgplus logos
-	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Channel Logo(EPGPlus)"), &g_settings.epgplus_show_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Channel Logo(EPGPlus)"), &g_settings.epgplus_show_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	
 	// infobar channelname
-	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Channel name"), &g_settings.show_channelname, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Channel name"), &g_settings.show_channelname, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	
 	// sig/snr
-	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Satellite display on infobar"), &g_settings.infobar_sat_display, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Satellite display on infobar"), &g_settings.infobar_sat_display, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 	
 	// subchan pos
-	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Subchannel display"), &g_settings.infobar_subchan_disp_pos, INFOBAR_SUBCHAN_DISP_POS_OPTIONS, INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT, true, NULL, RC_nokey, "", true));
+	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Subchannel display"), &g_settings.infobar_subchan_disp_pos, INFOBAR_SUBCHAN_DISP_POS_OPTIONS, INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT, true));
 	
 	// volumebar position
-	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Volumebar"), &g_settings.volume_pos, VOLUMEBAR_DISP_POS_OPTIONS, VOLUMEBAR_DISP_POS_OPTIONS_COUNT, true, NULL, RC_nokey, "", true ));
+	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Volumebar"), &g_settings.volume_pos, VOLUMEBAR_DISP_POS_OPTIONS, VOLUMEBAR_DISP_POS_OPTIONS_COUNT, true));
 
 	// volume bar steps
 	CStringInput * audio_step = new CStringInput(_("Volume Step Size"), g_settings.audio_step, 2, NULL, NULL, "0123456789 " );
 	CMenuForwarder *as = new CMenuForwarder(_("Volume Step Size"), true, g_settings.audio_step, audio_step );
-	osdDiverseSettings.addItem(as);
+	osdDiverseSettings->addItem(as);
 	
 	// menu_border
-	osdDiverseSettings.addItem(new CMenuOptionChooser(_("Menu Border"), &g_settings.menu_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Menu Border"), &g_settings.menu_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
-	osdDiverseSettings.exec(NULL, "");
-	osdDiverseSettings.hide();
+	//
+	widget->exec(NULL, "");
 }
 
-// skin
+// 
 void CSkinManager::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CSkinManager::showMenu:\n");
 	
+	//
 	CMenuItem* item = NULL;
-	CMenuWidget* skinMenu = new CMenuWidget(_("Skin Select"), NEUTRINO_ICON_COLORS, 800, 600);
-	skinMenu->setWidgetMode(MODE_LISTBOX);
-	skinMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
-	skinMenu->enablePaintDate();
+	CWidget* widget = NULL;
+	ClistBox* skinMenu = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("skinsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("skinsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("skinsetup");
+		skinMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("skinsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		skinMenu = new ClistBox(0, 0, 800, MENU_HEIGHT);
+		skinMenu->setMenuPosition(MENU_POSITION_CENTER);
+		skinMenu->setWidgetMode(MODE_LISTBOX);
+		skinMenu->setWidgetType(WIDGET_TYPE_CLASSIC);
+		skinMenu->enableShrinkMenu();
+		
+		skinMenu->enablePaintHead();
+		skinMenu->setTitle(_("Skin Select"), NEUTRINO_ICON_COLORS);
+
+		skinMenu->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		skinMenu->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, 800, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(skinMenu);
+	}
+	
+	skinMenu->clearItems();
 	
 	// default
 	item = new ClistBoxItem(_("neutrino (default)"), true, NULL, this, "neutrino_default", RC_nokey, NULL, DATADIR "/neutrino/icons/prev.jpg");
 	item->setHint(_("Here you can select a skin from the following list."));
+	item->set2lines();
 	
 	if (g_settings.use_default_skin)
 	{
 		item->setIcon1(NEUTRINO_ICON_MARK);
-		//item->setMarked(true);
 	}
 	
 	skinMenu->addItem(item);
@@ -1010,10 +1214,8 @@ void CSkinManager::showMenu()
 		free(namelist);
 	}
 	
-	skinMenu->exec(NULL, "");
-	
-	delete skinMenu;
-	skinMenu = NULL;
+	//
+	widget->exec(NULL, "");
 }
 
 int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
@@ -1062,11 +1264,41 @@ void CSkinSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CSkinSettings::showMenu:\n");
 	
+	//
 	CMenuItem* item = NULL;
-	CMenuWidget* skinSettings = new CMenuWidget(_("Skin Style selection"), NEUTRINO_ICON_COLORS, 800, 600);// FIXME: localize
-	skinSettings->setWidgetMode(MODE_MENU);
-	//skinSettings->setWidgetType(WIDGET_TYPE_CLASSIC);
-	skinSettings->enablePaintDate();
+	CWidget* widget = NULL;
+	ClistBox* skinSettings = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("skinstyleselectionsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("skinstyleselectionsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("skinstyleselectionsetup");
+		skinSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("skinstyleselectionsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		skinSettings = new ClistBox(0, 0, 800, 600);
+		skinSettings->setMenuPosition(MENU_POSITION_CENTER);
+		skinSettings->setWidgetMode(MODE_SETUP);
+		skinSettings->enableShrinkMenu();
+		
+		skinSettings->enablePaintHead();
+		skinSettings->setTitle(_("Skin Style selection"), NEUTRINO_ICON_COLORS);
+
+		skinSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		skinSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, 800, 600);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(skinSettings);
+	}
+	
+	skinSettings->clearItems();
 	
 	// load config files
 	std::string skinPath = CONFIGDIR "/skins/";
@@ -1110,10 +1342,7 @@ void CSkinSettings::showMenu()
 	}
 	
 	
-	skinSettings->exec(NULL, "");
-	
-	delete skinSettings;
-	skinSettings = NULL;
+	widget->exec(NULL, "");
 }
 
 int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
@@ -1158,4 +1387,6 @@ int CSkinSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	
 	return ret;
 }
+
+
 
