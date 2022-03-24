@@ -76,7 +76,7 @@ CKeyChooser::CKeyChooser(int * const Key, const char * const Title, const std::s
 
 	addItem(new CKeyValue());
 	addItem(new CMenuSeparator(LINE));
-	addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	addItem(new CMenuForwarder(_("back")));
 	addItem(new CMenuSeparator(LINE));
 	addItem(new CMenuForwarder(_("Setup new key"), true, NULL, keyChooser));
 	addItem(new CMenuForwarder(_("No key"), true, NULL, keyDeleter));

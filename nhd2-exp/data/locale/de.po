@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-24 20:43+0100\n"
+"POT-Creation-Date: 2022-03-24 21:28+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1232,9 +1232,6 @@ msgstr ""
 msgid "Misc settings"
 msgstr "Diverse Einstellungen"
 
-msgid "Miscsettings"
-msgstr "Diverse Einstellungen"
-
 msgid "Mo Tu We Th Fr Sa Su"
 msgstr "Mo Di Mi Do Fr Sa So"
 
@@ -1851,7 +1848,7 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-msgid "Save Keymap"
+msgid "Save RC configuration"
 msgstr ""
 
 msgid "Save Settings"
@@ -1888,10 +1885,10 @@ msgstr ""
 msgid "Save/Restore epg on reboot"
 msgstr ""
 
-msgid "Saving current theme!"
+msgid "Saving RC configuration, please wait..."
 msgstr ""
 
-msgid "Saving keymap, please wait..."
+msgid "Saving current theme!"
 msgstr ""
 
 msgid "Saving settings now, please be patient."

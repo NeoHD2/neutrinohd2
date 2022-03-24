@@ -140,19 +140,52 @@ void CRemoteControlSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CRemoteControlSettings::showMenu:\n");
 	
-	int shortcutkeysettings = 1;
+	//int shortcutkeysettings = 1;
+	//CMenuWidget remoteControlSettings(_("Keybinding settings"), NEUTRINO_ICON_KEYBINDING );
+	//remoteControlSettings.setWidgetMode(MODE_SETUP);
+	//remoteControlSettings.enableShrinkMenu();
 	
-	CMenuWidget remoteControlSettings(_("Keybinding settings"), NEUTRINO_ICON_KEYBINDING );
+	//
+	CWidget* widget = NULL;
+	ClistBox* remoteControlSettings = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_REMOTECONTROLSETUP))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_REMOTECONTROLSETUP)->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_REMOTECONTROLSETUP);
+		remoteControlSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_REMOTECONTROLSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		remoteControlSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		remoteControlSettings->setMenuPosition(MENU_POSITION_CENTER);
+		remoteControlSettings->setWidgetMode(MODE_SETUP);
+		remoteControlSettings->enableShrinkMenu();
+		
+		remoteControlSettings->enablePaintHead();
+		remoteControlSettings->setTitle(_("Keybinding settings"), NEUTRINO_ICON_KEYBINDING);
 
-	remoteControlSettings.setWidgetMode(MODE_SETUP);
-	remoteControlSettings.enableShrinkMenu();
+		remoteControlSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		remoteControlSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(remoteControlSettings);
+	}
+	
+	remoteControlSettings->clearItems();
 	
 	// intros
-	remoteControlSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	remoteControlSettings.addItem( new CMenuSeparator(LINE) );
+	remoteControlSettings->addItem(new CMenuForwarder(_("back")));
+	remoteControlSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	remoteControlSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	remoteControlSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
 
 	keySetupNotifier = new CKeySetupNotifier;
 	
@@ -163,34 +196,34 @@ void CRemoteControlSettings::showMenu()
 	CStringInput * remoteControlSettings_repeatBlocker = new CStringInput(_("Repeat delay"), g_settings.repeat_blocker, 3, _("Shortest time (in ms) to recognize 2 keystrokes"), _("Enter 0 to switch of the blocker (red is space)"), "0123456789 ", keySetupNotifier);
 	keySetupNotifier->changeNotify("", NULL);
 
-	remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, _("Key Repeat-blocker")));
+	remoteControlSettings->addItem(new CMenuSeparator(LINE | STRING, _("Key Repeat-blocker")));
 	
 	// repeat blocker
-	remoteControlSettings.addItem(new CMenuForwarder(_("Repeat delay"), true, g_settings.repeat_blocker, remoteControlSettings_repeatBlocker, NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
+	remoteControlSettings->addItem(new CMenuForwarder(_("Repeat delay"), true, g_settings.repeat_blocker, remoteControlSettings_repeatBlocker));
 	
 	// repeat generic blocker
- 	remoteControlSettings.addItem(new CMenuForwarder(_("Generic delay"), true, g_settings.repeat_genericblocker, remoteControlSettings_repeat_genericblocker, NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
+ 	remoteControlSettings->addItem(new CMenuForwarder(_("Generic delay"), true, g_settings.repeat_genericblocker, remoteControlSettings_repeat_genericblocker));
 
 	// keybinding menu
-	remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, _("Keybinding settings")));
+	remoteControlSettings->addItem(new CMenuSeparator(LINE | STRING, _("Keybinding settings")));
 	
-	remoteControlSettings.addItem(new CMenuForwarder(_("Keybinding settings"), true, NULL, new CKeysBindingSettings(), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++)));
+	remoteControlSettings->addItem(new CMenuForwarder(_("Keybinding settings"), true, NULL, new CKeysBindingSettings()));
 
         // usermenu 
-        remoteControlSettings.addItem(new CMenuSeparator(LINE | STRING, _("User menu")));
+        remoteControlSettings->addItem(new CMenuSeparator(LINE | STRING, _("User menu")));
 
 	// blue
-        remoteControlSettings.addItem(new CMenuForwarder(_("User menu blue"), true, NULL, new CUserMenuMenu(_("User menu blue"), 0), NULL, CRCInput::convertDigitToKey(shortcutkeysettings++) ));
+        remoteControlSettings->addItem(new CMenuForwarder(_("User menu blue"), true, NULL, new CUserMenuMenu(_("User menu blue"), 0)));
 
 #if defined (ENABLE_FUNCTIONKEYS)	
-	remoteControlSettings.addItem(new CMenuForwarder(_("User menu F1"), true, NULL, new CUserMenuMenu(_("User menu F1"), 1) ));
-        remoteControlSettings.addItem(new CMenuForwarder(_("User menu F2"), true, NULL, new CUserMenuMenu(_("User menu F2"), 2) ));
-        remoteControlSettings.addItem(new CMenuForwarder(_("User menu F3"), true, NULL, new CUserMenuMenu(_("User menu F3"), 3) ));
-        remoteControlSettings.addItem(new CMenuForwarder(_("User menu F4"), true, NULL, new CUserMenuMenu(_("User menu F4"), 4) ));	
+	remoteControlSettings->addItem(new CMenuForwarder(_("User menu F1"), true, NULL, new CUserMenuMenu(_("User menu F1"), 1) ));
+        remoteControlSettings->addItem(new CMenuForwarder(_("User menu F2"), true, NULL, new CUserMenuMenu(_("User menu F2"), 2) ));
+        remoteControlSettings->addItem(new CMenuForwarder(_("User menu F3"), true, NULL, new CUserMenuMenu(_("User menu F3"), 3) ));
+        remoteControlSettings->addItem(new CMenuForwarder(_("User menu F4"), true, NULL, new CUserMenuMenu(_("User menu F4"), 4) ));	
 #endif
 	
-	remoteControlSettings.exec(NULL, "");
-	remoteControlSettings.hide();
+	//
+	widget->exec(NULL, "");
 }
 
 // keys binding settings
@@ -217,9 +250,9 @@ int CKeysBindingSettings::exec(CMenuTarget* parent, const std::string& actionKey
 		
 		return ret;
 	}
-	else if(actionKey == "savekeymap")
+	else if(actionKey == "savercconfig")
 	{
-		CHintBox * hintBox = new CHintBox(_("Information"), _("Saving keymap, please wait...")); // UTF-8
+		CHintBox * hintBox = new CHintBox(_("Information"), _("Saving RC configuration, please wait...")); // UTF-8
 		hintBox->paint();
 		
 		g_RCInput->configfile.setModifiedFlag(true);
@@ -281,52 +314,81 @@ void CKeysBindingSettings::showMenu()
 	for (int i = 0; i < KEYBINDS_COUNT; i++)
 		keychooser[i] = new CKeyChooser(keyvalue_p[i], keydescription[i], NEUTRINO_ICON_SETTINGS);
 	
-	// keybinding menu
-	CMenuWidget bindSettings(_("Keybinding settings"), NEUTRINO_ICON_KEYBINDING );
+	//
+	CWidget* widget = NULL;
+	ClistBox* bindSettings = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("rcsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("rcsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("rcsetup");
+		bindSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("rcsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		bindSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		bindSettings->setMenuPosition(MENU_POSITION_CENTER);
+		bindSettings->setWidgetMode(MODE_SETUP);
+		bindSettings->enableShrinkMenu();
+		
+		bindSettings->enablePaintHead();
+		bindSettings->setTitle(_("Keybinding settings"), NEUTRINO_ICON_KEYBINDING);
 
-	bindSettings.setWidgetMode(MODE_SETUP);
-	bindSettings.enableShrinkMenu();
+		bindSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		bindSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(bindSettings);
+	}
+	
+	bindSettings->clearItems();
 	
 	// intros
-	bindSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	bindSettings.addItem( new CMenuSeparator(LINE) );
+	bindSettings->addItem(new CMenuForwarder(_("back")));
+	bindSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	bindSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	bindSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
 
-	bindSettings.addItem(new CMenuSeparator(LINE | STRING, _("Modechange")));
+	bindSettings->addItem(new CMenuSeparator(LINE | STRING, _("Modechange")));
 	
 	// tv/radio mode
-	bindSettings.addItem(new CMenuForwarder(keydescription[KEY_TV_RADIO_MODE], true, NULL, keychooser[KEY_TV_RADIO_MODE]));
+	bindSettings->addItem(new CMenuForwarder(keydescription[KEY_TV_RADIO_MODE], true, NULL, keychooser[KEY_TV_RADIO_MODE]));
 
 	// channellist
-	bindSettings.addItem(new CMenuSeparator(LINE | STRING, _("Channellist")));
+	bindSettings->addItem(new CMenuSeparator(LINE | STRING, _("Channellist")));
 
 	for (int i = KEY_PAGE_UP; i <= KEY_BOUQUET_DOWN; i++)
-		bindSettings.addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
+		bindSettings->addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
 
 	// quick zap
-	bindSettings.addItem(new CMenuSeparator(LINE | STRING, _("Quickzap")));
+	bindSettings->addItem(new CMenuSeparator(LINE | STRING, _("Quickzap")));
 
 	for (int i = KEY_CHANNEL_UP; i <= KEY_SAME_TP; i++)
-		bindSettings.addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
+		bindSettings->addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
 	
 	// media
-	bindSettings.addItem(new CMenuSeparator(LINE | STRING, _("Media")));
+	bindSettings->addItem(new CMenuSeparator(LINE | STRING, _("Media")));
 	for (int i = KEY_EXTRAS_RECORDSBROWSER; i <= KEY_EXTRAS_WEBTV; i++)
-		bindSettings.addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
+		bindSettings->addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
 
 	// misc
-	bindSettings.addItem(new CMenuSeparator(LINE | STRING, _("Miscsettings")));
+	bindSettings->addItem(new CMenuSeparator(LINE | STRING, _("Misc settings")));
 	
 	// screenshot key
-	bindSettings.addItem(new CMenuForwarder(keydescription[KEY_EXTRAS_SCREENSHOT], true, NULL, keychooser[KEY_EXTRAS_SCREENSHOT]));
+	bindSettings->addItem(new CMenuForwarder(keydescription[KEY_EXTRAS_SCREENSHOT], true, NULL, keychooser[KEY_EXTRAS_SCREENSHOT]));
 	
-	// save keymap
-	bindSettings.addItem(new CMenuForwarder(_("Save Keymap"), true, NULL, this, "savekeymap" ) );
+	// save rc config
+	bindSettings->addItem(new CMenuForwarder(_("Save RC configuration"), true, NULL, this, "savercconfig" ) );
 	
-	bindSettings.exec(NULL, "");
-	bindSettings.hide();
+	//
+	widget->exec(NULL, "");
 }
 
 // key setup notifier
