@@ -286,6 +286,10 @@ class CWidget : public CMenuTarget
 		virtual void onPageUpKeyPressed();
 		virtual void onPageDownKeyPressed();
 		virtual void onYellowKeyPressed();
+		
+		//
+		int getWidgetID(){return id;};
+		std::string getWidgetName(){return name;};
 };
 
 typedef std::vector<CWidget*> WIDGETLIST;

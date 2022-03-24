@@ -7489,13 +7489,13 @@ void CTestMenu::showMenu()
 	int prev_ItemsCount = 0;
 	int prev_CCItemsCount = 0;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX))
+	if (CNeutrinoApp::getInstance()->getWidget("testmenu"))
 	{
-		prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX)->getItemsCount();
-		prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX)->getCCItemsCount();
+		prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("testmenu")->getItemsCount();
+		prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget("testmenu")->getCCItemsCount();
 		
-		mWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX);
-		mainMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MAX)->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		mWidget = CNeutrinoApp::getInstance()->getWidget("testmenu");
+		mainMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("testmenu")->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{

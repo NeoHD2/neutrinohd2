@@ -64,13 +64,7 @@ int CAudioPlayerSettings::exec(CMenuTarget* parent, const std::string& actionKey
 	if(parent)
 		parent->hide();
 	
-	if(actionKey == "savesettings")
-	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		
-		return RETURN_REPAINT;
-	}
-	else if(actionKey == "audioplayerdir")
+	if(actionKey == "audioplayerdir")
 	{
 		CFileBrowser b;
 		b.Dir_Mode = true;
@@ -92,29 +86,57 @@ void CAudioPlayerSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CAudioPlayerSettings::showMenu:\n");
 	
-	CMenuWidget audioPlayerSettings(_("Audioplayer settings"), NEUTRINO_ICON_MP3);
-
-	audioPlayerSettings.setWidgetMode(MODE_SETUP);
-	audioPlayerSettings.enableShrinkMenu();
-	audioPlayerSettings.enableSaveScreen();
+	//
+	CWidget* widget = NULL;
+	ClistBox* audioPlayerSettings = NULL;
 	
-	int shortcutAudioPlayer = 1;
+	if (CNeutrinoApp::getInstance()->getWidget("audioplayersetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("audioplayersetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("audioplayersetup");
+		audioPlayerSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("audioplayersetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		audioPlayerSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		audioPlayerSettings->setMenuPosition(MENU_POSITION_CENTER);
+		audioPlayerSettings->setWidgetMode(MODE_SETUP);
+		audioPlayerSettings->enableShrinkMenu();
+		
+		audioPlayerSettings->enablePaintHead();
+		audioPlayerSettings->setTitle(_("Audioplayer settings"), NEUTRINO_ICON_MP3);
+
+		audioPlayerSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		audioPlayerSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(audioPlayerSettings);
+	}
+	
+	audioPlayerSettings->clearItems();
 	
 	// intros
-	audioPlayerSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	audioPlayerSettings.addItem( new CMenuSeparator(LINE) );
+	audioPlayerSettings->addItem(new CMenuForwarder(_("back")));
+	audioPlayerSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	audioPlayerSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	audioPlayerSettings.addItem( new CMenuSeparator(LINE) );
+	audioPlayerSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	audioPlayerSettings->addItem( new CMenuSeparator(LINE) );
 
 	// high prio
-	audioPlayerSettings.addItem(new CMenuOptionChooser(_("High decode priority"), &g_settings.audioplayer_highprio, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutAudioPlayer++) ));
+	audioPlayerSettings->addItem(new CMenuOptionChooser(_("High decode priority"), &g_settings.audioplayer_highprio, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true ));
 
 	// start dir
-	audioPlayerSettings.addItem(new CMenuForwarder(_("Start dir."), true, g_settings.network_nfs_audioplayerdir, this, "audioplayerdir", CRCInput::convertDigitToKey(shortcutAudioPlayer++)));
+	audioPlayerSettings->addItem(new CMenuForwarder(_("Start dir."), true, g_settings.network_nfs_audioplayerdir, this, "audioplayerdir"));
 	
-	audioPlayerSettings.exec(NULL, "");
+	//
+	widget->exec(NULL, "");
 }
 
 

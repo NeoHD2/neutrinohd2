@@ -965,11 +965,7 @@ void CUpdateSettings::showMenu()
 	updateSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
 	updateSettings->addItem( new CMenuSeparator(LINE) );
 
-	// expert-function for mtd read/write
-	//CMenuWidget * mtdexpert = new CMenuWidget(_("Expert functions"), NEUTRINO_ICON_UPDATE);
-	//mtdexpert->setWidgetMode(MODE_SETUP);
-	//mtdexpert->enableShrinkMenu();
-	
+	// 
 	CWidget* mtdexpertWidget = NULL;
 	ClistBox* mtdexpert = NULL; 
 	

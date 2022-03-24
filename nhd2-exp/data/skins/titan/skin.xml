@@ -3,11 +3,37 @@
 <!-- SKIN: titan -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="pictureviewersetup" id="19" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Pictureviewer settings" icon="picture">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="audioplayersetup" id="18" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Audioplayer settings" icon="mp3">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
 	<WIDGET name="movieplayersetup" id="14" posx="0" posy="0" width="700" height="720" paintframe="1">
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Movieplayer settings" icon="softupdate">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Movieplayer settings" icon="movie">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
@@ -20,7 +46,7 @@
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Recording settings" icon="softupdate">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Recording settings" icon="recording">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
@@ -33,7 +59,7 @@
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="CI CAM settings" icon="softupdate">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="CI CAM settings" icon="settings">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">

@@ -1189,6 +1189,7 @@ CWidgetItem::CWidgetItem()
 	sec_timer_id = 0;
 	
 	widgetItem_type = -1;
+	widgetItem_name = "";
 }
 
 //

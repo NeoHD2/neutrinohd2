@@ -106,6 +106,9 @@ class CComponent
 	public:
 		//
 		int cc_type;
+		std:: string cc_name;
+		
+		//
 		CBox cCBox;
 		int halign;
 		
@@ -127,6 +130,7 @@ class CComponent
 		
 		//
 		virtual int getCCType(){return cc_type;};
+		virtual std::string getCCName(){return cc_name;};
 		
 		//
 		virtual void setPosition(const int _x, const int _y, const int _width, const int _height)
@@ -607,7 +611,11 @@ class CWidgetItem
 		//
 		CBox itemBox;
 
+		//
 		int widgetItem_type;
+		std::string widgetItem_name;
+		
+		//
 		bool inFocus;
 		bool rePaint;
 		std::string actionKey; // lua
@@ -627,6 +635,10 @@ class CWidgetItem
 		//
 		CWidgetItem();
 		virtual ~CWidgetItem(){};
+		
+		//
+		virtual int getWidgetItemType(){return widgetItem_type;};
+		virtual std::string getWidgetItemName(){return widgetItem_name;};
 
 		virtual bool isSelectable(void){return false;}
 		virtual bool hasItem(){return false;};
@@ -663,7 +675,6 @@ class CWidgetItem
 
 		//
 		virtual int getWidgetType(){return (4);};
-		virtual int getWidgetItemType(){return widgetItem_type;};
 
 		//
 		virtual int oKKeyPressed(CMenuTarget *parent){return 0;};

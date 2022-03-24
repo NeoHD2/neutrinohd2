@@ -159,6 +159,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		void parseSkin(const char* const filename, bool xml_data = false);
 		WIDGETLIST getWidgets(){return widgets;};
 		CWidget* getWidget(int id);
+		CWidget* getWidget(const char* const name);
 		bool widget_exists(int id);
 		bool hasWidgets(){return widgets.size();};
 		CMenuTarget* convertTarget(const int id);

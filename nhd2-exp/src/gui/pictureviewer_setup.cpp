@@ -107,33 +107,60 @@ void CPictureViewerSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CPicTureViewerSettings::showMenu:\n");
 	
-	CMenuWidget PicViewerSettings(_("Pictureviewer settings"), NEUTRINO_ICON_PICTURE);
-
-	PicViewerSettings.enableSaveScreen();
-	PicViewerSettings.setWidgetMode(MODE_SETUP);
-	PicViewerSettings.enableShrinkMenu();
+	//
+	CWidget* widget = NULL;
+	ClistBox* PicViewerSettings = NULL;
 	
-	int shortcutPicViewer = 1;
+	if (CNeutrinoApp::getInstance()->getWidget("pictureviewersetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("pictureviewersetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("pictureviewersetup");
+		PicViewerSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("pictureviewersetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		PicViewerSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		PicViewerSettings->setMenuPosition(MENU_POSITION_CENTER);
+		PicViewerSettings->setWidgetMode(MODE_SETUP);
+		PicViewerSettings->enableShrinkMenu();
+		
+		PicViewerSettings->enablePaintHead();
+		PicViewerSettings->setTitle(_("Pictureviewer settings"), NEUTRINO_ICON_PICTURE);
+
+		PicViewerSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		PicViewerSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(PicViewerSettings);
+	}
+	
+	PicViewerSettings->clearItems();
 	
 	// intros
-	PicViewerSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	PicViewerSettings.addItem( new CMenuSeparator(LINE) );
+	PicViewerSettings->addItem(new CMenuForwarder(_("back")));
+	PicViewerSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	PicViewerSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	PicViewerSettings.addItem( new CMenuSeparator(LINE) );
+	PicViewerSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	PicViewerSettings->addItem( new CMenuSeparator(LINE) );
 
 	// Pic Viewer Scaling
-	PicViewerSettings.addItem(new CMenuOptionChooser(_("Scaling"), &g_settings.picviewer_scaling, PICTUREVIEWER_SCALING_OPTIONS, PICTUREVIEWER_SCALING_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutPicViewer++),"", true ));
+	PicViewerSettings->addItem(new CMenuOptionChooser(_("Scaling"), &g_settings.picviewer_scaling, PICTUREVIEWER_SCALING_OPTIONS, PICTUREVIEWER_SCALING_OPTION_COUNT, true));
 
 	// slide Timeout
-	PicViewerSettings.addItem(new CMenuOptionNumberChooser(_("Slideshow display time"), &g_settings.picviewer_slide_time, true, 0, 999));
+	PicViewerSettings->addItem(new CMenuOptionNumberChooser(_("Slideshow display time"), &g_settings.picviewer_slide_time, true, 0, 999));
 
 	// Pic Viewer Default Dir
-	PicViewerSettings.addItem(new CMenuForwarder(_("Start dir."), true, g_settings.network_nfs_picturedir, this, "picturedir", CRCInput::convertDigitToKey(shortcutPicViewer++)));
+	PicViewerSettings->addItem(new CMenuForwarder(_("Start dir."), true, g_settings.network_nfs_picturedir, this, "picturedir"));
 	
-	PicViewerSettings.exec(NULL, "");
-	PicViewerSettings.hide();
+	//
+	widget->exec(NULL, "");
 }
 
 

@@ -346,6 +346,23 @@ CWidget* CNeutrinoApp::getWidget(int id)
 	return ret;
 }
 
+//
+CWidget* CNeutrinoApp::getWidget(const char* const name)
+{
+	CWidget* ret = NULL;
+	
+	for (unsigned int i = 0; i < (unsigned int )widgets.size(); i++)
+	{
+		if ( (widgets[i] != NULL) && (widgets[i]->name == name) )
+		{
+			ret = widgets[i];
+			break;
+		}
+	}
+	
+	return ret;
+}
+
 bool CNeutrinoApp::widget_exists(int id)
 {
 	bool ret = false;
@@ -1178,7 +1195,7 @@ void CNeutrinoApp::parseSkin(const char* const filename, bool xml_data)
 		while ((search = xmlGetNextOccurence(search, "WIDGET")) != NULL) 
 		{
 			char* name = NULL;
-			unsigned int id = 0;
+			int id = -1;
 			
 			unsigned int x = 0;
 			unsigned int y = 0;
