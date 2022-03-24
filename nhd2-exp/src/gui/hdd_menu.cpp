@@ -134,14 +134,7 @@ int CHDDMenuHandler::exec(CMenuTarget * parent, const std::string &actionKey)
 	if (parent)
 		parent->hide();
 	
-	if(actionKey == "savehddsettings") 
-	{
-		//CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		
-		return RETURN_REPAINT;
-	}
-	else if(actionKey == "activateNow")
+	if(actionKey == "activateNow")
 	{
 		CHintBox * hintBox = new CHintBox(_("Information"), _("Save Settings now")); // UTF-8
 		hintBox->paint();
@@ -181,27 +174,57 @@ int CHDDMenuHandler::hddMenu()
 
                 return RETURN_REPAINT;
         }
-
-	CMenuWidget * hddmenu = new CMenuWidget(_("HDD Settings"), NEUTRINO_ICON_SETTINGS);
-
-	hddmenu->setWidgetMode(MODE_SETUP);
-	hddmenu->enableShrinkMenu();
 	
-	hddmenu->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	//
+	CWidget* widget = NULL;
+	ClistBox* hddmenu = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("hddsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("hddsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("hddsetup");
+		hddmenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("hddsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		hddmenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		hddmenu->setMenuPosition(MENU_POSITION_CENTER);
+		hddmenu->setWidgetMode(MODE_SETUP);
+		hddmenu->enableShrinkMenu();
+		
+		hddmenu->enablePaintHead();
+		hddmenu->setTitle(_("HDD settings"), NEUTRINO_ICON_SETTINGS);
+
+		hddmenu->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		hddmenu->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(hddmenu);
+	}
+	
+	hddmenu->clearItems();
+	
+	hddmenu->addItem(new CMenuForwarder(_("back")));
 	hddmenu->addItem(new CMenuSeparator(LINE));
 	
 	// save settings
-	hddmenu->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savehddsettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	hddmenu->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
 	hddmenu->addItem( new CMenuSeparator(LINE) );
 	
 	// activate settings
-	hddmenu->addItem(new CMenuForwarder(_("Activate settings"), true, NULL, this, "activateNow", RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+	hddmenu->addItem(new CMenuForwarder(_("Activate settings"), true, NULL, this, "activateNow"));
 
 	// sleep time
-	hddmenu->addItem( new CMenuOptionChooser(_("Sleep time"), &g_settings.hdd_sleep, HDD_SLEEP_OPTIONS, HDD_SLEEP_OPTION_COUNT, true, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, true));
+	hddmenu->addItem( new CMenuOptionChooser(_("Sleep time"), &g_settings.hdd_sleep, HDD_SLEEP_OPTIONS, HDD_SLEEP_OPTION_COUNT, true));
 	
 	// noise
-	hddmenu->addItem( new CMenuOptionChooser(_("Noise"), &g_settings.hdd_noise, HDD_NOISE_OPTIONS, HDD_NOISE_OPTION_COUNT, true, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE, true ));
+	hddmenu->addItem( new CMenuOptionChooser(_("Noise"), &g_settings.hdd_noise, HDD_NOISE_OPTIONS, HDD_NOISE_OPTION_COUNT, true));
 	
 	// HDDs
 	hddmenu->addItem(new CMenuSeparator(LINE));
@@ -214,7 +237,7 @@ int CHDDMenuHandler::hddMenu()
 			drive_mask = 0xffc0; /* hda: 0x0300, hdb: 0x0340, sda: 0x0800, sdb: 0x0810 */
 		root_dev = (s.st_dev & drive_mask);
 	}
-	printf("HDD: root_dev: 0x%04x\n", root_dev);
+	//printf("HDD: root_dev: 0x%04x\n", root_dev);
 	
 	//hdd manage
 	CMenuWidget * tempMenu[n];
@@ -229,7 +252,7 @@ int CHDDMenuHandler::hddMenu()
 		int removable = 0;
 		bool isroot = false;
 
-		printf("[neutrino] HDD: checking /sys/block/%s\n", namelist[i]->d_name);
+		//printf("[neutrino] HDD: checking /sys/block/%s\n", namelist[i]->d_name);
 		
 		sprintf(str, "/dev/%s", namelist[i]->d_name);
 		fd = open(str, O_RDONLY);
@@ -297,7 +320,7 @@ int CHDDMenuHandler::hddMenu()
 		
 		bool enabled = !CNeutrinoApp::getInstance()->recordingstatus && !isroot;
 
-		/* hdd menu */
+		// hdd menu
 		tempMenu[i] = new CMenuWidget(str, NEUTRINO_ICON_SETTINGS);
 		tempMenu[i]->enableSaveScreen();
 
@@ -311,7 +334,7 @@ int CHDDMenuHandler::hddMenu()
 		tempMenu[i]->addItem(new CMenuForwarder(_("HDD Init"), enabled, "", new CHDDInit, namelist[i]->d_name, RC_red, NEUTRINO_ICON_BUTTON_RED));
 		tempMenu[i]->addItem(new CMenuSeparator(LINE));
 		
-		/* check for parts */
+		// check for parts
 		#define MAX_PARTS 4
 		char DEVICE[256];
 		char PART[256];
@@ -340,7 +363,7 @@ int CHDDMenuHandler::hddMenu()
 			// check if mounted
 			mounted = check_if_mounted(DEVICE);
 			
-			/* part submenu */
+			// part submenu
 			PartMenu[j] = new CMenuWidget(PART, NEUTRINO_ICON_SETTINGS);
 			PartMenu[j]->enableSaveScreen();
 
@@ -351,16 +374,16 @@ int CHDDMenuHandler::hddMenu()
 			PartMenu[j]->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
 			PartMenu[j]->addItem(new CMenuSeparator(LINE));
 			
-			/* format part */
+			// format part
 			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Format"), true, NULL, new CHDDFmtExec, PART, RC_red, NEUTRINO_ICON_BUTTON_RED));
 			
-			/* fs check */
+			// fs check
 			PartMenu[j]->addItem(new CMenuForwarder(_("Check filesystem"), true, NULL, new CHDDChkExec, PART, RC_green, NEUTRINO_ICON_BUTTON_GREEN));
 			
-			/* mount part */
+			// mount part
 			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Mount"), true, NULL, new CHDDMountMSGExec, PART, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
 
-			/* umount part */
+			// umount part
 			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Umount"), true, NULL, new CHDDuMountMSGExec, PART, RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
 			
 			// hdd explorer
@@ -372,7 +395,6 @@ int CHDDMenuHandler::hddMenu()
 			
 			close(fd);
 		}
-		/* END check for Parts */
 		
 		//hddmenu->addItem(new CMenuSeparator(LINE));
 		hddmenu->addItem(new CMenuForwarder(str, enabled, NULL, tempMenu[i]));
@@ -387,21 +409,8 @@ int CHDDMenuHandler::hddMenu()
 	if (n >= 0)
                 free(namelist);
 	
-	/* no parts found */
-	ret = hddmenu->exec(NULL, "");
-	
-	// delet temp menus
-	/*
-	for(int i = 0; i < n; i++) 
-	{     
-                if( hdd_found && tempMenu[i] != NULL )
-		{
-                        delete tempMenu[i];
-                }
-        }
-	*/
-	
-	delete hddmenu;
+	// no parts found
+	ret = widget->exec(NULL, "");
 
 	return ret;
 }

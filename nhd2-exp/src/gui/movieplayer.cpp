@@ -1826,9 +1826,9 @@ void CMoviePlayerGui::show(std::string Title, std::string Info, short Percent, c
 			
 	g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(cFrameBoxInfo.iX + cFrameBoxInfo.iWidth - BORDER_RIGHT - widthtime, cFrameBoxInfo.iY + 5 + height, widthtime, datestr.c_str(), COL_INFOBAR, 0, true); // UTF-8
 	
-	std::string title = "Movie Player";
+	std::string title = "Movieplayer";
 	int widthtitle = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(title.c_str(), true); //UTF-8
-	g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 5 + height, widthtitle, (char *)title.c_str(), COL_INFOBAR, 0, true); // UTF-8
+	g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->RenderString(cFrameBoxInfo.iX + BORDER_LEFT, cFrameBoxInfo.iY + 5 + height, widthtitle, _(title.c_str()), COL_INFOBAR, 0, true); // UTF-8
 	
 	// red (movie info)
 	int icon_w, icon_h;
@@ -2027,7 +2027,7 @@ void CMoviePlayerGui::showPlaylist()
 	mplist->setSelected(selected);
 	
 	mplist->enablePaintHead();
-	mplist->setTitle(_("Movie Player"), NEUTRINO_ICON_MOVIE);
+	mplist->setTitle(_("Movieplayer"), NEUTRINO_ICON_MOVIE);
 	mplist->enablePaintDate();
 	mplist->setFormat("%d.%m.%Y %H:%M:%S");
 	mplist->setHeadButtons(&HeadButtons);

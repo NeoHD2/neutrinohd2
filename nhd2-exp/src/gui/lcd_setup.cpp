@@ -125,74 +125,102 @@ void CLCDSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CLCDSettings::showMenu:\n");
 	
-	CMenuWidget lcdSettings(_("Display Settings"), NEUTRINO_ICON_LCD );
-
-	lcdSettings.setWidgetMode(MODE_SETUP);
-	lcdSettings.enableShrinkMenu();
+	//
+	CWidget* widget = NULL;
+	ClistBox* lcdSettings = NULL;
 	
-	int shortcutVFD = 1;
+	if (CNeutrinoApp::getInstance()->getWidget("lcdsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("lcdsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("lcdsetup");
+		lcdSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("lcdsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		lcdSettings = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		lcdSettings->setMenuPosition(MENU_POSITION_CENTER);
+		lcdSettings->setWidgetMode(MODE_SETUP);
+		lcdSettings->enableShrinkMenu();
+		
+		lcdSettings->enablePaintHead();
+		lcdSettings->setTitle(_("Display settings"), NEUTRINO_ICON_LCD);
+
+		lcdSettings->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		lcdSettings->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(lcdSettings);
+	}
+	
+	lcdSettings->clearItems();
 	
 	// intros
-	lcdSettings.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	lcdSettings.addItem( new CMenuSeparator(LINE) );
+	lcdSettings->addItem(new CMenuForwarder(_("back")));
+	lcdSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	lcdSettings.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	lcdSettings.addItem(new CMenuSeparator(LINE));
+	lcdSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	lcdSettings->addItem(new CMenuSeparator(LINE));
 	
 	CLcdNotifier * lcdnotifier = new CLcdNotifier();
 	
-	CVfdControler * lcdsliders = new CVfdControler(_("Display Settings"), NULL);
+	CVfdControler * lcdsliders = new CVfdControler(_("Display settings"), NULL);
 	
 	// LCD
 #if defined (ENABLE_LCD)
 	//option invert
-	CMenuOptionChooser* oj_inverse = new CMenuOptionChooser(_("Invert"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_INVERSE], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, lcdnotifier, CRCInput::convertDigitToKey(shortcutVFD++) );
-	lcdSettings.addItem(oj_inverse);
+	CMenuOptionChooser* oj_inverse = new CMenuOptionChooser(_("Invert"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_INVERSE], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, lcdnotifier);
+	lcdSettings->addItem(oj_inverse);
 
 	//status display
 	CMenuOptionChooser* oj_status = new CMenuOptionChooser(_("Status line"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_SHOW_VOLUME], LCDMENU_STATUSLINE_OPTIONS, LCDMENU_STATUSLINE_OPTION_COUNT, true);
-	lcdSettings.addItem(oj_status);
+	lcdSettings->addItem(oj_status);
 	
 	//lcd_epg
 	CMenuOptionChooser* oj_epg = new CMenuOptionChooser(_("EPG"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_EPGMODE], LCDMENU_EPG_OPTIONS, LCDMENU_EPG_OPTION_COUNT, true);
-	lcdSettings.addItem(oj_epg);
+	lcdSettings->addItem(oj_epg);
 
 	//align
 	CMenuOptionChooser* oj_align = new CMenuOptionChooser(_("LCD EPG Align"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_EPGALIGN], LCDMENU_EPGALIGN_OPTIONS, LCDMENU_EPGALIGN_OPTION_COUNT, true);
-	lcdSettings.addItem(oj_align);
+	lcdSettings->addItem(oj_align);
 
 	//dump to png
 	CMenuOptionChooser* oj_dumppng = new CMenuOptionChooser(_("output to PNG"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_DUMP_PNG], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true);
-	lcdSettings.addItem(oj_dumppng);
+	lcdSettings->addItem(oj_dumppng);
 	
 	// lcd controller
-	lcdSettings.addItem(new CMenuForwarder(_("Contrast / Brightness"), true, NULL, lcdsliders, NULL, CRCInput::convertDigitToKey(shortcutVFD++) ));
+	lcdSettings->addItem(new CMenuForwarder(_("Contrast / Brightness"), true, NULL, lcdsliders));
 #else	
 #if defined (PLATFORM_GIGABLUE)	
 	// led color
-	lcdSettings.addItem(new CMenuOptionChooser(_("Led Color"), &g_settings.lcd_ledcolor, LCDMENU_LEDCOLOR_OPTIONS, LCDMENU_LEDCOLOR_OPTION_COUNT, true, lcdnotifier, CRCInput::convertDigitToKey(shortcutVFD++) ));	
+	lcdSettings->addItem(new CMenuOptionChooser(_("Led Color"), &g_settings.lcd_ledcolor, LCDMENU_LEDCOLOR_OPTIONS, LCDMENU_LEDCOLOR_OPTION_COUNT, true, lcdnotifier));	
 #elif !defined (PLATFORM_CUBEREVO_250HD) && !defined (PLATFORM_SPARK)
 	// vfd power
-	CMenuOptionChooser * oj2 = new CMenuOptionChooser(_("LED-Power"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_POWER], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, lcdnotifier, CRCInput::convertDigitToKey(shortcutVFD++) );
-	lcdSettings.addItem(oj2);
+	CMenuOptionChooser * oj2 = new CMenuOptionChooser(_("LED-Power"), &g_settings.lcd_setting[SNeutrinoSettings::LCD_POWER], OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, lcdnotifier);
+	lcdSettings->addItem(oj2);
 	
 	// dimm-time
 	CStringInput * dim_time = new CStringInput(_("Dim timeout"), g_settings.lcd_setting_dim_time, 3, NULL, NULL, "0123456789 ");
-	lcdSettings.addItem(new CMenuForwarder(_("Dim timeout"), true, g_settings.lcd_setting_dim_time, dim_time, NULL, CRCInput::convertDigitToKey(shortcutVFD++)));
+	lcdSettings->addItem(new CMenuForwarder(_("Dim timeout"), true, g_settings.lcd_setting_dim_time, dim_time));
 
 	// dimm brightness
 	//CStringInput * dim_brightness = new CStringInput(_("brightness after dim timeout"), g_settings.lcd_setting_dim_brightness, 3, NULL, NULL, "0123456789 ");
-	//lcdSettings.addItem(new CMenuForwarder(_("Brightness after dim timeout"), true, g_settings.lcd_setting_dim_brightness, dim_brightness, NULL, CRCInput::convertDigitToKey(shortcutVFD++) ));
+	//lcdSettings->addItem(new CMenuForwarder(_("Brightness after dim timeout"), true, g_settings.lcd_setting_dim_brightness, dim_brightness));
 
 	// vfd controller
-	lcdSettings.addItem(new CMenuSeparator(LINE));
-	lcdSettings.addItem(new CMenuForwarder(_("Contrast / Brightness"), true, NULL, lcdsliders, NULL, CRCInput::convertDigitToKey(shortcutVFD++) ));	
+	lcdSettings->addItem(new CMenuSeparator(LINE));
+	lcdSettings->addItem(new CMenuForwarder(_("Contrast / Brightness"), true, NULL, lcdsliders));	
 #endif	
 #endif	
 	
-	lcdSettings.exec(NULL, "");
-	lcdSettings.hide();
+	//
+	widget->exec(NULL, "");
 }
 
 // lcd notifier
