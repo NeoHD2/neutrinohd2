@@ -207,18 +207,145 @@ int CGeneralSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(parent)
 		parent->hide();
 	
-	if(actionKey == "savesettings")
-	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		
-		return ret;
-	}
-	
 	showMenu();
 	
 	return ret;
 }
 
+//
+void CGeneralSettings::showMenu()
+{
+	dprintf(DEBUG_NORMAL, "CGeneralSettings::showMenu:\n");
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* miscSettingsGeneral = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("miscsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("miscsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("miscsetup");
+		miscSettingsGeneral = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("miscsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		miscSettingsGeneral = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		miscSettingsGeneral->setMenuPosition(MENU_POSITION_CENTER);
+		miscSettingsGeneral->setWidgetMode(MODE_SETUP);
+		miscSettingsGeneral->enableShrinkMenu();
+		
+		miscSettingsGeneral->enablePaintHead();
+		miscSettingsGeneral->setTitle(_("General settings"), NEUTRINO_ICON_SETTINGS);
+
+		miscSettingsGeneral->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		miscSettingsGeneral->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(miscSettingsGeneral);
+	}
+	
+	miscSettingsGeneral->clearItems();
+	
+	// intros
+	miscSettingsGeneral->addItem(new CMenuForwarder(_("back")));
+	miscSettingsGeneral->addItem( new CMenuSeparator(LINE) );
+	
+	// save settings
+	miscSettingsGeneral->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	miscSettingsGeneral->addItem( new CMenuSeparator(LINE) );
+
+	// rc delay
+	CMenuOptionChooser * m1 = new CMenuOptionChooser(_("Delayed shutdown"), &g_settings.shutdown_real_rcdelay, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, !g_settings.shutdown_real);
+
+	CMiscNotifier * miscNotifier = new CMiscNotifier( m1 );
+
+	// shutdown real
+	miscSettingsGeneral->addItem(new CMenuOptionChooser(_("Enable standby"), &g_settings.shutdown_real, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, true, miscNotifier ));
+
+	// delayed shutdown
+	miscSettingsGeneral->addItem(m1);
+
+	// delay counter
+	CStringInput * miscSettings_shutdown_count = new CStringInput(_("switch off after"), g_settings.shutdown_count, 3, _("time (in minutes) to switch from standby"), _("to deep standby (0 = off)."), "0123456789 ");
+	miscSettingsGeneral->addItem(new CMenuForwarder(_("switch off after"), true, g_settings.shutdown_count, miscSettings_shutdown_count));
+
+	// start to standby
+	miscSettingsGeneral->addItem(new CMenuOptionChooser(_("Startup to standby"), &g_settings.power_standby, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+
+	// timezone
+	_xmlDocPtr parser;
+
+	parser = parseXmlFile("/etc/timezone.xml");
+	if (parser != NULL) 
+	{	
+		tzSelect = new CMenuOptionStringChooser(_("Time Zone"), g_settings.timezone, true, new CTZChangeNotifier(), RC_nokey, "", true);
+
+		_xmlNodePtr search = xmlDocGetRootElement(parser)->xmlChildrenNode;
+		bool found = false;
+
+		while (search) 
+		{
+			if (!strcmp(xmlGetName(search), "zone")) 
+			{
+				std::string name = xmlGetAttribute(search, (char *) "name");
+				std::string zone = xmlGetAttribute(search, (char *) "zone");
+				
+				//printf("Timezone: %s -> %s\n", name.c_str(), zone.c_str());
+				
+				tzSelect->addOption(name.c_str());
+				found = true;
+			}
+			search = search->xmlNextNode;
+		}
+
+		if(found)
+			miscSettingsGeneral->addItem(tzSelect);
+		else 
+		{
+			delete tzSelect;
+			tzSelect = NULL;
+		}	
+		xmlFreeDoc(parser);
+	}
+	
+	// radio text	
+	miscSettingsGeneral->addItem(new CMenuOptionChooser(_("Radio Text"), &g_settings.radiotext_enable, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this ));
+
+	// online key
+	miscSettingsGeneral->addItem(new CMenuSeparator(LINE));
+
+	std::string ytkey = g_settings.ytkey;
+	
+	CStringInputSMS* keyInput = new CStringInputSMS(_("youtube ID Key:"), ytkey.c_str());
+	miscSettingsGeneral->addItem(new CMenuForwarder(_("YT:"), true, ytkey.c_str(), keyInput));
+
+	std::string tmdbkey = g_settings.tmdbkey;
+
+	CStringInputSMS* tmdbkeyInput = new CStringInputSMS(_("TMDB Key:"), tmdbkey.c_str());
+	miscSettingsGeneral->addItem(new CMenuForwarder(_("TMDB:"), true, tmdbkey.c_str(), tmdbkeyInput));
+
+	// prefer tmdb infos
+	miscSettingsGeneral->addItem(new CMenuOptionChooser(_("TMDB"), &g_settings.enable_tmdb_infos, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+
+	// reset factory setup
+	miscSettingsGeneral->addItem(new CMenuSeparator(LINE));
+	
+	CDataResetNotifier * resetNotifier = new CDataResetNotifier();
+	miscSettingsGeneral->addItem(new CMenuForwarder(_("Reset settings to defaults"), true, NULL, resetNotifier, "factory"));
+	miscSettingsGeneral->addItem(new CMenuForwarder(_("Settings backup"),  true, NULL, resetNotifier, "backup"));
+	miscSettingsGeneral->addItem(new CMenuForwarder(_("Settings restore"), true, NULL, resetNotifier, "restore"));
+	
+	//
+	widget->exec(NULL, "");
+}
+
+//
 bool CGeneralSettings::changeNotify(const std::string& OptionName, void */*data*/)
 {
 	dprintf(DEBUG_NORMAL, "CGeneralSettings::changeNotify:\n");
@@ -275,109 +402,6 @@ bool CGeneralSettings::changeNotify(const std::string& OptionName, void */*data*
 	return false;
 }
 
-void CGeneralSettings::showMenu()
-{
-	dprintf(DEBUG_NORMAL, "CGeneralSettings::showMenu:\n");
-	
-	CMenuWidget miscSettingsGeneral(_("General settings"), NEUTRINO_ICON_SETTINGS);
-
-	miscSettingsGeneral.setWidgetMode(MODE_SETUP);
-	miscSettingsGeneral.enableShrinkMenu();
-	
-	// intros
-	miscSettingsGeneral.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	miscSettingsGeneral.addItem( new CMenuSeparator(LINE) );
-	
-	// save settings
-	miscSettingsGeneral.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	miscSettingsGeneral.addItem( new CMenuSeparator(LINE) );
-
-	// rc delay
-	CMenuOptionChooser * m1 = new CMenuOptionChooser(_("Delayed shutdown"), &g_settings.shutdown_real_rcdelay, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, !g_settings.shutdown_real);
-
-	CMiscNotifier * miscNotifier = new CMiscNotifier( m1 );
-
-	// shutdown real
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(_("Enable standby"), &g_settings.shutdown_real, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, true, miscNotifier ));
-
-	// delayed shutdown
-	miscSettingsGeneral.addItem(m1);
-
-	// delay counter
-	CStringInput * miscSettings_shutdown_count = new CStringInput(_("switch off after"), g_settings.shutdown_count, 3, _("time (in minutes) to switch from standby"), _("to deep standby (0 = off)."), "0123456789 ");
-	miscSettingsGeneral.addItem(new CMenuForwarder(_("switch off after"), true, g_settings.shutdown_count, miscSettings_shutdown_count));
-
-	// start to standby
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(_("Startup to standby"), &g_settings.power_standby, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
-
-	// timezone
-	_xmlDocPtr parser;
-
-	parser = parseXmlFile("/etc/timezone.xml");
-	if (parser != NULL) 
-	{	
-		tzSelect = new CMenuOptionStringChooser(_("Time Zone"), g_settings.timezone, true, new CTZChangeNotifier(), RC_nokey, "", true);
-
-		_xmlNodePtr search = xmlDocGetRootElement(parser)->xmlChildrenNode;
-		bool found = false;
-
-		while (search) 
-		{
-			if (!strcmp(xmlGetName(search), "zone")) 
-			{
-				std::string name = xmlGetAttribute(search, (char *) "name");
-				std::string zone = xmlGetAttribute(search, (char *) "zone");
-				
-				//printf("Timezone: %s -> %s\n", name.c_str(), zone.c_str());
-				
-				tzSelect->addOption(name.c_str());
-				found = true;
-			}
-			search = search->xmlNextNode;
-		}
-
-		if(found)
-			miscSettingsGeneral.addItem(tzSelect);
-		else 
-		{
-			delete tzSelect;
-			tzSelect = NULL;
-		}	
-		xmlFreeDoc(parser);
-	}
-	
-	// radio text	
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(_("Radio Text"), &g_settings.radiotext_enable, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this ));
-
-	// online key
-	miscSettingsGeneral.addItem(new CMenuSeparator(LINE));
-
-	std::string ytkey = g_settings.ytkey;
-	
-	CStringInputSMS* keyInput = new CStringInputSMS(_("youtube ID Key:"), ytkey.c_str());
-	miscSettingsGeneral.addItem(new CMenuForwarder(_("YT:"), true, ytkey.c_str(), keyInput));
-
-	std::string tmdbkey = g_settings.tmdbkey;
-
-	CStringInputSMS* tmdbkeyInput = new CStringInputSMS(_("TMDB Key:"), tmdbkey.c_str());
-	miscSettingsGeneral.addItem(new CMenuForwarder(_("TMDB:"), true, tmdbkey.c_str(), tmdbkeyInput));
-
-	// prefer tmdb infos
-	miscSettingsGeneral.addItem(new CMenuOptionChooser(_("TMDB"), &g_settings.enable_tmdb_infos, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
-
-	// reset factory setup
-	miscSettingsGeneral.addItem(new CMenuSeparator(LINE));
-	
-	CDataResetNotifier * resetNotifier = new CDataResetNotifier();
-	miscSettingsGeneral.addItem(new CMenuForwarder(_("Reset settings to defaults"), true, NULL, resetNotifier, "factory", RC_green, NEUTRINO_ICON_BUTTON_GREEN ));
-	miscSettingsGeneral.addItem(new CMenuForwarder(_("Settings backup"),  true, NULL, resetNotifier, "backup", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW ));
-	miscSettingsGeneral.addItem(new CMenuForwarder(_("Settings restore"), true, NULL, resetNotifier, "restore", RC_blue, NEUTRINO_ICON_BUTTON_BLUE ));
-	
-	miscSettingsGeneral.exec(NULL, "");
-	miscSettingsGeneral.hide();
-//	delete keyInput;
-//	keyInput = NULL;
-}
 
 // TZ notifier
 bool CTZChangeNotifier::changeNotify(const std::string&, void * Data)
@@ -431,8 +455,14 @@ extern Zapit_config zapitCfg;
 void loadZapitSettings();
 void getZapitConfig(Zapit_config *Cfg);
 
-int CDataResetNotifier::exec(CMenuTarget */*parent*/, const std::string& actionKey)
+int CDataResetNotifier::exec(CMenuTarget *parent, const std::string& actionKey)
 {
+	dprintf(DEBUG_NORMAL, "CDataResetNotifier::exec: %s\n", actionKey.c_str());
+	
+	if (parent)
+		parent->hide();
+		
+	//
 	CFileBrowser fileBrowser;
 	CFileFilter fileFilter;
 
@@ -459,9 +489,9 @@ int CDataResetNotifier::exec(CMenuTarget */*parent*/, const std::string& actionK
 		CNeutrinoApp::getInstance()->saveSetup(NEUTRINO_SETTINGS_FILE);
 		
 		CFrameBuffer::getInstance()->paintBackground();
-#ifdef FB_BLIT
+
 		CFrameBuffer::getInstance()->blit();
-#endif		
+		
 		// video mode
 		if(videoDecoder)
 		{
@@ -577,6 +607,80 @@ int CChannelListSettings::exec(CMenuTarget* parent, const std::string& actionKey
 	return ret;
 }
 
+//
+void CChannelListSettings::showMenu()
+{
+	dprintf(DEBUG_NORMAL, "CChannelListSettings::showMenu:\n");
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* miscSettingsChannelList = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("channelssetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("channelssetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("channelssetup");
+		miscSettingsChannelList = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("channelssetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		miscSettingsChannelList = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		miscSettingsChannelList->setMenuPosition(MENU_POSITION_CENTER);
+		miscSettingsChannelList->setWidgetMode(MODE_SETUP);
+		miscSettingsChannelList->enableShrinkMenu();
+		
+		miscSettingsChannelList->enablePaintHead();
+		miscSettingsChannelList->setTitle(_("Channellist settings"), NEUTRINO_ICON_SETTINGS);
+
+		miscSettingsChannelList->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		miscSettingsChannelList->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(miscSettingsChannelList);
+	}
+	
+	miscSettingsChannelList->clearItems();
+	
+	// intros
+	miscSettingsChannelList->addItem(new CMenuForwarder(_("back")));
+	miscSettingsChannelList->addItem( new CMenuSeparator(LINE) );
+	
+	// save settings
+	miscSettingsChannelList->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	miscSettingsChannelList->addItem( new CMenuSeparator(LINE) );
+	
+	// HD list
+	miscSettingsChannelList->addItem(new CMenuOptionChooser(_("Create list of HD channels"), &g_settings.make_hd_list, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this));
+	
+	// virtual zap
+	miscSettingsChannelList->addItem(new CMenuOptionChooser(_("Virtual zap"), &g_settings.virtual_zap_mode, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	
+	// zap cycle
+	miscSettingsChannelList->addItem(new CMenuOptionChooser(_("Zap cycle"), &g_settings.zap_cycle, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	
+	// channellist ca
+	miscSettingsChannelList->addItem(new CMenuOptionChooser(_("Infobar Crypticons"), &g_settings.channellist_ca, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	
+	//
+	getZapitConfig(&zapitCfg);
+	
+	// other
+	miscSettingsChannelList->addItem(new CMenuOptionChooser(_("Make Remaining Channels list"), (int *)&zapitCfg.makeRemainingChannelsBouquet, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this));
+
+	// scanSDT
+	miscSettingsChannelList->addItem( new CMenuOptionChooser(_("Scan SDT for updates"), (int *)&zapitCfg.scanSDT, SECTIONSD_SCAN_OPTIONS, SECTIONSD_SCAN_OPTIONS_COUNT, true, this) );
+	
+	//
+	widget->exec(NULL, "");
+}
+
+//
 bool CChannelListSettings::changeNotify(const std::string& OptionName, void */*data*/)
 {
 	dprintf(DEBUG_NORMAL, "CChannelListSettings::changeNotify:\n");
@@ -608,49 +712,6 @@ bool CChannelListSettings::changeNotify(const std::string& OptionName, void */*d
 	return false;
 }
 
-void CChannelListSettings::showMenu()
-{
-	dprintf(DEBUG_NORMAL, "CChannelListSettings::showMenu:\n");
-	
-	CMenuWidget miscSettingsChannelList(_("Channellist settings"), NEUTRINO_ICON_SETTINGS);
-	miscSettingsChannelList.enableSaveScreen();
-	miscSettingsChannelList.setWidgetMode(MODE_SETUP);
-	miscSettingsChannelList.enableShrinkMenu();
-	
-	int shortcutMiscChannel = 1;
-	
-	// intros
-	miscSettingsChannelList.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	miscSettingsChannelList.addItem( new CMenuSeparator(LINE) );
-	
-	// save settings
-	miscSettingsChannelList.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	miscSettingsChannelList.addItem( new CMenuSeparator(LINE) );
-	
-	// HD list
-	miscSettingsChannelList.addItem(new CMenuOptionChooser(_("Create list of HD channels"), &g_settings.make_hd_list, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
-	
-	// virtual zap
-	miscSettingsChannelList.addItem(new CMenuOptionChooser(_("Virtual zap"), &g_settings.virtual_zap_mode, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
-	
-	// zap cycle
-	miscSettingsChannelList.addItem(new CMenuOptionChooser(_("Zap cycle"), &g_settings.zap_cycle, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
-	
-	// channellist ca
-	miscSettingsChannelList.addItem(new CMenuOptionChooser(_("Infobar Crypticons"), &g_settings.channellist_ca, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
-	
-	//
-	getZapitConfig(&zapitCfg);
-	
-	// other
-	miscSettingsChannelList.addItem(new CMenuOptionChooser(_("Make Remaining Channels list"), (int *)&zapitCfg.makeRemainingChannelsBouquet, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, this, CRCInput::convertDigitToKey(shortcutMiscChannel++) ));
-
-	// scanSDT
-	miscSettingsChannelList.addItem( new CMenuOptionChooser(_("Scan SDT for updates"), (int *)&zapitCfg.scanSDT, SECTIONSD_SCAN_OPTIONS, SECTIONSD_SCAN_OPTIONS_COUNT, true, this, CRCInput::convertDigitToKey(shortcutMiscChannel++)) );
-	
-	miscSettingsChannelList.exec(NULL, "");
-	miscSettingsChannelList.hide();
-}
 
 //// epg settings
 CEPGSettings::CEPGSettings()
@@ -670,13 +731,7 @@ int CEPGSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if(parent)
 		parent->hide();
 	
-	if(actionKey == "savesettings")
-	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		
-		return ret;
-	}
-	else if(actionKey == "epgdir") 
+	if(actionKey == "epgdir") 
 	{
 		CFileBrowser b;
 		b.Dir_Mode = true;
@@ -723,50 +778,78 @@ void CEPGSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CEPGSettings::showMenu:\n");
 	
-	CMenuWidget miscSettingsEPG(_("EPG settings"), NEUTRINO_ICON_SETTINGS);
+	//
+	CWidget* widget = NULL;
+	ClistBox* miscSettingsEPG = NULL;
 	
-	miscSettingsEPG.setWidgetMode(MODE_SETUP);
-	miscSettingsEPG.enableShrinkMenu();
+	if (CNeutrinoApp::getInstance()->getWidget("epgsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("epgsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("epgsetup");
+		miscSettingsEPG = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("epgsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		miscSettingsEPG = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		miscSettingsEPG->setMenuPosition(MENU_POSITION_CENTER);
+		miscSettingsEPG->setWidgetMode(MODE_SETUP);
+		miscSettingsEPG->enableShrinkMenu();
+		
+		miscSettingsEPG->enablePaintHead();
+		miscSettingsEPG->setTitle(_("EPG settings"), NEUTRINO_ICON_SETTINGS);
+
+		miscSettingsEPG->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		miscSettingsEPG->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(miscSettingsEPG);
+	}
 	
-	int shortcutMiscEpg = 1;
+	miscSettingsEPG->clearItems();
 	
 	// intros
-	miscSettingsEPG.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	miscSettingsEPG.addItem( new CMenuSeparator(LINE) );
+	miscSettingsEPG->addItem(new CMenuForwarder(_("back")));
+	miscSettingsEPG->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	miscSettingsEPG.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	miscSettingsEPG.addItem( new CMenuSeparator(LINE) );
+	miscSettingsEPG->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	miscSettingsEPG->addItem( new CMenuSeparator(LINE) );
 
 	// read epg from xml
 	CEPGConfigNotifier* epgConfigNotifier = new CEPGConfigNotifier;
-	miscSettingsEPG.addItem(new CMenuOptionChooser(_("Restore EPG on boot"), &g_settings.epg_read, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, epgConfigNotifier, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+	miscSettingsEPG->addItem(new CMenuOptionChooser(_("Restore EPG on boot"), &g_settings.epg_read, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, epgConfigNotifier));
 
 	// save epg
 	CSectionsdConfigNotifier* sectionsdConfigNotifier = new CSectionsdConfigNotifier;
-	miscSettingsEPG.addItem(new CMenuOptionChooser(_("Save/Restore epg on reboot"), &g_settings.epg_save, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+	miscSettingsEPG->addItem(new CMenuOptionChooser(_("Save/Restore epg on reboot"), &g_settings.epg_save, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 	// epg cache
         CStringInput * miscSettings_epg_cache = new CStringInput(_("EPG-Cache (Days)"), g_settings.epg_cache.c_str(), 2, _("How long will EPG-Data in the future cached?"), _("Set in days."), "0123456789 ", sectionsdConfigNotifier);
-        miscSettingsEPG.addItem(new CMenuForwarder(_("EPG-Cache (Days)"), true, g_settings.epg_cache.c_str(), miscSettings_epg_cache, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+        miscSettingsEPG->addItem(new CMenuForwarder(_("EPG-Cache (Days)"), true, g_settings.epg_cache.c_str(), miscSettings_epg_cache));
 
 	// extended epg cache
         CStringInput * miscSettings_epg_cache_e = new CStringInput(_("EPG Long Description (hours)"), g_settings.epg_extendedcache.c_str(), 3, _("How long into the future will EPG extended descriptions"), _("be Cached? (Set in hours)"), "0123456789 ", sectionsdConfigNotifier);
-        miscSettingsEPG.addItem(new CMenuForwarder(_("EPG Long Description (hours)"), true, g_settings.epg_extendedcache.c_str(), miscSettings_epg_cache_e, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++)));
+        miscSettingsEPG->addItem(new CMenuForwarder(_("EPG Long Description (hours)"), true, g_settings.epg_extendedcache.c_str(), miscSettings_epg_cache_e));
 
 	// old events
         CStringInput * miscSettings_epg_old_events = new CStringInput(_("EPG remove after (std.)"), g_settings.epg_old_events.c_str(), 2, _("How long will EPG-Data be stored after they timed out?"), _("Set in hours"), "0123456789 ", sectionsdConfigNotifier);
-        miscSettingsEPG.addItem(new CMenuForwarder(_("EPG remove after (std.)"), true, g_settings.epg_old_events.c_str(), miscSettings_epg_old_events, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+        miscSettingsEPG->addItem(new CMenuForwarder(_("EPG remove after (std.)"), true, g_settings.epg_old_events.c_str(), miscSettings_epg_old_events));
 
 	// max epg events
         CStringInput * miscSettings_epg_max_events = new CStringInput(_("Max. Events"), g_settings.epg_max_events.c_str(), 5, _("How many events should be stored?"), _("normaly 50000, 0 to disable limit"), "0123456789 ", sectionsdConfigNotifier);
-        miscSettingsEPG.addItem(new CMenuForwarder(_("Max. Events"), true, g_settings.epg_max_events.c_str(), miscSettings_epg_max_events, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+        miscSettingsEPG->addItem(new CMenuForwarder(_("Max. Events"), true, g_settings.epg_max_events.c_str(), miscSettings_epg_max_events));
 
 	// epg save dir
-        miscSettingsEPG.addItem(new CMenuForwarder(_("EPG save path"), true, g_settings.epg_dir.c_str(), this, "epgdir", CRCInput::convertDigitToKey(shortcutMiscEpg++) ));
+        miscSettingsEPG->addItem(new CMenuForwarder(_("EPG save path"), true, g_settings.epg_dir.c_str(), this, "epgdir"));
 	
 	// epglang
-	miscSettingsEPG.addItem(new CMenuSeparator(LINE | STRING, _("Preferred EPG language")));
+	miscSettingsEPG->addItem(new CMenuSeparator(LINE | STRING, _("Preferred EPG language")));
 	
 	CMenuOptionStringChooser * epglangSelect[3];
 	CEPGlangSelectNotifier * EPGlangNotifier = new CEPGlangSelectNotifier();
@@ -783,32 +866,31 @@ void CEPGSettings::showMenu()
 	
 	// epglang
 	for(int i = 0; i < 3; i++) 
-		miscSettingsEPG.addItem(epglangSelect[i]);
+		miscSettingsEPG->addItem(epglangSelect[i]);
 
 	// online EPG
-	miscSettingsEPG.addItem( new CMenuSeparator(LINE) );
+	miscSettingsEPG->addItem( new CMenuSeparator(LINE) );
 
 	// server box ip
 	CIPInput * epg_IP = new CIPInput(_("Server Box IP"), g_settings.epg_serverbox_ip);
-	CMenuForwarder* o1 = new CMenuForwarder(_("Server Box IP"), g_settings.epg_enable_online_epg, g_settings.epg_serverbox_ip.c_str(), epg_IP, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++));
+	CMenuForwarder* o1 = new CMenuForwarder(_("Server Box IP"), g_settings.epg_enable_online_epg, g_settings.epg_serverbox_ip.c_str(), epg_IP);
 
 	// server gui (neutrino/neutrinohd/enigma2)
-	CMenuOptionChooser* o2 = new CMenuOptionChooser(_("Server Box GUI"), &g_settings.epg_serverbox_gui, EPG_SERVERBOX_GUI_OPTIONS, EPG_SERVERBOX_GUI_OPTION_COUNT, g_settings.epg_enable_online_epg, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++));
+	CMenuOptionChooser* o2 = new CMenuOptionChooser(_("Server Box GUI"), &g_settings.epg_serverbox_gui, EPG_SERVERBOX_GUI_OPTIONS, EPG_SERVERBOX_GUI_OPTION_COUNT, g_settings.epg_enable_online_epg);
 
 	// server box type (sat/cable/terrestrial)
-	CMenuOptionChooser* o3 = new CMenuOptionChooser(_("Server Box type"), &g_settings.epg_serverbox_type, EPG_SERVERBOX_TYPE_OPTIONS, EPG_SERVERBOX_TYPE_OPTION_COUNT, g_settings.epg_enable_online_epg, NULL, CRCInput::convertDigitToKey(shortcutMiscEpg++));
+	CMenuOptionChooser* o3 = new CMenuOptionChooser(_("Server Box type"), &g_settings.epg_serverbox_type, EPG_SERVERBOX_TYPE_OPTIONS, EPG_SERVERBOX_TYPE_OPTION_COUNT, g_settings.epg_enable_online_epg);
 
 	// online EPG on/off
 	COnlineEPGNotifier* onlineEPGNotifier = new COnlineEPGNotifier(o1, o2, o3);
 
-	miscSettingsEPG.addItem(new CMenuOptionChooser(_("Online EPG"), &g_settings.epg_enable_online_epg, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, onlineEPGNotifier, CRCInput::convertDigitToKey(shortcutMiscEpg++)));
+	miscSettingsEPG->addItem(new CMenuOptionChooser(_("Online EPG"), &g_settings.epg_enable_online_epg, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, onlineEPGNotifier));
 
-	miscSettingsEPG.addItem(o1);
-	miscSettingsEPG.addItem(o2);
-	miscSettingsEPG.addItem(o3);
+	miscSettingsEPG->addItem(o1);
+	miscSettingsEPG->addItem(o2);
+	miscSettingsEPG->addItem(o3);
 	
-	miscSettingsEPG.exec(NULL, "");
-	miscSettingsEPG.hide();
+	widget->exec(NULL, "");
 
 	delete epg_IP;
 	epg_IP = NULL;
@@ -920,32 +1002,60 @@ void CFileBrowserSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CFileBrowserSettings::showMenu:\n");
 	
-	CMenuWidget miscSettingsFileBrowser(_("Filebrowser settings"), NEUTRINO_ICON_SETTINGS);
-
-	miscSettingsFileBrowser.setWidgetMode(MODE_SETUP);
-	miscSettingsFileBrowser.enableShrinkMenu();
+	//
+	CWidget* widget = NULL;
+	ClistBox* miscSettingsFileBrowser = NULL;
 	
-	int shortcutMiscFileBrowser = 1;
+	if (CNeutrinoApp::getInstance()->getWidget("filebrowsersetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("filebrowsersetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("filebrowsersetup");
+		miscSettingsFileBrowser = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("filebrowsersetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		miscSettingsFileBrowser = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		miscSettingsFileBrowser->setMenuPosition(MENU_POSITION_CENTER);
+		miscSettingsFileBrowser->setWidgetMode(MODE_SETUP);
+		miscSettingsFileBrowser->enableShrinkMenu();
+		
+		miscSettingsFileBrowser->enablePaintHead();
+		miscSettingsFileBrowser->setTitle(_("Filebrowser settings"), NEUTRINO_ICON_SETTINGS);
+
+		miscSettingsFileBrowser->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		miscSettingsFileBrowser->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(miscSettingsFileBrowser);
+	}
+	
+	miscSettingsFileBrowser->clearItems();
 	
 	// intros
-	miscSettingsFileBrowser.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	miscSettingsFileBrowser.addItem( new CMenuSeparator(LINE) );
+	miscSettingsFileBrowser->addItem(new CMenuForwarder(_("back")));
+	miscSettingsFileBrowser->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	miscSettingsFileBrowser.addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
-	miscSettingsFileBrowser.addItem( new CMenuSeparator(LINE) );
+	miscSettingsFileBrowser->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	miscSettingsFileBrowser->addItem( new CMenuSeparator(LINE) );
 
 	// UTF 
-	miscSettingsFileBrowser.addItem(new CMenuOptionChooser(_("File system"), &g_settings.filesystem_is_utf8, MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTIONS, MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscFileBrowser++), "", true ));
+	miscSettingsFileBrowser->addItem(new CMenuOptionChooser(_("File system"), &g_settings.filesystem_is_utf8, MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTIONS, MISCSETTINGS_FILESYSTEM_IS_UTF8_OPTION_COUNT, true));
 
 	// show rights
-	miscSettingsFileBrowser.addItem(new CMenuOptionChooser(_("Show file rights"), &g_settings.filebrowser_showrights, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscFileBrowser++) ));
+	miscSettingsFileBrowser->addItem(new CMenuOptionChooser(_("Show file rights"), &g_settings.filebrowser_showrights, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true));
 
 	// deny dir
-	miscSettingsFileBrowser.addItem(new CMenuOptionChooser(_("Absolute start directory"), &g_settings.filebrowser_denydirectoryleave, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, NULL, CRCInput::convertDigitToKey(shortcutMiscFileBrowser++) ));
+	miscSettingsFileBrowser->addItem(new CMenuOptionChooser(_("Absolute start directory"), &g_settings.filebrowser_denydirectoryleave, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true));
 	
-	miscSettingsFileBrowser.exec(NULL, "");
-	miscSettingsFileBrowser.hide();
+	//
+	widget->exec(NULL, "");
 }
 
 // misc notifier

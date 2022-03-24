@@ -81,14 +81,7 @@ int CZapitSetup::exec(CMenuTarget * parent, const std::string &actionKey)
 	if (parent)
 		parent->hide();
 	
-	if(actionKey == "save") 
-	{
-		CNeutrinoApp::getInstance()->exec(NULL, "savesettings");
-		showMenu();
-
-		return RETURN_EXIT;
-	}
-	else if(actionKey == "tv")
+	if(actionKey == "tv")
 	{
 		CSelectChannelWidgetHandler = new CSelectChannelWidget();
 		CSelectChannelWidgetHandler->exec(NULL, "tv");
@@ -147,21 +140,48 @@ int CZapitSetup::exec(CMenuTarget * parent, const std::string &actionKey)
 void CZapitSetup::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CZapitSetup::showMenu:\n");
-
-	//menue init
-	CMenuWidget * zapit = new CMenuWidget(_("Start Channel settings"), NEUTRINO_ICON_SETTINGS);
-
-	zapit->setWidgetMode(MODE_SETUP);
-	zapit->enableShrinkMenu();
 	
-	int shortcut = 1;
+	//
+	CWidget* widget = NULL;
+	ClistBox* zapit = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("zapitsetup"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("zapitsetup")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("zapitsetup");
+		zapit = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("zapitsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		zapit = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		zapit->setMenuPosition(MENU_POSITION_CENTER);
+		zapit->setWidgetMode(MODE_SETUP);
+		zapit->enableShrinkMenu();
+		
+		zapit->enablePaintHead();
+		zapit->setTitle(_("Start Channel settings"), NEUTRINO_ICON_SETTINGS);
+
+		zapit->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		zapit->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(zapit);
+	}
+	
+	zapit->clearItems();
 	
 	// intros
-	zapit->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	zapit->addItem(new CMenuForwarder(_("back")));
 	zapit->addItem(new CMenuSeparator(LINE));
 	
 	// save settings
-	zapit->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save", RC_red, NEUTRINO_ICON_BUTTON_RED));
+	zapit->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
 	zapit->addItem(new CMenuSeparator(LINE));
 
 	bool activTV = false;
@@ -178,23 +198,23 @@ void CZapitSetup::showMenu()
 		activWebTV = true;
 
 	// last TV channel
-	CMenuForwarder * m3 = new CMenuForwarder(_("TV Channel"), activTV, g_settings.StartChannelTV.c_str(), this, "tv", CRCInput::convertDigitToKey(shortcut++));
+	CMenuForwarder * m3 = new CMenuForwarder(_("TV Channel"), activTV, g_settings.StartChannelTV.c_str(), this, "tv");
 
 	// last radio channel
-	CMenuForwarder * m4 = new CMenuForwarder(_("Radio Channel"), activRadio, g_settings.StartChannelRadio.c_str(), this, "radio", CRCInput::convertDigitToKey(shortcut++));
+	CMenuForwarder * m4 = new CMenuForwarder(_("Radio Channel"), activRadio, g_settings.StartChannelRadio.c_str(), this, "radio");
 
 	// last webtv channel
-	CMenuForwarder * m5 = new CMenuForwarder(_("IPTV Channel"), activWebTV, g_settings.StartChannelWEBTV.c_str(), this, "webtv", CRCInput::convertDigitToKey(shortcut++));
+	CMenuForwarder * m5 = new CMenuForwarder(_("IPTV Channel"), activWebTV, g_settings.StartChannelWEBTV.c_str(), this, "webtv");
 
 	// last mode
 	CZapitSetupModeNotifier zapitSetupModeNotifier((int *)&g_settings.lastChannelMode, m3, m4, m5);
 
-	CMenuOptionChooser * m2 = new CMenuOptionChooser(_("Start Mode"), (int *)&g_settings.lastChannelMode, OPTIONS_LASTMODE_OPTIONS, OPTIONS_LASTMODE_OPTION_COUNT, !g_settings.uselastchannel, &zapitSetupModeNotifier, CRCInput::convertDigitToKey(shortcut++));
+	CMenuOptionChooser * m2 = new CMenuOptionChooser(_("Start Mode"), (int *)&g_settings.lastChannelMode, OPTIONS_LASTMODE_OPTIONS, OPTIONS_LASTMODE_OPTION_COUNT, !g_settings.uselastchannel, &zapitSetupModeNotifier);
 	
 	// use lastchannel
 	CZapitSetupNotifier zapitSetupNotifier(m2, m3, m4, m5);
 
-	CMenuOptionChooser * m1 = new CMenuOptionChooser(_("Start Channel settings"), &g_settings.uselastchannel, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, true, &zapitSetupNotifier, CRCInput::convertDigitToKey(shortcut++));
+	CMenuOptionChooser * m1 = new CMenuOptionChooser(_("Start Channel"), &g_settings.uselastchannel, OPTIONS_OFF1_ON0_OPTIONS, OPTIONS_OFF1_ON0_OPTION_COUNT, true, &zapitSetupNotifier);
 	
 	zapit->addItem(m1);
 	zapit->addItem(m2);
@@ -202,8 +222,8 @@ void CZapitSetup::showMenu()
 	zapit->addItem(m4);
 	zapit->addItem(m5);
 
-	zapit->exec(NULL, "");
-	zapit->hide();
+	//
+	widget->exec(NULL, "");
 	
 	delete zapit;
 }
@@ -219,7 +239,7 @@ CZapitSetupNotifier::CZapitSetupNotifier(CMenuOptionChooser* m1, CMenuForwarder*
 
 bool CZapitSetupNotifier::changeNotify(const std::string& OptionName, void *)
 {
-	if (OptionName == _("Start Channel settings"))
+	if (OptionName == _("Start Channel"))
 	{
 		bool activTV = false;
 		bool activRadio = false;
