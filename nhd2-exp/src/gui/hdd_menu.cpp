@@ -240,7 +240,8 @@ int CHDDMenuHandler::hddMenu()
 	//printf("HDD: root_dev: 0x%04x\n", root_dev);
 	
 	//hdd manage
-	CMenuWidget * tempMenu[n];
+	CWidget* tempMenuWidget[n];
+	ClistBox* tempMenu[n];
 
 	for(int i = 0; i < n; i++) 
 	{
@@ -321,17 +322,56 @@ int CHDDMenuHandler::hddMenu()
 		bool enabled = !CNeutrinoApp::getInstance()->recordingstatus && !isroot;
 
 		// hdd menu
-		tempMenu[i] = new CMenuWidget(str, NEUTRINO_ICON_SETTINGS);
-		tempMenu[i]->enableSaveScreen();
-
-		tempMenu[i]->setWidgetMode(MODE_MENU);
-		tempMenu[i]->enableShrinkMenu();
+		//tempMenu[i] = new CMenuWidget(str, NEUTRINO_ICON_SETTINGS);
+		//tempMenu[i]->enableSaveScreen();
+		//tempMenu[i]->setWidgetMode(MODE_MENU);
+		//tempMenu[i]->enableShrinkMenu();
 		
-		tempMenu[i]->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+		if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
+		{
+			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionchooser")->getItemsCount();
+			
+			tempMenuWidget[i] = CNeutrinoApp::getInstance()->getWidget("optionchooser");
+			tempMenu[i] = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			
+			if (tempMenu[i]->hasFoot())
+			{
+				tempMenu[i]->enablePaintFoot();		
+				const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+				tempMenu[i]->setFootButtons(&btn);
+			}
+		}
+		else
+		{
+			tempMenu[i] = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			tempMenu[i]->setMenuPosition(MENU_POSITION_CENTER);
+			tempMenu[i]->setWidgetMode(MODE_SETUP);
+			tempMenu[i]->enableShrinkMenu();
+			tempMenu[i]->enableSaveScreen();
+			
+			//
+			tempMenu[i]->enablePaintFoot();		
+			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+			tempMenu[i]->setFootButtons(&btn);
+			
+			//
+			tempMenuWidget[i] = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			tempMenuWidget[i]->setMenuPosition(MENU_POSITION_CENTER);
+			tempMenuWidget[i]->enableSaveScreen();
+			tempMenuWidget[i]->addItem(tempMenu[i]);
+		}
+		
+		tempMenu[i]->enablePaintHead();
+		tempMenu[i]->setTitle(str, NEUTRINO_ICON_SETTINGS);
+		
+		tempMenu[i]->clearAll();
+
+		
+		tempMenu[i]->addItem(new CMenuForwarder(_("back")));
 		tempMenu[i]->addItem(new CMenuSeparator(LINE));
 		
 		//init hdd	
-		tempMenu[i]->addItem(new CMenuForwarder(_("HDD Init"), enabled, "", new CHDDInit, namelist[i]->d_name, RC_red, NEUTRINO_ICON_BUTTON_RED));
+		tempMenu[i]->addItem(new CMenuForwarder(_("HDD Init"), enabled, "", new CHDDInit, namelist[i]->d_name));
 		tempMenu[i]->addItem(new CMenuSeparator(LINE));
 		
 		// check for parts
@@ -339,7 +379,9 @@ int CHDDMenuHandler::hddMenu()
 		char DEVICE[256];
 		char PART[256];
 		
-		CMenuWidget * PartMenu[MAX_PARTS];
+		//
+		CWidget* PartMenuWidget[MAX_PARTS];
+		ClistBox* PartMenu[MAX_PARTS];
 		
 		for (int j = 1; j<= MAX_PARTS; j++)
 		{
@@ -364,42 +406,80 @@ int CHDDMenuHandler::hddMenu()
 			mounted = check_if_mounted(DEVICE);
 			
 			// part submenu
-			PartMenu[j] = new CMenuWidget(PART, NEUTRINO_ICON_SETTINGS);
-			PartMenu[j]->enableSaveScreen();
-
-			PartMenu[j]->setWidgetMode(MODE_MENU);
-			PartMenu[j]->enableShrinkMenu();
+			//PartMenu[j] = new CMenuWidget(PART, NEUTRINO_ICON_SETTINGS);
+			//PartMenu[j]->enableSaveScreen();
+			//PartMenu[j]->setWidgetMode(MODE_MENU);
+			//PartMenu[j]->enableShrinkMenu();
 			
+			if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
+			{
+				int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionchooser")->getItemsCount();
+				
+				PartMenuWidget[j] = CNeutrinoApp::getInstance()->getWidget("optionchooser");
+				PartMenu[j] = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+				
+				if (PartMenu[j]->hasFoot())
+				{
+					PartMenu[j]->enablePaintFoot();		
+					const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+					PartMenu[j]->setFootButtons(&btn);
+				}
+			}
+			else
+			{
+				PartMenu[j] = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				PartMenu[j]->setMenuPosition(MENU_POSITION_CENTER);
+				PartMenu[j]->setWidgetMode(MODE_SETUP);
+				PartMenu[j]->enableShrinkMenu();
+				PartMenu[j]->enableSaveScreen();
+				
+				//
+				PartMenu[j]->enablePaintFoot();		
+				const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+				PartMenu[j]->setFootButtons(&btn);
+				
+				//
+				PartMenuWidget[j] = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				PartMenuWidget[j]->setMenuPosition(MENU_POSITION_CENTER);
+				PartMenuWidget[j]->enableSaveScreen();
+				PartMenuWidget[j]->addItem(PartMenu[j]);
+			}
+			
+			PartMenu[j]->enablePaintHead();
+			PartMenu[j]->setTitle(PART, NEUTRINO_ICON_SETTINGS);
+			
+			PartMenu[j]->clearAll();
 
-			PartMenu[j]->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+			//
+			PartMenu[j]->addItem(new CMenuForwarder(_("back")));
 			PartMenu[j]->addItem(new CMenuSeparator(LINE));
 			
 			// format part
-			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Format"), true, NULL, new CHDDFmtExec, PART, RC_red, NEUTRINO_ICON_BUTTON_RED));
+			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Format"), true, NULL, new CHDDFmtExec, PART));
 			
 			// fs check
-			PartMenu[j]->addItem(new CMenuForwarder(_("Check filesystem"), true, NULL, new CHDDChkExec, PART, RC_green, NEUTRINO_ICON_BUTTON_GREEN));
+			PartMenu[j]->addItem(new CMenuForwarder(_("Check filesystem"), true, NULL, new CHDDChkExec, PART));
 			
 			// mount part
-			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Mount"), true, NULL, new CHDDMountMSGExec, PART, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW));
+			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Mount"), true, NULL, new CHDDMountMSGExec, PART));
 
 			// umount part
-			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Umount"), true, NULL, new CHDDuMountMSGExec, PART, RC_blue, NEUTRINO_ICON_BUTTON_BLUE));
+			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Umount"), true, NULL, new CHDDuMountMSGExec, PART));
 			
 			// hdd explorer
 			PartMenu[j]->addItem(new CMenuSeparator(LINE));
 			PartMenu[j]->addItem(new CMenuForwarder(_("HDD Filexplorer"), mounted, NULL, new CHDDBrowser(), DEVICE));
 			
 			// part
-			tempMenu[i]->addItem(new CMenuForwarder(PART, true, mounted? _("HDD mounted") : _("HDD umounted"), PartMenu[j]));
+			tempMenu[i]->addItem(new CMenuForwarder(PART, true, mounted? _("HDD mounted") : _("HDD umounted"), PartMenuWidget[j]));
 			
 			close(fd);
 		}
 		
 		//hddmenu->addItem(new CMenuSeparator(LINE));
-		hddmenu->addItem(new CMenuForwarder(str, enabled, NULL, tempMenu[i]));
+		hddmenu->addItem(new CMenuForwarder(str, enabled, NULL, tempMenuWidget[i]));
 
-		/* result */
+		// result
 		hdd_found = 1;
 		
 		// free

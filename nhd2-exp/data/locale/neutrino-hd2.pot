@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-25 13:12+0100\n"
+"POT-Creation-Date: 2022-03-25 15:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -197,11 +197,11 @@ msgstr ""
 msgid "Are you sure ?"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:625
+#: ../../src/gui/hdd_menu.cpp:705
 msgid "Are you sure to format ? You will lost all data "
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:434
+#: ../../src/gui/hdd_menu.cpp:514
 msgid "Are you sure to init ?"
 msgstr ""
 
@@ -400,15 +400,15 @@ msgstr ""
 msgid "Buttons Line"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:284
+#: ../../src/gui/cam_menu.cpp:322
 msgid "CAM init complete"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:227
+#: ../../src/gui/cam_menu.cpp:265
 msgid "CAM inserted in slot"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:255
+#: ../../src/gui/cam_menu.cpp:293
 msgid "CAM removed from slot"
 msgstr ""
 
@@ -420,7 +420,7 @@ msgstr ""
 msgid "CI Cam settings"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:173
+#: ../../src/gui/cam_menu.cpp:174
 msgid "CI cam reset"
 msgstr ""
 
@@ -530,8 +530,8 @@ msgstr ""
 msgid "Channellist settings"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:381 ../../src/gui/hdd_menu.cpp:838
-#: ../../src/gui/hdd_menu.cpp:870
+#: ../../src/gui/hdd_menu.cpp:461 ../../src/gui/hdd_menu.cpp:918
+#: ../../src/gui/hdd_menu.cpp:950
 msgid "Check filesystem"
 msgstr ""
 
@@ -1247,60 +1247,60 @@ msgstr ""
 msgid "HDD Devices:"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:391
+#: ../../src/gui/hdd_menu.cpp:471
 msgid "HDD Filexplorer"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:378 ../../src/gui/hdd_menu.cpp:625
-#: ../../src/gui/hdd_menu.cpp:666 ../../src/gui/hdd_menu.cpp:684
+#: ../../src/gui/hdd_menu.cpp:458 ../../src/gui/hdd_menu.cpp:705
+#: ../../src/gui/hdd_menu.cpp:746 ../../src/gui/hdd_menu.cpp:764
 msgid "HDD Format"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:334 ../../src/gui/hdd_menu.cpp:467
-#: ../../src/gui/hdd_menu.cpp:486 ../../src/gui/hdd_menu.cpp:706
-#: ../../src/gui/hdd_menu.cpp:862
+#: ../../src/gui/hdd_menu.cpp:374 ../../src/gui/hdd_menu.cpp:547
+#: ../../src/gui/hdd_menu.cpp:566 ../../src/gui/hdd_menu.cpp:786
+#: ../../src/gui/hdd_menu.cpp:942
 msgid "HDD Init"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:384 ../../src/gui/hdd_menu.cpp:917
-#: ../../src/gui/hdd_menu.cpp:950 ../../src/gui/hdd_menu.cpp:972
-#: ../../src/gui/hdd_menu.cpp:988 ../../src/gui/hdd_menu.cpp:1006
-#: ../../src/gui/hdd_menu.cpp:1015 ../../src/gui/hdd_menu.cpp:1026
-#: ../../src/gui/hdd_menu.cpp:1155 ../../src/gui/hdd_menu.cpp:1164
-#: ../../src/gui/hdd_menu.cpp:1174 ../../src/gui/hdd_menu.cpp:1279
+#: ../../src/gui/hdd_menu.cpp:464 ../../src/gui/hdd_menu.cpp:997
+#: ../../src/gui/hdd_menu.cpp:1030 ../../src/gui/hdd_menu.cpp:1052
+#: ../../src/gui/hdd_menu.cpp:1068 ../../src/gui/hdd_menu.cpp:1086
+#: ../../src/gui/hdd_menu.cpp:1095 ../../src/gui/hdd_menu.cpp:1106
+#: ../../src/gui/hdd_menu.cpp:1235 ../../src/gui/hdd_menu.cpp:1244
+#: ../../src/gui/hdd_menu.cpp:1254 ../../src/gui/hdd_menu.cpp:1359
 msgid "HDD Mount"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:917
+#: ../../src/gui/hdd_menu.cpp:997
 msgid "HDD Mount Failed"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:1015 ../../src/gui/hdd_menu.cpp:1026
+#: ../../src/gui/hdd_menu.cpp:1095 ../../src/gui/hdd_menu.cpp:1106
 msgid "HDD Mount failed !"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:950 ../../src/gui/hdd_menu.cpp:972
-#: ../../src/gui/hdd_menu.cpp:988 ../../src/gui/hdd_menu.cpp:1006
+#: ../../src/gui/hdd_menu.cpp:1030 ../../src/gui/hdd_menu.cpp:1052
+#: ../../src/gui/hdd_menu.cpp:1068 ../../src/gui/hdd_menu.cpp:1086
 msgid "HDD Mounted"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:387
+#: ../../src/gui/hdd_menu.cpp:467
 msgid "HDD Umount"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:838 ../../src/gui/hdd_menu.cpp:862
+#: ../../src/gui/hdd_menu.cpp:918 ../../src/gui/hdd_menu.cpp:942
 msgid "HDD check failed !"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:706
+#: ../../src/gui/hdd_menu.cpp:786
 msgid "HDD format failed !"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:486
+#: ../../src/gui/hdd_menu.cpp:566
 msgid "HDD init failed !"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:394
+#: ../../src/gui/hdd_menu.cpp:474
 msgid "HDD mounted"
 msgstr ""
 
@@ -1308,16 +1308,16 @@ msgstr ""
 msgid "HDD settings"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:1155
+#: ../../src/gui/hdd_menu.cpp:1235
 msgid "HDD umount"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:394 ../../src/gui/hdd_menu.cpp:1174
-#: ../../src/gui/hdd_menu.cpp:1279
+#: ../../src/gui/hdd_menu.cpp:474 ../../src/gui/hdd_menu.cpp:1254
+#: ../../src/gui/hdd_menu.cpp:1359
 msgid "HDD umounted"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:666 ../../src/gui/hdd_menu.cpp:1164
+#: ../../src/gui/hdd_menu.cpp:746 ../../src/gui/hdd_menu.cpp:1244
 msgid "HDD unmount failed !"
 msgstr ""
 
@@ -1329,7 +1329,7 @@ msgstr ""
 msgid "Halt Motor"
 msgstr ""
 
-#: ../../src/gui/hdd_menu.cpp:434
+#: ../../src/gui/hdd_menu.cpp:514
 msgid "Hdd Format"
 msgstr ""
 
@@ -1493,9 +1493,9 @@ msgstr ""
 #: ../../src/neutrino.cpp:5305 ../../src/neutrino.cpp:5317
 #: ../../src/neutrino.cpp:5319 ../../src/gui/osd_setup.cpp:540
 #: ../../src/gui/dboxinfo.cpp:497 ../../src/gui/dboxinfo.cpp:508
-#: ../../src/gui/cam_menu.cpp:231 ../../src/gui/cam_menu.cpp:259
-#: ../../src/gui/cam_menu.cpp:288 ../../src/gui/cam_menu.cpp:389
-#: ../../src/gui/cam_menu.cpp:503 ../../src/gui/cam_menu.cpp:518
+#: ../../src/gui/cam_menu.cpp:269 ../../src/gui/cam_menu.cpp:297
+#: ../../src/gui/cam_menu.cpp:326 ../../src/gui/cam_menu.cpp:464
+#: ../../src/gui/cam_menu.cpp:578 ../../src/gui/cam_menu.cpp:593
 #: ../../src/gui/hdd_menu.cpp:139 ../../src/gui/network_setup.cpp:158
 #: ../../src/gui/rc_setup.cpp:255 ../../src/gui/scan_setup.cpp:288
 #: ../../src/gui/recording_setup.cpp:93 ../../src/gui/movieplayer.cpp:618
@@ -2095,7 +2095,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:177
+#: ../../src/gui/cam_menu.cpp:178
 msgid "No CAM in slot"
 msgstr ""
 
@@ -3567,7 +3567,7 @@ msgstr ""
 msgid "Timed Step Mode"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:518
+#: ../../src/gui/cam_menu.cpp:593
 msgid "Timeout waiting CI menu ready"
 msgstr ""
 
@@ -3856,7 +3856,7 @@ msgstr ""
 msgid "Wait a few seconds for abort"
 msgstr ""
 
-#: ../../src/gui/cam_menu.cpp:503
+#: ../../src/gui/cam_menu.cpp:578
 msgid "Waiting for CI answer"
 msgstr ""
 
@@ -4062,7 +4062,7 @@ msgstr ""
 #: ../../src/gui/osd_setup.cpp:594 ../../src/gui/osd_setup.cpp:758
 #: ../../src/gui/osd_setup.cpp:853 ../../src/gui/osd_setup.cpp:1071
 #: ../../src/gui/cam_menu.cpp:151 ../../src/gui/hdd_menu.cpp:213
-#: ../../src/gui/hdd_menu.cpp:330 ../../src/gui/hdd_menu.cpp:374
+#: ../../src/gui/hdd_menu.cpp:370 ../../src/gui/hdd_menu.cpp:454
 #: ../../src/gui/network_setup.cpp:298 ../../src/gui/audio_setup.cpp:184
 #: ../../src/gui/audioplayer_setup.cpp:125
 #: ../../src/gui/pictureviewer_setup.cpp:146 ../../src/gui/nfs.cpp:231

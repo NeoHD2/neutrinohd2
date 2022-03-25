@@ -151,7 +151,8 @@ void CCAMMenuHandler::doMainMenu()
 	cammenu->addItem(new CMenuForwarder(_("back")));
 
 	//
-	CMenuWidget* tempMenu = NULL;
+	CWidget* tempMenuWidget = NULL;
+	ClistBox* tempMenu = NULL;
 	
 	for (int i = 0; i < ci->ci_num; i++)
 	{
@@ -175,13 +176,50 @@ void CCAMMenuHandler::doMainMenu()
 		else 
 		{
 			sprintf(str, "%s %d", _("No CAM in slot"), i + 1);
-			tempMenu = new CMenuWidget(str, NEUTRINO_ICON_SETTINGS);
-			tempMenu->setWidgetMode(MODE_SETUP);
-			tempMenu->enableShrinkMenu();
+			
+			//
+			if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
+			{
+				int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionchooser")->getItemsCount();
+				
+				tempMenuWidget = CNeutrinoApp::getInstance()->getWidget("optionchooser");
+				tempMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+				
+				if (tempMenu->hasFoot())
+				{
+					tempMenu->enablePaintFoot();		
+					const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+					tempMenu->setFootButtons(&btn);
+				}
+			}
+			else
+			{
+				tempMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				tempMenu->setMenuPosition(MENU_POSITION_CENTER);
+				tempMenu->setWidgetMode(MODE_SETUP);
+				tempMenu->enableShrinkMenu();
+				tempMenu->enableSaveScreen();
+				
+				//
+				tempMenu->enablePaintFoot();		
+				const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+				tempMenu->setFootButtons(&btn);
+				
+				//
+				tempMenuWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				tempMenuWidget->setMenuPosition(MENU_POSITION_CENTER);
+				tempMenuWidget->enableSaveScreen();
+				tempMenuWidget->addItem(tempMenu);
+			}
+			
+			tempMenu->enablePaintHead();
+			tempMenu->setTitle(str, NEUTRINO_ICON_SETTINGS);
+			
+			tempMenu->clearAll();
 
 			//
 			cammenu->addItem(new CMenuSeparator(LINE));
-			cammenu->addItem(new CMenuForwarder(str, false, NULL, tempMenu));
+			cammenu->addItem(new CMenuForwarder(str, false, NULL, tempMenuWidget));
 		}
 	}	
 
@@ -318,11 +356,48 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 		int selected = -1;
 		if(pMenu->choice_nb) 
 		{
-			CMenuWidget * menu = new CMenuWidget(convertDVBUTF8(pMenu->title, strlen(pMenu->title), 0).c_str(), NEUTRINO_ICON_SETTINGS);
-
-			menu->enableSaveScreen();
-			menu->setWidgetMode(MODE_SETUP);
-			menu->enableShrinkMenu();
+			//
+			CWidget* menuWidget = NULL;
+			ClistBox* menu = NULL;
+			
+			if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
+			{
+				int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionchooser")->getItemsCount();
+				
+				menuWidget = CNeutrinoApp::getInstance()->getWidget("optionchooser");
+				menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+				
+				if (menu->hasFoot())
+				{
+					menu->enablePaintFoot();		
+					const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+					menu->setFootButtons(&btn);
+				}
+			}
+			else
+			{
+				menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				menu->setMenuPosition(MENU_POSITION_CENTER);
+				menu->setWidgetMode(MODE_SETUP);
+				menu->enableShrinkMenu();
+				menu->enableSaveScreen();
+				
+				//
+				menu->enablePaintFoot();		
+				const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+				menu->setFootButtons(&btn);
+				
+				//
+				menuWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				menuWidget->setMenuPosition(MENU_POSITION_CENTER);
+				menuWidget->enableSaveScreen();
+				menuWidget->addItem(menu);
+			}
+			
+			menu->enablePaintHead();
+			menu->setTitle(convertDVBUTF8(pMenu->title, strlen(pMenu->title), 0).c_str(), NEUTRINO_ICON_SETTINGS);
+			
+			menu->clearAll();
 
 			int slen = strlen(pMenu->subtitle);
 			
@@ -370,7 +445,7 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 				menu->addItem(new CMenuForwarder(convertDVBUTF8(pMenu->bottom, slen, 0).c_str(), false));
 			}
 
-			menu->exec(NULL, "");
+			menuWidget->exec(NULL, "");
 			selected = menu->getSelected();
 
 			delete menu;
@@ -574,3 +649,5 @@ int CCAMMenuHandler::doMenu(int slot)
 	
 	return res; 
 }
+
+
