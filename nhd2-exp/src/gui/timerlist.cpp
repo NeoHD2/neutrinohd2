@@ -391,10 +391,10 @@ int CTimerList::exec(CMenuTarget* parent, const std::string& actionKey)
 		CFileBrowser b;
 		b.Dir_Mode = true;
 		
-		if (b.exec(g_settings.network_nfs_audioplayerdir))
+		if (b.exec(g_settings.network_nfs_recordingdir))
 			strncpy(timerNew.recordingDir, b.getSelectedFile()->Name.c_str(), sizeof(timerNew.recordingDir) - 1);
 
-		this->getString() = g_settings.network_nfs_audioplayerdir;
+		this->getString() = g_settings.network_nfs_recordingdir;
 
 		return RETURN_REPAINT;
 	}
