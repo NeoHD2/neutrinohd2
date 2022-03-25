@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-24 22:25+0100\n"
+"POT-Creation-Date: 2022-03-25 12:50+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -508,9 +508,6 @@ msgstr ""
 #, fuzzy
 msgid "DiSEqC settings"
 msgstr "Festplatte Einstellungen"
-
-msgid "DiSEqC-Settings"
-msgstr ""
 
 msgid "DiSEqC-repeats"
 msgstr ""
@@ -1262,7 +1259,10 @@ msgstr ""
 msgid "Motor Setup"
 msgstr ""
 
-msgid "Mount Network volume"
+msgid "Motor settings"
+msgstr ""
+
+msgid "Mount network volume"
 msgstr ""
 
 msgid "Mount options"
@@ -1858,16 +1858,16 @@ msgid "Save Settings now"
 msgstr "Einstellungen jetzt speichern"
 
 msgid "Save Timer"
-msgstr ""
+msgstr "Timer speichern"
 
 msgid "Save changes"
-msgstr ""
+msgstr "Änderungen speichern"
 
 msgid "Save changes in all movie info files"
 msgstr ""
 
 msgid "Save current theme"
-msgstr ""
+msgstr "Aktuelle Theme speichern"
 
 msgid "Save in channel dir"
 msgstr ""
@@ -2477,7 +2477,7 @@ msgstr ""
 msgid "UTF-8"
 msgstr ""
 
-msgid "Umount Network volume"
+msgid "Umount network volume"
 msgstr ""
 
 msgid "Uncommited/Commited"

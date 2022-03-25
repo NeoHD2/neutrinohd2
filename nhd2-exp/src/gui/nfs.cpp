@@ -191,11 +191,6 @@ int CNFSMountGui::exec( CMenuTarget *parent, const std::string &actionKey )
 
 int CNFSMountGui::menu()
 {
-	//CMenuWidget mountMenuW(_("Mount Network volume"), NEUTRINO_ICON_NETWORK, 720);
-
-	//mountMenuW.setWidgetMode(MODE_MENU);
-	//mountMenuW.enableShrinkMenu();
-	
 	//
 	CWidget* widget = NULL;
 	ClistBox* mountMenuW = NULL;
@@ -315,15 +310,45 @@ int CNFSMountGui::menuEntry(int nr)
 	   (m_nfs_sup != CFSMounter::FS_UNSUPPORTED && *type != (int)CFSMounter::NFS) ||
 	   (m_lufs_sup != CFSMounter::FS_UNSUPPORTED && *type != (int)CFSMounter::LUFS) ||
 	   (m_smbfs_sup != CFSMounter::FS_UNSUPPORTED && *type != (int)CFSMounter::SMBFS);
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* mountMenuEntryW = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("mountvolume"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("mountvolume")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("mountvolume");
+		mountMenuEntryW = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("mountvolume")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		mountMenuEntryW = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		mountMenuEntryW->setMenuPosition(MENU_POSITION_CENTER);
+		mountMenuEntryW->setWidgetMode(MODE_SETUP);
+		mountMenuEntryW->enableShrinkMenu();
+		
+		mountMenuEntryW->enablePaintHead();
+		mountMenuEntryW->setTitle(_("Mount network volume"), NEUTRINO_ICON_NETWORK);
 
-	CMenuWidget mountMenuEntryW(_("Mount Network volume"), NEUTRINO_ICON_NETWORK);
-
-	mountMenuEntryW.setWidgetMode(MODE_SETUP);
-	mountMenuEntryW.enableShrinkMenu();
+		mountMenuEntryW->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		mountMenuEntryW->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(mountMenuEntryW);
+	}
+	
+	mountMenuEntryW->clearItems();
 	
 	// intros
-	mountMenuEntryW.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	mountMenuEntryW.addItem(new CMenuSeparator(LINE));
+	mountMenuEntryW->addItem(new CMenuForwarder(_("back")));
+	mountMenuEntryW->addItem(new CMenuSeparator(LINE));
 	
 	// ip
 	CIPInput ipInput(_("Server IP"), g_settings.network_nfs_ip[nr], _("Use 0..9, or use Up/Down,"), _("OK saves, HOME! aborts"));
@@ -356,19 +381,19 @@ int CNFSMountGui::menuEntry(int nr)
 
 	CNFSMountGuiNotifier notifier(username_fwd, password_fwd, type);
 
-	mountMenuEntryW.addItem(new CMenuOptionChooser(_("type"), type, NFS_TYPE_OPTIONS, NFS_TYPE_OPTION_COUNT, typeEnabled, &notifier));
-	mountMenuEntryW.addItem(new CMenuForwarder(_("Server IP"), true, g_settings.network_nfs_ip[nr].c_str(), &ipInput));
-	mountMenuEntryW.addItem(new CMenuForwarder(_("Dir"), true, dir, &dirInput));
-	mountMenuEntryW.addItem(new CMenuForwarder(_("local dir"), true, local_dir, this, cmd2));
-	mountMenuEntryW.addItem(automountInput);
-	mountMenuEntryW.addItem(options1_fwd);
-	mountMenuEntryW.addItem(options2_fwd);
-	mountMenuEntryW.addItem(username_fwd);
-	mountMenuEntryW.addItem(password_fwd);
-	mountMenuEntryW.addItem(macInput_fwd);
-	mountMenuEntryW.addItem(new CMenuForwarder(_("mount now"), true, NULL, this, cmd ));
+	mountMenuEntryW->addItem(new CMenuOptionChooser(_("type"), type, NFS_TYPE_OPTIONS, NFS_TYPE_OPTION_COUNT, typeEnabled, &notifier));
+	mountMenuEntryW->addItem(new CMenuForwarder(_("Server IP"), true, g_settings.network_nfs_ip[nr].c_str(), &ipInput));
+	mountMenuEntryW->addItem(new CMenuForwarder(_("Dir"), true, dir, &dirInput));
+	mountMenuEntryW->addItem(new CMenuForwarder(_("local dir"), true, local_dir, this, cmd2));
+	mountMenuEntryW->addItem(automountInput);
+	mountMenuEntryW->addItem(options1_fwd);
+	mountMenuEntryW->addItem(options2_fwd);
+	mountMenuEntryW->addItem(username_fwd);
+	mountMenuEntryW->addItem(password_fwd);
+	mountMenuEntryW->addItem(macInput_fwd);
+	mountMenuEntryW->addItem(new CMenuForwarder(_("mount now"), true, NULL, this, cmd ));
 
-	int ret = mountMenuEntryW.exec(this, "");
+	int ret = widget->exec(this, "");
 	return ret;
 }
 
@@ -400,14 +425,49 @@ int CNFSUmountGui::menu()
 {
 	int count = 0;
 	CFSMounter::MountInfos infos;
-	CMenuWidget umountMenu(_("Umount Network volume"), NEUTRINO_ICON_NETWORK);
+	
+	//CMenuWidget umountMenu(_("Umount network volume"), NEUTRINO_ICON_NETWORK);
+	//umountMenu.setWidgetMode(MODE_MENU);
+	//umountMenu.enableShrinkMenu();
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* umountMenu = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("umountvolume"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("umountvolume")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("umountvolume");
+		umountMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("umountvolume")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		umountMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		umountMenu->setMenuPosition(MENU_POSITION_CENTER);
+		umountMenu->setWidgetMode(MODE_SETUP);
+		umountMenu->enableShrinkMenu();
+		
+		umountMenu->enablePaintHead();
+		umountMenu->setTitle(_("Umount network volume"), NEUTRINO_ICON_NETWORK);
 
-	umountMenu.setWidgetMode(MODE_MENU);
-	umountMenu.enableShrinkMenu();
+		umountMenu->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		umountMenu->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(umountMenu);
+	}
+	
+	umountMenu->clearItems();
 	
 	// intros
-	umountMenu.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	umountMenu.addItem(new CMenuSeparator(LINE));
+	umountMenu->addItem(new CMenuForwarder(_("back")));
+	umountMenu->addItem(new CMenuSeparator(LINE));
 	
 	CFSMounter::getMountedFS(infos);
 	for (CFSMounter::MountInfos::const_iterator it = infos.begin(); it != infos.end();it++)
@@ -422,11 +482,11 @@ int CNFSUmountGui::menu()
 			s2 += it->mountPoint;
 			CMenuForwarder *forwarder = new CMenuForwarder(s1.c_str(), true, NULL, this, s2.c_str());
 			forwarder->iconName = NEUTRINO_ICON_MOUNTED;
-			umountMenu.addItem(forwarder);
+			umountMenu->addItem(forwarder);
 		}
 	}
 	if(infos.size() > 0)
-		return umountMenu.exec(this, "");
+		return widget->exec(this, "");
 	else
 		return RETURN_REPAINT;
 }
@@ -446,23 +506,57 @@ int CNFSSmallMenu::exec( CMenuTarget* parent, const std::string & actionKey )
 
 	if (actionKey.empty())
 	{
-		CMenuWidget menu(_("Network Mount Manager"), NEUTRINO_ICON_NETWORK);
+		//CMenuWidget menu(_("Network Mount Manager"), NEUTRINO_ICON_NETWORK);
+		//menu.setWidgetMode(MODE_MENU);
+		//menu.enableShrinkMenu();
+		
+		//
+		CWidget* widget = NULL;
+		ClistBox* menu = NULL;
+		
+		if (CNeutrinoApp::getInstance()->getWidget("nfssmall"))
+		{
+			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("nfssmall")->getItemsCount();
+			
+			widget = CNeutrinoApp::getInstance()->getWidget("nfssmall");
+			menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("nfssmall")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		}
+		else
+		{
+			menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			menu->setMenuPosition(MENU_POSITION_CENTER);
+			menu->setWidgetMode(MODE_SETUP);
+			menu->enableShrinkMenu();
+			
+			menu->enablePaintHead();
+			menu->setTitle(_("Network Mount Manager"), NEUTRINO_ICON_NETWORK);
 
-		menu.setWidgetMode(MODE_MENU);
-		menu.enableShrinkMenu();
+			menu->enablePaintFoot();
+				
+			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+				
+			menu->setFootButtons(&btn);
+			
+			//
+			widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			widget->setMenuPosition(MENU_POSITION_CENTER);
+			widget->addItem(menu);
+		}
+		
+		menu->clearItems();
 
 		CNFSMountGui mountGui;
 		CNFSUmountGui umountGui;
 		
 		// intros
-		menu.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-		menu.addItem(new CMenuSeparator(LINE));
+		menu->addItem(new CMenuForwarder(_("back")));
+		menu->addItem(new CMenuSeparator(LINE));
 		
-		menu.addItem(new CMenuForwarder(_("remount"), true, NULL, this, "remount"));
-		menu.addItem(new CMenuForwarder(_("mount"), true, NULL, &mountGui));
-		menu.addItem(new CMenuForwarder(_("umount"), true, NULL, &umountGui));
+		menu->addItem(new CMenuForwarder(_("remount"), true, NULL, this, "remount"));
+		menu->addItem(new CMenuForwarder(_("mount"), true, NULL, &mountGui));
+		menu->addItem(new CMenuForwarder(_("umount"), true, NULL, &umountGui));
 
-		return menu.exec(parent, actionKey);
+		return widget->exec(parent, actionKey);
 	}
 	else if(actionKey.substr(0, 7) == "remount")
 	{
@@ -527,3 +621,5 @@ const char * mntRes2Str(CFSMounter::UMountRes res)
 			break;
 	}
 }
+
+

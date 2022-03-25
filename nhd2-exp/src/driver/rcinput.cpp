@@ -82,13 +82,13 @@ static struct termio orig_termio;
 static bool saved_orig_termio = false;
 #endif /* KEYBOARD_INSTEAD_OF_REMOTE_CONTROL */
 
-bool CRCInput::loadKeyMap(const char * const fileName)
+bool CRCInput::loadRCConfig(const char * const fileName)
 {
-	printf("CRCInput::loadKeymap:\n");
+	printf("CRCInput::loadRCConfig:\n");
 	
-	/* if keymap.conf not exists load default */
+	/* if rc.conf not exists load default */
 	if(!configfile.loadConfig(fileName))
-		printf("CRCInput::loadKeyMap: %s not found, using default\n", fileName);
+		printf("CRCInput::loadRCConfig: %s not found, using default\n", fileName);
 	
 	key_0 = configfile.getInt32("key_0", KEY_0);
 	key_1 = configfile.getInt32("key_1", KEY_1);
@@ -244,9 +244,9 @@ bool CRCInput::loadKeyMap(const char * const fileName)
 	return true;
 }
 
-bool CRCInput::saveKeyMap(const char * const fileName)
+bool CRCInput::saveRCConfig(const char * const fileName)
 {
-	printf("CRCInput::saveKeymap:\n");
+	printf("CRCInput::saveRCConfig:\n");
 	
 	configfile.setInt32("key_0", key_0);
 	configfile.setInt32("key_1", key_1);
@@ -416,9 +416,9 @@ CRCInput::CRCInput() : configfile('\t')
 	
 	repeat_block = repeat_block_generic = 0;
 	
-	//load keymap
-	if( !loadKeyMap(NEUTRINO_KEYMAP_FILE) )
-		printf("CRCInput::CRCInput: Loading of keymap file failed. Using defaults.\n");
+	//load rcconfig
+	if( !loadRCConfig(NEUTRINO_RCCONFIG_FILE) )
+		printf("CRCInput::CRCInput: Loading of rc config file failed. Using defaults.\n");
 	
 	open();
 	

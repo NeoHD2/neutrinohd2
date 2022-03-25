@@ -3,6 +3,26 @@
 <!-- SKIN: titan -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="mountchooser" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+	</WIDGET>
+	
+	<WIDGET name="tempsat" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+	</WIDGET>
+	
+	<WIDGET name="optionstringchooser" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+	</WIDGET>
+	
+	<WIDGET name="optionchooser" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+	</WIDGET>
+	
 	<WIDGET name="rcsetup" posx="0" posy="0" width="700" height="720" paintframe="1">
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
 		</LISTBOX>
@@ -367,11 +387,50 @@
 		</FOOT>
 	</WIDGET>
 	
+	<WIDGET name="nsfsmall" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Network Mount Manager" icon="keybinding">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="umountvolume" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Umount network volume" icon="keybinding">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="mountvolume" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Mount network volume" icon="keybinding">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
 	<WIDGET name="nfs" id="39" posx="0" posy="0" width="700" height="720" paintframe="1">
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
 		</LISTBOX>
 		
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Mount Network volume" icon="network">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Mount network volume" icon="network">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
@@ -424,6 +483,32 @@
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Video settings" icon="video">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="satOnOff" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Satellite" icon="softupdate">
+		</HEAD>
+		
+		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
+			<BUTTON_LABEL name="information">
+			</BUTTON_LABEL>
+		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="satfindMenu" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1" >
+		</LISTBOX>
+		
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Motor settings" icon="softupdate">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">

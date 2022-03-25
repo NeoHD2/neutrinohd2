@@ -43,38 +43,50 @@
 
 #include <system/debug.h>
 
-/*
-CMountChooser::CMountChooser(const neutrino_locale_t Name, const std::string& Icon, int* chosenIndex, char * chosenLocalDir, const char * const selectedLocalDir, const int mwidth, const int mheight)
-	: CMenuWidget(Name, Icon, mwidth, mheight), index(chosenIndex), localDir(chosenLocalDir)
-{
-	enableShrinkMenu();
-
-	char indexStr[2];
-	for(int i = 0 ; i < NETWORK_NFS_NR_OF_ENTRIES ; i++)
-	{
-		if (g_settings.network_nfs_local_dir[i] != NULL &&
-		    strcmp(g_settings.network_nfs_local_dir[i],"") != 0 &&
-		    (strstr(g_settings.network_nfs_mount_options1[i], "rw") != NULL ||
-		     strstr(g_settings.network_nfs_mount_options2[i], "rw") != NULL))
-		{
-			std::string s(g_settings.network_nfs_local_dir[i]);
-			s += " (";
-			s += g_settings.network_nfs_ip[i];
-			s += ":";
-			s += g_settings.network_nfs_dir[i];
-			s +=")";
-			snprintf(indexStr,2,"%d",i);
-			addItem(new CMenuForwarder(s.c_str(), true, NULL, this, (std::string("MID:") + std::string(indexStr)).c_str()), (strcmp(selectedLocalDir,g_settings.network_nfs_local_dir[i]) == 0));
-		}
-	}	
-}
-*/
 
 CMountChooser::CMountChooser(const char* const Name, const std::string& Icon, int* chosenIndex, char* chosenLocalDir, const char* const selectedLocalDir, const int mwidth, const int mheight)
-	: CMenuWidget(Name, Icon, mwidth, mheight), index(chosenIndex), localDir(chosenLocalDir)
 {
-	enableShrinkMenu();	
+	//	
+	if (CNeutrinoApp::getInstance()->getWidget("mountchooser"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("mountchooser")->getItemsCount();
+			
+		widget = CNeutrinoApp::getInstance()->getWidget("mountchooser");
+		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("mountchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			
+		if (menu->hasFoot())
+		{
+			menu->enablePaintFoot();		
+			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+			menu->setFootButtons(&btn);
+		}
+	}
+	else
+	{
+		menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		menu->setMenuPosition(MENU_POSITION_CENTER);
+		menu->setWidgetMode(MODE_SETUP);
+		menu->enableShrinkMenu();
+		menu->enableSaveScreen();
+			
+		//
+		menu->enablePaintFoot();		
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+		menu->setFootButtons(&btn);
+			
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->enableSaveScreen();
+		widget->addItem(menu);
+	}
+		
+	menu->enablePaintHead();
+	menu->setTitle(Name, Icon.c_str());
+		
+	menu->clearAll();
 
+	//
 	char indexStr[2];
 	for(int i = 0 ; i < NETWORK_NFS_NR_OF_ENTRIES ; i++)
 	{
@@ -90,7 +102,8 @@ CMountChooser::CMountChooser(const char* const Name, const std::string& Icon, in
 			s += g_settings.network_nfs_dir[i];
 			s +=")";
 			snprintf(indexStr,2,"%d",i);
-			addItem(new CMenuForwarder(s.c_str(), true, NULL, this, (std::string("MID:") + std::string(indexStr)).c_str()), (strcmp(selectedLocalDir,g_settings.network_nfs_local_dir[i]) == 0));
+			
+			menu->addItem(new CMenuForwarder(s.c_str(), true, NULL, this, (std::string("MID:") + std::string(indexStr)).c_str()), (strcmp(selectedLocalDir,g_settings.network_nfs_local_dir[i]) == 0));
 		}
 	}	
 }
@@ -112,7 +125,7 @@ int CMountChooser::exec(CMenuTarget* parent, const std::string& actionKey)
 				*index = mount_id;
 				
 			if (localDir) 
-				strcpy(localDir,g_settings.network_nfs_local_dir[mount_id]);
+				strcpy(localDir, g_settings.network_nfs_local_dir[mount_id]);
 		}
 
 		hide();
@@ -121,13 +134,26 @@ int CMountChooser::exec(CMenuTarget* parent, const std::string& actionKey)
 	} 
 	else 
 	{
-		return CMenuWidget::exec(parent, actionKey);
+		return widget->exec(parent, actionKey);
 	}
 }
 
 void CMountChooser::setSelectedItem(int selection)
 {
-	selected = selection;
+	//selected = selection;
+}
+
+bool CMountChooser::hasItem()
+{
+	bool ret = false;
+	
+	if (menu)
+	{
+		if (menu->hasItem())
+			ret = true;
+	}
+	
+	return ret;
 }
 
 

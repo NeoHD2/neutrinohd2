@@ -7521,7 +7521,7 @@ void CTestMenu::showMenu()
 		mWidget->addItem(mainMenu);
 	}
 	
-	mainMenu->clearItems();
+	mainMenu->clearAll();
 			
 	mainMenu->addItem(new CMenuSeparator(LINE | STRING, "CWidget"));
 	mainMenu->addItem(new CMenuForwarder("CWidget(ClistFrame)", true, NULL, this, "listframewidget"));

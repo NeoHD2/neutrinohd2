@@ -3,6 +3,62 @@
 <!-- SKIN: KravenHD -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="mountchooser" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="600" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="tempsat" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="600" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="optionstringchooser" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="600" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="optionchooser" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="600" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
 	<WIDGET name="rcsetup" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="600" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
 		</LISTBOX>
@@ -435,10 +491,58 @@
 		</TIME>
 	</WIDGET>
 	
+	<WIDGET name="nfssmall" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Network Mount Manager" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="umountvolume" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Umount network volume" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="mountvolume" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Mount network volume" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
 	<WIDGET name="nfs" id="39" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
 		</LISTBOX>
-		<LABEL posx="640" posy="50" width="640" height="50" text="Mount Network volume" halign="1">
+		<LABEL posx="640" posy="50" width="640" height="50" text="Mount network volume" halign="1">
 		</LABEL>
 			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
@@ -503,6 +607,40 @@
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="2" itemshadow="1">
 		</LISTBOX>
 		<LABEL posx="640" posy="50" width="640" height="50" text="Video settings" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="satOnOff" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" paintframe="0" itemshadow="1">
+		</LISTBOX>
+		
+		<LABEL posx="640" posy="50" width="640" height="50" text="Satellite" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="satfindMenu" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		
+		<LABEL posx="640" posy="50" width="640" height="50" text="Motor settings" halign="1">
 		</LABEL>
 			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">

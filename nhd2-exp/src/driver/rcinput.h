@@ -258,7 +258,7 @@ static const neutrino_msg_t RC_Messages = 0x90000000;
 static const neutrino_msg_t RC_WithData = 0xA0000000;
 
 #define NEUTRINO_UDS_NAME 		"/tmp/neutrino.sock"
-#define NEUTRINO_KEYMAP_FILE		CONFIGDIR "/rc.conf"
+#define NEUTRINO_RCCONFIG_FILE	CONFIGDIR "/rc.conf"
 
 class CRCInput
 {
@@ -398,8 +398,8 @@ class CRCInput
 		neutrino_msg_t key_vfdexit;
 		neutrino_msg_t key_vfdok;
 		
-		bool loadKeyMap(const char * const fileName);
-		bool saveKeyMap(const char * const fileName);
+		bool loadRCConfig(const char * const fileName);
+		bool saveRCConfig(const char * const fileName);
 		
 		void stopInput();
 		void restartInput();

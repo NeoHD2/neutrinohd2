@@ -168,15 +168,50 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 	{
 		int select = -1;
 
-		CMenuWidget *menu = new CMenuWidget(optionNameString.c_str());
-
-		menu->setWidgetMode(MODE_SETUP);
-		menu->enableShrinkMenu();
-		menu->enableSaveScreen();
+		//
+		CWidget* widget = NULL;
+		ClistBox* menu = NULL;
 		
-		//if(parent)
-		//	menu->move(20, 0);
+		if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
+		{
+			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionchooser")->getItemsCount();
+			
+			widget = CNeutrinoApp::getInstance()->getWidget("optionchooser");
+			menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			
+			if (menu->hasFoot())
+			{
+				menu->enablePaintFoot();		
+				const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+				menu->setFootButtons(&btn);
+			}
+		}
+		else
+		{
+			menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			menu->setMenuPosition(MENU_POSITION_CENTER);
+			menu->setWidgetMode(MODE_SETUP);
+			menu->enableShrinkMenu();
+			menu->enableSaveScreen();
+			
+			//
+			menu->enablePaintFoot();		
+			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+			menu->setFootButtons(&btn);
+			
+			//
+			widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			widget->setMenuPosition(MENU_POSITION_CENTER);
+			widget->enableSaveScreen();
+			widget->addItem(menu);
+		}
+		
+		menu->enablePaintHead();
+		menu->setTitle(optionNameString.c_str());
+		
+		menu->clearAll();
 
+		//
 		for(unsigned int count = 0; count < number_of_options; count++) 
 		{
 			bool selected = false;
@@ -191,7 +226,7 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 			menu->addItem(new CMenuForwarder(l_option), selected);
 		}
 		
-		menu->exec(NULL, "");
+		widget->exec(NULL, "");
 		ret = RETURN_REPAINT;
 
 		select = menu->getSelected();
@@ -199,7 +234,7 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 		if(select >= 0) 
 			*optionValue = options[select].key;
 		
-		delete menu;
+		//delete menu;
 	} 
 	else 
 	{
@@ -613,14 +648,51 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 	{
 		int select = -1;
 		
-		CMenuWidget * menu = new CMenuWidget(nameString.c_str());
+		//
+		CWidget* widget = NULL;
+		ClistBox* menu = NULL;
 		
-		//if(parent) 
-		//	menu->move(20, 0);
+		if (CNeutrinoApp::getInstance()->getWidget("optionstringchooser"))
+		{
+			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionstringchooser")->getItemsCount();
+			
+			widget = CNeutrinoApp::getInstance()->getWidget("optionstringchooser");
+			menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionstringchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			
+			if (menu->hasFoot())
+			{
+				menu->enablePaintFoot();		
+				const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+				menu->setFootButtons(&btn);
+			}
+		}
+		else
+		{
+			menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			menu->setMenuPosition(MENU_POSITION_CENTER);
+			menu->setWidgetMode(MODE_SETUP);
+			menu->enableShrinkMenu();
+			menu->enableSaveScreen();
+			
+			//
+			menu->enablePaintFoot();		
+			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+			menu->setFootButtons(&btn);
+			
+			//
+			widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			widget->setMenuPosition(MENU_POSITION_CENTER);
+			widget->enableSaveScreen();
+			widget->addItem(menu);
+		}
 		
-		menu->setWidgetMode(MODE_SETUP);
-		menu->enableSaveScreen();
+		menu->enablePaintHead();
+		menu->setTitle(nameString.c_str());
 		
+		menu->clearAll();
+
+		
+		//
 		for(unsigned int count = 0; count < options.size(); count++) 
 		{
 			bool selected = false;
@@ -629,14 +701,16 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 
 			menu->addItem(new CMenuForwarder(options[count].c_str()), selected);
 		}
-		menu->exec(NULL, "");
+		
+		widget->exec(NULL, "");
 		ret = RETURN_REPAINT;
 
 		select = menu->getSelected();
 		
 		if(select >= 0)
 			strcpy(optionValue, options[select].c_str());
-		delete menu;
+			
+		//delete menu;
 	} 
 	else 
 	{

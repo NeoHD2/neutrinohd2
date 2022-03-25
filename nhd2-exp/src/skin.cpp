@@ -1247,11 +1247,13 @@ void CNeutrinoApp::parseSkin(const char* const filename, bool xml_data)
 			wdg->setTimeOut(timeout);
 			
 			// skip duplicate
+			/*
 			for (unsigned long i = 0; i < (unsigned long)widgets.size(); i++)
 			{
 				if(widgets[i]->id == wdg->id)
 					widgets.erase(widgets.begin() + i); 
 			}
+			*/
 			
 			widgets.push_back(wdg);
 			

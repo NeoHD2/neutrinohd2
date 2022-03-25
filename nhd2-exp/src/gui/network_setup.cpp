@@ -395,9 +395,9 @@ void CNetworkSettings::showMenu()
 	// mount manager
 	networkSettings->addItem(new CMenuSeparator(LINE | STRING, _("Network Mount Manager")));
 
-	networkSettings->addItem(new CMenuForwarder(_("Mount Network volume"), true, NULL, new CNFSMountGui()));
+	networkSettings->addItem(new CMenuForwarder(_("Mount network volume"), true, NULL, new CNFSMountGui()));
 
-	networkSettings->addItem(new CMenuForwarder(_("Umount Network volume"), true, NULL, new CNFSUmountGui()));
+	networkSettings->addItem(new CMenuForwarder(_("Umount network volume"), true, NULL, new CNFSUmountGui()));
 	
 	//
 	widget->exec(NULL, "");

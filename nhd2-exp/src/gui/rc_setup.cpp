@@ -256,7 +256,7 @@ int CKeysBindingSettings::exec(CMenuTarget* parent, const std::string& actionKey
 		hintBox->paint();
 		
 		g_RCInput->configfile.setModifiedFlag(true);
-		g_RCInput->saveKeyMap(NEUTRINO_KEYMAP_FILE);
+		g_RCInput->saveRCConfig(NEUTRINO_RCCONFIG_FILE);
 		
 		sleep(2);
 		

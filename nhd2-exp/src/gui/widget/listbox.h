@@ -771,6 +771,8 @@ class ClistBox : public CWidgetItem
 		
 		//
 		inline bool isPainted(void){return painted;};
+		bool hasHead(){return paintTitle;};
+		bool hasFoot(){return paint_Foot;};
 };
 
 #endif // LISTBOX_H_

@@ -3,6 +3,86 @@
 <!-- SKIN: MetrixHD -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="mountchooser" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1">
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"></WINDOW>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
+	<WIDGET name="tempsat" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1">
+		</WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="" halign="1">
+		</LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png">
+		</IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" >
+		</WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
+	<WIDGET name="optionstringchooser" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1">
+		</WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="" halign="1">
+		</LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png">
+		</IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" >
+		</WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
+	<WIDGET name="optionchooser" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1">
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"></WINDOW>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
 	<WIDGET name="rcsetup" posx="0" posy="0" width="1280" height="720">
 		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2" scrollbar="1">
 		</LISTBOX>
@@ -516,6 +596,63 @@
 		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
 	</WIDGET>
 	
+	<WIDGET name="nfssmall" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Network Mount Manager" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
+	<WIDGET name="umountvolume" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Umount network volume" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
+	<WIDGET name="mountvolume" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Mount network volume" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
 	<WIDGET name="nfs" id="39" posx="0" posy="0" width="1280" height="720">
 		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
 		</LISTBOX>
@@ -525,7 +662,7 @@
 		
 		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
 		
-		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Mount Network volume" halign="1"></LABEL>
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Mount network volume" halign="1"></LABEL>
 		
 		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
 		
@@ -602,6 +739,44 @@
 		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
 		
 		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Video settings" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
+	<WIDGET name="satOnOff" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Satellite" halign="1"></LABEL>
+		
+		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
+		
+		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
+		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+	</WIDGET>
+	
+	<WIDGET name="satfindMenu" posx="0" posy="0" width="1280" height="720">
+		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
+		</LISTBOX>
+		
+		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		</WINDOW>
+		
+		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Motor settings" halign="1"></LABEL>
 		
 		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
 		
