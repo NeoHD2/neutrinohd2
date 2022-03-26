@@ -208,7 +208,7 @@ void CWidget::paintCCItems()
 
 void CWidget::paint()
 {
-	dprintf(DEBUG_INFO, "CWidget:: paint\n");
+	dprintf(DEBUG_NORMAL, "CWidget:: paint (%s)\n", name.c_str());
 	
 	//
 	initFrames();

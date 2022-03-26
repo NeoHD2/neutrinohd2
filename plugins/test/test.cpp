@@ -5362,7 +5362,7 @@ void CTestMenu::testKeyChooser()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testKeyChooser\n");
 	
-	CKeyChooserItem * keyChooser = new CKeyChooserItem("testing CKeyChooser", &g_settings.key_screenshot);
+	CKeyChooserItem * keyChooser = new CKeyChooserItem("testing CKeyChooser: key_screenshot:", &g_settings.key_screenshot);
 
 	keyChooser->exec(NULL, "");
 	delete keyChooser;
@@ -7593,7 +7593,7 @@ void CTestMenu::showMenu()
 	//
 	mainMenu->addItem(new CMenuSeparator(LINE));
 	mainMenu->addItem(new CMenuForwarder("ColorChooser", true, NULL, this, "colorchooser"));
-	mainMenu->addItem(new CMenuForwarder("KeyChooser", true, NULL, this, "keychooser"));
+	mainMenu->addItem(new CMenuForwarder("KeyChooserItem", true, NULL, this, "keychooser"));
 	mainMenu->addItem(new CMenuForwarder("VFDController", true, NULL, this, "vfdcontroller"));
 	mainMenu->addItem(new CMenuForwarder("MountChooser", true, NULL, this, "mountchooser"));
 	

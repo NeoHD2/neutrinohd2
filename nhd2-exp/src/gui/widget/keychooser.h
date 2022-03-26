@@ -52,7 +52,7 @@
 class CKeyChooserItem;
 class CKeyChooserItemNoKey;
 
-class CKeyChooser : public CMenuWidget
+class CKeyChooser : public CMenuTarget
 {
 	private:
 		CFrameBuffer		*frameBuffer;
@@ -60,13 +60,20 @@ class CKeyChooser : public CMenuWidget
 		int*			key;
 		CKeyChooserItem	*keyChooser;
 		CKeyChooserItemNoKey	*keyDeleter;
+		
+		//
+		CWidget* widget;
+		ClistBox* menu;
 
 	public:
 		//
-		CKeyChooser(int * const Key, const char * const Title, const std::string & Icon = "");
+		CKeyChooser(int* const Key, const char* const Title, const std::string& Icon = "");
 		~CKeyChooser();
 
 		void paint();
+		
+		//
+		int exec(CMenuTarget* parent, const std::string & actionKey);
 };
 
 class CKeyChooserItem : public CMenuTarget
@@ -83,7 +90,7 @@ class CKeyChooserItem : public CMenuTarget
 		void paint();
 
 	public:
-		CKeyChooserItem(const char * const Name, int *Key);
+		CKeyChooserItem(const char* const Name, int *Key);
 
 		void hide();
 		int exec(CMenuTarget* parent, const std::string& actionKey);

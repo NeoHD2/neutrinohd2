@@ -65,21 +65,61 @@ class CKeyValue : public CMenuSeparator
 		};
 };
 
-CKeyChooser::CKeyChooser(int * const Key, const char * const Title, const std::string & Icon) : CMenuWidget(Title, Icon)
+CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::string& Icon)
 {
 	frameBuffer = CFrameBuffer::getInstance();
+	
+	//
 	key = Key;
 	keyChooser = new CKeyChooserItem(_("Setup New Key"), key);
 	keyDeleter = new CKeyChooserItemNoKey(key);
 
-	enableShrinkMenu();
+	//	
+	if (CNeutrinoApp::getInstance()->getWidget("keychooser"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("keychooser")->getItemsCount();
+			
+		widget = CNeutrinoApp::getInstance()->getWidget("keychooser");
+		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("keychooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			
+		if (menu->hasFoot())
+		{
+			menu->enablePaintFoot();		
+			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+			menu->setFootButtons(&btn);
+		}
+	}
+	else
+	{
+		menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		menu->setMenuPosition(MENU_POSITION_CENTER);
+		menu->setWidgetMode(MODE_SETUP);
+		menu->enableShrinkMenu();
+		menu->enableSaveScreen();
+			
+		//
+		menu->enablePaintFoot();		
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+		menu->setFootButtons(&btn);
+			
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->enableSaveScreen();
+		widget->addItem(menu);
+	}
+		
+	menu->enablePaintHead();
+	menu->setTitle(Title, Icon.c_str());
+		
+	menu->clearAll();
 
-	addItem(new CKeyValue());
-	addItem(new CMenuSeparator(LINE));
-	addItem(new CMenuForwarder(_("back")));
-	addItem(new CMenuSeparator(LINE));
-	addItem(new CMenuForwarder(_("Setup new key"), true, NULL, keyChooser));
-	addItem(new CMenuForwarder(_("No key"), true, NULL, keyDeleter));
+	menu->addItem(new CKeyValue());
+	menu->addItem(new CMenuSeparator(LINE));
+	menu->addItem(new CMenuForwarder(_("back")));
+	menu->addItem(new CMenuSeparator(LINE));
+	menu->addItem(new CMenuForwarder(_("Setup new key"), true, NULL, keyChooser));
+	menu->addItem(new CMenuForwarder(_("No key"), true, NULL, keyDeleter));
 }
 
 CKeyChooser::~CKeyChooser()
@@ -90,11 +130,17 @@ CKeyChooser::~CKeyChooser()
 
 void CKeyChooser::paint()
 {
-	(((CKeyValue *)(items[0]))->keyvalue) = *key;
+	(((CKeyValue *)(menu->items[0]))->keyvalue) = *key;
 
-	CMenuWidget::paint();
+	widget->paint();
 }
 
+int CKeyChooser::exec(CMenuTarget* parent, const std::string & actionKey)
+{
+	return widget->exec(parent, actionKey);
+};
+
+//
 CKeyChooserItem::CKeyChooserItem(const char * const Name, int * Key)
 {
 	name = Name;
@@ -155,7 +201,7 @@ void CKeyChooserItem::paint()
 
 	CFrameBuffer * frameBuffer = CFrameBuffer::getInstance();
 
-	m_cBox.iWidth = w_max(MENU_WIDTH, 0);
+	m_cBox.iWidth = w_max(600, 0);
 	m_cBox.iHeight = h_max(hheight +  2*mheight, 0);
 	m_cBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - m_cBox.iWidth) >> 1);
 	m_cBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - m_cBox.iHeight) >> 1);
@@ -164,7 +210,7 @@ void CKeyChooserItem::paint()
 	m_cBoxWindow.setPosition(&m_cBox);
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
+	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
 	m_cBoxWindow.paint();
 
 	//head 

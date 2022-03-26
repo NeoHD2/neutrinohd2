@@ -75,7 +75,7 @@ enum keynames {
 	KEY_EXTRAS_SCREENSHOT
 };
 
-#define KEYBINDS_COUNT 41
+#define KEYBINDS_COUNT 24
 const char* const  keydescription[KEYBINDS_COUNT] =
 {
 	// zap
@@ -139,11 +139,6 @@ int CRemoteControlSettings::exec(CMenuTarget* parent, const std::string& actionK
 void CRemoteControlSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CRemoteControlSettings::showMenu:\n");
-	
-	//int shortcutkeysettings = 1;
-	//CMenuWidget remoteControlSettings(_("Keybinding settings"), NEUTRINO_ICON_KEYBINDING );
-	//remoteControlSettings.setWidgetMode(MODE_SETUP);
-	//remoteControlSettings.enableShrinkMenu();
 	
 	//
 	CWidget* widget = NULL;
@@ -309,7 +304,7 @@ void CKeysBindingSettings::showMenu()
 		&g_settings.key_screenshot
 	};
 
-	CKeyChooser * keychooser[KEYBINDS_COUNT];
+	CKeyChooser* keychooser[KEYBINDS_COUNT];
 
 	for (int i = 0; i < KEYBINDS_COUNT; i++)
 		keychooser[i] = new CKeyChooser(keyvalue_p[i], keydescription[i], NEUTRINO_ICON_SETTINGS);
