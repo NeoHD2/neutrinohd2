@@ -970,7 +970,7 @@ int CTimerList::modifyTimer()
 		timerSettings->enableShrinkMenu();
 		
 		timerSettings->enablePaintHead();
-		timerSettings->setTitle(_("Modify timer"), NEUTRINO_ICON_SETTINGS);
+		timerSettings->setTitle(_("Modify timer"), NEUTRINO_ICON_TIMER);
 
 		timerSettings->enablePaintFoot();
 			
@@ -1109,7 +1109,7 @@ int CTimerList::newTimer()
 		timerSettings->enableShrinkMenu();
 		
 		timerSettings->enablePaintHead();
-		timerSettings->setTitle(_("New timer"), NEUTRINO_ICON_SETTINGS);
+		timerSettings->setTitle(_("New timer"), NEUTRINO_ICON_TIMER);
 
 		timerSettings->enablePaintFoot();
 			

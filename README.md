@@ -4,7 +4,17 @@
 </h1>
 
 -------
-![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/mainmenu.bmp)
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/mainmenu.png)
+
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/channellist.bmp)
+
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/infoviewer.bmp)
+
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/epgview.bmp)
+
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/eventlist.bmp)
+
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/epgplus.bmp)
 
 ![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/pluginsbrowser.bmp)
 

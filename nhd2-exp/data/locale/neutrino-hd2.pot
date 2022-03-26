@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 14:02+0100\n"
+"POT-Creation-Date: 2022-03-26 14:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -497,7 +497,7 @@ msgstr ""
 msgid "Channel / Title"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1096
+#: ../../src/gui/osd_setup.cpp:1092
 msgid "Channel Logo(EPGPlus)"
 msgstr ""
 
@@ -505,7 +505,7 @@ msgstr ""
 msgid "Channel down"
 msgstr ""
 
-#: ../../src/neutrino.cpp:421 ../../src/gui/osd_setup.cpp:1099
+#: ../../src/neutrino.cpp:421 ../../src/gui/osd_setup.cpp:1095
 msgid "Channel name"
 msgstr ""
 
@@ -1342,7 +1342,7 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1166 ../../src/gui/osd_setup.cpp:1198
+#: ../../src/gui/osd_setup.cpp:1162 ../../src/gui/osd_setup.cpp:1194
 msgid "Here you can select a skin from the following list."
 msgstr ""
 
@@ -1814,7 +1814,7 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1116
+#: ../../src/gui/osd_setup.cpp:1112
 msgid "Menu Border"
 msgstr ""
 
@@ -1842,8 +1842,9 @@ msgstr ""
 msgid "Mini-DiSEqC"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1054 ../../src/gui/rc_setup.cpp:377
-#: ../../src/gui/misc_setup.cpp:149 ../../src/gui/main_setup.cpp:142
+#: ../../src/gui/osd_setup.cpp:151 ../../src/gui/osd_setup.cpp:1050
+#: ../../src/gui/rc_setup.cpp:377 ../../src/gui/misc_setup.cpp:149
+#: ../../src/gui/main_setup.cpp:142
 msgid "Misc settings"
 msgstr ""
 
@@ -2192,20 +2193,8 @@ msgstr ""
 msgid "OPKG-Manager"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:836
-msgid "OSD Timing"
-msgstr ""
-
-#: ../../src/gui/osd_setup.cpp:151
-msgid "OSD misc-settings"
-msgstr ""
-
 #: ../../src/gui/osd_setup.cpp:111 ../../src/gui/main_setup.cpp:126
 msgid "OSD settings"
-msgstr ""
-
-#: ../../src/gui/osd_setup.cpp:140
-msgid "OSD timing"
 msgstr ""
 
 #: ../../src/gui/scan_setup.cpp:82 ../../src/gui/scan_setup.cpp:593
@@ -2420,7 +2409,7 @@ msgstr ""
 msgid "Program unknown"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1078
+#: ../../src/gui/osd_setup.cpp:1074
 msgid "Progressbar Color"
 msgstr ""
 
@@ -2723,7 +2712,7 @@ msgstr ""
 msgid "Satellite Position (Step Mode):"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1102
+#: ../../src/gui/osd_setup.cpp:1098
 msgid "Satellite display on infobar"
 msgstr ""
 
@@ -2789,7 +2778,7 @@ msgstr ""
 
 #: ../../src/gui/osd_setup.cpp:283 ../../src/gui/osd_setup.cpp:470
 #: ../../src/gui/osd_setup.cpp:761 ../../src/gui/osd_setup.cpp:856
-#: ../../src/gui/osd_setup.cpp:1074 ../../src/gui/hdd_menu.cpp:217
+#: ../../src/gui/osd_setup.cpp:1070 ../../src/gui/hdd_menu.cpp:217
 #: ../../src/gui/network_setup.cpp:302 ../../src/gui/audio_setup.cpp:188
 #: ../../src/gui/audioplayer_setup.cpp:129
 #: ../../src/gui/pictureviewer_setup.cpp:150 ../../src/gui/rc_setup.cpp:183
@@ -3149,16 +3138,16 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1148 ../../src/gui/osd_setup.cpp:1233
-#: ../../src/gui/osd_setup.cpp:1244
+#: ../../src/gui/osd_setup.cpp:1144 ../../src/gui/osd_setup.cpp:1229
+#: ../../src/gui/osd_setup.cpp:1240
 msgid "Skin Select"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1360
+#: ../../src/gui/osd_setup.cpp:1356
 msgid "Skin Style Selection"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1287
+#: ../../src/gui/osd_setup.cpp:1283
 msgid "Skin Style selection"
 msgstr ""
 
@@ -3313,7 +3302,7 @@ msgstr ""
 msgid "Stretch Mode"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1105
+#: ../../src/gui/osd_setup.cpp:1101
 msgid "Subchannel display"
 msgstr ""
 
@@ -3604,6 +3593,10 @@ msgstr ""
 msgid "Timeshift"
 msgstr ""
 
+#: ../../src/gui/osd_setup.cpp:140 ../../src/gui/osd_setup.cpp:836
+msgid "Timing"
+msgstr ""
+
 #: ../../src/gui/psisetup.cpp:147 ../../src/gui/psisetup.cpp:166
 #: ../../src/gui/psisetup.cpp:181 ../../src/gui/psisetup.cpp:200
 #: ../../src/gui/psisetup.cpp:262 ../../src/gui/psisetup.cpp:326
@@ -3840,7 +3833,7 @@ msgstr ""
 msgid "Volume / Playtime / Audio"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1111 ../../src/gui/osd_setup.cpp:1112
+#: ../../src/gui/osd_setup.cpp:1107 ../../src/gui/osd_setup.cpp:1108
 msgid "Volume Step Size"
 msgstr ""
 
@@ -3848,7 +3841,7 @@ msgstr ""
 msgid "Volume adjustment (in %)"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1108
+#: ../../src/gui/osd_setup.cpp:1104
 msgid "Volumebar"
 msgstr ""
 
@@ -4060,7 +4053,7 @@ msgstr ""
 
 #: ../../src/gui/osd_setup.cpp:279 ../../src/gui/osd_setup.cpp:467
 #: ../../src/gui/osd_setup.cpp:594 ../../src/gui/osd_setup.cpp:758
-#: ../../src/gui/osd_setup.cpp:853 ../../src/gui/osd_setup.cpp:1071
+#: ../../src/gui/osd_setup.cpp:853 ../../src/gui/osd_setup.cpp:1067
 #: ../../src/gui/cam_menu.cpp:151 ../../src/gui/hdd_menu.cpp:213
 #: ../../src/gui/hdd_menu.cpp:370 ../../src/gui/hdd_menu.cpp:454
 #: ../../src/gui/network_setup.cpp:298 ../../src/gui/audio_setup.cpp:184
@@ -4170,7 +4163,7 @@ msgstr ""
 msgid "children / juvenile program"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1333
+#: ../../src/gui/osd_setup.cpp:1329
 msgid "choose Skin Style."
 msgstr ""
 
@@ -4507,7 +4500,7 @@ msgstr ""
 msgid "local dir"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1093
+#: ../../src/gui/osd_setup.cpp:1089
 msgid "logos Dir"
 msgstr ""
 
@@ -4617,7 +4610,7 @@ msgstr ""
 msgid "need reboot or epg-reset"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1165
+#: ../../src/gui/osd_setup.cpp:1161
 msgid "neutrino (default)"
 msgstr ""
 
@@ -5042,19 +5035,19 @@ msgstr ""
 msgid "the filesize is 0 Bytes"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:540 ../../src/gui/osd_setup.cpp:1244
+#: ../../src/gui/osd_setup.cpp:540 ../../src/gui/osd_setup.cpp:1240
 msgid ""
 "this need Neutrino restart\n"
 "do you want really to restart?"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1360
+#: ../../src/gui/osd_setup.cpp:1356
 msgid ""
 "this needs Neutrino restart\n"
 "Skin Style selection?"
 msgstr ""
 
-#: ../../src/gui/osd_setup.cpp:1233 ../../src/gui/themes.cpp:148
+#: ../../src/gui/osd_setup.cpp:1229 ../../src/gui/themes.cpp:148
 msgid ""
 "this needs Neutrino restart\n"
 "do you want really to restart?"

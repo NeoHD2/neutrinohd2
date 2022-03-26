@@ -58,7 +58,7 @@
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
 		</LISTBOX>
 		
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Misc settings" icon="settings">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Misc settings" icon="colors">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
@@ -71,7 +71,7 @@
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
 		</LISTBOX>
 		
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="OSD Timing" icon="settings">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Timing" icon="colors">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
@@ -84,7 +84,7 @@
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
 		</LISTBOX>
 		
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Font" icon="language">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Font" icon="colors">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
@@ -630,7 +630,7 @@
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="0" >
 		</LISTBOX>
 		
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Modify timer" icon="settings">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Modify timer" icon="timer">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
@@ -643,7 +643,7 @@
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="0" >
 		</LISTBOX>
 		
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="New timer" icon="settings">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="New timer" icon="timer">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
@@ -656,7 +656,7 @@
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="1" scrollbar="0" >
 		</LISTBOX>
 		
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Timerlist" icon="settings">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Timerlist" icon="timer">
 		</HEAD>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
@@ -881,11 +881,11 @@
 			</ITEM>
 			<ITEM id="5" localename="Font" itemicon="hint_font" target="27">
 			</ITEM>
-			<ITEM id="5" localename="OSD timing" itemicon="hint_osdtiming" target="28">
+			<ITEM id="5" localename="Timing" itemicon="hint_osdtiming" target="28">
 			</ITEM>
 			<ITEM id="5" localename="Screen" itemicon="hint_lcd4linux" target="29">
 			</ITEM>
-			<ITEM id="5" localename="OSD misc-settings" itemicon="hint_osd" target="30">
+			<ITEM id="5" localename="Misc settings" itemicon="hint_osd" target="30">
 			</ITEM>
 			<ITEM id="5" localename="Skin Style selection" itemicon="hint_osd" target="32">
 			</ITEM>

@@ -1326,11 +1326,11 @@
 			</ITEM>
 			<ITEM id="5" localename="Font" target="27">
 			</ITEM>
-			<ITEM id="5" localename="OSD timing" target="28">
+			<ITEM id="5" localename="Timing" target="28">
 			</ITEM>
 			<ITEM id="5" localename="Screen" target="29">
 			</ITEM>
-			<ITEM id="5" localename="OSD misc-settings" target="30">
+			<ITEM id="5" localename="Misc settings" target="30">
 			</ITEM>
 			<ITEM id="5" localename="Skin Style selection" target="32">
 			</ITEM>

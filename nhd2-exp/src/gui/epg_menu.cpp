@@ -51,7 +51,7 @@ int CEPGMenuHandler::exec(CMenuTarget* parent, const std::string &)
 {
 	dprintf(DEBUG_NORMAL, "CEPGMenuHandler::exec:\n");
 	
-	int res = RETURN_EXIT_ALL;
+	int res = RETURN_REPAINT;
 
 	if (parent)
 		parent->hide();

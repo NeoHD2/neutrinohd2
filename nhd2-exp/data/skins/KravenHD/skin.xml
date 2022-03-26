@@ -124,7 +124,7 @@
 	<WIDGET name="osdtimingsetup" id="28" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
 		</LISTBOX>
-		<LABEL posx="640" posy="50" width="640" height="50" text="OSD Timing" halign="1">
+		<LABEL posx="640" posy="50" width="640" height="50" text="Timing" halign="1">
 		</LABEL>
 			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
@@ -1146,11 +1146,11 @@
 			</ITEM>
 			<ITEM  id="5" localename="Font" itemicon="hint_font" target="27" lines="1" shadow="1">
 			</ITEM>
-			<ITEM  id="5" localename="OSD timing" itemicon="hint_osdtiming" target="28" lines="1" shadow="1">
+			<ITEM  id="5" localename="Timing" itemicon="hint_osdtiming" target="28" lines="1" shadow="1">
 			</ITEM>
 			<ITEM  id="5" localename="Screen" itemicon="hint_lcd4linux" target="29" lines="1" shadow="1">
 			</ITEM>
-			<ITEM  id="5" localename="OSD misc-settings" itemicon="hint_osd" target="30" lines="1" shadow="1">
+			<ITEM  id="5" localename="Misc settings" itemicon="hint_osd" target="30" lines="1" shadow="1">
 			</ITEM>
 			<ITEM  id="5" localename="Skin Style selection" itemicon="hint_osd" target="32" lines="1" shadow="1">
 			</ITEM>

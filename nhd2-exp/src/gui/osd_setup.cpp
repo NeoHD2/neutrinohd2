@@ -137,7 +137,7 @@ void COSDSettings::showMenu(void)
 		osdSettings->addItem(new CMenuForwarder(_("Font"), true, NULL, new CFontSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_FONT));
 		
 		// osd timing
-		osdSettings->addItem(new CMenuForwarder(_("OSD timing"), true, NULL, new COSDTimingSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_OSDTIMING));
+		osdSettings->addItem(new CMenuForwarder(_("Timing"), true, NULL, new COSDTimingSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_OSDTIMING));
 
 		// sceensetup
 		osdSettings->addItem(new CMenuForwarder(_("Screen"), true, NULL, new CScreenSetup(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SCREENSETUP));
@@ -148,7 +148,7 @@ void COSDSettings::showMenu(void)
 		//osdSettings->addItem( new CMenuForwarder(_("Alpha Setup"), true, NULL, chAlphaSetup, NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_ALPHASETUP));
 		
 		// diverses
-		osdSettings->addItem(new CMenuForwarder(_("OSD misc-settings"), true, NULL, new COSDDiverses(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS));
+		osdSettings->addItem(new CMenuForwarder(_("Misc settings"), true, NULL, new COSDDiverses(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS));
 		
 		//
 		if (widget == NULL) widget = new CWidget(osdSettings->getWindowsPos().iX, osdSettings->getWindowsPos().iY, osdSettings->getWindowsPos().iWidth, osdSettings->getWindowsPos().iHeight);
@@ -833,7 +833,7 @@ void COSDTimingSettings::showMenu()
 		osdTimingSettings->enableShrinkMenu();
 		
 		osdTimingSettings->enablePaintHead();
-		osdTimingSettings->setTitle(_("OSD Timing"), NEUTRINO_ICON_SETTINGS);
+		osdTimingSettings->setTitle(_("Timing"), NEUTRINO_ICON_SETTINGS);
 
 		osdTimingSettings->enablePaintFoot();
 			
@@ -1027,10 +1027,6 @@ const keyval  INFOBAR_SUBCHAN_DISP_POS_OPTIONS[INFOBAR_SUBCHAN_DISP_POS_OPTIONS_
 void COSDDiverses::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "COSDTimingSettings::showMenu:\n");
-	
-	//CMenuWidget osdDiverseSettings(_("OSD Miscsettings"), NEUTRINO_ICON_SETTINGS, 800, 600);
-	//osdDiverseSettings.setWidgetMode(MODE_SETUP);
-	//osdDiverseSettings.enableShrinkMenu();
 	
 	//
 	CWidget* widget = NULL;

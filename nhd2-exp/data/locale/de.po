@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 14:02+0100\n"
+"POT-Creation-Date: 2022-03-26 14:49+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1461,17 +1461,8 @@ msgstr ""
 msgid "OPKG-Manager"
 msgstr ""
 
-msgid "OSD Timing"
-msgstr ""
-
-msgid "OSD misc-settings"
-msgstr "OSD Diverse Einstellungen"
-
 msgid "OSD settings"
 msgstr "OSD Einstellungen"
-
-msgid "OSD timing"
-msgstr ""
 
 msgid "Off"
 msgstr "Aus"
@@ -1810,7 +1801,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Sat settings"
-msgstr "OSD Einstellungen"
+msgstr "Satelliten Einstellungen"
 
 msgid "SatIP Client Debug"
 msgstr ""
@@ -2418,6 +2409,9 @@ msgid "Timeselection"
 msgstr ""
 
 msgid "Timeshift"
+msgstr ""
+
+msgid "Timing"
 msgstr ""
 
 msgid "Tint"
