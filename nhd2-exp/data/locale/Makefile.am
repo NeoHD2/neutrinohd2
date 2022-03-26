@@ -29,7 +29,7 @@ neutrino-hd2.pot: $(top_srcdir)/src/*.cpp $(top_srcdir)/src/gui/*.cpp $(top_srcd
 	
 %.po: neutrino-hd2.pot
 	if [ -f $@ ]; then \
-		$(MSGMERGE) --backup=none --no-wrap --no-location -s -U -N $@ $< && touch $@; \
+		$(MSGMERGE) --backup=none --no-wrap --no-location -s -U $@ $< && touch $@; \
 		$(MSGATTRIB) --no-wrap --no-obsolete $@ -o $@; \
 	else \
 		$(MSGINIT) -l $@ -o $@ -i $< --no-translator; \

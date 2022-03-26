@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 11:49+0100\n"
+"POT-Creation-Date: 2022-03-26 14:02+0100\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -167,7 +167,7 @@ msgid "Audio master"
 msgstr ""
 
 msgid "Audio settings"
-msgstr "Audio-Einstellungen"
+msgstr "Audio Einstellungen"
 
 msgid "Audioplayer"
 msgstr ""
@@ -729,7 +729,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Filebrowser settings"
-msgstr "Video-Einstellungen"
+msgstr "Filebrowser Einstellungen"
 
 msgid "Filename of the play list"
 msgstr ""
@@ -1749,7 +1749,7 @@ msgid "Remote Control lock"
 msgstr ""
 
 msgid "Remote Control settings"
-msgstr "Tasten-Einstellungen"
+msgstr "Tasten Einstellungen"
 
 msgid "Remote control reactivated."
 msgstr ""
@@ -2569,7 +2569,7 @@ msgid "Video Resolution"
 msgstr ""
 
 msgid "Video settings"
-msgstr "Video-Einstellungen"
+msgstr "Video Einstellungen"
 
 msgid "Videotext"
 msgstr ""

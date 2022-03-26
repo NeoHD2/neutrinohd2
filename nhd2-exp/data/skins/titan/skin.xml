@@ -960,35 +960,23 @@
 	</WIDGET>
 
 	<WIDGET name="mainmenu" id="1" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S">
-		</HEAD>
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S"/>
 		
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" mode="1">
-			<ITEM id="5" localename="TV / RADIO / WEBTV" itemicon="hint_tvmode" target="0" actionkey="tvradioswitch">
-			</ITEM>
-			<ITEM id="5" localename="EPG / Timer" itemicon="hint_timers" target="3" directkey="0x2">
-			</ITEM>
-			<ITEM id="5" localename="Features" itemicon="hint_plugin" target="6" actionkey="features">
-			</ITEM>
-			<ITEM id="5" localename="Service" itemicon="hint_service" target="4">
-			</ITEM>
-			<ITEM id="5" localename="Settings" itemicon="hint_settings" target="2">
-			</ITEM>
-			<ITEM id="5" localename="Information" itemicon="hint_dboxinfo" target="5">
-			</ITEM>
-			<ITEM id="5" localename="Power Menu" itemicon="hint_shutdown" target="7">
-			</ITEM>
-			<ITEM id="5" localename="Media Player" itemicon="hint_media" target="8">
-			</ITEM>
+			<ITEM id="5" localename="TV / RADIO / WEBTV" itemicon="hint_tvmode" target="0" actionkey="tvradioswitch"/>
+			<ITEM id="5" localename="EPG / Timer" itemicon="hint_timers" target="3" directkey="0x2"/>
+			<ITEM id="5" localename="Features" itemicon="hint_plugin" target="6" actionkey="features"/>
+			<ITEM id="5" localename="Service" itemicon="hint_service" target="4"/>
+			<ITEM id="5" localename="Settings" itemicon="hint_settings" target="2"/>
+			<ITEM id="5" localename="Information" itemicon="hint_dboxinfo" target="5"/>
+			<ITEM id="5" localename="Power Menu" itemicon="hint_shutdown" target="7"/>
+			<ITEM id="5" localename="Media Player" itemicon="hint_media" target="8"/>
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
-			<BUTTON_LABEL name="information">
-			</BUTTON_LABEL>
+			<BUTTON_LABEL name="information"/>
 		</FOOT>
-
 	</WIDGET>
-
 </skin>
 
 

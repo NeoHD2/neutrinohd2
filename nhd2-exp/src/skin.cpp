@@ -420,7 +420,9 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 	ClistBox* listBox = NULL;
 	CMenuItem* menuItem = NULL;
 	
-	//			
+	//
+	char* name = NULL;
+				
 	unsigned int posx = 0;
 	unsigned int posy = 0;
 	unsigned int width = 0;
@@ -471,7 +473,9 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 	_xmlNodePtr buttonlabel_node = NULL;
 				
 	while ((node = xmlGetNextOccurence(node, "LISTBOX")) != NULL) 
-	{			
+	{
+		name = xmlGetAttribute(node, (char*)"name");
+					
 		posx = xmlGetSignedNumericAttribute(node, "posx", 0);
 		posy = xmlGetSignedNumericAttribute(node, "posy", 0);
 		width = xmlGetSignedNumericAttribute(node, "width", 0);
@@ -527,6 +531,10 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 		if (iteminfo_color) hintColor = convertColor(iteminfo_color);
 					
 		listBox = new ClistBox(posx, posy, width, height);
+		
+		listBox->widgetItem_type = WIDGETITEM_LISTBOX;
+		if (name) listBox->widgetItem_name = name;
+		
 		listBox->setWidgetType(type);
 		listBox->setWidgetMode(mode);
 		listBox->paintScrollBar(scrollbar);
@@ -715,6 +723,8 @@ void CNeutrinoApp::parseCWindow(_xmlNodePtr node, CWidget* widget)
 	dprintf(DEBUG_INFO, "CNeutrinoApp::parseCWindow\n");
 	
 	CWindow* window = NULL;
+	
+	char* name = NULL;
 				
 	unsigned int posx = 0;
 	unsigned int posy = 0;
@@ -736,7 +746,9 @@ void CNeutrinoApp::parseCWindow(_xmlNodePtr node, CWidget* widget)
 	unsigned int refresh = 0;
 	
 	while ((node = xmlGetNextOccurence(node, "WINDOW")) != NULL) 
-	{		
+	{
+		name = xmlGetAttribute(node, (char*)"name");
+				
 		posx = xmlGetSignedNumericAttribute(node, "posx", 0);
 		posy = xmlGetSignedNumericAttribute(node, "posy", 0);
 		width = xmlGetSignedNumericAttribute(node, "width", 0);
@@ -762,6 +774,9 @@ void CNeutrinoApp::parseCWindow(_xmlNodePtr node, CWidget* widget)
 		refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
 					
 		window = new CWindow(posx, posy, width, height);
+		
+		window->widgetItem_type = WIDGETITEM_WINDOW;
+		if (name) window->widgetItem_name = name;
 					
 		window->paintMainFrame(i_paintframe);
 		if (i_color) window->setColor(finalColor);
@@ -794,6 +809,8 @@ void CNeutrinoApp::parseCHead(_xmlNodePtr node, CWidget* widget)
 	dprintf(DEBUG_INFO, "CNeutrinoApp::parseCHead:\n");
 	
 	CHeaders* head = NULL;
+	
+	char* name = NULL;
 				
 	unsigned int posx = 0;
 	unsigned int posy = 0;
@@ -816,7 +833,9 @@ void CNeutrinoApp::parseCHead(_xmlNodePtr node, CWidget* widget)
 	_xmlNodePtr buttonlabel_node = NULL;
 	
 	while ((node = xmlGetNextOccurence(node, "HEAD")) != NULL) 
-	{				
+	{
+		name = xmlGetAttribute(node, (char*)"name");
+						
 		posx = xmlGetSignedNumericAttribute(node, "posx", 0);
 		posy = xmlGetSignedNumericAttribute(node, "posy", 0);
 		width = xmlGetSignedNumericAttribute(node, "width", 0);
@@ -842,6 +861,9 @@ void CNeutrinoApp::parseCHead(_xmlNodePtr node, CWidget* widget)
 		format = xmlGetAttribute(node, (char*)"format");
 
 		head = new CHeaders(posx, posy, width, height);
+		
+		head->widgetItem_type = WIDGETITEM_HEAD;
+		if (name) head->widgetItem_name = name;
 					
 		if (title != NULL) head->setTitle(_(title));
 		head->setHAlign(halign);
@@ -889,6 +911,8 @@ void CNeutrinoApp::parseCFoot(_xmlNodePtr node, CWidget* widget)
 	
 	CFooters* foot = NULL;
 	
+	//char* name = NULL;
+	
 	unsigned int posx = 0;
 	unsigned int posy = 0;
 	unsigned int width = 0;
@@ -905,7 +929,9 @@ void CNeutrinoApp::parseCFoot(_xmlNodePtr node, CWidget* widget)
 	_xmlNodePtr buttonlabel_node = NULL;
 	
 	while ((node = xmlGetNextOccurence(node, "FOOT")) != NULL) 
-	{		
+	{
+		//name = xmlGetAttribute(node, (char*)"name");
+				
 		posx = xmlGetSignedNumericAttribute(node, "posx", 0);
 		posy = xmlGetSignedNumericAttribute(node, "posy", 0);
 		width = xmlGetSignedNumericAttribute(node, "width", 0);
@@ -926,6 +952,9 @@ void CNeutrinoApp::parseCFoot(_xmlNodePtr node, CWidget* widget)
 		f_line = xmlGetSignedNumericAttribute(node, "line", 0);
 						
 		foot = new CFooters(posx, posy, width, height);
+		
+		foot->widgetItem_type = WIDGETITEM_FOOT;
+		//if (name) foot->widgetItem_name = name;
 					
 		if (i_color != NULL) foot->setColor(finalColor);
 		foot->setGradient(i_gradient);
@@ -968,7 +997,9 @@ void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* wind
 	
 	CCLabel* label = NULL;
 	
-	//			
+	//
+	char* name = NULL;
+				
 	unsigned int cc_x = 0;
 	unsigned int cc_y = 0;
 	unsigned int cc_dx = 0;
@@ -978,7 +1009,9 @@ void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* wind
 	unsigned int l_halign = 0;
 	
 	while ((node = xmlGetNextOccurence(node, "LABEL")) != NULL) 
-	{						
+	{
+		name = xmlGetAttribute(node, (char*)"name");
+								
 		cc_x = xmlGetSignedNumericAttribute(node, "posx", 0);
 		cc_y = xmlGetSignedNumericAttribute(node, "posy", 0);
 		cc_dx = xmlGetSignedNumericAttribute(node, "width", 0);
@@ -992,6 +1025,9 @@ void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* wind
 		l_halign = xmlGetSignedNumericAttribute(node, "halign", 0);
 							
 		label = new CCLabel(cc_x, cc_y, cc_dx, cc_dy);
+		
+		label->cc_type = CC_LABEL;
+		if (name) label->cc_name = name;
 							
 		if (!text.empty()) label->setText(_(text.c_str()));
 		label->setHAlign(l_halign);
