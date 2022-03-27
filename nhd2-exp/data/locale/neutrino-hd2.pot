@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-27 13:47+0200\n"
+"POT-Creation-Date: 2022-03-27 15:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Absolute start directory"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:532 ../../src/gui/epgplus.cpp:975
+#: ../../src/gui/epgplus.cpp:507 ../../src/gui/epgplus.cpp:949
 msgid "Actions"
 msgstr ""
 
@@ -998,7 +998,7 @@ msgstr ""
 msgid "Event-List"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:147
+#: ../../src/gui/epgplus.cpp:119
 msgid "Eventlist Overview (EPG Plus)"
 msgstr ""
 
@@ -2227,7 +2227,7 @@ msgstr ""
 msgid "Only tv"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:535 ../../src/gui/epgplus.cpp:1013
+#: ../../src/gui/epgplus.cpp:510 ../../src/gui/epgplus.cpp:988
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3268
 #: ../../../plugins/moviebrowser/moviebrowser.cpp:3306
 msgid "Options"
@@ -2498,7 +2498,7 @@ msgstr ""
 msgid "Receiving list, please wait"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:989 ../../src/gui/timerlist.cpp:836
+#: ../../src/gui/epgplus.cpp:964 ../../src/gui/timerlist.cpp:836
 #: ../../src/gui/timerlist.cpp:926
 msgid "Record"
 msgstr ""
@@ -2554,7 +2554,7 @@ msgstr ""
 msgid "Records browser"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:992 ../../src/gui/eventlist.cpp:606
+#: ../../src/gui/epgplus.cpp:967 ../../src/gui/eventlist.cpp:606
 msgid "Refresh EPG"
 msgstr ""
 
@@ -2890,16 +2890,16 @@ msgstr ""
 msgid "Scart Mode"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:995
+#: ../../src/gui/epgplus.cpp:970
 msgid "Schedule"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1411 ../../src/gui/epgview.cpp:798
+#: ../../src/gui/epgplus.cpp:1387 ../../src/gui/epgview.cpp:798
 #: ../../src/gui/eventlist.cpp:391
 msgid "Schedule Event"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1439 ../../src/gui/epgview.cpp:773
+#: ../../src/gui/epgplus.cpp:1415 ../../src/gui/epgview.cpp:773
 #: ../../src/gui/epgview.cpp:778 ../../src/gui/eventlist.cpp:353
 #: ../../src/gui/eventlist.cpp:358
 msgid "Schedule Record"
@@ -2917,7 +2917,7 @@ msgstr ""
 msgid "Screenshot"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1514
+#: ../../src/gui/epgplus.cpp:1490
 msgid "Scroll Mode"
 msgstr ""
 
@@ -3027,7 +3027,6 @@ msgstr ""
 msgid "Server IP"
 msgstr ""
 
-#: ../../src/neutrino_menue.cpp:126 ../../src/gui/service_menu.cpp:114
 #: ../../../plugins/test/test.cpp:5585
 msgid "Service"
 msgstr ""
@@ -3294,7 +3293,7 @@ msgstr ""
 msgid "Stream information"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1513
+#: ../../src/gui/epgplus.cpp:1489
 msgid "Stretch Mode"
 msgstr ""
 
@@ -3348,6 +3347,10 @@ msgstr ""
 
 #: ../../src/gui/network_setup.cpp:383
 msgid "Syncronisation via"
+msgstr ""
+
+#: ../../src/neutrino_menue.cpp:126 ../../src/gui/service_menu.cpp:114
+msgid "System"
 msgstr ""
 
 #: ../../src/gui/misc_setup.cpp:334
@@ -3456,7 +3459,7 @@ msgstr ""
 msgid "The STB will shutdown after this time."
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1439 ../../src/gui/epgview.cpp:773
+#: ../../src/gui/epgplus.cpp:1415 ../../src/gui/epgview.cpp:773
 #: ../../src/gui/epgview.cpp:778 ../../src/gui/eventlist.cpp:353
 #: ../../src/gui/eventlist.cpp:358
 msgid ""
@@ -3465,7 +3468,7 @@ msgid ""
 "switch to this channel at the given time."
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1411 ../../src/gui/epgview.cpp:798
+#: ../../src/gui/epgplus.cpp:1387 ../../src/gui/epgview.cpp:798
 #: ../../src/gui/eventlist.cpp:391
 msgid ""
 "The event is scheduled.\n"
@@ -4114,7 +4117,7 @@ msgstr ""
 msgid "broadcasting/press"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1464
+#: ../../src/gui/epgplus.cpp:1440
 msgid "by bouquet"
 msgstr ""
 
@@ -4124,7 +4127,7 @@ msgid ""
 "Are you sure that you wish to install this package?"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1463
+#: ../../src/gui/epgplus.cpp:1439
 msgid "by page"
 msgstr ""
 
@@ -4639,7 +4642,7 @@ msgstr ""
 msgid "news/weather report"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1491
+#: ../../src/gui/epgplus.cpp:1467
 msgid "next bouquet"
 msgstr ""
 
@@ -4753,11 +4756,11 @@ msgstr ""
 msgid "package install failed"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:533 ../../src/gui/epgplus.cpp:1485
+#: ../../src/gui/epgplus.cpp:508 ../../src/gui/epgplus.cpp:1461
 msgid "page down"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:534 ../../src/gui/epgplus.cpp:1486
+#: ../../src/gui/epgplus.cpp:509 ../../src/gui/epgplus.cpp:1462
 msgid "page up"
 msgstr ""
 
@@ -4781,7 +4784,7 @@ msgstr ""
 msgid "pre-school children's programmes"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1490
+#: ../../src/gui/epgplus.cpp:1466
 msgid "prev bouquet"
 msgstr ""
 
@@ -5011,7 +5014,7 @@ msgstr ""
 msgid "stop on good signal(stopped)"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1468
+#: ../../src/gui/epgplus.cpp:1444
 msgid "swap mode"
 msgstr ""
 
@@ -5118,7 +5121,7 @@ msgstr ""
 msgid "view count"
 msgstr ""
 
-#: ../../src/gui/epgplus.cpp:1518
+#: ../../src/gui/epgplus.cpp:1494
 msgid "view mode"
 msgstr ""
 

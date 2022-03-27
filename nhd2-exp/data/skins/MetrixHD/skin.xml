@@ -1214,7 +1214,7 @@
 		
 		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
 		
-		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Service" halign="1"></LABEL>
+		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="System" halign="1"></LABEL>
 		
 		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
 		
@@ -1405,7 +1405,7 @@
 			</ITEM>
 			<ITEM id="5" localename="Features" lines="1" itemicon="buttons/features.png" target="6" actionkey="features" >
 			</ITEM>
-			<ITEM id="5" localename="Service" lines="1" itemicon="buttons/service.png" target="4">
+			<ITEM id="5" localename="System" lines="1" itemicon="buttons/service.png" target="4">
 			</ITEM>
 			<ITEM id="5" localename="Settings" lines="1" itemicon="buttons/mainsetup.png" target="2">
 			</ITEM>

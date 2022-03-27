@@ -130,6 +130,8 @@ fi
 ####
 AC_DEFUN([TUXBOX_APPS_GETTEXT],[
 AC_PATH_PROG(MSGFMT, msgfmt, no)
+AC_PATH_PROG(MSGINIT, msginit, no)
+AC_PATH_PROG(MSGUNIQ, msguniq, no)
 AC_PATH_PROG(GMSGFMT, gmsgfmt, $MSGFMT)
 AC_PATH_PROG(XGETTEXT, xgettext, no)
 AC_PATH_PROG(MSGMERGE, msgmerge, no)

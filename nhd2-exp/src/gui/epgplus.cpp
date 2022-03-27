@@ -116,35 +116,10 @@ void EpgPlus::Header::init ()
 
 void EpgPlus::Header::paint()
 {
-	this->frameBuffer->paintBoxRel(this->x, this->y, this->width, this->font->getHeight() + 10, COL_MENUHEAD_PLUS_0, g_settings.Head_radius, g_settings.Head_corner, g_settings.Head_gradient);
-	
-	// paint time/date
-	int timestr_len = 0;
-	char timestr[18];
-	
-	time_t now = time(NULL);
-	struct tm *tm = localtime(&now);
-	
-	bool gotTime = g_Sectionsd->getIsTimeSet();
-
-	if(gotTime)
-	{
-		strftime(timestr, 18, "%d.%m.%Y %H:%M", tm);
-		timestr_len = this->font->getRenderWidth(timestr, true); // UTF-8
-		
-		this->font->RenderString(this->x + this->width - 10 - timestr_len, this->y + this->font->getHeight() + 5, timestr_len + 1, timestr, COL_MENUHEAD, 0, true); // UTF-8
-	}
-	
-	// icon
-	int i_w = 0;
-	int i_h = 0;
-	
-	this->frameBuffer->getIconSize(NEUTRINO_ICON_BUTTON_EPG, &i_w, &i_h);
-	
-	this->frameBuffer->paintIcon(NEUTRINO_ICON_BUTTON_EPG, this->x + 10, this->y + (this->font->getHeight() + 10 - i_h)/2);
-
-	// title
-	this->font->RenderString (this->x + 10 + i_w + ICON_OFFSET, this->y + this->font->getHeight() + 5, this->width - 20 - i_w - ICON_OFFSET, _("Eventlist Overview (EPG Plus)"), COL_MENUHEAD, 0, true);
+	CHeaders head(this->x, this->y, this->width, this->font->getHeight() + 10, _("Eventlist Overview (EPG Plus)"), NEUTRINO_ICON_BUTTON_EPG);
+	head.enablePaintDate();
+	head.setFormat("%d.%m.%Y %H:%M:%S");
+	head.paint();
 }
 
 int EpgPlus::Header::getUsedHeight ()
@@ -537,10 +512,9 @@ struct button_label buttonLabels[] = {
 
 void EpgPlus::Footer::paintButtons(button_label * _buttonLabels, int numberOfButtons)
 {
-	// paint foot box
-	this->frameBuffer->paintBoxRel(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 14), this->width, this->fontButtons->getHeight() + 10, COL_MENUHEAD_PLUS_0, g_settings.Foot_radius, g_settings.Foot_corner, g_settings.Foot_gradient);
-	
-	buttons.paintFootButtons(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 14), this->width, this->fontButtons->getHeight() + 14, numberOfButtons, _buttonLabels);
+	CFooters foot(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 14), this->width, this->fontButtons->getHeight() + 10);
+	foot.setButtons(buttonLabels, numberOfButtons);
+	foot.paint();
 }
 
 EpgPlus::EpgPlus()
@@ -983,6 +957,7 @@ int EpgPlus::exec(CChannelList * _channelList, int selectedChannelIndex, CBouque
 				//
 				widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
 				widget->setMenuPosition(MENU_POSITION_CENTER);
+				widget->enableSaveScreen();
 				widget->addItem(menuWidgetActions);
 
 				// record
@@ -1021,6 +996,7 @@ int EpgPlus::exec(CChannelList * _channelList, int selectedChannelIndex, CBouque
 				//
 				widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
 				widget->setMenuPosition(MENU_POSITION_CENTER);
+				widget->enableSaveScreen();
 				widget->addItem(menuWidgetOptions);
 				
 				menuWidgetOptions->addItem(new MenuOptionChooserSwitchSwapMode (this));

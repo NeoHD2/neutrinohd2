@@ -123,7 +123,7 @@ void CNeutrinoApp::mainMenu(void)
 		nMenu->addItem(new CMenuForwarder(_("Settings"), true, NULL, new CMainSettingsMenu(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SETTINGS));
 
 		// service
-		nMenu->addItem(new CMenuForwarder(_("Service"), true, NULL, new CServiceMenu(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SERVICE));
+		nMenu->addItem(new CMenuForwarder(_("System"), true, NULL, new CServiceMenu(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SERVICE));
 			
 		// features
 		nMenu->addItem(new CMenuForwarder(_("Features"), true, NULL, this, "features", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_FEATURES));
