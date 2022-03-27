@@ -5687,12 +5687,11 @@ int main(int argc, char *argv[])
 	signal(SIGPIPE, SIG_IGN);
 	
 	// initlocale
-	//setlocale (LC_ALL, "");
+	//textdomain(PACKAGE_NAME);
 	//bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale");
 	//bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
-	//textdomain(PACKAGE_NAME);
 	textdomain(PACKAGE_NAME);
-	bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale");
+	bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/po");
 	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
 	
 	// set localtime

@@ -63,11 +63,9 @@ int CEPGMenuHandler::exec(CMenuTarget* parent, const std::string &)
 
 int CEPGMenuHandler::doMenu()
 {
-	//CMenuWidget redMenu(_("EPG - Program Information"), NEUTRINO_ICON_BUTTON_EPG);
-	
+	//
 	CWidget* widget = NULL;
 	ClistBox* redMenu = NULL;
-	//CMenuItem* item = NULL;
 	
 	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_EPGTIMER))
 	{
@@ -103,8 +101,8 @@ int CEPGMenuHandler::doMenu()
 		//tech info
 		redMenu->addItem(new ClistBoxItem(_("Stream information"), true, NULL, new CStreamInfo2Handler(), "", RC_blue, NEUTRINO_ICON_BUTTON_BLUE, NEUTRINO_ICON_MENUITEM_TIMERLIST));
 		
-		// timerlis
-		redMenu->addItem(new ClistBoxItem(_("Timer list"), true, NULL, new CTimerList(), "", RC_1, NEUTRINO_ICON_BUTTON_1, NEUTRINO_ICON_MENUITEM_TIMERLIST));
+		// timerlist
+		redMenu->addItem(new ClistBoxItem(_("Timerlist"), true, NULL, new CTimerList(), "", RC_1, NEUTRINO_ICON_BUTTON_1, NEUTRINO_ICON_MENUITEM_TIMERLIST));
 		
 		//
 		//

@@ -245,7 +245,6 @@ data/icons/status/Makefile
 data/icons/various/Makefile
 data/icons/weather/Makefile
 data/iso-codes/Makefile
-data/locale/Makefile
 data/config/Makefile
 data/lcd/Makefile
 data/lcd/icons/Makefile
@@ -268,5 +267,6 @@ src/zapit/src/Makefile
 src/interfaces/Makefile
 src/interfaces/python/Makefile
 src/interfaces/lua/Makefile
+po/Makefile
 ])
 
