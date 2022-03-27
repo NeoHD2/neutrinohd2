@@ -206,7 +206,7 @@ void EventList::readEvents(const t_channel_id channel_id)
 	{
 		CChannelEvent evt;
 
-		evt.description = _("EPG is not available...");
+		evt.description = _("EPG is not available");
 		evt.eventID = 0;
 		evtlist.push_back(evt);
 

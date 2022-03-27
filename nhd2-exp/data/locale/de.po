@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-27 12:21+0200\n"
+"POT-Creation-Date: 2022-03-27 13:47+0200\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -198,7 +198,7 @@ msgid "Auto-Scan multiple Satellites"
 msgstr "Alle Satelliten scannen"
 
 msgid "Available Images/Packages"
-msgstr ""
+msgstr "Images/Packges sind nicht verfügbar"
 
 msgid "BOTTOM"
 msgstr ""
@@ -347,7 +347,7 @@ msgid "Channel name"
 msgstr ""
 
 msgid "Channel not available"
-msgstr ""
+msgstr "Kanal ist nicht verfügbar"
 
 msgid "Channel up"
 msgstr ""
@@ -608,14 +608,15 @@ msgstr ""
 msgid "EPG Title"
 msgstr ""
 
-msgid "EPG is not available..."
-msgstr ""
+#, fuzzy
+msgid "EPG is not available"
+msgstr "EPG nicht verfügbar"
 
 msgid "EPG not available"
-msgstr ""
+msgstr "EPG nicht verfügbar"
 
 msgid "EPG not loaded..."
-msgstr ""
+msgstr "EPG noch nicht geladen"
 
 msgid "EPG remove after (std.)"
 msgstr ""
@@ -625,7 +626,7 @@ msgstr ""
 
 #, fuzzy
 msgid "EPG settings"
-msgstr "Festplatte Einstellungen"
+msgstr "EPG Einstellungen"
 
 msgid "EPG-Cache (Days)"
 msgstr ""
@@ -2239,7 +2240,7 @@ msgid "TMDB"
 msgstr ""
 
 msgid "TMDB Infos are not available"
-msgstr ""
+msgstr "TMDB Informationen sind nicht verfügbar"
 
 msgid "TMDB Key:"
 msgstr ""
@@ -3186,7 +3187,7 @@ msgid "normaly 50000, 0 to disable limit"
 msgstr ""
 
 msgid "not available"
-msgstr ""
+msgstr "nicht verfügbar"
 
 msgid "not connected"
 msgstr ""

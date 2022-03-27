@@ -127,6 +127,47 @@ else
 fi
 ])
 
+####
+AC_DEFUN([TUXBOX_APPS_GETTEXT],[
+AC_PATH_PROG(MSGFMT, msgfmt, no)
+AC_PATH_PROG(GMSGFMT, gmsgfmt, $MSGFMT)
+AC_PATH_PROG(XGETTEXT, xgettext, no)
+AC_PATH_PROG(MSGMERGE, msgmerge, no)
+AC_PATH_PROG(MSGATTRIB, msgattrib, no)
+
+AC_MSG_CHECKING([whether NLS is requested])
+AC_ARG_ENABLE(nls,
+	[  --disable-nls           do not use Native Language Support],
+	USE_NLS=$enableval, USE_NLS=yes)
+AC_MSG_RESULT($USE_NLS)
+AC_SUBST(USE_NLS)
+
+if test "$USE_NLS" = "yes"; then
+	AC_CACHE_CHECK([for GNU gettext in libc], gt_cv_func_gnugettext_libc,[
+		AC_TRY_LINK([
+			#include <libintl.h>
+			#ifndef __GNU_GETTEXT_SUPPORTED_REVISION
+			#define __GNU_GETTEXT_SUPPORTED_REVISION(major) ((major) == 0 ? 0 : -1)
+			#endif
+			extern int _nl_msg_cat_cntr;
+			extern int *_nl_domain_bindings;
+			],[
+			bindtextdomain ("", "");
+			return (int) gettext ("") + _nl_msg_cat_cntr + *_nl_domain_bindings;
+			], gt_cv_func_gnugettext_libc=yes, gt_cv_func_gnugettext_libc=no
+		)]
+	)
+
+	if test "$gt_cv_func_gnugettext_libc" = "yes"; then
+		AC_DEFINE(ENABLE_NLS, 1, [Define to 1 if translation of program messages to the user's native language is requested.])
+		gt_use_preinstalled_gnugettext=yes
+	else
+		USE_NLS=no
+	fi
+fi
+])
+####
+
 dnl backward compatiblity
 AC_DEFUN([AC_GNU_SOURCE],
 [AH_VERBATIM([_GNU_SOURCE],
