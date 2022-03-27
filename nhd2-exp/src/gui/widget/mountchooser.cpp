@@ -66,8 +66,6 @@ CMountChooser::CMountChooser(const char* const Name, const std::string& Icon, in
 		menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 		menu->setMenuPosition(MENU_POSITION_CENTER);
 		menu->setWidgetMode(MODE_SETUP);
-		menu->enableShrinkMenu();
-		menu->enableSaveScreen();
 			
 		//
 		menu->enablePaintFoot();		

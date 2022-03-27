@@ -281,16 +281,63 @@ int CUserMenuMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 	
         if(parent)
                 parent->hide();
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* menu = NULL;
+		
+	if (CNeutrinoApp::getInstance()->getWidget("usermenu"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("usermenu")->getItemsCount();
+			
+		widget = CNeutrinoApp::getInstance()->getWidget("usermenu");
+		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("usermenu")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		
+		//
+		if (menu->hasHead())
+		{
+			menu->enablePaintHead();
+			menu->setTitle(local.c_str(), NEUTRINO_ICON_KEYBINDING);
+		}
+		
+		//	
+		if (menu->hasFoot())
+		{
+			menu->enablePaintFoot();		
+			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+			menu->setFootButtons(&btn);
+		}
+	}
+	else
+	{
+		menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		menu->setMenuPosition(MENU_POSITION_CENTER);
+		menu->setWidgetMode(MODE_SETUP);
+		menu->enableShrinkMenu();
+		
+		//	
+		menu->enablePaintHead();
+		menu->setTitle(local.c_str(), NEUTRINO_ICON_KEYBINDING);
+			
+		//
+		menu->enablePaintFoot();		
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
+		menu->setFootButtons(&btn);
+			
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->enableSaveScreen();
+		widget->addItem(menu);
+	}
+		
+	menu->clearAll();
 
-        CMenuWidget menu(local.c_str(), NEUTRINO_ICON_KEYBINDING);
-
-	menu.setWidgetMode(MODE_SETUP);
-	menu.enableShrinkMenu();
-
+	//
         CStringInputSMS name(_("User menu"), g_settings.usermenu_text[button].c_str());
         
-        menu.addItem(new CMenuForwarder(_("Name"), true, g_settings.usermenu_text[button].c_str(), &name));
-        menu.addItem(new CMenuSeparator(LINE));
+        menu->addItem(new CMenuForwarder(_("Name"), true, g_settings.usermenu_text[button].c_str(), &name));
+        menu->addItem(new CMenuSeparator(LINE));
 
         char text[10];
         
@@ -299,12 +346,12 @@ int CUserMenuMenu::exec(CMenuTarget* parent, const std::string& actionKey)
                 snprintf(text, 10, "%d:", item);
                 text[9] = 0;// terminate for sure
                 
-                menu.addItem( new CMenuOptionChooser(text, &g_settings.usermenu[button][item], USERMENU_ITEM_OPTIONS, USERMENU_ITEM_OPTION_COUNT,true, NULL, RC_nokey, "", true ));
+                menu->addItem( new CMenuOptionChooser(text, &g_settings.usermenu[button][item], USERMENU_ITEM_OPTIONS, USERMENU_ITEM_OPTION_COUNT,true, NULL, RC_nokey, "", true ));
         }
 
-	name.getString();
+	//name.getString();
 
-        menu.exec(NULL, "");
+        widget->exec(NULL, "");
 
         return RETURN_REPAINT;
 }

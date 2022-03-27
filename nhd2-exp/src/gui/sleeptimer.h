@@ -23,7 +23,7 @@
 #ifndef __sleeptimer__
 #define __sleeptimer__
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
 
 
 class CSleepTimerWidget: public CMenuTarget

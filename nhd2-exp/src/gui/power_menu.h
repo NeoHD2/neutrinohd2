@@ -27,7 +27,8 @@
 #ifndef __power_menu__
 #define __power_menu__
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
 
 #include <string>
 

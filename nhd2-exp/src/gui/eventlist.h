@@ -46,7 +46,7 @@
 #include <driver/color.h>
 #include <gui/infoviewer.h>
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
 #include <gui/widget/listbox.h>
 
 #include <string>
@@ -143,7 +143,10 @@ class CEventFinderMenu : public CMenuTarget
 
         public:
                 CEventFinderMenu(int * event, int * search_epg_item, std::string * search_keyword, int * search_list, t_channel_id * search_channel_id, t_bouquet_id * search_bouquet_id);
+                
                 int  exec( CMenuTarget* parent,  const std::string &actionKey);
 };
 
 #endif
+
+

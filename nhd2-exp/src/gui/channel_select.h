@@ -22,7 +22,7 @@
 #ifndef __CHANNEL_SELECT__
 #define __CHANNEL_SELECT__
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
 
 #include <string>
 

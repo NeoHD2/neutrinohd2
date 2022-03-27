@@ -48,7 +48,6 @@
 
 #include <gui/widget/widget_helpers.h>
 #include <gui/widget/icons.h>
-#include <gui/widget/menue.h>
 #include <gui/widget/messagebox.h>
 
 // remove this

@@ -27,7 +27,8 @@
 #ifndef __network_setup__
 #define __network_setup__
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
 #include <system/configure_network.h>
 #include <system/setting_helpers.h>
 

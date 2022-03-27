@@ -961,20 +961,50 @@ int CEventFinderMenu::showMenu(void)
 	CMenuOptionChooser * mo1 = new CMenuOptionChooser(_("Search in EPG"), m_search_epg_item, SEARCH_EPG_OPTIONS, SEARCH_EPG_OPTION_COUNT, true, NULL, RC_4);
 	CMenuForwarder * mf0 = new CMenuForwarder(_("Start Search"), true, NULL, this, "1", RC_5 );
 	
-	CMenuWidget searchMenu(_("Search in EPG"), NEUTRINO_ICON_FEATURES);
-
-	searchMenu.setWidgetMode(MODE_SETUP);
-	searchMenu.enableShrinkMenu();
-
-        searchMenu.addItem(mf2, false);
-        searchMenu.addItem(new CMenuSeparator(LINE));
-        searchMenu.addItem(mo0, false);
-        searchMenu.addItem(mf1, false);
-        searchMenu.addItem(mo1, false);
-        searchMenu.addItem(new CMenuSeparator(LINE));
-        searchMenu.addItem(mf0, false);
+	//
+	CWidget* widget = NULL;
+	ClistBox* searchMenu = NULL;
 	
-	res = searchMenu.exec(NULL, "");
+	if (CNeutrinoApp::getInstance()->getWidget("epgsearch"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("epgsearch")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("epgsearch");
+		searchMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("epgsearch")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		searchMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		searchMenu->setMenuPosition(MENU_POSITION_CENTER);
+		searchMenu->setWidgetMode(MODE_SETUP);
+		searchMenu->enableShrinkMenu();
+		
+		searchMenu->enablePaintHead();
+		searchMenu->setTitle(_("Search in EPG"), NEUTRINO_ICON_FEATURES);
+
+		searchMenu->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		searchMenu->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(searchMenu);
+	}
+	
+	searchMenu->clearItems();
+
+        searchMenu->addItem(mf2, false);
+        searchMenu->addItem(new CMenuSeparator(LINE));
+        searchMenu->addItem(mo0, false);
+        searchMenu->addItem(mf1, false);
+        searchMenu->addItem(mo1, false);
+        searchMenu->addItem(new CMenuSeparator(LINE));
+        searchMenu->addItem(mf0, false);
+	
+	res = widget->exec(NULL, "");
 	
 	return(res);
 }

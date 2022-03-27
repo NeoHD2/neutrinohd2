@@ -40,7 +40,6 @@
 #include <gui/nfs.h>
 
 #include <gui/filebrowser.h>
-#include <gui/widget/menue.h>
 #include <gui/widget/hintbox.h>
 #include <gui/widget/stringinput.h>
 #include <gui/widget/stringinput_ext.h>

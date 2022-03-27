@@ -40,7 +40,7 @@
 #include <driver/audioplay.h>
 
 #include <gui/filebrowser.h>
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
 
 #include <string>
 #include <set>

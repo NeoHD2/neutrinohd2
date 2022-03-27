@@ -35,7 +35,7 @@
 
 #include <system/settings.h>
 #include <system/fsmounter.h>
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
 
 
 class CNFSMountGui : public CMenuTarget

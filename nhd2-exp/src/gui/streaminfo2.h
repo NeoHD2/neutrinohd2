@@ -23,7 +23,7 @@
 #ifndef __streaminfo2__
 #define __streaminfo2__
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
 
 #include <driver/framebuffer.h>
 

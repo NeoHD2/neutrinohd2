@@ -33,7 +33,7 @@
 #ifndef __screensetup__
 #define __screensetup__
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
 
 #include <driver/framebuffer.h>
 

@@ -40,7 +40,6 @@
 #include <system/setting_helpers.h>
 #include <system/debug.h>
 
-#include <gui/widget/menue.h>
 #include <gui/widget/stringinput.h>
 #include <gui/widget/stringinput_ext.h>
 #include <gui/widget/messagebox.h>

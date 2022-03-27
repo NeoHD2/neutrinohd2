@@ -36,7 +36,6 @@
 #include <global.h>
 #include <neutrino.h>
 #include <gui/widget/icons.h>
-#include <gui/widget/menue.h>
 
 #include <gui/dvbsub_select.h>
 
@@ -67,10 +66,28 @@ int CDVBSubSelectMenuHandler::doMenu()
 {
 	dprintf(DEBUG_NORMAL, "CDVBSubSelectMenuHandler::doMenu:\n");
 
-	CMenuWidget DVBSubSelector(_("Subtitle Select"), NEUTRINO_ICON_SUBT);
+	//
+	CWidget* widget = NULL;
+	ClistBox* DVBSubSelector = NULL;
+				
+	DVBSubSelector = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	DVBSubSelector->setMenuPosition(MENU_POSITION_CENTER);
+	DVBSubSelector->setWidgetMode(MODE_SETUP);
+	DVBSubSelector->enableShrinkMenu();
+					
+	DVBSubSelector->enablePaintHead();
+	DVBSubSelector->setTitle(_("Subtitle Select"), NEUTRINO_ICON_SUBT);
 
-	DVBSubSelector.setWidgetMode(MODE_SETUP);
-	DVBSubSelector.enableShrinkMenu();
+	DVBSubSelector->enablePaintFoot();
+						
+	const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+						
+	DVBSubSelector->setFootButtons(&btn);
+					
+	//
+	widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	widget->setMenuPosition(MENU_POSITION_CENTER);
+	widget->addItem(DVBSubSelector);
 	
 	CSubtitleChangeExec SubtitleChanger;
 	unsigned int count;
@@ -102,7 +119,7 @@ int CDVBSubSelectMenuHandler::doMenu()
 				char item[64];
 	
 				snprintf(item,sizeof(item), "DVB: %s", sd->ISO639_language_code.c_str());
-				DVBSubSelector.addItem(new CMenuForwarder(item, sd->pId != dvbsub_getpid() /*dvbsub_getpid(&pid, NULL)*/, NULL, &SubtitleChanger, spid, CRCInput::convertDigitToKey(++count)));
+				DVBSubSelector->addItem(new CMenuForwarder(item, sd->pId != dvbsub_getpid() /*dvbsub_getpid(&pid, NULL)*/, NULL, &SubtitleChanger, spid, CRCInput::convertDigitToKey(++count)));
 			}
 			
 			//txt subs
@@ -121,18 +138,18 @@ int CDVBSubSelectMenuHandler::doMenu()
 				char item[64];
 				
 				snprintf(item, sizeof(item), "TTX: %s", sd->ISO639_language_code.c_str());
-				DVBSubSelector.addItem(new CMenuForwarder(item,  !tuxtx_subtitle_running(&pid, &page, NULL), NULL, &SubtitleChanger, spid, CRCInput::convertDigitToKey(++count)));
+				DVBSubSelector->addItem(new CMenuForwarder(item,  !tuxtx_subtitle_running(&pid, &page, NULL), NULL, &SubtitleChanger, spid, CRCInput::convertDigitToKey(++count)));
 			}
 		}
 		
 		if(sep_added) 
 		{
-			DVBSubSelector.addItem(new CMenuSeparator(LINE));
-			DVBSubSelector.addItem(new CMenuForwarder(_("Stop subtitles"), true, NULL, &SubtitleChanger, "off", RC_red, NEUTRINO_ICON_BUTTON_RED ));
+			DVBSubSelector->addItem(new CMenuSeparator(LINE));
+			DVBSubSelector->addItem(new CMenuForwarder(_("Stop subtitles"), true, NULL, &SubtitleChanger, "off", RC_red, NEUTRINO_ICON_BUTTON_RED ));
 		}
 		else
-			DVBSubSelector.addItem(new CMenuForwarder(_("Subtitles not found"), false));
+			DVBSubSelector->addItem(new CMenuForwarder(_("Subtitles not found"), false));
 	}
 
-	return DVBSubSelector.exec(NULL, "");
+	return widget->exec(NULL, "");
 }

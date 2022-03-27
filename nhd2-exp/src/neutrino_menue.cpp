@@ -44,7 +44,6 @@
 
 #include <daemonc/remotecontrol.h>
 
-#include <gui/widget/menue.h>
 #include <gui/widget/textbox.h>
 #include <gui/widget/icons.h>
 #include <gui/mediaplayer.h>
@@ -110,7 +109,7 @@ void CNeutrinoApp::mainMenu(void)
 		nMenu->addItem(new CMenuForwarder(_("Radio Mode"), true, NULL, this, "radio", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_RADIO));	
 			
 		// webtv
-		nMenu->addItem(new CMenuForwarder(_("IPTV Mode"), true, NULL, this, "webtv", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_WEBTV));
+		nMenu->addItem(new CMenuForwarder(_("WEBTV Mode"), true, NULL, this, "webtv", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_WEBTV));
 			
 #if defined (ENABLE_SCART)
 		// scart

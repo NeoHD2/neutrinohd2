@@ -59,7 +59,6 @@
 #include <gui/widget/widget_helpers.h>
 #include <gui/widget/hintbox.h>
 #include <gui/widget/icons.h>
-#include <gui/widget/menue.h>
 #include <gui/widget/messagebox.h>
 #include <gui/widget/stringinput.h>
 #include <gui/widget/stringinput_ext.h>
@@ -1043,11 +1042,29 @@ int CTimerList::modifyTimer()
 	timerSettings->addItem(m5);
 	timerSettings->addItem(new CMenuSeparator(LINE));
 	timerSettings->addItem(m6);
+	
+	//
+	CWidget* timerSettings_apidsWidget = NULL;
+	ClistBox* timerSettings_apids = NULL;
+				
+	timerSettings_apids = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	timerSettings_apids->setMenuPosition(MENU_POSITION_CENTER);
+	timerSettings_apids->setWidgetMode(MODE_SETUP);
+	timerSettings_apids->enableShrinkMenu();
+					
+	timerSettings_apids->enablePaintHead();
+	timerSettings_apids->setTitle(_("Audio PIDs"), NEUTRINO_ICON_TIMER);
 
-	CMenuWidget timerSettings_apids(_("Audio PIDs"), NEUTRINO_ICON_SETTINGS);
-
-	timerSettings_apids.setWidgetMode(MODE_SETUP);
-	timerSettings_apids.enableShrinkMenu();
+	timerSettings_apids->enablePaintFoot();
+						
+	const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+						
+	timerSettings_apids->setFootButtons(&btn);
+					
+	//
+	timerSettings_apidsWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	timerSettings_apidsWidget->setMenuPosition(MENU_POSITION_CENTER);
+	timerSettings_apidsWidget->addItem(timerSettings_apids);
 
 	CTimerListApidNotifier apid_notifier(&timer_apids_dflt, &timer_apids_std, &timer_apids_ac3, &timer_apids_alt);
 	timer_apids_dflt = (timer->apids == 0) ? 1 : 0 ;
@@ -1055,21 +1072,21 @@ int CTimerList::modifyTimer()
 	timer_apids_ac3 = (timer->apids & TIMERD_APIDS_AC3) ? 1 : 0 ;
 	timer_apids_alt = (timer->apids & TIMERD_APIDS_ALT) ? 1 : 0 ;
 
-	timerSettings_apids.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
-	timerSettings_apids.addItem(new CMenuSeparator(LINE));
+	timerSettings_apids->addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	timerSettings_apids->addItem(new CMenuSeparator(LINE));
 	CMenuOptionChooser* ma1 = new CMenuOptionChooser(_("Record default audio streams"), &timer_apids_dflt, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
-	timerSettings_apids.addItem(ma1);
+	timerSettings_apids->addItem(ma1);
 	CMenuOptionChooser* ma2 = new CMenuOptionChooser(_("Record standard stream"), &timer_apids_std, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
-	timerSettings_apids.addItem(ma2);
+	timerSettings_apids->addItem(ma2);
 	CMenuOptionChooser* ma3 = new CMenuOptionChooser(_("Record alternative streams"), &timer_apids_alt, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
-	timerSettings_apids.addItem(ma3);
+	timerSettings_apids->addItem(ma3);
 	CMenuOptionChooser* ma4 = new CMenuOptionChooser(_("Record AC3 streams"), &timer_apids_ac3, MESSAGEBOX_NO_YES_OPTIONS, MESSAGEBOX_NO_YES_OPTION_COUNT, true, &apid_notifier);
-	timerSettings_apids.addItem(ma4);
+	timerSettings_apids->addItem(ma4);
 	apid_notifier.setItems(ma1,ma2,ma3,ma4);
 
 	if(timer->eventType ==  CTimerd::TIMER_RECORD)
 	{  
-		timerSettings->addItem( new CMenuForwarder(_("Audio PIDs"), true, NULL, &timerSettings_apids ));
+		timerSettings->addItem( new CMenuForwarder(_("Audio PIDs"), true, NULL, timerSettings_apidsWidget ));
 	}
 
 	return widget->exec(this, "");

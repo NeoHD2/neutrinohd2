@@ -103,7 +103,7 @@ const char* const  keydescription[KEYBINDS_COUNT] =
 	_("Internet Radio"),
 	_("Movies Browser"),
 	_("Files Browser"),
-	_("IPTV"),
+	_("WEBTV"),
 	_("Screenshot")
 };
 

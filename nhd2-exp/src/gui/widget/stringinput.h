@@ -42,7 +42,7 @@
 #include <system/localize.h>
 
 #include <gui/widget/icons.h>
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
 #include <gui/widget/window.h>
 #include <gui/widget/widget_helpers.h>
 

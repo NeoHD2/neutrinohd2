@@ -962,35 +962,71 @@ int EpgPlus::exec(CChannelList * _channelList, int selectedChannelIndex, CBouque
 	  		} 
 			else if (msg == (neutrino_msg_t) RC_red) 
 			{
-				CMenuWidget menuWidgetActions(_("Actions"), NEUTRINO_ICON_FEATURES, 400);
-				menuWidgetActions.enableSaveScreen();
-				menuWidgetActions.setWidgetMode(MODE_MENU);
-				menuWidgetActions.enableShrinkMenu();
+				//
+				CWidget* widget = NULL;
+				ClistBox* menuWidgetActions = NULL;
+				
+				menuWidgetActions = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				menuWidgetActions->setMenuPosition(MENU_POSITION_CENTER);
+				menuWidgetActions->setWidgetMode(MODE_SETUP);
+				menuWidgetActions->enableShrinkMenu();
+					
+				menuWidgetActions->enablePaintHead();
+				menuWidgetActions->setTitle(_("Actions"), NEUTRINO_ICON_BUTTON_EPG);
+
+				menuWidgetActions->enablePaintFoot();
+						
+				const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+						
+				menuWidgetActions->setFootButtons(&btn);
+					
+				//
+				widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				widget->setMenuPosition(MENU_POSITION_CENTER);
+				widget->addItem(menuWidgetActions);
 
 				// record
-		  		menuWidgetActions.addItem (new CMenuForwarder(_("Record"), true, NULL, new MenuTargetAddRecordTimer(this), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED), false);
+		  		menuWidgetActions->addItem (new CMenuForwarder(_("Record"), true, NULL, new MenuTargetAddRecordTimer(this), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED), false);
 
 				// refresh
-				menuWidgetActions.addItem (new CMenuForwarder(_("Refresh EPG"), true, NULL, new MenuTargetRefreshEpg(this), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN), false);
+				menuWidgetActions->addItem (new CMenuForwarder(_("Refresh EPG"), true, NULL, new MenuTargetRefreshEpg(this), NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN), false);
 
 				// shedulde
-				menuWidgetActions.addItem (new CMenuForwarder (_("Schedule"), true, NULL, new MenuTargetAddReminder(this), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW), false);
+				menuWidgetActions->addItem (new CMenuForwarder (_("Schedule"), true, NULL, new MenuTargetAddReminder(this), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW), false);
 
-				menuWidgetActions.exec (NULL, "");
+				widget->exec (NULL, "");
 
 		  		//this->refreshAll = true;
 	  		} 
 			else if (msg == (neutrino_msg_t) RC_blue) 
 			{
-				CMenuWidget menuWidgetOptions(_("Options"), NEUTRINO_ICON_FEATURES, 500);
-				menuWidgetOptions.enableSaveScreen();
-				menuWidgetOptions.setWidgetMode(MODE_SETUP);
-				menuWidgetOptions.enableShrinkMenu();
+				//
+				CWidget* widget = NULL;
+				ClistBox* menuWidgetOptions = NULL;
 				
-				menuWidgetOptions.addItem(new MenuOptionChooserSwitchSwapMode (this));
-				menuWidgetOptions.addItem(new MenuOptionChooserSwitchViewMode (this));
+				menuWidgetOptions = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				menuWidgetOptions->setMenuPosition(MENU_POSITION_CENTER);
+				menuWidgetOptions->setWidgetMode(MODE_SETUP);
+				menuWidgetOptions->enableShrinkMenu();
+					
+				menuWidgetOptions->enablePaintHead();
+				menuWidgetOptions->setTitle(_("Options"), NEUTRINO_ICON_BUTTON_EPG);
 
-				menuWidgetOptions.exec (NULL, "");
+				menuWidgetOptions->enablePaintFoot();
+						
+				const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+						
+				menuWidgetOptions->setFootButtons(&btn);
+					
+				//
+				widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				widget->setMenuPosition(MENU_POSITION_CENTER);
+				widget->addItem(menuWidgetOptions);
+				
+				menuWidgetOptions->addItem(new MenuOptionChooserSwitchSwapMode (this));
+				menuWidgetOptions->addItem(new MenuOptionChooserSwitchViewMode (this));
+
+				widget->exec (NULL, "");
 	  		} 
 			else if (CRCInput::isNumeric (msg)) 
 			{	//numeric zap

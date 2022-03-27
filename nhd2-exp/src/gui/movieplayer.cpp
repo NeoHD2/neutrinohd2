@@ -741,16 +741,33 @@ void CMoviePlayerGui::PlayFile(void)
 	new_bookmark.length = 0;
 
 	//
-	CMenuWidget bookStartMenu(_("Bookmarks"), NEUTRINO_ICON_MOVIE);
+	CWidget* widget = NULL;
+	ClistBox* bookStartMenu = NULL;
+	
+	bookStartMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	bookStartMenu->setMenuPosition(MENU_POSITION_CENTER);
+	bookStartMenu->setWidgetMode(MODE_MENU);
+	bookStartMenu->enableShrinkMenu();
+		
+	bookStartMenu->enablePaintHead();
+	bookStartMenu->setTitle(_("Bookmarks"), NEUTRINO_ICON_MOVIE);
 
-	bookStartMenu.setWidgetMode(MODE_MENU);
-	bookStartMenu.enableShrinkMenu();
+	bookStartMenu->enablePaintFoot();
+			
+	const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+	bookStartMenu->setFootButtons(&btn);
+		
+	//
+	widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	widget->setMenuPosition(MENU_POSITION_CENTER);
+	widget->addItem(bookStartMenu);
 
-	bookStartMenu.addItem(new CMenuForwarder(_("New Bookmark")));
-	bookStartMenu.addItem(new CMenuForwarder(_("Repeat")));
-	bookStartMenu.addItem(new CMenuForwarder(_("Jump over")));
-	bookStartMenu.addItem(new CMenuForwarder(_("Movie start:")));
-	bookStartMenu.addItem(new CMenuForwarder(_("Movie end:")));
+	bookStartMenu->addItem(new CMenuForwarder(_("New Bookmark")));
+	bookStartMenu->addItem(new CMenuForwarder(_("Repeat")));
+	bookStartMenu->addItem(new CMenuForwarder(_("Jump over")));
+	bookStartMenu->addItem(new CMenuForwarder(_("Movie start:")));
+	bookStartMenu->addItem(new CMenuForwarder(_("Movie end:")));
 	
 	////FIXME:
 	//showMovieInfo();
@@ -1060,9 +1077,9 @@ void CMoviePlayerGui::PlayFile(void)
 					new_bookmark.length = 0;
 
 					//
-					bookStartMenu.exec(NULL, "none");
+					widget->exec(NULL, "none");
 					int select = -1;
-					select = bookStartMenu.getSelected();
+					select = bookStartMenu->getSelected();
 					
 					//
 					if(select == 0) 
@@ -1671,28 +1688,45 @@ int CMoviePlayerGui::showStartPosSelectionMenu(void)
 	
 	char book[MI_MOVIE_BOOK_USER_MAX][20];
 
-	CMenuWidget startPosSelectionMenu(_("Start movie from:"), NEUTRINO_ICON_MOVIE);
-	startPosSelectionMenu.enableSaveScreen();
+	//
+	CWidget* widget = NULL;
+	ClistBox* startPosSelectionMenu = NULL;
+	
+	startPosSelectionMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	startPosSelectionMenu->setMenuPosition(MENU_POSITION_CENTER);
+	startPosSelectionMenu->setWidgetMode(MODE_SETUP);
+	startPosSelectionMenu->enableShrinkMenu();
+		
+	startPosSelectionMenu->enablePaintHead();
+	startPosSelectionMenu->setTitle(_("Start movie from:"), NEUTRINO_ICON_MOVIE);
 
-	startPosSelectionMenu.setWidgetMode(MODE_MENU);
-	startPosSelectionMenu.enableShrinkMenu();
+	startPosSelectionMenu->enablePaintFoot();
+			
+	const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+	startPosSelectionMenu->setFootButtons(&btn);
+		
+	//
+	widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	widget->setMenuPosition(MENU_POSITION_CENTER);
+	widget->addItem(startPosSelectionMenu);
 	
 	// bookmark start
 	if(playlist[selected].bookmarks.start != 0)
 	{
-		startPosSelectionMenu.addItem(new CMenuForwarder(_("Movie start:"), true, start_pos));
+		startPosSelectionMenu->addItem(new CMenuForwarder(_("Movie start:"), true, start_pos));
 		position[menu_nr++] = playlist[selected].bookmarks.start;
 	}
 	
 	// bookmark laststop
 	if(playlist[selected].bookmarks.lastPlayStop != 0) 
 	{
-		startPosSelectionMenu.addItem(new CMenuForwarder(_("Last play stop:"), true, play_pos));
+		startPosSelectionMenu->addItem(new CMenuForwarder(_("Last play stop:"), true, play_pos));
 		position[menu_nr++] = playlist[selected].bookmarks.lastPlayStop;
 	}
 	
 	// movie start
-	startPosSelectionMenu.addItem(new CMenuForwarder(_("Movie start"), true, NULL));
+	startPosSelectionMenu->addItem(new CMenuForwarder(_("Movie start"), true, NULL));
 
 	position[menu_nr++] = 0;
 
@@ -1711,19 +1745,19 @@ int CMoviePlayerGui::showStartPosSelectionMenu(void)
 
 			dprintf(DEBUG_NORMAL, "CMoviePlayerGui::showStartPosSelectionMenu adding boomark menu N %d, position %d\n", menu_nr, position[menu_nr]);
 			
-			startPosSelectionMenu.addItem(new CMenuForwarder(playlist[selected].bookmarks.user[i].name.c_str(), true, book[i]));
+			startPosSelectionMenu->addItem(new CMenuForwarder(playlist[selected].bookmarks.user[i].name.c_str(), true, book[i]));
 			menu_nr++;
 		}
 	}
 
-	startPosSelectionMenu.exec(NULL, "12345");
+	widget->exec(NULL, "12345");
 	
 	// check what menu item was ok'd  and set the appropriate play offset
-	result = startPosSelectionMenu.getSelected();
+	result = startPosSelectionMenu->getSelected();
 	
 	dprintf(DEBUG_NORMAL, "CMoviePlayerGui::showStartPosSelectionMenu: result %d\n", result);
 
-	//if(startPosSelectionMenu.getExitPressed())
+	//if(widget->getExitPressed())
 	if(result < 0)
 		return -1;
 	

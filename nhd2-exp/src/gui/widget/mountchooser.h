@@ -37,7 +37,8 @@
 
 #include <driver/framebuffer.h>
 #include <system/localize.h>
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
 
 
 class CMountChooser : public CMenuTarget

@@ -32,7 +32,7 @@
 #ifndef __scants__
 #define __scants__
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
 #include <driver/framebuffer.h>
 #include <system/localize.h>
 #include <gui/widget/widget_helpers.h>

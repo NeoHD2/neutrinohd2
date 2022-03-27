@@ -24,9 +24,13 @@
 
 #ifndef __cthemes__
 #define __cthemes__
+
 #include <string>
 #include <configfile.h>
 #include <system/setting_helpers.h>
+
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
 
 
 class CThemes : public CMenuTarget, CChangeObserver

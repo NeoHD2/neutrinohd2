@@ -54,12 +54,12 @@
 
 #include <system/settings.h>
 #include <system/lastchannel.h>
-#include "gui/filebrowser.h"
+#include <gui/filebrowser.h>
 
 #include <gui/bouquetlist.h>
 #include <daemonc/remotecontrol.h>
 #include <driver/vcrcontrol.h>
-#include <gui/pictureviewer.h>
+//#include <gui/pictureviewer.h>
 
 //
 #include <bouquets.h>
@@ -355,22 +355,57 @@ int CChannelList::doChannelMenu(void)
 	if( !bouquetList )
 		return 0;
 
-	CMenuWidget * menu = new CMenuWidget(_("Edit"), NEUTRINO_ICON_SETTINGS);
-	menu->enableSaveScreen();
-	menu->setWidgetMode(MODE_MENU);
-	menu->enableShrinkMenu();
+	//CMenuWidget * menu = new CMenuWidget(_("Edit"), NEUTRINO_ICON_SETTINGS);
+	//menu->enableSaveScreen();
+	//menu->setWidgetMode(MODE_MENU);
+	//menu->enableShrinkMenu();
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* menu = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("channellistedit"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("channellistedit")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("channellistedit");
+		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("channellistedit")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		menu->setMenuPosition(MENU_POSITION_CENTER);
+		menu->setWidgetMode(MODE_MENU);
+		menu->enableShrinkMenu();
+		
+		menu->enablePaintHead();
+		menu->setTitle(_("Edit"), NEUTRINO_ICON_SETTINGS);
 
-	menu->addItem(new CMenuForwarder(_("delete"), true, NULL, NULL, NULL, RC_red, NEUTRINO_ICON_BUTTON_RED), old_selected == i++);
+		menu->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		menu->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(menu);
+	}
+	
+	menu->clearItems();
 
-	menu->addItem(new CMenuForwarder(_("Move"), true, NULL, NULL, NULL, RC_green, NEUTRINO_ICON_BUTTON_GREEN), old_selected == i++);
 
-	menu->addItem(new CMenuForwarder(_("Add to Bouquets"), true, NULL, NULL, NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW), old_selected == i++);
+	menu->addItem(new CMenuForwarder(_("delete")), old_selected == i++);
 
-	menu->addItem(new CMenuForwarder(_("add channel to my favorites"), true, NULL, NULL, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE), old_selected == i++);
+	menu->addItem(new CMenuForwarder(_("Move")), old_selected == i++);
 
-	menu->exec(NULL, "");
+	menu->addItem(new CMenuForwarder(_("Add to Bouquets")), old_selected == i++);
+
+	menu->addItem(new CMenuForwarder(_("add channel to my favorites")), old_selected == i++);
+
+	widget->exec(NULL, "");
 	select = menu->getSelected();
-	delete menu;
 
 	if(select >= 0) 
 	{

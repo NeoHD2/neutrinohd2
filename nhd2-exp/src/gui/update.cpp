@@ -169,14 +169,43 @@ bool CFlashUpdate::selectHttpImage(void)
 	httpTool.setTitle(_("Software Update"));
 	progressWindow->showStatusMessageUTF(_("getting update list")); // UTF-8
 
-	// NOTE: remember me : i dont like this menu GUI :-(
-	CMenuWidget SelectionWidget(_("Available Images/Packages"), NEUTRINO_ICON_UPDATE , MENU_WIDTH + 50);
+	// NOTE: remember me : i dont like this menu GUI
+	CWidget* widget = NULL;
+	ClistBox* SelectionWidget = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("selecthttpimage"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("selecthttpimage")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("selecthttpimage");
+		SelectionWidget = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("selecthttpimage")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		SelectionWidget = new ClistBox(0, 0, 600, MENU_HEIGHT);
+		SelectionWidget->setMenuPosition(MENU_POSITION_CENTER);
+		SelectionWidget->setWidgetMode(MODE_SETUP);
+		SelectionWidget->enableShrinkMenu();
+		
+		SelectionWidget->enablePaintHead();
+		SelectionWidget->setTitle(_("Available Images/Packages"), NEUTRINO_ICON_UPDATE);
 
-	SelectionWidget.setWidgetMode(MODE_SETUP);
-	SelectionWidget.enableShrinkMenu();
+		SelectionWidget->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		SelectionWidget->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, 600, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(SelectionWidget);
+	}
+	
+	SelectionWidget->clearItems();
 	
 	// intros
-	SelectionWidget.addItem(new CMenuForwarder(_("back"), true, NULL, NULL, NULL, RC_nokey, NEUTRINO_ICON_BUTTON_LEFT));
+	SelectionWidget->addItem(new CMenuForwarder(_("back")));
 
 	std::ifstream urlFile(g_settings.softupdate_url_file);
 
@@ -204,7 +233,7 @@ bool CFlashUpdate::selectHttpImage(void)
 			updates_lists.push_back(url.substr(startpos, endpos - startpos));
 		}
 
-		//SelectionWidget.addItem(new CNonLocalizedMenuSeparator(updates_lists.rbegin()->c_str(), LOCALE_FLASHUPDATE_SELECTIMAGE));
+		//seperator???
 		
 		if (httpTool.downloadFile(url, gTmpPath LIST_OF_UPDATES_LOCAL_FILENAME, 20))
 		{
@@ -238,7 +267,7 @@ bool CFlashUpdate::selectHttpImage(void)
 				if(!allow_flash && (versionInfo.snapshot < '3'))
 					enabled = false;
 
-				SelectionWidget.addItem(new CMenuForwarder(names[i].c_str(), enabled, descriptions[i].c_str(), new CUpdateMenuTarget(i, &selected), NULL, RC_nokey, NEUTRINO_ICON_UPDATE_SMALL ));
+				SelectionWidget->addItem(new CMenuForwarder(names[i].c_str(), enabled, descriptions[i].c_str(), new CUpdateMenuTarget(i, &selected), NULL, RC_nokey, NEUTRINO_ICON_UPDATE_SMALL ));
 				i++;
 			}
 		}
@@ -252,7 +281,7 @@ bool CFlashUpdate::selectHttpImage(void)
 		return false;
 	}
 		
-	SelectionWidget.exec(NULL, "");
+	widget->exec(NULL, "");
 
 	if (selected == -1)
 		return false;

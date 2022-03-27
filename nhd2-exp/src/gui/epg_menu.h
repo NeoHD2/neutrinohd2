@@ -23,9 +23,8 @@
 #ifndef __epg_menu__
 #define __epg_menu__
 
-
-#include <gui/widget/menue.h>
-
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
 
 
 using namespace std;

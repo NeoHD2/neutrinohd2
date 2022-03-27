@@ -55,6 +55,9 @@
 #include <gui/rc_lock.h>
 #include <gui/scan_setup.h>
 
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
+
 #include <daemonc/remotecontrol.h>    		/* st_rmsg      */
 
 #include <gui/bouquetlist.h>
@@ -191,7 +194,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		void mainMenu(void);
 		bool showUserMenu(int button);
 		void SelectNVOD();
-                bool getNVODMenu(CMenuWidget * menu);
+                bool getNVODMenu(ClistBox* menu);
 
 		void AudioMute( int newValue, bool isEvent= false );
 		void setVolume(const neutrino_msg_t key, const bool bDoPaint = true, bool nowait = false);

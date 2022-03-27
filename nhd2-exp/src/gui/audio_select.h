@@ -24,7 +24,8 @@
 #ifndef __audio_selector__
 #define __audio_selector__
 
-#include "widget/menue.h"
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
 
 
 using namespace std;

@@ -23,7 +23,8 @@
 #ifndef __cam_menu__
 #define __cam_menu__
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
 #include <gui/widget/hintbox.h>
 
 

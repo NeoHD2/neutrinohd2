@@ -37,8 +37,8 @@
 
 #include <global.h>
 #include <neutrino.h>
+
 #include <gui/widget/icons.h>
-#include <gui/widget/menue.h>
 
 #include <gui/audio_select.h>
 #include <gui/audio_setup.h>
@@ -104,12 +104,31 @@ int CAudioSelectMenuHandler::exec(CMenuTarget * parent, const std::string &/*act
 void CAudioSelectMenuHandler::doMenu()
 {
 	dprintf(DEBUG_NORMAL, "CAudioSelectMenuHandler::doMenu\n");
-
-	CMenuWidget AudioSelector(_("Select language"), NEUTRINO_ICON_AUDIO);
-
-	AudioSelector.setWidgetMode(MODE_SETUP);
-	AudioSelector.enableShrinkMenu();
 	
+	//
+	CWidget* widget = NULL;
+	ClistBox* AudioSelector = NULL;
+				
+	AudioSelector = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	AudioSelector->setMenuPosition(MENU_POSITION_CENTER);
+	AudioSelector->setWidgetMode(MODE_SETUP);
+	AudioSelector->enableShrinkMenu();
+					
+	AudioSelector->enablePaintHead();
+	AudioSelector->setTitle(_("Select language"), NEUTRINO_ICON_AUDIO);
+
+	AudioSelector->enablePaintFoot();
+						
+	const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+						
+	AudioSelector->setFootButtons(&btn);
+					
+	//
+	widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	widget->setMenuPosition(MENU_POSITION_CENTER);
+	widget->addItem(AudioSelector);
+	
+	//
 	unsigned int count;
 	
 	CAPIDChangeExec APIDChanger;
@@ -121,18 +140,18 @@ void CAudioSelectMenuHandler::doMenu()
 		char apid[5];
 		sprintf(apid, "%d", count);
 
-		AudioSelector.addItem(new CMenuForwarder(g_RemoteControl->current_PIDs.APIDs[count].desc, true, NULL, &APIDChanger, apid, CRCInput::convertDigitToKey(count + 1)), (count == g_RemoteControl->current_PIDs.PIDs.selected_apid));
+		AudioSelector->addItem(new CMenuForwarder(g_RemoteControl->current_PIDs.APIDs[count].desc, true, NULL, &APIDChanger, apid, CRCInput::convertDigitToKey(count + 1)), (count == g_RemoteControl->current_PIDs.PIDs.selected_apid));
 	}
 
 	if(g_RemoteControl->current_PIDs.APIDs.size())
-		AudioSelector.addItem(new CMenuSeparator(LINE));
+		AudioSelector->addItem(new CMenuSeparator(LINE));
 
 	// analogue output
-	AudioSelector.addItem(new CMenuOptionChooser(_("Analog Output"), &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, CAudioSettings::getInstance()->audioSetupNotifier, RC_red, NEUTRINO_ICON_BUTTON_RED));
+	AudioSelector->addItem(new CMenuOptionChooser(_("Analog Output"), &g_settings.audio_AnalogMode, AUDIOMENU_ANALOGOUT_OPTIONS, AUDIOMENU_ANALOGOUT_OPTION_COUNT, true, CAudioSettings::getInstance()->audioSetupNotifier, RC_red, NEUTRINO_ICON_BUTTON_RED));
 	
 	// ac3
 #if !defined (PLATFORM_COOLSTREAM)	
-	AudioSelector.addItem(new CMenuOptionChooser(_("Dolby Digital"), &g_settings.hdmi_dd, AC3_OPTIONS, AC3_OPTION_COUNT, true, CAudioSettings::getInstance()->audioSetupNotifier, RC_green, NEUTRINO_ICON_BUTTON_GREEN ));
+	AudioSelector->addItem(new CMenuOptionChooser(_("Dolby Digital"), &g_settings.hdmi_dd, AC3_OPTIONS, AC3_OPTION_COUNT, true, CAudioSettings::getInstance()->audioSetupNotifier, RC_green, NEUTRINO_ICON_BUTTON_GREEN ));
 #endif
 
 	//dvb/tuxtxt subs
@@ -155,7 +174,7 @@ void CAudioSelectMenuHandler::doMenu()
 				if(!sep_added) 
 				{
 					sep_added = true;
-					AudioSelector.addItem(new CMenuSeparator(LINE | STRING, _("Subtitles")));
+					AudioSelector->addItem(new CMenuSeparator(LINE | STRING, _("Subtitles")));
 				}
 				char spid[10];
 				//int pid = sd->pId;
@@ -163,7 +182,7 @@ void CAudioSelectMenuHandler::doMenu()
 				char item[64];
 				//snprintf(item,sizeof(item), "DVB: %s (pid %x)", sd->ISO639_language_code.c_str(), sd->pId);
 				snprintf(item, sizeof(item), "DVB: %s", sd->ISO639_language_code.c_str());
-				AudioSelector.addItem(new CMenuForwarder(item, sd->pId != dvbsub_getpid() /* !dvbsub_getpid(&pid, NULL)*/, NULL, &SubtitleChanger, spid, CRCInput::convertDigitToKey(++count)));
+				AudioSelector->addItem(new CMenuForwarder(item, sd->pId != dvbsub_getpid() /* !dvbsub_getpid(&pid, NULL)*/, NULL, &SubtitleChanger, spid, CRCInput::convertDigitToKey(++count)));
 			}
 			
 			//txtsub
@@ -174,7 +193,7 @@ void CAudioSelectMenuHandler::doMenu()
 				if(!sep_added) 
 				{
 					sep_added = true;
-					AudioSelector.addItem(new CMenuSeparator(LINE | STRING, _("Subtitles")));
+					AudioSelector->addItem(new CMenuSeparator(LINE | STRING, _("Subtitles")));
 				}
 				char spid[64];
 				int page = ((sd->teletext_magazine_number & 0xFF) << 8) | sd->teletext_page_number;
@@ -183,14 +202,14 @@ void CAudioSelectMenuHandler::doMenu()
 				char item[64];
 				//snprintf(item, sizeof(item), "TTX: %s (pid %x page %03X)", sd->ISO639_language_code.c_str(), sd->pId, page);
 				snprintf(item, sizeof(item), "TTX: %s", sd->ISO639_language_code.c_str());
-				AudioSelector.addItem(new CMenuForwarder(item,  !tuxtx_subtitle_running(&pid, &page, NULL), NULL, &SubtitleChanger, spid, CRCInput::convertDigitToKey(++count)));
+				AudioSelector->addItem(new CMenuForwarder(item,  !tuxtx_subtitle_running(&pid, &page, NULL), NULL, &SubtitleChanger, spid, CRCInput::convertDigitToKey(++count)));
 			}
 		}
 		
 		if(sep_added) 
 		{
-			AudioSelector.addItem(new CMenuSeparator(LINE));
-			AudioSelector.addItem(new CMenuForwarder(_("Stop subtitles"), true, NULL, &SubtitleChanger, "off", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW ));
+			AudioSelector->addItem(new CMenuSeparator(LINE));
+			AudioSelector->addItem(new CMenuForwarder(_("Stop subtitles"), true, NULL, &SubtitleChanger, "off", RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW ));
 		}
 
 	}
@@ -207,16 +226,16 @@ void CAudioSelectMenuHandler::doMenu()
 		if(!sep_added) 
 		{
 			sep_added = true;
-			AudioSelector.addItem(new CMenuSeparator(LINE | STRING, _("Volume adjustment (in %)")));
+			AudioSelector->addItem(new CMenuSeparator(LINE | STRING, _("Volume adjustment (in %)")));
 		}
 		
-		AudioSelector.addItem(new CMenuOptionNumberChooser("", &percent[count],
+		AudioSelector->addItem(new CMenuOptionNumberChooser("", &percent[count],
 			is_active,
 			0, 100, audioSetupNotifierVolPercent, 0, 0,
 			g_RemoteControl->current_PIDs.APIDs[count].desc));
 	}
 
-	AudioSelector.exec(NULL, "");
+	widget->exec(NULL, "");
 
 	delete audioSetupNotifierVolPercent;
 }

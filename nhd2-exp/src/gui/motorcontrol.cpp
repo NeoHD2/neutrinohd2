@@ -40,7 +40,6 @@
 
 #include <gui/motorcontrol.h>
 
-#include <gui/widget/menue.h>
 #include <gui/widget/messagebox.h>
 
 #include <system/settings.h>

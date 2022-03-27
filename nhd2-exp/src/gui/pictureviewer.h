@@ -36,7 +36,7 @@
 
 #include <driver/framebuffer.h>
 #include <driver/pictureviewer/pictureviewer.h>
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
 #include <gui/filebrowser.h>
 
 

@@ -25,7 +25,6 @@ libneutrino_gui_widget_a_SOURCES = \
 	drawable.cpp \
 	widget_helpers.cpp \
 	window.cpp \
-	menue.cpp \
 	stringinput.cpp \
 	stringinput_ext.cpp \
 	infobox.cpp \
@@ -37,7 +36,8 @@ libneutrino_gui_widget_a_SOURCES = \
 	listbox.cpp \
 	progresswindow.cpp \
 	framebox.cpp \
-	widget.cpp
+	widget.cpp \
+	menue.cpp
 
 libneutrino_gui_widget2_a_SOURCES = \
 	colorchooser.cpp \

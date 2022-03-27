@@ -27,7 +27,8 @@
 #ifndef __misc_setup__
 #define __misc_setup__
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
 
 #include <string>
 

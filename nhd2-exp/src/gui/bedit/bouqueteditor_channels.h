@@ -36,7 +36,9 @@
 #define __bouqueteditor_channels__
 
 #include <driver/framebuffer.h>
-#include <gui/widget/menue.h>
+
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
 
 // zapit
 #include <client/zapitclient.h>

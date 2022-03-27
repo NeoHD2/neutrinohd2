@@ -80,7 +80,6 @@
 #include <gui/streaminfo2.h>
 
 #include <gui/widget/colorchooser.h>
-#include <gui/widget/menue.h>
 #include <gui/widget/messagebox.h>
 #include <gui/widget/hintbox.h>
 #include <gui/widget/icons.h>
@@ -5531,12 +5530,33 @@ void CNeutrinoApp::SelectNVOD()
 {
         if (!(g_RemoteControl->subChannels.empty()))
         {
-                // NVOD/SubService- Kanal!
-                CMenuWidget NVODSelector(g_RemoteControl->are_subchannels ? _("Select Subservice") : _("Select starting-time"), NEUTRINO_ICON_VIDEO);
+                //
+                CWidget* widget = NULL;
+                ClistBox* NVODSelector = NULL;
+                
+		NVODSelector = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		NVODSelector->setMenuPosition(MENU_POSITION_CENTER);
+		NVODSelector->setWidgetMode(MODE_SETUP);
+		NVODSelector->enableShrinkMenu();
+						
+		NVODSelector->enablePaintHead();
+		NVODSelector->setTitle(g_RemoteControl->are_subchannels ? _("Select Subservice") : _("Select starting-time"), NEUTRINO_ICON_VIDEO);
 
+		NVODSelector->enablePaintFoot();
+							
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+							
+		NVODSelector->setFootButtons(&btn);
 		
-                if(getNVODMenu(&NVODSelector))
-                        NVODSelector.exec(NULL, "");
+		//
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(NVODSelector);
+
+		//
+                if(getNVODMenu(NVODSelector))
+                        widget->exec(NULL, "");
         }
 }
 
@@ -5548,12 +5568,9 @@ const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
         { 1, _("on") }
 };
 
-bool CNeutrinoApp::getNVODMenu(CMenuWidget * menu)
-{
-//FIXME: rewrite
-        if(menu == NULL)
-                return false;
-	
+bool CNeutrinoApp::getNVODMenu(ClistBox* menu)
+{	
+	//
         if (g_RemoteControl->subChannels.empty())
                 return false;
 

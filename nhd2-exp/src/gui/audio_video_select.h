@@ -36,6 +36,9 @@
 
 #include <sys/stat.h>
 
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
+
 
 extern unsigned int ac3state;
 extern unsigned int currentapid;

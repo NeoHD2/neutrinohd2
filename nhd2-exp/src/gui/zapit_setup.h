@@ -22,7 +22,8 @@
 #ifndef __ZAPIT_SETUP__
 #define __ZAPIT_SETUP__
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
 
 #include <string>
 

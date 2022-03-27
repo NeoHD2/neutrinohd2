@@ -260,18 +260,47 @@ int CBouquetList::doMenu()
 	// zapitBouquet not NULL only on real bouquets, not on virtual SAT or HD 
 	if(!zapitBouquet)
 		return 0;
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* menu = NULL;
+	
+	if (CNeutrinoApp::getInstance()->getWidget("bqedit"))
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("bqedit")->getItemsCount();
+		
+		widget = CNeutrinoApp::getInstance()->getWidget("bqedit");
+		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("bqedit")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		menu->setMenuPosition(MENU_POSITION_CENTER);
+		menu->setWidgetMode(MODE_MENU);
+		menu->enableShrinkMenu();
+		
+		menu->enablePaintHead();
+		menu->setTitle(_("Edit"), NEUTRINO_ICON_SETTINGS);
 
-	CMenuWidget * menu = new CMenuWidget(_("Edit"), NEUTRINO_ICON_SETTINGS);
-	menu->enableSaveScreen();
-	menu->setWidgetMode(MODE_MENU);
-	menu->enableShrinkMenu();
+		menu->enablePaintFoot();
+			
+		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+			
+		menu->setFootButtons(&btn);
+		
+		//
+		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->setMenuPosition(MENU_POSITION_CENTER);
+		widget->addItem(menu);
+	}
+	
+	menu->clearItems();
 
 	if(!zapitBouquet->bUser) 
 	{
-		menu->addItem(new CMenuForwarder(_("Copy bouquet to Favorites"), true, NULL, NULL, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE), old_selected == i ++);
-		ret = menu->exec(NULL, "");
+		menu->addItem(new CMenuForwarder(_("Copy bouquet to Favorites")), old_selected == i ++);
+		ret = widget->exec(NULL, "");
 		select = menu->getSelected();
-		delete menu;
 		
 		dprintf(DEBUG_NORMAL, "CBouquetList::doMenu: %d selected\n", select);
 
@@ -308,10 +337,9 @@ int CBouquetList::doMenu()
 	} 
 	else 
 	{
-		menu->addItem(new CMenuForwarder(_("Delete"), true, NULL, NULL, NULL, RC_blue, NEUTRINO_ICON_BUTTON_BLUE), old_selected == i ++);
-		ret = menu->exec(NULL, "");
+		menu->addItem(new CMenuForwarder(_("Delete")), old_selected == i ++);
+		ret = widget->exec(NULL, "");
 		select = menu->getSelected();
-		delete menu;
 		
 		dprintf(DEBUG_NORMAL, "CBouquetList::doMenu: %d selected\n", select);
 		

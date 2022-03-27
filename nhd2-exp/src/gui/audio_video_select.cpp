@@ -173,11 +173,33 @@ void CAVPIDSelectWidget::showAudioDialog(void)
 {
 	dprintf(DEBUG_NORMAL, "CAVPIDSelectWidget::showAudioDialog (currentapid:%d)\n", currentapid);
 
-	CMenuWidget * AVPIDSelector = new CMenuWidget("AV Select", NEUTRINO_ICON_AUDIO);
-
+	//CMenuWidget * AVPIDSelector = new CMenuWidget("AV Select", NEUTRINO_ICON_AUDIO);
+	//AVPIDSelector->setWidgetMode(MODE_SETUP);
+	//AVPIDSelector->enableShrinkMenu();
+	//AVPIDSelector->enableSaveScreen();
+	
+	//
+	CWidget* widget = NULL;
+	ClistBox* AVPIDSelector = NULL;
+				
+	AVPIDSelector = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	AVPIDSelector->setMenuPosition(MENU_POSITION_CENTER);
 	AVPIDSelector->setWidgetMode(MODE_SETUP);
 	AVPIDSelector->enableShrinkMenu();
-	AVPIDSelector->enableSaveScreen();
+					
+	AVPIDSelector->enablePaintHead();
+	AVPIDSelector->setTitle(_("AV Select"), NEUTRINO_ICON_AUDIO);
+
+	AVPIDSelector->enablePaintFoot();
+						
+	const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
+						
+	AVPIDSelector->setFootButtons(&btn);
+					
+	//
+	widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	widget->setMenuPosition(MENU_POSITION_CENTER);
+	widget->addItem(AVPIDSelector);
 	
 	CAVPIDChangeExec AVPIDChanger;
 	if(playback)
@@ -273,9 +295,6 @@ void CAVPIDSelectWidget::showAudioDialog(void)
 	// video format bestfit/letterbox/panscan/non
 	AVPIDSelector->addItem(new CMenuOptionChooser(_("Video Format"), &g_settings.video_Format, VIDEOMENU_VIDEOFORMAT_OPTIONS, VIDEOMENU_VIDEOFORMAT_OPTION_COUNT, true, CVideoSettings::getInstance()->videoSetupNotifier, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, true));
 	
-	AVPIDSelector->exec(NULL, "");
-	AVPIDSelector->hide();
-	delete AVPIDSelector;
-	AVPIDSelector = NULL;
+	widget->exec(NULL, "");
 }
 

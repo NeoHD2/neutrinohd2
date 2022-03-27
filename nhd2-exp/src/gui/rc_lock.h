@@ -24,7 +24,7 @@
 #ifndef _remoteLock_
 #define _remoteLock_
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
 
 #include <string>
 

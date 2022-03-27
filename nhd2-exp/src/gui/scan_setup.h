@@ -29,7 +29,8 @@
 
 #include <string>
 
-#include <gui/widget/menue.h>
+#include <gui/widget/widget.h>
+#include <gui/widget/listbox.h>
 
 #include <driver/framebuffer.h>
 

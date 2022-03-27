@@ -81,7 +81,15 @@ CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::str
 			
 		widget = CNeutrinoApp::getInstance()->getWidget("keychooser");
 		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("keychooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
-			
+		
+		//
+		if (menu->hasHead())
+		{
+			menu->enablePaintHead();
+			menu->setTitle(Title, Icon.c_str());
+		}
+		
+		//	
 		if (menu->hasFoot())
 		{
 			menu->enablePaintFoot();		
@@ -95,7 +103,10 @@ CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::str
 		menu->setMenuPosition(MENU_POSITION_CENTER);
 		menu->setWidgetMode(MODE_SETUP);
 		menu->enableShrinkMenu();
-		menu->enableSaveScreen();
+		
+		//	
+		menu->enablePaintHead();
+		menu->setTitle(Title, Icon.c_str());
 			
 		//
 		menu->enablePaintFoot();		
@@ -109,11 +120,9 @@ CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::str
 		widget->addItem(menu);
 	}
 		
-	menu->enablePaintHead();
-	menu->setTitle(Title, Icon.c_str());
-		
 	menu->clearAll();
 
+	//
 	menu->addItem(new CKeyValue());
 	menu->addItem(new CMenuSeparator(LINE));
 	menu->addItem(new CMenuForwarder(_("back")));
