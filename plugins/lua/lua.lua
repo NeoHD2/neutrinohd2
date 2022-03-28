@@ -1074,7 +1074,7 @@ function main()
 	m:setWidgetMode(neutrino.MODE_MENU)
 	m:enableShrinkMenu()
 	m:enablePaintItemInfo(70)
-	m:setFootInfoMode(neutrino.FOOT_HINT_MODE)
+	m:setItemInfoMode(neutrino.ITEMINFO_HINT_MODE)
 
 	item1 = neutrino.CMenuForwarder("testCWidget", true, "", null, "listWidget")
 	item1:setInfo1("lua: testing CWidget")
