@@ -3,6 +3,22 @@
 <!-- SKIN: MetrixHD -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="testmenu" posx="0" posy="0" width="1280" height="720">
+		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
+		
+		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
+		
+		<WINDOW posx="785" posy="70" width="445" height="580" paintframe="1" color="#00195000">
+		</WINDOW>
+		
+		<LABEL name="title" posx="795" posy="80" width="425" height="60" text="Test Menu" halign="1"></LABEL>
+		
+		<IMAGE name="hint" posx="795" posy="150" width="425" height="275" image="picon_default.png"></IMAGE>
+		
+		<TIME name="date" posx="795" posy="460" width="425" height="60" refresh="1" format="%A %d.%m.%Y" font="3"></TIME>
+		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
+	</WIDGET>
+	
 	<WIDGET name="usermenu" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
@@ -758,48 +774,43 @@
 	</WIDGET>
 	
 	<WIDGET name="modfytimer" id="91" posx="0" posy="0" width="1280" height="720">
-		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
-		</LISTBOX>
+		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		
-		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		<LISTBOX posx="60" posy="60" width="715" height="540" type="0" mode ="2" scrollbar="1"/>
+		
+		<WINDOW posx="785" posy="70" width="445" height="580" paintframe="1" color="#00195000">
 		</WINDOW>
 		
-		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		<LABEL name="title" posx="795" posy="80" width="425" height="60" text="Modify timer" halign="1"></LABEL>
 		
-		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Modify timer" halign="1"></LABEL>
+		<IMAGE name="hint" posx="795" posy="150" width="425" height="275" image="picon_default.png"></IMAGE>
 		
-		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
-		
-		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
-		
-		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
-		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+		<TIME name="date" posx="795" posy="460" width="425" height="60" refresh="1" format="%A %d.%m.%Y" font="3"></TIME>
+		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
 	</WIDGET>
 	
 	<WIDGET name="newtimer" id="90" posx="0" posy="0" width="1280" height="720">
-		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="2">
-		</LISTBOX>
+		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		
-		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		<LISTBOX posx="60" posy="60" width="715" height="540" type="0" mode ="2" scrollbar="1"/>
+		
+		<WINDOW posx="785" posy="70" width="445" height="580" paintframe="1" color="#00195000">
 		</WINDOW>
 		
-		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		<LABEL name="title" posx="795" posy="80" width="425" height="60" text="New timer" halign="1"></LABEL>
 		
-		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="New timer" halign="1"></LABEL>
+		<IMAGE name="hint" posx="795" posy="150" width="425" height="275" image="picon_default.png"></IMAGE>
 		
-		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
-		
-		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
-		
-		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
-		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+		<TIME name="date" posx="795" posy="460" width="425" height="60" refresh="1" format="%A %d.%m.%Y" font="3"></TIME>
+		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
 	</WIDGET>
 	
 	<WIDGET name="timerlist" id="47" posx="0" posy="0" width="1280" height="720">
-		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="1">
-		</LISTBOX>
+		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		
-		<BUTTON posx="50" posy="630" width="540" height="40">
+		<LISTBOX posx="60" posy="60" width="715" height="540" type="0" mode ="2" scrollbar="1"/>
+		
+		<BUTTON posx="50" posy="630" width="735" height="40">
 			<BUTTON_LABEL name="btn_red" localename="Delete">
 			</BUTTON_LABEL>
 		
@@ -813,19 +824,15 @@
 			</BUTTON_LABEL>
 		</BUTTON>
 		
-		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
+		<WINDOW posx="785" posy="70" width="445" height="580" paintframe="1" color="#00195000">
 		</WINDOW>
 		
-		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1"  ></WINDOW>
+		<LABEL name="title" posx="795" posy="80" width="425" height="60" text="Timerlist" halign="1"></LABEL>
 		
-		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Timerlist" halign="1"></LABEL>
+		<IMAGE name="hint" posx="795" posy="150" width="425" height="275" image="picon_default.png"></IMAGE>
 		
-		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
-		
-		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
-		
-		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
-		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
+		<TIME name="date" posx="795" posy="460" width="425" height="60" refresh="1" format="%A %d.%m.%Y" font="3"></TIME>
+		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
 	</WIDGET>
 	
 	<WIDGET name="tunersetup" id="40" posx="0" posy="0" width="1280" height="720">
@@ -934,33 +941,12 @@
 		</TIME>
 	</WIDGET>
 	
-	<WIDGET name="testmenu" posx="0" posy="0" width="1280" height="720">
-		<LISTBOX posx="60" posy="60" width="520" height="580" type="0" mode ="1" scrollbar="1">
-		</LISTBOX>
-		
-		<WINDOW posx="60" posy="50" width="520" height="620" paintframe="1" >
-		</WINDOW>
-		
-		<WINDOW posx="640" posy="50" width="590" height="360" paintframe="1" color="#00195000"></WINDOW>
-		
-		<LABEL name="label" id="2" posx="640" posy="50" width="590" height="60" text="Test Menu" halign="1"></LABEL>
-		
-		<IMAGE name="image" id="1" posx="640" posy="120" width="590" height="240" image="picon_default.png"></IMAGE>
-		
-		<WINDOW posx="640" posy="440" width="590" height="230" paintframe="1" ></WINDOW>
-		
-		<TIME name="time" id="10" posx="640" posy="500" width="590" height="60" refresh="1" format="%A %d.%m.%Y"></TIME>
-		<TIME name="time" id="10" posx="640" posy="560" width="590" height="60" refresh="1" format="%H:%M:%S"></TIME>
-	</WIDGET>
-	
 	<WIDGET name="plugins" id="80" posx="0" posy="0" width="1280" height="720">
-		<WINDOW posx="650" posy="50" width="520" height="520" paintframe="1" >
-		</WINDOW>
+		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		
-		<LISTBOX posx="640" posy="60" width="540" height="460" type="1">
-		</LISTBOX>
+		<LISTBOX posx="60" posy="60" width="715" height="540" type="0" mode ="2" scrollbar="1"/>
 		
-		<BUTTON posx="640" posy="530" width="540" height="40">
+		<BUTTON posx="50" posy="630" width="735" height="40">
 			<BUTTON_LABEL name="btn_red" localename="Delete">
 			</BUTTON_LABEL>
 		
@@ -970,24 +956,19 @@
 			<BUTTON_LABEL name="btn_yellow">
 			</BUTTON_LABEL>
 
-			<BUTTON_LABEL name="btn_blue" localename="Reload">
+			<BUTTON_LABEL name="ok" localename="Reload">
 			</BUTTON_LABEL>
 		</BUTTON>
 		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Plugins" halign="1" font="1">
-		</LABEL>
-		
-		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
-		
-		<IMAGE name="image" id="1" posx="300" posy="50" width="300" height="300" image="picon_default.png"></IMAGE>
-		
-		<WINDOW posx="300" posy="400" width="300" height="100" paintframe="1" >
+		<WINDOW posx="785" posy="70" width="445" height="580" paintframe="1" color="#00195000">
 		</WINDOW>
 		
-		<TIME name="time" id="10" posx="300" posy="410" width="300" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
-		</TIME>
-		<TIME name="time" id="10" posx="300" posy="440" width="300" height="60" refresh="1" format="%H:%M:%S" font="8">
-		</TIME>
+		<LABEL name="title" posx="795" posy="80" width="425" height="60" text="Plugins" halign="1"></LABEL>
+		
+		<IMAGE name="hint" posx="795" posy="150" width="425" height="275" image="picon_default.png"></IMAGE>
+		
+		<TIME name="date" posx="795" posy="460" width="425" height="60" refresh="1" format="%A %d.%m.%Y" font="3"></TIME>
+		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
 	</WIDGET>
 	
 	<WIDGET name="mediaplayer" id="8" posx="0" posy="0" width="1280" height="720">
