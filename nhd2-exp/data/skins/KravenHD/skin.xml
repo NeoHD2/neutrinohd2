@@ -1055,7 +1055,7 @@
 		</TIME>
 		
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="1" mode="1" itemshadow="1">
-			<ITEM  id="5" localename="Timer list" itemicon="hint_timers" target="47" lines="1" shadow="1">
+			<ITEM  id="5" localename="Timerlist" itemicon="hint_timers" target="47" lines="1" shadow="1">
 			</ITEM>
 			<ITEM  id="5" localename="Plugins" itemicon="hint_plugin" target="43" lines="1" shadow="1">
 			</ITEM>
@@ -1088,7 +1088,7 @@
 			</ITEM>
 			<ITEM  id="5" localename="Stream information" itemicon="hint_dboxinfo" target="66" lines="1" shadow="1">
 			</ITEM>
-			<ITEM  id="5" localename="Timer list" itemicon="hint_timers" target="47" lines="1" shadow="1">
+			<ITEM  id="5" localename="Timerlist" itemicon="hint_timers" target="47" lines="1" shadow="1">
 			</ITEM>
 		</LISTBOX>
 	</WIDGET>

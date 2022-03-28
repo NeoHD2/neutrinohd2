@@ -354,11 +354,6 @@ int CChannelList::doChannelMenu(void)
 	
 	if( !bouquetList )
 		return 0;
-
-	//CMenuWidget * menu = new CMenuWidget(_("Edit"), NEUTRINO_ICON_SETTINGS);
-	//menu->enableSaveScreen();
-	//menu->setWidgetMode(MODE_MENU);
-	//menu->enableShrinkMenu();
 	
 	//
 	CWidget* widget = NULL;
@@ -393,6 +388,7 @@ int CChannelList::doChannelMenu(void)
 		widget->addItem(menu);
 	}
 	
+	widget->enableSaveScreen();
 	menu->clearItems();
 
 

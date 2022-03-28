@@ -294,6 +294,7 @@ int CBouquetList::doMenu()
 		widget->addItem(menu);
 	}
 	
+	widget->enableSaveScreen();
 	menu->clearItems();
 
 	if(!zapitBouquet->bUser) 

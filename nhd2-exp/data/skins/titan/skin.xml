@@ -825,7 +825,7 @@
 		</HEAD>
 		
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="1">
-			<ITEM id="5" localename="Timer list" itemicon="hint_timers" target="47">
+			<ITEM id="5" localename="Timerlist" itemicon="hint_timers" target="47">
 			</ITEM>
 			<ITEM id="5" localename="Plugins" itemicon="hint_plugin" target="43">
 			</ITEM>
@@ -854,7 +854,7 @@
 			</ITEM>
 			<ITEM id="5" localename="Stream information" itemicon="hint_dboxinfo" target="66">
 			</ITEM>
-			<ITEM id="5" localename="Timer list" itemicon="hint_timers" target="47">
+			<ITEM id="5" localename="Timerlist" itemicon="hint_timers" target="47">
 			</ITEM>
 		</LISTBOX>
 		

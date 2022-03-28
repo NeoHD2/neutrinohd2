@@ -1008,6 +1008,8 @@ void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* wind
 	unsigned int cc_refresh = 0;
 	unsigned int l_halign = 0;
 	
+	int font_size = -1;
+	
 	while ((node = xmlGetNextOccurence(node, "LABEL")) != NULL) 
 	{
 		name = xmlGetAttribute(node, (char*)"name");
@@ -1018,6 +1020,8 @@ void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* wind
 		cc_dy = xmlGetSignedNumericAttribute(node, "height", 0);
 						
 		cc_refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
+		
+		font_size = xmlGetSignedNumericAttribute(node, "font", 0);
 						
 		std::string text = "";
 							
@@ -1031,6 +1035,7 @@ void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* wind
 							
 		if (!text.empty()) label->setText(_(text.c_str()));
 		label->setHAlign(l_halign);
+		if (font_size) label->setFont(font_size);
 							
 		if (widget) widget->addCCItem(label);
 		if (window) window->addCCItem(label);
@@ -1098,6 +1103,8 @@ void CNeutrinoApp::parseCCTime(_xmlNodePtr node, CWidget* widget, CWindow* windo
 	unsigned int cc_y = 0;
 	unsigned int cc_dx = 0;
 	unsigned int cc_dy = 0;
+	
+	int font_size = -1;
 						
 	unsigned int cc_refresh = 0;
 	
@@ -1109,6 +1116,8 @@ void CNeutrinoApp::parseCCTime(_xmlNodePtr node, CWidget* widget, CWindow* windo
 		cc_y = xmlGetSignedNumericAttribute(node, "posy", 0);
 		cc_dx = xmlGetSignedNumericAttribute(node, "width", 0);
 		cc_dy = xmlGetSignedNumericAttribute(node, "height", 0);
+		
+		font_size = xmlGetSignedNumericAttribute(node, "font", 0);
 						
 		cc_refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
 					
@@ -1118,6 +1127,7 @@ void CNeutrinoApp::parseCCTime(_xmlNodePtr node, CWidget* widget, CWindow* windo
 							
 		if (cc_format != NULL) time->setFormat(_(cc_format));
 		if (cc_refresh) time->enableRepaint();
+		if (font_size) time->setFont(font_size);
 							
 		if (widget) widget->addCCItem(time);
 		if (window) window->addCCItem(time);
