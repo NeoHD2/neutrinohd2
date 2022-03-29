@@ -236,7 +236,7 @@ void CGeneralSettings::showMenu()
 		miscSettingsGeneral->enableShrinkMenu();
 		
 		miscSettingsGeneral->enablePaintHead();
-		miscSettingsGeneral->setTitle(_("General settings"), NEUTRINO_ICON_SETTINGS);
+		miscSettingsGeneral->setTitle(_("Misc settings"), NEUTRINO_ICON_SETTINGS);
 
 		miscSettingsGeneral->enablePaintFoot();
 			
