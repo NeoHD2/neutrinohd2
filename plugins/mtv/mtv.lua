@@ -726,14 +726,11 @@ function mtv_liste(id)
 	local menu = neutrino.CMenuWidget(glob.mtv[id].name, neutrino.PLUGINDIR .. "/mtv/mtv_hint.png")
 	menu:setWidgetType(neutrino.WIDGET_TYPE_FRAME)
 	menu:setItemsPerPage(3, 2)
-	menu:addWidget(neutrino.WIDGET_TYPE_CLASSIC)
-	menu:enableWidgetChange()
 	menu:enablePaintDate()
 
 	btn = neutrino.button_label_struct()
 
 	btn.button = neutrino.NEUTRINO_ICON_BUTTON_RED
-	btn.locale = neutrino.NONEXISTANT_LOCALE
 	btn.localename = "spiele die ganze Liste"
 
 	menu:setFootButtons(btn, 1)
@@ -742,8 +739,7 @@ function mtv_liste(id)
 	btn2 = neutrino.button_label_struct()
 
 	btn2.button = neutrino.NEUTRINO_ICON_BUTTON_REC
-	btn2.locale = neutrino.NONEXISTANT_LOCALE
-	btn2.localename = nil
+	btn2.localename = ""
 
 	menu:setHeadButtons(btn2, 1)
 	menu:addKey(neutrino.RC_record, null, "record")
@@ -791,7 +787,7 @@ function settings()
 	menu:setWidgetMode(neutrino.MODE_SETUP)
 	menu:enableShrinkMenu()
 
-	menu:addItem(neutrino.CMenuForwarder(neutrino.LOCALE_MENU_BACK))
+	menu:addItem(neutrino.CMenuForwarder("zurück"))
 	menu:addItem(neutrino.CMenuSeparator(neutrino.LINE))
 	item = neutrino.CMenuForwarder("Einstellungen speichern")
 	item:setIconName(neutrino.NEUTRINO_ICON_BUTTON_RED)
@@ -1017,7 +1013,6 @@ function searchliste(id)
 	btn = neutrino.button_label_struct()
 
 	btn.button = neutrino.NEUTRINO_ICON_BUTTON_RED
-	btn.locale = neutrino.NONEXISTANT_LOCALE
 	btn.localename = "spiele die ganze Liste"
 
 	menu:setFootButtons(btn, 1)
@@ -1026,8 +1021,7 @@ function searchliste(id)
 	btn2 = neutrino.button_label_struct()
 
 	btn2.button = neutrino.NEUTRINO_ICON_BUTTON_REC
-	btn2.locale = neutrino.NONEXISTANT_LOCALE
-	btn2.localename = nil
+	btn2.localename = ""
 
 	menu:setHeadButtons(btn2, 1)
 	menu:addKey(neutrino.RC_record, null, "record")

@@ -95,20 +95,18 @@ void CPluginList::showMenu()
 	dprintf(DEBUG_NORMAL, "CPluginList::showMenu\n");
 
 	//
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN))
+	if (CNeutrinoApp::getInstance()->getWidget("plugins"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getCCItemsCount();
+		pWidget = CNeutrinoApp::getInstance()->getWidget("plugins");
+		int prev_ItemsCount = pWidget->getItemsCount();
 		
-		pWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN);
-		plist = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_PLUGIN)->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		plist = (ClistBox*)pWidget->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
 		//
 		pWidget = new CWidget(0, 0, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
 		
-		pWidget->id = WIDGET_PLUGIN;
 		pWidget->name = "plugins";
 		
 		pWidget->setMenuPosition(MENU_POSITION_CENTER);

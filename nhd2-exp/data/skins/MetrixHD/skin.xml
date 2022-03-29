@@ -1058,7 +1058,7 @@
 		</TIME>
 	</WIDGET>
 	
-	<WIDGET name="service" id="4" posx="0" posy="0" width="1280" height="720">
+	<WIDGET name="system" id="4" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="650" posy="50" width="520" height="520" paintframe="1" >
 		</WINDOW>
 		

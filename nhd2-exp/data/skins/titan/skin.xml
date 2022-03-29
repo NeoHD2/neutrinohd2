@@ -794,7 +794,7 @@
 		</FOOT>
 	</WIDGET>
 
-	<WIDGET name="service" id="4" posx="0" posy="0" width="700" height="720" paintframe="1">
+	<WIDGET name="system" id="4" posx="0" posy="0" width="700" height="720" paintframe="1">
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="System" icon="softupdate" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		

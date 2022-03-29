@@ -283,22 +283,18 @@ function get_movies_menu(_id)
 
 	local red = neutrino.button_label_struct()
 	red.button = neutrino.NEUTRINO_ICON_BUTTON_RED
-	red.locale = neutrino.NONEXISTANT_LOCALE
 	red.localename = "Action"
 
 	local green = neutrino.button_label_struct()
 	green.button = neutrino.NEUTRINO_ICON_BUTTON_GREEN
-	green.locale = neutrino.NONEXISTANT_LOCALE
 	green.localename = ""
 
 	local yellow = neutrino.button_label_struct()
 	yellow.button = neutrino.NEUTRINO_ICON_BUTTON_YELLOW
-	yellow.locale = neutrino.NONEXISTANT_LOCALE
 	yellow.localename = "Neu bei NetzKino"
 
 	local blue = neutrino.button_label_struct()
 	blue.button = neutrino.NEUTRINO_ICON_BUTTON_BLUE
-	blue.locale = neutrino.NONEXISTANT_LOCALE
 	blue.localename = "Highlight"
 
 	local info = neutrino.button_label_struct()
@@ -311,8 +307,7 @@ function get_movies_menu(_id)
 
 	m_movies:setWidgetType(neutrino.WIDGET_TYPE_FRAME)
 	m_movies:setItemsPerPage(6, 2)
-	m_movies:enableCenterPos()
-	m_movies:enableCenterPos()
+
 	m_movies:setFootButtons(red)
 	m_movies:setFootButtons(green)
 	m_movies:setFootButtons(yellow)
@@ -323,7 +318,7 @@ function get_movies_menu(_id)
 	local item = nil
 	for _id, movie_detail in pairs(movies) do
 		item = neutrino.ClistBoxItem(conv_utf8(movie_detail.title))
-		item:setItemIcon(movie_detail.cover)
+		item:setHintIcon(movie_detail.cover)
 		--item:setHint(conv_utf8(movie_detail.content))
 		item:setActionKey(null, "play")
 

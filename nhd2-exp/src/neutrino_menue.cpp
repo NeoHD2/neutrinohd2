@@ -71,16 +71,14 @@ extern CPlugins * g_PluginList;    /* neutrino.cpp */
 // mainmenu
 void CNeutrinoApp::mainMenu(void)
 {
-	int shortcut = 1;
-
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::mainMenu:\n");
 	
 	CWidget* widget = NULL;
 	ClistBox* nMenu = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MAINMENU))
+	if (CNeutrinoApp::getInstance()->getWidget("mainmenu"))
 	{
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MAINMENU);
+		widget = CNeutrinoApp::getInstance()->getWidget("mainmenu");
 	}
 	else
 	{
@@ -140,6 +138,7 @@ void CNeutrinoApp::mainMenu(void)
 		
 		//
 		if (widget == NULL) widget = new CWidget(nMenu->getWindowsPos().iX, nMenu->getWindowsPos().iY, nMenu->getWindowsPos().iWidth, nMenu->getWindowsPos().iHeight);
+		widget->name = "mainmenu";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(nMenu);
@@ -267,13 +266,13 @@ bool CNeutrinoApp::showUserMenu(int button)
 	CWidget* widget = NULL;
 	ClistBox* menu = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_FEATURES))
+	if (CNeutrinoApp::getInstance()->getWidget("features"))
 	{
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_FEATURES);
+		widget = CNeutrinoApp::getInstance()->getWidget("features");
 		
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_FEATURES)->getItemsCount();
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("features")->getItemsCount();
 		
-		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_FEATURES)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		menu = (ClistBox*)/*CNeutrinoApp::getInstance()->getWidget(WIDGET_FEATURES)*/widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -297,6 +296,7 @@ bool CNeutrinoApp::showUserMenu(int button)
 		
 		//
 		widget = new CWidget(menu->getWindowsPos().iX, menu->getWindowsPos().iY, menu->getWindowsPos().iWidth, menu->getWindowsPos().iHeight);
+		widget->name = "features";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(menu);
@@ -379,12 +379,8 @@ bool CNeutrinoApp::showUserMenu(int button)
 	else
 	{
 		menu->setSelected(selected[button]);
-		//menu->exec(NULL, "");
 		selected[button] = menu->getSelected();
 	}
-
-	//if(menu)
-		//delete menu;
 		
 	widget->exec(NULL, "");
 

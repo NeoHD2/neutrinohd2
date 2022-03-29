@@ -146,7 +146,7 @@ void CImageInfo::paint()
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8, head_string);
 
 	//
-	frameBuffer->paintBoxRel(10, 10, max_width - 20, max_height - 20, /*COL_INFOBAR_PLUS_0*/COL_MENUCONTENT_PLUS_0);
+	frameBuffer->paintBoxRel(10, 10, max_width - 20, max_height - 20, COL_MENUCONTENT_PLUS_0);
 	
 	// title
 	g_Font[font_head]->RenderString(xpos, ypos + hheight + 1, width, head_string, COL_MENUHEAD, 0, true);

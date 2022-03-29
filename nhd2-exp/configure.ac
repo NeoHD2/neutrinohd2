@@ -1,4 +1,4 @@
-AC_INIT([neutrino-hd2],[4.2],[https://github.com/mohousch/neutrinohd2])
+AC_INIT([neutrino-hd2],[4.3],[https://github.com/mohousch/neutrinohd2])
 AM_INIT_AUTOMAKE([nostdinc])
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])

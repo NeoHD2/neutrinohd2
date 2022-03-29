@@ -203,12 +203,10 @@ function cat_menu(_id)
 	
 	local red = neutrino.button_label_struct()
 	red.button = neutrino.NEUTRINO_ICON_BUTTON_RED
-	red.locale = neutrino.NONEXISTANT_LOCALE
 	red.localename = "Download"
 
 	local green = neutrino.button_label_struct()
 	green.button = neutrino.NEUTRINO_ICON_BUTTON_GREEN
-	green.locale = neutrino.NONEXISTANT_LOCALE
 	green.localename = "Info"
 	
 	cm:setFootButtons(red)
@@ -248,7 +246,7 @@ function cat_menu(_id)
 				}
 					
 				item = neutrino.ClistBoxItem(conv_utf8(item_detail.name))
-				item:setItemIcon(tfile)
+				item:setHintIcon(tfile)
 				item:setHint(item_detail.desc)
 				
 				if item_detail.type == "movie" then
@@ -372,12 +370,10 @@ function episode_menu(s)
 	
 	local red = neutrino.button_label_struct()
 	red.button = neutrino.NEUTRINO_ICON_BUTTON_RED
-	red.locale = neutrino.NONEXISTANT_LOCALE
 	red.localename = "Download"
 
 	local green = neutrino.button_label_struct()
 	green.button = neutrino.NEUTRINO_ICON_BUTTON_GREEN
-	green.locale = neutrino.NONEXISTANT_LOCALE
 	green.localename = "Info"
 	
 	em:setFootButtons(red)
@@ -419,7 +415,7 @@ function episode_menu(s)
 				}
 				
 				item = neutrino.ClistBoxItem(episode_detail.name)
-				item:setItemIcon(tfile)
+				item:setHintIcon(tfile)
 				item:setHint(episode_detail.desc)
 				item:setActionKey(null, "info")
 				
@@ -498,12 +494,11 @@ function main()
 	local m = neutrino.CMenuWidget(plugin_title, neutrino.PLUGINDIR .. "/plutotv/plutotv.png")
 	m:enableShrinkMenu()
 	m:enablePaintDate()
-	m:setTitleMode(neutrino.CC_ALIGN_CENTER)
+	m:setTitleHAlign(neutrino.CC_ALIGN_CENTER)
 	m:clearAll()
 	
 	local red = neutrino.button_label_struct()
 	red.button = neutrino.NEUTRINO_ICON_BUTTON_RED
-	red.locale = neutrino.NONEXISTANT_LOCALE
 	red.localename = "Update Channels"
 	
 	m:setFootButtons(red)

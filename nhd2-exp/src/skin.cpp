@@ -118,7 +118,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			parent = new CEPGMenuHandler();
 			break;
 			
-		case WIDGET_SERVICE:
+		case WIDGET_SYSTEM:
 			parent = new CServiceMenu();
 			break;
 			

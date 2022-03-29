@@ -67,9 +67,9 @@ int CEPGMenuHandler::doMenu()
 	CWidget* widget = NULL;
 	ClistBox* redMenu = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_EPGTIMER))
+	if (CNeutrinoApp::getInstance()->getWidget("epgtimer"))
 	{
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_EPGTIMER);
+		widget = CNeutrinoApp::getInstance()->getWidget("epgtimer");
 	}
 	else
 	{
@@ -107,6 +107,7 @@ int CEPGMenuHandler::doMenu()
 		//
 		//
 		widget = new CWidget(redMenu->getWindowsPos().iX, redMenu->getWindowsPos().iY, redMenu->getWindowsPos().iWidth, redMenu->getWindowsPos().iHeight);
+		widget->name = "epgtimer";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(redMenu);

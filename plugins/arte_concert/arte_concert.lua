@@ -312,7 +312,7 @@ function select_playitem()
   	for i,r in  ipairs(p) do
 		item = neutrino.ClistBoxItem(r.title)
 		item:setHint(r.epg)
-		--item:setItemIcon(arte_concert)
+		--item:setHintIcon(arte_concert)
 
 		m:addItem(item)
   	end

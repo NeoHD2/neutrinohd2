@@ -96,9 +96,9 @@ void CServiceMenu::showMenu(void)
 	CWidget* widget = NULL;
 	ClistBox* service = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_SERVICE))
+	if (CNeutrinoApp::getInstance()->getWidget("system"))
 	{
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_SERVICE);
+		widget = CNeutrinoApp::getInstance()->getWidget("system");
 	}
 	else
 	{
@@ -135,9 +135,6 @@ void CServiceMenu::showMenu(void)
 		service->addItem(new CMenuForwarder(_("CI Cam"), true, NULL, g_CamHandler, NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_CICAM));
 #endif
 		
-		// image info
-		//service->addItem(new CMenuForwarder(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_IMAGEINFO), false);
-		
 		// software update
 		service->addItem(new CMenuForwarder(_("Software Update"), true, NULL, new CUpdateSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SOFTUPDATE));
 
@@ -145,6 +142,7 @@ void CServiceMenu::showMenu(void)
 		
 		//
 		widget = new CWidget(service->getWindowsPos().iX, service->getWindowsPos().iY, service->getWindowsPos().iWidth, service->getWindowsPos().iHeight);
+		widget->name = "system";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(service);

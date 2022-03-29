@@ -3247,10 +3247,7 @@ void CNeutrinoApp::RealRun(void)
 				// select NVODs
 				if (mode != mode_webtv)
 				{
-					if (hasWidgets() && (widget_exists(WIDGET_NVOD)))
-						getWidget(WIDGET_NVOD)->exec(NULL, "");
-					else
-						SelectNVOD();
+					SelectNVOD();
 				}
 
 				StartSubtitles();
@@ -5551,6 +5548,7 @@ void CNeutrinoApp::SelectNVOD()
 		//
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "nvod";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(NVODSelector);
 
