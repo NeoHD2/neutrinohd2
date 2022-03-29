@@ -136,7 +136,7 @@ void CServiceMenu::showMenu(void)
 #endif
 		
 		// image info
-		service->addItem(new CMenuForwarder(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_IMAGEINFO), false);
+		//service->addItem(new CMenuForwarder(_("Image info"),  true, NULL, new CImageInfo(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_IMAGEINFO), false);
 		
 		// software update
 		service->addItem(new CMenuForwarder(_("Software Update"), true, NULL, new CUpdateSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SOFTUPDATE));

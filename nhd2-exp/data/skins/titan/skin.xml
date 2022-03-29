@@ -807,8 +807,6 @@
 			</ITEM>
 			<ITEM id="5" localename="CI Cam" itemicon="hint_ci" target="41">
 			</ITEM>
-			<ITEM id="5" localename="Image info" itemicon="hint_imageinfo" target="61">
-			</ITEM>
 			<ITEM id="5" localename="Software update" itemicon="hint_swupdate" target="42">
 			</ITEM>
 		</LISTBOX>

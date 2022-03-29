@@ -1034,8 +1034,6 @@
 			</ITEM>
 			<ITEM  id="5" localename="CI Cam" lines="1" itemicon="hint_ci" target="41" shadow="1">
 			</ITEM>
-			<ITEM  id="5" localename="Image info" lines="1" itemicon="hint_imageinfo" target="61" shadow="1">
-			</ITEM>
 			<ITEM  id="5" localename="Software update" lines="1" itemicon="hint_swupdate" target="42" shadow="1">
 			</ITEM>
 		</LISTBOX>
