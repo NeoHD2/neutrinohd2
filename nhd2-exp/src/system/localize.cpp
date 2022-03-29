@@ -103,7 +103,9 @@ CLocaleManager::loadLocale_ret_t CLocaleManager::loadLocale(const char* const lo
 	setenv("LANGUAGE", (char*)lang.c_str(), 1);
 	
 	//	
-	setlocale(LC_ALL, (char*)lang.c_str());
+	//setlocale(LC_ALL, (char*)lang.c_str());
+	setlocale(LC_MESSAGES, (char*)lang.c_str());
+	setlocale(LC_CTYPE, (char*)lang.c_str());
 	
 	return UNICODE_FONT;
 }
