@@ -108,7 +108,7 @@ void COSDSettings::showMenu(void)
 		
 		//
 		osdSettings->enablePaintHead();
-		osdSettings->setTitle(_("OSD settings"), NEUTRINO_ICON_COLORS);
+		osdSettings->setTitle(_("OSD"), NEUTRINO_ICON_COLORS);
 		osdSettings->enablePaintDate();
 		
 		//

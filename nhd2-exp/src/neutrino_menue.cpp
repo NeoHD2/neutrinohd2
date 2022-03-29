@@ -53,6 +53,7 @@
 #include <gui/sleeptimer.h>
 #include <gui/power_menu.h>
 #include <gui/dboxinfo.h>
+#include <gui/osd_setup.h>
 
 #include <gui/audio_select.h>
 #include <gui/epgplus.h>
@@ -118,12 +119,15 @@ void CNeutrinoApp::mainMenu(void)
 
 		// mediaplayer
 		nMenu->addItem(new CMenuForwarder(_("Media Player"), true, NULL, new CMediaPlayerMenu(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_MEDIAPLAYER));
+		
+		// service
+		nMenu->addItem(new CMenuForwarder(_("System"), true, NULL, new CServiceMenu(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SERVICE));
 			
 		// main setting
 		nMenu->addItem(new CMenuForwarder(_("Settings"), true, NULL, new CMainSettingsMenu(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SETTINGS));
-
-		// service
-		nMenu->addItem(new CMenuForwarder(_("System"), true, NULL, new CServiceMenu(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SERVICE));
+		
+		// osd
+		nMenu->addItem(new CMenuForwarder(_("OSD"), true, NULL, new COSDSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS));
 			
 		// features
 		nMenu->addItem(new CMenuForwarder(_("Features"), true, NULL, this, "features", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_FEATURES));

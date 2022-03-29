@@ -864,8 +864,8 @@
 		</FOOT>
 	</WIDGET>
 
-	<WIDGET name="osd settings" id="15" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="OSD settings" icon="colors" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+	<WIDGET name="osd" id="15" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="OSD" icon="colors" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1"  mode="1">
@@ -937,8 +937,6 @@
 			</ITEM>
 			<ITEM id="5" localename="Movieplayer settings" itemicon="hint_mb" target="14">
 			</ITEM>
-			<ITEM id="5" localename="OSD settings" itemicon="hint_osd" target="15">
-			</ITEM>
 			<ITEM id="5" localename="Display settings" itemicon="hint_vfd" target="16">
 			</ITEM>
 			<ITEM id="5" localename="Remote Control settings" itemicon="hint_keys" target="17">
@@ -950,6 +948,16 @@
 			<ITEM id="5" localename="Misc settings" itemicon="hint_extended" target="20">
 			</ITEM>
 			<ITEM id="5" localename="HDD settings" itemicon="hint_hdd" target="21">
+			</ITEM>
+			<ITEM id="5" localename="Misc settings" itemicon="hint_settings" target="33">
+			</ITEM>
+			<ITEM id="5" localename="Channellist settings" itemicon="hint_bedit" target="35" >
+			</ITEM>
+			<ITEM id="5" localename="EPG settings" itemicon="hint_streaminfo" target="34">
+			</ITEM>
+			<ITEM id="5" localename="Filebrowser settings" itemicon="hint_fileplay" target="37">
+			</ITEM>
+			<ITEM id="5" localename="Start Channel settings" itemicon="hint_personalize" target="36">
 			</ITEM>
 		</LISTBOX>
 		
@@ -968,6 +976,7 @@
 			<ITEM id="5" localename="Features" itemicon="hint_plugin" target="6" actionkey="features"/>
 			<ITEM id="5" localename="System" itemicon="hint_service" target="4"/>
 			<ITEM id="5" localename="Settings" itemicon="hint_settings" target="2"/>
+			<ITEM id="5" localename="OSD" itemicon="hint_osd" target="15"/>
 			<ITEM id="5" localename="Information" itemicon="hint_dboxinfo" target="5"/>
 			<ITEM id="5" localename="Power Menu" itemicon="hint_shutdown" target="7"/>
 			<ITEM id="5" localename="Media Player" itemicon="hint_media" target="8"/>

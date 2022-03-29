@@ -48,6 +48,7 @@
 #include <gui/recording_setup.h>
 #include <gui/misc_setup.h>
 #include <gui/hdd_menu.h>
+#include <gui/zapit_setup.h>
 
 #include <system/debug.h>
 #include <system/setting_helpers.h>
@@ -123,7 +124,7 @@ void CMainSettingsMenu::showMenu(void)
 		mainSettings->addItem(new CMenuForwarder(_("Movieplayer settings"), true, NULL, new CMoviePlayerSettings(), NULL, RC_nokey, NULL,  NEUTRINO_ICON_MENUITEM_MOVIEPLAYERSETTINGS));
 
 		//OSD settings
-		mainSettings->addItem(new CMenuForwarder(_("OSD settings"), true, NULL, new COSDSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS));
+		//mainSettings->addItem(new CMenuForwarder(_("OSD"), true, NULL, new COSDSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_OSDSETTINGS));
 
 		// vfd/lcd settings
 		//if(CVFD::getInstance()->has_lcd)
@@ -139,10 +140,30 @@ void CMainSettingsMenu::showMenu(void)
 		mainSettings->addItem(new CMenuForwarder(_("Pictureviewer settings"), true, NULL, new CPictureViewerSettings(), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW, NEUTRINO_ICON_MENUITEM_PICTUREVIEWERSETTINGS));
 
 		// misc settings
-		mainSettings->addItem(new CMenuForwarder(_("Misc settings"), true, NULL, new CMiscSettingsMenu(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_MISCSETTINGS));
+		//mainSettings->addItem(new CMenuForwarder(_("Misc settings"), true, NULL, new CMiscSettingsMenu(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_MISCSETTINGS));
 
 		//HDD settings
 		mainSettings->addItem(new CMenuForwarder(_("HDD settings"), true, NULL, new CHDDMenuHandler(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_HDDSETTINGS));
+		
+		//miscSettings general
+		mainSettings->addItem(new CMenuForwarder(_("Misc settings"), true, NULL, new CGeneralSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_GENERALSETTINGS));
+		
+		//channellist settings
+		mainSettings->addItem(new CMenuForwarder(_("Channellist settings"), true, NULL, new CChannelListSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_CHANNELLISTSETTINGS));
+
+		// epg settings
+		mainSettings->addItem(new CMenuForwarder(_("EPG settings"), true, NULL, new CEPGSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_EPGSETTINGS));
+
+		// filebrowser settings
+		mainSettings->addItem(new CMenuForwarder(_("Filebrowser settings"), true, NULL, new CFileBrowserSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_FILEBROWSERSETTINGS));
+		
+		// zapit setup (start channel)
+		mainSettings->addItem(new CMenuForwarder(_("Last Channel settings"), true, NULL, new CZapitSetup(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_STARTCHANNELSETTINGS));
+		
+		// psi setup
+		//FIXME:	
+		//CPSISetup * chPSISetup = new CPSISetup(_(PSI settings), &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
+		//mainSettings->addItem( new CMenuForwarder(_("PSI settings"), true, NULL, chPSISetup, NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_PSISETTINGS));
 	
 		//
 		if (widget == NULL) widget = new CWidget(mainSettings->getWindowsPos().iX, mainSettings->getWindowsPos().iY, mainSettings->getWindowsPos().iWidth, mainSettings->getWindowsPos().iHeight);

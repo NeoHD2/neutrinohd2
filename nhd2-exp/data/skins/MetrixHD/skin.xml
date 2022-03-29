@@ -925,7 +925,7 @@
 			</ITEM>
 		</LISTBOX>
 		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="OSD settings" halign="1" font="1">
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="OSD" halign="1" font="1">
 		</LABEL>
 		
 		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
@@ -944,7 +944,7 @@
 	<WIDGET name="plugins" id="80" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		
-		<LISTBOX posx="60" posy="60" width="715" height="540" type="0" mode ="2" scrollbar="1"/>
+		<LISTBOX posx="60" posy="60" width="715" height="540" type="1" mode ="2" scrollbar="1"/>
 		
 		<BUTTON posx="50" posy="630" width="735" height="40">
 			<BUTTON_LABEL name="btn_red" localename="Delete">
@@ -956,7 +956,7 @@
 			<BUTTON_LABEL name="btn_yellow">
 			</BUTTON_LABEL>
 
-			<BUTTON_LABEL name="ok" localename="Reload">
+			<BUTTON_LABEL name="btn_blue" localename="Reload">
 			</BUTTON_LABEL>
 		</BUTTON>
 		
@@ -1065,18 +1065,11 @@
 		</WINDOW>
 		
 		<LISTBOX posx="640" posy="60" width="540" height="500" type="0" mode ="1">
-			<ITEM id="5" lines="1" localename="Scan transponder" itemicon="hint_scan" target="40">
-			</ITEM>
-			<ITEM id="5" lines="1" localename="Reload channel lists" itemicon="hint_reload" target="0" actionkey="reloadchannels">
-			</ITEM>
-			<ITEM id="5" lines="1" localename="Bouquet Editor" itemicon="hint_bedit" target="50">
-			</ITEM>
-			<ITEM id="5" lines="1" localename="CI Cam" itemicon="hint_ci" target="41">
-			</ITEM>
-			<ITEM id="5" lines="1" localename="Image info" itemicon="hint_imageinfo" target="61">
-			</ITEM>
-			<ITEM id="5" lines="1" localename="Software update" itemicon="hint_swupdate" target="42">
-			</ITEM>
+			<ITEM id="5" lines="1" localename="Scan transponder" itemicon="hint_scan" target="40"/>
+			<ITEM id="5" lines="1" localename="Reload channel lists" itemicon="hint_reload" target="0" actionkey="reloadchannels"/>
+			<ITEM id="5" lines="1" localename="Bouquet Editor" itemicon="hint_bedit" target="50"/>
+			<ITEM id="5" lines="1" localename="CI Cam" itemicon="hint_ci" target="41"/>
+			<ITEM id="5" lines="1" localename="Software update" itemicon="hint_swupdate" target="42"/>
 		</LISTBOX>
 		
 		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="System" halign="1" font="1">
@@ -1158,32 +1151,22 @@
 		</WINDOW>
 		
 		<LISTBOX posx="640" posy="60" width="540" height="500" type="1" mode="1">
-			<ITEM id="5" localename="Video settings" target="9">
-			</ITEM>
-			<ITEM id="5" localename="Audio settings" target="10">
-			</ITEM>
-			<ITEM id="5" localename="Parentallock settings" target="11">
-			</ITEM>
-			<ITEM id="5" localename="Network settings" target="12">
-			</ITEM>
-			<ITEM id="5" localename="Recording settings" target="13">
-			</ITEM>
-			<ITEM id="5" localename="Movieplayer settings" target="14">
-			</ITEM>
-			<ITEM id="5" localename="OSD settings" target="15">
-			</ITEM>
-			<ITEM id="5" localename="Display settings" target="16">
-			</ITEM>
-			<ITEM id="5" localename="Remote Control settings" target="17">
-			</ITEM>
-			<ITEM id="5" localename="Audioplayer settings" target="18">
-			</ITEM>
-			<ITEM id="5" localename="Pictureviewer settings" target="19">
-			</ITEM>
-			<ITEM id="5" localename="Misc settings" target="20">
-			</ITEM>
-			<ITEM id="5" localename="HDD settings" target="21">
-			</ITEM>
+			<ITEM id="5" localename="Video settings" target="9"/>
+			<ITEM id="5" localename="Audio settings" target="10"/>
+			<ITEM id="5" localename="Parentallock settings" target="11"/>
+			<ITEM id="5" localename="Network settings" target="12"/>
+			<ITEM id="5" localename="Recording settings" target="13"/>
+			<ITEM id="5" localename="Movieplayer settings" target="14"/>
+			<ITEM id="5" localename="Display settings" target="16"/>
+			<ITEM id="5" localename="Remote Control settings" target="17"/>
+			<ITEM id="5" localename="Audioplayer settings" target="18"/>
+			<ITEM id="5" localename="Pictureviewer settings" target="19"/>
+			<ITEM id="5" localename="HDD settings" target="21"/>
+			<ITEM id="5" localename="Channellist settings" target="35"/>
+			<ITEM id="5" localename="EPG settings" target="34"/>
+			<ITEM id="5" localename="Filebrowser settings" target="37"/>
+			<ITEM id="5" localename="Start Channel settings" target="36"/>
+			<ITEM id="5" localename="Misc settings" target="33"/>
 		</LISTBOX>
 		
 		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Settings" halign="1" font="1">
@@ -1217,6 +1200,7 @@
 			</ITEM>
 			<ITEM id="5" localename="Settings" lines="1" itemicon="buttons/mainsetup.png" target="2">
 			</ITEM>
+			<ITEM id="5" localename="OSD" lines="1" itemicon="buttons/mediaplayer.png" target="15"/>
 			<ITEM id="5" localename="Information" lines="1" itemicon="buttons/information.png" target="5">
 			</ITEM>
 			<ITEM id="5" localename="Power Menu" lines="1" itemicon="buttons/powermenu.png" target="7">
