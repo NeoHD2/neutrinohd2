@@ -80,7 +80,7 @@ int CEPGMenuHandler::doMenu()
 		redMenu->enableShrinkMenu();
 		
 		redMenu->enablePaintHead();
-		redMenu->setTitle(_("EPG - Program Information"), NEUTRINO_ICON_BUTTON_EPG);
+		redMenu->setTitle(_("EPG / Timer"), NEUTRINO_ICON_BUTTON_EPG);
 		redMenu->enablePaintDate();
 		
 		redMenu->enablePaintFoot();

@@ -93,9 +93,9 @@ void COSDSettings::showMenu(void)
 	ClistBox* osdSettings = NULL;
 	
 	//
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_ODSETTINGS))
+	if (CNeutrinoApp::getInstance()->getWidget("osdsettings"))
 	{
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_ODSETTINGS);
+		widget = CNeutrinoApp::getInstance()->getWidget("osdsettings");
 	}
 	else
 	{
@@ -152,6 +152,7 @@ void COSDSettings::showMenu(void)
 		
 		//
 		if (widget == NULL) widget = new CWidget(osdSettings->getWindowsPos().iX, osdSettings->getWindowsPos().iY, osdSettings->getWindowsPos().iWidth, osdSettings->getWindowsPos().iHeight);
+		widget->name = "osdsettings";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(osdSettings);
@@ -1108,8 +1109,11 @@ void COSDDiverses::showMenu()
 	CMenuForwarder *as = new CMenuForwarder(_("Volume Step Size"), true, g_settings.audio_step, audio_step );
 	osdDiverseSettings->addItem(as);
 	
-	// menu_border
-	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Menu Border"), &g_settings.menu_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	// hintbox border
+	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Hintbox Border"), &g_settings.hintbox_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	
+	// messagebox border
+	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Messagebox Border"), &g_settings.hintbox_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 
 	//
 	widget->exec(NULL, "");

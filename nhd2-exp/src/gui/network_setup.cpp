@@ -188,12 +188,12 @@ void CNetworkSettings::showMenu()
 	CWidget* widget = NULL;
 	ClistBox* networkSettings = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("networksetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP)->getItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("networksetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP);
-		networkSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_NETWORKSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		networkSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -213,6 +213,7 @@ void CNetworkSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "networksetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(networkSettings);
 	}

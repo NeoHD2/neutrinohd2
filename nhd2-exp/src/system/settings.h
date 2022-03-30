@@ -216,30 +216,31 @@ struct SNeutrinoSettings
 	int  timing[TIMING_SETTING_COUNT]   ;
 	char timing_string[TIMING_SETTING_COUNT][4];
 
-#define FONT_TYPE_COUNT 22
+#define FONT_TYPE_COUNT 23
 	enum FONT_TYPES {
-		FONT_TYPE_MENU                =  0,
-		FONT_TYPE_MENU_TITLE          =  1,
-		FONT_TYPE_MENU_INFO           =  2,
-		FONT_TYPE_EPG_TITLE           =  3,
-		FONT_TYPE_EPG_INFO1           =  4,
-		FONT_TYPE_EPG_INFO2           =  5,
-		FONT_TYPE_EPG_DATE            =  6,
-		FONT_TYPE_EVENTLIST_TITLE     =  7,
-		FONT_TYPE_EVENTLIST_ITEMLARGE =  8,
-		FONT_TYPE_EVENTLIST_ITEMSMALL =  9,
-		FONT_TYPE_EVENTLIST_DATETIME  = 10,
-		FONT_TYPE_GAMELIST_ITEMLARGE  = 11,
-		FONT_TYPE_GAMELIST_ITEMSMALL  = 12,
-		FONT_TYPE_CHANNELLIST         = 13,
-		FONT_TYPE_CHANNELLIST_DESCR   = 14,
-		FONT_TYPE_CHANNELLIST_NUMBER  = 15,
-		FONT_TYPE_CHANNEL_NUM_ZAP     = 16,
-		FONT_TYPE_INFOBAR_NUMBER      = 17,
-		FONT_TYPE_INFOBAR_CHANNAME    = 18,
-		FONT_TYPE_INFOBAR_INFO        = 19,
-		FONT_TYPE_INFOBAR_SMALL       = 20,
-		FONT_TYPE_FILEBROWSER_ITEM    = 21
+		FONT_TYPE_MENU                	=  0,
+		FONT_TYPE_MENU_TITLE          	=  1,
+		FONT_TYPE_MENU_INFO           	=  2,
+		FONT_TYPE_EPG_TITLE           	=  3,
+		FONT_TYPE_EPG_INFO1           	=  4,
+		FONT_TYPE_EPG_INFO2           	=  5,
+		FONT_TYPE_EPG_DATE            	=  6,
+		FONT_TYPE_EVENTLIST_TITLE     	=  7,
+		FONT_TYPE_EVENTLIST_ITEMLARGE 	=  8,
+		FONT_TYPE_EVENTLIST_ITEMSMALL 	=  9,
+		FONT_TYPE_EVENTLIST_DATETIME  	= 10,
+		FONT_TYPE_GAMELIST_ITEMLARGE  	= 11,
+		FONT_TYPE_GAMELIST_ITEMSMALL  	= 12,
+		FONT_TYPE_CHANNELLIST         	= 13,
+		FONT_TYPE_CHANNELLIST_DESCR   	= 14,
+		FONT_TYPE_CHANNELLIST_NUMBER  	= 15,
+		FONT_TYPE_CHANNEL_NUM_ZAP     	= 16,
+		FONT_TYPE_INFOBAR_NUMBER      	= 17,
+		FONT_TYPE_INFOBAR_CHANNAME    	= 18,
+		FONT_TYPE_INFOBAR_INFO        	= 19,
+		FONT_TYPE_INFOBAR_SMALL       	= 20,
+		FONT_TYPE_FILEBROWSER_ITEM    	= 21,
+		FONT_TYPE_MENU_TITLE2			= 22
 	};
 
 	int screen_StartX;
@@ -485,7 +486,8 @@ struct SNeutrinoSettings
 	int infobar_border;
 	
 	//
-	int menu_border;
+	int hintbox_border;
+	int messagebox_border;
 
 	// icons dir
 	std::string icons_dir;

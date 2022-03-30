@@ -80,9 +80,9 @@ void CMainSettingsMenu::showMenu(void)
 	ClistBox* mainSettings = NULL;
 	
 	//
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MAINSETTINGS))
+	if (CNeutrinoApp::getInstance()->getWidget("settings"))
 	{
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MAINSETTINGS);
+		widget = CNeutrinoApp::getInstance()->getWidget("settings");
 	}
 	else
 	{
@@ -167,6 +167,7 @@ void CMainSettingsMenu::showMenu(void)
 	
 		//
 		if (widget == NULL) widget = new CWidget(mainSettings->getWindowsPos().iX, mainSettings->getWindowsPos().iY, mainSettings->getWindowsPos().iWidth, mainSettings->getWindowsPos().iHeight);
+		widget->name = "settings";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(mainSettings);

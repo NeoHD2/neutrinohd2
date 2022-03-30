@@ -848,7 +848,7 @@
 		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
 	</WIDGET>
 	
-	<WIDGET name="parentallocksettings" id="11" posx="0" posy="0" width="1280" height="720">
+	<WIDGET name="parentallocksetup" id="11" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
 		
@@ -861,82 +861,6 @@
 		
 		<TIME name="date" posx="795" posy="460" width="425" height="60" refresh="1" format="%A %d.%m.%Y" font="3"></TIME>
 		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
-	</WIDGET>
-	
-	<WIDGET name="miscsettings" id="20" posx="0" posy="0" width="1280" height="720">
-		<WINDOW posx="650" posy="50" width="520" height="520" paintframe="1" >
-		</WINDOW>
-		
-		<LISTBOX posx="640" posy="60" width="540" height="500" type="0" mode ="1">
-			<ITEM id="5" lines="1" localename="General Settings" itemicon="hint_settings" target="33">
-			</ITEM>
-			<ITEM id="5" lines="1" localename="Channellist Settings" itemicon="hint_bedit" target="35" >
-			</ITEM>
-			<ITEM id="5" lines="1" localename="EPG Settings" itemicon="hint_streaminfo" target="34">
-			</ITEM>
-			<ITEM id="5" lines="1" localename="Filebrowser Settings" itemicon="hint_fileplay" target="37">
-			</ITEM>
-			<ITEM id="5" lines="1" localename="Start Channel settings" itemicon="hint_personalize" target="36">
-			</ITEM>
-		</LISTBOX>
-		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Misc settings" halign="1" font="1">
-		</LABEL>
-		
-		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
-		
-		<IMAGE name="image" id="1" posx="300" posy="20" width="300" height="300" image="picon_default.png"></IMAGE>
-		
-		<WINDOW posx="300" posy="400" width="300" height="100" paintframe="1" >
-		</WINDOW>
-		
-		<TIME name="time" id="10" posx="300" posy="410" width="300" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
-		</TIME>
-		<TIME name="time" id="10" posx="300" posy="440" width="300" height="60" refresh="1" format="%H:%M:%S" font="8">
-		</TIME>
-	</WIDGET>
-	
-	<WIDGET name="osdsettings" id="15" posx="0" posy="0" width="1280" height="720">
-		<WINDOW posx="650" posy="50" width="520" height="520" paintframe="1" >
-		</WINDOW>
-		
-		<LISTBOX posx="640" posy="60" width="540" height="500" type="1" mode ="1">
-			<ITEM id="5" localename="Skin select" target="22">
-			</ITEM>
-			<ITEM id="5" localename="Themes" target="25" >
-			</ITEM>
-			<ITEM id="5" localename="Menu" target="23">
-			</ITEM>
-			<ITEM id="5" localename="Infobar" target="24">
-			</ITEM>
-			<ITEM id="5" localename="Language" target="26">
-			</ITEM>
-			<ITEM id="5" localename="Font" target="27">
-			</ITEM>
-			<ITEM id="5" localename="Timing" target="28">
-			</ITEM>
-			<ITEM id="5" localename="Screen" target="29">
-			</ITEM>
-			<ITEM id="5" localename="Misc settings" target="30">
-			</ITEM>
-			<ITEM id="5" localename="Skin Style selection" target="32">
-			</ITEM>
-		</LISTBOX>
-		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="OSD" halign="1" font="1">
-		</LABEL>
-		
-		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
-		
-		<IMAGE name="image" id="1" posx="300" posy="20" width="300" height="300" image="picon_default.png"></IMAGE>
-		
-		<WINDOW posx="300" posy="400" width="300" height="100" paintframe="1" >
-		</WINDOW>
-		
-		<TIME name="time" id="10" posx="300" posy="410" width="300" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
-		</TIME>
-		<TIME name="time" id="10" posx="300" posy="440" width="300" height="60" refresh="1" format="%H:%M:%S" font="8">
-		</TIME>
 	</WIDGET>
 	
 	<WIDGET name="plugins" id="80" posx="0" posy="0" width="1280" height="720">
@@ -969,6 +893,49 @@
 		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
 	</WIDGET>
 	
+	<WIDGET name="osdsettings" id="15" posx="0" posy="0" width="1280" height="720">
+		<WINDOW posx="650" posy="50" width="520" height="520" paintframe="1" >
+		</WINDOW>
+		
+		<LISTBOX posx="640" posy="60" width="540" height="500" type="1" mode ="1">
+			<ITEM id="5" localename="Skin select" target="22">
+			</ITEM>
+			<ITEM id="5" localename="Themes" target="25" >
+			</ITEM>
+			<ITEM id="5" localename="Menu" target="23">
+			</ITEM>
+			<ITEM id="5" localename="Infobar" target="24">
+			</ITEM>
+			<ITEM id="5" localename="Language" target="26">
+			</ITEM>
+			<ITEM id="5" localename="Font" target="27">
+			</ITEM>
+			<ITEM id="5" localename="Timing" target="28">
+			</ITEM>
+			<ITEM id="5" localename="Screen" target="29">
+			</ITEM>
+			<ITEM id="5" localename="Misc settings" target="30">
+			</ITEM>
+			<ITEM id="5" localename="Skin Style selection" target="32">
+			</ITEM>
+		</LISTBOX>
+		
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="OSD" halign="1" font="22">
+		</LABEL>
+		
+		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
+		
+		<IMAGE name="image" id="1" posx="300" posy="20" width="300" height="300" image="picon_default.png"></IMAGE>
+		
+		<WINDOW posx="280" posy="400" width="340" height="100" paintframe="1" >
+		</WINDOW>
+		
+		<TIME name="time" posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
+		</TIME>
+		<TIME name="time" posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" font="8">
+		</TIME>
+	</WIDGET>
+	
 	<WIDGET name="mediaplayer" id="8" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="650" posy="50" width="520" height="520" paintframe="1" >
 		</WINDOW>
@@ -978,19 +945,19 @@
 			</INTEGRATION>
 		</LISTBOX>
 		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Media Player" halign="1" font="1">
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Media Player" halign="1" font="22">
 		</LABEL>
 		
 		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
 		
 		<IMAGE name="image" id="1" posx="300" posy="50" width="300" height="300" image="buttons/mediaplayer.png"></IMAGE>
 		
-		<WINDOW posx="300" posy="400" width="300" height="100" paintframe="1" >
+		<WINDOW posx="280" posy="400" width="340" height="100" paintframe="1" >
 		</WINDOW>
 		
-		<TIME name="time" id="10" posx="300" posy="410" width="300" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
+		<TIME name="time" posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
 		</TIME>
-		<TIME name="time" id="10" posx="300" posy="440" width="300" height="60" refresh="1" format="%H:%M:%S" font="8">
+		<TIME name="time" posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" font="8">
 		</TIME>
 	</WIDGET>
 	
@@ -1009,19 +976,19 @@
 			</INTEGRATION>
 		</LISTBOX>
 		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Information" halign="1" font="1">
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Information" halign="1" font="22">
 		</LABEL>
 		
 		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
 		
 		<IMAGE name="image" id="1" posx="300" posy="50" width="300" height="300" image="buttons/information.png"></IMAGE>
 		
-		<WINDOW posx="300" posy="400" width="300" height="100" paintframe="1" >
+		<WINDOW posx="280" posy="400" width="340" height="100" paintframe="1" >
 		</WINDOW>
 		
-		<TIME name="time" id="10" posx="300" posy="410" width="300" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
+		<TIME name="time" posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
 		</TIME>
-		<TIME name="time" id="10" posx="300" posy="440" width="300" height="60" refresh="1" format="%H:%M:%S" font="8">
+		<TIME name="time" posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" font="8">
 		</TIME>
 	</WIDGET>
 	
@@ -1042,19 +1009,19 @@
 			</ITEM>
 		</LISTBOX>
 		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Power Menu" halign="1" font="1">
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Power Menu" halign="1" font="22">
 		</LABEL>
 		
 		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
 		
 		<IMAGE name="image" id="1" posx="300" posy="50" width="300" height="300" image="buttons/powermenu.png"></IMAGE>
 		
-		<WINDOW posx="300" posy="400" width="300" height="100" paintframe="1" >
+		<WINDOW posx="280" posy="400" width="340" height="100" paintframe="1" >
 		</WINDOW>
 		
-		<TIME name="time" id="10" posx="300" posy="410" width="300" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
+		<TIME name="time" posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
 		</TIME>
-		<TIME name="time" id="10" posx="300" posy="440" width="300" height="60" refresh="1" format="%H:%M:%S" font="8">
+		<TIME name="time" posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" font="8">
 		</TIME>
 	</WIDGET>
 	
@@ -1070,19 +1037,19 @@
 			<ITEM id="5" lines="1" localename="Software update" itemicon="hint_swupdate" target="42"/>
 		</LISTBOX>
 		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="System" halign="1" font="1">
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="System" halign="1" font="22">
 		</LABEL>
 		
 		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
 		
 		<IMAGE name="image" id="1" posx="300" posy="50" width="300" height="300" image="buttons/service.png"></IMAGE>
 		
-		<WINDOW posx="300" posy="400" width="300" height="100" paintframe="1" >
+		<WINDOW posx="280" posy="400" width="340" height="100" paintframe="1" >
 		</WINDOW>
 		
-		<TIME name="time" id="10" posx="300" posy="410" width="300" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
+		<TIME name="time" posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
 		</TIME>
-		<TIME name="time" id="10" posx="300" posy="440" width="300" height="60" refresh="1" format="%H:%M:%S" font="8">
+		<TIME name="time" posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" font="8">
 		</TIME>
 	</WIDGET>
 	
@@ -1092,19 +1059,19 @@
 		
 		<LISTBOX posx="640" posy="60" width="540" height="500" type="1" mode ="1"></LISTBOX>
 		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Features" halign="1" font="1">
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Features" halign="1" font="22">
 		</LABEL>
 		
 		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
 		
 		<IMAGE name="image" id="1" posx="300" posy="50" width="300" height="300" image="buttons/features.png"></IMAGE>
 		
-		<WINDOW posx="300" posy="400" width="300" height="100" paintframe="1" >
+		<WINDOW posx="280" posy="400" width="340" height="100" paintframe="1" >
 		</WINDOW>
 		
-		<TIME name="time" id="10" posx="300" posy="410" width="300" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
+		<TIME name="time" posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
 		</TIME>
-		<TIME name="time" id="10" posx="300" posy="440" width="300" height="60" refresh="1" format="%H:%M:%S" font="8">
+		<TIME name="time" posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" font="8">
 		</TIME>
 		
 		<KEY name="0x191" target="0" actionkey="plugins"> 
@@ -1128,19 +1095,19 @@
 			</ITEM>
 		</LISTBOX>
 		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="EPG - Programm Information" halign="1" font="1">
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="EPG / Timer" halign="1" font="22">
 		</LABEL>
 		
 		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
 		
 		<IMAGE name="image" id="1" posx="300" posy="50" width="300" height="300" image="buttons/timerepg.png"></IMAGE>
 		
-		<WINDOW posx="300" posy="400" width="300" height="100" paintframe="1" >
+		<WINDOW posx="280" posy="400" width="340" height="100" paintframe="1" >
 		</WINDOW>
 		
-		<TIME name="time" id="10" posx="300" posy="410" width="300" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
+		<TIME name="time" posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
 		</TIME>
-		<TIME name="time" id="10" posx="300" posy="440" width="300" height="60" refresh="1" format="%H:%M:%S" font="8">
+		<TIME name="time" posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" font="8">
 		</TIME>
 	</WIDGET>
 
@@ -1167,19 +1134,19 @@
 			<ITEM id="5" localename="Misc settings" target="33"/>
 		</LISTBOX>
 		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Settings" halign="1" font="1">
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Settings" halign="1" font="22">
 		</LABEL>
 		
 		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="#00195000"></WINDOW>
 		
 		<IMAGE name="image" id="1" posx="300" posy="50" width="300" height="300" image="buttons/mainsetup.png"></IMAGE>
 		
-		<WINDOW posx="300" posy="400" width="300" height="100" paintframe="1" >
+		<WINDOW posx="280" posy="400" width="340" height="100" paintframe="1" >
 		</WINDOW>
 		
-		<TIME name="time" id="10" posx="300" posy="410" width="300" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
+		<TIME name="time" id="10" posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
 		</TIME>
-		<TIME name="time" id="10" posx="300" posy="440" width="300" height="60" refresh="1" format="%H:%M:%S" font="8">
+		<TIME name="time" id="10" posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" font="8">
 		</TIME>
 	</WIDGET>
 
@@ -1207,15 +1174,15 @@
 			</ITEM>
 		</LISTBOX>
 		
-		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Main Menu" halign="1" font="1">
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Main Menu" halign="1" font="22">
 		</LABEL>
 		
-		<WINDOW posx="300" posy="400" width="300" height="100" paintframe="1">
+		<WINDOW posx="280" posy="400" width="340" height="100" paintframe="1">
 		</WINDOW>
 		
-		<TIME name="date" posx="300" posy="410" width="300" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
+		<TIME name="date" posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
 		</TIME>
-		<TIME name="time" posx="300" posy="440" width="300" height="60" refresh="1" format="%H:%M:%S" font="8">
+		<TIME name="time" posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" font="8">
 		</TIME>
 	</WIDGET>
 

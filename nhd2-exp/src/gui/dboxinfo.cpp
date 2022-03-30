@@ -479,9 +479,9 @@ void CInfoMenu::showMenu()
 	ClistBox* infoMenu = NULL;
 	
 	//
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_INFORMATION))
+	if (CNeutrinoApp::getInstance()->getWidget("information"))
 	{
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_INFORMATION);
+		widget = CNeutrinoApp::getInstance()->getWidget("information");
 	}
 	else
 	{
@@ -518,6 +518,7 @@ void CInfoMenu::showMenu()
 	
 		//
 		if (widget == NULL) widget = new CWidget(infoMenu->getWindowsPos().iX, infoMenu->getWindowsPos().iY, infoMenu->getWindowsPos().iWidth, infoMenu->getWindowsPos().iHeight);
+		widget->name = "information";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(infoMenu);

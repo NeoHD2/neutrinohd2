@@ -26,8 +26,6 @@
 #include <system/settings.h>
 
 
-extern CPlugins* g_PluginList;
-
 class CSwigHelpers
 {
 	private:
@@ -49,3 +47,5 @@ class CSwigHelpers
 };
 
 #endif
+
+

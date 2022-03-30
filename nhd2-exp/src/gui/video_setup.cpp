@@ -356,12 +356,12 @@ void CVideoSettings::showMenu()
 	CWidget* widget = NULL;
 	ClistBox* videoSettings = NULL; 
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_VIDEOSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("videosetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_VIDEOSETUP)->getItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("videosetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_VIDEOSETUP);
-		videoSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_VIDEOSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		videoSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -381,6 +381,7 @@ void CVideoSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "videosetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(videoSettings);
 	}

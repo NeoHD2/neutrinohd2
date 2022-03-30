@@ -687,7 +687,7 @@
 		</FOOT>
 	</WIDGET>
 	
-	<WIDGET name="parentallocksettings" id="11" posx="0" posy="0" width="700" height="720" paintframe="1">
+	<WIDGET name="parentallocksetup" id="11" posx="0" posy="0" width="700" height="720" paintframe="1">
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="0" >
 		</LISTBOX>
 		
@@ -839,8 +839,8 @@
 		</KEY>
 	</WIDGET>
 
-	<WIDGET name="epgmenu" id="3" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="EPG - Program Information" icon="epg" paintdate="1" format="%d.%m.%Y %H:%M:%S">
+	<WIDGET name="epgtimer" id="3" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="EPG / Timer" icon="epg" paintdate="1" format="%d.%m.%Y %H:%M:%S">
 		</HEAD>
 		
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="1">

@@ -942,24 +942,17 @@ int CTimerList::modifyTimer()
 
 	CTimerd::responseGetTimer* timer = &timerlist[selected];
 
-/*
-	CMenuWidget timerSettings(_("Modify timer"), NEUTRINO_ICON_SETTINGS);
-	timerSettings.enablePaintDate();
-	timerSettings.enableShrinkMenu();
-	timerSettings.setWidgetMode(MODE_SETUP);
-*/
 	//
 	ClistBox* timerSettings = NULL;
 	CWidget* widget = NULL;
 	
 	//
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MODIFYTIMER))
+	if (CNeutrinoApp::getInstance()->getWidget("modifytimer"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MODIFYTIMER)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MODIFYTIMER)->getCCItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("modifytimer");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MODIFYTIMER);
-		timerSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MODIFYTIMER)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		timerSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -979,6 +972,7 @@ int CTimerList::modifyTimer()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "modifytimer";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(timerSettings);
 	}
@@ -1110,13 +1104,12 @@ int CTimerList::newTimer()
 	CWidget* widget = NULL;
 	
 	//
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_NEWTIMER))
+	if (CNeutrinoApp::getInstance()->getWidget("newtimer"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NEWTIMER)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NEWTIMER)->getCCItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("newtimer");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_NEWTIMER);
-		timerSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_NEWTIMER)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		timerSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1136,6 +1129,7 @@ int CTimerList::newTimer()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "newtimer";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(timerSettings);
 	}

@@ -96,13 +96,12 @@ void CParentalLockSettings::showMenu()
 	dprintf(DEBUG_NORMAL, "CParentalLockSettings::showMenu:\n");
 	
 	//
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("parentallocksetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP)->getCCItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("parentallocksetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP);
-		listBox = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_PARENTALSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		listBox = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -122,6 +121,7 @@ void CParentalLockSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "parentallocksetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(listBox);
 	}

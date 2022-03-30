@@ -194,13 +194,12 @@ int CNFSMountGui::menu()
 	CWidget* widget = NULL;
 	ClistBox* mountMenuW = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_NFS))
+	if (CNeutrinoApp::getInstance()->getWidget("nfs"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NFS)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_NFS)->getCCItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("nfs");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_NFS);
-		mountMenuW = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_NFS)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		mountMenuW = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -220,6 +219,7 @@ int CNFSMountGui::menu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "nfs";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(mountMenuW);
 	}
@@ -316,10 +316,10 @@ int CNFSMountGui::menuEntry(int nr)
 	
 	if (CNeutrinoApp::getInstance()->getWidget("mountvolume"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("mountvolume")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("mountvolume");
-		mountMenuEntryW = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("mountvolume")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		mountMenuEntryW = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -339,6 +339,7 @@ int CNFSMountGui::menuEntry(int nr)
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "mountvolume";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(mountMenuEntryW);
 	}
@@ -425,20 +426,16 @@ int CNFSUmountGui::menu()
 	int count = 0;
 	CFSMounter::MountInfos infos;
 	
-	//CMenuWidget umountMenu(_("Umount network volume"), NEUTRINO_ICON_NETWORK);
-	//umountMenu.setWidgetMode(MODE_MENU);
-	//umountMenu.enableShrinkMenu();
-	
 	//
 	CWidget* widget = NULL;
 	ClistBox* umountMenu = NULL;
 	
 	if (CNeutrinoApp::getInstance()->getWidget("umountvolume"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("umountvolume")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("umountvolume");
-		umountMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("umountvolume")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		umountMenu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -458,6 +455,7 @@ int CNFSUmountGui::menu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "umountvolume";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(umountMenu);
 	}
@@ -505,20 +503,16 @@ int CNFSSmallMenu::exec( CMenuTarget* parent, const std::string & actionKey )
 
 	if (actionKey.empty())
 	{
-		//CMenuWidget menu(_("Network Mount Manager"), NEUTRINO_ICON_NETWORK);
-		//menu.setWidgetMode(MODE_MENU);
-		//menu.enableShrinkMenu();
-		
 		//
 		CWidget* widget = NULL;
 		ClistBox* menu = NULL;
 		
 		if (CNeutrinoApp::getInstance()->getWidget("nfssmall"))
 		{
-			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("nfssmall")->getItemsCount();
-			
 			widget = CNeutrinoApp::getInstance()->getWidget("nfssmall");
-			menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("nfssmall")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			int prev_ItemsCount = widget->getItemsCount();
+			
+			menu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 		}
 		else
 		{
@@ -538,6 +532,7 @@ int CNFSSmallMenu::exec( CMenuTarget* parent, const std::string & actionKey )
 			
 			//
 			widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			widget->name = "nfssmall";
 			widget->setMenuPosition(MENU_POSITION_CENTER);
 			widget->addItem(menu);
 		}

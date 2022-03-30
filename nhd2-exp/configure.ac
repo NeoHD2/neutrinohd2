@@ -259,6 +259,7 @@ data/skins/KravenHD/background/Makefile
 data/skins/MetrixHD/Makefile
 data/skins/MetrixHD/buttons/Makefile
 data/skins/titan/Makefile
+data/locale/Makefile
 src/sectionsd/Makefile
 src/timerd/Makefile
 src/zapit/Makefile

@@ -149,12 +149,12 @@ void CAudioSettings::showMenu()
 	CWidget* widget = NULL;
 	ClistBox* audioSettings = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("audiosetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP)->getItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("audiosetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP);
-		audioSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_AUDIOSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		audioSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -174,6 +174,7 @@ void CAudioSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "audiosetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(audioSettings);
 	}

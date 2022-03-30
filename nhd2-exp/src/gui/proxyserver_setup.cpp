@@ -66,13 +66,12 @@ int CProxySetup::showProxySetup()
 	CWidget* widget = NULL;
 	ClistBox* mn = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_PROXYSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("proxysetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PROXYSETUP)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_PROXYSETUP)->getCCItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("proxysetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_PROXYSETUP);
-		mn = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_PROXYSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		mn = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -92,6 +91,7 @@ int CProxySetup::showProxySetup()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "proxysetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(mn);
 	}
