@@ -247,10 +247,10 @@ void COSDMenuColorSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("menusetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("menusetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("menusetup");
-		OSDmenuColorsSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("menusetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		OSDmenuColorsSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -270,6 +270,7 @@ void COSDMenuColorSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "menusetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(OSDmenuColorsSettings);
 	}
@@ -435,10 +436,10 @@ void COSDInfoBarColorSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("infobarsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("infobarsetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("infobarsetup");
-		OSDinfobarColorSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("infobarsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		OSDinfobarColorSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -458,6 +459,7 @@ void COSDInfoBarColorSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "infobarsetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(OSDinfobarColorSettings);
 	}
@@ -562,10 +564,10 @@ void CLanguageSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("languagesetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("languagesetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("languagesetup");
-		languageSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("languagesetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		languageSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -585,6 +587,7 @@ void CLanguageSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "languagesetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(languageSettings);
 	}
@@ -726,10 +729,10 @@ void CFontSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("fontsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("fontsetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("fontsetup");
-		fontSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("fontsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		fontSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -749,6 +752,7 @@ void CFontSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, 700, MENU_HEIGHT);
+		widget->name = "fontsetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(fontSettings);
 	}
@@ -821,10 +825,10 @@ void COSDTimingSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("osdtimingsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("osdtimingsetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("osdtimingsetup");
-		osdTimingSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("osdtimingsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		osdTimingSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -844,6 +848,7 @@ void COSDTimingSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "osdtimingsetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(osdTimingSettings);
 	}
@@ -1035,10 +1040,10 @@ void COSDDiverses::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("osdmiscsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("osdmiscsetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("osdmiscsetup");
-		osdDiverseSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("osdmiscsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		osdDiverseSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1058,6 +1063,7 @@ void COSDDiverses::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, 800, MENU_HEIGHT);
+		widget->name = "osdmiscsetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(osdDiverseSettings);
 	}
@@ -1131,10 +1137,10 @@ void CSkinManager::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("skinsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("skinsetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("skinsetup");
-		skinMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("skinsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		skinMenu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1155,6 +1161,7 @@ void CSkinManager::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, 800, MENU_HEIGHT);
+		widget->name = "skinsetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(skinMenu);
 	}
@@ -1271,10 +1278,10 @@ void CSkinSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("skinstyleselectionsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("skinstyleselectionsetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("skinstyleselectionsetup");
-		skinSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("skinstyleselectionsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		skinSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1294,6 +1301,7 @@ void CSkinSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, 800, 600);
+		widget->name = "skinstyleselectionsetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(skinSettings);
 	}
