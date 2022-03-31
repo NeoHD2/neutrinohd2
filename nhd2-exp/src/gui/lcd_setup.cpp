@@ -131,10 +131,10 @@ void CLCDSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("lcdsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("lcdsetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("lcdsetup");
-		lcdSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("lcdsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		lcdSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -154,6 +154,7 @@ void CLCDSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "lcdsetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(lcdSettings);
 	}

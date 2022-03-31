@@ -77,10 +77,10 @@ CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::str
 	//	
 	if (CNeutrinoApp::getInstance()->getWidget("keychooser"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("keychooser")->getItemsCount();
-			
 		widget = CNeutrinoApp::getInstance()->getWidget("keychooser");
-		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("keychooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+			
+		menu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 		
 		//
 		if (menu->hasHead())
@@ -115,6 +115,7 @@ CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::str
 			
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "keychooser";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->enableSaveScreen();
 		widget->addItem(menu);

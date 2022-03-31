@@ -73,7 +73,7 @@
 		</TIME>
 	</WIDGET>
 	
-	<WIDGET name="rcsetup" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+	<WIDGET name="rcbinding" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="600" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
 		</LISTBOX>
 		<LABEL posx="640" posy="50" width="640" height="50" text="Keybinding settings" halign="1">
@@ -89,7 +89,7 @@
 		</TIME>
 	</WIDGET>
 	
-	<WIDGET name="remotecontrolsetup" id="17" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+	<WIDGET name="rcsetup" id="17" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="600" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
 		</LISTBOX>
 		<LABEL posx="640" posy="50" width="640" height="50" text="Keybinding settings" halign="1">
@@ -489,7 +489,7 @@
 		</TIME>
 	</WIDGET>
 	
-	<WIDGET name="softwareupdate" id="42" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+	<WIDGET name="updatesetup" id="42" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
 		</LISTBOX>
 		<LABEL posx="640" posy="50" width="640" height="50" text="Software update" halign="1">

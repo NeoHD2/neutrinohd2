@@ -160,11 +160,11 @@ void CImageInfo::paint()
 
 	const char * imagename = PACKAGE_NAME;
 	//imagename = config.getString("imagename", "neutrino-HD2").c_str();
-	const char * homepage = "http://gitorious.org/open-duckbox-project-sh4";
+	const char * homepage = "https://github.com/mohousch/neutrinohd2";
 	//homepage = config.getString("homepage", "http://gitorious.org/open-duckbox-project-sh4").c_str();
-	const char * docs = "http://wiki.neutrino-hd.de";
+	const char * docs = "https://github.com/mohousch/neutrinohd2";
 	//docs = config.getString("docs", "http://wiki.neutrino-hd.de").c_str();
-	const char * forum = "http://gitorious.org/open-duckbox-project-sh4";
+	const char * forum = "https://forum.mbremer.de/viewforum.php?f=86";
 	//forum = config.getString("forum", "http://gitorious.org/open-duckbox-project-sh4").c_str();
 	//const char * version = config.getString("version", "1202201602031021").c_str();
 	const char * builddate = BUILT_DATE;

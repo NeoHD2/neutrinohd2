@@ -216,10 +216,6 @@ void CThemes::readThemes(ClistBox* themes)
 int CThemes::Show()
 {
 	dprintf(DEBUG_NORMAL, "CThemes::Show:\n");
-
-	//CMenuWidget themes(_("Themes"), NEUTRINO_ICON_COLORS);
-	//themes.setWidgetMode(MODE_MENU);
-	//themes.enableShrinkMenu();
 	
 	//
 	CWidget* widget = NULL;
@@ -227,10 +223,10 @@ int CThemes::Show()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("themesetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("themesetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("themesetup");
-		themes = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("themesetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		themes = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -250,6 +246,7 @@ int CThemes::Show()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "themessetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(themes);
 	}

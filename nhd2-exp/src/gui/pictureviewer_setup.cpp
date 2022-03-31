@@ -113,10 +113,10 @@ void CPictureViewerSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("pictureviewersetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("pictureviewersetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("pictureviewersetup");
-		PicViewerSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("pictureviewersetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		PicViewerSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -136,6 +136,7 @@ void CPictureViewerSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "pictureviewersetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(PicViewerSettings);
 	}

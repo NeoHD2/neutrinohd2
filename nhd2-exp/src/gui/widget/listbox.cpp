@@ -174,10 +174,10 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 		
 		if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
 		{
-			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionchooser")->getItemsCount();
-			
 			widget = CNeutrinoApp::getInstance()->getWidget("optionchooser");
-			menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			int prev_ItemsCount = widget->getItemsCount();
+			
+			menu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 			
 			if (menu->hasFoot())
 			{
@@ -201,6 +201,7 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 			
 			//
 			widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			widget->name = "optionchooser";
 			widget->setMenuPosition(MENU_POSITION_CENTER);
 			widget->enableSaveScreen();
 			widget->addItem(menu);
@@ -233,8 +234,6 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 		
 		if(select >= 0) 
 			*optionValue = options[select].key;
-		
-		//delete menu;
 	} 
 	else 
 	{
@@ -654,10 +653,10 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 		
 		if (CNeutrinoApp::getInstance()->getWidget("optionstringchooser"))
 		{
-			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionstringchooser")->getItemsCount();
-			
 			widget = CNeutrinoApp::getInstance()->getWidget("optionstringchooser");
-			menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionstringchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			int prev_ItemsCount = widget->getItemsCount();
+			
+			menu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 			
 			if (menu->hasFoot())
 			{
@@ -681,6 +680,7 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 			
 			//
 			widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			widget->name = "optionstringchooser";
 			widget->setMenuPosition(MENU_POSITION_CENTER);
 			widget->enableSaveScreen();
 			widget->addItem(menu);
@@ -709,8 +709,6 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 		
 		if(select >= 0)
 			strcpy(optionValue, options[select].c_str());
-			
-		//delete menu;
 	} 
 	else 
 	{

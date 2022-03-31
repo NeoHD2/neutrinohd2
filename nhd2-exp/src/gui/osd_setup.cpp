@@ -1239,7 +1239,7 @@ int CSkinManager::exec(CMenuTarget* parent, const std::string& actionKey)
 		
 		return ret;
 	}
-	else if (!actionKey.empty() && actionKey != g_settings.preferred_skin)
+	else if (!actionKey.empty())
 	{
 		if (MessageBox(_("Skin Select"), _("this need Neutrino restart\ndo you want really to restart?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{

@@ -181,10 +181,10 @@ int CHDDMenuHandler::hddMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("hddsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("hddsetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("hddsetup");
-		hddmenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("hddsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		hddmenu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -204,6 +204,7 @@ int CHDDMenuHandler::hddMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "hddsetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(hddmenu);
 	}
@@ -322,17 +323,12 @@ int CHDDMenuHandler::hddMenu()
 		bool enabled = !CNeutrinoApp::getInstance()->recordingstatus && !isroot;
 
 		// hdd menu
-		//tempMenu[i] = new CMenuWidget(str, NEUTRINO_ICON_SETTINGS);
-		//tempMenu[i]->enableSaveScreen();
-		//tempMenu[i]->setWidgetMode(MODE_MENU);
-		//tempMenu[i]->enableShrinkMenu();
-		
 		if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
 		{
-			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionchooser")->getItemsCount();
-			
 			tempMenuWidget[i] = CNeutrinoApp::getInstance()->getWidget("optionchooser");
-			tempMenu[i] = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			int prev_ItemsCount = tempMenuWidget[i]->getItemsCount();
+			
+			tempMenu[i] = (ClistBox*)tempMenuWidget[i]->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 			
 			if (tempMenu[i]->hasFoot())
 			{
@@ -406,17 +402,12 @@ int CHDDMenuHandler::hddMenu()
 			mounted = check_if_mounted(DEVICE);
 			
 			// part submenu
-			//PartMenu[j] = new CMenuWidget(PART, NEUTRINO_ICON_SETTINGS);
-			//PartMenu[j]->enableSaveScreen();
-			//PartMenu[j]->setWidgetMode(MODE_MENU);
-			//PartMenu[j]->enableShrinkMenu();
-			
 			if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
 			{
-				int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionchooser")->getItemsCount();
-				
 				PartMenuWidget[j] = CNeutrinoApp::getInstance()->getWidget("optionchooser");
-				PartMenu[j] = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+				int prev_ItemsCount = PartMenuWidget[j]->getItemsCount();
+				
+				PartMenu[j] = (ClistBox*)PartMenuWidget[j]->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 				
 				if (PartMenu[j]->hasFoot())
 				{

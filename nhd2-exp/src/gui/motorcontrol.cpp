@@ -603,8 +603,8 @@ void CMotorControl::paintMenu()
 
 	int xpos1 = x + 10;
 	int xpos2 = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getRenderWidth("(7/yellow)");
-	int width2 = width - (xpos2 - xpos1) - 10;
-	int width1 = width - 10;
+	int width2 = width - (xpos2 - xpos1) - 20;
+	int width1 = width - 20;
 
 	paintLine(xpos1, &ypos, width1, (char *) "(0/OK)");
 	if(installerMenue)

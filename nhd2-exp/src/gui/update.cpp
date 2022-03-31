@@ -175,10 +175,10 @@ bool CFlashUpdate::selectHttpImage(void)
 	
 	if (CNeutrinoApp::getInstance()->getWidget("selecthttpimage"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("selecthttpimage")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("selecthttpimage");
-		SelectionWidget = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("selecthttpimage")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		SelectionWidget = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -198,6 +198,7 @@ bool CFlashUpdate::selectHttpImage(void)
 		
 		//
 		widget = new CWidget(0, 0, 600, MENU_HEIGHT);
+		widget->name = "selecthttpimage";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(SelectionWidget);
 	}
@@ -682,12 +683,12 @@ void CFlashExpert::showMTDSelector(const std::string & actionkey)
 	CWidget* widget = NULL;
 	ClistBox* mtdselector = NULL; 
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MTDSELECTOR))
+	if (CNeutrinoApp::getInstance()->getWidget("mtdselector"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MTDSELECTOR)->getItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("mtdselector");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MTDSELECTOR);
-		mtdselector = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MTDSELECTOR)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		mtdselector = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -707,6 +708,7 @@ void CFlashExpert::showMTDSelector(const std::string & actionkey)
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "mtdselector";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(mtdselector);
 	}
@@ -771,12 +773,12 @@ void CFlashExpert::showFileSelector(const std::string & actionkey)
 	CWidget* widget = NULL;
 	ClistBox* fileselector = NULL; 
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_FILESELECTOR))
+	if (CNeutrinoApp::getInstance()->getWidget("fileselector"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_FILESELECTOR)->getItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("fileselector");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_FILESELECTOR);
-		fileselector = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_FILESELECTOR)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		fileselector = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -796,6 +798,7 @@ void CFlashExpert::showFileSelector(const std::string & actionkey)
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "fileselector";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(fileselector);
 	}
@@ -955,12 +958,12 @@ void CUpdateSettings::showMenu()
 	CWidget* widget = NULL;
 	ClistBox* updateSettings = NULL; 
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_UPDATESETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("updatesetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_UPDATESETUP)->getItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("updatesetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_UPDATESETUP);
-		updateSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_UPDATESETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		updateSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -980,6 +983,7 @@ void CUpdateSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "updatesetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(updateSettings);
 	}
@@ -998,12 +1002,12 @@ void CUpdateSettings::showMenu()
 	CWidget* mtdexpertWidget = NULL;
 	ClistBox* mtdexpert = NULL; 
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_FLASHEXPERT))
+	if (CNeutrinoApp::getInstance()->getWidget("flashexpert"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_FLASHEXPERT)->getItemsCount();
+		mtdexpertWidget = CNeutrinoApp::getInstance()->getWidget("flashexpert");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		mtdexpertWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_FLASHEXPERT);
-		mtdexpert = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_FLASHEXPERT)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		mtdexpert = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1023,6 +1027,7 @@ void CUpdateSettings::showMenu()
 		
 		//
 		mtdexpertWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		mtdexpertWidget->name = "flashexpert";
 		mtdexpertWidget->setMenuPosition(MENU_POSITION_CENTER);
 		mtdexpertWidget->addItem(mtdexpert);
 	}

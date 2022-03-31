@@ -144,12 +144,12 @@ void CRemoteControlSettings::showMenu()
 	CWidget* widget = NULL;
 	ClistBox* remoteControlSettings = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_REMOTECONTROLSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("rcsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_REMOTECONTROLSETUP)->getItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("rcsetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_REMOTECONTROLSETUP);
-		remoteControlSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_REMOTECONTROLSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		remoteControlSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -169,6 +169,7 @@ void CRemoteControlSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "rcsetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(remoteControlSettings);
 	}
@@ -313,12 +314,12 @@ void CKeysBindingSettings::showMenu()
 	CWidget* widget = NULL;
 	ClistBox* bindSettings = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget("rcsetup"))
+	if (CNeutrinoApp::getInstance()->getWidget("rcbinding"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("rcsetup")->getItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("rcbinding");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget("rcsetup");
-		bindSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("rcsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		bindSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -338,6 +339,7 @@ void CKeysBindingSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "rcbinding";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(bindSettings);
 	}

@@ -116,12 +116,12 @@ void CCAMMenuHandler::doMainMenu()
 	CWidget* widget = NULL;
 	ClistBox* cammenu = NULL; 
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_CICAMSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("cammenu"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_CICAMSETUP)->getItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("cammenu");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_CICAMSETUP);
-		cammenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_CICAMSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		cammenu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -141,6 +141,7 @@ void CCAMMenuHandler::doMainMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "cammenu";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(cammenu);
 	}
@@ -180,10 +181,10 @@ void CCAMMenuHandler::doMainMenu()
 			//
 			if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
 			{
-				int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionchooser")->getItemsCount();
-				
 				tempMenuWidget = CNeutrinoApp::getInstance()->getWidget("optionchooser");
-				tempMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+				int prev_ItemsCount = tempMenuWidget->getItemsCount();
+				
+				tempMenu = (ClistBox*)tempMenuWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 				
 				if (tempMenu->hasFoot())
 				{
@@ -362,10 +363,10 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 			
 			if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
 			{
-				int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("optionchooser")->getItemsCount();
-				
 				menuWidget = CNeutrinoApp::getInstance()->getWidget("optionchooser");
-				menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("optionchooser")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+				int prev_ItemsCount = menuWidget->getItemsCount();
+				
+				menu = (ClistBox*)menuWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 				
 				if (menu->hasFoot())
 				{

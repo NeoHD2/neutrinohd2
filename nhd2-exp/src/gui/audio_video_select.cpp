@@ -193,6 +193,7 @@ void CAVPIDSelectWidget::showAudioDialog(void)
 					
 	//
 	widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+	widget->name = "avselect";
 	widget->setMenuPosition(MENU_POSITION_CENTER);
 	widget->addItem(AVPIDSelector);
 	

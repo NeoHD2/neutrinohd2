@@ -172,12 +172,12 @@ void CRecordingSettings::showMenu()
 	CWidget* widget = NULL;
 	ClistBox* recordingSettings = NULL; 
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_RECORDINGSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("recordingsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_RECORDINGSETUP)->getItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("recordingsetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_RECORDINGSETUP);
-		recordingSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_RECORDINGSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		recordingSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -197,6 +197,7 @@ void CRecordingSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "recordingsetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(recordingSettings);
 	}

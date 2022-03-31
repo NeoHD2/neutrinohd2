@@ -97,7 +97,7 @@
 		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
 	</WIDGET>
 	
-	<WIDGET name="rcsetup" posx="0" posy="0" width="1280" height="720">
+	<WIDGET name="rcbinding" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
 		
@@ -112,7 +112,7 @@
 		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
 	</WIDGET>
 	
-	<WIDGET name="remotecontrolsetup" id="17" posx="0" posy="0" width="1280" height="720">
+	<WIDGET name="rcsetup" id="17" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
 		
@@ -486,7 +486,7 @@
 		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
 	</WIDGET>
 	
-	<WIDGET name="softwareupdate" id="42" posx="0" posy="0" width="1280" height="720">
+	<WIDGET name="updatesetup" id="42" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
 		

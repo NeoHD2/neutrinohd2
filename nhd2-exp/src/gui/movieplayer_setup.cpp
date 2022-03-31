@@ -80,20 +80,16 @@ void CMoviePlayerSettings::showMenu()
 {
 	dprintf(DEBUG_NORMAL, "CMoviePlayerSettings::showMenu:\n");
 	
-	//CMenuWidget moviePlayerSettings(_("Movieplayer settings"), NEUTRINO_ICON_MOVIE);
-	//moviePlayerSettings.setWidgetMode(MODE_SETUP);
-	//moviePlayerSettings.enableShrinkMenu();
-	
 	//
 	CWidget* widget = NULL;
 	ClistBox* moviePlayerSettings = NULL; 
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MOVIEPLAYERSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("movieplayersetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MOVIEPLAYERSETUP)->getItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("movieplayersetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MOVIEPLAYERSETUP);
-		moviePlayerSettings = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MOVIEPLAYERSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		moviePlayerSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -113,6 +109,7 @@ void CMoviePlayerSettings::showMenu()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "movieplayersetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(moviePlayerSettings);
 	}
