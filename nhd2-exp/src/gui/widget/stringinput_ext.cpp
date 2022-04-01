@@ -70,7 +70,7 @@ void CExtendedInput::Init(void)
 	mheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
 	iheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_INFO]->getHeight();
 
-	width = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(name) + 20; // UTF-8
+	width = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getRenderWidth(name) + 40; // UTF-8
 	height = hheight + mheight + 20;
 
 	if (!hint_1.empty())
@@ -312,13 +312,12 @@ void CExtendedInput::paint()
 {
 	dprintf(DEBUG_NORMAL, "CExtendedInput::paint\n");
 	
-	// headbox
-	frameBuffer->paintBoxRel(x, y, width, hheight, COL_MENUHEAD_PLUS_0, RADIUS_MID, CORNER_TOP, g_settings.Head_gradient);
+	// head
+	CHeaders head(x, y, width, hheight, name.c_str());
+	head.paint();
 
 	// body / footbox
-	frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight, COL_MENUCONTENT_PLUS_0, RADIUS_MID, CORNER_BOTTOM);
-
-	g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->RenderString(x + BORDER_LEFT, y + hheight, width - BORDER_LEFT - BORDER_RIGHT, name.c_str(), COL_MENUHEAD, 0, true); // UTF-8
+	frameBuffer->paintBoxRel(x, y + hheight, width, height - hheight, COL_MENUCONTENT_PLUS_0, g_settings.Foot_radius, g_settings.Foot_corner);
 
 	if (!hint_1.empty())
 	{
@@ -327,6 +326,7 @@ void CExtendedInput::paint()
 			g_Font[SNeutrinoSettings::FONT_TYPE_MENU_INFO]->RenderString(x + 20, hintPosY + iheight, width - 20, hint_2, COL_MENUCONTENT, 0, true); // UTF-8
 	}
 
+	// input field
 	for(unsigned int i = 0; i < inputFields.size(); i++)
 	{
 		inputFields[i]->paint( x + 20, y+hheight + 20, (i == (unsigned int) selectedChar) );

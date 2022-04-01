@@ -1753,12 +1753,10 @@ int CFrontend::driveToSatellitePosition(t_satellite_position satellitePosition, 
 
 		if (moved) 
 		{
-			//currentSatellitePosition = satellitePosition;
 			waitForMotor = motorRotationSpeed ? 2 + abs(satellitePosition - currentSatellitePosition) / motorRotationSpeed : 0;
 			currentSatellitePosition = satellitePosition;
 		}
 	}
-	//currentSatellitePosition = satellitePosition;
 
 	return waitForMotor;
 }
@@ -2036,7 +2034,7 @@ int CFrontend::getDeliverySystem()
 			break;
 			
 		case FE_ATSC:
-            system = DVB_A;
+            		system = DVB_A;
 			break;
 	}
 	

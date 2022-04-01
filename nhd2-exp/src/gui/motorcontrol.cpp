@@ -514,8 +514,8 @@ void CMotorControl::paintStatus()
 	
 	int xpos1 = x + 10;
 	int xpos2 = xpos1 + 10 + g_Font[SNeutrinoSettings::FONT_TYPE_MENU_INFO]->getRenderWidth(_("(a) Motor Position:"));
-	int width2 = width - (xpos2 - xpos1) - 10;
-	int width1 = width - 10;
+	int width2 = width - (xpos2 - xpos1) - 20;
+	int width1 = width - 20;
 	
 	ypos = ypos_status;
 	paintSeparator(xpos1, &ypos, width, _("Motor Setup"));

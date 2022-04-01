@@ -346,13 +346,12 @@ void CScanSetup::showScanService()
 	ClistBox* scansetup = NULL;
 	
 	//
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN))
+	if (CNeutrinoApp::getInstance()->getWidget("scansetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN)->getCCItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("scansetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN);
-		scansetup = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_SCAN)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		scansetup = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -372,6 +371,7 @@ void CScanSetup::showScanService()
 		
 		//
 		widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		widget->name = "scansetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		widget->addItem(scansetup);
 	}
@@ -380,7 +380,7 @@ void CScanSetup::showScanService()
 	
 	// 
 	dmode = getFE(feindex)->diseqcType;
-	int shortcut = 1;
+	//int shortcut = 1;
 	
 	//sat list iterator
 	sat_iterator_t sit;
@@ -404,17 +404,17 @@ void CScanSetup::showScanService()
 	CSatelliteSetupNotifier * satNotify = new CSatelliteSetupNotifier(feindex);
 	CScanSetupNotifier * feModeNotifier = new CScanSetupNotifier(feindex);
 	
-	// Sat Setup
+	// satsetup
 	CWidget* satSetupWidget = NULL;
 	ClistBox* satSetup = NULL;
 	
 	//
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_SATSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("satsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_SATSETUP)->getItemsCount();
+		satSetupWidget = CNeutrinoApp::getInstance()->getWidget("satsetup");
+		int prev_ItemsCount = satSetupWidget->getItemsCount();
 		
-		satSetupWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_SATSETUP);
-		satSetup = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_SATSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		satSetup = (ClistBox*)satSetupWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -434,6 +434,7 @@ void CScanSetup::showScanService()
 		
 		//
 		satSetupWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		satSetupWidget->name = "satsetup";
 		satSetupWidget->setMenuPosition(MENU_POSITION_CENTER);
 		satSetupWidget->addItem(satSetup);
 	}
@@ -449,10 +450,10 @@ void CScanSetup::showScanService()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("satfindMenu"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("satfindMenu")->getItemsCount();
-		
 		satfindMenuWidget = CNeutrinoApp::getInstance()->getWidget("satfindMenu");
-		satfindMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("satfindMenu")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = satfindMenuWidget->getItemsCount();
+		
+		satfindMenu = (ClistBox*)satfindMenuWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -472,6 +473,7 @@ void CScanSetup::showScanService()
 		
 		//
 		satfindMenuWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		satfindMenuWidget->name = "satfindMenuWidget";
 		satfindMenuWidget->setMenuPosition(MENU_POSITION_CENTER);
 		satfindMenuWidget->addItem(satfindMenu);
 	}
@@ -494,10 +496,10 @@ void CScanSetup::showScanService()
 		//
 		if (CNeutrinoApp::getInstance()->getWidget("satOnOff"))
 		{
-			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("satOnOff")->getItemsCount();
-			
 			satOnOffWidget = CNeutrinoApp::getInstance()->getWidget("satOnOff");
-			satOnOff = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("satOnOff")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			int prev_ItemsCount = satOnOffWidget->getItemsCount();
+			
+			satOnOff = (ClistBox*)satOnOffWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 		}
 		else
 		{
@@ -517,6 +519,7 @@ void CScanSetup::showScanService()
 			
 			//
 			satOnOffWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			satOnOffWidget->name = "satOnOff";
 			satOnOffWidget->setMenuPosition(MENU_POSITION_CENTER);
 			satOnOffWidget->addItem(satOnOff);
 		}
@@ -541,10 +544,10 @@ void CScanSetup::showScanService()
 				
 				if (CNeutrinoApp::getInstance()->getWidget("tempsat"))
 				{
-					int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("tempsat")->getItemsCount();
-					
 					tempsatWidget = CNeutrinoApp::getInstance()->getWidget("tempsat");
-					tempsat = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("tempsat")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+					int prev_ItemsCount = tempsatWidget->getItemsCount();
+					
+					tempsat = (ClistBox*)tempsatWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 					
 					if (tempsat->hasFoot())
 					{
@@ -568,6 +571,7 @@ void CScanSetup::showScanService()
 					
 					//
 					tempsatWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+					tempsatWidget->name = "tempsat";
 					tempsatWidget->setMenuPosition(MENU_POSITION_CENTER);
 					tempsatWidget->enableSaveScreen();
 					tempsatWidget->addItem(tempsat);
@@ -630,7 +634,7 @@ void CScanSetup::showScanService()
 	} 
 	else if ( getFE(feindex)->getInfo()->type == FE_QAM) 
 	{
-		satSelect = new CMenuOptionStringChooser(_("Cable:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_nokey, "", true);
+		satSelect = new CMenuOptionStringChooser(_("Cable"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_nokey, "", true);
 
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++) 
 		{
@@ -643,7 +647,7 @@ void CScanSetup::showScanService()
 	}
 	else if ( getFE(feindex)->getInfo()->type == FE_OFDM) 
 	{
-		satSelect = new CMenuOptionStringChooser(_("Provider:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_nokey, "", true);
+		satSelect = new CMenuOptionStringChooser(_("Provider"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_nokey, "", true);
 
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++)
 		{
@@ -656,7 +660,7 @@ void CScanSetup::showScanService()
 	}
     	else if ( getFE(feindex)->getInfo()->type == FE_ATSC) 
 	{
-		satSelect = new CMenuOptionStringChooser(_("Provider:"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_nokey, "", true);
+		satSelect = new CMenuOptionStringChooser(_("Provider"), (char*)scanSettings->satNameNoDiseqc, true, NULL, RC_nokey, "", true);
 
 		for(sit = satellitePositions.begin(); sit != satellitePositions.end(); sit++)
 		{
@@ -680,12 +684,12 @@ void CScanSetup::showScanService()
 		satfindMenu->addItem(new CMenuForwarder(_("Motor settings"), true, NULL, new CMotorControl(feindex)));
 		
 		//
-		if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MOTORSETUP))
+		if (CNeutrinoApp::getInstance()->getWidget("motorsetup"))
 		{
-			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MOTORSETUP)->getItemsCount();
+			motorMenuWidget = CNeutrinoApp::getInstance()->getWidget("motorsetup");
+			int prev_ItemsCount = motorMenuWidget->getItemsCount();
 			
-			motorMenuWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MOTORSETUP);
-			motorMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MOTORSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			motorMenu = (ClistBox*)motorMenuWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 		}
 		else
 		{
@@ -695,7 +699,7 @@ void CScanSetup::showScanService()
 			motorMenu->enableShrinkMenu();
 			
 			motorMenu->enablePaintHead();
-			motorMenu->setTitle(_("DiSEqC settings"), NEUTRINO_ICON_UPDATE);
+			motorMenu->setTitle(_("Motor settings"), NEUTRINO_ICON_UPDATE);
 
 			motorMenu->enablePaintFoot();
 				
@@ -705,6 +709,7 @@ void CScanSetup::showScanService()
 			
 			//
 			motorMenuWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			motorMenuWidget->name = "motorsetup";
 			motorMenuWidget->setMenuPosition(MENU_POSITION_CENTER);
 			motorMenuWidget->addItem(motorMenu);
 		}
@@ -819,7 +824,7 @@ void CScanSetup::showScanService()
 		feModeNotifier->addItem(1, fsatSetup);
 		
 		// motor settings
-		fmotorMenu = new CMenuForwarder(_("DiSEqC settings"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, motorMenuWidget, "", RC_nokey);
+		fmotorMenu = new CMenuForwarder(_("Motor settings"), (getFE(feindex)->mode != (fe_mode_t)FE_NOTCONNECTED) && (getFE(feindex)->mode != (fe_mode_t)FE_LOOP), NULL, motorMenuWidget, "", RC_nokey);
 		feModeNotifier->addItem(1, fmotorMenu);
 		
 		scansetup->addItem(ojDiseqc);
@@ -833,12 +838,12 @@ void CScanSetup::showScanService()
 	CWidget* manualScanWidget = NULL;
 	ClistBox* manualScan = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_MANUALSCAN))
+	if (CNeutrinoApp::getInstance()->getWidget("manualscan"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_MANUALSCAN)->getItemsCount();
+		manualScanWidget = CNeutrinoApp::getInstance()->getWidget("manualscan");
+		int prev_ItemsCount = manualScanWidget->getItemsCount();
 		
-		manualScanWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_MANUALSCAN);
-		manualScan = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_MANUALSCAN)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		manualScan = (ClistBox*)manualScanWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -858,6 +863,7 @@ void CScanSetup::showScanService()
 		
 		//
 		manualScanWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		manualScanWidget->name = "manualscan";
 		manualScanWidget->setMenuPosition(MENU_POSITION_CENTER);
 		manualScanWidget->addItem(manualScan);
 	}
@@ -993,12 +999,12 @@ void CScanSetup::showScanService()
 	CWidget* autoScanWidget = NULL;
 	ClistBox* autoScan = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCAN))
+	if (CNeutrinoApp::getInstance()->getWidget("autoscan"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCAN)->getItemsCount();
+		autoScanWidget = CNeutrinoApp::getInstance()->getWidget("autoscan");
+		int prev_ItemsCount = autoScanWidget->getItemsCount();
 		
-		autoScanWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCAN);
-		autoScan = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCAN)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		autoScan = (ClistBox*)autoScanWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1018,6 +1024,7 @@ void CScanSetup::showScanService()
 		
 		//
 		autoScanWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		autoScanWidget->name = "autoscan";
 		autoScanWidget->setMenuPosition(MENU_POSITION_CENTER);
 		autoScanWidget->addItem(autoScan);
 	}
@@ -1053,12 +1060,12 @@ void CScanSetup::showScanService()
 		CWidget* autoScanAllWidget = NULL;
 		ClistBox* autoScanAll = NULL;
 		
-		if (CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCANALL))
+		if (CNeutrinoApp::getInstance()->getWidget("autoscanall"))
 		{
-			int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCANALL)->getItemsCount();
+			autoScanAllWidget = CNeutrinoApp::getInstance()->getWidget("autoscanall");
+			int prev_ItemsCount = autoScanAllWidget->getItemsCount();
 			
-			autoScanAllWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCANALL);
-			autoScanAll = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_AUTOSCANALL)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+			autoScanAll = (ClistBox*)autoScanAllWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 		}
 		else
 		{
@@ -1078,6 +1085,7 @@ void CScanSetup::showScanService()
 			
 			//
 			autoScanAllWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+			autoScanAllWidget->name = "autoscanall";
 			autoScanAllWidget->setMenuPosition(MENU_POSITION_CENTER);
 			autoScanAllWidget->addItem(autoScanAll);
 		}
@@ -1117,12 +1125,12 @@ int CScanSetup::showUnicableSetup()
 	CWidget* uniWidget = NULL;
 	ClistBox* uni_setup = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_UNICABLESETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("unicablesetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_UNICABLESETUP)->getItemsCount();
+		uniWidget = CNeutrinoApp::getInstance()->getWidget("unicablesetup");
+		int prev_ItemsCount = uniWidget->getItemsCount();
 		
-		uniWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_UNICABLESETUP);
-		uni_setup = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_UNICABLESETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		uni_setup = (ClistBox*)uniWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1142,6 +1150,7 @@ int CScanSetup::showUnicableSetup()
 		
 		//
 		uniWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		uniWidget->name = "unicablesetup";
 		uniWidget->setMenuPosition(MENU_POSITION_CENTER);
 		uniWidget->addItem(uni_setup);
 	}
@@ -1209,12 +1218,12 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 	CWidget* tpWidget = NULL;
 	ClistBox* menu = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_TRANSPONDER))
+	if (CNeutrinoApp::getInstance()->getWidget("transponder"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_TRANSPONDER)->getItemsCount();
+		tpWidget = CNeutrinoApp::getInstance()->getWidget("transponder");
+		int prev_ItemsCount = tpWidget->getItemsCount();
 		
-		tpWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_TRANSPONDER);
-		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_TRANSPONDER)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		menu = (ClistBox*)tpWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1234,6 +1243,7 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 		
 		//
 		tpWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+		tpWidget->name = "transponder";
 		tpWidget->setMenuPosition(MENU_POSITION_CENTER);
 		tpWidget->addItem(menu);
 	}
@@ -1299,7 +1309,6 @@ int CTPSelectHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 
 	int retval = tpWidget->exec(NULL, "");
 	//select = menu->getSelected();
-	//delete menu;
 
 	if(select >= 0) 
 	{
@@ -1800,14 +1809,12 @@ void CTunerSetup::showMenu()
 	CWidget* widget = NULL;
 	ClistBox* TunerSetup = NULL;
 	
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_TUNERSETUP))
+	if (CNeutrinoApp::getInstance()->getWidget("tunersetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_TUNERSETUP)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_TUNERSETUP)->getCCItemsCount();
+		widget = CNeutrinoApp::getInstance()->getWidget("tunersetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		widget = CNeutrinoApp::getInstance()->getWidget(WIDGET_TUNERSETUP);
-		
-		TunerSetup = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_TUNERSETUP)->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		TunerSetup = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1832,6 +1839,7 @@ void CTunerSetup::showMenu()
 		
 		//
 		widget = new CWidget(TunerSetup->getWindowsPos().iX, TunerSetup->getWindowsPos().iY, TunerSetup->getWindowsPos().iWidth, TunerSetup->getWindowsPos().iHeight);
+		widget->name = "tunersetup";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(TunerSetup);

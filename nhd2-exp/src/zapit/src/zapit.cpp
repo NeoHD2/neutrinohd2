@@ -2517,7 +2517,8 @@ bool zapit_parse_command(CBasicMessage::Header &rmsg, int connfd)
 				case FE_QPSK:
 				{
 					dprintf(DEBUG_INFO, "[zapit] tune to sat %s freq %d rate %d fec %d pol %d\n", name, TuneTP.TP.feparams.frequency, TuneTP.TP.feparams.u.qpsk.symbol_rate, TuneTP.TP.feparams.u.qpsk.fec_inner, TuneTP.TP.polarization);
-					live_fe->driveToSatellitePosition(satellitePosition);
+					if (getFE(TuneTP.feindex))
+						getFE(TuneTP.feindex)->driveToSatellitePosition(satellitePosition);
 					break;
 				}
 		
@@ -2532,7 +2533,7 @@ bool zapit_parse_command(CBasicMessage::Header &rmsg, int connfd)
 					break;
 		
 				default:
-					dprintf(DEBUG_INFO, "[zapit] Unknown type %d\n", live_fe->getInfo()->type);
+					dprintf(DEBUG_INFO, "[zapit] Unknown type %d\n", live_fe? live_fe->getInfo()->type : FE_QPSK);
 					return false;
 			}
 		

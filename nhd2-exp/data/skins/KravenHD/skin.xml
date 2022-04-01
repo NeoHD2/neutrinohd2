@@ -3,6 +3,36 @@
 <!-- SKIN: KravenHD -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="testmenu" id="999" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Test Menu" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
+	<WIDGET name="usermenu" id="999" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" scrollbar="1" itemshadow="1">
+		</LISTBOX>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
 	<WIDGET name="keychooser" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="600" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
 		</LISTBOX>
@@ -601,6 +631,22 @@
 		</TIME>
 	</WIDGET>
 	
+	<WIDGET name="parentallocksetup" id="11" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Parentallock settings" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
 	<WIDGET name="audiosetup" id="10" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
 		</LISTBOX>
@@ -799,6 +845,22 @@
 		</TIME>
 	</WIDGET>
 	
+	<WIDGET name="tunersetup" id="40" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
+		</LISTBOX>
+		<LABEL posx="640" posy="50" width="640" height="50" text="Servicescan" halign="1">
+		</LABEL>
+			
+		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
+		</IMAGE>
+		
+		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
+		</TIME>
+		
+		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
+		</TIME>
+	</WIDGET>
+	
 	<WIDGET name="modifytimer" id="91" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
 		</LISTBOX>
@@ -859,38 +921,6 @@
 			<BUTTON_LABEL name="ok" localename="Modify">
 			</BUTTON_LABEL>
 		</BUTTON>
-	</WIDGET>
-	
-	<WIDGET name="tunersetup" id="40" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
-		</LISTBOX>
-		<LABEL posx="640" posy="50" width="640" height="50" text="Servicescan" halign="1">
-		</LABEL>
-			
-		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
-		</IMAGE>
-		
-		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
-		</TIME>
-		
-		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
-		</TIME>
-	</WIDGET>
-
-	<WIDGET name="parentallocksetup" id="11" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
-		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" itemshadow="1">
-		</LISTBOX>
-		<LABEL posx="640" posy="50" width="640" height="50" text="Parentallock settings" halign="1">
-		</LABEL>
-			
-		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">
-		</IMAGE>
-		
-		<TIME posx="640" posy="450" width="640" height="100" refresh="1" format="%A %d.%m.%Y">
-		</TIME>
-		
-		<TIME posx="640" posy="500" width="640" height="100" refresh="1" format="%H:%M:%S">
-		</TIME>
 	</WIDGET>
 	
 	<WIDGET name="testmenu" id="999" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">

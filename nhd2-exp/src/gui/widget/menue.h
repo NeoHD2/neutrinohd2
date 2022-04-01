@@ -244,7 +244,7 @@ class CMenuWidget : public CMenuTarget
 		void setHeadCorner(int ra, int co){headRadius = ra; headCorner = co; def_headRadius = false; def_headCorner = false;};
 		void setHeadGradient(int grad){headGradient = grad; def_headGradient = false;};
 
-		// footInfo
+		// itemInfo
 		void enablePaintItemInfo(int fh = 70){paintFootInfo = true; footInfoHeight = fh; /*initFrames();*/};
 		void setItemInfoMode(int mode = ITEMINFO_INFO_MODE){footInfoMode = mode;};
 
@@ -255,21 +255,17 @@ class CMenuWidget : public CMenuTarget
 		void changeWidgetType();
 		void setWidgetMode(int mode){widgetMode = mode;};
 		void setMenuPosition(int p){menu_position = p;};
+		void enableShrinkMenu(){shrinkMenu = true;};
 
 		//
 		void setItemsPerPage(int itemsX = 6, int itemsY = 3){itemsPerX = itemsX; itemsPerY = itemsY; maxItemsPerPage = itemsPerX*itemsPerY;};
 
-		virtual void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
+		void integratePlugins(CPlugins::i_type_t integration = CPlugins::I_TYPE_DISABLED, const unsigned int shortcut = RC_nokey, bool enabled = true);
+
+		std::string& getString(void) { if (hasItem())return items[selected]->itemName; };
+		CMenuItem *getSelectedItem(void){if (hasItem()) return items[selected]; else return NULL;};
 
 		//
-		void enableShrinkMenu(){shrinkMenu = true;};
-		//void enableHeadLine(){headLine = true;};
-
-		virtual std::string& getString(void) { if (hasItem())return items[selected]->itemName; };
-		virtual CMenuItem *getSelectedItem(void){if (hasItem()) return items[selected]; else return NULL;};
-
-		//
-		//std::string getName(void){ return l_name.c_str();};
 		std::string getActionKey(){return actionKey;}; // lua
 };
 
