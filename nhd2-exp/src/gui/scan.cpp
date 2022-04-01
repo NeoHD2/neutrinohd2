@@ -377,11 +377,7 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 	// zap
 	if (CNeutrinoApp::getInstance()->channelList)
 	{
-		//NOTE: remember me get live_channel_id if it was 0 (first start)
-		if(live_channel_id == 0)
-			live_channel_id = CNeutrinoApp::getInstance()->channelList->getActiveChannel_ChannelID();
-
-		CNeutrinoApp::getInstance()->channelList->zapTo_ChannelID(live_channel_id);
+		CNeutrinoApp::getInstance()->channelList->zapTo_ChannelID(CNeutrinoApp::getInstance()->channelList->getActiveChannel_ChannelID());
 	}
 	
 	CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
