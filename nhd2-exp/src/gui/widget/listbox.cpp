@@ -224,7 +224,7 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 			if(options[count].valname != 0)
 				l_option = options[count].valname;
 			
-			menu->addItem(new CMenuForwarder(l_option), selected);
+			menu->addItem(new CMenuForwarder(_(l_option)), selected);
 		}
 		
 		widget->exec(NULL, "");

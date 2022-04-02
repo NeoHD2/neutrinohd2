@@ -2520,13 +2520,6 @@ int CNeutrinoApp::run(int argc, char **argv)
 
 	// check locale language
 	CLocaleManager::loadLocale_ret_t loadLocale_ret = g_Locale->loadLocale(g_settings.language);
-/*
-	if (loadLocale_ret == CLocaleManager::NO_SUCH_LOCALE)
-	{
-		strcpy(g_settings.language, "en");
-		loadLocale_ret = g_Locale->loadLocale(g_settings.language);
-	}
-*/ //FIXME:
 
 	// icons/buttons/hints path
 	frameBuffer->setIconBasePath(g_settings.icons_dir);
@@ -5688,11 +5681,10 @@ int main(int argc, char *argv[])
 	signal(SIGPIPE, SIG_IGN);
 	
 	// initlocale
-	setlocale(LC_ALL, "");
-	textdomain(PACKAGE_NAME);
+	//setlocale(LC_ALL, "");
 	//bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale");
-	bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/po");
-	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
+	//textdomain(PACKAGE_NAME);
+	//bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
 	
 	// set localtime
 	tzset();

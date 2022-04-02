@@ -99,13 +99,18 @@ CLocaleManager::loadLocale_ret_t CLocaleManager::loadLocale(const char* const lo
 	// set language
 	std::string lang = Lang2I18N(locale);
 	
+	// set lang
 	setenv("LANG", (char*)lang.c_str(), 1);
-	setenv("LANGUAGE", (char*)lang.c_str(), 1);
-	
-	//	
+	setenv("LANGUAGE", (char*)lang.c_str(), 1);	
 	//setlocale(LC_ALL, (char*)lang.c_str());
 	setlocale(LC_MESSAGES, (char*)lang.c_str());
 	setlocale(LC_CTYPE, (char*)lang.c_str());
+	
+	// init locale
+	setlocale(LC_ALL, "");
+	bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale");
+	textdomain(PACKAGE_NAME);
+	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
 	
 	return UNICODE_FONT;
 }
