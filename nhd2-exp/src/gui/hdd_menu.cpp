@@ -343,7 +343,6 @@ int CHDDMenuHandler::hddMenu()
 			tempMenu[i]->setMenuPosition(MENU_POSITION_CENTER);
 			tempMenu[i]->setWidgetMode(MODE_SETUP);
 			tempMenu[i]->enableShrinkMenu();
-			tempMenu[i]->enableSaveScreen();
 			
 			//
 			tempMenu[i]->enablePaintFoot();		
@@ -422,7 +421,6 @@ int CHDDMenuHandler::hddMenu()
 				PartMenu[j]->setMenuPosition(MENU_POSITION_CENTER);
 				PartMenu[j]->setWidgetMode(MODE_SETUP);
 				PartMenu[j]->enableShrinkMenu();
-				PartMenu[j]->enableSaveScreen();
 				
 				//
 				PartMenu[j]->enablePaintFoot();		

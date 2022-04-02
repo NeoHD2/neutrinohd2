@@ -1071,7 +1071,7 @@ void CCTime::paint()
 	}
 	
 	//
-	std::string timestr = getNowTimeStr(format.c_str());
+	std::string timestr = getNowTimeStr(_(format.c_str()));
 		
 	int timestr_len = g_Font[font]->getRenderWidth(timestr.c_str(), true); // UTF-8
 	
@@ -1080,7 +1080,7 @@ void CCTime::paint()
 		
 	int startPosX = cCBox.iX + (cCBox.iWidth - timestr_len)/2;
 	
-	g_Font[font]->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), timestr_len, timestr.c_str(), color, 0, true);
+	g_Font[font]->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), timestr_len, _(timestr.c_str()), color, 0, true);
 }
 
 void CCTime::refresh()
@@ -1093,14 +1093,14 @@ void CCTime::refresh()
 	//
 	std::string timestr = getNowTimeStr(format.c_str());
 		
-	int timestr_len = g_Font[font]->getRenderWidth(timestr.c_str(), true); // UTF-8
+	int timestr_len = g_Font[font]->getRenderWidth(_(timestr.c_str()), true); // UTF-8
 	
 	if (timestr_len > cCBox.iWidth)
 		timestr_len = cCBox.iWidth;
 		
 	int startPosX = cCBox.iX + (cCBox.iWidth - timestr_len)/2;
 	
-	g_Font[font]->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), timestr_len, timestr.c_str(), color, 0, true);
+	g_Font[font]->RenderString(startPosX, cCBox.iY + (cCBox.iHeight - g_Font[font]->getHeight())/2 + g_Font[font]->getHeight(), timestr_len, _(timestr.c_str()), color, 0, true);
 }
 
 // CCCounter

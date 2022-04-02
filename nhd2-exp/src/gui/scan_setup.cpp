@@ -562,7 +562,6 @@ void CScanSetup::showScanService()
 					tempsat->setMenuPosition(MENU_POSITION_CENTER);
 					tempsat->setWidgetMode(MODE_SETUP);
 					tempsat->enableShrinkMenu();
-					tempsat->enableSaveScreen();
 					
 					//
 					tempsat->enablePaintFoot();		

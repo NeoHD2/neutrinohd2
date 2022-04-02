@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 15:01+0200\n"
+"POT-Creation-Date: 2022-04-02 15:38+0200\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1842,7 +1842,7 @@ msgid "Saturation"
 msgstr ""
 
 msgid "Saturday"
-msgstr ""
+msgstr "Samstag"
 
 msgid "Save RC configuration"
 msgstr ""
@@ -2228,7 +2228,7 @@ msgid "Subtitles not found"
 msgstr ""
 
 msgid "Sunday"
-msgstr ""
+msgstr "Sonntag"
 
 msgid "Swap rotor east/west"
 msgstr ""
@@ -2372,22 +2372,22 @@ msgid "Themes"
 msgstr ""
 
 msgid "Thursday"
-msgstr ""
+msgstr "Donerstag"
 
 msgid "Time"
-msgstr ""
+msgstr "Zeit"
 
 msgid "Time Zone"
-msgstr ""
+msgstr "Zeit Zone"
 
 msgid "Time in sec. After this time the"
 msgstr ""
 
 msgid "Time-Syncronisation"
-msgstr ""
+msgstr "Zeit Synchronization"
 
 msgid "Time:"
-msgstr ""
+msgstr "Zeit:"
 
 msgid "Timed Step Mode"
 msgstr ""
@@ -2456,7 +2456,7 @@ msgid "Truncating, please wait"
 msgstr ""
 
 msgid "Tuesday"
-msgstr ""
+msgstr "Dienstag"
 
 msgid "Tuner mode"
 msgstr ""
@@ -2616,7 +2616,7 @@ msgid "WebTV"
 msgstr ""
 
 msgid "Wednesday"
-msgstr ""
+msgstr "Mittwoch"
 
 msgid "West"
 msgstr "Westen"

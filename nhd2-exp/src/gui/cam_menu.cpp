@@ -199,7 +199,6 @@ void CCAMMenuHandler::doMainMenu()
 				tempMenu->setMenuPosition(MENU_POSITION_CENTER);
 				tempMenu->setWidgetMode(MODE_SETUP);
 				tempMenu->enableShrinkMenu();
-				tempMenu->enableSaveScreen();
 				
 				//
 				tempMenu->enablePaintFoot();		
@@ -381,7 +380,6 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 				menu->setMenuPosition(MENU_POSITION_CENTER);
 				menu->setWidgetMode(MODE_SETUP);
 				menu->enableShrinkMenu();
-				menu->enableSaveScreen();
 				
 				//
 				menu->enablePaintFoot();		

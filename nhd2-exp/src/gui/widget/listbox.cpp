@@ -192,7 +192,6 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 			menu->setMenuPosition(MENU_POSITION_CENTER);
 			menu->setWidgetMode(MODE_SETUP);
 			menu->enableShrinkMenu();
-			menu->enableSaveScreen();
 			
 			//
 			menu->enablePaintFoot();		
@@ -671,7 +670,6 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 			menu->setMenuPosition(MENU_POSITION_CENTER);
 			menu->setWidgetMode(MODE_SETUP);
 			menu->enableShrinkMenu();
-			menu->enableSaveScreen();
 			
 			//
 			menu->enablePaintFoot();		
