@@ -510,15 +510,15 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 }
 
 // events
-void CWidget::onOKKeyPressed()
+void CWidget::onOKKeyPressed(neutrino_msg_t _msg)
 {
-	dprintf(DEBUG_INFO, "CWidget::onOKKeyPressed\n");
+	dprintf(DEBUG_INFO, "CWidget::onOKKeyPressed:0x%x\n", _msg);
 	
 	if(hasItem() && selected >= 0)
 	{
 		if (items[selected]->hasItem() && items[selected]->isSelectable())
 		{
-			int rv = items[selected]->oKKeyPressed(this);
+			int rv = items[selected]->oKKeyPressed(this, _msg);
 
 			actionKey = items[selected]->getActionKey();
 

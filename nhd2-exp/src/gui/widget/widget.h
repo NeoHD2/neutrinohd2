@@ -277,7 +277,7 @@ class CWidget : public CMenuTarget
 		CWidgetItem* getWidgetItem(const int pos, const int type);
 
 		// events
-		virtual void onOKKeyPressed();
+		virtual void onOKKeyPressed(neutrino_msg_t _msg = RC_ok);
 		virtual void onHomeKeyPressed();
 		virtual void onUpKeyPressed();
 		virtual void onDownKeyPressed();

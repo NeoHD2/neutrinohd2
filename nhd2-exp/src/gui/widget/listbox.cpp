@@ -3958,7 +3958,7 @@ void ClistBox::swipLeft()
 							break;
 					}
 					*/
-					parent->onOKKeyPressed();
+					parent->onOKKeyPressed(RC_left);
 				}
 			} 
 		}
@@ -4034,7 +4034,7 @@ void ClistBox::swipRight()
 							break;
 					}
 					*/
-					parent->onOKKeyPressed();
+					parent->onOKKeyPressed(RC_right);
 				}
 			} 
 		}
@@ -4042,19 +4042,19 @@ void ClistBox::swipRight()
 }
 
 //
-int ClistBox::oKKeyPressed(CMenuTarget* _parent)
+int ClistBox::oKKeyPressed(CMenuTarget* _parent, neutrino_msg_t _msg)
 {
 	dprintf(DEBUG_INFO, "ClistBox::okKeyPressed:\n");
 
 	if (hasItem() && selected >= 0 && items[selected]->isSelectable())
 	{
 		actionKey = items[selected]->actionKey;
-		items[selected]->msg = RC_ok;
+		items[selected]->msg = _msg;
 	}	
 
-	if(parent)
+	if(_parent)
 		if (hasItem() && selected >= 0 && items[selected]->isSelectable())
-			return items[selected]->exec(parent);
+			return items[selected]->exec(_parent);
 		else
 			return RETURN_EXIT;
 	else
@@ -4091,7 +4091,7 @@ void ClistBox::onDirectKeyPressed(neutrino_msg_t msg)
 				//actionKey = titem->actionKey;
 				titem->paint(true);
 				//titem->exec(parent);
-				parent->onOKKeyPressed();
+				parent->onOKKeyPressed(msg);
 			} 
 			break;
 		}
