@@ -1148,7 +1148,7 @@
 		</LISTBOX>
 	</WIDGET>
 
-	<WIDGET name="osdsettings" id="15" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
+	<WIDGET name="osd" id="15" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LABEL posx="640" posy="50" width="640" height="50" text="OSD" halign="1">
 		</LABEL>
 			

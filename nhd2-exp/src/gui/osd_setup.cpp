@@ -93,9 +93,9 @@ void COSDSettings::showMenu(void)
 	ClistBox* osdSettings = NULL;
 	
 	//
-	if (CNeutrinoApp::getInstance()->getWidget("osdsettings"))
+	if (CNeutrinoApp::getInstance()->getWidget("osd"))
 	{
-		widget = CNeutrinoApp::getInstance()->getWidget("osdsettings");
+		widget = CNeutrinoApp::getInstance()->getWidget("osd");
 	}
 	else
 	{
@@ -152,7 +152,7 @@ void COSDSettings::showMenu(void)
 		
 		//
 		if (widget == NULL) widget = new CWidget(osdSettings->getWindowsPos().iX, osdSettings->getWindowsPos().iY, osdSettings->getWindowsPos().iWidth, osdSettings->getWindowsPos().iHeight);
-		widget->name = "osdsettings";
+		widget->name = "osd";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		widget->addItem(osdSettings);
@@ -538,7 +538,7 @@ int CLanguageSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 	if (!actionKey.empty() && actionKey != g_settings.language)
 	{
 		strcpy(g_settings.language, actionKey.c_str());
-		g_Locale->loadLocale(g_settings.language);
+		g_Locale->loadLocale(Lang2I18N(g_settings.language).c_str());
 		
 		if (MessageBox(_("Information"), _("this need Neutrino restart\ndo you want really to restart?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
 		{
@@ -655,7 +655,7 @@ bool CLanguageSettings::changeNotify(const std::string& OptionName, void */*data
 	{
 		dprintf(DEBUG_NORMAL, "CLanguageSettings::changeNotify: %s\n", g_settings.language);
 		
-		g_Locale->loadLocale(g_settings.language);
+		g_Locale->loadLocale(Lang2I18N(g_settings.language).c_str());
 
 		return true;
 	}

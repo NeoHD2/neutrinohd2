@@ -2519,7 +2519,7 @@ int CNeutrinoApp::run(int argc, char **argv)
 	int loadSettingsErg = loadSetup(NEUTRINO_SETTINGS_FILE);
 
 	// check locale language
-	CLocaleManager::loadLocale_ret_t loadLocale_ret = g_Locale->loadLocale(g_settings.language);
+	CLocaleManager::loadLocale_ret_t loadLocale_ret = g_Locale->loadLocale(Lang2I18N(g_settings.language).c_str());
 
 	// icons/buttons/hints path
 	frameBuffer->setIconBasePath(g_settings.icons_dir);
@@ -5681,10 +5681,10 @@ int main(int argc, char *argv[])
 	signal(SIGPIPE, SIG_IGN);
 	
 	// initlocale
-	//setlocale(LC_ALL, "");
-	//bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale");
-	//textdomain(PACKAGE_NAME);
-	//bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
+	setlocale(LC_ALL, "");
+	bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale");
+	textdomain(PACKAGE_NAME);
+	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
 	
 	// set localtime
 	tzset();

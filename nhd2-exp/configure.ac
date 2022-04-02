@@ -8,7 +8,6 @@ TUXBOX_APPS_DIRECTORY
 TUXBOX_APPS_DVB
 TUXBOX_APPS_DRIVER
 TUXBOX_BOXTYPE
-TUXBOX_APPS_GETTEXT
 
 AX_PTHREAD
 
@@ -21,12 +20,12 @@ AM_PROG_LIBTOOL
 AM_PROG_CC_C_O
 
 #
-#AC_PATH_PROG(MSGFMT, msgfmt, AC_MSG_ERROR(Could not find msgfmt))
-#AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
-#AC_PATH_PROG(MSGMERGE, msgmerge, AC_MSG_ERROR(Could not find msgmerge))
-#AC_PATH_PROG(MSGUNIQ, msguniq, AC_MSG_ERROR(Could not find msguniq))
-#AC_PATH_PROG(MSGATTRIB, msgattrib, AC_MSG_ERROR(Could not find msgattrib))
-#AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
+AC_PATH_PROG(MSGFMT, msgfmt, AC_MSG_ERROR(Could not find msgfmt))
+AC_PATH_PROG(MSGINIT, msginit, AC_MSG_ERROR(Could not find msginit))
+AC_PATH_PROG(MSGMERGE, msgmerge, AC_MSG_ERROR(Could not find msgmerge))
+AC_PATH_PROG(MSGUNIQ, msguniq, AC_MSG_ERROR(Could not find msguniq))
+AC_PATH_PROG(MSGATTRIB, msgattrib, AC_MSG_ERROR(Could not find msgattrib))
+AC_PATH_PROG(XGETTEXT, xgettext, AC_MSG_ERROR(Could not find xgettext))
 
 #
 PKG_CHECK_MODULES(CURL, libcurl)
@@ -268,6 +267,5 @@ src/zapit/src/Makefile
 src/interfaces/Makefile
 src/interfaces/python/Makefile
 src/interfaces/lua/Makefile
-po/Makefile
 ])
 
