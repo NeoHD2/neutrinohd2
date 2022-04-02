@@ -391,6 +391,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 			}
 			
 			// handle directKey
+			items[selected]->onDirectKeyPressed(msg);
 		}
 
 		if (!handled) 

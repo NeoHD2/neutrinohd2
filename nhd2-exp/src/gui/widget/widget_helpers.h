@@ -624,7 +624,7 @@ class CWidgetItem
 		bool painted;
 		
 		//
-		CMenuTarget* parent;
+		CWidget* parent;
 		
 		//
 		struct keyAction { std::string action; CMenuTarget *menue; };
@@ -685,7 +685,7 @@ class CWidgetItem
 		virtual std::string getActionKey(void){ return actionKey;}; // lua
 		
 		//
-		virtual void setParent(CMenuTarget* p){parent = p;};
+		virtual void setParent(CWidget* p){parent = p;};
 		//
 		virtual void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 		virtual void setSecTimer(uint32_t sec){sec_timer_id = sec;};

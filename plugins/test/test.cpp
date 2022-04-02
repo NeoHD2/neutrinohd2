@@ -3841,7 +3841,7 @@ void CTestMenu::testClistBox()
 	//rightWidget->paintScrollBar(true);
 	
 	//
-	rightWidget->setParent(this);
+	//rightWidget->setParent(this);
 	rightWidget->addKey(RC_info, this, "linfo");
 	rightWidget->addKey(RC_setup, this, "lsetup");
 	

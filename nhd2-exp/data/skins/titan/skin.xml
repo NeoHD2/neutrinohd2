@@ -4,7 +4,7 @@
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 	<WIDGET name="testmenu" id="999" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode="1" scrollbar="1" >
 		</LISTBOX>
 		
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Test Menu" icon="multimedia" paintdate="1" format="%d.%m.%Y %H:%M:%S">
@@ -17,7 +17,7 @@
 	</WIDGET>
 	
 	<WIDGET name="usermenu" id="999" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" scrollbar="1" >
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode="1" scrollbar="1" >
 		</LISTBOX>
 		
 		<FOOT posx="30" posy="630" width="640" height="40" gradient="3" corner="15" radius="4">
@@ -32,11 +32,6 @@
 	</WIDGET>
 	
 	<WIDGET name="mountchooser" posx="0" posy="0" width="700" height="720" paintframe="1">
-		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
-		</LISTBOX>
-	</WIDGET>
-	
-	<WIDGET name="tempsat" posx="0" posy="0" width="700" height="720" paintframe="1">
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
 		</LISTBOX>
 	</WIDGET>
@@ -530,6 +525,11 @@
 			<BUTTON_LABEL name="information">
 			</BUTTON_LABEL>
 		</FOOT>
+	</WIDGET>
+	
+	<WIDGET name="tempsat" posx="0" posy="0" width="700" height="720" paintframe="1">
+		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="0" mode ="2" scrollbar="1">
+		</LISTBOX>
 	</WIDGET>
 	
 	<WIDGET name="satOnOff" posx="0" posy="0" width="700" height="720" paintframe="1">

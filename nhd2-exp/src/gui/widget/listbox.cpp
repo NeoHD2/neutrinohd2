@@ -160,7 +160,7 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 	bool wantsRepaint = false;
 	int ret = RETURN_REPAINT;
 	
-	if ( pulldown && parent)
+	if ( pulldown && parent && msg == RC_ok)
 		parent->hide();
 
 	// pulldown
@@ -638,7 +638,7 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 	bool wantsRepaint = false;
 	int ret = RETURN_REPAINT;
 
-	if ( pulldown && parent)
+	if ( pulldown && parent && msg == RC_ok)
 		parent->hide();
 
 	// pulldown
@@ -3939,15 +3939,26 @@ void ClistBox::swipLeft()
 			{
 				if((items[selected]->can_arrow)) 
 				{
-					//oKKeyPressed(parent);
 					items[selected]->msg = RC_left;
-					//if(parent)
-						//if (hasItem() && selected >= 0 && items[selected]->isSelectable())
-					items[selected]->exec(parent);
-						//else
-						//	return RETURN_EXIT;
-					//else
-						//return RETURN_EXIT;
+					
+					/*
+					int rv = items[selected]->exec(parent);
+
+					//FIXME:review this
+					switch ( rv ) 
+					{
+						case RETURN_EXIT_ALL:
+							//retval = RETURN_EXIT_ALL; //fall through
+						case RETURN_EXIT:
+							//titem->msg = RC_timeout;
+							break;
+						case RETURN_REPAINT:
+							//hide();
+							paint();
+							break;
+					}
+					*/
+					parent->onOKKeyPressed();
 				}
 			} 
 		}
@@ -3998,24 +4009,32 @@ void ClistBox::swipRight()
 	}
 	else if(widgetType == WIDGET_TYPE_STANDARD)
 	{
-		dprintf(DEBUG_INFO, "ClistBox::swipRight1:\n");
 		if(widgetMode == MODE_SETUP)
 		{
-			dprintf(DEBUG_INFO, "ClistBox::swipRight2:\n");
 			if(hasItem()) 
 			{
 				if((items[selected]->can_arrow)) 
 				{
-					dprintf(DEBUG_INFO, "ClistBox::swipRight3:\n");
-					//oKKeyPressed(parent);
 					items[selected]->msg = RC_right;
-					//if(parent)
-						//if (hasItem() && selected >= 0 && items[selected]->isSelectable())
-					items[selected]->exec(parent);
-						//else
-						//	return RETURN_EXIT;
-					//else
-						//return RETURN_EXIT;
+					
+					/*
+					int rv = items[selected]->exec(parent);
+
+					//FIXME:review this
+					switch ( rv ) 
+					{
+						case RETURN_EXIT_ALL:
+							//retval = RETURN_EXIT_ALL; //fall through
+						case RETURN_EXIT:
+							//titem->msg = RC_timeout;
+							break;
+						case RETURN_REPAINT:
+							//hide();
+							paint();
+							break;
+					}
+					*/
+					parent->onOKKeyPressed();
 				}
 			} 
 		}
@@ -4045,6 +4064,8 @@ int ClistBox::oKKeyPressed(CMenuTarget* _parent)
 //
 void ClistBox::onDirectKeyPressed(neutrino_msg_t msg)
 {
+	dprintf(DEBUG_INFO, "ClistBox::onDirectKeyPressed: 0x%x\n", msg);
+	
 	// 
 	for (unsigned int i = 0; i < items.size(); i++) 
 	{
@@ -4066,8 +4087,11 @@ void ClistBox::onDirectKeyPressed(neutrino_msg_t msg)
 				paintItemInfo(selected);
 				pos = selected;
 				
-				titem->msg = RC_ok;
-				actionKey = titem->actionKey;
+				//titem->msg = RC_ok;
+				//actionKey = titem->actionKey;
+				titem->paint(true);
+				//titem->exec(parent);
+				parent->onOKKeyPressed();
 			} 
 			break;
 		}

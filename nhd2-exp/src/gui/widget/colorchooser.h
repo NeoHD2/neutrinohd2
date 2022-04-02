@@ -57,9 +57,6 @@ class CColorChooser : public CMenuTarget
 		CBox cFrameBoxItem;
 		CBox cFrameBoxColorPreview;
 
-		CCIcon titleIcon;
-		CCIcon volumeBodyIcon;
-
 		CWindow m_cBoxWindow;
 
 		unsigned char * value[4]; // r, g, b, alpha

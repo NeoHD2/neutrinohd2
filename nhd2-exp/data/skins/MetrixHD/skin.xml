@@ -6,7 +6,7 @@
 	<WIDGET name="testmenu" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		
-		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
+		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="1" scrollbar="1"/>
 		
 		<WINDOW posx="785" posy="70" width="445" height="580" paintframe="1" color="#00195000">
 		</WINDOW>
@@ -21,7 +21,7 @@
 	
 	<WIDGET name="usermenu" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
-		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
+		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="1" scrollbar="1"/>
 		
 		<WINDOW posx="785" posy="70" width="445" height="580" paintframe="1" color="#00195000">
 		</WINDOW>
@@ -46,19 +46,6 @@
 	</WIDGET>
 	
 	<WIDGET name="mountchooser" posx="0" posy="0" width="1280" height="720">
-		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
-		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
-		
-		<WINDOW posx="785" posy="70" width="445" height="580" paintframe="1" color="#00195000">
-		</WINDOW>
-		
-		<IMAGE name="hint" posx="795" posy="150" width="425" height="275" image="picon_default.png"></IMAGE>
-		
-		<TIME name="date" posx="795" posy="460" width="425" height="60" refresh="1" format="%A %d.%m.%Y" font="3"></TIME>
-		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
-	</WIDGET>
-	
-	<WIDGET name="tempsat" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
 		
@@ -636,6 +623,19 @@
 		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
 	</WIDGET>
 	
+	<WIDGET name="tempsat" posx="0" posy="0" width="1280" height="720">
+		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
+		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
+		
+		<WINDOW posx="785" posy="70" width="445" height="580" paintframe="1" color="#00195000">
+		</WINDOW>
+		
+		<IMAGE name="hint" posx="795" posy="150" width="425" height="275" image="picon_default.png"></IMAGE>
+		
+		<TIME name="date" posx="795" posy="460" width="425" height="60" refresh="1" format="%A %d.%m.%Y" font="3"></TIME>
+		<TIME name="time" posx="795" posy="510" width="425" height="60" refresh="1" format="%H:%M:%S" font="8"></TIME>
+	</WIDGET>
+	
 	<WIDGET name="satOnOff" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		<LISTBOX posx="60" posy="60" width="715" height="600" type="0" mode ="2" scrollbar="1"/>
@@ -866,7 +866,7 @@
 	<WIDGET name="plugins" id="80" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="50" posy="50" width="735" height="620" paintframe="1"/>
 		
-		<LISTBOX posx="60" posy="60" width="715" height="540" type="1" mode ="2" scrollbar="1"/>
+		<LISTBOX posx="60" posy="60" width="715" height="540" type="1" mode ="1" scrollbar="1"/>
 		
 		<BUTTON posx="50" posy="630" width="735" height="40">
 			<BUTTON_LABEL name="btn_red" localename="Delete">
