@@ -169,7 +169,7 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	head = NULL;
 	foot = NULL;
 	item = NULL;
-	chWidget = NULL;
+	//chWidget = NULL;
 
 	// box	
 	cFrameBox.iWidth = frameBuffer->getScreenWidth() - 20;
@@ -203,7 +203,7 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	winBottomBox.iHeight = (cFrameBox.iHeight - 100)/2;
 	winBottom = new CWindow(&winBottomBox);
 	
-	//
+	/*
 	chWidget = new CWidget(&cFrameBox);
 	
 	chWidget->addItem(head);
@@ -211,6 +211,7 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	chWidget->addItem(foot);
 	chWidget->addItem(winTop);
 	chWidget->addItem(winBottom);
+	*/
 }
 
 CChannelList::~CChannelList()
@@ -248,11 +249,13 @@ CChannelList::~CChannelList()
 		winBottom = NULL;
 	}
 	
+	/*
 	if (chWidget)
 	{
 		delete chWidget;
 		chWidget = NULL;
 	}
+	*/
 }
 
 void CChannelList::ClearList(void)
@@ -989,9 +992,9 @@ void CChannelList::hide()
 
 	//if(listBox)
 	//	listBox->hide();
-	chWidget->hide();
-	//else
-	//	CFrameBuffer::getInstance()->clearFrameBuffer();
+	//chWidget->hide();
+//	else
+		CFrameBuffer::getInstance()->clearFrameBuffer();
 		
 	frameBuffer->blit();
 }
@@ -1651,7 +1654,6 @@ void CChannelList::paint()
 	time_t jetzt = time(NULL);
 	unsigned int runningPercent = 0;
 
-	//std::string desc = chanlist[i]->description;
 	char cSeit[11] = " ";
 	char cNoch[11] = " ";
 
@@ -1659,17 +1661,11 @@ void CChannelList::paint()
 	{
 		for(unsigned int i = 0; i < chanlist.size(); i++)
 		{
-			/*
-			CChannelEvent * p_event = NULL;
-			time_t jetzt = time(NULL);
-			unsigned int runningPercent = 0;
-			*/
+			p_event = NULL;
+			jetzt = time(NULL);
+			runningPercent = 0;
 
 			std::string desc = chanlist[i]->description;
-			/*
-			char cSeit[50] = " ";
-			char cNoch[50] = " ";
-			*/
 
 			if (displayNext) 
 			{
@@ -1687,8 +1683,11 @@ void CChannelList::paint()
 			}
 			else
 			{
-				if(p_event->duration > 0)
-					runningPercent = (jetzt - p_event->startTime) * 35 / p_event->duration; // 35: pb width inClistBoxItem
+				//if(p_event->duration > 0)
+				runningPercent = (unsigned) ((float) (jetzt - p_event->startTime) / (float) p_event->duration * 100.);
+					
+				if(runningPercent > 100)
+					runningPercent = 0;
 			}
 
 			// description
@@ -1708,7 +1707,7 @@ void CChannelList::paint()
 			item = new ClistBoxItem(chanlist[i]->name.c_str(), true, option.c_str());
 
 			item->setNumber(chanlist[i]->number);
-			item->setPercent(runningPercent);
+			item->setPercent(runningPercent); // FIXME:
 			item->setIcon1(chanlist[i]->isHD() ? NEUTRINO_ICON_HD : chanlist[i]->isUHD()? NEUTRINO_ICON_UHD : "");
 			item->setIcon2((chanlist[i]->scrambled && chanlist[i]->getServiceType() != ST_WEBTV)? NEUTRINO_ICON_SCRAMBLED : "");
 			
@@ -1746,6 +1745,7 @@ void CChannelList::paint()
 
 	//
 	listBox->setSelected(selected);
+	listBox->paint();
 	
 	// now
 	p_event = &chanlist[selected]->currentEvent;
@@ -1759,15 +1759,21 @@ void CChannelList::paint()
 	epgTitle.setHAlign(CC_ALIGN_CENTER);
 	epgTitle.setFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 	
-	// runningPercent	
+	// runningPercent
+	unsigned int Percent = 0;
+		
 	if (((jetzt - p_event->startTime + 30) / 60) < 0 )
 	{
-		runningPercent = 0;
+		Percent = 0;
 	}
 	else
 	{
 		if(p_event->duration > 0)
-			runningPercent = (jetzt - p_event->startTime) * (winTopBox.iWidth - 200) / p_event->duration;
+			//Percent = (jetzt - p_event->startTime)/ (p_event->duration);
+			Percent = (unsigned) ((float) (jetzt - p_event->startTime) / (						float) p_event->duration * 100.);
+			
+		if(Percent > 100)
+			Percent = 0;
 	}
 	
 	CProgressBar pb(winTopBox.iX + 100, winTopBox.iY + 10 + 60 + 20, winTopBox.iWidth - 200, 5);
@@ -1845,16 +1851,21 @@ void CChannelList::paint()
 	nextText.setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO2);
 	nextText.setText(p_event->text.c_str());
 	
-	chWidget->paint();
+	//chWidget->paint();
+	
+	head->paint();
+	foot->paint();
 	
 	//
+	winTop->paint();
 	epgTitle.paint();
 	pb.reset();
-	pb.paint(runningPercent);
+	pb.paint(Percent);
 	startTime.paint();
 	restTime.paint();
 	text.paint();
 	//
+	winBottom->paint();
 	nextTitle.paint();
 	nextTime.paint();
 	nextText.paint();
@@ -1869,11 +1880,11 @@ void CChannelList::paintNextEvent(int _selected)
 	time_t jetzt = time(NULL);
 	unsigned int runningPercent = 0;
 
-	//std::string desc = chanlist[i]->description;
 	char cSeit[11] = " ";
 	char cNoch[11] = " ";
 	
 	// now
+	displayNext = false;
 	p_event = &chanlist[_selected]->currentEvent;
 	
 	// title
@@ -1883,15 +1894,21 @@ void CChannelList::paintNextEvent(int _selected)
 	epgTitle.setHAlign(CC_ALIGN_CENTER);
 	epgTitle.setFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 	
-	// runningPercent	
+	// runningPercent
+	runningPercent = 0;
+		
 	if (((jetzt - p_event->startTime + 30) / 60) < 0 )
 	{
 		runningPercent = 0;
 	}
 	else
 	{
-		if(p_event->duration > 0)
-			runningPercent = (jetzt - p_event->startTime) * (winTopBox.iWidth - 200) / p_event->duration;
+		//if(p_event->duration > 0)
+			//runningPercent = ((jetzt - p_event->startTime)/ p_event->duration);
+			runningPercent = (unsigned) ((float) (jetzt - p_event->startTime) / (						float) p_event->duration * 100.);
+			
+		if(runningPercent > 100)
+			runningPercent = 0;
 	}
 	
 	CProgressBar pb(winTopBox.iX + 100, winTopBox.iY + 10 + 60 + 20, winTopBox.iWidth - 200, 5);
@@ -1970,6 +1987,7 @@ void CChannelList::paintNextEvent(int _selected)
 	nextText.setText(p_event->text.c_str());
 	
 	//
+	winTop->paint();
 	epgTitle.paint();
 	pb.reset();
 	pb.paint(runningPercent);
@@ -1977,6 +1995,7 @@ void CChannelList::paintNextEvent(int _selected)
 	restTime.paint();
 	text.paint();
 	//
+	winBottom->paint();
 	nextTitle.paint();
 	nextTime.paint();
 	nextText.paint();

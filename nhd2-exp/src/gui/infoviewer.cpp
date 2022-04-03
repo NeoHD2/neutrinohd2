@@ -1729,8 +1729,6 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 	  	timescale->reset();
 		timescale->paint(runningPercent);
 
-		//int EPGTimeWidth = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth("00:00:00"); //FIXME
-
 		// red button
 		if (showButtonBar) 
 		{
