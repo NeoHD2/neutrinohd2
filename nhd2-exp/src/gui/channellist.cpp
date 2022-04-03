@@ -1688,32 +1688,13 @@ void CChannelList::paint()
 			else
 			{
 				if(p_event->duration > 0)
-					runningPercent = (jetzt - p_event->startTime) * 30 / p_event->duration;
+					runningPercent = (jetzt - p_event->startTime) * 35 / p_event->duration; // 35: pb width inClistBoxItem
 			}
 
 			// description
 			if (p_event != NULL && !(p_event->description.empty())) 
 			{
 				desc = p_event->description;
-
-				/*
-				struct tm * pStartZeit = localtime(&p_event->startTime);
-				unsigned seit = ( time(NULL) - p_event->startTime ) / 60;
-
-				if (displayNext) 
-				{
-					sprintf(cNoch, "(%d min)", p_event->duration / 60);
-					sprintf(cSeit, _("starts %02d:%02d"), pStartZeit->tm_hour, pStartZeit->tm_min);
-				} 
-				else 
-				{
-					sprintf(cSeit, _("since %02d:%02d"), pStartZeit->tm_hour, pStartZeit->tm_min);
-					int noch = (p_event->startTime + p_event->duration - time(NULL)) / 60;
-					if ((noch < 0) || (noch >= 10000))
-						noch = 0;
-					sprintf(cNoch, "(%d / %d min)", seit, noch);
-				}
-				*/
 			}
 			
 			std::string option = "";
@@ -1730,25 +1711,8 @@ void CChannelList::paint()
 			item->setPercent(runningPercent);
 			item->setIcon1(chanlist[i]->isHD() ? NEUTRINO_ICON_HD : chanlist[i]->isUHD()? NEUTRINO_ICON_UHD : "");
 			item->setIcon2((chanlist[i]->scrambled && chanlist[i]->getServiceType() != ST_WEBTV)? NEUTRINO_ICON_SCRAMBLED : "");
-			//item->setInfo1(desc.c_str());
-			//item->setOptionInfo1(cSeit);
-			//item->setInfo2(p_event->text.c_str());
-			//item->setOptionInfo2(cNoch);
 			
 			item->setOptionFontColor(COL_INFOBAR_COLORED_EVENTS);
-			
-			
-			/*
-			std::string msg = desc.c_str();
-			msg += "\n\n";
-			msg += cSeit;
-			msg += "\n\n";
-			msg += p_event->text.c_str();
-			msg += "\n\n";
-			msg += cNoch;
-			
-			item->setHint(msg.c_str());
-			*/
 			
 			//
 			std::string logo;
@@ -1803,7 +1767,7 @@ void CChannelList::paint()
 	else
 	{
 		if(p_event->duration > 0)
-			runningPercent = (jetzt - p_event->startTime) * 30 / p_event->duration;
+			runningPercent = (jetzt - p_event->startTime) * (winTopBox.iWidth - 200) / p_event->duration;
 	}
 	
 	CProgressBar pb(winTopBox.iX + 100, winTopBox.iY + 10 + 60 + 20, winTopBox.iWidth - 200, 5);
@@ -1927,7 +1891,7 @@ void CChannelList::paintNextEvent(int _selected)
 	else
 	{
 		if(p_event->duration > 0)
-			runningPercent = (jetzt - p_event->startTime) * 30 / p_event->duration;
+			runningPercent = (jetzt - p_event->startTime) * (winTopBox.iWidth - 200) / p_event->duration;
 	}
 	
 	CProgressBar pb(winTopBox.iX + 100, winTopBox.iY + 10 + 60 + 20, winTopBox.iWidth - 200, 5);
