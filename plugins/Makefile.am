@@ -2,15 +2,12 @@ AUTOMAKE_OPTIONS = gnu
 
 SUBDIRS = \
 	test \
-	netzkino \
-	youtube \
 	systeminfo \
 	tuxcom \
 	fileplayer \
 	fileexplorer \
 	mediaportal \
 	icecast \
-	upnp \
 	internetradio \
 	tsbrowser \
 	moviebrowser \
@@ -23,7 +20,10 @@ SUBDIRS = \
 if ENABLE_TESTING
 SUBDIRS += satipclient \
 	opkg_manager \
-	tuxcal
+	tuxcal \
+	netzkino \
+	youtube \
+	upnp
 endif
 
 if ENABLE_PYTHON
@@ -32,11 +32,14 @@ endif
 
 if ENABLE_LUA
 SUBDIRS += lua \
+	media_one \
+	plutotv
+if ENABLE_TESTING
+	\
 	netzkino_hd \
 	mtv \
-	media_one \
-	arte_concert \
-	plutotv
+	arte_concert
+endif
 endif
 
 
