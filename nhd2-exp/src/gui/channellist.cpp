@@ -216,6 +216,22 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 CChannelList::~CChannelList()
 {
 	chanlist.clear();
+	
+	//
+	delete head;
+	head = NULL;
+	
+	delete foot;
+	foot = NULL;
+	
+	delete listBox;
+	listBox = NULL;
+	
+	delete winTop;
+	winTop = NULL;
+	
+	delete winBottom;
+	winBottom = NULL;
 }
 
 void CChannelList::ClearList(void)
