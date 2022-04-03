@@ -6,7 +6,7 @@
 -------
 ![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/mainmenu.png)
 
-![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/channellist.bmp)
+![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/channellist.png)
 
 ![](https://github.com/mohousch/neutrinohd2/blob/master/nhd2-exp/doc/resources/infoviewer.bmp)
 
