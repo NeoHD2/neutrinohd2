@@ -991,6 +991,108 @@ void CNeutrinoApp::parseCFoot(_xmlNodePtr node, CWidget* widget)
 }
 
 //
+void CNeutrinoApp::parseCTextBox(_xmlNodePtr node, CWidget* widget)
+{
+	dprintf(DEBUG_INFO, "CNeutrinoApp::parseCTextBox:\n");
+	
+	CTextBox* textBox = NULL;
+	
+	char* name = NULL;
+	
+	unsigned int posx = 0;
+	unsigned int posy = 0;
+	unsigned int width = 0;
+	unsigned int height = 0;
+				
+	unsigned int paintframe = 1;
+	char* color = NULL;
+	unsigned int corner = 0;
+	unsigned int radius = 0;
+	
+	unsigned long textColor = COL_MENUCONTENT;
+	unsigned int font = SNeutrinoSettings::FONT_TYPE_EPG_INFO1;
+	unsigned int fontbg = 0;
+	unsigned int mode = SCROLL;
+	unsigned int border = SHADOW_NO;
+	
+	unsigned int tmode = PIC_RIGHT;
+	unsigned int tw = 0;
+	unsigned int th = 0;
+	unsigned int tframe = 0;
+	
+	char* text = NULL;
+	char* pic = NULL;
+	
+	while ((node = xmlGetNextOccurence(node, "TEXTBOX")) != NULL) 
+	{
+		name = xmlGetAttribute(node, (char*)"name");
+				
+		posx = xmlGetSignedNumericAttribute(node, "posx", 0);
+		posy = xmlGetSignedNumericAttribute(node, "posy", 0);
+		width = xmlGetSignedNumericAttribute(node, "width", 0);
+		height = xmlGetSignedNumericAttribute(node, "height", 0);
+				
+		paintframe = xmlGetSignedNumericAttribute(node, "paintframe", 0);		
+		color = xmlGetAttribute(node, (char*)"color");
+		corner = xmlGetSignedNumericAttribute(node, "corner", 0);
+		radius = xmlGetSignedNumericAttribute(node, "radius", 0);
+				
+		// parse color
+		uint32_t finalColor = COL_MENUCONTENT_PLUS_0;
+				
+		if (color) finalColor = convertColor(color);
+		
+		textColor = xmlGetSignedNumericAttribute(node, "textcolor", 16);
+		font = xmlGetSignedNumericAttribute(node, "font", 0);
+		fontbg = xmlGetSignedNumericAttribute(node, "fontbg", 0);
+		
+		mode = xmlGetSignedNumericAttribute(node, "mode", 0);
+		border = xmlGetSignedNumericAttribute(node, "border", 0);
+		
+		tmode = xmlGetSignedNumericAttribute(node, "tmode", 0);
+		tw = xmlGetSignedNumericAttribute(node, "twidth", 0);
+		th = xmlGetSignedNumericAttribute(node, "theight", 0);
+		tframe = xmlGetSignedNumericAttribute(node, "tframe", 0);
+						
+		textBox = new CTextBox(posx, posy, width, height);
+		
+		textBox->widgetItem_type = WIDGETITEM_TEXTBOX;
+		if (name) textBox->widgetItem_name = name;
+					
+		if (color != NULL) textBox->setBackgroundColor(finalColor);
+		
+		text = xmlGetAttribute(node, (char*)"text");
+		pic = xmlGetAttribute(node, (char*)"pic");
+		
+		std::string filename = "";
+		std::string image = pic;
+		if (pic != NULL)
+		{
+			filename = CONFIGDIR "/skins/";
+			filename += g_settings.preferred_skin;
+			filename += "/";
+			filename += pic;
+					
+			if (file_exists(filename.c_str()))
+				image = filename.c_str();
+		}
+
+		textBox->setCorner(corner);
+		textBox->setRadius(radius);
+		textBox->paintMainFrame(paintframe);
+					
+		textBox->setTextColor(textColor);
+		textBox->setFont(font);
+		textBox->setMode(mode);
+		textBox->setText(text, image.c_str(), tw, th, tmode, tframe, fontbg);
+					
+		if (widget) widget->addItem(textBox);
+			
+		node = node->xmlNextNode;
+	}
+}
+
+//
 void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* window)
 {
 	dprintf(DEBUG_INFO, "CNeutrinoApp::parseCCLabel:\n");
@@ -1055,6 +1157,8 @@ void CNeutrinoApp::parseCCImage(_xmlNodePtr node, CWidget* widget, CWindow* wind
 	unsigned int cc_y = 0;
 	unsigned int cc_dx = 0;
 	unsigned int cc_dy = 0;
+	
+	char* image = NULL;
 						
 	unsigned int cc_refresh = 0;
 	
@@ -1067,7 +1171,6 @@ void CNeutrinoApp::parseCCImage(_xmlNodePtr node, CWidget* widget, CWindow* wind
 						
 		cc_refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
 				
-		char* image = NULL;
 		image = xmlGetAttribute(node, (char*)"image");
 							
 		pic = new CCImage(cc_x, cc_y, cc_dx, cc_dy);

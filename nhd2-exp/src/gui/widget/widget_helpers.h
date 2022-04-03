@@ -745,6 +745,9 @@ class CHeaders : public CWidgetItem
 		void hide();
 		void refresh(void){if (paintDate) timer->refresh();};
 		bool update() const {return paintDate;};
+		
+		//
+		void clear(){hbutton_labels.clear();};
 };
 
 // CFooters
@@ -781,6 +784,9 @@ class CFooters : public CWidgetItem
 		//
 		void paint();
 		void hide();
+		
+		//
+		void clear(){fbuttons.clear();};
 };
 
 #endif /* __gui_widget_helpers_h__ */

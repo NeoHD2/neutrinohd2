@@ -182,6 +182,7 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		void parseCWindow(_xmlNodePtr node, CWidget* widget);
 		void parseCHead(_xmlNodePtr node, CWidget* widget);
 		void parseCFoot(_xmlNodePtr node, CWidget* widget);
+		void parseCTextBox(_xmlNodePtr node, CWidget* widget);
 		//
 		void parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);
 		void parseCCImage(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);

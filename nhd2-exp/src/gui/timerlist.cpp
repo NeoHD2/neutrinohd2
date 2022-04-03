@@ -284,23 +284,22 @@ CTimerList::CTimerList()
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
 	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;		
 	//
-	if (CNeutrinoApp::getInstance()->getWidget(WIDGET_TIMERLIST))
+	if (CNeutrinoApp::getInstance()->getWidget("timerlist"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_TIMERLIST)->getItemsCount();
-		int prev_CCItemsCount = CNeutrinoApp::getInstance()->getWidget(WIDGET_TIMERLIST)->getCCItemsCount();
-		
-		if (timerlistWidget == NULL) timerlistWidget = CNeutrinoApp::getInstance()->getWidget(WIDGET_TIMERLIST);
-		if (listBox == NULL) listBox = (ClistBox*)CNeutrinoApp::getInstance()->getWidget(WIDGET_TIMERLIST)->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		timerlistWidget = CNeutrinoApp::getInstance()->getWidget("timerlist");
+		int prev_ItemsCount = timerlistWidget->getItemsCount();
+	
+		listBox = (ClistBox*)timerlistWidget->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
 		//
-		if (timerlistWidget == NULL) timerlistWidget = new CWidget(&cFrameBox);
+		timerlistWidget = new CWidget(&cFrameBox);
 		
 		timerlistWidget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		//
-		if (listBox == NULL) listBox = new ClistBox(&cFrameBox);
+		listBox = new ClistBox(&cFrameBox);
 		
 		// head
 		listBox->enablePaintHead();
@@ -313,7 +312,7 @@ CTimerList::CTimerList()
 		listBox->setFootButtons(TimerListButtons, 4);
 		
 		//
-		if (timerlistWidget == NULL) timerlistWidget = new CWidget(&cFrameBox);
+		timerlistWidget = new CWidget(&cFrameBox);
 		
 		timerlistWidget->setMenuPosition(MENU_POSITION_CENTER);
 		timerlistWidget->addItem(listBox);

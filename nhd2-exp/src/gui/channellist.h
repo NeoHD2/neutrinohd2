@@ -65,13 +65,21 @@ class CChannelList
 
 		CBox cFrameBox;
 		ClistBox *listBox;
+		CBox winTopBox;
+		CWindow* winTop;
+		CBox winBottomBox;
+		CWindow* winBottom;
+		CHeaders* head;
+		CFooters* foot;
 		CMenuItem *item;
+		CWidget* chWidget;
 
 		uint32_t sec_timer_id;
 		unsigned int selected;
 
 		void paint();
 		void hide();
+		void paintNextEvent(int _selected);
 
 		//
 		t_channel_id selected_chid;

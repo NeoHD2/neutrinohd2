@@ -127,8 +127,7 @@ $(PLUGINS_SRC)/config.status: $(PLUGINS_SRC) $(DEST)
 			--with-plugindir=$(DEST)/var/tuxbox/plugins \
 			--with-configdir=$(DEST)/var/tuxbox/config \
 			--enable-python \
-			--enable-lua \
-			--enable-testing
+			--enable-lua
 
 plugins-clean:
 	-$(MAKE) -C $(PLUGINS_SRC) clean

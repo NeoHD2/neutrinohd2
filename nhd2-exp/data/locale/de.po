@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 22:35+0200\n"
+"POT-Creation-Date: 2022-04-03 16:33+0200\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -3357,10 +3357,6 @@ msgstr ""
 msgid "simple"
 msgstr ""
 
-#, c-format
-msgid "since %02d:%02d"
-msgstr ""
-
 msgid "skip approx. 1 minute"
 msgstr ""
 
@@ -3402,10 +3398,6 @@ msgid "sports"
 msgstr ""
 
 msgid "sports magazines"
-msgstr ""
-
-#, c-format
-msgid "starts %02d:%02d"
 msgstr ""
 
 msgid "stereo"
