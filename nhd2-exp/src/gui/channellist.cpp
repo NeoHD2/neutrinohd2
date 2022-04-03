@@ -218,20 +218,41 @@ CChannelList::~CChannelList()
 	chanlist.clear();
 	
 	//
-	delete head;
-	head = NULL;
+	if (head)
+	{
+		delete head;
+		head = NULL;
+	}
 	
-	delete foot;
-	foot = NULL;
+	if (foot)
+	{
+		delete foot;
+		foot = NULL;
+	}
 	
-	delete listBox;
-	listBox = NULL;
+	if (listBox)
+	{
+		delete listBox;
+		listBox = NULL;
+	}
 	
-	delete winTop;
-	winTop = NULL;
+	if (winTop)
+	{
+		delete winTop;
+		winTop = NULL;
+	}
 	
-	delete winBottom;
-	winBottom = NULL;
+	if (winBottom)
+	{
+		delete winBottom;
+		winBottom = NULL;
+	}
+	
+	if (chWidget)
+	{
+		delete chWidget;
+		chWidget = NULL;
+	}
 }
 
 void CChannelList::ClearList(void)
