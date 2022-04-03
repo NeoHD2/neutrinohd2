@@ -1808,10 +1808,26 @@ void CChannelList::paint()
 	text.setText(p_event->text.c_str());
 	
 	// next
-	displayNext = true;
-	updateEvents();
+	CChannelEventList events;
+
+	time_t atime = time(NULL);
+					
+	events.clear();
+
+	sectionsd_getEventsServiceKey(chanlist[selected]->channel_id& 0xFFFFFFFFFFFFULL, events);
+	chanlist[selected]->nextEvent.startTime = (long)0x7fffffff;
+				
+	for ( CChannelEventList::iterator e = events.begin(); e != events.end(); ++e ) 
+	{
+		if (((long)(e->startTime) > atime) && ((e->startTime) < (long)(chanlist[selected]->nextEvent.startTime)))
+		{
+			chanlist[selected]->nextEvent= *e;
+					
+			break;
+		}
+	}
+	
 	p_event = &chanlist[selected]->nextEvent;
-	displayNext = false;
 	
 	//
 	CCLabel nextTitle(winBottomBox.iX + 10, winBottomBox.iY + 10, winBottomBox.iWidth - 20, 20);
@@ -1822,7 +1838,6 @@ void CChannelList::paint()
 	// vom/bis
 	std::string fromto = "";
 	CCLabel nextTime(winBottomBox.iX + 10, winBottomBox.iY + 10 + 30, winBottomBox.iWidth - 20, 20);
-	//nextTime.setText(p_event->description.c_str());
 	nextTime.setHAlign(CC_ALIGN_CENTER);
 	nextTime.setFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 	
@@ -1884,7 +1899,6 @@ void CChannelList::paintNextEvent(int _selected)
 	char cNoch[11] = " ";
 	
 	// now
-	displayNext = false;
 	p_event = &chanlist[_selected]->currentEvent;
 	
 	// title
@@ -1904,8 +1918,7 @@ void CChannelList::paintNextEvent(int _selected)
 	else
 	{
 		//if(p_event->duration > 0)
-			//runningPercent = ((jetzt - p_event->startTime)/ p_event->duration);
-			runningPercent = (unsigned) ((float) (jetzt - p_event->startTime) / (						float) p_event->duration * 100.);
+			runningPercent = (unsigned) ((float) (jetzt - p_event->startTime) / (float) p_event->duration * 100.);
 			
 		if(runningPercent > 100)
 			runningPercent = 0;
@@ -1943,10 +1956,26 @@ void CChannelList::paintNextEvent(int _selected)
 	text.setText(p_event->text.c_str());
 	
 	// next
-	displayNext = true;
-	updateEvents();
+	CChannelEventList events;
+
+	time_t atime = time(NULL);
+					
+	events.clear();
+
+	sectionsd_getEventsServiceKey(chanlist[_selected]->channel_id& 0xFFFFFFFFFFFFULL, events);
+	chanlist[_selected]->nextEvent.startTime = (long)0x7fffffff;
+				
+	for ( CChannelEventList::iterator e = events.begin(); e != events.end(); ++e ) 
+	{
+		if (((long)(e->startTime) > atime) && ((e->startTime) < (long)(chanlist[_selected]->nextEvent.startTime)))
+		{
+			chanlist[_selected]->nextEvent= *e;
+					
+			break;
+		}
+	}
+	
 	p_event = &chanlist[_selected]->nextEvent;
-	displayNext = false;
 	
 	//
 	CCLabel nextTitle(winBottomBox.iX + 10, winBottomBox.iY + 10, winBottomBox.iWidth - 20, 20);
@@ -1957,7 +1986,6 @@ void CChannelList::paintNextEvent(int _selected)
 	// vom/bis
 	std::string fromto = "";
 	CCLabel nextTime(winBottomBox.iX + 10, winBottomBox.iY + 10 + 30, winBottomBox.iWidth - 20, 20);
-	//nextTime.setText(p_event->description.c_str());
 	nextTime.setHAlign(CC_ALIGN_CENTER);
 	nextTime.setFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
 	
