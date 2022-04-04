@@ -5683,8 +5683,8 @@ int main(int argc, char *argv[])
 	// initlocale
 	setlocale(LC_ALL, "");
 	bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale");
-	textdomain(PACKAGE_NAME);
 	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
+	textdomain(PACKAGE_NAME);
 	
 	// set localtime
 	tzset();

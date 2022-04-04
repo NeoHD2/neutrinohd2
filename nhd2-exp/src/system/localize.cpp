@@ -96,18 +96,10 @@ CLocaleManager::loadLocale_ret_t CLocaleManager::loadLocale(const char* const lo
 	//
 	initialize_iso639_map();
 	
-	// init locale
-	setlocale(LC_ALL, "");
-	bindtextdomain(PACKAGE_NAME, DATADIR "/neutrino/locale");
-	textdomain(PACKAGE_NAME);
-	bind_textdomain_codeset(PACKAGE_NAME, "UTF8");
-	
 	// set lang
 	setenv("LANG", locale, 1);
 	setenv("LANGUAGE", locale, 1);	
-	//setlocale(LC_ALL, locale);
-	setlocale(LC_MESSAGES, locale);
-	setlocale(LC_CTYPE, locale);
+	setlocale(LC_ALL, locale);
 	
 	return UNICODE_FONT;
 }
