@@ -1683,8 +1683,8 @@ void CChannelList::paint()
 			}
 			else
 			{
-				//if(p_event->duration > 0)
-				runningPercent = (unsigned) ((float) (jetzt - p_event->startTime) / (float) p_event->duration * 100.);
+				if(p_event->duration > 0)
+					runningPercent = (unsigned) ((float) (jetzt - p_event->startTime) / (float) p_event->duration * 100.);
 					
 				if(runningPercent > 100)
 					runningPercent = 0;
@@ -1769,8 +1769,7 @@ void CChannelList::paint()
 	else
 	{
 		if(p_event->duration > 0)
-			//Percent = (jetzt - p_event->startTime)/ (p_event->duration);
-			Percent = (unsigned) ((float) (jetzt - p_event->startTime) / (						float) p_event->duration * 100.);
+			Percent = (unsigned) ((float) (jetzt - p_event->startTime) / (float) p_event->duration * 100.);
 			
 		if(Percent > 100)
 			Percent = 0;
@@ -1917,7 +1916,7 @@ void CChannelList::paintNextEvent(int _selected)
 	}
 	else
 	{
-		//if(p_event->duration > 0)
+		if(p_event->duration > 0)
 			runningPercent = (unsigned) ((float) (jetzt - p_event->startTime) / (float) p_event->duration * 100.);
 			
 		if(runningPercent > 100)
