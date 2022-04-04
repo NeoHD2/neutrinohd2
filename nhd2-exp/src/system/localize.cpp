@@ -99,7 +99,7 @@ CLocaleManager::loadLocale_ret_t CLocaleManager::loadLocale(const char* const lo
 	// set lang
 	setenv("LANG", locale, 1);
 	setenv("LANGUAGE", locale, 1);	
-	setlocale(LC_ALL, locale);
+	setlocale(LC_MESSAGES, locale);
 	
 	return UNICODE_FONT;
 }
