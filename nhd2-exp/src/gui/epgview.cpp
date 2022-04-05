@@ -58,8 +58,8 @@
 #include <system/tmdbparser.h>
 
 
-#define TIMESCALE_W	100
-#define TIMESCALE_H	12
+#define TIMESCALE_W	150
+#define TIMESCALE_H	6
 
 static CProgressBar * timescale;
 

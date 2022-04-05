@@ -106,9 +106,9 @@ extern t_channel_id live_channel_id; 			//defined in zapit.cpp
 #define GREEN_BAR 		100
 
 #define BAR_WIDTH 		72
-#define TIMESCALE_BAR_HEIGHT	7
-#define SIGSCALE_BAR_HEIGHT	8
-#define SNRSCALE_BAR_HEIGHT	8
+#define TIMESCALE_BAR_HEIGHT	5
+#define SIGSCALE_BAR_HEIGHT	4
+#define SNRSCALE_BAR_HEIGHT	4
 
 // rec
 #define REC_INFOBOX_WIDTH	300

@@ -1965,7 +1965,7 @@ int ClistBoxItem::paint(bool selected, bool /*AfterPulldown*/)
 			pb_offset = ICON_OFFSET;
 			
 			pb_width = 35;
-			int pBarHeight = height/5;
+			int pBarHeight = 4;
 			
 			int pbPosX = x + BORDER_LEFT + number_width + number_offset + icon_w + icon_offset;
 
