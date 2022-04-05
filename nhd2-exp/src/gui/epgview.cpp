@@ -961,7 +961,7 @@ void CEpgData::GetPrevNextEPGData(uint64_t id, time_t* startzeit)
 // -- 2002-05-03 rasc
 //
 
-int CEpgData::FollowScreenings (const t_channel_id /*channel_id*/, const std::string & title)
+int CEpgData::FollowScreenings(const t_channel_id /*channel_id*/, const std::string & title)
 {
 	CChannelEventList::iterator e;
 	time_t			curtime;
@@ -989,7 +989,7 @@ int CEpgData::FollowScreenings (const t_channel_id /*channel_id*/, const std::st
 			screening_dates = "    ";
 
 			strftime(tmpstr, sizeof(tmpstr), "%A", tmStartZeit);
-			screening_dates += tmpstr;
+			screening_dates += _(tmpstr);
 
 			strftime(tmpstr, sizeof(tmpstr), "  %d.%m.%Y", tmStartZeit );
 			screening_dates += tmpstr;

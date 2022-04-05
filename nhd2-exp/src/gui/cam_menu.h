@@ -38,13 +38,14 @@ class CCAMMenuHandler : public CMenuTarget
 
 		int handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t data, bool from_menu = false);
 		
+		int doMenu(int slot);
+		void doMainMenu();
+		
 	public:
 		void init(void);
 		int exec(CMenuTarget *parent,  const std::string &actionKey);
 
-		int doMenu(int slot);
-		void doMainMenu();
-
+		//
 		int handleMsg (const neutrino_msg_t msg, neutrino_msg_data_t data);
 };
 

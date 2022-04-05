@@ -67,7 +67,7 @@
 #define GREEN_BAR 100
 #define BAR_BORDER 2
 #define BAR_WIDTH 150
-#define BAR_HEIGHT 16//(13 + BAR_BORDER*2)
+#define BAR_HEIGHT 8//(13 + BAR_BORDER*2)
 
 TP_params TP;
 CFrontend * getFE(int index);
@@ -315,13 +315,8 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 			}
 			else if(msg == RC_home) 
 			{
-				// dont abort scan
-				//if(manual && scanSettings->scan_mode)
-				//	continue;
-				
 				if (MessageBox(_("Abortion of channel scan"), _("Should the search really be aborted?"), mbrNo, mbYes | mbNo) == mbrYes) 
 				{
-					//g_Zapit->stopScan();
 					msg = RC_timeout;
 					istheend = true;
 				}
@@ -388,8 +383,6 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 int CScanTs::handleMsg(neutrino_msg_t msg, neutrino_msg_data_t data)
 {
 	int w = x + width - xpos2;
-	
-	//printf("CScanTs::handleMsg: x %d xpos2 %d width %d w %d\n", x, xpos2, width, w);
 	
 	char buffer[128];
 	char str[256];
