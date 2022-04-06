@@ -574,14 +574,12 @@ function testCWindow()
 	btn = neutrino.button_label_struct()
 
 	btn.button = neutrino.NEUTRINO_ICON_AUDIO
-	btn.locale = neutrino.NONEXISTANT_LOCALE
 	btn.localename = ""
 	head:setButtons(btn)
 
 	info = neutrino.button_label_struct()
 
 	info.button = neutrino.NEUTRINO_ICON_BUTTON_HELP
-	info.locale = neutrino.NONEXISTANT_LOCALE
 	info.localename = ""
 	head:setButtons(info)
 
@@ -590,25 +588,21 @@ function testCWindow()
 
 	red = neutrino.button_label_struct()
 	red.button = neutrino.NEUTRINO_ICON_BUTTON_RED
-	red.locale = neutrino.NONEXISTANT_LOCALE
 	red.localename = "audioPlayer"
 	foot:setButtons(red, 1)
 
 	green = neutrino.button_label_struct()
 	green.button = neutrino.NEUTRINO_ICON_BUTTON_GREEN
-	green.locale = neutrino.NONEXISTANT_LOCALE
 	green.localename = "pictureViewer"
 	foot:setButtons(green)
 
 	yellow = neutrino.button_label_struct()
 	yellow.button = neutrino.NEUTRINO_ICON_BUTTON_YELLOW
-	yellow.locale = neutrino.NONEXISTANT_LOCALE
 	yellow.localename = "Focus"
 	foot:setButtons(yellow)
 
 	blue = neutrino.button_label_struct()
 	blue.button = neutrino.NEUTRINO_ICON_BUTTON_BLUE
-	blue.locale = neutrino.NONEXISTANT_LOCALE
 	blue.localename = "InfoBox"
 	foot:setButtons(blue)
 
@@ -652,7 +646,7 @@ function testCWindow()
 	titleFrame:setActive(false)
 	titleFrame:setPosition(textbox.iX, box.iY + headBox.iHeight + 10, 350, 40)
 	titleFrame:setTitle(movieInfo.epgTitle)
-	titleFrame:disablePaintFrame()
+	titleFrame:paintMainFrame(false)
 	titleFrame:setActive(false)
 
 	--icon
@@ -660,28 +654,28 @@ function testCWindow()
 	iconFrame1:setMode(neutrino.FRAME_ICON)
 	iconFrame1:setPosition(textbox.iX, box.iY + headBox.iHeight + 50, 25, 25)
 	iconFrame1:setIconName(neutrino.NEUTRINO_ICON_STAR_ON)
-	iconFrame1:disablePaintFrame()
+	iconFrame1:paintMainFrame(false)
 	iconFrame1:setActive(false)
 
 	iconFrame2= neutrino.CFrame()
 	iconFrame2:setMode(neutrino.FRAME_ICON)
 	iconFrame2:setPosition(textbox.iX + 25, box.iY + headBox.iHeight + 50, 25, 25)
 	iconFrame2:setIconName(neutrino.NEUTRINO_ICON_STAR_ON)
-	iconFrame2:disablePaintFrame()
+	iconFrame2:paintMainFrame(false)
 	iconFrame2:setActive(false)
 
 	iconFrame3= neutrino.CFrame()
 	iconFrame3:setMode(neutrino.FRAME_ICON)
 	iconFrame3:setPosition(textbox.iX + 25 + 25, box.iY + headBox.iHeight + 50, 25, 25)
 	iconFrame3:setIconName(neutrino.NEUTRINO_ICON_STAR_ON)
-	iconFrame3:disablePaintFrame()
+	iconFrame3:paintMainFrame(false)
 	iconFrame3:setActive(false)
 
 	iconFrame4= neutrino.CFrame()
 	iconFrame4:setMode(neutrino.FRAME_ICON)
 	iconFrame4:setPosition(textbox.iX + 25 +25 + 25, box.iY + headBox.iHeight + 50, 25, 25)
 	iconFrame4:setIconName(neutrino.NEUTRINO_ICON_STAR_OFF)
-	iconFrame4:disablePaintFrame()
+	iconFrame4:paintMainFrame(false)
 	iconFrame4:setActive(false)
 
 	-- Text
@@ -691,7 +685,7 @@ function testCWindow()
 	--frame4:setBackgroundColor(0xFFAAAA)
 	frame4:setTitle(movieInfo.epgInfo1 .. "\n" .. movieInfo.epgInfo2)
 	frame4:setActionKey(null, "frame4")
-	frame4:disablePaintFrame()
+	frame4:paintMainFrame(false)
 	frame4:setActive(false)
 
 	-- plugin
@@ -729,7 +723,7 @@ function testCWindow()
 	listBox:setHeadGradient(neutrino.NOGRADIENT)
 	listBox:setOutFocus()
 
-	listBox:addItem(neutrino.CMenuForwarder(neutrino.LOCALE_MENU_BACK))
+	listBox:addItem(neutrino.CMenuForwarder("back"))
 	listBox:addItem(neutrino.CMenuSeparator(neutrino.LINE))
 	listBox:addItem(neutrino.ClistBoxItem("item1", true, "", neutrino.CAudioPlayerSettings(), "jumpTarget"))
 	listBox:addItem(neutrino.ClistBoxItem("item2"))
@@ -837,12 +831,14 @@ function testCFrameBox()
 	frame1:setPosition(box.iX, box.iY, box.iWidth/4, box.iHeight)
 	frame1:setTitle("MP3")
 	frame1:setActionKey(null, "audioPlayer")
+	frame1:enableShadow()
 	frameBox:addFrame(frame1)
 
 	frame2 = neutrino.CFrame()
 	frame2:setPosition(box.iX + box.iWidth/4, box.iY, box.iWidth/4, box.iHeight)
 	frame2:setTitle("PicViewer")
 	frame2:setActionKey(null, "pictureViewer")
+	frame2:enableShadow()
 	frameBox:addFrame(frame2)
 
 	frame3 = neutrino.CFrame()
@@ -851,12 +847,14 @@ function testCFrameBox()
 	frame3:setIconName(neutrino.NEUTRINO_ICON_MOVIE)
 	frame3:setOption("spielt Movie Dateien")
 	frame3:setActionKey(null, "moviePlayer")
+	frame3:enableShadow()
 	frameBox:addFrame(frame3)
 
 	frame4 = neutrino.CFrame()
 	frame4:setPosition(box.iX + 3*box.iWidth/4, box.iY, box.iWidth/4, box.iHeight)
 	frame4:setTitle("Beenden")
 	frame4:setActionKey(null, "exit")
+	frame4:enableShadow()
 	frameBox:addFrame(frame4)
 
 	local m = neutrino.CWidget()
@@ -903,12 +901,14 @@ function testCFrameBoxRandom()
 	frame1:setPosition(box.iX, box.iY + 2, 350, 60)
 	frame1:setTitle("MP3")
 	frame1:setActionKey(null, "audioPlayer")
+	frame1:enableShadow()
 	frameBox:addFrame(frame1)
 
 	frame2 = neutrino.CFrame()
 	frame2:setPosition(box.iX, box.iY + 2 + 60, 350, 60)
 	frame2:setTitle("PicViewer")
 	frame2:setActionKey(null, "pictureViewer")
+	frame2:enableShadow()
 	frameBox:addFrame(frame2)
 
 	frame3 = neutrino.CFrame()
@@ -917,12 +917,14 @@ function testCFrameBoxRandom()
 	frame3:setIconName(neutrino.NEUTRINO_ICON_MOVIE)
 	frame3:setOption("spielt Movie Dateien")
 	frame3:setActionKey(null, "moviePlayer")
+	frame3:enableShadow()
 	frameBox:addFrame(frame3)
 
 	frame10 = neutrino.CFrame()
 	frame10:setPosition(box.iX, fb:getScreenHeight() - 80 - 60, 350, 60)
 	frame10:setTitle("Beenden")
 	frame10:setActionKey(null, "exit")
+	frame10:enableShadow()
 	frameBox:addFrame(frame10)
 
 	local m = neutrino.CWidget(box)
@@ -967,14 +969,12 @@ function movieBrowser()
 	info = neutrino.button_label_struct()
 
 	info.button = neutrino.NEUTRINO_ICON_BUTTON_HELP
-	info.locale = neutrino.NONEXISTANT_LOCALE
 	info.localename = ""
 	menu:setHeadButtons(info)
 
 	btn = neutrino.button_label_struct()
 
 	btn.button = neutrino.NEUTRINO_ICON_BUTTON_MUTE_SMALL
-	btn.locale = neutrino.NONEXISTANT_LOCALE
 	btn.localename = ""
 	menu:setHeadButtons(btn)
 
@@ -982,14 +982,12 @@ function movieBrowser()
 	btnRed = neutrino.button_label_struct()
 
 	btnRed.button = neutrino.NEUTRINO_ICON_BUTTON_RED
-	btnRed.locale = neutrino.NONEXISTANT_LOCALE
 	btnRed.localename = "delete all"
 	menu:setFootButtons(btnRed)
 
 	btnGreen = neutrino.button_label_struct()
 
 	btnGreen.button = neutrino.NEUTRINO_ICON_BUTTON_GREEN
-	btnGreen.locale = neutrino.NONEXISTANT_LOCALE
 	btnGreen.localename = "Add"
 	menu:setFootButtons(btnGreen)
 

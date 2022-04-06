@@ -728,20 +728,20 @@ function mtv_liste(id)
 	menu:setItemsPerPage(3, 2)
 	menu:enablePaintDate()
 
-	btn = neutrino.button_label_struct()
+	--btn = neutrino.button_label_struct()
 
-	btn.button = neutrino.NEUTRINO_ICON_BUTTON_RED
-	btn.localename = "spiele die ganze Liste"
+	--btn.button = neutrino.NEUTRINO_ICON_BUTTON_RED
+	--btn.localename = "spiele die ganze Liste"
 
-	menu:setFootButtons(btn, 1)
+	--menu:setFootButtons(btn)
 	menu:addKey(neutrino.RC_red, null, "playlist")
 
-	btn2 = neutrino.button_label_struct()
+	--btn2 = neutrino.button_label_struct()
 
-	btn2.button = neutrino.NEUTRINO_ICON_BUTTON_REC
-	btn2.localename = ""
+	--btn2.button = neutrino.NEUTRINO_ICON_BUTTON_REC
+	--btn2.localename = ""
 
-	menu:setHeadButtons(btn2, 1)
+	--menu:setHeadButtons(btn2)
 	menu:addKey(neutrino.RC_record, null, "record")
 
 	local item = nil
@@ -1010,20 +1010,20 @@ function searchliste(id)
 	menu:setWidgetType(neutrino.WIDGET_TYPE_FRAME)
 	menu:enablePaintDate()
 
-	btn = neutrino.button_label_struct()
+	--btn = neutrino.button_label_struct()
 
-	btn.button = neutrino.NEUTRINO_ICON_BUTTON_RED
-	btn.localename = "spiele die ganze Liste"
+	--btn.button = neutrino.NEUTRINO_ICON_BUTTON_RED
+	--btn.localename = "spiele die ganze Liste"
 
-	menu:setFootButtons(btn, 1)
+	--menu:setFootButtons(btn)
 	menu:addKey(neutrino.RC_red, null, "playlist")
 
-	btn2 = neutrino.button_label_struct()
+	--btn2 = neutrino.button_label_struct()
 
-	btn2.button = neutrino.NEUTRINO_ICON_BUTTON_REC
-	btn2.localename = ""
+	--btn2.button = neutrino.NEUTRINO_ICON_BUTTON_REC
+	--btn2.localename = "test"
 
-	menu:setHeadButtons(btn2, 1)
+	--menu:setHeadButtons(btn2)
 	menu:addKey(neutrino.RC_record, null, "record")
 
 	local item = nil

@@ -1228,7 +1228,7 @@ void CNeutrinoApp::parseCCTime(_xmlNodePtr node, CWidget* widget, CWindow* windo
 							
 		time = new CCTime(cc_x, cc_y, cc_dx, cc_dy);
 							
-		if (cc_format != NULL) time->setFormat(_(cc_format));
+		if (cc_format != NULL) time->setFormat(cc_format);
 		if (cc_refresh) time->enableRepaint();
 		if (font_size) time->setFont(font_size);
 							

@@ -547,7 +547,7 @@ class CCTime : public CComponent
 		//
 		void setColor(uint8_t col){color = col;};
 		void setFont(unsigned int f){font = f;};
-		void setFormat(const char* const f){format = f? f : "";};
+		void setFormat(const char* const f);
 		void setHAlign(int h){halign = h;};
 		
 		//

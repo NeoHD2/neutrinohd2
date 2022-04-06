@@ -298,12 +298,7 @@ local title = ""
 function select_playitem()
 	print("select_playitem:")
 
-	--local m = neutrino.CMenuWidget("", arte_concert, 2*neutrino.MENU_WIDTH)
-	m = neutrino.ClistBox()
-	m:enablePaintHead()
-	m:setTitle("", arte_concert)
-	m:enablePaintFoot()
-	m:enableCenterPos()
+	local m = neutrino.CMenuWidget("", arte_concert, 2*neutrino.MENU_WIDTH)
 	
 	m:setWidgetType(neutrino.WIDGET_TYPE_EXTENDED)
 	m:enableShrinkMenu()

@@ -23,7 +23,10 @@ SUBDIRS += satipclient \
 	tuxcal \
 	netzkino \
 	youtube \
-	upnp
+	upnp \
+	netzkino_hd \
+	mtv \
+	arte_concert
 endif
 
 if ENABLE_PYTHON
@@ -34,12 +37,6 @@ if ENABLE_LUA
 SUBDIRS += lua \
 	media_one \
 	plutotv
-if ENABLE_TESTING
-	\
-	netzkino_hd \
-	mtv \
-	arte_concert
-endif
 endif
 
 

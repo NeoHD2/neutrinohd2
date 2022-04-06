@@ -1058,6 +1058,11 @@ CCTime::CCTime(const int x, const int y, const int dx, const int dy)
 	cc_type = CC_TIME;
 }
 
+void CCTime::setFormat(const char* const f)
+{
+	format = f? _(f) : "";
+}
+
 void CCTime::paint()
 {
 	dprintf(DEBUG_INFO, "CCTime::paint\n");
