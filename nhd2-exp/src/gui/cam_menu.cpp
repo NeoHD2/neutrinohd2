@@ -242,7 +242,7 @@ int CCAMMenuHandler::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t dat
 	return ret;
 }
 
-int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t data, bool from_menu)
+int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t data, bool from_menu)
 {
 	int ret = 0;
 	char str[255];
@@ -354,6 +354,7 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 			hintBox->hide();
 
 		int selected = -1;
+		
 		if(pMenu->choice_nb) 
 		{
 			//
@@ -446,8 +447,6 @@ int CCAMMenuHandler::handleCamMsg (const neutrino_msg_t msg, neutrino_msg_data_t
 
 			menuWidget->exec(NULL, "");
 			selected = menu->getSelected();
-
-			delete menu;
 		} 
 		else 
 		{

@@ -103,7 +103,7 @@
 #define TIMEBARH 		38
 #define BOXHEIGHT_MOVIEINFO	125
 #define BUTTON_BAR_HEIGHT	25
-#define TIMESCALE_BAR_HEIGHT	7
+#define TIMESCALE_BAR_HEIGHT	4
 
 extern cPlayback *playback;
 
