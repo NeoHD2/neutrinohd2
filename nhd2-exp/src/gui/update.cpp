@@ -1005,9 +1005,9 @@ void CUpdateSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("flashexpert"))
 	{
 		mtdexpertWidget = CNeutrinoApp::getInstance()->getWidget("flashexpert");
-		int prev_ItemsCount = widget->getItemsCount();
+		int prev_ItemsCount = mtdexpertWidget->getItemsCount();
 		
-		mtdexpert = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		mtdexpert = (ClistBox*)mtdexpertWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1019,7 +1019,7 @@ void CUpdateSettings::showMenu()
 		mtdexpert->enablePaintHead();
 		mtdexpert->setTitle(_("Expert functions"), NEUTRINO_ICON_UPDATE);
 
-		updateSettings->enablePaintFoot();
+		mtdexpert->enablePaintFoot();
 			
 		const struct button_label btn = { NEUTRINO_ICON_INFO, " "};
 			
@@ -1097,6 +1097,5 @@ void CUpdateSettings::showMenu()
 	widget->exec(NULL, "");
 	
 	delete fe;
-	delete mtdexpert;
 }
 

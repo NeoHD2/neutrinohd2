@@ -953,8 +953,6 @@
 			</ITEM>
 			<ITEM id="5" localename="Pictureviewer settings" itemicon="hint_picview" target="19">
 			</ITEM>
-			<ITEM id="5" localename="Misc settings" itemicon="hint_extended" target="20">
-			</ITEM>
 			<ITEM id="5" localename="HDD settings" itemicon="hint_hdd" target="21">
 			</ITEM>
 			<ITEM id="5" localename="Misc settings" itemicon="hint_settings" target="33">
