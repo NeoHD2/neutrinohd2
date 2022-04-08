@@ -116,7 +116,7 @@ void EpgPlus::Header::init ()
 
 void EpgPlus::Header::paint()
 {
-	CHeaders head(this->x, this->y, this->width, this->font->getHeight() + 10, _("Eventlist Overview (EPG Plus)"), NEUTRINO_ICON_BUTTON_EPG);
+	CHeaders head(this->x, this->y, this->width, this->font->getHeight() + 10, _("Eventlist overview"), NEUTRINO_ICON_BUTTON_EPG);
 	head.enablePaintDate();
 	head.setFormat("%d.%m.%Y %H:%M:%S");
 	head.paint();

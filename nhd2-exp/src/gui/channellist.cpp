@@ -116,7 +116,7 @@ extern int old_b_id;
 #define NUM_LIST_BUTTONS 4
 struct button_label CChannelListButtons[NUM_LIST_BUTTONS] =
 {
-	{ NEUTRINO_ICON_BUTTON_RED, _("Event-List")},
+	{ NEUTRINO_ICON_BUTTON_RED, _("Event list")},
 	{ NEUTRINO_ICON_BUTTON_GREEN, _("Next")},
 	{ NEUTRINO_ICON_BUTTON_YELLOW, _("Bouquets")},
 	{ NEUTRINO_ICON_BUTTON_BLUE, _("Eventlist overview")},
@@ -169,7 +169,7 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	head = NULL;
 	foot = NULL;
 	item = NULL;
-	//chWidget = NULL;
+	chWidget = NULL;
 
 	// box	
 	cFrameBox.iWidth = frameBuffer->getScreenWidth() - 20;
@@ -203,7 +203,6 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	winBottomBox.iHeight = (cFrameBox.iHeight - 100)/2;
 	winBottom = new CWindow(&winBottomBox);
 	
-	/*
 	chWidget = new CWidget(&cFrameBox);
 	
 	chWidget->addItem(head);
@@ -211,14 +210,13 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	chWidget->addItem(foot);
 	chWidget->addItem(winTop);
 	chWidget->addItem(winBottom);
-	*/
 }
 
 CChannelList::~CChannelList()
 {
 	chanlist.clear();
 	
-	//
+	/*
 	if (head)
 	{
 		delete head;
@@ -248,14 +246,13 @@ CChannelList::~CChannelList()
 		delete winBottom;
 		winBottom = NULL;
 	}
+	*/
 	
-	/*
 	if (chWidget)
 	{
 		delete chWidget;
 		chWidget = NULL;
 	}
-	*/
 }
 
 void CChannelList::ClearList(void)
@@ -782,7 +779,7 @@ int CChannelList::show(bool zap, bool customMode)
 			selected = listBox->getSelected();
 				
 			//
-			paintNextEvent(selected);
+			paintCurrentNextEvent(selected);
 
 			if(new_mode_active) 
 			{
@@ -797,7 +794,7 @@ int CChannelList::show(bool zap, bool customMode)
 			selected = listBox->getSelected();
 				
 			//
-			paintNextEvent(selected);
+			paintCurrentNextEvent(selected);
 
 			if(new_mode_active) 
 			{
@@ -812,7 +809,7 @@ int CChannelList::show(bool zap, bool customMode)
 			selected = listBox->getSelected();
 				
 			//
-			paintNextEvent(selected);
+			paintCurrentNextEvent(selected);
 
 			if(new_mode_active) 
 			{ 
@@ -827,7 +824,7 @@ int CChannelList::show(bool zap, bool customMode)
 			selected = listBox->getSelected();
 				
 			//
-			paintNextEvent(selected);
+			paintCurrentNextEvent(selected);
 
 			if(new_mode_active) 
 			{ 
@@ -992,9 +989,9 @@ void CChannelList::hide()
 
 	//if(listBox)
 	//	listBox->hide();
-	//chWidget->hide();
+	chWidget->hide();
 //	else
-		CFrameBuffer::getInstance()->clearFrameBuffer();
+	//	CFrameBuffer::getInstance()->clearFrameBuffer();
 		
 	frameBuffer->blit();
 }
@@ -1749,8 +1746,9 @@ void CChannelList::paint()
 
 	//
 	listBox->setSelected(selected);
-	listBox->paint();
+	//listBox->paint();
 	
+	/*
 	// now
 	p_event = &chanlist[selected]->currentEvent;
 	
@@ -1868,13 +1866,14 @@ void CChannelList::paint()
 	CCText nextText(winBottomBox.iX + 10, winBottomBox.iY + 10 + 60, winBottomBox.iWidth - 20, winBottomBox.iHeight - 80);
 	nextText.setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO2);
 	nextText.setText(p_event->text.c_str());
+	*/
 	
-	//chWidget->paint();
+	chWidget->paint();
 	
-	head->paint();
-	foot->paint();
+	//head->paint();
+	//foot->paint();
 	
-	//
+	/*
 	winTop->paint();
 	epgTitle.paint();
 	pb.reset();
@@ -1887,9 +1886,11 @@ void CChannelList::paint()
 	nextTitle.paint();
 	nextTime.paint();
 	nextText.paint();
+	*/
+	paintCurrentNextEvent(selected);
 }
 
-void CChannelList::paintNextEvent(int _selected)
+void CChannelList::paintCurrentNextEvent(int _selected)
 {
 	winTop->paint();
 	winBottom->paint();

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-07 04:43+0200\n"
+"POT-Creation-Date: 2022-04-08 13:01+0200\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -275,22 +275,22 @@ msgid "Buttons Line"
 msgstr ""
 
 msgid "CAM init complete"
-msgstr ""
+msgstr "CI Modul initalisiert"
 
 msgid "CAM inserted in slot"
-msgstr ""
+msgstr "CI Modul hinzugefügt"
 
 msgid "CAM removed from slot"
-msgstr ""
+msgstr "CI Modul entfernt"
 
 msgid "CI Cam"
-msgstr ""
+msgstr "CI Cam"
 
 msgid "CI Cam settings"
-msgstr ""
+msgstr "CI Cam Einstellungen"
 
 msgid "CI cam reset"
-msgstr ""
+msgstr "CI Modul neu starten"
 
 msgid "CIFS"
 msgstr ""
@@ -665,19 +665,13 @@ msgid "Error"
 msgstr "Fehler"
 
 msgid "Event list"
-msgstr "Vorschau aktuelles Programm"
-
-msgid "Event-List"
-msgstr "Vorschau aktuelles Programm"
-
-msgid "Eventlist Overview (EPG Plus)"
-msgstr "Vorschau Übersicht (EPG Plus)"
+msgstr "EPG Liste"
 
 msgid "Eventlist current programm"
 msgstr "Vorschau aktuelles Programm"
 
 msgid "Eventlist overview"
-msgstr "Vorschau Übersicht (EPG Plus)"
+msgstr "Vorschau Übersicht"
 
 msgid "Events Textcolor"
 msgstr ""
@@ -1398,7 +1392,7 @@ msgid "No"
 msgstr "Nein"
 
 msgid "No CAM in slot"
-msgstr ""
+msgstr "Kein CAM im Slot"
 
 msgid "No End bookmark defined!"
 msgstr ""
@@ -1499,6 +1493,9 @@ msgid "Order by"
 msgstr ""
 
 msgid "Original Title"
+msgstr ""
+
+msgid "Original title"
 msgstr ""
 
 msgid "Overwrite?"
@@ -2393,7 +2390,7 @@ msgid "Timed Step Mode"
 msgstr ""
 
 msgid "Timeout waiting CI menu ready"
-msgstr ""
+msgstr "CI Modul Timeout"
 
 msgid "Timer / EPG"
 msgstr ""
@@ -2604,13 +2601,13 @@ msgid "Wait a few seconds for abort"
 msgstr ""
 
 msgid "Waiting for CI answer"
-msgstr ""
+msgstr "Warte auf CI Modul"
 
 msgid "Waiting for time..."
-msgstr ""
+msgstr "Warte auf Zeit"
 
 msgid "Warn"
-msgstr ""
+msgstr "Warnung"
 
 msgid "WebTV"
 msgstr ""
@@ -2643,13 +2640,10 @@ msgid "YT:"
 msgstr ""
 
 msgid "Year"
-msgstr ""
-
-msgid "Year of Production"
-msgstr ""
+msgstr "Jahr"
 
 msgid "Year of production"
-msgstr ""
+msgstr "Produktion Jahr"
 
 msgid "Yes"
 msgstr "Ja"
@@ -3504,7 +3498,7 @@ msgid "view mode"
 msgstr ""
 
 msgid "waiting for EPG..."
-msgstr ""
+msgstr "Warte auf EPG..."
 
 msgid "water sports"
 msgstr ""

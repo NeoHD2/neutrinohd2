@@ -232,9 +232,9 @@ std::string CTmdb::createInfoText()
 
 	infoText += (std::string)_("Genre") + ": " + minfo[0].genres;
 	infoText += "\n";
-	infoText += (std::string)_("Original Title") + " : " + minfo[0].original_title;
+	infoText += (std::string)_("Original title") + " : " + minfo[0].original_title;
 	infoText += "\n";
-	infoText += (std::string)_("Year of Production") + " : " + minfo[0].release_date.substr(0,4);
+	infoText += (std::string)_("Year of production") + " : " + minfo[0].release_date.substr(0,4);
 	infoText += "\n";
 
 	if (minfo[0].media_type == "tv")

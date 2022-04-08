@@ -892,9 +892,9 @@ void CEpgData::GetEPGData(const t_channel_id channel_id, uint64_t id, time_t* st
 		// If we have items, merge and localize them (e.g. actor1, actor2, ... -> Actors)
 		if (false == epgData.itemDescriptions.empty()) 
 		{
-			reformatExtendedEvents("Year of production", _("Year of Production"), false, epgData);
+			reformatExtendedEvents("Year of production", _("Year of production"), false, epgData);
 
-			reformatExtendedEvents("Original title", _("Original Title"), false, epgData);
+			reformatExtendedEvents("Original title", _("Original title"), false, epgData);
 
 			reformatExtendedEvents("Director", _("Director"), false, epgData);
 

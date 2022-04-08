@@ -72,14 +72,14 @@ class CChannelList
 		CHeaders* head;
 		CFooters* foot;
 		CMenuItem *item;
-		//CWidget* chWidget;
+		CWidget* chWidget;
 
 		uint32_t sec_timer_id;
 		unsigned int selected;
 
 		void paint();
 		void hide();
-		void paintNextEvent(int _selected);
+		void paintCurrentNextEvent(int _selected);
 
 		//
 		t_channel_id selected_chid;
