@@ -4,6 +4,7 @@ install-exec-local:
 installdir = $(CONFIGDIR)/webtv
 
 install_DATA = \
-	master.m3u8
+	master.m3u8 \
+	rakutentv.xml
 
 
