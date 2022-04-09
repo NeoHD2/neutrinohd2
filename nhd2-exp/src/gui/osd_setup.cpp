@@ -472,7 +472,7 @@ void COSDInfoBarColorSettings::showMenu()
 	OSDinfobarColorSettings->addItem(new CMenuForwarder(_("back")));
 
 	OSDinfobarColorSettings->addItem(new CMenuSeparator(LINE));
-	OSDinfobarColorSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
+	OSDinfobarColorSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 
 	// bg
 	CColorChooser * chInfobarcolor = new CColorChooser(_("Background"), &g_settings.infobar_red, &g_settings.infobar_green, &g_settings.infobar_blue,&g_settings.infobar_alpha, CNeutrinoApp::getInstance()->colorSetupNotifier);
@@ -514,6 +514,15 @@ void COSDInfoBarColorSettings::showMenu()
 	
 	// radius
 	OSDinfobarColorSettings->addItem(new CMenuOptionChooser(_("Radius"), &g_settings.infobar_radius, RADIUS_TYPE_OPTIONS, RADIUS_TYPE_OPTION_COUNT, true));
+	
+	//
+	OSDinfobarColorSettings->addItem( new CMenuSeparator(LINE));
+	
+	// infobar channelname
+	OSDinfobarColorSettings->addItem(new CMenuOptionChooser(_("Channel name"), &g_settings.show_channelname, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	
+	// sig/snr
+	OSDinfobarColorSettings->addItem(new CMenuOptionChooser(_("Satellite display on infobar"), &g_settings.infobar_sat_display, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 	
 	//
 	widget->exec(NULL, "");
@@ -1085,27 +1094,6 @@ void COSDDiverses::showMenu()
 	// progressbar_gradient
 	osdDiverseSettings->addItem(new CMenuOptionChooser("ProgressBar Gradient", &g_settings.progressbar_gradient, COLOR_GRADIENT_TYPE_OPTIONS, COLOR_GRADIENT_TYPE_OPTION_COUNT, true));
 	
-	// icons dir
-	osdDiverseSettings->addItem(new CMenuForwarder("Icons Dir", true, g_settings.icons_dir.c_str(), this, "select_icons_dir"));
-	
-	// buttons dir
-	osdDiverseSettings->addItem(new CMenuForwarder("Buttons Dir", true, g_settings.buttons_dir.c_str(), this, "select_buttons_dir"));
-	
-	// hints dir
-	osdDiverseSettings->addItem(new CMenuForwarder("Hints Dir", true, g_settings.hints_dir.c_str(), this, "select_hints_dir"));
-	
-	// logos dir
-	osdDiverseSettings->addItem( new CMenuForwarder(_("logos Dir"), true, g_settings.logos_dir.c_str(), this, "logos_dir" ) );
-	
-	// epgplus logos
-	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Channel Logo(EPGPlus)"), &g_settings.epgplus_show_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
-	
-	// infobar channelname
-	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Channel name"), &g_settings.show_channelname, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
-	
-	// sig/snr
-	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Satellite display on infobar"), &g_settings.infobar_sat_display, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
-	
 	// subchan pos
 	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Subchannel display"), &g_settings.infobar_subchan_disp_pos, INFOBAR_SUBCHAN_DISP_POS_OPTIONS, INFOBAR_SUBCHAN_DISP_POS_OPTIONS_COUNT, true));
 	
@@ -1122,6 +1110,18 @@ void COSDDiverses::showMenu()
 	
 	// messagebox border
 	osdDiverseSettings->addItem(new CMenuOptionChooser(_("Messagebox Border"), &g_settings.hintbox_border, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	
+	//
+	osdDiverseSettings->addItem(new CMenuSeparator(LINE));
+	
+	// icons dir
+	osdDiverseSettings->addItem(new CMenuForwarder("Icons Dir", true, g_settings.icons_dir.c_str(), this, "select_icons_dir"));
+	
+	// buttons dir
+	osdDiverseSettings->addItem(new CMenuForwarder("Buttons Dir", true, g_settings.buttons_dir.c_str(), this, "select_buttons_dir"));
+	
+	// hints dir
+	osdDiverseSettings->addItem(new CMenuForwarder("Hints Dir", true, g_settings.hints_dir.c_str(), this, "select_hints_dir"));
 
 	//
 	widget->exec(NULL, "");

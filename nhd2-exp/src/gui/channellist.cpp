@@ -1715,11 +1715,14 @@ void CChannelList::paint()
 			item->setOptionFontColor(COL_INFOBAR_COLORED_EVENTS);
 			
 			//
-			std::string logo;
+			if (g_settings.epgplus_show_logo)
+			{
+				std::string logo;
 
-			logo = CChannellogo::getInstance()->getLogoName(chanlist[i]->getChannelID());
-			
-			item->setIconName(logo.c_str());
+				logo = CChannellogo::getInstance()->getLogoName(chanlist[i]->getChannelID());
+				
+				item->setIconName(logo.c_str());
+			}
 			
 
 			listBox->addItem(item);

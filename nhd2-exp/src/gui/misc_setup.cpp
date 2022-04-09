@@ -664,9 +664,6 @@ void CChannelListSettings::showMenu()
 	// zap cycle
 	miscSettingsChannelList->addItem(new CMenuOptionChooser(_("Zap cycle"), &g_settings.zap_cycle, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
 	
-	// channellist ca
-	miscSettingsChannelList->addItem(new CMenuOptionChooser(_("Infobar Crypticons"), &g_settings.channellist_ca, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
-	
 	//
 	getZapitConfig(&zapitCfg);
 	
@@ -675,6 +672,18 @@ void CChannelListSettings::showMenu()
 
 	// scanSDT
 	miscSettingsChannelList->addItem( new CMenuOptionChooser(_("Scan SDT for updates"), (int *)&zapitCfg.scanSDT, SECTIONSD_SCAN_OPTIONS, SECTIONSD_SCAN_OPTIONS_COUNT, true, this) );
+	
+	//
+	miscSettingsChannelList->addItem( new CMenuSeparator(LINE) );
+	
+	// channellist ca
+	miscSettingsChannelList->addItem(new CMenuOptionChooser(_("Infobar Crypticons"), &g_settings.channellist_ca, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true));
+	
+	// logos dir
+	miscSettingsChannelList->addItem( new CMenuForwarder(_("logos Dir"), true, g_settings.logos_dir.c_str(), this, "logos_dir" ) );
+	
+	// logos
+	miscSettingsChannelList->addItem(new CMenuOptionChooser(_("Channel Logo(EPGPlus)"), &g_settings.epgplus_show_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	
 	//
 	widget->exec(NULL, "");
