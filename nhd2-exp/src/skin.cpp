@@ -752,6 +752,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 	
 	//
 	unsigned int itemshadow = 0;
+	unsigned int itemgradient = 0;
 	
 	//
 	_xmlNodePtr listboxitem_node = NULL;
@@ -767,8 +768,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 		width = xmlGetSignedNumericAttribute(node, "width", 0);
 		height = xmlGetSignedNumericAttribute(node, "height", 0);
 				
-		i_paintframe = xmlGetSignedNumericAttribute(node, "paintframe", 0);
-				
+		i_paintframe = xmlGetSignedNumericAttribute(node, "paintframe", 0);		
 		i_color = xmlGetAttribute(node, (char*)"color");
 		i_gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
 		i_corner = xmlGetSignedNumericAttribute(node, "corner", 0);
@@ -801,6 +801,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 		
 		//
 		itemshadow = xmlGetSignedNumericAttribute(node, "itemshadow", 0);
+		itemgradient = xmlGetSignedNumericAttribute(node, "itemgradient", 0);
 				
 		// iteminfo
 		paintiteminfo = xmlGetSignedNumericAttribute(node, "paintiteminfo", 0);
@@ -860,6 +861,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 		
 		// item
 		if (itemshadow) listBox->setItemShadowMode(itemshadow);
+		if (itemgradient) listBox->setItemGradient(itemgradient);
 				
 		// ITEM	
 		listboxitem_node = node->xmlChildrenNode;
@@ -876,6 +878,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 		neutrino_msg_t directkey = 0;
 		unsigned int lines = 0;
 		unsigned int shadow = 0;
+		unsigned int gradient = 0;
 					
 		while ((listboxitem_node = xmlGetNextOccurence(listboxitem_node, "ITEM")) != NULL) 
 		{	
@@ -891,6 +894,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 			directkey = (neutrino_msg_t)xmlGetSignedNumericAttribute(listboxitem_node, "directkey", 0);
 			lines = xmlGetSignedNumericAttribute(listboxitem_node, "lines", 0);
 			shadow = xmlGetSignedNumericAttribute(listboxitem_node, "shadow", 0);
+			gradient = xmlGetSignedNumericAttribute(listboxitem_node, "gradient", 0);
 						
 			CMenuTarget* parent = NULL;
 			std::string actionKey = "";
@@ -914,6 +918,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 			if (lines) menuItem->set2lines();
 			if (option) menuItem->setOption(option);
 			if (shadow) menuItem->setShadowMode(shadow);
+			if (gradient) menuItem->setGradient(gradient);
 					
 			if (itemIcon)
 			{
@@ -1103,7 +1108,7 @@ void CNeutrinoApp::parseCHead(_xmlNodePtr node, CWidget* widget)
 	unsigned int width = 0;
 	unsigned int height = 0;
 				
-	//unsigned int i_paintframe = 1;
+	unsigned int i_paintframe = 1;
 	char* i_color = NULL;
 	unsigned int i_gradient = 0;
 	unsigned int i_corner = 0;
@@ -1127,8 +1132,7 @@ void CNeutrinoApp::parseCHead(_xmlNodePtr node, CWidget* widget)
 		width = xmlGetSignedNumericAttribute(node, "width", 0);
 		height = xmlGetSignedNumericAttribute(node, "height", 0);
 				
-		//i_paintframe = xmlGetSignedNumericAttribute(node, "paintframe", 0);
-				
+		i_paintframe = xmlGetSignedNumericAttribute(node, "paintframe", 1);		
 		i_color = xmlGetAttribute(node, (char*)"color");
 		i_gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
 		i_corner = xmlGetSignedNumericAttribute(node, "corner", 0);
@@ -1150,7 +1154,8 @@ void CNeutrinoApp::parseCHead(_xmlNodePtr node, CWidget* widget)
 		
 		head->widgetItem_type = WIDGETITEM_HEAD;
 		if (name) head->widgetItem_name = name;
-					
+		
+		head->paintMainFrame(i_paintframe);
 		if (title != NULL) head->setTitle(_(title));
 		head->setHAlign(halign);
 		if (icon != NULL) head->setIcon(icon);
@@ -1204,7 +1209,7 @@ void CNeutrinoApp::parseCFoot(_xmlNodePtr node, CWidget* widget)
 	unsigned int width = 0;
 	unsigned int height = 0;
 				
-	//unsigned int i_paintframe = 1;
+	unsigned int i_paintframe = 1;
 	char* i_color = NULL;
 	unsigned int i_gradient = 0;
 	unsigned int i_corner = 0;
@@ -1223,8 +1228,7 @@ void CNeutrinoApp::parseCFoot(_xmlNodePtr node, CWidget* widget)
 		width = xmlGetSignedNumericAttribute(node, "width", 0);
 		height = xmlGetSignedNumericAttribute(node, "height", 0);
 				
-		//i_paintframe = xmlGetSignedNumericAttribute(node, "paintframe", 0);
-				
+		i_paintframe = xmlGetSignedNumericAttribute(node, "paintframe", 1);	
 		i_color = xmlGetAttribute(node, (char*)"color");
 		i_gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
 		i_corner = xmlGetSignedNumericAttribute(node, "corner", 0);
@@ -1241,7 +1245,8 @@ void CNeutrinoApp::parseCFoot(_xmlNodePtr node, CWidget* widget)
 		
 		foot->widgetItem_type = WIDGETITEM_FOOT;
 		//if (name) foot->widgetItem_name = name;
-					
+		
+		foot->paintMainFrame(i_paintframe);			
 		if (i_color != NULL) foot->setColor(finalColor);
 		foot->setGradient(i_gradient);
 		foot->setCorner(i_corner);
@@ -1659,6 +1664,7 @@ void CNeutrinoApp::parseSkin(const char* const filename, bool xml_data)
 			unsigned int paintframe = 0;
 			unsigned int savescreen = 0;
 			unsigned int timeout = 0;
+			unsigned int position = 0;
 			
 			//
 			name = xmlGetAttribute(search, (char*)"name");
@@ -1677,6 +1683,7 @@ void CNeutrinoApp::parseSkin(const char* const filename, bool xml_data)
 			paintframe = xmlGetSignedNumericAttribute(search, "paintframe", 0);
 			savescreen = xmlGetSignedNumericAttribute(search, "savescreen", 0);
 			timeout = xmlGetSignedNumericAttribute(search, "timeout", 0);
+			position = xmlGetSignedNumericAttribute(search, "position", 0);;
 			
 			// parse color
 			uint32_t wColor = COL_MENUCONTENT_PLUS_0;
@@ -1691,9 +1698,10 @@ void CNeutrinoApp::parseSkin(const char* const filename, bool xml_data)
 			wdg->paintMainFrame(paintframe);
 			if (color != NULL) wdg->setColor(wColor);
 			wdg->setGradient(gradient);
-			wdg->setCorner(corner, radius);
+			wdg->setCorner(radius, corner);
 			if (savescreen) wdg->enableSaveScreen();
 			wdg->setTimeOut(timeout);
+			if (position) wdg->setMenuPosition(position);
 			
 			// skip duplicate
 			/*

@@ -639,8 +639,9 @@ class ClistBox : public CWidgetItem
 		int menu_position;
 		
 		//
-		bool itemShadow;
+		//bool itemShadow;
 		int itemShadowMode;
+		int itemGradient;
 		
 	public:
 		ClistBox(const int x = 0, int const y = 0, const int dx = MENU_WIDTH, const int dy = MENU_HEIGHT);
@@ -753,7 +754,8 @@ class ClistBox : public CWidgetItem
 		void setMenuPosition(int p){menu_position = p;};
 		
 		//
-		void setItemShadowMode(int m = SHADOW_ALL){itemShadow = true; itemShadowMode = m;};
+		void setItemShadowMode(int m = SHADOW_ALL){/*itemShadow = true;*/ itemShadowMode = m;};
+		void setItemGradient(int gr = NOGRADIENT){itemGradient = gr;};
 
 		//
 		bool isSelectable(void){return true;};

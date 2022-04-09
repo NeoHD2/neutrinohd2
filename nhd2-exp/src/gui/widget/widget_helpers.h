@@ -763,6 +763,8 @@ class CFooters : public CWidgetItem
 		unsigned int fcount;
 		int fbutton_width;
 		button_label_list_t fbuttons;
+		
+		bool paintFrame;
 
 		fb_pixel_t fbgcolor;
 		int fradius;
@@ -774,6 +776,9 @@ class CFooters : public CWidgetItem
 		CFooters(const int x = 0, const int y = 0, const int dx = DEFAULT_XRES, const int dy = DEFAULT_XRES);
 		CFooters(CBox* position);
 		virtual ~CFooters(){};
+		
+		//
+		void paintMainFrame(bool p){paintFrame = p;};
 
 		void setColor(fb_pixel_t col){fbgcolor = col;};
 		void setGradient(const int grad){fgradient = grad;};

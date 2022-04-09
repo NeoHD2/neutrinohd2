@@ -1,4 +1,4 @@
-SUBDIRS = KravenHD MetrixHD titan
+SUBDIRS = KravenHD MetrixHD titan navy
 
 
 

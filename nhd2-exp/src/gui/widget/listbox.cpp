@@ -2553,8 +2553,9 @@ ClistBox::ClistBox(const int x, const int y, const int dx, const int dy)
 	items_width = 0;
 	items_height = 0;
 	
-	itemShadow = false;
+	//itemShadow = false;
 	itemShadowMode = SHADOW_NO;
+	itemGradient = NOGRADIENT;
 	
 	//
 	sec_timer_id = 0;
@@ -2673,9 +2674,9 @@ ClistBox::ClistBox(CBox* position)
 	iconOffset = 0;
 	items_width = 0;
 	items_height = 0;
-	
-	itemShadow = false;
+	//itemShadow = false;
 	itemShadowMode = SHADOW_NO;
+	itemGradient = NOGRADIENT;
 	
 	//
 	sec_timer_id = 0;
@@ -2736,7 +2737,8 @@ void ClistBox::initFrames()
 
 		item->widgetType = widgetType;
 		item->paintFrame = paintFrame;
-		if (itemShadow) item->setShadowMode(itemShadowMode);
+		if (itemShadowMode) item->setShadowMode(itemShadowMode);
+		if (itemGradient) item->setGradient(itemGradient);
 	} 
 
 	// head

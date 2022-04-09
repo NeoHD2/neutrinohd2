@@ -1481,6 +1481,8 @@ CFooters::CFooters(const int x, const int y, const int dx, const int dy)
 
 	fbuttons.clear();
 	fcount = 0;
+	
+	paintFrame = true;
 
 	fbgcolor = COL_MENUFOOT_PLUS_0;
 	fradius = g_settings.Foot_radius;
@@ -1502,6 +1504,8 @@ CFooters::CFooters(CBox* position)
 	fbuttons.clear();
 	fcount = 0;
 	fbutton_width = itemBox.iWidth;
+	
+	paintFrame = true;
 
 	fbgcolor = COL_MENUFOOT_PLUS_0;
 	fradius = g_settings.Foot_radius;
@@ -1531,7 +1535,8 @@ void CFooters::paint()
 	dprintf(DEBUG_INFO, "CFooters::paint:\n");
 	
 	// box
-	CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, fbgcolor, fradius, fcorner, fgradient);
+	if (paintFrame)
+		CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, fbgcolor, fradius, fcorner, fgradient);
 	
 	// paint horizontal line buttom
 	if (foot_line)
@@ -1575,6 +1580,7 @@ void CFooters::hide()
 {
 	dprintf(DEBUG_INFO, "CFooters::hide:\n");
 	
-	CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	if (paintFrame)
+		CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
 }
 
