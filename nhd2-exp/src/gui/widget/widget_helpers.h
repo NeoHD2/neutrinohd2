@@ -702,6 +702,7 @@ class CHeaders : public CWidgetItem
 		CFrameBuffer* frameBuffer;
 		
 		//
+		bool paintFrame;
 		fb_pixel_t bgcolor;
 		int radius;
 		int corner;
@@ -723,6 +724,9 @@ class CHeaders : public CWidgetItem
 		CHeaders(const int x = 0, const int y = 0, const int dx = DEFAULT_XRES, const int dy = DEFAULT_XRES, const char * const title = NULL, const char * const icon = NULL);
 		CHeaders(CBox* position, const char * const title = NULL, const char * const icon = NULL);
 		virtual ~CHeaders(){};
+		
+		//
+		void paintMainFrame(bool p){paintFrame = p;};
 
 		//
 		void setTitle(const char * const title){htitle = title;};

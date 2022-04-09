@@ -1319,6 +1319,7 @@ CHeaders::CHeaders(const int x, const int y, const int dx, const int dy, const c
 	gradient = g_settings.Head_gradient;
 	head_line = g_settings.Head_line;
 
+	paintFrame = true;
 	paintDate = false;
 	format = "%d.%m.%Y %H:%M";
 	timer = NULL;
@@ -1348,6 +1349,7 @@ CHeaders::CHeaders(CBox* position, const char * const title, const char * const 
 	gradient = g_settings.Head_gradient;
 	head_line = g_settings.Head_line;
 
+	paintFrame = true;
 	paintDate = false;
 	format = "%d.%m.%Y %H:%M";
 	timer = NULL;
@@ -1378,7 +1380,8 @@ void CHeaders::paint()
 	dprintf(DEBUG_INFO, "CHeaders::paint: (%s) (%s)\n", htitle.c_str(), hicon.c_str());
 	
 	// box
-	CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
+	if (paintFrame)
+		CFrameBuffer::getInstance()->paintBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight, bgcolor, radius, corner, gradient);
 	
 	if (head_line)
 		CFrameBuffer::getInstance()->paintHLineRel(itemBox.iX + BORDER_LEFT, itemBox.iWidth - BORDER_LEFT - BORDER_RIGHT, itemBox.iY + itemBox.iHeight - 2, COL_MENUCONTENT_PLUS_5);
@@ -1460,7 +1463,8 @@ void CHeaders::hide()
 {
 	dprintf(DEBUG_INFO, "CHeaders::hide:\n");
 	
-	CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
+	if (paintFrame)
+		CFrameBuffer::getInstance()->paintBackgroundBoxRel(itemBox.iX, itemBox.iY, itemBox.iWidth, itemBox.iHeight);
 }
 
 // footers

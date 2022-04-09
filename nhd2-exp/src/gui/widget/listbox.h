@@ -712,12 +712,12 @@ class ClistBox : public CWidgetItem
 		void enableShrinkMenu(){shrinkMenu = true;};
 		void enableSaveScreen();
 		void paintMainFrame(bool p){paintFrame = p;};
-		//
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setRadius(int ra){radius = ra;};
 		void setCorner(int co){corner = co;};
 		void paintScrollBar(bool sb){scrollbar = sb;};
 
+		//
 		virtual void scrollLineDown(const int lines = 1);
 		virtual void scrollLineUp(const int lines = 1);
 		virtual void scrollPageDown(const int pages = 1);
@@ -761,8 +761,6 @@ class ClistBox : public CWidgetItem
 		int oKKeyPressed(CMenuTarget* _parent, neutrino_msg_t _msg = RC_ok);
 		void homeKeyPressed(){selected = -1;};
 		void onDirectKeyPressed(neutrino_msg_t msg);
-		//int onRightKeyPressed();
-		//int onLeftKeyPressed();
 
 		//
 		std::string getActionKey(void){return actionKey;}; // lua

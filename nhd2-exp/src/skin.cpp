@@ -398,6 +398,153 @@ uint32_t CNeutrinoApp::convertColor(const char* const color)
 				a = (col)&0xFF;
 			}
 		}
+		else
+		{
+			if ( strcmp(color, "COL_MAROON_PLUS_0") == 0)
+			{
+				return COL_MAROON_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_GREEN_PLUS_0") == 0)
+			{
+				return COL_GREEN_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_OLIVE_PLUS_0") == 0)
+			{
+				return COL_OLIVE_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_NAVY_PLUS_0") == 0)
+			{
+				return COL_NAVY_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_PURPLE_PLUS_0") == 0)
+			{
+				return COL_PURPLE_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_TEAL_PLUS_0") == 0)
+			{
+				return COL_TEAL_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_NOBEL_PLUS_0") == 0)
+			{
+				return COL_NOBEL_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_MATTERHORN_PLUS_0") == 0)
+			{
+				return COL_MATTERHORN_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_RED_PLUS_0") == 0)
+			{
+				return COL_RED_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_LIME_PLUS_0") == 0)
+			{
+				return COL_LIME_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_YELLOW_PLUS_0") == 0)
+			{
+				return COL_YELLOW_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_BLUE_PLUS_0") == 0)
+			{
+				return COL_BLUE_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_MAGENTA_PLUS_0") == 0)
+			{
+				return COL_MAGENTA_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_AQUA_PLUS_0") == 0)
+			{
+				return COL_AQUA_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_WHITE_PLUS_0") == 0)
+			{
+				return COL_WHITE_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_BLACK_PLUS_0") == 0)
+			{
+				return COL_BLACK_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_ORANGE_PLUS_0") == 0)
+			{
+				return COL_ORANGE_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_SILVER_PLUS_0") == 0)
+			{
+				return COL_SILVER_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_BACKGROUND_PLUS_0") == 0)
+			{
+				return COL_BACKGROUND_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_INFOBAR_PLUS_0") == 0)
+			{
+				return COL_INFOBAR_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_INFOBAR_SHADOW_PLUS_0") == 0)
+			{
+				return COL_INFOBAR_SHADOW_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_INFOBAR_SHADOW_PLUS_1") == 0)
+			{
+				return COL_INFOBAR_SHADOW_PLUS_1;
+			}
+			else if ( strcmp(color, "COL_MENUHEAD_PLUS_0") == 0)
+			{
+				return COL_MENUHEAD_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENT_PLUS_0") == 0)
+			{
+				return COL_MENUCONTENT_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENT_PLUS_1") == 0)
+			{
+				return COL_MENUCONTENT_PLUS_1;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENT_PLUS_2") == 0)
+			{
+				return COL_MENUCONTENT_PLUS_2;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENT_PLUS_3") == 0)
+			{
+				return COL_MENUCONTENT_PLUS_3;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENT_PLUS_4") == 0)
+			{
+				return COL_MENUCONTENT_PLUS_4;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENT_PLUS_5") == 0)
+			{
+				return COL_MENUCONTENT_PLUS_5;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENT_PLUS_6") == 0)
+			{
+				return COL_MENUCONTENT_PLUS_6;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENTDARK_PLUS_0") == 0)
+			{
+				return COL_MENUCONTENTDARK_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENTSELECTED_PLUS_0") == 0)
+			{
+				return COL_MENUCONTENTSELECTED_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENTSELECTED_PLUS_1") == 0)
+			{
+				return COL_MENUCONTENTSELECTED_PLUS_1;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENTINACTIVE_PLUS_0") == 0)
+			{
+				return COL_MENUCONTENTINACTIVE_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_MENUFOOT_PLUS_0") == 0)
+			{
+				return COL_MENUFOOT_PLUS_0;
+			}
+			else if ( strcmp(color, "COL_MENUHINT_PLUS_0") == 0)
+			{
+				return COL_MENUHINT_PLUS_0;
+			}
+		}
 	}
 				
 	rgba = convertSetupColor2Color(r, g, b, a); 
@@ -405,11 +552,150 @@ uint32_t CNeutrinoApp::convertColor(const char* const color)
 	return rgba;
 }
 
-uint32_t CNeutrinoApp::convertMenuColor(int col)
+//
+uint8_t CNeutrinoApp::convertFontColor(const char* const color)
 {
-	dprintf(DEBUG_INFO, "CNeutrinoApp::convertColor:\n");
+	dprintf(DEBUG_INFO, "CNeutrinoApp::convertFontColor: color: %s\n", color);
 	
-	uint32_t rgba = COL_MENUCONTENT_PLUS_0;
+	uint8_t rgb = COL_MENUCONTENT;
+	
+	unsigned int r = 0;
+	unsigned int g = 0;
+	unsigned int b = 0;
+				
+	if (color != NULL)
+	{
+		if (color[0] == '#')
+		{
+			unsigned long col = 0;
+						
+			if (sscanf(color + 1, "%lx", &col) == 1)
+			{
+				r = (col>>16)&0xFF;
+				g = (col >> 8)&0xFF;
+				b = (col)&0xFF;
+			}
+		}
+		else
+		{
+			if ( strcmp(color, "COL_MAROON") == 0)
+			{
+				return COL_MAROON;
+			}
+			else if ( strcmp(color, "COL_GREEN") == 0)
+			{
+				return COL_GREEN;
+			}
+			else if ( strcmp(color, "COL_OLIVE") == 0)
+			{
+				return COL_OLIVE;
+			}
+			else if ( strcmp(color, "COL_NAVY") == 0)
+			{
+				return COL_NAVY;
+			}
+			else if ( strcmp(color, "COL_PURPLE") == 0)
+			{
+				return COL_PURPLE;
+			}
+			else if ( strcmp(color, "COL_TEAL") == 0)
+			{
+				return COL_TEAL;
+			}
+			else if ( strcmp(color, "COL_NOBEL") == 0)
+			{
+				return COL_NOBEL;
+			}
+			else if ( strcmp(color, "COL_MATTERHORN") == 0)
+			{
+				return COL_MATTERHORN;
+			}
+			else if ( strcmp(color, "COL_RED") == 0)
+			{
+				return COL_RED;
+			}
+			else if ( strcmp(color, "COL_LIME") == 0)
+			{
+				return COL_LIME;
+			}
+			else if ( strcmp(color, "COL_YELLOW") == 0)
+			{
+				return COL_YELLOW;
+			}
+			else if ( strcmp(color, "COL_BLUE") == 0)
+			{
+				return COL_BLUE;
+			}
+			else if ( strcmp(color, "COL_MAGENTA") == 0)
+			{
+				return COL_MAGENTA;
+			}
+			else if ( strcmp(color, "COL_AQUA") == 0)
+			{
+				return COL_AQUA;
+			}
+			else if ( strcmp(color, "COL_WHITE") == 0)
+			{
+				return COL_WHITE;
+			}
+			else if ( strcmp(color, "COL_BLACK") == 0)
+			{
+				return COL_BLACK;
+			}
+			else if ( strcmp(color, "COL_ORANGE") == 0)
+			{
+				return COL_ORANGE;
+			}
+			else if ( strcmp(color, "COL_SILVER") == 0)
+			{
+				return COL_SILVER;
+			}
+			else if ( strcmp(color, "COL_BACKGROUND") == 0)
+			{
+				return COL_BACKGROUND;
+			}
+			else if ( strcmp(color, "COL_INFOBAR") == 0)
+			{
+				return COL_INFOBAR;
+			}
+			else if ( strcmp(color, "COL_INFOBAR_SHADOW") == 0)
+			{
+				return COL_INFOBAR_SHADOW;
+			}
+			else if ( strcmp(color, "COL_MENUHEAD") == 0)
+			{
+				return COL_MENUHEAD;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENT") == 0)
+			{
+				return COL_MENUCONTENT;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENTDARK") == 0)
+			{
+				return COL_MENUCONTENTDARK;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENTSELECTED") == 0)
+			{
+				return COL_MENUCONTENTSELECTED;
+			}
+			else if ( strcmp(color, "COL_MENUCONTENTINACTIVE") == 0)
+			{
+				return COL_MENUCONTENTINACTIVE;
+			}
+			else if ( strcmp(color, "COL_MENUFOOT") == 0)
+			{
+				return COL_MENUFOOT;
+			}
+			else if ( strcmp(color, "COL_MENUHINT") == 0)
+			{
+				return COL_MENUHINT;
+			}
+		}
+	}
+				
+	rgb = convertSetupColor2RGB(r, g, b); 
+	
+	return rgb;
 }
 
 //
@@ -1111,6 +1397,7 @@ void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* wind
 	unsigned int l_halign = 0;
 	
 	int font_size = -1;
+	char* font_color = NULL;
 	
 	while ((node = xmlGetNextOccurence(node, "LABEL")) != NULL) 
 	{
@@ -1124,6 +1411,11 @@ void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* wind
 		cc_refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
 		
 		font_size = xmlGetSignedNumericAttribute(node, "font", 0);
+		font_color = xmlGetAttribute(node, (char*)"fontcolor");
+		
+		uint8_t color = COL_MENUCONTENT;
+		
+		if (font_color) color = convertFontColor(font_color);
 						
 		std::string text = "";
 							
@@ -1138,6 +1430,7 @@ void CNeutrinoApp::parseCCLabel(_xmlNodePtr node, CWidget* widget, CWindow* wind
 		if (!text.empty()) label->setText(_(text.c_str()));
 		label->setHAlign(l_halign);
 		if (font_size) label->setFont(font_size);
+		if (font_color) label->setColor(color);
 							
 		if (widget) widget->addCCItem(label);
 		if (window) window->addCCItem(label);
@@ -1208,6 +1501,7 @@ void CNeutrinoApp::parseCCTime(_xmlNodePtr node, CWidget* widget, CWindow* windo
 	unsigned int cc_dy = 0;
 	
 	int font_size = -1;
+	char* font_color = NULL;
 						
 	unsigned int cc_refresh = 0;
 	
@@ -1221,6 +1515,11 @@ void CNeutrinoApp::parseCCTime(_xmlNodePtr node, CWidget* widget, CWindow* windo
 		cc_dy = xmlGetSignedNumericAttribute(node, "height", 0);
 		
 		font_size = xmlGetSignedNumericAttribute(node, "font", 0);
+		font_color = xmlGetAttribute(node, (char*)"fontcolor");
+		
+		uint8_t color = COL_MENUCONTENT;
+		
+		if (font_color) color = convertFontColor(font_color);
 						
 		cc_refresh = xmlGetSignedNumericAttribute(node, "refresh", 0);
 					
@@ -1228,9 +1527,10 @@ void CNeutrinoApp::parseCCTime(_xmlNodePtr node, CWidget* widget, CWindow* windo
 							
 		time = new CCTime(cc_x, cc_y, cc_dx, cc_dy);
 							
-		if (cc_format != NULL) time->setFormat(cc_format);
+		if (cc_format != NULL) time->setFormat(_(cc_format));
 		if (cc_refresh) time->enableRepaint();
 		if (font_size) time->setFont(font_size);
+		if (font_color) time->setColor(color);
 							
 		if (widget) widget->addCCItem(time);
 		if (window) window->addCCItem(time);
