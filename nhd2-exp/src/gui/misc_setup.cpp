@@ -601,6 +601,22 @@ int CChannelListSettings::exec(CMenuTarget* parent, const std::string& actionKey
 		
 		return ret;
 	}
+	else if(actionKey == "logos_dir") 
+	{
+		CFileBrowser b;
+		b.Dir_Mode = true;
+		
+		if (b.exec(g_settings.logos_dir.c_str())) 
+		{
+			g_settings.logos_dir = b.getSelectedFile()->Name;
+
+			dprintf(DEBUG_NORMAL, "CMiscSettings::exec: new logos dir %s\n", b.getSelectedFile()->Name.c_str());
+		}
+
+		getString() = g_settings.logos_dir;
+
+		return ret;
+	}
 	
 	showMenu();
 	
