@@ -136,7 +136,7 @@ int CHDDMenuHandler::exec(CMenuTarget * parent, const std::string &actionKey)
 	
 	if(actionKey == "activateNow")
 	{
-		CHintBox * hintBox = new CHintBox(_("Information"), _("Save Settings now")); // UTF-8
+		CHintBox * hintBox = new CHintBox(_("Information"), _("Save settings now")); // UTF-8
 		hintBox->paint();
 		
 		CHDDDestExec * hddActiv = new CHDDDestExec();
@@ -232,6 +232,7 @@ int CHDDMenuHandler::hddMenu()
 	
 	ret = stat("/", &s);
 	int drive_mask = 0xfff0;
+	
 	if (ret != -1) 
 	{
 		if ((s.st_dev & drive_mask) == 0x0300) /* hda, hdb,... has max 63 partitions */
@@ -323,18 +324,16 @@ int CHDDMenuHandler::hddMenu()
 		bool enabled = !CNeutrinoApp::getInstance()->recordingstatus && !isroot;
 
 		// hdd menu
-		if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
+		if (CNeutrinoApp::getInstance()->getWidget("temphdd2"))
 		{
-			tempMenuWidget[i] = CNeutrinoApp::getInstance()->getWidget("optionchooser");
+			tempMenuWidget[i] = CNeutrinoApp::getInstance()->getWidget("temphdd2");
 			int prev_ItemsCount = tempMenuWidget[i]->getItemsCount();
 			
 			tempMenu[i] = (ClistBox*)tempMenuWidget[i]->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 			
-			if (tempMenu[i]->hasFoot())
+			if (tempMenu[i]->hasHead())
 			{
-				tempMenu[i]->enablePaintFoot();		
-				const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
-				tempMenu[i]->setFootButtons(&btn);
+				tempMenu[i]->setTitle(str, NEUTRINO_ICON_SETTINGS);
 			}
 		}
 		else
@@ -343,6 +342,10 @@ int CHDDMenuHandler::hddMenu()
 			tempMenu[i]->setMenuPosition(MENU_POSITION_CENTER);
 			tempMenu[i]->setWidgetMode(MODE_SETUP);
 			tempMenu[i]->enableShrinkMenu();
+			
+			//
+			tempMenu[i]->enablePaintHead();
+			tempMenu[i]->setTitle(str, NEUTRINO_ICON_SETTINGS);
 			
 			//
 			tempMenu[i]->enablePaintFoot();		
@@ -356,9 +359,7 @@ int CHDDMenuHandler::hddMenu()
 			tempMenuWidget[i]->addItem(tempMenu[i]);
 		}
 		
-		tempMenu[i]->enablePaintHead();
-		tempMenu[i]->setTitle(str, NEUTRINO_ICON_SETTINGS);
-		
+		//
 		tempMenu[i]->clearAll();
 
 		
@@ -401,18 +402,16 @@ int CHDDMenuHandler::hddMenu()
 			mounted = check_if_mounted(DEVICE);
 			
 			// part submenu
-			if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
+			if (CNeutrinoApp::getInstance()->getWidget("temphdd"))
 			{
-				PartMenuWidget[j] = CNeutrinoApp::getInstance()->getWidget("optionchooser");
+				PartMenuWidget[j] = CNeutrinoApp::getInstance()->getWidget("temphdd");
 				int prev_ItemsCount = PartMenuWidget[j]->getItemsCount();
 				
 				PartMenu[j] = (ClistBox*)PartMenuWidget[j]->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 				
-				if (PartMenu[j]->hasFoot())
+				if (PartMenu[j]->hasHead())
 				{
-					PartMenu[j]->enablePaintFoot();		
-					const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
-					PartMenu[j]->setFootButtons(&btn);
+					PartMenu[j]->setTitle(PART, NEUTRINO_ICON_SETTINGS);
 				}
 			}
 			else
@@ -421,6 +420,10 @@ int CHDDMenuHandler::hddMenu()
 				PartMenu[j]->setMenuPosition(MENU_POSITION_CENTER);
 				PartMenu[j]->setWidgetMode(MODE_SETUP);
 				PartMenu[j]->enableShrinkMenu();
+				
+				//
+				PartMenu[j]->enablePaintHead();
+				PartMenu[j]->setTitle(PART, NEUTRINO_ICON_SETTINGS);
 				
 				//
 				PartMenu[j]->enablePaintFoot();		
@@ -434,9 +437,7 @@ int CHDDMenuHandler::hddMenu()
 				PartMenuWidget[j]->addItem(PartMenu[j]);
 			}
 			
-			PartMenu[j]->enablePaintHead();
-			PartMenu[j]->setTitle(PART, NEUTRINO_ICON_SETTINGS);
-			
+			//
 			PartMenu[j]->clearAll();
 
 			//

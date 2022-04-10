@@ -305,10 +305,10 @@ void CKeysBindingSettings::showMenu()
 		&g_settings.key_screenshot
 	};
 
-	CKeyChooser* keychooser[KEYBINDS_COUNT];
+	//CKeyChooser* keychooser[KEYBINDS_COUNT];
 
-	for (int i = 0; i < KEYBINDS_COUNT; i++)
-		keychooser[i] = new CKeyChooser(keyvalue_p[i], keydescription[i], NEUTRINO_ICON_SETTINGS);
+	//for (int i = 0; i < KEYBINDS_COUNT; i++)
+	//	keychooser[i] = new CKeyChooser(keyvalue_p[i], keydescription[i], NEUTRINO_ICON_SETTINGS);
 	
 	//
 	CWidget* widget = NULL;
@@ -356,30 +356,30 @@ void CKeysBindingSettings::showMenu()
 	bindSettings->addItem(new CMenuSeparator(LINE | STRING, _("Modechange")));
 	
 	// tv/radio mode
-	bindSettings->addItem(new CMenuForwarder(keydescription[KEY_TV_RADIO_MODE], true, NULL, keychooser[KEY_TV_RADIO_MODE]));
+	bindSettings->addItem(new CMenuForwarder(keydescription[KEY_TV_RADIO_MODE], true, NULL, /*keychooser[KEY_TV_RADIO_MODE]*/new CKeyChooser(keyvalue_p[KEY_TV_RADIO_MODE], keydescription[KEY_TV_RADIO_MODE], NEUTRINO_ICON_SETTINGS)));
 
 	// channellist
 	bindSettings->addItem(new CMenuSeparator(LINE | STRING, _("Channellist")));
 
 	for (int i = KEY_PAGE_UP; i <= KEY_BOUQUET_DOWN; i++)
-		bindSettings->addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
+		bindSettings->addItem(new CMenuForwarder(keydescription[i], true, NULL, /*keychooser[i]*/new CKeyChooser(keyvalue_p[i], keydescription[i], NEUTRINO_ICON_SETTINGS)));
 
 	// quick zap
 	bindSettings->addItem(new CMenuSeparator(LINE | STRING, _("Quickzap")));
 
 	for (int i = KEY_CHANNEL_UP; i <= KEY_SAME_TP; i++)
-		bindSettings->addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
+		bindSettings->addItem(new CMenuForwarder(keydescription[i], true, NULL, /*keychooser[i]*/new CKeyChooser(keyvalue_p[i], keydescription[i], NEUTRINO_ICON_SETTINGS)));
 	
 	// media
 	bindSettings->addItem(new CMenuSeparator(LINE | STRING, _("Media")));
 	for (int i = KEY_EXTRAS_RECORDSBROWSER; i <= KEY_EXTRAS_WEBTV; i++)
-		bindSettings->addItem(new CMenuForwarder(keydescription[i], true, NULL, keychooser[i]));
+		bindSettings->addItem(new CMenuForwarder(keydescription[i], true, NULL, /*keychooser[i]*/new CKeyChooser(keyvalue_p[i], keydescription[i], NEUTRINO_ICON_SETTINGS)));
 
 	// misc
 	bindSettings->addItem(new CMenuSeparator(LINE | STRING, _("Misc settings")));
 	
 	// screenshot key
-	bindSettings->addItem(new CMenuForwarder(keydescription[KEY_EXTRAS_SCREENSHOT], true, NULL, keychooser[KEY_EXTRAS_SCREENSHOT]));
+	bindSettings->addItem(new CMenuForwarder(keydescription[KEY_EXTRAS_SCREENSHOT], true, NULL, /*keychooser[KEY_EXTRAS_SCREENSHOT]*/new CKeyChooser(keyvalue_p[KEY_EXTRAS_SCREENSHOT], keydescription[KEY_EXTRAS_SCREENSHOT], NEUTRINO_ICON_SETTINGS)));
 	
 	// save rc config
 	bindSettings->addItem(new CMenuForwarder(_("Save RC configuration"), true, NULL, this, "savercconfig" ) );

@@ -549,12 +549,8 @@ void CScanSetup::showScanService()
 					
 					tempsat = (ClistBox*)tempsatWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 					
-					if (tempsat->hasFoot())
-					{
-						tempsat->enablePaintFoot();		
-						const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
-						tempsat->setFootButtons(&btn);
-					}
+					if (tempsat->hasHead())
+						tempsat->setTitle(sit->second.name.c_str(), NEUTRINO_ICON_UPDATE);
 				}
 				else
 				{
@@ -562,6 +558,10 @@ void CScanSetup::showScanService()
 					tempsat->setMenuPosition(MENU_POSITION_CENTER);
 					tempsat->setWidgetMode(MODE_SETUP);
 					tempsat->enableShrinkMenu();
+					
+					//
+					tempsat->enablePaintHead();
+					tempsat->setTitle(sit->second.name.c_str(), NEUTRINO_ICON_UPDATE);
 					
 					//
 					tempsat->enablePaintFoot();		
@@ -575,9 +575,6 @@ void CScanSetup::showScanService()
 					tempsatWidget->enableSaveScreen();
 					tempsatWidget->addItem(tempsat);
 				}
-				
-				tempsat->enablePaintHead();
-				tempsat->setTitle(sit->second.name.c_str(), NEUTRINO_ICON_UPDATE);
 				
 				tempsat->clearAll();
 				

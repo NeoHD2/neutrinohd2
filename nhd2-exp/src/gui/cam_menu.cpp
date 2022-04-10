@@ -179,18 +179,16 @@ void CCAMMenuHandler::doMainMenu()
 			sprintf(str, "%s %d", _("No CAM in slot"), i + 1);
 			
 			//
-			if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
+			if (CNeutrinoApp::getInstance()->getWidget("tempcam2"))
 			{
-				tempMenuWidget = CNeutrinoApp::getInstance()->getWidget("optionchooser");
+				tempMenuWidget = CNeutrinoApp::getInstance()->getWidget("tempcam2");
 				int prev_ItemsCount = tempMenuWidget->getItemsCount();
 				
 				tempMenu = (ClistBox*)tempMenuWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 				
-				if (tempMenu->hasFoot())
+				if (tempMenu->hasHead())
 				{
-					tempMenu->enablePaintFoot();		
-					const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
-					tempMenu->setFootButtons(&btn);
+					tempMenu->setTitle(str, NEUTRINO_ICON_SETTINGS);
 				}
 			}
 			else
@@ -199,6 +197,10 @@ void CCAMMenuHandler::doMainMenu()
 				tempMenu->setMenuPosition(MENU_POSITION_CENTER);
 				tempMenu->setWidgetMode(MODE_SETUP);
 				tempMenu->enableShrinkMenu();
+				
+				//
+				tempMenu->enablePaintHead();
+				tempMenu->setTitle(str, NEUTRINO_ICON_SETTINGS);
 				
 				//
 				tempMenu->enablePaintFoot();		
@@ -212,9 +214,7 @@ void CCAMMenuHandler::doMainMenu()
 				tempMenuWidget->addItem(tempMenu);
 			}
 			
-			tempMenu->enablePaintHead();
-			tempMenu->setTitle(str, NEUTRINO_ICON_SETTINGS);
-			
+			//
 			tempMenu->clearAll();
 
 			//
@@ -361,19 +361,15 @@ int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t 
 			CWidget* menuWidget = NULL;
 			ClistBox* menu = NULL;
 			
-			if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
+			if (CNeutrinoApp::getInstance()->getWidget("tempcam"))
 			{
-				menuWidget = CNeutrinoApp::getInstance()->getWidget("optionchooser");
+				menuWidget = CNeutrinoApp::getInstance()->getWidget("tempcam");
 				int prev_ItemsCount = menuWidget->getItemsCount();
 				
 				menu = (ClistBox*)menuWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 				
-				if (menu->hasFoot())
-				{
-					menu->enablePaintFoot();		
-					const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
-					menu->setFootButtons(&btn);
-				}
+				if (menu->hasHead())
+					menu->setTitle(convertDVBUTF8(pMenu->title, strlen(pMenu->title), 0).c_str(), NEUTRINO_ICON_SETTINGS);
 			}
 			else
 			{
@@ -381,6 +377,10 @@ int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t 
 				menu->setMenuPosition(MENU_POSITION_CENTER);
 				menu->setWidgetMode(MODE_SETUP);
 				menu->enableShrinkMenu();
+				
+				//
+				menu->enablePaintHead();
+				menu->setTitle(convertDVBUTF8(pMenu->title, strlen(pMenu->title), 0).c_str(), NEUTRINO_ICON_SETTINGS);
 				
 				//
 				menu->enablePaintFoot();		
@@ -393,9 +393,6 @@ int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t 
 				menuWidget->enableSaveScreen();
 				menuWidget->addItem(menu);
 			}
-			
-			menu->enablePaintHead();
-			menu->setTitle(convertDVBUTF8(pMenu->title, strlen(pMenu->title), 0).c_str(), NEUTRINO_ICON_SETTINGS);
 			
 			menu->clearAll();
 

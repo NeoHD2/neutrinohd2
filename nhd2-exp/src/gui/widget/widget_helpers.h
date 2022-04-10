@@ -344,12 +344,12 @@ class CItems2DetailsLine : public CComponent
 		
 		//
 		virtual void setMode(int m){mode = m;};
-		virtual void setInfo1(const char* const text){info1 = text;};
-		virtual void setInfo2(const char* const text){info2 = text;};
-		virtual void setOptionInfo1(const char* const text){option_info1 = text;};
-		virtual void setOptionInfo2(const char* const text){option_info2 = text;};
-		virtual void setHint(const char* const Text){hint =  Text;};
-		virtual void setIcon(const char* const ic){icon = ic;};
+		virtual void setInfo1(const char* const text){if (text) info1 = text;};
+		virtual void setInfo2(const char* const text){if (text)  info2 = text;};
+		virtual void setOptionInfo1(const char* const text){if (text) option_info1 = text;};
+		virtual void setOptionInfo2(const char* const text){if (text) option_info2 = text;};
+		virtual void setHint(const char* const Text){if (Text) hint =  Text;};
+		virtual void setIcon(const char* const ic){if (ic) icon = ic;};
 		
 		// custom mode
 		void setFont(unsigned int f){tFont = f;};
@@ -534,7 +534,6 @@ class CCTime : public CComponent
 		
 		//
 		uint8_t color;
-		//CFont* font;
 		unsigned int font;
 		std::string format;
 		
@@ -729,15 +728,15 @@ class CHeaders : public CWidgetItem
 		void paintMainFrame(bool p){paintFrame = p;};
 
 		//
-		void setTitle(const char * const title){htitle = title;};
-		void setIcon(const char * const icon){hicon = icon;};
+		void setTitle(const char * const title){if (title) htitle = title;};
+		void setIcon(const char * const icon){if (icon) hicon = icon;};
 		void setHAlign(const int m){thalign = m;};
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setGradient(const int grad){gradient = grad;};
 		void setRadius(const int ra){radius = ra;};
 		void setCorner(const int co){corner = co;};
 		void enablePaintDate(void){paintDate = true;};
-		void setFormat(const char* f){format = f;};
+		void setFormat(const char* f){if (f) format = f;};
 		void setHeadLine(bool l){head_line = l;};
 		
 		//

@@ -1601,7 +1601,7 @@ int CRCInput::getNumericValue(const neutrino_msg_t key)
 */
 static const unsigned int digit_to_key[10] = {RC_0, RC_1, RC_2, RC_3, RC_4, RC_5, RC_6, RC_7, RC_8, RC_9};
 
-unsigned int CRCInput::convertDigitToKey(const unsigned int digit)
+unsigned long CRCInput::convertDigitToKey(const unsigned int digit)
 {
 	return (digit < 10) ? digit_to_key[digit] : RC_nokey;
 }
@@ -1626,7 +1626,7 @@ int CRCInput::getUnicodeValue(const neutrino_msg_t key)
 /*
 *       transforms the rc-key to const char *
 */
-const char * CRCInput::getSpecialKeyName(const unsigned int key)
+const char * CRCInput::getSpecialKeyName(const unsigned long key)
 {
 	switch(key)
 	{
@@ -1823,7 +1823,7 @@ const char * CRCInput::getSpecialKeyName(const unsigned int key)
 	}
 }
 
-std::string CRCInput::getKeyName(const unsigned int key)
+std::string CRCInput::getKeyName(const unsigned long key)
 {
 	int unicode_value = getUnicodeValue(key);
 	if (unicode_value == -1)

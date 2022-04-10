@@ -268,7 +268,7 @@ int CTuxtxtChangeExec::exec(CMenuTarget *parent, const std::string &actionKey)
 #define USERMENU_ITEM_OPTION_COUNT SNeutrinoSettings::ITEM_MAX
 const keyval USERMENU_ITEM_OPTIONS[USERMENU_ITEM_OPTION_COUNT] =
 {
-	{ SNeutrinoSettings::ITEM_NONE, NULL },  
+	{ SNeutrinoSettings::ITEM_NONE, " " },  
 	{ SNeutrinoSettings::ITEM_TIMERLIST, _("Timerlist") },
 	{ SNeutrinoSettings::ITEM_PLUGIN, _("Plugins") },
 	{ SNeutrinoSettings::ITEM_VTXT, _("Videotext") },
@@ -296,17 +296,9 @@ int CUserMenuMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 		//
 		if (menu->hasHead())
 		{
-			menu->enablePaintHead();
 			menu->setTitle(local.c_str(), NEUTRINO_ICON_KEYBINDING);
 		}
 		
-		//	
-		if (menu->hasFoot())
-		{
-			menu->enablePaintFoot();		
-			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
-			menu->setFootButtons(&btn);
-		}
 	}
 	else
 	{
@@ -349,7 +341,7 @@ int CUserMenuMenu::exec(CMenuTarget* parent, const std::string& actionKey)
                 menu->addItem( new CMenuOptionChooser(text, &g_settings.usermenu[button][item], USERMENU_ITEM_OPTIONS, USERMENU_ITEM_OPTION_COUNT,true, NULL, RC_nokey, "", true ));
         }
 
-	//name.getString();
+	widget->getString();
 
         widget->exec(NULL, "");
 

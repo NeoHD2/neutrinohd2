@@ -1697,7 +1697,7 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 				if(runningPercent > 100)
 					runningPercent = 100;
 
-				sprintf (runningRest, "%d / %d min", seit, rest);
+				sprintf (runningRest, "%d / %d", seit, rest);
 	  		}
 
 	  		struct tm * pStartZeit = localtime(&info_CurrentNext.current_zeit.startzeit);
@@ -1748,59 +1748,44 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 	  		nextLabel->setText(gotTime ? _("EPG not available") : _("Waiting for time..."));
 	  		nextLabel->setColor(COL_INFOBAR);
 	  		nextLabel->paint();
-	  		
-	  		//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(ChanInfoX, ChanInfoY + 2*ChanInfoHeight, BoxEndX - (BoxStartX + CHANNUMBER_WIDTH + 20), gotTime ? _("EPG not available") : _("Waiting for time..."), COL_INFOBAR, 0, true);	// UTF-8
 		} 
 		else 
 		{
 	  		// found some epg
-	  		//int duration1Width = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(runningRest);
-	  		//int duration1TextPos = BoxEndX - duration1Width - BORDER_RIGHT;
-
-	  		//int duration2Width = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->getRenderWidth(nextDuration);
-	  		//int duration2TextPos = BoxEndX - duration2Width - BORDER_RIGHT;
-
 	  		if ((info_CurrentNext.flags & CSectionsdClient::epgflags::has_next) && (!(info_CurrentNext.flags & CSectionsdClient::epgflags::has_current))) 
 			{
 				// current infos
 				currentLabel->setText(_("No info for current program available"));
 				currentLabel->setColor(COL_INFOBAR_COLORED_EVENTS);
 				currentLabel->paint();
-				//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, BoxEndX - ChanInfoX, _("No info for current program available"), COL_INFOBAR_COLORED_EVENTS, 0, true);	// UTF-8
 
 				// next
 				nextStartTime->setText(nextStart);
 				nextStartTime->paint();
-				//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(BoxStartX + BORDER_LEFT, ChanInfoY + 2*ChanInfoHeight, EPGTimeWidth, nextStart, COL_MENUCONTENTINACTIVE);
 
 				//
 				nextLabel->setText(info_CurrentNext.next_name.c_str());
 				nextLabel->setColor(COL_INFOBAR);
 				nextLabel->paint();
-				//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(ChanInfoX, ChanInfoY + 2*ChanInfoHeight, duration2TextPos - ChanInfoX - 5, info_CurrentNext.next_name, COL_MENUCONTENTINACTIVE, 0, true);
 				
 				//
 				nextPlayTime->setText(nextDuration);
 				nextPlayTime->paint();
-				//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString(duration2TextPos, ChanInfoY + 2*ChanInfoHeight, duration2Width, nextDuration, COL_MENUCONTENTINACTIVE);
 	  		} 
 			else 
 			{
 				// current
 			  	currentStartTime->setText(runningStart);
 				currentStartTime->paint();	
-			  	//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (BoxStartX + 10, ChanInfoY + ChanInfoHeight, EPGTimeWidth, runningStart, COL_INFOBAR_COLORED_EVENTS);
 
 				//
 				currentLabel->setText(info_CurrentNext.current_name.c_str());
 				currentLabel->setColor(COL_INFOBAR_COLORED_EVENTS);
 				currentLabel->paint();
-			  	//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + ChanInfoHeight, duration1TextPos - ChanInfoX - 5, info_CurrentNext.current_name, COL_INFOBAR_COLORED_EVENTS, 0, true);
 			  	
 				//
 				currentPlayTime->setText(runningRest);
 				currentPlayTime->paint();
-		  		//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (duration1TextPos, ChanInfoY + ChanInfoHeight, duration1Width, runningRest, COL_INFOBAR_COLORED_EVENTS);
 
 				// next 
 				if ((!is_nvod) && (info_CurrentNext.flags & CSectionsdClient::epgflags::has_next)) 
@@ -1808,18 +1793,15 @@ void CInfoViewer::show_Data(bool calledFromEvent)
 					//
 					nextStartTime->setText(nextStart);
 					nextStartTime->paint();	
-					//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (BoxStartX + BORDER_LEFT, ChanInfoY + 2*ChanInfoHeight, EPGTimeWidth, nextStart, COL_MENUCONTENTINACTIVE);
 
 					//
 					nextLabel->setText(info_CurrentNext.next_name.c_str());
 					nextLabel->setColor(COL_INFOBAR);
 					nextLabel->paint();
-					//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (ChanInfoX, ChanInfoY + 2*ChanInfoHeight, duration2TextPos - ChanInfoX - 5, info_CurrentNext.next_name, COL_MENUCONTENTINACTIVE, 0, true);
 
 					//
 					nextPlayTime->setText(nextDuration);
 					nextPlayTime->paint();
-					//g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_INFO]->RenderString (duration2TextPos, ChanInfoY + 2*ChanInfoHeight, duration2Width, nextDuration, COL_MENUCONTENTINACTIVE);
 				} 
 	  		}
 		}

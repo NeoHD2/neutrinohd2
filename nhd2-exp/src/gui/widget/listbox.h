@@ -205,25 +205,25 @@ class CMenuItem
 		virtual int getMenuItemType(){ return menuItem_type;};
 
 		//
-		virtual void setOption(const char* text){option = text;};
-		virtual void setOptionInfo(const char* text){optionInfo = text;};
+		virtual void setOption(const char* text){if (text) option = text;};
+		virtual void setOptionInfo(const char* text){if (text) optionInfo = text;};
 
 		//
-		virtual void setInfo1(const char* const text){info1 = text;};
-		virtual void setInfo2(const char* const text){info2 = text;};
-		virtual void setOptionInfo1(const char* const text){option_info1 = text;};
-		virtual void setOptionInfo2(const char* const text){option_info2 = text;};
+		virtual void setInfo1(const char* const text){if (text) info1 = text;};
+		virtual void setInfo2(const char* const text){if (text) info2 = text;};
+		virtual void setOptionInfo1(const char* const text){if (text) option_info1 = text;};
+		virtual void setOptionInfo2(const char* const text){if (text) option_info2 = text;};
 
 		//
-		virtual void setHint(const char* const Text){itemHint =  Text;};
-		virtual void setHintIcon(const char* const icon){itemIcon = icon;};
+		virtual void setHint(const char* const Text){if (Text) itemHint =  Text;};
+		virtual void setHintIcon(const char* const icon){if (icon) itemIcon = icon;};
 
 		//
-		virtual void setIconName(const char* const icon){iconName = icon;};
+		virtual void setIconName(const char* const icon){if (icon) iconName = icon;};
 
 		//
-		virtual void setIcon1(const char* const icon){icon1 = icon;};
-		virtual void setIcon2(const char* const icon){icon2 = icon;};
+		virtual void setIcon1(const char* const icon){if (icon)icon1 = icon;};
+		virtual void setIcon2(const char* const icon){if (icon)icon2 = icon;};
 		virtual void setNumber(int nr){number = nr;};
 		virtual void setPercent(unsigned int percent){pb = true; runningPercent = percent;};
 
@@ -669,7 +669,7 @@ class ClistBox : public CWidgetItem
 		// head
 		void enablePaintHead(){paintTitle = true;};
 		void enablePaintDate(void){paintDate = true;};
-		void setTitle(const char* title = "", const char* icon = NULL){l_name = title; if(icon != NULL) iconfile = icon;};
+		void setTitle(const char* title = "", const char* icon = NULL){if (title) l_name = title; if(icon) iconfile = icon;};
 		void setTitleHAlign(const int m){thalign = m;};
 		void setHeadButtons(const struct button_label *_hbutton_label, const int _hbutton_count = 1);
 		void setHeadColor(fb_pixel_t col) {headColor = col;};

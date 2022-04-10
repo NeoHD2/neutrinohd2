@@ -414,11 +414,11 @@ class CRCInput
 
 		static bool isNumeric(const neutrino_msg_t key);
 		static int getNumericValue(const neutrino_msg_t key);
-		static unsigned int convertDigitToKey(const unsigned int digit);
+		static unsigned long convertDigitToKey(const unsigned int digit);
 		static int getUnicodeValue(const neutrino_msg_t key);
 
-		static const char * getSpecialKeyName(const unsigned int key);
-		static std::string getKeyName(const unsigned int key);
+		static const char * getSpecialKeyName(const unsigned long key);
+		static std::string getKeyName(const unsigned long key);
 
 		int addTimer(uint64_t Interval, bool oneshot = true, bool correct_time = true );
 		int addTimer(struct timeval Timeout);

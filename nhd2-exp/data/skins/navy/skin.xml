@@ -11,26 +11,33 @@
 	</WIDGET>
 	
 	<WIDGET name="usermenu" id="999" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
-		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="2" position="2" scrollbar="1">
-		
+		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="1" position="2" painthead="1" head_line="1" paintfoot="1" foot_line="1">
 			<FOOT_BUTTON_LABEL name="information"/>
 		</LISTBOX>
 	</WIDGET>
 	
 	<WIDGET name="keychooser" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
-		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="1" position="2"/>
+		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="1" position="2" painthead="1" head_line="1" paintfoot="1" foot_line="1">
+			<FOOT_BUTTON_LABEL name="information"/>
+		</LISTBOX>
 	</WIDGET>
 	
 	<WIDGET name="mountchooser" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
-		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="1" position="2"/>
+		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="1" position="2" painthead="1" head_line="1" paintfoot="1" foot_line="1">
+			<FOOT_BUTTON_LABEL name="information"/>
+		</LISTBOX>
 	</WIDGET>
 	
 	<WIDGET name="optionstringchooser" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
-		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="1" position="2"/>
+		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="1" position="2" painthead="1" head_line="1" paintfoot="1" foot_line="1">
+			<FOOT_BUTTON_LABEL name="information"/>
+		</LISTBOX>
 	</WIDGET>
 	
 	<WIDGET name="optionchooser" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
-		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="1" position="2"/>
+		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="1" position="2" painthead="1" head_line="1" paintfoot="1" foot_line="1">
+			<FOOT_BUTTON_LABEL name="information"/>
+		</LISTBOX>
 	</WIDGET>
 	
 	<WIDGET name="rcbinding" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
@@ -138,6 +145,20 @@
 		</LISTBOX>
 	</WIDGET>
 	
+	<WIDGET name="temphdd2" id="999" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
+		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="2" position="2" painthead="1" head_line="1" paintfoot="1" foot_line="1" scrollbar="1">
+		
+			<FOOT_BUTTON_LABEL name="information"/>
+		</LISTBOX>
+	</WIDGET>
+	
+	<WIDGET name="temphdd" id="999" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
+		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="2" position="2" painthead="1" head_line="1" paintfoot="1" foot_line="1" scrollbar="1">
+		
+			<FOOT_BUTTON_LABEL name="information"/>
+		</LISTBOX>
+	</WIDGET>
+	
 	<WIDGET name="hddsetup" id="21" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
 		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="2" position="2" painthead="1" title="HDD settings" icon="settings" paintdate="1" head_line="1" paintfoot="1" foot_line="1" scrollbar="1">
 		
@@ -183,6 +204,20 @@
 	<WIDGET name="recordingsetup" id="13" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
 		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="2" position="2" painthead="1" title="Recording settings" icon="recording" paintdate="1" head_line="1" paintfoot="1" foot_line="1" scrollbar="1">
 
+			<FOOT_BUTTON_LABEL name="information"/>
+		</LISTBOX>
+	</WIDGET>
+	
+	<WIDGET name="tempcam2" id="999" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
+		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="2" position="2" painthead="1" head_line="1" paintfoot="1" foot_line="1" scrollbar="1">
+		
+			<FOOT_BUTTON_LABEL name="information"/>
+		</LISTBOX>
+	</WIDGET>
+	
+	<WIDGET name="tempcam" id="999" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
+		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="2" position="2" painthead="1" head_line="1" paintfoot="1" foot_line="1" scrollbar="1">
+		
 			<FOOT_BUTTON_LABEL name="information"/>
 		</LISTBOX>
 	</WIDGET>
@@ -286,7 +321,8 @@
 	</WIDGET>
 	
 	<WIDGET name="tempsat" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
-		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="1" position="2" scrollbar="1">
+		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="1" position="2" painthead="1" head_line="1" paintfoot="1" foot_line="1">
+			<FOOT_BUTTON_LABEL name="information"/>
 		</LISTBOX>
 	</WIDGET>
 	
@@ -381,7 +417,7 @@
 	</WIDGET>
 	
 	<WIDGET name="timerlist" id="47" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
-		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="1" mode="1" position="2" painthead="1" title="Timerlist" icon="timer" paintdate="1" head_line="1" paintfoot="1" foot_line="1" scrollbar="1">
+		<LISTBOX posx="30" posy="100" width="540" height="540" paintframe="0" type="0" mode="0" position="2" painthead="1" title="Timerlist" icon="timer" paintdate="1" head_line="1" paintfoot="1" foot_line="1" scrollbar="1">
 		
 			<FOOT_BUTTON_LABEL name="btn_red" localename="Delete"/>
 			<FOOT_BUTTON_LABEL name="btn_green" localename="New timer"/>

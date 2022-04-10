@@ -791,7 +791,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 		paintdate = xmlGetSignedNumericAttribute(node, "paintdate", 0);
 		title = xmlGetAttribute(node, "title");
 		icon = xmlGetAttribute(node, "icon");
-		format = xmlGetAttribute(node, (char*)"format");
+		//format = xmlGetAttribute(node, (char*)"format"); //FIXME:
 		halign = xmlGetSignedNumericAttribute(node, "halign", 0);
 		head_line = xmlGetSignedNumericAttribute(node, "head_line", 0);
 				
@@ -836,7 +836,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 			listBox->enablePaintHead();
 			listBox->setTitle(title, icon);
 			if (paintdate) listBox->enablePaintDate();
-			if (format) listBox->setFormat(format);
+			//if (format) listBox->setFormat(format); //FIXME:
 			listBox->setTitleHAlign(halign);
 			listBox->setHeadLine(head_line);
 		}

@@ -70,11 +70,12 @@ CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::str
 	frameBuffer = CFrameBuffer::getInstance();
 	
 	//
+	title = Title? Title : " ";
 	key = Key;
 	keyChooser = new CKeyChooserItem(_("Setup New Key"), key);
 	keyDeleter = new CKeyChooserItemNoKey(key);
-
-	//	
+	
+	/*
 	if (CNeutrinoApp::getInstance()->getWidget("keychooser"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("keychooser");
@@ -85,19 +86,11 @@ CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::str
 		//
 		if (menu->hasHead())
 		{
-			menu->enablePaintHead();
-			menu->setTitle(Title, Icon.c_str());
-		}
-		
-		//	
-		if (menu->hasFoot())
-		{
-			menu->enablePaintFoot();		
-			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
-			menu->setFootButtons(&btn);
+			menu->setTitle(title.c_str(), Icon.c_str());
 		}
 	}
 	else
+	*/
 	{
 		menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 		menu->setMenuPosition(MENU_POSITION_CENTER);
@@ -106,7 +99,7 @@ CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::str
 		
 		//	
 		menu->enablePaintHead();
-		menu->setTitle(Title, Icon.c_str());
+		menu->setTitle(title.c_str(), Icon.c_str());
 			
 		//
 		menu->enablePaintFoot();		
@@ -145,7 +138,7 @@ void CKeyChooser::paint()
 	widget->paint();
 }
 
-int CKeyChooser::exec(CMenuTarget* parent, const std::string & actionKey)
+int CKeyChooser::exec(CMenuTarget* parent, const std::string& actionKey)
 {
 	return widget->exec(parent, actionKey);
 };
@@ -176,7 +169,7 @@ int CKeyChooserItem::exec(CMenuTarget* parent, const std::string &)
 
 	g_RCInput->clearRCMsg();
 
-	timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_MENU] == 0 ? 0xFFFF : g_settings.timing[SNeutrinoSettings::TIMING_MENU]);
+	timeoutEnd = CRCInput::calcTimeoutEnd(g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR] == 0 ? 0xFFFF : g_settings.timing[SNeutrinoSettings::TIMING_INFOBAR]);
 
  get_Message:
 	g_RCInput->getMsgAbsoluteTimeout( &msg, &data, &timeoutEnd );
@@ -198,13 +191,15 @@ int CKeyChooserItem::exec(CMenuTarget* parent, const std::string &)
 
 void CKeyChooserItem::hide()
 {
+	dprintf(DEBUG_INFO, "CKeyChooserItem::hide\n");
+	
 	m_cBoxWindow.hide();
 	CFrameBuffer::getInstance()->blit();
 }
 
 void CKeyChooserItem::paint()
 {
-	dprintf(DEBUG_DEBUG, "CKeyChooserItem::paint\n");
+	dprintf(DEBUG_INFO, "CKeyChooserItem::paint\n");
 
 	int hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
 	int mheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
@@ -220,7 +215,6 @@ void CKeyChooserItem::paint()
 	m_cBoxWindow.setPosition(&m_cBox);
 	m_cBoxWindow.enableSaveScreen();
 	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	//m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
 	m_cBoxWindow.paint();
 
 	//head 

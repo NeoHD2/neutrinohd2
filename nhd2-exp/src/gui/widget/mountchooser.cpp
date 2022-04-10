@@ -54,18 +54,19 @@ CMountChooser::CMountChooser(const char* const Name, const std::string& Icon, in
 			
 		menu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 			
-		if (menu->hasFoot())
-		{
-			menu->enablePaintFoot();		
-			const struct button_label btn = { NEUTRINO_ICON_INFO, " "};		
-			menu->setFootButtons(&btn);
-		}
+		// title
+		if (menu->hasHead())
+			menu->setTitle(Name, Icon.c_str());
 	}
 	else
 	{
 		menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 		menu->setMenuPosition(MENU_POSITION_CENTER);
 		menu->setWidgetMode(MODE_SETUP);
+		
+		//
+		menu->enablePaintHead();
+		menu->setTitle(Name, Icon.c_str());
 			
 		//
 		menu->enablePaintFoot();		
@@ -79,9 +80,6 @@ CMountChooser::CMountChooser(const char* const Name, const std::string& Icon, in
 		widget->enableSaveScreen();
 		widget->addItem(menu);
 	}
-		
-	menu->enablePaintHead();
-	menu->setTitle(Name, Icon.c_str());
 		
 	menu->clearAll();
 

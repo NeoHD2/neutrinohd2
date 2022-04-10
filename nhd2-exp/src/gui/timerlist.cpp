@@ -828,7 +828,7 @@ const char * CTimerList::convertTimerType2String(const CTimerd::CTimerEventTypes
 {
 	switch(type)
 	{
-		case CTimerd::TIMER_SHUTDOWN    : return _("Unknown") ;
+		case CTimerd::TIMER_SHUTDOWN    : return _("Shutdown") ;
 		case CTimerd::TIMER_NEXTPROGRAM : return _("Next program");
 		case CTimerd::TIMER_ZAPTO       : return _("Zap to");
 		case CTimerd::TIMER_STANDBY     : return _("Standby");
