@@ -626,34 +626,29 @@ void CLanguageSettings::showMenu()
 	struct dirent **namelist;
 	int n;
 
-	char *path[] = {(char *) DATADIR "/neutrino/locale", (char *) CONFIGDIR "/locale"};
-
-	for(int p = 0; p < 2; p++) 
-	{
-		n = scandir(path[p], &namelist, 0, alphasort);
+	n = scandir(LOCALEDIR, &namelist, 0, alphasort);
 		
-		if(n > 0)
+	if(n > 0)
+	{
+		while(n--)
 		{
-			while(n--)
+			if(namelist[n]->d_type == DT_DIR && !strstr(namelist[n]->d_name, ".") && !strstr(namelist[n]->d_name, ".."))
 			{
-				if(namelist[n]->d_type == DT_DIR && !strstr(namelist[n]->d_name, ".") && !strstr(namelist[n]->d_name, ".."))
+					
+				item = new ClistBoxItem(_(locale2lang(namelist[n]->d_name).c_str()), true, NULL, this, namelist[n]->d_name);
+				item->setIconName(namelist[n]->d_name);
+					
+				if (strcmp(g_settings.language, namelist[n]->d_name) == 0)
 				{
-					
-					item = new ClistBoxItem(_(locale2lang(namelist[n]->d_name).c_str()), true, NULL, this, namelist[n]->d_name);
-					item->setIconName(namelist[n]->d_name);
-					
-					if (strcmp(g_settings.language, namelist[n]->d_name) == 0)
-					{
-						item->setIcon1(NEUTRINO_ICON_MARK);
-						//item->setMarked(true);
-					}
-					
-					languageSettings->addItem(item);	
+					item->setIcon1(NEUTRINO_ICON_MARK);
+					//item->setMarked(true);
 				}
-				free(namelist[n]);
+					
+				languageSettings->addItem(item);	
 			}
-			free(namelist);
+			free(namelist[n]);
 		}
+		free(namelist);
 	}
 	
 	//

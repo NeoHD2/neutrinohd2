@@ -621,7 +621,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 
 	// OSD
 	g_settings.gtx_alpha = configfile.getInt32( "gtx_alpha", 255);
-	strcpy(g_settings.language, configfile.getString("language", "english").c_str());
+	strcpy(g_settings.language, configfile.getString("language", "en").c_str());
 
 	// themes
 	g_settings.menu_Head_alpha = configfile.getInt32( "menu_Head_alpha", 15);
@@ -2519,7 +2519,7 @@ int CNeutrinoApp::run(int argc, char **argv)
 	int loadSettingsErg = loadSetup(NEUTRINO_SETTINGS_FILE);
 
 	// check locale language
-	CLocaleManager::loadLocale_ret_t loadLocale_ret = g_Locale->loadLocale(Lang2I18N(g_settings.language).c_str());
+	g_Locale->loadLocale(Lang2I18N(g_settings.language).c_str());
 
 	// icons/buttons/hints path
 	frameBuffer->setIconBasePath(g_settings.icons_dir);
