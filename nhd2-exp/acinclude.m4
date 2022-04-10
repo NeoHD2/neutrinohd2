@@ -66,12 +66,16 @@ TUXBOX_APPS_DIRECTORY_ONE(datadir,DATADIR,datadir,/share,/tuxbox,
 
 TUXBOX_APPS_DIRECTORY_ONE(plugindir,PLUGINDIR,localstatedir,/var,/tuxbox/plugins,
 	[--with-plugindir=PATH   ],[where to find the plugins])
+	
+TUXBOX_APPS_DIRECTORY_ONE(localedir,LOCALEDIR,localstatedir,/var,/tuxbox/locale,
+	[--with-localedir=PATH   ],[where to find locales])
 ])
 
 dnl automake <= 1.6 needs this specifications
 AC_SUBST(CONFIGDIR)
 AC_SUBST(DATADIR)
 AC_SUBST(PLUGINDIR)
+AC_SUBST(LOCALEDIR)
 dnl end workaround
 
 AC_DEFUN([TUXBOX_APPS_ENDIAN],[
