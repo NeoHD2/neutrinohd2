@@ -21,14 +21,17 @@ fi
 
 if test "$prefix" = "NONE"; then
 	prefix=/usr/local
+	
+	# workaround for hd2 buildsystem
+	datadir="/usr/share"
+	localstatedir="/var"
+else
+	datadir="\${prefix}/share"
 fi
 
 if test "$exec_prefix" = "NONE"; then
 	exec_prefix=$prefix
 fi
-
-# hack datadir
-datadir="\${prefix}/share"
 
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
