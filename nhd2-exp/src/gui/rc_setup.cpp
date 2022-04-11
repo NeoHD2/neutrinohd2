@@ -201,9 +201,9 @@ void CRemoteControlSettings::showMenu()
  	remoteControlSettings->addItem(new CMenuForwarder(_("Generic delay"), true, g_settings.repeat_genericblocker, remoteControlSettings_repeat_genericblocker));
 
 	// keybinding menu
-	remoteControlSettings->addItem(new CMenuSeparator(LINE | STRING, _("Keybinding settings")));
+	remoteControlSettings->addItem(new CMenuSeparator(LINE | STRING, _("Hot Keys mapping")));
 	
-	remoteControlSettings->addItem(new CMenuForwarder(_("Keybinding settings"), true, NULL, new CKeysBindingSettings()));
+	remoteControlSettings->addItem(new CMenuForwarder(_("Hot Keys mapping"), true, NULL, new CKeysBindingSettings()));
 
         // usermenu 
         remoteControlSettings->addItem(new CMenuSeparator(LINE | STRING, _("User menu")));
@@ -329,7 +329,7 @@ void CKeysBindingSettings::showMenu()
 		bindSettings->enableShrinkMenu();
 		
 		bindSettings->enablePaintHead();
-		bindSettings->setTitle(_("Keybinding settings"), NEUTRINO_ICON_KEYBINDING);
+		bindSettings->setTitle(_("Hot Keys mapping"), NEUTRINO_ICON_KEYBINDING);
 
 		bindSettings->enablePaintFoot();
 			

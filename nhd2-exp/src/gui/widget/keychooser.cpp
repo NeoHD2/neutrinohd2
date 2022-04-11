@@ -66,6 +66,7 @@ class CKeyValue : public CMenuSeparator
 };
 
 CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::string& Icon)
+: CMenuWidget(Title, Icon)
 {
 	frameBuffer = CFrameBuffer::getInstance();
 	
@@ -90,7 +91,6 @@ CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::str
 		}
 	}
 	else
-	*/
 	{
 		menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 		menu->setMenuPosition(MENU_POSITION_CENTER);
@@ -123,6 +123,18 @@ CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::str
 	menu->addItem(new CMenuSeparator(LINE));
 	menu->addItem(new CMenuForwarder(_("Setup new key"), true, NULL, keyChooser));
 	menu->addItem(new CMenuForwarder(_("No key"), true, NULL, keyDeleter));
+	*/
+	
+	//
+	enableShrinkMenu();
+	
+	//
+	addItem(new CKeyValue());
+	addItem(new CMenuSeparator(LINE));
+	addItem(new CMenuForwarder(_("back")));
+	addItem(new CMenuSeparator(LINE));
+	addItem(new CMenuForwarder(_("Setup new key"), true, NULL, keyChooser));
+	addItem(new CMenuForwarder(_("No key"), true, NULL, keyDeleter));
 }
 
 CKeyChooser::~CKeyChooser()
@@ -133,15 +145,19 @@ CKeyChooser::~CKeyChooser()
 
 void CKeyChooser::paint()
 {
-	(((CKeyValue *)(menu->items[0]))->keyvalue) = *key;
+	//(((CKeyValue *)(menu->items[0]))->keyvalue) = *key;
+	(((CKeyValue *)(items[0]))->keyvalue) = *key;
 
-	widget->paint();
+	//widget->paint();
+	CMenuWidget::paint();
 }
 
+/*
 int CKeyChooser::exec(CMenuTarget* parent, const std::string& actionKey)
 {
 	return widget->exec(parent, actionKey);
-};
+}
+*/
 
 //
 CKeyChooserItem::CKeyChooserItem(const char * const Name, int * Key)

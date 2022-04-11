@@ -92,7 +92,7 @@
 	<WIDGET name="rcbinding" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
 		<LISTBOX posx="50" posy="50" width="600" height="620" type="0" mode="2" scrollbar="1" itemshadow="1">
 		</LISTBOX>
-		<LABEL posx="640" posy="50" width="640" height="50" text="Keybinding settings" halign="1">
+		<LABEL posx="640" posy="50" width="640" height="50" text="Hot Keys mapping" halign="1">
 		</LABEL>
 			
 		<IMAGE posx="640" posy="150" width="640" height="300" image="background/logo.png">

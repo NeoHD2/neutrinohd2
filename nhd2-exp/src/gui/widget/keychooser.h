@@ -47,12 +47,13 @@
 #include <gui/widget/window.h>
 #include <gui/widget/widget_helpers.h>
 #include <gui/widget/widget.h>
+#include <gui/widget/menue.h>
 
 
 class CKeyChooserItem;
 class CKeyChooserItemNoKey;
 
-class CKeyChooser : public CMenuTarget
+class CKeyChooser : public CMenuWidget
 {
 	private:
 		CFrameBuffer* frameBuffer;
@@ -63,8 +64,8 @@ class CKeyChooser : public CMenuTarget
 		CKeyChooserItemNoKey* keyDeleter;
 		
 		//
-		CWidget* widget;
-		ClistBox* menu;
+		//CWidget* widget;
+		//ClistBox* menu;
 		
 		void paint();
 
@@ -76,7 +77,7 @@ class CKeyChooser : public CMenuTarget
 		//void paint();
 		
 		//
-		int exec(CMenuTarget* parent, const std::string & actionKey);
+		//int exec(CMenuTarget* parent, const std::string & actionKey);
 };
 
 class CKeyChooserItem : public CMenuTarget
