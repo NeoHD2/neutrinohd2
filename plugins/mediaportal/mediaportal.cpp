@@ -32,6 +32,8 @@ class CMediaPortal : public CMenuTarget
 		CWidget* widget;
 		ClistBox* mediaPortal;
 		CMenuItem* item;
+		
+		int selected;
 
 		void showMenu(void);
 	
@@ -49,6 +51,8 @@ CMediaPortal::CMediaPortal()
 	widget = NULL;
 	mediaPortal = NULL;
 	item = NULL;
+	
+	selected = 0;
 }
 
 CMediaPortal::~CMediaPortal()
@@ -137,6 +141,24 @@ int CMediaPortal::exec(CMenuTarget * parent, const std::string & actionKey)
 
 		return RETURN_REPAINT;
 	}
+	/*
+	else if (actionKey == "delete")
+	{
+		selected = mediaPortal->getSelected();
+
+		// remove selected plugin
+		g_PluginList->removePlugin(selected);
+
+		// relaod plugins
+		g_PluginList->loadPlugins();
+
+		if(selected > (int)g_PluginList->getNumberOfPlugins() - 1)
+			selected = (int)g_PluginList->getNumberOfPlugins() - 1;
+
+		showMenu();
+		return RETURN_EXIT_ALL;
+	}
+	*/
 
 	showMenu();
 	
@@ -145,6 +167,8 @@ int CMediaPortal::exec(CMenuTarget * parent, const std::string & actionKey)
 
 void CMediaPortal::showMenu(void)
 {
+	const struct button_label HButtons = { NEUTRINO_ICON_BUTTON_MUTE_SMALL, "" };
+	
 	widget = new CWidget();
 	mediaPortal = new ClistBox(0, 0, 1280, 720);
 
@@ -155,72 +179,101 @@ void CMediaPortal::showMenu(void)
 	mediaPortal->enablePaintHead();
 	mediaPortal->setTitle(_("Media Portal"), PLUGINDIR "/mediaportal/mp.png");
 	mediaPortal->enablePaintDate();
+	//mediaPortal->setHeadButtons(&HButtons);
 	
 	// 
 	mediaPortal->enablePaintItemInfo();
 
 	// youtube
-	item = new ClistBoxItem("You Tube", true, NULL, this, "youtube", RC_nokey, NULL, PLUGINDIR "/youtube/youtube.png");
-
-	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("youtube")).c_str());
-
-	mediaPortal->addItem(item);
+	if (g_PluginList->plugin_exists("youtube"))
+	{
+		item = new ClistBoxItem("You Tube", true, NULL, this, "youtube", RC_nokey, NULL, PLUGINDIR "/youtube/youtube.png");
+		item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("youtube")).c_str());
+		mediaPortal->addItem(item);
+	}
 
 	// netzkino
-	item = new ClistBoxItem("NetzKino", true, NULL, this, "netzkino", RC_nokey, NULL, PLUGINDIR "/netzkino/netzkino.png");
-	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("netzkino")).c_str());
-
-	mediaPortal->addItem(item);
+	if (g_PluginList->plugin_exists("netzkino"))
+	{
+		item = new ClistBoxItem("NetzKino", true, NULL, this, "netzkino", RC_nokey, NULL, PLUGINDIR "/netzkino/netzkino.png");
+		item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("netzkino")).c_str());
+		mediaPortal->addItem(item);
+	}
 
 	// icecast
-	item = new ClistBoxItem("Ice Cast", true, NULL, this, "icecast", RC_nokey, NULL, PLUGINDIR "/icecast/icecast.png");
-	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("icecast")).c_str());
-
-	mediaPortal->addItem(item);
+	if (g_PluginList->plugin_exists("icecast"))
+	{
+		item = new ClistBoxItem("Ice Cast", true, NULL, this, "icecast", RC_nokey, NULL, PLUGINDIR "/icecast/icecast.png");
+		item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("icecast")).c_str());
+		mediaPortal->addItem(item);
+	}
 
 	// internetradio
-	item = new ClistBoxItem("Internet Radio", true, NULL, this, "internetradio", RC_nokey, NULL,  PLUGINDIR "/internetradio/internetradio.png");
-	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("internetradio")).c_str());
-	
-	mediaPortal->addItem(item);
+	if (g_PluginList->plugin_exists("internetradio"))
+	{
+		item = new ClistBoxItem("Internet Radio", true, NULL, this, "internetradio", RC_nokey, NULL,  PLUGINDIR "/internetradio/internetradio.png");
+		item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("internetradio")).c_str());
+		mediaPortal->addItem(item);
+	}
 
 	// nFilm
-	item = new ClistBoxItem("Movie Trailer", true, NULL, this, "nfilm", RC_nokey, NULL, PLUGINDIR "/nfilm/nfilm.png");
-	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("nfilm")).c_str());
-
-	mediaPortal->addItem(item);
+	if (g_PluginList->plugin_exists("nfilm"))
+	{
+		item = new ClistBoxItem("Movie Trailer", true, NULL, this, "nfilm", RC_nokey, NULL, PLUGINDIR "/nfilm/nfilm.png");
+		item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("nfilm")).c_str());
+		mediaPortal->addItem(item);
+	}
 
 	// nTVShows
-	item = new ClistBoxItem("Serien Trailer", true, NULL, this, "ntvshows", RC_nokey, NULL, PLUGINDIR "/ntvshows/ntvshows.png");
-	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("ntvshows")).c_str());
-	mediaPortal->addItem(item);
+	if (g_PluginList->plugin_exists("ntvshows"))
+	{
+		item = new ClistBoxItem("Serien Trailer", true, NULL, this, "ntvshows", RC_nokey, NULL, PLUGINDIR "/ntvshows/ntvshows.png");
+		item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("ntvshows")).c_str());
+		mediaPortal->addItem(item);
+	}
 	
 	// arte concert
-	item = new ClistBoxItem("Arte Concert", true, NULL, this, "arte_concert", RC_nokey, NULL, PLUGINDIR "/arte_concert/arte_concert_hint.png");
-	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("arte_concert")).c_str());
-	mediaPortal->addItem(item);
+	if (g_PluginList->plugin_exists("arte_concert"))
+	{
+		item = new ClistBoxItem("Arte Concert", true, NULL, this, "arte_concert", RC_nokey, NULL, PLUGINDIR "/arte_concert/arte_concert_hint.png");
+		item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("arte_concert")).c_str());
+		mediaPortal->addItem(item);
+	}
 	
 	// media_one
-	item = new ClistBoxItem("Media One", true, NULL, this, "media_one", RC_nokey, NULL, PLUGINDIR "/media_one/media_one.png");
-	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("media_one")).c_str());
-	mediaPortal->addItem(item);
+	if (g_PluginList->plugin_exists("media_one"))
+	{
+		item = new ClistBoxItem("Media One", true, NULL, this, "media_one", RC_nokey, NULL, PLUGINDIR "/media_one/media_one.png");
+		item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("media_one")).c_str());
+		mediaPortal->addItem(item);
+	}
 	
 	// mtv
-	item = new ClistBoxItem("MTV", true, NULL, this, "mtv", RC_nokey, NULL, PLUGINDIR "/mtv/mtv_hint.png");
-	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("mtv")).c_str());
-	mediaPortal->addItem(item);
+	if (g_PluginList->plugin_exists("mtv"))
+	{
+		item = new ClistBoxItem("MTV", true, NULL, this, "mtv", RC_nokey, NULL, PLUGINDIR "/mtv/mtv_hint.png");
+		item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("mtv")).c_str());
+		mediaPortal->addItem(item);
+	}
 	
 	// netzkino_hd
-	item = new ClistBoxItem("Netzkino HD", true, NULL, this, "netzkino_hd", RC_nokey, NULL, PLUGINDIR "/netzkino_hd/netzkino.png");
-	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("netzkino_hd")).c_str());
-	mediaPortal->addItem(item);
+	if (g_PluginList->plugin_exists("netzkino_hd"))
+	{
+		item = new ClistBoxItem("Netzkino HD", true, NULL, this, "netzkino_hd", RC_nokey, NULL, PLUGINDIR "/netzkino_hd/netzkino.png");
+		item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("netzkino_hd")).c_str());
+		mediaPortal->addItem(item);
+	}
 	
 	// plutotv
-	item = new ClistBoxItem("Pluto TV VOD", true, NULL, this, "plutotv", RC_nokey, NULL, PLUGINDIR "/plutotv/plutotv.png");
-	item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("plutotv")).c_str());
-	mediaPortal->addItem(item);
+	if (g_PluginList->plugin_exists("plutotv"))
+	{
+		item = new ClistBoxItem("Pluto TV VOD", true, NULL, this, "plutotv", RC_nokey, NULL, PLUGINDIR "/plutotv/plutotv.png");
+		item->setHint(g_PluginList->getDescription(g_PluginList->find_plugin("plutotv")).c_str());
+		mediaPortal->addItem(item);
+	}
 	
 	widget->addItem(mediaPortal);
+	//widget->addKey(RC_spkr, this, "delete");
 
 	widget->exec(NULL, "");
 	

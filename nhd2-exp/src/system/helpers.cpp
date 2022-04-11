@@ -1243,6 +1243,8 @@ bool CFileHelpers::createDir(const char *Dir, mode_t mode)
 
 bool CFileHelpers::removeDir(const char *Dir)
 {
+	dprintf(DEBUG_NORMAL, "CFileHelpers::removeDir:\n");
+	
 	DIR *dir;
 	struct dirent *entry;
 	char path[PATH_MAX];

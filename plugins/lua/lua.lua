@@ -181,6 +181,11 @@ end
 -- exec_actionKey
 function exec(id, msg, actionKey)
 	print("lua sample: exec: actionKey: (" .. actionKey ..")")
+	
+	if id < 0 then
+		id = 0
+	end
+	
 	if actionKey == "msgBox" then
 		messageBox()
 	elseif actionKey == "helpBox" then
@@ -223,6 +228,8 @@ function testCWidget()
 	local ret = neutrino.RETURN_REPAINT
 
 	local testWidget = neutrino.CWidget()
+	testWidget:setMenuPosition(neutrino.MENU_POSITION_LEFT)
+	
 	local listBox = neutrino.ClistBox()
 
 	listBox:setTitle("lua: CWidget|ClistBox")
@@ -230,6 +237,7 @@ function testCWidget()
 	listBox:enablePaintDate()
 	listBox:enablePaintFoot()
 	listBox:enableShrinkMenu()
+	listBox:setMenuPosition(neutrino.MENU_POSITION_LEFT)
 
 	--listBox:setWidgetMode(neutrino.MODE_LISTBOX)
 	listBox:setWidgetType(neutrino.WIDGET_TYPE_CLASSIC)
@@ -424,6 +432,7 @@ function testClistBox()
 	listBox:enablePaintDate()
 	listBox:enablePaintFoot()
 	listBox:enableShrinkMenu()
+	listBox:setMenuPosition(neutrino.MENU_POSITION_CENTER)
 
 	-- CMessageBox
 	item1 = neutrino.CMenuForwarder("CMessageBox", true, "", self, "msgBox")
@@ -483,6 +492,7 @@ function testClistBox()
 	listBox:addItem(item8)
 	
 	local m = neutrino.CWidget()
+	--m:setMenuPosition(neutrino.MENU_POSITION_CENTER)
 
 	m:addItem(listBox)
 	m:addKey(neutrino.RC_info)
@@ -830,6 +840,7 @@ function testCFrameBox()
 	frame1 = neutrino.CFrame()
 	frame1:setPosition(box.iX, box.iY, box.iWidth/4, box.iHeight)
 	frame1:setTitle("MP3")
+	frame1:setHAlign(neutrino.CC_ALIGN_CENTER)
 	frame1:setActionKey(null, "audioPlayer")
 	frame1:enableShadow()
 	frameBox:addFrame(frame1)
@@ -837,6 +848,7 @@ function testCFrameBox()
 	frame2 = neutrino.CFrame()
 	frame2:setPosition(box.iX + box.iWidth/4, box.iY, box.iWidth/4, box.iHeight)
 	frame2:setTitle("PicViewer")
+	frame2:setHAlign(neutrino.CC_ALIGN_CENTER)
 	frame2:setActionKey(null, "pictureViewer")
 	frame2:enableShadow()
 	frameBox:addFrame(frame2)
@@ -844,6 +856,7 @@ function testCFrameBox()
 	frame3 = neutrino.CFrame()
 	frame3:setPosition(box.iX + 2*box.iWidth/4, box.iY, box.iWidth/4, box.iHeight)
 	frame3:setTitle("MoviePlayer")
+	frame3:setHAlign(neutrino.CC_ALIGN_CENTER)
 	frame3:setIconName(neutrino.NEUTRINO_ICON_MOVIE)
 	frame3:setOption("spielt Movie Dateien")
 	frame3:setActionKey(null, "moviePlayer")
@@ -853,6 +866,7 @@ function testCFrameBox()
 	frame4 = neutrino.CFrame()
 	frame4:setPosition(box.iX + 3*box.iWidth/4, box.iY, box.iWidth/4, box.iHeight)
 	frame4:setTitle("Beenden")
+	frame4:setHAlign(neutrino.CC_ALIGN_CENTER)
 	frame4:setActionKey(null, "exit")
 	frame4:enableShadow()
 	frameBox:addFrame(frame4)
@@ -900,6 +914,7 @@ function testCFrameBoxRandom()
 	frame1 = neutrino.CFrame()
 	frame1:setPosition(box.iX, box.iY + 2, 350, 60)
 	frame1:setTitle("MP3")
+	frame1:setHAlign(neutrino.CC_ALIGN_CENTER)
 	frame1:setActionKey(null, "audioPlayer")
 	frame1:enableShadow()
 	frameBox:addFrame(frame1)
@@ -907,6 +922,7 @@ function testCFrameBoxRandom()
 	frame2 = neutrino.CFrame()
 	frame2:setPosition(box.iX, box.iY + 2 + 60, 350, 60)
 	frame2:setTitle("PicViewer")
+	frame2:setHAlign(neutrino.CC_ALIGN_CENTER)
 	frame2:setActionKey(null, "pictureViewer")
 	frame2:enableShadow()
 	frameBox:addFrame(frame2)
@@ -914,6 +930,7 @@ function testCFrameBoxRandom()
 	frame3 = neutrino.CFrame()
 	frame3:setPosition(box.iX, box.iY + 2 + 60 + 2 + 60, 350, 60)
 	frame3:setTitle("MoviePlayer")
+	frame3:setHAlign(neutrino.CC_ALIGN_CENTER)
 	frame3:setIconName(neutrino.NEUTRINO_ICON_MOVIE)
 	frame3:setOption("spielt Movie Dateien")
 	frame3:setActionKey(null, "moviePlayer")
@@ -923,6 +940,7 @@ function testCFrameBoxRandom()
 	frame10 = neutrino.CFrame()
 	frame10:setPosition(box.iX, fb:getScreenHeight() - 80 - 60, 350, 60)
 	frame10:setTitle("Beenden")
+	frame10:setHAlign(neutrino.CC_ALIGN_CENTER)
 	frame10:setActionKey(null, "exit")
 	frame10:enableShadow()
 	frameBox:addFrame(frame10)
@@ -1067,30 +1085,30 @@ function main()
 	m:setItemInfoMode(neutrino.ITEMINFO_HINT_MODE)
 
 	item1 = neutrino.CMenuForwarder("testCWidget", true, "", null, "listWidget")
-	item1:setInfo1("lua: testing CWidget")
+	item1:setHint("lua: testing CWidget")
 
 	item2 = neutrino.CMenuForwarder("testCMenuWidget")
 	item2:setActionKey(null, "listBoxWidget")
-	item2:setInfo1("lua: testing CMenuWidget")
+	item2:setHint("lua: testing CMenuWidget")
 
 	item3 = neutrino.CMenuForwarder("testClistBox")
-	item3:setInfo1("lua: testing ClistBox")
+	item3:setHint("lua: testing ClistBox")
 
 	item4 = neutrino.CMenuForwarder("testCWidget (ClistBox|CFrameBox)")
-	item4:setInfo1("lua: testing ClistBox|CFrameBox")
+	item4:setHint("lua: testing ClistBox|CFrameBox")
 
 	item5 = neutrino.CMenuForwarder("testCFrameBox")
-	item5:setInfo1("lua: testing CFrameBox")
+	item5:setHint("lua: testing CFrameBox")
 	item5:setActionKey(null, "frameBox")
 
 	item6 = neutrino.CMenuForwarder("testActionKey/jumpTarget")
 	item6:setActionKey(neutrino.CAudioPlayerSettings(), "jumpTarget")
-	item6:setInfo1("lua: testing testActionKey/jumpTarget")
+	item6:setHint("lua: testing testActionKey/jumpTarget")
 	
-	item7 = neutrino.CMenuForwarder("movieBrowser", true, "", self, "movieBrowser")
+	--item7 = neutrino.CMenuForwarder("movieBrowser", true, "", self, "movieBrowser")
 
 	item8 = neutrino.CMenuForwarder("testCFrameBox(2)")
-	item8:setInfo1("lua: testing CFrameBoxRandom")
+	item8:setHint("lua: testing CFrameBoxRandom")
 	item8:setActionKey(null, "frameBoxRandom")
 
 	m:addItem(item1)
@@ -1099,7 +1117,7 @@ function main()
 	m:addItem(item4)
 	m:addItem(item5)
 	m:addItem(item6)
-	m:addItem(item7)
+	--m:addItem(item7)
 	m:addItem(item8)
 
 	if selected < 0 then
@@ -1119,8 +1137,10 @@ function main()
 		ret = testCFrameBox()
 	elseif actionKey == "jumpTarget" then
 
+--[[
 	elseif actionKey == "movieBrowser" then
 		ret = movieBrowser()
+]]
 	elseif actionKey == "frameBoxRandom" then
 		ret = testCFrameBoxRandom()
 	end

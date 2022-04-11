@@ -699,7 +699,7 @@ void CChannelListSettings::showMenu()
 	miscSettingsChannelList->addItem( new CMenuForwarder(_("logos Dir"), true, g_settings.logos_dir.c_str(), this, "logos_dir" ) );
 	
 	// logos
-	miscSettingsChannelList->addItem(new CMenuOptionChooser(_("Channel Logo(EPGPlus)"), &g_settings.epgplus_show_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
+	miscSettingsChannelList->addItem(new CMenuOptionChooser(_("Channel Logo"), &g_settings.epgplus_show_logo, OPTIONS_OFF0_ON1_OPTIONS, OPTIONS_OFF0_ON1_OPTION_COUNT, true ));
 	
 	//
 	widget->exec(NULL, "");

@@ -495,11 +495,11 @@ void CPlugins::removePlugin(int number)
 	pluginPath += "/";
 	pluginPath += plugin_list[number].filename.c_str();
 	
-	CFileHelpers::getInstance()->removeDir(pluginPath.c_str());
-	
-	
-	//erase from pluginlist
-	plugin_list.erase(plugin_list.begin() + number);
+	if (CFileHelpers::getInstance()->removeDir(pluginPath.c_str()))
+	{
+		//erase from pluginlist
+		plugin_list.erase(plugin_list.begin() + number);
+	}
 }
 
 bool CPlugins::hasPlugin(CPlugins::p_type_t type)
