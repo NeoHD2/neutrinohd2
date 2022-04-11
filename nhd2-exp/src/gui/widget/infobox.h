@@ -97,8 +97,7 @@ class CInfoBox
 
 	public:
 		CInfoBox();
-		CInfoBox(/*CFont *fontText,
-				   const int mode,*/ 
+		CInfoBox(
 				   const CBox* position, 
 				   const char * title,
 				   const char * icon = NEUTRINO_ICON_INFO);

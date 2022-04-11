@@ -43,6 +43,7 @@ class CMP3Player : public CMenuTarget
 
 		void loadPlaylist();
 		void openFileBrowser();
+		void showTrackInfo(CAudiofile& file);
 
 		//
 		bool shufflePlaylist(void);
@@ -240,10 +241,90 @@ void CMP3Player::openFileBrowser()
 	}
 }
 
-#define HEAD_BUTTONS_COUNT 1
+//
+void CMP3Player::showTrackInfo(CAudiofile& file)
+{
+	std::string title;
+	std::string artist;
+	std::string genre;
+	std::string date;
+	std::string cover;
+	char duration[9] = "";
+
+	title = file.MetaData.title;
+	artist = file.MetaData.artist;
+	genre = file.MetaData.genre;	
+	date = file.MetaData.date;
+	cover = file.MetaData.cover.empty()? DATADIR "/neutrino/icons/no_coverArt.png" : file.MetaData.cover;
+
+	snprintf(duration, 8, "(%ld:%02ld)", file.MetaData.total_time / 60, file.MetaData.total_time % 60);
+	
+	std::string buffer;
+	
+	// title
+	if (!title.empty())
+	{
+		buffer = _("Title: ");
+		buffer += title.c_str();
+	}
+	
+	// artist
+	if (!artist.empty())
+	{
+		buffer += "\n\n";
+		buffer += _("Artist: ");
+		buffer += artist.c_str();
+	}
+	
+	// genre
+	if (!genre.empty())
+	{
+		buffer += "\n\n";
+		buffer += _("Genre: ");
+		buffer += genre.c_str();
+	}
+	
+	// date
+	if (!date.empty())
+	{
+		buffer += "\n\n";
+		buffer += _("Date: ");
+		buffer += date.c_str();
+	}
+	
+	// duration
+	if (duration)
+	{
+		buffer += "\n\n";
+		buffer += _("Length: ");
+		buffer += duration;
+	}
+	
+	//
+	// infoBox
+	CBox position(g_settings.screen_StartX + 50, g_settings.screen_StartY + 50, g_settings.screen_EndX - g_settings.screen_StartX - 100, g_settings.screen_EndY - g_settings.screen_StartY - 100); 
+	
+	CInfoBox * infoBox = new CInfoBox(&position, _("Track Infos"), NEUTRINO_ICON_MP3);
+
+	// scale pic
+	int p_w = 0;
+	int p_h = 0;
+
+	::scaleImage(cover, &p_w, &p_h);
+
+	infoBox->setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
+	infoBox->setMode(SCROLL);
+	infoBox->setFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
+	infoBox->setText(buffer.c_str(), cover.c_str(), p_w, p_h);
+	infoBox->exec();
+	delete infoBox;
+}
+
+#define HEAD_BUTTONS_COUNT 2
 const struct button_label HeadButtons[HEAD_BUTTONS_COUNT] =
 {
-	{ NEUTRINO_ICON_BUTTON_SETUP, "" }
+	{ NEUTRINO_ICON_BUTTON_SETUP, "" },
+	{ NEUTRINO_ICON_BUTTON_HELP, "" }
 };
 
 #define FOOT_BUTTONS_COUNT 4
@@ -318,6 +399,7 @@ void CMP3Player::showMenu()
 	alist->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));
 	alist->addKey(RC_yellow, this, CRCInput::getSpecialKeyName(RC_yellow));
 	alist->addKey(RC_blue, this, CRCInput::getSpecialKeyName(RC_blue));
+	alist->addKey(RC_info, this, CRCInput::getSpecialKeyName(RC_info));
 
 	alist->exec(NULL, "");
 	delete alist;
@@ -388,6 +470,13 @@ int CMP3Player::exec(CMenuTarget* parent, const std::string& actionKey)
 		showMenu();
 
 		return RETURN_EXIT_ALL;
+	}
+	else if(actionKey == "RC_info")
+	{
+		selected = alist? alist->getSelected() : 0;
+		showTrackInfo(playlist[selected]);
+
+		return RETURN_REPAINT;
 	}
 
 	//

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-12 00:04+0200\n"
+"POT-Creation-Date: 2022-04-12 01:00+0200\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -147,6 +147,9 @@ msgid "Are you sure to format ? You will lost all data "
 msgstr ""
 
 msgid "Are you sure to init ?"
+msgstr ""
+
+msgid "Artist: "
 msgstr ""
 
 msgid "Aspect Ratio"
@@ -463,6 +466,10 @@ msgstr ""
 
 msgid "Date:"
 msgstr ""
+
+#, fuzzy
+msgid "Date: "
+msgstr "(Datum)"
 
 msgid "Debug"
 msgstr ""
@@ -820,6 +827,9 @@ msgstr ""
 msgid "Genre"
 msgstr ""
 
+msgid "Genre: "
+msgstr ""
+
 msgid "German"
 msgstr "Deutsch"
 
@@ -1110,6 +1120,9 @@ msgid "Length (min"
 msgstr ""
 
 msgid "Length (min)"
+msgstr ""
+
+msgid "Length: "
 msgstr ""
 
 msgid "License:"
@@ -2425,7 +2438,13 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "Title: "
+msgstr ""
+
 msgid "Total"
+msgstr ""
+
+msgid "Track Infos"
 msgstr ""
 
 msgid "Transmission mode"
