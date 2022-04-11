@@ -274,33 +274,29 @@ void CMP3Player::showMenu()
 		std::string cover = playlist[i].MetaData.cover.empty()? DATADIR "/neutrino/icons/no_coverArt.png" : playlist[i].MetaData.cover;
 
 		snprintf(duration, 8, "(%ld:%02ld)", playlist[i].MetaData.total_time / 60, playlist[i].MetaData.total_time % 60);
+		
+		std::string desc = artist.c_str();
+		
+		if (!genre.empty())
+		{
+			desc += "   ";
+			desc += genre.c_str();
+		}
+		
+		if (!date.empty())
+		{
+			desc += "   (";
+			desc += date.c_str();
+			desc += ")";
+		}
 
 		//
-		item = new ClistBoxItem(title.c_str(), true, artist.c_str(), this, "aplay");
+		item = new ClistBoxItem(title.c_str(), true, desc.c_str(), this, "aplay");
 			
 		item->setOptionInfo(duration);
 		item->setNumber(i + 1);
-
-		// details Box
-		item->setInfo1(genre.c_str());
-		//item->setOptionInfo1(genre.c_str());
-		item->setInfo2(date.c_str());
-		//item->setOptionInfo2(date.c_str());
-
-		/*
-		std::string tmp = title.c_str();
-		tmp += "\n";
-		tmp += genre.c_str();
-		tmp += "\n";
-		tmp += artist.c_str();
-		tmp += "\n";
-		tmp += date.c_str();
-
-		item->setHint(tmp.c_str());
-		*/
 		
-		item->setHintIcon(cover.c_str());
-		
+		//
 		item->set2lines();
 		item->setShadowMode();
 
@@ -308,16 +304,15 @@ void CMP3Player::showMenu()
 	}
 	
 	alist->setWidgetMode(MODE_LISTBOX);
-	alist->setWidgetType(WIDGET_TYPE_CLASSIC);
-	alist->setItemsPerPage(10, 6);
 
-	alist->setSelected(selected);
-
+	//
 	alist->enablePaintDate();
 	alist->setHeadButtons(HeadButtons, HEAD_BUTTONS_COUNT);
 	
+	//
 	alist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 
+	//
 	alist->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));
 	alist->addKey(RC_red, this, CRCInput::getSpecialKeyName(RC_red));
 	alist->addKey(RC_green, this, CRCInput::getSpecialKeyName(RC_green));

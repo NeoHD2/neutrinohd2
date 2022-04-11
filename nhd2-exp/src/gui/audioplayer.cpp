@@ -1320,48 +1320,43 @@ void CAudioPlayerGui::showPlaylist()
 		std::string cover = m_playlist[i].MetaData.cover.empty()? DATADIR "/neutrino/icons/no_coverArt.png" : m_playlist[i].MetaData.cover;
 
 		snprintf(duration, 8, "(%ld:%02ld)", m_playlist[i].MetaData.total_time / 60, m_playlist[i].MetaData.total_time % 60);
+		
+		std::string desc = artist.c_str();
+		
+		if (!genre.empty())
+		{
+			desc += "   ";
+			desc += genre.c_str();
+		}
+		
+		if (!date.empty())
+		{
+			desc += "   (";
+			desc += date.c_str();
+			desc += ")";
+		}
 
 		//
-		item = new ClistBoxItem(title.c_str(), true, artist.c_str());
+		item = new ClistBoxItem(title.c_str(), true, desc.c_str());
 			
 		item->setOptionInfo(duration);
 		item->setNumber(i + 1);
 
-		// details Box
-		item->setInfo1(genre.c_str());
-		//item->setOptionInfo1(genre.c_str());
-		item->setInfo2(date.c_str());
-		//item->setOptionInfo2(date.c_str());
-
-		/*
-		std::string tmp = title.c_str();
-		tmp += "\n";
-		tmp += genre.c_str();
-		tmp += "\n";
-		tmp += artist.c_str();
-		tmp += "\n";
-		tmp += date.c_str();
-
-		item->setHint(tmp.c_str());
-		*/
-		
-		item->setHintIcon(cover.c_str());
 		
 		item->set2lines();
-		//item->enableItemShadow();
 		item->setShadowMode();
 
 		alist->addItem(item);
 	}
-
-	alist->setWidgetType(WIDGET_TYPE_CLASSIC);
 	
 	alist->setSelected(m_current);
 	
+	//
 	alist->enablePaintHead();
 	alist->setTitle(_("Audio Playlist"), NEUTRINO_ICON_MP3);
 	alist->enablePaintDate();
 	
+	//
 	alist->enablePaintFoot();
 	alist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 	

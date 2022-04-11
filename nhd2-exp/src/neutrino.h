@@ -159,24 +159,27 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		
 		// skin
 		WIDGETLIST widgets;
-		void parseSkin(const char* const filename, bool xml_data = false);
+		//
 		WIDGETLIST getWidgets(){return widgets;};
-		CWidget* getWidget(int id);
+		//
 		CWidget* getWidget(const char* const name);
+		bool widget_exists(const char* const name);
+		CWidget* getWidget(int id);
 		bool widget_exists(int id);
 		bool hasWidgets(){return widgets.size();};
-		CMenuTarget* convertTarget(const int id);
-		uint32_t convertColor(const char* const color);
-		uint8_t convertFontColor(const char* const color);
-		void readSkinConfig(const char* const filename);
-		void saveSkinConfig(const char* const filename);
-		bool skin_exists(const char* const filename);
+		//
+		bool execSkinWidget(const char* const name);
+		bool paintSkinWidget(const char* const name);
+		bool hideSkinWidget(const char* const name);
+		//
 		void loadSkin(std::string skinName);
 		void unloadSkin();
-		bool execSkin(const int id);
-		bool paintSkin(const int id);
-		bool hideSkin(const int id);
-		bool removeSkin(const int id);
+		bool skin_exists(const char* const filename);
+		void readSkinConfig(const char* const filename);
+		void saveSkinConfig(const char* const filename);
+		
+		//
+		void parseSkin(const char* const filename, bool xml_data = false);
 		// 
 		void parseClistBox(_xmlNodePtr node, CWidget* widget);
 		void parseCWindow(_xmlNodePtr node, CWidget* widget);
@@ -190,6 +193,10 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		void parseCCButtons(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);
 		//
 		void parseKey(_xmlNodePtr node, CWidget* widget);
+		//
+		CMenuTarget* convertTarget(const int id);
+		uint32_t convertColor(const char* const color);
+		uint8_t convertFontColor(const char* const color);
 		
 		//
 		void mainMenu(void);

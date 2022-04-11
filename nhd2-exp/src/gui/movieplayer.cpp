@@ -2071,6 +2071,8 @@ void CMoviePlayerGui::showPlaylist()
 	mplist->enablePaintFoot();
 	mplist->setFootButtons(FootButtons, FOOT_BUTTONS_COUNT);
 	
+	mplist->enablePaintItemInfo();
+	
 	mplist->paint();
 }
 

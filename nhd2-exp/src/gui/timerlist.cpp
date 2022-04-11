@@ -1260,3 +1260,5 @@ bool askUserOnTimerConflict(time_t announceTime, time_t stopTime)
 
 	return (MessageBox(_("Information"), timerbuf.c_str(), mbrNo, mbNo | mbYes) == mbrYes);
 }
+
+

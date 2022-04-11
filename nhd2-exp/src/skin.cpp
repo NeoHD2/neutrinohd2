@@ -330,49 +330,6 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 }
 
 //
-CWidget* CNeutrinoApp::getWidget(int id)
-{
-	CWidget* ret = NULL;
-	
-	for (unsigned int i = 0; i < (unsigned int )widgets.size(); i++)
-	{
-		if ( (widgets[i] != NULL) && (widgets[i]->id == id) )
-		{
-			ret = widgets[i];
-			break;
-		}
-	}
-	
-	return ret;
-}
-
-//
-CWidget* CNeutrinoApp::getWidget(const char* const name)
-{
-	CWidget* ret = NULL;
-	
-	for (unsigned int i = 0; i < (unsigned int )widgets.size(); i++)
-	{
-		if ( (widgets[i] != NULL) && (widgets[i]->name == name) )
-		{
-			ret = widgets[i];
-			break;
-		}
-	}
-	
-	return ret;
-}
-
-bool CNeutrinoApp::widget_exists(int id)
-{
-	bool ret = false;
-	
-	if (CNeutrinoApp::getInstance()->getWidget(id))
-		ret = true;
-		
-	return ret;
-}
-
 uint32_t CNeutrinoApp::convertColor(const char* const color)
 {
 	dprintf(DEBUG_INFO, "CNeutrinoApp::convertColor: color: %s\n", color);
@@ -1009,6 +966,7 @@ void CNeutrinoApp::parseClistBox(_xmlNodePtr node, CWidget* widget)
 	}
 }
 
+//
 void CNeutrinoApp::parseCWindow(_xmlNodePtr node, CWidget* widget)
 {
 	dprintf(DEBUG_INFO, "CNeutrinoApp::parseCWindow\n");
@@ -1754,6 +1712,107 @@ void CNeutrinoApp::parseSkin(const char* const filename, bool xml_data)
 }
 
 //
+CWidget* CNeutrinoApp::getWidget(int id)
+{
+	CWidget* ret = NULL;
+	
+	for (unsigned int i = 0; i < (unsigned int )widgets.size(); i++)
+	{
+		if ( (widgets[i] != NULL) && (widgets[i]->id == id) )
+		{
+			ret = widgets[i];
+			break;
+		}
+	}
+	
+	return ret;
+}
+
+//
+CWidget* CNeutrinoApp::getWidget(const char* const name)
+{
+	CWidget* ret = NULL;
+	
+	for (unsigned int i = 0; i < (unsigned int )widgets.size(); i++)
+	{
+		if ( (widgets[i] != NULL) && (widgets[i]->name == name) )
+		{
+			ret = widgets[i];
+			break;
+		}
+	}
+	
+	return ret;
+}
+
+bool CNeutrinoApp::widget_exists(int id)
+{
+	bool ret = false;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(id))
+		ret = true;
+		
+	return ret;
+}
+
+bool CNeutrinoApp::widget_exists(const char* const name)
+{
+	bool ret = false;
+	
+	if (CNeutrinoApp::getInstance()->getWidget(name))
+		ret = true;
+	
+	return ret;
+}
+
+//
+bool CNeutrinoApp::execSkinWidget(const char* const name)
+{
+	dprintf(DEBUG_INFO, "CNeutrinoApp::execSkinWidget:\n");
+	
+	bool ret = false;
+	
+	if (getWidget(name))
+	{
+		ret = true;
+		getWidget(name)->exec(NULL, "");
+	}
+	
+	return ret;	
+}
+
+bool CNeutrinoApp::paintSkinWidget(const char* const name)
+{
+	dprintf(DEBUG_INFO, "CNeutrinoApp::paintSkinWidget:\n");
+	
+	bool ret = false;
+	
+	if (getWidget(name))
+	{
+		ret = true;
+		getWidget(name)->paint();
+	}
+	
+	return ret;	
+}
+
+bool CNeutrinoApp::hideSkinWidget(const char* const name)
+{
+	dprintf(DEBUG_INFO, "CNeutrinoApp::hideSkinWidget:\n");
+	
+	bool ret = false;
+	
+	if (getWidget(name))
+	{
+		ret = true;
+		getWidget(name)->hide();
+	}
+	
+	return ret;	
+}
+
+//
+//
 void CNeutrinoApp::loadSkin(std::string skinName)
 {
 	dprintf(DEBUG_INFO, "CNeutrinoApp::loadSkin: %s\n", skinName.c_str());
@@ -1897,66 +1956,8 @@ void CNeutrinoApp::loadSkin(std::string skinName)
 	}	
 }
 
-bool CNeutrinoApp::execSkin(const int id)
-{
-	dprintf(DEBUG_INFO, "CNeutrinoApp::execSkin: %d\n", id);
-	
-	bool ret = false;
-	
-	if (getWidget(id))
-	{
-		ret = true;
-		getWidget(id)->exec(NULL, "");
-	}
-	
-	return ret;	
-}
 
-bool CNeutrinoApp::paintSkin(const int id)
-{
-	dprintf(DEBUG_INFO, "CNeutrinoApp::paintSkin: %d\n", id);
-	
-	bool ret = false;
-	
-	if (getWidget(id))
-	{
-		ret = true;
-		getWidget(id)->paint();
-	}
-	
-	return ret;	
-}
-
-bool CNeutrinoApp::hideSkin(const int id)
-{
-	dprintf(DEBUG_INFO, "CNeutrinoApp::hideSkin: %d\n", id);
-	
-	bool ret = false;
-	
-	if (getWidget(id))
-	{
-		ret = true;
-		getWidget(id)->hide();
-	}
-	
-	return ret;	
-}
-
-bool CNeutrinoApp::removeSkin(const int id)
-{
-	dprintf(DEBUG_INFO, "CNeutrinoApp::hideSkin: %d\n", id);
-	
-	bool ret = false;
-	
-	if (getWidget(id))
-	{
-		ret = true;
-		widgets.erase(widgets.begin() + id); 
-	}
-	
-	return ret;	
-}
-
+//
 bool CNeutrinoApp::skin_exists(const char* const filename)
 {
 	dprintf(DEBUG_INFO, "CNeutrinoApp::skin_exists: %s\n", filename);
