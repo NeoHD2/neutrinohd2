@@ -514,8 +514,9 @@ void CMoviePlayerGui::playNext()
 			g_vpid = playlist[selected].epgVideoPid;
 			g_vtype = playlist[selected].VideoType;
 
-			// startposition			
-			startposition = 1000 * showStartPosSelectionMenu();
+			// startposition
+			if (!m_multiselect)			
+				startposition = 1000 * showStartPosSelectionMenu();
 
 			if(startposition < 0)
 				exit = true;
@@ -583,8 +584,9 @@ void CMoviePlayerGui::playPrev()
 			g_vpid = playlist[selected].epgVideoPid;
 			g_vtype = playlist[selected].VideoType;
 
-			// startposition			
-			startposition = 1000 * showStartPosSelectionMenu();
+			// startposition
+			if (!m_multiselect)			
+				startposition = 1000 * showStartPosSelectionMenu();
 
 			if(startposition < 0)
 				exit = true;
@@ -645,9 +647,13 @@ void CMoviePlayerGui::PlayFile(void)
 	neutrino_msg_t msg;
 	neutrino_msg_data_t data;
 	
+	// multi_select
+	if(playlist.size() > 1)
+		m_multiselect = true;
+	
 	//
 	if(!playlist.empty())
-	{
+	{	
 		//
 		if(playlist[selected].ytid.empty())
 		{
@@ -684,8 +690,9 @@ void CMoviePlayerGui::PlayFile(void)
 			g_vpid = playlist[selected].epgVideoPid;
 			g_vtype = playlist[selected].VideoType;
 
-			// startposition			
-			startposition = 1000 * showStartPosSelectionMenu();
+			// startposition
+			if (!m_multiselect)			
+				startposition = 1000 * showStartPosSelectionMenu();
 
 			// audio files
 			if(playlist[selected].file.getType() == CFile::FILE_AUDIO)
@@ -698,10 +705,6 @@ void CMoviePlayerGui::PlayFile(void)
 		//
 		update_lcd = true;
 		start_play = true;
-
-		// multi_select
-		if(playlist.size() > 1)
-			m_multiselect = true;
 
 		// secure
 		if(startposition < 0)
@@ -719,8 +722,8 @@ void CMoviePlayerGui::PlayFile(void)
 
 	int width = 280;
 	int height = 65;
-    int x = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - width) / 2;
-    int y = frameBuffer->getScreenY() + frameBuffer->getScreenHeight() - height - 20;
+    	int x = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - width) / 2;
+    	int y = frameBuffer->getScreenY() + frameBuffer->getScreenHeight() - height - 20;
 
 	CBox boxposition(x, y, width, height);	// window position for the hint boxes
 

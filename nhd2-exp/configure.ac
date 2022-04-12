@@ -193,6 +193,23 @@ AC_ARG_ENABLE(testing,
 	,[enable_testing=no])
 AM_CONDITIONAL(ENABLE_TESTING,test "$enable_testing" = "yes")
 
+AC_MSG_RESULT([
+Boxtype          	: $BOXTYPE
+OpenGL			: $enable_opengl
+OpenGL Playback		: $enable_playback
+Gstreamer		: $enable_gstreamer
+SCART			: $enable_scart
+LCD			: $enable_lcd
+LCD Update		: $enable_lcd_update
+CI CAM			: $enable_ci
+4 Digits		: $enable_4digits
+F-Keys			: $enable_functionkeys
+Python			: $enable_python
+Lua			: $enable_lua
+Fake Tuner		: $enable_fake_tuner
+Testing      		: $enable_testing
+])
+
 AC_OUTPUT([
 Makefile
 lib/Makefile

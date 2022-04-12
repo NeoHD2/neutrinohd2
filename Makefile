@@ -84,7 +84,12 @@ $(N_SRC)/config.status: | $(N_SRC) $(DEST)
 			--enable-ci \
 			--enable-lua \
 			--enable-python \
-			--enable-fake_tuner
+			--enable-fake_tuner \
+			--enable-lcd \
+			--enable-lcd-update \
+			--enable-4digits \
+			--enable-testing \
+			--enable-functionkeys
 $(DEST):
 	mkdir $@
 

@@ -5,6 +5,11 @@ AM_MAINTAINER_MODE
 AC_GNU_SOURCE
 AC_SYS_LARGEFILE
 
+AC_ARG_WITH(targetprefix,
+	AS_HELP_STRING([--with-targetprefix=PATH], [prefix relative to target root (only applicable in cdk mode)]),
+	[TARGET_PREFIX="$withval"],
+	[TARGET_PREFIX=""])
+
 AC_ARG_WITH(debug,
 	[  --without-debug         disable debugging code],
 	[DEBUG="$withval"],[DEBUG="yes"])
@@ -22,12 +27,15 @@ fi
 if test "$prefix" = "NONE"; then
 	prefix=/usr/local
 	
-	# workaround for hd2 buildsystem
+	# workaround
 	datadir="/usr/share"
 	localstatedir="/var"
 else
 	datadir="\${prefix}/share"
 fi
+
+targetprefix=$prefix
+TARGET_PREFIX=$prefix
 
 if test "$exec_prefix" = "NONE"; then
 	exec_prefix=$prefix
@@ -43,12 +51,16 @@ check_path () {
 
 AC_DEFUN([TUXBOX_APPS_DIRECTORY_ONE],[
 AC_ARG_WITH($1,[  $6$7 [[PREFIX$4$5]]],[
+#	_$2=$withval
+#	$2=$withval
+#	TARGET_$2=${$2}
 	_$2=$withval
-	$2=$withval
+	$2=`eval echo "$TARGET_PREFIX$withval"`
 	TARGET_$2=${$2}
 ],[
 	$2="\${$3}$5"
 	_$2=`eval echo "${$3}$5"`
+#	_$2=`eval echo "${target$3}$5"`
 	TARGET_$2=$_$2
 ])
 
