@@ -178,7 +178,7 @@ void CCAMMenuHandler::doMainMenu()
 		{
 			sprintf(str, "%s %d", _("No CAM in slot"), i + 1);
 			
-			//
+			/*
 			if (CNeutrinoApp::getInstance()->getWidget("tempcam2"))
 			{
 				tempMenuWidget = CNeutrinoApp::getInstance()->getWidget("tempcam2");
@@ -192,6 +192,7 @@ void CCAMMenuHandler::doMainMenu()
 				}
 			}
 			else
+			*/
 			{
 				tempMenu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 				tempMenu->setMenuPosition(MENU_POSITION_CENTER);
@@ -361,6 +362,7 @@ int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t 
 			CWidget* menuWidget = NULL;
 			ClistBox* menu = NULL;
 			
+			/*
 			if (CNeutrinoApp::getInstance()->getWidget("tempcam"))
 			{
 				menuWidget = CNeutrinoApp::getInstance()->getWidget("tempcam");
@@ -372,6 +374,7 @@ int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t 
 					menu->setTitle(convertDVBUTF8(pMenu->title, strlen(pMenu->title), 0).c_str(), NEUTRINO_ICON_SETTINGS);
 			}
 			else
+			*/
 			{
 				menu = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 				menu->setMenuPosition(MENU_POSITION_CENTER);

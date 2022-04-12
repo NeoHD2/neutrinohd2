@@ -66,7 +66,7 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 	
 	//
 	name = "";
-	id = -1;
+	//id = -1;
 }
 
 CWidget::CWidget(CBox *position)
@@ -97,7 +97,7 @@ CWidget::CWidget(CBox *position)
 	
 	//
 	name = "";
-	id = -1;
+	//id = -1;
 }
 
 CWidget::~CWidget()

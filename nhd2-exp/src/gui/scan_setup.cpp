@@ -542,6 +542,7 @@ void CScanSetup::showScanService()
 				CWidget* tempsatWidget = NULL;
 				ClistBox* tempsat = NULL;
 				
+				/*
 				if (CNeutrinoApp::getInstance()->getWidget("tempsat"))
 				{
 					tempsatWidget = CNeutrinoApp::getInstance()->getWidget("tempsat");
@@ -553,6 +554,7 @@ void CScanSetup::showScanService()
 						tempsat->setTitle(sit->second.name.c_str(), NEUTRINO_ICON_UPDATE);
 				}
 				else
+				*/
 				{
 					tempsat = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 					tempsat->setMenuPosition(MENU_POSITION_CENTER);

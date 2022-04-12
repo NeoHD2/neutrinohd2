@@ -324,6 +324,7 @@ int CHDDMenuHandler::hddMenu()
 		bool enabled = !CNeutrinoApp::getInstance()->recordingstatus && !isroot;
 
 		// hdd menu
+		/*
 		if (CNeutrinoApp::getInstance()->getWidget("temphdd2"))
 		{
 			tempMenuWidget[i] = CNeutrinoApp::getInstance()->getWidget("temphdd2");
@@ -337,6 +338,7 @@ int CHDDMenuHandler::hddMenu()
 			}
 		}
 		else
+		*/
 		{
 			tempMenu[i] = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 			tempMenu[i]->setMenuPosition(MENU_POSITION_CENTER);
@@ -402,6 +404,7 @@ int CHDDMenuHandler::hddMenu()
 			mounted = check_if_mounted(DEVICE);
 			
 			// part submenu
+			/*
 			if (CNeutrinoApp::getInstance()->getWidget("temphdd"))
 			{
 				PartMenuWidget[j] = CNeutrinoApp::getInstance()->getWidget("temphdd");
@@ -415,6 +418,7 @@ int CHDDMenuHandler::hddMenu()
 				}
 			}
 			else
+			*/
 			{
 				PartMenu[j] = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
 				PartMenu[j]->setMenuPosition(MENU_POSITION_CENTER);

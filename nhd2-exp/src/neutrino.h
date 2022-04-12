@@ -164,8 +164,8 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		//
 		CWidget* getWidget(const char* const name);
 		bool widget_exists(const char* const name);
-		CWidget* getWidget(int id);
-		bool widget_exists(int id);
+		//CWidget* getWidget(int id);
+		//bool widget_exists(int id);
 		bool hasWidgets(){return widgets.size();};
 		//
 		bool execSkinWidget(const char* const name);

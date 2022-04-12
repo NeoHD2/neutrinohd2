@@ -1711,7 +1711,7 @@ void CNeutrinoApp::parseSkin(const char* const filename, bool xml_data)
 	dprintf(DEBUG_INFO, "CNeutrinoApp::parseSkin: widgets count:%d\n\n", (int)widgets.size());
 }
 
-//
+/*
 CWidget* CNeutrinoApp::getWidget(int id)
 {
 	CWidget* ret = NULL;
@@ -1727,6 +1727,7 @@ CWidget* CNeutrinoApp::getWidget(int id)
 	
 	return ret;
 }
+*/
 
 //
 CWidget* CNeutrinoApp::getWidget(const char* const name)
@@ -1745,6 +1746,7 @@ CWidget* CNeutrinoApp::getWidget(const char* const name)
 	return ret;
 }
 
+/*
 bool CNeutrinoApp::widget_exists(int id)
 {
 	bool ret = false;
@@ -1754,6 +1756,7 @@ bool CNeutrinoApp::widget_exists(int id)
 		
 	return ret;
 }
+*/
 
 bool CNeutrinoApp::widget_exists(const char* const name)
 {

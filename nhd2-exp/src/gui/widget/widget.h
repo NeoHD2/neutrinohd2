@@ -165,9 +165,12 @@ class CMenuTarget
 	protected:
 		std::string *valueString;
 		std::string valueStringTmp;
+
+	public:
+		int id;
 		
 	public:
-		CMenuTarget(){ valueStringTmp = std::string(); valueString = &valueStringTmp;};
+		CMenuTarget(){ valueStringTmp = std::string(); valueString = &valueStringTmp; id = -1;};
 		virtual ~CMenuTarget(){};
 		virtual void hide(){valueString->clear();};
 		virtual int exec(CMenuTarget* parent, const std::string& actionKey) = 0;
@@ -178,7 +181,7 @@ class CMenuTarget
 class CWidget : public CMenuTarget
 {
 	public:
-		int id;
+		//int id;
 		std::string name;
 		
 	protected:
