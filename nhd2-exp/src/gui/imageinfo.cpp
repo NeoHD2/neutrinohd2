@@ -40,11 +40,6 @@
 
 #include <video_cs.h>
 
-#include <gui/version.h>
-
-
-#define GIT_BUILD 	"GIT Build:"
-#define GIT_REV 	"GIT Rev:"
 
 extern cVideo * videoDecoder;
 
@@ -167,8 +162,6 @@ void CImageInfo::paint()
 	const char * forum = "https://forum.mbremer.de/viewforum.php?f=86";
 	//forum = config.getString("forum", "http://gitorious.org/open-duckbox-project-sh4").c_str();
 	//const char * version = config.getString("version", "1202201602031021").c_str();
-	const char * builddate = BUILT_DATE;
-	const char * gitrev = GIT;
 	
 	//static CFlashVersionInfo versionInfo(version);
 	const char * releaseCycle = PACKAGE_VERSION;
@@ -188,13 +181,14 @@ void CImageInfo::paint()
 	
 	// git built date
 	ypos += iheight;
-	paintLine(xpos, font_info, GIT_BUILD);
-	paintLine(xpos + x_offset, font_info, builddate );
+	paintLine(xpos, font_info, _("Built date: "));
+	paintLine(xpos + x_offset, font_info, _(__DATE__));
+	paintLine(xpos + x_offset + x_offset, font_info, _(__TIME__));
 
 	// git rev
-	ypos += iheight;
-	paintLine(xpos, font_info, GIT_REV);
-	paintLine(xpos + x_offset, font_info, gitrev );	
+	//ypos += iheight;
+	//paintLine(xpos, font_info, GIT_REV);
+	//paintLine(xpos + x_offset, font_info, gitrev );	
 	
 	// image type
 	ypos += iheight;

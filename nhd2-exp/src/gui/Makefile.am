@@ -1,19 +1,5 @@
 AM_CPPFLAGS = -fno-strict-aliasing
 
-BUILT_SOURCES = version.h
-version.h:
-	@rm -f $@; \
-	echo '#define BUILT_DATE "'`date`'"' > $@
-	@if test -d $(top_srcdir)/../.git ; then \
-		pushd $(top_srcdir)/.. ; \
-		GITREV=`git log | grep '^commit' | wc -l`; \
-		popd ; \
-		echo '#define GIT "'$$GITREV'"' >> $@ ; \
-	fi
-
-noinst_HEADERS = version.h
-.PHONY: version.h
-
 SUBDIRS = widget bedit
 
 AM_CPPFLAGS += \
