@@ -97,7 +97,6 @@ CWidget::CWidget(CBox *position)
 	
 	//
 	name = "";
-	//id = -1;
 }
 
 CWidget::~CWidget()

@@ -181,7 +181,6 @@ class CMenuTarget
 class CWidget : public CMenuTarget
 {
 	public:
-		//int id;
 		std::string name;
 		
 	protected:
