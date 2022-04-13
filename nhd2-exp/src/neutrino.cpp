@@ -2727,8 +2727,8 @@ int CNeutrinoApp::run(int argc, char **argv)
 		//frameBuffer->blit();
 	
 		// setup languages
-		CLanguageSettings languageSettings;
-		int ret = languageSettings.exec(NULL, "");
+		CLanguageSettings* languageSettings = new CLanguageSettings(true);
+		int ret = languageSettings->exec(NULL, "");
 	
 		// video setup wizard
 		if(ret != RETURN_EXIT_ALL)

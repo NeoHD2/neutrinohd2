@@ -529,8 +529,9 @@ void COSDInfoBarColorSettings::showMenu()
 }
 
 // osd language settings
-CLanguageSettings::CLanguageSettings()
+CLanguageSettings::CLanguageSettings(bool wizzard)
 {
+	fromStartWizzard = wizzard;
 }
 
 CLanguageSettings::~CLanguageSettings()
@@ -551,9 +552,12 @@ int CLanguageSettings::exec(CMenuTarget* parent, const std::string& actionKey)
 		strcpy(g_settings.language, actionKey.c_str());
 		g_Locale->loadLocale(Lang2I18N(g_settings.language).c_str());
 		
-		if (MessageBox(_("Information"), _("this need Neutrino restart\ndo you want really to restart?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+		if (!fromStartWizzard)
 		{
-			CNeutrinoApp::getInstance()->exec(NULL, "restart");
+			if (MessageBox(_("Information"), _("this need Neutrino restart\ndo you want really to restart?"), mbrNo, mbYes | mbNo, NULL, 600, 30, true) == mbrYes) 
+			{
+				CNeutrinoApp::getInstance()->exec(NULL, "restart");
+			}
 		}
 		
 		return ret;

@@ -75,10 +75,11 @@ class COSDInfoBarColorSettings : public CMenuTarget
 class CLanguageSettings : public CMenuTarget, CChangeObserver
 {
 	private:
+		bool fromStartWizzard;
 		void showMenu();
 		
 	public:
-		CLanguageSettings();
+		CLanguageSettings(bool wizzard = false);
 		~CLanguageSettings();
 		
 		bool changeNotify(const std::string& OptionName, void *);
