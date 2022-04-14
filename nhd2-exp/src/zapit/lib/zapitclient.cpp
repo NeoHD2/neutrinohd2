@@ -249,7 +249,7 @@ void CZapitClient::zapTo_subServiceID_NOWAIT(const t_channel_id channel_id)
 	close_connection();
 }
 
-/* set mode tv/radio/webtv */
+/* set mode tv/radio */
 void CZapitClient::setMode(const channelsMode mode)
 {
 	CZapitMessages::commandSetMode msg;

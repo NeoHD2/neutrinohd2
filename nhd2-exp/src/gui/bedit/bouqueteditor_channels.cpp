@@ -169,8 +169,8 @@ int CBEChannelWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 		Channels = &(g_bouquetManager->Bouquets[bouquet]->tvChannels);
 	else if (mode == CZapitClient::MODE_RADIO)
 		Channels = &(g_bouquetManager->Bouquets[bouquet]->radioChannels);
-	else if (mode == CZapitClient::MODE_WEBTV)
-		Channels = &(g_bouquetManager->Bouquets[bouquet]->webtvChannels);
+	//else if (mode == CZapitClient::MODE_WEBTV)
+	//	Channels = &(g_bouquetManager->Bouquets[bouquet]->webtvChannels);
 
 	listBox = new ClistBox(&cFrameBox);
 	

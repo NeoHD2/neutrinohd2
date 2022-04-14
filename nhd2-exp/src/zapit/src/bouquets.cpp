@@ -620,11 +620,13 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					if(!url.empty())
 					{
 						// grab channel id from channellist
+						/*
 						for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
 						{
 							if(strcasecmp(it->second.getName().c_str(), title.c_str()) == 0)
 								id = it->second.getChannelID();
 						}
+						*/
 
 						if(id == 0)
 							id = create_channel_id64(0, 0, 0, 0, 0, url.c_str());
@@ -695,17 +697,19 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						logo = xmlGetAttribute(l1, (const char*)"logo");
 						epgmap = xmlGetAttribute(l1, (const char*)"epgmap");
 
-						if (epgid)
-							id = strtoull(epgid, NULL, 16);
+						//if (epgid)
+						//	id = strtoull(epgid, NULL, 16);
 							
 						if(id == 0)
 						{
 							// grab channel id from channellist
+							/*
 							for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
 							{
 								if(strcasecmp(it->second.getName().c_str(), title) == 0)
 									id = it->second.getChannelID();
 							}
+							*/
 						}
 
 						if(id == 0)
@@ -837,11 +841,13 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						}
 						
 						// grab channel id from channellist
+						/*
 						for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
 						{
 							if(strcasecmp(it->second.getName().c_str(), title.c_str()) == 0)
 								id = it->second.getChannelID();
 						}
+						*/
 
 						if(id == 0)
 							id = create_channel_id64(0, 0, 0, 0, 0, url);

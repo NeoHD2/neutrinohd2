@@ -108,7 +108,7 @@ class CZapitClient : public CBasicClient
 			MODE_CURRENT,
 			MODE_TV,
 			MODE_RADIO,
-			MODE_WEBTV
+			//MODE_WEBTV
 		} channelsMode;
 
 		typedef enum channelsOrder_

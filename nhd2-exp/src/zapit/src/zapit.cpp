@@ -2394,6 +2394,7 @@ bool zapit_parse_command(CBasicMessage::Header &rmsg, int connfd)
 			CZapitMessages::responseGeneralTrueFalse response;
 			CBasicServer::receive_data(connfd, &requested_channel_id, sizeof(requested_channel_id));
 			tallchans_iterator it = allchans.find(requested_channel_id);
+			
 			if (it == allchans.end()) 
 			{
 				/* FIXME: the following check is no even remotely accurate */

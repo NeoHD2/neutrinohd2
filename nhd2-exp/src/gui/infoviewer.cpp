@@ -1522,7 +1522,7 @@ void CInfoViewer::showSNR()
 	int posy = 0;
   	int barwidth = BAR_WIDTH;
 	
-  	if (g_settings.infobar_sat_display && (IS_WEBTV(channel_id))/*CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv*/) 
+  	if (g_settings.infobar_sat_display && (!IS_WEBTV(channel_id))/*CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv*/) 
 	{
 		if(is_visible)
 		{
