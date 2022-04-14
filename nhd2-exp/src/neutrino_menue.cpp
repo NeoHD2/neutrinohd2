@@ -108,7 +108,7 @@ void CNeutrinoApp::mainMenu(void)
 		nMenu->addItem(new CMenuForwarder(_("Radio Mode"), true, NULL, this, "radio", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_RADIO));	
 			
 		// webtv
-		nMenu->addItem(new CMenuForwarder(_("WEBTV Mode"), true, NULL, this, "webtv", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_WEBTV));
+		//nMenu->addItem(new CMenuForwarder(_("WEBTV Mode"), true, NULL, this, "webtv", RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_WEBTV));
 			
 #if defined (ENABLE_SCART)
 		// scart
@@ -335,7 +335,7 @@ bool CNeutrinoApp::showUserMenu(int button)
 				
 			// vtxt	
 			case SNeutrinoSettings::ITEM_VTXT:
-				if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
+				//if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
 				{
 					menu_prev = SNeutrinoSettings::ITEM_VTXT;
 					keyhelper.get(&key, &icon);

@@ -670,11 +670,12 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		sprintf ((char *) buf, "%s", sit->second.name.c_str());
 		g_Font[font_info]->RenderString (xpos + spaceoffset, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true);	// UTF-8
 	}
+	/*
 	else if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
 	{
 		g_Font[font_info]->RenderString (xpos + spaceoffset, ypos, width*2/3 - 10, "WebTV", COL_MENUCONTENTDARK, 0, true);	// UTF-8
 	}
-	
+	*/
 
 	// channel
 	CChannelList *channelList = CNeutrinoApp::getInstance()->channelList;

@@ -831,6 +831,7 @@ void CRemoteControl::tvMode()
 	CVFD::getInstance()->ShowIcon(VFD_ICON_TV, true);
 }
 
+/*
 void CRemoteControl::webTVMode()
 {
 	dprintf(DEBUG_NORMAL, "CRemoteControl::webTVMode\n");
@@ -840,6 +841,7 @@ void CRemoteControl::webTVMode()
 	CVFD::getInstance()->ShowIcon(VFD_ICON_RADIO, false);
 	CVFD::getInstance()->ShowIcon(VFD_ICON_TV, false);
 }
+*/
 
 // defined in sectionsd.cpp
 void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid);

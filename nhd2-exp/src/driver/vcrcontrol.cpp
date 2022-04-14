@@ -277,7 +277,7 @@ bool CVCRControl::CVCRDevice::Record(const t_channel_id channel_id, int mode, co
 		CNeutrinoApp::getInstance()->handleMsg( NeutrinoMessages::CHANGEMODE , mode | NeutrinoMessages::norezap );
 	}
 	
-	if(CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
+	//if(CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
 	{
 		// zapit
 		if(channel_id != 0)	// wenn ein channel angegeben ist
@@ -338,7 +338,7 @@ void CVCRControl::CFileAndServerDevice::RestoreNeutrino(void)
 	// unset record mode
 	// after this zapit send EVT_RECORDMODE_DEACTIVATED, so neutrino getting NeutrinoMessages::EVT_RECORDMODE
 
-	if(CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
+	//if(CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
 	{
 		g_Zapit->setRecordMode( false );
 
@@ -365,7 +365,7 @@ void CVCRControl::CFileAndServerDevice::CutBackNeutrino(const t_channel_id chann
 {
 	last_mode = CNeutrinoApp::getInstance()->getMode();
 
-	if(CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
+	//if(CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
 	{
 		if(last_mode == NeutrinoMessages::mode_standby)
 		{
@@ -595,7 +595,7 @@ bool CVCRControl::CFileDevice::Record(const t_channel_id channel_id, int mode, c
 	char filename[512]; // UTF-8
 
 	// Create filename for recording
-	if(CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
+	//if(CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
 	{
 		pos = Directory.size();
 		strcpy(filename, Directory.c_str());
@@ -712,11 +712,12 @@ bool CVCRControl::CFileDevice::Record(const t_channel_id channel_id, int mode, c
 
 	stream2file_error_msg_t error_msg = STREAM2FILE_BUSY;
 
-	if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
+	//if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
 	{
 		error_msg = ::start_file_recording(filename,
 			      getMovieInfoString(CMD_VCR_RECORD, channel_id, epgid, epgTitle, apid_list, epg_time).c_str(), g_Zapit->getChannelURL(channel_id));
 	}
+	/*
 	else
 	{
 		error_msg = ::start_recording(filename,
@@ -725,6 +726,7 @@ bool CVCRControl::CFileDevice::Record(const t_channel_id channel_id, int mode, c
 			      pids, 
 			      numpids);
 	}
+	*/
 
 	if (error_msg == STREAM2FILE_OK) 
 	{

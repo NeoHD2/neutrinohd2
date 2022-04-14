@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 21:36+0200\n"
+"POT-Creation-Date: 2022-04-15 01:00+0200\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -123,6 +123,10 @@ msgid "Alarm time"
 msgstr "Alarmzeit"
 
 msgid "All Services"
+msgstr "Alle"
+
+#, fuzzy
+msgid "All WebTV Services"
 msgstr "Alle"
 
 msgid "All services"
@@ -978,9 +982,6 @@ msgid "IP address"
 msgstr ""
 
 msgid "IP:"
-msgstr ""
-
-msgid "IPTV Channel"
 msgstr ""
 
 msgid "ISO-8859-1"
@@ -2620,9 +2621,6 @@ msgstr ""
 msgid "WEBTV"
 msgstr ""
 
-msgid "WEBTV Mode"
-msgstr ""
-
 msgid "Wait a few seconds for abort"
 msgstr ""
 
@@ -2635,8 +2633,9 @@ msgstr "Warte auf Zeit"
 msgid "Warn"
 msgstr "Warnung"
 
-msgid "WebTV"
-msgstr ""
+#, fuzzy
+msgid "WebTV Favorites"
+msgstr "Favoriten"
 
 msgid "Wednesday"
 msgstr "Mittwoch"

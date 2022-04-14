@@ -46,7 +46,7 @@ class CZapitSetupNotifier : public CChangeObserver
 		CMenuOptionChooser * zapit1;
 		CMenuForwarder * zapit2, * zapit3, *zapit4;
 	public:
-		CZapitSetupNotifier(CMenuOptionChooser* m1, CMenuForwarder* m2, CMenuForwarder* m3, CMenuForwarder* m4);
+		CZapitSetupNotifier(CMenuOptionChooser* m1, CMenuForwarder* m2, CMenuForwarder* m3);
 		bool changeNotify(const std::string&, void * data);
 };
 
@@ -56,7 +56,7 @@ class CZapitSetupModeNotifier : public CChangeObserver
 		CMenuItem *item1, *item2, *item3;
 		int *mode;
 	public:
-		CZapitSetupModeNotifier(int *zMode, CMenuItem *m1, CMenuItem *m2, CMenuItem *m3);
+		CZapitSetupModeNotifier(int *zMode, CMenuItem *m1, CMenuItem *m2/*, CMenuItem *m3*/);
 		bool changeNotify(const std::string&, void *);
 };
 

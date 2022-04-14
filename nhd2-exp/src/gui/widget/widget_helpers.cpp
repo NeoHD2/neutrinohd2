@@ -315,7 +315,7 @@ CCButtons::CCButtons(const int x, const int y, const int dx, const int dy)
 	
 	buttons.clear(); 
 	count = 0;
-	mode = BUTTON_LABEL_RIGHT;
+	mode = BUTTON_BUTTON;
 	
 	cc_type = CC_BUTTON;
 }

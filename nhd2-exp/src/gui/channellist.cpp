@@ -726,7 +726,7 @@ int CChannelList::show(bool zap, bool customMode)
 		}
 		else if ( msg == RC_setup ) 
 		{
-			if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv) 
+			//if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv) 
 			{
 				//
 				selected = listBox->getSelected();
@@ -1097,12 +1097,14 @@ bool CChannelList::adjustToChannelID(const t_channel_id channel_id, bool bToo)
 					RADIOfavList->adjustToChannelID(channel_id);
 					RADIOallList->adjustToChannelID(channel_id);
 				}
+				/*
 				else if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv) 
 				{
 					WEBTVbouquetList->adjustToChannelID(channel_id);
 					WEBTVfavList->adjustToChannelID(channel_id);
 					WEBTVallList->adjustToChannelID(channel_id);
-				} 
+				}
+				*/
 			}
 			
 			return true;
@@ -1709,7 +1711,8 @@ void CChannelList::paint()
 			if (g_settings.channellist_ca)
 			{
 				item->setIcon1(chanlist[i]->isHD() ? NEUTRINO_ICON_HD : chanlist[i]->isUHD()? NEUTRINO_ICON_UHD : "");
-				item->setIcon2((chanlist[i]->scrambled && chanlist[i]->getServiceType() != ST_WEBTV)? NEUTRINO_ICON_SCRAMBLED : "");
+				//item->setIcon2((chanlist[i]->scrambled /*&& chanlist[i]->getServiceType() != ST_WEBTV)?*/ NEUTRINO_ICON_SCRAMBLED /*: ""*/);
+				item->setIcon1(chanlist[i]->scrambled? NEUTRINO_ICON_SCRAMBLED : "");
 			}
 			
 			item->setOptionFontColor(COL_INFOBAR_COLORED_EVENTS);
@@ -1730,9 +1733,9 @@ void CChannelList::paint()
 	}
 	
 	//
-	if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
-		head->setButtons(new_mode_active? HeadWEBTVNewModeButtons : HeadWEBTVModeButtons, 2); 
-	else
+	//if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
+	//	head->setButtons(new_mode_active? HeadWEBTVNewModeButtons : HeadWEBTVModeButtons, 2); 
+	//else
 		head->setButtons(new_mode_active? HeadNewModeButtons : HeadButtons, HEAD_BUTTONS_COUNT);
 	
 	//

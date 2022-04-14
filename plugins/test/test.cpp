@@ -5203,8 +5203,8 @@ void CTestMenu::testChannelSelectWidget()
 		mode = "tv";
 	else if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_radio)
 		mode = "radio";
-	else if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
-		mode = "webtv";
+	//else if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
+	//	mode = "webtv";
 
 	CSelectChannelWidgetHandler->exec(NULL, mode);
 		

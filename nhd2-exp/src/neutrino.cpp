@@ -1532,12 +1532,12 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	RADIOfavList->orgChannelList = RADIOchannelList;
 
 	//
-	WEBTVchannelList = new CChannelList(_("All Services"));
+	WEBTVchannelList = new CChannelList(_("All WebTV Services"));
 
 	WEBTVbouquetList = new CBouquetList("WebTV");
 	WEBTVbouquetList->orgChannelList = WEBTVchannelList;
 
-	WEBTVfavList = new CBouquetList(_("Favorites"));
+	WEBTVfavList = new CBouquetList(_("WebTV Favorites"));
 	WEBTVfavList->orgChannelList = WEBTVchannelList;
 
 	//
@@ -1571,7 +1571,8 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 		}
 		else if(it->second.getServiceType() == ST_WEBTV)
 		{
-			WEBTVchannelList->addChannel(&(it->second), webtvi++);
+			//WEBTVchannelList->addChannel(&(it->second), webtvi++);
+			TVchannelList->addChannel(&(it->second), tvi++);
 		}
 	}
 	
@@ -1597,8 +1598,8 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	RADIOallList->orgChannelList = RADIOchannelList;
 
 	// webtv all list
-	WEBTVallList = new CBouquetList(_("WebTV"));
-	tmp = WEBTVallList->addBouquet(_("WebTV"));
+	WEBTVallList = new CBouquetList(_("All WebTV Services"));
+	tmp = WEBTVallList->addBouquet(_("All WebTV Services"));
 	*(tmp->channelList) = *WEBTVchannelList;
 	//tmp->channelList->SortAlpha();
 	WEBTVallList->orgChannelList = WEBTVchannelList;
@@ -1643,7 +1644,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 			printf("CNeutrinoApp::channelsInit: created %s with %d TV and %d RADIO channels\n", sit->second.name.c_str(), tvi, ri);
 	}
 
-	// tv fav list
+	// tv fav / provider list
 	bnum = 0;
 	for (i = 0; i < g_bouquetManager->Bouquets.size(); i++) 
 	{
@@ -1664,6 +1665,21 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 			}
 			bnum++;
 		}
+		
+		//
+		if (g_bouquetManager->Bouquets[i]->bWebTV && !g_bouquetManager->Bouquets[i]->webtvChannels.empty())
+		{
+			CBouquet *ltmp = TVfavList->addBouquet(g_bouquetManager->Bouquets[i]);
+
+			ZapitChannelList *channels = &(g_bouquetManager->Bouquets[i]->webtvChannels);
+			ltmp->channelList->setSize(channels->size());
+
+			for(int j = 0; j < (int) channels->size(); j++) 
+			{
+				ltmp->channelList->addChannel((*channels)[j]);
+			}
+		}
+		//
 	}
 	
 	if(g_settings.make_hd_list)
@@ -1671,7 +1687,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d TV bouquets\n", bnum);
 
-	// radio fav list
+	// radio fav / privder list
 	bnum = 0;
 	for (i = 0; i < g_bouquetManager->Bouquets.size(); i++) 
 	{	
@@ -1742,8 +1758,10 @@ void CNeutrinoApp::SetChannelMode(int newmode, int nMode)
 		channelList = RADIOchannelList;
 	else if(nMode == mode_tv)
 		channelList = TVchannelList;
+		/*
 	else if(nMode == mode_webtv)
 		channelList = WEBTVchannelList;
+		*/
 
 	// bouquetList
 	switch(newmode) 
@@ -1757,10 +1775,12 @@ void CNeutrinoApp::SetChannelMode(int newmode, int nMode)
 			{
 				bouquetList = TVfavList;
 			}
+			/*
 			else if(nMode == mode_webtv) 
 			{
 				bouquetList = WEBTVfavList;
 			}
+			*/
 			break;
 
 		case LIST_MODE_SAT:
@@ -1772,10 +1792,12 @@ void CNeutrinoApp::SetChannelMode(int newmode, int nMode)
 			{
 				bouquetList = TVsatList;
 			}
+			/*
 			else if(nMode == mode_webtv) 
 			{
 				bouquetList = WEBTVbouquetList;
 			}
+			*/
 			break;
 
 		case LIST_MODE_ALL:
@@ -1787,10 +1809,12 @@ void CNeutrinoApp::SetChannelMode(int newmode, int nMode)
 			{
 				bouquetList = TVallList;
 			}
+			/*
 			else if(nMode == mode_webtv) 
 			{
 				bouquetList = WEBTVallList;
 			}
+			*/
 			break;
 
 		default:
@@ -1803,10 +1827,12 @@ void CNeutrinoApp::SetChannelMode(int newmode, int nMode)
 			{
 				bouquetList = TVbouquetList;
 			}
+			/*
 			else if(nMode == mode_webtv) 
 			{
 				bouquetList = WEBTVbouquetList;
 			}
+			*/
 			break;
 	}
 
@@ -2347,8 +2373,8 @@ void CNeutrinoApp::InitZapper()
 		mode = NeutrinoMessages::mode_tv;
 	else if (tvmode == CZapitClient::MODE_RADIO)
 		mode = NeutrinoMessages::mode_radio;
-	else if (tvmode == CZapitClient::MODE_WEBTV)
-		mode = NeutrinoMessages::mode_webtv;
+	//else if (tvmode == CZapitClient::MODE_WEBTV)
+	//	mode = NeutrinoMessages::mode_webtv;
 
 	lastMode = mode;
 	
@@ -2369,10 +2395,12 @@ void CNeutrinoApp::InitZapper()
 		
 			radioMode(false);
 	}
+	/*
 	else if(firstchannel.mode == 'w') 
 	{
 		webtvMode(false);
-	} 
+	}
+	*/
 
 	// zap / epg / autorecord / infoviewer
 	if(channelList->getSize() && live_channel_id)
@@ -2719,8 +2747,8 @@ int CNeutrinoApp::run(int argc, char **argv)
 			mode = NeutrinoMessages::mode_tv;
 		else if (tvmode == CZapitClient::MODE_RADIO)
 			mode = NeutrinoMessages::mode_radio;
-		else if (tvmode == CZapitClient::MODE_WEBTV)
-			mode = NeutrinoMessages::mode_webtv;
+		//else if (tvmode == CZapitClient::MODE_WEBTV)
+		//	mode = NeutrinoMessages::mode_webtv;
 
 		// startup pic : FIXME
 		//frameBuffer->loadBackgroundPic("start.jpg");	
@@ -2891,7 +2919,7 @@ void CNeutrinoApp::RealRun(void)
 		dprintf(DEBUG_DEBUG, "CNeutrinoApp::RealRun: msg:%s\n", CRCInput::getSpecialKeyName(msg));		
 
 		// mode TV/Radio/IPTV
-		if( (mode == mode_tv) || (mode == mode_radio) || (mode == mode_webtv) ) 
+		if( (mode == mode_tv) || (mode == mode_radio) /*|| (mode == mode_webtv)*/ ) 
 		{
 			if(msg == NeutrinoMessages::SHOW_EPG) 
 			{
@@ -2917,7 +2945,7 @@ void CNeutrinoApp::RealRun(void)
 
 				StartSubtitles();
 			}
-			else if( msg == RC_text && (mode != mode_webtv)) 
+			else if( msg == RC_text /*&& (mode != mode_webtv)*/) 
 			{
 				//
 				if(g_InfoViewer->is_visible)
@@ -2971,20 +2999,20 @@ void CNeutrinoApp::RealRun(void)
 
 				StartSubtitles();
 			}
-			else if( msg == (neutrino_msg_t) g_settings.key_tvradio_mode /*&& (mode != mode_webtv)*/) //FIXME:
+			else if( msg == (neutrino_msg_t) g_settings.key_tvradio_mode)
 			{
 				if( mode == mode_tv )
 					radioMode();
 				else if( mode == mode_radio )
-					webtvMode();
-				else if( mode == mode_webtv )
+					//webtvMode();
+				//else if( mode == mode_webtv )
 					tvMode();
 			}
 			else if(( msg == (neutrino_msg_t) g_settings.key_quickzap_up ) || ( msg == (neutrino_msg_t) g_settings.key_quickzap_down ))
 			{
 				quickZap(msg);
 			}
-			else if( msg == (neutrino_msg_t) g_settings.key_subchannel_up && (mode != mode_webtv)) 
+			else if( msg == (neutrino_msg_t) g_settings.key_subchannel_up /*&& (mode != mode_webtv)*/) 
 			{
 			   	if(g_RemoteControl->subChannels.size() > 0) 
 				{
@@ -3002,7 +3030,7 @@ void CNeutrinoApp::RealRun(void)
 					quickZap(msg);
 				}
 			}
-			else if( msg == (neutrino_msg_t) g_settings.key_subchannel_down && (mode != mode_webtv)) 
+			else if( msg == (neutrino_msg_t) g_settings.key_subchannel_down /*&& (mode != mode_webtv)*/) 
 			{
 			   	if(g_RemoteControl->subChannels.size()> 0) 
 				{
@@ -3048,12 +3076,14 @@ void CNeutrinoApp::RealRun(void)
 			}
 			else if(msg == RC_pause) // start timeshift recording
 			{
+				/*
 				if(mode == mode_webtv)
 				{
 					g_Zapit->pausePlayBack();
 					timeshiftstatus = 1;
 				}
 				else
+				*/
 				{
 					if (recDir != NULL)
 					{
@@ -3082,12 +3112,14 @@ void CNeutrinoApp::RealRun(void)
 			}
 			else if( ((msg == RC_play) && timeshiftstatus)) // play timeshift
 			{
+				/*
 				if(mode == mode_webtv)
 				{
 					g_Zapit->continuePlayBack();
 					timeshiftstatus = 0;
 				}
 				else
+				*/
 				{		
 					if(g_RemoteControl->is_video_started) 
 					{
@@ -3210,6 +3242,7 @@ void CNeutrinoApp::RealRun(void)
 				if(g_InfoViewer->is_visible)
 					g_InfoViewer->killTitle();
 
+				/*
 				if(mode == mode_webtv)
 				{
 					CAVPIDSelectWidget * AVSelectHandler = new CAVPIDSelectWidget();
@@ -3219,6 +3252,7 @@ void CNeutrinoApp::RealRun(void)
 					AVSelectHandler = NULL;
 				}
 				else
+				*/
 				{
 					StopSubtitles();
 
@@ -3233,7 +3267,7 @@ void CNeutrinoApp::RealRun(void)
 					StartSubtitles();
 				}
 			}
-			else if( (msg == RC_yellow || msg == RC_multifeed) && (mode != mode_webtv))
+			else if( (msg == RC_yellow || msg == RC_multifeed) /*&& (mode != mode_webtv)*/)
 			{ 
 				if(g_InfoViewer->is_visible)
 					g_InfoViewer->killTitle();
@@ -3241,7 +3275,7 @@ void CNeutrinoApp::RealRun(void)
 				StopSubtitles();
 
 				// select NVODs
-				if (mode != mode_webtv)
+				//if (mode != mode_webtv)
 				{
 					SelectNVOD();
 				}
@@ -3302,7 +3336,7 @@ void CNeutrinoApp::RealRun(void)
 				StartSubtitles();
 			}
 #endif			
-			else if( (msg == RC_dvbsub) && (mode != mode_webtv) )
+			else if( (msg == RC_dvbsub) /*&& (mode != mode_webtv)*/ )
 			{
 				if(g_InfoViewer->is_visible)
 					g_InfoViewer->killTitle();
@@ -3387,6 +3421,7 @@ void CNeutrinoApp::RealRun(void)
 					}
 				}	
 			}
+			/*
 			else if( msg == (neutrino_msg_t)g_settings.key_webtv)	// webtv
 			{
 				if(g_InfoViewer->is_visible)
@@ -3397,7 +3432,8 @@ void CNeutrinoApp::RealRun(void)
 				webtvMode();
 					
 				StartSubtitles();
-			}	
+			}
+			*/	
 			else if( msg == (neutrino_msg_t)g_settings.key_pictureviewer ) 	// picture viewer
 			{
 				if(g_InfoViewer->is_visible)
@@ -3405,7 +3441,7 @@ void CNeutrinoApp::RealRun(void)
 
 				g_PluginList->startPlugin("picviewer");
 			}			
-			else if ( CRCInput::isNumeric(msg) && g_RemoteControl->director_mode && (mode != mode_webtv)) 
+			else if ( CRCInput::isNumeric(msg) && g_RemoteControl->director_mode /*&& (mode != mode_webtv)*/) 
 			{
 				if(g_InfoViewer->is_visible)
 					g_InfoViewer->killTitle();
@@ -3636,7 +3672,7 @@ int CNeutrinoApp::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data)
 		if(g_InfoViewer->is_visible)
 			g_InfoViewer->killTitle();
 
-		if( (mode == mode_tv) || (mode == mode_radio) || (mode == mode_webtv))
+		if( (mode == mode_tv) || (mode == mode_radio) /*|| (mode == mode_webtv)*/)
 		{
 			StopSubtitles();
 
@@ -3949,10 +3985,12 @@ _repeat:
 			{
 				tvMode(false);
 			}
+			/*
 			else if (isWEBTVMode && (mode != mode_webtv)) 
 			{
 				webtvMode(false);
 			}
+			*/
 			
 			channelList->zapTo_ChannelID(eventinfo->channel_id);
 		}
@@ -4272,6 +4310,7 @@ skip_message:
 			mode = mode_ts;
 		}
 		
+		/*
 		if((data &mode_mask) == mode_webtv) 
 		{
 			if( mode != mode_webtv ) 
@@ -4282,6 +4321,7 @@ skip_message:
 					webtvMode(true);
 			}
 		}
+		*/
 	}	
 	else if( msg == NeutrinoMessages::VCR_ON ) 
 	{
@@ -4786,6 +4826,7 @@ void CNeutrinoApp::tvMode( bool rezap )
 			videoDecoder->SetInput(STANDBY_OFF);
 #endif		
 	}
+	/*
 	else if(mode == mode_webtv)
 	{			
 		// stop playback
@@ -4794,6 +4835,7 @@ void CNeutrinoApp::tvMode( bool rezap )
 		// unlock playback
 		g_Zapit->unlockPlayBack();
 	}
+	*/
 
 	bool stopauto = (mode != mode_ts);	
 	mode = mode_tv;
@@ -4859,6 +4901,7 @@ void CNeutrinoApp::radioMode( bool rezap)
 			videoDecoder->SetInput(STANDBY_OFF);
 #endif		
 	}
+	/*
 	if(mode == mode_webtv)
 	{
 		// stop playback
@@ -4867,6 +4910,7 @@ void CNeutrinoApp::radioMode( bool rezap)
 		// unlock playback
 		g_Zapit->unlockPlayBack();
 	}
+	*/
 
 	mode = mode_radio;
 
@@ -4903,6 +4947,7 @@ void CNeutrinoApp::radioMode( bool rezap)
 }
 
 // webtv mode
+#if 0
 void CNeutrinoApp::webtvMode( bool rezap)
 {
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::webtvMode: rezap %s\n", rezap ? "yes" : "no");
@@ -4984,6 +5029,7 @@ void CNeutrinoApp::webtvMode( bool rezap)
 		channelList->zapTo( firstchannel.channelNumber - 1 );
 	}
 }
+#endif
 
 // scart Mode
 void CNeutrinoApp::scartMode( bool bOnOff )
@@ -4999,10 +5045,12 @@ void CNeutrinoApp::scartMode( bool bOnOff )
 		CVFD::getInstance()->setMode(CVFD::MODE_SCART);
 		
 		// FIXME:modes?
+		/*
 		if(mode == mode_webtv)
 		{
 			g_Zapit->stopPlayBack();
 		}
+		*/
 
 		lastMode = mode;
 		mode = mode_scart;
@@ -5039,10 +5087,12 @@ void CNeutrinoApp::scartMode( bool bOnOff )
 		{
 			standbyMode( true );
 		}
+		/*
 		else if(lastMode == mode_webtv)
 		{
 			webtvMode(true);
 		}
+		*/
 	}
 }
 
@@ -5176,10 +5226,12 @@ void CNeutrinoApp::standbyMode( bool bOnOff )
 		{
 			tvMode(false);
 		}
+		/*
 		else if(lastMode == mode_webtv)
 		{
 			webtvMode(false);
 		}
+		*/
 
 		// set vol (saved)
 		AudioMute(current_muted, false );					
@@ -5238,11 +5290,13 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 		radioMode();
 		returnval = RETURN_EXIT_ALL;
 	}
+	/*
 	else if(actionKey == "webtv") 
 	{
 		webtvMode();
 		return RETURN_EXIT_ALL;
 	}
+	*/
 	else if(actionKey == "scart") 
 	{
 		g_RCInput->postMsg( NeutrinoMessages::VCR_ON, 0 );
@@ -5253,8 +5307,8 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 		if( mode == mode_tv )
 			radioMode();
 		else if( mode == mode_radio )
-			webtvMode();
-		else if( mode == mode_webtv )
+		//	webtvMode();
+		//else if( mode == mode_webtv )
 			tvMode();
 	}
 	else if(actionKey == "savesettings") 
@@ -5409,8 +5463,8 @@ void stop_daemons()
 // stop subtitle
 void CNeutrinoApp::StopSubtitles()
 {
-	if(mode == mode_webtv)
-		return;
+	//if(mode == mode_webtv)
+	//	return;
 	
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::StopSubtitles\n");
 	
@@ -5440,8 +5494,8 @@ void CNeutrinoApp::StopSubtitles()
 // start subtitle
 void CNeutrinoApp::StartSubtitles(bool show)
 {
-	if(mode == mode_webtv)
-		return;
+	//if(mode == mode_webtv)
+	//	return;
 	
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::StartSubtitles\n");
 	

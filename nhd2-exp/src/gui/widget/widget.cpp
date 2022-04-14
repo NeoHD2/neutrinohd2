@@ -499,9 +499,9 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 	// vfd
 	if(!parent)
 	{
-		if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
-			CVFD::getInstance()->setMode(CVFD::MODE_WEBTV);
-		else
+		//if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
+		//	CVFD::getInstance()->setMode(CVFD::MODE_WEBTV);
+		//else
 			CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
 	}
 	

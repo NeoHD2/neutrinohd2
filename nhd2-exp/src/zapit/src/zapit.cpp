@@ -183,7 +183,7 @@ enum {
 	TV_MODE = 0x01,
 	RADIO_MODE = 0x02,
 	RECORD_MODE = 0x04,
-	WEBTV_MODE = 0x08
+	//WEBTV_MODE = 0x08
 };
 
 int currentMode = 1;
@@ -929,8 +929,8 @@ void saveZapitSettings(bool write, bool write_a)
 				lastChannelRadio = c - 1;
 			else if ((currentMode & TV_MODE))
 				lastChannelTV = c - 1;
-			else if ((currentMode & WEBTV_MODE))
-				lastChannelWEBTV = c - 1;
+			//else if ((currentMode & WEBTV_MODE))
+			//	lastChannelWEBTV = c - 1;
 		}
 	}
 
@@ -945,8 +945,8 @@ void saveZapitSettings(bool write, bool write_a)
 				config.setInt32("lastChannelMode", RADIO_MODE);
 			else if (currentMode & TV_MODE)
 				config.setInt32("lastChannelMode", TV_MODE);
-			else if (currentMode & WEBTV_MODE)
-				config.setInt32("lastChannelMode", WEBTV_MODE);
+			//else if (currentMode & WEBTV_MODE)
+			//	config.setInt32("lastChannelMode", WEBTV_MODE);
 
 			config.setInt32("lastChannelRadio", lastChannelRadio);
 			config.setInt32("lastChannelTV", lastChannelTV);
@@ -1018,11 +1018,13 @@ CZapitClient::responseGetLastChannel load_settings(void)
 		lastchannel.mode = 't';
 		lastchannel.channelNumber = lastChannelTV;
 	}
+	/*
 	else if (currentMode & WEBTV_MODE)
 	{
 		lastchannel.mode = 'w';
 		lastchannel.channelNumber = lastChannelWEBTV;
 	}
+	*/
 	
 	return lastchannel;
 }
@@ -1385,7 +1387,8 @@ int zapit(const t_channel_id channel_id, bool in_nvod, bool forupdate = 0)
 		return -1;
 	}
 	
-	if(!(currentMode & WEBTV_MODE))
+	//if(!(currentMode & WEBTV_MODE)) // FIXME:
+	if (!IS_WEBTV(channel_id))
 	{
 		// save pids
 		if (!firstzap && live_channel)
@@ -1401,7 +1404,8 @@ int zapit(const t_channel_id channel_id, bool in_nvod, bool forupdate = 0)
 	// FIXME: how to stop ci_capmt or we dont need this???
 	stopPlayBack(!forupdate);
 
-	if(!(currentMode & WEBTV_MODE))
+	//if(!(currentMode & WEBTV_MODE)) //FIXME:
+	if (!IS_WEBTV(channel_id))
 	{
 		// reset channel pids
 		if(!forupdate && live_channel)
@@ -1415,7 +1419,8 @@ int zapit(const t_channel_id channel_id, bool in_nvod, bool forupdate = 0)
 	// save channel
 	saveZapitSettings(false, false);
 	
-	if(!(currentMode & WEBTV_MODE))
+	//if(!(currentMode & WEBTV_MODE))
+	if  (!IS_WEBTV(channel_id))
 	{
 		// find live_fe to tune
 		CFrontend * fe = getFrontend(live_channel);
@@ -1476,7 +1481,8 @@ tune_again:
 	// start playback (live)
 	int res = startPlayBack(live_channel);
 
-	if(currentMode & WEBTV_MODE)
+	//if(currentMode & WEBTV_MODE) //FIXME:
+	if  (IS_WEBTV(channel_id))
 		return res;
 	else//(!(currentMode & WEBTV_MODE))
 	{
@@ -1773,7 +1779,7 @@ void setRadioMode(void)
 
 	currentMode |= RADIO_MODE;
 	currentMode &= ~TV_MODE;
-	currentMode &= ~WEBTV_MODE;
+	//currentMode &= ~WEBTV_MODE;
 
 	if (!avDecoderOpen)
 		openAVDecoder();
@@ -1785,12 +1791,13 @@ void setTVMode(void)
 
 	currentMode |= TV_MODE;
 	currentMode &= ~RADIO_MODE;
-	currentMode &= ~WEBTV_MODE;
+	//currentMode &= ~WEBTV_MODE;
 
 	if (!avDecoderOpen)
 		openAVDecoder();
 }
 
+/*
 void setWEBTVMode(void)
 {
 	dprintf(DEBUG_NORMAL, "[zapit] setWEBTVMode:\n");
@@ -1802,6 +1809,7 @@ void setWEBTVMode(void)
 	if (avDecoderOpen)
 		closeAVDecoder();
 }
+*/
 
 int getMode(void)
 {
@@ -1811,8 +1819,8 @@ int getMode(void)
 	if (currentMode & RADIO_MODE)
 		return CZapitClient::MODE_RADIO;
 
-	if (currentMode & WEBTV_MODE)
-		return CZapitClient::MODE_WEBTV;
+	//if (currentMode & WEBTV_MODE)
+	//	return CZapitClient::MODE_WEBTV;
 
 	return 0;
 }
@@ -2044,8 +2052,8 @@ bool zapit_parse_command(CBasicMessage::Header &rmsg, int connfd)
 				setTVMode();
 			else if (msgSetMode.mode == CZapitClient::MODE_RADIO)
 				setRadioMode();
-			else if (msgSetMode.mode == CZapitClient::MODE_WEBTV)
-				setWEBTVMode();
+			//else if (msgSetMode.mode == CZapitClient::MODE_WEBTV)
+			//	setWEBTVMode();
 			break;
 		}
 		
@@ -2963,7 +2971,8 @@ bool zapit_parse_command(CBasicMessage::Header &rmsg, int connfd)
 				startPlayBack(live_channel);
 			
 				// cam
-				if( !(currentMode & WEBTV_MODE))
+				//if( !(currentMode & WEBTV_MODE))
+				if (!IS_WEBTV(live_channel->getChannelID()))
 					sendCaPmtPlayBackStart(live_channel, live_fe);
 			}
 			
@@ -3495,8 +3504,8 @@ void sendBouquets(int connfd, const bool emptyBouquetsToo, CZapitClient::channel
                 case CZapitClient::MODE_RADIO:
                         curMode = RADIO_MODE;
                         break;
-		case CZapitClient::MODE_WEBTV:
-                        curMode = WEBTV_MODE;
+		//case CZapitClient::MODE_WEBTV:
+                 //       curMode = WEBTV_MODE;
                         break;
                 case CZapitClient::MODE_CURRENT:
                 default:
@@ -3505,12 +3514,18 @@ void sendBouquets(int connfd, const bool emptyBouquetsToo, CZapitClient::channel
         }
 
         for (uint32_t i = 0; i < g_bouquetManager->Bouquets.size(); i++) 
-	{
-                if (emptyBouquetsToo || (!g_bouquetManager->Bouquets[i]->bHidden && g_bouquetManager->Bouquets[i]->bUser)
+	{	
+		#if 0
+               if (emptyBouquetsToo || (!g_bouquetManager->Bouquets[i]->bHidden && g_bouquetManager->Bouquets[i]->bUser)
                     || ((!g_bouquetManager->Bouquets[i]->bHidden)
                      && (((curMode & RADIO_MODE) && !g_bouquetManager->Bouquets[i]->radioChannels.empty()) ||
                       ((curMode & TV_MODE) && !g_bouquetManager->Bouquets[i]->tvChannels.empty()) || ((curMode & WEBTV_MODE) && !g_bouquetManager->Bouquets[i]->webtvChannels.empty())))
                    )
+                  #endif
+                if (emptyBouquetsToo || (!g_bouquetManager->Bouquets[i]->bHidden && g_bouquetManager->Bouquets[i]->bUser)
+                    || ((!g_bouquetManager->Bouquets[i]->bHidden)
+                     && (((curMode & RADIO_MODE) && !g_bouquetManager->Bouquets[i]->radioChannels.empty())
+                   )))
 		{
 // ATTENTION: in RECORD_MODE empty bouquets are not send!
 #if RECORD_RESEND // old, before tv/radio resend
@@ -3552,8 +3567,8 @@ void sendBouquetChannels(int connfd, const unsigned int bouquet, const CZapitCli
 		internalSendChannels(connfd, &(g_bouquetManager->Bouquets[bouquet]->radioChannels), g_bouquetManager->radioChannelsBegin().getNrofFirstChannelofBouquet(bouquet), nonames);
 	else if (((currentMode & TV_MODE) && (mode == CZapitClient::MODE_CURRENT)) || (mode == CZapitClient::MODE_TV))
 		internalSendChannels(connfd, &(g_bouquetManager->Bouquets[bouquet]->tvChannels), g_bouquetManager->tvChannelsBegin().getNrofFirstChannelofBouquet(bouquet), nonames);
-	else if (((currentMode & WEBTV_MODE) && (mode == CZapitClient::MODE_CURRENT)) || (mode == CZapitClient::MODE_WEBTV))
-		internalSendChannels(connfd, &(g_bouquetManager->Bouquets[bouquet]->webtvChannels), g_bouquetManager->webtvChannelsBegin().getNrofFirstChannelofBouquet(bouquet), nonames);
+	//else if (((currentMode & WEBTV_MODE) && (mode == CZapitClient::MODE_CURRENT)) || (mode == CZapitClient::MODE_WEBTV))
+		//internalSendChannels(connfd, &(g_bouquetManager->Bouquets[bouquet]->webtvChannels), g_bouquetManager->webtvChannelsBegin().getNrofFirstChannelofBouquet(bouquet), nonames);
 }
 
 void sendChannels(int connfd, const CZapitClient::channelsMode mode, const CZapitClient::channelsOrder order)
@@ -3568,8 +3583,8 @@ void sendChannels(int connfd, const CZapitClient::channelsMode mode, const CZapi
 			cit = g_bouquetManager->radioChannelsBegin();
 		else if( (currentMode & TV_MODE) && ((mode == CZapitClient::MODE_CURRENT) || (mode == CZapitClient::MODE_TV)))
 			cit = g_bouquetManager->tvChannelsBegin();
-		else if( (currentMode & WEBTV_MODE) && ((mode == CZapitClient::MODE_CURRENT) || (mode==CZapitClient::MODE_WEBTV)))
-			cit = g_bouquetManager->webtvChannelsBegin();
+		//else if( (currentMode & WEBTV_MODE) && ((mode == CZapitClient::MODE_CURRENT) || (mode==CZapitClient::MODE_WEBTV)))
+			//cit = g_bouquetManager->webtvChannelsBegin();
 
 		for (; !(cit.EndOfChannels()); cit++)
 			channels.push_back(*cit);
@@ -3588,12 +3603,14 @@ void sendChannels(int connfd, const CZapitClient::channelsMode mode, const CZapi
 				if (it->second.getServiceType() != ST_DIGITAL_RADIO_SOUND_SERVICE)
 					channels.push_back(&(it->second));
 		}
+		/*
 		else if (((currentMode & WEBTV_MODE) && (mode == CZapitClient::MODE_CURRENT)) || (mode == CZapitClient::MODE_WEBTV))  
 		{
 			for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
 				if (it->second.getServiceType() == ST_WEBTV)
 					channels.push_back(&(it->second));
 		}
+		*/
 
 		sort(channels.begin(), channels.end(), CmpChannelByChName());
 	}
@@ -3615,7 +3632,8 @@ int startPlayBack(CZapitChannel * thisChannel)
 	if (!thisChannel || playing)
 		return -1;
 
-	if(currentMode & WEBTV_MODE)
+	//if(currentMode & WEBTV_MODE) // FIXME:
+	if (IS_WEBTV(thisChannel->getChannelID()))
 	{
 		playback->Open();
 	
@@ -3890,7 +3908,8 @@ int stopPlayBack(bool sendPmt)
 	if (!playing)
 		return 0;
 	
-	if(currentMode & WEBTV_MODE)
+	//if(currentMode & WEBTV_MODE) // FIXME:
+	if (IS_WEBTV(live_channel->getChannelID()))
 	{
 		playback->Close();
 	}
@@ -3957,7 +3976,8 @@ void pausePlayBack(void)
 {
 	dprintf(DEBUG_NORMAL, "[zapit] pausePlayBack\n");
 
-	if(currentMode & WEBTV_MODE)
+	//if(currentMode & WEBTV_MODE)//FIXME
+	if (IS_WEBTV(live_channel->getChannelID()))
 		playback->SetSpeed(0);
 }
 
@@ -3965,7 +3985,8 @@ void continuePlayBack(void)
 {
 	dprintf(DEBUG_DEBUG, "[zapit] continuePlayBack\n");
 
-	if(currentMode & WEBTV_MODE)
+	//if(currentMode & WEBTV_MODE) // FIXME:
+	if (IS_WEBTV(live_channel->getChannelID()))
 		playback->SetSpeed(1);
 }
 
@@ -4070,8 +4091,8 @@ unsigned zapTo(const unsigned int bouquet, const unsigned int channel)
 		channels = &(g_bouquetManager->Bouquets[bouquet]->radioChannels);
 	else if (currentMode & TV_MODE)
 		channels = &(g_bouquetManager->Bouquets[bouquet]->tvChannels);
-	else if (currentMode & WEBTV_MODE)
-		channels = &(g_bouquetManager->Bouquets[bouquet]->webtvChannels);
+	//else if (currentMode & WEBTV_MODE)
+	//	channels = &(g_bouquetManager->Bouquets[bouquet]->webtvChannels);
 
 	if (channel >= channels->size()) 
 	{
@@ -4101,7 +4122,8 @@ unsigned int zapTo_ChannelID(t_channel_id channel_id, bool isSubService)
 
 	dprintf(DEBUG_NORMAL, "[zapit] zapTo_ChannelID: zapit OK, chid %llx\n", channel_id);
 
-	if (currentMode & WEBTV_MODE)
+	//if (currentMode & WEBTV_MODE) //FIXME:
+	if (IS_WEBTV(channel_id))
 	{
 		dprintf(DEBUG_NORMAL, "[zapit] zapTo_ChannelID: isWEBTV chid %llx\n", channel_id);
 	}
@@ -4134,8 +4156,8 @@ unsigned zapTo(const unsigned int channel)
 		cit = (g_bouquetManager->radioChannelsBegin()).FindChannelNr(channel);
 	else if (currentMode & TV_MODE)
 		cit = (g_bouquetManager->tvChannelsBegin()).FindChannelNr(channel);
-	else if (currentMode & WEBTV_MODE)
-		cit = (g_bouquetManager->webtvChannelsBegin()).FindChannelNr(channel);
+	//else if (currentMode & WEBTV_MODE)
+	//	cit = (g_bouquetManager->webtvChannelsBegin()).FindChannelNr(channel);
 
 	//CBouquetManager::ChannelIterator cit = ((currentMode & RADIO_MODE) ? g_bouquetManager->radioChannelsBegin() : g_bouquetManager->tvChannelsBegin()).FindChannelNr(channel);
 	if (!(cit.EndOfChannels()))
@@ -4856,16 +4878,16 @@ int zapit_main_thread(void *data)
 			setRadioMode();
 		else if (ZapStart_arg->lastchannelmode == TV_MODE)
 			setTVMode();
-		else if (ZapStart_arg->lastchannelmode == WEBTV_MODE)
-			setWEBTVMode();
+		//else if (ZapStart_arg->lastchannelmode == WEBTV_MODE)
+		//	setWEBTVMode();
 		
 		// live channel id
 		if (currentMode & RADIO_MODE)
 			live_channel_id = ZapStart_arg->startchannelradio_id;
 		else if (currentMode & TV_MODE)
 			live_channel_id = ZapStart_arg->startchanneltv_id;
-		else if (currentMode & WEBTV_MODE)
-			live_channel_id = ZapStart_arg->startchannelwebtv_id;
+		//else if (currentMode & WEBTV_MODE)
+		//	live_channel_id = ZapStart_arg->startchannelwebtv_id;
 
 		lastChannelRadio = ZapStart_arg->startchannelradio_nr;
 		lastChannelTV    = ZapStart_arg->startchanneltv_nr;
@@ -4877,8 +4899,8 @@ int zapit_main_thread(void *data)
 			setRadioMode();
 		else if (lastChannelMode == TV_MODE)
 			setTVMode();
-		else if (lastChannelMode == WEBTV_MODE)
-			setWEBTVMode();
+		//else if (lastChannelMode == WEBTV_MODE)
+		//	setWEBTVMode();
 	}
 
 	// load services
@@ -4917,10 +4939,12 @@ int zapit_main_thread(void *data)
 	
 	while (zapit_server.run(zapit_parse_command, CZapitMessages::ACTVERSION, true)) 
 	{
+		/*
 		if (currentMode & WEBTV_MODE)
 		{
 		}
 		else
+		*/
 		{
 			//check for lock
 #ifdef CHECK_FOR_LOCK
