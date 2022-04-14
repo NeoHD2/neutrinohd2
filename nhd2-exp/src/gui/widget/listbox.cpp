@@ -158,13 +158,10 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 	dprintf(DEBUG_INFO, "CMenuOptionChooser::exec:\n");
 
 	bool wantsRepaint = false;
-	int ret = RETURN_NONE;
-	
-	//if ( pulldown && parent && msg == RC_ok)
-	//	parent->hide();
+	int ret = RETURN_REPAINT;
 
 	// pulldown
-	if( (/*!parent ||*/ msg == RC_ok) && pulldown ) 
+	if( (msg == RC_ok) && pulldown ) 
 	{
 		if (parent)
 			parent->hide();
@@ -251,11 +248,12 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 				else
 					*optionValue = options[(count+1) % number_of_options].key;
 				
-				wantsRepaint = true;
 				break;
 			}
 		}
 	}
+	
+	paint(true);
 	
 	if(observ)
 		wantsRepaint = observ->changeNotify(optionNameString, optionValue);
@@ -637,10 +635,7 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 	dprintf(DEBUG_INFO, "CMenuOptionStringChooser::exec:\n");
 
 	bool wantsRepaint = false;
-	int ret = RETURN_NONE; 
-
-	//if ( pulldown && parent && msg == RC_ok)
-	//	parent->hide();
+	int ret = RETURN_REPAINT; 
 
 	// pulldown
 	if( (!parent || msg == RC_ok) && pulldown ) 
@@ -727,14 +722,15 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 				else
 					strcpy(optionValue, options[(count + 1) % options.size()].c_str());
 				
-				wantsRepaint = true;
 				break;
 			}
 		}
+		
+		paint(true);
 	}
 
-	if(parent)
-		paint(true, true);
+	//if(parent)
+	//	paint(true, true);
 	
 	if(observ) 
 		wantsRepaint = observ->changeNotify(nameString, optionValue);
@@ -4086,6 +4082,8 @@ void ClistBox::swipRight()
 int ClistBox::oKKeyPressed(CMenuTarget* _parent, neutrino_msg_t _msg)
 {
 	dprintf(DEBUG_INFO, "ClistBox::okKeyPressed:\n");
+	
+	int ret = RETURN_EXIT;
 
 	if (hasItem() && selected >= 0 && items[selected]->isSelectable())
 	{
@@ -4093,13 +4091,11 @@ int ClistBox::oKKeyPressed(CMenuTarget* _parent, neutrino_msg_t _msg)
 		items[selected]->msg = _msg;
 	}	
 
-	if(_parent)
-		if (hasItem() && selected >= 0 && items[selected]->isSelectable())
-			return items[selected]->exec(_parent);
-		else
-			return RETURN_EXIT;
-	else
-		return RETURN_EXIT;
+	//if(_parent)
+	//	if (hasItem() && selected >= 0 && items[selected]->isSelectable())
+			ret = items[selected]->exec(_parent);
+	
+	return ret;
 }
 
 //

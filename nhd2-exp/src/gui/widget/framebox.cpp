@@ -802,9 +802,11 @@ void CFrameBox::scrollLineUp(const int lines)
 	}
 }
 
-int CFrameBox::oKKeyPressed(CMenuTarget *parent, neutrino_msg_t _msg)
+int CFrameBox::oKKeyPressed(CMenuTarget *_parent, neutrino_msg_t _msg)
 {
 	dprintf(DEBUG_NORMAL, "CFrameBox::okKeyPressed:\n");
+	
+	int ret = RETURN_EXIT;
 
 	if (hasItem() && selected >= 0 && frames[selected]->isSelectable())
 	{
@@ -812,17 +814,22 @@ int CFrameBox::oKKeyPressed(CMenuTarget *parent, neutrino_msg_t _msg)
 		frames[selected]->msg = _msg;
 	}
 
-	if(parent)
+/*
+	if(_parent)
 	{
 		if (hasItem() && selected >= 0 && frames[selected]->isSelectable())
 		{
-			return frames[selected]->exec(parent);
+			return frames[selected]->exec(_parent);
 		}
 		else
 			return RETURN_EXIT;
 	}
 	else
 		return RETURN_EXIT;
+*/
+	ret = frames[selected]->exec(_parent);
+		
+	return ret;
 }
 
 void CFrameBox::paintHead()
@@ -908,18 +915,11 @@ void CFrameBox::paintFoot()
 		{
 			if (!fbutton_labels[i].button.empty())
 			{
-				//const char * l_option = NULL;
 				int iw = 0;
 				int ih = 0;
 
 				CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button.c_str(), &iw, &ih);
 				int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
-				/*
-				if(fbutton_labels[i].localename != NULL)
-					l_option = fbutton_labels[i].localename;
-				else
-					l_option = g_Locale->getText(fbutton_labels[i].locale);
-				*/
 		
 				CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + (fheight - ih)/2);
 
