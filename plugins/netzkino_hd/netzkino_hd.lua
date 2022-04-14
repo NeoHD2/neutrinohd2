@@ -29,6 +29,7 @@
 
 caption = "Netzkino HD"
 local json = require "json"
+local base_url = "http://api.netzkino.de.simplecache.net/capi-2.0a/"
 
 ret = nil -- global return value
 local selected_category = 0
@@ -102,17 +103,19 @@ function get_categories()
 	local h = neutrino.CHintBox(caption, "Kategorien werden geladen ...", neutrino.HINTBOX_WIDTH, netzkino_png)
 	h:paint();
 
-	neutrino.downloadUrl('https://www.netzkino.de/capi/get_category_index', fname, 'Mozilla/5.0;', 90)
+	--neutrino.downloadUrl('https://www.netzkino.de/capi/get_category_index', fname, 'Mozilla/5.0;', 90)
+	local fp = neutrino.getUrlAnswer(base_url .. "index.json?d=www", 'Mozilla/5.0;', 90)
 
-	local fp = io.open(fname, "r")
+	--local fp = io.open(fname, "r")
 	if fp == nil then
 		h:hide();
 		error("Error opening file '" .. fname .. "'.")
 	else
-		print("open file '" .. fname .. "'.")
+		--print("open file '" .. fname .. "'.")
 
-		local s = fp:read("*a")
-		fp:close()
+		--local s = fp:read("*a")
+		--fp:close()
+		local s = fp
 
 		local j_table = json:decode(s)
 
@@ -201,17 +204,18 @@ function get_movies(_id)
 	local h = neutrino.CHintBox(caption, "Movies wird geladen ...", neutrino.HINTBOX_WIDTH, netzkino_png)
 	h:paint();
 	
-	local url = "https://www.netzkino.de/capi/get_category_posts&id=" .. categories[_id].category_id .. "&count=50d&page=" .. page_nr .."&custom_fields=Streaming"
+	--local url = "https://www.netzkino.de/capi/get_category_posts&id=" .. categories[_id].category_id .. "&count=50d&page=" .. page_nr .."&custom_fields=Streaming"
+	local url = base_url .. "categories/" .. categories[_id].category_id .. ".json?d=www" .. "&count=12" .. "d&page=" ..  page_nr .."&custom_fields=Streaming"
 
-	neutrino.downloadUrl(url, fname)
-
-	local fp = io.open(fname, "r")
+	--local fp = io.open(fname, "r")
+	local fp = neutrino.getUrlAnswer(url, 'Mozilla/5.0;', 90)
 	if fp == nil then
 		h:hide();
-		error("Error opening file '" .. fname .. "'.")
+		--error("Error opening file '" .. fname .. "'.")
 	else
-		local s = fp:read("*a")
-		fp:close()
+		--local s = fp:read("*a")
+		--fp:close()
+		local s = fp
 
 		local j_table = json:decode(s)
 		max_page = tonumber(j_table.pages);
@@ -234,20 +238,26 @@ function get_movies(_id)
 
 				local j_cover = "";
 				local tfile = neutrino.DATADIR .. "/neutrino/icons/nopreview.jpg"
-				local attachments = posts[i].attachments[1]
-				if attachments ~= nil then
-					local images = attachments.images;
-					if images ~= nil then
-						local full = images.full
-						if full ~= nil then
-							j_cover = full.url
+				--local attachments = posts[i].attachments[1]
+				local thumbnail = posts[i].thumbnail
+				if thumbnail then
+					--j_cover = thumbnail
+				--end
+				
+				--if attachments ~= nil then
+					--local images = attachments.images;
+					--local images = thumbnail
+					--if images ~= nil then
+						--local full = images.full
+						--if full ~= nil then
+						j_cover = thumbnail
 
-							tfile = "/tmp/netzkino/" .. j_title .. ".jpg"
-							if j_cover ~= nil and neutrino.file_exists(tfile) ~= true then
-								neutrino.downloadUrl(j_cover, tfile)
-							end
-						end
-					end
+						tfile = "/tmp/netzkino/" .. conv_utf8(j_title) .. ".jpg"
+						--if j_cover ~= nil and neutrino.file_exists(tfile) ~= true then
+							neutrino.downloadUrl(conv_utf8(j_cover), tfile, "Mozilla/5.0 (Linux; Android 5.1.1; Nexus 4 Build/LMY48M)", 90)
+						--end
+						--end
+					--end
 				end
 
 				movies[j] =
@@ -265,14 +275,14 @@ function get_movies(_id)
 		end
 		h:hide();
 
-		if j > 1 then
+		--if j > 1 then
 			get_movies_menu(_id);
-		else
+		--[[else
 			local mBox = neutrino.CMessageBox("Fehler", "Keinen Stream gefunden!")
 			mBox:exec()
 
 			get_categories();
-		end
+		end]]
 	end
 end
 
@@ -283,11 +293,11 @@ function get_movies_menu(_id)
 
 	local red = neutrino.button_label_struct()
 	red.button = neutrino.NEUTRINO_ICON_BUTTON_RED
-	red.localename = "Action"
+	red.localename = "Next Page"
 
 	local green = neutrino.button_label_struct()
 	green.button = neutrino.NEUTRINO_ICON_BUTTON_GREEN
-	green.localename = ""
+	green.localename = " "
 
 	local yellow = neutrino.button_label_struct()
 	yellow.button = neutrino.NEUTRINO_ICON_BUTTON_YELLOW
@@ -309,9 +319,9 @@ function get_movies_menu(_id)
 	m_movies:setItemsPerPage(6, 2)
 
 	m_movies:setFootButtons(red)
-	m_movies:setFootButtons(green)
-	m_movies:setFootButtons(yellow)
-	m_movies:setFootButtons(blue)
+	--m_movies:setFootButtons(green)
+	--m_movies:setFootButtons(yellow)
+	--m_movies:setFootButtons(blue)
 	m_movies:setHeadButtons(info)
 	m_movies:setHeadButtons(rec)
 	
@@ -333,10 +343,10 @@ function get_movies_menu(_id)
 
 	m_movies:addKey(neutrino.RC_info, null, "info")
 	m_movies:addKey(neutrino.RC_record, null, "record")
-	m_movies:addKey(neutrino.RC_red, null, "action")
-	m_movies:addKey(neutrino.RC_green, null, "green")
-	m_movies:addKey(neutrino.RC_yellow, null, "new")
-	m_movies:addKey(neutrino.RC_blue, null, "highlight")
+	m_movies:addKey(neutrino.RC_red, null, "nextpage")
+	--m_movies:addKey(neutrino.RC_green, null, "green")
+	--m_movies:addKey(neutrino.RC_yellow, null, "new")
+	--m_movies:addKey(neutrino.RC_blue, null, "highlight")
 
 	m_movies:exec(null, "")
 	
@@ -359,8 +369,10 @@ function get_movies_menu(_id)
 		showMovieInfo(selected_movie + 1)
 	elseif actionKey == "record" then
 		download_stream(selected_movie + 1)
-	elseif actionKey == "action" then
-		 get_movies(7551)
+	elseif actionKey == "nextpage" then
+		 --get_movies(7551)
+		 page++
+		 get_movies(_id)
 	elseif actionKey == "green" then
 	elseif actionKey == "new" then
 		 get_movies(81)

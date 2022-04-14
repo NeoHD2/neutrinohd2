@@ -46,7 +46,6 @@
 #include <gui/misc_setup.h>
 
 #include <gui/zapit_setup.h>
-#include <gui/psisetup.h>
 
 #include <system/debug.h>
 #include <system/setting_helpers.h>
@@ -164,11 +163,6 @@ void CMiscSettingsMenu::showMenu(void)
 		
 	// zapit setup (start channel)
 	miscSettings->addItem(new CMenuForwarder(_("Last Channel settings"), true, NULL, new CZapitSetup(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_STARTCHANNELSETTINGS));
-		
-	// psi setup
-	//FIXME:	
-	//CPSISetup * chPSISetup = new CPSISetup(_(PSI settings), &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
-	//miscSettings->addItem( new CMenuForwarder(_("PSI settings"), true, NULL, chPSISetup, NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_PSISETTINGS));
 		
 	//
 	if (widget == NULL) widget = new CWidget(miscSettings->getWindowsPos().iX, miscSettings->getWindowsPos().iY, miscSettings->getWindowsPos().iWidth, miscSettings->getWindowsPos().iHeight);

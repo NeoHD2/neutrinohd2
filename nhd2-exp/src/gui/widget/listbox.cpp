@@ -158,14 +158,17 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 	dprintf(DEBUG_INFO, "CMenuOptionChooser::exec:\n");
 
 	bool wantsRepaint = false;
-	int ret = RETURN_REPAINT;
+	int ret = RETURN_NONE;
 	
-	if ( pulldown && parent && msg == RC_ok)
-		parent->hide();
+	//if ( pulldown && parent && msg == RC_ok)
+	//	parent->hide();
 
 	// pulldown
-	if( (!parent || msg == RC_ok) && pulldown ) 
+	if( (/*!parent ||*/ msg == RC_ok) && pulldown ) 
 	{
+		if (parent)
+			parent->hide();
+			
 		int select = -1;
 
 		//
@@ -634,15 +637,18 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 	dprintf(DEBUG_INFO, "CMenuOptionStringChooser::exec:\n");
 
 	bool wantsRepaint = false;
-	int ret = RETURN_REPAINT;
+	int ret = RETURN_NONE; 
 
-	if ( pulldown && parent && msg == RC_ok)
-		parent->hide();
+	//if ( pulldown && parent && msg == RC_ok)
+	//	parent->hide();
 
 	// pulldown
 	if( (!parent || msg == RC_ok) && pulldown ) 
 	{
 		int select = -1;
+		
+		if (parent)
+			parent->hide();
 		
 		//
 		CWidget* widget = NULL;

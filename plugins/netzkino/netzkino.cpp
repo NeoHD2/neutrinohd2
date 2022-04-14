@@ -403,7 +403,7 @@ void plugin_del(void)
 
 void plugin_exec(void)
 {
-	CNKMovies * NKHandler = new CNKMovies(cNKFeedParser::CATEGORY, 8, "Highlights");
+	CNKMovies * NKHandler = new CNKMovies(cNKFeedParser::CATEGORY, 9681, "Highlights");
 	
 	NKHandler->exec(NULL, "");
 	

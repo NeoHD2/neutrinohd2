@@ -36,6 +36,7 @@
 #include <gui/widget/messagebox.h>
 
 #include <gui/video_setup.h>
+#include <gui/psisetup.h>
 
 #include <system/debug.h>
 #include <system/setting_helpers.h>
@@ -415,6 +416,26 @@ void CVideoSettings::showMenu()
 
 	// video mode
 	videoSettings->addItem(new CMenuOptionChooser(_("Video Resolution"), &g_settings.video_Mode, VIDEOMENU_VIDEOMODE_OPTIONS, VIDEOMENU_VIDEOMODE_OPTION_COUNT, true, videoSetupNotifier, RC_nokey, "", true));
+	
+	// psi
+	videoSettings->addItem( new CMenuSeparator(LINE) );
+	
+	CPSISetup * chPSISetup = new CPSISetup(_("PSI settings"), &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
+	videoSettings->addItem( new CMenuForwarder(_("PSI settings"), true, NULL, chPSISetup));
+
+	/*
+	// contrast
+	videoSettings->addItem(new CMenuOptionNumberChooser(_("Contrast"), (int *)&g_settings.contrast, true, 0, 255));
+
+	// saturation
+	videoSettings->addItem(new CMenuOptionNumberChooser(_("Saturation"), (int *)&g_settings.saturation, true, 0, 255));
+
+	// brightness
+	videoSettings->addItem(new CMenuOptionNumberChooser(_("Brightness"), (int *)&g_settings.brightness, true, 0, 255));
+
+	// tint
+	videoSettings->addItem(new CMenuOptionNumberChooser(_("Tint"), (int *)&g_settings.tint, true, 0, 255));
+	*/
 	
 	widget->exec(NULL, "");
 }

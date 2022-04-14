@@ -98,7 +98,7 @@ neutrino_LDADD = \
 	@ID3TAG_LIBS@ \
 	@PTHREAD_LIBS@ \
 	@FRIBIDI_LIBS@ \
-	-ljpeg -lrt -lblkid -ldl -lFLAC -lavformat -lavcodec -lavutil -lgif
+	-ljpeg -lrt -lblkid -ldl -lFLAC -lavformat -lavcodec -lavutil -lgif -lpthread
 
 neutrino_LDFLAGS = -Wl,--export-dynamic
 

@@ -41,7 +41,8 @@
 #include <global.h>
 
 
-#define MAIN_URL  	"https://www.netzkino.de/capi/"
+//#define MAIN_URL  	"https://www.netzkino.de/capi/"
+#define MAIN_URL        "http://api.netzkino.de.simplecache.net/capi-2.0a/"
 #define HLS_URL	"http://mf.netzkinomobil.c.nmdn.net/netzkino_mobil/_definst_/mp4:" //%s/playlist.m3u8
 #define RTMP_URL 	"rtmp://mf.netzkino.c.nmdn.net/netzkino/_definst_/mp4:"
 #define MP4_URL 	"http://dl.netzkinotv.c.nmdn.net/netzkino_tv/"
@@ -51,7 +52,7 @@ cNKFeedParser::cNKFeedParser()
 {
 	thumbnail_dir = "/tmp/netzkino";
 	parsed = false;
-	max_results = 50; //maxi 500
+	max_results = 10;
 
 	fileHelper.createDir(thumbnail_dir.c_str(), 0755);
 }
@@ -217,19 +218,27 @@ bool cNKFeedParser::ParseFeed(nk_feed_mode_t mode, std::string search, int categ
 		return true;
 	
 	std::string url = MAIN_URL;
+
+    	//http://api.netzkino.de.simplecache.net/capi-2.0a/categories/8951.json?d=www&count=50d&page=1&custom_fields=Streaming
+    	//http://api.netzkino.de.simplecache.net/capi-2.0a/categories/8951.json?d=www&count=10d&page=1&custom_fields=Streaming
 	
 	if (mode == SEARCH) 
 	{
 		//if (search.empty())
 		//	return false;
 		
-		url += "get_search_results?search=" + ::encodeUrl(search);
+		//url += "get_search_results?search=" + ::encodeUrl(search);
 	} 
 	else if (mode == CATEGORY && category > 0) 
 	{
-		url += "get_category_posts";
-		url += "?count=" + to_string(max_results);
-		url += "&id=" + to_string(category);
+		//url += "get_category_posts";
+        	//url += "?count=" + to_string(max_results);
+		//url += "&id=" + to_string(category);
+        	url += "categories/";
+        	url += to_string(category);
+        	url += ".json?d=www&count=";
+        	url += to_string(max_results);
+        	url += "d&page=1";
 	} 
 	else
 		return false;
@@ -242,11 +251,16 @@ bool cNKFeedParser::ParseFeed(nk_feed_mode_t mode, std::string search, int categ
 bool cNKFeedParser::ParseCategories(void)
 {
 	dprintf(DEBUG_NORMAL, "cNKFeedParser::parseCategories\n");
+
+    //http://api.netzkino.de.simplecache.net/capi-2.0a/index.json?d=www
+    //http://api.netzkino.de.simplecache.net/capi-2.0a/index.json?d=www
+    //http://api.netzkino.de.simplecache.net/capi-2.0a/index.json?d=www
 	
 	if (categories.empty()) 
 	{
 		std::string url = MAIN_URL;
-		url += "get_category_index";
+		//url += "get_category_index";
+        	url += "index.json?d=www";
 		std::string answer;
 		
 		if (!::getUrl(url, answer))

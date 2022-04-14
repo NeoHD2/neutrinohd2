@@ -535,8 +535,6 @@ void CMenuWidget::paintFoot()
 			int ih[fbutton_count];
 
 			buttonWidth = (fbutton_width)/fbutton_count;
-			
-			printf("CMenuWidget::paintFoot:%d\n\n", fbutton_count);
 	
 			for (unsigned int i = 0; i < (unsigned int)fbutton_count; i++)
 			{
