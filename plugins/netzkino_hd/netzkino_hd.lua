@@ -365,7 +365,7 @@ function get_movies_menu(_id)
 		download_stream(selected_movie + 1)
 	elseif actionKey == "nextpage" then
 		 --get_movies(7551)
-		 page++
+		 page = page + 1
 		 get_movies(_id)
 	elseif actionKey == "green" then
 	elseif actionKey == "new" then
