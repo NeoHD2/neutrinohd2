@@ -418,10 +418,12 @@ void CVideoSettings::showMenu()
 	videoSettings->addItem(new CMenuOptionChooser(_("Video Resolution"), &g_settings.video_Mode, VIDEOMENU_VIDEOMODE_OPTIONS, VIDEOMENU_VIDEOMODE_OPTION_COUNT, true, videoSetupNotifier, RC_nokey, "", true));
 	
 	// psi
+#if defined (__sh__)
 	videoSettings->addItem( new CMenuSeparator(LINE) );
 	
 	CPSISetup * chPSISetup = new CPSISetup(_("PSI settings"), &g_settings.contrast, &g_settings.saturation, &g_settings.brightness, &g_settings.tint);
 	videoSettings->addItem( new CMenuForwarder(_("PSI settings"), true, NULL, chPSISetup));
+#endif
 
 	/*
 	// contrast
