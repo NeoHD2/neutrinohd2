@@ -336,7 +336,7 @@ int CBouquetList::doMenu()
 			}
 		}
 	} 
-	else 
+	else if(!zapitBouquet->bWebTV) 
 	{
 		menu->addItem(new CMenuForwarder(_("Delete")), old_selected == i ++);
 		ret = widget->exec(NULL, "");
@@ -450,7 +450,7 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 		{
 			selected = listBox->getSelected();
 
-			//if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
+			//if (!Bouquets[selected]->zapitBouquet->bWebTV)
 			{
 				int ret = doMenu();
 				if(ret) 
@@ -572,8 +572,7 @@ void CBouquetList::paint()
 	listBox->setHeadRadius(g_settings.Head_radius);
 	listBox->setHeadLine(g_settings.Head_line);
 
-	//if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv)
-		listBox->setHeadButtons(&HButton, 1);
+	listBox->setHeadButtons(&HButton, 1);
 
 	// foot
 	listBox->enablePaintFoot();

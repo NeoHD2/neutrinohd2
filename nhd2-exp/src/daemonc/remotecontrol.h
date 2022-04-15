@@ -112,10 +112,8 @@ class CRemoteControl
 		const std::string & setSubChannel(const int numSub, const bool force_zap = false);
 		const std::string & subChannelUp(void);
 		const std::string & subChannelDown(void);
-	
 		void radioMode();
 		void tvMode();
-		//void webTVMode();
 	
 		int handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t data);
 

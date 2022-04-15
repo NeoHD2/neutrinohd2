@@ -89,7 +89,6 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 			mode_audio = 5,		// audioplayer mode
 			mode_pic = 6,		// pictureviewer mode
 			mode_ts = 7,		// movieplayer mode
-			//mode_webtv = 8,		// webtv mode
 			mode_mask = 0xFF,	//
 			norezap = 0x100		//
 		};
@@ -124,7 +123,6 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		
 		void tvMode( bool rezap = true );
 		void radioMode( bool rezap = true );
-		//void webtvMode(bool rezap = true);
 		void standbyMode( bool bOnOff );
 		void scartMode( bool bOnOff );		// not used
 		

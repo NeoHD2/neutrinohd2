@@ -512,7 +512,7 @@ int CChannelList::doChannelMenu(void)
 	widget->exec(NULL, "");
 	select = menu->getSelected();
 
-	if(select >= 0) 
+	if(select >= 0 && (!IS_WEBTV(chanlist[selected]->channel_id))) 
 	{
 		hide();
 		
@@ -726,11 +726,10 @@ int CChannelList::show(bool zap, bool customMode)
 		}
 		else if ( msg == RC_setup ) 
 		{
-			//if (CNeutrinoApp::getInstance()->getMode() != NeutrinoMessages::mode_webtv) 
+			selected = listBox->getSelected();
+			
+			if (!bouquetList->Bouquets[selected]->zapitBouquet->bWebTV)
 			{
-				//
-				selected = listBox->getSelected();
-
 				// chan list setup (add/move)
 				old_b_id = bouquetList->getActiveBouquetNumber();
 				int ret = doChannelMenu();
@@ -1097,14 +1096,6 @@ bool CChannelList::adjustToChannelID(const t_channel_id channel_id, bool bToo)
 					RADIOfavList->adjustToChannelID(channel_id);
 					RADIOallList->adjustToChannelID(channel_id);
 				}
-				/*
-				else if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv) 
-				{
-					WEBTVbouquetList->adjustToChannelID(channel_id);
-					WEBTVfavList->adjustToChannelID(channel_id);
-					WEBTVallList->adjustToChannelID(channel_id);
-				}
-				*/
 			}
 			
 			return true;

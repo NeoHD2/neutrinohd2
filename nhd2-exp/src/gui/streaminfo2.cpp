@@ -58,11 +58,11 @@ extern cAudio * audioDecoder;
 
 extern CRemoteControl *g_RemoteControl;	/* neutrino.cpp */
 extern CZapitClient::SatelliteList satList;
-
 extern CFrontend * live_fe;
+extern t_channel_id live_channel_id; 			//defined in zapit.cpp
 
 
-CStreamInfo2::CStreamInfo2 ()
+CStreamInfo2::CStreamInfo2()
 {
 	frameBuffer = CFrameBuffer::getInstance ();
 
@@ -129,11 +129,11 @@ int CStreamInfo2::exec(CMenuTarget * parent, const std::string &)
 	dprintf(DEBUG_NORMAL, "CStreamInfo2::exec\n");
 
 	if (parent)
-		parent->hide ();
+		parent->hide();
 
 	paint(paint_mode);
 
-	doSignalStrengthLoop ();
+	doSignalStrengthLoop();
 	
 	CFrameBuffer::getInstance()->blit();
 
@@ -358,60 +358,63 @@ void CStreamInfo2::paint_pig(int _x, int _y, int w, int h)
 
 void CStreamInfo2::paint_signal_fe_box(int _x, int _y, int w, int h)
 {
-	int y1, y2;
-	int xd = w/4;
+	 if(!IS_WEBTV(live_channel_id))
+	 {
+		int y1, y2;
+		int xd = w/4;
 
-	g_Font[font_small]->RenderString(_x, _y+iheight+15, width-10, _("Receipt signal"), COL_MENUCONTENTDARK, 0, true);
+		g_Font[font_small]->RenderString(_x, _y+iheight+15, width-10, _("Receipt signal"), COL_MENUCONTENTDARK, 0, true);
 
-	sigBox_x = _x;
-	sigBox_y = _y+iheight+15;
-	sigBox_w = w;
-	sigBox_h = h-iheight*3;
+		sigBox_x = _x;
+		sigBox_y = _y+iheight+15;
+		sigBox_w = w;
+		sigBox_h = h-iheight*3;
 
-	frameBuffer->paintBoxRel(sigBox_x, sigBox_y, sigBox_w + 2, sigBox_h, COL_BLACK_PLUS_0);
+		frameBuffer->paintBoxRel(sigBox_x, sigBox_y, sigBox_w + 2, sigBox_h, COL_BLACK_PLUS_0);
 
-	y1 = _y + h + iheight + iheight + iheight - 8;
-	y2 = _y + h - sheight+8;
-	
-	frameBuffer->paintBoxRel(_x+xd*0, y2 - 12, 16, 2, COL_RED_PLUS_0); //red
-	g_Font[font_small]->RenderString(_x+20+xd*0, y2, 50, "BER", COL_MENUCONTENTDARK, 0, true);
-
-	frameBuffer->paintBoxRel(_x+xd*1,y2- 12,16,2,COL_BLUE_PLUS_0); //blue
-	g_Font[font_small]->RenderString(_x+20+xd*1, y2, 50, "SNR", COL_MENUCONTENTDARK, 0, true);
-
-	frameBuffer->paintBoxRel(_x+8+xd*2,y2- 12,16,2, COL_GREEN_PLUS_0); //green
-	g_Font[font_small]->RenderString(_x+28+xd*2, y2, 50, "SIG", COL_MENUCONTENTDARK, 0, true);
-	
-	frameBuffer->paintBoxRel(_x+xd*3,y2- 12,16,2,COL_YELLOW_PLUS_0); // near yellow
-	g_Font[font_small]->RenderString(_x+20+xd*3, y2, 50, "Bitrate", COL_MENUCONTENTDARK, 0, true);
-	
-	sig_text_y = y1 - iheight;
-	sig_text_ber_x =  _x +      xd * 0;
-	sig_text_snr_x =  _x +  5 + xd * 1;
-	sig_text_sig_x =  _x +  5 + xd * 2;
-	sig_text_rate_x = _x + 10 + xd * 3;
+		y1 = _y + h + iheight + iheight + iheight - 8;
+		y2 = _y + h - sheight+8;
 		
-	int maxmin_x; // x-position of min and max
-	if (paint_mode == 0) 
-	{
-		maxmin_x = sig_text_ber_x-40;
+		frameBuffer->paintBoxRel(_x+xd*0, y2 - 12, 16, 2, COL_RED_PLUS_0); //red
+		g_Font[font_small]->RenderString(_x+20+xd*0, y2, 50, "BER", COL_MENUCONTENTDARK, 0, true);
+
+		frameBuffer->paintBoxRel(_x+xd*1,y2- 12,16,2,COL_BLUE_PLUS_0); //blue
+		g_Font[font_small]->RenderString(_x+20+xd*1, y2, 50, "SNR", COL_MENUCONTENTDARK, 0, true);
+
+		frameBuffer->paintBoxRel(_x+8+xd*2,y2- 12,16,2, COL_GREEN_PLUS_0); //green
+		g_Font[font_small]->RenderString(_x+28+xd*2, y2, 50, "SIG", COL_MENUCONTENTDARK, 0, true);
+		
+		frameBuffer->paintBoxRel(_x+xd*3,y2- 12,16,2,COL_YELLOW_PLUS_0); // near yellow
+		g_Font[font_small]->RenderString(_x+20+xd*3, y2, 50, "Bitrate", COL_MENUCONTENTDARK, 0, true);
+		
+		sig_text_y = y1 - iheight;
+		sig_text_ber_x =  _x +      xd * 0;
+		sig_text_snr_x =  _x +  5 + xd * 1;
+		sig_text_sig_x =  _x +  5 + xd * 2;
+		sig_text_rate_x = _x + 10 + xd * 3;
+			
+		int maxmin_x; // x-position of min and max
+		if (paint_mode == 0) 
+		{
+			maxmin_x = sig_text_ber_x-40;
+		}
+		else 
+		{
+			maxmin_x = _x + 40 + xd * 3 + 45;
+		}
+		g_Font[font_small]->RenderString(maxmin_x, y1 - sheight - sheight - sheight, 50, "max", COL_MENUCONTENTDARK, 0, true);
+		g_Font[font_small]->RenderString(maxmin_x, y1 - sheight, 50, "min", COL_MENUCONTENTDARK, 0, true);
+
+
+		sigBox_pos = 0;
+
+		signal.old_sig = 1;
+		signal.old_snr = 1;
+		signal.old_ber = 1;
+
+		//feSignal s = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		//paint_signal_fe(rate, signal);
 	}
-	else 
-	{
-		maxmin_x = _x + 40 + xd * 3 + 45;
-	}
-	g_Font[font_small]->RenderString(maxmin_x, y1 - sheight - sheight - sheight, 50, "max", COL_MENUCONTENTDARK, 0, true);
-	g_Font[font_small]->RenderString(maxmin_x, y1 - sheight, 50, "min", COL_MENUCONTENTDARK, 0, true);
-
-
-	sigBox_pos = 0;
-
-	signal.old_sig = 1;
-	signal.old_snr = 1;
-	signal.old_ber = 1;
-
-	//feSignal s = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-	//paint_signal_fe(rate, signal);
 }
 
 void CStreamInfo2::paint_signal_fe(struct bitrate br, struct feSignal s)
@@ -532,7 +535,7 @@ void CStreamInfo2::paint(int /*mode*/)
 		paint_pig(width - width/3 - 10, y + 10, width/3, height/3);
 
 		// Info Output
-		paint_techinfo (xpos, ypos);
+		paint_techinfo(xpos, ypos);
 
 		paint_signal_fe_box (width - width/3 - 10, (y + 10 + height/3 + hheight), width/3, height/3 + hheight);
 	} 
@@ -670,12 +673,10 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 		sprintf ((char *) buf, "%s", sit->second.name.c_str());
 		g_Font[font_info]->RenderString (xpos + spaceoffset, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true);	// UTF-8
 	}
-	/*
-	else if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
+	else if(IS_WEBTV(live_channel_id))
 	{
 		g_Font[font_info]->RenderString (xpos + spaceoffset, ypos, width*2/3 - 10, "WebTV", COL_MENUCONTENTDARK, 0, true);	// UTF-8
 	}
-	*/
 
 	// channel
 	CChannelList *channelList = CNeutrinoApp::getInstance()->channelList;
@@ -686,104 +687,107 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 	sprintf((char*) buf, "%s" ,channelList->getActiveChannelName().c_str());
 	g_Font[font_info]->RenderString (xpos + spaceoffset, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true);	// UTF-8
  
-	//tsfrequenz
-	CZapitClient::CCurrentServiceInfo si = g_Zapit->getCurrentServiceInfo();
+	  if(!IS_WEBTV(live_channel_id))
+	  {
+		//tsfrequenz
+		CZapitClient::CCurrentServiceInfo si = g_Zapit->getCurrentServiceInfo();
 
-	ypos += iheight;
-	char * f = NULL, *s = NULL, *m = NULL;
-	
-	if(live_fe != NULL)
-	{
-		if( live_fe->getInfo()->type == FE_QPSK) 
+		ypos += iheight;
+		char * f = NULL, *s = NULL, *m = NULL;
+		
+		if(live_fe != NULL)
 		{
-			live_fe->getDelSys((fe_code_rate_t)si.fec, dvbs_get_modulation((fe_code_rate_t)si.fec), f, s, m);
-			sprintf ((char *) buf,"%d.%d (%c) %d %s %s %s", si.tsfrequency / 1000, si.tsfrequency % 1000, si.polarisation ? 'V' : 'H', si.rate / 1000,f,m,s/*=="DVB-S2"?"S2":"S1"*/);
-			g_Font[font_info]->RenderString(xpos, ypos, width*2/3-10, "Tp. Freq.:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
-			g_Font[font_info]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8	
-		}
-	}
-	
-	// paint labels
-	spaceoffset = g_Font[font_small]->getRenderWidth("VTXTpid:") + 5;
-
-	// onid
-	ypos+= sheight;
-	sprintf((char*) buf, "0x%04x (%i)", si.onid, si.onid);
-	g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "ONid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
-	g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
-
-	// sid
-	ypos += sheight;
-	sprintf((char*) buf, "0x%04x (%i)", si.sid, si.sid);
-	g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "Sid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
-	g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
-
-	// tsid
-	ypos += sheight;
-	sprintf((char*) buf, "0x%04x (%i)", si.tsid, si.tsid);
-	g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "TSid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
-	g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
-	
-	// pmtpid
-	ypos += sheight;
-	sprintf((char*) buf, "0x%04x (%i)", si.pmtpid, si.pmtpid);
-	g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "PMTpid:", COL_MENUCONTENTDARK, 0, true); // UTF-8
-	g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8 
-
-	// vpid
-	ypos += sheight;
-	if ( g_RemoteControl->current_PIDs.PIDs.vpid > 0 )
-	{
-		sprintf((char*) buf, "0x%04x (%i)", g_RemoteControl->current_PIDs.PIDs.vpid, g_RemoteControl->current_PIDs.PIDs.vpid );
-	} 
-	else 
-	{
-		sprintf((char*) buf, "%s", _("not available"));
-	}
-	g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "Vpid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
-	g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
-
-	// apid
-	ypos += sheight;
-	g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "Apid(s):" , COL_MENUCONTENTDARK, 0, true); // UTF-8
-	if (g_RemoteControl->current_PIDs.APIDs.empty())
-	{
-		sprintf((char*) buf, "%s", _("not available"));
-	} 
-	else 
-	{
-		unsigned int i1 = 0, sw = spaceoffset;
-		for (i1 = 0; (i1 < g_RemoteControl->current_PIDs.APIDs.size()) && (i1 < 10); i1++)
-		{
-			sprintf((char*) buf, "0x%04x (%i)", g_RemoteControl->current_PIDs.APIDs[i1].pid, g_RemoteControl->current_PIDs.APIDs[i1].pid );
-			if (i1 == g_RemoteControl->current_PIDs.PIDs.selected_apid)
+			if( live_fe->getInfo()->type == FE_QPSK) 
 			{
-				g_Font[font_small]->RenderString(xpos + sw, ypos, width*2/3 - 10, buf, COL_MENUHEAD, 0, true); // UTF-8
-			}
-			else
-			{
-				g_Font[font_small]->RenderString(xpos + sw, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
-			}
-			sw = g_Font[font_small]->getRenderWidth(buf) + sw + 10;
-			if (((i1 + 1)%3 == 0) &&(g_RemoteControl->current_PIDs.APIDs.size() - 1 > i1))
-			{ 
-				// if we have lots of apids, put "intermediate" line with pids
-				ypos += sheight;
-				sw = spaceoffset;
+				live_fe->getDelSys((fe_code_rate_t)si.fec, dvbs_get_modulation((fe_code_rate_t)si.fec), f, s, m);
+				sprintf ((char *) buf,"%d.%d (%c) %d %s %s %s", si.tsfrequency / 1000, si.tsfrequency % 1000, si.polarisation ? 'V' : 'H', si.rate / 1000,f,m,s/*=="DVB-S2"?"S2":"S1"*/);
+				g_Font[font_info]->RenderString(xpos, ypos, width*2/3-10, "Tp. Freq.:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
+				g_Font[font_info]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8	
 			}
 		}
+		
+		// paint labels
+		spaceoffset = g_Font[font_small]->getRenderWidth("VTXTpid:") + 5;
+
+		// onid
+		ypos+= sheight;
+		sprintf((char*) buf, "0x%04x (%i)", si.onid, si.onid);
+		g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "ONid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
+		g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
+
+		// sid
+		ypos += sheight;
+		sprintf((char*) buf, "0x%04x (%i)", si.sid, si.sid);
+		g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "Sid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
+		g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
+
+		// tsid
+		ypos += sheight;
+		sprintf((char*) buf, "0x%04x (%i)", si.tsid, si.tsid);
+		g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "TSid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
+		g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
+		
+		// pmtpid
+		ypos += sheight;
+		sprintf((char*) buf, "0x%04x (%i)", si.pmtpid, si.pmtpid);
+		g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "PMTpid:", COL_MENUCONTENTDARK, 0, true); // UTF-8
+		g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8 
+
+		// vpid
+		ypos += sheight;
+		if ( g_RemoteControl->current_PIDs.PIDs.vpid > 0 )
+		{
+			sprintf((char*) buf, "0x%04x (%i)", g_RemoteControl->current_PIDs.PIDs.vpid, g_RemoteControl->current_PIDs.PIDs.vpid );
+		} 
+		else 
+		{
+			sprintf((char*) buf, "%s", _("not available"));
+		}
+		g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "Vpid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
+		g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
+
+		// apid
+		ypos += sheight;
+		g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "Apid(s):" , COL_MENUCONTENTDARK, 0, true); // UTF-8
+		if (g_RemoteControl->current_PIDs.APIDs.empty())
+		{
+			sprintf((char*) buf, "%s", _("not available"));
+		} 
+		else 
+		{
+			unsigned int i1 = 0, sw = spaceoffset;
+			for (i1 = 0; (i1 < g_RemoteControl->current_PIDs.APIDs.size()) && (i1 < 10); i1++)
+			{
+				sprintf((char*) buf, "0x%04x (%i)", g_RemoteControl->current_PIDs.APIDs[i1].pid, g_RemoteControl->current_PIDs.APIDs[i1].pid );
+				if (i1 == g_RemoteControl->current_PIDs.PIDs.selected_apid)
+				{
+					g_Font[font_small]->RenderString(xpos + sw, ypos, width*2/3 - 10, buf, COL_MENUHEAD, 0, true); // UTF-8
+				}
+				else
+				{
+					g_Font[font_small]->RenderString(xpos + sw, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
+				}
+				sw = g_Font[font_small]->getRenderWidth(buf) + sw + 10;
+				if (((i1 + 1)%3 == 0) &&(g_RemoteControl->current_PIDs.APIDs.size() - 1 > i1))
+				{ 
+					// if we have lots of apids, put "intermediate" line with pids
+					ypos += sheight;
+					sw = spaceoffset;
+				}
+			}
+		}
+
+		// vtxtpid
+		ypos += sheight;
+		if ( g_RemoteControl->current_PIDs.PIDs.vtxtpid == 0 )
+			sprintf((char*) buf, "%s", _("not available"));
+		else
+			sprintf((char*) buf, "0x%04x (%i)", g_RemoteControl->current_PIDs.PIDs.vtxtpid, g_RemoteControl->current_PIDs.PIDs.vtxtpid );
+		g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "VTXTpid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
+		g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
+
+		yypos = ypos;
 	}
-
-	// vtxtpid
-	ypos += sheight;
-	if ( g_RemoteControl->current_PIDs.PIDs.vtxtpid == 0 )
-        	sprintf((char*) buf, "%s", _("not available"));
-	else
-        	sprintf((char*) buf, "0x%04x (%i)", g_RemoteControl->current_PIDs.PIDs.vtxtpid, g_RemoteControl->current_PIDs.PIDs.vtxtpid );
-	g_Font[font_small]->RenderString(xpos, ypos, width*2/3-10, "VTXTpid:" , COL_MENUCONTENTDARK, 0, true); // UTF-8
-	g_Font[font_small]->RenderString(xpos + spaceoffset, ypos, width*2/3-10, buf, COL_MENUCONTENTDARK, 0, true); // UTF-8
-
-	yypos = ypos;
 }
 
 int CStreamInfo2Handler::exec(CMenuTarget* parent, const std::string &/*actionKey*/)
@@ -919,43 +923,46 @@ int CStreamInfo2::ts_close()
 
 void CStreamInfo2::showSNR ()
 {
-	char percent[10];
-	int barwidth = 150;
-	//uint16_t ssig, ssnr;
-	int sig, snr;
-	int posx, posy;
-	int sw;
+	 if(!IS_WEBTV(live_channel_id))
+	 {
+		char percent[10];
+		int barwidth = 150;
+		//uint16_t ssig, ssnr;
+		int sig, snr;
+		int posx, posy;
+		int sw;
 
-	snr = (signal.snr & 0xFFFF) * 100 / 65535;
-	sig = (signal.sig & 0xFFFF) * 100 / 65535;
+		snr = (signal.snr & 0xFFFF) * 100 / 65535;
+		sig = (signal.sig & 0xFFFF) * 100 / 65535;
 
-	int mheight = g_Font[font_info]->getHeight();
-	if(sigscale->getPercent() != sig) 
-	{
-	  	posy = yypos + (mheight/2);
-		posx = x + 10;
-		sprintf(percent, "%d%% SIG", sig);
-		sw = g_Font[font_info]->getRenderWidth (percent);
+		int mheight = g_Font[font_info]->getHeight();
+		if(sigscale->getPercent() != sig) 
+		{
+		  	posy = yypos + (mheight/2);
+			posx = x + 10;
+			sprintf(percent, "%d%% SIG", sig);
+			sw = g_Font[font_info]->getRenderWidth (percent);
 
-		sigscale->paint(/*x + 10 - 1, yypos + (mheight/2),*/ sig);
+			sigscale->paint(/*x + 10 - 1, yypos + (mheight/2),*/ sig);
 
-		posx = posx + barwidth + 3;
-		frameBuffer->paintBoxRel(posx, posy -1, sw, mheight-8, COL_MENUCONTENTDARK_PLUS_0);
-		g_Font[font_info]->RenderString (posx+2, posy + mheight-5, sw, percent, COL_MENUCONTENTDARK);
-	}
+			posx = posx + barwidth + 3;
+			frameBuffer->paintBoxRel(posx, posy -1, sw, mheight-8, COL_MENUCONTENTDARK_PLUS_0);
+			g_Font[font_info]->RenderString (posx+2, posy + mheight-5, sw, percent, COL_MENUCONTENTDARK);
+		}
 
-	if(snrscale->getPercent() != snr) 
-	{
-	  	posy = yypos + mheight + 4;
-		posx = x + 10;
-		sprintf(percent, "%d%% SNR", snr);
-		sw = g_Font[font_info]->getRenderWidth (percent);
+		if(snrscale->getPercent() != snr) 
+		{
+		  	posy = yypos + mheight + 4;
+			posx = x + 10;
+			sprintf(percent, "%d%% SNR", snr);
+			sw = g_Font[font_info]->getRenderWidth (percent);
 
-		snrscale->paint(/*x + 10 - 1, yypos + mheight + 4 + 2,*/ snr);
+			snrscale->paint(/*x + 10 - 1, yypos + mheight + 4 + 2,*/ snr);
 
-		posx = posx + barwidth + 3;
-		frameBuffer->paintBoxRel(posx, posy - 1, sw, mheight-8, COL_MENUCONTENTDARK_PLUS_0, 0, true);
-		g_Font[font_info]->RenderString (posx + 2, posy + mheight-5, sw, percent, COL_MENUCONTENTDARK, 0, true);
+			posx = posx + barwidth + 3;
+			frameBuffer->paintBoxRel(posx, posy - 1, sw, mheight-8, COL_MENUCONTENTDARK_PLUS_0, 0, true);
+			g_Font[font_info]->RenderString (posx + 2, posy + mheight-5, sw, percent, COL_MENUCONTENTDARK, 0, true);
+		}
 	}
 }
 

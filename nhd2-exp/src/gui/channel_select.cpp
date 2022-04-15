@@ -67,13 +67,6 @@ int CSelectChannelWidget::exec(CMenuTarget *parent, const std::string &actionKey
 		InitZapitChannelHelper(CZapitClient::MODE_RADIO);
 		return res;
 	}
-	/*
-	else if(actionKey == "webtv")
-	{
-		InitZapitChannelHelper(CZapitClient::MODE_WEBTV);
-		return res;
-	}
-	*/
 
 	return res;
 }
@@ -95,12 +88,6 @@ void CSelectChannelWidget::InitZapitChannelHelper(CZapitClient::channelsMode mod
 	{
 		CNeutrinoApp::getInstance()->SetChannelMode(g_settings.channel_mode, NeutrinoMessages::mode_tv);
 	}
-	/*
-	else if(mode == CZapitClient::MODE_WEBTV)
-	{
-		CNeutrinoApp::getInstance()->SetChannelMode(g_settings.channel_mode, NeutrinoMessages::mode_webtv);
-	}
-	*/
 	else if(mode == CZapitClient::MODE_RADIO)
 	{
 		CNeutrinoApp::getInstance()->SetChannelMode(g_settings.channel_mode, NeutrinoMessages::mode_radio);
