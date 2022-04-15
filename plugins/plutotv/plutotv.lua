@@ -495,8 +495,6 @@ end
 m_selected = 0
 
 function categories_menu()
-	--get_cat();
-	
 	local m = neutrino.CMenuWidget(plugin_title, neutrino.PLUGINDIR .. "/plutotv/plutotv.png")
 	m:enableShrinkMenu()
 	m:enablePaintDate()
@@ -540,7 +538,7 @@ function categories_menu()
 	end
 	
 	if m:getExitPressed() ~= true then
-		main()
+		categories_menu()
 	end
 end
 
