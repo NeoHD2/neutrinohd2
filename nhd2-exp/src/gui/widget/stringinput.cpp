@@ -374,7 +374,7 @@ int CStringInput::exec(CMenuTarget* parent, const std::string& )
 		}
 		else if ( (msg == RC_home) || (msg == RC_timeout) )
 		{
-			if ( ( strcmp(value, oldval) != 0) && (MessageBox(name.c_str(), _("Discard changes ?"), mbrYes, mbYes | mbCancel) == mbrCancel))
+			if ( ( strcmp(value, oldval) != 0) && (MessageBox(name.c_str(), _("Discard changes?"), mbrYes, mbYes | mbCancel) == mbrCancel))
 				continue;
 
 			strncpy(value, oldval, size);

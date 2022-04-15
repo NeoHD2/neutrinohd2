@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-15 15:28+0200\n"
+"POT-Creation-Date: 2022-04-15 17:25+0200\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -71,7 +71,7 @@ msgid "18 years"
 msgstr "18 Jhare"
 
 msgid "6 years"
-msgstr ""
+msgstr "6 Jahre"
 
 msgid "?"
 msgstr ""
@@ -96,10 +96,10 @@ msgid "Actions"
 msgstr "Aktionen"
 
 msgid "Activate changes"
-msgstr ""
+msgstr "Änderungen aktivieren"
 
 msgid "Activate settings"
-msgstr "Aktiviere Einstellungen"
+msgstr "Einstellungen aktivieren"
 
 msgid "Actors"
 msgstr "Darsteller"
@@ -141,7 +141,7 @@ msgid "Antenna positioning"
 msgstr ""
 
 msgid "Are you sure ?"
-msgstr ""
+msgstr "Sind Sie sicher ?"
 
 msgid "Are you sure to format ? You will lost all data "
 msgstr ""
@@ -165,7 +165,7 @@ msgid "Audio Player"
 msgstr ""
 
 msgid "Audio Playlist"
-msgstr ""
+msgstr "Audio Playliste"
 
 msgid "Audio language preferences"
 msgstr "Bevorzugte Ton Sprachen"
@@ -204,19 +204,19 @@ msgid "Available Images/Packages"
 msgstr "Images/Packges sind nicht verfügbar"
 
 msgid "BOTTOM"
-msgstr ""
+msgstr "Unten"
 
 msgid "BOTTOM LEFT"
-msgstr ""
+msgstr "Unten Links"
 
 msgid "BOTTOM RIGHT"
-msgstr ""
+msgstr "Unten Recht"
 
 msgid "Back"
 msgstr "Zurück"
 
 msgid "Background"
-msgstr ""
+msgstr "Hintergründ"
 
 msgid "Backup failed"
 msgstr ""
@@ -311,10 +311,10 @@ msgid "CPU:"
 msgstr ""
 
 msgid "Cable"
-msgstr ""
+msgstr "Kabel"
 
 msgid "Cable:"
-msgstr ""
+msgstr "Kabel:"
 
 msgid "Cancel"
 msgstr "Abbruch"
@@ -323,13 +323,13 @@ msgid "Cancel movie cut/split ?"
 msgstr ""
 
 msgid "Change PIN code"
-msgstr ""
+msgstr "PIN Code ändern"
 
 msgid "Change sort order"
-msgstr ""
+msgstr "Reihenfolge ändern"
 
 msgid "Channel"
-msgstr ""
+msgstr "Sender"
 
 msgid "Channel (short) / Sep.-Line / Title"
 msgstr ""
@@ -341,10 +341,10 @@ msgid "Channel / Sep.-Line / Title"
 msgstr ""
 
 msgid "Channel / Title"
-msgstr ""
+msgstr "Sender / Titel"
 
 msgid "Channel Logo"
-msgstr ""
+msgstr "Sender logo"
 
 msgid "Channel down"
 msgstr ""
@@ -359,14 +359,13 @@ msgid "Channel up"
 msgstr ""
 
 msgid "Channel:"
-msgstr ""
+msgstr "Sender:"
 
 msgid "Channellist"
-msgstr ""
+msgstr "Sender Liste"
 
-#, fuzzy
 msgid "Channellist settings"
-msgstr "Diverse Einstellungen"
+msgstr "Sender Liste Einstellungen"
 
 msgid "Check filesystem"
 msgstr ""
@@ -456,23 +455,23 @@ msgid "DHCP"
 msgstr ""
 
 msgid "Dark to Light"
-msgstr ""
+msgstr "Dunkel zu Hell"
 
 msgid "Dark to Light to Dark"
-msgstr ""
+msgstr "Dunkel zu Hell zu Dunkel"
 
 msgid "Data"
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 msgid "Date:"
-msgstr ""
+msgstr "Datum:"
 
 #, fuzzy
 msgid "Date: "
-msgstr "(Datum)"
+msgstr "Datum:"
 
 msgid "Debug"
 msgstr ""
@@ -502,10 +501,10 @@ msgid "Delete all"
 msgstr "Alle löschen"
 
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 msgid "Description: "
-msgstr ""
+msgstr "Beschreibung:"
 
 msgid "Details current program"
 msgstr "Info zur Sendung"
@@ -542,9 +541,6 @@ msgid "Directory for updates"
 msgstr "Scan SDT für Updates"
 
 msgid "Disable (soft) Limits"
-msgstr ""
-
-msgid "Discard changes ?"
 msgstr ""
 
 msgid "Discard changes?"
@@ -2130,14 +2126,11 @@ msgstr ""
 msgid "Slideshow display time"
 msgstr ""
 
-msgid "Software Update"
-msgstr ""
-
 msgid "Software update"
-msgstr ""
+msgstr "Software Aktualisierung"
 
 msgid "Software update URL"
-msgstr ""
+msgstr "Software Aktualisierung URL"
 
 msgid "South"
 msgstr "Süden"
@@ -2152,13 +2145,13 @@ msgid "Start"
 msgstr "Starten"
 
 msgid "Start Channel"
-msgstr ""
+msgstr "Start Sender"
 
 msgid "Start Channel settings"
-msgstr ""
+msgstr "Start Sender Einstellungen"
 
 msgid "Start Menu"
-msgstr ""
+msgstr "Start Menü"
 
 msgid "Start Mode"
 msgstr ""

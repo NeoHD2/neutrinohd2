@@ -99,7 +99,7 @@ CFlashUpdate::CFlashUpdate(int uMode)
 
 	updateMode = uMode;
 	
-	progressWindow->setTitle(("Software Update"));
+	progressWindow->setTitle(("Software update"));
 	
 	// check rootfs, allow flashing only when rootfs is jffs2/yaffs2/squashfs
 	struct statfs s;
@@ -166,7 +166,7 @@ bool CFlashUpdate::selectHttpImage(void)
 	int selected = -1;
 
 	//httpTool.setStatusViewer(progressWindow);
-	httpTool.setTitle(_("Software Update"));
+	httpTool.setTitle(_("Software update"));
 	progressWindow->showStatusMessageUTF(_("getting update list")); // UTF-8
 
 	// NOTE: remember me : i dont like this menu GUI
@@ -301,7 +301,7 @@ bool CFlashUpdate::getUpdateImage(const std::string & version)
 {
 	CHTTPTool httpTool;
 	char * fname, dest_name[100];
-	httpTool.setTitle(_("Software Update"));
+	httpTool.setTitle(_("Software update"));
 
 	fname = rindex(const_cast<char *>(filename.c_str()), '/');
 	if(fname != NULL) 

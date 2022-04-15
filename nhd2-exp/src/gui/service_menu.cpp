@@ -136,7 +136,7 @@ void CServiceMenu::showMenu(void)
 #endif
 		
 		// software update
-		service->addItem(new CMenuForwarder(_("Software Update"), true, NULL, new CUpdateSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SOFTUPDATE));
+		service->addItem(new CMenuForwarder(_("Software update"), true, NULL, new CUpdateSettings(), NULL, RC_nokey, NULL, NEUTRINO_ICON_MENUITEM_SOFTUPDATE));
 
 		service->integratePlugins(CPlugins::I_TYPE_SERVICE);
 		
