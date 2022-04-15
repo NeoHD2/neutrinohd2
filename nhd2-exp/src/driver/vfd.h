@@ -393,8 +393,7 @@ class CVFD
 			MODE_MENU_UTF8,
 			MODE_AUDIO,
 			MODE_MOVIE,
-			MODE_PIC,
-			MODE_WEBTV
+			MODE_PIC
 		};
 
 		enum AUDIOMODES

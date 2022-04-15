@@ -316,7 +316,7 @@ void CVFD::showServicename(const std::string& name, const bool perform_wakeup, i
 	servicename = name;
 	serviceNum = pos;
 
-	if (mode != MODE_TVRADIO && mode != MODE_WEBTV)
+	if (mode != MODE_TVRADIO)
 		return;
 
 	if (is4digits)
@@ -573,12 +573,6 @@ void CVFD::setMode(const MODES m, const char * const title)
 			break;
 			
 		case MODE_MOVIE:  
-			ShowIcon(VFD_ICON_TV, false);			
-			showclock = false;
-			break;
-			
-		case MODE_WEBTV: 
-			showServicename(servicename, true, serviceNum);
 			ShowIcon(VFD_ICON_TV, false);			
 			showclock = false;
 			break;

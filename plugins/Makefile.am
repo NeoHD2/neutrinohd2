@@ -36,7 +36,8 @@ endif
 if ENABLE_LUA
 SUBDIRS += lua \
 	media_one \
-	plutotv
+	plutotv \
+	netzkino_hd
 endif
 
 
