@@ -186,8 +186,13 @@ function get_cat()
 				end
 			end
 		end
+		hint:hide()
+		
+		categories_menu()
+	else
+		local mBox = neutrino.CMessageBox("Fehler", "Keinen Kategorien gefunden!")
+		mBox:exec()
 	end
-	hint:hide()
 end
 
 cm_selected = 0
@@ -488,8 +493,9 @@ end
 
 -- mainMenu
 m_selected = 0
-function main()
-	get_cat();
+
+function categories_menu()
+	--get_cat();
 	
 	local m = neutrino.CMenuWidget(plugin_title, neutrino.PLUGINDIR .. "/plutotv/plutotv.png")
 	m:enableShrinkMenu()
@@ -538,6 +544,12 @@ function main()
 	end
 end
 
+function main()
+	get_cat()
+end
+
 main()
+
+
 
 

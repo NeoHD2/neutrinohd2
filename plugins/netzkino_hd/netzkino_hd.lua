@@ -103,18 +103,12 @@ function get_categories()
 	local h = neutrino.CHintBox(caption, "Kategorien werden geladen ...", neutrino.HINTBOX_WIDTH, netzkino_png)
 	h:paint();
 
-	--neutrino.downloadUrl('https://www.netzkino.de/capi/get_category_index', fname, 'Mozilla/5.0;', 90)
 	local fp = neutrino.getUrlAnswer(base_url .. "index.json?d=www", 'Mozilla/5.0;', 90)
 
-	--local fp = io.open(fname, "r")
 	if fp == nil then
 		h:hide();
 		error("Error opening file '" .. fname .. "'.")
 	else
-		--print("open file '" .. fname .. "'.")
-
-		--local s = fp:read("*a")
-		--fp:close()
 		local s = fp
 
 		local j_table = json:decode(s)
