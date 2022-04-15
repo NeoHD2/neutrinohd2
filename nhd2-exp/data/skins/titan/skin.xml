@@ -1002,7 +1002,7 @@
 		<HEAD posx="30" posy="50" width="640" height="40" gradient="3" corner="15" radius="4" localename="Main Menu" icon="menu" paintdate="1" format="%d.%m.%Y %H:%M:%S" paintframe="1"/>
 		
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" mode="1">
-			<ITEM id="5" localename="TV / RADIO / WEBTV" itemicon="hint_tvmode" target="0" actionkey="tvradioswitch"/>
+			<ITEM id="5" localename="TV / RADIO" itemicon="hint_tvmode" target="0" actionkey="tvradioswitch"/>
 			<ITEM id="5" localename="EPG / Timer" itemicon="hint_timers" target="3" directkey="0x2"/>
 			<ITEM id="5" localename="Features" itemicon="hint_plugin" target="6" actionkey="features"/>
 			<ITEM id="5" localename="System" itemicon="hint_service" target="4"/>

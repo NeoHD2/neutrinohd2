@@ -1263,7 +1263,7 @@
 		</TIME>
 		
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0" mode="1" itemshadow="1">
-			<ITEM id="5" localename="TV / RADIO / WEBTV" lines="1" itemicon="hint_tvmode" target="0" actionkey="tvradioswitch">
+			<ITEM id="5" localename="TV / RADIO" lines="1" itemicon="hint_tvmode" target="0" actionkey="tvradioswitch">
 			</ITEM>
 			<ITEM id="5" localename="EPG / Timer" target="3" lines="1" shadow="1">
 			</ITEM>

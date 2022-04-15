@@ -59,7 +59,6 @@
 #include <gui/bouquetlist.h>
 #include <daemonc/remotecontrol.h>
 #include <driver/vcrcontrol.h>
-//#include <gui/pictureviewer.h>
 
 //
 #include <bouquets.h>
@@ -135,18 +134,6 @@ const struct button_label HeadNewModeButtons[HEAD_BUTTONS_COUNT] =
 	{ NEUTRINO_ICON_BUTTON_HELP, " " },
 	{ NEUTRINO_ICON_BUTTON_SETUP, " " },
 	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_ACTIVE, "" }
-};
-
-const struct button_label HeadWEBTVModeButtons[2] =
-{
-	{ NEUTRINO_ICON_BUTTON_HELP, " " },
-	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_INACTIVE, " " }
-};
-
-const struct button_label HeadWEBTVNewModeButtons[2] =
-{
-	{ NEUTRINO_ICON_BUTTON_HELP, " " },
-	{ NEUTRINO_ICON_BUTTON_MUTE_ZAP_ACTIVE, " " }
 };
 
 CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vlist)
@@ -1724,10 +1711,7 @@ void CChannelList::paint()
 	}
 	
 	//
-	//if (CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
-	//	head->setButtons(new_mode_active? HeadWEBTVNewModeButtons : HeadWEBTVModeButtons, 2); 
-	//else
-		head->setButtons(new_mode_active? HeadNewModeButtons : HeadButtons, HEAD_BUTTONS_COUNT);
+	head->setButtons(new_mode_active? HeadNewModeButtons : HeadButtons, HEAD_BUTTONS_COUNT);
 	
 	//
 	if (displayNext) 
@@ -1745,145 +1729,8 @@ void CChannelList::paint()
 	listBox->setSelected(selected);
 	//listBox->paint();
 	
-	/*
-	// now
-	p_event = &chanlist[selected]->currentEvent;
-	
-	// title
-	CCLabel epgTitle(winTopBox.iX + 10, winTopBox.iY + 10, winTopBox.iWidth - 20, 60);
-	
-	p_event = &chanlist[selected]->currentEvent;
-	
-	epgTitle.setText(p_event->description.c_str());
-	epgTitle.setHAlign(CC_ALIGN_CENTER);
-	epgTitle.setFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
-	
-	// runningPercent
-	unsigned int Percent = 0;
-		
-	if (((jetzt - p_event->startTime + 30) / 60) < 0 )
-	{
-		Percent = 0;
-	}
-	else
-	{
-		if(p_event->duration > 0)
-			Percent = (unsigned) ((float) (jetzt - p_event->startTime) / (float) p_event->duration * 100.);
-			
-		if(Percent > 100)
-			Percent = 0;
-	}
-	
-	CProgressBar pb(winTopBox.iX + 100, winTopBox.iY + 10 + 60 + 20, winTopBox.iWidth - 200, 5);
-	
-	//
-	if (p_event != NULL && !(p_event->description.empty())) 
-	{
-		// start
-		struct tm * pStartZeit = localtime(&p_event->startTime);
-		sprintf(cSeit, "%02d:%02d", pStartZeit->tm_hour, pStartZeit->tm_min);
-		
-		// end
-		long int uiEndTime(p_event->startTime + p_event->duration);
-		struct tm *pEndeZeit = localtime((time_t*)&uiEndTime);
-
-		sprintf(cNoch, "%02d:%02d", pEndeZeit->tm_hour, pEndeZeit->tm_min);
-	}
-	
-	CCLabel startTime(winTopBox.iX + 10, winTopBox.iY + 10 + 60 + 10, 80, 20);
-	startTime.setText(cSeit);
-	startTime.setHAlign(CC_ALIGN_CENTER);
-	startTime.setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO2);
-	
-	CCLabel restTime(winTopBox.iX + 100 + winTopBox.iWidth - 200 + 10, winTopBox.iY + 10 + 60 + 10, 80, 20);
-	restTime.setText(cNoch);
-	restTime.setHAlign(CC_ALIGN_CENTER);
-	restTime.setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO2);
-	
-	// text
-	CCText text(winTopBox.iX + 10, winTopBox.iY + 10 + 60 + 10 + 10, winTopBox.iWidth - 20, winTopBox.iHeight - 100);
-	text.setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO2);
-	text.setText(p_event->text.c_str());
-	
-	// next
-	CChannelEventList events;
-
-	time_t atime = time(NULL);
-					
-	events.clear();
-
-	sectionsd_getEventsServiceKey(chanlist[selected]->channel_id& 0xFFFFFFFFFFFFULL, events);
-	chanlist[selected]->nextEvent.startTime = (long)0x7fffffff;
-				
-	for ( CChannelEventList::iterator e = events.begin(); e != events.end(); ++e ) 
-	{
-		if (((long)(e->startTime) > atime) && ((e->startTime) < (long)(chanlist[selected]->nextEvent.startTime)))
-		{
-			chanlist[selected]->nextEvent= *e;
-					
-			break;
-		}
-	}
-	
-	p_event = &chanlist[selected]->nextEvent;
-	
-	//
-	CCLabel nextTitle(winBottomBox.iX + 10, winBottomBox.iY + 10, winBottomBox.iWidth - 20, 20);
-	nextTitle.setText(p_event->description.c_str());
-	nextTitle.setHAlign(CC_ALIGN_CENTER);
-	nextTitle.setFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
-	
-	// vom/bis
-	std::string fromto = "";
-	CCLabel nextTime(winBottomBox.iX + 10, winBottomBox.iY + 10 + 30, winBottomBox.iWidth - 20, 20);
-	nextTime.setHAlign(CC_ALIGN_CENTER);
-	nextTime.setFont(SNeutrinoSettings::FONT_TYPE_EVENTLIST_ITEMLARGE);
-	
-	//
-	if (p_event != NULL && !(p_event->description.empty())) 
-	{
-		// start
-		struct tm * pStartZeit = localtime(&p_event->startTime);
-		sprintf(cSeit, "%02d:%02d", pStartZeit->tm_hour, pStartZeit->tm_min);
-		
-		// end
-		long int uiEndTime(p_event->startTime + p_event->duration);
-		struct tm *pEndeZeit = localtime((time_t*)&uiEndTime);
-
-		sprintf(cNoch, "%02d:%02d", pEndeZeit->tm_hour, pEndeZeit->tm_min);
-	}
-	
-	fromto = cSeit;
-	fromto += "   -   ";
-	fromto += cNoch;
-	
-	nextTime.setText(fromto.c_str());
-	
-	// nextText
-	CCText nextText(winBottomBox.iX + 10, winBottomBox.iY + 10 + 60, winBottomBox.iWidth - 20, winBottomBox.iHeight - 80);
-	nextText.setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO2);
-	nextText.setText(p_event->text.c_str());
-	*/
-	
 	chWidget->paint();
 	
-	//head->paint();
-	//foot->paint();
-	
-	/*
-	winTop->paint();
-	epgTitle.paint();
-	pb.reset();
-	pb.paint(Percent);
-	startTime.paint();
-	restTime.paint();
-	text.paint();
-	//
-	winBottom->paint();
-	nextTitle.paint();
-	nextTime.paint();
-	nextText.paint();
-	*/
 	paintCurrentNextEvent(selected);
 }
 

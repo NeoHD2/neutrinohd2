@@ -450,7 +450,7 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 		{
 			selected = listBox->getSelected();
 
-			//if (!Bouquets[selected]->zapitBouquet->bWebTV)
+			if (!Bouquets[selected]->zapitBouquet->bWebTV)
 			{
 				int ret = doMenu();
 				if(ret) 

@@ -1207,7 +1207,7 @@
 		</WINDOW>
 		
 		<LISTBOX posx="640" posy="60" width="540" height="500" type="0" mode ="1" paintiteminfo="1" iteminfomode="3" iteminfoframe="0" iteminfocolor="COL_MENUCONTENTSELECTED_PLUS_0" iteminfoposx="300" iteminfoposy="50" iteminfowidth="300" iteminfoheight="300">
-			<ITEM id="5" localename="TV / RADIO / WEBTV" lines="1" itemicon="picon_default.png" target="0" actionkey="tvradioswitch">
+			<ITEM id="5" localename="TV / RADIO" lines="1" itemicon="picon_default.png" target="0" actionkey="tvradioswitch">
 			</ITEM>
 			<ITEM id="5" localename="EPG / Timer" lines="1" itemicon="buttons/timerepg.png" target="3">
 			</ITEM>
