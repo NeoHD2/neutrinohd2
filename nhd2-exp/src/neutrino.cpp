@@ -1870,12 +1870,17 @@ void CNeutrinoApp::SetupFonts(const char* font_file)
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::SetupFonts: settings font file %s\n", /*g_settings.*/font_file);
 
-	if(access(/*g_settings.*/font_file, F_OK)) 
+	if(access(font_file, F_OK)) 
 	{
 		if(!access(DATADIR "/neutrino/fonts/arial.ttf", F_OK))
 		{
 			font.filename = strdup(DATADIR "/neutrino/fonts/arial.ttf");
 			strcpy(g_settings.font_file, font.filename);
+		}
+		else if(!access("/usr/share/fonts/arial.ttf", F_OK))
+		{
+			font.filename = strdup("/usr/share/fonts/arial.ttf");
+			strcpy((char *)font_file, font.filename);
 		}
 		else
 		{
@@ -1885,17 +1890,22 @@ void CNeutrinoApp::SetupFonts(const char* font_file)
 	}
 	else
 	{
-		font.filename = strdup(/*g_settings.*/font_file);
+		font.filename = strdup(font_file);
 		
 		// check??? (use only true type fonts or fallback to arial.ttf
 		if( !strstr(font.filename, ".ttf") )
 		{
-			dprintf(DEBUG_NORMAL, "CNeutrinoApp::SetupFonts: font file %s not ok falling back to arial.ttf\n", /*g_settings.*/font_file);
+			dprintf(DEBUG_NORMAL, "CNeutrinoApp::SetupFonts: font file %s not ok falling back to arial.ttf\n", font_file);
 			
 			if(!access(DATADIR "/neutrino/fonts/arial.ttf", F_OK))
 			{
 				font.filename = strdup(DATADIR "/neutrino/fonts/arial.ttf");
-				strcpy(/*g_settings.*/(char *)font_file, font.filename);
+				strcpy((char *)font_file, font.filename);
+			}
+			else if(!access("/usr/share/fonts/arial.ttf", F_OK))
+			{
+				font.filename = strdup("/usr/share/fonts/arial.ttf");
+				strcpy((char *)font_file, font.filename);
 			}
 			else
 			{
