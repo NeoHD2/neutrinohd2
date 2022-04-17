@@ -82,9 +82,8 @@ msgstr "A/V sync"
 msgid "AC3 Delay"
 msgstr "AC3 Verzögerung"
 
-#, fuzzy
 msgid "AV Select"
-msgstr "Skin Auswahl"
+msgstr "Audio / Video Auswahl"
 
 msgid "Abortion of channel scan"
 msgstr "Breche Scan ab"
@@ -111,7 +110,7 @@ msgid "Add to Bouquets"
 msgstr "zur den Bouquets hinzufuegen"
 
 msgid "Additional paths"
-msgstr ""
+msgstr "Zusätzliche Verzeichnisse"
 
 msgid "Advanced"
 msgstr "Erweiterte Auswahl"
@@ -138,13 +137,13 @@ msgid "Analog Output"
 msgstr "Analog-Ausgang"
 
 msgid "Antenna positioning"
-msgstr ""
+msgstr "Antennenpositionierung"
 
 msgid "Are you sure ?"
 msgstr "Sind Sie sicher ?"
 
 msgid "Are you sure to format ? You will lost all data "
-msgstr ""
+msgstr "Alle Daten auf dem Datenträger werden gelöscht! Formatierung starten?"
 
 msgid "Are you sure to init ?"
 msgstr ""
@@ -216,25 +215,25 @@ msgid "Back"
 msgstr "Zurück"
 
 msgid "Background"
-msgstr "Hintergründ"
+msgstr "Hintergrund"
 
 msgid "Backup failed"
 msgstr ""
 
 msgid "Bandwidth"
-msgstr ""
+msgstr "Bandbreite"
 
 msgid "Bitrate"
 msgstr ""
 
 msgid "Bookmark"
-msgstr ""
+msgstr "Markierung"
 
 msgid "Bookmark change"
 msgstr ""
 
 msgid "Bookmarks"
-msgstr ""
+msgstr "Markierungen"
 
 msgid "Border"
 msgstr ""
@@ -243,7 +242,7 @@ msgid "Bouquet"
 msgstr ""
 
 msgid "Bouquet Editor"
-msgstr "Bouquet-Verwaltung"
+msgstr "Bouquet Verwaltung"
 
 msgid "Bouquet back"
 msgstr ""
@@ -257,16 +256,16 @@ msgstr ""
 msgid ""
 "Box will shutdown in 1 min.\n"
 "Cancel Sutdown ?"
-msgstr ""
+msgstr "Die Box wird in 1 Min. heruntergefahren.\nShutdown abbrechen?"
 
 msgid "Brightness"
-msgstr ""
+msgstr "Helligkeit"
 
 msgid "Broadcast"
 msgstr ""
 
 msgid "Browser Options"
-msgstr ""
+msgstr "Anzeigeoptionen"
 
 msgid "Browser hight [Pixel]"
 msgstr ""
