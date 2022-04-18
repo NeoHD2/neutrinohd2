@@ -182,10 +182,6 @@ end
 function exec(id, msg, actionKey)
 	print("lua sample: exec: actionKey: (" .. actionKey ..")")
 	
-	if id < 0 then
-		id = 0
-	end
-	
 	if actionKey == "msgBox" then
 		messageBox()
 	elseif actionKey == "helpBox" then
@@ -496,6 +492,12 @@ function testClistBox()
 
 	m:addItem(listBox)
 	m:addKey(neutrino.RC_info)
+	
+	if selected < 0 then
+		selected = 0
+	end
+
+	listBox:setSelected(selected)
 
 	ret = m:exec(null, "")
 	
