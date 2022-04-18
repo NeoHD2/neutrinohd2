@@ -30,11 +30,11 @@
 %{
 #define SWIG_COMPILE
 
-#include <config.h>
-
 #ifdef assert(x)
 #undef asser(x)
 #endif
+
+#include <config.h>
 
 #include <global.h>
 #include <neutrino.h>

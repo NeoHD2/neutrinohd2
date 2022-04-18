@@ -1091,8 +1091,8 @@ function main()
 	item2:setActionKey(null, "listBoxWidget")
 	item2:setHint("lua: testing CMenuWidget")
 
-	item3 = neutrino.CMenuForwarder("testClistBox")
-	item3:setHint("lua: testing ClistBox")
+	--item3 = neutrino.CMenuForwarder("testClistBox")
+	--item3:setHint("lua: testing ClistBox")
 
 	--item4 = neutrino.CMenuForwarder("testCWidget (ClistBox|CFrameBox)")
 	--item4:setHint("lua: testing ClistBox|CFrameBox")
@@ -1113,7 +1113,7 @@ function main()
 
 	m:addItem(item1)
 	m:addItem(item2)
-	m:addItem(item3)
+	--m:addItem(item3)
 	--m:addItem(item4)
 	m:addItem(item5)
 	m:addItem(item6)
@@ -1148,8 +1148,8 @@ function main()
 	if selected >= 0 then
 		if selected == 1 then
 			ret = testCMenuWidget()
-		elseif selected == 2 then
-			ret = testClistBox()
+		--elseif selected == 2 then
+			--ret = testClistBox()
 		--elseif selected == 3 then
 			--ret = testCWindow()
 		end
