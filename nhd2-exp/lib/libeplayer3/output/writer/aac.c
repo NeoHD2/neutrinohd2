@@ -215,7 +215,6 @@ static int writeData(void* _call)
 	WriterAVCallData_t *call = (WriterAVCallData_t *) _call;
 	unsigned char PesHeader[PES_MAX_HEADER_SIZE];
 	unsigned char ExtraData[AAC_HEADER_LENGTH];
-	unsigned int  PacketLength;
 
 	aac_printf(10, "\n");
 
@@ -226,7 +225,6 @@ static int writeData(void* _call)
 	}
 
 	aac_printf(10, "AudioPts %lld\n", call->Pts);
-	PacketLength = call->len + AAC_HEADER_LENGTH;
 
 	if ((call->data == NULL) || (call->len <= 0))
 	{
@@ -239,7 +237,39 @@ static int writeData(void* _call)
 		aac_err("file pointer < 0. ignoring ...\n");
 		return 0;
 	}
+	
+	// simple validation 
+	//FIXME: remember to add handling AAC_LC /LATM
+	/*
+	if (0 == type) // check ADTS header
+	{
+		if (0xFF != call->data[0] || 0xF0 != (0xF0 & call->data[1]))
+		{
+		    aac_err("parsing Data with missing syncword. ignoring...\n");
+		    return 0;
+		}
+		
+		// STB can handle only AAC LC profile
+		if (0 == (call->data[2] & 0xC0))
+		{
+		    // change profile AAC Main -> AAC LC (Low Complexity)
+		    aac_printf(1, "change profile AAC Main -> AAC LC (Low Complexity) in the ADTS header");
+		    call->data[2] = (call->data[2] & 0x1F) | 0x40;
+		}
+	 }
+	 else // check LOAS header
+	 {
+		if( !(call->len > 2 && call->data[0] == 0x56 && (call->data[1] >> 4) == 0xe &&
+		    (AV_RB16(call->data + 1) & 0x1FFF) + 3 == call->len))
+		{
+		    aac_err("parsing Data with wrong latm header. ignoring...\n");
+		    return 0;
+		}
+	 }
+	  */
 
+	/*
+	// ???
 	if (call->private_data == NULL)
 	{
 		aac_printf(10, "private_data = NULL\n");
@@ -251,19 +281,19 @@ static int writeData(void* _call)
 	ExtraData[3]       |= (PacketLength >> 11) & 0x3;
 	ExtraData[4]        = (PacketLength >> 3) & 0xff;
 	ExtraData[5]       |= (PacketLength << 5) & 0xe0;
+	*/
 
 #if defined __sh__
-	unsigned int  HeaderLength = InsertPesHeader(PesHeader, PacketLength, AAC_AUDIO_PES_START_CODE, call->Pts, 0);
-	struct iovec iov[3];
-
+	unsigned int  HeaderLength = InsertPesHeader(PesHeader, call->len, AAC_AUDIO_PES_START_CODE, call->Pts, 0);
+	
+	struct iovec iov[2];
+	
 	iov[0].iov_base = PesHeader;
 	iov[0].iov_len = HeaderLength;
-	iov[1].iov_base = ExtraData;
-	iov[1].iov_len = AAC_HEADER_LENGTH;
-	iov[2].iov_base = call->data;
-	iov[2].iov_len = call->len;
-
-	return call->WriteV(call->fd, iov, 3);
+	iov[1].iov_base = call->data;
+	iov[1].iov_len = call->len;
+	
+	return call->WriteV(call->fd, iov, 2);
 #else
 	unsigned int  HeaderLength = InsertPesHeader(PesHeader, call->len, MPEG_AUDIO_PES_START_CODE, call->Pts, 0);
 

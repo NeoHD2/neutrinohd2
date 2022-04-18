@@ -902,6 +902,8 @@ void CRemoteControl::getEvents(t_channel_id chid)
 		if (it->second.getChannelID() == chid)
 			evUrl = it->second.getXMLTV();
 	}
+	
+	printf("evUrl:%s\n", evUrl.c_str());
 #endif
 
 	insertEventsfromHttp(evUrl, GET_ORIGINAL_NETWORK_ID_FROM_CHANNEL_ID(chid), GET_TRANSPORT_STREAM_ID_FROM_CHANNEL_ID(chid), GET_SERVICE_ID_FROM_CHANNEL_ID(chid));

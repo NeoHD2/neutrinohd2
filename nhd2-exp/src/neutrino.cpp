@@ -343,7 +343,7 @@ CNeutrinoApp::CNeutrinoApp()
 	channelList = NULL;
 	TVchannelList = NULL;
 	RADIOchannelList = NULL;
-	//WEBTVchannelList = NULL;
+	WEBTVchannelList = NULL;
 	
 	nextRecordingInfo = NULL;
 	skipShutdownTimer = false;
@@ -1499,10 +1499,10 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	if(RADIOchannelList) 
 		delete RADIOchannelList;
 
-/*
 	if(WEBTVchannelList)
 		delete WEBTVchannelList;
 
+/*
 	if(WEBTVbouquetList)
 		delete WEBTVbouquetList;
 
@@ -1534,7 +1534,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	RADIOfavList->orgChannelList = RADIOchannelList;
 
 	//
-	//WEBTVchannelList = new CChannelList(_("All WebTV Services"));
+	WEBTVchannelList = new CChannelList(_("All WebTV Services"));
 
 	//WEBTVbouquetList = new CBouquetList("WebTV");
 	//WEBTVbouquetList->orgChannelList = WEBTVchannelList;
@@ -1582,6 +1582,8 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	
 	if(g_settings.make_hd_list)
 		hdBouquet->channelList->SortSat();
+		
+	//dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d TV (%d is HD) and %d RADIO and %d WEBTV channels\n", tvi - 1, hi, ri - 1, webtvi - 1);
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d TV (%d is HD) and %d RADIO and %d WEBTV channels\n", tvii - 1, hi, ri - 1, webtvi - 1);
 
@@ -1593,6 +1595,11 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	*(tmp->channelList) = *TVchannelList;
 	//tmp->channelList->SortAlpha();
 	TVallList->orgChannelList = TVchannelList;
+	
+	////
+	//CBouquet* tmp2;
+	//tmp2 = TVallList->addBouquet(_("All WebTV Services"));
+	//*(tmp2->channelList) = *WEBTVchannelList;
 
 	// radio all list
 	RADIOallList = new CBouquetList(_("All Services"));
