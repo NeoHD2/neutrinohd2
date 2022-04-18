@@ -52,6 +52,16 @@
 
 #define AAC_HEADER_LENGTH       7
 
+static inline int HasADTSHeader(uint8_t *data, int size)
+{
+	if (size >= AAC_HEADER_LENGTH && 0xFF == data[0] && 0xF0 == 0xF0 & data[1] && size == ((data[3] & 0x3) << 11 | data[4] << 3 | data[5] >> 5))
+	{
+		return 1;
+	}
+	    
+	return 0;
+}
+
 //#define AAC_DEBUG
 
 #ifdef AAC_DEBUG
@@ -238,52 +248,50 @@ static int writeData(void* _call)
 		return 0;
 	}
 
-/*
-	unsigned int  PacketLength = call->len + AAC_HEADER_LENGTH;
-	
-	if (call->private_data == NULL)
-	{
-		aac_printf(10, "private_data = NULL\n");
-		call->private_data = DefaultAACHeader;
-		call->private_size = AAC_HEADER_LENGTH;
+	// 
+        if( (call->private_data && 0 == strncmp("ADTS", call->private_data, call->private_size)) || 
+        	HasADTSHeader(call->data, call->len) )
+    	{
+		unsigned int  HeaderLength = InsertPesHeader(PesHeader, call->len, AAC_AUDIO_PES_START_CODE, call->Pts, 0);
+		
+		struct iovec iov[2];
+			
+		iov[0].iov_base = PesHeader;
+		iov[0].iov_len = HeaderLength;
+		iov[1].iov_base = call->data;
+		iov[1].iov_len = call->len;
+			
+		return call->WriteV(call->fd, iov, 2);
 	}
-		
-	memcpy(ExtraData, call->private_data, AAC_HEADER_LENGTH);
-	//ExtraData[3]       |= (PacketLength >> 11) & 0x3;
-	ExtraData[4]        = (PacketLength >> 3) & 0xff;
-	ExtraData[5]       |= (PacketLength << 5) & 0xe0;
-		
-	unsigned int  HeaderLength = InsertPesHeader(PesHeader, PacketLength, AAC_AUDIO_PES_START_CODE, call->Pts, 0);
+	else
+	{
+		unsigned int  PacketLength = call->len + AAC_HEADER_LENGTH;
 	
-	struct iovec iov[3];
+		if (call->private_data == NULL)
+		{
+			aac_printf(10, "private_data = NULL\n");
+			call->private_data = DefaultAACHeader;
+			call->private_size = AAC_HEADER_LENGTH;
+		}
+			
+		memcpy(ExtraData, call->private_data, AAC_HEADER_LENGTH);
+		//ExtraData[3]       |= (PacketLength >> 11) & 0x3;
+		ExtraData[4]        = (PacketLength >> 3) & 0xff;
+		ExtraData[5]       |= (PacketLength << 5) & 0xe0;
+			
+		unsigned int  HeaderLength = InsertPesHeader(PesHeader, PacketLength, AAC_AUDIO_PES_START_CODE, call->Pts, 0);
+		
+		struct iovec iov[3];
 
-	iov[0].iov_base = PesHeader;
-	iov[0].iov_len = HeaderLength;
-	iov[1].iov_base = ExtraData;
-	iov[1].iov_len = AAC_HEADER_LENGTH;
-	iov[2].iov_base = call->data;
-	iov[2].iov_len = call->len;
+		iov[0].iov_base = PesHeader;
+		iov[0].iov_len = HeaderLength;
+		iov[1].iov_base = ExtraData;
+		iov[1].iov_len = AAC_HEADER_LENGTH;
+		iov[2].iov_base = call->data;
+		iov[2].iov_len = call->len;
 
-	return call->WriteV(call->fd, iov, 3);
-*/
-	// STB can handle only AAC LC profile
-        if (0 == (call->data[2] & 0xC0))
-        {
-            	// change profile AAC Main -> AAC LC (Low Complexity)
-            	aac_printf(1, "change profile AAC Main -> AAC LC (Low Complexity) in the ADTS header");
-            	call->data[2] = (call->data[2] & 0x1F) | 0x40;
-        }
-	
-	unsigned int  HeaderLength = InsertPesHeader(PesHeader, call->len, AAC_AUDIO_PES_START_CODE, call->Pts, 0);
-	
-	struct iovec iov[2];
-		
-	iov[0].iov_base = PesHeader;
-	iov[0].iov_len = HeaderLength;
-	iov[1].iov_base = call->data;
-	iov[1].iov_len = call->len;
-		
-	return call->WriteV(call->fd, iov, 2);
+		return call->WriteV(call->fd, iov, 3);
+	}
 }
 
 /* ***************************** */
