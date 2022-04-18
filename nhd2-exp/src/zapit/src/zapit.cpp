@@ -1917,7 +1917,7 @@ int start_scan(CZapitMessages::commandStartScan StartScan)
 	stopPlayBack();
 	
 	// stop pmt update filter
-    pmt_stop_update_filter(&pmt_update_fd);	
+    	pmt_stop_update_filter(&pmt_update_fd);	
 
 	found_transponders = 0;
 	found_channels = 0;
@@ -3601,6 +3601,9 @@ int startPlayBack(CZapitChannel * thisChannel)
 		//
 		if (avDecoderOpen)
 			closeAVDecoder();
+			
+		//
+		playback->close();
 		
 		playback->Open();
 	
@@ -3612,7 +3615,7 @@ int startPlayBack(CZapitChannel * thisChannel)
 		if (playbackStopForced)
 			return -1;
 			
-		//
+		// 
 		if (!avDecoderOpen)
 			openAVDecoder();
 
