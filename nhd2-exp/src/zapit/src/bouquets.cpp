@@ -490,7 +490,7 @@ void CBouquetManager::makeBouquetfromCurrentservices(const _xmlNodePtr root)
 	_xmlNodePtr provider = root->xmlChildrenNode;
 	
 	// TODO: use locales
-	CZapitBouquet * newBouquet = addBouquet("Neue Sender");
+	CZapitBouquet * newBouquet = addBouquet(_("Neu channel"));
 	newBouquet->bHidden = false;
 	newBouquet->bLocked = false;
 			
@@ -1007,7 +1007,7 @@ void CBouquetManager::makeRemainingChannelsBouquet(void)
 		return;
 
 	// TODO: use locales
-	remainChannels = addBouquet((Bouquets.size() == 0) ? "All Channels" : "Other", false); // UTF-8 encoded
+	remainChannels = addBouquet((Bouquets.size() == 0) ? _("All Channels") : _("Other"), false); // UTF-8 encoded
 
 	for (tallchans::iterator it = allchans.begin(); it != allchans.end(); it++)
 	{
@@ -1060,7 +1060,7 @@ void CBouquetManager::renumServices()
 
 CZapitBouquet * CBouquetManager::addBouquet(const std::string& name, bool ub, bool myfav, bool iswebtv)
 {
-	CZapitBouquet * newBouquet = new CZapitBouquet(myfav ? "Favorites" : name);
+	CZapitBouquet * newBouquet = new CZapitBouquet(myfav ? _("Favorites") : name);
 	newBouquet->bUser = ub;
 	newBouquet->bFav = myfav;
 	newBouquet->bWebTV = iswebtv;

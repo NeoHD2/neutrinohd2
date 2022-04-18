@@ -501,6 +501,7 @@ function categories_menu()
 	m:setTitleHAlign(neutrino.CC_ALIGN_CENTER)
 	m:clearAll()
 	
+	--[[
 	local red = neutrino.button_label_struct()
 	red.button = neutrino.NEUTRINO_ICON_BUTTON_RED
 	red.localename = "Update Channels"
@@ -508,6 +509,7 @@ function categories_menu()
 	m:setFootButtons(red)
 	
 	m:addKey(neutrino.RC_red, null, "update")
+	]]
 	
 	for _id,_name in pairs(catlist) do
 		item = neutrino.ClistBoxItem(conv_utf8(_name))
@@ -531,11 +533,13 @@ function categories_menu()
 		cat_menu(m_selected + 1)
 	end
 	
+	--[[
 	if actionKey == "update" then
 		if get_channels() then
 			os.execute("pzapit -c")
 		end
 	end
+	]]
 	
 	if m:getExitPressed() ~= true then
 		categories_menu()
