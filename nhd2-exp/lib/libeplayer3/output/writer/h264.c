@@ -383,8 +383,7 @@ static int writeData(void* _call)
 	}
 
 #if defined __sh__
-	if ((call->len > 3) && ((call->data[0] == 0x00 && call->data[1] == 0x00 && call->data[2] == 0x00 && call->data[3] == 0x01) ||
-				(call->data[0] == 0xff && call->data[1] == 0xff && call->data[2] == 0xff && call->data[3] == 0xff)))
+	if ((call->len > 3) && ((call->data[0] == 0x00 && call->data[1] == 0x00 && call->data[2] == 0x00 && call->data[3] == 0x01) || (call->data[0] == 0xff && call->data[1] == 0xff && call->data[2] == 0xff && call->data[3] == 0xff)))
 	{
 		unsigned int PacketLength = 0;
 		unsigned int FakeStartCode = (call->Version << 8) | PES_VERSION_FAKE_START_CODE;

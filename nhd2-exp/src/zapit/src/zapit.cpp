@@ -3603,7 +3603,7 @@ int startPlayBack(CZapitChannel * thisChannel)
 			closeAVDecoder();
 			
 		//
-		playback->Close();
+		//playback->Close(); // not needed???
 		
 		playback->Open();
 	

@@ -1688,9 +1688,14 @@ void CChannelList::paint()
 			
 			if (g_settings.channellist_ca)
 			{
-				item->setIcon1(chanlist[i]->isHD() ? NEUTRINO_ICON_HD : chanlist[i]->isUHD()? NEUTRINO_ICON_UHD : "");
-				//item->setIcon2((chanlist[i]->scrambled /*&& chanlist[i]->getServiceType() != ST_WEBTV)?*/ NEUTRINO_ICON_SCRAMBLED /*: ""*/);
-				item->setIcon1(chanlist[i]->scrambled? NEUTRINO_ICON_SCRAMBLED : "");
+				//
+				if (IS_WEBTV(chanlist[i]->getChannelID()))
+					item->setIcon1(NEUTRINO_ICON_WEBTV_SMALL);
+				else
+					item->setIcon1(chanlist[i]->isHD() ? NEUTRINO_ICON_HD : chanlist[i]->isUHD()? NEUTRINO_ICON_UHD : "");
+				
+				//
+				item->setIcon2(chanlist[i]->scrambled? NEUTRINO_ICON_SCRAMBLED : "");
 			}
 			
 			item->setOptionFontColor(COL_INFOBAR_COLORED_EVENTS);
