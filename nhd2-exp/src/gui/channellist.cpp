@@ -498,7 +498,7 @@ int CChannelList::doChannelMenu(void)
 	widget->exec(NULL, "");
 	select = menu->getSelected();
 
-	if(select >= 0 && (!IS_WEBTV(chanlist[selected]->channel_id))) 
+	if(select >= 0 /*&& (!IS_WEBTV(chanlist[selected]->channel_id))*/) 
 	{
 		hide();
 		
@@ -714,7 +714,7 @@ int CChannelList::show(bool zap, bool customMode)
 		{
 			selected = listBox->getSelected();
 			
-			if (!bouquetList->Bouquets[selected]->zapitBouquet->bWebTV)
+			if (!IS_WEBTV(chanlist[selected]->channel_id))
 			{
 				// chan list setup (add/move)
 				old_b_id = bouquetList->getActiveBouquetNumber();
