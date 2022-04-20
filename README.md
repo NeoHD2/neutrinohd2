@@ -73,7 +73,7 @@ $:~ make distclean
 
 ## how to build neutrino-HD2 for sh4/arm/mips boxes ##
 see:
-* https://github.com/mohousch/buildsystem-hd2
+* https://github.com/mohousch/buildsystem
 
 
 
