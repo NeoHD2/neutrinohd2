@@ -202,8 +202,7 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 CChannelList::~CChannelList()
 {
 	chanlist.clear();
-	
-	/*
+/*
 	if (head)
 	{
 		delete head;
@@ -233,13 +232,13 @@ CChannelList::~CChannelList()
 		delete winBottom;
 		winBottom = NULL;
 	}
-	*/
 	
 	if (chWidget)
 	{
 		delete chWidget;
 		chWidget = NULL;
 	}
+*/
 }
 
 void CChannelList::ClearList(void)

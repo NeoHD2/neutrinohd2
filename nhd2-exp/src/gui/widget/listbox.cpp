@@ -3314,6 +3314,8 @@ void ClistBox::paintFoot()
 
 				// buttons
 				int buttonWidth = 0;
+				int iw[fbutton_count];
+				int ih[fbutton_count];
 
 				buttonWidth = (fbutton_width)/fbutton_count;
 	
@@ -3321,22 +3323,22 @@ void ClistBox::paintFoot()
 				{
 					if (!fbutton_labels[i].button.empty())
 					{
-						int iw = 0;
-						int ih = 0;
+						iw[i] = 0;
+						ih[i] = 0;
 
-						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button.c_str(), &iw, &ih);
+						CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button.c_str(), &iw[i], &ih[i]);
 						
-						if(ih >= fheight)
+						if(ih[i] >= fheight)
 						{
-							ih = fheight - 2;
+							ih[i] = fheight - 2;
 						}
 						
 						int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
 		
-						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + (fheight - ih)/2, 0, true, iw, ih);
+						CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + (fheight - ih[i])/2, 0, true, iw[i], ih[i]);
 
 						// FIXME: i18n
-						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, _(fbutton_labels[i].localename.c_str()), COL_MENUFOOT, 0, true); // UTF-8
+						g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, _(fbutton_labels[i].localename.c_str()), COL_MENUFOOT, 0, true); // UTF-8
 					}
 				}
 			}
@@ -3352,6 +3354,8 @@ void ClistBox::paintFoot()
 
 			// buttons
 			int buttonWidth = 0;
+			int iw[fbutton_count];
+			int ih[fbutton_count];
 
 			if (fbutton_count)
 				buttonWidth = (fbutton_width)/fbutton_count;
@@ -3360,21 +3364,21 @@ void ClistBox::paintFoot()
 			{
 				if (!fbutton_labels[i].button.empty())
 				{
-					int iw = 0;
-					int ih = 0;
+					iw[i] = 0;
+					ih[i] = 0;
 
-					CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button.c_str(), &iw, &ih);
+					CFrameBuffer::getInstance()->getIconSize(fbutton_labels[i].button.c_str(), &iw[i], &ih[i]);
 					
-					if(ih >= fheight)
+					if(ih[i] >= fheight)
 					{
-						ih = fheight - 2;
+						ih[i] = fheight - 2;
 					}
 						
 					int f_h = g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->getHeight();
 		
-					CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + (fheight - ih)/2, 0, true, iw, ih);
+					CFrameBuffer::getInstance()->paintIcon(fbutton_labels[i].button, itemBox.iX + BORDER_LEFT + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + (fheight - ih[i])/2, 0, true, iw[i], ih[i]);
 					// FIXME: i18n
-					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw - ICON_OFFSET, _(fbutton_labels[i].localename.c_str()), COL_MENUFOOT, 0, true); // UTF-8
+					g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_SMALL]->RenderString(itemBox.iX + BORDER_LEFT + iw[i] + ICON_OFFSET + i*buttonWidth, itemBox.iY + itemBox.iHeight - cFrameFootInfoHeight - fheight + f_h + (fheight - f_h)/2, buttonWidth - iw[i] - ICON_OFFSET, _(fbutton_labels[i].localename.c_str()), COL_MENUFOOT, 0, true); // UTF-8
 				}
 			}
 		}
