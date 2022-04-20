@@ -695,7 +695,7 @@ void CTimerList::paint()
 {
 	dprintf(DEBUG_NORMAL, "CTimerList::paint\n");
 
-	if (listBox) listBox->clearAll();
+	if (listBox) listBox->clearItems();
 
 	for (unsigned int count = 0; count < timerlist.size(); count++)
 	{
