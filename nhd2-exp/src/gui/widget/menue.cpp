@@ -1364,7 +1364,6 @@ int CMenuWidget::exec(CMenuTarget* parent, const std::string&)
 	int retval = RETURN_REPAINT;
 
 	int pos = 0;
-	//int cnt = 0;
 
 	if (parent)
 		parent->hide();

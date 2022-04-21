@@ -390,7 +390,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 			}
 			
 			// handle directKey
-			items[selected]->onDirectKeyPressed(msg);
+			onDirectKeyPressed(msg);
 		}
 
 		if (!handled) 
@@ -499,10 +499,7 @@ int CWidget::exec(CMenuTarget *parent, const std::string &)
 	// vfd
 	if(!parent)
 	{
-		//if(CNeutrinoApp::getInstance()->getMode() == NeutrinoMessages::mode_webtv)
-		//	CVFD::getInstance()->setMode(CVFD::MODE_WEBTV);
-		//else
-			CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
+		CVFD::getInstance()->setMode(CVFD::MODE_TVRADIO);
 	}
 	
 	return retval;
@@ -753,6 +750,15 @@ void CWidget::onPageDownKeyPressed()
 	if(hasItem() && selected >= 0)
 	{
 		items[selected]->scrollPageDown();
+	}
+}
+
+//
+void CWidget::onDirectKeyPressed(neutrino_msg_t _msg)
+{
+	if(hasItem() && selected >= 0)
+	{
+		items[selected]->directKeyPressed(_msg);
 	}
 }
 

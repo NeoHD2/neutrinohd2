@@ -186,7 +186,7 @@ void CAudioSettings::showMenu()
 	audioSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	audioSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	audioSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	audioSettings->addItem( new CMenuSeparator(LINE) );
 
 	// analog output

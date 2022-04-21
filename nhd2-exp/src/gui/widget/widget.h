@@ -288,6 +288,7 @@ class CWidget : public CMenuTarget
 		virtual void onPageUpKeyPressed();
 		virtual void onPageDownKeyPressed();
 		virtual void onYellowKeyPressed();
+		virtual void onDirectKeyPressed(neutrino_msg_t _msg);
 		
 		//
 		int getWidgetID(){return id;};

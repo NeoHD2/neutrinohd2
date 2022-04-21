@@ -762,7 +762,7 @@ class ClistBox : public CWidgetItem
 
 		int oKKeyPressed(CMenuTarget* _parent, neutrino_msg_t _msg = RC_ok);
 		void homeKeyPressed(){selected = -1;};
-		void onDirectKeyPressed(neutrino_msg_t msg);
+		void directKeyPressed(neutrino_msg_t _msg);
 
 		//
 		std::string getActionKey(void){return actionKey;}; // lua

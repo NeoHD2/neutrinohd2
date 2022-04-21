@@ -38,6 +38,8 @@ const keyval OPTIONS_OFF0_ON1_OPTIONS[OPTIONS_OFF0_ON1_OPTION_COUNT] =
  
 CYTBrowser::CYTBrowser(int mode): configfile ('\t')
 {
+	frameBuffer = CFrameBuffer::getInstance();
+	
 	widget = NULL;
 	moviesMenu = NULL;
 	item = NULL;
@@ -139,7 +141,7 @@ void CYTBrowser::showMenu()
 
 	//
 	widget = new CWidget();
-	moviesMenu = new ClistBox(0, 0, 1280, 720);
+	moviesMenu = new ClistBox(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 	
 	std::string itemTitle;
 

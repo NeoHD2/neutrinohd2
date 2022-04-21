@@ -971,6 +971,7 @@ void CTestMenu::testCWidget()
 		rightWidget->addItem(item);
 	}
 
+	//
 	testWidget->addItem(headers);
 	testWidget->addItem(frameBoxWidget);
 	testWidget->addItem(leftWidget);

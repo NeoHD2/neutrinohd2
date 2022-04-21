@@ -38,6 +38,8 @@ typedef struct
 class CYTBrowser : public CMenuTarget
 {
 	private:
+		CFrameBuffer* frameBuffer;
+		
 		CConfigFile configfile;
 
 		int ytmode;

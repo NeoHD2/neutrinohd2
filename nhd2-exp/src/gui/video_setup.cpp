@@ -394,7 +394,7 @@ void CVideoSettings::showMenu()
 	videoSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	videoSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	videoSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	videoSettings->addItem( new CMenuSeparator(LINE) );
 
 	// video aspect ratio 4:3/16:9

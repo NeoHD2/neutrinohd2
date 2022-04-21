@@ -4103,16 +4103,16 @@ int ClistBox::oKKeyPressed(CMenuTarget* _parent, neutrino_msg_t _msg)
 }
 
 //
-void ClistBox::onDirectKeyPressed(neutrino_msg_t msg)
+void ClistBox::directKeyPressed(neutrino_msg_t _msg)
 {
-	dprintf(DEBUG_INFO, "ClistBox::onDirectKeyPressed: 0x%x\n", msg);
+	dprintf(DEBUG_INFO, "ClistBox::directKeyPressed: 0x%x\n", _msg);
 	
 	// 
 	for (unsigned int i = 0; i < items.size(); i++) 
 	{
 		CMenuItem * titem = items[i];
 			
-		if ((titem->directKey != RC_nokey) && (titem->directKey == msg)) 
+		if ((titem->directKey != RC_nokey) && (titem->directKey == _msg)) 
 		{
 			if (titem->isSelectable()) 
 			{
@@ -4128,11 +4128,9 @@ void ClistBox::onDirectKeyPressed(neutrino_msg_t msg)
 				paintItemInfo(selected);
 				pos = selected;
 				
-				//titem->msg = RC_ok;
-				//actionKey = titem->actionKey;
 				titem->paint(true);
-				//titem->exec(parent);
-				parent->onOKKeyPressed(msg);
+				//
+				parent->onOKKeyPressed(_msg);
 			} 
 			break;
 		}

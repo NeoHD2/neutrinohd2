@@ -679,7 +679,7 @@ const struct button_label AudioPlayerButtons[FOOT_BUTTONS_COUNT] =
 
 void CIceCast::showMenu()
 {
-	ilist = new CMenuWidget(_("ICE Cast"), NEUTRINO_ICON_ICECAST_SMALL, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
+	ilist = new CMenuWidget(_("ICE Cast"), NEUTRINO_ICON_ICECAST_SMALL, frameBuffer->getScreenWidth() - 40, frameBuffer->getScreenHeight() - 40);
 
 	for(unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 	{
@@ -715,7 +715,7 @@ void CIceCast::showMenu()
 	}
 	
 	ilist->setWidgetMode(MODE_LISTBOX);
-	ilist->setWidgetType(WIDGET_TYPE_EXTENDED);
+	//ilist->setWidgetType(WIDGET_TYPE_EXTENDED);
 
 	//ilist->setTimeOut(g_settings.timing[SNeutrinoSettings::TIMING_CHANLIST]);
 	ilist->setSelected(selected);
@@ -723,7 +723,6 @@ void CIceCast::showMenu()
 	ilist->setHeadButtons(&HeadButtons);
 	ilist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 	
-	ilist->enablePaintItemInfo(70);
 	ilist->enablePaintDate();
 
 	ilist->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));

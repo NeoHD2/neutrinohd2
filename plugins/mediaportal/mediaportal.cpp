@@ -29,6 +29,7 @@ extern "C" void plugin_del(void);
 class CMediaPortal : public CMenuTarget
 {
 	private:
+		CFrameBuffer* frameBuffer;
 		CWidget* widget;
 		ClistBox* mediaPortal;
 		CMenuItem* item;
@@ -47,6 +48,8 @@ class CMediaPortal : public CMenuTarget
 CMediaPortal::CMediaPortal()
 {
 	dprintf(DEBUG_NORMAL, "$Id: CMediaPortal, 2016.02.10 mohousch Exp $\n");
+	
+	frameBuffer = CFrameBuffer::getInstance();
 
 	widget = NULL;
 	mediaPortal = NULL;
@@ -170,7 +173,7 @@ void CMediaPortal::showMenu(void)
 	const struct button_label HButtons = { NEUTRINO_ICON_BUTTON_MUTE_SMALL, "" };
 	
 	widget = new CWidget();
-	mediaPortal = new ClistBox(0, 0, 1280, 720);
+	mediaPortal = new ClistBox(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
 	mediaPortal->setWidgetMode(MODE_LISTBOX);
 	mediaPortal->setWidgetType(WIDGET_TYPE_FRAME);

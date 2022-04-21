@@ -93,24 +93,19 @@ static int my_filter(const struct dirent * dent)
 
 CDBoxInfoWidget::CDBoxInfoWidget()
 {
-	dprintf(DEBUG_DEBUG, "CDBoxInfoWidget::CDBoxInfoWidget:\n");
+	dprintf(DEBUG_NORMAL, "CDBoxInfoWidget::CDBoxInfoWidget:\n");
 	
-	Box.iX = g_settings.screen_StartX + 20;
-	Box.iY = g_settings.screen_StartY + 20;
-	Box.iWidth = g_settings.screen_EndX - g_settings.screen_StartX - 40;
-	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 40);
+	frameBuffer = CFrameBuffer::getInstance();
 }
 
-int CDBoxInfoWidget::exec(CMenuTarget * parent, const std::string &)
+int CDBoxInfoWidget::exec(CMenuTarget * parent, const std::string& actionKey)
 {
 	dprintf(DEBUG_NORMAL, "CDBoxInfoWidget::exec:\n");
 
 	if (parent)
 		parent->hide();
 	
-	showInfo();
-
-	hide();	
+	showInfo();	
 
 	return RETURN_REPAINT;
 }
@@ -124,10 +119,18 @@ void CDBoxInfoWidget::showInfo()
 {
 	dprintf(DEBUG_NORMAL, "CDBoxInfoWidget::showInfo:\n");
 
-	dboxInfo = new CWidget(&Box);
+	//
+	CBox Box;
 	
-	m_window = new CWindow(&Box);
-	m_window->setCorner(g_settings.Head_radius, CORNER_ALL);
+	Box.iX = g_settings.screen_StartX + 20;
+	Box.iY = g_settings.screen_StartY + 20;
+	Box.iWidth = g_settings.screen_EndX - g_settings.screen_StartX - 40;
+	Box.iHeight = (g_settings.screen_EndY - g_settings.screen_StartY - 40);
+	
+	CWidget* dboxInfoWidget = NULL;
+	dboxInfoWidget = new CWidget(&Box);
+	dboxInfoWidget->name = "boxinfo";
+	dboxInfoWidget->paintMainFrame(true);
 	
 	int yPos = Box.iY;
 	
@@ -135,6 +138,7 @@ void CDBoxInfoWidget::showInfo()
 	CHeaders* head = new CHeaders(Box.iX, yPos, Box.iWidth, 40, _("Box Info"), NEUTRINO_ICON_INFO);
 	head->enablePaintDate();
 	head->setFormat("%d.%m.%Y %H:%M:%S");
+	dboxInfoWidget->addItem(head);
 
 	int i = 0;
 
@@ -148,7 +152,7 @@ void CDBoxInfoWidget::showInfo()
 	
 	CCIcon* cpuIcon = new CCIcon(Box.iX + 10, yPos, 100, 40);
 	cpuIcon->setIcon(CPU.c_str());
-	m_window->addCCItem(cpuIcon);
+	dboxInfoWidget->addCCItem(cpuIcon);
 	
 	CCLabel* cpuLabel = new CCLabel();
 	cpuLabel->setText(_("CPU:"));
@@ -156,7 +160,7 @@ void CDBoxInfoWidget::showInfo()
 	g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth("CPU:");
 	cpuLabel->setColor(COL_MENUHEAD);
 	cpuLabel->setPosition(Box.iX + 10 + 100 + 10, yPos, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth("CPU:"), 40);
-	m_window->addCCItem(cpuLabel);
+	dboxInfoWidget->addCCItem(cpuLabel);
 	
 	yPos += cpuIcon->iHeight + 10;
 	
@@ -191,7 +195,7 @@ void CDBoxInfoWidget::showInfo()
 				cpuLabel1->setFont(SNeutrinoSettings::FONT_TYPE_MENU);
 				cpuLabel1->setColor(COL_MENUCONTENT);
 				cpuLabel1->setPosition(Box.iX + 10 + 100, yPos, Box.iWidth, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight());
-				m_window->addCCItem(cpuLabel1);
+				dboxInfoWidget->addCCItem(cpuLabel1);
 				
 				yPos += cpuLabel1->getWindowsPos().iHeight;
 				
@@ -207,7 +211,7 @@ void CDBoxInfoWidget::showInfo()
 			cpuLabel2->setFont(SNeutrinoSettings::FONT_TYPE_MENU);
 			cpuLabel2->setColor(COL_MENUCONTENT);
 			cpuLabel2->setPosition(Box.iX + 10 + 100, yPos, Box.iWidth, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight());
-			m_window->addCCItem(cpuLabel2);
+			dboxInfoWidget->addCCItem(cpuLabel2);
 			
 			yPos += cpuLabel2->getWindowsPos().iHeight;
 		}
@@ -220,7 +224,7 @@ void CDBoxInfoWidget::showInfo()
 	// separator
 	CCHline* hLine = new CCHline();
 	hLine->setPosition(Box.iX + 10,  yPos, Box.iWidth - 20, 10);
-	m_window->addCCItem(hLine);
+	dboxInfoWidget->addCCItem(hLine);
 
 	// up time
 	int updays, uphours, upminutes;
@@ -267,7 +271,7 @@ void CDBoxInfoWidget::showInfo()
 	upLabel->setFont(SNeutrinoSettings::FONT_TYPE_MENU);
 	upLabel->setColor(COL_MENUCONTENTINACTIVE);
 	upLabel->setPosition(Box.iX + 10, yPos, Box.iWidth, 35);
-	m_window->addCCItem(upLabel);
+	dboxInfoWidget->addCCItem(upLabel);
 	
 	// mem
 	sprintf(ubuf, "memory total %dKb, free %dKb", (int) info.totalram/1024, (int) info.freeram/1024);
@@ -279,14 +283,14 @@ void CDBoxInfoWidget::showInfo()
 	memLabel->setFont(SNeutrinoSettings::FONT_TYPE_MENU);
 	memLabel->setColor(COL_MENUCONTENTINACTIVE);
 	memLabel->setPosition(Box.iX + 10, yPos, Box.iWidth, 35);
-	m_window->addCCItem(memLabel);
+	dboxInfoWidget->addCCItem(memLabel);
 	
 	// separator
 	yPos += memLabel->getWindowsPos().iHeight + 10;
 	
 	CCHline* hLine2 = new CCHline();
 	hLine2->setPosition(Box.iX + 10,  yPos, Box.iWidth - 20, 10);
-	m_window->addCCItem(hLine2);
+	dboxInfoWidget->addCCItem(hLine2);
     	
     	//hdd devices
     	std::string HDD = g_settings.hints_dir;
@@ -307,14 +311,14 @@ void CDBoxInfoWidget::showInfo()
 		yPos += 10;
 		
 		hddIcon->setPosition(Box.iX + 10, yPos, hddIcon->iWidth, hddIcon->iHeight);
-		m_window->addCCItem(hddIcon);
+		dboxInfoWidget->addCCItem(hddIcon);
 		
 		CCLabel* hddLabel = new CCLabel();
 		hddLabel->setText(_("HDD Devices:"));
 		hddLabel->setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
 		hddLabel->setColor(COL_MENUHEAD);
 		hddLabel->setPosition(Box.iX + 10 + hddIcon->iWidth + 10, yPos, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth("HDD Devices:"), 40);
-		m_window->addCCItem(hddLabel);
+		dboxInfoWidget->addCCItem(hddLabel);
 		
 		yPos += hddIcon->iHeight + 10;
 	}
@@ -394,7 +398,7 @@ void CDBoxInfoWidget::showInfo()
 		hddLabel1->setFont(SNeutrinoSettings::FONT_TYPE_MENU);
 		hddLabel1->setColor(COL_MENUCONTENT);
 		hddLabel1->setPosition(Box.iX + 10 + 100, yPos, Box.iWidth, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight());
-		m_window->addCCItem(hddLabel1);
+		dboxInfoWidget->addCCItem(hddLabel1);
 			
 		yPos += hddLabel1->getWindowsPos().iHeight;
 	}
@@ -413,14 +417,14 @@ void CDBoxInfoWidget::showInfo()
 		yPos += hddIcon->iHeight + 10;
 		
 		tunerIcon->setPosition(Box.iX + 10, yPos, 100, 40);
-		m_window->addCCItem(tunerIcon);
+		dboxInfoWidget->addCCItem(tunerIcon);
 		
 		CCLabel* tunerLabel = new CCLabel();
 		tunerLabel->setText(_("Frontend:"));
 		tunerLabel->setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO1);
 		tunerLabel->setColor(COL_MENUHEAD);
 		tunerLabel->setPosition(Box.iX + 10 + 100 + 10, yPos, g_Font[SNeutrinoSettings::FONT_TYPE_EPG_INFO1]->getRenderWidth("Frontend:"), 40);
-		m_window->addCCItem(tunerLabel);
+		dboxInfoWidget->addCCItem(tunerLabel);
 		
 		yPos += tunerIcon->iHeight + 10;
 	}
@@ -437,22 +441,16 @@ void CDBoxInfoWidget::showInfo()
 		tunerLabel1->setFont(SNeutrinoSettings::FONT_TYPE_MENU);
 		tunerLabel1->setColor(COL_MENUCONTENT);
 		tunerLabel1->setPosition(Box.iX + 10 + 100, yPos, Box.iWidth, g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight());
-		m_window->addCCItem(tunerLabel1);
+		dboxInfoWidget->addCCItem(tunerLabel1);
 		
 		yPos += tunerLabel1->getWindowsPos().iHeight;
 		
 	}
-
-	dboxInfo->addItem(m_window);
-	dboxInfo->addItem(head);
 	
-	dboxInfo->exec(NULL, "");
-
-	delete dboxInfo;
-	dboxInfo = NULL;
+	dboxInfoWidget->exec(NULL, "");
 	
-	delete m_window;
-	m_window = NULL;	
+	delete dboxInfoWidget;
+	dboxInfoWidget = NULL;	
 }
 
 //
@@ -517,7 +515,7 @@ void CInfoMenu::showMenu()
 		infoMenu->integratePlugins(CPlugins::I_TYPE_MAIN);
 	
 		//
-		if (widget == NULL) widget = new CWidget(infoMenu->getWindowsPos().iX, infoMenu->getWindowsPos().iY, infoMenu->getWindowsPos().iWidth, infoMenu->getWindowsPos().iHeight);
+		widget = new CWidget(infoMenu->getWindowsPos().iX, infoMenu->getWindowsPos().iY, infoMenu->getWindowsPos().iWidth, infoMenu->getWindowsPos().iHeight);
 		widget->name = "information";
 		widget->setMenuPosition(MENU_POSITION_CENTER);
 		

@@ -412,8 +412,7 @@ const struct button_label FootButtons[FOOT_BUTTONS_COUNT] =
 void CTSBrowser::showMenu()
 {
 	widget = new CWidget();
-	//mlist = new CMenuWidget("Movie Browser", NEUTRINO_ICON_MOVIE);
-	mlist = new ClistBox(0, 0, 1280, 720);
+	mlist = new ClistBox(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
 	mlist->clearAll();
 
@@ -435,7 +434,7 @@ void CTSBrowser::showMenu()
 	
 	//
 	mlist->enablePaintHead();
-	mlist->setTitle(_("Movie Browser"), NEUTRINO_ICON_MOVIE);
+	mlist->setTitle(_("Movieplayer"), NEUTRINO_ICON_MOVIE);
 	//mlist->setTitleHAlign(CC_ALIGN_CENTER);
 	mlist->enablePaintDate();
 	mlist->setFormat("%A %d.%m.%Y %H:%M:%S");

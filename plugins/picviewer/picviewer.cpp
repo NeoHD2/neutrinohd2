@@ -175,9 +175,7 @@ void CPicViewer::showMenu()
 {
 	widget = new CWidget();
 	
-	//plist = new CMenuWidget(_("Pictureviewer"), NEUTRINO_ICON_PICTURE, w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 )), h_max ( (frameBuffer->getScreenHeight() / 20 * 16), (frameBuffer->getScreenHeight() / 20)));
-	
-	plist = new ClistBox(0, 0, 1280, 720);
+	plist = new ClistBox(frameBuffer->getScreenX(), frameBuffer->getScreenY(), frameBuffer->getScreenWidth(), frameBuffer->getScreenHeight());
 
 	for(unsigned int i = 0; i < (unsigned int)playlist.size(); i++)
 	{

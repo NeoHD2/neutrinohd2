@@ -48,9 +48,7 @@
 class CDBoxInfoWidget : public CMenuTarget
 {
 	private:
-		CBox Box;
-		CWidget* dboxInfo;
-		CWindow* m_window;
+		CFrameBuffer* frameBuffer;
 		
 		//
 		void showInfo();
@@ -58,9 +56,10 @@ class CDBoxInfoWidget : public CMenuTarget
 	public:
 
 		CDBoxInfoWidget();
+		~CDBoxInfoWidget(){};
 
 		void hide();
-		int exec(CMenuTarget* parent, const std::string & actionKey);
+		int exec(CMenuTarget* parent, const std::string& actionKey);
 };
 
 class CInfoMenu : public CMenuTarget

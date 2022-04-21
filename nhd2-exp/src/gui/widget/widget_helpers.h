@@ -679,7 +679,7 @@ class CWidgetItem
 		//
 		virtual int oKKeyPressed(CMenuTarget* _parent, neutrino_msg_t _msg = RC_ok){return 0;};
 		virtual void homeKeyPressed(){};
-		virtual void onDirectKeyPressed(neutrino_msg_t msg){};
+		virtual void directKeyPressed(neutrino_msg_t _msg){};
 		
 		//
 		virtual std::string getActionKey(void){ return actionKey;}; // lua

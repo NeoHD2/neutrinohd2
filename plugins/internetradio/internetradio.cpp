@@ -693,7 +693,6 @@ void CInternetRadio::showMenu()
 	}
 	
 	ilist->setWidgetMode(MODE_LISTBOX);
-	ilist->setWidgetType(WIDGET_TYPE_EXTENDED);
 
 	//ilist->setTimeOut(g_settings.timing[SNeutrinoSettings::TIMING_CHANLIST]);
 	ilist->setSelected(selected);
@@ -701,7 +700,6 @@ void CInternetRadio::showMenu()
 	ilist->setHeadButtons(&HeadButtons);
 	ilist->setFootButtons(AudioPlayerButtons, FOOT_BUTTONS_COUNT);
 	
-	ilist->enablePaintItemInfo(70);
 	ilist->enablePaintDate();
 
 	ilist->addKey(RC_setup, this, CRCInput::getSpecialKeyName(RC_setup));
