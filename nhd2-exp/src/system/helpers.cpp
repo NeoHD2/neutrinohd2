@@ -667,6 +667,28 @@ std::string locale2lang(std::string lang)
 		ret = _("German");
 	else if (lang == "en")
 		ret = _("English");
+	else if (lang == "nl")
+		ret = _("Dutch");
+	else if (lang == "sk")
+		ret = _("Slovak");
+	else if (lang == "bs")
+		ret = _("Bosnian");
+	else if (lang == "cs")
+		ret = _("Czech");
+	else if (lang == "fr")
+		ret = _("French");
+	else if (lang == "it")
+		ret = _("italian");
+	else if (lang == "pl")
+		ret = _("Polish");
+	else if (lang == "pt")
+		ret = _("Portugues");
+	else if (lang == "ru")
+		ret = _("Russian");
+	else if (lang == "sv")
+		ret = _("Svenska");
+	else if (lang == "ar")
+		ret = _("Arabic");
 
 	return ret;
 }

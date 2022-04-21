@@ -121,7 +121,7 @@ void CMoviePlayerSettings::showMenu()
 	moviePlayerSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	moviePlayerSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	moviePlayerSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	moviePlayerSettings->addItem( new CMenuSeparator(LINE) );
 
 	// multiformat Dir

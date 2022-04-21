@@ -215,7 +215,7 @@ int CHDDMenuHandler::hddMenu()
 	hddmenu->addItem(new CMenuSeparator(LINE));
 	
 	// save settings
-	hddmenu->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	hddmenu->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	hddmenu->addItem( new CMenuSeparator(LINE) );
 	
 	// activate settings

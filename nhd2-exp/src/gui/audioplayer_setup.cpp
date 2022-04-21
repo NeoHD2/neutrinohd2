@@ -127,7 +127,7 @@ void CAudioPlayerSettings::showMenu()
 	audioPlayerSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	audioPlayerSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	audioPlayerSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	audioPlayerSettings->addItem( new CMenuSeparator(LINE) );
 
 	// high prio

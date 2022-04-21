@@ -300,7 +300,7 @@ void CNetworkSettings::showMenu()
 	networkSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	networkSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
+	networkSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	networkSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// setup network on start

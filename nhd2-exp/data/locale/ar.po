@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrinohd2 4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-21 22:41+0200\n"
+"POT-Creation-Date: 2022-04-22 01:04+0200\n"
 "PO-Revision-Date: 2022-04-21 22:31+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -144,6 +144,9 @@ msgstr ""
 msgid "Antenna positioning"
 msgstr ""
 
+msgid "Arabic"
+msgstr ""
+
 msgid "Are you sure ?"
 msgstr ""
 
@@ -241,6 +244,9 @@ msgid "Bookmarks"
 msgstr ""
 
 msgid "Border"
+msgstr ""
+
+msgid "Bosnian"
 msgstr ""
 
 msgid "Bouquet"
@@ -455,6 +461,9 @@ msgstr ""
 msgid "Cutting, please wait"
 msgstr ""
 
+msgid "Czech"
+msgstr ""
+
 msgid "DHCP"
 msgstr ""
 
@@ -587,6 +596,9 @@ msgid "Drive Mode"
 msgstr ""
 
 msgid "Drive Mode/auto stop"
+msgstr ""
+
+msgid "Dutch"
 msgstr ""
 
 msgid "EPG"
@@ -797,6 +809,9 @@ msgid ""
 msgstr ""
 
 msgid "Framerate"
+msgstr ""
+
+msgid "French"
 msgstr ""
 
 msgid "Frequency"
@@ -1586,6 +1601,12 @@ msgstr ""
 msgid "Polarization"
 msgstr ""
 
+msgid "Polish"
+msgstr ""
+
+msgid "Portugues"
+msgstr ""
+
 msgid "Position:"
 msgstr ""
 
@@ -1802,6 +1823,9 @@ msgstr ""
 msgid "Row width"
 msgstr ""
 
+msgid "Russian"
+msgstr ""
+
 msgid "SB mode"
 msgstr ""
 
@@ -1857,9 +1881,6 @@ msgid "Saturday"
 msgstr ""
 
 msgid "Save RC configuration"
-msgstr ""
-
-msgid "Save Settings"
 msgstr ""
 
 msgid "Save Timer"
@@ -2122,6 +2143,9 @@ msgstr ""
 msgid "Slideshow display time"
 msgstr ""
 
+msgid "Slovak"
+msgstr ""
+
 msgid "Software update"
 msgstr ""
 
@@ -2231,6 +2255,9 @@ msgid "Subtitles not found"
 msgstr ""
 
 msgid "Sunday"
+msgstr ""
+
+msgid "Svenska"
 msgstr ""
 
 msgid "Swap rotor east/west"
@@ -3015,6 +3042,9 @@ msgid "is unreachable (host or protocol error)"
 msgstr ""
 
 msgid "is unreachable (socket error)"
+msgstr ""
+
+msgid "italian"
 msgstr ""
 
 msgid "jazz"

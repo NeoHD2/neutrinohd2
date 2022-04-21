@@ -284,7 +284,7 @@ void COSDMenuColorSettings::showMenu()
 
 	// save settings
 	OSDmenuColorsSettings->addItem( new CMenuSeparator(LINE) );
-	OSDmenuColorsSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
+	OSDmenuColorsSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 
 	// head
 	CColorChooser* chHeadcolor = new CColorChooser(_("Background"), &g_settings.menu_Head_red, &g_settings.menu_Head_green, &g_settings.menu_Head_blue, &g_settings.menu_Head_alpha, CNeutrinoApp::getInstance()->colorSetupNotifier);
@@ -613,7 +613,7 @@ void CLanguageSettings::showMenu()
 	languageSettings->addItem(new CMenuForwarder(_("back")));
 	languageSettings->addItem(new CMenuSeparator(LINE));
 
-	languageSettings->addItem(new CMenuForwarder(_("Save Settings"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	languageSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	languageSettings->addItem(new CMenuSeparator(LINE));
 	
 	item = new ClistBoxItem(_("English"), true, NULL, this, "en");
@@ -637,8 +637,7 @@ void CLanguageSettings::showMenu()
 		while(n--)
 		{
 			if(namelist[n]->d_type == DT_DIR && !strstr(namelist[n]->d_name, ".") && !strstr(namelist[n]->d_name, ".."))
-			{
-					
+			{	
 				item = new ClistBoxItem(_(locale2lang(namelist[n]->d_name).c_str()), true, NULL, this, namelist[n]->d_name);
 				item->setIconName(namelist[n]->d_name);
 					
@@ -773,7 +772,7 @@ void CFontSettings::showMenu()
 	fontSettings->addItem(new CMenuForwarder(_("back")));
 	fontSettings->addItem(new CMenuSeparator(LINE));
 
-	fontSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
+	fontSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	fontSettings->addItem(new CMenuSeparator(LINE));
 	
 	// font name
@@ -869,7 +868,7 @@ void COSDTimingSettings::showMenu()
 	osdTimingSettings->addItem(new CMenuForwarder(_("back")));
 	osdTimingSettings->addItem(new CMenuSeparator(LINE));
 
-	osdTimingSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	osdTimingSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	osdTimingSettings->addItem(new CMenuSeparator(LINE));
 
 	for (int i = 0; i < TIMING_SETTING_COUNT; i++)
@@ -1065,7 +1064,7 @@ void COSDDiverses::showMenu()
 	osdDiverseSettings->addItem(new CMenuForwarder(_("back")));
 	osdDiverseSettings->addItem(new CMenuSeparator(LINE));
 
-	osdDiverseSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	osdDiverseSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	osdDiverseSettings->addItem(new CMenuSeparator(LINE));
 
 	// progressbar color

@@ -258,7 +258,7 @@ int CThemes::Show()
 	themes->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	themes->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings"));
+	themes->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 
 	themes->addItem(new CMenuForwarder(_("Save current theme"), true , NULL, this, "saveCurrentTheme"));
 	

@@ -300,7 +300,7 @@
 		<WINDOW posx="785" posy="70" width="445" height="580" paintframe="1" color="COL_MENUCONTENTSELECTED_PLUS_0">
 		</WINDOW>
 		
-		<LABEL name="title" posx="795" posy="80" width="425" height="60" text="General settings" halign="1"></LABEL>
+		<LABEL name="title" posx="795" posy="80" width="425" height="60" text="Misc settings" halign="1"></LABEL>
 		
 		<IMAGE name="hint" posx="795" posy="150" width="425" height="275" image="picon_default.png"></IMAGE>
 		

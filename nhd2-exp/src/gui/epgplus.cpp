@@ -937,7 +937,7 @@ int EpgPlus::exec(CChannelList * _channelList, int selectedChannelIndex, CBouque
 			else if (msg == (neutrino_msg_t) RC_red) 
 			{
 				//
-				CWidget* widget = NULL;
+				CWidget* menuWidgetActionsWidget = NULL;
 				ClistBox* menuWidgetActions = NULL;
 				
 				menuWidgetActions = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
@@ -955,10 +955,10 @@ int EpgPlus::exec(CChannelList * _channelList, int selectedChannelIndex, CBouque
 				menuWidgetActions->setFootButtons(&btn);
 					
 				//
-				widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
-				widget->setMenuPosition(MENU_POSITION_CENTER);
-				widget->enableSaveScreen();
-				widget->addItem(menuWidgetActions);
+				menuWidgetActionsWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				menuWidgetActionsWidget->setMenuPosition(MENU_POSITION_CENTER);
+				menuWidgetActionsWidget->enableSaveScreen();
+				menuWidgetActionsWidget->addItem(menuWidgetActions);
 
 				// record
 		  		menuWidgetActions->addItem (new CMenuForwarder(_("Record"), true, NULL, new MenuTargetAddRecordTimer(this), NULL, RC_red, NEUTRINO_ICON_BUTTON_RED), false);
@@ -969,14 +969,14 @@ int EpgPlus::exec(CChannelList * _channelList, int selectedChannelIndex, CBouque
 				// shedulde
 				menuWidgetActions->addItem (new CMenuForwarder (_("Schedule"), true, NULL, new MenuTargetAddReminder(this), NULL, RC_yellow, NEUTRINO_ICON_BUTTON_YELLOW), false);
 
-				widget->exec (NULL, "");
+				menuWidgetActionsWidget->exec (NULL, "");
 
 		  		//this->refreshAll = true;
 	  		} 
 			else if (msg == (neutrino_msg_t) RC_blue) 
 			{
 				//
-				CWidget* widget = NULL;
+				CWidget* menuWidgetOptionsWidget = NULL;
 				ClistBox* menuWidgetOptions = NULL;
 				
 				menuWidgetOptions = new ClistBox(0, 0, MENU_WIDTH, MENU_HEIGHT);
@@ -994,15 +994,15 @@ int EpgPlus::exec(CChannelList * _channelList, int selectedChannelIndex, CBouque
 				menuWidgetOptions->setFootButtons(&btn);
 					
 				//
-				widget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
-				widget->setMenuPosition(MENU_POSITION_CENTER);
-				widget->enableSaveScreen();
-				widget->addItem(menuWidgetOptions);
+				menuWidgetOptionsWidget = new CWidget(0, 0, MENU_WIDTH, MENU_HEIGHT);
+				menuWidgetOptionsWidget->setMenuPosition(MENU_POSITION_CENTER);
+				menuWidgetOptionsWidget->enableSaveScreen();
+				menuWidgetOptionsWidget->addItem(menuWidgetOptions);
 				
 				menuWidgetOptions->addItem(new MenuOptionChooserSwitchSwapMode (this));
 				menuWidgetOptions->addItem(new MenuOptionChooserSwitchViewMode (this));
 
-				widget->exec (NULL, "");
+				menuWidgetOptionsWidget->exec (NULL, "");
 	  		} 
 			else if (CRCInput::isNumeric (msg)) 
 			{	//numeric zap

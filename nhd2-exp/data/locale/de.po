@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-21 22:41+0200\n"
+"POT-Creation-Date: 2022-04-22 01:04+0200\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -147,6 +147,9 @@ msgstr "Analog-Ausgang"
 msgid "Antenna positioning"
 msgstr "Antennenpositionierung"
 
+msgid "Arabic"
+msgstr ""
+
 msgid "Are you sure ?"
 msgstr "Sind Sie sicher ?"
 
@@ -244,6 +247,9 @@ msgid "Bookmarks"
 msgstr "Markierungen"
 
 msgid "Border"
+msgstr ""
+
+msgid "Bosnian"
 msgstr ""
 
 msgid "Bouquet"
@@ -460,6 +466,9 @@ msgstr ""
 msgid "Cutting, please wait"
 msgstr ""
 
+msgid "Czech"
+msgstr ""
+
 msgid "DHCP"
 msgstr ""
 
@@ -594,6 +603,9 @@ msgid "Drive Mode"
 msgstr ""
 
 msgid "Drive Mode/auto stop"
+msgstr ""
+
+msgid "Dutch"
 msgstr ""
 
 msgid "EPG"
@@ -811,6 +823,9 @@ msgstr ""
 msgid "Framerate"
 msgstr ""
 
+msgid "French"
+msgstr ""
+
 msgid "Frequency"
 msgstr ""
 
@@ -839,7 +854,7 @@ msgid "Genre: "
 msgstr ""
 
 msgid "German"
-msgstr "Deutsch"
+msgstr ""
 
 msgid "Goto Motor Position (a)"
 msgstr ""
@@ -1611,6 +1626,13 @@ msgstr ""
 msgid "Polarization"
 msgstr ""
 
+#, fuzzy
+msgid "Polish"
+msgstr "Englisch"
+
+msgid "Portugues"
+msgstr ""
+
 msgid "Position:"
 msgstr ""
 
@@ -1828,6 +1850,9 @@ msgstr ""
 msgid "Row width"
 msgstr ""
 
+msgid "Russian"
+msgstr ""
+
 msgid "SB mode"
 msgstr ""
 
@@ -1885,9 +1910,6 @@ msgstr "Samstag"
 
 msgid "Save RC configuration"
 msgstr ""
-
-msgid "Save Settings"
-msgstr "Einstellungen speichern"
 
 msgid "Save Timer"
 msgstr "Timer speichern"
@@ -2152,6 +2174,9 @@ msgstr ""
 msgid "Slideshow display time"
 msgstr ""
 
+msgid "Slovak"
+msgstr ""
+
 msgid "Software update"
 msgstr "Software Aktualisierung"
 
@@ -2262,6 +2287,9 @@ msgstr ""
 
 msgid "Sunday"
 msgstr "Sonntag"
+
+msgid "Svenska"
+msgstr ""
 
 msgid "Swap rotor east/west"
 msgstr ""
@@ -3047,6 +3075,9 @@ msgid "is unreachable (host or protocol error)"
 msgstr ""
 
 msgid "is unreachable (socket error)"
+msgstr ""
+
+msgid "italian"
 msgstr ""
 
 msgid "jazz"

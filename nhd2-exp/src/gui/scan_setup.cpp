@@ -397,7 +397,7 @@ void CScanSetup::showScanService()
 	scansetup->addItem(new CMenuSeparator(LINE));
 	
 	//save settings
-	scansetup->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings"));
+	scansetup->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	scansetup->addItem(new CMenuSeparator(LINE));
 			
 	// init satNotify
@@ -585,7 +585,7 @@ void CScanSetup::showScanService()
 				tempsat->addItem(new CMenuSeparator(LINE));
 				
 				// save settings
-				tempsat->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings"));
+				tempsat->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 				tempsat->addItem(new CMenuSeparator(LINE));
 
 				// satname
@@ -719,7 +719,7 @@ void CScanSetup::showScanService()
 		motorMenu->addItem(new CMenuForwarder(_("back")));
 
 		// save settings
-		motorMenu->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings"));
+		motorMenu->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 
 		motorMenu->addItem(new CMenuForwarder(_("Motor settings"), true, NULL, satfindMenuWidget, ""));
 
@@ -876,7 +876,7 @@ void CScanSetup::showScanService()
 	manualScan->addItem(new CMenuSeparator(LINE));
 	
 	// save settings
-	manualScan->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings"));
+	manualScan->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	manualScan->addItem(new CMenuSeparator(LINE));
 
 	// sat select
@@ -1034,7 +1034,7 @@ void CScanSetup::showScanService()
 	autoScan->addItem(new CMenuSeparator(LINE));
 	
 	// save settings
-	autoScan->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings"));
+	autoScan->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	autoScan->addItem(new CMenuSeparator(LINE));
 		
 	// sat select
@@ -1099,7 +1099,7 @@ void CScanSetup::showScanService()
 		autoScanAll->addItem(new CMenuSeparator(LINE));
 		
 		// save settings
-		autoScanAll->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings"));
+		autoScanAll->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, this, "save_scansettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 		autoScanAll->addItem(new CMenuSeparator(LINE));
 		
 		// sat

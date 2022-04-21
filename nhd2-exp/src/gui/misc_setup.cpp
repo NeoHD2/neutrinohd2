@@ -245,7 +245,7 @@ void CGeneralSettings::showMenu()
 	miscSettingsGeneral->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	miscSettingsGeneral->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	miscSettingsGeneral->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	miscSettingsGeneral->addItem( new CMenuSeparator(LINE) );
 
 	// rc delay
@@ -656,7 +656,7 @@ void CChannelListSettings::showMenu()
 	miscSettingsChannelList->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	miscSettingsChannelList->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	miscSettingsChannelList->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	miscSettingsChannelList->addItem( new CMenuSeparator(LINE) );
 	
 	// HD list
@@ -831,7 +831,7 @@ void CEPGSettings::showMenu()
 	miscSettingsEPG->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	miscSettingsEPG->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	miscSettingsEPG->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	miscSettingsEPG->addItem( new CMenuSeparator(LINE) );
 
 	// read epg from xml
@@ -1055,7 +1055,7 @@ void CFileBrowserSettings::showMenu()
 	miscSettingsFileBrowser->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	miscSettingsFileBrowser->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	miscSettingsFileBrowser->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	miscSettingsFileBrowser->addItem( new CMenuSeparator(LINE) );
 
 	// UTF 

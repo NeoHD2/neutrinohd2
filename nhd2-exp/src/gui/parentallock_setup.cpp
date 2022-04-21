@@ -133,7 +133,7 @@ void CParentalLockSettings::showMenu()
 	listBox->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	listBox->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	listBox->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	listBox->addItem( new CMenuSeparator(LINE) );
 
 	// prompt

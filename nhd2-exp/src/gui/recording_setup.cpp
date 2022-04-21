@@ -253,7 +253,7 @@ void CRecordingSettings::showMenu()
 	recordingSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	recordingSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	recordingSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	recordingSettings->addItem(new CMenuForwarder(_("Activate changes"), true, NULL, this, "recording"));
 
 	recordingSettings->addItem(new CMenuSeparator(LINE | STRING, _("Timer settings")));

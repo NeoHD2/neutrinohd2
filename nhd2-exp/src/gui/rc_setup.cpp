@@ -181,7 +181,7 @@ void CRemoteControlSettings::showMenu()
 	remoteControlSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	remoteControlSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	remoteControlSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 
 	keySetupNotifier = new CKeySetupNotifier;
 	
@@ -351,7 +351,7 @@ void CKeysBindingSettings::showMenu()
 	bindSettings->addItem( new CMenuSeparator(LINE) );
 	
 	// save settings
-	bindSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings"));
+	bindSettings->addItem(new CMenuForwarder(_("Save settings now"), true, NULL, CNeutrinoApp::getInstance(), "savesettings", RC_red, NEUTRINO_ICON_BUTTON_RED));
 
 	bindSettings->addItem(new CMenuSeparator(LINE | STRING, _("Modechange")));
 	
