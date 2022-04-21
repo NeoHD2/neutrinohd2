@@ -1120,7 +1120,7 @@ void CChannelList::setSelected( int nChannelNr)
 }
 
 // -- Zap to channel with channel_id
-bool CChannelList::zapTo_ChannelID(const t_channel_id channel_id)
+bool CChannelList::zapTo_ChannelID(const t_channel_id channel_id, bool rezap)
 {
 	dprintf(DEBUG_NORMAL, "CChannelList::zapTo_ChannelID %llx\n", channel_id);
 	
@@ -1128,7 +1128,7 @@ bool CChannelList::zapTo_ChannelID(const t_channel_id channel_id)
 	{
 		if (chanlist[i]->channel_id == channel_id) 
 		{
-			zapTo(i);
+			zapTo(i, rezap);
 			return true;
 		}
 	}
@@ -1136,14 +1136,14 @@ bool CChannelList::zapTo_ChannelID(const t_channel_id channel_id)
 	return false;
 }
 
-// forceStoreToLastChannels defaults to false
-void CChannelList::zapTo(int pos, bool /*forceStoreToLastChannels*/)
+// 
+void CChannelList::zapTo(int pos, bool rezap)
 {
 	// show emty channellist error msg
 	if (chanlist.empty()) 
 	{
 		if (FrontendCount >= 1) 
-			MessageBox(_("Error"), _("No channels were found!\nPlease execute a scan\n(MENU-key -> service)"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
+			MessageBox(_("Error"), _("No channels were found!\nPlease execute a scan\n(MENU-key -> System)"), mbrCancel, mbCancel, NEUTRINO_ICON_ERROR);
 		return;
 	}
 
@@ -1156,7 +1156,7 @@ void CChannelList::zapTo(int pos, bool /*forceStoreToLastChannels*/)
 	
 	dprintf(DEBUG_NORMAL, "CChannelList::zapTo me %s tuned %d new %d %s -> %llx\n", name.c_str(), tuned, pos, chan->name.c_str(), chan->channel_id);
 	
-	if ( pos != (int)tuned ) 
+	if ( (pos != (int)tuned) || rezap ) //FIXME: allow after scan to tun
 	{  
 		if ((g_settings.radiotext_enable) && ((CNeutrinoApp::getInstance()->getMode()) == NeutrinoMessages::mode_radio) && (g_Radiotext))
 		{
