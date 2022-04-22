@@ -275,7 +275,7 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 			break;
 			
 		case WIDGET_STREAMINFO:
-			parent = new CStreamInfo2Handler();
+			parent = new CStreamInfo2();
 			break;
 			
 		case WIDGET_SLEEPTIMER:

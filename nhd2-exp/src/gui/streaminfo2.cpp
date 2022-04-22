@@ -109,22 +109,7 @@ CStreamInfo2::~CStreamInfo2 ()
 	videoDecoder->Pig(-1, -1, -1, -1);
 }
 
-int CStreamInfo2::exec()
-{
-	dprintf(DEBUG_NORMAL, "CStreamInfo2::exec\n");
-
-	paint(paint_mode);
-	
-	doSignalStrengthLoop();
-	
-	CFrameBuffer::getInstance()->blit();
-		
-	hide();
-
-	return RETURN_REPAINT;
-}
-
-int CStreamInfo2::exec(CMenuTarget * parent, const std::string &)
+int CStreamInfo2::exec(CMenuTarget * parent, const std::string&)
 {
 	dprintf(DEBUG_NORMAL, "CStreamInfo2::exec\n");
 
@@ -788,19 +773,6 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 
 		yypos = ypos;
 	}
-}
-
-int CStreamInfo2Handler::exec(CMenuTarget* parent, const std::string &/*actionKey*/)
-{
-	int res = RETURN_REPAINT;
-	
-	if (parent)
-		parent->hide();
-	
-	CStreamInfo2 * e = new CStreamInfo2;
-	e->exec();
-	delete e;
-	return res;
 }
 
 // some definition
