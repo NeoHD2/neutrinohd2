@@ -1546,7 +1546,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	uint32_t i;
 	i = 1;
 
-	int tvi = 1, tvii = 1, ri = 1, hi = 0, webtvi = 1;
+	int tvi = 1, ri = 1, hi = 0, webtvi = 1;
 	
 	// hd bouquet
 	CBouquet * hdBouquet;
@@ -1558,8 +1558,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	{
 		if ((it->second.getServiceType() == ST_DIGITAL_TELEVISION_SERVICE)) 
 		{
-			TVchannelList->addChannel(&(it->second), tvii++);
-			tvii++;
+			TVchannelList->addChannel(&(it->second), tvi++);
 
 			if(it->second.isHD()) 
 			{
@@ -1567,6 +1566,9 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 					hdBouquet->channelList->addChannel(&(it->second));
 				hi++;
 			}
+			
+			if (it->second.isWEBTV())
+				webtvi++;
 		}
 		else if (it->second.getServiceType() == ST_DIGITAL_RADIO_SOUND_SERVICE) 
 		{
@@ -1587,7 +1589,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 		
 	//dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d TV (%d is HD) and %d RADIO and %d WEBTV channels\n", tvi - 1, hi, ri - 1, webtvi - 1);
 
-	dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d TV (%d is HD) and %d RADIO and %d WEBTV channels\n", tvii - 1, hi, ri - 1, webtvi - 1);
+	dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d TV (%d is HD) and %d RADIO and %d WEBTV channels\n", tvi - 1, hi, ri - 1, webtvi - 1);
 
 	CBouquet * tmp;
 
