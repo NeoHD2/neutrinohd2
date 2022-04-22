@@ -187,7 +187,7 @@ int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string& actionK
 	if (mode == CZapitClient::MODE_TV) 
 	{
 		for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
-			if (it->second.getServiceType() == ST_DIGITAL_TELEVISION_SERVICE)
+			if ( (it->second.getServiceType() == ST_DIGITAL_TELEVISION_SERVICE) && (!IS_WEBTV(it->second.getChannelID())) )
 				Channels.push_back(&(it->second));
 	}
 	else if (mode == CZapitClient::MODE_RADIO) 

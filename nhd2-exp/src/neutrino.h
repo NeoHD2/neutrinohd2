@@ -208,7 +208,6 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		// channellist
 		CChannelList* TVchannelList;
 		CChannelList* RADIOchannelList;
-		CChannelList* WEBTVchannelList;
 
 		CChannelList* channelList;
 

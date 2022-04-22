@@ -109,17 +109,12 @@ CZapitChannel * CZapitBouquet::getChannelByChannelID(const t_channel_id channel_
 		case ST_DIGITAL_TELEVISION_SERVICE:
 		case ST_NVOD_REFERENCE_SERVICE:
 		case ST_NVOD_TIME_SHIFTED_SERVICE:
-		//case ST_WEBTV:
 			channels = &tvChannels;
 			break;
 				
 		case ST_DIGITAL_RADIO_SOUND_SERVICE:
 			channels = &radioChannels;
 			break;
-
-		//case ST_WEBTV:
-		//	channels = &webtvChannels;
-		//	break;
 	}
 
 	unsigned int i;
@@ -149,17 +144,12 @@ void CZapitBouquet::addService(CZapitChannel *newChannel)
 		case ST_DIGITAL_TELEVISION_SERVICE:
 		case ST_NVOD_REFERENCE_SERVICE:
 		case ST_NVOD_TIME_SHIFTED_SERVICE:
-		//case ST_WEBTV:
 			tvChannels.push_back(newChannel);
 			break;
 			
 		case ST_DIGITAL_RADIO_SOUND_SERVICE:
 			radioChannels.push_back(newChannel);
 			break;
-
-		//case ST_WEBTV:
-		//	webtvChannels.push_back(newChannel);
-		//	break;
 	}
 }
 
@@ -628,8 +618,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 
 						ret = allchans.insert (std::pair <t_channel_id, CZapitChannel> (id, CZapitChannel(title, id, url, description)));
 
-						//ret.first->second.setServiceType(ST_WEBTV);
-
 						CZapitChannel *chan = findChannelByChannelID(id);
 
 						if (chan != NULL) 
@@ -698,8 +686,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 							
 						pair<map<t_channel_id, CZapitChannel>::iterator, bool> ret;
 						ret = allchans.insert(std::pair <t_channel_id, CZapitChannel> (id, CZapitChannel(title, id, url, description)));
-
-						//ret.first->second.setServiceType(ST_WEBTV);
 						
 						CZapitChannel * chan = findChannelByChannelID(id);
 
@@ -827,8 +813,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 							
 						pair<map<t_channel_id, CZapitChannel>::iterator, bool> ret;
 						ret = allchans.insert(std::pair <t_channel_id, CZapitChannel> (id, CZapitChannel(title, id, url, description)));
-
-						//ret.first->second.setServiceType(ST_WEBTV);
 					
 						CZapitChannel * chan = findChannelByChannelID(id);
 
@@ -937,7 +921,6 @@ void CBouquetManager::makeRemainingChannelsBouquet(void)
 
 	int i = 1;  // tv
     	int j = 1;  // radio
-    	int k = 1;  //webtv
 
 	for (vector<CZapitBouquet*>::const_iterator it = Bouquets.begin(); it != Bouquets.end(); it++) 
 	{
@@ -966,18 +949,6 @@ void CBouquetManager::makeRemainingChannelsBouquet(void)
 			if(!(*jt)->pname && !(*it)->bUser) 
 				(*jt)->pname = (char *) (*it)->Name.c_str();
 		}
-
-		// webtvChannels
-		/*
-		for (vector<CZapitChannel*>::iterator jt = (*it)->webtvChannels.begin(); jt != (*it)->webtvChannels.end(); jt++) 
-		{
-			if(!(*jt)->number) 
-				(*jt)->number = k++;
-
-			if(!(*jt)->pname && !(*it)->bUser) 
-				(*jt)->pname = (char *) (*it)->Name.c_str();
-		}
-		*/
 	}
 
 	if(!tomake)
@@ -988,11 +959,8 @@ void CBouquetManager::makeRemainingChannelsBouquet(void)
 
 	for (tallchans::iterator it = allchans.begin(); it != allchans.end(); it++)
 	{
-		//if(it->second.getServiceType() != ST_WEBTV)
-		{
-			if (chans_processed.find(it->first) == chans_processed.end())
-				unusedChannels.push_back(&(it->second));
-		}
+		if (chans_processed.find(it->first) == chans_processed.end())
+			unusedChannels.push_back(&(it->second));
 	}
 
 	//sort(unusedChannels.begin(), unusedChannels.end(), CmpChannelByChName()); //FIXME:

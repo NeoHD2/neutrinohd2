@@ -343,7 +343,6 @@ CNeutrinoApp::CNeutrinoApp()
 	channelList = NULL;
 	TVchannelList = NULL;
 	RADIOchannelList = NULL;
-	WEBTVchannelList = NULL;
 	
 	nextRecordingInfo = NULL;
 	skipShutdownTimer = false;
@@ -1499,19 +1498,6 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	if(RADIOchannelList) 
 		delete RADIOchannelList;
 
-	if(WEBTVchannelList)
-		delete WEBTVchannelList;
-
-/*
-	if(WEBTVbouquetList)
-		delete WEBTVbouquetList;
-
-	if(WEBTVallList) 
-		delete WEBTVallList;
-	if(WEBTVfavList)
-		delete WEBTVfavList;
-*/
-
 	TVchannelList = new CChannelList(_("All Services"));
 	RADIOchannelList = new CChannelList(_("All Services"));
 
@@ -1532,15 +1518,6 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 
 	RADIOfavList = new CBouquetList(_("Favorites"));
 	RADIOfavList->orgChannelList = RADIOchannelList;
-
-	//
-	WEBTVchannelList = new CChannelList(_("All WebTV Services"));
-
-	//WEBTVbouquetList = new CBouquetList("WebTV");
-	//WEBTVbouquetList->orgChannelList = WEBTVchannelList;
-
-	//WEBTVfavList = new CBouquetList(_("WebTV Favorites"));
-	//WEBTVfavList->orgChannelList = WEBTVchannelList;
 
 	//
 	uint32_t i;
@@ -1574,20 +1551,10 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 		{
 			RADIOchannelList->addChannel(&(it->second), ri++);
 		}
-		/*
-		else if(it->second.getServiceType() == ST_WEBTV)
-		{
-			//WEBTVchannelList->addChannel(&(it->second), webtvi++);
-			TVchannelList->addChannel(&(it->second), tvi++);
-			webtvi++;
-		}
-		*/
 	}
 	
 	if(g_settings.make_hd_list)
 		hdBouquet->channelList->SortSat();
-		
-	//dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d TV (%d is HD) and %d RADIO and %d WEBTV channels\n", tvi - 1, hi, ri - 1, webtvi - 1);
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d TV (%d is HD) and %d RADIO and %d WEBTV channels\n", tvi - 1, hi, ri - 1, webtvi - 1);
 
@@ -1599,11 +1566,6 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	*(tmp->channelList) = *TVchannelList;
 	//tmp->channelList->SortAlpha();
 	TVallList->orgChannelList = TVchannelList;
-	
-	////
-	//CBouquet* tmp2;
-	//tmp2 = TVallList->addBouquet(_("All WebTV Services"));
-	//*(tmp2->channelList) = *WEBTVchannelList;
 
 	// radio all list
 	RADIOallList = new CBouquetList(_("All Services"));
@@ -1611,13 +1573,6 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	*(tmp->channelList) = *RADIOchannelList;
 	//tmp->channelList->SortAlpha();
 	RADIOallList->orgChannelList = RADIOchannelList;
-
-	// webtv all list
-	//WEBTVallList = new CBouquetList(_("All WebTV Services"));
-	//tmp = WEBTVallList->addBouquet(_("All WebTV Services"));
-	//*(tmp->channelList) = *WEBTVchannelList;
-	//tmp->channelList->SortAlpha();
-	//WEBTVallList->orgChannelList = WEBTVchannelList;
 
 	// sat
 	int bnum;
@@ -1726,33 +1681,6 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	}
 
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d RADIO bouquets\n", bnum);
-
-	// webtv fav/provider bouquets
-	/*
-	bnum = 0;
-	for (i = 0; i < g_bouquetManager->Bouquets.size(); i++) 
-	{
-		if (g_bouquetManager->Bouquets[i]->bWebTV && !g_bouquetManager->Bouquets[i]->webtvChannels.empty())
-		{
-			CBouquet *ltmp1 = WEBTVfavList->addBouquet(g_bouquetManager->Bouquets[i]);
-			CBouquet *ltmp2 = WEBTVbouquetList->addBouquet(g_bouquetManager->Bouquets[i]);
-
-			ZapitChannelList *channels = &(g_bouquetManager->Bouquets[i]->webtvChannels);
-			ltmp1->channelList->setSize(channels->size());
-			ltmp2->channelList->setSize(channels->size());
-
-			for(int j = 0; j < (int) channels->size(); j++) 
-			{
-				ltmp1->channelList->addChannel((*channels)[j]);
-				ltmp2->channelList->addChannel((*channels)[j]);
-			}
-
-			bnum++;
-		}
-	}
-	*/
-
-	dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d WEBTV bouquets\n", bnum);
 
 	//
 	SetChannelMode( g_settings.channel_mode, mode);

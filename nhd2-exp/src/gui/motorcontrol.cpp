@@ -394,7 +394,14 @@ int CMotorControl::exec(CMenuTarget* parent, const std::string &)
 		
 		//NOTE: think about multi tuner, this zap back to the last shown channel (live_channel_id will not change)
 		if(istheend)
-			g_Zapit->Rezap();
+		{
+			//g_Zapit->Rezap();
+			// zap
+			if (CNeutrinoApp::getInstance()->channelList)
+			{
+				CNeutrinoApp::getInstance()->channelList->zapTo_ChannelID(CNeutrinoApp::getInstance()->channelList->getActiveChannel_ChannelID(), true);
+			}
+		}
 		
 		frameBuffer->blit();	
 	}

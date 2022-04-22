@@ -40,8 +40,8 @@ class CZapitBouquet
 
 		ZapitChannelList radioChannels;
 		ZapitChannelList tvChannels;
-		//ZapitChannelList webtvChannels;
 
+		//
 		inline CZapitBouquet(const std::string name) { Name = name; bHidden = false; bLocked = false; bUser = true; bWebTV = false;}
 
 		void addService(CZapitChannel * newChannel);
@@ -84,8 +84,6 @@ class CBouquetManager
 						return &(Owner->Bouquets[b]->tvChannels);
 					else if (mode == CZapitClient::MODE_RADIO)
 						return &(Owner->Bouquets[b]->radioChannels);
-					//if (mode == CZapitClient::MODE_WEBTV)
-					//	return &(Owner->Bouquets[b]->webtvChannels);
 				};
 			public:
 				ChannelIterator(CBouquetManager *owner, const CZapitClient::channelsMode Mode = CZapitClient::MODE_TV);
@@ -99,7 +97,6 @@ class CBouquetManager
 
 		ChannelIterator tvChannelsBegin() { return ChannelIterator(this, CZapitClient::MODE_TV); };
 		ChannelIterator radioChannelsBegin() { return ChannelIterator(this, CZapitClient::MODE_RADIO); };
-		//ChannelIterator webtvChannelsBegin() { return ChannelIterator(this, CZapitClient::MODE_WEBTV); };
 
 		BouquetList Bouquets;
 

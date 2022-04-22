@@ -3556,14 +3556,6 @@ void sendChannels(int connfd, const CZapitClient::channelsMode mode, const CZapi
 				if (it->second.getServiceType() != ST_DIGITAL_RADIO_SOUND_SERVICE)
 					channels.push_back(&(it->second));
 		}
-		/*
-		else if (((currentMode & WEBTV_MODE) && (mode == CZapitClient::MODE_CURRENT)) || (mode == CZapitClient::MODE_WEBTV))  
-		{
-			for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
-				if (it->second.getServiceType() == ST_WEBTV)
-					channels.push_back(&(it->second));
-		}
-		*/
 
 		sort(channels.begin(), channels.end(), CmpChannelByChName());
 	}
