@@ -1558,7 +1558,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	{
 		if ((it->second.getServiceType() == ST_DIGITAL_TELEVISION_SERVICE)) 
 		{
-			TVchannelList->addChannel(&(it->second), tvi++);
+			TVchannelList->addChannel(&(it->second), tvii++);
 			tvii++;
 
 			if(it->second.isHD()) 
@@ -1572,12 +1572,14 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 		{
 			RADIOchannelList->addChannel(&(it->second), ri++);
 		}
+		/*
 		else if(it->second.getServiceType() == ST_WEBTV)
 		{
 			//WEBTVchannelList->addChannel(&(it->second), webtvi++);
 			TVchannelList->addChannel(&(it->second), tvi++);
 			webtvi++;
 		}
+		*/
 	}
 	
 	if(g_settings.make_hd_list)
@@ -1655,7 +1657,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 			printf("CNeutrinoApp::channelsInit: created %s with %d TV and %d RADIO channels\n", sit->second.name.c_str(), tvi, ri);
 	}
 
-	// tv fav / provider list
+	// tv/webtv fav / provider list
 	bnum = 0;
 	for (i = 0; i < g_bouquetManager->Bouquets.size(); i++) 
 	{
@@ -1679,11 +1681,12 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 		}
 		
 		// webtv
-		if (g_bouquetManager->Bouquets[i]->bWebTV && !g_bouquetManager->Bouquets[i]->webtvChannels.empty())
+		if (g_bouquetManager->Bouquets[i]->bWebTV && !g_bouquetManager->Bouquets[i]->tvChannels.empty())
 		{
 			CBouquet *ltmp = TVfavList->addBouquet(g_bouquetManager->Bouquets[i]);
 
-			ZapitChannelList *channels = &(g_bouquetManager->Bouquets[i]->webtvChannels);
+			ZapitChannelList *channels = &(g_bouquetManager->Bouquets[i]->tvChannels);
+			
 			ltmp->channelList->setSize(channels->size());
 
 			for(int j = 0; j < (int) channels->size(); j++) 
@@ -1698,7 +1701,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 	
 	dprintf(DEBUG_NORMAL, "CNeutrinoApp::channelsInit: got %d TV bouquets\n", bnum);
 
-	// radio fav / privder list
+	// radio fav / provider list
 	bnum = 0;
 	for (i = 0; i < g_bouquetManager->Bouquets.size(); i++) 
 	{	

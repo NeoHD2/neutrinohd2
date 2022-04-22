@@ -40,7 +40,7 @@ class CZapitBouquet
 
 		ZapitChannelList radioChannels;
 		ZapitChannelList tvChannels;
-		ZapitChannelList webtvChannels;
+		//ZapitChannelList webtvChannels;
 
 		inline CZapitBouquet(const std::string name) { Name = name; bHidden = false; bLocked = false; bUser = true; bWebTV = false;}
 

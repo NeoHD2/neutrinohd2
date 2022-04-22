@@ -279,7 +279,7 @@ typedef enum {
 	ST_MULTIFEED				= 0x69,
 	
 	/* 0x80 - 0xFE: user defined*/
-	ST_WEBTV				= 0x80
+	//ST_WEBTV				= 0x80
 	/* 0xFF: reserved for future use*/
 } service_type_t;
 

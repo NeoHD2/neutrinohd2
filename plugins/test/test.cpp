@@ -5671,11 +5671,12 @@ void CTestMenu::testCBouquetlist()
 
 	for (int i = 0; i < g_bouquetManager->Bouquets.size(); i++) 
 	{
-		if (g_bouquetManager->Bouquets[i]->bWebTV && !g_bouquetManager->Bouquets[i]->webtvChannels.empty())
+		if (g_bouquetManager->Bouquets[i]->bWebTV && !g_bouquetManager->Bouquets[i]->tvChannels.empty())
 		{
 			CBouquet *ltmp = webTVBouquetList->addBouquet(g_bouquetManager->Bouquets[i]);
 
-			ZapitChannelList *channels = &(g_bouquetManager->Bouquets[i]->webtvChannels);
+			ZapitChannelList *channels = &(g_bouquetManager->Bouquets[i]->tvChannels);
+	
 			ltmp->channelList->setSize(channels->size());
 
 			for(int j = 0; j < (int) channels->size(); j++) 
@@ -5693,14 +5694,14 @@ void CTestMenu::testSkinWidget()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testSkinWidget\n");
 	
-	//CNeutrinoApp::getInstance()->execSkin(WIDGET_PLUGIN);
+	CNeutrinoApp::getInstance()->execSkinWidget("mainmenu");
 }
 
 void CTestMenu::testSkinSetup()
 {
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testSkinSetup\n");
 	
-	//CNeutrinoApp::getInstance()->execSkin(WIDGET_MAX);
+	CNeutrinoApp::getInstance()->execSkinWidget("videosetup");
 }
 
 // exec

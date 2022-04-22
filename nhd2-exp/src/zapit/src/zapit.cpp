@@ -3479,13 +3479,6 @@ void sendBouquets(int connfd, const bool emptyBouquetsToo, CZapitClient::channel
 
         for (uint32_t i = 0; i < g_bouquetManager->Bouquets.size(); i++) 
 	{	
-		#if 0
-               if (emptyBouquetsToo || (!g_bouquetManager->Bouquets[i]->bHidden && g_bouquetManager->Bouquets[i]->bUser)
-                    || ((!g_bouquetManager->Bouquets[i]->bHidden)
-                     && (((curMode & RADIO_MODE) && !g_bouquetManager->Bouquets[i]->radioChannels.empty()) ||
-                      ((curMode & TV_MODE) && !g_bouquetManager->Bouquets[i]->tvChannels.empty()) || ((curMode & WEBTV_MODE) && !g_bouquetManager->Bouquets[i]->webtvChannels.empty())))
-                   )
-                  #endif
                 if (emptyBouquetsToo || (!g_bouquetManager->Bouquets[i]->bHidden && g_bouquetManager->Bouquets[i]->bUser)
                     || ((!g_bouquetManager->Bouquets[i]->bHidden)
                      && (((curMode & RADIO_MODE) && !g_bouquetManager->Bouquets[i]->radioChannels.empty())
@@ -3531,8 +3524,6 @@ void sendBouquetChannels(int connfd, const unsigned int bouquet, const CZapitCli
 		internalSendChannels(connfd, &(g_bouquetManager->Bouquets[bouquet]->radioChannels), g_bouquetManager->radioChannelsBegin().getNrofFirstChannelofBouquet(bouquet), nonames);
 	else if (((currentMode & TV_MODE) && (mode == CZapitClient::MODE_CURRENT)) || (mode == CZapitClient::MODE_TV))
 		internalSendChannels(connfd, &(g_bouquetManager->Bouquets[bouquet]->tvChannels), g_bouquetManager->tvChannelsBegin().getNrofFirstChannelofBouquet(bouquet), nonames);
-	//else if (((currentMode & WEBTV_MODE) && (mode == CZapitClient::MODE_CURRENT)) || (mode == CZapitClient::MODE_WEBTV))
-		//internalSendChannels(connfd, &(g_bouquetManager->Bouquets[bouquet]->webtvChannels), g_bouquetManager->webtvChannelsBegin().getNrofFirstChannelofBouquet(bouquet), nonames);
 }
 
 void sendChannels(int connfd, const CZapitClient::channelsMode mode, const CZapitClient::channelsOrder order)
@@ -3547,8 +3538,6 @@ void sendChannels(int connfd, const CZapitClient::channelsMode mode, const CZapi
 			cit = g_bouquetManager->radioChannelsBegin();
 		else if( (currentMode & TV_MODE) && ((mode == CZapitClient::MODE_CURRENT) || (mode == CZapitClient::MODE_TV)))
 			cit = g_bouquetManager->tvChannelsBegin();
-		//else if( (currentMode & WEBTV_MODE) && ((mode == CZapitClient::MODE_CURRENT) || (mode==CZapitClient::MODE_WEBTV)))
-			//cit = g_bouquetManager->webtvChannelsBegin();
 
 		for (; !(cit.EndOfChannels()); cit++)
 			channels.push_back(*cit);
@@ -4065,8 +4054,6 @@ unsigned zapTo(const unsigned int bouquet, const unsigned int channel)
 		channels = &(g_bouquetManager->Bouquets[bouquet]->radioChannels);
 	else if (currentMode & TV_MODE)
 		channels = &(g_bouquetManager->Bouquets[bouquet]->tvChannels);
-	//else if (currentMode & WEBTV_MODE)
-	//	channels = &(g_bouquetManager->Bouquets[bouquet]->webtvChannels);
 
 	if (channel >= channels->size()) 
 	{
@@ -4124,16 +4111,14 @@ unsigned int zapTo_ChannelID(t_channel_id channel_id, bool isSubService)
 
 unsigned zapTo(const unsigned int channel)
 {
+	//FIXME:
 	CBouquetManager::ChannelIterator cit = (g_bouquetManager->tvChannelsBegin()).FindChannelNr(channel);
 
 	if (currentMode & RADIO_MODE)
 		cit = (g_bouquetManager->radioChannelsBegin()).FindChannelNr(channel);
 	else if (currentMode & TV_MODE)
 		cit = (g_bouquetManager->tvChannelsBegin()).FindChannelNr(channel);
-	//else if (currentMode & WEBTV_MODE)
-	//	cit = (g_bouquetManager->webtvChannelsBegin()).FindChannelNr(channel);
-
-	//CBouquetManager::ChannelIterator cit = ((currentMode & RADIO_MODE) ? g_bouquetManager->radioChannelsBegin() : g_bouquetManager->tvChannelsBegin()).FindChannelNr(channel);
+	
 	if (!(cit.EndOfChannels()))
 		return zapTo_ChannelID((*cit)->getChannelID(), false);
 	else

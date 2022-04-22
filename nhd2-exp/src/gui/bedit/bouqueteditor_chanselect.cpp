@@ -181,8 +181,6 @@ int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string& actionK
 		bouquetChannels = &(g_bouquetManager->Bouquets[bouquet]->tvChannels);
 	else if (mode == CZapitClient::MODE_RADIO)
 		bouquetChannels = &(g_bouquetManager->Bouquets[bouquet]->radioChannels);
-	//else if (mode == CZapitClient::MODE_WEBTV)
-	//	bouquetChannels = &(g_bouquetManager->Bouquets[bouquet]->webtvChannels);
 
 	Channels.clear();
 	
@@ -198,14 +196,8 @@ int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string& actionK
 			if (it->second.getServiceType() == ST_DIGITAL_RADIO_SOUND_SERVICE)
 				Channels.push_back(&(it->second));
 	}
-	/* 
-	else if (mode == CZapitClient::MODE_WEBTV) 
-	{
-		for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
-			if (it->second.getServiceType() == ST_WEBTV)
-				Channels.push_back(&(it->second));
-	}
-*/
+
+	//
 	sort(Channels.begin(), Channels.end(), CmpChannelByChName());
 
 	neutrino_msg_t      msg;
