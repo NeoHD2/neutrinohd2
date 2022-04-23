@@ -397,15 +397,12 @@ void CStreamInfo2::paint_signal_fe_box(int _x, int _y, int w, int h)
 		signal.old_sig = 1;
 		signal.old_snr = 1;
 		signal.old_ber = 1;
-
-		//feSignal s = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		//paint_signal_fe(rate, signal);
 	}
 }
 
 void CStreamInfo2::paint_signal_fe(struct bitrate br, struct feSignal s)
 {
-	if(!live_fe)
+	if(!live_fe || (!IS_WEBTV(live_channel_id)))
 		return;
 	
 	int   x_now = sigBox_pos;
@@ -422,14 +419,18 @@ void CStreamInfo2::paint_signal_fe(struct bitrate br, struct feSignal s)
 	SignalRenderStr(value,     sig_text_rate_x, yt - sheight);
 	SignalRenderStr(br.max_short_average/ 1000ULL, sig_text_rate_x, yt - sheight - sheight);
 	SignalRenderStr(br.min_short_average/ 1000ULL, sig_text_rate_x, yt);
-	if ( g_RemoteControl->current_PIDs.PIDs.vpid > 0 ){
+	
+	if ( g_RemoteControl->current_PIDs.PIDs.vpid > 0 )
+	{
 		yd = y_signal_fe (value, 15000, sigBox_h);// Video + Audio
 	} 
 	else 
 	{
 		yd = y_signal_fe (value, 512, sigBox_h); // Audio only
 	}
-	if ((old_x == 0 && old_y == 0) || sigBox_pos == 1) {
+	
+	if ((old_x == 0 && old_y == 0) || sigBox_pos == 1) 
+	{
 		old_x = sigBox_x+x_now;
 		old_y = sigBox_y+sigBox_h-yd;
 	} 
@@ -465,6 +466,7 @@ void CStreamInfo2::paint_signal_fe(struct bitrate br, struct feSignal s)
 		SignalRenderStr(s.max_snr, sig_text_snr_x, yt - sheight - sheight);
 		SignalRenderStr(s.min_snr, sig_text_snr_x, yt);
 	}
+	
 	yd = y_signal_fe (s.snr, 65000, sigBox_h);
 	frameBuffer->paintPixel(sigBox_x+x_now, sigBox_y+sigBox_h-yd, COL_BLUE_PLUS_0); //blue
 }
@@ -523,7 +525,7 @@ void CStreamInfo2::paint(int /*mode*/)
 		// Info Output
 		paint_techinfo(xpos, ypos);
 
-		paint_signal_fe_box (width - width/3 - 10, (y + 10 + height/3 + hheight), width/3, height/3 + hheight);
+		paint_signal_fe_box(width - width/3 - 10, (y + 10 + height/3 + hheight), width/3, height/3 + hheight);
 	} 
 	else 
 	{
@@ -532,7 +534,7 @@ void CStreamInfo2::paint(int /*mode*/)
 		frameBuffer->paintBoxRel (0, 0, max_width, max_height, COL_MENUCONTENTDARK_PLUS_0);
 
 		// -- paint large signal graph
-		paint_signal_fe_box (x, y, width, height-100);
+		paint_signal_fe_box(x, y, width, height-100);
 	}
 	
 }
@@ -654,14 +656,17 @@ void CStreamInfo2::paint_techinfo(int xpos, int ypos)
 	t_satellite_position satellitePosition = CNeutrinoApp::getInstance ()->channelList->getActiveSatellitePosition ();
 	sat_iterator_t sit = satellitePositions.find(satellitePosition);
 
-	if(sit != satellitePositions.end()) 
-	{
-		sprintf ((char *) buf, "%s", sit->second.name.c_str());
-		g_Font[font_info]->RenderString (xpos + spaceoffset, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true);	// UTF-8
-	}
-	else if(IS_WEBTV(live_channel_id))
+	if(IS_WEBTV(live_channel_id))
 	{
 		g_Font[font_info]->RenderString (xpos + spaceoffset, ypos, width*2/3 - 10, "WebTV", COL_MENUCONTENTDARK, 0, true);	// UTF-8
+	}
+	else
+	{
+		if(sit != satellitePositions.end()) 
+		{
+			sprintf ((char *) buf, "%s", sit->second.name.c_str());
+			g_Font[font_info]->RenderString (xpos + spaceoffset, ypos, width*2/3 - 10, buf, COL_MENUCONTENTDARK, 0, true);	// UTF-8
+		}
 	}
 
 	// channel
@@ -811,11 +816,11 @@ int CStreamInfo2::ts_setup()
 		ts_dmx = new cDemux();
 		
 		// open demux
-	#if defined (PLATFORM_COOLSTREAM)
+#if defined (PLATFORM_COOLSTREAM)
 		ts_dmx->Open(DMX_TP_CHANNEL);
-	#else	
+#else	
 		ts_dmx->Open( DMX_TP_CHANNEL, 3*3008*62, live_fe );
-	#endif	
+#endif	
 		
 		if(vpid > 0) 
 		{
