@@ -756,6 +756,8 @@ void CWidget::onPageDownKeyPressed()
 //
 void CWidget::onDirectKeyPressed(neutrino_msg_t _msg)
 {
+	dprintf(DEBUG_DEBUG, "CWidget::onDirectKeyPressed\n");
+	
 	if(hasItem() && selected >= 0)
 	{
 		items[selected]->directKeyPressed(_msg);
@@ -765,6 +767,8 @@ void CWidget::onDirectKeyPressed(neutrino_msg_t _msg)
 //
 CWidgetItem* CWidget::getWidgetItem(const int pos, const int type)
 {
+	dprintf(DEBUG_INFO, "CWidget::getWidgetItem: (%d) (%d)\n", pos, type);
+	
 	CWidgetItem* ret = NULL;
 	
 	for (unsigned int count = 0; count < (unsigned int)items.size(); count++) 

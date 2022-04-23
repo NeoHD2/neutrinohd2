@@ -128,7 +128,7 @@ int CStreamInfo2::exec(CMenuTarget * parent, const std::string&)
 }
 
 int CStreamInfo2::doSignalStrengthLoop()
-{
+{	
 #define RED_BAR 40
 #define YELLOW_BAR 70
 #define GREEN_BAR 100
@@ -232,7 +232,7 @@ int CStreamInfo2::doSignalStrengthLoop()
 			}
 			
 			if(snrscale && sigscale)
-				showSNR ();
+				showSNR();
 		}
 		rate.short_average = abit_s;
 		if (signal.max_ber < signal.ber) 
@@ -272,7 +272,8 @@ int CStreamInfo2::doSignalStrengthLoop()
 
 		// switch paint mode
 		//FIXME picture info
-		if (msg == RC_red || msg == RC_blue || msg == RC_green || msg == RC_yellow) {
+		if (msg == RC_red || msg == RC_blue || msg == RC_green || msg == RC_yellow) 
+		{
 			hide ();
 			if(sigscale)
 				sigscale->reset();
@@ -309,7 +310,7 @@ int CStreamInfo2::doSignalStrengthLoop()
 		snrscale = NULL;
 	}
 
-	ts_close ();
+	ts_close();
 
 	return msg;
 }
@@ -793,102 +794,111 @@ uint64_t b_total;
 
 int CStreamInfo2::ts_setup()
 {
-	unsigned short vpid, apid = 0;
-
-	// vpid
-	vpid = g_RemoteControl->current_PIDs.PIDs.vpid;
-	
-	// apids
-	if(g_RemoteControl->current_PIDs.APIDs.size() > 0)
-		apid = g_RemoteControl->current_PIDs.APIDs[g_RemoteControl->current_PIDs.PIDs.selected_apid].pid;
-
-	if(vpid == 0 && apid == 0)
-		return -1;
-
-	ts_dmx = new cDemux();
-	
-	// open demux
-#if defined (PLATFORM_COOLSTREAM)
-	ts_dmx->Open(DMX_TP_CHANNEL);
-#else	
-	ts_dmx->Open( DMX_TP_CHANNEL, 3*3008*62, live_fe );
-#endif	
-	
-	if(vpid > 0) 
+	if(!IS_WEBTV(live_channel_id))
 	{
-		ts_dmx->pesFilter(vpid);
-		if(apid > 0)
-			ts_dmx->addPid(apid);
-	} 
-	else
-		ts_dmx->pesFilter(apid);
-	
-	// start filter
-	ts_dmx->Start();
+		unsigned short vpid, apid = 0;
 
-	gettimeofday (&first_tv, NULL);
-	last_tv.tv_sec = first_tv.tv_sec;
-	last_tv.tv_usec = first_tv.tv_usec;
-	b_total = 0;
+		// vpid
+		vpid = g_RemoteControl->current_PIDs.PIDs.vpid;
+		
+		// apids
+		if(g_RemoteControl->current_PIDs.APIDs.size() > 0)
+			apid = g_RemoteControl->current_PIDs.APIDs[g_RemoteControl->current_PIDs.PIDs.selected_apid].pid;
+
+		if(vpid == 0 && apid == 0)
+			return -1;
+
+		ts_dmx = new cDemux();
+		
+		// open demux
+	#if defined (PLATFORM_COOLSTREAM)
+		ts_dmx->Open(DMX_TP_CHANNEL);
+	#else	
+		ts_dmx->Open( DMX_TP_CHANNEL, 3*3008*62, live_fe );
+	#endif	
+		
+		if(vpid > 0) 
+		{
+			ts_dmx->pesFilter(vpid);
+			if(apid > 0)
+				ts_dmx->addPid(apid);
+		} 
+		else
+			ts_dmx->pesFilter(apid);
+		
+		// start filter
+		ts_dmx->Start();
+
+		gettimeofday (&first_tv, NULL);
+		last_tv.tv_sec = first_tv.tv_sec;
+		last_tv.tv_usec = first_tv.tv_usec;
+		b_total = 0;
+	}
 	
 	return 0;
 }
 
 int CStreamInfo2::update_rate()
 {
-	unsigned char buf[TS_BUF_SIZE];
-	long b;
-	
 	int ret = 0;
-	int b_len, b_start;
-	int timeout = 100;
-
-	if(!ts_dmx)
-		return 0;
-
-	b_len = 0;
-	b_start = 0;
-
-	b_len = ts_dmx->Read(buf, sizeof (buf), timeout);
-
-	b = b_len;
-	if (b <= 0)
-		return 0;
-
-	gettimeofday (&tv, NULL);
-
-	b_total += b;
-
-	long d_tim_ms;
-
-	d_tim_ms = delta_time_ms (&tv, &last_tv);
-	if (d_tim_ms <= 0)
-		d_tim_ms = 1;			//  ignore usecs 
-
-	bit_s = (((uint64_t) b * 8000ULL) + ((uint64_t) d_tim_ms / 2ULL))
-		/ (uint64_t) d_tim_ms;
-
-	d_tim_ms = delta_time_ms (&tv, &first_tv);
-	if (d_tim_ms <= 0)
-		d_tim_ms = 1;			//  ignore usecs 
-
-	abit_s = ((b_total * 8000ULL) + ((uint64_t) d_tim_ms / 2ULL))
-		/ (uint64_t) d_tim_ms;
-
-	last_tv.tv_sec = tv.tv_sec;
-	last_tv.tv_usec = tv.tv_usec;
-	ret = 1;
 	
+	if(!IS_WEBTV(live_channel_id))
+	{
+		unsigned char buf[TS_BUF_SIZE];
+		long b;
+		
+		int b_len, b_start;
+		int timeout = 100;
+
+		if(!ts_dmx)
+			return 0;
+
+		b_len = 0;
+		b_start = 0;
+
+		b_len = ts_dmx->Read(buf, sizeof (buf), timeout);
+
+		b = b_len;
+		if (b <= 0)
+			return 0;
+
+		gettimeofday (&tv, NULL);
+
+		b_total += b;
+
+		long d_tim_ms;
+
+		d_tim_ms = delta_time_ms (&tv, &last_tv);
+		if (d_tim_ms <= 0)
+			d_tim_ms = 1;			//  ignore usecs 
+
+		bit_s = (((uint64_t) b * 8000ULL) + ((uint64_t) d_tim_ms / 2ULL))
+			/ (uint64_t) d_tim_ms;
+
+		d_tim_ms = delta_time_ms (&tv, &first_tv);
+		if (d_tim_ms <= 0)
+			d_tim_ms = 1;			//  ignore usecs 
+
+		abit_s = ((b_total * 8000ULL) + ((uint64_t) d_tim_ms / 2ULL))
+			/ (uint64_t) d_tim_ms;
+
+		last_tv.tv_sec = tv.tv_sec;
+		last_tv.tv_usec = tv.tv_usec;
+		ret = 1;
+	}
 	
 	return ret;
 }
 
 int CStreamInfo2::ts_close()
 {
-	if(ts_dmx)
-		delete ts_dmx;
-	
-	ts_dmx = NULL;
+	if(!IS_WEBTV(live_channel_id))
+	{
+		if(ts_dmx)
+			delete ts_dmx;
+		
+		ts_dmx = NULL;
+	}
 	
 	return 0;
 }

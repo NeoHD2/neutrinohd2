@@ -118,7 +118,7 @@ static unsigned int breakBufferFillSize = 0;
 
 static int prepareClipPlay(int uNoOfChannels, int uSampleRate, int uBitsPerSample, int bLittleEndian)
 {
-	printf("rate: %d ch: %d bits: %d (%d bps)\n",
+	pcm_printf(10, "rate: %d ch: %d bits: %d (%d bps)\n",
 		uSampleRate/*Format->dwSamplesPerSec*/,
 		uNoOfChannels/*Format->wChannels*/,
 		uBitsPerSample/*Format->wBitsPerSample*/,
@@ -225,7 +225,7 @@ static int writeData(void* _call)
 
 	unsigned char * buffer = call->data;
 	int size = call->len;
-	//printf("PCM %d size SubFrameLen=%d\n", size, SubFrameLen);
+	//pcm_printf(10, "PCM %d size SubFrameLen=%d\n", size, SubFrameLen);
 
 	unsigned int qty;
 	unsigned int n;
@@ -314,6 +314,7 @@ static int writeData(void* _call)
 		//printf("PCM %d bytes injected\n", injectBufferSize);
 		//Hexdump(injectBuffer, 126);
 	}
+	
 	free(injectBuffer);
 
 	return size;

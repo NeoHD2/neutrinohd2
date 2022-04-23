@@ -72,7 +72,10 @@ static const char* const colorchooser_names[4] =
 
 CColorChooser::CColorChooser(const char * const Name, unsigned char *R, unsigned char *G, unsigned char *B, unsigned char* Alpha, CChangeObserver* Observer) // UTF-8
 {
+	dprintf(DEBUG_NORMAL, "CColorChooser::CColorChooser:\n");
+	
 	observer = Observer;
+	notifier = NULL;
 
 	name = Name? Name : "";
 	
@@ -104,12 +107,25 @@ CColorChooser::CColorChooser(const char * const Name, unsigned char *R, unsigned
 	cFrameBoxColorPreview.iY = cFrameBox.iY + cFrameBoxTitle.iHeight + cFrameBoxItem.iHeight/2;
 
 	//
-	m_cBoxWindow.setPosition(&cFrameBox);
-	//m_cBoxWindow.enableSaveScreen();
+	//m_cBoxWindow.setPosition(&cFrameBox);
+	m_cBoxWindow = new CWindow(&cFrameBox);
+}
+
+CColorChooser::~CColorChooser()
+{
+	dprintf(DEBUG_NORMAL, "CColorChooser::del:\n");
+	
+	if (m_cBoxWindow)
+	{
+		delete m_cBoxWindow;
+		m_cBoxWindow = NULL;
+	}
 }
 
 void CColorChooser::setColor()
 {
+	dprintf(DEBUG_NORMAL, "CColorChooser::setColor:\n");
+	
 	int color = convertSetupColor2RGB(*(value[VALUE_R]), *(value[VALUE_G]), *(value[VALUE_B]));
 	int tAlpha = (value[VALUE_ALPHA]) ? (convertSetupAlpha2Alpha(*(value[VALUE_ALPHA]))) : 0;
 
@@ -123,6 +139,8 @@ void CColorChooser::setColor()
 
 int CColorChooser::exec(CMenuTarget* parent, const std::string&)
 {
+	dprintf(DEBUG_NORMAL, "CColorChooser::exec:\n");
+	
 	neutrino_msg_t      msg;
 	neutrino_msg_data_t data;
 
@@ -135,6 +153,9 @@ int CColorChooser::exec(CMenuTarget* parent, const std::string&)
 	unsigned char g_alt= *value[VALUE_G];
 	unsigned char b_alt= *value[VALUE_B];
 	unsigned char a_alt = (value[VALUE_ALPHA]) ? (*(value[VALUE_ALPHA])) : 0;
+	
+	if(!value[VALUE_ALPHA]) 
+		a_alt = 0xFF;
 
 	paint();
 	setColor();
@@ -254,24 +275,32 @@ int CColorChooser::exec(CMenuTarget* parent, const std::string&)
 
 	hide();
 
-	if(observer)
-		observer->changeNotify(name, NULL);
+	//if(observer)
+	//	observer->changeNotify(name, NULL);
+	notifier = new CColorSetupNotifier();
+	notifier->changeNotify("", NULL);
+	delete notifier;
+	notifier = NULL;
 
 	return res;
 }
 
 void CColorChooser::hide()
 {
-	m_cBoxWindow.hide();
+	dprintf(DEBUG_NORMAL, "CColorChooser::hide:\n");
+	
+	m_cBoxWindow->hide();
 	frameBuffer->blit();
 }
 
 void CColorChooser::paint()
 {
+	dprintf(DEBUG_NORMAL, "CColorChooser::paint:\n");
+	
 	// box
-	m_cBoxWindow.setColor(COL_MENUCONTENT_PLUS_0);
-	m_cBoxWindow.setCorner(RADIUS_MID, CORNER_ALL);
-	m_cBoxWindow.paint();
+	m_cBoxWindow->setColor(COL_MENUCONTENT_PLUS_0);
+	m_cBoxWindow->setCorner(RADIUS_MID, CORNER_ALL);
+	m_cBoxWindow->paint();
 
 	// Head
 	cFrameBoxTitle.iX = cFrameBox.iX;
@@ -301,6 +330,8 @@ void CColorChooser::paint()
 
 void CColorChooser::paintSlider(int _x, int _y, unsigned char *spos, const char* const text, const char * const iconname, const bool selected)
 {
+	dprintf(DEBUG_NORMAL, "CColorChooser::paintSlider:\n");
+	
 	if (!spos)
 		return;
 

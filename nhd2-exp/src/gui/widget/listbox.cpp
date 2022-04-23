@@ -4105,7 +4105,7 @@ int ClistBox::oKKeyPressed(CMenuTarget* _parent, neutrino_msg_t _msg)
 //
 void ClistBox::directKeyPressed(neutrino_msg_t _msg)
 {
-	dprintf(DEBUG_INFO, "ClistBox::directKeyPressed: 0x%x\n", _msg);
+	dprintf(DEBUG_DEBUG, "ClistBox::directKeyPressed: 0x%x\n", _msg);
 	
 	// 
 	for (unsigned int i = 0; i < items.size(); i++) 

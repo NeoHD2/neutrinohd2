@@ -611,8 +611,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 
 					if(!url.empty())
 					{
-						if(id == 0)
-							id = create_channel_id64(0, 0, 0, 0, 0, url.c_str());
+						if(id == 0) id = create_channel_id64(0, 0, 0, 0, 0, url.c_str());
 					
 						pair<map<t_channel_id, CZapitChannel>::iterator, bool> ret;
 
@@ -678,11 +677,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						logo = xmlGetAttribute(l1, (const char*)"logo");
 						epgmap = xmlGetAttribute(l1, (const char*)"epgmap");
 
-						//if (epgid)
-						//	id = strtoull(epgid, NULL, 16);
-
-						if(id == 0)
-							id = create_channel_id64(0, 0, 0, 0, 0, url);
+						if(id == 0) id = create_channel_id64(0, 0, 0, 0, 0, url);
 							
 						pair<map<t_channel_id, CZapitChannel>::iterator, bool> ret;
 						ret = allchans.insert(std::pair <t_channel_id, CZapitChannel> (id, CZapitChannel(title, id, url, description)));
@@ -723,7 +718,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 		std::string group = "";
 		std::string epgid = "";
 		std::string alogo = "";
-		std::string script = "";
+		//std::string script = "";
 		t_channel_id id = 0;
 		CZapitBouquet* pBouquet = NULL;
 				
@@ -742,6 +737,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 			if (strLine.empty())
 				continue;
 
+			/*
 			if (strLine.find("#EXTM3U") != std::string::npos)
 			{
 				epg_url = "";
@@ -749,7 +745,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 				
 				if (!epg_url.empty())
 				{
-				/*
 					if (epg_url.find_first_of(',') != std::string::npos)
 					{
 						std::vector<std::string> epg_list = ::split(epg_url, ',');
@@ -758,9 +753,9 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					}
 					else
 						CNeutrinoApp::getInstance()->g_settings_xmltv_xml_auto_pushback(epg_url);
-				*/
 				}
 			}
+			*/
 			
 			if (strLine.find("#EXTINF") != std::string::npos)
 			{
@@ -771,7 +766,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 				group = "";
 				description = "";
 				alogo = "";
-				script = "";
+				//script = "";
 				id = 0;
 
 				if (iColon >= 0 && iComma >= 0 && iComma > iColon)
@@ -785,7 +780,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					group = ReadMarkerValue(strInfoLine, "group-title=");
 					//id = ReadMarkerValue(strInfoLine, "tvg-id=");
 					alogo = ReadMarkerValue(strInfoLine, "tvg-logo=");
-					script = ReadMarkerValue(strInfoLine, "tvg-script=");
+					//script = ReadMarkerValue(strInfoLine, "tvg-script=");
 				}
 				
 				pBouquet = addBouquetIfNotExist("WEBTV");
@@ -808,8 +803,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						}
 						
 						//
-						if(id == 0)
-							id = create_channel_id64(0, 0, 0, 0, 0, url);
+						if(id == 0) id = create_channel_id64(0, 0, 0, 0, 0, url);
 							
 						pair<map<t_channel_id, CZapitChannel>::iterator, bool> ret;
 						ret = allchans.insert(std::pair <t_channel_id, CZapitChannel> (id, CZapitChannel(title, id, url, description)));
