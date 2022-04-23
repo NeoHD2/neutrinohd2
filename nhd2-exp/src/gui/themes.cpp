@@ -115,11 +115,9 @@ int CThemes::exec(CMenuTarget * parent, const std::string& actionKey)
 
 				delete nameInput;
 				nameInput = NULL;
-
-				Show();
 			}
 
-			return RETURN_EXIT;
+			return res;
 		}
 		else if (actionKey == "theme_default")
 		{
