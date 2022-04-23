@@ -65,6 +65,9 @@ CTmdb::~CTmdb()
 bool CTmdb::getMovieInfo(std::string text)
 {
 	dprintf(DEBUG_NORMAL, "cTmdb::getMovieInfo: %s\n", text.c_str());
+	
+	if (text.empty())
+		return false;
 
 	minfo.clear();
 
@@ -270,8 +273,8 @@ bool CTmdb::getMovieTVList(std::string mtype, std::string list, int page)
 
 	if (!parsedSuccess) 
 	{
-		dprintf(DEBUG_NORMAL, "CTmdb::getMovieList: Failed to parse JSON\n");
-		dprintf(DEBUG_NORMAL, "CTmdb::getMovieList: %s\n", reader.getFormattedErrorMessages().c_str());
+		dprintf(DEBUG_NORMAL, "CTmdb::getMovieTVList: Failed to parse JSON\n");
+		dprintf(DEBUG_NORMAL, "CTmdb::getMovieTVList: %s\n", reader.getFormattedErrorMessages().c_str());
 		return false;
 	}
 
@@ -457,8 +460,8 @@ bool CTmdb::getSeasonsList(int id)
 
 	if (!parsedSuccess) 
 	{
-		dprintf(DEBUG_NORMAL, "CTmdb::getMovieInfo: Failed to parse JSON\n");
-		dprintf(DEBUG_NORMAL, "CTmdb::getMovieInfo: %s\n", reader.getFormattedErrorMessages().c_str());
+		dprintf(DEBUG_NORMAL, "CTmdb::getSeasonsList: Failed to parse JSON\n");
+		dprintf(DEBUG_NORMAL, "CTmdb::getSeasonsList: %s\n", reader.getFormattedErrorMessages().c_str());
 
 		return false;
 	}
@@ -510,8 +513,8 @@ bool CTmdb::getEpisodesList(int id, int nr)
 
 	if (!parsedSuccess) 
 	{
-		dprintf(DEBUG_NORMAL, "CTmdb::getMovieInfo: Failed to parse JSON\n");
-		dprintf(DEBUG_NORMAL, "CTmdb::getMovieInfo: %s\n", reader.getFormattedErrorMessages().c_str());
+		dprintf(DEBUG_NORMAL, "CTmdb::getEpisodesList: Failed to parse JSON\n");
+		dprintf(DEBUG_NORMAL, "CTmdb::getEpisodesList: %s\n", reader.getFormattedErrorMessages().c_str());
 
 		return false;
 	}
@@ -677,10 +680,13 @@ bool CTmdb::getMovieTVInfo(std::string mtype, int id)
 bool CTmdb::searchMovieInfo(std::string text)
 {
 	dprintf(DEBUG_NORMAL, "cTmdb::searchMovieInfo: %s\n", text.c_str());
+	
+	if (text.empty())
+		return false;
 
 	minfo.clear();
 
-	std::string url	= "http://api.themoviedb.org/3/";
+	std::string url = "http://api.themoviedb.org/3/";
 
 	url += "search/multi?api_key=" + key + "&language=" + lang + "&query=" + encodeUrl(text);
 
@@ -739,6 +745,4 @@ bool CTmdb::searchMovieInfo(std::string text)
 
 	return false;
 }
-
-
 

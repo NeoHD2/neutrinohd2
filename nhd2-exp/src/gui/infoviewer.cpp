@@ -411,7 +411,7 @@ void CInfoViewer::show(const int ChanNum, const std::string & Channel, const t_s
 	char strChanNum[10];
 	sprintf(strChanNum, "%d", ChanNum);
 
-	if (satellitePositions.size()) 
+	if (satellitePositions.size() && (!IS_WEBTV(channel_id)) ) 
 	{
 		sat_iterator_t sit = satellitePositions.find(satellitePosition);
 
