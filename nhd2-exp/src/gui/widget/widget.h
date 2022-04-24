@@ -272,7 +272,7 @@ class CWidget : public CMenuTarget
 		int getSelected(){return exit_pressed ? -1 : selected;};
 		std::string getActionKey(){return actionKey;};
 		neutrino_msg_t getKey(){return msg;};
-		inline CBox getWindowsPos(void){initFrames(); return(mainFrameBox);};
+		inline CBox getWindowsPos(void){return(mainFrameBox);};
 		bool getExitPressed(){return exit_pressed;};
 
 		// events

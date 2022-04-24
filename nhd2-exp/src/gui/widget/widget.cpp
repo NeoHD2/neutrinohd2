@@ -143,7 +143,7 @@ void CWidget::removeCCItem(long pos)
 //
 void CWidget::initFrames()
 {
-	dprintf(DEBUG_INFO, "CWidget::initFrames\n");
+	dprintf(DEBUG_DEBUG, "CWidget::initFrames\n");
 	
 	// sanity check
 	if(mainFrameBox.iHeight > ((int)frameBuffer->getScreenHeight(true)))
@@ -172,8 +172,6 @@ void CWidget::initFrames()
 			mainFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - mainFrameBox.iHeight) >> 1 );
 		}
 	}
-	
-	dprintf(DEBUG_NORMAL, "CWidget::initFrames: (x:%d y:%d dx:%d dy:%d)\n", mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight);
 
 	if(savescreen) 
 		saveScreen();
