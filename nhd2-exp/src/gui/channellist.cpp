@@ -150,13 +150,14 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	displayNext = false;
 
 	//
+	chWidget = NULL;
+	
 	listBox = NULL;
-	winTop = NULL;
-	winBottom = NULL;
+	item = NULL;
+	
 	head = NULL;
 	foot = NULL;
-	item = NULL;
-	chWidget = NULL;
+	
 	vline = NULL;
 	hline = NULL;
 

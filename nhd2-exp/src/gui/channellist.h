@@ -64,17 +64,17 @@ class CChannelList
 		CFrameBuffer *frameBuffer;
 
 		CBox cFrameBox;
-		ClistBox *listBox;
 		CBox winTopBox;
-		CWindow* winTop;
 		CBox winBottomBox;
-		CWindow* winBottom;
+		
+		CWidget* chWidget;
+		
+		ClistBox *listBox;
+		CMenuItem *item;
 		CHeaders* head;
 		CFooters* foot;
 		CCVline* vline;
 		CCHline* hline;
-		CMenuItem *item;
-		CWidget* chWidget;
 
 		uint32_t sec_timer_id;
 		unsigned int selected;
