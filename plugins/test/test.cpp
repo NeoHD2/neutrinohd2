@@ -1071,13 +1071,17 @@ void CTestMenu::testCWindowWidget()
 	
 	// Hline
 	CCHline testHline;
-	testHline.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 10, 10);
+	//testHline.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20, 10);
+	testHline.setPosition(Box.iX + 10, Box.iY + Box.iHeight/2, Box.iWidth - 20, 2);
+	testHline.setGradient(4);
 	
 	testWidget->addCCItem(&testHline);
 	
 	// Vline
 	CCVline testVline;
-	testVline.setPosition(Box.iX + Box.iWidth - 20 - 15, Box.iY + 10, 10, Box.iHeight - 20);
+	//testVline.setPosition(Box.iX + Box.iWidth - 20 - 15, Box.iY + 10, 10, Box.iHeight - 20);
+	testVline.setPosition(Box.iX + Box.iWidth - 20 - 15, Box.iY + 50, 2, Box.iHeight - 100);
+	testVline.setGradient(4);
 	
 	testWidget->addCCItem(&testVline);
 	

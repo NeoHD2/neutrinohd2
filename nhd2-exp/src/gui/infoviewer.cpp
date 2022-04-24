@@ -497,6 +497,7 @@ void CInfoViewer::show(const int ChanNum, const std::string & Channel, const t_s
 		CCHline hline(buttonBarStartX + BORDER_LEFT, buttonBarStartY, BoxWidth - BORDER_LEFT - BORDER_RIGHT, buttonBarHeight);
 		
 		hline.setColor(COL_INFOBAR_SHADOW_PLUS_1);
+		hline.setGradient(3);
 		hline.paint();
 	}
 

@@ -181,22 +181,34 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	winTopBox.iY = cFrameBox.iY + 50;
 	winTopBox.iWidth = cFrameBox.iWidth/3 - 2;
 	winTopBox.iHeight = (cFrameBox.iHeight - 100)/2 - 1;
-	winTop = new CWindow(&winTopBox);
+	//winTop = new CWindow(&winTopBox);
 	
 	//
 	winBottomBox.iX = cFrameBox.iX + (cFrameBox.iWidth/3)*2 + 2;
 	winBottomBox.iY = cFrameBox.iY + 50 + winTopBox.iHeight + 1;
 	winBottomBox.iWidth = cFrameBox.iWidth/3 - 2;
 	winBottomBox.iHeight = (cFrameBox.iHeight - 100)/2;
-	winBottom = new CWindow(&winBottomBox);
+	//winBottom = new CWindow(&winBottomBox);
+	
+	//
+	vline = new CCVline(cFrameBox.iX + (cFrameBox.iWidth/3)*2, cFrameBox.iY + 60, 2, cFrameBox.iHeight - 120);
+	vline->setGradient(3);
+	
+	//
+	hline = new CCHline(cFrameBox.iX + (cFrameBox.iWidth/3)*2 + 10, cFrameBox.iY + 50 + (cFrameBox.iHeight - 100)/2, cFrameBox.iWidth/3 - 20, 2);
+	hline->setGradient(3);
 	
 	chWidget = new CWidget(&cFrameBox);
+	
+	chWidget->paintMainFrame(true);
 	
 	chWidget->addItem(head);
 	chWidget->addItem(listBox);
 	chWidget->addItem(foot);
-	chWidget->addItem(winTop);
-	chWidget->addItem(winBottom);
+	//chWidget->addItem(winTop);
+	//chWidget->addItem(winBottom);
+	chWidget->addCCItem(vline);
+	chWidget->addCCItem(hline);
 }
 
 CChannelList::~CChannelList()
@@ -1741,8 +1753,9 @@ void CChannelList::paint()
 
 void CChannelList::paintCurrentNextEvent(int _selected)
 {
-	winTop->paint();
-	winBottom->paint();
+	//winTop->paint();
+	//winBottom->paint();
+	chWidget->paint();
 	
 	CChannelEvent * p_event = NULL;
 	time_t jetzt = time(NULL);
@@ -1868,7 +1881,7 @@ void CChannelList::paintCurrentNextEvent(int _selected)
 	nextText.setText(p_event->text.c_str());
 	
 	//
-	winTop->paint();
+	//winTop->paint();
 	epgTitle.paint();
 	pb.reset();
 	pb.paint(runningPercent);
@@ -1876,7 +1889,7 @@ void CChannelList::paintCurrentNextEvent(int _selected)
 	restTime.paint();
 	text.paint();
 	//
-	winBottom->paint();
+	//winBottom->paint();
 	nextTitle.paint();
 	nextTime.paint();
 	nextText.paint();

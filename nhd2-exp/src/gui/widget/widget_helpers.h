@@ -369,6 +369,7 @@ class CCHline : public CComponent
 		
 		//
 		fb_pixel_t color;
+		int gradient;
 		
 		//
 		CCHline(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
@@ -376,6 +377,7 @@ class CCHline : public CComponent
 		
 		//
 		void setColor(fb_pixel_t col){color = col;};
+		void setGradient(int gr){gradient = gr;};
 		
 		//
 		void paint();
@@ -389,6 +391,7 @@ class CCVline : public CComponent
 		
 		//
 		fb_pixel_t color;
+		int gradient;
 		
 		//
 		CCVline(const int x = 0, const int y = 0, const int dx = 0, const int dy = 0);
@@ -396,6 +399,7 @@ class CCVline : public CComponent
 		
 		//
 		void setColor(fb_pixel_t col){color = col;};
+		void setGradient(int gr){gradient = gr;};
 		
 		//
 		void paint();

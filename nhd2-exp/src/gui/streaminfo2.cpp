@@ -402,7 +402,7 @@ void CStreamInfo2::paint_signal_fe_box(int _x, int _y, int w, int h)
 
 void CStreamInfo2::paint_signal_fe(struct bitrate br, struct feSignal s)
 {
-	if(!live_fe || (!IS_WEBTV(live_channel_id)))
+	if(!live_fe || (IS_WEBTV(live_channel_id)))
 		return;
 	
 	int   x_now = sigBox_pos;

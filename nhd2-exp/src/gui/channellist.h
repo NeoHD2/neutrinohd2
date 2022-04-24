@@ -71,6 +71,8 @@ class CChannelList
 		CWindow* winBottom;
 		CHeaders* head;
 		CFooters* foot;
+		CCVline* vline;
+		CCHline* hline;
 		CMenuItem *item;
 		CWidget* chWidget;
 

@@ -703,7 +703,12 @@ CCHline::CCHline(const int x, const int y, const int dx, const int dy)
 	cCBox.iWidth = dx;
 	cCBox.iHeight = dy;
 	
-	color = COL_MENUCONTENTDARK_PLUS_0; 
+	if (cCBox.iHeight > 2)
+		cCBox.iHeight = 2;
+	
+	color = COL_MENUCONTENTDARK_PLUS_0;
+	gradient = NOGRADIENT;
+	 
 	cc_type = CC_HLINE;
 }
 
@@ -711,8 +716,14 @@ void CCHline::paint()
 {
 	dprintf(DEBUG_INFO, "CCHline::paint\n");
 	
+	if (cCBox.iHeight > 2)
+		cCBox.iHeight = 2;
+	
+	/*
 	frameBuffer->paintHLineRel(cCBox.iX, cCBox.iWidth, cCBox.iY, color);
 	frameBuffer->paintHLineRel(cCBox.iX, cCBox.iWidth, cCBox.iY + 1, color);
+	*/
+	frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, color, 0, CORNER_NONE, gradient, GRADIENT_HORIZONTAL);
 }
 
 // Vline
@@ -727,7 +738,12 @@ CCVline::CCVline(const int x, const int y, const int dx, const int dy)
 	cCBox.iWidth = dx;
 	cCBox.iHeight = dy;
 	
-	color = COL_MENUCONTENTDARK_PLUS_0; 
+	if (cCBox.iWidth > 2)
+		cCBox.iWidth = 2;
+	
+	color = COL_MENUCONTENTDARK_PLUS_0;
+	gradient = NOGRADIENT;
+	
 	cc_type = CC_VLINE;
 }
 
@@ -735,8 +751,14 @@ void CCVline::paint()
 {
 	dprintf(DEBUG_INFO, "CCVline::paint\n");
 	
+	if (cCBox.iWidth > 2)
+		cCBox.iWidth = 2;
+	
+	/*
 	frameBuffer->paintVLineRel(cCBox.iX, cCBox.iY, cCBox.iHeight, color);
 	frameBuffer->paintVLineRel(cCBox.iX + 1, cCBox.iY, cCBox.iHeight, color);
+	*/
+	frameBuffer->paintBoxRel(cCBox.iX, cCBox.iY, cCBox.iWidth, cCBox.iHeight, color, 0, CORNER_NONE, gradient, GRADIENT_VERTICAL);
 }
 
 // CFrameLine
