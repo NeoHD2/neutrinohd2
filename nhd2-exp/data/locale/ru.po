@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrinohd2 4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-23 13:05+0200\n"
+"POT-Creation-Date: 2022-04-24 09:19+0200\n"
 "PO-Revision-Date: 2022-04-21 22:31+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -778,7 +778,7 @@ msgid "Focus"
 msgstr "Фокус"
 
 msgid "Font"
-msgstr "Шриф"
+msgstr "Шрифт"
 
 msgid "Font name"
 msgstr "Имя шрифта"
@@ -1711,7 +1711,7 @@ msgid "Radio Channel"
 msgstr "Радиоканал"
 
 msgid "Radio Mode"
-msgstr "Режим радио"
+msgstr "Радио"
 
 msgid "Radio Text"
 msgstr "Радиотекст"
@@ -2342,13 +2342,13 @@ msgid "TV Channel"
 msgstr "ТВ каналы"
 
 msgid "TV Mode"
-msgstr "Телевизионный режим"
+msgstr "ТВ"
 
 msgid "TV-System"
 msgstr "ТВ-Система"
 
 msgid "TV/Radio-mode"
-msgstr "ТВ/Радио-режим"
+msgstr "ТВ/Радио"
 
 msgid "Teletext"
 msgstr "Телетекст"
@@ -2617,19 +2617,19 @@ msgid "User menu"
 msgstr "Меню пользователя"
 
 msgid "User menu F1"
-msgstr "Пользовательское меню F1"
+msgstr "клавиша - F1"
 
 msgid "User menu F2"
-msgstr "Пользовательское меню F2"
+msgstr "клавиша - F2"
 
 msgid "User menu F3"
-msgstr "Пользовательское меню F3"
+msgstr "клавиша - F3"
 
 msgid "User menu F4"
-msgstr "Пользовательское меню F4"
+msgstr "клавиша - F4"
 
 msgid "User menu blue"
-msgstr "Меню пользователя синий"
+msgstr "клавиша - синяя"
 
 msgid "Username"
 msgstr "Имя пользователя"
