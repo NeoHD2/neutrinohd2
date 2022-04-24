@@ -147,9 +147,7 @@ void CRemoteControlSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("rcsetup"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("rcsetup");
-		int prev_ItemsCount = widget->getItemsCount();
-		
-		remoteControlSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		remoteControlSettings = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -317,9 +315,7 @@ void CKeysBindingSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("rcbinding"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("rcbinding");
-		int prev_ItemsCount = widget->getItemsCount();
-		
-		bindSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		bindSettings = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
 	}
 	else
 	{

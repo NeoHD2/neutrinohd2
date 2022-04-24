@@ -99,9 +99,7 @@ void CParentalLockSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("parentallocksetup"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("parentallocksetup");
-		int prev_ItemsCount = widget->getItemsCount();
-		
-		listBox = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		listBox = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
 	}
 	else
 	{

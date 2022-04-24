@@ -69,9 +69,7 @@ int CProxySetup::showProxySetup()
 	if (CNeutrinoApp::getInstance()->getWidget("proxysetup"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("proxysetup");
-		int prev_ItemsCount = widget->getItemsCount();
-		
-		mn = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		mn = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
 	}
 	else
 	{

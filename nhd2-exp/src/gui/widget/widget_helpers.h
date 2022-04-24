@@ -733,15 +733,15 @@ class CHeaders : public CWidgetItem
 		void paintMainFrame(bool p){paintFrame = p;};
 
 		//
-		void setTitle(const char * const title){if (title) htitle = title;};
-		void setIcon(const char * const icon){if (icon) hicon = icon;};
+		void setTitle(const char * const title){htitle.clear(); if (title) htitle = title;};
+		void setIcon(const char * const icon){hicon.clear(); if (icon) hicon = icon;};
 		void setHAlign(const int m){thalign = m;};
 		void setColor(fb_pixel_t col){bgcolor = col;};
 		void setGradient(const int grad){gradient = grad;};
 		void setRadius(const int ra){radius = ra;};
 		void setCorner(const int co){corner = co;};
 		void enablePaintDate(void){paintDate = true;};
-		void setFormat(const char* f){if (f) format = f;};
+		void setFormat(const char* f){if (f) format.clear(); format = f;};
 		void setHeadLine(bool l){head_line = l;};
 		
 		//

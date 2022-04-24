@@ -66,7 +66,6 @@ CWidget::CWidget(const int x, const int y, const int dx, const int dy)
 	
 	//
 	name = "";
-	//id = -1;
 }
 
 CWidget::CWidget(CBox *position)
@@ -154,7 +153,7 @@ void CWidget::initFrames()
 	if(mainFrameBox.iWidth > (int)frameBuffer->getScreenWidth(true))
 		mainFrameBox.iWidth = frameBuffer->getScreenWidth(true);
 		
-	// menu position
+	// menu position (x/y)
 	if (enablePos)
 	{
 		if(menu_position == MENU_POSITION_CENTER)
@@ -173,6 +172,8 @@ void CWidget::initFrames()
 			mainFrameBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - mainFrameBox.iHeight) >> 1 );
 		}
 	}
+	
+	dprintf(DEBUG_NORMAL, "CWidget::initFrames: (x:%d y:%d dx:%d dy:%d)\n", mainFrameBox.iX, mainFrameBox.iY, mainFrameBox.iWidth, mainFrameBox.iHeight);
 
 	if(savescreen) 
 		saveScreen();
@@ -765,9 +766,9 @@ void CWidget::onDirectKeyPressed(neutrino_msg_t _msg)
 }
 
 //
-CWidgetItem* CWidget::getWidgetItem(const int pos, const int type)
+CWidgetItem* CWidget::getWidgetItem(const int type, const std::string& name)
 {
-	dprintf(DEBUG_INFO, "CWidget::getWidgetItem: (%d) (%d)\n", pos, type);
+	dprintf(DEBUG_INFO, "CWidget::getWidgetItem: (%d) (%d)\n", type, name);
 	
 	CWidgetItem* ret = NULL;
 	
@@ -776,13 +777,38 @@ CWidgetItem* CWidget::getWidgetItem(const int pos, const int type)
 		switch (type)
 		{
 			case WIDGETITEM_LISTBOX:
-				if (items[pos]->widgetItem_type == WIDGETITEM_LISTBOX)
-					ret = items[pos]; 
+				if ( (items[count]->widgetItem_type == WIDGETITEM_LISTBOX) && (items[count]->widgetItem_name == name) )
+					ret = items[count]; 
 				break;
 				
 			case WIDGETITEM_WINDOW:
-				if (items[pos]->widgetItem_type == WIDGETITEM_WINDOW)
-					ret = items[pos]; 
+				if ( (items[count]->widgetItem_type == WIDGETITEM_WINDOW) && (items[count]->widgetItem_name == name) )
+					ret = items[count]; 
+				break;
+				
+			case WIDGETITEM_HEAD:
+				if ( (items[count]->widgetItem_type == WIDGETITEM_HEAD) && (items[count]->widgetItem_name == name) )
+					ret = items[count]; 
+				break;
+				
+			case WIDGETITEM_FOOT:
+				if ( (items[count]->widgetItem_type == WIDGETITEM_FOOT) && (items[count]->widgetItem_name == name) )
+					ret = items[count]; 
+				break;
+				
+			case WIDGETITEM_TEXTBOX:
+				if ( (items[count]->widgetItem_type == WIDGETITEM_TEXTBOX) && (items[count]->widgetItem_name == name) )
+					ret = items[count]; 
+				break;
+				
+			case WIDGETITEM_FRAMEBOX:
+				if ( (items[count]->widgetItem_type == WIDGETITEM_FRAMEBOX) && (items[count]->widgetItem_name == name) )
+					ret = items[count]; 
+				break;
+				
+			case WIDGETITEM_LISTFRAME:
+				if ( (items[count]->widgetItem_type == WIDGETITEM_LISTFRAME) && (items[count]->widgetItem_name == name) )
+					ret = items[count]; 
 				break;
 				
 			default:

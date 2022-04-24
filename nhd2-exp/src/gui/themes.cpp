@@ -222,9 +222,8 @@ int CThemes::Show()
 	if (CNeutrinoApp::getInstance()->getWidget("themesetup"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("themesetup");
-		int prev_ItemsCount = widget->getItemsCount();
 		
-		themes = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		themes = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
 	}
 	else
 	{

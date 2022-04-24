@@ -267,10 +267,8 @@ int CBouquetList::doMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("bqedit"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("bqedit")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("bqedit");
-		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("bqedit")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("bqedit")->getWidgetItem(WIDGETITEM_LISTBOX);
 	}
 	else
 	{

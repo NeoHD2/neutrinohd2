@@ -157,6 +157,8 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	foot = NULL;
 	item = NULL;
 	chWidget = NULL;
+	vline = NULL;
+	hline = NULL;
 
 	// box	
 	cFrameBox.iWidth = frameBuffer->getScreenWidth() - 20;
@@ -166,47 +168,57 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
 	
 	//
-	listBox = new ClistBox(cFrameBox.iX, cFrameBox.iY + 50, (cFrameBox.iWidth/3)*2, cFrameBox.iHeight - 100);
+	if (CNeutrinoApp::getInstance()->getWidget("channellist"))
+	{
+		chWidget = CNeutrinoApp::getInstance()->getWidget("channellist");
 	
-	// head
-	head = new CHeaders(cFrameBox.iX, cFrameBox.iY, cFrameBox.iWidth, 50);
-	head->setTitle(name.c_str());
-	head->enablePaintDate();
-
-	// foot
-	foot = new CFooters(cFrameBox.iX, cFrameBox.iY + cFrameBox.iHeight - 50, cFrameBox.iWidth, 50);
+		listBox = (ClistBox*)chWidget->getWidgetItem(WIDGETITEM_LISTBOX);
+		head = (CHeaders*)chWidget->getWidgetItem(WIDGETITEM_HEAD);
+		foot = (CFooters*)chWidget->getWidgetItem(WIDGETITEM_FOOT);
+	}
+	else
+	{
+		chWidget = new CWidget(&cFrameBox);
+		chWidget->paintMainFrame(true);
+		
+		// listBox
+		listBox = new ClistBox(chWidget->getWindowsPos().iX, chWidget->getWindowsPos().iY + 50, (chWidget->getWindowsPos().iWidth/3)*2, chWidget->getWindowsPos().iHeight - 100);
+		listBox->paintMainFrame(false);
+		
+		//
+		head = new CHeaders(chWidget->getWindowsPos().iX, chWidget->getWindowsPos().iY, chWidget->getWindowsPos().iWidth, 50);
+		head->setTitle(name.c_str());
+		head->enablePaintDate();
+		
+		// foot
+		foot = new CFooters(chWidget->getWindowsPos().iX, chWidget->getWindowsPos().iY + chWidget->getWindowsPos().iHeight - 50, chWidget->getWindowsPos().iWidth, 50);
+		
+		chWidget->addItem(listBox);
+		chWidget->addItem(head);
+		chWidget->addItem(foot);
+	}
 	
 	//
-	winTopBox.iX = cFrameBox.iX + (cFrameBox.iWidth/3)*2 + 2;
-	winTopBox.iY = cFrameBox.iY + 50;
-	winTopBox.iWidth = cFrameBox.iWidth/3 - 2;
-	winTopBox.iHeight = (cFrameBox.iHeight - 100)/2 - 1;
-	//winTop = new CWindow(&winTopBox);
+	winTopBox.iX = chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2 + 2;
+	winTopBox.iY = chWidget->getWindowsPos().iY + 50 + 2;
+	winTopBox.iWidth = chWidget->getWindowsPos().iWidth/3 - 4;
+	winTopBox.iHeight = (chWidget->getWindowsPos().iHeight - 100)/2 - 4;
 	
 	//
-	winBottomBox.iX = cFrameBox.iX + (cFrameBox.iWidth/3)*2 + 2;
-	winBottomBox.iY = cFrameBox.iY + 50 + winTopBox.iHeight + 1;
-	winBottomBox.iWidth = cFrameBox.iWidth/3 - 2;
-	winBottomBox.iHeight = (cFrameBox.iHeight - 100)/2;
-	//winBottom = new CWindow(&winBottomBox);
-	
-	//
-	vline = new CCVline(cFrameBox.iX + (cFrameBox.iWidth/3)*2, cFrameBox.iY + 60, 2, cFrameBox.iHeight - 120);
+	winBottomBox.iX = chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2 + 2;
+	winBottomBox.iY = chWidget->getWindowsPos().iY + 50 + (chWidget->getWindowsPos().iHeight - 100)/2 + 2;
+	winBottomBox.iWidth = chWidget->getWindowsPos().iWidth/3 - 4;
+	winBottomBox.iHeight = (chWidget->getWindowsPos().iHeight - 100)/2 - 4;
+		
+	// vline
+	vline = new CCVline(chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2, chWidget->getWindowsPos().iY + 60, 2, chWidget->getWindowsPos().iHeight - 120);
 	vline->setGradient(3);
-	
-	//
-	hline = new CCHline(cFrameBox.iX + (cFrameBox.iWidth/3)*2 + 10, cFrameBox.iY + 50 + (cFrameBox.iHeight - 100)/2, cFrameBox.iWidth/3 - 20, 2);
+		
+	// hline
+	hline = new CCHline(chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2 + 10, chWidget->getWindowsPos().iY + 50 + (chWidget->getWindowsPos().iHeight - 100)/2, chWidget->getWindowsPos().iWidth/3 - 20, 2);
 	hline->setGradient(3);
-	
-	chWidget = new CWidget(&cFrameBox);
-	
-	chWidget->paintMainFrame(true);
-	
-	chWidget->addItem(head);
-	chWidget->addItem(listBox);
-	chWidget->addItem(foot);
-	//chWidget->addItem(winTop);
-	//chWidget->addItem(winBottom);
+		
+	//	
 	chWidget->addCCItem(vline);
 	chWidget->addCCItem(hline);
 }
@@ -468,10 +480,8 @@ int CChannelList::doChannelMenu(void)
 	
 	if (CNeutrinoApp::getInstance()->getWidget("channellistedit"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("channellistedit")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("channellistedit");
-		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("channellistedit")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		menu = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -939,7 +949,7 @@ int CChannelList::show(bool zap, bool customMode)
 		}
 		else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			head->refresh();
+			if (head) head->refresh();
 		} 
 		else 
 		{
@@ -1634,9 +1644,9 @@ void CChannelList::paint()
 {
 	dprintf(DEBUG_NORMAL, "CChannelList::paint\n");
 
-	head->clear();
-	listBox->clearAll();
-	foot->clear();
+	if (head) head->clear();
+	if (listBox) listBox->clearAll();
+	if (foot) foot->clear();
 	
 	CChannelEvent * p_event = NULL;
 	time_t jetzt = time(NULL);
@@ -1699,11 +1709,6 @@ void CChannelList::paint()
 			
 			if (g_settings.channellist_ca)
 			{
-				//
-				//if (IS_WEBTV(chanlist[i]->getChannelID()))
-				//	item->setIcon1(NEUTRINO_ICON_WEBTV_SMALL);
-				//else
-				//item->setIcon1(chanlist[i]->isHD() ? NEUTRINO_ICON_HD : chanlist[i]->isUHD()? NEUTRINO_ICON_UHD : "");
 				item->setIcon1(chanlist[i]->isWEBTV()? NEUTRINO_ICON_WEBTV_SMALL : chanlist[i]->isHD() ? NEUTRINO_ICON_HD : chanlist[i]->isUHD()? NEUTRINO_ICON_UHD : "");
 				
 				//
@@ -1727,8 +1732,10 @@ void CChannelList::paint()
 		}
 	}
 	
-	//
-	head->setButtons(new_mode_active? HeadNewModeButtons : HeadButtons, HEAD_BUTTONS_COUNT);
+	// head
+	if (head) head->setTitle(name.c_str());
+	if (head) head->enablePaintDate();
+	if (head) head->setButtons(new_mode_active? HeadNewModeButtons : HeadButtons, HEAD_BUTTONS_COUNT);
 	
 	//
 	if (displayNext) 
@@ -1740,7 +1747,8 @@ void CChannelList::paint()
 		CChannelListButtons[1].localename = _("Next");
 	}
 
-	foot->setButtons(CChannelListButtons, NUM_LIST_BUTTONS);
+	// foot
+	if (foot) foot->setButtons(CChannelListButtons, NUM_LIST_BUTTONS);
 
 	//
 	listBox->setSelected(selected);
