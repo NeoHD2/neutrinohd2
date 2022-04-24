@@ -979,7 +979,7 @@ int CTimerList::modifyTimer()
 	timerSettings->addItem(new CMenuSeparator(LINE));
 	
 	//
-	timerSettings->addItem(new CMenuForwarder(_("Save Timer"), true, NULL, this, "modifytimer"));
+	timerSettings->addItem(new CMenuForwarder(_("Save Timer"), true, NULL, this, "modifytimer", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	timerSettings->addItem(new CMenuSeparator(LINE));
 
 	char type[80];
@@ -1134,7 +1134,7 @@ int CTimerList::newTimer()
 	timerSettings->addItem(new CMenuSeparator(LINE));
 	
 	//
-	timerSettings->addItem(new CMenuForwarder(_("Save timer"), true, NULL, this, "newtimer"));
+	timerSettings->addItem(new CMenuForwarder(_("Save timer"), true, NULL, this, "newtimer", RC_red, NEUTRINO_ICON_BUTTON_RED));
 	timerSettings->addItem(new CMenuSeparator(LINE));
 
 	// alarm time
