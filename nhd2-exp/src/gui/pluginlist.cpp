@@ -98,7 +98,9 @@ void CPluginList::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("plugins"))
 	{
 		pWidget = CNeutrinoApp::getInstance()->getWidget("plugins");
-		plist = (ClistBox*)pWidget->getWidgetItem(WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = pWidget->getItemsCount();
+		
+		plist = (ClistBox*)pWidget->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{

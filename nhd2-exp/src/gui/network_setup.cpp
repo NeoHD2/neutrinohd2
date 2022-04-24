@@ -191,7 +191,9 @@ void CNetworkSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("networksetup"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("networksetup");
-		networkSettings = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		networkSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{

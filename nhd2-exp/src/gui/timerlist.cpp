@@ -287,7 +287,9 @@ CTimerList::CTimerList()
 	if (CNeutrinoApp::getInstance()->getWidget("timerlist"))
 	{
 		timerlistWidget = CNeutrinoApp::getInstance()->getWidget("timerlist");
-		listBox = (ClistBox*)timerlistWidget->getWidgetItem(WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = timerlistWidget->getItemsCount();
+	
+		listBox = (ClistBox*)timerlistWidget->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -947,7 +949,9 @@ int CTimerList::modifyTimer()
 	if (CNeutrinoApp::getInstance()->getWidget("modifytimer"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("modifytimer");
-		timerSettings = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		timerSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1102,7 +1106,9 @@ int CTimerList::newTimer()
 	if (CNeutrinoApp::getInstance()->getWidget("newtimer"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("newtimer");
-		timerSettings = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		timerSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{

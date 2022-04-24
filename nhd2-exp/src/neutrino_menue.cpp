@@ -267,7 +267,9 @@ bool CNeutrinoApp::showUserMenu(int button)
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("features");
 		
-		menu = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("features")->getItemsCount();
+		
+		menu = (ClistBox*)/*CNeutrinoApp::getInstance()->getWidget(WIDGET_FEATURES)*/widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{

@@ -1163,7 +1163,7 @@
 		</TIME>
 	</WIDGET>
 
-	<WIDGET name="settings" posx="0" posy="0" width="1280" height="720">
+	<WIDGET name="settings" id="2" posx="0" posy="0" width="1280" height="720">
 		<WINDOW posx="650" posy="50" width="520" height="520" paintframe="1" >
 		</WINDOW>
 		
@@ -1186,7 +1186,7 @@
 			<ITEM id="5" localename="Misc settings" target="33"/>
 		</LISTBOX>
 		
-		<LABEL posx="650" posy="600" width="520" height="60" text="Settings" halign="1" font="22">
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Settings" halign="1" font="22">
 		</LABEL>
 		
 		<WINDOW posx="300" posy="50" width="300" height="300" paintframe="1" color="COL_MENUCONTENTSELECTED_PLUS_0"></WINDOW>
@@ -1196,9 +1196,9 @@
 		<WINDOW posx="280" posy="400" width="340" height="100" paintframe="1" >
 		</WINDOW>
 		
-		<TIME posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
+		<TIME name="time" id="10" posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" font="3">
 		</TIME>
-		<TIME posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" font="8">
+		<TIME name="time" id="10" posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" font="8">
 		</TIME>
 	</WIDGET>
 
@@ -1226,15 +1226,15 @@
 			</ITEM>
 		</LISTBOX>
 		
-		<LABEL posx="650" posy="600" width="520" height="60" text="Main Menu" halign="1" fontcolor="COL_MENUHEAD" font="22">
+		<LABEL name="label" id="2" posx="650" posy="600" width="520" height="60" text="Main Menu" halign="1" fontcolor="COL_MENUHEAD" font="22">
 		</LABEL>
 		
 		<WINDOW posx="280" posy="400" width="340" height="100" paintframe="1">
 		</WINDOW>
 		
-		<TIME posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" fontcolor="COL_MENUHEAD" font="3">
+		<TIME name="date" posx="280" posy="410" width="340" height="60" refresh="1" format="%A %d.%m.%Y" fontcolor="COL_MENUHEAD" font="3">
 		</TIME>
-		<TIME posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" fontcolor="COL_MENUHEAD" font="8">
+		<TIME name="time" posx="280" posy="440" width="340" height="60" refresh="1" format="%H:%M:%S" fontcolor="COL_MENUHEAD" font="8">
 		</TIME>
 	</WIDGET>
 </skin>

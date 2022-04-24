@@ -967,8 +967,10 @@ int CEventFinderMenu::showMenu(void)
 	
 	if (CNeutrinoApp::getInstance()->getWidget("epgsearch"))
 	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("epgsearch")->getItemsCount();
+		
 		widget = CNeutrinoApp::getInstance()->getWidget("epgsearch");
-		searchMenu = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		searchMenu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("epgsearch")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{

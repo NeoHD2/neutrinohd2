@@ -272,8 +272,11 @@ class CWidget : public CMenuTarget
 		int getSelected(){return exit_pressed ? -1 : selected;};
 		std::string getActionKey(){return actionKey;};
 		neutrino_msg_t getKey(){return msg;};
-		inline CBox getWindowsPos(void){initFrames(); return(mainFrameBox);};
+		inline CBox getWindowsPos(void){return(mainFrameBox);};
 		bool getExitPressed(){return exit_pressed;};
+		
+		//
+		CWidgetItem* getWidgetItem(const int pos, const int type);
 
 		// events
 		virtual void onOKKeyPressed(neutrino_msg_t _msg = RC_ok);
@@ -290,9 +293,6 @@ class CWidget : public CMenuTarget
 		//
 		int getWidgetID(){return id;};
 		std::string getWidgetName(){return name;};
-		
-		//
-		CWidgetItem* getWidgetItem(const int type, const std::string& name = "");
 };
 
 typedef std::vector<CWidget*> WIDGETLIST;

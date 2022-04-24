@@ -119,7 +119,9 @@ void CCAMMenuHandler::doMainMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("cammenu"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("cammenu");
-		cammenu = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		cammenu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -180,7 +182,9 @@ void CCAMMenuHandler::doMainMenu()
 			if (CNeutrinoApp::getInstance()->getWidget("tempcam2"))
 			{
 				tempMenuWidget = CNeutrinoApp::getInstance()->getWidget("tempcam2");
-				tempMenu = (ClistBox*)tempMenuWidget->getWidgetItem(WIDGETITEM_LISTBOX);
+				int prev_ItemsCount = tempMenuWidget->getItemsCount();
+				
+				tempMenu = (ClistBox*)tempMenuWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 				
 				if (tempMenu->hasHead())
 				{
@@ -362,7 +366,9 @@ int CCAMMenuHandler::handleCamMsg(const neutrino_msg_t msg, neutrino_msg_data_t 
 			if (CNeutrinoApp::getInstance()->getWidget("tempcam"))
 			{
 				menuWidget = CNeutrinoApp::getInstance()->getWidget("tempcam");
-				menu = (ClistBox*)menuWidget->getWidgetItem(WIDGETITEM_LISTBOX);
+				int prev_ItemsCount = menuWidget->getItemsCount();
+				
+				menu = (ClistBox*)menuWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 				
 				if (menu->hasHead())
 					menu->setTitle(convertDVBUTF8(pMenu->title, strlen(pMenu->title), 0).c_str(), NEUTRINO_ICON_SETTINGS);

@@ -182,7 +182,9 @@ int CHDDMenuHandler::hddMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("hddsetup"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("hddsetup");
-		hddmenu = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		hddmenu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -326,7 +328,9 @@ int CHDDMenuHandler::hddMenu()
 		if (CNeutrinoApp::getInstance()->getWidget("temphdd2"))
 		{
 			tempMenuWidget[i] = CNeutrinoApp::getInstance()->getWidget("temphdd2");
-			tempMenu[i] = (ClistBox*)tempMenuWidget[i]->getWidgetItem(WIDGETITEM_LISTBOX);
+			int prev_ItemsCount = tempMenuWidget[i]->getItemsCount();
+			
+			tempMenu[i] = (ClistBox*)tempMenuWidget[i]->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 			
 			if (tempMenu[i]->hasHead())
 			{
@@ -404,7 +408,9 @@ int CHDDMenuHandler::hddMenu()
 			if (CNeutrinoApp::getInstance()->getWidget("temphdd"))
 			{
 				PartMenuWidget[j] = CNeutrinoApp::getInstance()->getWidget("temphdd");
-				PartMenu[j] = (ClistBox*)PartMenuWidget[j]->getWidgetItem(WIDGETITEM_LISTBOX);
+				int prev_ItemsCount = PartMenuWidget[j]->getItemsCount();
+				
+				PartMenu[j] = (ClistBox*)PartMenuWidget[j]->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 				
 				if (PartMenu[j]->hasHead())
 				{

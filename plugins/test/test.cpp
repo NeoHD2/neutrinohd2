@@ -7498,7 +7498,9 @@ void CTestMenu::showMenu()
 	{
 		mWidget = CNeutrinoApp::getInstance()->getWidget("testmenu");
 		
-		mainMenu = (ClistBox*)mWidget->getWidgetItem(WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = mWidget->getItemsCount();
+		
+		mainMenu = (ClistBox*)mWidget->getWidgetItem((prev_ItemsCount > 0)? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{

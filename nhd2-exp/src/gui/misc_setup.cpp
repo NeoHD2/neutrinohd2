@@ -211,8 +211,10 @@ void CGeneralSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("miscsetup"))
 	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("miscsetup")->getItemsCount();
+		
 		widget = CNeutrinoApp::getInstance()->getWidget("miscsetup");
-		miscSettingsGeneral = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		miscSettingsGeneral = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("miscsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -620,8 +622,10 @@ void CChannelListSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("channelssetup"))
 	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("channelssetup")->getItemsCount();
+		
 		widget = CNeutrinoApp::getInstance()->getWidget("channelssetup");
-		miscSettingsChannelList = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		miscSettingsChannelList = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("channelssetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -793,8 +797,10 @@ void CEPGSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("epgsetup"))
 	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("epgsetup")->getItemsCount();
+		
 		widget = CNeutrinoApp::getInstance()->getWidget("epgsetup");
-		miscSettingsEPG = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		miscSettingsEPG = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("epgsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1015,8 +1021,10 @@ void CFileBrowserSettings::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("filebrowsersetup"))
 	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("filebrowsersetup")->getItemsCount();
+		
 		widget = CNeutrinoApp::getInstance()->getWidget("filebrowsersetup");
-		miscSettingsFileBrowser = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		miscSettingsFileBrowser = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("filebrowsersetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{

@@ -360,7 +360,9 @@ void CVideoSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("videosetup"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("videosetup");
-		videoSettings = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		int prev_ItemsCount = widget->getItemsCount();
+		
+		videoSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{

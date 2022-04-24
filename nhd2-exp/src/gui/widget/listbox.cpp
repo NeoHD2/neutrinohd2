@@ -175,7 +175,9 @@ int CMenuOptionChooser::exec(CMenuTarget* parent)
 		if (CNeutrinoApp::getInstance()->getWidget("optionchooser"))
 		{
 			widget = CNeutrinoApp::getInstance()->getWidget("optionchooser");
-			menu = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+			int prev_ItemsCount = widget->getItemsCount();
+			
+			menu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 			// head title
 			if (menu->hasHead())
 			{
@@ -650,7 +652,9 @@ int CMenuOptionStringChooser::exec(CMenuTarget *parent)
 		if (CNeutrinoApp::getInstance()->getWidget("optionstringchooser"))
 		{
 			widget = CNeutrinoApp::getInstance()->getWidget("optionstringchooser");
-			menu = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+			int prev_ItemsCount = widget->getItemsCount();
+			
+			menu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 			
 			// title
 			if (menu->hasHead())
@@ -2891,7 +2895,7 @@ void ClistBox::initFrames()
 			}
 		}
 		
-		// sanity check after recalculating height
+		// sanity check
 		if(itemBox.iHeight > (int)frameBuffer->getScreenHeight(true))
 			itemBox.iHeight = frameBuffer->getScreenHeight(true);
 
@@ -2904,21 +2908,24 @@ void ClistBox::initFrames()
 		full_width = itemBox.iWidth;
 		
 		// menu position
-		if(menu_position == MENU_POSITION_CENTER)
-		{
-			itemBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - full_width ) >> 1 );
-			itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
-		}
-		else if(menu_position == MENU_POSITION_LEFT)
-		{
-			itemBox.iX = frameBuffer->getScreenX();
-			itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
-		}
-		else if(menu_position == MENU_POSITION_RIGHT)
-		{
-			itemBox.iX = frameBuffer->getScreenX() + frameBuffer->getScreenWidth() - full_width;
-			itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
-		}
+		//if ( (widgetMode == MODE_MENU) || (widgetMode == MODE_SETUP) )
+		//{
+			if(menu_position == MENU_POSITION_CENTER)
+			{
+				itemBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - full_width ) >> 1 );
+				itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
+			}
+			else if(menu_position == MENU_POSITION_LEFT)
+			{
+				itemBox.iX = frameBuffer->getScreenX();
+				itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
+			}
+			else if(menu_position == MENU_POSITION_RIGHT)
+			{
+				itemBox.iX = frameBuffer->getScreenX() + frameBuffer->getScreenWidth() - full_width;
+				itemBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - full_height) >> 1 );
+			}
+		//}
 	}
 }
 

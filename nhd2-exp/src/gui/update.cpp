@@ -176,8 +176,9 @@ bool CFlashUpdate::selectHttpImage(void)
 	if (CNeutrinoApp::getInstance()->getWidget("selecthttpimage"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("selecthttpimage");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		SelectionWidget = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		SelectionWidget = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -685,8 +686,9 @@ void CFlashExpert::showMTDSelector(const std::string & actionkey)
 	if (CNeutrinoApp::getInstance()->getWidget("mtdselector"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("mtdselector");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		mtdselector = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		mtdselector = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -774,8 +776,9 @@ void CFlashExpert::showFileSelector(const std::string & actionkey)
 	if (CNeutrinoApp::getInstance()->getWidget("fileselector"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("fileselector");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		fileselector = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		fileselector = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -958,8 +961,9 @@ void CUpdateSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("updatesetup"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("updatesetup");
+		int prev_ItemsCount = widget->getItemsCount();
 		
-		updateSettings = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+		updateSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{
@@ -1001,8 +1005,9 @@ void CUpdateSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("flashexpert"))
 	{
 		mtdexpertWidget = CNeutrinoApp::getInstance()->getWidget("flashexpert");
+		int prev_ItemsCount = mtdexpertWidget->getItemsCount();
 		
-		mtdexpert = (ClistBox*)mtdexpertWidget->getWidgetItem(WIDGETITEM_LISTBOX);
+		mtdexpert = (ClistBox*)mtdexpertWidget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 	}
 	else
 	{

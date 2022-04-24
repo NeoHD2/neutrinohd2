@@ -287,9 +287,11 @@ int CUserMenuMenu::exec(CMenuTarget* parent, const std::string& actionKey)
 	ClistBox* menu = NULL;
 		
 	if (CNeutrinoApp::getInstance()->getWidget("usermenu"))
-	{	
+	{
+		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("usermenu")->getItemsCount();
+			
 		widget = CNeutrinoApp::getInstance()->getWidget("usermenu");
-		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("usermenu")->getWidgetItem(WIDGETITEM_LISTBOX);
+		menu = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("usermenu")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
 		
 		//
 		if (menu->hasHead())
