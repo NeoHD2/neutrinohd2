@@ -219,7 +219,6 @@ void CEpgData::start()
 	if(textBox == NULL)
 	{
 		textBox = new CTextBox(&cTextBox);
-		textBox->setFont(SNeutrinoSettings::FONT_TYPE_EPG_INFO2);
 	}
 }
 

@@ -175,9 +175,7 @@ void CRecordingSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("recordingsetup"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("recordingsetup");
-		int prev_ItemsCount = widget->getItemsCount();
-		
-		recordingSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		recordingSettings = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
 	}
 	else
 	{

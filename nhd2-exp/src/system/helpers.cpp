@@ -395,7 +395,7 @@ std::string getNowTimeStr(const char* format)
 	gettimeofday(&tv, NULL);        
 	strftime(tmpStr, sizeof(tmpStr), format, localtime(&tv.tv_sec));
 	
-	return (std::string)tmpStr;
+	return (std::string)_(tmpStr);
 }
 
 std::string trim(std::string &str, const std::string &trimChars /*= " \n\r\t"*/)

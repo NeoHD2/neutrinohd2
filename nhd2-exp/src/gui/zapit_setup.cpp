@@ -149,10 +149,8 @@ void CZapitSetup::showMenu()
 	
 	if (CNeutrinoApp::getInstance()->getWidget("zapitsetup"))
 	{
-		int prev_ItemsCount = CNeutrinoApp::getInstance()->getWidget("zapitsetup")->getItemsCount();
-		
 		widget = CNeutrinoApp::getInstance()->getWidget("zapitsetup");
-		zapit = (ClistBox*)CNeutrinoApp::getInstance()->getWidget("zapitsetup")->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		zapit = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
 	}
 	else
 	{

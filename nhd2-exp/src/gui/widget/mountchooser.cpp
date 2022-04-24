@@ -49,10 +49,8 @@ CMountChooser::CMountChooser(const char* const Name, const std::string& Icon, in
 	//	
 	if (CNeutrinoApp::getInstance()->getWidget("mountchooser"))
 	{
-		widget = CNeutrinoApp::getInstance()->getWidget("mountchooser");
-		int prev_ItemsCount = widget->getItemsCount();
-			
-		menu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		widget = CNeutrinoApp::getInstance()->getWidget("mountchooser");	
+		menu = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
 			
 		// title
 		if (menu->hasHead())

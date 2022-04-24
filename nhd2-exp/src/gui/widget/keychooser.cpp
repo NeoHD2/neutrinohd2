@@ -79,10 +79,8 @@ CKeyChooser::CKeyChooser(int* const Key, const char* const Title, const std::str
 	/*
 	if (CNeutrinoApp::getInstance()->getWidget("keychooser"))
 	{
-		widget = CNeutrinoApp::getInstance()->getWidget("keychooser");
-		int prev_ItemsCount = widget->getItemsCount();
-			
-		menu = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		widget = CNeutrinoApp::getInstance()->getWidget("keychooser");	
+		menu = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
 		
 		//
 		if (menu->hasHead())

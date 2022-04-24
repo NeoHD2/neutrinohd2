@@ -93,9 +93,7 @@ void CAudioPlayerSettings::showMenu()
 	if (CNeutrinoApp::getInstance()->getWidget("audioplayersetup"))
 	{
 		widget = CNeutrinoApp::getInstance()->getWidget("audioplayersetup");
-		int prev_ItemsCount = widget->getItemsCount();
-		
-		audioPlayerSettings = (ClistBox*)widget->getWidgetItem(prev_ItemsCount > 0? prev_ItemsCount - 1 : 0, WIDGETITEM_LISTBOX);
+		audioPlayerSettings = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
 	}
 	else
 	{
