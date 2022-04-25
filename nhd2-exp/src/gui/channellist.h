@@ -63,6 +63,7 @@ class CChannelList
 	private:
 		CFrameBuffer *frameBuffer;
 
+		//
 		CBox cFrameBox;
 		CBox winTopBox;
 		CBox winBottomBox;
@@ -73,9 +74,12 @@ class CChannelList
 		CMenuItem *item;
 		CHeaders* head;
 		CFooters* foot;
+		CWindow* window;
+		//CWindow* winBottom;
 		CCVline* vline;
 		CCHline* hline;
 
+		//
 		uint32_t sec_timer_id;
 		unsigned int selected;
 

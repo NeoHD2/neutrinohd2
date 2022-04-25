@@ -72,6 +72,9 @@ CBouquetList::CBouquetList(const char* const Name)
 		name = _("Bouquets");
 	else
 		name = Name;
+		
+	//
+	bqWidget = NULL;
 
 	//
 	listBox = NULL;
@@ -82,7 +85,21 @@ CBouquetList::CBouquetList(const char* const Name)
 	cFrameBox.iHeight = h_max ( (frameBuffer->getScreenHeight() / 20 * 18), (frameBuffer->getScreenHeight() / 20));
 	
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
-	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;		
+	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
+	
+	//
+	if (CNeutrinoApp::getInstance()->getWidget("bouquetlist"))
+	{
+		bqWidget = CNeutrinoApp::getInstance()->getWidget("bouquetlist");
+		listBox = (ClistBox*)bqWidget->getWidgetItem(WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		bqWidget = new CWidget(&cFrameBox);
+		listBox = new ClistBox(&cFrameBox);
+		
+		bqWidget->addItem(listBox);
+	}		
 }
 
 CBouquetList::~CBouquetList()
@@ -377,7 +394,7 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 	
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8);	
 
-	//
+	/*
 	if(listBox)
 	{
 		delete listBox;
@@ -385,6 +402,7 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 	}
 
 	listBox = new ClistBox(&cFrameBox);
+	*/
 
 	paint();
 	CFrameBuffer::getInstance()->blit();
@@ -520,8 +538,8 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
 
-	delete listBox;
-	listBox = NULL;
+	//delete listBox;
+	//listBox = NULL;
 	
 	if(zapOnExit) 
 		return (selected);
@@ -531,8 +549,10 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 
 void CBouquetList::hide()
 {
-	if(listBox)
-		listBox->hide();
+	//if(listBox)
+	//	listBox->hide();
+	if (bqWidget)
+		bqWidget->hide();
 	else
 		CFrameBuffer::getInstance()->clearFrameBuffer();
 		
@@ -563,25 +583,23 @@ void CBouquetList::paint()
 		listBox->addItem(item);
 	}
 
-	listBox->setTitle(name.c_str());
+	// head
 	listBox->enablePaintHead();
+	listBox->setTitle(name.c_str());
 	listBox->enablePaintDate();
-	listBox->setHeadGradient(g_settings.Head_gradient);
-	listBox->setHeadRadius(g_settings.Head_radius);
-	listBox->setHeadLine(g_settings.Head_line);
 
 	listBox->setHeadButtons(&HButton, 1);
 
 	// foot
 	listBox->enablePaintFoot();
-	listBox->setFootGradient(g_settings.Foot_gradient);
-	listBox->setFootRadius(g_settings.Foot_radius);
-	listBox->setFootLine(g_settings.Foot_line);
+	
 	listBox->setFootButtons(CBouquetListButtons, 4);
 
 	//
 	listBox->setSelected(selected);
-	listBox->paint();
+	
+	//
+	bqWidget->paint();
 }
 
 

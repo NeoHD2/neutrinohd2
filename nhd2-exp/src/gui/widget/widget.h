@@ -293,6 +293,7 @@ class CWidget : public CMenuTarget
 		
 		//
 		CWidgetItem* getWidgetItem(const int type, const std::string& name = "");
+		CComponent* getCCItem(const int type, const std::string& name = "");
 };
 
 typedef std::vector<CWidget*> WIDGETLIST;

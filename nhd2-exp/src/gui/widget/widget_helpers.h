@@ -91,7 +91,7 @@ enum {
 	CC_SCROLLBAR,
 	CC_PROGRESSBAR,
 	CC_DETAILSLINE,
-	//CC_SLIDER,
+	CC_SLIDER,
 };
 
 // halign
@@ -693,6 +693,8 @@ class CWidgetItem
 		//
 		virtual void addKey(neutrino_msg_t key, CMenuTarget *menue = NULL, const std::string &action = "");
 		virtual void setSecTimer(uint32_t sec){sec_timer_id = sec;};
+		
+		//
 		virtual bool onButtonPress(neutrino_msg_t msg, neutrino_msg_data_t data);
 		
 		//

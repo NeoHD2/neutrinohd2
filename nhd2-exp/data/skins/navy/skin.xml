@@ -3,6 +3,10 @@
 <!-- SKIN: navy -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="bouquetlist" posx="10" posy="10" width="1260" height="700" paintframe="1" gradient="3" radius="20" corner="15">
+		<LISTBOX posx="60" posy="60" width="1160" height="600" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
+	</WIDGET>
+	
 	<WIDGET name="channellist" posx="10" posy="10" width="1260" height="700" paintframe="1" gradient="3" radius="20" corner="15">
 		<LISTBOX posx="60" posy="60" width="780" height="600" paintframe="0" type="0" mode="2" scrollbar="1"/>
 		<HEAD posx="10" posy="10" width="1260" height="50" paintframe="0" line="1"/>

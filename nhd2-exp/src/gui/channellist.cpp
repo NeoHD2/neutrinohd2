@@ -155,13 +155,16 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 	listBox = NULL;
 	item = NULL;
 	
+	window = NULL;
+	//winBottom = NULL;
+	
 	head = NULL;
 	foot = NULL;
 	
 	vline = NULL;
 	hline = NULL;
 
-	// box	
+	// widget screen	
 	cFrameBox.iWidth = frameBuffer->getScreenWidth() - 20;
 	cFrameBox.iHeight = frameBuffer->getScreenHeight() - 20;
 	
@@ -176,6 +179,10 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 		listBox = (ClistBox*)chWidget->getWidgetItem(WIDGETITEM_LISTBOX);
 		head = (CHeaders*)chWidget->getWidgetItem(WIDGETITEM_HEAD);
 		foot = (CFooters*)chWidget->getWidgetItem(WIDGETITEM_FOOT);
+		window = (CWindow*)chWidget->getWidgetItem(WIDGETITEM_WINDOW);
+		//winBottom = (CWindow*)chWidget->getWidgetItem(WIDGETITEM_WINDOW, "bottom");
+		vline = (CCVline*)chWidget->getCCItem(CC_VLINE);
+		hline = (CCHline*)chWidget->getCCItem(CC_HLINE);
 	}
 	else
 	{
@@ -194,76 +201,50 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 		// foot
 		foot = new CFooters(chWidget->getWindowsPos().iX, chWidget->getWindowsPos().iY + chWidget->getWindowsPos().iHeight - 50, chWidget->getWindowsPos().iWidth, 50);
 		
+		//
+		window = new CWindow(chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2, chWidget->getWindowsPos().iY + 50, chWidget->getWindowsPos().iWidth/3, chWidget->getWindowsPos().iHeight - 100);
+		
+		// vline
+		vline = new CCVline(chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2, chWidget->getWindowsPos().iY + 60, 2, chWidget->getWindowsPos().iHeight - 120);
+		vline->setGradient(3);
+			
+		// hline
+		hline = new CCHline(chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2 + 10, chWidget->getWindowsPos().iY + 50 + (chWidget->getWindowsPos().iHeight - 100)/2, chWidget->getWindowsPos().iWidth/3 - 20, 2);
+		hline->setGradient(3);
+		
 		chWidget->addItem(listBox);
 		chWidget->addItem(head);
 		chWidget->addItem(foot);
+		
+		chWidget->addItem(window);
+		
+		//	
+		chWidget->addCCItem(vline);
+		chWidget->addCCItem(hline);
 	}
 	
 	//
-	winTopBox.iX = chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2 + 2;
-	winTopBox.iY = chWidget->getWindowsPos().iY + 50 + 2;
-	winTopBox.iWidth = chWidget->getWindowsPos().iWidth/3 - 4;
-	winTopBox.iHeight = (chWidget->getWindowsPos().iHeight - 100)/2 - 4;
+	if (window == NULL)
+	{
+		window = new CWindow(chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2, chWidget->getWindowsPos().iY + 50, chWidget->getWindowsPos().iWidth/3, chWidget->getWindowsPos().iHeight - 100);
+	}
 	
 	//
-	winBottomBox.iX = chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2 + 2;
-	winBottomBox.iY = chWidget->getWindowsPos().iY + 50 + (chWidget->getWindowsPos().iHeight - 100)/2 + 2;
-	winBottomBox.iWidth = chWidget->getWindowsPos().iWidth/3 - 4;
-	winBottomBox.iHeight = (chWidget->getWindowsPos().iHeight - 100)/2 - 4;
-		
-	// vline
-	vline = new CCVline(chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2, chWidget->getWindowsPos().iY + 60, 2, chWidget->getWindowsPos().iHeight - 120);
-	vline->setGradient(3);
-		
-	// hline
-	hline = new CCHline(chWidget->getWindowsPos().iX + (chWidget->getWindowsPos().iWidth/3)*2 + 10, chWidget->getWindowsPos().iY + 50 + (chWidget->getWindowsPos().iHeight - 100)/2, chWidget->getWindowsPos().iWidth/3 - 20, 2);
-	hline->setGradient(3);
-		
-	//	
-	chWidget->addCCItem(vline);
-	chWidget->addCCItem(hline);
+	winTopBox.iX = window->getWindowsPos().iX + 2;
+	winTopBox.iY = window->getWindowsPos().iY + 2;
+	winTopBox.iWidth = window->getWindowsPos().iWidth - 4;
+	winTopBox.iHeight = window->getWindowsPos().iHeight/2 - 4;
+	
+	//
+	winBottomBox.iX = window->getWindowsPos().iX + 2;
+	winBottomBox.iY = window->getWindowsPos().iY + window->getWindowsPos().iHeight/2 + 2;
+	winBottomBox.iWidth = window->getWindowsPos().iWidth - 4;
+	winBottomBox.iHeight = window->getWindowsPos().iHeight/2 - 4;
 }
 
 CChannelList::~CChannelList()
 {
 	chanlist.clear();
-/*
-	if (head)
-	{
-		delete head;
-		head = NULL;
-	}
-	
-	if (foot)
-	{
-		delete foot;
-		foot = NULL;
-	}
-	
-	if (listBox)
-	{
-		delete listBox;
-		listBox = NULL;
-	}
-	
-	if (winTop)
-	{
-		delete winTop;
-		winTop = NULL;
-	}
-	
-	if (winBottom)
-	{
-		delete winBottom;
-		winBottom = NULL;
-	}
-	
-	if (chWidget)
-	{
-		delete chWidget;
-		chWidget = NULL;
-	}
-*/
 }
 
 void CChannelList::ClearList(void)

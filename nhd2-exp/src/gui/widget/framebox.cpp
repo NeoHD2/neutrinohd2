@@ -814,19 +814,6 @@ int CFrameBox::oKKeyPressed(CMenuTarget *_parent, neutrino_msg_t _msg)
 		frames[selected]->msg = _msg;
 	}
 
-/*
-	if(_parent)
-	{
-		if (hasItem() && selected >= 0 && frames[selected]->isSelectable())
-		{
-			return frames[selected]->exec(_parent);
-		}
-		else
-			return RETURN_EXIT;
-	}
-	else
-		return RETURN_EXIT;
-*/
 	ret = frames[selected]->exec(_parent);
 		
 	return ret;
