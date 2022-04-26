@@ -1697,7 +1697,7 @@ void CChannelList::paint()
 				item->setIcon2(chanlist[i]->scrambled? NEUTRINO_ICON_SCRAMBLED : "");
 			}
 			
-			item->setOptionFontColor(COL_INFOBAR_COLORED_EVENTS);
+			if (!displayNext) item->setOptionFontColor(COL_INFOBAR_COLORED_EVENTS);
 			
 			//
 			if (g_settings.epgplus_show_logo)
