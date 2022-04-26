@@ -4,7 +4,7 @@
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
 	<WIDGET name="bouquetlist" posx="0" posy="0" width="1280" height="720" paintframe="1" gradient="3">
-		<LISTBOX posx="50" posy="50" width="790" height="620" type="0" mode ="1" scrollbar="1" itemshadow="1">
+		<LISTBOX posx="50" posy="50" width="840" height="620" type="0" mode ="1" scrollbar="1" itemshadow="1">
 		</LISTBOX>
 			
 		<IMAGE posx="890" posy="150" width="390" height="300" image="background/logo.png">
@@ -24,12 +24,13 @@
 		<HEAD posx="50" posy="0" width="600" height="50" paintframe="0" line="1"/>
 		<FOOT posx="50" posy="670" width="600" height="50" paintframe="0" line="1"/>
 		
-		<WINDOW posx="650" posy="50" width="190" height="620"/>
+		<WINDOW posx="650" posy="50" width="240" height="620"/>
+		<HLINE posx="660" posy="360" width="220" height="3" gradient="3"/>
 			
 		<IMAGE posx="890" posy="150" width="390" height="300" image="background/logo.png">
 		</IMAGE>
 		
-		<TIME posx="890" posy="450" width="390" height="100" refresh="1" format="%A %d.%m.%Y">
+		<TIME posx="890" posy="450" width="390" height="100" refresh="1" format="%a %d.%m.%Y">
 		</TIME>
 		
 		<TIME posx="890" posy="500" width="390" height="100" refresh="1" format="%H:%M:%S">

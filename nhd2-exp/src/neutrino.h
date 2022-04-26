@@ -189,6 +189,8 @@ class CNeutrinoApp : public CMenuTarget, CChangeObserver
 		void parseCCImage(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);
 		void parseCCTime(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);
 		void parseCCButtons(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);
+		void parseCCHline(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);
+		void parseCCVline(_xmlNodePtr node, CWidget* widget, CWindow* window = NULL);
 		//
 		void parseKey(_xmlNodePtr node, CWidget* widget);
 		//

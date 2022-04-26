@@ -26,6 +26,8 @@
 		
 		<WINDOW posx="785" posy="70" width="445" height="580" paintframe="1" color="COL_MENUCONTENTSELECTED_PLUS_0">
 		</WINDOW>
+		
+		<HLINE posx="795" posy="360" width="425" height="3" gradient="3"/>
 	</WIDGET>
 	
 	<WIDGET name="testmenu" posx="0" posy="0" width="1280" height="720">

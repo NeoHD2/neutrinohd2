@@ -1555,6 +1555,72 @@ void CNeutrinoApp::parseCCButtons(_xmlNodePtr node, CWidget* widget, CWindow* wi
 }
 
 //
+void CNeutrinoApp::parseCCHline(_xmlNodePtr node, CWidget* widget, CWindow* window)
+{
+	dprintf(DEBUG_INFO, "CNeutrinoApp::parseCCHline:\n");
+	
+	CCHline* hline = NULL;
+	
+	unsigned int x = 0;
+	unsigned int y = 0;
+	unsigned int dx = 0;
+	unsigned int dy = 0;
+	
+	unsigned int gradient = 0;
+	
+	while ((node = xmlGetNextOccurence(node, "HLINE")) != NULL) 
+	{
+		x = xmlGetSignedNumericAttribute(node, "posx", 0);
+		y = xmlGetSignedNumericAttribute(node, "posy", 0);
+		dx = xmlGetSignedNumericAttribute(node, "width", 0);
+		dy = xmlGetSignedNumericAttribute(node, "height", 0);
+		
+		gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
+				
+		hline = new CCHline(x, y, dx, dy);
+		hline->setGradient(gradient);
+					
+		if (widget) widget->addCCItem(hline);
+		if (window) window->addCCItem(hline);
+				
+		node = node->xmlNextNode;
+	}
+}
+
+//
+void CNeutrinoApp::parseCCVline(_xmlNodePtr node, CWidget* widget, CWindow* window)
+{
+	dprintf(DEBUG_INFO, "CNeutrinoApp::parseCCVline:\n");
+	
+	CCVline* vline = NULL;
+	
+	unsigned int x = 0;
+	unsigned int y = 0;
+	unsigned int dx = 0;
+	unsigned int dy = 0;
+	
+	unsigned int gradient = 0;
+	
+	while ((node = xmlGetNextOccurence(node, "VLINE")) != NULL) 
+	{
+		x = xmlGetSignedNumericAttribute(node, "posx", 0);
+		y = xmlGetSignedNumericAttribute(node, "posy", 0);
+		dx = xmlGetSignedNumericAttribute(node, "width", 0);
+		dy = xmlGetSignedNumericAttribute(node, "height", 0);
+		
+		gradient = xmlGetSignedNumericAttribute(node, "gradient", 0);
+				
+		vline = new CCVline(x, y, dx, dy);
+		vline->setGradient(gradient);
+					
+		if (widget) widget->addCCItem(vline);
+		if (window) window->addCCItem(vline);
+				
+		node = node->xmlNextNode;
+	}
+}
+
+//
 void CNeutrinoApp::parseKey(_xmlNodePtr node, CWidget* widget)
 {
 	dprintf(DEBUG_INFO, "CNeutrinoApp::parseKey:\n");
@@ -1695,6 +1761,12 @@ void CNeutrinoApp::parseSkin(const char* const filename, bool xml_data)
 			
 			// BUTTONS
 			parseCCButtons(search->xmlChildrenNode, wdg);
+			
+			// HLINE
+			parseCCHline(search->xmlChildrenNode, wdg);
+			
+			// VLINE
+			parseCCVline(search->xmlChildrenNode, wdg);
 			
 			// KEY
 			parseKey(search->xmlChildrenNode, wdg);
