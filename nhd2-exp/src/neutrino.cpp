@@ -1585,7 +1585,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 
 		for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++) 
 		{
-			if(it->second.getSatellitePosition() == sit->first) 
+			if(it->second.getSatellitePosition() == sit->first && !it->second.isWEBTV()) //FIXME: 
 			{
 				if (it->second.getServiceType() == ST_DIGITAL_TELEVISION_SERVICE) 
 				{
