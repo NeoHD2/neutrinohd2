@@ -1622,7 +1622,7 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 		if (!g_bouquetManager->Bouquets[i]->bHidden && !g_bouquetManager->Bouquets[i]->tvChannels.empty())
 		{
 			CBouquet * ltmp;
-			if(g_bouquetManager->Bouquets[i]->bUser) 
+			if(g_bouquetManager->Bouquets[i]->bUser || g_bouquetManager->Bouquets[i]->bWebTV) 
 				ltmp = TVfavList->addBouquet(g_bouquetManager->Bouquets[i]);
 			else
 				ltmp = TVbouquetList->addBouquet(g_bouquetManager->Bouquets[i]);
@@ -1635,21 +1635,6 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 				ltmp->channelList->addChannel((*channels)[j]);
 			}
 			bnum++;
-		}
-		
-		// webtv
-		if (g_bouquetManager->Bouquets[i]->bWebTV && !g_bouquetManager->Bouquets[i]->tvChannels.empty())
-		{
-			CBouquet *ltmp = TVfavList->addBouquet(g_bouquetManager->Bouquets[i]);
-
-			ZapitChannelList *channels = &(g_bouquetManager->Bouquets[i]->tvChannels);
-			
-			ltmp->channelList->setSize(channels->size());
-
-			for(int j = 0; j < (int) channels->size(); j++) 
-			{
-				ltmp->channelList->addChannel((*channels)[j]);
-			}
 		}
 	}
 	
