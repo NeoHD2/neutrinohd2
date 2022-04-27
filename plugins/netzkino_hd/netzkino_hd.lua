@@ -387,6 +387,9 @@ end
 
 --Stream downloaden
 function download_stream(_id)
+	httpTool = neutrino.CHTTPTool()
+	httpTool:setTitle(caption)
+	
 	local stream_name = conv_utf8(movies[_id].stream);
 
 	config = neutrino.CConfigFile('\t')
@@ -401,12 +404,13 @@ function download_stream(_id)
 
 	local movie_file = "" .. d_path .. "/" .. conv_utf8(movies[_id].title) .. ".mp4" ;
 
-	local h = neutrino.CHintBox(caption, "Download: "..conv_utf8(movies[_id].title).."", neutrino.HINTBOX_WIDTH, netzkino_png)
-	h:paint()
-
-	neutrino.downloadUrl("https://pmd.netzkino-seite.netzkino.de/" .. stream_name .. ".mp4", movie_file, "", 0)
-
-	h:hide()
+	if httpTool:downloadFile("https://pmd.netzkino-seite.netzkino.de/" .. stream_name .. ".mp4", movie_file, 100) == true then
+		-- save .xml
+		neutrino.CMovieInfo():saveMovieInfo(movie_file, conv_utf8(movies[_id].title), conv_utf8(movies[_id].content), "");
+		
+		-- save thumbnail		
+		neutrino.CFileHelpers():copyFile(movies[_id].cover, config:getString("network_nfs_recordingdir") .. "/" .. conv_utf8(movies[_id].title) .. ".jpg")
+	end
 end
 
 -- UTF8 in Umlaute wandeln
