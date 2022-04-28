@@ -180,7 +180,6 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 		head = (CHeaders*)chWidget->getWidgetItem(WIDGETITEM_HEAD);
 		foot = (CFooters*)chWidget->getWidgetItem(WIDGETITEM_FOOT);
 		window = (CWindow*)chWidget->getWidgetItem(WIDGETITEM_WINDOW);
-		//winBottom = (CWindow*)chWidget->getWidgetItem(WIDGETITEM_WINDOW, "bottom");
 		vline = (CCVline*)chWidget->getCCItem(CC_VLINE);
 		hline = (CCHline*)chWidget->getCCItem(CC_HLINE);
 	}
@@ -976,11 +975,11 @@ void CChannelList::hide()
 {
 	dprintf(DEBUG_NORMAL, "CChannelList::hide\n");
 
-	//if(listBox)
-	//	listBox->hide();
-	chWidget->hide();
-//	else
-	//	CFrameBuffer::getInstance()->clearFrameBuffer();
+	
+	if (chWidget) 
+		chWidget->hide();
+	else
+		CFrameBuffer::getInstance()->clearFrameBuffer();
 		
 	frameBuffer->blit();
 }
@@ -1734,18 +1733,20 @@ void CChannelList::paint()
 
 	//
 	listBox->setSelected(selected);
-	//listBox->paint();
 	
 	chWidget->paint();
+	
+	//
+	if (window) window->saveScreen();
 	
 	paintCurrentNextEvent(selected);
 }
 
 void CChannelList::paintCurrentNextEvent(int _selected)
 {
-	//winTop->paint();
-	//winBottom->paint();
-	chWidget->paint();
+	if (window) window->restoreScreen(); window->paint();
+	if (hline) hline->paint();
+	if (vline) vline->paint();
 	
 	CChannelEvent * p_event = NULL;
 	time_t jetzt = time(NULL);

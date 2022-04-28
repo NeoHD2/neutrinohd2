@@ -1028,6 +1028,7 @@ void CNeutrinoApp::parseCWindow(_xmlNodePtr node, CWidget* widget)
 		if (name) window->widgetItem_name = name;
 					
 		window->paintMainFrame(i_paintframe);
+		if (i_paintframe == 0) window->enableSaveScreen();
 		if (i_color) window->setColor(finalColor);
 		if (refresh) window->enableRepaint();
 		window->setCorner(i_radius, i_corner);
