@@ -663,7 +663,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					t_channel_id id = 0;
 					const char* xmltv;
 					const char* logo;
-					const char* epgmap;
+					//const char* epgmap;
 					const char* epgid;
 					
 					// 
@@ -675,7 +675,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						epgid = xmlGetAttribute(l1, (const char*)"epgid");
 						xmltv = xmlGetAttribute(l1, (const char*)"xmltv");
 						logo = xmlGetAttribute(l1, (const char*)"logo");
-						epgmap = xmlGetAttribute(l1, (const char*)"epgmap");
+						//epgmap = xmlGetAttribute(l1, (const char*)"epgmap");
 
 						if(id == 0) id = create_channel_id64(0, 0, 0, 0, 0, url);
 							
@@ -689,7 +689,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 							chan->setName(title);
 							chan->setDescription(description);
 							if (xmltv != NULL) chan->setXMLTV(xmltv);
-							if (epgmap != NULL) chan->setEPGMap(epgmap);
+							//if (epgmap != NULL) chan->setEPGMap(epgmap);
 							if (logo != NULL) chan->setLogo(logo);
 
 							newBouquet->addService(chan);
@@ -794,11 +794,15 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					if (url != NULL) 
 					{
 						description = "stream";
+						std::string bqName = name;
+						bqName += "-";
 						
 						CZapitBouquet* gBouquet = pBouquet;
 						if (!group.empty())
 						{
-							gBouquet = addBouquetIfNotExist(group);
+							bqName += group;
+							//gBouquet = addBouquetIfNotExist(group);
+							gBouquet = addBouquetIfNotExist(bqName);
 							gBouquet->bWebTV = true;		
 						}
 						
@@ -859,17 +863,6 @@ void CBouquetManager::loadWebTVBouquet(const std::string& dirname)
 	}
 
 	free(namelist);
-	
-	// renum services
-	/*
-    	int webtvcnt = 1;
-
-	for (tallchans::iterator it = allchans.begin(); it != allchans.end(); it++)
-	{
-		if(it->second.getServiceType() == ST_WEBTV)
-		    it->second.number = webtvcnt++;
-	}
-	*/
 }
 
 

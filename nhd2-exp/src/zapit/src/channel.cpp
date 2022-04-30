@@ -50,6 +50,8 @@ CZapitChannel::CZapitChannel(const std::string& p_name, t_service_id p_sid, t_tr
 	ttx_language_code = "";
 	last_unlocked_EPGid = 0;
 	last_unlocked_time = 0;
+	
+	epgid = channel_id;
 
 	isWebTV = false;	
 }
@@ -62,7 +64,7 @@ CZapitChannel::CZapitChannel(const std::string& p_name, t_channel_id p_chid, con
 	description = p_description;
 	alogo = "";
 	xmltv = "";
-	epgmap = "";
+	//epgmap = "";
 
 	service_id = 0;
 	transport_stream_id = 0;
@@ -78,6 +80,8 @@ CZapitChannel::CZapitChannel(const std::string& p_name, t_channel_id p_chid, con
 	pname = NULL;
 	
 	pmtPid = 0;
+	
+	epgid = 0;
 
 	isWebTV = true;
 }

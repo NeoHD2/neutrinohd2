@@ -189,7 +189,7 @@ class CZapitChannel
 		bool isWebTV;
 		std::string alogo;
 		std::string xmltv;
-		std::string epgmap;
+		//std::string epgmap;
 		t_channel_id epgid;
 
 		// constructor, desctructor
@@ -234,7 +234,7 @@ class CZapitChannel
 		std::string		getDescription(void)		{ return description;};
 		std::string		getLogo(void)			{ return alogo;};
 		std::string		getXMLTV(void)			{ return xmltv;};
-		std::string		getEPGMap(void)		{ return epgmap;};
+		//std::string		getEPGMap(void)		{ return epgmap;};
 
 		CZapitAudioChannel * 	getAudioChannel(unsigned char index = 0xFF);
 		unsigned short 	getAudioPid(unsigned char index = 0xFF);
@@ -262,7 +262,7 @@ class CZapitChannel
 		//
 		void setLogo(const std::string logo)			{ alogo = logo;};
 		void setXMLTV(const std::string url)			{ xmltv = url;};
-		void setEPGMap(const std::string map)			{ epgmap = map;};
+		//void setEPGMap(const std::string map)			{ epgmap = map;};
 		
 		/* cleanup methods */
 		void resetPids(void);
