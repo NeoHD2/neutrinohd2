@@ -57,6 +57,7 @@ class CBEChannelSelectWidget : public CMenuTarget
 	private:
 		CFrameBuffer *frameBuffer;
 		CBox cFrameBox;
+		CWidget* widget;
 		ClistBox *listBox;
 		CMenuItem *item;
 

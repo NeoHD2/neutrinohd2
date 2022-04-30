@@ -91,11 +91,17 @@ CBEBouquetWidget::CBEBouquetWidget()
 	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
 	
 	//
-	widget = new CWidget(&cFrameBox);
-	
-	listBox = new ClistBox(&cFrameBox);
-	
-	widget->addItem(listBox);
+	if (CNeutrinoApp::getInstance()->getWidget("bqeditbq"))
+	{
+		widget = CNeutrinoApp::getInstance()->getWidget("bqeditbq");
+		listBox = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		widget = new CWidget(&cFrameBox);
+		listBox = new ClistBox(&cFrameBox);
+		widget->addItem(listBox);
+	}	
 }
 
 CBEBouquetWidget::~CBEBouquetWidget()
@@ -135,18 +141,14 @@ void CBEBouquetWidget::paint()
 		}
 	}
 
+	//
 	listBox->setTitle(_("Bouquets"));
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
-	listBox->setHeadGradient(g_settings.Head_gradient);
-	listBox->setHeadRadius(g_settings.Head_radius);
-	listBox->setHeadLine(g_settings.Head_line);
 	listBox->setHeadButtons(&HButton, 1);
 	
+	//
 	listBox->enablePaintFoot();
-	listBox->setFootGradient(g_settings.Foot_gradient);
-	listBox->setFootRadius(g_settings.Foot_radius);
-	listBox->setFootLine(g_settings.Foot_line);
 
 	struct button_label Button[4];
 	Button[0] = CBEBouquetWidgetButtons[0];
@@ -440,9 +442,6 @@ int CBEBouquetWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
-
-	//delete listBox;
-	//listBox = NULL;
 	
 	return res;
 }

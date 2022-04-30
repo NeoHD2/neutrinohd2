@@ -57,23 +57,27 @@ class CEpgData
 {
 	private:
 		CFrameBuffer* frameBuffer;
-
+		
+		//
 		CBox cFrameBox;
-		CWindow cFrameWindow;
+		//CWindow cFrameWindow;
+		CWidget* cFrameWindow;
 
 		CBox cFollowScreeningBox;
-		CWindow cFollowScreeningWindow;
+		CWindow* cFollowScreeningWindow;
 
 		CBox cLeftFBox;
-		CWindow cLeftFWindow;
+		CWindow* cLeftFWindow;
 
 		CBox cRightFBox;
-		CWindow cRightFWindow;
+		CWindow* cRightFWindow;
 
 		CBox cHeadBox;
+		CHeaders* head;
+		
+		
 		CBox cFootBox;
-
-		CHeaders* headers;
+		CFooters* foot;
 		
 		CBox cTextBox;
 		CTextBox *textBox;

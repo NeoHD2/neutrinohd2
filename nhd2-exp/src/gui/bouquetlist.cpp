@@ -75,8 +75,6 @@ CBouquetList::CBouquetList(const char* const Name)
 		
 	//
 	bqWidget = NULL;
-
-	//
 	listBox = NULL;
 	item = NULL;
 
@@ -394,16 +392,6 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 	
 	CVFD::getInstance()->setMode(CVFD::MODE_MENU_UTF8);	
 
-	/*
-	if(listBox)
-	{
-		delete listBox;
-		listBox = NULL;
-	}
-
-	listBox = new ClistBox(&cFrameBox);
-	*/
-
 	paint();
 	CFrameBuffer::getInstance()->blit();
 
@@ -537,9 +525,6 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 	//
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
-
-	//delete listBox;
-	//listBox = NULL;
 	
 	if(zapOnExit) 
 		return (selected);
@@ -549,8 +534,6 @@ int CBouquetList::show(bool bShowChannelList, bool customMode)
 
 void CBouquetList::hide()
 {
-	//if(listBox)
-	//	listBox->hide();
 	if (bqWidget)
 		bqWidget->hide();
 	else

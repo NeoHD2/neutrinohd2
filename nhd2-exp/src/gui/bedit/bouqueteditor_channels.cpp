@@ -73,6 +73,8 @@ CBEChannelWidget::CBEChannelWidget(const std::string & Caption, unsigned int Bou
 	bouquet = Bouquet;
 	mode = CZapitClient::MODE_TV;
 
+	//
+	widget = NULL;
 	listBox = NULL;
 	item = NULL;
 
@@ -82,6 +84,19 @@ CBEChannelWidget::CBEChannelWidget(const std::string & Caption, unsigned int Bou
 	
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
 	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
+	
+	//
+	if (CNeutrinoApp::getInstance()->getWidget("bqeditch"))
+	{
+		widget = CNeutrinoApp::getInstance()->getWidget("bqeditch");
+		listBox = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		widget = new CWidget(&cFrameBox);
+		listBox = new ClistBox(&cFrameBox);
+		widget->addItem(listBox);
+	}	
 }
 
 #define BUTTONS_COUNT 4
@@ -128,29 +143,25 @@ void CBEChannelWidget::paint()
 		listBox->addItem(item);
 	}
 
+	//
 	listBox->setTitle(caption.c_str());
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
-	listBox->setHeadGradient(g_settings.Head_gradient);
-	listBox->setHeadRadius(g_settings.Head_radius);
-	listBox->setHeadLine(g_settings.Head_line);
-	
+
+	//
 	listBox->enablePaintFoot();
-	listBox->setFootGradient(g_settings.Foot_gradient);
-	listBox->setFootRadius(g_settings.Foot_radius);
-	listBox->setFootLine(g_settings.Foot_line);
 	listBox->setFootButtons(CBEChannelWidgetButtons, BUTTONS_COUNT);
-	
-	//listBox->enablePaintFootInfo();
 
 	//
 	listBox->setSelected(selected);
-	listBox->paint();
+	
+	//
+	widget->paint();
 }
 
 void CBEChannelWidget::hide()
 {
-	listBox->hide();
+	widget->hide();
 }
 
 int CBEChannelWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/)
@@ -169,8 +180,6 @@ int CBEChannelWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 		Channels = &(g_bouquetManager->Bouquets[bouquet]->tvChannels);
 	else if (mode == CZapitClient::MODE_RADIO)
 		Channels = &(g_bouquetManager->Bouquets[bouquet]->radioChannels);
-
-	listBox = new ClistBox(&cFrameBox);
 	
 	paint();
 	frameBuffer->blit();	
@@ -356,9 +365,6 @@ int CBEChannelWidget::exec(CMenuTarget* parent, const std::string &/*actionKey*/
 
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
-
-	delete listBox;
-	listBox = NULL;
 	
 	return res;
 }
@@ -437,7 +443,7 @@ void CBEChannelWidget::internalMoveChannel(unsigned int fromPosition, unsigned i
 	selected = toPosition;
 	newPosition = toPosition;
 
-	//listBox;
+	//
 	paint();
 }
 
@@ -445,3 +451,4 @@ bool CBEChannelWidget::hasChanged()
 {
 	return (channelsChanged);
 }
+

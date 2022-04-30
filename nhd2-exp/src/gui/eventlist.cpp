@@ -110,6 +110,7 @@ EventList::EventList()
 	m_search_bouquet_id= 1;
 
 	//
+	evlWidget = NULL;
 	listBox = NULL;
 	item = NULL;
 
@@ -118,7 +119,21 @@ EventList::EventList()
 	cFrameBox.iHeight = frameBuffer->getScreenHeight() - 100;
 	
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
-	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;		
+	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
+	
+	//
+	if (CNeutrinoApp::getInstance()->getWidget("eventlist"))
+	{
+		evlWidget = CNeutrinoApp::getInstance()->getWidget("eventlist");
+		listBox = (ClistBox*)evlWidget->getWidgetItem(WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		evlWidget = new CWidget(&cFrameBox);
+		listBox = new ClistBox(&cFrameBox);
+		
+		evlWidget->addItem(listBox);
+	}				
 }
 
 EventList::~EventList()
@@ -244,7 +259,7 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 	readEvents(channel_id);
 
 	//
-	listBox = new ClistBox(&cFrameBox);
+	//listBox = new ClistBox(&cFrameBox);
 	paint(channel_id);
 	CFrameBuffer::getInstance()->blit();
 
@@ -538,7 +553,7 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 		}
 		else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			//listBox->paintHead();
+			//
 			listBox->refresh();
 		} 
 		else
@@ -560,15 +575,13 @@ int EventList::exec(const t_channel_id channel_id, const std::string& channelnam
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
 
-	delete listBox;
-	listBox = NULL;
-
 	return res;
 }
 
 void EventList::hide()
 {
-	listBox->hide();
+	//listBox->hide();
+	evlWidget->hide();
 	
 	frameBuffer->blit();
 }
@@ -691,16 +704,10 @@ void EventList::paint(t_channel_id channel_id)
 	listBox->enablePaintHead();
 	listBox->setTitle(name.c_str(), logo.c_str());
 	listBox->enablePaintDate();
-	listBox->setHeadGradient(g_settings.Head_gradient);
-	listBox->setHeadRadius(g_settings.Head_radius);
-	listBox->setHeadLine(g_settings.Head_line);
 	listBox->setHeadButtons(HeadButtons, 3);
 
 	// foot
 	listBox->enablePaintFoot();
-	listBox->setFootGradient(g_settings.Foot_gradient);
-	listBox->setFootRadius(g_settings.Foot_radius);
-	listBox->setFootLine(g_settings.Foot_line);
 
 	if(sort_mode == SORT_DESCRIPTION)
 		FootButtons[3].localename = _("sorting(A..Z)");
@@ -711,7 +718,9 @@ void EventList::paint(t_channel_id channel_id)
 
 	//
 	listBox->setSelected(selected);
-	listBox->paint();
+	//listBox->paint();
+	
+	evlWidget->paint();
 }
 
 int CEventListHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/)

@@ -64,6 +64,10 @@ void addChannelToBouquet(const unsigned int bouquet, const t_channel_id channel_
 CBEChannelSelectWidget::CBEChannelSelectWidget(const std::string& Caption, unsigned int Bouquet, CZapitClient::channelsMode Mode)
 {
 	frameBuffer = CFrameBuffer::getInstance();
+	
+	widget = NULL;
+	listBox = NULL;
+	item = NULL;
 
 	//
 	selected =  -1;
@@ -83,8 +87,18 @@ CBEChannelSelectWidget::CBEChannelSelectWidget(const std::string& Caption, unsig
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
 	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;
 
-	listBox = NULL;
-	item = NULL;
+	//
+	if (CNeutrinoApp::getInstance()->getWidget("bqeditchselect"))
+	{
+		widget = CNeutrinoApp::getInstance()->getWidget("bqeditchselect");
+		listBox = (ClistBox*)widget->getWidgetItem(WIDGETITEM_LISTBOX);
+	}
+	else
+	{
+		widget = new CWidget(&cFrameBox);
+		listBox = new ClistBox(&cFrameBox);
+		widget->addItem(listBox);
+	}	
 }
 
 bool CBEChannelSelectWidget::isChannelInBouquet(int index)
@@ -149,27 +163,25 @@ void CBEChannelSelectWidget::paint()
 		listBox->addItem(item);
 	}
 
+	//
 	listBox->setTitle(caption.c_str());
 	listBox->enablePaintHead();
 	listBox->enablePaintDate();
-	listBox->setHeadGradient(g_settings.Head_gradient);
-	listBox->setHeadRadius(g_settings.Head_radius);
-	listBox->setHeadLine(g_settings.Head_line);
 	
+	//
 	listBox->enablePaintFoot();
-	listBox->setFootGradient(g_settings.Foot_gradient);
-	listBox->setFootRadius(g_settings.Foot_radius);
-	listBox->setFootLine(g_settings.Foot_line);
 	listBox->setFootButtons(Buttons, BUTTONS_COUNT);
 
 	//
 	listBox->setSelected(selected);
-	listBox->paint();
+	
+	//
+	widget->paint();
 }
 
 void CBEChannelSelectWidget::hide()
 {
-	listBox->hide();
+	widget->hide();
 }
 
 int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string& actionKey)
@@ -208,8 +220,6 @@ int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string& actionK
 
 	if (parent)
 		parent->hide();
-
-	listBox = new ClistBox(&cFrameBox);
 
 	paint();
 	frameBuffer->blit();
@@ -270,7 +280,7 @@ int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string& actionK
 		}
 		else if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 		{
-			//listBox->paintHead();
+			//
 			listBox->refresh();
 		}
 		else if (CNeutrinoApp::getInstance()->handleMsg(msg, data) & messages_return::cancel_all)
@@ -286,9 +296,6 @@ int CBEChannelSelectWidget::exec(CMenuTarget* parent, const std::string& actionK
 	
 	g_RCInput->killTimer(sec_timer_id);
 	sec_timer_id = 0;
-
-	delete listBox;
-	listBox = NULL;
 	
 	return res;
 }
