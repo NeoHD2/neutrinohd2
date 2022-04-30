@@ -40,8 +40,6 @@
 #include <gui/scan.h>
 
 #include <driver/rcinput.h>
-#include <driver/screen_max.h>
-
 #include <driver/color.h>
 
 #include <gui/widget/messagebox.h>
@@ -90,8 +88,8 @@ CScanTs::CScanTs(int num)
 	//
 	mheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
 	
-	width = w_max(MENU_WIDTH + 100, 0);
-	height = h_max(hheight + (10 * mheight), 0); //9 lines
+	width = MENU_WIDTH + 100;
+	height = hheight + (10 * mheight); //9 lines
 	
 	x = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - width) / 2;
 	y = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - height) / 2;
@@ -129,8 +127,8 @@ int CScanTs::exec(CMenuTarget * parent, const std::string & actionKey)
 	//
 	mheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
 	
-	width = w_max(MENU_WIDTH + 100, 0);
-	height = h_max(hheight + (10 * mheight), 0); //9 lines
+	width = MENU_WIDTH + 100;
+	height = hheight + (10 * mheight); //9 lines
 	
 	x = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - width) / 2;
 	y = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - height) / 2;

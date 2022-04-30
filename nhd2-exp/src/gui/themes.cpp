@@ -45,8 +45,6 @@
 #include <gui/widget/messagebox.h>
 #include <gui/widget/hintbox.h>
 
-#include <driver/screen_max.h>
-
 #include <sys/stat.h>
 #include <sys/time.h>
 

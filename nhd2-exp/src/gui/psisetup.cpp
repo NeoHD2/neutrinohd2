@@ -38,7 +38,6 @@
 #include <driver/fontrenderer.h>
 #include <driver/rcinput.h>
 #include <driver/color.h>
-#include <driver/screen_max.h>
 
 #include <gui/widget/messagebox.h>
 
@@ -70,7 +69,7 @@ CPSISetup::CPSISetup(const char* const Name, unsigned char *Contrast, unsigned c
 {
 	frameBuffer = CFrameBuffer::getInstance();
 
-	width = w_max(MENU_WIDTH, 0);
+	width = MENU_WIDTH;
 
 	hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
 	mheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();

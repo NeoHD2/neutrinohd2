@@ -47,7 +47,6 @@ libneutrino_driver_a_SOURCES = \
 	vcrcontrol.cpp \
 	audioplay.cpp \
 	stream2file.cpp \
-	screen_max.cpp \
 	file.cpp \
 	audiometadata.cpp \
 	audiofile.cpp \

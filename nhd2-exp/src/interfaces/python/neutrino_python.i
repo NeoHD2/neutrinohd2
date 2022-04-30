@@ -54,7 +54,6 @@
 #include <driver/file.h>
 #include <driver/audiofile.h>
 #include <driver/audiometadata.h>
-#include <driver/screen_max.h>
 #include <driver/encoding.h>
 #include <driver/pictureviewer/pictureviewer.h>
 #include <driver/audioplay.h>
@@ -156,7 +155,6 @@
 %include <src/driver/file.h>
 %include <src/driver/audiofile.h>
 %include <src/driver/audiometadata.h>
-%include <src/driver/screen_max.h>
 %include <src/driver/encoding.h>
 %include <src/driver/pictureviewer/pictureviewer.h>
 %include <src/driver/audioplay.h>

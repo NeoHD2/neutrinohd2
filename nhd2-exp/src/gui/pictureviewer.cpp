@@ -61,8 +61,6 @@
 #include <system/settings.h>
 #include <system/debug.h>
 
-#include <driver/screen_max.h>
-
 #include <algorithm>
 #include <sys/stat.h>
 #include <sys/time.h>

@@ -59,8 +59,6 @@
 //
 #include <client/zapitclient.h>
 
-#include <driver/screen_max.h>
-
 #include <algorithm>
 
 #include <system/debug.h>

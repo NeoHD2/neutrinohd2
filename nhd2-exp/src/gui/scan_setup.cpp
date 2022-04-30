@@ -49,8 +49,6 @@
 #include "gui/widget/stringinput.h"
 #include "gui/widget/stringinput_ext.h"
 
-#include <driver/screen_max.h>
-
 #include <system/debug.h>
 
 #include <global.h>

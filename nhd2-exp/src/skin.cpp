@@ -1259,7 +1259,7 @@ void CNeutrinoApp::parseCTextBox(_xmlNodePtr node, CWidget* widget)
 	unsigned int corner = 0;
 	unsigned int radius = 0;
 	
-	unsigned long textColor = COL_MENUCONTENT;
+	char* textColor = NULL;
 	unsigned int font = SNeutrinoSettings::FONT_TYPE_EPG_INFO1;
 	unsigned int fontbg = 0;
 	unsigned int mode = SCROLL;
@@ -1292,7 +1292,7 @@ void CNeutrinoApp::parseCTextBox(_xmlNodePtr node, CWidget* widget)
 				
 		if (color) finalColor = convertColor(color);
 		
-		textColor = xmlGetSignedNumericAttribute(node, "textcolor", 16);
+		textColor = xmlGetAttribute(node, (char*)"textcolor");
 		font = xmlGetSignedNumericAttribute(node, "font", 0);
 		fontbg = xmlGetSignedNumericAttribute(node, "fontbg", 0);
 		
@@ -1303,6 +1303,9 @@ void CNeutrinoApp::parseCTextBox(_xmlNodePtr node, CWidget* widget)
 		tw = xmlGetSignedNumericAttribute(node, "twidth", 0);
 		th = xmlGetSignedNumericAttribute(node, "theight", 0);
 		tframe = xmlGetSignedNumericAttribute(node, "tframe", 0);
+		
+		text = xmlGetAttribute(node, (char*)"text");
+		pic = xmlGetAttribute(node, (char*)"pic");
 						
 		textBox = new CTextBox(posx, posy, width, height);
 		
@@ -1311,9 +1314,15 @@ void CNeutrinoApp::parseCTextBox(_xmlNodePtr node, CWidget* widget)
 					
 		if (color != NULL) textBox->setBackgroundColor(finalColor);
 		
-		text = xmlGetAttribute(node, (char*)"text");
-		pic = xmlGetAttribute(node, (char*)"pic");
+		textBox->setCorner(corner);
+		textBox->setRadius(radius);
+		textBox->paintMainFrame(paintframe);
+					
+		textBox->setTextColor(textColor? convertFontColor(textColor) : COL_MENUCONTENT);
+		//textBox->setFont(font);
+		textBox->setMode(mode);
 		
+		/*
 		std::string filename = "";
 		std::string image = pic;
 		if (pic != NULL)
@@ -1327,14 +1336,8 @@ void CNeutrinoApp::parseCTextBox(_xmlNodePtr node, CWidget* widget)
 				image = filename.c_str();
 		}
 
-		textBox->setCorner(corner);
-		textBox->setRadius(radius);
-		textBox->paintMainFrame(paintframe);
-					
-		textBox->setTextColor(textColor);
-		textBox->setFont(font);
-		textBox->setMode(mode);
-		textBox->setText(text, image.c_str(), tw, th, tmode, tframe, fontbg);
+		if (text) textBox->setText(text, image.c_str(), tw, th, tmode, tframe, fontbg);
+		*/
 					
 		if (widget) widget->addItem(textBox);
 			
@@ -1750,6 +1753,9 @@ void CNeutrinoApp::parseSkin(const char* const filename, bool xml_data)
 			
 			// LISTBOX
 			parseClistBox(search->xmlChildrenNode, wdg);
+			
+			// TEXTBOX
+			parseCTextBox(search->xmlChildrenNode, wdg);
 			
 			// LABEL
 			parseCCLabel(search->xmlChildrenNode, wdg);

@@ -39,7 +39,6 @@
 #include <neutrino.h>
 
 #include <driver/fontrenderer.h>
-#include <driver/screen_max.h>
 
 #include <gui/widget/icons.h>
 #include <gui/widget/widget_helpers.h>

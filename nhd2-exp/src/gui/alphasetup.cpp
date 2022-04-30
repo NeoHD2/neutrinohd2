@@ -40,7 +40,6 @@
 #include <driver/fontrenderer.h>
 #include <driver/rcinput.h>
 #include <driver/color.h>
-#include <driver/screen_max.h>
 
 #include <gui/widget/messagebox.h>
 
@@ -68,7 +67,7 @@ CAlphaSetup::CAlphaSetup(const char* const Name, unsigned char * Alpha, CChangeO
 	hheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU_TITLE]->getHeight();
 	mheight = g_Font[SNeutrinoSettings::FONT_TYPE_MENU]->getHeight();
 
-	mainBox.iWidth = w_max(MENU_WIDTH, 0);
+	mainBox.iWidth = MENU_WIDTH;
 	mainBox.iHeight = hheight + mheight*2;
 
 	mainBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - mainBox.iWidth) >> 1);

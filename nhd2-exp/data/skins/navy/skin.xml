@@ -3,6 +3,12 @@
 <!-- SKIN: navy -->
 <!-- AUTHOR: mohousch -->
 <!-- DONT EDIT IF YOU DONT KNOW WHAT ARE YOU DOING -->
+	<WIDGET name="epgview" posx="50" posy="50" width="1180" height="620" paintframe="1" gradient="3" radius="20" corner="15">
+		<TEXTBOX posx="60" posy="120" width="1160" height="440"/>
+		<HEAD posx="60" posy="60" width="1160" height="60"/>
+		<FOOT posx="60" posy="600" width="1160" height="60"/>
+	</WIDGET>
+	
 	<WIDGET name="bqeditchselect" posx="10" posy="10" width="1260" height="700" paintframe="1" gradient="3" radius="20" corner="15">
 		<LISTBOX posx="60" posy="60" width="1160" height="600" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
 	</WIDGET>

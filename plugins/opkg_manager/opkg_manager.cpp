@@ -52,7 +52,6 @@
 #include <gui/widget/hintbox.h>
 #include <gui/widget/messagebox.h>
 #include "gui/widget/progresswindow.h"
-#include <driver/screen_max.h>
 #include <gui/filebrowser.h>
 
 #include <system/debug.h>

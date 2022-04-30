@@ -48,7 +48,6 @@
 #include <driver/audioplay.h>
 #include <driver/audiofile.h>
 #include <driver/audiometadata.h>
-#include <driver/screen_max.h>
 #include <driver/color.h>
 
 #include <daemonc/remotecontrol.h>
@@ -104,8 +103,8 @@ CUpnpBrowserGui::CUpnpBrowserGui(UPNP_GUI g)
 	fileHelper.createDir(thumbnail_dir.c_str(), 0755);
 
 	// box	
-	cFrameBox.iWidth = w_max ( (m_frameBuffer->getScreenWidth() / 20 * 17), (m_frameBuffer->getScreenWidth() / 20 ));
-	cFrameBox.iHeight = h_max ( (m_frameBuffer->getScreenHeight() / 20 * 18), (m_frameBuffer->getScreenHeight() / 20));
+	cFrameBox.iWidth = m_frameBuffer->getScreenWidth() / 20 * 17;
+	cFrameBox.iHeight = m_frameBuffer->getScreenHeight() / 20 * 18;
 	
 	cFrameBox.iX = m_frameBuffer->getScreenX() + (m_frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
 	cFrameBox.iY = m_frameBuffer->getScreenY() + (m_frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;

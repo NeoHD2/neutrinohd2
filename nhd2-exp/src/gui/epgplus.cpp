@@ -42,7 +42,6 @@
 #include <gui/bouquetlist.h>
 
 #include <driver/rcinput.h>
-#include <driver/screen_max.h>
 
 #include <algorithm>
 #include <sstream>
@@ -681,8 +680,8 @@ void EpgPlus::init()
 	frameBuffer = CFrameBuffer::getInstance ();
 	currentViewMode = ViewMode_Scroll;
 	currentSwapMode = SwapMode_ByPage;
-	usableScreenWidth = w_max (g_settings.screen_EndX, 4);
-	usableScreenHeight = h_max (g_settings.screen_EndY, 4);
+	usableScreenWidth = g_settings.screen_EndX;
+	usableScreenHeight = g_settings.screen_EndY;
 	
 	std::string FileName = std::string (g_settings.font_file);
 	for (size_t i = 0; i < NumberOfFontSettings; ++i) {

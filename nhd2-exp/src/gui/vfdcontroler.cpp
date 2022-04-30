@@ -39,7 +39,6 @@
 
 #include <driver/fontrenderer.h>
 #include <driver/rcinput.h>
-#include <driver/screen_max.h>
 #include <driver/color.h>
 
 #include <gui/widget/messagebox.h>
@@ -69,8 +68,8 @@ CVfdControler::CVfdControler(const char* const Name, CChangeObserver* Observer)
 
 	name = Name? Name : "";
 
-	width = w_max(MENU_WIDTH, 0);
-	height = h_max(hheight+ mheight*3 + mheight/2, 0);
+	width = MENU_WIDTH;
+	height = hheight+ mheight*3 + mheight/2;
 	x = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - width) >> 1);
 	y = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - height)>> 1);
 

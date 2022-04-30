@@ -45,7 +45,6 @@
 #include <neutrino.h>
 
 #include <driver/fontrenderer.h>
-#include <driver/screen_max.h>
 #include <driver/rcinput.h>
 
 #include <gui/dboxinfo.h>

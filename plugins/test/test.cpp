@@ -3445,8 +3445,8 @@ void CTestMenu::testCListFrame()
 	int selected = 0;
 	
 	//
-	listFrameBox.iWidth = w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 ));
-	listFrameBox.iHeight = h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 16), (CFrameBuffer::getInstance()->getScreenHeight() / 20));
+	listFrameBox.iWidth = CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17;
+	listFrameBox.iHeight = CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18;
 
 	// recalculate x and y
 	listFrameBox.iX = CFrameBuffer::getInstance()->getScreenX() + ((CFrameBuffer::getInstance()->getScreenWidth() - (listFrameBox.iWidth)) / 2);
@@ -5518,7 +5518,7 @@ void CTestMenu::testCMenuWidget()
 	dprintf(DEBUG_NORMAL, "\nCTestMenu::testCMenuWidget (listBox mode)\n");
 	
 	// our listBox
-	menuWidget = new CMenuWidget("CMenuWidget(listBox Mode)", NEUTRINO_ICON_MOVIE, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 17), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+	menuWidget = new CMenuWidget("CMenuWidget(listBox Mode)", NEUTRINO_ICON_MOVIE, CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17, CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18);
 
 	//
 	CHintBox loadBox("CMenuWidget(listBox mode)", _("Scan for Movies ..."));

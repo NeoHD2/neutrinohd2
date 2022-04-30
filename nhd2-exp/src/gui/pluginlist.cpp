@@ -103,14 +103,14 @@ void CPluginList::showMenu()
 	else
 	{
 		//
-		pWidget = new CWidget(0, 0, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+		pWidget = new CWidget(0, 0, CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17, CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18);
 		
 		pWidget->name = "plugins";
 		
 		pWidget->setMenuPosition(MENU_POSITION_CENTER);
 		
 		//
-		plist = new ClistBox(0, 0, w_max ( (CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17), (CFrameBuffer::getInstance()->getScreenWidth() / 20 )), h_max ( (CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18), (CFrameBuffer::getInstance()->getScreenHeight() / 20)));
+		plist = new ClistBox(0, 0, CFrameBuffer::getInstance()->getScreenWidth() / 20 * 17, CFrameBuffer::getInstance()->getScreenHeight() / 20 * 18);
 		
 		plist->setWidgetType(WIDGET_TYPE_CLASSIC);
 		plist->setWidgetMode(MODE_MENU);

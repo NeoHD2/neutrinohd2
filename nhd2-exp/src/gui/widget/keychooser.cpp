@@ -39,7 +39,6 @@
 #include <neutrino.h>
 
 #include <driver/color.h>
-#include <driver/screen_max.h>
 
 #include <system/debug.h>
 
@@ -220,8 +219,8 @@ void CKeyChooserItem::paint()
 
 	CFrameBuffer * frameBuffer = CFrameBuffer::getInstance();
 
-	m_cBox.iWidth = w_max(600, 0);
-	m_cBox.iHeight = h_max(hheight +  2*mheight, 0);
+	m_cBox.iWidth = 600;
+	m_cBox.iHeight = hheight +  2*mheight;
 	m_cBox.iX = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - m_cBox.iWidth) >> 1);
 	m_cBox.iY = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - m_cBox.iHeight) >> 1);
 

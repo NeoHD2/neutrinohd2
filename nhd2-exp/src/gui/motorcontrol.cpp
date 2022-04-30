@@ -36,7 +36,6 @@
 
 #include <driver/rcinput.h>
 #include <driver/color.h>
-#include <driver/screen_max.h>
 
 #include <gui/motorcontrol.h>
 
@@ -83,10 +82,10 @@ void CMotorControl::Init(void)
 
 	satfindpid = -1;
 	
-	width = w_max(MENU_WIDTH, 0);
+	width = MENU_WIDTH;
 	mheight = mheight - 2;
 	height = hheight + (20 * mheight) - 5;
-	height = h_max(height, 0);
+	height = height;
 
 	x = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - width) / 2;
 	y = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - height) / 2;

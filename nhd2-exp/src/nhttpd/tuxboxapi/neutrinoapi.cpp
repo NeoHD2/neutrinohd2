@@ -24,11 +24,13 @@
 #include <neutrinoMessages.h>
 #include <global.h>
 #include <neutrino.h>
+
 #include <driver/fontrenderer.h>
 #include <driver/rcinput.h>
-#include <driver/screen_max.h>
 #include <driver/color.h>
+
 #include <gui/widget/icons.h>
+
 #include <daemonc/remotecontrol.h>
 
 /* dvbapi*/

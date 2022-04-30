@@ -41,7 +41,7 @@
 #include <neutrino.h>
 
 #include <driver/fontrenderer.h>
-#include <driver/screen_max.h>
+
 #include <gui/bedit/bouqueteditor_channels.h>
 
 #include <gui/widget/widget_helpers.h>

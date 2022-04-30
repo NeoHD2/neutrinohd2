@@ -50,7 +50,6 @@
 #include <gui/widget/icons.h>
 
 #include <driver/fontrenderer.h>
-#include <driver/screen_max.h>
 #include <driver/rcinput.h>
 #include <daemonc/remotecontrol.h>
 #include <system/settings.h>
@@ -79,8 +78,8 @@ CBouquetList::CBouquetList(const char* const Name)
 	item = NULL;
 
 	// box	
-	cFrameBox.iWidth = w_max ( (frameBuffer->getScreenWidth() / 20 * 17), (frameBuffer->getScreenWidth() / 20 ));
-	cFrameBox.iHeight = h_max ( (frameBuffer->getScreenHeight() / 20 * 18), (frameBuffer->getScreenHeight() / 20));
+	cFrameBox.iWidth = frameBuffer->getScreenWidth() / 20 * 17;
+	cFrameBox.iHeight = frameBuffer->getScreenHeight() / 20 * 18;
 	
 	cFrameBox.iX = frameBuffer->getScreenX() + (frameBuffer->getScreenWidth() - cFrameBox.iWidth) / 2;
 	cFrameBox.iY = frameBuffer->getScreenY() + (frameBuffer->getScreenHeight() - cFrameBox.iHeight) / 2;

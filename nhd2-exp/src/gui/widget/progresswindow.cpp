@@ -32,7 +32,7 @@
 
 #include <driver/fontrenderer.h>
 #include <driver/rcinput.h>
-#include <driver/screen_max.h>
+//#include <driver/screen_max.h>
 
 #include <driver/color.h>
 
@@ -73,7 +73,7 @@ void CProgressWindow::initFrames(int _x, int _y, int _width, int _height)
 	if(_x == 0 && _y == 0 && _width == 0 && _height == 0)
 	{
 		width = MENU_WIDTH;
-		height = h_max(hheight + 3*mheight, 20);
+		height = hheight + 3*mheight;
 
 		x = frameBuffer->getScreenX() + ((frameBuffer->getScreenWidth() - width ) >> 1 );
 		y = frameBuffer->getScreenY() + ((frameBuffer->getScreenHeight() - height) >> 1 );
