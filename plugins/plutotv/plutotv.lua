@@ -30,52 +30,17 @@ function convert(s)
 	return s
 end
 
+
 function get_channels()
-	local hint = neutrino.CHintBox(plugin_title, "Pluto TV Kanal liste wird erneut\n Bitte warten ...\n")
-	hint:paint()
-	
-	local r = false
+	httpTool = neutrino.CHTTPTool()
+	httpTool:setTitle("Pluto TV Channels downlaoding please wait ...")
 		
-	local webtvdir = neutrino.CONFIGDIR .. "/webtv"
-	local c_data = neutrino.getUrlAnswer("http://api.pluto.tv/v2/channels.json", "Mozilla/5.0")
-	local xmltv = "https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/PlutoTV/de.xml"
-	
-	if c_data then
-		local jd = json:decode(c_data)
-		if jd then
-			local xml = io.open(webtvdir .. "/plutotv.xml", 'w+')
-			if xml then
-				xml:write('<?xml version="1.0" encoding="UTF-8"?>\n')
-				xml:write('<webtvs name="Pluto TV">\n')
-				for i = 1, #jd do
-					if jd[i] then
-						if jd[i]._id and jd[i].name then
-							local logo = ""
-							--[[if jd[i].logo and jd[i].logo.path then
-								logo = jd[i].logo.path:sub(1, string.find(jd[i].logo.path, "?")-1)
-							end]]
-							local summary = ""
-							if jd[i].summary then
-								summary = convert(jd[i].summary)
-							end
-							local category = ""
-							if jd[i].category then
-								category = convert(jd[i].category:gsub(" auf Pluto TV",""))
-							end
-							xml:write('	<webtv genre="' .. category .. '" title="' .. convert(jd[i].name) ..  '" url="' .. jd[i]._id .. '" xmltv="' .. xmltv .. '" epgmap="' .. jd[i]._id .. '" logo="' .. logo .. '" script="plutotv.lua" description="' .. summary .. '" />\n')
-						end
-					end
-				end
-				xml:write('</webtvs>\n')
-				xml:close()
-				r = true
-			end
-		end
+	local obj_file = "https://i.mjh.nz/PlutoTV/all.m3u8"
+	local target = neutrino.CONFIGDIR .. "/webtv/plutotv.m3u8"
+		
+	if httpTool:downloadFile(obj_file, target, 100) == true then
+		os.execute("pzapit -c")
 	end
-	
-	hint:hide()
-	
-	return r
 end
 
 -- UTF8 in Umlaute wandeln
@@ -501,7 +466,6 @@ function categories_menu()
 	m:setTitleHAlign(neutrino.CC_ALIGN_CENTER)
 	m:clearAll()
 	
-	--[[
 	local red = neutrino.button_label_struct()
 	red.button = neutrino.NEUTRINO_ICON_BUTTON_RED
 	red.localename = "Update Channels"
@@ -509,7 +473,6 @@ function categories_menu()
 	m:setFootButtons(red)
 	
 	m:addKey(neutrino.RC_red, null, "update")
-	]]
 	
 	for _id,_name in pairs(catlist) do
 		item = neutrino.ClistBoxItem(conv_utf8(_name))
@@ -533,13 +496,9 @@ function categories_menu()
 		cat_menu(m_selected + 1)
 	end
 	
-	--[[
 	if actionKey == "update" then
-		if get_channels() then
-			os.execute("pzapit -c")
-		end
+		get_channels()
 	end
-	]]
 	
 	if m:getExitPressed() ~= true then
 		categories_menu()
