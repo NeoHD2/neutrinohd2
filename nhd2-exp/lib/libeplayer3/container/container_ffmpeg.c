@@ -1481,6 +1481,11 @@ static int container_ffmpeg_stop(Context_t *context)
 		ffmpeg_err("Container not running\n");
 		return cERR_CONTAINER_FFMPEG_ERR;
 	}
+	
+	if (context->playback)
+	{
+		context->playback->isPlaying = 0;
+	}
 
 	while ( (hasPlayThreadStarted != 0) && (--wait_time) > 0 ) 
 	{
