@@ -373,15 +373,17 @@ static int PlaybackClose(Context_t  *context)
 	}
 
 	//FIXME KILLED BY signal 7 or 11
+	/*
 	if (context->container && context->container->textSrtContainer)
 		context->container->textSrtContainer->Command(context, CONTAINER_DEL, NULL);
 
 	if (context->container && context->container->textSsaContainer)
-		context->container->textSsaContainer->Command(context, CONTAINER_DEL, NULL);    
+		context->container->textSsaContainer->Command(context, CONTAINER_DEL, NULL);
+	*/   
 
 	context->manager->audio->Command(context, MANAGER_DEL, NULL);
 	context->manager->video->Command(context, MANAGER_DEL, NULL);    
-	context->manager->subtitle->Command(context, MANAGER_DEL, NULL);   
+	//context->manager->subtitle->Command(context, MANAGER_DEL, NULL);   
 
 	context->playback->isPaused     = 0;
 	context->playback->isPlaying    = 0;
@@ -389,6 +391,8 @@ static int PlaybackClose(Context_t  *context)
 	context->playback->BackWard     = 0;
 	context->playback->SlowMotion   = 0;
 	context->playback->Speed        = 0;
+	
+	PlaybackDieNow(2);
 
 	playback_printf(10, "exiting with value %d\n", ret);
 
@@ -540,12 +544,14 @@ static int PlaybackContinue(Context_t  *context)
 }
 
 // stop
-static int PlaybackStop(Context_t  *context) 
+static int PlaybackStop(Context_t* context) 
 {
 	int ret = cERR_PLAYBACK_NO_ERROR;
 	int wait_time = 20;
 
 	playback_printf(10, "\n");
+	
+	PlaybackDieNow(1);
 
 	if (context->playback->isPlaying) 
 	{
@@ -556,8 +562,11 @@ static int PlaybackStop(Context_t  *context)
 		context->playback->SlowMotion   = 0;
 		context->playback->Speed        = 0;
 
-		context->output->Command(context, OUTPUT_STOP, NULL);
-		context->container->selectedContainer->Command(context, CONTAINER_STOP, NULL);
+		if (context->output && context->output->Command)
+			context->output->Command(context, OUTPUT_STOP, NULL);
+			
+		if (context->container && context->container->selectedContainer)
+			context->container->selectedContainer->Command(context, CONTAINER_STOP, NULL);
 	} 
 	else
 	{
@@ -591,6 +600,8 @@ static int PlaybackTerminate(Context_t  *context)
 	int wait_time = 20;
 
 	playback_printf(20, "\n");
+	
+	PlaybackDieNow(1);
 
 	if ( context && context->playback && context->playback->isPlaying ) 
 	{
