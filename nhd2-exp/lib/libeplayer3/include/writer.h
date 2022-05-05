@@ -7,7 +7,8 @@
 #include "common.h"
 
 
-typedef enum { 
+typedef enum 
+{ 
 	eNone, 
 	eAudio, 
 	eVideo, 
@@ -16,7 +17,8 @@ typedef enum {
 
 typedef ssize_t (* WriteV_t)(int, const struct iovec *, int);
 
-typedef struct {
+typedef struct 
+{
 	int                    fd;
 	unsigned char*         data;
 	unsigned int           len;
@@ -31,7 +33,8 @@ typedef struct {
 	WriteV_t               WriteV;
 } WriterAVCallData_t;
 
-typedef struct {
+typedef struct 
+{
 	unsigned char*         data;
 	unsigned int           Width;
 	unsigned int           Height;
@@ -49,7 +52,8 @@ typedef struct {
 	unsigned int           destStride;
 } WriterFBCallData_t;
 
-typedef struct WriterCaps_s {
+typedef struct WriterCaps_s 
+{
 	char*          name;
 	eWriterType_t  type;
 	char*          textEncoding;
@@ -57,7 +61,8 @@ typedef struct WriterCaps_s {
 	int            dvbEncoding;
 } WriterCaps_t;
 
-typedef struct Writer_s {
+typedef struct Writer_s 
+{
 	int           (* reset) ();
 	int           (* writeData) (void*);
 	int           (* writeReverseData) (void*);
@@ -91,7 +96,9 @@ extern Writer_t WriterVideoVC1;
 // subtitle
 extern Writer_t WriterFramebuffer;
 
-static Writer_t * AvailableWriter[] = {
+//
+static Writer_t * AvailableWriter[] = 
+{
 	&WriterAudioIPCM,
 	&WriterAudioMP3,
 	&WriterAudioMPEGL3,
@@ -102,7 +109,7 @@ static Writer_t * AvailableWriter[] = {
 	&WriterAudioWMA,
 	&WriterAudioFLAC,
 	&WriterAudioVORBIS,
-
+	//
 	&WriterVideoMPEG2,
 	&WriterVideoMPEGH264,
 	&WriterVideoH264,
@@ -123,7 +130,7 @@ Writer_t* getDefaultAudioWriter();
 Writer_t* getDefaultFramebufferWriter();
 
 //
-ssize_t WriteExt(WriteV_t _call, int fd, void *data, size_t size);
+ssize_t WriteExt(WriteV_t _call, int fd, void *data, size_t size); // used in mpeg2.c
 ssize_t write_with_retry(int fd, const void *buf, int size);
 ssize_t writev_with_retry(int fd, const struct iovec *iov, int ic);
 

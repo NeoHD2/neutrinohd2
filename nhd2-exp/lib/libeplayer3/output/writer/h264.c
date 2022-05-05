@@ -93,15 +93,15 @@ typedef struct avcC_s
 /* ***************************** */
 /* Varaibles                     */
 /* ***************************** */
-const unsigned char Head[]                  = {0, 0, 0, 1};
+const unsigned char Head[] = {0, 0, 0, 1};
 static int initialHeader = 1;
-static unsigned int        NalLengthBytes          = 1;
+static unsigned int NalLengthBytes = 1;
 
 #if !defined __sh__
-static unsigned char           *CodecData     = NULL;
-static unsigned int            CodecDataLen   = 0;
-static int                     avc3 = 0;
-static int                     sps_pps_in_stream = 0;
+static unsigned char* CodecData = NULL;
+static unsigned int CodecDataLen = 0;
+static int avc3 = 0;
+static int sps_pps_in_stream = 0;
 #endif
 
 /* ***************************** */
@@ -331,9 +331,9 @@ static int32_t PreparCodecData(unsigned char *data, unsigned int cd_len, unsigne
 static int reset()
 {
 	initialHeader = 1;
-
-#if !defined __sh__
 	avc3 = 0;
+#if !defined __sh__
+	//avc3 = 0;
 	sps_pps_in_stream = 0;
 #endif
 	return 0;
@@ -366,6 +366,9 @@ static int writeData(void* _call)
 
 	TimeDelta = call->FrameRate;
 	TimeScale = call->FrameScale;
+	/* avoid compiler warnings */
+	if (TimeDelta) {}
+	if (TimeScale) {}
 	VideoPts  = call->Pts;
 
 	h264_printf(10, "VideoPts %lld - %d %d\n", call->Pts, TimeDelta, TimeScale);
@@ -382,7 +385,7 @@ static int writeData(void* _call)
 		return 0;
 	}
 
-#if defined __sh__
+#if 1 //defined __sh__
 	if ((call->len > 3) && ((call->data[0] == 0x00 && call->data[1] == 0x00 && call->data[2] == 0x00 && call->data[3] == 0x01) || (call->data[0] == 0xff && call->data[1] == 0xff && call->data[2] == 0xff && call->data[3] == 0xff)))
 	{
 		unsigned int PacketLength = 0;
@@ -535,7 +538,9 @@ static int writeData(void* _call)
 				NalLength = (NalData[0] << 24) | (NalData[1] << 16) | (NalData[2] << 8) | (NalData[3]);
 				break;
 		}
+		
 		h264_printf(20, "NalStart = %u + NalLength = %u > SampleSize = %u\n", NalStart, NalLength, SampleSize);
+		
 		if (NalStart + NalLength > SampleSize)
 		{
 			h264_printf(20, "nal length past end of buffer - size %u frame offset %u left %u\n",
@@ -711,6 +716,7 @@ static int writeData(void* _call)
 	return len;
 }
 
+/*
 static int writeReverseData(void* _call)
 {
 	WriterAVCallData_t* call = (WriterAVCallData_t*) _call;
@@ -743,8 +749,9 @@ static int writeReverseData(void* _call)
 #else
 	return 0;
 #endif
-
 }
+*/
+
 /* ***************************** */
 /* Writer  Definition            */
 /* ***************************** */
@@ -759,7 +766,8 @@ static WriterCaps_t caps = {
 struct Writer_s WriterVideoH264 = {
 	&reset,
 	&writeData,
-	&writeReverseData,
+	//&writeReverseData,
+	NULL,
 	&caps,
 };
 

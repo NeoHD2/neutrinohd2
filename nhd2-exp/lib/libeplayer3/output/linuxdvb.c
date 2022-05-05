@@ -560,7 +560,7 @@ int LinuxDvbFlush(Context_t  *context, char * type)
 			{
 				linuxdvb_err("ioctl failed with errno %d\n", errno);
 				linuxdvb_err("VIDEO_STOP: %s\n", strerror(errno));
-			}
+			}			
 		}
 
 		if (audio && audiofd != -1) 
@@ -574,13 +574,12 @@ int LinuxDvbFlush(Context_t  *context, char * type)
 				linuxdvb_err("ioctl failed with errno %d\n", errno);
 				linuxdvb_err("AUDIO_FLUSH: %s\n", strerror(errno));
 			}
-			
+						
 			if (ioctl(audiofd, AUDIO_STOP, NULL) == -1)
 			{
 				linuxdvb_err("ioctl failed with errno %d\n", errno);
 				linuxdvb_err("AUDIO_STOP: %s\n", strerror(errno));
 			}
-
 		}
 
 		releaseLinuxDVBMutex(FILENAME, __FUNCTION__,__LINE__);
@@ -1025,7 +1024,7 @@ int LinuxDvbSwitch(Context_t  *context, char * type)
 }
 
 // Write to decoder
-static int Write(void  *_context, void* _out)
+static int Write(void* _context, void* _out)
 {
 	Context_t          *context  = (Context_t  *) _context;
 	AudioVideoOut_t    *out      = (AudioVideoOut_t*) _out;
@@ -1045,8 +1044,7 @@ static int Write(void  *_context, void* _out)
 	video = !strcmp("video", out->type);
 	audio = !strcmp("audio", out->type);
   
-	linuxdvb_printf(20, "DataLength=%u PrivateLength=%u Pts=%llu FrameRate=%f\n", 
-                                                    out->len, out->extralen, out->pts, out->frameRate);
+	linuxdvb_printf(20, "DataLength=%u PrivateLength=%u Pts=%llu FrameRate=%f\n", out->len, out->extralen, out->pts, out->frameRate);
 	linuxdvb_printf(20, "v%d a%d\n", video, audio);
 
 	if (audio) 
@@ -1080,7 +1078,12 @@ static int Write(void  *_context, void* _out)
 			call.FrameRate      = out->frameRate;
 			call.FrameScale     = out->timeScale;
 			call.Version        = 0; /* -1; unsigned char cannot be negative */
-			call.WriteV         = writev_with_retry;
+			//call.WriteV         = writev_with_retry;
+#if defined __sh__
+			call.WriteV	  = writev;
+#else
+			call.WriteV       = writev_with_retry;
+#endif			
 
 			if (writer->writeData)
 				res = writer->writeData(&call);

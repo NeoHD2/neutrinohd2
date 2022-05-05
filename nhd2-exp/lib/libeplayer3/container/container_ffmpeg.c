@@ -922,7 +922,7 @@ int container_ffmpeg_init(Context_t *context, char * filename)
 		return cERR_CONTAINER_FFMPEG_RUNNING;
 	}
 
-	/* initialize ffmpeg */
+	// initialize ffmpeg 
 	avcodec_register_all();
 	av_register_all();
 
@@ -1200,6 +1200,7 @@ int container_ffmpeg_init(Context_t *context, char * filename)
 					unsigned int object_type = 2; // LC
 					unsigned int sample_index = aac_get_sample_rate_index(stream->codec->sample_rate);
 					unsigned int chan_config = stream->codec->channels;
+					
 					if(stream->codec->extradata_size >= 2) 
 					{
 						object_type = stream->codec->extradata[0] >> 3;
