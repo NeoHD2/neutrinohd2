@@ -1181,7 +1181,15 @@ void CMoviePlayerGui::PlayFile(void)
 				showPlaylist();
 			}
 			else
-				showMovieInfo();//FIXME:
+			{
+				if (!IsVisible()) 
+					showMovieInfo();//FIXME:
+				else
+				{
+					hide();
+					cMovieInfo.showMovieInfo(playlist[selected]);
+				}	
+			}
 		}
 		else if(msg == RC_setup)
 		{
@@ -1499,10 +1507,8 @@ void CMoviePlayerGui::PlayFile(void)
 			else
 			{
 				if (IsVisible())
-				{ 
 					hide();
-				}
-				
+					
 				cMovieInfo.showMovieInfo(playlist[selected]);
 			}
 		}
