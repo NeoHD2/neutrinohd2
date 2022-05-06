@@ -9,33 +9,33 @@
 		<FOOT posx="60" posy="600" width="1160" height="60"/>
 	</WIDGET>
 	
-	<WIDGET name="bqeditchselect" posx="10" posy="10" width="1260" height="700" paintframe="1" gradient="3" radius="20" corner="15">
-		<LISTBOX posx="60" posy="60" width="1160" height="600" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
+	<WIDGET name="bqeditchselect" posx="50" posy="50" width="1180" height="620" paintframe="1" gradient="3" radius="20" corner="15">
+		<LISTBOX posx="100" posy="100" width="1080" height="520" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
 	</WIDGET>
 	
-	<WIDGET name="bqeditch" posx="10" posy="10" width="1260" height="700" paintframe="1" gradient="3" radius="20" corner="15">
-		<LISTBOX posx="60" posy="60" width="1160" height="600" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
+	<WIDGET name="bqeditch" posx="50" posy="50" width="1180" height="620" paintframe="1" gradient="3" radius="20" corner="15">
+		<LISTBOX posx="100" posy="100" width="1080" height="520" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
 	</WIDGET>
 	
-	<WIDGET name="bqeditbq" posx="10" posy="10" width="1260" height="700" paintframe="1" gradient="3" radius="20" corner="15">
-		<LISTBOX posx="60" posy="60" width="1160" height="600" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
+	<WIDGET name="bqeditbq" posx="50" posy="50" width="1180" height="620" paintframe="1" gradient="3" radius="20" corner="15">
+		<LISTBOX posx="100" posy="100" width="1080" height="520" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
 	</WIDGET>
 	
-	<WIDGET name="eventlist" posx="10" posy="10" width="1260" height="700" paintframe="1" gradient="3" radius="20" corner="15">
-		<LISTBOX posx="60" posy="60" width="1160" height="600" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
+	<WIDGET name="eventlist" posx="50" posy="50" width="1180" height="620" paintframe="1" gradient="3" radius="20" corner="15">
+		<LISTBOX posx="100" posy="100" width="1080" height="520" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
 	</WIDGET>
 	
-	<WIDGET name="bouquetlist" posx="10" posy="10" width="1260" height="700" paintframe="1" gradient="3" radius="20" corner="15">
-		<LISTBOX posx="60" posy="60" width="1160" height="600" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
+	<WIDGET name="bouquetlist" posx="50" posy="50" width="1180" height="620" paintframe="1" gradient="3" radius="20" corner="15">
+		<LISTBOX posx="100" posy="100" width="1080" height="520" paintframe="0" type="0" mode="2" scrollbar="1" painthead="1" head_line="1" paintfoot="1" foot_line="1"/>
 	</WIDGET>
 	
-	<WIDGET name="channellist" posx="10" posy="10" width="1260" height="700" paintframe="1" gradient="3" radius="20" corner="15">
-		<LISTBOX posx="60" posy="60" width="780" height="600" paintframe="0" type="0" mode="2" scrollbar="1"/>
-		<WINDOW posx="840" posy="60" width="360" height="600" paintframe="0"/>
-		<HEAD posx="10" posy="10" width="1260" height="50" paintframe="0" line="1"/>
-		<FOOT posx="10" posy="660" width="1260" height="50" paintframe="0" line="1"/>
-		<HLINE posx="850" posy="360" width="360" height="360" gradient="3"/>
-		<VLINE posx="840" posy="70" width="3" height="580" gradient="3"/>
+	<WIDGET name="channellist" posx="50" posy="50" width="1180" height="620" paintframe="1" gradient="3" radius="20" corner="15">
+		<LISTBOX posx="100" posy="150" width="700" height="420" paintframe="0" type="0" mode="2" scrollbar="1"/>
+		<WINDOW posx="800" posy="150" width="380" height="420" paintframe="0"/>
+		<HEAD posx="100" posy="100" width="1080" height="50" paintframe="0" line="1"/>
+		<FOOT posx="100" posy="570" width="1080" height="50" paintframe="0" line="1"/>
+		<HLINE posx="810" posy="360" width="360" height="360" gradient="3"/>
+		<VLINE posx="800" posy="200" width="3" height="320" gradient="3"/>
 	</WIDGET>
 	
 	<WIDGET name="testmenu" posx="0" posy="0" width="600" height="600" paintframe="1" gradient="3" position="2" radius="20" corner="15">
