@@ -331,9 +331,9 @@ static int32_t PreparCodecData(unsigned char *data, unsigned int cd_len, unsigne
 static int reset()
 {
 	initialHeader = 1;
-	avc3 = 0;
+	
 #if !defined __sh__
-	//avc3 = 0;
+	avc3 = 0;
 	sps_pps_in_stream = 0;
 #endif
 	return 0;
