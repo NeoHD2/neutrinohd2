@@ -265,7 +265,7 @@
 %include <src/gui/pluginlist.h>
 %include <src/gui/bedit/bouqueteditor_bouquets.h>
 %include <src/gui/update.h>
-%include <src/gui/cam_menu.h>
+//%include <src/gui/cam_menu.h>
 %include <src/gui/hdd_menu.h>
 %include <src/gui/rc_lock.h>
 %include <src/gui/themes.h>

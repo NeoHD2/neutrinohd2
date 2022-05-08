@@ -253,10 +253,11 @@ CMenuTarget* CNeutrinoApp::convertTarget(const int id)
 		case WIDGET_TUNERSETUP:
 			parent = new CTunerSetup();
 			break;
-			
+#if defined ENABLE_CI			
 		case WIDGET_CICAMSETUP:
 			parent = new CCAMMenuHandler();
 			break;
+#endif			
 			
 		case WIDGET_UPDATESETUP:
 			parent = new CUpdateSettings();
