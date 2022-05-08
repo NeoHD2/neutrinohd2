@@ -54,7 +54,7 @@ class CWindow : public CWidgetItem
 		bool savescreen;
 
 		//
-		bool shadowMode;
+		int shadowMode;
 		bool paintFrame;
 		
 		//
