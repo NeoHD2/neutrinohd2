@@ -1932,7 +1932,6 @@ bool CChannellogo::displayLogo(t_channel_id channel_id, int posx, int posy, int 
 	// check for logo
 	std::string strLogoExt[2] = { ".png", ".jpg" };
 	
-	// check for logo
 	for (int i = 0; i < 2; i++)
 	{
 		logo_name = g_settings.logos_dir;
@@ -2008,42 +2007,6 @@ std::string CChannellogo::getLogoName(t_channel_id channel_id)
 	}
 
 	return logo_name;
-}
-
-void CChannellogo::scaleImage(const std::string &tname, int *p_w, int *p_h)
-{
-	int nbpp = 0;
-
-	if(!access(tname.c_str(), F_OK) )
-	{
-		CFrameBuffer::getInstance()->getSize(tname, p_w, p_h, &nbpp);
-
-		// scale
-		if(*p_w <= PIC_W && *p_h <= PIC_H)
-		{
-			// do not thing
-		}
-		else
-		{
-			float aspect = (float)(*p_w) / (float)(*p_h);
-					
-			if (((float)(*p_w) / (float)PIC_W) > ((float)(*p_h) / (float)PIC_H)) 
-			{
-				*p_w = PIC_W;
-				*p_h = (int)(PIC_W / aspect);
-			}
-			else
-			{
-				*p_h = PIC_H;
-				*p_w = (int)(PIC_H * aspect);
-			}
-		}
-	}
-	else
-	{
-		*p_w = 0;
-		*p_h = 0;
-	}
 }
 
 //

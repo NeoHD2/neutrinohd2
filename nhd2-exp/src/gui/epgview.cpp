@@ -483,7 +483,7 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 				nPosDot += 2; // Skip dot and first blank
 				
 				/*
-				Houdini: changed for safty reason (crashes with some events at WDR regional)
+				Houdini: changed for safety reason (crashes with some events at WDR regional)
 				if (nPosDot < epgData.info2.length()) {   // Make sure we don't overrun the buffer
 				*/
 				if (nPosDot < epgData.info2.length() && nPosDot < epgData.info1.length()) 
@@ -679,7 +679,6 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 			if ( (msg == NeutrinoMessages::EVT_TIMER) && (data == sec_timer_id) )
 			{
 				// head
-				//showHead(channel_id);
 				headers->refresh();
 
 				//
@@ -801,13 +800,8 @@ int CEpgData::show(const t_channel_id channel_id, uint64_t a_id, time_t * a_star
 				}
 				
 				case RC_info:
-					//showTimerEventBar(false);
-					//start();
-					
 					if(textBox)
 						textBox->setBigFonts();
-					
-					//show(channel_id, id, &startzeit, false);
 					break;
 
 				case RC_ok:
@@ -869,6 +863,7 @@ void CEpgData::hide()
 		headers = NULL;
 	}
 
+	//
 	epgBuffer.clear();
 }
 
@@ -886,7 +881,7 @@ void CEpgData::GetEPGData(const t_channel_id channel_id, uint64_t id, time_t* st
 	if ( id != 0 )
 		res = sectionsd_getEPGid(id, *startzeit, &epgData);
 	else
-		res = sectionsd_getActualEPGServiceKey(channel_id&0xFFFFFFFFFFFFULL, &epgData );
+		res = sectionsd_getActualEPGServiceKey(channel_id&0xFFFFFFFFFFFFULL, &epgData);
 
 	if ( res )
 	{
@@ -1070,6 +1065,4 @@ int CEPGDataHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/)
 
 	return res;
 }
-
-
 

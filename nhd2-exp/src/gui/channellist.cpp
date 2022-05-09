@@ -490,17 +490,14 @@ int CChannelList::doChannelMenu(void)
 
 
 	menu->addItem(new CMenuForwarder(_("delete")), old_selected == i++);
-
 	menu->addItem(new CMenuForwarder(_("Move")), old_selected == i++);
-
 	menu->addItem(new CMenuForwarder(_("Add to Bouquets")), old_selected == i++);
-
 	menu->addItem(new CMenuForwarder(_("add channel to my favorites")), old_selected == i++);
 
 	widget->exec(NULL, "");
 	select = menu->getSelected();
 
-	if(select >= 0 /*&& (!IS_WEBTV(chanlist[selected]->channel_id))*/) 
+	if(select >= 0) 
 	{
 		hide();
 		
@@ -641,6 +638,9 @@ int CChannelList::show(bool zap, bool customMode)
 	
 	// update events
 	updateEvents();
+	
+	// 
+	if (g_settings.epgplus_show_logo) loadWebTVlogos();
 
 	paint();
 	CFrameBuffer::getInstance()->blit();
@@ -1895,4 +1895,30 @@ int CChannelList::getSelectedChannelIndex() const
 	return this->selected;
 }
 
+void CChannelList::loadWebTVlogos(void)
+{
+	if(chanlist.size())
+	{
+		for(unsigned int i = 0; i < chanlist.size(); i++)
+		{
+			if (IS_WEBTV(chanlist[i]->getChannelID()))
+			{
+				// download logos
+				std::string logo_name;
+				logo_name = g_settings.logos_dir;
+				logo_name += "/";
+				logo_name += to_hexstring(chanlist[i]->getChannelID() & 0xFFFFFFFFFFFFULL);
+				logo_name += ".png";
+								
+				//TEST
+				//printf("logo_name:%s\n", logo_name.c_str());
+
+				if(access(logo_name.c_str(), F_OK)) 
+				{
+					::downloadUrl(chanlist[i]->getLogo(), logo_name, "", 30);
+				}
+			}
+		}
+	}
+}
 

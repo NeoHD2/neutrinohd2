@@ -712,15 +712,17 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 	{
 		std::ifstream infile;
 		char cLine[1024];
+		
+		t_channel_id id = 0;
+		t_channel_id epg_id = 0;
 
-		std::string epg_url = "";
+		std::string xmltv = "";
 		std::string description = "";
 		std::string title = "";
 		std::string prefix = "";
 		std::string group = "";
 		std::string epgid = "";
 		std::string alogo = "";
-		t_channel_id id = 0;
 		CZapitBouquet* pBouquet = NULL;
 				
 		infile.open(filename.c_str(), std::ifstream::in);
@@ -737,26 +739,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 			
 			if (strLine.empty())
 				continue;
-
-			/*
-			if (strLine.find("#EXTM3U") != std::string::npos)
-			{
-				epg_url = "";
-				epg_url = ReadMarkerValue(strLine, "tvg-url=");
-				
-				if (!epg_url.empty())
-				{
-					if (epg_url.find_first_of(',') != std::string::npos)
-					{
-						std::vector<std::string> epg_list = ::split(epg_url, ',');
-						for (std::vector<std::string>::iterator it_epg = epg_list.begin(); it_epg != epg_list.end(); it_epg++)
-							CNeutrinoApp::getInstance()->g_settings_xmltv_xml_auto_pushback((*it_epg));
-					}
-					else
-						CNeutrinoApp::getInstance()->g_settings_xmltv_xml_auto_pushback(epg_url);
-				}
-			}
-			*/
 			
 			if (strLine.find("#EXTINF") != std::string::npos)
 			{
@@ -778,8 +760,9 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					description = ReadMarkerValue(strInfoLine, "tvg-name=");
 					prefix = ReadMarkerValue(strInfoLine, "group-prefix=");
 					group = ReadMarkerValue(strInfoLine, "group-title=");
-					//id = ReadMarkerValue(strInfoLine, "tvg-id=");
+					epgid = ReadMarkerValue(strInfoLine, "tvg-id=");
 					alogo = ReadMarkerValue(strInfoLine, "tvg-logo=");
+					xmltv = ReadMarkerValue(strLine, "tvg-url=");
 				}
 				
 				pBouquet = addBouquetIfNotExist("WEBTV");
@@ -817,6 +800,10 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						{
 							chan->setName(title);
 							chan->setDescription(description);
+							if (!alogo.empty()) chan->setLogo(alogo);
+							if (!epgid.empty()) epg_id = strtoull(epgid.c_str(), NULL, 16);
+							chan->setEPGID(epg_id);
+							if (!xmltv.empty()) chan->setXMLTV(xmltv);
 
 							gBouquet->addService(chan);
 

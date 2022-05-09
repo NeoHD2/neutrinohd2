@@ -227,8 +227,6 @@ class CChannellogo
 		bool checkLogo(t_channel_id channel_id);
 		void getLogoSize(t_channel_id channel_id, int * width, int * height, int * bpp);
 		std::string getLogoName(t_channel_id channel_id);
-
-		void scaleImage(const std::string &tname, int *p_w, int *p_h);		
 };
 
 //

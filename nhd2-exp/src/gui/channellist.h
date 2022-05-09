@@ -138,13 +138,14 @@ class CChannelList
 		int getSize() const;
 		int getSelectedChannelIndex() const;
 		void setSize(int newsize);
-		unsigned int		tuned;
+		unsigned int tuned;
 		int doChannelMenu(void);
 		void SortAlpha(void);
 		void SortSat(void);
 		void ClearList(void);
 		
 		bool canZap(CZapitChannel* channel = NULL);
+		void loadWebTVlogos(void);
 };
 
 #endif
