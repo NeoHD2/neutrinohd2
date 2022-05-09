@@ -189,7 +189,6 @@ class CZapitChannel
 		bool isWebTV;
 		std::string alogo;
 		std::string xmltv;
-		//std::string epgmap;
 		t_channel_id epgid;
 
 		// constructor, desctructor
@@ -234,7 +233,7 @@ class CZapitChannel
 		std::string		getDescription(void)		{ return description;};
 		std::string		getLogo(void)			{ return alogo;};
 		std::string		getXMLTV(void)			{ return xmltv;};
-		//std::string		getEPGMap(void)		{ return epgmap;};
+		t_channel_id		getEPGID(void)	 		const { return epgid;};
 
 		CZapitAudioChannel * 	getAudioChannel(unsigned char index = 0xFF);
 		unsigned short 	getAudioPid(unsigned char index = 0xFF);
@@ -262,12 +261,12 @@ class CZapitChannel
 		//
 		void setLogo(const std::string logo)			{ alogo = logo;};
 		void setXMLTV(const std::string url)			{ xmltv = url;};
-		//void setEPGMap(const std::string map)			{ epgmap = map;};
+		void setEPGID(const t_channel_id id)			{ epgid = id;};
 		
-		/* cleanup methods */
+		// cleanup methods
 		void resetPids(void);
 		
-		/* subtitling related methods */
+		// subtitling related methods
 		void addTTXSubtitle(const unsigned int pid, const std::string langCode, const unsigned char magazine_number, const unsigned char page_number, const bool impaired=false);
 
 		void addDVBSubtitle(const unsigned int pid, const std::string langCode, const unsigned char subtitling_type, const unsigned short composition_page_id, const unsigned short ancillary_page_id);

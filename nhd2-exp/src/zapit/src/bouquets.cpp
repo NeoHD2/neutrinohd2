@@ -657,13 +657,14 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 			{
 				while ( ((xmlGetNextOccurence(l1, "webtv")) || (xmlGetNextOccurence(l1, "station")))) 
 				{
+					t_channel_id id = 0;
+					t_channel_id epg_id = 0;
+					
 					const char * title;
 					const char * url;
 					const char * description;
-					t_channel_id id = 0;
 					const char* xmltv;
 					const char* logo;
-					//const char* epgmap;
 					const char* epgid;
 					
 					// 
@@ -675,7 +676,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						epgid = xmlGetAttribute(l1, (const char*)"epgid");
 						xmltv = xmlGetAttribute(l1, (const char*)"xmltv");
 						logo = xmlGetAttribute(l1, (const char*)"logo");
-						//epgmap = xmlGetAttribute(l1, (const char*)"epgmap");
+						epgid = xmlGetAttribute(l1, (const char*)"epgid");
 
 						if(id == 0) id = create_channel_id64(0, 0, 0, 0, 0, url);
 							
@@ -689,8 +690,9 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 							chan->setName(title);
 							chan->setDescription(description);
 							if (xmltv != NULL) chan->setXMLTV(xmltv);
-							//if (epgmap != NULL) chan->setEPGMap(epgmap);
 							if (logo != NULL) chan->setLogo(logo);
+							if (epgid) epg_id = strtoull(epgid, NULL, 16);
+							chan->setEPGID(epg_id);
 
 							newBouquet->addService(chan);
 
@@ -718,7 +720,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 		std::string group = "";
 		std::string epgid = "";
 		std::string alogo = "";
-		//std::string script = "";
 		t_channel_id id = 0;
 		CZapitBouquet* pBouquet = NULL;
 				
@@ -766,7 +767,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 				group = "";
 				description = "";
 				alogo = "";
-				//script = "";
 				id = 0;
 
 				if (iColon >= 0 && iComma >= 0 && iComma > iColon)
@@ -780,7 +780,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					group = ReadMarkerValue(strInfoLine, "group-title=");
 					//id = ReadMarkerValue(strInfoLine, "tvg-id=");
 					alogo = ReadMarkerValue(strInfoLine, "tvg-logo=");
-					//script = ReadMarkerValue(strInfoLine, "tvg-script=");
 				}
 				
 				pBouquet = addBouquetIfNotExist("WEBTV");

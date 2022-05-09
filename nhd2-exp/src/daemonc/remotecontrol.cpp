@@ -778,7 +778,7 @@ void CRemoteControl::zapTo_ChannelID(const t_channel_id channel_id, const std::s
 		// online epg
 		if(g_settings.epg_enable_online_epg)
 		{
-			getEvents(channel_id&0xFFFFFFFFFFFFULL);
+			getEvents(channel_id);
 		}
 		
 		abort_zapit = 0;
@@ -837,8 +837,25 @@ void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_trans
 // online epg get events
 void CRemoteControl::getEvents(t_channel_id chid)
 {
-	dprintf(DEBUG_NORMAL, "CRemoteControl::getEvents\n");
+	dprintf(DEBUG_NORMAL, "CRemoteControl::getEvents: channelID: %llx\n", chid);
 	
+	//
+	t_channel_id epgid = 0;
+	CZapitChannel *chan = NULL;
+	
+	for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
+	{
+		if(it->second.getChannelID() == chid)
+		{
+			chan = &it->second;
+		}
+	}
+	
+	if (chan) epgid = chan->getEPGID();
+	
+	dprintf(DEBUG_NORMAL, "CRemoteControl::getEvents: epgid: %llx\n", epgid);
+	
+	// localtv
 	std::string evUrl;
 
 	evUrl = "http://";
@@ -850,11 +867,11 @@ void CRemoteControl::getEvents(t_channel_id chid)
 
 		evUrl += to_hexstring(1);
 		evUrl += ":";
-		evUrl += to_hexstring(GET_SERVICE_ID_FROM_CHANNEL_ID(chid)); //sid
+		evUrl += to_hexstring(GET_SERVICE_ID_FROM_CHANNEL_ID(epgid)); //sid
 		evUrl += ":";
-		evUrl += to_hexstring(GET_TRANSPORT_STREAM_ID_FROM_CHANNEL_ID(chid)); //tsid
+		evUrl += to_hexstring(GET_TRANSPORT_STREAM_ID_FROM_CHANNEL_ID(epgid)); //tsid
 		evUrl += ":";
-		evUrl += to_hexstring(GET_ORIGINAL_NETWORK_ID_FROM_CHANNEL_ID(chid)); //onid
+		evUrl += to_hexstring(GET_ORIGINAL_NETWORK_ID_FROM_CHANNEL_ID(epgid)); //onid
 		evUrl += ":";
 
 		if(g_settings.epg_serverbox_type == DVB_C)
@@ -868,7 +885,7 @@ void CRemoteControl::getEvents(t_channel_id chid)
 		else if (g_settings.epg_serverbox_type == DVB_S)
 		{
 			// namenspace for sat
-			evUrl += to_hexstring(GET_SATELLITEPOSITION_FROM_CHANNEL_ID(chid)); //satpos
+			evUrl += to_hexstring(GET_SATELLITEPOSITION_FROM_CHANNEL_ID(epgid)); //satpos
 		}
 
 		evUrl += "0000";
@@ -879,7 +896,7 @@ void CRemoteControl::getEvents(t_channel_id chid)
 	{
 		evUrl += "/control/epg?channelid=";
 
-         	evUrl += to_hexstring(chid);
+         	evUrl += to_hexstring(epgid);
 
 		evUrl += "&xml=true&details=true";
 	}
@@ -887,6 +904,4 @@ void CRemoteControl::getEvents(t_channel_id chid)
 	//
 	insertEventsfromHttp(evUrl, GET_ORIGINAL_NETWORK_ID_FROM_CHANNEL_ID(chid), GET_TRANSPORT_STREAM_ID_FROM_CHANNEL_ID(chid), GET_SERVICE_ID_FROM_CHANNEL_ID(chid));
 }
-
-
 
