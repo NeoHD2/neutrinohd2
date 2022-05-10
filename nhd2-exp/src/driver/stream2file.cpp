@@ -218,7 +218,8 @@ stream2file_error_msg_t start_file_recording(const char * const filename, const 
 
 	//TODO: get extension from uri
 	std::string ext =  getFileExt(uri);
-	printf("ext:%s\n", ext.c_str());
+	
+	dprintf(DEBUG_NORMAL, "start_file_recording: extension:%s\n", ext.c_str());
 
 	// check for extension
 	CFileFilter fileFilter;

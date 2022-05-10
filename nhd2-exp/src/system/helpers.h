@@ -227,6 +227,11 @@ class CChannellogo
 		bool checkLogo(t_channel_id channel_id);
 		void getLogoSize(t_channel_id channel_id, int * width, int * height, int * bpp);
 		std::string getLogoName(t_channel_id channel_id);
+		
+		// webtv
+		pthread_t loadLogosThread;
+		void downloadLogos();
+		void loadWebTVlogos(void);
 };
 
 //

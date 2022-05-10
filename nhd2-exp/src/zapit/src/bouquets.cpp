@@ -676,7 +676,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						epgid = xmlGetAttribute(l1, (const char*)"epgid");
 						xmltv = xmlGetAttribute(l1, (const char*)"xmltv");
 						logo = xmlGetAttribute(l1, (const char*)"logo");
-						epgid = xmlGetAttribute(l1, (const char*)"epgid");
 
 						if(id == 0) id = create_channel_id64(0, 0, 0, 0, 0, url);
 							
@@ -689,10 +688,34 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						{
 							chan->setName(title);
 							chan->setDescription(description);
-							if (xmltv != NULL) chan->setXMLTV(xmltv);
-							if (logo != NULL) chan->setLogo(logo);
-							if (epgid) epg_id = strtoull(epgid, NULL, 16);
-							chan->setEPGID(epg_id);
+							
+							if (xmltv != NULL) chan->setEPGUrl(xmltv);
+							
+							if (logo != NULL)
+							{
+								chan->setLogoUrl(logo);
+								chan->setLogoID(id);
+							}
+							
+							if (epgid)
+							{ 
+								epg_id = strtoull(epgid, NULL, 16);
+								chan->setEPGID(epg_id);
+							}
+							
+							////
+							for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
+							{
+								if (chan->getName() == it->second.getName())
+								{
+									if (chan->epgid == 0)
+										chan->setEPGID(it->second.getEPGID());
+										
+									if (logo == NULL)
+										chan->setLogoID(it->second.getLogoID());
+								}
+							}
+							////
 
 							newBouquet->addService(chan);
 
@@ -800,10 +823,20 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						{
 							chan->setName(title);
 							chan->setDescription(description);
-							if (!alogo.empty()) chan->setLogo(alogo);
-							if (!epgid.empty()) epg_id = strtoull(epgid.c_str(), NULL, 16);
-							chan->setEPGID(epg_id);
-							if (!xmltv.empty()) chan->setXMLTV(xmltv);
+							
+							if (!alogo.empty()) 
+							{
+								chan->setLogoUrl(alogo);
+								chan->setLogoID(id);
+							}
+							
+							if (!epgid.empty()) 
+							{
+								epg_id = strtoull(epgid.c_str(), NULL, 16);
+								chan->setEPGID(epg_id);
+							}
+							
+							if (!xmltv.empty()) chan->setEPGUrl(xmltv);
 
 							gBouquet->addService(chan);
 

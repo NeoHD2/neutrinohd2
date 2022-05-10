@@ -48,6 +48,9 @@
 #include <system/settings.h>
 #include <system/helpers.h>
 
+// zapit includes
+#include <bouquets.h>
+
 #include <wordexp.h>
 
 #include <cstring>
@@ -75,6 +78,7 @@ typedef struct stat stat_struct;
 #error not using 64 bit file offsets
 #endif
 
+extern tallchans allchans;	// defined in bouquets.h
 
 off_t file_size(const char *filename)
 {
@@ -766,7 +770,7 @@ size_t CurlWriteToString(void *ptr, size_t size, size_t nmemb, void *data)
 
 bool getUrl(std::string& url, std::string& answer, std::string userAgent, unsigned int timeout)
 {
-	dprintf(DEBUG_NORMAL, "getUrl: url:%s\n", url.c_str());
+	dprintf(DEBUG_INFO, "getUrl: url:%s\n", url.c_str());
 
 	CURL * curl_handle = curl_easy_init();
 
@@ -812,7 +816,7 @@ bool getUrl(std::string& url, std::string& answer, std::string userAgent, unsign
 //
 std::string getUrlAnswer(std::string url, std::string userAgent, unsigned int timeout)
 {
-	dprintf(DEBUG_NORMAL, "getUrl: url:%s\n", url.c_str());
+	dprintf(DEBUG_INFO, "getUrl: url:%s\n", url.c_str());
 
 	std::string answer;
 	answer.clear();
@@ -859,7 +863,7 @@ std::string getUrlAnswer(std::string url, std::string userAgent, unsigned int ti
 
 bool downloadUrl(std::string url, std::string file, std::string userAgent, unsigned int timeout)
 {
-	dprintf(DEBUG_NORMAL ,"downloadUrl: url:%s file:%s userAgent:%s timeout:%d\n", url.c_str(), file.c_str(), userAgent.c_str(), timeout);
+	dprintf(DEBUG_INFO, "downloadUrl: url:%s file:%s userAgent:%s timeout:%d\n", url.c_str(), file.c_str(), userAgent.c_str(), timeout);
 
 	CURL * curl_handle = curl_easy_init();
 
@@ -1049,7 +1053,7 @@ CFileHelpers* CFileHelpers::getInstance()
 
 bool CFileHelpers::copyFile(const char *Src, const char *Dst, mode_t mode)
 {
-	dprintf(DEBUG_NORMAL, "CFileHelpers::copyFile: %s to %s\n", Src, Dst);
+	dprintf(DEBUG_INFO, "CFileHelpers::copyFile: %s to %s\n", Src, Dst);
 	
 	int FileBufSize = 0xFFFF;
 	int fd1, fd2;
@@ -1265,7 +1269,7 @@ bool CFileHelpers::createDir(const char *Dir, mode_t mode)
 
 bool CFileHelpers::removeDir(const char *Dir)
 {
-	dprintf(DEBUG_NORMAL, "CFileHelpers::removeDir:\n");
+	dprintf(DEBUG_INFO, "CFileHelpers::removeDir:\n");
 	
 	DIR *dir;
 	struct dirent *entry;
@@ -1303,7 +1307,7 @@ bool CFileHelpers::readDir(const std::string& dirname, CFileList* flist, CFileFi
 	int n;
 	std::string dir = dirname + "/";
 
-	dprintf(DEBUG_NORMAL, "CFileHelpers::readDir %s\n", dir.c_str());
+	dprintf(DEBUG_INFO, "CFileHelpers::readDir %s\n", dir.c_str());
 
 	n = my_scandir(dir.c_str(), &namelist, 0, my_alphasort);
 	if (n < 0)
@@ -1369,7 +1373,7 @@ CFileList CFileHelpers::readDir(const std::string& dirname, CFileFilter * fileFi
 	int n;
 	std::string dir = dirname + "/";
 
-	dprintf(DEBUG_NORMAL, "CFileHelpers::readDir %s\n", dir.c_str());
+	dprintf(DEBUG_INFO, "CFileHelpers::readDir %s\n", dir.c_str());
 
 	n = my_scandir(dir.c_str(), &namelist, 0, my_alphasort);
 	if (n < 0)
@@ -1500,7 +1504,7 @@ std::string CFileHelpers::loadFile(CFile& file, int buffer_size)
 
 	char buffer[buffer_size];
 
-	dprintf(DEBUG_NORMAL, "CFileHelpers::laodFile: %s\n", file.getFileName().c_str());
+	dprintf(DEBUG_INFO, "CFileHelpers::laodFile: %s\n", file.getFileName().c_str());
 
 	// open file
 	int fd = open(file.Name.c_str(), O_RDONLY);
@@ -1528,7 +1532,7 @@ std::string CFileHelpers::loadFile(CFile& file, int buffer_size)
 
 bool CFileHelpers::saveFile(const CFile & file, const char *text, const int text_size)
 {
-	dprintf(DEBUG_NORMAL, "CFileHelpers::saveFile: %s\n", file.getName().c_str());
+	dprintf(DEBUG_INFO, "CFileHelpers::saveFile: %s\n", file.getName().c_str());
 
 	bool result = false;
 	int fd;
@@ -2007,6 +2011,61 @@ std::string CChannellogo::getLogoName(t_channel_id channel_id)
 	}
 
 	return logo_name;
+}
+
+//
+void * execute_logos_thread(void *c)
+{
+	CChannellogo * obj = (CChannellogo *)c;
+	obj->downloadLogos();
+	
+	return NULL;
+}
+
+void CChannellogo::downloadLogos()
+{
+	//if(chanlist.size())
+	for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
+	{
+		if (IS_WEBTV(it->second.getChannelID()))
+		{
+			// download logos
+			std::string logo_name;
+			logo_name = g_settings.logos_dir;
+			logo_name += "/";
+			logo_name += to_hexstring(it->second.getChannelID() & 0xFFFFFFFFFFFFULL);
+			logo_name += ".png";
+								
+			if(access(logo_name.c_str(), F_OK)) 
+			{
+				downloadUrl(it->second.getLogoUrl(), logo_name);
+			}
+		}
+	}
+	
+	pthread_exit(0);
+}
+
+//
+void CChannellogo::loadWebTVlogos(void)
+{
+	dprintf(DEBUG_NORMAL, "CChannellogo::loadWebTVlogos:\n");
+	
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+	
+	if (pthread_create(&loadLogosThread, &attr, execute_logos_thread, this) != 0 )
+	{
+		dprintf(DEBUG_NORMAL, "CChannelList::CChannellogo: pthread_create(loadLogosThread)");
+	}	
+
+	pthread_attr_destroy(&attr);
+	
+	if(loadLogosThread)
+		pthread_join(loadLogosThread, NULL);
+	
+	loadLogosThread = 0;
 }
 
 //

@@ -53,6 +53,8 @@ CZapitChannel::CZapitChannel(const std::string& p_name, t_service_id p_sid, t_tr
 	
 	//
 	epgid = channel_id;
+	logoid = channel_id;
+	
 	isWebTV = false;	
 }
 
@@ -62,8 +64,8 @@ CZapitChannel::CZapitChannel(const std::string& p_name, t_channel_id p_chid, con
 	channel_id = p_chid;
 	url = p_url;
 	description = p_description;
-	alogo = "";
-	xmltv = "";
+	logourl = "";
+	epgurl = "";
 
 	service_id = 0;
 	transport_stream_id = 0;
@@ -82,6 +84,8 @@ CZapitChannel::CZapitChannel(const std::string& p_name, t_channel_id p_chid, con
 	
 	//
 	epgid = 0;
+	logoid = 0;
+	
 	isWebTV = true;
 }
 

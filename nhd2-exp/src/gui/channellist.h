@@ -102,7 +102,7 @@ class CChannelList
 		SMSKeyInput c_SMSKeyInput;
 		
 		//
-		pthread_t loadLogosThread;
+		//pthread_t loadLogosThread;
 		//void downloadLogos();
 
 	public:
@@ -149,10 +149,6 @@ class CChannelList
 		void ClearList(void);
 		
 		bool canZap(CZapitChannel* channel = NULL);
-		
-		//
-		void downloadLogos();
-		void loadWebTVlogos(void);
 };
 
 #endif
