@@ -372,15 +372,15 @@ void EpgPlus::ChannelEntry::paint (bool isSelected, time_t selectedTime)
 		int logo_bpp = 0;
 		
 		// check logo
-		logo_ok = CChannellogo::getInstance()->checkLogo(this->channel->getChannelID());
+		logo_ok = CChannellogo::getInstance()->checkLogo(this->channel->getLogoID());
 		
 		if(logo_ok)
 		{
 			// get logo size	
-			CChannellogo::getInstance()->getLogoSize(this->channel->getChannelID(), &logo_w, &logo_h, &logo_bpp);
+			CChannellogo::getInstance()->getLogoSize(this->channel->getLogoID(), &logo_w, &logo_h, &logo_bpp);
 		
 			// paint logo (png with alpha channel)
-			CChannellogo::getInstance()->displayLogo(this->channel->getChannelID(), this->x + 1 + ((logo_bpp == 4)? 0 : (this->width - 2 - pic_w)/2), this->y + 1, (logo_bpp == 4)? this->width -2 : pic_w, this->font->getHeight() + 10 - 2, true);
+			CChannellogo::getInstance()->displayLogo(this->channel->getLogoID(), this->x + 1 + ((logo_bpp == 4)? 0 : (this->width - 2 - pic_w)/2), this->y + 1, (logo_bpp == 4)? this->width -2 : pic_w, this->font->getHeight() + 10 - 2, true);
 		}
 	}
 	

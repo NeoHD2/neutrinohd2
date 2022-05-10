@@ -1059,7 +1059,7 @@ int CEPGDataHandler::exec(CMenuTarget* parent, const std::string &/*actionKey*/)
 
 	channelList = CNeutrinoApp::getInstance()->channelList;
 
-	e->show(channelList->getActiveChannel_ChannelID());
+	e->show(channelList->getActiveChannel_EPGID());
 	
 	delete e;
 

@@ -122,6 +122,8 @@ class CChannelList
 		t_satellite_position getActiveSatellitePosition(void) const;
 		int                  getActiveChannelNumber    (void) const;
 		t_channel_id         getActiveChannel_ChannelID(void) const;
+		t_channel_id         getActiveChannel_EPGID(void) const;
+		t_channel_id         getActiveChannel_LogoID(void) const;
 
 		void zapTo(int pos, bool rezap = false);
 		void virtual_zap_mode(bool up);

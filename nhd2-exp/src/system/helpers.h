@@ -223,10 +223,10 @@ class CChannellogo
 		
 		static CChannellogo* getInstance();
 		
-		bool displayLogo(t_channel_id channel_id, int posx, int posy, int width, int height, bool upscale = false, bool center_x = true, bool center_y = true);
-		bool checkLogo(t_channel_id channel_id);
-		void getLogoSize(t_channel_id channel_id, int * width, int * height, int * bpp);
-		std::string getLogoName(t_channel_id channel_id);
+		bool displayLogo(t_channel_id logo_id, int posx, int posy, int width, int height, bool upscale = false, bool center_x = true, bool center_y = true);
+		bool checkLogo(t_channel_id logo_id);
+		void getLogoSize(t_channel_id logo_id, int * width, int * height, int * bpp);
+		std::string getLogoName(t_channel_id logo_id);
 		
 		// webtv
 		pthread_t loadLogosThread;

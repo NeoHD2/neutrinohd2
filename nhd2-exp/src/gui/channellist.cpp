@@ -437,6 +437,30 @@ t_channel_id CChannelList::getActiveChannel_ChannelID(void) const
 		return 0;
 }
 
+t_channel_id CChannelList::getActiveChannel_EPGID(void) const
+{
+	if (selected < chanlist.size()) 
+	{
+		printf("CChannelList::getActiveChannel_EPGID:%llx\n", chanlist[selected]->epgid);
+		
+		return chanlist[selected]->epgid;
+	} 
+	else
+		return 0;
+}
+
+t_channel_id CChannelList::getActiveChannel_LogoID(void) const
+{
+	if (selected < chanlist.size()) 
+	{
+		printf("CChannelList::getActiveChannel_LogoID:%llx\n", chanlist[selected]->logoid);
+		
+		return chanlist[selected]->logoid;
+	} 
+	else
+		return 0;
+}
+
 int CChannelList::getActiveChannelNumber(void) const
 {
 	return (selected + 1);
@@ -680,7 +704,7 @@ int CChannelList::show(bool zap, bool customMode)
 
 			hide();
 
-			if ( g_EventList->exec(chanlist[selected]->channel_id, chanlist[selected]->name) == RETURN_EXIT_ALL) 
+			if ( g_EventList->exec(chanlist[selected]->epgid, chanlist[selected]->name) == RETURN_EXIT_ALL) 
 			{
 				res = -2;
 				loop = false;
@@ -923,7 +947,7 @@ int CChannelList::show(bool zap, bool customMode)
 			selected = listBox->getSelected();
 
 			hide();
-			g_EpgData->show(chanlist[selected]->channel_id); 
+			g_EpgData->show(chanlist[selected]->epgid); 
 
 			paint();
 		}
@@ -1451,7 +1475,7 @@ int CChannelList::numericZap(int key)
 		g_InfoViewer->killTitle();
 
 		if ( showEPG )
-			g_EventList->exec(chanlist[chn]->channel_id, chanlist[chn]->name);
+			g_EventList->exec(chanlist[chn]->epgid, chanlist[chn]->name);
 	}
 	
 	return res;
@@ -1573,7 +1597,7 @@ void CChannelList::virtual_zap_mode(bool up)
 
                 // Rote Taste zeigt EPG fuer gewaehlten Kanal an
                 if ( showEPG )
-                        g_EventList->exec(chanlist[chn]->channel_id, chanlist[chn]->name);
+                        g_EventList->exec(chanlist[chn]->epgid, chanlist[chn]->name);
         }
 }
 
