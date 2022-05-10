@@ -243,6 +243,12 @@ CChannelList::CChannelList(const char * const Name, bool _historyMode, bool _vli
 CChannelList::~CChannelList()
 {
 	chanlist.clear();
+	
+	//
+	if(loadLogosThread)
+		pthread_join(loadLogosThread, NULL);
+	
+	loadLogosThread = 0;
 }
 
 void CChannelList::ClearList(void)
@@ -1895,7 +1901,16 @@ int CChannelList::getSelectedChannelIndex() const
 	return this->selected;
 }
 
-void CChannelList::loadWebTVlogos(void)
+//
+void * execute_logos_thread(void *c)
+{
+	CChannelList * obj = (CChannelList *)c;
+	obj->downloadLogos();
+	
+	return NULL;
+}
+
+void CChannelList::downloadLogos()
 {
 	if(chanlist.size())
 	{
@@ -1910,15 +1925,31 @@ void CChannelList::loadWebTVlogos(void)
 				logo_name += to_hexstring(chanlist[i]->getChannelID() & 0xFFFFFFFFFFFFULL);
 				logo_name += ".png";
 								
-				//TEST
-				//printf("logo_name:%s\n", logo_name.c_str());
-
 				if(access(logo_name.c_str(), F_OK)) 
 				{
-					::downloadUrl(chanlist[i]->getLogo(), logo_name, "", 30);
+					::downloadUrl(chanlist[i]->getLogo(), logo_name);
 				}
 			}
 		}
 	}
+	
+	pthread_exit(0);
 }
+
+void CChannelList::loadWebTVlogos(void)
+{
+	dprintf(DEBUG_NORMAL, "CChannelList::loadWebTVlogos:\n");
+	
+	pthread_attr_t attr;
+	pthread_attr_init(&attr);
+	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+	
+	if (pthread_create(&loadLogosThread, &attr, execute_logos_thread, this) != 0 )
+	{
+		dprintf(DEBUG_NORMAL, "CChannelList::loadWebTVlogos: pthread_create(loadLogosThread)");
+	}	
+
+	pthread_attr_destroy(&attr);
+}
+
 

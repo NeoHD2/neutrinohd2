@@ -100,6 +100,10 @@ class CChannelList
 		bool displayNext;
 
 		SMSKeyInput c_SMSKeyInput;
+		
+		//
+		pthread_t loadLogosThread;
+		//void downloadLogos();
 
 	public:
 		CChannelList(const char * const Name, bool _historyMode = false, bool _vlist = false );
@@ -145,6 +149,9 @@ class CChannelList
 		void ClearList(void);
 		
 		bool canZap(CZapitChannel* channel = NULL);
+		
+		//
+		void downloadLogos();
 		void loadWebTVlogos(void);
 };
 
