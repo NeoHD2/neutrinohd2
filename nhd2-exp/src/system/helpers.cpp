@@ -2038,7 +2038,7 @@ void CChannellogo::downloadLogos()
 								
 			if(access(logo_name.c_str(), F_OK)) 
 			{
-				downloadUrl(it->second.getLogoUrl(), logo_name);
+				downloadUrl(it->second.getLogoUrl(), logo_name, "", 30);
 			}
 		}
 	}
@@ -2104,6 +2104,4 @@ void scaleImage(const std::string &tname, int *p_w, int *p_h)
 		*p_h = 0;
 	}
 }
-
-
 

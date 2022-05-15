@@ -735,6 +735,7 @@ class ClistBox : public CWidgetItem
 		int getItemHeight(){return item_height;};
 		int getFootInfoHeight(){return footInfoHeight;};
 		int getListMaxShow(void) const {return listmaxshow;};
+		int getPageStart(int page) const {return page_start[page];};
 		std::string getItemName(){if (hasItem()) return items[selected]->itemName; else return "";};
 		std::string getItemHint(){if (hasItem()) return items[selected]->itemHint; else return "";};
 		std::string getItemIcon(){if (hasItem()) return items[selected]->itemIcon; else return "";};

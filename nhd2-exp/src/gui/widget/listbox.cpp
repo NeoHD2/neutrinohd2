@@ -3719,6 +3719,7 @@ void ClistBox::scrollLineDown(const int)
 	}
 }
 
+//
 void ClistBox::scrollLineUp(const int)
 {
 	dprintf(DEBUG_INFO, "ClistBox::scrollLineUp:\n");
@@ -3786,6 +3787,7 @@ void ClistBox::scrollLineUp(const int)
 	}
 }
 
+//
 void ClistBox::scrollPageDown(const int)
 {
 	dprintf(DEBUG_INFO, "ClistBox::scrollPageDown:\n");
@@ -3840,6 +3842,7 @@ void ClistBox::scrollPageDown(const int)
 	}
 }
 
+//
 void ClistBox::scrollPageUp(const int)
 {
 	dprintf(DEBUG_INFO, "ClistBox::scrollPageUp:\n");
@@ -3920,6 +3923,7 @@ void ClistBox::scrollPageUp(const int)
 	}
 }
 
+//
 void ClistBox::swipLeft()
 {
 	dprintf(DEBUG_INFO, "ClistBox::swipLeft:\n");
@@ -3975,23 +3979,6 @@ void ClistBox::swipLeft()
 				{
 					items[selected]->msg = RC_left;
 					
-					/*
-					int rv = items[selected]->exec(parent);
-
-					//FIXME:review this
-					switch ( rv ) 
-					{
-						case RETURN_EXIT_ALL:
-							//retval = RETURN_EXIT_ALL; //fall through
-						case RETURN_EXIT:
-							//titem->msg = RC_timeout;
-							break;
-						case RETURN_REPAINT:
-							//hide();
-							paint();
-							break;
-					}
-					*/
 					parent->onOKKeyPressed(RC_left);
 				}
 			} 
@@ -3999,6 +3986,7 @@ void ClistBox::swipLeft()
 	}
 }
 
+//
 void ClistBox::swipRight()
 {
 	dprintf(DEBUG_INFO, "ClistBox::swipRight:\n");
@@ -4051,23 +4039,6 @@ void ClistBox::swipRight()
 				{
 					items[selected]->msg = RC_right;
 					
-					/*
-					int rv = items[selected]->exec(parent);
-
-					//FIXME:review this
-					switch ( rv ) 
-					{
-						case RETURN_EXIT_ALL:
-							//retval = RETURN_EXIT_ALL; //fall through
-						case RETURN_EXIT:
-							//titem->msg = RC_timeout;
-							break;
-						case RETURN_REPAINT:
-							//hide();
-							paint();
-							break;
-					}
-					*/
 					parent->onOKKeyPressed(RC_right);
 				}
 			} 
@@ -4088,9 +4059,7 @@ int ClistBox::oKKeyPressed(CMenuTarget* _parent, neutrino_msg_t _msg)
 		items[selected]->msg = _msg;
 	}	
 
-	//if(_parent)
-	//	if (hasItem() && selected >= 0 && items[selected]->isSelectable())
-			ret = items[selected]->exec(_parent);
+	ret = items[selected]->exec(_parent);
 	
 	return ret;
 }
@@ -4130,6 +4099,7 @@ void ClistBox::directKeyPressed(neutrino_msg_t _msg)
 	}
 }
 
+//
 void ClistBox::changeWidgetType()
 {
 	dprintf(DEBUG_INFO, "ClistBox::changeWidgetType:\n");
@@ -4151,6 +4121,7 @@ void ClistBox::changeWidgetType()
 	}
 }
 
+//
 void ClistBox::integratePlugins(CPlugins::i_type_t integration, const unsigned int shortcut, bool enabled, int imode, int itype, bool i2lines, int iShadow)
 {
 	unsigned int number_of_plugins = (unsigned int) g_PluginList->getNumberOfPlugins();

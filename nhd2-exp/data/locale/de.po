@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrino-hd2 4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-10 15:20+0200\n"
+"POT-Creation-Date: 2022-05-14 19:11+0200\n"
 "PO-Revision-Date: 2022-01-28 01:41+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -626,6 +626,9 @@ msgid "EPG Info2"
 msgstr ""
 
 msgid "EPG Long Description (hours)"
+msgstr ""
+
+msgid "EPG Plus"
 msgstr ""
 
 msgid "EPG Title"

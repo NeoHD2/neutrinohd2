@@ -115,7 +115,7 @@ void EpgPlus::Header::init ()
 
 void EpgPlus::Header::paint()
 {
-	CHeaders head(this->x, this->y, this->width, this->font->getHeight() + 10, _("Eventlist overview"), NEUTRINO_ICON_BUTTON_EPG);
+	CHeaders head(this->x, this->y, this->width, /*this->font->getHeight() + 10*/40, _("Eventlist overview"), NEUTRINO_ICON_BUTTON_EPG);
 	head.enablePaintDate();
 	head.setFormat("%d.%m.%Y %H:%M:%S");
 	head.paint();
@@ -123,7 +123,7 @@ void EpgPlus::Header::paint()
 
 int EpgPlus::Header::getUsedHeight ()
 {
-  	return font->getHeight() + 10;
+  	return /*font->getHeight() + 10*/40;
 }
 
 // TimeLine
@@ -511,7 +511,7 @@ struct button_label buttonLabels[] = {
 
 void EpgPlus::Footer::paintButtons(button_label * _buttonLabels, int numberOfButtons)
 {
-	CFooters foot(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 14), this->width, this->fontButtons->getHeight() + 10);
+	CFooters foot(this->x, this->y + this->getUsedHeight() - (this->fontButtons->getHeight() + 14), this->width, /*this->fontButtons->getHeight() + 10*/40);
 	foot.setButtons(buttonLabels, numberOfButtons);
 	foot.paint();
 }
