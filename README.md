@@ -69,6 +69,11 @@ $:~ make clean
 * distclean build:
 ```bash
 $:~ make distclean
+
+* tested with:
+ debian 8 Jessie, 9 Stretch and 11 Bullseye
+ linuxmint 20.1 Ulyssa, 20.2 Uma and 20.3 Una (not recommended for LMDE 5 Elsie)
+ Ubuntu 20.04 Focal Fossa (not recommended for 22.04 Jammy Jellyfish)
 ```
 
 ## how to build neutrino-HD2 for sh4/arm/mips boxes ##
