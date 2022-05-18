@@ -51,6 +51,9 @@ AM_CONDITIONAL(USE_OPENGL,test "$enable_opengl" = "yes")
 
 if test "$enable_opengl" = "yes"; then
 AC_DEFINE(USE_OPENGL,1,[include opengl engine])
+PKG_CHECK_MODULES(GL, gl)
+#PKG_CHECK_MODULES(GLUT, glut)
+PKG_CHECK_MODULES(GLEW, glew)
 fi
 
 # use playback (dirty) for opengl
