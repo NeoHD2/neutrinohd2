@@ -22,12 +22,9 @@
 #
 # build preqs
 # sudo apt-get install autoconf libtool libtool-bin g++ gdb swig flex bison make texinfo subversion intltool dialog wget cmake gperf 
-# sudo apt-get install libglew-dev freeglut3-dev
-# sudo apt-get install libcurl4-gnutls-dev libfreetype6-dev libid3tag0-dev libmad0-dev libavformat-dev libfribidi-dev libogg-dev libpng-dev libgif-dev libjpeg-dev libflac-dev libvorbis-dev libopenthreads-dev libblkid-dev 
-# sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev 
+# sudo apt-get install libglew-dev freeglut3-dev libcurl4-gnutls-dev libfreetype6-dev libid3tag0-dev libmad0-dev libavformat-dev libfribidi-dev libogg-dev libpng-dev libgif-dev libjpeg-dev libflac-dev libvorbis-dev libopenthreads-dev libblkid-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev lua5.2 lua5.2-dev lua-json lua-expat lua-posix lua-socket lua-soap lua-curl
 # sudo apt-get install libass-dev 
 # sudo apt-get install python-dev 
-# sudo apt-get install lua5.2 lua5.2-dev lua-json lua-expat lua-posix lua-socket lua-soap lua-curl
 ################################################################################################################################################################################################################################################################
 SHELL = /bin/bash
 UID := $(shell id -u)
