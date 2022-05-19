@@ -75,7 +75,6 @@ $:~ make distclean
  debian 8 Jessie, 9 Stretch and 11 Bullseye
  linuxmint 20.1 Ulyssa, 20.2 Uma and 20.3 Una
  Ubuntu 20.04 Focal Fossa
-```
 
 ## how to build neutrino-HD2 for sh4/arm/mips boxes ##
 see:
