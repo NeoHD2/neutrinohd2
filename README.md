@@ -69,6 +69,7 @@ $:~ make clean
 * distclean build:
 ```bash
 $:~ make distclean
+```
 
 * tested with:
  debian 8 Jessie, 9 Stretch and 11 Bullseye
