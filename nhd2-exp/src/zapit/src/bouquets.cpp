@@ -57,7 +57,7 @@
 #include <dirent.h>
 
 // webtv stuff
-#if defined (__USE_FILE_OFFSET64) || defined (_DARWIN_USE_64_BIT_INODE)
+#if defined (__USE_FILE_OFFSET64) || defined (_DARWIN_USE_64_BIT_INODE) || defined (_FILE_OFFSET_BITS)
 typedef struct dirent64 dirent_struct;
 #define my_alphasort alphasort64
 #define my_scandir scandir64
