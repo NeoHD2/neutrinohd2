@@ -83,8 +83,8 @@ CZapitChannel::CZapitChannel(const std::string& p_name, t_channel_id p_chid, con
 	pmtPid = 0;
 	
 	//
-	epgid = 0;
-	logoid = 0;
+	epgid = channel_id;
+	logoid = channel_id;
 	
 	isWebTV = true;
 }

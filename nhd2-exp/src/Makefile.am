@@ -98,7 +98,7 @@ neutrino_LDADD = \
 	@ID3TAG_LIBS@ \
 	@PTHREAD_LIBS@ \
 	@FRIBIDI_LIBS@ \
-	-ljpeg -lrt -lblkid -ldl -lFLAC -lavformat -lavcodec -lavutil -lgif -lpthread
+	-ljpeg -lrt -lblkid -ldl -lFLAC -lavformat -lavcodec -lavutil -lgif -lpthread -lOpenThreads
 
 neutrino_LDFLAGS = -Wl,--export-dynamic
 
@@ -112,8 +112,7 @@ endif
 if BOXTYPE_COOLSTREAM
 neutrino_LDADD += \
 	-lcoolstream-mt \
-	-lnxp \
-	-lOpenThreads
+	-lnxp
 endif
 
 if ENABLE_GSTREAMER
@@ -129,7 +128,7 @@ endif
 
 if USE_OPENGL
 neutrino_LDADD += \
-	-lglut -lGL -lGLU -lGLEW -lOpenThreads
+	-lglut -lGL -lGLU -lGLEW
 endif
 
 if ENABLE_PYTHON

@@ -2319,7 +2319,7 @@ void CNeutrinoApp::InitZapper()
 		// online epg
 		if(g_settings.epg_enable_online_epg)
 		{
-			g_RemoteControl->getEvents(live_channel_id&0xFFFFFFFFFFFFULL);
+			g_RemoteControl->getEventsFromHTTP(live_channel_id);
 		}	
 
 		// start epg scanning

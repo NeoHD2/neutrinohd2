@@ -669,9 +669,10 @@ int CChannelList::show(bool zap, bool customMode)
 	paint();
 	
 	//webtv logos
-	if (g_settings.epgplus_show_logo && ( (g_settings.channel_mode != LIST_MODE_ALL) || (g_settings.channel_mode != LIST_MODE_SAT) ))
+	if (g_settings.epgplus_show_logo /*&& ( (g_settings.channel_mode != LIST_MODE_ALL) || (g_settings.channel_mode != LIST_MODE_SAT) )*/)
 	{
-		loadWebTVlogos(listBox->getListMaxShow()*listBox->getCurrentPage(), (listBox->getListMaxShow() - 1)*(listBox->getListMaxShow()*listBox->getCurrentPage()));
+		//loadWebTVlogos(listBox->getListMaxShow()*listBox->getCurrentPage(), (listBox->getListMaxShow() - 1)*(listBox->getListMaxShow()*listBox->getCurrentPage()));
+		CChannellogo::getInstance()->loadWebTVlogos();
 	}
 	
 	CFrameBuffer::getInstance()->blit();

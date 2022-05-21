@@ -611,7 +611,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 
 					if(!url.empty())
 					{
-						if(id == 0) id = create_channel_id64(0, 0, 0, 0, 0, url.c_str());
+						id = create_channel_id64(0, 0, 0, 0, 0, url.c_str());
 					
 						pair<map<t_channel_id, CZapitChannel>::iterator, bool> ret;
 
@@ -677,7 +677,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						xmltv = xmlGetAttribute(l1, (const char*)"xmltv");
 						logo = xmlGetAttribute(l1, (const char*)"logo");
 
-						if(id == 0) id = create_channel_id64(0, 0, 0, 0, 0, url);
+						id = create_channel_id64(0, 0, 0, 0, 0, url);
 							
 						pair<map<t_channel_id, CZapitChannel>::iterator, bool> ret;
 						ret = allchans.insert(std::pair <t_channel_id, CZapitChannel> (id, CZapitChannel(title, id, url, description)));
@@ -703,19 +703,18 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 								chan->setEPGID(epg_id);
 							}
 							
-							////
+							// grab from list
 							for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
 							{
 								if (chan->getName() == it->second.getName())
 								{
-									if (chan->epgid == 0)
+									if (epgid == NULL)
 										chan->setEPGID(it->second.getEPGID());
 										
 									if (logo == NULL)
 										chan->setLogoID(it->second.getLogoID());
 								}
 							}
-							////
 
 							newBouquet->addService(chan);
 
@@ -737,7 +736,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 		char cLine[1024];
 		
 		t_channel_id id = 0;
-		t_channel_id epg_id = 0;
+		//t_channel_id epg_id = 0;
 
 		std::string xmltv = "";
 		std::string description = "";
@@ -812,7 +811,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						}
 						
 						//
-						if(id == 0) id = create_channel_id64(0, 0, 0, 0, 0, url);
+						id = create_channel_id64(0, 0, 0, 0, 0, url);
 							
 						pair<map<t_channel_id, CZapitChannel>::iterator, bool> ret;
 						ret = allchans.insert(std::pair <t_channel_id, CZapitChannel> (id, CZapitChannel(title, id, url, description)));
@@ -832,11 +831,23 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 							
 							if (!epgid.empty()) 
 							{
-								epg_id = strtoull(epgid.c_str(), NULL, 16);
-								chan->setEPGID(epg_id);
+								chan->setEPGIDName(epgid);
 							}
 							
 							if (!xmltv.empty()) chan->setEPGUrl(xmltv);
+							
+							// grab from list
+							for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
+							{
+								if (chan->getName() == it->second.getName())
+								{
+									if (epgid.empty())
+										chan->setEPGID(it->second.getEPGID());
+										
+									if (alogo.empty())
+										chan->setLogoID(it->second.getLogoID());
+								}
+							}
 
 							gBouquet->addService(chan);
 

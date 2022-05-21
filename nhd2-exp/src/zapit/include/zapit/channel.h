@@ -178,6 +178,8 @@ class CZapitChannel
 		CChannelEvent currentEvent, nextEvent;
 		int videoType;
 		t_channel_id channel_id;
+		t_channel_id epgid;
+		t_channel_id logoid;
 		unsigned char scrambled;
 		char * pname; //makeRemainingChannelsBouquet
 		
@@ -187,10 +189,14 @@ class CZapitChannel
 		std::string url;
 		std::string description;
 		bool isWebTV;
+		//
 		std::string logourl;
+		//std::string epgurl;
+		//t_channel_id epgid;
+		//t_channel_id logoid;
+		//
+		std::string epgidname;
 		std::string epgurl;
-		t_channel_id epgid;
-		t_channel_id logoid;
 
 		// constructor, desctructor
 		CZapitChannel(const std::string& p_name, t_service_id p_sid, t_transport_stream_id p_tsid, t_original_network_id p_onid, unsigned char p_service_type, t_satellite_position p_satellite_position, freq_id_t p_freq);
@@ -232,10 +238,11 @@ class CZapitChannel
 		//
 		std::string		getUrl(void)			{ return url;};
 		std::string		getDescription(void)		{ return description;};
-		std::string		getLogoUrl(void)			{ return logourl;};
-		std::string		getEPGUrl(void)			{ return epgurl;};
+		std::string		getLogoUrl(void)		{ return logourl;};
+		std::string		getEPGUrl(void)		{ return epgurl;};
 		t_channel_id		getEPGID(void)	 		const { return epgid;};
 		t_channel_id		getLogoID(void)		const {return logoid;};
+		std::string		getEPGIDName(void)		{return epgidname;};
 
 		CZapitAudioChannel * 	getAudioChannel(unsigned char index = 0xFF);
 		unsigned short 	getAudioPid(unsigned char index = 0xFF);
@@ -265,6 +272,7 @@ class CZapitChannel
 		void setEPGUrl(const std::string url)			{ epgurl = url;};
 		void setEPGID(const t_channel_id id)			{ epgid = id;};
 		void setLogoID(const t_channel_id id)			{logoid = id;};
+		void setEPGIDName(const std::string name)		{epgidname = name;};
 		
 		// cleanup methods
 		void resetPids(void);

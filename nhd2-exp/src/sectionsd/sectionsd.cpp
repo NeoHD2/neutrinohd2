@@ -6137,9 +6137,12 @@ bool sectionsd_isReady(void)
 	return sectionsd_ready;
 }
 
-void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid)
+void insertEventsfromHTTP(std::string& url, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid)
 {
-	dprintf(DEBUG_NORMAL, "[sectionsd] sectionsd:insertEventsfromHttp: url:%s\n", url.c_str());
+	dprintf(DEBUG_NORMAL, "[sectionsd] sectionsd:insertEventsfromHTTP: url:%s\n", url.c_str());
+	
+	if (url.empty())
+		return;
 
 	std::string answer;
 
@@ -6156,6 +6159,8 @@ void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_trans
 	
 	if (!::downloadUrl(url, answer))
 		return;
+		
+	//TODO: grab source type
 
 	if(g_settings.epg_serverbox_gui == SNeutrinoSettings::SATIP_SERVERBOX_GUI_NHD2)
 	{
@@ -6293,6 +6298,7 @@ void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_trans
 					node = node->xmlNextNode;
 				}
 
+				//
 				SIevent e(_onid, _tsid, _sid, id);
 
 				e.times.insert(SItime(start_time, duration));
@@ -6454,6 +6460,7 @@ void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_trans
 					node = node->xmlNextNode;
 				}
 
+				//
 				SIevent e(_onid, _tsid, _sid, id);
 
 				e.times.insert(SItime(start_time, duration));
@@ -6567,6 +6574,7 @@ void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_trans
 					node = node->xmlNextNode;
 				}
 
+				//
 				SIevent e(_onid, _tsid, _sid, id);
 
 				e.times.insert(SItime(start_time, duration));
@@ -6590,6 +6598,81 @@ void insertEventsfromHttp(std::string& url, t_original_network_id _onid, t_trans
 
 	unlink(answer.c_str());
 }
+
 //
+void insertEventsfromXMLTV(std::string& url, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid)
+{
+	dprintf(DEBUG_NORMAL, "[sectionsd] sectionsd:insertEventsfromXMLTV: url:%s\n", url.c_str());
+	
+	if (url.empty())
+		return;
+
+	std::string answer;
+
+	//
+	unsigned short id = 0;
+	time_t start_time;
+	time_t stop_time;
+	unsigned duration = 0;
+	char* title = NULL;
+	char* description = NULL;
+	char* descriptionextended = NULL;
+
+	answer = "/tmp/epg.xml";
+	
+	if (!::downloadUrl(url, answer))
+		return;
+		
+	// xmltv
+	if (1)
+	{
+		//
+		_xmlNodePtr event = NULL;
+		_xmlNodePtr node = NULL;
+
+		//
+		_xmlDocPtr index_parser = parseXmlFile(answer.c_str());
+
+		if (index_parser != NULL) 
+		{
+			event = xmlDocGetRootElement(index_parser)->xmlChildrenNode;
+
+			while (event) 
+			{
+				node = event->xmlChildrenNode;
+				
+				// event id
+				// start time
+				// duration
+				// title
+				// description
+				// descriptionextended
+				
+				//
+				SIevent e(_onid, _tsid, _sid, id);
+
+				e.times.insert(SItime(start_time, duration));
+				
+				if(title != NULL)
+					e.setName(std::string(UTF8_to_Latin1("ger")), std::string(title));
+
+				if(description != NULL)
+					e.setText(std::string(UTF8_to_Latin1("ger")), std::string(description));
+
+				if(descriptionextended != NULL)
+					e.appendExtendedText(std::string(UTF8_to_Latin1("ger")), std::string(descriptionextended));
+
+				addEvent(e, 0);
+				
+				event = event->xmlNextNode;
+			}
+			
+			xmlFreeDoc(index_parser);
+		}
+		
+	}
+
+	unlink(answer.c_str());
+}
 
 

@@ -48,6 +48,8 @@
 // zapit types
 #include <client/zapittypes.h>
 
+#include <OpenThreads/Thread>
+
 
 int my_system(const char * cmd);
 int my_system(int argc, const char *arg, ...); /* argc is number of arguments including command */
@@ -215,10 +217,10 @@ int proc_get(const char *path, char *value, const int len);
 unsigned int proc_get_hex(const char *path);
 
 // channel logo helper class
-class CChannellogo
+class CChannellogo : public OpenThreads::Thread
 {
 	public:
-		CChannellogo(){};
+		CChannellogo(){logo_running = false;};
 		~CChannellogo(){};
 		
 		static CChannellogo* getInstance();
@@ -229,9 +231,9 @@ class CChannellogo
 		std::string getLogoName(t_channel_id logo_id);
 		
 		// webtv
-		pthread_t loadLogosThread;
-		void downloadLogos();
-		void loadWebTVlogos(void);
+		void run();
+		bool loadWebTVlogos();
+		bool logo_running;
 };
 
 //

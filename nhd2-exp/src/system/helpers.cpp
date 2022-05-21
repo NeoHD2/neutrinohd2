@@ -2013,7 +2013,7 @@ std::string CChannellogo::getLogoName(t_channel_id logo_id)
 	return logo_name;
 }
 
-//
+/*
 void * execute_logos_thread(void *c)
 {
 	CChannellogo * obj = (CChannellogo *)c;
@@ -2021,6 +2021,8 @@ void * execute_logos_thread(void *c)
 	
 	return NULL;
 }
+
+pthread_mutex_t  mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void CChannellogo::downloadLogos()
 {
@@ -2066,6 +2068,46 @@ void CChannellogo::loadWebTVlogos(void)
 		pthread_join(loadLogosThread, NULL);
 	
 	loadLogosThread = 0;
+}
+*/
+#include <system/set_threadname.h>
+
+bool CChannellogo::loadWebTVlogos()
+{
+	dprintf(DEBUG_NORMAL, "CChannellogo::loadWebTVlogos:\n");
+	
+	if (logo_running)
+		return false;
+
+	logo_running = true;
+	
+	return (OpenThreads::Thread::start() == 0);
+}
+
+void CChannellogo::run()
+{
+	set_threadname(__func__);
+	
+	for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
+	{
+		if (IS_WEBTV(it->second.getChannelID()))
+		{
+			// download logos
+			std::string logo_name;
+			logo_name = g_settings.logos_dir;
+			logo_name += "/";
+			logo_name += to_hexstring(it->second.getLogoID() & 0xFFFFFFFFFFFFULL);
+			logo_name += ".png";
+								
+			if(access(logo_name.c_str(), F_OK)) 
+			{
+				downloadUrl(it->second.getLogoUrl(), logo_name, "", 30);
+			}
+		}
+	}
+	
+	OpenThreads::Thread::join();
+	logo_running = false;
 }
 
 //
