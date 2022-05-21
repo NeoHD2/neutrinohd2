@@ -1669,6 +1669,9 @@ void CNeutrinoApp::channelsInit(bool /*bOnly*/)
 
 	//
 	SetChannelMode( g_settings.channel_mode, mode);
+	
+	// load webtv logos
+	CChannellogo::getInstance()->loadWebTVlogos();
 }
 
 void CNeutrinoApp::SetChannelMode(int newmode, int nMode)

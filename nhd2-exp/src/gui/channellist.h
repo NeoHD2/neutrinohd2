@@ -151,9 +151,6 @@ class CChannelList
 		void ClearList(void);
 		
 		bool canZap(CZapitChannel* channel = NULL);
-		
-		// webtv
-		void loadWebTVlogos(unsigned int start, unsigned int end);
 };
 
 #endif

@@ -257,7 +257,7 @@ void CInfoViewer::initFrames(void)
 	ChanNameY = BoxStartY + SAT_INFOBOX_HEIGHT + TIMESCALE_BAR_HEIGHT + 5;
 	
 	// channel logo
-	pic_w = CHANNEL_LOGO_HEIGHT*1.67;
+	pic_w = CHANNEL_LOGO_HEIGHT*1.63;
 	pic_h = CHANNEL_LOGO_HEIGHT;
 	
 	// channel info
@@ -465,14 +465,15 @@ void CInfoViewer::show(const int ChanNum, const std::string & Channel, const t_s
 			CChannellogo::getInstance()->getLogoSize(channel_id, &logo_w, &logo_h, &logo_bpp);
 		
 			// display logo
-			CChannellogo::getInstance()->displayLogo(channel_id, pic_x, pic_y, (logo_bpp == 4 && !g_settings.show_channelname)? logo_w : pic_w, pic_h, (logo_h > pic_h)? true : false, false, true);
+			//CChannellogo::getInstance()->displayLogo(channel_id, pic_x, pic_y, (logo_bpp == 4 && !g_settings.show_channelname)? logo_w : pic_w, pic_h, (logo_h > pic_h)? true : false, false, true);
+			CChannellogo::getInstance()->displayLogo(channel_id, pic_x, pic_y, pic_w, pic_h, (logo_h > pic_h)? true : false, false, true);
 
 			// recalculate ChanNameWidth //FIXME: timewidth
-			ChanNameWidth = BoxWidth - (30 + CHANNUMBER_WIDTH + logo_w + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getRenderWidth(ChannelName, true));
+			ChanNameWidth = BoxWidth - (30 + CHANNUMBER_WIDTH + /*logo_w*/pic_w + g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->getRenderWidth(ChannelName, true));
 			
 			// ChannelName
 			if(g_settings.show_channelname)
-				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->RenderString(pic_x + ((logo_bpp == 4)? logo_w : pic_w) + BORDER_LEFT, ChanNameY + ChanNameHeight, ChanNameWidth, ChannelName, COL_INFOBAR, 0, true);	// UTF-8
+				g_Font[SNeutrinoSettings::FONT_TYPE_INFOBAR_CHANNAME]->RenderString(pic_x + /*((logo_bpp == 4)? logo_w : pic_w)*/pic_w + 5, ChanNameY + ChanNameHeight, ChanNameWidth, ChannelName, COL_INFOBAR, 0, true);	// UTF-8
 		}
 		else
 		{

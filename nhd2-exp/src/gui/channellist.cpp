@@ -664,16 +664,7 @@ int CChannelList::show(bool zap, bool customMode)
 	updateEvents();
 	
 	// 
-	//if (g_settings.epgplus_show_logo) downloadLogos();
-
 	paint();
-	
-	//webtv logos
-	if (g_settings.epgplus_show_logo /*&& ( (g_settings.channel_mode != LIST_MODE_ALL) || (g_settings.channel_mode != LIST_MODE_SAT) )*/)
-	{
-		//loadWebTVlogos(listBox->getListMaxShow()*listBox->getCurrentPage(), (listBox->getListMaxShow() - 1)*(listBox->getListMaxShow()*listBox->getCurrentPage()));
-		CChannellogo::getInstance()->loadWebTVlogos();
-	}
 	
 	CFrameBuffer::getInstance()->blit();
 
@@ -1734,7 +1725,7 @@ void CChannelList::paint()
 			{
 				std::string logo;
 
-				logo = CChannellogo::getInstance()->getLogoName(chanlist[i]->getLogoID()/*getChannelID()*/);
+				logo = CChannellogo::getInstance()->getLogoName(chanlist[i]->getLogoID());
 				
 				item->setIconName(logo.c_str());
 			}
@@ -1926,35 +1917,4 @@ int CChannelList::getSelectedChannelIndex() const
 {
 	return this->selected;
 }
-
-//
-void CChannelList::loadWebTVlogos(unsigned int start, unsigned int end)
-{
-	dprintf(DEBUG_NORMAL, "CChannelList::loadWebTVlogos:\n");
-	
-	if (start < 0)
-		start = 0;
-	if (end > chanlist.size())
-		end = chanlist.size();
-	//
-	//for(unsigned int i = start; i < end; i++)
-	for (unsigned int i = 0; i < chanlist.size(); i++)
-	{
-		if (IS_WEBTV(chanlist[i]->getChannelID()))
-		{
-			// download logos
-			std::string logo_name;
-			logo_name = g_settings.logos_dir;
-			logo_name += "/";
-			logo_name += to_hexstring(chanlist[i]->getLogoID() & 0xFFFFFFFFFFFFULL);
-			logo_name += ".png";
-								
-			if(access(logo_name.c_str(), F_OK)) 
-			{
-				downloadUrl(chanlist[i]->getLogoUrl(), logo_name, "", 30);
-			}
-		}
-	}
-}
-
 
