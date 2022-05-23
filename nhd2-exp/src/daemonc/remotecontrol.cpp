@@ -837,7 +837,7 @@ void CRemoteControl::tvMode()
 
 // defined in sectionsd.cpp
 void insertEventsfromHTTP(std::string& url, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid);
-void insertEventsfromXMLTV(std::string& url, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid);
+void insertEventsfromXMLTV(std::string& url, std::string& epgid, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid);
 
 // online epg get events
 void CRemoteControl::getEventsFromHTTP(t_channel_id chid)
@@ -917,7 +917,6 @@ void CRemoteControl::getEventsFromXMLTV(t_channel_id chid)
 	dprintf(DEBUG_NORMAL, "CRemoteControl::getEventsFromXMLTV: channelID: %llx\n", chid);
 	
 	//
-	t_channel_id epgid = 0;
 	CZapitChannel *chan = NULL;
 	
 	for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
@@ -928,12 +927,12 @@ void CRemoteControl::getEventsFromXMLTV(t_channel_id chid)
 		}
 	}
 	
-	dprintf(DEBUG_NORMAL, "CRemoteControl::getEventsFromXMLTV:(epgid:%llx)  (epgidname:%s) (epg_url:%s)\n", chan->getEPGID(), chan->getEPGIDName().c_str(), chan->getEPGUrl().c_str());
+	dprintf(DEBUG_NORMAL, "CRemoteControl::getEventsFromXMLTV:(epgidname:%s) (epg_url:%s)\n", chan->getEPGIDName().c_str(), chan->getEPGUrl().c_str());
 	
-	// localtv
 	std::string evUrl = chan->getEPGUrl();
+	std::string evID = chan->getEPGIDName();
 	
 	//
-	insertEventsfromXMLTV(evUrl, GET_ORIGINAL_NETWORK_ID_FROM_CHANNEL_ID(chid), GET_TRANSPORT_STREAM_ID_FROM_CHANNEL_ID(chid), GET_SERVICE_ID_FROM_CHANNEL_ID(chid));
+	insertEventsfromXMLTV(evUrl, evID, GET_ORIGINAL_NETWORK_ID_FROM_CHANNEL_ID(chid), GET_TRANSPORT_STREAM_ID_FROM_CHANNEL_ID(chid), GET_SERVICE_ID_FROM_CHANNEL_ID(chid));
 }
 

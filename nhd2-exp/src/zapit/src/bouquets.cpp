@@ -701,6 +701,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 							{ 
 								epg_id = strtoull(epgid, NULL, 16);
 								chan->setEPGID(epg_id);
+								chan->setEPGIDName(epgid);
 							}
 							
 							// grab from list

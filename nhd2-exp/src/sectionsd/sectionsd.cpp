@@ -6600,7 +6600,8 @@ void insertEventsfromHTTP(std::string& url, t_original_network_id _onid, t_trans
 }
 
 //
-void insertEventsfromXMLTV(std::string& url, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid)
+#include <client/zapittools.h>
+void insertEventsfromXMLTV(std::string& url, std::string& epgid, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid)
 {
 	dprintf(DEBUG_NORMAL, "[sectionsd] sectionsd:insertEventsfromXMLTV: url:%s\n", url.c_str());
 	
@@ -6617,60 +6618,98 @@ void insertEventsfromXMLTV(std::string& url, t_original_network_id _onid, t_tran
 	char* title = NULL;
 	char* description = NULL;
 	char* descriptionextended = NULL;
+	
+	//
+	unsigned int ev_count = 0;
 
 	answer = "/tmp/epg.xml";
 	
 	if (!::downloadUrl(url, answer))
 		return;
-		
-	// xmltv
-	if (1)
+	
+	//
+	_xmlNodePtr event = NULL;
+	_xmlNodePtr node = NULL;
+
+	//
+	_xmlDocPtr index_parser = parseXmlFile(answer.c_str());
+
+	if (index_parser != NULL) 
 	{
-		//
-		_xmlNodePtr event = NULL;
-		_xmlNodePtr node = NULL;
-
-		//
-		_xmlDocPtr index_parser = parseXmlFile(answer.c_str());
-
-		if (index_parser != NULL) 
-		{
-			event = xmlDocGetRootElement(index_parser)->xmlChildrenNode;
-
-			while (event) 
-			{
-				node = event->xmlChildrenNode;
-				
-				// event id
-				// start time
-				// duration
-				// title
-				// description
-				// descriptionextended
-				
-				//
-				SIevent e(_onid, _tsid, _sid, id);
-
-				e.times.insert(SItime(start_time, duration));
-				
-				if(title != NULL)
-					e.setName(std::string(UTF8_to_Latin1("ger")), std::string(title));
-
-				if(description != NULL)
-					e.setText(std::string(UTF8_to_Latin1("ger")), std::string(description));
-
-				if(descriptionextended != NULL)
-					e.appendExtendedText(std::string(UTF8_to_Latin1("ger")), std::string(descriptionextended));
-
-				addEvent(e, 0);
-				
-				event = event->xmlNextNode;
-			}
+		event = xmlDocGetRootElement(index_parser);
+		node = event->xmlChildrenNode;
 			
-			xmlFreeDoc(index_parser);
+		if (node)
+		{
+			while ((node = xmlGetNextOccurence(node, "programme")))
+			{
+				const char *chan = xmlGetAttribute(node, "channel");
+				const char *start = xmlGetAttribute(node, "start");
+				const char *stop  = xmlGetAttribute(node, "stop");
+
+				// check epgidname // channel
+				if (strcmp(chan, epgid.c_str()) == 0)
+				{
+					struct tm starttime, stoptime;
+					strptime(start, "%Y%m%d%H%M%S %z", &starttime);
+					strptime(stop, "%Y%m%d%H%M%S %z", &stoptime);
+
+					time_t start_time = mktime(&starttime) + starttime.tm_gmtoff;
+					time_t duration = mktime(&stoptime) + stoptime.tm_gmtoff - start_time;
+
+					//
+					time_t current_time;
+					time(&current_time);
+					double time_diff = difftime(current_time, start_time + duration);
+
+					//
+					SIevent e(_onid, _tsid, _sid, ev_count+0x8000);
+					e.table_id = 0x50;
+					e.times.insert(SItime(start_time, duration));
+						
+					_xmlNodePtr _node = node->xmlChildrenNode;
+						
+					while ((_node = xmlGetNextOccurence(_node, "title")))
+					{
+						const char *title = xmlGetData(_node);
+							
+						if(title != NULL)
+							e.setName(std::string(ZapitTools::UTF8_to_Latin1("deu")), std::string(title));
+						_node = _node->xmlChildrenNode;
+					}
+						
+					//
+					_node = node->xmlChildrenNode;
+					while ((_node = xmlGetNextOccurence(_node, "sub-title")))
+					{
+						const char *subtitle = xmlGetData(_node);
+						if(subtitle != NULL)
+							e.setText(std::string(ZapitTools::UTF8_to_Latin1("deu")), std::string(subtitle));
+						_node = _node->xmlChildrenNode;
+					}
+						
+					//
+					_node = node->xmlChildrenNode;;
+					while ((_node = xmlGetNextOccurence(_node, "desc")))
+					{
+						const char *description = xmlGetData(_node);
+						if(description !=  NULL)													 							e.appendExtendedText(std::string(ZapitTools::UTF8_to_Latin1("deu")), std::string(description));
+						_node = _node->xmlChildrenNode;
+					}
+
+					addEvent(e, ev_count);
+
+					ev_count++;
+				}
+
+				node = node->xmlNextNode;	
+			}
 		}
 		
+		//xmlFreeDoc(index_parser);
 	}
+	
+	xmlFreeDoc(index_parser);	
 
 	unlink(answer.c_str());
 }
