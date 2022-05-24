@@ -42,6 +42,9 @@
 
 #include <gui/widget/icons.h>
 
+#include <string>
+#include <list>
+
 
 #define MAX_INPUT_CHARS		40
 
@@ -365,6 +368,8 @@ struct SNeutrinoSettings
 	std::string epg_max_events;
 	std::string epg_extendedcache;
 	std::string epg_dir;
+	//
+	std::list<std::string> xmltv_xml; // see http://wiki.xmltv.org/
 
 	//filebrowser
 	int filesystem_is_utf8;

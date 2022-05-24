@@ -3375,11 +3375,12 @@ static void *insertEventsfromFile(void *)
 }
 
 //
+#if 0
 static void *insertEventsfromHTTP(void* data)
 {
 	dprintf(DEBUG_NORMAL, "[sectionsd] insertEventsfromHTTP\n");
 	
-	////
+	//
 	if (!data)
 	{
 		reader_ready = true;
@@ -3890,6 +3891,7 @@ static void *insertEventsfromHTTP(void* data)
 
 	pthread_exit(NULL);
 }
+#endif
 
 //
 static void *insertEventsfromXMLTV(void* data)
@@ -4055,6 +4057,7 @@ static void commandReadSIfromXML(int connfd, char *data, const unsigned dataLeng
 }
 
 // fromHTTP / localtv
+#if 0
 static void commandReadSIfromHTTP(int connfd, char *data, const unsigned dataLength)
 {
 	dprintf(DEBUG_NORMAL, "[sectionsd] commandReadSIfromHTTP\n");
@@ -4087,6 +4090,7 @@ static void commandReadSIfromHTTP(int connfd, char *data, const unsigned dataLen
 
 	return ;
 }
+#endif
 
 // fromXMLTV
 static void commandReadSIfromXMLTV(int connfd, char *data, const unsigned dataLength)
@@ -4452,7 +4456,7 @@ static s_cmd_table connectionCommands[sectionsd::numberOfCommands] = {
 	{	commandUnRegisterEventClient,           "commandUnRegisterEventClient"	},
 	{	commandFreeMemory,			"commandFreeMemory"			},
 	{	commandReadSIfromXML,			"commandReadSIfromXML"			},
-	{	commandReadSIfromHTTP,			"commandReadSIfromHTTP"		},
+	//{	commandReadSIfromHTTP,			"commandReadSIfromHTTP"		},
 	{	commandReadSIfromXMLTV,		"commandReadSIfromXMLTV"	},
 	{	commandWriteSI2XML,			"commandWriteSI2XML"			},
 	{	commandLoadLanguages,                   "commandLoadLanguages"		},
@@ -6884,8 +6888,6 @@ void insertEventsfromHTTP(std::string& url, t_original_network_id _onid, t_trans
 	
 	if (!::downloadUrl(url, answer))
 		return;
-		
-	//TODO: grab source type
 
 	if(g_settings.epg_serverbox_gui == SNeutrinoSettings::SATIP_SERVERBOX_GUI_NHD2)
 	{
@@ -7324,6 +7326,7 @@ void insertEventsfromHTTP(std::string& url, t_original_network_id _onid, t_trans
 	unlink(answer.c_str());
 }
 
+#if 0
 void insertEventsfromXMLTV(std::string& url, std::string& epgid, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid)
 {
 	dprintf(DEBUG_NORMAL, "[sectionsd] sectionsd:insertEventsfromXMLTV: url:%s\n", url.c_str());
@@ -7434,4 +7437,6 @@ void insertEventsfromXMLTV(std::string& url, std::string& epgid, t_original_netw
 
 	unlink(answer.c_str());
 }
+#endif
+
 

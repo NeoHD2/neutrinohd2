@@ -90,7 +90,7 @@ struct sectionsd
                 freeMemory,                     // commandFreeMemory
                 
                 readSIfromXML,                  // commandReadSIfromXML
-                readSIfromHTTP,		  //
+                //readSIfromHTTP,		  //
                 readSIfromXMLTV,		  //
                 writeSI2XML,                    // commandWriteSI2XML
 

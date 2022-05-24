@@ -872,6 +872,9 @@ int CNeutrinoApp::loadSetup(const char * fname)
 		sprintf(cfg_key, "pref_epgs_%d", i);
 		strncpy(g_settings.pref_epgs[i], configfile.getString(cfg_key, "German").c_str(), 30);
 	}
+	
+	// xml
+	g_settings.xmltv_xml.clear();
 	//
 	
 	// channellist 
@@ -2322,7 +2325,7 @@ void CNeutrinoApp::InitZapper()
 		// online epg
 		if(g_settings.epg_enable_online_epg)
 		{
-			//g_RemoteControl->getEventsFromHTTP(live_channel_id);
+			g_RemoteControl->getEventsFromHTTP(live_channel_id);
 		}	
 
 		// start epg scanning
@@ -4364,19 +4367,10 @@ void CNeutrinoApp::readEPG()
 	}
 	
 	// fromXMLTV
-	g_Sectionsd->readSIfromXMLTV("https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/SamsungTVPlus/at.xml");
-	g_Sectionsd->readSIfromXMLTV("https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/SamsungTVPlus/de.xml");
-	g_Sectionsd->readSIfromXMLTV("https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/SamsungTVPlus/ch.xml");
-	g_Sectionsd->readSIfromXMLTV("https://i.mjh.nz/PlutoTV/all.xml");
-	
-	// from HTTP
-	/*
-	std::string evUrl;
-	evUrl = "http://";
-	evUrl += g_settings.epg_serverbox_ip;
-	
-	g_Sectionsd->readSIfromHTTP(evUrl.c_str());
-	*/
+	for (std::list<std::string>::iterator it = g_settings.xmltv_xml.begin(); it != g_settings.xmltv_xml.end(); it++)
+	{
+		g_Sectionsd->readSIfromXMLTV((*it).c_str());
+	}
 }
 
 // save epg

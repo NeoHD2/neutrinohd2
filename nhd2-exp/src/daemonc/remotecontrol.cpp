@@ -775,11 +775,10 @@ void CRemoteControl::zapTo_ChannelID(const t_channel_id channel_id, const std::s
 		// zap
 		g_Zapit->zapTo_serviceID_NOWAIT(channel_id);
 
-		// getEventsFromHTTP 7 XMLTV
+		// getEventsFromHTTP / localtv
 		if(g_settings.epg_enable_online_epg)
 		{
 			getEventsFromHTTP(channel_id);
-			//getEventsFromXMLTV(channel_id);
 		}
 		
 		abort_zapit = 0;
@@ -834,7 +833,6 @@ void CRemoteControl::tvMode()
 
 // defined in sectionsd.cpp
 void insertEventsfromHTTP(std::string& url, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid);
-void insertEventsfromXMLTV(std::string& url, std::string& epgid, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid);
 
 // online epg get events
 void CRemoteControl::getEventsFromHTTP(t_channel_id chid)
@@ -908,28 +906,4 @@ void CRemoteControl::getEventsFromHTTP(t_channel_id chid)
 	insertEventsfromHTTP(evUrl, GET_ORIGINAL_NETWORK_ID_FROM_CHANNEL_ID(chid), GET_TRANSPORT_STREAM_ID_FROM_CHANNEL_ID(chid), GET_SERVICE_ID_FROM_CHANNEL_ID(chid));
 }
 
-//
-void CRemoteControl::getEventsFromXMLTV(t_channel_id chid)
-{
-	dprintf(DEBUG_NORMAL, "CRemoteControl::getEventsFromXMLTV: channelID: %llx\n", chid);
-	
-	//
-	CZapitChannel *chan = NULL;
-	
-	for (tallchans_iterator it = allchans.begin(); it != allchans.end(); it++)
-	{
-		if(it->second.getChannelID() == chid)
-		{
-			chan = &it->second;
-		}
-	}
-	
-	dprintf(DEBUG_NORMAL, "CRemoteControl::getEventsFromXMLTV:(epgidname:%s) (epg_url:%s)\n", chan->getEPGIDName().c_str(), chan->getEPGUrl().c_str());
-	
-	std::string evUrl = "https://i.mjh.nz/PlutoTV/all.xml"; //chan->getEPGUrl();
-	std::string evID = chan->getEPGIDName();
-	
-	//
-	insertEventsfromXMLTV(evUrl, evID, GET_ORIGINAL_NETWORK_ID_FROM_CHANNEL_ID(chid), GET_TRANSPORT_STREAM_ID_FROM_CHANNEL_ID(chid), GET_SERVICE_ID_FROM_CHANNEL_ID(chid));
-}
 

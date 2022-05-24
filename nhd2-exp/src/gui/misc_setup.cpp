@@ -875,7 +875,7 @@ void CEPGSettings::showMenu()
 	for(int i = 0; i < 3; i++) 
 		miscSettingsEPG->addItem(epglangSelect[i]);
 
-	// online EPG
+	// localtv epg
 	miscSettingsEPG->addItem( new CMenuSeparator(LINE) );
 
 	// server box ip
@@ -896,6 +896,8 @@ void CEPGSettings::showMenu()
 	miscSettingsEPG->addItem(o1);
 	miscSettingsEPG->addItem(o2);
 	miscSettingsEPG->addItem(o3);
+	
+	// xmltv
 	
 	widget->exec(NULL, "");
 

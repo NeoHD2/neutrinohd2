@@ -689,7 +689,11 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 							chan->setName(title);
 							chan->setDescription(description);
 							
-							if (xmltv != NULL) chan->setEPGUrl(xmltv);
+							if (xmltv != NULL)
+							{
+								chan->setEPGUrl(xmltv);
+								g_settings.xmltv_xml.push_back(xmltv);
+							}
 							
 							if (logo != NULL)
 							{
@@ -737,7 +741,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 		char cLine[1024];
 		
 		t_channel_id id = 0;
-		//t_channel_id epg_id = 0;
 
 		std::string xmltv = "";
 		std::string description = "";
@@ -762,6 +765,23 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 			
 			if (strLine.empty())
 				continue;
+				
+			//
+			if (strLine.find("#EXTM3U") != std::string::npos)
+			{
+				xmltv = "";
+				xmltv = ReadMarkerValue(strLine, "x-tvg-url");
+				
+				if (!xmltv.empty())
+				{
+					std::string ext =  getFileExt(xmltv);
+					
+					if (ext == "gz")
+						changeFileNameExt(xmltv, "");
+					
+					g_settings.xmltv_xml.push_back(xmltv);
+				}
+			}
 			
 			if (strLine.find("#EXTINF") != std::string::npos)
 			{
@@ -801,7 +821,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 						description = "stream";
 						//std::string bqName = name;
 						//bqName += "-";
-						std::string bqName = "WebTV";
+						std::string bqName = "WEBTV";
 						
 						CZapitBouquet* gBouquet = pBouquet;
 						if (!group.empty())

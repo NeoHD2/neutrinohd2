@@ -693,6 +693,7 @@ void CSectionsdClient::readSIfromXML(const char * epgxmlname)
 	close_connection();
 }
 
+/*
 void CSectionsdClient::readSIfromHTTP(const char* url)
 {
 	send(sectionsd::readSIfromHTTP, (char*) url, strlen(url));
@@ -700,6 +701,7 @@ void CSectionsdClient::readSIfromHTTP(const char* url)
 	readResponse();
 	close_connection();
 }
+*/
 
 void CSectionsdClient::readSIfromXMLTV(const char* url)
 {
