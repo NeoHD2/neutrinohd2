@@ -692,7 +692,13 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 							if (xmltv != NULL)
 							{
 								chan->setEPGUrl(xmltv);
-								g_settings.xmltv_xml.push_back(xmltv);
+								
+								//
+								//for (unsigned long i = 0; i < (unsigned long)g_settings.xmltv.size(); i++)
+								{
+									//if(g_settings.xmltv[i] != xmltv)
+										g_settings.xmltv.push_back(xmltv);
+								}
 							}
 							
 							if (logo != NULL)
@@ -779,7 +785,7 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					if (ext == "gz")
 						changeFileNameExt(xmltv, "");
 					
-					g_settings.xmltv_xml.push_back(xmltv);
+					g_settings.xmltv.push_back(xmltv);
 				}
 			}
 			

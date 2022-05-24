@@ -369,7 +369,7 @@ struct SNeutrinoSettings
 	std::string epg_extendedcache;
 	std::string epg_dir;
 	//
-	std::list<std::string> xmltv_xml; // see http://wiki.xmltv.org/
+	std::vector<std::string> xmltv;
 
 	//filebrowser
 	int filesystem_is_utf8;

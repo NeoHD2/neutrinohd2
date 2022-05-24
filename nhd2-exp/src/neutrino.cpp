@@ -874,7 +874,7 @@ int CNeutrinoApp::loadSetup(const char * fname)
 	}
 	
 	// xml
-	g_settings.xmltv_xml.clear();
+	g_settings.xmltv.clear();
 	//
 	
 	// channellist 
@@ -4367,9 +4367,11 @@ void CNeutrinoApp::readEPG()
 	}
 	
 	// fromXMLTV
-	for (std::list<std::string>::iterator it = g_settings.xmltv_xml.begin(); it != g_settings.xmltv_xml.end(); it++)
+	//for (std::list<std::string>::iterator it = g_settings.xmltv_xml.begin(); it != g_settings.xmltv_xml.end(); it++)
+	for (unsigned long i = 0; i < g_settings.xmltv.size(); i++)
 	{
-		g_Sectionsd->readSIfromXMLTV((*it).c_str());
+		//g_Sectionsd->readSIfromXMLTV((*it).c_str());
+		g_Sectionsd->readSIfromXMLTV(g_settings.xmltv[i].c_str());
 	}
 }
 
