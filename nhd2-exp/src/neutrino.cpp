@@ -2322,7 +2322,7 @@ void CNeutrinoApp::InitZapper()
 		// online epg
 		if(g_settings.epg_enable_online_epg)
 		{
-			g_RemoteControl->getEventsFromHTTP(live_channel_id);
+			//g_RemoteControl->getEventsFromHTTP(live_channel_id);
 		}	
 
 		// start epg scanning
@@ -4362,6 +4362,21 @@ void CNeutrinoApp::readEPG()
 
 		g_Sectionsd->readSIfromXML(g_settings.epg_dir.c_str());
 	}
+	
+	// fromXMLTV
+	g_Sectionsd->readSIfromXMLTV("https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/SamsungTVPlus/at.xml");
+	g_Sectionsd->readSIfromXMLTV("https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/SamsungTVPlus/de.xml");
+	g_Sectionsd->readSIfromXMLTV("https://raw.githubusercontent.com/matthuisman/i.mjh.nz/master/SamsungTVPlus/ch.xml");
+	g_Sectionsd->readSIfromXMLTV("https://i.mjh.nz/PlutoTV/all.xml");
+	
+	// from HTTP
+	/*
+	std::string evUrl;
+	evUrl = "http://";
+	evUrl += g_settings.epg_serverbox_ip;
+	
+	g_Sectionsd->readSIfromHTTP(evUrl.c_str());
+	*/
 }
 
 // save epg
@@ -5100,6 +5115,10 @@ int CNeutrinoApp::exec(CMenuTarget * parent, const std::string & actionKey)
 			HintBox(_("Information"), _("Reloading channel lists, please be patient."));
 			g_Zapit->reinitChannels();
 		}
+	}
+	else if (actionKey == "reloadepg")
+	{
+		readEPG();
 	}
 	else if (actionKey == "mainmenu")
 	{

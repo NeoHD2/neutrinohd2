@@ -799,14 +799,17 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					if (url != NULL) 
 					{
 						description = "stream";
-						std::string bqName = name;
-						bqName += "-";
+						//std::string bqName = name;
+						//bqName += "-";
+						std::string bqName = "WebTV";
 						
 						CZapitBouquet* gBouquet = pBouquet;
 						if (!group.empty())
 						{
-							bqName += group;
-							//gBouquet = addBouquetIfNotExist(group);
+							bqName = group;
+							bqName += " (";
+							bqName += name;
+							bqName += ")";
 							gBouquet = addBouquetIfNotExist(bqName);
 							gBouquet->bWebTV = true;		
 						}

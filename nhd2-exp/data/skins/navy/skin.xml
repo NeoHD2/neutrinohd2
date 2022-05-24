@@ -523,6 +523,8 @@
 			</ITEM>
 			<ITEM id="5" localename="Reload channel lists" itemicon="hint_reload" target="0" actionkey="reloadchannels">
 			</ITEM>
+			<ITEM id="5" localename="Reload EPG" itemicon="hint_reload" target="0" actionkey="reloadepg">
+			</ITEM>
 			<ITEM id="5" localename="Bouquet Editor" itemicon="hint_bedit" target="50">
 			</ITEM>
 			<ITEM id="5" localename="CI Cam" itemicon="hint_ci" target="41">

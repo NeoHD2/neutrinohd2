@@ -197,6 +197,8 @@ class CSectionsdClient : private CBasicClient
 		void freeMemory();
 
 		void readSIfromXML(const char * epgxmlname);
+		void readSIfromHTTP(const char* url);
+		void readSIfromXMLTV(const char* url);
 
 		void writeSI2XML(const char * epgxmlname);
 

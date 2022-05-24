@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutrinohd2 4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-24 01:04+0200\n"
+"POT-Creation-Date: 2022-05-24 14:49+0200\n"
 "PO-Revision-Date: 2022-04-21 22:31+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1758,6 +1758,9 @@ msgid "Release cycle"
 msgstr ""
 
 msgid "Reload"
+msgstr ""
+
+msgid "Reload EPG"
 msgstr ""
 
 msgid "Reload channel lists"

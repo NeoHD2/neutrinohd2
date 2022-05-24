@@ -775,15 +775,12 @@ void CRemoteControl::zapTo_ChannelID(const t_channel_id channel_id, const std::s
 		// zap
 		g_Zapit->zapTo_serviceID_NOWAIT(channel_id);
 
-		// getEventsFromHTTP
+		// getEventsFromHTTP 7 XMLTV
 		if(g_settings.epg_enable_online_epg)
 		{
 			getEventsFromHTTP(channel_id);
+			//getEventsFromXMLTV(channel_id);
 		}
-		
-		// XMLTV
-		if ( 1 )
-			getEventsFromXMLTV(channel_id);
 		
 		abort_zapit = 0;
 
@@ -929,7 +926,7 @@ void CRemoteControl::getEventsFromXMLTV(t_channel_id chid)
 	
 	dprintf(DEBUG_NORMAL, "CRemoteControl::getEventsFromXMLTV:(epgidname:%s) (epg_url:%s)\n", chan->getEPGIDName().c_str(), chan->getEPGUrl().c_str());
 	
-	std::string evUrl = chan->getEPGUrl();
+	std::string evUrl = "https://i.mjh.nz/PlutoTV/all.xml"; //chan->getEPGUrl();
 	std::string evID = chan->getEPGIDName();
 	
 	//

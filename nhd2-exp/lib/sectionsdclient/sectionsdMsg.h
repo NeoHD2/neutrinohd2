@@ -53,13 +53,13 @@ struct sectionsd
 
         enum commands
         {
-                /* actualEPGchannelName=0,*/
+                // actualEPGchannelName=0,
                 dummy1,
                 dummy3, //actualEventListTVshort,               // commandEventListTV
-                /*currentNextInformation,*/
+                //currentNextInformation,
                 dummy2,
                 dumpStatusinformation,          // commandDumpStatusInformation
-                /*allEventsChannelName,*/
+                //allEventsChannelName,
                 allEventsChannelIDSearch,       // commandAllEventsChannelIDSearch
                 dummy4, // setHoursToCache,
                 dummy5, // setHoursExtendedCache,
@@ -88,7 +88,10 @@ struct sectionsd
                 CMD_unregisterEvents,           // commandUnRegisterEventClient
 
                 freeMemory,                     // commandFreeMemory
+                
                 readSIfromXML,                  // commandReadSIfromXML
+                readSIfromHTTP,		  //
+                readSIfromXMLTV,		  //
                 writeSI2XML,                    // commandWriteSI2XML
 
                 LoadLanguages,                  // commandLoadLanguages
@@ -101,7 +104,7 @@ struct sectionsd
                 Restart,                        // commandRestart
                 ping,
 
-                numberOfCommands        // <- no actual command, end of command marker
+                numberOfCommands        	  // <- no actual command, end of command marker
         };
 
 	struct commandGetEPGid

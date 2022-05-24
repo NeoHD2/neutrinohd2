@@ -1183,6 +1183,7 @@
 		<LISTBOX posx="640" posy="60" width="540" height="500" type="0" mode ="1">
 			<ITEM id="5" lines="1" localename="Scan transponder" itemicon="hint_scan" target="40"/>
 			<ITEM id="5" lines="1" localename="Reload channel lists" itemicon="hint_reload" target="0" actionkey="reloadchannels"/>
+			<ITEM id="5" lines="1" localename="Reload EPG" itemicon="hint_reload" target="0" actionkey="reloadepg"/>
 			<ITEM id="5" lines="1" localename="Bouquet Editor" itemicon="hint_bedit" target="50"/>
 			<ITEM id="5" lines="1" localename="CI Cam" itemicon="hint_ci" target="41"/>
 			<ITEM id="5" lines="1" localename="Software update" itemicon="hint_swupdate" target="42"/>

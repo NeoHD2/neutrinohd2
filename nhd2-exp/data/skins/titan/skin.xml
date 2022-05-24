@@ -836,7 +836,9 @@
 		<LISTBOX posx="30" posy="100" width="640" height="520" paintframe="1" type="1" scrollbar="1" mode="1">
 			<ITEM id="5" localename="Scan transponder" itemicon="hint_scan" target="40">
 			</ITEM>
-			<ITEM id="5" localename="Reload channel lists" itemicon="hint_reload" target="0" actionkey="reloadchannels">
+			<ITEM id="5" localename="Reload channel lists" itemicon="hint_reload" target="0" actionkey="reloadepg">
+			</ITEM>
+			<ITEM id="5" localename="Reload EPG" itemicon="hint_reload" target="0" actionkey="reloadchannels">
 			</ITEM>
 			<ITEM id="5" localename="Bouquet Editor" itemicon="hint_bedit" target="50">
 			</ITEM>

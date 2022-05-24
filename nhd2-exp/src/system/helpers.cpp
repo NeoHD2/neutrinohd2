@@ -1736,6 +1736,27 @@ std::string readFile(std::string file)
 	return ret_s;
 }
 
+//
+std::string randomString(unsigned int length)
+{
+	std::string random = "";
+	const char alphanum[] =
+	    "0123456789"
+	    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	    "abcdefghijklmnopqrstuvwxyz";
+	unsigned int i;
+	for(i = 0; i < length; ++i)
+		random += alphanum[rand() % (sizeof(alphanum) - 1)];
+	return random;
+}
+
+//
+std::string randomFile(std::string suffix, std::string directory, unsigned int length)
+{
+	mkdir(directory.c_str(), 0755);
+	return directory + "/" + randomString(length) + "." + suffix;
+}
+
 #ifndef SWIG
 bool parseJsonFromFile(std::string& jFile, Json::Value *root, std::string *errMsg)
 {

@@ -136,6 +136,10 @@ ssize_t _writeall(int fd, const void *buf, size_t count);
 ssize_t _read(int fd, void *buf, size_t count);
 
 //
+std::string randomString(unsigned int length = 10);
+std::string randomFile(std::string suffix = "tmp", std::string directory = "/tmp", unsigned int length = 10);
+
+//
 class RandomNumber
 {
 	public:

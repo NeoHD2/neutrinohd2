@@ -1199,16 +1199,12 @@
 		</TIME>
 		
 		<LISTBOX posx="50" posy="50" width="540" height="620" type="0">
-			<ITEM  id="5" localename="Scan transponder" lines="1" itemicon="hint_scan" target="40" shadow="1">
-			</ITEM>
-			<ITEM  id="5" localename="Reload channel lists" lines="1" itemicon="hint_reload" target="0" actionkey="reloadchannels" shadow="1">
-			</ITEM>
-			<ITEM  id="5" localename="Bouquet Editor" lines="1" itemicon="hint_bedit" target="50" shadow="1">
-			</ITEM>
-			<ITEM  id="5" localename="CI Cam" lines="1" itemicon="hint_ci" target="41" shadow="1">
-			</ITEM>
-			<ITEM  id="5" localename="Software update" lines="1" itemicon="hint_swupdate" target="42" shadow="1">
-			</ITEM>
+			<ITEM  id="5" localename="Scan transponder" lines="1" itemicon="hint_scan" target="40" shadow="1"/>
+			<ITEM  id="5" localename="Reload channel lists" lines="1" itemicon="hint_reload" target="0" actionkey="reloadchannels" shadow="1"/>
+			<ITEM  id="5" localename="Reload EPG" lines="1" itemicon="hint_reload" target="0" actionkey="reloadepg" shadow="1"/>
+			<ITEM  id="5" localename="Bouquet Editor" lines="1" itemicon="hint_bedit" target="50" shadow="1"/>
+			<ITEM  id="5" localename="CI Cam" lines="1" itemicon="hint_ci" target="41" shadow="1"/>
+			<ITEM  id="5" localename="Software update" lines="1" itemicon="hint_swupdate" target="42" shadow="1"/>
 		</LISTBOX>
 	</WIDGET>
 
