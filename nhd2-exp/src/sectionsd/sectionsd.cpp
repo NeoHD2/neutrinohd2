@@ -3898,7 +3898,7 @@ static void *insertEventsfromXMLTV(void* data)
 {
 	dprintf(DEBUG_NORMAL, "[sectionsd] insertEventsfromXMLTV\n");
 	
-	////
+	//
 	if (!data)
 	{
 		reader_ready = true;
@@ -3953,7 +3953,7 @@ static void *insertEventsfromXMLTV(void* data)
 					if ( IS_WEBTV(it->second.getChannelID()) )
 					{
 						// check epgidname // channel
-						if (strcmp(chan, it->second.getEPGIDName().c_str()) == 0)
+						if ( (strcmp(chan, it->second.getEPGIDName().c_str()) == 0) && (!it->second.getEPGUrl().empty()) )
 						{
 							struct tm starttime, stoptime;
 							strptime(start, "%Y%m%d%H%M%S %z", &starttime);

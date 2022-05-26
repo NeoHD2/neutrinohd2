@@ -775,8 +775,9 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 			//
 			if (strLine.find("#EXTM3U") != std::string::npos)
 			{
-				xmltv = "";
 				xmltv = ReadMarkerValue(strLine, "x-tvg-url");
+				
+				if (xmltv.empty()) xmltv = ReadMarkerValue(strLine, "tvg-url");
 				
 				if (!xmltv.empty())
 				{
@@ -811,7 +812,6 @@ void CBouquetManager::parseWebTVBouquet(std::string filename)
 					group = ReadMarkerValue(strInfoLine, "group-title=");
 					epgid = ReadMarkerValue(strInfoLine, "tvg-id=");
 					alogo = ReadMarkerValue(strInfoLine, "tvg-logo=");
-					xmltv = ReadMarkerValue(strLine, "tvg-url=");
 				}
 				
 				pBouquet = addBouquetIfNotExist("WEBTV");
