@@ -25,10 +25,12 @@
 #include <cstring>
 #include <iostream>
 #include <unistd.h> /* sleep */
+#include <string>
 
 #include <client/zapitclient.h>
 
 #include <video_cs.h>
+
 
 int usage (const char * basename)
 {
@@ -48,6 +50,7 @@ int usage (const char * basename)
 		<< "\t-p\t\tstart/stop playback: " << std::endl
 		<< "\t-a <audio-number>\t\tchange audio pid: " << std::endl
 		<< "\t-c\t\treload channels bouquets: " << std::endl
+		<< "\t-lc\t\tlist all channels / channels ID " << std::endl
 		<< "\t-sb\t\tsave bouquets: " << std::endl
 		<< "\t-sh\t\tshow satellites: " << std::endl
 		<< "\t-rz\t\trezap" << std::endl
@@ -116,6 +119,8 @@ int main (int argc, char** argv)
 	uint32_t  diseqc[5];
 	unsigned int tmp;
 	int scan_mode = 1;
+	
+	bool listChannel = false;
 
 	/* command line */
 	for (i = 1; i < argc; i++)
@@ -309,6 +314,11 @@ int main (int argc, char** argv)
 		else if(!strncmp(argv[i], "-gsi", 4))
 		{
 			getserviceinfo = true;
+			continue;
+		}
+		else if (!strncmp(argv[i], "-lc", 3))
+		{
+			listChannel = true;
 			continue;
 		}
 		else if (i < argc - 1)
@@ -530,6 +540,18 @@ int main (int argc, char** argv)
 		printf("vtxtpid = 0x%04x\n", si.vtxtpid);
 		
 		return 0;
+	}
+	
+	// list all channels
+	if (listChannel)
+	{
+		std::vector<CZapitClient::responseGetBouquetChannels> channels;
+		zapit.getChannels(channels);
+		
+		for (i = 0; i < channels.size(); i++)
+		{
+			printf("%s %llx\n", channels[i].name, channels[i].channel_id);
+		}
 	}
 
 	/* choose source mode */
