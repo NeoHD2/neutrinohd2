@@ -552,6 +552,8 @@ int main (int argc, char** argv)
 		{
 			printf("%llx  ->  %s\n", channels[i].channel_id, channels[i].name);
 		}
+		
+		return 0;
 	}
 
 	/* choose source mode */
