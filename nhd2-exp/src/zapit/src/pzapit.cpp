@@ -550,7 +550,7 @@ int main (int argc, char** argv)
 		
 		for (i = 0; i < channels.size(); i++)
 		{
-			printf("%s %llx\n", channels[i].name, channels[i].channel_id);
+			printf("%llx  ->  %s\n", channels[i].channel_id, channels[i].name);
 		}
 	}
 
