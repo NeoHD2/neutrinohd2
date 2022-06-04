@@ -122,6 +122,7 @@ class CRemoteControl
 		inline int getCurrentChannelNumber(void) { return current_channel_number; };
 
 		void getEventsFromHTTP(t_channel_id chid);
+		void getEventsFromXMLTV(t_channel_id chid);
 };
 
 #endif
