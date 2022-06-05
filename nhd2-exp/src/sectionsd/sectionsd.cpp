@@ -7326,10 +7326,10 @@ void insertEventsfromHTTP(std::string& url, t_original_network_id _onid, t_trans
 	unlink(answer.c_str());
 }
 
-#if 0
-void insertEventsfromXMLTV(std::string& url, std::string& epgid, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid)
+#if 1
+void insertEventsUnikKeyfromXMLTV(std::string& url, std::string& epgid, t_original_network_id _onid, t_transport_stream_id _tsid, t_service_id _sid)
 {
-	dprintf(DEBUG_NORMAL, "[sectionsd] sectionsd:insertEventsfromXMLTV: url:%s\n", url.c_str());
+	dprintf(DEBUG_NORMAL, "[sectionsd] sectionsd:insertEventsUnikKeyfromXMLTV: url:%s\n", url.c_str());
 	
 	if (url.empty())
 		return;

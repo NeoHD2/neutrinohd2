@@ -406,9 +406,11 @@ class SIevent {
 		event_id_t uniqueKey(void) const {
 			return CREATE_EVENT_ID(CREATE_CHANNEL_ID, eventID);
 		}
+		
 		int runningStatus(void) const {
 			return running;
 		}
+		
 		SIcomponents components;
 		SIparentalRatings ratings;
 		SIlinkage_descs linkage_descs;
